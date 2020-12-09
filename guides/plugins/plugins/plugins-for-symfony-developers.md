@@ -1,0 +1,2 @@
+# Plugins for Symfony developers
+

@@ -1,0 +1,19 @@
+# Elasticsearch
+
+```yaml
+elasticsearch:
+    enabled: "%env(bool:default:default_whitespace:SHOPWARE_ES_ENABLED)%"
+    indexing_enabled: "%env(bool:default:default_whitespace:SHOPWARE_ES_INDEXING_ENABLED)%"
+    hosts: "%env(string:default:default_whitespace:SHOPWARE_ES_HOSTS)%"
+    index_prefix: "%env(string:default:default_elasticsearch_prefix:SHOPWARE_ES_INDEX_PREFIX)%"
+
+parameters:
+    default_elasticsearch_prefix: "sw"
+    default_whitespace: " "
+```
+
+`elasticsearch.enabled`   
+Enables elasticsearch \(usually enabled through\)
+
+
+
