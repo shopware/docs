@@ -41,7 +41,7 @@ The Store API offers a variety of functionalities referred to as _endpoints_ or 
 
 The Store API doesn't have a real authentication - it is a public API - just as any shop frontend is public to its visitors. However we have to pass some type of identification so Shopware is able to determine the correct sales channel for the API call. This identification is the `sw-access-key` . It is sent as a HTTP header. You can find the correct access key within your admin panel's sales channel configuration in a section labeled _API Access_
 
-![API Access section in the Admin sales channel configuration](../../../.gitbook/assets/image%20%286%29.png)
+![API Access section in the Admin sales channel configuration](../../../.gitbook/assets/image%20%282%29.png)
 
 A typical Store API request including headers will look like this
 
