@@ -156,6 +156,8 @@
   * [Store API Reference](resources/api-reference/store-api.md)
   * [App Webhooks Reference](resources/api-reference/app-webhooks.md)
 * [Code Reference](resources/code-reference/README.md)
+  * [Apps](resources/code-reference/apps/README.md)
+    * [Manifest reference](resources/code-reference/apps/manifest-reference.md)
   * [Configuration](resources/code-reference/configuration/README.md)
     * [Core](resources/code-reference/configuration/core.md)
     * [Storefront](resources/code-reference/configuration/storefront.md)
