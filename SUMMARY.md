@@ -42,8 +42,7 @@
     * [Reading Entities](concepts/api/admin-api/reading-entities.md)
     * [Writing Entities](concepts/api/admin-api/writing-entities.md)
     * [Synchronisation](concepts/api/admin-api/synchronisation.md)
-  * [Store API](concepts/api/store-api/README.md)
-    * [Authentication](concepts/api/store-api/authentication.md)
+  * [Store API](concepts/api/store-api.md)
 
 ## Products
 

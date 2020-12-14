@@ -4,7 +4,7 @@ In this guide, we'll explore the Shopware Store API using different examples.
 
 If you want to understand what the goal of it is and how it's built - go to out the concepts section
 
-{% page-ref page="../../../concepts/api/store-api/" %}
+{% page-ref page="../../../concepts/api/store-api.md" %}
 
 Go to the Store API reference to see a structured list of endpoints, parameters and responses.
 
