@@ -41,6 +41,8 @@ This new class `SwagBasicExample` has to extend from Shopware's abstract Plugin 
 Apart from this, only the namespace is missing. You can freely define it, but we'd recommend using a combination of your manufacturer prefix and the technical name, so in this `guide` this would be: `Swag\BasicExample`
 
 ```php
+// custom/plugins/SwagBasicExample.php
+
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample;

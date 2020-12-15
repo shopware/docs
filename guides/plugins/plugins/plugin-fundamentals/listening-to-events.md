@@ -10,19 +10,21 @@ In order to build your own subscriber for your plugin, of course you first need 
 
 #### Plugin base class
 
-Registering a custom subscriber requires to load a custom `services.xml` file with your plugin. This is done in your plugins base class by using the `build` method. Make sure to have a look at the guide about the mentioned [plugin base class](https://docs.shopware.com/en/shopware-platform-dev-en/developer-guide/plugin-base) for further information. Registering a custom subscriber requires to load a `services.xml` file with your plugin. This is done by either placing a file with name `services.xml` into a directory called `src/Resources/config/` or by overriding the method `getServicesFilePath` of your plugin base class.
+ Registering a custom subscriber requires to load a `services.xml` file with your plugin. This is done by either placing a file with name `services.xml` into a directory called `src/Resources/config/` or by overriding the method `getServicesFilePath` of your plugin base class.
 
 ```php
-// SubscriberPlugin/src/SubscriberPlugin.php
+// SwagBasicExample/src/SwagBasicExample.php
 
-namespace Swag\SubscriberPlugin;
+<?php
+
+namespace Swag\BasicExample;
 
 use Shopware\Core\Framework\Plugin;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\Config\FileLocator;
 
-class SubscriberPlugin extends Plugin
+class SwagBasicExample extends Plugin
 {
     public function getServicesFilePath(): string
     {
@@ -40,9 +42,11 @@ To start creating a subscriber, we need to create a class first implementing Eve
 Therefore, this is how your subscriber could then look like:
 
 ```php
+// SwagBasicExample/src/Subscriber/MySubscriber.php
+
 <?php declare(strict_types=1);
 
-namespace Swag\SubscriberPlugin\Subscriber;
+namespace Swag\BasicExample\Subscriber;
 
 use Shopware\Core\Framework\DataAbstractionLayer\Event\EntityLoadedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -82,7 +86,7 @@ Registering your subscriber to Shopware 6 is also as simple as it is in Symfony.
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="Swag\SubscriberPlugin\Subscriber\MySubscriber">
+        <service id="Swag\BasicExample\Subscriber\MySubscriber">
             <tag name="kernel.event_subscriber"/>
         </service>
     </services>
