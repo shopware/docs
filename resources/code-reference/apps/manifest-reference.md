@@ -57,6 +57,48 @@
         <!-- register webhooks you want to receive, keep in mind that the name needs to be unique -->
         <webhook name="product-changed" url="https://example.com/event/product-changed" event="product.written"/>
     </webhooks>
+    <!-- Optional -->
+    <custom-fields>
+        <!-- register each custom field set you may want to add -->
+        <custom-field-set>
+            <!-- the technical name of the custom field set, needs to be unique, therefor use your vendor prefix -->
+            <name>swag_example_set</name>
+            <!-- Translatable, the label of the field set -->
+            <label>Example Set</label>
+            <label lang="de-DE">Beispiel-Set</label>
+            <!-- define the entities to which your field set should be assigned -->
+            <related-entities>
+                <order/>
+            </related-entities>
+            <!-- define the fields in your set -->
+            <fields>
+                <!-- the element type, defines the type of the field -->
+                <!-- the name needs to be unique, therefore use your vendor prefix -->
+                <text name="swag_code">
+                    <!-- Translatable, the label of the field -->
+                    <label>Example field</label>
+                    <!-- Optional, Default = 1, order your fields by specifying the position -->
+                    <position>1</position>
+                    <!-- Optional, Default = false, mark a field as required -->
+                    <required>false</required>
+                    <!-- Optional, Translatable, the help text for the field -->
+                    <help-text>Example field</help-text>
+                </text>
+                <float name="swag_test_float_field">
+                    <label>Test float field</label>
+                    <label lang="de-DE">Test-Kommazahlenfeld</label>
+                    <help-text>This is an float field.</help-text>
+                    <position>2</position>
+                    <!-- some elements allow more configuration, like placeholder, main and max values etc. -->
+                    <!-- Your IDE should give you pretty good autocompletion support to explore the configuration for a given type -->
+                    <placeholder>Enter an float...</placeholder>
+                    <min>0.5</min>
+                    <max>1.6</max>
+                    <steps>0.2</steps>
+                </float>
+            </fields>
+        </custom-field-set>
+    </custom-fields>
 </manifest>
 ```
 {% endcode %}
