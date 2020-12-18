@@ -333,19 +333,6 @@ Example request body:
 }
 ```
 
-## Validation
-
-{% hint style="danger" %}
-This is currently WIP check and update when [https://gitlab.shopware.com/shopware/6/product/platform/-/merge\_requests/3978](https://gitlab.shopware.com/shopware/6/product/platform/-/merge_requests/3978) is done
-{% endhint %}
-
-You can run the `app:validate` command to validate the configuration of your app. It will check for common errors, like missing translations, unknown events registered as webhooks and missing permissions for webhooks.  
-To validate all apps in your `custom/apps` folder run:
-
-```bash
-bin/console app:validate
-```
-
 ## API Docs
 
 {% api-method method="get" host="https://my.example.com" path="" %}
