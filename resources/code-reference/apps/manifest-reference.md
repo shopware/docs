@@ -57,6 +57,25 @@
         <!-- register webhooks you want to receive, keep in mind that the name needs to be unique -->
         <webhook name="product-changed" url="https://example.com/event/product-changed" event="product.written"/>
     </webhooks>
+    <!-- Optional, can be omitted if the administration should not be extended -->
+    <admin>
+        <!-- Register a custom module (iframe), that should be loaded from the given surce -->
+        <module name="exampleModule" source="https://example.com//promotion/view/promotion-module">
+            <label>Example Module</label>
+            <label lang="de-DE">Beispiel Modul</label>
+        </module>
+        <!-- Register action buttons that should be displayed in the detail and listing pages of the administration -->
+        <!-- view is one of: "list", "detail" -->
+        <action-button action="setPromotion" entity="promotion" view="detail" url="https://example.com/promotion/set-promotion">
+            <label>set Promotion</label>
+        </action-button>
+        <action-button action="deletePromotion" entity="promotion" view="detail" url="https://example.com/promotion/delete-promotion">
+            <label>delete Promotion</label>
+        </action-button>
+        <action-button action="restockProduct" entity="product" view="list" url="https://example.com/restock">
+            <label>restock</label>
+        </action-button>
+    </admin>
     <!-- Optional -->
     <custom-fields>
         <!-- register each custom field set you may want to add -->
