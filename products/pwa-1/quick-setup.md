@@ -160,5 +160,5 @@ Listening on: http://192.168.43.206:3000/
 
 Congratulations, your PWA and your Shopware API backend are up and running!
 
-![](../../.gitbook/assets/image%20%281%29.png)
+![](../../.gitbook/assets/image%20%285%29.png)
 

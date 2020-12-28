@@ -26,6 +26,7 @@
     * [Elasticsearch](concepts/framework/architecture/elasticsearch.md)
   * [Data Abstraction Layer](concepts/framework/data-abstraction-layer/README.md)
     * [Entities](concepts/framework/data-abstraction-layer/entities.md)
+    * [Inheritance](concepts/framework/data-abstraction-layer/inheritance.md)
     * [Indexing](concepts/framework/data-abstraction-layer/indexing.md)
   * [Business Events](concepts/framework/business-events.md)
   * [Messaging](concepts/framework/messaging.md)

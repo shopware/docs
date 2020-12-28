@@ -2,9 +2,13 @@
 
 At core, Shopware is a **commerce platform**. If you want to understand the commerce-related concepts of our software, make sure to go here.
 
-The main parts are divided into
+{% hint style="info" %}
+The **Concepts** section does not contain code examples, instead it we focus on conveying the concepts and ideas behind the software. If you want more guided, step-by-step tutorials, please head to the **Guides** section.
+{% endhint %}
 
-* [Catalog](catalog/) \(categories, products, prices\)
-* [Checkout](checkout/) \(customers, cart, orders\)
-* [Content](core/) \(shopping experiences / CMS\)
+{% page-ref page="catalog/" %}
+
+{% page-ref page="checkout/" %}
+
+{% page-ref page="core/" %}
 
