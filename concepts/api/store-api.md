@@ -1,7 +1,3 @@
----
-description: '"I can make pretty, please make it work"'
----
-
 # Store API
 
 Every interaction between the store and a customer can be modeled using the Store API. It serves as a normalised layer or interface to communicate between customer-facing applications and the [Shopware Core](../framework/architecture/core.md). It can be used to build custom frontends like singe page applications, native apps or simple catalog apps. It really doesn't matter, what you want to build, as long as you're able to consume a JSON API via HTTP.
@@ -12,7 +8,7 @@ Whenever additional logic is added to Shopware, the method of the corresponding 
 
 ## Plugins
 
-Using plugins you can add custom routes to the store API \(as well as any other routes\) and also register custom services. We don't force developers to provide API coverage for their functionalities, however if you want to support headless applications, make sure that your plugin provides its functionalities through dedicated routes.
+Using plugins you can add custom routes to the Store API \(as well as any other routes\) and also register custom services. We don't force developers to provide API coverage for their functionalities, however if you want to support headless applications, make sure that your plugin provides its functionalities through dedicated routes.
 
 ## What next?
 
