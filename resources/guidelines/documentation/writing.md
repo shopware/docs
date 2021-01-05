@@ -8,6 +8,8 @@ Once you are assigned to a certain topic or area, consider yourself the "knowled
 * Which questions are you going to answer?
 * Which other topics might be relevant / interesting to read afterwards.
 
+### Starting to write
+
 After you've discussed this abstract, start writing the first 30% of your article.
 
 * Motivate sections of the documentation \(why do we do this or that?\)
@@ -16,7 +18,21 @@ After you've discussed this abstract, start writing the first 30% of your articl
 * Have a common thread throughout your article
 * Work with cross-references \(knowledge is a network, not a one-way-street\)
 
-After writing the first 30%, consult a reviewer to give some initial feedback. Discuss the current progress, re-arrange some parts if needed and continue writing until you feel you're done.
+### Quick Review
+
+After writing the first 30%, consult a reviewer to give some initial feedback. Discuss the current progress and re-arrange some parts if needed.
+
+As a reviewer, check the general approach, tone and wording of the text and give some early direction and feedback. Having multiple reviewers can be beneficial.
+
+### Publishing
 
 Before finishing off the documentation, check back with your questions posed at the beginning, send it to another reviewer and finalise based on the feedback.
+
+When you started writing, there will be a new draft created with your changes. Each draft can have a description. Please follow the following schema for draft descriptions
+
+```text
+[Ticket-Reference] - [Description]
+```
+
+After your draft has been reviewed a final time, it will be published once you notify one of the administrators.
 
