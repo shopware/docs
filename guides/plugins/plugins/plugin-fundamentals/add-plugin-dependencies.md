@@ -66,7 +66,6 @@ own `composer.json` as a key value pair:
 Have a detailed look at the `require` keyword, which now requires both the Shopware 6 version, which **always**
 has to be mentioned in your `composer.json`, as well as the previously mentioned plugin and its version.
 Just as in composer itself, you can also use version wildcards, such as `v1.0.*` to only require the other plugin's
-minor version to be 1.1, not taken the patch version into account when it comes to find the matching plugin version.
+minor version to be 1.1, not taking the patch version into account when it comes to find the matching plugin version.
 
 Now your plugin isn't installable anymore, until that requirement is fulfilled.
-
