@@ -115,6 +115,7 @@
       * [Rule](guides/plugins/plugins/framework/rule.md)
       * [Store API](guides/plugins/plugins/framework/store-api.md)
     * [Administration](guides/plugins/plugins/administration.md)
+      * [Adding permissions](guides/plugins/plugins/administration/add-acl-rules.md)
     * [Storefront](guides/plugins/plugins/storefront/README.md)
       * [Add custom controller](guides/plugins/plugins/storefront/add-custom-controller.md)
       * [Override existing routes](guides/plugins/plugins/storefront/override-existing-routes.md)
