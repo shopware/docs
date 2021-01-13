@@ -90,6 +90,7 @@
       * [Add plugin dependencies](guides/plugins/plugins/plugin-fundamentals/add-plugin-dependencies.md)
       * [Add plugin configuration](guides/plugins/plugins/plugin-fundamentals/add-plugin-configuration.md)
       * [Using the plugin configuration](guides/plugins/plugins/plugin-fundamentals/plugin-configuration.md)
+      * [Dependency injection](guides/plugins/plugins/plugin-fundamentals/dependency-injection.md)
     * [Checkout](guides/plugins/plugins/checkout-1/README.md)
       * [Cart](guides/plugins/plugins/checkout-1/cart.md)
       * [Customer](guides/plugins/plugins/checkout-1/customer.md)
