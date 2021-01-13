@@ -39,10 +39,12 @@ Resources
             `-- base
               `-- sw-alert.spec.js
 ```
+Please note that in this example, `<environment>` is a placeholder for the environment you are working in. 
+In your context, that should be `administration` or `storefront` in most cases.
 
 ## Setup for testing services and ES modules
 
-Services and isolated EcmaScript modules are good testable because
+Services and isolated EcmaScript modules are well testable because
 you can import them directly without mocking or stubbing dependencies.
 
 Let's have a look at an example:
@@ -77,7 +79,15 @@ describe('core/helper/sanitizer.helper.js', () => {
 });
 ``` 
 
-The service can be used isolated and therefore is easy to test.
+A service under test  can be used isolated and therefore is easy to test.
+
+## Write tests for components
+
+After setting up your component test you need to write your tests. A good way to write them is to test input
+and output. The most common tests are:
+
+- set Vue Props and check if component looks correctly
+- interact with the DOM and check if the desired behaviour is happening
 
 ## Setup for testing Vue components
 
@@ -94,9 +104,26 @@ object, e.g. `Shopware.Component.register()`. Therefore, we have access to Compo
 method. This creates a native Vue component with a working template. Every override and extension from another
 components are resolved in the built component.
 
-### Practical example
+### Executing tests
 
-Fot better understanding how to write component tests for Shopware 6 let's write a test. In our example
+Before you are using the commands make sure that you installed all dependencies for your administration.
+If you haven't done this already, then you can do it running the following PSH command:
+`./psh.phar administration:install-dependencies`
+
+In order to run jest unit tests of the administration, you can use the psh commands provided by our development template. 
+Beware: This only applies to the Shopware provided Administration! If you use unit tests in your Plugin, you might need to write your own scripts 
+for that.
+
+This command executes all unit tests and shows you the complete code coverage.  
+`./psh.phar administration:unit`
+
+This command executes only unit tests of changed files. It automatically restarts if a file
+gets saved. This should be used during the development of unit tests.  
+`./psh.phar administration:unit-watch`
+
+## First example: Testing sw-multi-select component
+
+For better understanding how to write component tests for Shopware 6 let's write a test. In our example
 we are using the component `sw-multi-select`.
 
 When you want to mount your component it needs to be imported first:
@@ -117,6 +144,8 @@ Shopware.Component.register('sw-multi-select', {
 });
 ```
 
+### Mounting components
+
 In the next step we can mount our Vue component which we get from the global Shopware object:
 ```javascript
 // test/app/component/form/select/base/sw-multi-select.spec.js
@@ -126,8 +155,18 @@ import 'src/app/component/form/select/base/sw-multi-select';
 shallowMount(Shopware.Component.build('sw-multi-select'));
 ```
 
-The `build` method resolves the twig template and returns a vue component. Now you can test the component like any other
-Vue component. Let's try to write our first test: 
+When we’re testing our vue.js components, we need a way to mount and render the component. Therefore, we use the
+following methods:
+* `mount()`: Creates a Wrapper that contains the mounted and rendered Vue component.
+* `shallowMount()`: Like mount, it creates a Wrapper that contains the mounted and rendered Vue component, 
+but with stubbed child components.
+
+This way, we create a new `wrapper` before each test. The `build` method resolves the twig template and returns a 
+vue component. 
+
+### Test structure
+
+Now you can test the component like any other component. Let's try to write our first test: 
 ```javascript
 // test/app/component/form/select/base/sw-multi-select.spec.js
 
@@ -150,8 +189,10 @@ describe('components/sw-multi-select', () => {
     });
 });
 ```
-We create a new `wrapper` before each test. This contains our component. In our first test we only
-check if the wrapper is a Vue instance. 
+
+This contains our component. In our first test we only check if the wrapper is a Vue instance. 
+
+### Running the test
 
 Now lets start the watcher to see if the test works. You can do this with our PSH command `./psh.phar administration:unit-watch`.
 You should see a result like this: `Test Suites: 1 passed, 1 total`. You
@@ -177,7 +218,7 @@ most components contain other components. In our case the `sw-multi-select` need
 are stubbing or using the component.
 
 ```javascript
-import 'src/app/component/form/select/base/sw-select-base'; // Option 2: You need to import the component first before using it
+import 'src/app/component/form/select/base/sw-select-base';
 
 wrapper = shallowMount(Shopware.Component.build('sw-multi-select'), {
     props: {
@@ -185,15 +226,14 @@ wrapper = shallowMount(Shopware.Component.build('sw-multi-select'), {
         value: ''
     },
     stubs: {
-        'sw-select-base': true,
         'sw-select-base': Shopware.Component.build('sw-select-base'),
     }
 });
 ```
 
-You need to choose which way is needed. Many tests do not need the real component, but in our case we
+You need to choose which way is needed: Many tests do not need the real component, but in our case we
 need the real implementation. You will see that if we import another component that they can create
-also warnings. Let's look at the code that solve all warnings and then we should have a code like this:
+also warnings. Let's look at the code that solve all warnings, then we should have a code like this:
 
 ```javascript
 // test/app/component/form/select/base/sw-multi-select.spec.js
@@ -248,135 +288,14 @@ describe('components/sw-multi-select', () => {
 });
 ```
 
-The more components you're depending on the more you have to create a complex setup for the test. Your 
-component get also depends on other dependencies like `$tc`, directives or injections. When you are
-using this you need to mock them as well. I show you some common warnings here:
+## Second example: Testing of message inside the sw-alert component
 
-#### Warning 
-`[Vue warn]: Error in render: "TypeError: $tc is not a function"`
+Of course, the complexity and structure of your test depends on what you are trying to achieve with your component. 
+Here is one little example concerning the component `sw-alert`: Actually, he task of an alert is displaying a 
+message for the user in most cases. So in this example, let's write a test for this text located in a slot.
+You can find this example in the [linked video](https://www.youtube.com/watch?v=nWUBK3fjwVg) as well.
 
-#### Solution:
-```javascript
-shallowMount(Shopware.Component.build('your-component'), {
-    mocks: {
-        $tc: key => key // your mock (here a simple function returning the translation path)
-    }
-});
-```
-
-#### Warning:
-`[Vue warn]: Failed to resolve directive: popover`
-
-#### Solution:
-You need to use [localVue](https://vue-test-utils.vuejs.org/api/#createlocalvue) to provide the directive mock.
-
-```javascript
-import { shallowMount, createLocalVue } from '@vue/test-utils';
-
-const localVue = createLocalVue();
-localVue.directive('popover', {}); // add directive mock to localVue
-
-shallowMount(Shopware.Component.build('your-component'), {
-    localVue
-});
-```
-
-#### Warning:
-`[Vue warn]: Injection "repositoryFactory" not found`
-
-#### Solution:
-You need to provide the injected data, services...
-
-```javascript
-shallowMount(Shopware.Component.build('your-component'), {
-    provide: {
-        repositoryFactory: {
-            create: () => 'fooBar', // you need to mock the return values for your test
-            search: () => 'fooBar' // you need to mock the return values for your test
-        }
-    }
-});
-```
-
-#### Warning:
-
-`[Vue warn]: Error in foo: "TypeError: Cannot read property 'create' of undefined"`
-
-#### Solution:
-
-This could causes several reason. The best way to find out the solution is to look at the source of the
-code and find out what is missing. In this example the service `repositoryFactory` is missing:
-
-```javascript
-Shopware.Service('repositoryFactory').create('product');
-```
-
-To fix this you need to add the mocked service before all tests. In our case we need to register the
-service:
-
-```javascript
-beforeAll(() => {
-  Shopware.Service.register('repositoryFactory', {
-    // your service mock
-  });
-});
-```
-
-## Write tests for components
-
-After setting up your component test you need to write your tests. A good way to write them is to test input
-and output. The most common tests are:
-
-- set Vue Props and check if component looks correctly
-- interact with the DOM and check if the desired behaviour is happening
-
-However, it depends on what you are trying to achieve with your component. Here is one little example concerning the 
-component `sw-alert`. You can find an in-depth example of this and another test case in the 
-[linked video](https://www.youtube.com/watch?v=nWUBK3fjwVg)
-
-### Basic test: Rendering of component
-
-Let's fill our test file with life. At first, we need to import the things we need. Typically, we need a wrapper to depict our alert:
-```javascript
-import { shallowMount } from '@vue/test-utils';
-```
-
-Remember, a Wrapper is an object that contains a mounted component or vnode and methods to test. Of course, we need to import our component itself as well. Our test file should look like this:
-```javascript
-import { shallowMount } from '@vue/test-utils';
-import 'src/app/component/base/sw-alert';
-```
-
-Let's continue with the test structure itself. We'll use the Mocha syntax you might already know if you have written frontend tests before. First things first, we need to begin with the desribe function. It can be seen as a frame for structuring our tests and is important for the usage of lifecycle hooks. Afterwards, we will use the it function representing the test itself.
-```javascript
-import { shallowMount } from '@vue/test-utils';
-import 'src/app/component/base/sw-alert';
-
-describe('components/base/sw-alert', () => {
-    it('should be a Vue.js component', () => {
-
-    });
-});
-```
-
-In our test, we can use the wrapper now to use our component to test. So let's mount our alert component in order to have a wrapper to work with.
-```javascript
-import { shallowMount } from '@vue/test-utils';
-import 'src/app/component/base/sw-alert';
-
-describe('components/base/sw-alert', () => {
-    it('should be a Vue.js component', () => {
-        
-        // Here we use our wrapper to mount the component
-        const wrapper = shallowMount(Shopware.Component.build('sw-alert'), {
-            stubs: ['sw-icon']
-        });
-    });
-});
-```
-
-Next we are ready to start writing assertions. A test assertion is a statement that describes the logic of the 
-system under test. So we're checking our component with use of these assertion. In our test, it looks like this:
+We will start with an already written test similar to the first example:
 ```javascript
 import { shallowMount } from '@vue/test-utils';
 import 'src/app/component/base/sw-alert';
@@ -393,21 +312,135 @@ describe('components/base/sw-alert', () => {
 });
 ```
 
-Ok, we completed our test now, at least in theory. Let's see how it turns out when running it.
+There we'll add another test case for testing the alert's message: 
+```javascript
+import { shallowMount } from '@vue/test-utils';
+import 'src/app/component/base/sw-alert';
 
-## Executing tests
+describe('components/base/sw-alert', () => {
+    it('should be a Vue.js component', () => {
+        // see above
+    });
 
-Before you are using the commands make sure that you installed all dependencies for your administration.
-If you haven't done this already, then you can do it running the following PSH command:
-`./psh.phar administration:install-dependencies`
+    it('should render the message inside the default slot', () => {
+        // New
+    });
+});
+```
+### Mounting components
 
-In order to run jest unit tests of the administration, you can use the psh commands provided by our development template. 
-Beware: This only applies to the Shopware provided Administration! If you use unit tests in your Plugin, you might need to write your own scripts 
-for that.
+You can set the content of a slot during component mount. See the paragraph "Mounting components" 
+in the first example for details.
+ 
+ ```javascript
+    it('should render the message inside the default slot', () => {
+        const wrapper = shallowMount(Shopware.Component.build('sw-alert'), {
+            slots: {
+                default: 'My custom message'
+            }
+        });
+    });
+```
+ 
+ Afterwards you can make an assertion that the text passed to the slot will be rendered inside the desired element. 
+ In this case we search in the wrapper for the element with the selector `.sw-alert__message` 
+ and check if the text is there:
+ 
+ ```javascript
+    it('should render the message inside the default slot', () => {
+        const wrapper = shallowMount(Shopware.Component.build('sw-alert'), {
+            slots: {
+                default: 'My custom message'
+            }
+        });
+        expect(wrapper.find('.sw-alert__message').text()).toBe('My custom message');
+    });
+```
 
-This command executes all unit tests and shows you the complete code coverage.  
-`./psh.phar administration:unit`
+## Stubbing your component
 
-This command executes only unit tests of changed files. It automatically restarts if a file
-gets saved. This should be used during the development of unit tests.  
-`./psh.phar administration:unit-watch`
+Vue Test Utils has some advanced features for stubbing components. A stub is actually when you replace an 
+existing implementation of a custom component with a dummy component doing nothing at all, actually. This is 
+necessary for the component to function independently, in an isolated way.
+
+Stubbing a component in a shopware context can be a challenge at times. To name an example, components in Shopware might 
+also depend on other dependencies like `$tc`, directives or injections. This way, the setup of your test may get 
+more complex. When you are building components then you need to mock their dependencies as well. 
+
+### Using mocks
+
+A common warning can occur if you didn't mock functions needed in your component. For example, please look at 
+the warning below:
+> [Vue warn]: Error in render: "TypeError: $tc is not a function"
+
+The solution is using mocks while mounting your component. In this case, your mock here is a simple function returning 
+the translation path.
+```javascript
+shallowMount(Shopware.Component.build('your-component'), {
+    mocks: {
+        $tc: key => key // your mock (here a simple function returning the translation path)
+    }
+});
+```
+
+### Stubbing directives
+
+When working with components of Shopware's  Administration, you might stumble upon the following warning:
+> [Vue warn]: Failed to resolve directive: popover
+
+If that happens, you need to use [localVue](https://vue-test-utils.vuejs.org/api/#createlocalvue) to provide the 
+directive mock. `createLocalVue` returns a Vue class for you to add components, mixins and install plugins 
+without polluting the global Vue class. In our context, it looks like this:
+
+```javascript
+import { shallowMount, createLocalVue } from '@vue/test-utils';
+
+const localVue = createLocalVue();
+localVue.directive('popover', {}); // add directive mock to localVue
+
+shallowMount(Shopware.Component.build('your-component'), {
+    localVue
+});
+```
+
+### Stubbing injections
+
+Another common warning is the one below:
+> [Vue warn]: Injection "repositoryFactory" not found
+
+The solution is stubbing this injection. In detail, you need to provide the injected data, services and so on: 
+That means you need to mock the return values for your test's methods used, e.g. `create` and `search` 
+- Providing the data exactly as needed by the component for running your test case.
+
+```javascript
+shallowMount(Shopware.Component.build('your-component'), {
+    provide: {
+        repositoryFactory: {
+            create: () => 'fooBar',
+            search: () => 'fooBar'
+        }
+    }
+});
+```
+
+In this context, the next warning can occur sometimes:
+> [Vue warn]: Error in foo: "TypeError: Cannot read property 'create' of undefined"
+
+This can be caused by several reasons. The best way to find out the solution is to look at the source of the
+code and find out what is missing. This is highly dependent on the component under test, though. 
+In this example the service `repositoryFactory` is missing:
+
+```javascript
+Shopware.Service('repositoryFactory').create('product');
+```
+
+To fix this you need to add the mocked service before all tests. In our case we need to register the
+service:
+
+```javascript
+beforeAll(() => {
+  Shopware.Service.register('repositoryFactory', {
+    // your service mock
+  });
+});
+```
