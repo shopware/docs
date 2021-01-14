@@ -1,0 +1,15 @@
+# Relevance
+
+The relevance is calculated per [Dis Max Query​](https://www.elastic.co/guide/en/elasticsearch/reference/6.8/query-dsl-dis-max-query.html). The "Tie Break" is constant and set to `0.4`.
+
+## Indexing
+
+In addition to the default [indexing](../../../../concpets/../concepts/framework/data-abstraction-layer/indexing.md) the Enterprise Search indexes every field of the [Entity Definition](../../../../concepts/framework/data-abstraction-layer/entities.md) to elasticsearch by default.
+This is done, because it's possible to [define in the administration](https://docs.shopware.com/en/shopware-6-en/enterprise-extensions/enterprise-search) which field should be searched and how should be searched on the field.
+On the one hand indexing everything supports the useability. You can make changes to the configuration and you don't need to reindex everything.
+But on the other hand, the created index could be very huge.
+
+## Fuzziness
+
+Elasticsearch supports by default a [fuzzy search](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-fuzzy-query.html).
+In the Enterprise Search the fuzziness depends on the type of a field. The fuzziness for numeric term is 0, for other terms the `auto` value is taken.
