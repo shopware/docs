@@ -12,4 +12,4 @@ In the code this option is checked. If this field is set to prioritized, a littl
 ## Explicit Boosting
 
 Like the [Field Boosting](#field-boosting) the Explicit Boosting can be configured in the Administration. With this boosting you have more possibilities.
-The `BoostingQueryBuilder` makes from all queries one big Should Query.
+The `BoostingQueryBuilder` makes from all queries one big Should Query, which contains a [Constant Score Query](https://www.elastic.co/guide/en/elasticsearch/reference/6.8/query-dsl-constant-score-query.html).
