@@ -126,6 +126,7 @@
       * [Override existing Javascript](guides/plugins/plugins/storefront/override-existing-javascript.md)
       * [Add custom assets](guides/plugins/plugins/storefront/add-custom-assets.md)
       * [Add custom styling](guides/plugins/plugins/storefront/add-custom-styling.md)
+      * [Add data to storefront page](guides/plugins/plugins/storefront/add-data-to-storefront-page.md)
     * [Testing](guides/plugins/plugins/testing/README.md)
       * [End-to-end testing](guides/plugins/plugins/testing/end-to-end-testing.md)
       * [Jest unit tests in Shopware's administration](guides/plugins/plugins/testing/jest-admin.md)

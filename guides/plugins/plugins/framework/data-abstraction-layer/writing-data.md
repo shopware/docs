@@ -7,7 +7,7 @@ It will also include a short explanation about writing associated data.
 
 ## Prerequisites
 
-This guide is built upon the [plugin base guide](https://app.gitbook.com/@shopware/s/shopware/guides/plugins/plugins/plugin-base-guide),
+This guide is built upon the plugin base guide [PLACEHOLDER-LINK: plugin base guide],
 so having a look at it first won't hurt.
 Having read the guide about [PLACEHOLDER-LINK: Reading data] or understanding how to read data is mandatory for at least one short part of this guide.
 
