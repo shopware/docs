@@ -1,7 +1,7 @@
 # Field-Config
-With the [relevance](relevance.md), the enterprise search offers the possebilieties to customize the searched fields.
+With the [relevance](relevance.md), the enterprise search offers the possibilities to customize the searched fields.
 
-Here, we want to give you brief information about the internal usage of the different Elasticsearch functionality are used for the full text search of the enterprise search.
+Here, we want to give you brief information about the internal usage of the different Elasticsearch functionalities, which are used for the full text search of the enterprise search.
 
 ## Filter
 The Enterprise Search adds some additional filters, which will be used by the [analyzer](#analyzer).
