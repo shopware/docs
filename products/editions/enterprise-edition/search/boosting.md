@@ -2,7 +2,7 @@
 
 ​
 With the Enterprise Search there are two types of boosting, the [Field Boosting](#field-boosting) and the [Explicit Boosting](#explicit-boosting).
-With these configurations it's easy to boost some results, which than are ranked higher in the search.
+These configurations allow boosting of specific search results.
 
 ## Field Boosting
 
@@ -12,4 +12,4 @@ In the code this option is checked. If this field is set to prioritized, a littl
 ## Explicit Boosting
 
 Like the [Field Boosting](#field-boosting) the Explicit Boosting can be configured in the Administration. With this boosting you have more possibilities.
-The `BoostingQueryBuilder` makes from all queries one big Should Query, which contains a [Constant Score Query](https://www.elastic.co/guide/en/elasticsearch/reference/6.8/query-dsl-constant-score-query.html).
+The `BoostingQueryBuilder` assembles all queries into one [Should Query](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html#query-dsl-bool-query), which contains a [Constant Score Query](https://www.elastic.co/guide/en/elasticsearch/reference/6.8/query-dsl-constant-score-query.html).

@@ -5,7 +5,7 @@ The relevance is calculated per [Dis Max Query​](https://www.elastic.co/guide/
 ## Indexing
 
 In addition to the default [indexing](../../../../concpets/../concepts/framework/data-abstraction-layer/indexing.md) the Enterprise Search indexes every field of the [Entity Definition](../../../../concepts/framework/data-abstraction-layer/entities.md) with additional [sub fields](field-config.md) to elasticsearch by default.
-This is done, because it's possible to [define in the administration](https://docs.shopware.com/en/shopware-6-en/enterprise-extensions/enterprise-search) which field should be searched and how should be searched on the field.
+This is done, because it's possible to [define in the administration](https://docs.shopware.com/en/shopware-6-en/enterprise-extensions/enterprise-search) which field should be searched and how searches on that field should perform.
 On the one hand indexing everything supports the useability. You can make changes to the configuration and you don't need to reindex everything.
 But on the other hand, the created index could be very huge.
 
