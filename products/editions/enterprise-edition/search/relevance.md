@@ -1,6 +1,6 @@
 # Relevance
 
-The relevance is calculated per [Dis Max Query​](https://www.elastic.co/guide/en/elasticsearch/reference/6.8/query-dsl-dis-max-query.html). The "Tie Break" is constant and set to `0.4`, which is the recommended value by Elasticsearch.
+The relevance is calculated per [Dis Max Query​](https://www.elastic.co/guide/en/elasticsearch/reference/6.8/query-dsl-dis-max-query.html). The [Tie Break](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-multi-match-query.html#tie-breaker) is constant and set to `0.4`, which is the recommended value by Elasticsearch.
 
 ## Indexing
 
