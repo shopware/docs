@@ -53,6 +53,72 @@ rendered templates or change the default layout programmatically with your own T
 
 ## Structure
 
+Depending on the repository you have chosen for your development environment, let's have a look at the Storefront's
+component structure placed inside `platform/src/Storefront` (Development repository) or `vendor/shopware/storefront` (
+Production repository). When opening this directory you will find several sub-directories & a vast part of the
+functionality of the Storefront component includes templates (`./Resources`). But beside that, there are other
+directories worth having a look at.
+
+```bash
+<platform/src/Storefront>
+|- Controller
+|- DependencyInjection
+|- Event
+|- Framework
+|- Migration
+|- Page
+|- Pagelet
+|- Resources
+|- Test
+|- Theme
+|- .gitignore
+|- composer.json
+|- phpunit.xml.dist
+|- README.md
+|- Storefront.php
+```
+
+Starting at the top of this list, you'll find all Storefront controllers inside the `Controller` directory. As said
+beforehand, a page is being built inside that controller with the help of the corresponding page loaders, pages,
+pagelets and events, which you'll find in the directories: `Pages`, `Pagelets` and their sub-directories. Each
+controller method will also give detailed information about its routing with the help of annotations. The
+directory `DependencyInjection` includes all dependencies, which are used in the specific controllers. Whereas
+the `Event` directory includes route request events, the `Framework` directory amongst other things includes the
+Routing, Caching and furthermore. `Migration` and `Test` obviously include migrations and tests for our Storefront
+component (e.g. tests for each Storefront controller).
+
+Having a deeper look inside the vast templating functionalities inside `Resources`, you'll find these directories:
+
+```bash
+<platform/src/Storefront/Resources>
+|- app
+  |- administration
+  |- storefront
+|- config
+|- snippet
+|- views
+  |- storefront
+    |- block
+    |- component
+    |- element
+    |- layout
+    |- page
+    |- section
+    |- utilities
+    |- base.html.twig
+|- .browserlistrc
+|- .gitignore
+|- theme.json
+```
+
+The `app` directory includes assets, JavaScripts and Stylesheets for our default Theme shipped within the Storefront
+component. If you are e.g. looking for the image zoom implementation of the product detail page, you'll have to have a
+look at: `app/storefront/src/plugin/image-zoom`. Inside `config` one will find default configurations for caching,
+routing and translation handling. Their corresponding default translations for our Storefront can be found
+inside `snippet` within JSON files for each locale. Last but not least, all default Twig templates can be found
+inside `./views/storefront`. This templating directory structure is considered best practice, if you are developing your
+own Themes or Plugins. More information about writing your own Plugins and Themes can be found here.
+
 ## Composite data handling
 
 ## Translations and assets
