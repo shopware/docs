@@ -147,8 +147,7 @@
     * [Search for products](guides/integrations-api/store-api-guide/search-for-products.md)
     * [Work with the cart](guides/integrations-api/store-api-guide/work-with-the-cart.md)
   * [Examples](guides/integrations-api/examples/README.md)
-    * [Export orders with the Admin API \(Node.js\)](guides/integrations-api/examples/export-orders-with-the-admin-api-node.js.md)
-    * [Import products with the Admin API](guides/integrations-api/examples/use-the-api.md)
+    * [Import products & categories](guides/integrations-api/examples/import-products-and-categories.md)
 
 ## Resources
 
