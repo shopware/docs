@@ -132,4 +132,59 @@ information about writing your own Plugins and Themes can be found here.
 
 ## Composite data handling
 
+Composite data loading describes the process of preparing and fetching data for a whole template page worth of content.
+As a web application the page rendering process is a central concern of the Storefront. Contrary to solutions through
+`postDispatch`-Handling or `lazy loading` from templates, the controller actions of the Storefront do a full lookup and
+handle data loading transparently and fully. The Storefront provides a general solution for this problem - the Page
+System.
+
+### Pages and Pagelets
+
+The pages in the Storefront component can roughly be categorized into pages and pagelets. Although functionally
+identical, they represent different usages of the page's data. A page is generally rendered into a full template,
+whereas a **pagelet** is either a part of a page or accessible through a XHR route, sometimes even both.
+
+A single **page** is always a three class namespace. There is the Page-Struct (`GenericPage`), representing the data.
+The PageLoader (`PageLoaderInterface`) handling creation of page structs, and the PageEvent (`NestedEvent`) adding a
+clean extension point to the pages.
+
+### Example: Composition of the account order page
+
+Getting back to our example described at the [main concerns chapter](#main-concerns), we'd now like to have a detailed
+look at the composition of the Storefronts `AccountOrderPage` with Header and Footer information. The composition is
+handled through the page loaders themselves, by triggering loading of associated data internally. Information: Following
+example will also be used for any other page being displayed in our Storefront.
+
+Starting to describe how the composition of the page works, we would at first like to know what the *result* of
+composition should be.
+
+- By calling a specific route (e.g. `/account/order`) one should receive a specific page in our Storefront.
+- This page exists of generic information (e.g. Header, Footer) and detailed information (e.g. a list of orders).
+- Detailed information should be fetched throughout the Core component to make usage of the Store API routes.
+
+The best entry point to give you a good understanding how the composition works, is the corresponding Controller. In our
+case it is the `AccountOrderController`. The main and only task of the controller is to assign a page struct to a
+variable, which will later be passed to a Twig template. The page is received by the specific `AccountOrderPageLoader`.
+Additionally, the method annotations of the controller do also set routing information like path, name, options and
+methods.
+
+Speaking of the page loader (`AccountOrderPageLoader`) which returns the page (`AccountOrderPage`), you'll see that we
+are doing the composition in here. At first, a generic page is being created by the usage of the `GenericPageLoader`. As
+described above, this generic page includes information, which obviously are generic like Header, Footer and Meta
+information. This information is wrapped inside our `Pagelets` and display a specific part of the page.
+
+Afterwards, our `AccountOrderPage` is created from the generic page, because we also would like to add more information
+to this page. Per definition our `AccountOrderPage` can set and get a list of orders, we can receive by calling a Store
+API route through the `OrderRoute` of our Core component. With that being said, we make sure that our Storefront is
+using the same data, as we would use by calling the API directly, which really is a big advantage.
+
+Once we have set all the necessary information to our page (`AccountOrderPage`) in our page
+loader (`AccountOrderPageLoader`), we are making usage of our event dispatcher to throw a `PageLoadedEvent`. For each
+page, there should be a specific event, which will be thrown to ensure extensibility throughout
+plugins (`AccountOrderPageLoadedEvent`).
+
+To summarize the composition of a page, have a look at this diagram:
+
+**TODO: CREATE DIAGRAM**
+
 ## Translations and assets
