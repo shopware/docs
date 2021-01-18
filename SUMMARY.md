@@ -55,6 +55,7 @@
     * [B2B Suite](products/editions/enterprise-edition/b2b-suite.md)
     * [Search](products/editions/enterprise-edition/search/README.md)
       * [Installation](products/editions/enterprise-edition/search/installation.md)
+      * [Field Configuration](products/editions/enterprise-edition/search/field-config.md)
       * [Extensibility](products/editions/enterprise-edition/search/extensibility.md)
     * [Publisher](products/editions/enterprise-edition/publisher.md)
     * [Contribution Guidelines](products/editions/enterprise-edition/contribution-guidelines.md)
