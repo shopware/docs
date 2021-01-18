@@ -116,8 +116,19 @@ component. If you are e.g. looking for the image zoom implementation of the prod
 look at: `app/storefront/src/plugin/image-zoom`. Inside `config` one will find default configurations for caching,
 routing and translation handling. Their corresponding default translations for our Storefront can be found
 inside `snippet` within JSON files for each locale. Last but not least, all default Twig templates can be found
-inside `./views/storefront`. This templating directory structure is considered best practice, if you are developing your
-own Themes or Plugins. More information about writing your own Plugins and Themes can be found here.
+inside `./views/storefront`. The Storefront theme is using Boostrap. Therefore, the template structure is a derivative
+of the Bootstrap starter template. Beside using Twig as the templating engine and SASS as the CSS preprocessor, we are
+also using Webpack for bundling and transpiling purposes.
+
+`block, element, section` include parts of our shopping experiences. `component` includes shared content templates from
+the basis of the pages. `layout` includes layout templates like Navigation, Header and Footer files. Inside `page` you
+will find the concrete templates rendered by the page controllers. The inner structure also depends on the domain
+context. Technical necessities used across the content and across all domain concepts can be found in `utilities`. The
+base page layout of the Storefront is `base.html.twig`, which also includes other templates and provides blocks for the
+page templates overrides.
+
+This templating directory structure is considered best practice, if you are developing your own Themes or Plugins. More
+information about writing your own Plugins and Themes can be found here.
 
 ## Composite data handling
 
