@@ -44,8 +44,9 @@ In your context, that should be `administration` or `storefront` in most cases.
 
 ## Setup for testing services and ES modules
 
-Services and isolated EcmaScript modules are well testable because
-you can import them directly without mocking or stubbing dependencies.
+Services and isolated ECMAScript modules are well testable because
+you can import them directly without mocking or stubbing dependencies. 
+A service can be used isolated and therefore is easy to test.
 
 Let's have a look at an example:
 
@@ -78,8 +79,6 @@ describe('core/helper/sanitizer.helper.js', () => {
     // ...more tests 
 });
 ``` 
-
-A service under test  can be used isolated and therefore is easy to test.
 
 ## Write tests for components
 
@@ -363,9 +362,9 @@ Vue Test Utils has some advanced features for stubbing components. A stub is act
 existing implementation of a custom component with a dummy component doing nothing at all, actually. This is 
 necessary for the component to function independently, in an isolated way.
 
-Stubbing a component in a shopware context can be a challenge at times. To name an example, components in Shopware might 
-also depend on other dependencies like `$tc`, directives or injections. This way, the setup of your test may get 
-more complex. When you are building components then you need to mock their dependencies as well. 
+Components in Shopware might also depend on other dependencies like `$tc`, directives or injections. 
+This way, the setup of your test may get more complex. When you are building components then you need to mock their 
+dependencies as well. 
 
 ### Using mocks
 
@@ -409,21 +408,36 @@ Another common warning is the one below:
 > [Vue warn]: Injection "repositoryFactory" not found
 
 The solution is stubbing this injection. In detail, you need to provide the injected data, services and so on: 
-That means you need to mock the return values for your test's methods used, e.g. `create` and `search` 
-- Providing the data exactly as needed by the component for running your test case.
-
+That means you need to mock the return values for your test's methods used, e.g. `create` and `search` - Providing the 
+data exactly as needed by the component for running your test case and what the injection actually is.
+It can be valid to set the injection name equal to an empty object just to mute it when it's not really 
+needed for your test. 
 ```javascript
-shallowMount(Shopware.Component.build('your-component'), {
-    provide: {
-        repositoryFactory: {
-            create: () => 'fooBar',
-            search: () => 'fooBar'
+provide: {
+  repositoryFactory: {}
+}
+``` 
+
+Please note that the repository has a `create` method which creates the repository itself with all its functionalities 
+and then there is another `create` for actually creating an entity. So in order to stub the `repositoryfactory` 
+in realistic manner, follow the example below:
+```javascript
+repositoryFactory: {
+    create: () => ({
+        create: () => {
+            return Promise.resolve();
+        },
+        get: () => {
+            return Promise.resolve();
+        },
+        search: () => {
+            return Promise.resolve();
         }
-    }
-});
+    })
+}
 ```
 
-In this context, the next warning can occur sometimes:
+In the context of injections, the next warning can occur sometimes:
 > [Vue warn]: Error in foo: "TypeError: Cannot read property 'create' of undefined"
 
 This can be caused by several reasons. The best way to find out the solution is to look at the source of the
@@ -443,4 +457,124 @@ beforeAll(() => {
     // your service mock
   });
 });
+```
+
+### Mocking repository requests
+
+The warning with `repositoryFactory` from the previous example might appear quite often in your tests. 
+The repository is being used to fetch items from the shopware database.
+
+In order to provide actual test data for your test you can mock the different methods of the `repositoryFactory`
+and return any fake data which is relevant to test you component. E.g. an array of dummy product data.
+
+The first thing you need to do is to mock the initialization of the repository itself like this:
+
+```javascript
+provide: {
+    repositoryFactory: {
+        // The "create" is mocking the repository initialization
+        create: () => ({
+            // Mock repository methods here...
+        })
+    }
+}
+```
+
+This is equivalent to a computed prop like this:
+
+```javascript
+productRepository() {
+    return this.repositoryFactory.create('product');
+}
+
+```
+
+Now let's say you want to test the repository request which fetches the product list. You can mock the search 
+method of the created repository and return an array of dummy data. By returning a Promise which immediately 
+resolves you can test the .then() branch of the actual implementation.
+
+provide: {
+    repositoryFactory: {
+        create: () => ({
+            search: () => {
+                return Promise.resolve([
+                    {
+                        name: 'Foo bar',
+                        manufacturer: 'Test'
+                    },
+                    {
+                        name: 'Lorem ipsum',
+                        manufacturer: 'Jest party'
+                    }
+                ]);
+            }
+        })
+    }
+}
+
+This is the equivalent to:
+```javascript
+this.productRepository.search(new Criteria(), Shopware.Context.api).then((result) => {
+    ...
+});
+```
+
+The same applies to the get method which returns a single entity based on the uuid.
+```javascript
+
+provide: {
+    repositoryFactory: {
+        create: () => ({
+            search: () => {
+                return Promise.resolve([]);
+            },
+            get: () => {
+                return Promise.resolve({
+                    name: 'product1',
+                    manufacturer: 'Blaa blubber bla'
+                });
+            }
+        })
+    }
+}
+```
+
+This is the equivalent to the following:
+```javascript
+this.productRepository.get('uuid1234', new Criteria(), Shopware.Context.api).then((result) => {
+    ...
+});
+
+
+```
+You may come across situations where multiple different repositories are being created in the component you want to 
+test. Every repository call will be mocked by your `provide` test implementation. To differentiate between different 
+repositories you can receive the entity name which gets past as a parameter of the `create` method from the 
+`repositoryFactory`. Then you are able to return different test data for different repositories:
+
+```javascript
+
+provide: {
+    repositoryFactory: {
+        create: (entityName) => {
+            if (entityName === 'product') {
+                // Methods and test data for product...
+                return {
+                    search: () => Promise.resolve(),
+                    get: () => Promise.resolve()
+                };
+            }
+  
+            if (entityName === 'language') {
+                // Methods and test data for language...
+                return {
+                    search: () => Promise.resolve(),
+                    get: () => Promise.resolve()
+                };
+            }
+  
+            return {};
+        }
+    }
+}
 ```
