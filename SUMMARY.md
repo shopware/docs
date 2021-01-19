@@ -123,6 +123,7 @@
       * [Add custom styling](guides/plugins/plugins/storefront/add-custom-styling.md)
     * [Testing](guides/plugins/plugins/testing.md)
       * [End-to-end testing](guides/plugins/plugins/testing/end-to-end-testing.md)
+      * [Jest unit tests in Shopware's administration](guides/plugins/plugins/testing/jest-admin.md)
   * [Themes](guides/plugins/themes.md)
   * [Apps](guides/plugins/apps/README.md)
     * [App Base Guide](guides/plugins/apps/app-base-guide.md)
