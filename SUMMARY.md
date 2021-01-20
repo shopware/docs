@@ -123,6 +123,7 @@
     * [Administration](guides/plugins/plugins/administration/README.md)
       * [Adding permissions](guides/plugins/plugins/administration/add-acl-rules.md)
       * [Add custom route](guides/plugins/plugins/administration/add-custom-route.md)
+      * [Writing templates](guides/plugins/plugins/administration/writing-templates.md)
       * [Customizing components](guides/plugins/plugins/administration/customizing-components.md)
     * [Storefront](guides/plugins/plugins/storefront/README.md)
       * [Add custom controller](guides/plugins/plugins/storefront/add-custom-controller.md)
