@@ -13,11 +13,11 @@ find answers to the following questions:
 
 ## Introduction
 
-The Storefront component is a Frontend written in PHP. It conceptually sits on top of our Core - similar to the
-Administration component. As the Storefront can be seen as a classical PHP application, it makes usage of HTML
-rendering, JavaScript and a CSS preprocessor. Speaking of technologies, the Storefront component uses Twig as the
-templating engine and SASS for styling purposes. The foundation of the Storefront template is based on the Bootstrap
-framework and therefore fully customizable.
+The Storefront component is a Frontend written in PHP. It conceptually sits on top of our [Core](./core.md) - similar to
+the [Administration](./administration.md) component. As the Storefront can be seen as a classical PHP application, it
+makes usage of HTML rendering, JavaScript and a CSS preprocessor. Speaking of technologies, the Storefront component
+uses Twig as the templating engine and SASS for styling purposes. The foundation of the Storefront template is based on
+the Bootstrap framework and therefore fully customizable.
 
 ## Main concerns
 
@@ -38,9 +38,9 @@ afterwards be enriched with the specific information you want to display through
 orders).
 
 To achieve getting information from a specific resource, the Storefronts second concern is to map requests to the Core.
-Internally, the Storefront makes usages of our Store API routes to enrich the Page with additional information like e.g.
-a list of orders, which is being fetched through the order route. Once all needed information were added to the page,
-the corresponding page loader returns the page to a Storefront controller.
+Internally, the Storefront makes usages of our [Store API](../../api/store-api.md) routes to enrich the Page with
+additional information like e.g. a list of orders, which is being fetched through the order route. Once all needed
+information were added to the page, the corresponding page loader returns the page to a Storefront controller.
 
 Contrary to the Core that can almost completely omit templating in favor JSON responses, the Storefront contains a rich
 set of Twig templates to display a fully functional shop. Having said that, another concern of the Storefront is to
@@ -49,15 +49,16 @@ Twig page template throughout a controller. A more detailed look into an example
 in [Composite data handling](#composite-data-handling).
 
 Last, but not least, the Storefront not only contains static templates but also inhibits a theming engine to modify the
-rendered templates or change the default layout programmatically with your own Themes or Plugins.
+rendered templates or change the default layout programmatically with your
+own [Themes](../../../guides/plugins/themes.md)  or [Plugins](../../../guides/plugins/plugins/README.md).
 
 ## Structure
 
-Depending on the repository you have chosen for your development environment, let's have a look at the Storefront's
-component structure placed inside `platform/src/Storefront` (Development repository) or `vendor/shopware/storefront` (
-Production repository). When opening this directory you will find several sub-directories & a vast part of the
-functionality of the Storefront component includes templates (`./Resources`). But beside that, there are other
-directories worth having a look at.
+Depending on the [repository](../../../guides/installation/overview.md) you have chosen for your development
+environment, let's have a look at the Storefront's component structure placed inside `platform/src/Storefront` (
+Development repository) or `vendor/shopware/storefront` (Production repository). When opening this directory you will
+find several sub-directories & a vast part of the functionality of the Storefront component includes
+templates (`./Resources`). But beside that, there are other directories worth having a look at.
 
 ```bash
 <platform/src/Storefront>
@@ -128,7 +129,7 @@ base page layout of the Storefront is `base.html.twig`, which also includes othe
 page templates overrides.
 
 This templating directory structure is considered best practice, if you are developing your own Themes or Plugins. More
-information about writing your own Plugins and Themes can be found here.
+information about writing your own Plugins and Themes can be found [here](../../../guides/plugins/plugins/README.md).
 
 ## Composite data handling
 
@@ -160,7 +161,8 @@ composition should be.
 
 - By calling a specific route (e.g. `/account/order`) one should receive a specific page in our Storefront.
 - This page exists of generic information (e.g. Header, Footer) and detailed information (e.g. a list of orders).
-- Detailed information should be fetched throughout the Core component to make usage of the Store API routes.
+- Detailed information should be fetched throughout the Core component to make usage of
+  the [Store API routes](../../../resources/api-reference/store-api.md).
 
 The best entry point to give you a good understanding how the composition works, is the corresponding Controller. In our
 case it is the `AccountOrderController`. The main and only task of the controller is to assign a page struct to a
