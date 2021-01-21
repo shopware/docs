@@ -13,7 +13,7 @@ find answers to the following questions:
 
 ## Introduction
 
-The Storefront component is a Frontend written in PHP. It conceptually sits on top of our [Core](./core.md) - similar to
+The Storefront component is a frontend written in PHP. It conceptually sits on top of our [Core](./core.md) - similar to
 the [Administration](./administration.md) component. As the Storefront can be seen as a classical PHP application, it
 makes usage of HTML rendering, JavaScript and a CSS preprocessor. Speaking of technologies, the Storefront component
 uses Twig as the templating engine and SASS for styling purposes. The foundation of the Storefront template is based on
@@ -38,7 +38,7 @@ afterwards be enriched with the specific information you want to display through
 orders).
 
 To achieve getting information from a specific resource, the Storefronts second concern is to map requests to the Core.
-Internally, the Storefront makes usages of our [Store API](../../api/store-api.md) routes to enrich the Page with
+Internally, the Storefront makes use of our [Store API](../../api/store-api.md) routes to enrich the Page with
 additional information like e.g. a list of orders, which is being fetched through the order route. Once all needed
 information were added to the page, the corresponding page loader returns the page to a Storefront controller.
 
