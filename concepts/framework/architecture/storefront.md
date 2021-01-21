@@ -187,7 +187,7 @@ plugins (`AccountOrderPageLoadedEvent`).
 
 To summarize the composition of a page, have a look at this diagram:
 
-**TODO: CREATE DIAGRAM**
+![Composition of a Storefront page](../../../.gitbook/assets/concepts-storefront-composite-data-loading.png)
 
 ## Translations
 
