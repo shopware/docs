@@ -6,19 +6,17 @@ In this guide you'll learn how to inject services into other services. You can r
 
 ## Prerequisites
 
-In order to add your own custom service for your plugin, you first need a plugin as base. Therefore,
-you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
+In order to add your own custom service for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
 
-Furthermore, you need a working service. Therefore, you can refer to [PLACEHOLDER-LINK: Adding a custom service] guide.
+Furthermore, you need a working service. Therefore, you can refer to \[PLACEHOLDER-LINK: Adding a custom service\] guide.
 
 ## Injecting another services
 
-Let's get started with an example how to inject a service.
-This example will be about injecting the `SystemConfigService` into our `ExampleService`.
+Let's get started with an example how to inject a service. This example will be about injecting the `SystemConfigService` into our `ExampleService`.
 
 Here's our example `services.xml`:
 
-```xml
+```markup
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -58,7 +56,7 @@ class ExampleService
     {
         $this->systemConfigService = $systemConfigService;
     }
-    
+
     public function getShopname(SalesChannelContext $context): string
     {
         return $this->systemConfigService->getString('core.basicInformation.shopName', $context->getSalesChannel()->getId());
@@ -68,4 +66,5 @@ class ExampleService
 
 ## Next steps
 
-Now that you know how to inject services into another, you might want to have a look at our guide about [PLACEHOLDER-LINK: Reading data]. Your newly gained knowledge will be of use in that guide.
+Now that you know how to inject services into another, you might want to have a look at our guide about \[PLACEHOLDER-LINK: Reading data\]. Your newly gained knowledge will be of use in that guide.
+
