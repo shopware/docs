@@ -2,7 +2,7 @@
 
 ## Overview
 
-This short will give you a short example on how to replace associated `ToMany` data using our Data Abstraction Layer.
+This short guide will give you an example on how to replace associated `ToMany` data using our Data Abstraction Layer.
 
 ## Prerequisites
 
@@ -17,7 +17,7 @@ If you don't know how to create a plugin or how to use the code examples here in
 So let's start with the main issue going on here.
 Let's imagine you've created a product using our previously mentioned guide about writing data[PLACEHOLDER-LINK: Writing data] and 
 you've assigned a category to it.
-Unfortunately you messed up, since this was the wrong category to be assigned and you want another category to be assigned instead.
+Unfortunately you made a mistake, since this was the wrong category to be assigned and you want another category to be assigned instead.
 
 ### A wrong example
 

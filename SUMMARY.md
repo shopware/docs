@@ -110,6 +110,7 @@
     * [Framework](guides/plugins/plugins/framework/README.md)
       * [Custom field](guides/plugins/plugins/framework/custom-field.md)
       * [Data Handling / DataAbstractionLayer](guides/plugins/plugins/framework/data-handling-dataabstractionlayer.md)
+        * [Replacing associated data](guides/plugins/plugins/framework/data-abstraction-layer/replacing-associated-data.md)
       * [Event](guides/plugins/plugins/framework/event.md)
       * [Message Queue](guides/plugins/plugins/framework/message-queue.md)
       * [Rule](guides/plugins/plugins/framework/rule.md)
