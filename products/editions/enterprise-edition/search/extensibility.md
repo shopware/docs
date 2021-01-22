@@ -14,7 +14,7 @@ Create a own `SuggestGatewayInterface`/`SearchGatewayInterface` or use the alrea
 
 The Enterprise Search offers two ways to extend the search / suggest results.
 
-You can implement the following Interfaces within your Services:
+You can implement the following Interfaces within your services:
 
 - [Swag\EnterpriseSearch\Suggest\SuggestGatewayInterface](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Suggest/SuggestGatewayInterface.php)
 - [Swag\EnterpriseSearch\Search\SearchGatewayInterface](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Search/SearchGatewayInterface.php)
@@ -35,23 +35,23 @@ E.g., for your Definition:
 </service>
 ```
 
-The following tags with a key are used for registering the services in the search / suggest:
+The following tags and keys are used for registering the services in the search / suggest:
 
 ```plain
 swag_ses.suggest_gateway
 swag_ses.search_gateway
 ```
 
-The tagged Services are used in the following Files:
+The tagged services are used in the following files:
 
 - [Swag\EnterpriseSearch\Search\MultiSearchGateway](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Search/MultiSearchGateway.php)
 - [Swag\EnterpriseSearch\Suggest\MultiSuggestGateway](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Suggest/MultiSuggestGateway.php)
 
 ## The search template
 
-For showing the results in the search overview, you have to extend the `search/index.html.twig` and then apply the results in your desired way.
+For showing the results in the search overview, you have to extend the `search/index.html.twig` and then apply the results in your desired styling.
 
-Take a look here for an example: [SwagEnterpriseSearchPlatform/src/Resources/views/storefront/page/search/index.html.twig](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/tree/release/src/Resources/views/storefront/page/search/index.html.twig)
+You can take a look for an example here: [SwagEnterpriseSearchPlatform/src/Resources/views/storefront/page/search/index.html.twig](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/tree/release/src/Resources/views/storefront/page/search/index.html.twig)
 
 ## The suggest gateway
 
@@ -61,16 +61,16 @@ like the Enterprise Search does.
 
 ## Admin Boosting detail
 
-For creating boosting based on your new definition, you have to add the name here once.
+For creating boostings based on your definition, you have to add the name to the following file.
 
 Currently the values are hardcoded.
 See [here](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Resources/app/administration/src/module/swag-enterprise-search/components/swag-enterprise-search-boosting-detail-modal/swag-enterprise-search-boosting-detail-modal.html.twig#L48)
 
 ## Configuration Initial Value
 
-For a first search, you also need a first pair of entries. Therefor you have to create a migration.
+For a first search, you also need a first pair of configuration entries. Therefor you have to create a migration.
 
-An example content could look like this:
+An example could look like this:
 
 ```php
         $salesChannels = $connection->fetchAll('SELECT `id` FROM `sales_channel`');
@@ -100,14 +100,14 @@ This can be found here:
 
 ## Configuration Entity
 
-For adding new Configurations with the SalesChannel, you have to create your own
+For adding a new configuration while creating a SalesChannel, you have to create your own
 [Swag\EnterpriseSearch\Configuration\GatewayConfigurationCreator](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Configuration/GatewayConfigurationCreator.php)
 
 And override the `getEntityNames()` with your additional entity
 
 ## Autocompletion
 
-For adding auto-completion of your new definition, you have to add a
+For adding auto-completion of your definition, you have to add a
 [CompletionEsDefinitionDecorator](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Completion/CompletionEsDefinitionDecorator.php)
 to it.
 
