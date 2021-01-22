@@ -2,17 +2,17 @@
 
 {% hint style="info" %}
 This Article use many Code-References to GitLab!
-Please contact the Shopware Sales department so you will get access to the private repository.
+Please contact the Shopware Sales department to get access to the private repository.
 Find more information in our [Enterprise Contribution Guidelines](../contribution-guidelines.md)
 {% endhint %}
 
-To implement your own search/suggest results, you have to implement multiple interfaces.
+To implement the full search experience for a own entity, you have to implement multiple interfaces.
 
 ## The Search/Suggest Gateway
 
-Create own a `SuggestGatewayInterface`/`SearchGatewayInterface` or use the already existing SearchGateway.
+Create a own `SuggestGatewayInterface`/`SearchGatewayInterface` or use the already existing SearchGateway.
 
-The Enterprise Search offers two ways to create a search.
+The Enterprise Search offers two ways to extend the search / suggest results.
 
 You can implement the following Interfaces within your Services:
 
