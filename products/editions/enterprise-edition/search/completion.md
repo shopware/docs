@@ -1,9 +1,9 @@
 # Completion
 
 The Enterprise Search does not use the default [Elasticsearch Completion](https://www.elastic.co/guide/en/elasticsearch/reference/7.10/search-suggesters.html#completion-suggester), cause it does only support a fixed order and the storage size is high.
-As an alternative the Enterprise Search uses aggregations to check which result appears the most.
+As an alternative the Enterprise Search uses aggregations to find the most important words combinations for your search input.
 
-The [Full Text Boosted](../../../../concepts/framework/architecture/elasticsearch.md) Field is used to generate a list of completions. Each word is a separate completion suggestion.
+The [Full Text Boosted](../../../../concepts/framework/architecture/elasticsearch.md) field is used to generate a list of completions. Each word is a separate completion suggestion.
 
 ## Extension for compound completions
 

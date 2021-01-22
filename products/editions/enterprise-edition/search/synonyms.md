@@ -1,9 +1,9 @@
 # Synonyms
 
-The Synonyms are defined in the `%PLUGIN_DIR%/Resources/config/Synonyms.php`. The path to this file is saved in the `swag_ses_synonym_dir` Parameter of the container and can be overridden with the default [Dependency Injection](../../../../guides/plugins/plugins/plugin-fundamentals/add-plugin-dependencies.md).
+The Synonyms are defined in the `%PLUGIN_DIR%/Resources/config/Synonyms.php`. The path to this file is saved in the `swag_ses_synonym_dir` parameter of the container and can be overridden with the default [Dependency Injection](../../../../guides/plugins/plugins/plugin-fundamentals/add-plugin-dependencies.md).
 See [How to override](#how-to-override) for more information.
 
-The Syntax in the association may look a bit strange, it's the [Solr syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-synonym-tokenfilter.html#_solr_synonyms).
+The syntax in the association may look a bit strange, it's the [Solr syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-synonym-tokenfilter.html#_solr_synonyms).
 
 The path parameter is afterwards passed to the `Swag\EnterpriseSearch\Relevance\SynonymProvider` class.
 
@@ -48,13 +48,20 @@ return [
 
 ## How to override
 
-1. [Create a plugin](../../../../guides/plugins/plugin-plugins/plugin-base-guide.md)
+1. Shopware Configuration
 
-2. Add a [dependency injection](../../../../guides/plugins/plugins/plugin-fundamentals/dependency-injection.md#injecting-another-service) file
+   1. Shopware is based on symfony, so it's possible to [override](https://symfony.com/doc/2.0/cookbook/bundles/override.html#services-configuration) the Service parameters in symfony style.
+  
+   2. Parametername `swag_ses_synonym_dir`
 
-3. Create a file with your synonyms, see [Example](#example)
+2. Own Plugin
+   1. [Create a plugin](../../../../guides/plugins/plugin-plugins/plugin-base-guide.md)
 
-4. [Add a parameter](https://symfony.com/doc/2.0/cookbook/bundles/override.html#services-configuration) to the Dependency Injection File.
+   2. Add a [dependency injection](../../../../guides/plugins/plugins/plugin-fundamentals/dependency-injection.md#injecting-another-service) file
+
+   3. Create a file with your synonyms, see [Example](#example)
+
+   4. [Add a parameter](https://symfony.com/doc/2.0/cookbook/bundles/override.html#services-configuration) to the Dependency Injection File.
 
 {% code title="services.xml" %}
 ```xml
