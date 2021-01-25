@@ -319,6 +319,32 @@ In the second inner array, you just need to fill the `id` field again.
 
 This works exactly the same for `OneToMany` associations.
 
+##### Updating mapping entities
+
+Every `ManyToMany` association comes with a mapping entity.
+It's important to know that you **cannot** update a mapping entity itself.
+
+The following example will fail:
+
+```php
+public function writeData(Context $context): void
+{
+    // This is the product_category.repository service
+    $this->productCategoryRepository->update([
+        [
+            'productId' => 'myOldProductId',
+            'categoryId' => 'myNewCategoryId'
+        ]
+    ], $context);
+}
+```
+
+The reason for that is simple:
+With every update action, you need to provide the primary key and the data to be updated.
+For mapping entities though, all data you could provide are primary keys themselves and you can't update primary keys.
+
+Your only way to solve this is by replacing the association. Head over to our guide regarding [PLACEHOLDER-LINK: replacing associated data].
+
 ### Creating associated data
 
 So you don't want to assign an existing tax entity when creating a product, but rather you'd like to create a new tax entity in the same

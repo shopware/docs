@@ -274,6 +274,26 @@ public function readData(Context $context): void
 The first will return your product, that you found anyway, and add all matching `productReview` associations.
 The latter will just return your product, if it has at least one matching review.
 
+##### Reading mapping entities
+
+Every `ManyToMany` association comes with a mapping entity, such as the `ProductCategoryDefinition`.
+It's important to know, that you **cannot** read those mapping entities using the `search()` method.
+
+The following example will **not** work:
+
+```php
+public function readData(Context $context): void
+{
+    $criteria = new Criteria();
+
+    // It's the product_category.repository here
+    $result = $this->productCategoryRepository->search($criteria, $context);
+}
+```
+
+Since mapping entities just consist of two primary keys, there is no need to search for the "full entity" via `search`.
+It will suffice to use `searchIds` instead, which will return the IDs - and that's all there is in a mapping entity.
+
 #### Aggregations
 
 Of course you can also aggregate your data. Just like filters and associations, this can be done by using an
