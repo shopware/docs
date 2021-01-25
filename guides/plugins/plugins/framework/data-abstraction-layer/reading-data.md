@@ -9,7 +9,7 @@ It's worth getting used to the "DAL", as you might stumble upon this term every 
 
 ## Prerequisites
 
-Since this guide is built upon the [plugin base guide](https://app.gitbook.com/@shopware/s/shopware/guides/plugins/plugins/plugin-base-guide),
+Since this guide is built upon the plugin base guide [PLACEHOLDER-LINK: plugin base guide],
 you might want to have a look at it.
 Furthermore, the guide about [PLACEHOLDER-LINK: Dependency injection] will come in handy, since you need to know how to inject a service using the DI container.<br />
 You also might want to have a look at the concept behind the [PLACEHOLDER-LINK: Data abstraction layer concept]Data Abstraction Layer first to get a better grasp of how it works.
