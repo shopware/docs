@@ -73,7 +73,7 @@
 ## Guides
 
 * [Installation](guides/installation/README.md)
-  * [Overview](guides/installation/overview.md)
+  * [Installation overview](guides/installation/overview.md)
   * [Dockware](guides/installation/dockware.md)
   * [Docker](guides/installation/docker.md)
   * [from scratch](guides/installation/from-scratch.md)
