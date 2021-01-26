@@ -6,22 +6,19 @@ In this guide you'll learn how to adjust a service. You can read more about serv
 
 ## Prerequisites
 
-In order to add your own custom service for your plugin, you first need a plugin as base. Therefore,
-you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
+In order to add your own custom service for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
 
 ## Decorating the service
 
-First of all we have to create a new service for this example which gets decorated in the next step.
-Then we have to add a new service to our `services.xml` with the attribute `decorates` pointing to our service we want to decorate.
-Next we have to add our service decorator as argument, but we append an `.inner` to the end of the service to keep the old one as reference.
+First of all we have to create a new service for this example which gets decorated in the next step. Then we have to add a new service to our `services.xml` with the attribute `decorates` pointing to our service we want to decorate. Next we have to add our service decorator as argument, but we append an `.inner` to the end of the service to keep the old one as reference.
 
 Here's our example `services.xml`:
 
-```xml
+```markup
 // SwagBasicExample/src/Resources/config/services.xml
 
 <?xml version="1.0" ?>
-         
+
 <container xmlns="http://symfony.com/schema/dic/services"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
@@ -36,8 +33,7 @@ xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/sc
 </container>
 ```
 
-Now we have to define an abstract class because it's more beautiful and not so strict like interfaces. With an abstract class we can add new functions easier, you can read more about this at the end of this article.
-The abstract class has to include an abstract function called `getDecorated()` which has the return type of our instance.
+Now we have to define an abstract class because it's more beautiful and not so strict like interfaces. With an abstract class we can add new functions easier, you can read more about this at the end of this article. The abstract class has to include an abstract function called `getDecorated()` which has the return type of our instance.
 
 Therefore, this is how your abstract class could then look like:
 
@@ -56,8 +52,7 @@ abstract class AbstractExampleService
 }
 ```
 
-Now we have our abstract class, but no service which uses it. So we create our `ExampleService` which extends from our `AbstractExampleService`.
-In our service the `getDecorated()` function has to throw an `DecorationPatternException` because it has no decoration yet.
+Now we have our abstract class, but no service which uses it. So we create our `ExampleService` which extends from our `AbstractExampleService`. In our service the `getDecorated()` function has to throw an `DecorationPatternException` because it has no decoration yet.
 
 Therefore, your service could then look like this:
 
@@ -84,9 +79,7 @@ class ExampleService extends AbstractExampleService
 }
 ```
 
-The last step is creating our decorated service called `ExampleServiceDecorator` in this example.
-Our decorated service has to extend from the `AbstractExampleService` and the constructor has to accept an instance of `AbstractExampleService`.
-Furthermore, the `getDecorated()` function has to return the decorated service passed into the constructor.
+The last step is creating our decorated service called `ExampleServiceDecorator` in this example. Our decorated service has to extend from the `AbstractExampleService` and the constructor has to accept an instance of `AbstractExampleService`. Furthermore, the `getDecorated()` function has to return the decorated service passed into the constructor.
 
 Your service could then look like below:
 
@@ -108,7 +101,7 @@ class ExampleServiceDecorator extends AbstractExampleService
     {
         $this->decoratedService = $exampleService;
     }
-    
+
     public function getDecorated(): AbstractExampleService
     {
         return $this->decoratedService;
@@ -125,11 +118,7 @@ class ExampleServiceDecorator extends AbstractExampleService
 
 ## Adding new functions to an existing service
 
-If you plan to add new functions to your service, it is recommended to add them as normal public functions due to backwards compatibility, if you decorate the service at several places.
-In this example we add a new function called `doSomethingNew()` which first calls the `getDecorated()` and then our new function `doSomethingNew()` because if our decorator does not implement it yet, it will call it from the parent. 
-The advantage of adding it as normal public function is that you can implement it step by step into your other services without any issues.
-After you have implemented the function in every service decorator, you can make it abstract for the next release.
-If you add it directly as an abstract function, you will get errors because the function is required for every service decorator.
+If you plan to add new functions to your service, it is recommended to add them as normal public functions due to backwards compatibility, if you decorate the service at several places. In this example we add a new function called `doSomethingNew()` which first calls the `getDecorated()` and then our new function `doSomethingNew()` because if our decorator does not implement it yet, it will call it from the parent. The advantage of adding it as normal public function is that you can implement it step by step into your other services without any issues. After you have implemented the function in every service decorator, you can make it abstract for the next release. If you add it directly as an abstract function, you will get errors because the function is required for every service decorator.
 
 Here's our example abstract class:
 
@@ -145,7 +134,7 @@ abstract class AbstractExampleService
     abstract public function getDecorated(): AbstractExampleService; 
 
     abstract public function doSomething(): string;
-    
+
     public function doSomethingNew(): string
     {
         return $this->getDecorated()->doSomethingNew();
@@ -175,7 +164,7 @@ class ExampleService extends AbstractExampleService
     {
         return 'Did something.';
     }
-    
+
     public function doSomethingNew(): string
     {
         return 'Did something new.';
@@ -185,4 +174,5 @@ class ExampleService extends AbstractExampleService
 
 ## Next steps
 
-Sometimes you don't need to decorate a service, but you just could react to events instead. Read more about this in our [Listening to events](./listening-to-events.md) guide.
+Sometimes you don't need to decorate a service, but you just could react to events instead. Read more about this in our [Listening to events](listening-to-events.md) guide.
+

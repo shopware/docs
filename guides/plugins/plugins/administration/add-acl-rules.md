@@ -1,96 +1,93 @@
 # Adding permissions
 
 ## Overview
-This guide will teach you how to add Access Control Lists to the Shopware 6 Administration. Access Control Lists or ACL in Shopware ensure that you can create individual roles.
-These roles have finely granular rights, which every shop operator can set up for themselves. 
-They can be assigned to users.
+
+This guide will teach you how to add Access Control Lists to the Shopware 6 Administration. Access Control Lists or ACL in Shopware ensure that you can create individual roles. These roles have finely granular rights, which every shop operator can set up for themselves. They can be assigned to users.
 
 As an example, let's take a look at a role called 'Editor'. We would assign this role rights to edit products, categories and manufacturers. Now, every user who is a 'Editor' would be able to see and edit the specific areas which are defined in the role.
 
 This documentation chapter will cover the following topics:
-- What is an admin privilege
-- How to register new admin privileges for your plugin
-- How to protect your plugin routes
-- How to protect your menu entries
-- How to add admin snippets for your privileges
-- How you can check in your module at any place if the user has the required rights
 
-Note: ACL Rules in the Administration can be circumnavigated by making direct API calls to your backend. Learn how to protect API Routes with ACL here [PLACEHOLDER-LINK: Adding ACL rules to API Routes]
+* What is an admin privilege
+* How to register new admin privileges for your plugin
+* How to protect your plugin routes
+* How to protect your menu entries
+* How to add admin snippets for your privileges
+* How you can check in your module at any place if the user has the required rights
+
+Note: ACL Rules in the Administration can be circumnavigated by making direct API calls to your backend. Learn how to protect API Routes with ACL here \[PLACEHOLDER-LINK: Adding ACL rules to API Routes\]
 
 ## Prerequisites
-All you need for this guide is a running Shopware 6 instance and full access to both the files and a running plugin. A basic understanding of the [vue router](https://router.vuejs.org/) is also required. 
-Of course you'll have to understand JavaScript, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation.
+
+All you need for this guide is a running Shopware 6 instance and full access to both the files and a running plugin. A basic understanding of the [vue router](https://router.vuejs.org/) is also required. Of course you'll have to understand JavaScript, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation.
 
 ## Admin privileges
+
 Admin privileges are higher-level permissions that are always determined by an explicit identifier. This is made up of a 'key' and the 'role', connected by a dot: `.`.
 
-A distinction is made here between normal `permissions` and `additional_permissions`. Let's start 
-with the normal permissions.
+A distinction is made here between normal `permissions` and `additional_permissions`. Let's start with the normal permissions.
 
 ### Normal permissions
-![Permissions GUI](./permissions-gui.png)
+
+![Permissions GUI](https://github.com/shopware/docs/tree/e2bbafc28967d4173d60fed3f07199f12fd5d1b1/guides/plugins/plugins/administration/permissions-gui.png)
 
 `permissions`:
-- Key: `product`
-- Role: `viewer`
-- Identifier (Key + Role): `product.viewer`
 
-The key describes the higher-level admin privilege. For normal `permissions` this is 
-usually the module name, `product` in this case. Other keys could be for example `manufacturer`, `shopping_experiences` or `customers`.
-The key is used to group the admin privileges, as seen in the picture above.
+* Key: `product`
+* Role: `viewer`
+* Identifier \(Key + Role\): `product.viewer`
 
-The role indicates which authorization is given for the key. So four predefined roles 
-are available for the normal `permissions`:
-- `viewer`: The viewer is allowed to view entities
-- `editor`: The editor is allowed to edit entities
-- `creator`: The Creator is allowed to create new entities
-- `deleter`: The Deleter is allowed to delete entities
+The key describes the higher-level admin privilege. For normal `permissions` this is usually the module name, `product` in this case. Other keys could be for example `manufacturer`, `shopping_experiences` or `customers`. The key is used to group the admin privileges, as seen in the picture above.
 
-It is important to note that these combinations are not API permissions. They are only intended to 
-enable, disable, deactivate or hide certain elements in the administration. Learn how to protect API Routes here [PLACEHOLDER-LINK: Adding ACL rules to API Routes].
+The role indicates which authorization is given for the key. So four predefined roles are available for the normal `permissions`:
 
-For each admin privilege, the needed entity privileges need to be assigned. Depending on the
-admin privileges, these can be much more complex. This means that for example if a user should be allowed to view reviews, then they also have to be allowed to view customers, products and sales channels.
+* `viewer`: The viewer is allowed to view entities
+* `editor`: The editor is allowed to edit entities
+* `creator`: The Creator is allowed to create new entities
+* `deleter`: The Deleter is allowed to delete entities
+
+It is important to note that these combinations are not API permissions. They are only intended to enable, disable, deactivate or hide certain elements in the administration. Learn how to protect API Routes here \[PLACEHOLDER-LINK: Adding ACL rules to API Routes\].
+
+For each admin privilege, the needed entity privileges need to be assigned. Depending on the admin privileges, these can be much more complex. This means that for example if a user should be allowed to view reviews, then they also have to be allowed to view customers, products and sales channels.
 
 ### Additional permissions
-In addition to the normal `permissions`, which represent CRUD functionality, there are also 
-`additional_permissions`. These are intended for all functions that cannot be represented by CRUD.
 
-![Additional permissions GUI](./additional_permissions-gui.png)
+In addition to the normal `permissions`, which represent CRUD functionality, there are also `additional_permissions`. These are intended for all functions that cannot be represented by CRUD.
 
-The `additional_permissions` have their own card below the normal permissions grid. An example for `additional_permissions` would be: "clearing the cache". This is an individual action without CRUD functionalities. The key is still used for grouping.
-Therefore the role can be individual and does not have to follow the scheme.
+![Additional permissions GUI](https://github.com/shopware/docs/tree/e2bbafc28967d4173d60fed3f07199f12fd5d1b1/guides/plugins/plugins/administration/additional_permissions-gui.png)
+
+The `additional_permissions` have their own card below the normal permissions grid. An example for `additional_permissions` would be: "clearing the cache". This is an individual action without CRUD functionalities. The key is still used for grouping. Therefore the role can be individual and does not have to follow the scheme.
 
 `additional_permissions`:
-- Key: `system`
-- Role: `clear_cache`
-- Identifier (Key + Role): `system.clear_cache`
 
+* Key: `system`
+* Role: `clear_cache`
+* Identifier \(Key + Role\): `system.clear_cache`
 
 ## Register admin privilege
+
 The privilege service is used to handle privileges in the administration. Those privileges will then be displayed in the Users & Permissions module under the roles.
 
 Privileges can be added or extended with the Method `addPrivilegeMappingEntry` of the privilege service:
 
-| Property  | Description                                                                                                                  |
-|-----------|------------------------------------------------------------------------------------------------------------------------------|
-| category  | Where the privilege should be visible in the `permissions` grid or in the `additional_permissions`                                 |
-| parent    | For nesting and gaining a better overview, you can add a parent key. If the privilege does not have a parent then use `null`. |
-| key       | All privileges with the same key will be grouped together. For normal `permissions` each role will be in the same row.       |
-| roles     | When category is `permissions`: Use `viewer`, `editor`, `creator` and `deleter`.                                             |
-|           | When category is `additional_permissions`: Use a custom key because the additional permissions don´t enforce a structure.    |
+| Property | Description |
+| :--- | :--- |
+| category | Where the privilege should be visible in the `permissions` grid or in the `additional_permissions` |
+| parent | For nesting and gaining a better overview, you can add a parent key. If the privilege does not have a parent then use `null`. |
+| key | All privileges with the same key will be grouped together. For normal `permissions` each role will be in the same row. |
+| roles | When category is `permissions`: Use `viewer`, `editor`, `creator` and `deleter`. |
+|  | When category is `additional_permissions`: Use a custom key because the additional permissions don´t enforce a structure. |
 
+Each role in roles:
 
-Each role in roles:  
-
-| Property     | Description                                                                                                                                                |
-|--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| privileges   | You need to add all API permissions here which are required for an working admin privilege. The structure is `entity_name:operation`, e.g. 'product:read'. |
-| dependencies | In some cases it is necessary to automatically check another role. To do this, you need to add the identifier, e.g. `product.viewer`.                       |
+| Property | Description |
+| :--- | :--- |
+| privileges | You need to add all API permissions here which are required for an working admin privilege. The structure is `entity_name:operation`, e.g. 'product:read'. |
+| dependencies | In some cases it is necessary to automatically check another role. To do this, you need to add the identifier, e.g. `product.viewer`. |
 
 Here's an example how this can look like for the review functionality in the administration:
 
-```js
+```javascript
 Shopware.Service('privileges')
     .addPrivilegeMappingEntry({
         category: 'permissions',
@@ -136,9 +133,10 @@ Shopware.Service('privileges')
 ```
 
 ### Adding new, normal permissions
+
 You could use the service at any point in your code. However, it's important that it will be called before the user goes to the roles detail page. For convenience, we recommend this pattern:
 
-```
+```text
 - <plugin root>/src/Resources/app/administration/src/<your-component>/
     - acl
         - index.js -> contains permission
@@ -149,7 +147,8 @@ You could use the service at any point in your code. However, it's important tha
 Now you can use the method `addPrivilegeMappingEntry` to add a new entry:
 
 To add a new mapping for your custom key use the following approach:
-```js
+
+```javascript
 // <plugin root>/src/Resources/app/administration/src/<your-component>/acl/index.js
 
 Shopware.Service('privileges').addPrivilegeMappingEntry({
@@ -176,9 +175,12 @@ Shopware.Service('privileges').addPrivilegeMappingEntry({
     }
 });
 ```
+
 ### Extending existing normal permissions
+
 Adding privileges to an existing key can be done like this:
-```js
+
+```javascript
 // <plugin root>/src/Resources/app/administration/src/acl-override/index.js
 
 Shopware.Service('privileges').addPrivilegeMappingEntry({
@@ -198,15 +200,16 @@ Shopware.Service('privileges').addPrivilegeMappingEntry({
     }
 });
 ```
+
 Note: This file has to be imported in the `main.js` file which has to be placed in the `<plugin root>/src/Resources/app/administration/src` directory in order to be automatically found by Shopware 6.
+
 ### Register additional permissions
-To add privileges to the card `additional_permissions` you need to set `additional_permissions`
-in the property category. The main difference to normal permissions is that you can
-choose every role key you want.
+
+To add privileges to the card `additional_permissions` you need to set `additional_permissions` in the property category. The main difference to normal permissions is that you can choose every role key you want.
 
 Here's an example for `additional_permissions`:
 
-```js
+```javascript
 Shopware.Service('privileges').addPrivilegeMappingEntry({
     category: 'additional_permissions',
     parent: null,
@@ -220,18 +223,15 @@ Shopware.Service('privileges').addPrivilegeMappingEntry({
 });
 ```
 
-Here, the key is `system` to group the permission together with other system specific
-permissions. However, you can feel free to add your own names here.
+Here, the key is `system` to group the permission together with other system specific permissions. However, you can feel free to add your own names here.
 
 ## Get permissions from other privilege mappings
-In case you have many dependencies which are the same as in other 
-modules, you can import them here. This can be useful if you have components
-in your module which have complex privileges. Some examples can be found in the rule builder
-or the media module. You can get these privileges with the method `getPrivileges` 
-of the service.
+
+In case you have many dependencies which are the same as in other modules, you can import them here. This can be useful if you have components in your module which have complex privileges. Some examples can be found in the rule builder or the media module. You can get these privileges with the method `getPrivileges` of the service.
 
 See this example here:
-```js
+
+```javascript
 Shopware.Service('privileges').addPrivilegeMappingEntry({
     category: 'permissions',
     parent: null,
@@ -248,15 +248,15 @@ Shopware.Service('privileges').addPrivilegeMappingEntry({
 })
 ```
 
-Now all users with the privilege `product.viewer` automatically have access
-to all privileges from the `rule.viewer`.
+Now all users with the privilege `product.viewer` automatically have access to all privileges from the `rule.viewer`.
 
 Important: The user still has no access to the module itself in the administration. This means that the example above doesn't give a user access to the `rule` module.
 
 ## Protect your plugin routes
+
 It's easy to protect your routes for users without the appropriate privileges. Just add `privilege` to the `meta` property in your route:
 
-```js
+```javascript
 Module.register('your-plugin-module', {
     routes: {
         detail: {
@@ -271,9 +271,10 @@ Module.register('your-plugin-module', {
 ```
 
 ## Protect your plugin menu entries
+
 Similar to the routes, you can to add the property `privilege` to your navigation settings to hide it:
 
-```js
+```javascript
 Module.register('your-plugin-module', {
     navigation: [{
         id: 'your-plugin',
@@ -285,7 +286,7 @@ Module.register('your-plugin-module', {
 
 or in the settings item:
 
-```js
+```javascript
 Module.register('your-plugin-module', {
     settingsItem: [{
         group: 'system',
@@ -296,26 +297,27 @@ Module.register('your-plugin-module', {
 ```
 
 ## Add snippets for your privileges
-To create translations for the labels of the permissions you need to add
-snippet translations. The path is created automatically for you:
+
+To create translations for the labels of the permissions you need to add snippet translations. The path is created automatically for you:
 
 For group titles:
 
-```
+```text
 sw.privileges.${category}.${key}.label
 // e.g. sw.privileges.permissions.product.label
 // e.g. sw.privileges.additional_permissions.system.label
 ```
 
-For specific roles (only needed in `additional_permissions`):
+For specific roles \(only needed in `additional_permissions`\):
 
-```
+```text
 sw.privileges.${category}.${key}.${role_key} 
 // e.g. sw.privileges.additional_permissions.system.clear_cache
 ```
 
 Just add the snippets to your snippets file:
-```json
+
+```javascript
 {
   "sw-privileges": {
     "permissions": {
@@ -334,11 +336,12 @@ Just add the snippets to your snippets file:
 ```
 
 ## Use the privileges in any place in your plugin
+
 You can use the `acl` service to check if the user has the correct privileges to view or edit things, regardless of location in your app. The method you need is `acl.can(identifier)`: It checks automatically if the user has admin rights or the privilege for the identifier.
 
-You can use the global Shopware object (`Shopware.Service('acl')`) or inject the service in your component:
+You can use the global Shopware object \(`Shopware.Service('acl')`\) or inject the service in your component:
 
-```js
+```javascript
 Shopware.Component.register('your-plugin-component', {
     template,
 
@@ -351,7 +354,8 @@ Shopware.Component.register('your-plugin-component', {
 With the injection, you can use the service functionality everywhere in your component.
 
 Example in a method:
-```js
+
+```javascript
 Shopware.Component.register('your-plugin-component', {
     template,
 
@@ -366,13 +370,15 @@ Shopware.Component.register('your-plugin-component', {
 ```
 
 Below is an example to hide the element if the user has not the right privilege:
-```html
+
+```markup
 <button v-if="acl.can('review.editor')">
 </button>
 ```
 
 For example you could disable elements if the user has not the right privilege to use them and inform the user with a tooltip that a privilege is missing. To achieve this, you can use the global snippet path:
-```html
+
+```markup
 <button @click="saveProduct"
         :disabled="!acl.can('review.editor')"
         v-tooltip="{
@@ -382,11 +388,12 @@ For example you could disable elements if the user has not the right privilege t
         }"
 ></button>
 ```
-## Protect your shortcuts
-You can replace the String value with an object which contains the method with the name `active` which then returns a boolean or just the property `active`as boolean.
-In our case we need a function to check if the user has the privilege required to use the shortcut.
 
-```js
+## Protect your shortcuts
+
+You can replace the String value with an object which contains the method with the name `active` which then returns a boolean or just the property `active`as boolean. In our case we need a function to check if the user has the privilege required to use the shortcut.
+
+```javascript
 Module.register('your-plugin-module', {
     shortcuts: {
         'SYSTEMKEY+S': {
@@ -399,8 +406,12 @@ Module.register('your-plugin-module', {
     },
 });
 ```
+
 ## Next steps
+
 Now that our privilege setup is complete, we can start adding our customizing components in the administration or learn to protect API routes using ACL:
-* Creating a new administration component [PLACEHOLDER-LINK: Creating administration component]
-* Extending an existing administration component to display [PLACEHOLDER-LINK: Plugin configuration]
-* How to protect API Routes with ACL [PLACEHOLDER-LINK: Adding ACL rules to API Routes]
+
+* Creating a new administration component \[PLACEHOLDER-LINK: Creating administration component\]
+* Extending an existing administration component to display \[PLACEHOLDER-LINK: Plugin configuration\]
+* How to protect API Routes with ACL \[PLACEHOLDER-LINK: Adding ACL rules to API Routes\]
+

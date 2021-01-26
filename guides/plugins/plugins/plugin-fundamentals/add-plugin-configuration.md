@@ -1,20 +1,16 @@
-# Adding a plugin configuration
+# Add plugin configuration
 
-The `Shopware plugin system` provides you with the option to create a configuration page for your plugin without any 
-knowledge of templating or the `Shopware Administration`.
+The `Shopware plugin system` provides you with the option to create a configuration page for your plugin without any knowledge of templating or the `Shopware Administration`.
 
 ## Prerequisites
 
-To build your own configuration page for your plugin, you first need a plugin as base. Therefore, 
-you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
+To build your own configuration page for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
 
 ## Create your plugin configuration
 
-All you need to do is creating a `config.xml` file inside of a `Resources/config` directory in your plugin root.
-The content of the `config.xml` will be dynamically rendered in the administration.
-Below you'll find an example structure:
+All you need to do is creating a `config.xml` file inside of a `Resources/config` directory in your plugin root. The content of the `config.xml` will be dynamically rendered in the administration. Below you'll find an example structure:
 
-```
+```text
 └── plugins
     └── SwagBasicExample
         ├── src
@@ -27,21 +23,21 @@ Below you'll find an example structure:
 
 ## Fill your plugin configuration with settings
 
-As we now know how to create your configuration, we can start to fill it with life 
-- or options to configure, in this case.
+As we now know how to create your configuration, we can start to fill it with life
+
+* or options to configure, in this case.
 
 ### Cards in your configuration
 
-The `config.xml` follows a simple syntax. You can organize the content in `<card>` elements.
-Every `config.xml` must exist of minimum one `<card>` element and each `<card>` must contain one `<title>` 
-and at least one `<input-field>`, see a minimum `config.xml` below:
+The `config.xml` follows a simple syntax. You can organize the content in `<card>` elements. Every `config.xml` must exist of minimum one `<card>` element and each `<card>` must contain one `<title>` and at least one `<input-field>`, see a minimum `config.xml` below:
 
-*Resources/config/config.xml*
-```xml
+_Resources/config/config.xml_
+
+```markup
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
-    
+
     <card>
         <title>Minimal configuration</title>
         <input-field>
@@ -51,17 +47,13 @@ and at least one `<input-field>`, see a minimum `config.xml` below:
 </config>
 ```
 
-Please make sure to specify the `xsi:noNamespaceSchemaLocation` as shown above and fetch the external resource 
-into your IDE if possible. This enables auto-completion and suggestions for this XML file and will therefore 
-help you to prevent issues and bugs.
+Please make sure to specify the `xsi:noNamespaceSchemaLocation` as shown above and fetch the external resource into your IDE if possible. This enables auto-completion and suggestions for this XML file and will therefore help you to prevent issues and bugs.
 
 ### Card Titles
 
-A `<card>` `<title>` is translatable, this is managed via the `lang` attribute.
-By default the `lang` attribute is set to `en-GB`, to change the locale of a `<title>` just add the attribute as 
-follows:
+A `<card>` `<title>` is translatable, this is managed via the `lang` attribute. By default the `lang` attribute is set to `en-GB`, to change the locale of a `<title>` just add the attribute as follows:
 
-```xml
+```markup
     ...
     <card>
         <title>English Title</title>
@@ -72,59 +64,44 @@ follows:
 
 ### Input fields
 
-As you can see above, every `<input-field>` has to contain at least a `<name>` element.
-The `<name>` element is not translatable and has to be unique, since it will be used as the technical identifier 
-for the config element. The field `<name>` must at least be 4 characters long and consist of only lower and upper 
-case letters. It can contain numbers, but not at first place - see this pattern: `[a-zA-Z][a-zA-Z0-9]*`
+As you can see above, every `<input-field>` has to contain at least a `<name>` element. The `<name>` element is not translatable and has to be unique, since it will be used as the technical identifier for the config element. The field `<name>` must at least be 4 characters long and consist of only lower and upper case letters. It can contain numbers, but not at first place - see this pattern: `[a-zA-Z][a-zA-Z0-9]*`
 
 ### The different types of input field
 
-Your `<input-field>` can be of different types, this is managed via the `type` attribute.
-Unless defined otherwise, your `<input-field>` will be a text field per default.
-Below you'll find a list of all available `<input-field type="?">`.
+Your `<input-field>` can be of different types, this is managed via the `type` attribute. Unless defined otherwise, your `<input-field>` will be a text field per default. Below you'll find a list of all available `<input-field type="?">`.
 
-| Type          | Configuration settings                                                  | Renders           |
-|---------------|------------------------------------------------------------------------|-------------------|
-| text          | [copyable](#copyable), [placeholder](#label-placeholder-and-help-text) | Text field        |
-| textarea      | [copyable](#copyable), [placeholder](#label-placeholder-and-help-text) | Text area          |
-| url           | [copyable](#copyable), [placeholder](#label-placeholder-and-help-text) | URL field         |
-| password      | [placeholder](#label-placeholder-and-help-text)                        | Password field    |
-| int           |                                                                        | Integer field     |
-| float         |                                                                        | Float field       |
-| bool          |                                                                        | Switch            |
-| checkbox      |                                                                        | Checkbox          |
-| datetime      |                                                                        | Date-time picker  |
-| date          |                                                                        | Date picker       |
-| time          |                                                                        | Time picker       |
-| colorpicker   |                                                                        | Color picker      |
-| single-select | [options](#options), [placeholder](#label-placeholder-and-help-text)   | Single-Select box |
-| multi-select  | [options](#options), [placeholder](#label-placeholder-and-help-text)   | Multi-Select box  |
+| Type | Configuration settings | Renders |
+| :--- | :--- | :--- |
+| text | [copyable](add-plugin-configuration.md#copyable), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text) | Text field |
+| textarea | [copyable](add-plugin-configuration.md#copyable), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text) | Text area |
+| url | [copyable](add-plugin-configuration.md#copyable), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text) | URL field |
+| password | [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text) | Password field |
+| int |  | Integer field |
+| float |  | Float field |
+| bool |  | Switch |
+| checkbox |  | Checkbox |
+| datetime |  | Date-time picker |
+| date |  | Date picker |
+| time |  | Time picker |
+| colorpicker |  | Color picker |
+| single-select | [options](add-plugin-configuration.md#options), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text) | Single-Select box |
+| multi-select | [options](add-plugin-configuration.md#options), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text) | Multi-Select box |
 
 ### Input field settings
 
-These settings are used to configure your `<input-field>`.
-**Every `<input-field>` has to start with the `<name>` element.**
-After the `<name>` element you can configure any of the other settings mentioned above.
-Beside these settings, they have the followings in common: 
-[label](#label-placeholder-and-help-text), [helpText](#label-placeholder-and-help-text), [defaultValue](#defaultvalue) 
-and [disabled](#disabled).
+These settings are used to configure your `<input-field>`. **Every `<input-field>` has to start with the `<name>` element.** After the `<name>` element you can configure any of the other settings mentioned above. Beside these settings, they have the followings in common: [label](add-plugin-configuration.md#label-placeholder-and-help-text), [helpText](add-plugin-configuration.md#label-placeholder-and-help-text), [defaultValue](add-plugin-configuration.md#defaultvalue) and [disabled](add-plugin-configuration.md#disabled).
 
 #### Label, placeholder and help text
 
-The settings `<label>`, `<placeholder>` and `<helpText>` are used to label and explain your `<input-field>` 
-and are translatable. You define your `<label>`, `<placeholder>` and `<helpText>` the same way as the `<card><title>`, 
-with the `lang` attribute. Please remember, that the `lang` attribute is set to `en-GB` per default.
+The settings `<label>`, `<placeholder>` and `<helpText>` are used to label and explain your `<input-field>` and are translatable. You define your `<label>`, `<placeholder>` and `<helpText>` the same way as the `<card><title>`, with the `lang` attribute. Please remember, that the `lang` attribute is set to `en-GB` per default.
 
 #### defaultValue
 
-Add the `defaultValue` setting to your `<input-field>` to define a default value for it.
-This value will be imported into the database on installing and updating the plugin.
-We use [Symfony\Component\Config\Util\XmlUtils](https://github.com/symfony/config/blob/master/Util/XmlUtils.php#L215) 
-for casting the values into the correct PHP types.
+Add the `defaultValue` setting to your `<input-field>` to define a default value for it. This value will be imported into the database on installing and updating the plugin. We use [Symfony\Component\Config\Util\XmlUtils](https://github.com/symfony/config/blob/master/Util/XmlUtils.php#L215) for casting the values into the correct PHP types.
 
 Below you'll find an example how to use this setting.
 
-```xml
+```markup
 <input-field type="text">
     <name>textField</name>
     <label>Test field with default value</label>
@@ -138,37 +115,37 @@ You can add the `<disabled>` setting to any of your `<input-field>` elements to 
 
 Below you'll find an example how to use this setting.
 
-```xml
+```markup
 <input-field>
     <name>email</name>
     <disabled>true</disabled>
 </input-field>
 ```
-*Please note, `<disabled>` only takes boolean values.*
+
+_Please note, `<disabled>` only takes boolean values._
 
 #### copyable
 
-You can add the `<copyable>` setting to your `<input-field>` which are of type `text` or extensions of it.
-This will add a button at the right, which on click copies the content of your `<input-field>` into the clipboard.
+You can add the `<copyable>` setting to your `<input-field>` which are of type `text` or extensions of it. This will add a button at the right, which on click copies the content of your `<input-field>` into the clipboard.
 
 Below you'll find an example how to use this setting.
 
-```xml
+```markup
 <input-field>
     <name>email</name>
     <copyable>true</copyable>
 </input-field>
 ```
-*Please note, that `<copyable>` only takes boolean values*
+
+_Please note, that `<copyable>` only takes boolean values_
 
 #### options
 
-You can use `<options>` to add settings to a `<input-field>` of the types `single-select` and `multi-select`.
-Each `<option>` represents one setting you can select.
+You can use `<options>` to add settings to a `<input-field>` of the types `single-select` and `multi-select`. Each `<option>` represents one setting you can select.
 
 Below you'll find an example.
 
-```xml
+```markup
 <input-field type="single-select">
     <name>mailMethod</name>
     <options>
@@ -186,44 +163,41 @@ Below you'll find an example.
 </input-field>
 ```
 
-Each `<options>` element must contain at least one `<option>` element.
-Each `<option>` element must contain at least one `<id>` and one `<name>` element.
-As you can see above, `<name>` elements are translatable via the `lang` attribute.
+Each `<options>` element must contain at least one `<option>` element. Each `<option>` element must contain at least one `<id>` and one `<name>` element. As you can see above, `<name>` elements are translatable via the `lang` attribute.
 
 ### Advanced custom input fields
 
-For more complex and advanced configurations it is possible to declare a `<component name="componentName">` element. 
-This element can render many admin components.
-It is also possible to render your own admin component which you could deliver with your plugin.
-The name of the component has to match the components name in the administration, for example `sw-entity-single-select`.
-The component also needs a `<name>` element first.
-All other elements within the component element will be passed to the rendered admin component as properties.
-For some components you could also use [`label` and `placeholder`](#label-placeholder-and-help-text).
+For more complex and advanced configurations it is possible to declare a `<component name="componentName">` element. This element can render many admin components. It is also possible to render your own admin component which you could deliver with your plugin. The name of the component has to match the components name in the administration, for example `sw-entity-single-select`. The component also needs a `<name>` element first. All other elements within the component element will be passed to the rendered admin component as properties. For some components you could also use [`label` and `placeholder`](add-plugin-configuration.md#label-placeholder-and-help-text).
 
 Here are some examples:
 
 ### Entity single select for products
-```xml
+
+```markup
 <component name="sw-entity-single-select">
     <name>exampleProduct</name>
     <entity>product</entity>
     <title>Choose a product for the plugin configuration</title>
 </component>
 ```
+
 Stores the ID of the selected product into the system config.
 
 ### Entity multi ID select for products
-```xml
+
+```markup
 <component name="sw-entity-multi-id-select">
     <name>exampleMultiProductIds</name>
     <entity>product</entity>
     <label>Choose multiple products IDs for the plugin configuration</label>
 </component>
 ```
+
 Stores an array with IDs of the selected products into the system config.
 
 ### Media selection
-```xml
+
+```markup
 <component name="sw-media-field">
     <name>pluginMedia</name>
     <label>Upload media or choose one from the media manager</label>
@@ -231,7 +205,8 @@ Stores an array with IDs of the selected products into the system config.
 ```
 
 ### Text editor
-```xml
+
+```markup
 <component name="sw-text-editor">
     <name>textEditor</name>
     <label>Write some nice text with WYSIWYG editor</label>
@@ -239,22 +214,22 @@ Stores an array with IDs of the selected products into the system config.
 ```
 
 ### Snippet field
-```xml
+
+```markup
         <component name="sw-snippet-field">
             <name>snippetField</name>
             <label>Description</label>
             <snippet>myPlugin.test.snippet</snippet>
         </component>
 ```
-Allows you to edit snippet values within the configuration page.
-This component does not store values in the system config, but changes the translations for the snippet key.
-**Note: This field is only available from 6.3.4.0 onward.**
+
+Allows you to edit snippet values within the configuration page. This component does not store values in the system config, but changes the translations for the snippet key. **Note: This field is only available from 6.3.4.0 onward.**
 
 ## Example
 
 Now all that's left to do is to present you a working example `config.xml` and show you the result.
 
-```xml
+```markup
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
@@ -308,3 +283,4 @@ Now all that's left to do is to present you a working example `config.xml` and s
     </card>
 </config>
 ```
+

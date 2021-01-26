@@ -1,26 +1,18 @@
 # Add custom CLI commands
 
-To ease development tasks, Shopware contains the Symfony commands functionality.
-This allows (plugin-) developers to define new commands executable via the
-Symfony console at `bin/console`. The best thing about commands is, that they're
-more than just simple standalone PHP scripts - they integrate into Symfony and
-Shopware, so you've got access to all the functionality offered by both of them.
+To ease development tasks, Shopware contains the Symfony commands functionality. This allows \(plugin-\) developers to define new commands executable via the Symfony console at `bin/console`. The best thing about commands is, that they're more than just simple standalone PHP scripts - they integrate into Symfony and Shopware, so you've got access to all the functionality offered by both of them.
 
-
-Creating a command for Shopware 6 via a plugin works exactly like you would add a command to Symfony.
-Make sure to have a look at the [Symfony commands guide](https://symfony.com/doc/current/console.html#registering-the-command).
+Creating a command for Shopware 6 via a plugin works exactly like you would add a command to Symfony. Make sure to have a look at the [Symfony commands guide](https://symfony.com/doc/current/console.html#registering-the-command).
 
 ## Prerequisites
-The main requirement here is to have a `services.xml` file loaded in your plugin.
-This can be achieved by placing the file into a `Resources/config` directory relative to your plugin's base class location.
+
+The main requirement here is to have a `services.xml` file loaded in your plugin. This can be achieved by placing the file into a `Resources/config` directory relative to your plugin's base class location.
 
 ## Registering your command
 
-From here on, everything works exactly like in Symfony itself. Commands are recognised by Shopware, 
-once they're tagged with the `console.command` tag in the [PLACEHOLDER-LINK: dependency injection container].
-So to register a new command, just add it to your plugin's `services.xml` and specify the `console.command` tag:
-                                                               
-```xml
+From here on, everything works exactly like in Symfony itself. Commands are recognised by Shopware, once they're tagged with the `console.command` tag in the \[PLACEHOLDER-LINK: dependency injection container\]. So to register a new command, just add it to your plugin's `services.xml` and specify the `console.command` tag:
+
+```markup
 <services>
    <!-- ... -->
 
@@ -34,7 +26,7 @@ So to register a new command, just add it to your plugin's `services.xml` and sp
 
 Here's a full example `services.xml` which registers your custom command:
 
-```xml
+```markup
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -49,8 +41,7 @@ Here's a full example `services.xml` which registers your custom command:
 </container>
 ```
 
-Your command's class should extend from the
-`Symfony\Component\Console\Command\Command` class, here's an example:
+Your command's class should extend from the `Symfony\Component\Console\Command\Command` class, here's an example:
 
 ```php
 // BasicExample/src/Command/ExampleCommand.php
@@ -78,25 +69,18 @@ class ExampleCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln('It works!');
-        
+
         // Exit code 0 for success
         return 0;
     }
 }
 ```
 
-This command is of course only a basic example, so feel free to experiment. As
-stated above, you now have access to all the functionality offered by Symfony
-and Shopware. For inspiration, maybe have a look at the Symfony documentation -
-you may for example use
-[tables](https://symfony.com/doc/current/components/console/helpers/table.html),
-[progress bars](https://symfony.com/doc/current/components/console/helpers/progressbar.html), or
-[custom formats](https://symfony.com/doc/current/components/console/helpers/formatterhelper.html).
+This command is of course only a basic example, so feel free to experiment. As stated above, you now have access to all the functionality offered by Symfony and Shopware. For inspiration, maybe have a look at the Symfony documentation - you may for example use [tables](https://symfony.com/doc/current/components/console/helpers/table.html), [progress bars](https://symfony.com/doc/current/components/console/helpers/progressbar.html), or [custom formats](https://symfony.com/doc/current/components/console/helpers/formatterhelper.html).
 
 ### Running commands
 
-Commands are run via the `bin/console` executable. To list all available
-commands, run `bin/console list`:
+Commands are run via the `bin/console` executable. To list all available commands, run `bin/console list`:
 
 ```text
 $: php bin/console list
@@ -136,15 +120,11 @@ Available commands:
  [...]
 ```
 
-Each command usually has a namespace like `cache`, so to clear the cache you
-would execute `php bin/console cache:clear`. If you'd like to learn more about
-commands in general, have a look at [this article](https://symfony.com/doc/current/console.html)
-in the Symfony documentation.
+Each command usually has a namespace like `cache`, so to clear the cache you would execute `php bin/console cache:clear`. If you'd like to learn more about commands in general, have a look at [this article](https://symfony.com/doc/current/console.html) in the Symfony documentation.
 
 ## Next steps
 
-In order to really do something with your command, you will most likely need other services.
-Head over to our guide about [PLACEHOLDER-LINK: injecting a service] into another to understand how that's done.
+In order to really do something with your command, you will most likely need other services. Head over to our guide about \[PLACEHOLDER-LINK: injecting a service\] into another to understand how that's done.
 
-Sometimes the question comes up how to get a context into your command. To learn about this, please refer to the guide 
- on [PLACEHOLDER-LINK: how to get and use context].
+Sometimes the question comes up how to get a context into your command. To learn about this, please refer to the guide on \[PLACEHOLDER-LINK: how to get and use context\].
+

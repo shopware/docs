@@ -1,22 +1,14 @@
-# Using your plugin configuration
+# Use plugin configuration
 
-In our guide on how to [add a plugin configuration](./adding-plugin-configuration.md), you can learn how to provide this possibility to use 
-configuration options in your plugins. This guide will aid you on how to then use this configuration in your plugin.
+In our guide on how to [add a plugin configuration](https://github.com/shopware/docs/tree/5cf04ee8e12350673155bac5f6d6c3e886f1b184/guides/plugins/plugins/plugin-fundamentals/adding-plugin-configuration.md), you can learn how to provide this possibility to use configuration options in your plugins. This guide will aid you on how to then use this configuration in your plugin.
 
 ## Prerequisites
 
-In order to add a plugin configuration, you sure need to provide your plugin first. However, you won't learn to 
-create a plugin in this guide. Head over to our [PLACEHOLDER-LINK: Developer guide] to
-create your plugin first. It is also recommended to know how to setup a 
-[PLACEHOLDER-LINK: plugin configuration] in the first instance.
-In this example, the configurations will be read inside of a subscriber, so knowing 
-[PLACEHOLDER-LINK: Listening to events] will also be helpful.
+In order to add a plugin configuration, you sure need to provide your plugin first. However, you won't learn to create a plugin in this guide. Head over to our \[PLACEHOLDER-LINK: Developer guide\] to create your plugin first. It is also recommended to know how to setup a \[PLACEHOLDER-LINK: plugin configuration\] in the first instance. In this example, the configurations will be read inside of a subscriber, so knowing \[PLACEHOLDER-LINK: Listening to events\] will also be helpful.
 
 ## Overview
 
-The plugin in this example will be named `ReadingPluginConfig`.
-It already knows a subscriber, which listens to the `product.loaded` event and therefore will be 
-called every time a product is loaded.
+The plugin in this example will be named `ReadingPluginConfig`. It already knows a subscriber, which listens to the `product.loaded` event and therefore will be called every time a product is loaded.
 
 ```php
 <?php declare(strict_types=1);
@@ -45,7 +37,7 @@ class MySubscriber implements EventSubscriberInterface
 
 For this guide, a very small plugin configuration file is available as well:
 
-```xml
+```markup
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
@@ -63,14 +55,13 @@ Just a simple input field with the technical name `example`. This will be necess
 
 ## Reading the configuration
 
-Let's get to the important part.
-Reading the plugin configuration is based on the `Shopware\Core\System\SystemConfig\SystemConfigService`.
-This service is responsible for reading all configs from Shopware 6, such as the plugin configurations.
+Let's get to the important part. Reading the plugin configuration is based on the `Shopware\Core\System\SystemConfig\SystemConfigService`. This service is responsible for reading all configs from Shopware 6, such as the plugin configurations.
 
 Inject this service into your subscriber using the [DI container](https://symfony.com/doc/current/service_container.html).
 
 `services.xml`:
-```xml
+
+```markup
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -86,8 +77,7 @@ Inject this service into your subscriber using the [DI container](https://symfon
 </container>
 ```
 
-Note the new `argument` being provided to your subscriber. Now create a new field in your subscriber and pass in the 
-`SystemConfigService`:
+Note the new `argument` being provided to your subscriber. Now create a new field in your subscriber and pass in the `SystemConfigService`:
 
 ```php
 <?php declare(strict_types=1);
@@ -119,16 +109,11 @@ class MySubscriber implements EventSubscriberInterface
 
 So far, so good. The `SystemConfigService` is now available in your subscriber.
 
-This service comes with a `get` method to read the configurations.
-The first idea would be to simply call `$this->systemConfigService->get('example')` now, wouldn't it?
-Simply using the technical name you've previously set for the configuration.
+This service comes with a `get` method to read the configurations. The first idea would be to simply call `$this->systemConfigService->get('example')` now, wouldn't it? Simply using the technical name you've previously set for the configuration.
 
-But what would happen, if there were more plugins providing the same technical name for their very 
-own configuration field? How would you access the proper field, how would you prevent plugin conflicts?
+But what would happen, if there were more plugins providing the same technical name for their very own configuration field? How would you access the proper field, how would you prevent plugin conflicts?
 
-That's why the plugin configurations are always prefixed.
-By default, the pattern is the following: `<BundleName>.config.<configName>`
-Thus, it would be `ReadingPluginConfig.config.example` here.
+That's why the plugin configurations are always prefixed. By default, the pattern is the following: `<BundleName>.config.<configName>` Thus, it would be `ReadingPluginConfig.config.example` here.
 
 ```php
 <?php declare(strict_types=1);
@@ -146,3 +131,4 @@ class MySubscriber implements EventSubscriberInterface
     }
 }
 ```
+

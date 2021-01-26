@@ -1,4 +1,4 @@
-# Adding a custom service
+# Add custom service
 
 ## Overview
 
@@ -6,8 +6,7 @@ In this guide you'll learn how to create a custom service using the Symfony [DI 
 
 ## Prerequisites
 
-In order to add your own custom service for your plugin, you first need a plugin as base. Therefore,
-you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
+In order to add your own custom service for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
 
 ## Adding service
 
@@ -15,7 +14,7 @@ Adding a custom service requires to load a `services.xml` file with your plugin.
 
 Here's our example `services.xml`:
 
-```xml
+```markup
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -46,9 +45,9 @@ class ExampleService
 }
 ```
 
-Note: By default, all services in Shopware 6 are marked as *private*. Read more about private and public services [here](https://symfony.com/doc/current/service_container.html#public-versus-private-services).
+Note: By default, all services in Shopware 6 are marked as _private_. Read more about private and public services [here](https://symfony.com/doc/current/service_container.html#public-versus-private-services).
 
 ## Next steps
 
-Now that you know how to create a service, you can head over to our guide on
-creating a subscriber of the service. [Listening to Events](./listening-to-events.md)
+Now that you know how to create a service, you can head over to our guide on creating a subscriber of the service. [Listening to Events](listening-to-events.md)
+
