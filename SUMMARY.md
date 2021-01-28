@@ -94,6 +94,7 @@
       * [Add custom service](guides/plugins/plugins/plugin-fundamentals/add-custom-service.md)
       * [Adjusting a service](guides/plugins/plugins/plugin-fundamentals/adjusting-service.md)
       * [Add custom CLI commands](guides/plugins/plugins/plugin-fundamentals/add-custom-commands.md)
+      * [Database migrations](guides/plugins/plugins/plugin-fundamentals/database-migrations.md)
     * [Checkout](guides/plugins/plugins/checkout-1/README.md)
       * [Cart](guides/plugins/plugins/checkout-1/cart.md)
       * [Customer](guides/plugins/plugins/checkout-1/customer.md)
