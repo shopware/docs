@@ -84,6 +84,18 @@ for your Shopware project.
 
 ## Repository structure
 
+Shopware 6 consists of multiple repositories bundled inside
+a [mono repository](https://www.atlassian.com/git/tutorials/monorepos)
+called `shopware/platform`([GitHub](https://github.com/shopware/platform)). This is where the Shopware core is
+developed. You need it as dependency in your projects and this is where you can participate in the development of
+Shopware through pull requests. It's split into multiple repositories for production setups, all of them are read-only
+and include the [Core](../../../concepts/framework/architecture/core.md)
+, [Storefront](../../../concepts/framework/architecture/storefront.md)
+, [Administration](../../../concepts/framework/architecture/administration.md)
+and [Elasticsearch](../../../concepts/framework/architecture/elasticsearch.md). If you want to start developing with
+Shopware 6, there are two setup templates and preparatory/installation steps
+explained [here](../../../guides/installation/overview.md#setup-templates).
+
 ## Contribution
 
 Shopware 6 is a community driven platform with a lot of contributions and we really appreciate your support. Thank you
