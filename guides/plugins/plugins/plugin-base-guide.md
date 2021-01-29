@@ -95,6 +95,10 @@ Here's an example `composer.json` for this guide, which will do the trick:
         "label": {
             "de-DE": "Der angezeigte lesbare Name für das Plugin",
             "en-GB": "The displayed readable name for the plugin"
+        },
+        "description": {
+            "de-DE": "Beschreibung in der Administration für das Plugin",
+            "en-GB": "Description in the administration for this plugin"
         }
     },
     "autoload": {
