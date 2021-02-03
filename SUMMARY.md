@@ -134,6 +134,7 @@
         * [Replacing associated data](guides/plugins/plugins/framework/data-handling/replacing-associated-data.md)
         * [Removing associated data](guides/plugins/plugins/framework/data-handling/deleting-associated-data.md)
         * [Adding data translations](guides/plugins/plugins/framework/data-handling/add-data-translations.md)
+        * [Using flags](guides/plugins/plugins/framework/data-handling/using-flags.md)
       * [Custom Fields](guides/plugins/plugins/framework/custom-field/README.md)
         * [Add custom field](guides/plugins/plugins/framework/custom-field/add-custom-field.md)
       * [Event](guides/plugins/plugins/framework/event.md)
