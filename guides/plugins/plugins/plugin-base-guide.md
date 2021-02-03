@@ -36,7 +36,7 @@ For this, please navigate to the directory `custom/plugins`, that you should fin
 By convention, you'll have another directory in there, which is called `src`. This is not required, but recommended. And that's it for the directory structure for now.
 
 Inside your `src` directory, create a PHP class named after your plugin, `SwagBasicExample.php`.  
-This new class `SwagBasicExample` has to extend from Shopware's abstract Plugin class, which is `Shopware\Core\Framework\Plugin`. 
+This new class `SwagBasicExample` has to extend from Shopware's abstract Plugin class, which is `Shopware\Core\Framework\Plugin`.
 
 Apart from this, only the namespace is missing. You can freely define it, but we'd recommend using a combination of your manufacturer prefix and the technical name, so in this `guide` this would be: `Swag\BasicExample`
 
@@ -71,8 +71,8 @@ This file consists of basic information, that Shopware needs to know about your 
 * ... and a few more
 
 This file can also be read by [Composer](https://getcomposer.org/), but that's not part of this guide.  
-Another information you'll have to add in there: The `type` has to be `shopware-platform-plugin`, so Shopware can safely recognize your plugin as such.  
-  
+Another information you'll have to add in there: The `type` has to be `shopware-platform-plugin`, so Shopware can safely recognize your plugin as such.
+
 Here's an example `composer.json` for this guide, which will do the trick:
 
 ```javascript
