@@ -92,7 +92,9 @@ This URL will direct the user to your application, so you have to make sure that
 
 ## Guest Customers
 
-\[to be done\]
+Guest customers are one-time customers, which simply place an order without creating an account. Technically, guest customers have to be registered as well, however the record will just be created for technical reasons. Just pass the `guest: true` to the register request in order to create a guest customer. The rest of the flow will be the same as for a normal registration. Just be aware that, for guest customers you can't re-obtain a valid session, once they've been logged out.
+
+The double opt-in procedure described above works the same for guest customers.
 
 ## Logging in
 

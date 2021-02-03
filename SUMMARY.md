@@ -171,6 +171,8 @@
     * [Register a customer](guides/integrations-api/store-api-guide/register-a-customer.md)
     * [Search for products](guides/integrations-api/store-api-guide/search-for-products.md)
     * [Work with the cart](guides/integrations-api/store-api-guide/work-with-the-cart.md)
+    * [Handling the payment](guides/integrations-api/store-api-guide/handling-the-payment.md)
+    * [FAQ](guides/integrations-api/store-api-guide/faq.md)
   * [Examples](guides/integrations-api/examples/README.md)
     * [Import products & categories](guides/integrations-api/examples/import-products-and-categories.md)
 
