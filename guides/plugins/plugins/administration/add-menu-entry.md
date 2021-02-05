@@ -1,24 +1,24 @@
-# Adding a custom menu entry
+# Add menu entry
 
-When it comes to the module configuration, the menu entry is one of the mos important things to set up.
-It serves to open your module. 
+When it comes to the module configuration, the menu entry is one of the mos important things to set up. It serves to open your module.
 
 This menu entry can be defined in your module configuration. Remember, your module configuration
+
 ```javascript
 Shopware.Module.register('swag-plugin', {
     // configuration here
 });
 ```
-For details on this module configuration, please refer to [PLACEHOLDER-LINK: Adding a custom module].
 
-In order to create your own menu entry, you need to use  the `navigation` key: 
-It takes an array of objects, each one configuring a route connected to your module.
+For details on this module configuration, please refer to \[PLACEHOLDER-LINK: Adding a custom module\].
+
+In order to create your own menu entry, you need to use the `navigation` key: It takes an array of objects, each one configuring a route connected to your module.
 
 ## Simple menu entry
 
-So let's define a menu entry using the `navigation` key in your module configuration. It takes an array of objects, 
-each one configuring a route connected to your module:
-```js
+So let's define a menu entry using the `navigation` key in your module configuration. It takes an array of objects, each one configuring a route connected to your module:
+
+```javascript
 navigation: [{
     label: 'CustomModule',
     color: '#ff3d58',
@@ -31,7 +31,7 @@ navigation: [{
 As you see, you are able to configure several things in there:
 
 | Configuration | Description |
-| --- | --- |
+| :--- | :--- |
 | label | The label to be shown with this menu entry. |
 | color | This  is the theme color of the module. This color may differ from the module's color itself. |
 | path | Which one of your configured routes shall be used when clicking this menu entry? Make sure to leave the path's name here. |
@@ -42,10 +42,9 @@ Of course there's more to be configured here, but more's not necessary for this 
 
 ## Menu entry in category
 
-Due to UX reasons, we're not supporting plugin modules to add new menu entries on the first level of the main menu. 
-Please use the "parent" property inside your navigation object to define the category where you want your menu entry 
-will be appended to:
-```js
+Due to UX reasons, we're not supporting plugin modules to add new menu entries on the first level of the main menu. Please use the "parent" property inside your navigation object to define the category where you want your menu entry will be appended to:
+
+```javascript
 navigation: [{
     label: 'CustomModule',
     color: '#ff3d58',
@@ -56,6 +55,5 @@ navigation: [{
 }]
 ```
 
-If you're planning to publish your plugin to the Shopware Store keep in mind we're rejecting plugins which have 
-created their own menu entry on the first level. 
+If you're planning to publish your plugin to the Shopware Store keep in mind we're rejecting plugins which have created their own menu entry on the first level.
 

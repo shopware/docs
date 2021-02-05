@@ -30,7 +30,5 @@ If your app provides a `theme.json` file it is considered to be a theme. All the
 
 ### Migrating existing themes
 
-If you already created a Shopware 6 theme via Plugin, it is very simple to migrate it to the app system. So don't worry - you don't need to do all work twice. Instead of providing a `composer.json` and plugin base class, you provide a `manifest.xml` file with the metadata for your app.
-After you have created a new folder for your app and added the `manifest.xml` you can copy the `YourThemePlugin/src/Resources` folder from your plugin to your app as `YourThemeApp/Resources`.
-It should not be necessary to change anything inside your template or Javascript code at all.
+If you already created a Shopware 6 theme via Plugin, it is very simple to migrate it to the app system. So don't worry - you don't need to do all work twice. Instead of providing a `composer.json` and plugin base class, you provide a `manifest.xml` file with the metadata for your app. After you have created a new folder for your app and added the `manifest.xml` you can copy the `YourThemePlugin/src/Resources` folder from your plugin to your app as `YourThemeApp/Resources`. It should not be necessary to change anything inside your template or Javascript code at all.
 
