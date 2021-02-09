@@ -2,7 +2,7 @@
 
 **How do I fetch associations to my Store API request?**
 
-> Sometimes the standard response from Store API requests is not enough for your use case - for example when fetching an order you'd like to retrieve line items or images for a product. Just add those as an `association` parameter.
+> Sometimes the standard response from Store API requests is not enough for your use case - for example when fetching an order you'd like to retrieve line items or images for a product. Just add those as an `associations` parameter.
 >
 > ```javascript
 > {
