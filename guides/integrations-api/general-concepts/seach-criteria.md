@@ -1,4 +1,4 @@
-# Seach Criteria
+# Search Criteria
 
 All of the endpoints that make use of these `POST` method and receive the criteria as a JSON object. Generally, we refer to this object as the **search criteria** - as it takes the same arguments as a [DAL criteria](../../plugins/plugins/framework/data-handling/reading-data.md#filtering). Some endpoints expect more parameters than specified here - however, these differ from one endpoint to another, so we don't specify them here.
 

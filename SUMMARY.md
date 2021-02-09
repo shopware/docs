@@ -166,7 +166,7 @@
     * [Cache Adapter](guides/hosting/infrastructure/cache-adapter.md)
 * [Integrations / API](guides/integrations-api/README.md)
   * [General Concepts](guides/integrations-api/general-concepts/README.md)
-    * [Seach Criteria](guides/integrations-api/general-concepts/seach-criteria.md)
+    * [Search Criteria](guides/integrations-api/general-concepts/seach-criteria.md)
     * [Request Headers](guides/integrations-api/general-concepts/request-headers.md)
     * [Generated Reference](guides/integrations-api/general-concepts/generated-reference.md)
   * [Admin API Guide](guides/integrations-api/admin-api/README.md)
