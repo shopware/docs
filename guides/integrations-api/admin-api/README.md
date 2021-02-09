@@ -1,4 +1,4 @@
-# Admin API
+# Admin API Guide
 
 In this guide, you'll learn how to use the Admin API. If you want to understand the concept behind the API or find a full endpoint reference, please visit the following sections:
 
@@ -13,10 +13,9 @@ The Admin API provides an interface for all CRUD \(create, read, update, delete\
 * Use the sync endpoint
 * Call additional, non-CRUD routes
 
-In order to have a good base for understanding this guide, we recommend you have read these guides or articles:
+In order to have a good base for understanding this guide, we recommend you have read these guides or articles which gives an Introduction to the general handling of our APIs
 
-* [Entities](../../../concepts/framework/data-abstraction-layer/entities.md)
-* [Admin API](../../../concepts/api/admin-api/)
+{% page-ref page="../general-concepts/" %}
 
 ## General
 
@@ -152,7 +151,7 @@ The format has a rich structure that makes discovering the API easier, even with
 
 ### **Simple JSON**
 
-The simple JSON format only contains essential information, and skips JSON:API specific fields related to pagination or self-discovery. Associations are placed directly within the entities rather than in a separate section. You can see a shortened example below:
+The simple JSON format only contains essential information, and skips JSON:API specific fields related to pagination or self-discovery. Associations are placed directly within the entities rather than in a separate section. It is sometimes favourable, because it's less "blown-up" and as such easier for clients to consume. You can see a shortened example below:
 
 ```javascript
 // Accept: application/json

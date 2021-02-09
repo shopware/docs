@@ -10,18 +10,20 @@ The Admin API is designed in such a way that all entities of the system can be r
 * The manufacturer of a product can then be read over `api/v1/product/{productId}/manufacturer`.
 {% endhint %}
 
+## Generated Endpoints
+
 For an entity object, the system automatically creates the following routes through which the entity object can be read:
 
 | Name | Method | Route | Usage |
 | :--- | :--- | :--- | :--- |
 | api.customer\_group.list | GET | /api/v{version}/customer-group | Fetch a list of entities |
 | api.customer\_group.detail | GET | /api/v{version}/customer-group/{id} | Fetch a single entity  |
-| api.customer\_group.search | POST | /api/v{version}/search/customer-group | Perform a more sophisticated search |
-| api.customer\_group.search-ids | POST | /api/v{version}/search-ids/customer-group | Perform a more sophisticated search and fetching only matching ids |
+| api.customer\_group.search | POST | /api/v{version}/search/customer-group | Perform a more [sophisticated search](../general-concepts/seach-criteria.md) |
+| api.customer\_group.search-ids | POST | /api/v{version}/search-ids/customer-group | Perform a more [sophisticated search](../general-concepts/seach-criteria.md) and fetching only matching ids |
 
-A list of all routes and registered entities in the system can be dynamically read via the `/api/v3/_info/*` routes:
+## Search Endpoint
 
-* `/api/v3/_info/openapi3.json`
-* `/api/v3/_info/open-api-schema.json`
-* `/api/v3/_info/entity-schema.json`
+The Admin API supports a wide range of filtering, aggregation and sorting capabilities. However, according to the REST definition, data should only be read via GET, we have provided the `/api/v3/search/*` route for this.
+
+The behaviour of that endpoint follows the concepts described in the [Search Criteria](../general-concepts/seach-criteria.md) article.
 
