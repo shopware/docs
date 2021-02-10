@@ -67,98 +67,15 @@ for the list of your module, `swag-example-detail` for the detail page and `swag
 creating a new entry. Those routes are configured as an object in a property named `routes`. We will cover that 
 in the next paragraph.
 
-## Setting up routes
+## Setting up menu entry and routes
 
-Before continuing to explain how those routes are defined, let's have a look at those routes and how they have
- to look like:
+The next steps are covered in their own guides. The first one would be adding a menu entry, so please take a look
+at [PLACEHOLDER-LINK:Add own menu entry]. The second one refers to setting up custom routes, its guide can be found
+in [PLACEHOLDER-LINK:Add custom route].
 
-```js
-Shopware.Module.register('swag-example', {
-    color: '#ff3d58',
-    icon: 'default-shopping-paper-bag-product',
-    title: 'My custom module',
-    description: 'Manage your custom module here.',
-    
-    routes: {
-        list: {
-            component: 'swag-example-list',
-            path: 'list'
-        },
-        detail: {
-            component: 'swag-example-detail',
-            path: 'detail/:id',
-            meta: {
-                parentPath: 'swag.example.list'
-            }
-        },
-        create: {
-            component: 'swag-example-create',
-            path: 'create',
-            meta: {
-                parentPath: 'swag.example.list'
-            }
-        },
-    },
-});
-```
+## Set up additional meta info
 
-As already mentioned, the key for defining routes is `routes`. It has to be an object, where each key
-represents the name for a new route. Thus `list` is the name of a new route from the `swag-example` module.
-The respective value is the actual configuration of the route. A route points to a 
-[component](https://vuejs.org/v2/guide/components.html) using the key `component`, which is the component to be 
-shown when this route is requested. The key `path` represents the actual path, that's going to be used for this route. 
-Do not get confused just because it is equal to the route name in the first route.
-
-Have a look at this example route configuration:
-```js
-Shopware.Module.register('example', {
-    routes: {
-        exampleRoute: {
-            component: 'example-component',
-            path: 'foo'
-        }
-    }
-});
-```
-
-In this example, there's a new route with the name `exampleRoute`, which will open the `example-component` component 
-and is executed by browsing to the following link: `https://example.shop/admin/#/example/foo`
-
-The second route, `detail`, even comes with a dynamic parameter as part of the route. When you want to open a detail 
-page of a example, the route also has to contain the ID of the example.
-Furthermore, the `detail` route comes with another new configuration, which is called `meta`. As the name suggests, 
-you can use this object to apply more meta information for your route. In this case the `parentPath` is filled. 
-Its purpose is to link the path of the actual parent route. In the administration, this results in a "back" button 
-on the top left of your module when being on the detail page. This button will then link back to the list
-route and the icon defined earlier will also be used for this button.
-
-You might want to have a closer look at the `parentPath` value though. Its route follows this pattern:
-`<bundle-name>.<name of the route>`
-
-See in this example:
-```javascript
-...
-   meta: {
-       parentPath: 'swag.example.list'
-   }
-...
-```
-
-The `bundle-name` is separated by dots instead of dashes here though. The second part is the **name** of the route, 
-the key of the route configuration that is. Thus the path to the `list` route is `swag.example.list`.
-
-The same applies for the `create` route, nothing special about it here.
-
-There are several components linked with those routes, that do not exist yet. Don't worry, you didn't miss anything. 
-Those are created later in this tutorial.
-
-## Menu point and additional meta info
-
-The next step would be adding a menu entry. We got you covered with an own guide about that so please take a look
-at [PLACEHOLDER-LINK:Add own menu entry].
-
-If you have been following that guide, then you should have got a menu entry then, which points to a `swag.example.list` route. 
-The related routes are also set up already and linked to components, which will be created in the next main step.
+If you have been following that guide, then you should have got a menu entry then. The related routes are also set up already and linked to components, which will be created in the next main step.
 There's a few more things we need to change in the configurations though that you should add to your module, such as a unique `name` and a `type`.
 For reference, see this example:
 
@@ -233,7 +150,8 @@ It's key should be something like this: `swag-example.general.mainMenuItemGenera
 Thus open the `snippet/en-GB.json` file and create the new object in there. The structure here is the same as in
 the first example, just formatted as json file. Afterwards, use this path in your menu entry's `label` property.
 
-To translate the `description` or the `title`, add those to your snippet file as well and edit the values in your module's `description` and `title`. The title will be the same as the main menu entry by default.
+To translate the `description` or the `title`, add those to your snippet file as well and edit the values in your 
+module's `description` and `title`. The title will be the same as the main menu entry by default.
 
 This should be your snippet file now:
 ```json
