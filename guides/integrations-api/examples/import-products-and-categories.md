@@ -5,7 +5,7 @@ One of the main tasks when creating a new store is to get product information in
 We'll assume readers already have knowledge of these sections, before reading this guide
 
 * [Admin API](../../../concepts/api/admin-api/)
-* [Products](../../../concepts/commerce/catalog/catalog-1.md) and [Categories](../../../concepts/commerce/catalog/categories.md)
+* [Products](../../../concepts/commerce/catalog/products.md) and [Categories](../../../concepts/commerce/catalog/categories.md)
 
 ## Approaches
 

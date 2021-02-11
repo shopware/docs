@@ -7,7 +7,7 @@
 * [Commerce](concepts/commerce/README.md)
   * [Catalog](concepts/commerce/catalog/README.md)
     * [Categories](concepts/commerce/catalog/categories.md)
-    * [Products](concepts/commerce/catalog/catalog-1.md)
+    * [Products](concepts/commerce/catalog/products.md)
     * [Prices](concepts/commerce/catalog/prices.md)
     * [Sales Channels](concepts/commerce/catalog/sales-channels.md)
     * [Dynamic Product Groups](concepts/commerce/catalog/dynamic-product-groups.md)
