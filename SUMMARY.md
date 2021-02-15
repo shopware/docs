@@ -138,6 +138,7 @@
         * [Using flags](guides/plugins/plugins/framework/data-handling/using-flags.md)
       * [Custom Fields](guides/plugins/plugins/framework/custom-field/README.md)
         * [Add custom field](guides/plugins/plugins/framework/custom-field/add-custom-field.md)
+        * [Using database events](guides/plugins/plugins/framework/data-handling/using-database-events.md)
       * [Event](guides/plugins/plugins/framework/event.md)
       * [Message Queue](guides/plugins/plugins/framework/message-queue.md)
       * [Rule](guides/plugins/plugins/framework/rule.md)
