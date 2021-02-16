@@ -8,8 +8,6 @@ If you want to understand what the goal of it is and how it's built - go to out 
 
 Go to the Store API reference to see a structured list of endpoints, parameters and responses.
 
-{% page-ref page="../../../resources/api-reference/store-api.md" %}
-
 In the upcoming sections we'll discuss usage scenarios of the Store API and you'll learn how to:
 
 * Authenticate against the API

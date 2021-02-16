@@ -18,8 +18,6 @@ If you want to start working with the Store API, check out our guide
 
 or find a structured list of endpoints in our endpoint reference.
 
-{% page-ref page="../../resources/api-reference/store-api.md" %}
-
 An interesting project based \(almost\) solely on the Store API is Shopware PWA.
 
 {% page-ref page="../../products/pwa-1/" %}

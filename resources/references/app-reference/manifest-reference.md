@@ -1,4 +1,4 @@
-# Manifest reference
+# Manifest Reference
 
 {% code title="manifest.xml" %}
 ```markup

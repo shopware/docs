@@ -29,7 +29,7 @@ To get those buttons, you start in the `admin` section of your manifest file. Th
 ```
 {% endcode %}
 
-For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../../resources/code-reference/apps/manifest-reference.md).
+For a complete reference of the structure of the manifest file take a look at the [Manifest reference]().
 
 An action button must have the following attributes:
 

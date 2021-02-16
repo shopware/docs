@@ -26,5 +26,3 @@ Some examples to help you get started.
 
 {% page-ref page="guides/plugins/themes.md" %}
 
-{% page-ref page="resources/api-reference/" %}
-

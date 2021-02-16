@@ -1,35 +1,34 @@
 # Filesystem
 
 ## Overview
-Shopware 6 stores and processes a wide variety of files. This goes from product images or videos to generated documents such as invoices or delivery notes. This data should be stored securely and  backups should be generated regularly. Therefore, it is advisable to set up an external storage, which scales with the size of the data, is redundant and performs backups. In addition, for cluster setups with multiple setups, it is __necessary__ to share the files via external storage so that each app server can access the corresponding data. 
+
+Shopware 6 stores and processes a wide variety of files. This goes from product images or videos to generated documents such as invoices or delivery notes. This data should be stored securely and backups should be generated regularly. Therefore, it is advisable to set up an external storage, which scales with the size of the data, is redundant and performs backups. In addition, for cluster setups with multiple setups, it is **necessary** to share the files via external storage so that each app server can access the corresponding data.
 
 ## Flysystem overview
-Shopware 6 can be used with several cloud storage providers, it uses
-[Flysystem](https://flysystem.thephpleague.com/docs/) to provide a common
-interface between different providers as well as the local filesystem. This
-enables your shops to read and write files through a common interface.
+
+Shopware 6 can be used with several cloud storage providers, it uses [Flysystem](https://flysystem.thephpleague.com/docs/) to provide a common interface between different providers as well as the local filesystem. This enables your shops to read and write files through a common interface.
 
 The filesystem can be devided into multiple adapters. Each adapter can handle one or more of the following directories: media. sitemaps, .... Of course, you can also use the same configuration for each and all of them.
 
-- One for private files: invoices, delivery notes, plugin files, etc
-- One for public files: product pictures, media files, plugin files in general
-- One for theme files
-- One for sitemap files
-- One for bundle assets files
+* One for private files: invoices, delivery notes, plugin files, etc
+* One for public files: product pictures, media files, plugin files in general
+* One for theme files
+* One for sitemap files
+* One for bundle assets files
 
 ## Configuration
 
 The configuration for file storage of Shopware 6 resides in the general bundle configuration:
 
-```
+```text
 <development root>
 └── config
    └── packages
       └── shopware.yml
 ```
 
-To set up a non default filesystem for your shop you need to add the `filesystem:` map to 
-the `shopware.yml`. Under this key you can separately define your storage for the public, private, theme, sitemap and asset (bundle assets).
+To set up a non default filesystem for your shop you need to add the `filesystem:` map to the `shopware.yml`. Under this key you can separately define your storage for the public, private, theme, sitemap and asset \(bundle assets\).
+
 ```yaml
 shopware:
   filesystem:
@@ -114,7 +113,7 @@ class MyFlysystemAdapterFactory implements AdapterFactoryInterface
     {
         return 'my-adapter-prefix'; // This must match with the type in the yaml file
     }
-    
+
     public function create(array $config): AdapterInterface
     {
         // $config contains the given config from the yaml

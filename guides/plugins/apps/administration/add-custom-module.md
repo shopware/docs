@@ -25,7 +25,7 @@ In order to create a custom module, you need to define an admin element to defin
 ```
 {% endcode %}
 
-For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../../resources/code-reference/apps/manifest-reference.md).
+For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference.md).
 
 When the user opens the module in the administration your app will receive a request to the given source url. Your app can determine the shop that has opened the module through query parameters added to the url: 
 

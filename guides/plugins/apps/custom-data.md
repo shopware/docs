@@ -30,7 +30,7 @@ To make use of the custom fields register your custom field sets in your manifes
 ```
 {% endcode %}
 
-For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../resources/code-reference/apps/manifest-reference.md).
+For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../resources/references/app-reference/manifest-reference.md).
 
 {% hint style="danger" %}
 Link to custom field docs missing

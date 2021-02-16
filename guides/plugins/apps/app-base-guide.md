@@ -47,7 +47,7 @@ The app can now be installed by running `bin/console app:install --activate MyEx
 Apps get installed as inactive. You can activate them by passing the `--activate` flag to the `app:install` command or by executing the `app:activate` command after installation.
 {% endhint %}
 
-For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../resources/code-reference/apps/manifest-reference.md).
+For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../resources/references/app-reference/manifest-reference.md).
 
 ## Setup
 
