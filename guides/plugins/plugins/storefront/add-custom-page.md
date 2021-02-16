@@ -35,11 +35,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class ExampleController extends StorefrontController
 {
     /**
-    * @Route("/example", name="frontend.exmaple", methods={"GET"})
+    * @Route("/example", name="frontend.example", methods={"GET"})
     */
     public function showExample(): Response
     {
-        return $this->renderStorefront('@SwagBasicExample/storefront/page/example.html.twig', [
+        return $this->renderStorefront('@SwagBasicExample/storefront/page/example/index.html.twig', [
             'example' => 'Hello world'
         ]);
     }
@@ -67,7 +67,7 @@ class ExampleController extends StorefrontController
 {
     /**
     * @RouteScope(scopes={"storefront", "custom-scope"})
-    * @Route("/example", name="frontend.exmaple", methods={"GET"})
+    * @Route("/example", name="frontend.example", methods={"GET"})
     */
     public function showExample(): Response
     {
@@ -116,9 +116,9 @@ Once we‘ve registered our new controller, we have to tell Shopware how we want
 ### Adding template
 
 Now we registered our controller and Shopware indexes the route but at the moment we have no view, let's change this.
-As previously mentioned, the code will try to render an `example.html.twig` file.
-Thus we have to create an `example.html.twig` in the `<plugin root>/src/Resources/views/storefront/page` directory, as defined in our controller.
-Below you can find an example, where we extend from the template `base.html.twig` and override the block `\{% block base_content %\}`.
+As previously mentioned, the code will try to render an `index.html.twig` file.
+Thus we have to create an `index.html.twig` in the `<plugin root>/src/Resources/views/storefront/page/example` directory, as defined in our controller.
+Below you can find an example, where we extend from the template `base.html.twig` and override the block `base_content`.
 In our [Customize templates guide](./customize-templates.md), you can learn more about customizing templates.
 
 {% code title="<plugin root>/src/Resources/views/storefront/page/example.html.twig" %}
@@ -126,7 +126,7 @@ In our [Customize templates guide](./customize-templates.md), you can learn more
 {% sw_extends '@Storefront/storefront/base.html.twig' %}
 
 {% block base_content %}
-    <h1>Our exmaple page!</h1>
+    <h1>Our example page!</h1>
 {% endblock %}
 ```
 {% endcode %}
@@ -156,7 +156,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ExampleController extends StorefrontController
 {
     /**
-    * @Route("/example", name="frontend.exmaple", methods={"GET"})
+    * @Route("/example", name="frontend.example", methods={"GET"})
     */
     public function showExample(Request $request, SalesChannelContext $context): Response
     {
@@ -168,5 +168,9 @@ class ExampleController extends StorefrontController
 
 ## Next steps
 
-Now that you know how to create a custom page, you can make it more beautiful with some styling. To get a grip on it, head over to our guide on [Add custom styling](add-custom-styling.md). Or maybe you want to make your page more dynamically with a bit javascript, which is explained in our [Add custom Javascript](add-custom-javascript.md) guide.
+Now that you know how to create a custom page, you can make it more beautiful with some styling.
+To get a grip on it, head over to our guide on [Add custom styling](add-custom-styling.md).
+Or maybe you want to make your page more dynamically with a bit javascript, which is explained in our [Add custom Javascript](add-custom-javascript.md) guide.
+
+Also, you should know about pagelets, which are covered here [PLACEHOLDER-LINK: Pagelets guide].
 

@@ -159,6 +159,7 @@
       * [Add cookie to manager](guides/plugins/plugins/storefront/add-cookie-to-manager.md)
       * [Reacting to cookie consent changes](guides/plugins/plugins/storefront/reacting-to-cookie-consent-changes.md)
       * [Add custom page](guides/plugins/plugins/storefront/add-custom-page.md)
+      * [Add custom pagelet](guides/plugins/plugins/storefront/add-custom-pagelet.md)
       * [Reacting to javascript events](guides/plugins/plugins/storefront/reacting-to-javascript-events.md)
       * [Add translations](guides/plugins/plugins/storefront/add-translations.md)
       * [Use CSRF protection](guides/plugins/plugins/storefront/use-csrf-protection.md)

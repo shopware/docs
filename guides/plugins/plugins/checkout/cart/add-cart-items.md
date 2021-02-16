@@ -64,7 +64,7 @@ class ExampleController extends StorefrontController
     }
 
     /**
-     * @Route("/cartAdd", name="frontend.exmaple", methods={"GET"})
+     * @Route("/cartAdd", name="frontend.example", methods={"GET"})
      */
     public function add(Cart $cart, SalesChannelContext $context): StorefrontResponse
     {
