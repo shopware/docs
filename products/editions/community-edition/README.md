@@ -92,8 +92,9 @@ Shopware through pull requests. It's split into multiple repositories for produc
 and include the [Core](../../../concepts/framework/architecture/core.md)
 , [Storefront](../../../concepts/framework/architecture/storefront.md)
 , [Administration](../../../concepts/framework/architecture/administration.md)
-and [Elasticsearch](../../../concepts/framework/architecture/elasticsearch.md). If you want to start developing with
-Shopware 6, there are two setup templates and preparatory/installation steps
+and [Elasticsearch](../../../concepts/framework/architecture/elasticsearch.md). Beside that, there is also a `Recovery`
+directory, which provides the opportunity to interactively update, install and maintain Shopware throughout the browser.
+If you want to start developing with Shopware 6, there are two setup templates and preparatory/installation steps
 explained [here](../../../guides/installation/overview.md#setup-templates).
 
 ## Contribution
