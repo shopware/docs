@@ -137,6 +137,7 @@
       * [Add custom assets](guides/plugins/plugins/storefront/add-custom-assets.md)
       * [Add custom styling](guides/plugins/plugins/storefront/add-custom-styling.md)
       * [Add data to storefront page](guides/plugins/plugins/storefront/add-data-to-storefront-page.md)
+      * [Add cookie to manager](guides/plugins/plugins/storefront/add-cookie-to-manager.md)
       * [Reacting to cookie consent changes](guides/plugins/plugins/storefront/reacting-to-cookie-consent-changes.md)
       * [Add custom page](guides/plugins/plugins/storefront/add-custom-page.md)
       * [Reacting to javascript events](guides/plugins/plugins/storefront/reacting-to-javascript-events.md)
