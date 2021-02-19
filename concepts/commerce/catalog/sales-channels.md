@@ -9,6 +9,7 @@ These stores can have different configurations with regard to
 * [Payment methods](../checkout/payments.md)
 * Languages
 * Currencies
+* Domains
 * [Prices](prices.md)
 * [Products](products.md) & [categories](categories.md)
 
