@@ -174,6 +174,7 @@
   * [Themes](guides/plugins/README.md)
     * [Create a first theme](guides/plugins/themes/create-a-theme.md)
     * [Theme configuration](guides/plugins/themes/theme-configuration.md)
+    * [Override Bootstrap variables in a Theme](guides/plugins/themes/override-bootstrap-variables-in-a-theme.md)
     * [Add assets to a Theme](guides/plugins/themes/add-assets-to-theme.md)
     * [Theme inheritance](guides/plugins/themes/add-theme-inheritance.md)
   * [Apps](guides/plugins/apps/README.md)
