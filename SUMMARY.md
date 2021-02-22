@@ -160,6 +160,7 @@
       * [End-to-end testing](guides/plugins/plugins/testing/end-to-end-testing.md)
       * [Jest unit tests in Shopware's administration](guides/plugins/plugins/testing/jest-admin.md)
   * [Themes](guides/plugins/themes.md)
+    * [Add assets to a Theme](guides/plugins/themes/add-assets-to-theme.md)
   * [Apps](guides/plugins/apps/README.md)
     * [App Base Guide](guides/plugins/apps/app-base-guide.md)
     * [Storefront](guides/plugins/apps/storefront.md)
