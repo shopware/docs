@@ -173,6 +173,7 @@
     * [Create a first theme](guides/plugins/themes/create-a-theme.md)
     * [Theme configuration](guides/plugins/themes/theme-configuration.md)
     * [Add assets to a Theme](guides/plugins/themes/add-assets-to-theme.md)
+    * [Theme inheritance](guides/plugins/themes/add-theme-inheritance.md)
   * [Apps](guides/plugins/apps/README.md)
     * [App Base Guide](guides/plugins/apps/app-base-guide.md)
     * [Storefront](guides/plugins/apps/storefront.md)
