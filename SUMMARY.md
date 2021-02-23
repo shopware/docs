@@ -142,6 +142,7 @@
       * [Add menu entry](guides/plugins/plugins/administration/add-menu-entry.md)
       * [Add tab to existing module](guides/plugins/plugins/administration/add-new-tab.md)
       * [Customizing components](guides/plugins/plugins/administration/customizing-components.md)
+      * [Adding snippets](guides/plugins/plugins/administration/adding-snippets.md)
     * [Storefront](guides/plugins/plugins/storefront/README.md)
       * [Add custom controller](guides/plugins/plugins/storefront/add-custom-controller.md)
       * [Override existing routes](guides/plugins/plugins/storefront/override-existing-routes.md)

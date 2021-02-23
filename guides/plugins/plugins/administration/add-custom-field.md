@@ -84,13 +84,13 @@ Your plugin has to be activated for this to work.
 {% endhint %}
 
 Make sure to also include that file when publishing your plugin!
-A copy of this file will then be put into the directory `<shopware root>/public/bundles/administrationnewfield/administration/js/administration-new-field.js`.
+A copy of this file will then be put into the directory `<shopware root>/public/bundles/administration/newfield/administration/js/administration-new-field.js`.
 
 Your minified javascript file will now be loaded in production environments.
 
 ## Next steps:
 
-The possibility to customise the administration via `main.js` file provides more options than just the addition of a
+The possibility to customize the administration via `main.js` file provides more options than just the addition of a
 custom input field. You can check out following guides to get to know more possibilities:
   * [PLACEHOLDER-LINK: Add custom tab to existing module]
   *  [PLACEHOLDER-LINK: Add custom module to administration]
