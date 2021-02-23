@@ -132,6 +132,7 @@
         * [Writing data](guides/plugins/plugins/framework/data-handling/writing-data.md)
         * [Replacing associated data](guides/plugins/plugins/framework/data-handling/replacing-associated-data.md)
         * [Removing associated data](guides/plugins/plugins/framework/data-handling/deleting-associated-data.md)
+        * [Adding data translations](guides/plugins/plugins/framework/data-handling/add-data-translations.md)
       * [Event](guides/plugins/plugins/framework/event.md)
       * [Message Queue](guides/plugins/plugins/framework/message-queue.md)
       * [Rule](guides/plugins/plugins/framework/rule.md)
