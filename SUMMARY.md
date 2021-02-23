@@ -161,6 +161,7 @@
     * [Testing](guides/plugins/plugins/testing/README.md)
       * [End-to-end testing](guides/plugins/plugins/testing/end-to-end-testing.md)
       * [Jest unit tests in Shopware's administration](guides/plugins/plugins/testing/jest-admin.md)
+      * [PHP unit testing](guides/plugins/plugins/testing/php-unit.md)
   * [Themes](guides/plugins/themes.md)
   * [Apps](guides/plugins/apps/README.md)
     * [App Base Guide](guides/plugins/apps/app-base-guide.md)
