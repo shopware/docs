@@ -172,6 +172,7 @@
       * [Jest unit tests in Shopware's administration](guides/plugins/plugins/testing/jest-admin.md)
       * [PHP unit testing](guides/plugins/plugins/testing/php-unit.md)
   * [Themes](guides/plugins/README.md)
+    * [Theme base guide](guides/plugins/themes/theme-base-guide.md)
     * [Create a first theme](guides/plugins/themes/create-a-theme.md)
     * [Differences Plugins and Apps vs Themes](guides/plugins/themes/differences-plugins-and-apps-vs-themes.md)
     * [Theme configuration](guides/plugins/themes/theme-configuration.md)
