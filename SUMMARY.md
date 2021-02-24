@@ -173,6 +173,7 @@
       * [PHP unit testing](guides/plugins/plugins/testing/php-unit.md)
   * [Themes](guides/plugins/README.md)
     * [Create a first theme](guides/plugins/themes/create-a-theme.md)
+    * [Differences Plugins and Apps vs Themes](guides/plugins/themes/differences-plugins-and-apps-vs-themes.md)
     * [Theme configuration](guides/plugins/themes/theme-configuration.md)
     * [Add assets to a Theme](guides/plugins/themes/add-assets-to-theme.md)
     * [Theme inheritance](guides/plugins/themes/add-theme-inheritance.md)
