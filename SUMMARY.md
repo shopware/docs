@@ -149,6 +149,7 @@
       * [Customizing components](guides/plugins/plugins/administration/customizing-components.md)
       * [Add own component](guides/plugins/plugins/administration/add-custom-component.md)
       * [Adding snippets](guides/plugins/plugins/administration/adding-snippets.md)
+      * [Add custom styles](guides/plugins/plugins/administration/add-custom-styles.md)
     * [Storefront](guides/plugins/plugins/storefront/README.md)
       * [Add custom controller](guides/plugins/plugins/storefront/add-custom-controller.md)
       * [Override existing routes](guides/plugins/plugins/storefront/override-existing-routes.md)
