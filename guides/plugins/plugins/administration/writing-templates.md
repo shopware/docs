@@ -58,4 +58,3 @@ As you might have noticed, we are just rendering static text, so maybe you want 
 
 * [How to override parts of existing components](./customizing-components.md)
 * [How to use the admin API to fetch data in the administration](./using-data-handling.md)
-
