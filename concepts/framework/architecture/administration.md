@@ -10,8 +10,7 @@ find answers to the following questions:
 - How is the Administration connected to other components?
 - Which parts of the Core are being used?
 - What are Modules, Pages and Components?
-- How is the Administration handling ACL and how is it fetching data?
-- How is the Administration handling Feature Flags, Inheritance and Snippets?
+- How is the Administration handling Inheritance & ACL?
 
 ## Introduction
 
@@ -28,7 +27,7 @@ compile the SPA.
 ## Main concerns
 
 As mentioned preliminary, the Administration component provides a SPA which communicates with the Core throughout the
-[Admin API](./../../api/admin-api/README.md). To summarize, its main concern is to provide a UI for all administrative
+[Admin API](../../api/admin-api/README.md). To summarize, its main concern is to provide a UI for all administrative
 tasks for a shop owner in Shopware. And to be more precise: It does not contain any business logic. Therefore, there is
 no functional layering, but a flat list of modules structured along the Core component and containing Vue.js web
 components. Every single communication with the Core can e.g. be inspected throughout the network activities of your
@@ -75,6 +74,67 @@ common functionality, an application skeleton and modules.
 
 ## Modules and their components
 
+One module represents a navigation entry in the Administrations main menu. Since the Administration is highly dependent
+on the Shopware eCommerce Core, the module names reappear in the Administration, albeit in a slightly different order.
+The main building block, which the Administration knows, is called `component`, adjacent to web components.
+
+A `component` is the combination of styling, markup and logic. What a component does will not surprise you, if you
+already are familiar with the [MVC pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller). The
+role of the model and controller collapses into a single class though. The components Twig.js template is generally
+being rendered by a JavaScript (`index.js`) file and includes styling from a SCSS file. A template file also notifies
+the JavaScript, which then reacts to specific (user) interactions. Furthermore, components can be and often are nested.
+Our [Component Library](https://component-library.shopware.com/) will also give you an overview about our default
+components.
+
+### General module structure
+
+A `page` represents the entry point or the page that needs to be rendered and encapsulates views. A `view` is a
+subordinate part of the page that encapsulates components. A `component` can itself encapsulate different components,
+from this level on there is no distinction in the directory structure made.
+
+At least one `page` is mandatory in each module. Though views and components can be present in the module a vast default
+component library is present to help with default cases.
+
+```bash
+|- page1
+  |- view1
+    |- component1
+    |- component2
+      |- subcomponent1
+      |- …
+  |- view2
+    |- component3
+    |- …
+```
+
+### Order module
+
+Having a look at a more practical example, one can look closer at the order module. Typically, you'll find this
+structure alongside other modules. Especially, when it comes to creating pages or views for creating/editing, listing or
+viewing a specific entity. Please head to
+the [Add custom module](../../../guides/plugins/plugins/administration/add-custom-module.md) article if you want to
+learn more about adding your custom module with a Shopware plugin.
+
+```bash
+<platform/src/Administration/Resources/app/administration/src/module/sw-order/>
+|- acl
+|- component
+  |- sw-order-address-modal
+  |- …
+|- page
+  |- sw-order-create
+  |- sw-order-detail
+  |- sw-order-list
+|- snippet  
+|- state  
+|- view
+  |- sw-order-create-base
+  |- sw-order-details-base
+|- index.js  
+```
+
 ## Inheritance
+
+
 
 ## ACL in the Administration
