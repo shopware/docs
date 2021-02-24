@@ -25,8 +25,12 @@ templating functionalities. By default, Shopware 6 uses the [Vue I18n plugin](ht
 the Administration to deal with translation. Furthermore, [Webpack](https://webpack.js.org/) is being used to bundle and
 compile the SPA.
 
-## To be removed: Brainstorming
+## Main concerns
 
-- [Link](https://docs.shopware.com/en/shopware-platform-dev-en/references-internals/administration)
-- [Link](https://docs.shopware.com/en/shopware-platform-dev-en/developer-guide/administration)
-- Main app can be found in `platform/src/Administration/Resources/app/administration`.
+## Structure
+
+## Modules and their components
+
+## Inheritance - adjust components
+
+## ACL in the Administration
