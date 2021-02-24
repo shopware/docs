@@ -135,6 +135,19 @@ learn more about adding your custom module with a Shopware plugin.
 
 ## Inheritance
 
+To add new functionality or change the behavior of a existing component through plugins, you can either override or
+extend a component. The difference between the two methods is that with `Component.extend()` a new component is created.
+With `Component.override()`, on the other hand, the previous behavior of the component is simply overwritten.
 
+Within plugins, you do have the following options, when it comes to adjusting existing components:
+
+- Override a components logic
+- Extend a components logic
+- Customize a component template with Twig.js
+- Extending methods and computed properties
+
+You will find more information
+about [customizing components](../../../guides/plugins/plugins/administration/customizing-components.md) of the
+Administration in our guided articles.
 
 ## ACL in the Administration
