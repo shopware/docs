@@ -108,6 +108,7 @@
       * [Adjusting a service](guides/plugins/plugins/plugin-fundamentals/adjusting-service.md)
       * [Add custom CLI commands](guides/plugins/plugins/plugin-fundamentals/add-custom-commands.md)
       * [Database migrations](guides/plugins/plugins/plugin-fundamentals/database-migrations.md)
+      * [Add scheduled task](guides/plugins/plugins/plugin-fundamentals/add-scheduled-task.md)
     * [Checkout](guides/plugins/plugins/checkout/README.md)
       * [Cart](guides/plugins/plugins/checkout/cart/README.md)
         * [Add cart items](guides/plugins/plugins/checkout/cart/add-cart-items.md)
