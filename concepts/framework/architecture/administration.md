@@ -34,8 +34,8 @@ no functional layering, but a flat list of modules structured along the Core com
 components. Every single communication with the Core can e.g. be inspected throughout the network activities of your
 browsers developer tools.
 
-Apart from the - arguably most central - responsibility of creating the UI itself the Administrations components
-implement a number of cross-cutting concerns. The most important are:
+Apart from the - arguably most central - responsibility of creating the UI itself, which can be reached through `/admin`
+, the Administrations components implement a number of cross-cutting concerns. The most important are:
 
 - **Providing inheritance**: As Shopware 6 offers a flexible extension system to develop own Apps, Plugins or Themes,
   one also has the opportunity to override or extend the Administration to fit needs. More information can be found in
@@ -49,6 +49,29 @@ implement a number of cross-cutting concerns. The most important are:
   subcomponents.
 
 ## Structure
+
+Having said, that the main Vue.js application is wrapped inside a Symfony bundle, you'll find the specific SPA sources
+inside the Administration component in a specific sub-directory of `platform/src/Administration`. Therefore, the SPAs
+main entry point is: `./Resources/app/administration`. Everything else inside `platform/src/Administration` can be seen
+as wrapped configuration around the SPA. This bundles main concern is to set up the initial Routing (`/admin`) & the
+Administrations main template file, which initializes the SPA (`./Resources/views/administration/index.html.twig`) and
+to provide translation handling.
+
+The `src` directory of the SPA below is structured along the three different use cases the Administration faces: Provide
+common functionality, an application skeleton and modules.
+
+```bash
+<platform/src/Administration/Resources/app/administration/src/>
+|- app
+|- core
+|- module
+```
+
+- `app`: Contains the application basis for the Administration. Generally you will find framework dependant
+  computational components here.
+- `core`: Contains the binding to the Admin API and services.
+- `module`: UI and state management of specific view pages, structured along the Core modules. Head to
+  the [modules section](#modules-and-their-components) to learn more about a modules structure.
 
 ## Modules and their components
 
