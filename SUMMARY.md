@@ -177,6 +177,7 @@
     * [Create a first theme](guides/plugins/themes/create-a-theme.md)
     * [Differences Plugins and Apps vs Themes](guides/plugins/themes/differences-plugins-and-apps-vs-themes.md)
     * [Theme configuration](guides/plugins/themes/theme-configuration.md)
+    * [Add SCSS Styling and JavaScript to a Theme](guides/plugins/themes/add-css-js-to-theme.md)
     * [Override Bootstrap variables in a Theme](guides/plugins/themes/override-bootstrap-variables-in-a-theme.md)
     * [Add assets to a Theme](guides/plugins/themes/add-assets-to-theme.md)
     * [Theme inheritance](guides/plugins/themes/add-theme-inheritance.md)
