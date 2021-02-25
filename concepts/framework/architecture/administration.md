@@ -1,6 +1,6 @@
 # Administration
 
-In this article, we'll get to know our Storefront component and learn a lot of its main concepts. Along the way, you'll
+In this article, we'll get to know our Administration component and learn a lot of its main concepts. Along the way, you'll
 find answers to the following questions:
 
 - What is the Administration and what's its main purpose?
