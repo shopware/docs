@@ -4,11 +4,13 @@ When it comes to the module configuration, the menu entry is one of the mos impo
 
 This menu entry can be defined in your module configuration. Remember, your module configuration
 
+{% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
 ```javascript
 Shopware.Module.register('swag-plugin', {
     // configuration here
 });
 ```
+{% endcode %}
 
 For details on this module configuration, please refer to \[PLACEHOLDER-LINK: Adding a custom module\].
 
@@ -18,6 +20,7 @@ In order to create your own menu entry, you need to use the `navigation` key: It
 
 So let's define a menu entry using the `navigation` key in your module configuration. It takes an array of objects, each one configuring a route connected to your module:
 
+{% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
 ```javascript
 navigation: [{
     label: 'CustomModule',
@@ -27,6 +30,7 @@ navigation: [{
     position: 100
 }]
 ```
+{% endcode %}
 
 As you see, you are able to configure several things in there:
 
@@ -44,6 +48,7 @@ Of course there's more to be configured here, but more's not necessary for this 
 
 Due to UX reasons, we're not supporting plugin modules to add new menu entries on the first level of the main menu. Please use the "parent" property inside your navigation object to define the category where you want your menu entry will be appended to:
 
+{% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
 ```javascript
 navigation: [{
     label: 'CustomModule',
@@ -54,6 +59,7 @@ navigation: [{
     position: 100
 }]
 ```
+{% endcode %}
 
 If you're planning to publish your plugin to the Shopware Store keep in mind we're rejecting plugins which have created their own menu entry on the first level.
 

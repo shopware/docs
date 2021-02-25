@@ -44,7 +44,7 @@ import './module/sw-cms/elements/dailymotion';
 {% endcode %}
 
 Now open up your empty `dailymotion/index.js` file. In order to register a new element to the system, you have to call the method 
-`registerCmsElement` of the [cmsService](https://github.com/shopware/platform/blob/trunk/src/Administration/Resources/app/administration/src/module/sw-cms/service/cms.service.js). 
+`registerCmsElement` of the [cmsService](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/module/sw-cms/service/cms.service.js). 
 Since it's available in the Dependency Injection Container, you can fetch it from there.
 
 First of all, access our `Applicaton` wrapper, which will grant you access to the DI container. So go ahead and fetch 
@@ -373,7 +373,7 @@ the `initElementConfig` method has to be called in here as well, just the same w
 A little spoiler: This file will remain like this already, you can close it now.
 
 Open up the template `sw-cms-el-config-dailymotion.html.twig` instead. To be displayed in the config, we just need a 
-text element, so the shop manager can apply a Dailymotion video ID. Quite simple, right?
+text element, so the shop manager can apply a Dailymotion video ID.
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/config/sw-cms-el-config-dailymotion.html.twig" %}
 ```html
@@ -407,7 +407,7 @@ Shopware.Service('cmsService').registerCmsElement({
 ```
 {% endcode %}
 
-That's it! You could now go ahead and fully test your new element! Install this plugin via `bin/console plugin:install --activate CustomCmsElement`,
+That's it! You could now go ahead and fully test your new element! Install this plugin via `bin/console plugin:install --activate SwagBasicExample`,
 rebuild the administration via `./psh.phar administration:build` and start using your new element in the administration.
 Of course, the Storefront implementation is still missing, so your element wouldn't be rendered in the Storefront yet.
 
