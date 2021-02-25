@@ -169,6 +169,7 @@
       * [Jest unit tests in Shopware's administration](guides/plugins/plugins/testing/jest-admin.md)
       * [PHP unit testing](guides/plugins/plugins/testing/php-unit.md)
   * [Themes](guides/plugins/themes.md)
+    * [Add assets to a Theme](guides/plugins/themes/add-assets-to-theme.md)
   * [Apps](guides/plugins/apps/README.md)
     * [App Base Guide](guides/plugins/apps/app-base-guide.md)
     * [Storefront](guides/plugins/apps/storefront.md)
