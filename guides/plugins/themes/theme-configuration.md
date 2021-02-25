@@ -13,6 +13,7 @@ This guide is built upon the [PLACEHOLDER-LINK: Create a first theme] guide.
 The theme configuration for a theme is located in the `theme.json` file `<plugin root>/src/Resources` folder. Open up the `<plugin root>/src/Rescoure/theme.json` file with your favorite code-editor. The configuration looks like this.
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
+```json
 {
   "name": "SwagBasicExampleTheme",
   "author": "Shopware AG",
@@ -35,6 +36,7 @@ The theme configuration for a theme is located in the `theme.json` file `<plugin
     "app/storefront/src/assets"
   ]
 }
+```
 {% endcode %}
 
 {% hint style="info" %}
@@ -44,6 +46,7 @@ The theme configuration for a theme is located in the `theme.json` file `<plugin
 Let's have a closer look at each section.
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
+```json
 {
   "name": "SwagBasicExampleTheme",
   "author": "Shopware AG",
@@ -53,6 +56,7 @@ Let's have a closer look at each section.
   },
   ...
 }
+```
 {% endcode %}
 
 Here change the `name` of your theme and the `author`.
@@ -61,6 +65,7 @@ The `description` section is optional and as you notice it is also translatable.
 The `views` section controls the template inheritance. This will be covered in the [PLACEHOLDER_LINK: Theme inheritance] guide.
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
+```json
 {
   ...
   "views": [
@@ -70,6 +75,7 @@ The `views` section controls the template inheritance. This will be covered in t
   ],
   ...
 }
+```
 {% endcode %}
 
 The `style` section determines the order of the CSS compilation. In the `<plugin root>/app/storefront/src/scss/base.scss` file you can apply your changes you want to make to the `@Storefront` standard styles or add other styles you need.
@@ -77,6 +83,7 @@ The `<plugin root>/app/storefront/src/scss/overrides.scss` file is used for a sp
 Checkout the [PLACEHOLDER-LINK: Override bootstrap variables in a theme] guide for further information.
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
+```json
 {
   ...
   "style": [
@@ -86,6 +93,7 @@ Checkout the [PLACEHOLDER-LINK: Override bootstrap variables in a theme] guide f
   ],
   ...
 }
+```
 {% endcode %}
 
 ## Assets
@@ -95,6 +103,7 @@ The standard location to put your assets to is the `<plugin root>/app/storefront
 Checkout the [PLACEHOLDER-LINK: Add assets to theme] guide for further information.
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
+```json
 {
   ...
   "asset": [
@@ -102,11 +111,13 @@ Checkout the [PLACEHOLDER-LINK: Add assets to theme] guide for further informati
    ]
   ...
 }
+```
 {% endcode %}
 
 If you need the assets from the default storefront theme for your custom theme, just add `@Storefront` as asset path
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
+```json
 {
   ...
   "asset": [
@@ -115,6 +126,7 @@ If you need the assets from the default storefront theme for your custom theme, 
    ]
   ...
 }
+```
 {% endcode %}
 
 ## Config fields
@@ -123,6 +135,7 @@ One of the benefits of creating a theme is that you can overwrite the theme conf
 the default theme or add your own configurations.
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
+```json
 {
   ... 
   "asset":[
@@ -136,6 +149,7 @@ the default theme or add your own configurations.
       }
    }
 }
+```
 {% endcode %}
 
 In the example above, we change the primary color to green. You always inherit from the storefront
@@ -173,6 +187,7 @@ You can use different field types in your theme manager:
 * A text field example:
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
+```json
 {
   ...
   "config": {
@@ -189,11 +204,13 @@ You can use different field types in your theme manager:
     }
   }
 }
+```
 {% endcode %}
 
 * A number field example: 
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
+```json
 {
   ...
   "config": {
@@ -215,11 +232,13 @@ You can use different field types in your theme manager:
     }
   }
 }
+```
 {% endcode %}
 
 * Two boolean field examples:
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
+```json
 {
   ...
   "config": {
@@ -236,11 +255,13 @@ You can use different field types in your theme manager:
     }
   }
 }
+```
 {% endcode %}
 
 or
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
+```json
 {
   ...
   "config": {
@@ -257,6 +278,7 @@ or
     }
   }
 }
+```
 {% endcode %}
 
 ## Examples for custom config fields
@@ -264,6 +286,7 @@ or
 * A custom single-select field example
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
+```json
 {
   "name": "Just another theme",
   "author": "Just another author",
@@ -347,6 +370,7 @@ or
     }
   }
 }
+```
 {% endcode %}
 
 ![Example of a custom single-select field](../../../.gitbook/assets/example-single-select-config.png)
@@ -354,6 +378,7 @@ or
 * A custom multi-select field example
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
+```json
 {
   "name": "Just another theme",
   "author": "Just another author",
@@ -447,6 +472,7 @@ or
     }
   }
 }
+```
 {% endcode %}
 
 ![Example of a custom multi-select field](../../../.gitbook/assets/example-multi-select-config.png)
@@ -460,6 +486,7 @@ In the picture above are four tabs. In the "Colours" tab there is one block "The
 named "Important colors" and "Other". You can define the block and section individually for each item. Example:
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
+```json
 {
   "name": "Just another theme",
   "author": "Just another author",
@@ -481,6 +508,7 @@ named "Important colors" and "Other". You can define the block and section indiv
     }
   }
 }
+```
 {% endcode %}
 
 The tab and section property is not required.
@@ -488,6 +516,7 @@ The tab and section property is not required.
 You can extend the config to add translated labels for the tabs, blocks and sections:
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
+```json
 {
   "name": "Just another theme",
   "author": "Just another author",
@@ -533,6 +562,7 @@ You can extend the config to add translated labels for the tabs, blocks and sect
     }
   }
 }
+```
 {% endcode %}
 
 ## Next steps

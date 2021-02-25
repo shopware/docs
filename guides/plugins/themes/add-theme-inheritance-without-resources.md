@@ -10,6 +10,7 @@ If you want to build your theme only upon the Bootstrap SCSS you can use the `@S
 This gives you the ability to use the Bootstrap SCSS without the Shopware Storefront "skin". Therefore all the SCSS from `<plugin root>src/Storefront/Resources/app/storefront/src/scss/skin` will not be available in your theme.
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
+```json
 {
   ...
   "style": [
@@ -17,6 +18,7 @@ This gives you the ability to use the Bootstrap SCSS without the Shopware Storef
     "app/storefront/src/scss/base.scss"
   ]
 }
+```
 {% endcode %}
 
 {% hint style="info" %}

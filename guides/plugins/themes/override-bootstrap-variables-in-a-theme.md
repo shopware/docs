@@ -23,6 +23,7 @@ To be able to override Bootstrap variables there is an additional SCSS entry poi
 This entry point is called `overrides.scss`:
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
+```json
 {
   "name": "SwagBasicExampleTheme",
   "author": "Shopware AG",
@@ -44,11 +45,13 @@ This entry point is called `overrides.scss`:
     "app/storefront/src/assets"
   ]
 }
+```
 {% endcode %}
 
 In the `<plugin root>/src/Resources/app/storefront/src/scss/overrides.scss` you can now override default variables like `$border-radius` globally and set its value to `0` to reset it in this case:
 
 {% code title="<plugin root>/src/Resources/app/storefront/src/scss/overrides.scss" %}
+```scss
 /*
 Override variable defaults
 ==================================================
@@ -66,6 +69,7 @@ $modal-backdrop-bg: rgba(255, 0, 0, 0.5);
 $disabled-btn-bg: #f00;
 $disabled-btn-border-color: #fc8;
 $font-weight-semibold: 300;
+```
 {% endcode %}
 
 After saving the `overrides.scss` file and running `bin/console theme:compile` go and check out the Storefront in the browser. The `border-radius` should be removed for every element.
