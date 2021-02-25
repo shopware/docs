@@ -2,7 +2,8 @@
 
 ## Overview
 
-Quite often, your plugin has to save data into a custom database table. Shopware 6's data abstraction layer fully supports custom entities, so you don't have to take care of the data handling at all.
+Quite often, your plugin has to save data into a custom database table.
+Shopware 6's data abstraction layer fully supports custom entities, so you don't have to take care of the data handling at all.
 
 ## Prerequisites
 
