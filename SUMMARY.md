@@ -166,6 +166,7 @@
       * [Add custom page](guides/plugins/plugins/storefront/add-custom-page.md)
       * [Reacting to javascript events](guides/plugins/plugins/storefront/reacting-to-javascript-events.md)
       * [Add translations](guides/plugins/plugins/storefront/add-translations.md)
+      * [Use CSRF protection](guides/plugins/plugins/storefront/use-csrf-protection.md)
     * [Testing](guides/plugins/plugins/testing/README.md)
       * [End-to-end testing](guides/plugins/plugins/testing/end-to-end-testing.md)
       * [Jest unit tests in Shopware's administration](guides/plugins/plugins/testing/jest-admin.md)
