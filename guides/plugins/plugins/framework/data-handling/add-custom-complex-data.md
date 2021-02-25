@@ -282,15 +282,15 @@ namespace Swag\BasicExample\Core\Content\Bundle;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityCollection;
 
 /**
- * @method void              add(CustomEntity $entity)
- * @method void              set(string $key, CustomEntity $entity)
- * @method CustomEntity[]    getIterator()
- * @method CustomEntity[]    getElements()
- * @method CustomEntity|null get(string $key)
- * @method CustomEntity|null first()
- * @method CustomEntity|null last()
+ * @method void               add(CustomEntity $entity)
+ * @method void               set(string $key, CustomEntity $entity)
+ * @method ExampleEntity[]    getIterator()
+ * @method ExampleEntity[]    getElements()
+ * @method ExampleEntity|null get(string $key)
+ * @method ExampleEntity|null first()
+ * @method ExampleEntity|null last()
  */
-class CustomCollection extends EntityCollection
+class ExampleCollection extends EntityCollection
 {
     protected function getExpectedClass(): string
     {
