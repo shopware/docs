@@ -41,8 +41,7 @@ The manifest file is the central point of your app. It defines the interface bet
 The name of your app, that you provide in the manifest file, needs to match the folder name of your app.
 {% endhint %}
 
-The app can now be installed by running `bin/console app:install --activate MyExampleApp`.
-By default your app files will be [validated](app-base-guide.md#Validation) before installation, to skip the validation you may use the `--no-validate` flag.
+The app can now be installed by running `bin/console app:install --activate MyExampleApp`. By default your app files will be [validated](app-base-guide.md#Validation) before installation, to skip the validation you may use the `--no-validate` flag.
 
 {% hint style="info" %}
 Apps get installed as inactive. You can activate them by passing the `--activate` flag to the `app:install` command or by executing the `app:activate` command after installation.
@@ -141,7 +140,7 @@ Besides the proof your app needs to provide a randomly generated secret, that sh
 This secret will be called `shop-secret` to distinguish it from the `app-secret`. The `app-secret` is unique for your app and is used to sign the registration request of every shop that installs your app. The `shop-secret` will be provided by your app during the registration and should be unique for every shop
 {% endhint %}
 
-The last thing needed in the registration response is a URL, which the  confirmation request will be send to.
+The last thing needed in the registration response is a URL, which the confirmation request will be send to.
 
 A sample registration response may look like this:
 
@@ -215,7 +214,7 @@ Sample permissions to read, create and update products, as well as delete orders
         <read>product</read>
         <create>product</create>
         <update>product</update>
-        
+
         <delete>order</delete>
     </permissions>
 </manifest>
@@ -230,7 +229,7 @@ Keep in mind that read permissions also extend to the data contained in the requ
 
 ## Webhooks
 
-With webhooks you are able to subscribe to events occurring in Shopware. Whenever such an event occurs a POST request will be send to the specified URL. 
+With webhooks you are able to subscribe to events occurring in Shopware. Whenever such an event occurs a POST request will be send to the specified URL.
 
 To use webhooks in your app, you need to implement a `<webhooks>` element in your manifest file, like this:
 
@@ -337,6 +336,7 @@ Example request body:
 ## Validation
 
 You can run the `app:validate` command to validate the configuration of your app. It will check for common errors, like:
+
 * non-matching app names
 * missing translations
 * unknown events registered as webhooks
@@ -395,7 +395,7 @@ The unique identifier of the shop, where the app was installed
 
 {% endapi-method-response-example-description %}
 
-```
+```text
 {
   "proof": "94b42d39280141de84bd6fc8e538946ccdd182e4558f1e690eabb94f924e7bc7",
   "secret": "random secret string",
@@ -453,7 +453,7 @@ ApiKey used to authenticate against the Shopware API
 
 {% endapi-method-response-example-description %}
 
-```
+```text
 
 ```
 {% endapi-method-response-example %}

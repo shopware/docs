@@ -18,7 +18,7 @@ Shopware communicates with your app only exclusively HTTP-Requests, therefore yo
 To secure this communication a registration handshake is performed during the installation of your app. During this registration it is verified that Shopware talks to the right app backend server and your app get's credentials used to authenticate against the API. You can read more on the registration worklfow in the [App Base Guide](../../guides/plugins/apps/app-base-guide.md).
 
 {% hint style="info" %}
-Notice that this is optional in the case that Shopware and your app don't need to communicate, e.g. because your app provides a [Theme](../../guides/plugins/themes.md).
+Notice that this is optional in the case that Shopware and your app don't need to communicate, e.g. because your app provides a [Theme]().
 {% endhint %}
 
 ## Modify the appearance of the storefront

@@ -2,21 +2,21 @@
 
 A way to listen to events in Symfony projects is via an [event subscriber,](https://symfony.com/doc/current/event_dispatcher.html#creating-an-event-subscriber) which is a class that defines one or more methods that listen to one or various events. It is thus the same in Shopware, so this article will guide you on how to create event subscriber in your Shopware extension.
 
-### Prerequisites
+## Prerequisites
 
 In order to build your own subscriber for your plugin, of course you first need a plugin as base. To create an own plugin, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
 
-### Creating your own subscriber
+## Creating your own subscriber
 
-#### Plugin base class
+### Plugin base class
 
 Registering a custom subscriber requires to load a `services.xml` file with your plugin. This is done by either placing a file with name `services.xml` into a directory called `src/Resources/config/`.
 
 Basically, that's it already if you're familiar with [Symfony subscribers](https://symfony.com/doc/current/event_dispatcher.html#creating-an-event-subscriber). Don't worry, we got you covered here as well.
 
-#### Creating your new subscriber class
+### Creating your new subscriber class
 
-To start creating a subscriber, we need to create a class first implementing EventSubscriberInterface. As mentioned above, such a subscriber for Shopware 6 looks exactly the same like in Symfony itself. 
+To start creating a subscriber, we need to create a class first implementing EventSubscriberInterface. As mentioned above, such a subscriber for Shopware 6 looks exactly the same like in Symfony itself.
 
 Therefore, this is how your subscriber could then look like:
 
@@ -53,7 +53,7 @@ In this example, the subscriber would be located in the `<plugin root>/src/Subsc
 
 The subscriber is now listening for the `product.loaded` event to trigger. Unfortunately, your subscriber is not even loaded yet - this will be done in the previously registered `services.xml` file.
 
-#### Registering your subscriber via services.xml
+### Registering your subscriber via services.xml
 
 Registering your subscriber to Shopware 6 is also as simple as it is in Symfony. You're simply registering your \(subscriber\) service by mentioning it in the `services.xml`. The only difference to a normal service is, that you need to add the `kernel.event_subscriber` tag to your subscriber for it to be recognized as such.
 
@@ -76,7 +76,7 @@ Registering your subscriber to Shopware 6 is also as simple as it is in Symfony.
 
 That's it, your subscriber service is now automatically loaded at runtime and it should start listening to the mentioned events to be dispatched.
 
-### Next steps
+## Next steps
 
 Using these subscribers, you can work with lots of events in Shopware. To get a grip on which events you're able to use, please see \[PLACEHOLDER-LINK: Finding events\] guide.
 

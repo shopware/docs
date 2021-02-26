@@ -1,12 +1,10 @@
-# Add data associations
+# Adding data associations
 
 ## Overview
 
-In this guide you'll learn how to add associations to your entities.
-Every possible kind of association will be covered here, so "One to One", "Many to One" or "One to Many" respectively, and "Many to many" associations.
+In this guide you'll learn how to add associations to your entities. Every possible kind of association will be covered here, so "One to One", "Many to One" or "One to Many" respectively, and "Many to many" associations.
 
-In every example we'll be working with two example entities, that we want to connect with an association:
-`FooEntity` and `BarEntity`.
+In every example we'll be working with two example entities, that we want to connect with an association: `FooEntity` and `BarEntity`.
 
 They are **not** created in this guide though!
 
@@ -14,19 +12,15 @@ They are **not** created in this guide though!
 
 This guide is built upon the [Plugin Base Guide](../../plugin-base-guide.md), but any plugin will work here. Just note that all examples are using the plugin mentioned above.
 
-In order to add data associations you need an existing entity, as this guide is based on the [Adding custom complex data](./add-custom-complex-data.md) guide, you should have a look at it first.
+In order to add data associations you need an existing entity, as this guide is based on the [Adding custom complex data](add-custom-complex-data.md) guide, you should have a look at it first.
 
 ## Associations
 
-In the following paragraphs, there will be examples for each kind of association.
-Those are simplified, which means that this guide will not cover how to create entities in the first place.
-Head over to our guide regarding [PLACEHOLDER-LINK: Add custom complex data].
+In the following paragraphs, there will be examples for each kind of association. Those are simplified, which means that this guide will not cover how to create entities in the first place. Head over to our guide regarding \[PLACEHOLDER-LINK: Add custom complex data\].
 
 ## Example entity definitions
 
-As already mentioned, this guide will always use the same two example entities for each type of association.
-They both contain only an ID field, nothing else.
-For the sake of clarity, here are those example entity definitions:
+As already mentioned, this guide will always use the same two example entities for each type of association. They both contain only an ID field, nothing else. For the sake of clarity, here are those example entity definitions:
 
 {% code title="<plugin root>/src/Core/Content/Bar/BarDefinition.php" %}
 ```php
@@ -94,9 +88,7 @@ class FooDefinition extends EntityDefinition
 
 ### One to One associations
 
-One to One associations require you to define a foreign key for one of the two connected associations.
-E.g. the `bar` table has to contain a `foo_id` column, or the other way around: A `bar_id` column in the `foo` table.
-In this example it will be `foo_id` in the `BarDefinition`.
+One to One associations require you to define a foreign key for one of the two connected associations. E.g. the `bar` table has to contain a `foo_id` column, or the other way around: A `bar_id` column in the `foo` table. In this example it will be `foo_id` in the `BarDefinition`.
 
 Let's have a look at the `defineFields` methods of both entity definitions:
 
@@ -115,20 +107,11 @@ protected function defineFields(): FieldCollection
 ```
 {% endcode %}
 
-Note the new `FkField`, which basically is the mentioned `foo_id` column.
-Its parameters are the name of the column in your database(snake_case), the property name in your definition (lowerCamelCase) and the respective
-definition class.
+Note the new `FkField`, which basically is the mentioned `foo_id` column. Its parameters are the name of the column in your database\(snake\_case\), the property name in your definition \(lowerCamelCase\) and the respective definition class.
 
-Additional to that, we've got the `OneToOneAssociationField`.
-Here you to supply the name of the property, which should contain the associated entity, in your respective definition, e.g. in this case
-we the `FooDefinition` to appear in the `foo` property of our entity.
-Following are `foo_id`, which is the name of the column in the database, `id` as the ID column in the referenced database (`foo` in this case) and the
-referenced definition.
-The last parameter defines, if you want to automatically load this association every time you load a `bar` entity.
-We've set this to `false`.
+Additional to that, we've got the `OneToOneAssociationField`. Here you to supply the name of the property, which should contain the associated entity, in your respective definition, e.g. in this case we the `FooDefinition` to appear in the `foo` property of our entity. Following are `foo_id`, which is the name of the column in the database, `id` as the ID column in the referenced database \(`foo` in this case\) and the referenced definition. The last parameter defines, if you want to automatically load this association every time you load a `bar` entity. We've set this to `false`.
 
 For the sake of completion, here is the respective `defineFields` method of the `FooDefinition`:
-
 
 {% code title="<plugin root>/src/Core/Content/Foo/FooDefinition.php" %}
 ```php
@@ -148,9 +131,7 @@ Note, that in here there is no `FkField` necessary.
 
 ### One to Many / Many to One
 
-In "One To Many" / "Many To One" associations, you need to define a foreign key column for the "Many to One" side.
-E.g. your `bar` entity comes with multiple `foo`'s. Therefore, you have to add a `bar_id` column in your `foo` table.
-In this example it will be `bar_id` in the `FooDefinition`.
+In "One To Many" / "Many To One" associations, you need to define a foreign key column for the "Many to One" side. E.g. your `bar` entity comes with multiple `foo`'s. Therefore, you have to add a `bar_id` column in your `foo` table. In this example it will be `bar_id` in the `FooDefinition`.
 
 Let's have a look at the `defineFields` methods of both entity definitions:
 
@@ -167,9 +148,7 @@ protected function defineFields(): FieldCollection
 ```
 {% endcode %}
 
-Next to the `IdField`, you only have to define the `OneToManyAssociationField` in your `BarDefinition`.
-Its paremeter are `foos`, which is the property that will contain all `FooEntity`'s, the class name of `FooDefinition` and the
-name of the column in the referenced table, which points to the definition itself.
+Next to the `IdField`, you only have to define the `OneToManyAssociationField` in your `BarDefinition`. Its paremeter are `foos`, which is the property that will contain all `FooEntity`'s, the class name of `FooDefinition` and the name of the column in the referenced table, which points to the definition itself.
 
 Let's have a look at the `FooDefinition` now:
 
@@ -187,20 +166,13 @@ protected function defineFields(): FieldCollection
 ```
 {% endcode %}
 
-Next to the `IdField`, you can see a new `FkField`, which is the field for the new `bar_id` column.
-Its parameters are the name of the column in your database (snake_case), the property name in your definition (lowerCamelCase) and the respective
-definition class.
+Next to the `IdField`, you can see a new `FkField`, which is the field for the new `bar_id` column. Its parameters are the name of the column in your database \(snake\_case\), the property name in your definition \(lowerCamelCase\) and the respective definition class.
 
-Instead of adding a `OneToManyAssociationField` here now, we have to use the reverse side, which is `ManyToOneAssociationField`.
-Here you have to apply the name of the property, which will contain the single `BarDefinition` instance, the name of the column,
-which references to the inverse side entity (`bar_id`), the class of the referenced definition and the name of the ID column in the definition's database table itself.
-You could add another boolean parameter here, which would define whether or not you want this association to always automatically be added and be loaded.
-This defaults to `false`, since enabling this could come with performance issues.
+Instead of adding a `OneToManyAssociationField` here now, we have to use the reverse side, which is `ManyToOneAssociationField`. Here you have to apply the name of the property, which will contain the single `BarDefinition` instance, the name of the column, which references to the inverse side entity \(`bar_id`\), the class of the referenced definition and the name of the ID column in the definition's database table itself. You could add another boolean parameter here, which would define whether or not you want this association to always automatically be added and be loaded. This defaults to `false`, since enabling this could come with performance issues.
 
 ### Many to Many associations
 
-`ManyToMany` associations require another, third entity to be available. It will be called `FooBarMappingDefinition`
-and is responsible for connecting both definitions. It also needs an own database table.
+`ManyToMany` associations require another, third entity to be available. It will be called `FooBarMappingDefinition` and is responsible for connecting both definitions. It also needs an own database table.
 
 #### Mapping definition
 
@@ -244,19 +216,11 @@ class FooBarMappingDefinition extends MappingEntityDefinition
 ```
 {% endcode %}
 
-The mapping definition has to extend from the `MappingEntityDefinition`, instead of the `EntityDefinition` like in other entity definitions.
-The rest is quite the same: Your entity definitions needs an entity name, saved in `ENTITY_NAME`, as well as the method `defineFields`,
-which has to return a `FieldCollection`.
+The mapping definition has to extend from the `MappingEntityDefinition`, instead of the `EntityDefinition` like in other entity definitions. The rest is quite the same: Your entity definitions needs an entity name, saved in `ENTITY_NAME`, as well as the method `defineFields`, which has to return a `FieldCollection`.
 
-First of all there are two `FkField`'s.
-Its parameters are the name of the column in your database(snake_case), the property name in your definition (lowerCamelCase) and the respective
-definition class. 
+First of all there are two `FkField`'s. Its parameters are the name of the column in your database\(snake\_case\), the property name in your definition \(lowerCamelCase\) and the respective definition class.
 
-Additional to that, you need the `ManyToOneAssociationField`'s.
-Here you have to supply the name of the property in your entity, which should contain the entries, again the name of the column in the database
-and the definition again. The last parameter is most likely `id`, which is the column name of the connected table.
-You could add another boolean parameter here, which would define whether or not you want this association to always automatically be added and be loaded.
-This defaults to `false`, since enabling this could come with performance issues.
+Additional to that, you need the `ManyToOneAssociationField`'s. Here you have to supply the name of the property in your entity, which should contain the entries, again the name of the column in the database and the definition again. The last parameter is most likely `id`, which is the column name of the connected table. You could add another boolean parameter here, which would define whether or not you want this association to always automatically be added and be loaded. This defaults to `false`, since enabling this could come with performance issues.
 
 Of course, you have to add both mentioned fields for each definition you want to connect, so two times that is.
 
@@ -284,11 +248,12 @@ protected function defineFields(): FieldCollection
 {% endcode %}
 
 Its parameters are the following:
-- `propertyName`: The name of the property in your entity, that will contain the associated entities.
-- `referenceDefinition`: The class of the associated definition.
-- `mappingDefinition`: The class of the mapping definition.
-- `mappingLocalColumn`: The name of the id column for the current entity, `bar_id` if you're in the `BarDefinition`.
-- `mappingReferenceColumn`: The name of the id column for the referenced entity.
+
+* `propertyName`: The name of the property in your entity, that will contain the associated entities.
+* `referenceDefinition`: The class of the associated definition.
+* `mappingDefinition`: The class of the mapping definition.
+* `mappingLocalColumn`: The name of the id column for the current entity, `bar_id` if you're in the `BarDefinition`.
+* `mappingReferenceColumn`: The name of the id column for the referenced entity.
 
 For the sake of completion, here is the respective `FooDefinition`:
 
@@ -315,6 +280,5 @@ And that's it, your `ManyToMany` association is now set up properly.
 
 ## Next steps
 
-Now that you know, how to create associations, you may want to do some more things with that. If you want to fetch some data with associated data, you can head over to our [Reading data](./reading-data.md) guide.
-Otherwise you may want to update some data, for this you can look at our [Writing data](./writing-data.md) and [Replacing data](./reading-data.md) guide.
-If you plan to remove associated data from entities, you can head over to our [Remove associated data](./deleting-associated-data.md) guide.
+Now that you know, how to create associations, you may want to do some more things with that. If you want to fetch some data with associated data, you can head over to our [Reading data](reading-data.md) guide. Otherwise you may want to update some data, for this you can look at our [Writing data](writing-data.md) and [Replacing data](reading-data.md) guide. If you plan to remove associated data from entities, you can head over to our [Remove associated data](deleting-associated-data.md) guide.
+

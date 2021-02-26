@@ -2,13 +2,13 @@
 
 ## Overview
 
-In this guide you'll learn how to add translations to entities. 
+In this guide you'll learn how to add translations to entities.
 
 ## Prerequisites
 
-This guide is built upon the [PLACEHOLDER-LINK: plugin base guide], but any plugin will work here. Just note that all examples are using the plugin mentioned above.
+This guide is built upon the \[PLACEHOLDER-LINK: plugin base guide\], but any plugin will work here. Just note that all examples are using the plugin mentioned above.
 
-In order to create data translations you need an existing entity, as this guide is based on the [Adding custom complex data](./add-custom-complex-data.md) guide, you should have a look at it first.
+In order to create data translations you need an existing entity, as this guide is based on the [Adding custom complex data](add-custom-complex-data.md) guide, you should have a look at it first.
 
 ## Creating the migration
 
@@ -18,22 +18,7 @@ In this guide we'll name our table `swag_example_translation` since our entity i
 
 The translation table's columns should be the following:
 
-<dl>
-  <dt>swag_example_id</dt>
-  <dd>This will refer to the swag_example this translation belongs to. This is also a foreign key.</dd>
-
-  <dt>language_id</dt>
-  <dd>This will contain the ID of the language for this translation. This is also a foreign key.</dd>
-
-  <dt>name</dt>
-  <dd>The actual translated value, the translated name of the swag_example.</dd>
-
-  <dt>created_at</dt>
-  <dd>Not much explanation required here.</dd>
-
-  <dt>updated_at</dt>
-  <dd>Not much explanation required here.</dd>
-</dl>
+swag\_example\_idThis will refer to the swag\_example this translation belongs to. This is also a foreign key.language\_idThis will contain the ID of the language for this translation. This is also a foreign key.nameThe actual translated value, the translated name of the swag\_example.created\_atNot much explanation required here.updated\_atNot much explanation required here.
 
 Therefore, this is how your migration could then look like:
 
@@ -84,14 +69,11 @@ SQL;
 
 ## Creating the translation entity
 
-The translation is an aggregation to the `ExampleEntity`. Therefore, you should place it into the `<plugin root>/src/Core/Content/Example/Aggregate` directory.
-In this directory we create a subdirectory called `ExampleTranslation` where we create a new definition for our translation which is called `ExampleTranslation`.
+The translation is an aggregation to the `ExampleEntity`. Therefore, you should place it into the `<plugin root>/src/Core/Content/Example/Aggregate` directory. In this directory we create a subdirectory called `ExampleTranslation` where we create a new definition for our translation which is called `ExampleTranslation`.
 
 ### EntityDefinition class
 
-Now we can start creating our `ExampleTranslationDefinition` which extends from `Shopware\Core\Framework\DataAbstractionLayer\EntityTranslationDefinition`. 
-Special for entity translation is, that we have to override a method called `getParentDefinitionClass` which returns the definition class of our entity we want to translate.
-In this case it's `ExampleDefinition`.
+Now we can start creating our `ExampleTranslationDefinition` which extends from `Shopware\Core\Framework\DataAbstractionLayer\EntityTranslationDefinition`. Special for entity translation is, that we have to override a method called `getParentDefinitionClass` which returns the definition class of our entity we want to translate. In this case it's `ExampleDefinition`.
 
 {% code title="<plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationDefinition.php" %}
 ```php
@@ -113,7 +95,7 @@ class ExampleTranslationDefinition extends EntityTranslationDefinition
     {
         return self::ENTITY_NAME;
     }
-    
+
     public function getParentDefinitionClass(): string
     {
         return ExampleDefinition::class;
@@ -131,13 +113,12 @@ class ExampleTranslationDefinition extends EntityTranslationDefinition
 
 As you can see, we've implemented a `StringField` for the `name` column, the other fields like the `language_id` will be automatically added by the `EntityTranslationDefinition` since they are base fields of it.
 
-All that's left to do now, is to introduce your `ExampleTranslationDefinition` to Shopware by registering your class in your `services.xml` file and by using the `shopware.entity.definition` tag, because Shopware 6 is looking for definitions this way.
-Note, that we have to register the translation after the entity we want to translate.
+All that's left to do now, is to introduce your `ExampleTranslationDefinition` to Shopware by registering your class in your `services.xml` file and by using the `shopware.entity.definition` tag, because Shopware 6 is looking for definitions this way. Note, that we have to register the translation after the entity we want to translate.
 
 Here's the `services.xml` as it should look like:
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
-```xml
+```markup
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -147,7 +128,7 @@ Here's the `services.xml` as it should look like:
         <service id="Swag\BasicExample\Core\Content\Example\ExampleDefinition">
             <tag name="shopware.entity.definition" entity="swag_example" />
         </service>
-        
+
         <service id="Swag\BasicExample\Core\Content\Example\Aggregate\ExampleTranslation\ExampleTranslationDefinition">
             <tag name="shopware.entity.definition" entity="swag_example_translation" />
         </service>
@@ -158,8 +139,7 @@ Here's the `services.xml` as it should look like:
 
 ### Entity class
 
-So far we introduced our definition, we can create our `ExampleTranslationEntity`. Our entity has to extend from the `Shopware\Core\Framework\DataAbstractionLayer\TranslationEntity` which comes with some getters and setters for the the `language_id`.
-We only have to add three properties here, one for the `example_id`, one for the actual name and one for the association to the `ExampleEntity`. All of those properties need a getter and a setter again, so add those too.
+So far we introduced our definition, we can create our `ExampleTranslationEntity`. Our entity has to extend from the `Shopware\Core\Framework\DataAbstractionLayer\TranslationEntity` which comes with some getters and setters for the the `language_id`. We only have to add three properties here, one for the `example_id`, one for the actual name and one for the association to the `ExampleEntity`. All of those properties need a getter and a setter again, so add those too.
 
 Here's our `ExampleTranslationEntity`:
 
@@ -225,6 +205,11 @@ class ExampleTranslationEntity extends TranslationEntity
 Now we need our translation definition to know its custom entity class. This is done by overriding the method `getEntityClass` in our `ExampleTranslationDefinition`.
 
 {% code title="<plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationDefinition.php" %}
+```
+
+```
+{% endcode %}
+
 ```php
 class ExampleTranslationDefinition extends EntityTranslationDefinition
 {
@@ -272,4 +257,5 @@ class ExampleTranslationCollection extends EntityCollection
 
 ## Next steps
 
-Now that you know, how to add translations to our entity, you may want to add some associations, for this head over to our [PLACEHOLDER-LINK: Adding associations] guide.
+Now that you know, how to add translations to our entity, you may want to add some associations, for this head over to our \[PLACEHOLDER-LINK: Adding associations\] guide.
+

@@ -186,3 +186,4 @@ Shopware.Module.register('swag-example', {
 });
 ```
 {% endcode %}
+

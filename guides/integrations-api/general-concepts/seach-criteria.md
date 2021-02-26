@@ -85,7 +85,7 @@ The `associations` parameter allows you to load additional data to the minimal d
 }
 ```
 
-## `includes`
+## `includes (apiAlias)`
 
 The `includes` parameter allows you to restrict the returned fields.
 

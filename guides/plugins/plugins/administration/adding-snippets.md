@@ -6,13 +6,11 @@ By default Shopware 6 uses the [Vue I18n](https://kazupon.github.io/vue-i18n/sta
 
 ## Creating snippet files
 
-Normally you want to use snippets in you custom module. To keep things organized, create a new directory named `snippet` inside 
-your module directory `<plugin root>/src/Resources/app/administration/src/module/<your-module>/snippet`.
-For each language you want to support, you need a JSON file inside here, e.g. `de-DE.json` and of course `en-GB.json`.
+Normally you want to use snippets in you custom module. To keep things organized, create a new directory named `snippet` inside your module directory `<plugin root>/src/Resources/app/administration/src/module/<your-module>/snippet`. For each language you want to support, you need a JSON file inside here, e.g. `de-DE.json` and of course `en-GB.json`.
 
 Each language then receives a nested object of translations, so let's have a look at an example `snippet/en-GB.json`:
 
-```json
+```javascript
 {
     "swag-example": {
         "nested": {
@@ -23,8 +21,7 @@ Each language then receives a nested object of translations, so let's have a loo
 }
 ```
 
-In this example you would have access the two translations by the following paths: `swag-example.nested.value` to get the value 'example' and `swag-example.foo` to get the
-value 'bar'. You can nest those objects as much as you want.
+In this example you would have access the two translations by the following paths: `swag-example.nested.value` to get the value 'example' and `swag-example.foo` to get the value 'bar'. You can nest those objects as much as you want.
 
 By default, Shopware 6 will collect those files automatically when your plugin is activated.
 
@@ -32,7 +29,7 @@ By default, Shopware 6 will collect those files automatically when your plugin i
 
 Since snippets are automatically registered in the scope of your module, you can use them directly:
 
-```js
+```javascript
 Component.register('my-custom-page', {
     ...
 
@@ -52,10 +49,11 @@ Component.register('my-custom-page', {
 
 The same `$tc` helper function can be used in the templates to access translations.
 
-```twig
+```text
 {% block my_custom_block %}
     <p>
        {{ $tc('swag-example.general.myCustomText') }}
     </p>
 {% endblock %}
 ```
+

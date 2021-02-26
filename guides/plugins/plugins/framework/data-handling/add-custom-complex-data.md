@@ -2,8 +2,7 @@
 
 ## Overview
 
-Quite often, your plugin has to save data into a custom database table.
-Shopware 6's data abstraction layer fully supports custom entities, so you don't have to take care of the data handling at all.
+Quite often, your plugin has to save data into a custom database table. Shopware 6's data abstraction layer fully supports custom entities, so you don't have to take care of the data handling at all.
 
 ## Prerequisites
 
@@ -69,8 +68,8 @@ After reinstalling your plugin, you should see your new database table `swag_exa
 
 Introducing the table to Shopware 6 is done by adding a so called `EntityDefinition` for your table. As the name suggests, it defines your own entity, including its fields and name, the latter also represents the table name and therefore has to perfectly match.
 
-Your custom entity definition should be placed inside a folder named after the domain it handles, e.g. "Checkout" if you were to include a Checkout entity. Thus, a good location for this example could be in a directory like this: `<plugin root>/src/Core/Content/Example`   
- This will also be the case for the `Entity` class itself, as well as the `EntityCollection` class, but those are explained later in this guide.
+Your custom entity definition should be placed inside a folder named after the domain it handles, e.g. "Checkout" if you were to include a Checkout entity. Thus, a good location for this example could be in a directory like this: `<plugin root>/src/Core/Content/Example`  
+This will also be the case for the `Entity` class itself, as well as the `EntityCollection` class, but those are explained later in this guide.
 
 Start of with creating a new file named `ExampleDefinition.php` in the directory `<plugin root>/src/Core/Content/Example/ExampleDefinition.php`. Below you'll see our example defininition, which is explained afterwards:
 

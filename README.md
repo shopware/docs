@@ -24,5 +24,3 @@ Some examples to help you get started.
 
 {% page-ref page="guides/plugins/" %}
 
-{% page-ref page="guides/plugins/themes.md" %}
-

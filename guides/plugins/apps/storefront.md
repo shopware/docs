@@ -13,7 +13,7 @@ As the storefront will be build on the Shopware server you don't have to set up 
 
 ## Themes as apps
 
-It is absolutely possible to ship whole [themes](../themes.md) inside an app. All you have to do is include your theme configuration \(in form of a `theme.json` file\) inside your apps Resources folder.  
+It is absolutely possible to ship whole [themes]() inside an app. All you have to do is include your theme configuration \(in form of a `theme.json` file\) inside your apps Resources folder.  
 So the folder structure of a theme may look like this:
 
 ```text
