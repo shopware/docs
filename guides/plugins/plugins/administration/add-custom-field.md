@@ -23,8 +23,9 @@ Your `main.js` file then needs to override the [Vue component](https://vuejs.org
 `override` method of our `ComponentFactory`.
 
 The first parameter matches the component to override, the second parameter has to be an object containing
-the actually overridden properties , e.g. the new twig template extension for this component. 
+the actually overridden properties , e.g. the new twig template extension for this component.
 
+{% code title="<plugin root>/src/Resources/app/administration/src/main.js" %}
 ```js
 import template from './src/extension/sw-product-settings-form/sw-product-settings-form.html.twig';
 
@@ -32,6 +33,7 @@ Shopware.Component.override('sw-product-settings-form', {
     template
 });
 ```
+{% endcode %}
 
 In this case, the `sw-product-settings-form` component is overridden, which reflects the settings form on the product 
 detail page. As mentioned above, the second parameter has to be an object, which includes the actual template extension.
@@ -51,6 +53,7 @@ Create a file called `sw-product-settings-form.html.twig` in the following direc
 The path starting from 'src' is fully customizable, yet we recommend choosing a pattern like this one.
 {% endhint %}
 
+{% code title="<plugin root>/src/Resources/app/administration/src/extension/sw-product-settings-form/sw-product-settings-form.html.twig" %}
 ```html
 {% block sw_product_settings_form_content %}
     {% parent %}
@@ -60,6 +63,7 @@ The path starting from 'src' is fully customizable, yet we recommend choosing a 
     </sw-container>
 {% endblock %}
 ```
+{% endcode %}
 
 Basically the twig block `sw_product_settings_form_content` is overridden here.
 Make sure to have a look at the [Twig documentation about the template inheritance](https://twig.symfony.com/doc/2.x/templates.html#template-inheritance), to understand how blocks in Twig work.
