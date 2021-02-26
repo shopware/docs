@@ -10,9 +10,9 @@ The actual structure and functionality of the endpoints can differ from this ref
 
 ### Helpful guides to read before using this reference <a id="helpful-guides-to-read-before-using-this-reference"></a>
 
-* ​[Concept of the Store API](https://app.gitbook.com/@shopware/s/shopware-1/~/drafts/-MU8LxyY2Ad3ushWb8Jl/guides/plugins/plugins/framework/store-api/@drafts)​
-* ​[Common API Concepts](https://app.gitbook.com/@shopware/s/shopware-1/~/drafts/-MU8LxyY2Ad3ushWb8Jl/guides/integrations-api/general-concepts/@drafts)​
-* ​[Store API Guide](https://app.gitbook.com/@shopware/s/shopware-1/~/drafts/-MU8LxyY2Ad3ushWb8Jl/guides/integrations-api/store-api-guide/@drafts)​
+* ​[Concept of the Store API](../../../../concepts/api/store-api.md)​
+* ​[Common API Concepts](../../../../guides/integrations-api/general-concepts/README.md)​
+* ​[Store API Guide](../../../../guides/integrations-api/store-api-guide/README.md)​
 
 This reference contains endpoints and data schemas for our Store API. Each endpoint reference is structured in the same way.‌
 
@@ -20,7 +20,7 @@ See the below section for an exemplary endpoint description.‌
 
 ## Example endpoint <a id="example-endpoint"></a>
 
-> The first line contains the HTTP method, the endpoint URL relative to the [base route](https://app.gitbook.com/@shopware/s/shopware-1/~/drafts/-MU8LxyY2Ad3ushWb8Jl/guides/integrations-api/store-api-guide#general/@drafts) and the name of the corresponding route class within the [shopware/core](https://app.gitbook.com/@shopware/s/shopware-1/~/drafts/-MU8LxyY2Ad3ushWb8Jl/concepts/framework/architecture/core/@drafts) package.
+> The first line contains the HTTP method, the endpoint URL relative to the [base route](../../../../guides/integrations-api/store-api-guide/README.md#general) and the name of the corresponding route class within the [shopware/core](../../../../concepts/framework/architecture/core.md) package.
 
 `POST /product/{productId}` \| ProductDetailRoute
 
@@ -28,7 +28,7 @@ See the below section for an exemplary endpoint description.‌
 
 ### **Parameters** <a id="parameters"></a>
 
-> The parameters section contains parameters of the endpoint. Depending on the endpoint parameters can be passed as a header, as a **query parameter** \(`?onlyAvailable=1` \), as a **route path parameter** \(`/product/{productId}` \) or \(for post requests\) as **body parameter.** The most common parameters are defined in the search criteria parameters, which can be passed in almost every list endpoint. More information about the [search criteria](https://app.gitbook.com/@shopware/s/shopware-1/~/drafts/-MU8LxyY2Ad3ushWb8Jl/guides/integrations-api/general-concepts/seach-criteria/@drafts).
+> The parameters section contains parameters of the endpoint. Depending on the endpoint parameters can be passed as a header, as a **query parameter** \(`?onlyAvailable=1` \), as a **route path parameter** \(`/product/{productId}` \) or \(for post requests\) as **body parameter.** The most common parameters are defined in the search criteria parameters, which can be passed in almost every list endpoint. More information about the [search criteria](../../../../guides/integrations-api/general-concepts/seach-criteria.md).
 
 **Path**‌
 
@@ -36,7 +36,7 @@ See the below section for an exemplary endpoint description.‌
 
 **Body**‌
 
-​[**`Search Criteria`**](https://app.gitbook.com/@shopware/s/shopware-1/~/drafts/-MU8LxyY2Ad3ushWb8Jl/guides/integrations-api/general-concepts/seach-criteria/@drafts) \| Criteria \| optional
+​[**`Search Criteria`**](../../../../guides/integrations-api/general-concepts/seach-criteria.md) \| Criteria \| optional
 
 ‌
 
@@ -44,11 +44,19 @@ See the below section for an exemplary endpoint description.‌
 
 > The return codes and bodies differ from endpoint to endpoint. Usually, our reference contains examples for the successful response and the most common 4xx errors. See [Response Types](https://app.gitbook.com/@shopware/s/shopware-1/~/drafts/-MU8LxyY2Ad3ushWb8Jl/resources/references/api-reference/store-api-reference#response-types/@drafts).
 
-Returns a single product together with a [configurator object](https://app.gitbook.com/@shopware/s/shopware-1/~/drafts/-MU8LxyY2Ad3ushWb8Jl/concepts/commerce/catalog/products#configurator/@drafts) that contains its variant options.404 Not Found
+Returns a single product together with a [configurator object](../../../../concepts/commerce/catalog/products.md#configurator) that contains its variant options.404 Not Found
 
-```text
-{  "apiAlias": "product_detail",  "product": { ... }  "configurator": []}
+{% tabs %}
+{% tab title="200 OK" %}
+```javascript
+{
+  "apiAlias": "product_detail",
+  "product": { ... }
+  "configurator": []
+}
 ```
+{% endtab %}
+{% endtabs %}
 
 ## Response types <a id="response-types"></a>
 
@@ -66,13 +74,13 @@ The API tries to resolve client errors and give an indication of what has gone w
 
 **400 Bad Request** This response usually indicates that there's an issue with your request format - for example a missing parameter or violated constraints.‌
 
-**401 Unauthorized** The unauthorised error indicates, that your [sales channel access key](https://app.gitbook.com/@shopware/s/shopware-1/~/drafts/-MU8LxyY2Ad3ushWb8Jl/guides/integrations-api/store-api-guide#authentication-and-setup/@drafts) is missing.‌
+**401 Unauthorized** The unauthorised error indicates, that your [sales channel access key](../../../../guides/integrations-api/store-api-guide/README.md#authentication-and-setup) is missing.‌
 
 **403 Forbidden** This response indicates that you are not authorised to perform that operation. For some operations, such as _placing an order_ or _submitting a review_ you need to be logged in as a customer. In those cases, check your `sw-context-token` header and whether you're [logged in](https://app.gitbook.com/@shopware/s/shopware-1/~/drafts/-MU8LxyY2Ad3ushWb8Jl/guides/integrations-api/store-api-guide/register-a-customer#logging-in/@drafts).‌
 
 **405 Method Not Allowed** The HTTP method used for the request is not valid.‌
 
-**412 Precondition Failed** This error occurs if your [sales channel access key](https://app.gitbook.com/@shopware/s/shopware-1/~/drafts/-MU8LxyY2Ad3ushWb8Jl/guides/integrations-api/store-api-guide#authentication-and-setup/@drafts) is invalid. Make sure that it matches any of your configured sales channels.‌
+**412 Precondition Failed** This error occurs if your [sales channel access key](../../../../guides/integrations-api/store-api-guide/README.md) is invalid. Make sure that it matches any of your configured sales channels.‌
 
 ### Server Error <a id="server-error"></a>
 
