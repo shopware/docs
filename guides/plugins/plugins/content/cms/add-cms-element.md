@@ -7,9 +7,9 @@ This article will teach you how to create a new CMS element via plugin. The plug
 
 ## Prerequisiites
 
-You won't learn how to create a plugin in this guide, head over to our [PLACEHOLDER-LINK: Plugin base guide] to create 
+You won't learn how to create a plugin in this guide, head over to our [Plugin base guide](../../plugin-base-guide.md) to create 
 your first plugin. This guide will also not explain how a custom component can be created in general, so head over to 
-the official guideabout [PLACEHOLDER-LINK: creating a custom component] to learn this first.
+the official guide about [creating a custom component](../../administration/add-custom-component.md) to learn this first.
 
 ## Creating your custom element
 
@@ -106,8 +106,7 @@ languages, e.g. `de-DE.json` and `en-GB.json`. The content of your snippet file 
 }
 ```
 
-To learn more about adding own snippets, please refer to [PLACEHOLDER-LINK: Add snippets to administration]
-for more information.
+To learn more about adding own snippets, please refer to [Add snippets to administration](../../administration/adding-snippets.md) for more information.
 
 For all three fields `component`, `configComponent` and `previewComponent`, components that do not *yet* exist were 
 applied. Those will be created in the next few steps as well. The `defaultConfig` defines the default values for the 
@@ -458,4 +457,4 @@ After saving and applying this layout to e.g. a category, this element will also
 ## Next steps
 
 There are many possibilities to extend Shopware's CMS. If you haven't done so already, consider using your element in 
-a cms block. To learn how to do this, take a look at the guide on [PLACEHOLDER-LINK: Add custom cms block].
+a cms block. To learn how to do this, take a look at the guide on [Add custom cms block](./add-cms-block.md).

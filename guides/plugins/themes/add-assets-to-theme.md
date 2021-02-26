@@ -6,7 +6,7 @@ Your theme can include custom assets like images. This short guide will show you
 
 ## Prerequisites
 
-This guide is built upon the [PLACEHOLDER-LINK: Create a first theme] guide.
+This guide is built upon the [Create a first theme](./create-a-theme.md) guide.
 
 ## Using custom assets
 
@@ -57,5 +57,5 @@ body {
 
 Now that you know how to use your assets in a themes, here is a list of other related topics where assets can be used.
  
-* Use assets in your SCSS [PLACEHOLDER-LINK: Add SCSS Styling and JavaScript to a Theme] 
-* Customize Templates [PLACEHOLDER-LINK: Customize templates]
+* [Use assets in your SCSS](./add-assets-to-theme.md)
+* [Customize templates](../plugins/storefront/customize-templates.md)

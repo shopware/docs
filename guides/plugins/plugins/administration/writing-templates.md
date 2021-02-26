@@ -56,6 +56,6 @@ Vue is used to link the data and the DOM in order to make them reactive. Learn a
 
 As you might have noticed, we are just rendering static text, so maybe you want to try the following things:
 
-* How to override parts of existing components \[PLACEHOLDER-LINK: how to override parts of existing components\]
-* How to use the admin API to fetch data in the administration \[PLACEHOLDER-LINK: how to use the admin API to fetch data in the administration\]
+* [How to override parts of existing components](./customizing-components.md)
+* [How to use the admin API to fetch data in the administration](./using-data-handling.md)
 

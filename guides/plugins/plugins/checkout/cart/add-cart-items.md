@@ -6,17 +6,23 @@ This guide will show you how to create line items like products, promotion and o
 
 ## Prerequisites
 
-As most guides, this guide is also built upon the \[PLACEHOLDER-LINK: Plugin base guide\], but you don't necessarily need that. It will use an example Storefront controller, so if you don't know how to add a custom storefront controller yet, have a look at our guide about \[PLACEHOLDER-LINK: Adding a custom page\]. Furthermore, registering classes or services to the DI container is also not explained here, but it's covered in our guide about \[PLACEHOLDER-LINK: Dependency injection\], so having this open in another tab won't hurt.
+As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide.md), but you don't necessarily need that.
+It will use an example Storefront controller, so if you don't know how to add a custom storefront controller yet,
+have a look at our guide about [Adding a custom page](../../storefront/add-custom-page.md).
+Furthermore, registering classes or services to the DI container is also not explained here,
+but it's covered in our guide about [Dependency injection](../../plugin-fundamentals/dependency-injection.md), so having this open in another tab won't hurt.
 
 ## Adding a simple item
 
-For this guide, we will use an example controller, that is already registered. The process of creating such a controller is not explained here, for that case head over to our guide about \[PLACEHOLDER-LINK: Adding a custom page\].
+For this guide, we will use an example controller, that is already registered. The process of creating such a controller is not explained here,
+for that case head over to our guide about [Adding a custom page](../../storefront/add-custom-page.md).
 
 However, having a controller is not a necessity here, it just comes with the advantage of fetching the current cart by adding `\Shopware\Core\Checkout\Cart\Cart` as a method argument, which will automatically be filled by our argument resolver.
 
 If you're planning to use this guide for something else but a controller, you can fetch the current cart with the `\Shopware\Core\Checkout\Cart\SalesChannel\CartService::getCart` method.
 
-So let's add an example product to the cart using code. For that case, you'll need to have access to both the services `\Shopware\Core\Checkout\Cart\LineItemFactoryRegistry` and `\Shopware\Core\Checkout\Cart\SalesChannel\CartService` supplied to your controller or service via \[PLACEHOLDER-LINK: Dependency injection\].
+So let's add an example product to the cart using code.
+For that case, you'll need to have access to both the services `\Shopware\Core\Checkout\Cart\LineItemFactoryRegistry` and `\Shopware\Core\Checkout\Cart\SalesChannel\CartService` supplied to your controller or service via [Dependency injection](../../plugin-fundamentals/dependency-injection.md).
 
 Let's have a look at an example.
 
@@ -173,5 +179,7 @@ And that's it. You should now be able to create line items of type `example` onc
 
 ## Next steps
 
-You should by now how to add line items to the cart using just the code. But there's more to it, such as nested line items. If you're interested in learning that, make sure to have a look at our guide about \[PLACEHOLDER-LINK: adding nested cart items\].
+You should by now how to add line items to the cart using just the code.
+But there's more to it, such as nested line items.
+If you're interested in learning that, make sure to have a look at our guide about [PLACEHOLDER-LINK: adding nested cart items].
 

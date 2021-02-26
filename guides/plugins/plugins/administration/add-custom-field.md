@@ -96,6 +96,6 @@ Your minified javascript file will now be loaded in production environments.
 
 The possibility to customize the administration via `main.js` file provides more options than just the addition of a
 custom input field. You can check out following guides to get to know more possibilities:
-  * [PLACEHOLDER-LINK: Add custom tab to existing module]
-  *  [PLACEHOLDER-LINK: Add custom module to administration]
-  *  [PLACEHOLDER-LINK: Add translations to your module]
+  * [Add custom tab to existing module](./add-new-tab.md)
+  * [Add custom module to administration](./add-custom-module.md)
+  * [Add translations to your module](./adding-snippets.md)

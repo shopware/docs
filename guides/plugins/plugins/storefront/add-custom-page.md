@@ -8,7 +8,7 @@ In this guide you'll learn how to create a custom storefront page.
 
 In order to add your own page service for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
 
-Also having understood the concepts behind pages, pagelets and the pageloader \[PLACEHOLDER-LINK: Page, pagelet, pageloader concept\] will come in handy here.
+Also having understood the concepts behind pages, pagelets and the pageloader [PLACEHOLDER-LINK: Page, pagelet, pageloader concept] will come in handy here.
 
 ## Adding custom storefront page
 
@@ -115,9 +115,11 @@ Once we‘ve registered our new controller, we have to tell Shopware how we want
 
 ### Adding template
 
-Now we registered our controller and Shopware indexes the route but at the moment we have no view, let's change this. As previously mentioned, the code will try to render an `example.html.twig` file. Thus we have to create an `example.html.twig` in the `<plugin root>/src/Resources/views/storefront/page` directory, as defined in our controller. Below you can find an example, where we extend from the template `base.html.twig` and override the block \`
-
-\`. In our \[PLACEHOLDER-LINK: Customize templates\] guide, you can learn more about customizing templates.
+Now we registered our controller and Shopware indexes the route but at the moment we have no view, let's change this.
+As previously mentioned, the code will try to render an `example.html.twig` file.
+Thus we have to create an `example.html.twig` in the `<plugin root>/src/Resources/views/storefront/page` directory, as defined in our controller.
+Below you can find an example, where we extend from the template `base.html.twig` and override the block `\{% block base_content %\}`.
+In our [Customize templates guide](./customize-templates.md), you can learn more about customizing templates.
 
 {% code title="<plugin root>/src/Resources/views/storefront/page/example.html.twig" %}
 ```text

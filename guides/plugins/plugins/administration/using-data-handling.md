@@ -5,7 +5,8 @@ The Shopware 6 Administration allows you to fetch and write nearly everything in
 All you need for this guide is a running Shopware 6 instance and full access to both the files, as well as the command line and preferably registered module.
 Of course you'll have to understand JavaScript, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation.
 
-Considering that the data handling in the administration is remotely operating the **D**ata **A**bstraction **L**ayer its highly encouraged to read the articles [Reading][PLACEHOLDER-LINK: Reading Data with the DAL] and [writing][PLACEHOLDER-LINK: Writing Data with the DAL] Data with the DAL.
+Considering that the data handling in the administration is remotely operating the Data Abstraction Layer its highly encouraged
+to read the articles [Reading data with the DAL](../framework/data-handling/reading-data.md) and [Writing data with the DAL](../framework/data-handling/writing-data.md).
 
  ## Relevant classes
 `Repository`: Allows to send requests to the server - used for all CRUD operations
@@ -688,5 +689,6 @@ Shopware.Component.register('swag-basic-example', {
 ## Next steps
 As this is very similar to the DAL it might be interesting to learn more about that.
 Here's a list of things you can do now:
-* [Creating your own data entities][PLACEHOLDER-LINK: Creating your own entities] 
-* [Reading][PLACEHOLDER-LINK: Reading Data with the DAL] and [writing][PLACEHOLDER-LINK: Writing Data with the DAL] Data with the DAL
+* [Creating your own entities](../framework/data-handling/add-custom-complex-data.md)
+* [Reading data with the DAL](../framework/data-handling/reading-data.md)
+* [Writing data with the DAL](../framework/data-handling/writing-data.md)

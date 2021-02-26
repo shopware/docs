@@ -78,5 +78,6 @@ That's it, your subscriber service is now automatically loaded at runtime and it
 
 ## Next steps
 
-Using these subscribers, you can work with lots of events in Shopware. To get a grip on which events you're able to use, please see \[PLACEHOLDER-LINK: Finding events\] guide.
+Using these subscribers, you can work with lots of events in Shopware.
+To get a grip on which events you're able to use, please see [PLACEHOLDER-LINK: Finding events] guide.
 

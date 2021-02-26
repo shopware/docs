@@ -38,7 +38,7 @@ In this file, you can configure a couple of things, e.g. the color of your modul
 
 In this example `#ff3d58` is used as a color, which is a soft red. Also, each module has their own icon. You can see here [here](https://component-library.shopware.com/#/icons/) which icons are available in Shopware 6 by default. In our case here, let's say we use the icon `default-shopping-paper-bag-product`, which will also be used for the module.
 
-_Attention: This is not the icon being used for a menu entry!_ The icon for that needs to be configured separately. Please refer to \[PLACEHOLDER-LINK: Add a menu entry\] guide for more information on this topic.
+_Attention: This is not the icon being used for a menu entry!_ The icon for that needs to be configured separately. Please refer to the [Add a menu entry](./add-menu-entry.md) guide for more information on this topic.
 
 In addition, you're able to configure a title here, which will be used for the actual browser title. Just add a string for the key `title`. This will be the default title for your module, you can edit this for each component later on.
 
@@ -48,7 +48,7 @@ Another important aspect are the routes which your module is going to use, such 
 
 ## Setting up menu entry and routes
 
-The next steps are covered in their own guides. The first one would be adding a menu entry, so please take a look at \[PLACEHOLDER-LINK:Add own menu entry\]. The second one refers to setting up custom routes, its guide can be found in \[PLACEHOLDER-LINK:Add custom route\].
+The next steps are covered in their own guides. The first one would be adding a menu entry, so please take a look at the guide regarding [adding an own menu entry](./add-menu-entry.md). The second one refers to setting up custom routes, its guide can be found in the [Add custom route](./add-custom-route.md) guide.
 
 ## Set up additional meta info
 

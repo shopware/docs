@@ -6,7 +6,8 @@ This guide will cover customizing Storefront templates with a plugin.
 
 ## Prerequisites
 
-As most guides, this guide is built upon the \[PLACEHOLDER-LINK: plugin base guide\], so you might want to have a look at it. Other than that, knowing [Twig](https://twig.symfony.com/) is a big advantage for this guide, but that's not necessary.
+As most guides, this guide is built upon the [plugin base guide](../plugin-base-guide.md), so you might want to have a look at it.
+Other than that, knowing [Twig](https://twig.symfony.com/) is a big advantage for this guide, but that's not necessary.
 
 ## Getting started
 
@@ -80,5 +81,6 @@ Once again, the plugin called [FroshDevelopmentHelper](https://github.com/Friend
 
 ## Next steps
 
-Now that you know how to customize your templates, you might wonder how to add new data to the said templates. This is covered in the guide \[PLACEHOLDER-LINK: Add data to storefront page\], so go for it.
+Now that you know how to customize your templates, you might wonder how to add new data to the said templates.
+This is covered in the guide [add data to storefront page](./add-data-to-storefront-page.md), so go for it.
 

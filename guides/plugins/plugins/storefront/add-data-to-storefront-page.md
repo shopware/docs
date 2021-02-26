@@ -8,15 +8,15 @@ If you make template changes you probably want to display some data that is curr
 
 ## Prerequisites
 
-This guide is built upon our \[PLACEHOLDER-LINK: Plugin base guide\], so keep that in mind.
+This guide is built upon our [Plugin base guide](../plugin-base-guide.md), so keep that in mind.
 
 Also the following knowledge is necessary, even though some of them are covered here as well:
 
-* Knowing how to listen to events by using a subscriber \[PLACEHOLDER-LINK: Listen to events\]
-* Knowing how to customize storefront templates \[PLACEHOLDER-LINK: Listen to events\]
-* Knowing how to read data using our data abstraction layer \[PLACEHOLDER-LINK: Reading data\]
+* Knowing how to [listen to events by using a subscriber](../plugin-fundamentals/listening-to-events.md)
+* Knowing how to [customize storefront templates](./customize-templates.md)
+* Knowing how to [read data using our data abstraction layer](../framework/data-handling/reading-data.md)
 
-Also, if you want to better understand the concepts behind Pages and Pagelets, have a look at our reference\[PLACEHOLDER-LINK: Pages and pagelets concept\].
+Also, if you want to better understand the concepts behind Pages and Pagelets, have a look at our reference [PLACEHOLDER-LINK: Pages and pagelets concept].
 
 ## Adding data to the storefront
 
@@ -114,7 +114,10 @@ class AddDataToPage implements EventSubscriberInterface
 }
 ```
 
-So you should know and understand the first few lines if you've read our guide about reading data first\[PLACEHOLDER-LINK: Reading data\]. Make sure to also understand the usage of aggregations, since this is what is done here. The only main difference you might notice is, that we're using the `aggregate()` method instead of the `search()` method. This will not actually search for any products and return the whole products dataset, but rather just the aggregated data, nothing else.
+So you should know and understand the first few lines if you've read our guide about [reading data](../framework/data-handling/reading-data.md) first.
+Make sure to also understand the usage of aggregations, since this is what is done here.
+The only main difference you might notice is, that we're using the `aggregate()` method instead of the `search()` method.
+This will not actually search for any products and return the whole products dataset, but rather just the aggregated data, nothing else.
 
 Completely new should only be the last line: `$event->getPagelet()->addExtension('product_count', $productCountResult);`
 
@@ -139,7 +142,8 @@ Now you only have to adjust your service definition to inject the product reposi
 
 ### Displaying the data in the storefront
 
-To display the additional data we need to override the footer template and render the data. You can find detailed information on how to extend templates and override blocks here\[PLACEHOLDER-LINK: Customize storefront templates\].
+To display the additional data we need to override the footer template and render the data.
+You can find detailed information on how to extend templates and override blocks [here](./customize-templates.md).
 
 For our case we extend the footer template and add a new column to the navigation block:
 
@@ -164,5 +168,6 @@ That's it for this guide, you've successfully added data to a storefront page\(l
 
 ## Next steps
 
-The result of this guide probably lacks some style. Thus, you might want to have a look at our guide to add custom styles to your storefront\[PLACEHOLDER-LINK: Storefront &gt; Add styles\].
+The result of this guide probably lacks some style.
+Thus, you might want to have a look at our guide to [add custom styles to your storefront](./add-custom-styling.md).
 

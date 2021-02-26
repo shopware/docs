@@ -6,7 +6,7 @@ This guide shows you how the theme configuration works and explains the possibil
 
 ## Prerequisites
 
-This guide is built upon the [PLACEHOLDER-LINK: Create a first theme] guide.
+This guide is built upon the [Create a first theme](./create-a-theme.md) guide.
 
 ## Structure of theme configuration
 
@@ -80,7 +80,7 @@ The `views` section controls the template inheritance. This will be covered in t
 
 The `style` section determines the order of the CSS compilation. In the `<plugin root>/app/storefront/src/scss/base.scss` file you can apply your changes you want to make to the `@Storefront` standard styles or add other styles you need.
 The `<plugin root>/app/storefront/src/scss/overrides.scss` file is used for a special case. Maybe you need to override some defined `variables` or `functions` defined by Shopware or Boostrap, you can implement your changes here.
-Checkout the [PLACEHOLDER-LINK: Override bootstrap variables in a theme] guide for further information.
+Checkout the [Override bootstrap variables in a theme](./override-bootstrap-variables-in-a-theme.md) guide for further information.
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
 ```json
@@ -100,7 +100,7 @@ Checkout the [PLACEHOLDER-LINK: Override bootstrap variables in a theme] guide f
 
 The `asset` option you can configure your paths to your assets like images, fonts, etc.
 The standard location to put your assets to is the `<plugin root>/app/storefront/src/assets` folder.
-Checkout the [PLACEHOLDER-LINK: Add assets to theme] guide for further information.
+Checkout the [Add assets to theme](./add-assets-to-theme.md) guide for further information.
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
 ```json
@@ -155,7 +155,7 @@ the default theme or add your own configurations.
 In the example above, we change the primary color to green. You always inherit from the storefront
 config and both configurations are merged. This also means that you only have to provide the values you
 actually want to change. You can find a more detailed explanation of the configuration inheritance
-in the section [PLACEHOLDER-LINK: Theme inheritance].
+in the section [Theme inheritance](./add-theme-inheritance.md).
 
 {% hint style="warning" %}
 If you overwrite variables of another theme from a third party provider and these are renamed or removed at a later time, this can lead to issues and the theme can no longer be compiled. So be aware of it.
@@ -569,5 +569,5 @@ You can extend the config to add translated labels for the tabs, blocks and sect
 
 Now that you know how to configure your theme, here is a list of things you can do.
 
-* Add SCSS Styling and JavaScript to a theme [PLACEHOLDER-LINK: Add SCSS Styling and JavaScript to a Theme] 
-* Customize Templates [PLACEHOLDER-LINK: Customize templates]
+* [Add SCSS Styling and JavaScript to a theme](./add-css-js-to-theme.md) 
+* [Customize Templates](../plugins/storefront/customize-templates.md)

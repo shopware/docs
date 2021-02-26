@@ -131,7 +131,7 @@ Now your theme is fully installed and you can start your customization.
 
 Now that you have created your own theme, the next step is to learn how to make settings and adjustments.
 
-* Theme configuration [PLACEHOLDER-LINK: Theme configuration] 
-* Add SCSS Styling and JavaScript to a Theme [PLACEHOLDER-LINK: Add SCSS Styling and JavaScript to a Theme] 
-* Customize Templates [PLACEHOLDER-LINK: Customize templates]
-* Add assets to a Theme [PLACEHOLDER-LINK: Add assets to a Theme]
+* [Theme configuration](./theme-configuration.md) 
+* [Add SCSS Styling and JavaScript to a theme](./add-css-js-to-theme.md)
+* [Customize templates](../plugins/storefront/customize-templates.md)
+* [Add assets to theme](./add-assets-to-theme.md)

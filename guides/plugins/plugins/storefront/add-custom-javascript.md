@@ -97,7 +97,8 @@ In this case the plugin just gets executed if the HTML document contains at leas
 
 ### Loading your plugin
 
-The following will create a new template with a very short explanation. If you're looking for more information on what's going on here, head over to our guide about \[PLACEHOLDER-LINK: Customizing templates\].
+The following will create a new template with a very short explanation.
+If you're looking for more information on what's going on here, head over to our guide about [Customizing templates](./customize-templates.md).
 
 You bound your plugin to the css selector `[data-example-plugin]`, so you have to add DOM elements with this attribute on the pages you want your plugin to be active.
 
@@ -218,9 +219,11 @@ Now you want to overwrite the value `slider.mouseDrag` with your plugin. The var
 
 ## Plugin script path
 
-For JavaScript you normally would have two locations where your `*.js` files are located. You have your `main.js` as an entry point inside of the following directory: `<plugin root>/src/Resources/app/storefront/src`.
+For JavaScript you normally would have two locations where your `*.js` files are located.
+You have your `main.js` as an entry point inside of the following directory: `<plugin root>/src/Resources/app/storefront/src`.
 
-Shopware will then compile the JavaScript and save the compiled version at `<plugin root>/src/Resources/app/storefront/dist/storefront/js/<plugin-name>.js` This file will be recognized automatically by Shopware.
+Shopware will then compile the JavaScript and save the compiled version at `<plugin root>/src/Resources/app/storefront/dist/storefront/js/<plugin-name>.js`.
+This file will be recognized automatically by Shopware.
 
 Make sure to ship the compiled file with your plugin as well.
 
@@ -230,5 +233,6 @@ To see your changes you have to build the storefront. Use the `./psh.phar storef
 
 ## Next steps
 
-You should now be able to add your own JavaScript classes to your plugin. If you're wondering how you can extend existing JavaScript from the Shopware core, head over to our guide about \[PLACEHOLDER-LINK: Override existing javascript\].
+You should now be able to add your own JavaScript classes to your plugin.
+If you're wondering how you can extend existing JavaScript from the Shopware core, head over to our guide about [Override existing javascript](./override-existing-javascript.md).
 

@@ -1,7 +1,7 @@
 # Differences Plugins and Apps vs Themes
 
 A theme is a special type of Plugin or App, aimed at easily changing the visual appearance of the storefront.
-If you want to get more information about plugins and apps you can check out the [PLACEHOLDER-LINK: Plugin Base Guide] and [PLACEHOLDER-LINK: App Base Guide].
+If you want to get more information about plugins and apps you can check out the [Plugin Base Guide](../plugins/plugin-base-guide.md) and [App Base Guide](../apps/app-base-guide.md).
 
 There are basically several ways to change the appearance of the storefront. You can have "regular" plugins or apps which main purpose is to add new functions and change the behavior of the shop. These plugins / apps might also contain SCSS/CSS and JavaScript to be able to embed their new features into the storefront.
 
@@ -13,4 +13,4 @@ You do not need to write any PHP code in a theme. If you need PHP code you shoul
 
 Now that you have learned the differences between themes, plugins and apps, you can create your first theme.
 
-* Create a first Shopware theme [PLACEHOLDER-LINK: Create a first theme]
+* [Create a first Shopware theme](./create-a-theme.md)

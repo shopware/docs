@@ -14,7 +14,9 @@ On top of that, please make sure your shop has a theme assigned. When using `./p
 
 ### Using our testsuite
 
-The [E2E platform testsuite package](https://github.com/shopware/e2e-testsuite-platform) contains commands and helpers supporting you while building E2E tests for Shopware 6. On top of that, test data management and custom commands are included as well. More on that here: \[PLACEHOLDER-LINK: Command reference\].
+The [E2E platform testsuite package](https://github.com/shopware/e2e-testsuite-platform) contains commands and helpers supporting you while building E2E tests for Shopware 6.
+On top of that, test data management and custom commands are included as well.
+More on that here: [Command reference](../../../../resources/references/core-reference/commands-reference.md).
 
 This test suite is built on top of [Cypress](https://www.cypress.io/) as well as the following Cypress plugins:
 
@@ -26,7 +28,7 @@ This test suite is built on top of [Cypress](https://www.cypress.io/) as well as
 
 When you use our [Development template](https://github.com/shopware/development), we provide you some tooling scripts located in `dev-ops/e2e/actions`, to use E2E tests more comfortably.
 
-The`./psh.phar` commands to run our E2E tests in CLI or in Cypress' test runner are explained in the paragraph \[PLACEHOLDER-LINK: Executing e2e tests\].
+The`./psh.phar` commands to run our E2E tests in CLI or in Cypress' test runner are explained in the paragraph [Executing e2e tests](./end-to-end-testing.md#Executing E2E tests).
 
 #### Developing with docker
 
@@ -40,7 +42,7 @@ To use E2E tests locally, you need to set the variable `CYPRESS_LOCAL` in your `
 
 ### Plugin setup
 
-Depending on your environment \(administration or storefront\) please create the following folder structure:
+Depending on your environment (administration or storefront) please create the following folder structure:
 
 ```text
 Resources
@@ -118,7 +120,7 @@ Please keep in mind that we use `Administration` as default app environment. If 
 ./psh.phar e2e:open --CYPRESS_ENV=Storefront
 ```
 
-To see a complete overview on all psh scripts for e2e tests, feel free to refer to our \[PLACEHOLDER-LINK: e2e psh commands\].
+To see a complete overview on all psh scripts for e2e tests, feel free to refer to our [e2e psh command reference](../../../../resources/code-reference/testing/e2e-psh-commands.md).
 
 ## Running tests in plugins
 
@@ -181,7 +183,8 @@ These two configuration files are important to mention as well:
 
   [Cypress configuration docs](https://docs.cypress.io/guides/references/configuration.html).
 
-If you need to use this structure in a plugin, it is just the path to the `e2e` folder, which is slightly different. You can find the folder structure in the paragraph \[PLACEHOLDER-LINK: Setup\].
+If you need to use this structure in a plugin, it is just the path to the `e2e` folder, which is slightly different.
+You can find the folder structure in the paragraph [Setup](./end-to-end-testing.md#Plugin setup).
 
 If you want to contribute to Shopware platform's tests, please ensure to place your test in one of those folders:
 
@@ -242,9 +245,8 @@ it('test something', () => {
 
 You can chain commands by passing its return value to the next one. These commands may contain extra steps to take, e.g. a `click` or `type` operation.
 
-Cypress distinguishes between parent, child and dual commands, see \[PLACEHOLDER-LINK: Command reference\] for details.
-
-Cypress provides a lot of commands to represent a variety of steps a user could do. On top of that, our E2E testsuite contains a couple of \[custom commands\]\(\#Shopware's-custom-commands\) specially for Shopware. Of course, you can also write own custom commands as well. A more detailed insight in this topic can be found in the \[PLACEHOLDER-LINK: Command reference\].
+Cypress provides a lot of commands to represent a variety of steps a user could do.
+On top of that, our E2E testsuite contains a couple of [custom commands](../../../../resources/code-reference/testing/e2e-custom-commands.md) specially for Shopware.
 
 ### Assertions
 

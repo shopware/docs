@@ -1,10 +1,15 @@
 # Use plugin configuration
 
-In our guide on how to [add a plugin configuration](https://github.com/shopware/docs/tree/5cf04ee8e12350673155bac5f6d6c3e886f1b184/guides/plugins/plugins/plugin-fundamentals/adding-plugin-configuration.md), you can learn how to provide this possibility to use configuration options in your plugins. This guide will aid you on how to then use this configuration in your plugin.
+In our guide on how to [add a plugin configuration](./add-plugin-configuration.md), you can learn how to provide this possibility to use configuration options in your plugins.
+This guide will aid you on how to then use this configuration in your plugin.
 
 ## Prerequisites
 
-In order to add a plugin configuration, you sure need to provide your plugin first. However, you won't learn to create a plugin in this guide. Head over to our \[PLACEHOLDER-LINK: Developer guide\] to create your plugin first. It is also recommended to know how to setup a \[PLACEHOLDER-LINK: plugin configuration\] in the first instance. In this example, the configurations will be read inside of a subscriber, so knowing \[PLACEHOLDER-LINK: Listening to events\] will also be helpful.
+In order to add a plugin configuration, you sure need to provide your plugin first.
+However, you won't learn to create a plugin in this guide.
+Head over to our [plugin base guide](../plugin-base-guide.md) to create your plugin first.
+It is also recommended to know how to setup a [plugin configuration](./add-plugin-configuration.md) in the first instance.
+In this example, the configurations will be read inside of a subscriber, so knowing the [Listening to events](./listening-to-events.md) guide will also be helpful.
 
 ## Overview
 

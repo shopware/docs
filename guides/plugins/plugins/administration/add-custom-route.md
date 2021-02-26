@@ -27,7 +27,11 @@ routes: {
 },
 ```
 
-Routes can be matched by name and path. This configuration results in this route's full name being `custom.module.overview` and the URL being `/overview` relative to the Administration's default URL. Usually you want to render your custom component here, which is explained \[PLACEHOLDER-LINK: Creating a component in the Administration\] here. But that is not all! Routes can have parameters, to then be handed to the components being rendered and much more. Learn more about what the Vue Router can do in its official \[Documentation\]\(\[[https://router.vuejs.org/guide/essentials/dynamic-matching.html\#reacting-to-params-changes](https://router.vuejs.org/guide/essentials/dynamic-matching.html#reacting-to-params-changes)\] \([https://router.vuejs.org/guide/essentials/dynamic-matching.html\#reacting-to-params-changes\)\](https://router.vuejs.org/guide/essentials/dynamic-matching.html#reacting-to-params-changes%29\)\).
+Routes can be matched by name and path. This configuration results in this route's full name being `custom.module.overview` and the URL being `/overview` relative to the Administration's default URL.
+Usually you want to render your custom component here, which is explained [here](./add-custom-component.md).
+But that is not all!
+Routes can have parameters, to then be handed to the components being rendered and much more.
+Learn more about what the Vue Router can do in its official [Documentation](https://router.vuejs.org/guide/essentials/dynamic-matching.html#reacting-to-params-changes).
 
 ## Meta data and dynamic parameters
 
@@ -81,8 +85,8 @@ The `bundle-name` is separated by dots instead of dashes here though. The second
 
 ## Next steps
 
-As you might have noticed, your route is just rendering a Shopware made component. However, here's a list of things you can do now:
+As you might have noticed, your route is just rendering a Shopware made component. 
+However, here's a list of things you can do now:
 
-* Creating a new administration component \[PLACEHOLDER-LINK: Creating administration module\]
-* Extending an existing administration component to display \[PLACEHOLDER-LINK: Plugin configuration\]
-
+* [Creating a new administration component](./add-custom-component.md)
+* [Customize an existing component](./customizing-components.md)

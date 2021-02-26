@@ -8,7 +8,8 @@ Here is an explanation on how this can be achieved. In this example, the product
 
 ## Prerequisites
 
-This guide requires you to already have a basic plugin running. If you don't know how to do this in the first place, have a look at our \[PLACEHOLDER-LINK: Plugin base guide\].
+This guide requires you to already have a basic plugin running.
+If you don't know how to do this in the first place, have a look at our [Plugin base guide](../plugin-base-guide.md).
 
 ### Entrypoint for injecting custom javascript
 
@@ -175,13 +176,8 @@ It simply creates a new card with a title, which only contains a 'Hello world!' 
 As you might have noticed, we are just adding a custom tab to the module. However, there's a lot more possible when it comes to extending the Adminsitration. You may want to try the following things:
 
 * If you want to learn about other possibilities to extend the Administration, we got you covered with other guides:
-  * \[PLACEHOLDER-LINK: Writing templates\]
-  * \[PLACEHOLDER-LINK: Add custom module\]
-  * \[PLACEHOLDER-LINK: Add menu entry\]
-  * \[PLACEHOLDER-LINK: Add custom routes\]
-* If you're working with own entities in the Administration, you may want to learn about how to integrate into the 
-
-  loading and saving steps of the entity. Please refer to \[PLACEHOLDER-LINK: How to save own entities\] for more
-
-  information on this topic.
+  * [Writing templates](writing-templates.md)
+  * [Add custom module](add-custom-module.md)
+  * [Add menu entry](./add-menu-entry.md)
+  * [Add custom routes](./add-custom-route.md)
 
