@@ -14,7 +14,7 @@ Identifier of a product. If it points to a "parent" product, it returns the chea
 
 **Body**
 
-[`Search Criteria`](../../../../guides/integrations-api/general-concepts/seach-criteria.md) | Criteria | optional
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/seach-criteria.md) | Criteria | optional  
 
 
 ## Returns
@@ -68,7 +68,7 @@ Identifier of a category.
 
 **Body**
 
-[`Search Criteria`](../../../../guides/integrations-api/general-concepts/seach-criteria.md) | Criteria | optional
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/seach-criteria.md) | Criteria | optional  
 
 
 ## Returns
@@ -103,7 +103,7 @@ Returns a product listing containing all products and additional fields to displ
 
 **Body**
 
-[`Search Criteria`](../../../../guides/integrations-api/general-concepts/seach-criteria.md) | Criteria | optional
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/seach-criteria.md) | Criteria | optional  
 
 
 ## Returns
@@ -141,7 +141,7 @@ Identifier of a product.
 
 **Body**
 
-`includes` | object | optional
+`includes` | object | optional  
 
 
 ## Returns
@@ -201,7 +201,7 @@ Returns a list of cross-selling groups for the given product including their res
 **`search`** | string | required  
 Term to search after.
 
-[`Search Criteria`](../../../../guides/integrations-api/general-concepts/seach-criteria.md) | Criteria | optional
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/seach-criteria.md) | Criteria | optional  
 
 
 ## Returns
@@ -255,7 +255,7 @@ Identifier of a product.
 
 **Body**
 
-[`Search Criteria`](../../../../guides/integrations-api/general-concepts/seach-criteria.md) | Criteria | optional
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/seach-criteria.md) | Criteria | optional  
 
 
 ## Returns
@@ -328,16 +328,16 @@ Identifier of a product.
 **`content`** | string | required  
 Identifier of a product.
 
-`id` | uuid | optional
+`id` | uuid | optional  
 Used for edits only. The review will be updated, if it's created by the [logged in](../../../../guides/integrations-api/store-api-guide/register-a-customer.md#logging-in) user.
 
-`name` | string | optional
+`name` | string | optional  
 Name of the reviewer. If not set, it defaults to the customer's first name.
 
-`email` | string | optional
+`email` | string | optional  
 Identifier of a product. If not set, it defaults to the customer's email
 
-`points` | float | optional
+`points` | float | optional  
 Identifier of a product.
 
 
