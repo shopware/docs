@@ -8,7 +8,7 @@
 
 **Path**
 
-**`navigationId`** | uuid | required
+**`navigationId`** | uuid | required  
 Identifier of a product. If it points to a "parent" product, it returns the cheapest variant of that product.
 
 
@@ -62,7 +62,7 @@ Returns a single product together with a configurator object that contains its v
 
 **Path**
 
-**`navigationId`** | uuid | required
+**`navigationId`** | uuid | required  
 Identifier of a category.
 
 
@@ -135,7 +135,7 @@ Returns a search result containing products, aggregations and pagination propert
 
 **Path**
 
-**`productId`** | uuid | required
+**`productId`** | uuid | required  
 Identifier of a product.
 
 
@@ -198,7 +198,7 @@ Returns a list of cross-selling groups for the given product including their res
 
 **Body**
 
-**`search`** | string | required
+**`search`** | string | required  
 Term to search after.
 
 [`Search Criteria`](../../../../guides/integrations-api/general-concepts/seach-criteria.md) | Criteria | optional
@@ -249,7 +249,7 @@ When you're using the /search-suggest endpoint, aggregations, currentFilters and
 
 **Path**
 
-**`productId`** | uuid | required
+**`productId`** | uuid | required  
 Identifier of a product.
 
 
@@ -311,21 +311,21 @@ Returns a search result containing all reviews for the given product.
 
 **Header**
 
-**`sw-context-token`** | string | required
+**`sw-context-token`** | string | required  
 Context token of a [logged in](../../../../guides/integrations-api/store-api-guide/register-a-customer.md#logging-in) user.
 
 **Path**
 
-**`productId`** | uuid | required
+**`productId`** | uuid | required  
 Identifier of a product.
 
 
 **Body**
 
-**`title`** | string | required
+**`title`** | string | required  
 Identifier of a product.
 
-**`content`** | string | required
+**`content`** | string | required  
 Identifier of a product.
 
 `id` | uuid | optional

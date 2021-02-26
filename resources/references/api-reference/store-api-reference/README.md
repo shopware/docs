@@ -32,7 +32,8 @@ See the below section for an exemplary endpoint description.‌
 
 **Path**‌
 
-**`navigationId`** \| uuid \| required Identifier of a product. If it points to a "parent" product, it returns the cheapest variant of that product.‌
+**`navigationId`** \| uuid \| required  
+Identifier of a product. If it points to a "parent" product, it returns the cheapest variant of that product.‌
 
 **Body**‌
 
