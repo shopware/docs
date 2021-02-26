@@ -42,6 +42,7 @@ The name of your app, that you provide in the manifest file, needs to match the 
 {% endhint %}
 
 The app can now be installed by running `bin/console app:install --activate MyExampleApp`.
+By default your app files will be [validated](app-base-guide.md#Validation) before installation, to skip the validation you may use the `--no-validate` flag.
 
 {% hint style="info" %}
 Apps get installed as inactive. You can activate them by passing the `--activate` flag to the `app:install` command or by executing the `app:activate` command after installation.
@@ -331,6 +332,27 @@ Example request body:
     "shopId":"wPNrYZgArBTL"
   }
 }
+```
+
+## Validation
+
+You can run the `app:validate` command to validate the configuration of your app. It will check for common errors, like:
+* non-matching app names
+* missing translations
+* unknown events registered as webhooks
+* missing permissions for webhooks
+* errors in the config.xml file, if it exists
+
+To validate all apps in your `custom/apps` folder run:
+
+```bash
+bin/console app:validate
+```
+
+Additionally, you can specify which app should be validated by providing the app name as an argument;
+
+```bash
+bin/console app:validate MyExampleApp
 ```
 
 ## API Docs
