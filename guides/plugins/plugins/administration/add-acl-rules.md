@@ -411,7 +411,6 @@ Module.register('your-plugin-module', {
 
 Now that our privilege setup is complete, we can start adding our customizing components in the administration or learn to protect API routes using ACL:
 
-* Creating a new administration component \[PLACEHOLDER-LINK: Creating administration component\]
-* Extending an existing administration component to display \[PLACEHOLDER-LINK: Plugin configuration\]
+* [Creating a new administration component](./add-custom-component.md)
 * How to protect API Routes with ACL \[PLACEHOLDER-LINK: Adding ACL rules to API Routes\]
 

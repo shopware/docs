@@ -34,7 +34,7 @@ Component.register('sw-dashboard-index', {
 });
 ```
 
-Learn more about them here: \[PLACEHOLDER-LINK: Creating administration component\]
+Learn more about them here: [Creating administration component](./add-custom-component.md)
 
 ## Module
 
@@ -48,7 +48,7 @@ const { Module } = Shopware;
 Module.register('your-module', {});
 ```
 
-Learn more about them here: \[PLACEHOLDER-LINK: Creating administration module\]
+Learn more about them here: [Creating administration module](./add-custom-module.md)
 
 ## A more general overview
 
@@ -77,6 +77,6 @@ We now have discussed the most commonly used parts of the `Shopware` object, but
 
 As you might have noticed, the `Shopware` object can be used in a lot of cases. See it in action here:
 
-* Creating a new administration component \[PLACEHOLDER-LINK: Creating administration component\]
-* Creating a new administration module \[PLACEHOLDER-LINK: Creating administration module\]
-* Internationalization in the Shopware 6 Administration \[PLACEHOLDER-LINK: Creating and using Snippets in the Shopware 6 Administration\]
+* [Creating administration component](./add-custom-component.md)
+* [Creating administration module](./add-custom-module.md)
+* [Internationalization in the Shopware 6 Administration](./adding-snippets.md)

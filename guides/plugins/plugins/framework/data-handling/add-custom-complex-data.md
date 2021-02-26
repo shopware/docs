@@ -6,9 +6,9 @@ Quite often, your plugin has to save data into a custom database table. Shopware
 
 ## Prerequisites
 
-This guide is built upon the \[PLACEHOLDER-LINK: plugin base guide\], but any plugin will work here. Just note that all examples are using the plugin mentioned above.
-
-In order to create a database table, you need to understand plugin migrations \[PLACEHOLDER-LINK: Plugin migrations\]. Also, you'll have to understand how the \[PLACEHOLDER-LINK: dependency injection\] works as well.
+This guide is built upon the [plugin base guide](../../plugin-base-guide.md), but any plugin will work here. Just note that all examples are using the plugin mentioned above.
+In order to create a database table, you need to understand plugin migrations [Plugin migrations](../../plugin-fundamentals/database-migrations.md).
+Also, you'll have to understand how the [dependency injection](../../plugin-fundamentals/dependency-injection.md) works as well.
 
 ## Creating the database
 
@@ -16,7 +16,8 @@ We'll start with creating a new database table. Make sure to always add your ind
 
 In this guide we'll name our table `swag_example`, you'll find this name a few more times in here, so make sure to remember that one.
 
-As already mentioned in the prerequisites, creating a database table is done via plugin migrations \[PLACEHOLDER-LINK: Plugin migrations\], head over to this guide to understand how this example works.
+As already mentioned in the prerequisites, creating a database table is done via plugin migrations [Plugin migrations](../../plugin-fundamentals/database-migrations.md),
+head over to this guide to understand how this example works.
 
 {% code title="<plugin root>/src/Migration/Migration1611664789Example.php" %}
 ```php
@@ -155,9 +156,13 @@ The `storageName` is written in snake\_case, while the `propertyName` must be wr
 
 Another thing to note is the `addFlags` call on the `IdField`. Those flags are like attributes to fields, such a required field being marked by using the `Required` flag.
 
-If you want to know more about the flags and how to use them, head over to our guide on how to use flags \[PLACEHOLDER-LINK: Use flags\].
+If you want to know more about the flags and how to use them, head over to our guide on how to use flags [Using flags](./using-flags.md).
 
-All that's left to do now, is to introduce your `ExampleDefinition` to Shopware by registering your class in your `services.xml` file and by using the `shopware.entity.definition` tag, because Shopware 6 is looking for definitions this way. If your plugin does not have a `services.xml` file yet or you don't know how that's done, head over to our guide about registering a custom service \[PLACEHOLDER-LINK: Add a custom class / service\] or our guide about the dependency injection \[PLACEHOLDER-LINK: Dependency injection\].
+All that's left to do now, is to introduce your `ExampleDefinition` to Shopware by registering your class in your `services.xml` file and by using the `shopware.entity.definition` tag,
+because Shopware is looking for definitions this way.
+If your plugin does not have a `services.xml` file yet or you don't know how that's done,
+head over to our guide about registering a custom service [Add a custom class / service](../../plugin-fundamentals/add-custom-service.md)
+or our guide about the [Dependency injection](../../plugin-fundamentals/dependency-injection.md).
 
 Here's the `services.xml` as it should look like:
 
@@ -177,9 +182,12 @@ Here's the `services.xml` as it should look like:
 
 Please note the tag for your definition and the respective `entity` attribute, which has to contain the technical name of your entity, which you provided in your entity definition. In this case this must be `swag_example`.
 
-And basically that's it already for your definition class. Theoretically you could start using your entity now by injecting the `swag_example.repository` service to other services and start working with the repository, e.g. to read data \[PLACEHOLDER-LINK: Reading data\] or to write data into your table \[PLACEHOLDER-LINK: Writing data\].
+And basically that's it already for your definition class.
+Theoretically you could start using your entity now by injecting the `swag_example.repository` service to other services and start working with the repository,
+e.g. to [read data](./reading-data.md) or to [write data](./writing-data.md).
 
-Yet, we highly recommend you to create a custom `Entity` class, as well as a custom `EntityCollection` class. This is not mandatory, but those will be replaced with generic classes otherwise.
+Yet, we highly recommend you to create a custom `Entity` class, as well as a custom `EntityCollection` class.
+This is not mandatory, but those will be replaced with generic classes otherwise.
 
 ### Entity class
 
@@ -322,5 +330,6 @@ That's it, your definition is now completely registered to Shopware 6! From here
 
 ## Next steps
 
-As a follow up, you might want to have a look at the documentation on how to \[PLACEHOLDER-LINK: translate custom entities\], e.g. for your `name` and `description` field. Also you might want to have a look on how to \[PLACEHOLDER-LINK: add associations\].
+As a follow up, you might want to have a look at the documentation on how to [translate custom entities](./add-data-translations.md),
+e.g. for your `name` and `description` field. Also you might want to have a look on how to [add data associations](./add-data-associations.md).
 

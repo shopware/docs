@@ -82,7 +82,6 @@
 
 * [Editions](products/editions/README.md)
   * [Community Edition](products/editions/community-edition/README.md)
-    * [Repository Structure](products/editions/community-edition/repository-structure.md)
   * [Professional Edition](products/editions/professional-edition.md)
   * [Enterprise Edition](products/editions/enterprise-edition/README.md)
     * [B2B Suite](products/editions/enterprise-edition/b2b-suite.md)

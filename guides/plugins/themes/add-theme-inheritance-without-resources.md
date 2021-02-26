@@ -31,6 +31,6 @@ This gives you the ability to use the Bootstrap SCSS without the Shopware Storef
 
 Here is a list of related topics which might be interesting for you.
 
-* Theme configuration [PLACEHOLDER-LINK: Theme configuration] 
-* Add SCSS Styling and JavaScript to a theme [PLACEHOLDER-LINK: Add SCSS Styling and JavaScript to a theme]
-* Add assets to a theme [PLACEHOLDER-LINK: Add assets to a theme]
+* [Theme configuration](./theme-configuration.md)
+* [Add SCSS Styling and JavaScript to a theme](./add-css-js-to-theme.md)
+* [Add assets to theme](./add-assets-to-theme.md)

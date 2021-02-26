@@ -11,5 +11,5 @@ Those variables are accessible in your theme and let you implement powerful feat
 
 Now that you know what you can do with themes, here are the next steps to learn how to create themes and what the differences are to plugins and apps.
 
-* Create a first Shopware Theme [PLACEHOLDER-LINK: Create a first theme]
-* Diffenences Plugins and Apps vs Themes [PLACEHOLDER-LINK: Diffenences Plugins and Apps vs Themes]
+* [Create a first Shopware theme](./create-a-theme.md)
+* [Diffenences plugins and apps vs themes](./differences-plugins-and-apps-vs-themes.md)

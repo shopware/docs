@@ -8,7 +8,7 @@ In this guide you'll learn how to inject services into other services. You can r
 
 In order to add your own custom service for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
 
-Furthermore, you need a working service. Therefore, you can refer to \[PLACEHOLDER-LINK: Adding a custom service\] guide.
+Furthermore, you need a working service. Therefore, you can refer to [Adding a custom service](./add-custom-service.md) guide.
 
 ## Injecting another services
 
@@ -66,5 +66,5 @@ class ExampleService
 
 ## Next steps
 
-Now that you know how to inject services into another, you might want to have a look at our guide about \[PLACEHOLDER-LINK: Reading data\]. Your newly gained knowledge will be of use in that guide.
-
+Now that you know how to inject services into another, you might want to have a look at our guide about [Reading data](../framework/data-handling/reading-data.md).
+Your newly gained knowledge will be of use in that guide.

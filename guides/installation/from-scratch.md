@@ -4,9 +4,9 @@ If it's impossible to get docker up and running on your development environment 
 
 ## Prerequisites
 
-Once you set up all the required packages mentioned in \[PLACEHOLDER-LINK: Installation overview\] there are two main goals you need to accomplish.
+Once you set up all the required packages mentioned in the [Installation overview](./overview.md), there are two main goals you need to accomplish.
 
-Please note that this guide is rather based on plugin development and contribution. If you need a template for full composer based shop projects, please refer to the \[PLACEHOLDER-LINK: Production template\].
+Please note that this guide is rather based on plugin development and contribution. If you need a template for full composer based shop projects, please refer to the [production template](https://github.com/shopware/production).
 
 ## Setting up your webserver
 
@@ -54,7 +54,7 @@ You also need to change the  tag reference right below the DocumentRoot line. Th
 
 ## Setting up Shopware
 
-Before you're able to set up Shopware, you need to checkout our Shopware's repositories. This is explained in the "Preparatory steps" paragraph of the \[PLACEHOLDER-LINK: Installation overview\] guide.
+Before you're able to set up Shopware, you need to checkout our Shopware's repositories. This is explained in the "Preparatory steps" paragraph of the [Installation overview](./overview.md).
 
 ### Starting Shopware installation
 
@@ -88,5 +88,5 @@ Please note that this will reset your database.
 
 ## Next steps
 
-You're all set now! Now that you got a running Shopware installation, why not start with your first very own plugin? Please refer to \[PLACEHOLDER-LINK: Plugin base guide\] for a nice starting point.
+You're all set now! Now that you got a running Shopware installation, why not start with your first very own plugin? Please refer to the [Plugin base guide](../plugins/plugins/plugin-base-guide.md) for a nice starting point.
 

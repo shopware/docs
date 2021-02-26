@@ -6,7 +6,8 @@ If you have to customize the logic of some core JavaScript storefront plugins yo
 
 ## Prerequisites
 
-While this is not mandatory, having read the guide about adding custom javascript plugins\[PLACEHOLDER-LINK: Add custom javascript\] in the first place might help you understand this guide a bit further. Other than that, this guide just requires you to have a running plugin installed, e.g. our plugin from the plugin base guide\[PLACEHOLDER-LINK: Plugin base guide\].
+While this is not mandatory, having read the guide about [adding custom javascript plugins](add-custom-javascript.md) in the first place might help you understand this guide a bit further.
+Other than that, this guide just requires you to have a running plugin installed, e.g. our plugin from the [plugin base guide](../plugin-base-guide.md).
 
 ## Extending an existing JavaScript plugin
 
@@ -105,5 +106,5 @@ To see your changes you have to build the storefront. Use the `/psh.phar storefr
 
 ## Next steps
 
-Sometimes you don't have to actually override a javascript plugin, since sometimes you can simply use an event instead. Learn how this is done in our guide about \[PLACEHOLDER-LINK: Listen to events\].
-
+Sometimes you don't have to actually override a javascript plugin, since sometimes you can simply use an event instead.
+Learn how this is done in our guide about [listening to events](../plugin-fundamentals/listening-to-events.md).

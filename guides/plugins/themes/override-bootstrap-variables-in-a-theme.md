@@ -10,7 +10,7 @@ This guide will show how you can override those SCSS variables.
 ## Prerequisites
 
 All you need for this guide is a running Shopware 6 instance and full access to both the files, as well as the command line. You also need to have an installed and activated theme which is assigned to a sales channel.
-Checkout the [PLACEHOLDER-LINK: Create a first theme] guide if you have not yet a working theme setup.
+Checkout the [Create a first theme](./create-a-theme.md) guide if you have not yet a working theme setup.
 
 ## Override default SCSS variables
 
@@ -86,6 +86,6 @@ When running `./psh.phar storefront:hot-proxy` SCSS variables will be injected d
 
 Now that you know how to override Boostrap variables, here is a list of related topics which might be interesting for you.
 
-* Theme configuration [PLACEHOLDER-LINK: Theme configuration] 
-* Add SCSS Styling and JavaScript to a Theme [PLACEHOLDER-LINK: Add SCSS Styling and JavaScript to a Theme] 
-* Add assets to a theme [PLACEHOLDER-LINK: Add assets to a Theme]
+* [Theme configuration](./theme-configuration.md) 
+* [Add SCSS Styling and JavaScript to a theme](./add-css-js-to-theme.md) 
+* [Add assets to a theme](./add-assets-to-theme.md)

@@ -8,9 +8,10 @@ All events are nested into one container event so that your subscriber should on
 
 ## Prerequisites
 
-This guide is built upon the [PLACEHOLDER-LINK: plugin base guide], but any plugin will work here. Just note that all examples are using the plugin mentioned above.
+This guide is built upon the [plugin base guide](../../plugin-base-guide.md), but any plugin will work here.
+Just note that all examples are using the plugin mentioned above.
 
-Furthermore you should have a look at our [PLACEHOLDER-LINK: Listening to events] guide since we are subscribing to events in this guide.
+Furthermore you should have a look at our [Listening to events](../../plugin-fundamentals/listening-to-events.md) guide since we are subscribing to events in this guide.
 
 ## Event overview
 
@@ -124,7 +125,8 @@ class ProductSubscriber implements EventSubscriberInterface
 ```
 {% endcode %}
 
-After creating the event subscriber, you have to register it. If you don't know how that's done, head over to our [PLACEHOLDER-LINK: Listening to events] guide.
+After creating the event subscriber, you have to register it.
+If you don't know how that's done, head over to our guide about [Listening to events](../../plugin-fundamentals/listening-to-events.md).
 
 Here's our `services.xml`:
 
@@ -147,4 +149,5 @@ Here's our `services.xml`:
 
 ## Next Steps
 
-Now that you know, how to use database events you may want to extend it with some validations, for this head over to our [PLACEHOLDER-LINK: Add a validator] guide.
+Now that you know, how to use database events you may want to extend it with some validations,
+for this head over to our [PLACEHOLDER-LINK: Add a validator] guide.

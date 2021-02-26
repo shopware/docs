@@ -10,7 +10,9 @@ The main requirement here is to have a `services.xml` file loaded in your plugin
 
 ## Registering your command
 
-From here on, everything works exactly like in Symfony itself. Commands are recognised by Shopware, once they're tagged with the `console.command` tag in the \[PLACEHOLDER-LINK: dependency injection container\]. So to register a new command, just add it to your plugin's `services.xml` and specify the `console.command` tag:
+From here on, everything works exactly like in Symfony itself.
+Commands are recognised by Shopware, once they're tagged with the `console.command` tag in the [dependency injection](../plugin-fundamentals/dependency-injection.md) container.
+So to register a new command, just add it to your plugin's `services.xml` and specify the `console.command` tag:
 
 ```markup
 <services>
@@ -124,7 +126,9 @@ Each command usually has a namespace like `cache`, so to clear the cache you wou
 
 ## Next steps
 
-In order to really do something with your command, you will most likely need other services. Head over to our guide about \[PLACEHOLDER-LINK: injecting a service\] into another to understand how that's done.
+In order to really do something with your command, you will most likely need other services.
+Head over to our guide about [injecting a service](../plugin-fundamentals/dependency-injection.md) into another to understand how that's done.
 
-Sometimes the question comes up how to get a context into your command. To learn about this, please refer to the guide on \[PLACEHOLDER-LINK: how to get and use context\].
+Sometimes the question comes up how to get a context into your command.
+To learn about this, please refer to the guide on [PLACEHOLDER-LINK: how to get and use context].
 

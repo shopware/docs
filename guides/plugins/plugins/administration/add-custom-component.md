@@ -8,11 +8,11 @@ In this example, you will create a component, that will print a 'Hello world!' e
 
 ## Prerequisites
 
-This guide **does not** explain how to create a new plugin for Shopware 6. Head over to our \[PLACEHOLDER-LINK: Plugin base guide\] to learn creating a plugin at first.
+This guide **does not** explain how to create a new plugin for Shopware 6. Head over to our [Plugin base guide](../plugin-base-guide.md) to learn creating a plugin at first.
 
-If you want to work with entities in your custom component or page, it might be useful to take a look at \[PLACEHOLDER-LINK: Create custom entity\] guide first.
+If you want to work with entities in your custom component or page, it might be useful to take a look at [Create custom entity](../framework/data-handling/add-custom-complex-data.md) guide first.
 
-Especially if you want to add a new page for an own module, you should consider to look at the process on how to \[PLACEHOLDER-LINK: Add custom module\] first. This way, you're able to start building your own module in the right order.
+Especially if you want to add a new page for an own module, you should consider to look at the process on how to [Add custom module](./add-custom-module.md) first. This way, you're able to start building your own module in the right order.
 
 ### Injecting into the administration
 
@@ -124,8 +124,7 @@ Your minified javascript file will now be loaded in production environments.
 
 As you might have noticed, we are just adding a custom component to the module. However, there's a lot more possible when it comes to extending the Administration. In addition, you surely want to customize your page or component even more. You may want to try the following things:
 
-* \[PLACEHOLDER-LINK: Customizing contents\]
-* \[PLACEHOLDER-LINK: Add custom input fields\]
-* \[PLACEHOLDER-LINK: Add menu entry\]
-* \[PLACEHOLDER-LINK: Add custom routes\]
+* [Add custom input fields](./add-custom-field.md)
+* [Add menu entry](./add-menu-entry.md)
+* [Add custom routes](./add-custom-route.md)
 

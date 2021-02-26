@@ -5,7 +5,7 @@
 Plugins in Shopware are essentially an extension of [Symfony bundles](https://symfony.com/doc/current/bundles.html#creating-a-bundle). Such bundles and plugins can provide their own resources like assets, controllers, services or tests, which you'll learn in the next guides.  
 A plugin is the main way to extend your Shopware 6 instance programmatically.
 
-This guide will teach you the basics of creating your very first plugin from scratch, which then can be installed to your Shopware 6 instance. A guide to install Shopware 6 in the first place can be found here. \[PLACEHOLDER-LINK: Shopware 6 Installation Guide\]
+This guide will teach you the basics of creating your very first plugin from scratch, which then can be installed to your Shopware 6 instance. A guide to install Shopware 6 in the first place can be found [here](../../installation/overview.md).
 
 ## Prerequisites
 
@@ -24,7 +24,7 @@ For this example guide we'll use the plugin name **SwagBasicExample.**
 
 {% hint style="info" %}
 Using a prefix for your plugin name is not just a convention we'd recommend, but a hard requirement if you want to publish your plugin in the [Shopware Community Store](https://store.shopware.com/en).  
-You can find more information regarding publishing your plugin in the Store here\[PLACEHOLDER-LINK: Publishing your plugin\].
+You can find more information regarding publishing your plugin in the Store [here](../../../resources/guidelines/publishing-extensions/publishing.md).
 {% endhint %}
 
 ### **Create the plugin**
@@ -175,8 +175,8 @@ Head over to the plugin base class reference, to find out more about the plugin 
 As you might have noticed, your plugin is not doing anything right now.  
 But here's a list of things you can do now:
 
-* Creating your first Storefront page \[PLACEHOLDER-LINK: Creating a page\]
-* Creating a new administration module \[PLACEHOLDER-LINK: Creating administration module\]
-* Listen to events \[PLACEHOLDER-LINK: Listen to events\]
-* Add a plugin configuration \[PLACEHOLDER-LINK: Plugin configuration\]
+* [Creating your first Storefront page](./storefront/add-custom-page.md)
+* [Creating a new administration module](./administration/add-custom-module.md)
+* [Listen to events](./plugin-fundamentals/listening-to-events.md)
+* [Add a plugin configuration](./plugin-fundamentals/add-plugin-configuration.md)
 

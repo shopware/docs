@@ -12,7 +12,7 @@ Shopware.Module.register('swag-plugin', {
 ```
 {% endcode %}
 
-For details on this module configuration, please refer to \[PLACEHOLDER-LINK: Adding a custom module\].
+For details on this module configuration, please refer to the guide about [adding a custom module](./add-custom-module.md).
 
 In order to create your own menu entry, you need to use the `navigation` key: It takes an array of objects, each one configuring a route connected to your module.
 

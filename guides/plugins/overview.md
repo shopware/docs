@@ -44,7 +44,7 @@ A theme lets you perform the tasks listed below. \(Note, that a plugin can also 
 
 Technically, plugins and themes are very similar and overlap in most of their logic. However some particular aspects are handled differently, such as template and style priority or activation of the same. Once plugins are installed and activated, their styles and templates are immediately applied. When a theme is installed, it hast to be selected within the theme manager first.
 
-To start your first theme, follow our Theme Base Guide \[PLACEHOLDER-LINK: Theme Base Guide\]
+To start your first theme, follow our [Theme Base Guide](./themes/theme-base-guide.md).
 
 ### Apps
 
