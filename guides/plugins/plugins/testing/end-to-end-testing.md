@@ -120,7 +120,7 @@ Please keep in mind that we use `Administration` as default app environment. If 
 ./psh.phar e2e:open --CYPRESS_ENV=Storefront
 ```
 
-To see a complete overview on all psh scripts for e2e tests, feel free to refer to our [e2e psh command reference](../../../../resources/code-reference/testing/e2e-psh-commands.md).
+To see a complete overview on all psh scripts for e2e tests, feel free to refer to our [e2e psh command reference](../../../../resources/references/testing-reference/e2e-psh-commands.md).
 
 ## Running tests in plugins
 
@@ -246,7 +246,7 @@ it('test something', () => {
 You can chain commands by passing its return value to the next one. These commands may contain extra steps to take, e.g. a `click` or `type` operation.
 
 Cypress provides a lot of commands to represent a variety of steps a user could do.
-On top of that, our E2E testsuite contains a couple of [custom commands](../../../../resources/code-reference/testing/e2e-custom-commands.md) specially for Shopware.
+On top of that, our E2E testsuite contains a couple of [custom commands](/resources/references/testing-reference/e2e-custom-commands.md) specially for Shopware.
 
 ### Assertions
 
