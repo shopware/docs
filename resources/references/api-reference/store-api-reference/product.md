@@ -5,17 +5,14 @@
 
 ## Parameters
 
-
 **Path**
 
 **`navigationId`** | uuid | required  
 Identifier of a product. If it points to a "parent" product, it returns the cheapest variant of that product.
 
-
 **Body**
 
 [`Search Criteria`](../../../../guides/integrations-api/general-concepts/seach-criteria.md) | Criteria | optional  
-
 
 ## Returns
 
@@ -59,17 +56,14 @@ Returns a single product together with a configurator object that contains its v
 
 ## Parameters
 
-
 **Path**
 
 **`navigationId`** | uuid | required  
 Identifier of a category.
 
-
 **Body**
 
 [`Search Criteria`](../../../../guides/integrations-api/general-concepts/seach-criteria.md) | Criteria | optional  
-
 
 ## Returns
 
@@ -100,11 +94,9 @@ Returns a product listing containing all products and additional fields to displ
 
 ## Parameters
 
-
 **Body**
 
 [`Search Criteria`](../../../../guides/integrations-api/general-concepts/seach-criteria.md) | Criteria | optional  
-
 
 ## Returns
 
@@ -125,24 +117,20 @@ Returns a search result containing products, aggregations and pagination propert
 {% endtab %}
 {% endtabs %}
 
-
 # Fetch cross-selling groups of a product
 
 `POST /product/{productId}/cross-selling` | ProductCrossSellingRoute
 
 ## Parameters
 
-
 **Path**
 
 **`productId`** | uuid | required  
 Identifier of a product.
 
-
 **Body**
 
-`includes` | object | optional  
-
+[`includes`](../../../../guides/integrations-api/general-concepts/seach-criteria.md#includes-apialias) | object | optional  
 
 ## Returns
 
@@ -186,7 +174,6 @@ Returns a list of cross-selling groups for the given product including their res
 {% endtab %}
 {% endtabs %}
 
-
 # Search for products
 
 `POST /search` | ProductSearchRoute
@@ -195,14 +182,12 @@ Returns a list of cross-selling groups for the given product including their res
 
 ## Parameters
 
-
 **Body**
 
 **`search`** | string | required  
 Term to search after.
 
 [`Search Criteria`](../../../../guides/integrations-api/general-concepts/seach-criteria.md) | Criteria | optional  
-
 
 ## Returns
 
@@ -239,24 +224,20 @@ When you're using the /search-suggest endpoint, aggregations, currentFilters and
 {% endtab %}
 {% endtabs %}
 
-
 # Fetch product reviews
 
 `POST /product/{productId}/reviews` | ProductReviewRoute
 
 ## Parameters
 
-
 **Path**
 
 **`productId`** | uuid | required  
 Identifier of a product.
 
-
 **Body**
 
 [`Search Criteria`](../../../../guides/integrations-api/general-concepts/seach-criteria.md) | Criteria | optional  
-
 
 ## Returns
 
@@ -301,13 +282,11 @@ Returns a search result containing all reviews for the given product.
 {% endtab %}
 {% endtabs %}
 
-
 # Save product reviews
 
 `POST /product/{productId}/review` | ProductReviewSaveRoute
 
 ## Parameters
-
 
 **Header**
 
@@ -318,7 +297,6 @@ Context token of a [logged in](../../../../guides/integrations-api/store-api-gui
 
 **`productId`** | uuid | required  
 Identifier of a product.
-
 
 **Body**
 
@@ -340,11 +318,9 @@ Identifier of a product. If not set, it defaults to the customer's email
 `points` | float | optional  
 Identifier of a product.
 
-
 ## Returns
 
 Returns an empty when the response was created or modified.
-
 
 {% tabs %}
 {% tab title="204 No Content" %}
