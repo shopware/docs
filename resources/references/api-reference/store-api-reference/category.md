@@ -22,6 +22,8 @@ Slot ids that should be resolved exclusively. Separate multiple slot ids using a
 
 Returns a category object.
 
+{% tabs %}
+{% tab title="200 OK" %}
 ```javascript
 {
   "parentId": "845170a6041f4b76bad7bd2de47b7aae",
@@ -67,6 +69,8 @@ Returns a category object.
   "apiAlias": "category"
 }
 ```
+{% endtab %}
+{% endtabs %}
 
 # Fetch a list of categories by criteria
 
@@ -84,6 +88,8 @@ Perform a filtered search for categories.
 
 Returns a search result containing categories, aggregations and pagination properties.
 
+{% tabs %}
+{% tab title="200 OK" %}
 ```javascript
 {
   "total": 1,
@@ -94,6 +100,8 @@ Returns a search result containing categories, aggregations and pagination prope
   "apiAlias": "dal_entity_search_result"
 }
 ```
+{% endtab %}
+{% endtabs %}
 
 # Fetch a navigation menu
 
@@ -142,6 +150,8 @@ Determines the depth of fetched navigation levels.  Default is `2`.
 
 Returns a collection of categories.
 
+{% tabs %}
+{% tab title="200 OK" %}
 ```javascript
 [
   {
@@ -193,3 +203,5 @@ Returns a collection of categories.
   { ... }
 ]
 ```
+{% endtab %}
+{% endtabs %}
