@@ -1,6 +1,6 @@
 # App Base Guide
 
-This guide will walk you through the process of adding your own app to Shopware and configuring it, so it is able to communicate to your external backend server. If your are not familiar with the app system, please take a look at [the concept](../../../concepts/extensions/apps.md) first.
+This guide will walk you through the process of adding your own app to Shopware and configuring it, so it is able to communicate to your external backend server. If your are not familiar with the app system, please take a look at [the concept](../../../concepts/extensions/apps-concept.md) first.
 
 ## File Structure
 

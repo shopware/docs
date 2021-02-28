@@ -11,7 +11,7 @@ You can do nearly *everything* with plugins, like "new User Provider" or "custom
 
 {% hint style="warning" %}
 Plugins are not compatible with Shopware Cloud!
-If you want to extend Showpare Cloud you need an [App](apps.md)
+If you want to extend Showpare Cloud you need an [App](apps-concept.md)
 {% endhint %}
 
 Learn more
