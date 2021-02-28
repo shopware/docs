@@ -15,7 +15,7 @@ find answers to the following questions:
 ## Introduction
 
 The Administration component is a Symfony bundle which contains a Single Page Application (SPA) written in JavaScript.
-It conceptually sits on top of our [Core](./core.md) - similar to the [Storefront](./storefront.md) component. The SPA
+It conceptually sits on top of our [Core](core-concept.md) - similar to the [Storefront](storefront-concept.md) component. The SPA
 itself provides a rich user interface on top of a REST-API based communication. It communicates with the Core component
 throughout the Admin API & is an Interaction Oriented System following the example of the web components patterns -
 albeit through [Vue.js](https://vuejs.org/). Similar to the frameworks being used in the Storefront component, the

@@ -20,7 +20,7 @@ See the below section for an exemplary endpoint description.‌
 
 ## Example endpoint <a id="example-endpoint"></a>
 
-> The first line contains the HTTP method, the endpoint URL relative to the [base route](../../../../guides/integrations-api/store-api-guide/README.md#general) and the name of the corresponding route class within the [shopware/core](../../../../concepts/framework/architecture/core.md) package.
+> The first line contains the HTTP method, the endpoint URL relative to the [base route](../../../../guides/integrations-api/store-api-guide/README.md#general) and the name of the corresponding route class within the [shopware/core](../../../../concepts/framework/architecture/core-concept.md) package.
 
 `POST /product/{productId}` \| ProductDetailRoute
 
