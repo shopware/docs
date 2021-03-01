@@ -641,3 +641,709 @@ POST /api/v3/search/product
 The `stats` aggregation makes it possible to calculate several values at once for a field. This includes the
 previous `max`, `min`, `avg` and `sum` aggregation. The following SQL statement is executed in the
 background: `SELECT MAX(price), MIN(price), AVG(price), SUM(price)`.
+
+{% tabs %} {% tab title="PHP" %}
+
+```php
+$criteria = new Criteria();
+$criteria->setLimit(1);
+
+$criteria->addAggregation(
+	new StatsAggregation('stats-price', 'price')
+);
+
+$result = $repository->search($criteria, $context);
+
+/** @var StatsResult $aggregation */
+$aggregation = $result->getAggregations()->get('stats-price');
+
+$aggregation->getSum();
+$aggregation->getMax();
+$aggregation->getAvg();
+$aggregation->getMin();
+```
+
+{% endtab %} {% tab title="API" %}
+
+```text
+POST /api/v3/search/product
+{
+	"limit": 1,
+	"includes": {
+		"product": ["id", "name"]
+	},
+	"aggregations": [
+		{  
+			"name": "stats-price",
+			"type": "stats",
+			"field": "price"
+		}
+	]
+}
+
+{
+	"total": 1,
+	"data": [
+		{
+			"name": "Gorgeous Cotton Magellanic Penguin",
+			"id": "0402ca6a746b41458fd000124c308cc8",
+			"apiAlias": "product"
+		}
+	],
+	"aggregations": {
+		"stats-price": {
+			"min": "5",
+			"max": "979",
+			"avg": 505.73333333333335,
+			"sum": 30344,
+			"extensions": []
+		}
+	}
+}
+```
+
+{% endtab %} {% endtabs %}
+
+### Terms aggregation
+
+The `terms` aggregation allows you to determine the values of a field. The result contains each value once and how often
+this value occurs in the result. The `terms` aggregation also supports the following parameters:
+
+- `limit` - Defines a maximum number of entries to be returned (default: zero)
+- `sort` - Defines the order of the entries. By default the following is not sorted
+- `aggregation` - Enables you to calculate further aggregations for each key
+
+The following SQL statement is executed in the
+background: `SELECT DISTINCT(manufacturerId) as key, COUNT(manufacturerId) as count`
+
+{% tabs %} {% tab title="PHP" %}
+
+```php
+$criteria = new Criteria();
+$criteria->setLimit(1);
+
+$criteria->addAggregation(
+	new TermsAggregation(
+		'manufacturer-ids',
+		'manufacturerId',
+		10,
+		new FieldSorting('manufacturer.name', FieldSorting::DESCENDING)
+	)
+);
+
+$result = $repository->search($criteria, $context);
+
+/** @var TermsResult $aggregation */
+$aggregation = $result->getAggregations()->get('manufacturer-ids');
+```
+
+{% endtab %} {% tab title="API" %}
+
+```text
+POST /api/v3/search/product
+{
+	"limit": 1,
+	"includes": {
+		"product": ["id", "name"]
+	},
+	"aggregations": [
+		{
+			"name": "manufacturer-ids",
+			"type": "terms",
+			"limit": 3,
+			"sort": { "field": "manufacturer.name", "order": "DESC" },
+			"field": "manufacturerId"
+		}
+	]
+}
+
+{
+	"total": 1,
+	"data": [
+		{
+			"name": "Gorgeous Cotton Magellanic Penguin",
+			"id": "0402ca6a746b41458fd000124c308cc8",
+			"apiAlias": "product"
+		}
+	],
+	"aggregations": {
+		"manufacturer-ids": {
+			"buckets": [
+				{
+					"key": "7af1534f96604744a4bc16e713550107",
+					"count": 1,
+					"extensions": []
+				},
+				{
+					"key": "32d5c55f960b409ab209fe25c88a6676",
+					"count": 1,
+					"extensions": []
+				},
+				{
+					"key": "935ceec182714a8da48227d4772628a4",
+					"count": 1,
+					"extensions": []
+				}
+			],
+			"extensions": []
+		}
+	}
+}
+```
+
+{% endtab %} {% endtabs %}
+
+### Filter aggregation
+
+Unlike all other aggregations, the `filter` aggregation does not determine any result, it cannot be used alone. It is
+only used to further filter the result of an aggregation in a `Criteria`. Filters defined inside the `filter` property
+of this aggregation type, are only used when calculating this aggregation. The filters have no effect on other
+aggregations or on the result of the search.
+
+{% tabs %} {% tab title="PHP" %}
+
+```php
+$criteria = new Criteria();
+$criteria->setLimit(1);
+
+$criteria->addAggregation(
+	new FilterAggregation(
+		'active-price-avg',
+		new AvgAggregation('avg-price', 'price'),
+		[
+			new EqualsFilter('active', true)
+		]
+	)
+);
+
+$result = $repository->search($criteria, $context);
+
+/** @var AvgResult $aggregation */
+$aggregation = $result->getAggregations()->get('avg-price');
+
+$aggregation->getAvg();
+```
+
+{% endtab %} {% tab title="API" %}
+
+```text
+POST /api/v3/search/product
+{
+	"limit": 1,
+	"includes": {
+		"product": ["id", "name"]
+	},
+	"aggregations": [
+	   {
+			"name": "active-price-avg",
+			"type": "filter",
+			"filter": [
+				{ 
+					"type": "equals", 
+					"field": "active", 
+					"value": true
+				}
+			],
+			"aggregation": {  
+				"name": "avg-price",
+				"type": "avg",
+				"field": "price"
+			}
+		}
+	]
+}
+
+{
+	"total": 1,
+	"data": [
+		{
+			"name": "Awesome Granite HelpingHand",
+			"id": "000bba26e2044b98a3ee4a84b03f9551",
+			"apiAlias": "product"
+		}
+	],
+	"aggregations": {
+		"avg-price": {
+			"avg": 517.5898195488719,
+			"extensions": []
+		}
+	}
+}
+```
+
+{% endtab %} {% endtabs %}
+
+### Entity aggregation
+
+The `entity` aggregation is similar to the `terms` aggregation, it determines the unique values for a field. The
+aggregation then uses the determined keys to load the defined entity. The keys are used here as IDs.
+
+{% tabs %} {% tab title="PHP" %}
+
+```php
+$criteria = new Criteria();
+$criteria->setLimit(1);
+
+$criteria->addAggregation(
+	new EntityAggregation('manufacturers', 'manufacturerId', 'product_manufacturer')
+);
+
+$result = $repository->search($criteria, $context);
+
+/** @var EntityResult $aggregation */
+$aggregation = $result->getAggregations()->get('manufacturers');
+
+/** @var ProductManufacturerEntity $entity */
+foreach ($aggregation->getEntities() as $entity) {
+	$entity->getName();
+}
+```
+
+{% endtab %} {% tab title="API" %}
+
+```text
+POST /api/v3/search/product
+{
+	"limit": 1,
+	"includes": {
+		"product": ["id", "name"],
+		"product_manufacturer": ["id", "name"]
+	},
+	"aggregations": [
+		{
+			"name": "manufacturers",
+			"type": "entity",
+			"definition": "product_manufacturer",
+			"field": "manufacturerId"
+		}
+	]
+}
+
+{
+	"total": 1,
+	"data": [
+		{
+			"name": "Gorgeous Cotton Magellanic Penguin",
+			"id": "0402ca6a746b41458fd000124c308cc8",
+			"apiAlias": "product"
+		}
+	],
+	"aggregations": {
+		"manufacturers": {
+			"entities": [
+				{
+					"name": "Kris, Thiel and Tillman",
+					"id": "0055fe4c16ac4d34a57b460d225682cb",
+					"apiAlias": "product_manufacturer"
+				},
+				{
+					"name": "Beier Group",
+					"id": "073e354c7a854287ac8c084cd70ebf90",
+					"apiAlias": "product_manufacturer"
+				}
+			],
+			"apiAlias": "manufacturers_aggregation"
+		}
+	}
+}
+```
+
+{% endtab %} {% endtabs %}
+
+### Histogram aggregation
+
+The `histogram` aggregation is used as soon as the data to be determined refers to a date field. With the histogram
+aggregation one of the following date intervals can be given: `minute`, `hour`, `day`, `week`, `month`, `quarter`
+, `year`, `day`. This interval groups the result and calculates the corresponding count of hits.
+
+{% tabs %} {% tab title="PHP" %}
+
+```php
+$criteria = new Criteria();
+$criteria->setLimit(1);
+
+$criteria->addAggregation(
+	new DateHistogramAggregation(
+		'release-dates',
+		'releaseDate',
+		DateHistogramAggregation::PER_MONTH
+	)
+);
+
+$result = $repository->search($criteria, $context);
+
+/** @var DateHistogramResult $aggregation */
+$aggregation = $result->getAggregations()->get('release-dates');
+
+foreach ($aggregation->getBuckets() as $bucket) {
+	$bucket->getKey();
+	$bucket->getCount();
+}
+```
+
+{% endtab %} {% tab title="API" %}
+
+```text
+POST /api/v3/search/product
+{
+	"limit": 1,
+	"includes": {
+		"product": ["id", "name"]
+	},
+	"aggregations": [
+		{
+			"name": "release-dates",
+			"type": "histogram",
+			"field": "releaseDate",
+			"interval": "month"
+		}
+	]
+}
+
+{
+	"total": 1,
+	"data": [
+		{
+			"name": "Gorgeous Cotton Magellanic Penguin",
+			"id": "0402ca6a746b41458fd000124c308cc8",
+			"apiAlias": "product"
+		}
+	],
+	"aggregations": {
+		"release-dates": {
+			"buckets": [
+				{
+					"key": "2020-04-01 00:00:00",
+					"count": 50,
+					"extensions": []
+				},
+				{
+					"key": "2020-03-01 00:00:00",
+					"count": 4,
+					"extensions": []
+				},
+				{
+					"key": "2020-04-01 00:00:00",
+					"count": 6,
+					"extensions": []
+				}
+			],
+			"apiAlias": "release-dates_aggregation"
+		}
+	}
+}
+```
+
+{% endtab %} {% endtabs %}
+
+### Nesting aggregations
+
+A metric aggregation calculates the value for a specific field. This can be a total or, for example, a minimum or
+maximum value of the field. Bucket aggregations are different. This determines how often a value occurs in a search
+result and returns it together with the count. The special thing about bucket aggregation is that it can contain further
+aggregations. This allows the API to enable complex queries like for example:
+
+- Calculate the number of manufacturers per category that have a price over 500 Euro.
+
+{% tabs %} {% tab title="PHP" %}
+
+```php
+$criteria = new Criteria();
+$criteria->setLimit(1);
+
+$criteria->addAggregation(
+	new FilterAggregation(
+		'my-filter',
+		new TermsAggregation(
+			'per-category',
+			'categories.id',
+			null,
+			null,
+			new TermsAggregation(
+				'manufacturer-ids',
+				'manufacturerId'
+			)
+		),
+		[
+			new RangeFilter('price', ['gte' => 500])
+		]
+	)
+);
+
+$result = $repository->search($criteria, $context);
+
+/** @var TermsResult $aggregation */
+$aggregation = $result->getAggregations()->get('per-category');
+
+foreach ($aggregation->getBuckets() as $bucket) {
+	$categoryId = $bucket->getKey();
+
+	/** @var TermsResult $manufacturers */
+	$manufacturers = $bucket->getResult();
+
+	foreach ($manufacturers->getBuckets() as $nestedBucket) {
+		$manufacturerId = $nestedBucket->getKey();
+	}
+}
+```
+
+{% endtab %} {% tab title="API" %}
+
+```text
+POST /api/v3/search/product
+{
+	"limit": 1,
+	"includes": {
+		"product": ["id", "name"]
+	},
+	"aggregations": [
+		{
+			"name": "my-filter",
+			"type": "filter",
+			"filter": [
+				{ 
+					"type": "range", 
+					"field": "price", 
+					"parameters": {
+						"gte": 500
+					}
+				}
+			],
+			"aggregation": {  
+				"name": "per-category",
+				"type": "terms",
+				"field": "categories.id",
+				"aggregation": {
+					"name": "manufacturer-ids",
+					"type": "terms", 
+					"field": "manufacturerId"
+				}
+			}
+		}
+	]
+}
+
+{
+	"total": 1,
+	"data": [
+		{
+			"name": "Gorgeous Cotton Magellanic Penguin",
+			"id": "0402ca6a746b41458fd000124c308cc8",
+			"apiAlias": "product"
+		}
+	],
+	"aggregations": {
+		"per-category": {
+			"buckets": [
+				{
+					"key": "25fb912226fa48c2a5c9f4788f1f552d",
+					"count": 1,
+					"extensions": [],
+					"manufacturer-ids": {
+						"buckets": [
+							{
+								"key": "715901f2b5864181a777d1a1b912d9a2",
+								"count": 1,
+								"extensions": []
+							}
+						],
+						"extensions": []
+					}
+				},
+				{
+					"key": "59b38c960597446e8c7bb76593ff7043",
+					"count": 2,
+					"extensions": [],
+					"manufacturer-ids": {
+						"buckets": [
+							{
+								"key": "98e53a711d8549059325da044da2951d",
+								"count": 1,
+								"extensions": []
+							},
+							{
+								"key": "ee8b37324c5a4c32962367146be4d7b4",
+								"count": 1,
+								"extensions": []
+							}
+						],
+						"extensions": []
+					}
+				}
+			],
+			"apiAlias": "per-category_aggregation"
+		}
+	}
+}
+```
+
+{% endtab %} {% endtabs %}
+
+## Enriching results with associations
+
+Associations allow you to select more than the data of just one entity when searching through the DAL. Assuming you've
+already built a `Criteria` object for your search, an association can be added using the `addAssociation` method:
+
+```php
+$criteria->addAssociation('lineItems');
+```
+
+## Creating entities
+
+You want to create a new entry for an existing entity in your plugin, e.g. adding a new tax rate upon installing your
+plugin. All of the following methods are to be executed on the entities' respective repository.
+
+### Using create
+
+The `create()` method is for creating new entities that do not exist yet.
+
+- The first parameter `$data` is the payload to be written
+- The second parameter `$context` is the context to be used when writing the data
+
+The writing process works in batch and requires you to provide a list of data to be written. Even if you want to create
+a single entity, it must be provided as an array containing a single item.
+
+#### Single entity
+
+```php
+/** @var EntityRepositoryInterface $taxRepository */
+$taxRepository = $this->container->get('tax.repository');
+
+$taxRepository->create(
+    [
+        [ 'name' => '15% tax', 'taxRate' => 15 ],
+    ],
+    \Shopware\Core\Framework\Context::createDefaultContext()
+);
+```
+
+#### Multiple entities
+
+```php
+/** @var EntityRepositoryInterface $taxRepository */
+$taxRepository = $this->container->get('tax.repository');
+
+$taxRepository->create(
+    [
+        [ 'name' => '15% tax', 'taxRate' => 15 ],
+        [ 'name' => '25% tax', 'taxRate' => 25 ],
+        [ 'name' => '35% tax', 'taxRate' => 35 ],
+    ],
+    \Shopware\Core\Framework\Context::createDefaultContext()
+);
+```
+
+### Using upsert
+
+The `upsert()` method is a great way to ensure their data is persisted to the database, no matter if the record
+previously existed or not. It combines both `create()` and `update()` and is mainly used for syncing data. If the
+described record exists, it will be updated, otherwise it will be created. The method takes the same parameters as
+the `create()` or
+`update()` method. Make sure to have a look at the explanation on how to update entities via DAL below.
+
+- The first parameter `$data` is the payload to be written
+- The second parameter `$context` is the context to be used when writing the data
+
+#### Single entity
+
+```php
+/** @var EntityRepositoryInterface $taxRepository */
+$taxRepository = $this->container->get('tax.repository');
+
+$taxRepository->upsert(
+    [
+        [ 'name' => 'I will be created' ],
+    ],
+    \Shopware\Core\Framework\Context::createDefaultContext()
+);
+```
+
+#### Multiple entities
+
+```php
+/** @var EntityRepositoryInterface $taxRepository */
+$taxRepository = $this->container->get('tax.repository');
+
+$taxRepository->upsert(
+    [
+        [ 'id' => 'e163778197a24b61bd2ae72d006a6d3c', 'name' => 'I will have an updated name' ],
+        [ 'name' => 'I am a new record' ],
+    ],
+    \Shopware\Core\Framework\Context::createDefaultContext()
+);
+```
+
+If you provide an `id`, the system will try to update an existing record and if there is no record, it will be created
+with the provided `id`. If you don't provide the `id`, a new record will always be created.
+
+Note, that the container
+instance, `$this->container in these cases, is not available in every case. Make sure to use the DI container to inject the respective repository into your service, if the container instance itself is not available in your code.`
+
+#### Working with relations
+
+A big advantage when using the DataAbstractionLayer is that you can provide an entire entity for the write. For example,
+you can create a product including all relations and even create them in place, without having to create the related
+records beforehand:
+
+```php
+/** @var EntityRepositoryInterface $productRepository */
+$productRepository = $this->container->get('product.repository');
+
+$productRepository->upsert(
+    [
+        [
+            'name' => 'Example product',
+            'price' => [['currencyId' => Defaults::CURRENCY, 'gross' => 15, 'net' => 10, 'linked' => false ]],
+            'manufacturer' => [ 'name' => 'shopware AG' ],
+            'tax' => [ 'name' => '19%', 'taxRate' => 19 ]
+        ]
+    ],
+    Context::createDefaultContext()
+);
+```
+
+The example above will create a new product with an auto-generated identifier. In addition, it creates a new
+manufacturer named `shopware AG` and a new tax with a rate of `19%`.
+
+You don't have to care about writing orders or foreign key constraints if your definition and the database is designed
+correctly.
+
+## Updating entities
+
+The `update()` method is for updating existing entities and takes the same parameters as the `create()` method.
+
+- The first parameter `$data` is the payload to be written
+- The second parameter `$context` is the context to be used when writing the data
+
+Keep in mind, that every top-level record needs an existing `id` property, otherwise, you'll get exceptions because of
+the missing or non-existing records.
+
+### Single entity
+
+```php
+/** @var EntityRepositoryInterface $productRepository */
+$productRepository = $this->container->get('product.repository');
+
+$productRepository->update(
+    [
+        [ 'id' => 'e163778197a24b61bd2ae72d006a6d3c', 'name' => 'Updated name' ],
+    ],
+    \Shopware\Core\Framework\Context::createDefaultContext()
+);
+```
+
+### Multiple entities
+
+```php
+/** @var EntityRepositoryInterface $productRepository */
+$productRepository = $this->container->get('product.repository');
+
+$productRepository->update(
+    [
+        [ 'id' => 'e163778197a24b61bd2ae72d006a6d3c', 'name' => 'Updated name' ],
+        [ 'id' => '11cf2cdd303c41d7bf66808bfe7769a5', 'name' => 'Another updated name' ],
+        [ 'id' => 'a453634acb414768b2542ae9a57639b5', 'active' => 0, 'name' => 'Inactive product' ],
+    ],
+    \Shopware\Core\Framework\Context::createDefaultContext()
+);
+```
