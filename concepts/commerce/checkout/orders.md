@@ -2,17 +2,17 @@
 
 From a Cart instance an  `Order` can be created. The whole structure of the cart is stored to the database. Contrary to the cart, a structure that allows a great degree of freedom and is _calculation optimized_ , the order is **workflow optimized**.
 
-# Design goals
+## Design goals
 
-## Denormalization
+### Denormalization
 
 The Order itself does not depend on the catalog or the products. The line item with all of its data, as well as all calculated prices, are persisted in the database. Orders only get recalculated when specifically triggered through the API.
 
-## Workflow dependant
+### Workflow dependant
 
 The order state changes in a defined, predictable and configurable way - other state transitions are blocked.
 
-# State management
+## State management
 
 During the order placement, at least three distinct state machines are started.
 
