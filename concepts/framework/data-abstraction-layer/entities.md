@@ -5,7 +5,7 @@
 Core entities are interacted with through CRUD (create, read, update, delete) operations. This is done using the
 `EntityRepository` which provides an interface to the DAL.
 
-## Reading entities by ID
+### Reading entities by ID
 
 The entity repositories provide a `search()` method which takes two arguments:
 
@@ -29,7 +29,7 @@ $entities = $productRepository->search(
 
 The return value will be a collection containing all found entities as hydrated objects.
 
-## Searching entities by criteria
+### Searching entities by criteria
 
 When searching for entities without a specific ID, a `Criteria` object with more complex filters can be constructed.
 
@@ -48,7 +48,7 @@ $entities = $productRepository->search(
 
 Below is an overview of all filters available by default.
 
-### Equals
+#### Equals
 
 The `Equals` filter allows you to check fields for an exact value. The following SQL statement is executed in the
 background: `WHERE stock = 10`.
@@ -77,7 +77,7 @@ POST /api/v3/search/product
 
 {% endtab %} {% endtabs %}
 
-### EqualsAny
+#### EqualsAny
 
 The `EqualsAny` filter allows you to filter a field where at least one of the defined values matches exactly. The
 following SQL statement is executed in the background: `WHERE productNumber IN ('3fed029475fa4d4585f3a119886e0eb1', '
@@ -115,7 +115,7 @@ POST /api/v3/search/product
 
 {% endtab %} {% endtabs %}
 
-### Contains
+#### Contains
 
 The `Contains` filter allows you to filter a field to an approximate value, where the passed value must be contained as
 a full value. The following SQL statement is executed in the background: `WHERE name LIKE '%Lightweight%'`.
@@ -144,7 +144,7 @@ POST /api/v3/search/product
 
 {% endtab %} {% endtabs %}
 
-### Range
+#### Range
 
 The `Range` filter allows you to filter a field to a value space. This can work with a date or numerical values. Within
 the parameter property the following values are possible:
@@ -188,7 +188,7 @@ POST /api/v3/search/product
 
 {% endtab %} {% endtabs %}
 
-### Not
+#### Not
 
 The `Not` filter is a container that allows reversing the criteria of any kind of filter. The `operator` allows you to
 define the combination of queries within the NOT filter (`OR` and `AND`). The following SQL statement is executed in the
@@ -244,7 +244,7 @@ POST /api/v3/search/product
 
 {% endtab %} {% endtabs %}
 
-### Multi
+#### Multi
 
 The `Multi` filter is a container, which allows combining filters with `AND` or `OR`. The following SQL statement is
 executed in the background: `WHERE (stock = 1 OR availableStock = 1) AND active = 1`.
@@ -300,12 +300,12 @@ POST /api/v3/search/product
 
 {% endtab %} {% endtabs %}
 
-## Aggregations
+### Aggregations
 
 Aggregations allow you to determine further information about the overall result in addition to the actual search
 results. These include totals, unique values, or the average of a field.
 
-### Metric aggregation
+#### Metric aggregation
 
 This type of aggregation applies a mathematical formula to a field. A metric aggregation always has a calculated result.
 These are aggregations to calculate sums or maximum values.
@@ -319,7 +319,7 @@ These are aggregations to calculate sums or maximum values.
 | stats | Provides metrics about numerical fields - max, min, avg, count |
 | sum | Sum of all numeric values for the specified field |
 
-### Bucket aggregation
+#### Bucket aggregation
 
 With this type of aggregation, a list of keys is determined. Further aggregations can then be determined for each key.
 
@@ -330,7 +330,7 @@ With this type of aggregation, a list of keys is determined. Further aggregation
 | terms | Groups the result for each value of the provided field and fetches the count of affected documents |
 | histogram | Groups the result for each value of the provided field and fetches the count of affected rows. Also allows for providing date interval (day, month, ...) |
 
-### Avg aggregation
+#### Avg aggregation
 
 The `Avg` aggregation makes it possible to calculate the average value for a field. The following SQL statement is
 executed in the background: `AVG(price)`.
@@ -391,7 +391,7 @@ POST /api/v3/search/product
 
 {% endtab %} {% endtabs %}
 
-### Count aggregation
+#### Count aggregation
 
 The `count` aggregation makes it possible to determine the number of entries for a field that are filled with a value.
 The following SQL statement is executed in the background: `COUNT(DISTINCT(manufacturerId))`.
@@ -452,7 +452,7 @@ POST /api/v3/search/product
 
 {% endtab %} {% endtabs %}
 
-### Max aggregation
+#### Max aggregation
 
 The `max` aggregation allows you to determine the maximum value of a field. The following SQL statement is executed in
 the background: `MAX(price)`.
@@ -514,7 +514,7 @@ POST /api/v3/search/product
 
 {% endtab %} {% endtabs %}
 
-### Min aggregation
+#### Min aggregation
 
 The `min` aggregation makes it possible to determine the minimum value of a field. The following SQL statement is
 executed in the background: `MIN(price)`
@@ -575,7 +575,7 @@ POST /api/v3/search/product
 
 {% endtab %} {% endtabs %}
 
-## Sum aggregation
+#### Sum aggregation
 
 The `sum` aggregation makes it possible to determine the total of a field. The following SQL statement is executed in
 the background: `SUM(price)`.
@@ -636,7 +636,7 @@ POST /api/v3/search/product
 
 {% endtab %} {% endtabs %}
 
-### Stats aggregation
+#### Stats aggregation
 
 The `stats` aggregation makes it possible to calculate several values at once for a field. This includes the
 previous `max`, `min`, `avg` and `sum` aggregation. The following SQL statement is executed in the
@@ -704,7 +704,7 @@ POST /api/v3/search/product
 
 {% endtab %} {% endtabs %}
 
-### Terms aggregation
+#### Terms aggregation
 
 The `terms` aggregation allows you to determine the values of a field. The result contains each value once and how often
 this value occurs in the result. The `terms` aggregation also supports the following parameters:
@@ -793,7 +793,7 @@ POST /api/v3/search/product
 
 {% endtab %} {% endtabs %}
 
-### Filter aggregation
+#### Filter aggregation
 
 Unlike all other aggregations, the `filter` aggregation does not determine any result, it cannot be used alone. It is
 only used to further filter the result of an aggregation in a `Criteria`. Filters defined inside the `filter` property
@@ -873,7 +873,7 @@ POST /api/v3/search/product
 
 {% endtab %} {% endtabs %}
 
-### Entity aggregation
+#### Entity aggregation
 
 The `entity` aggregation is similar to the `terms` aggregation, it determines the unique values for a field. The
 aggregation then uses the determined keys to load the defined entity. The keys are used here as IDs.
@@ -950,7 +950,7 @@ POST /api/v3/search/product
 
 {% endtab %} {% endtabs %}
 
-### Histogram aggregation
+#### Histogram aggregation
 
 The `histogram` aggregation is used as soon as the data to be determined refers to a date field. With the histogram
 aggregation one of the following date intervals can be given: `minute`, `hour`, `day`, `week`, `month`, `quarter`
@@ -1036,7 +1036,7 @@ POST /api/v3/search/product
 
 {% endtab %} {% endtabs %}
 
-### Nesting aggregations
+#### Nesting aggregations
 
 A metric aggregation calculates the value for a specific field. This can be a total or, for example, a minimum or
 maximum value of the field. Bucket aggregations are different. This determines how often a value occurs in a search
@@ -1179,7 +1179,7 @@ POST /api/v3/search/product
 
 {% endtab %} {% endtabs %}
 
-## Enriching results with associations
+### Enriching results with associations
 
 Associations allow you to select more than the data of just one entity when searching through the DAL. Assuming you've
 already built a `Criteria` object for your search, an association can be added using the `addAssociation` method:
@@ -1188,12 +1188,12 @@ already built a `Criteria` object for your search, an association can be added u
 $criteria->addAssociation('lineItems');
 ```
 
-## Creating entities
+### Creating entities
 
 You want to create a new entry for an existing entity in your plugin, e.g. adding a new tax rate upon installing your
 plugin. All of the following methods are to be executed on the entities' respective repository.
 
-### Using create
+#### Using create
 
 The `create()` method is for creating new entities that do not exist yet.
 
@@ -1203,7 +1203,7 @@ The `create()` method is for creating new entities that do not exist yet.
 The writing process works in batch and requires you to provide a list of data to be written. Even if you want to create
 a single entity, it must be provided as an array containing a single item.
 
-#### Single entity
+##### Single entity
 
 ```php
 /** @var EntityRepositoryInterface $taxRepository */
@@ -1217,7 +1217,7 @@ $taxRepository->create(
 );
 ```
 
-#### Multiple entities
+##### Multiple entities
 
 ```php
 /** @var EntityRepositoryInterface $taxRepository */
@@ -1233,7 +1233,7 @@ $taxRepository->create(
 );
 ```
 
-### Using upsert
+#### Using upsert
 
 The `upsert()` method is a great way to ensure their data is persisted to the database, no matter if the record
 previously existed or not. It combines both `create()` and `update()` and is mainly used for syncing data. If the
@@ -1244,7 +1244,7 @@ the `create()` or
 - The first parameter `$data` is the payload to be written
 - The second parameter `$context` is the context to be used when writing the data
 
-#### Single entity
+##### Single entity
 
 ```php
 /** @var EntityRepositoryInterface $taxRepository */
@@ -1258,7 +1258,7 @@ $taxRepository->upsert(
 );
 ```
 
-#### Multiple entities
+##### Multiple entities
 
 ```php
 /** @var EntityRepositoryInterface $taxRepository */
@@ -1279,7 +1279,7 @@ with the provided `id`. If you don't provide the `id`, a new record will always 
 Note, that the container
 instance, `$this->container in these cases, is not available in every case. Make sure to use the DI container to inject the respective repository into your service, if the container instance itself is not available in your code.`
 
-#### Working with relations
+##### Working with relations
 
 A big advantage when using the DataAbstractionLayer is that you can provide an entire entity for the write. For example,
 you can create a product including all relations and even create them in place, without having to create the related
@@ -1308,7 +1308,7 @@ manufacturer named `shopware AG` and a new tax with a rate of `19%`.
 You don't have to care about writing orders or foreign key constraints if your definition and the database is designed
 correctly.
 
-## Updating entities
+### Updating entities
 
 The `update()` method is for updating existing entities and takes the same parameters as the `create()` method.
 
@@ -1318,7 +1318,7 @@ The `update()` method is for updating existing entities and takes the same param
 Keep in mind, that every top-level record needs an existing `id` property, otherwise, you'll get exceptions because of
 the missing or non-existing records.
 
-### Single entity
+#### Single entity
 
 ```php
 /** @var EntityRepositoryInterface $productRepository */
@@ -1332,7 +1332,7 @@ $productRepository->update(
 );
 ```
 
-### Multiple entities
+#### Multiple entities
 
 ```php
 /** @var EntityRepositoryInterface $productRepository */
@@ -1683,7 +1683,7 @@ $customId = $customRepository->searchIds(
 
 In this example, the ID of your custom entity, whose technical name equals to 'FOO', is requested.
 
-### Code samples
+### Code examples
 
 There's a GitHub repository available, containing this example source. Check it
 out [here](https://github.com/shopware/swag-docs-custom-entity).
