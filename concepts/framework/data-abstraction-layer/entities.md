@@ -1347,3 +1347,343 @@ $productRepository->update(
     \Shopware\Core\Framework\Context::createDefaultContext()
 );
 ```
+
+### Deleting entities
+
+An entities respective repository always comes with a `delete` method, whose usage is as simple as this:
+
+- The first parameter `$data` is the payload of the entity to be deleted, must only contain the ID
+- The second parameter `$context` is the context to be used when deleting the data
+
+#### Single entity
+
+```php
+/** @var EntityRepositoryInterface $productRepository */
+$productRepository = $this->container->get('product.repository');
+$productRepository->delete(
+    [
+        [ 'id' => 'e163778197a24b61bd2ae72d006a6d3c' ],
+    ],
+    \Shopware\Core\Framework\Context::createDefaultContext()
+);
+```
+
+#### Multiple entities
+
+```php
+/** @var EntityRepositoryInterface $productRepository */
+$productRepository = $this->container->get('product.repository');
+$productRepository->delete(
+    [
+        [ 'id' => 'e163778197a24b61bd2ae72d006a6d3c' ],
+        [ 'id' => 'c3d6a600d27ea2db16b42a791877361e' ],
+    ],
+    \Shopware\Core\Framework\Context::createDefaultContext()
+);
+```
+
+#### Deleting entities without an ID
+
+You might have noticed, that you're required to know an entities' ID in order to delete it. You can find a short
+explanation on how to figure out an entities' ID in
+our [Reading entities via DAL](/concepts/framework/data-abstraction-layer/entities.md#searching-entities-by-criteria)
+section.
+
+## Entity extension
+
+If you're wondering how to extend existing core entities, this 'HowTo' will have you covered. Do not confuse entity
+extensions with entities' custom fields though, as they serve a different purpose. In short: Extensions are technical
+and not configurable by the admin user just like that. Also, they can deal with more complex types than scalar ones.
+Custom fields are, by default, configurable by the admin user in the administration and they mostly support scalar
+types, e.g. a text-field, a number field, or the likes.
+
+### Extending an entity
+
+Own entities can be integrated into the core via the corresponding entry in the `services.xml`. To extend existing
+entities, the abstract class `\Shopware\Core\Framework\DataAbstractionLayer\EntityExtension` is used. The
+EntityExtension must define which entity should be extended in the `getDefinitionClass` method. Once this extension is
+accessed in the system, the extension can add more fields to it:
+
+```php
+<?php declare(strict_types=1);
+namespace Swag\EntityExtension\Extension\Content\Product;
+use Shopware\Core\Content\Product\ProductDefinition;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityExtension;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\Runtime;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\ObjectField;
+use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
+class CustomExtension extends EntityExtension
+{
+    public function extendFields(FieldCollection $collection): void
+    {
+        $collection->add(
+            (new ObjectField('custom_struct', 'customStruct'))->addFlags(new Runtime())
+        );
+    }
+    public function getDefinitionClass(): string
+    {
+        return ProductDefinition::class;
+    }
+}
+```
+
+This example adds another association named `custom_struct` to the `ProductDefinition`. The `Runtime` flag tells the
+data abstraction layer, that you're going to take care of the field's content yourself. Have a look at our detailed list
+of [flags](/concepts/framework/data-abstraction-layer/entities.md#aggregations) and what their purpose is, or find out
+which [field types](/concepts/framework/data-abstraction-layer/entities.md#searching-entities-by-criteria) are available
+in Shopware 6. So, time to take care of the product entities' new field yourself. You're going to need a new subscriber
+for this. Have a look here to find out how to properly add your own subscriber class.
+
+```php
+<?php declare(strict_types=1);
+namespace Swag\EntityExtension\Subscriber;
+use Swag\EntityExtension\Struct\MyCustomStruct;
+use Shopware\Core\Content\Product\ProductEntity;
+use Shopware\Core\Framework\DataAbstractionLayer\Event\EntityLoadedEvent;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Shopware\Core\Content\Product\ProductEvents;
+class MySubscriber implements EventSubscriberInterface
+{
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            ProductEvents::PRODUCT_LOADED_EVENT => 'onProductsLoaded'
+        ];
+    }
+    public function onProductsLoaded(EntityLoadedEvent $event): void
+    {
+        /** @var ProductEntity $productEntity */
+        foreach ($event->getEntities() as $productEntity) {
+            $productEntity->addExtension('custom_struct', new MyCustomStruct());
+        }
+    }
+}
+```
+
+As you can see, the subscriber listens to the `PRODUCT_LOADED` event, which is triggered every time a set of products is
+requested. The listener `onProductsLoaded` then adds a custom struct into the new field. Content of the
+respective `services.xml`:
+
+```xml
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="Swag\EntityExtension\Extension\Content\Product\CustomExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+        <service id="Swag\EntityExtension\Subscriber\MySubscriber">
+            <tag name="kernel.event_subscriber"/>
+        </service>
+    </services>
+</container>
+```
+
+### Code examples
+
+There's a GitHub repository available, containing this example source. Check it
+out [here](https://github.com/shopware/swag-docs-entity-extension).
+
+## Creating a custom entity
+
+Quite often, your plugin has to save data into a custom database table. Shopware 6's data abstraction layer fully
+supports custom entities, so you don't have to take care of the data handling at all.
+
+### Plugin base class
+
+The plugin base class registers your `services.xml` file by simply putting it into the proper
+directory `<plugin root>/src/Resources/config/`. This way, Shopware 6 is able to automatically find and load
+your `services.xml` file.
+
+### The EntityDefinition class
+
+The main entry point for custom entities is an `EntityDefinition` class. For more information about what
+the `EntityDefinition` class does, have a look at the guide about the data abstraction layer. Your custom entity, as
+well as your `EntityDefinition` and the `EntityCollection` classes, should be placed inside a folder named after the
+domain it handles, e.g. "Checkout" if you were to include a Checkout entity. In this example, they will be put into a
+directory called `src/Custom` inside of the plugin root directory.
+
+```php
+<?php declare(strict_types=1);
+namespace Swag\CustomEntity\Custom;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityDefinition;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\PrimaryKey;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\Required;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\IdField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\StringField;
+use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
+class CustomEntityDefinition extends EntityDefinition
+{
+    public const ENTITY_NAME = 'custom_entity';
+    public function getEntityName(): string
+    {
+        return self::ENTITY_NAME;
+    }
+    public function getCollectionClass(): string
+    {
+        return CustomEntityCollection::class;
+    }
+    public function getEntityClass(): string
+    {
+        return CustomEntity::class;
+    }
+    protected function defineFields(): FieldCollection
+    {
+        return new FieldCollection([
+            (new IdField('id', 'id'))->addFlags(new PrimaryKey(), new Required()),
+            new StringField('technical_name', 'technicalName'),
+        ]);
+    }
+}
+```
+
+As you can see, the `EntityDefinition` lists all available fields of your custom entity, as well as its name,
+its `EntityCollection` class and its actual entity class. Keep in mind, that the return of your `getEntityName` method
+will be used for two cases:
+
+- The database table name
+- The repository name in the DI container (`<the-name>.repository`)
+  The methods `getCollectionClass` and `getEntityClass` are optional, **yet we highly recommend implementing them
+  yourself in your entity definition**. The two missing classes, the `Entity` itself and the `EntityCollection`, will be
+  created in the next steps.
+
+### The entity class
+
+The entity class itself is a simple value object, like a struct, which contains as much properties as fields in the
+definition, ignoring the ID field.
+
+```php
+<?php declare(strict_types=1);
+namespace Swag\CustomEntity\Custom;
+use Shopware\Core\Framework\DataAbstractionLayer\Entity;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityIdTrait;
+class CustomEntity extends Entity
+{
+    use EntityIdTrait;
+    /**
+     * @var string
+     */
+    protected $technicalName;
+    public function getTechnicalName(): string
+    {
+        return $this->technicalName;
+    }
+    public function setTechnicalName(string $technicalName): void
+    {
+        $this->technicalName = $technicalName;
+    }
+}
+```
+
+As you can see, it only holds the properties and its respective getters and setters, for the fields mentioned in
+the `EntityDefinition` class.
+
+### CustomEntityCollection
+
+An `EntityCollection class is a class, whose main purpose it is to hold one or more of your entities, when they are
+being read/searched. It will be automatically returned by the DAL when dealing with the custom entity repository.
+
+```php
+<?php declare(strict_types=1);
+namespace Swag\CustomEntity\Custom;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityCollection;
+/**
+ * @method void              add(CustomEntity $entity)
+ * @method void              set(string $key, CustomEntity $entity)
+ * @method CustomEntity[]    getIterator()
+ * @method CustomEntity[]    getElements()
+ * @method CustomEntity|null get(string $key)
+ * @method CustomEntity|null first()
+ * @method CustomEntity|null last()
+ */
+class CustomEntityCollection extends EntityCollection
+{
+    protected function getExpectedClass(): string
+    {
+        return CustomEntity::class;
+    }
+}
+```
+
+You should also add the annotation above the class to make sure your IDE knows how to properly handle your custom
+collection. Make sure to replace every occurrence of `CustomEntity` in there with your actual entity class.
+
+### Registering your custom entity
+
+Now it's time to actually register your new entity in the DI container. All you have to do is to register
+your `EntityDefinition` using the `shopware.entity.definition` tag. This is how your `services.xml` could look like:
+
+```xml
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="Swag\CustomEntity\Custom\CustomEntityDefinition">
+            <tag name="shopware.entity.definition" entity="custom_entity"/>
+        </service>
+    </services>
+</container>
+```
+
+### Creating the table
+
+Basically that's it for your custom entity. Yet, there's a very important part missing: Creating the database table. As
+already mentioned earlier, the database table **has to** be named after your chosen entity name. You should create the
+database table using the plugin migration system. In short: Create a new directory named `src/Migration` in your plugin
+root and add a migration class like this in there:
+
+```php
+<?php declare(strict_types=1);
+namespace Swag\CustomEntity\Migration;
+use Doctrine\DBAL\Connection;
+use Shopware\Core\Framework\Migration\MigrationStep;
+class Migration1552484872Custom extends MigrationStep
+{
+    public function getCreationTimestamp(): int
+    {
+        return 1552484872;
+    }
+    public function update(Connection $connection): void
+    {
+        $sql = <<<SQL
+CREATE TABLE IF NOT EXISTS `custom_entity` (
+    `id` BINARY(16) NOT NULL,
+    `technical_name` VARCHAR(255) COLLATE utf8mb4_unicode_ci,
+    `created_at` DATETIME(3) NOT NULL,
+    `updated_at` DATETIME(3),
+    PRIMARY KEY (`id`)
+)
+    ENGINE = InnoDB
+    DEFAULT CHARSET = utf8mb4
+    COLLATE = utf8mb4_unicode_ci;
+SQL;
+        $connection->executeUpdate($sql);
+    }
+    public function updateDestructive(Connection $connection): void
+    {
+    }
+}
+```
+
+### Dealing with your custom entity
+
+Since the DAL automatically creates a repository for your custom entities, you can now ask the DAL to return some of
+your custom data.
+
+```php
+/** @var EntityRepositoryInterface $customRepository */
+$customRepository = $this->container->get('custom_entity.repository');
+$customId = $customRepository->searchIds(
+    (new Criteria())->addFilter(new EqualsFilter('technicalName', 'Foo')),
+    Context::createDefaultContext()
+)->getIds()[0];
+```
+
+In this example, the ID of your custom entity, whose technical name equals to 'FOO', is requested.
+
+### Code samples
+
+There's a GitHub repository available, containing this example source. Check it
+out [here](https://github.com/shopware/swag-docs-custom-entity).
