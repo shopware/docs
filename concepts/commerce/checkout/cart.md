@@ -22,6 +22,8 @@ The cart has very few hard dependencies on other core entities in Shopware 6. En
 
 An instance of this class represents one single Cart. As you can see in the diagram below, relations to central Entities of the System are omitted. This allows Shopware 6 to manage multiple carts per user and per SalesChannel, or one across all sales channels. The only identification is a token hash.
 
+![Representation of the cart struct](../../../.gitbook/assets/cart-struct.png)
+
 This is a highly mutable data structure that is acted upon from requests and calculated and validated through services. It contains:
 
 ## Line Items
@@ -57,9 +59,13 @@ The price of all line items including tax, delivery costs, and vouchers discount
 
 Shopware 6 manages the cart's state through different services. The diagram below illustrates the different states the cart can have and state changes it can go through.
 
+![Cart state](../../../.gitbook/assets/cart-state.png)
+
 # Calculation
 
 Calculating a cart is one of the more costly operations an eCommerce System must support. Therefore the cut of the interfaces and the design of the process follows the no waste philosophy of Shopware 6 very closely. Calculation is a multi-stage process that revolves around the mutation of the data structure of the cart struct shown in the diagram below.
+
+![Cart calculation](../../../.gitbook/assets/cart-calculation-steps.png)
 
 ## Cart Enrichment
 
@@ -90,6 +96,8 @@ A default set of collectors is implemented in Shopware 6 which has a set call or
 | Shopware\Core\Checkout\Promotion\Cart\CartPromotionsCollector | Enrich add, remove and validate promotions |
 | Shopware\Core\Checkout\Shipping\Cart\ShippingMethodPriceCollector | Handle shipping prices |
 
+![Cart enrichment steps](../../../.gitbook/assets/cart-enrichtment-steps.png)
+
 # Cart Processors - Price Calculation And Validation
 
 After a cart is enriched, the cart is processed. The price information for all individual `LineItems` is now set up, for the sums to be calculated. This happens in the `\Shopware\Core\Checkout\Cart\Processor` class, following these steps: 
@@ -106,6 +114,8 @@ After the cart has been processed, it is validated against the rules which can l
 
  * Everybody buying a **car** gets a **pair of sunglasses** for free
  * Every Cart containing **two products** gets a discount of **2%**
+
+![Cart validation](../../../.gitbook/assets/cart-validation.png)
 
 As you can see in the diagram above, the cart is modified during the enrichment process on a first pass to add the sunglasses, and then on a second pass to contain the discount triggered by having 2 products. Which results in the expected state of one car, one pair of sunglasses, and a two-percent discount.
 
