@@ -24,4 +24,8 @@ These can be used to track the progress during the order process and notify the 
 
 _Note: The state machines displayed in the following sections can actually be modified through the API, this is just the default setup._
 
-[Missing pictures]
+![The order state machine](../../../.gitbook/assets/order-state-machine.png)
+
+![The transaction state machine](../../../.gitbook/assets/order-payment-state-machine.png)
+
+![The delivery state machine](../../../.gitbook/assets/order-delivery-state-machine.png)
