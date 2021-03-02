@@ -5,9 +5,11 @@ This is often used for products add more images to the product detail page.
 In the product detail page template, the key `page.product.translated.customFields.xxx`, with the `xxx` replaced with the corresponding custom field, contains the UUID of the media.
 Now the ID has just to be resolved with the function 'searchMedia':
 
+{% code title="platform/src/Core/Framework/Adapter/Twig/Extension/MediaExtension.php" %}
 ```php
 public function searchMedia(array $ids, Context $context): MediaCollection { ... }
 ```
+{% endcode %}
 
 This function resolves out the corresponding media objects for the given IDs in order to continue working with them afterwards.
 Here is an example with a custom field (`custom_sports_media_id`) on the product detail page:
