@@ -1,0 +1,89 @@
+# Use Composer dependencies
+
+In this guide you'll learn how to add Composer dependencies to your project.
+
+## Prerequisites
+
+All you need for this guide is a running Shopware 6 instance and full access to both the files and a running plugin. Of course you'll have to understand PHP, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation. Further a basic understanding Node and NPM is required.
+
+## Adding a composer plugin to the `composer.json` file
+
+In this guide we will install [`exporter`](https://github.com/sebastianbergmann/exporter), which provides the functionality to export PHP variables for visualization.
+
+We have to manually remove all of the references to Shopware itself from the `composer.json` file, that was created in the [Plugin base guide](../plugin-base-guide.md),
+before we add our own dependencies to it. This is done to prevent `composer` from downloading Shopware into the `vendor` folder.
+
+Now we can simply install `exporter` by running `composer require sebastian/exporter` in your plugin directory.
+
+After that we have to add our dependency to shopware back in.
+
+{% hint style="warning" %}
+The `vendor` directory, where the composer saves the dependencies, has to be included in the plugin bundle.
+The plugin bundle size is not allowed to exceed 5 MB.
+{% endhint %}
+
+## Loading the `autoload.php`
+
+The `composer require` command created the `autoload.php` that we now need to require in our plugin.
+
+{% code title="<plugin root>/src/SwagBasicExample.php" %}
+```php
+if (file_exists(dirname(__DIR__) . '/vendor/autoload.php')) {
+    require_once dirname(__DIR__) . '/vendor/autoload.php';
+}
+```
+{% endcode %}
+
+## Using the composer plugin
+
+PHP doesn't require a build system, which means that we can just add `use` statements and then use the composer dependency directly.
+
+The following code sample imports `SebastianBergmann\Exporter\Exporter` and logs `hello, world!` to the Symfony profiler logs whenever the `NavigationPageLoadedEvent` is fired.
+Learn how to register this listener [here](./listening-to-events.md).
+
+{% code title="<plugin root>/src/SwagBasicExample.php" %}
+```php
+<?php
+namespace SwagBasicExample\Subscriber;
+
+use Shopware\Core\Framework\DataAbstractionLayer\Event\EntityLoadedEvent;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Shopware\Storefront\Page\Navigation\NavigationPageLoadedEvent;
+
+use Psr\Log\LoggerInterface;
+use SebastianBergmann\Exporter\Exporter;
+
+class MySubscriber implements EventSubscriberInterface
+{
+    /**
+     * @var LoggerInterface
+     */
+     private $logger;
+    
+    public function __construct(
+        LoggerInterface $logger
+    ) {
+        $this->logger = $logger;
+    }
+
+    public static function getSubscribedEvents(): array
+    {
+        // Return the events to listen to as array like this:  <event to listen to> => <method to execute>
+        return [
+            NavigationPageLoadedEvent::class => 'onNavigationPage'
+        ];
+    }
+
+    public function onNavigationPage(NavigationPageLoadedEvent $event)
+    {
+        $exporter = new Exporter;
+        $this->logger->info($exporter->export('hello, world!'));
+    }
+}
+```
+{% endcode %}
+
+
+## Next steps
+
+Now that you know how to include new `composer` dependencies you might want to [install `npm` dependencies](./using-npm-dependencies.md) or even add [dependencies to other plugins](./add-plugin-dependencies.md)
