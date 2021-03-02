@@ -2,19 +2,25 @@
 
 ## Overview
 
-In this guide you'll learn how to create a custom storefront page.
+In this guide you'll learn how to create custom page for your Storefront.
+A page in general consists of a controller, a page loader, a "page loaded" event and a page class, which is like a struct and contains
+most necessary data for the page.
 
 ## Prerequisites
 
-In order to add your own page service for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
+In order to add your own custom page for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
+Since you need to load your page with a controller, you might want to have a look at our guide about [creating a controller](./add-custom-controller.md) first.
+The controller created in the previously mentioned controller guide will also be used in this guide.
 
-Also having understood the concepts behind pages, pagelets and the pageloader [PLACEHOLDER-LINK: Page, pagelet, pageloader concept] will come in handy here.
+## Adding custom page
 
-## Adding custom storefront page
+In the following sections, we'll create each of the necessary classes one by one.
+The first one will be controller, whose creation is not going to explained here again. Have a look at the guide about [creating a controller](./add-custom-controller.md)
+to see why it works.
 
-### Storefront Controller Class example
+### Creating ExampleController
 
-First of all we have to create a new controller which extends from the `StorefrontController`. A controller is also just a service which can be registered via the DI-Container. Furthermore, we have to define our `RouteScope` via annotation, it is used to define which domain a route is part of and **needs to be set for every route**. In our case the scope is `storefront`. Now we can create an example function with a `Route` annotation which has to contain our route, in this case it's `/example`. Below you can find an example implementation where we render an `example.html.twig` template file with a template variable `example`.
+As already mentioned, the controller creation is not explained here, just an example controller.
 
 {% code title="<plugin root>/src/Storefront/Controller/ExampleController.php" %}
 ```php
@@ -23,9 +29,7 @@ First of all we have to create a new controller which extends from the `Storefro
 namespace Swag\BasicExample\Storefront\Controller;
 
 use Shopware\Core\Framework\Routing\Annotation\RouteScope;
-use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Shopware\Storefront\Controller\StorefrontController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -35,142 +39,257 @@ use Symfony\Component\Routing\Annotation\Route;
 class ExampleController extends StorefrontController
 {
     /**
-    * @Route("/example", name="frontend.example", methods={"GET"})
-    */
-    public function showExample(): Response
+     * @Route("/example-page", name="frontend.example.page", methods={"GET"})
+     */
+    public function examplePage(): Response
     {
+    }
+}
+```
+{% endcode %}
+
+It has a method `examplePage`, which is accessible via the route `example-page`.
+This method will be responsible for loading your page later on, but we'll leave it like that for now.
+
+Don't forget to [register your controller via the DI](./add-custom-controller.md#Services.xml example).
+
+### Creating the pageloader
+
+In order to stick to Shopware's default location for the page loader, we'll have to create a new directory:
+`<plugin root>/src/Storefront/Page/Example`.
+
+In there, we will proceed to create all page related classes, such as the page loader.
+
+Go ahead and create a new file called `ExamplePageLoader.php`.
+It's a new service, which doesn't have to extend from any other class.
+You might want to implement a `ExamplePageLoaderInterface` interface, which is not explained in this guide.
+You can do that in order to have a decoratable page loader class.
+
+The page loader is responsible for creating your page class instance (`ExamplePage`, will be created in the next section),
+filling it with data, e.g. from repositories, and firing a `PageLoaded` event, so others can react to your page being loaded.
+
+Let's have a look at a full example `ExamplePageLoader`:
+
+{% code title="<plugin root>/src/Storefront/Page/Example/ExamplePageLoader.php" %}
+```php
+<?php declare(strict_types=1);
+
+namespace Swag\BasicExample\Storefront\Page\Example;
+
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Page\GenericPageLoaderInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\HttpFoundation\Request;
+
+class ExamplePageLoader
+{
+    /**
+     * @var GenericPageLoaderInterface
+     */
+    private $genericPageLoader;
+
+    /**
+     * @var EventDispatcherInterface
+     */
+    private $eventDispatcher;
+
+    public function __construct(GenericPageLoaderInterface $genericPageLoader, EventDispatcherInterface $eventDispatcher)
+    {
+        $this->genericPageLoader = $genericPageLoader;
+        $this->eventDispatcher = $eventDispatcher;
+    }
+
+    public function load(Request $request, SalesChannelContext $context): ExamplePage
+    {
+        $page = $this->genericPageLoader->load($request, $context);
+        $page = ExamplePage::createFrom($page);
+
+        // Do additional stuff, e.g. load more data from repositories and add it to page
+         $page->setExampleData(...);
+
+        $this->eventDispatcher->dispatch(
+            new ExamplePageLoadedEvent($page, $context, $request)
+        );
+
+        return $page;
+    }
+}
+```
+{% endcode %}
+
+So first of all, as already mentioned: This is a new class or service, which doesn't have to extend from any other class.
+The constructor is passed two arguments:
+The `GenericPageLoaderInterface` and the `EventDispatcherInterface`.
+
+The first one is not necessary, but useful, since it loads all kind of default page stuff, such as a footer and a header and loads some additional
+helpful data. Once again, you don't have to do that, but if you want your page to have a footer etc., you should add it.
+
+The `EventDispatcherInterface` is of course necessary in order to fire an event later on.
+
+Every page loader should implement a `load` method, which is not mandatory, but common sense. You want your page loader to work
+like all the other page loaders, right?
+It should return an instance of your example page, in this case `ExamplePage`. Don't worry, we haven't created that one yet, it will be created in the next sections.
+So, the first thing it does is basically creating a `Page` instance, containing all necessary basic data, such as the footer etc.
+
+Afterwards you're creating your own page instance by using the method `createFrom`.
+This method is available, since your `ExamplePage` has to extend from the `Page` struct, which in return extends from the `Struct` class.
+The latter implements the [CreateFromTrait](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Framework/Struct/CreateFromTrait.php) containing this method.
+In short, this will create an instance of your `ExamplePage`, containing all the data from the generic `Page` object.
+
+Afterwards, you can add more data to your page instance by using a setter. Of course, your example page class then has to have such a setter method,
+as well as a getter.
+
+As already mentioned, you should also fire an event once your page was loaded. For this case, you need a custom page loaded event class, which is also created in the next sections.
+It will be called `ExamplePageLoadedEvent`.
+
+The last thing to do in this method is to return your new page instance.
+
+Remember to register your new page loader in the DI container:
+{% code title="<plugin root>/src/Resources/config/services.xml" %}
+```xml
+<service id="Swag\BasicExample\Storefront\Page\Example\ExamplePageLoader" public="true">
+    <argument type="service" id="Shopware\Storefront\Page\GenericPageLoader" />
+    <argument type="service" id="event_dispatcher"/>
+</service>
+```
+{% endcode %}
+
+#### Adjusting the controller
+
+Theoretically, this is all your page loader does - but it's not being used yet.
+Therefore, you have to inject your page loader to your custom controller and execute the `load` method.
+
+{% code title="<plugin root>/src/Storefront/Controller/ExampleController.php" %}
+```php
+<?php declare(strict_types=1);
+
+namespace Swag\BasicExample\Storefront\Controller;
+
+...
+
+class ExampleController extends StorefrontController
+{
+    /**
+     * @var ExamplePageLoader
+     */
+    private $examplePageLoader;
+
+    public function __construct(ExamplePageLoader $examplePageLoader)
+    {
+        $this->examplePageLoader = $examplePageLoader;
+    }
+
+    /**
+     * @Route("/example-page", name="frontend.example.page", methods={"GET"})
+     */
+    public function examplePage(Request $request, SalesChannelContext $context): Response
+    {
+        $page = $this->examplePageLoader->load($request, $context);
+
         return $this->renderStorefront('@SwagBasicExample/storefront/page/example/index.html.twig', [
-            'example' => 'Hello world'
+            'example' => 'Hello world',
+            'page' => $page
         ]);
     }
 }
 ```
 {% endcode %}
 
-It is also possible to define the `RouteScope` per route and also multiple scopes, as you can see below.
+Note, that we've added the page to the template variables.
 
-{% code title="<plugin root>/src/Storefront/Controller/ExampleController.php" %}
+### Creating the example page
+
+So now we're going to create the example page class, that was already used in our page loader, `ExamplePage`.
+
+It has to extend from the `Shopware\Storefront\Page\Page` class in order to contain a field for the header, the footer etc., as well
+as some helper methods.
+
+Let's have a look at an example:
+{% code title="<plugin root>/src/Storefront/Page/Example/ExamplePage.php" %}
 ```php
 <?php declare(strict_types=1);
 
-namespace Swag\BasicExample\Storefront\Controller;
+namespace Swag\BasicExample\Storefront\Page\Example;
 
-use Shopware\Core\Framework\Routing\Annotation\RouteScope;
-use Shopware\Storefront\Controller\StorefrontController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Shopware\Storefront\Page\Page;
+use Swag\BasicExample\Core\Content\Example\ExampleEntity;
 
-/**
- * @RouteScope(scopes={"storefront"})
- */
-class ExampleController extends StorefrontController
+class ExamplePage extends Page
 {
     /**
-    * @RouteScope(scopes={"storefront", "custom-scope"})
-    * @Route("/example", name="frontend.example", methods={"GET"})
-    */
-    public function showExample(): Response
+     * @var ExampleEntity
+     */
+    protected $exampleData;
+
+    public function getExampleData(): ExampleEntity
     {
-        ...
+        return $this->exampleData;
+    }
+
+    public function setExampleData(ExampleEntity $exampleData): void
+    {
+        $this->exampleData = $exampleData;
     }
 }
 ```
 {% endcode %}
 
-### Services.xml example
+As explained in the page loader section, your page can contain all kinds of custom data.
+It has to provide a getter and a setter for the custom data, so it can be applied and read.
+In this example, the entity from our guide about [creating custom complex data](../framework/data-handling/add-custom-complex-data.md#Entity class) is being used.
 
-Next, we need to register our controller in the DI-container and make it public.
+And that's it already. Your page is ready to go.
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
-```markup
-<?xml version="1.0" ?>
+### Creating the page loaded event
 
-<container xmlns="http://symfony.com/schema/dic/services" 
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+One more class is missing, the custom event class.
+It has to extend from the `Shopware\Storefront\Page\PageLoadedEvent` class.
 
-    <services>
-        <service id="Swag\BasicExample\Storefront\Controller\ExampleController" public="true"/>
-    </services>
-</container>
-```
-{% endcode %}
+Its constructor parameter will be the `ExamplePage`, which it has to save into a property and there needs to be a getter
+in order to get the example page instance.
+Additional constructor parameters are the `Request` and the `SalesChannelContext`, which you have to pass to the parent's constructor.
 
-### Routes.xml example
+Here's the example:
 
-Once we‘ve registered our new controller, we have to tell Shopware how we want it to search for new routes in our plugin. This is done with a `routes.xml` file at `<plugin root>/src/Resources/config/` location. Have a look at the official [Symfony documentation](https://symfony.com/doc/current/routing.html) about routes and how they are registered.
-
-{% code title="<plugin root>/src/Resources/config/routes.xml" %}
-```markup
-<?xml version="1.0" encoding="UTF-8" ?>
-<routes xmlns="http://symfony.com/schema/routing"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://symfony.com/schema/routing
-        https://symfony.com/schema/routing/routing-1.0.xsd">
-
-    <import resource="../../Storefront/Controller/**/*Controller.php" type="annotation" />
-</routes>
-```
-{% endcode %}
-
-### Adding template
-
-Now we registered our controller and Shopware indexes the route but at the moment we have no view, let's change this.
-As previously mentioned, the code will try to render an `index.html.twig` file.
-Thus we have to create an `index.html.twig` in the `<plugin root>/src/Resources/views/storefront/page/example` directory, as defined in our controller.
-Below you can find an example, where we extend from the template `base.html.twig` and override the block `base_content`.
-In our [Customize templates guide](./customize-templates.md), you can learn more about customizing templates.
-
-{% code title="<plugin root>/src/Resources/views/storefront/page/example.html.twig" %}
-```text
-{% sw_extends '@Storefront/storefront/base.html.twig' %}
-
-{% block base_content %}
-    <h1>Our example page!</h1>
-{% endblock %}
-```
-{% endcode %}
-
-### Request and Context
-
-If necessary, we can access the `Request` and `SalesChannelContext` in our function.
-
-Here's an example:
-
-{% code title="<plugin root>/src/Storefront/Controller/ExampleController.php" %}
+{% code title="<plugin root>/src/Storefront/Page/Example/ExamplePageLoadedEvent.php" %}
 ```php
 <?php declare(strict_types=1);
 
-namespace Swag\BasicExample\Storefront\Controller;
+namespace Swag\BasicExample\Storefront\Page\Example;
 
-use Shopware\Core\Framework\Routing\Annotation\RouteScope;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
-use Shopware\Storefront\Controller\StorefrontController;
+use Shopware\Storefront\Page\PageLoadedEvent;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @RouteScope(scopes={"storefront"})
- */
-class ExampleController extends StorefrontController
+class ExamplePageLoadedEvent extends PageLoadedEvent
 {
     /**
-    * @Route("/example", name="frontend.example", methods={"GET"})
-    */
-    public function showExample(Request $request, SalesChannelContext $context): Response
+     * @var ExamplePage
+     */
+    protected $page;
+
+    public function __construct(ExamplePage $page, SalesChannelContext $salesChannelContext, Request $request)
     {
-        ...
+        $this->page = $page;
+        parent::__construct($salesChannelContext, $request);
+    }
+
+    public function getPage(): ExamplePage
+    {
+        return $this->page;
     }
 }
 ```
 {% endcode %}
+
+And that's it for your `ExamplePageLoadedEvent` class.
+
+Your example page should now be fully functioning.
 
 ## Next steps
 
-Now that you know how to create a custom page, you can make it more beautiful with some styling.
-To get a grip on it, head over to our guide on [Add custom styling](add-custom-styling.md).
-Or maybe you want to make your page more dynamically with a bit javascript, which is explained in our [Add custom Javascript](add-custom-javascript.md) guide.
+You've now successfully created a whole new page, including a custom controller, a custom template, and the necessary classes to create a new page,
+a loader, the page struct and the page loaded event.
 
-Also, you should know about pagelets, which are covered here [PLACEHOLDER-LINK: Pagelets guide].
-
+In your `load` method, you've used the `GenericPageLoader`, which takes care of such a thing as the footer or the header.
+Those two are so called "pagelets", basically reusable fractions of a page. Learn how to create a custom pagelet yourself [here](./add-custom-pagelet.md).
