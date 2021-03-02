@@ -29,10 +29,10 @@ Here is an example with a custom field (`custom_sports_media_id`) on the product
 {% endblock %}
 ```
 
-### Avoid loops
+## Avoid loops
 
 This function performs a query against the database on every invocation and should therefore not be used within a loop.
-To resolve multiple ID's at just pass it an  array of ID's instead.
+To resolve multiple ID's at just pass it an array of ID's instead.
 
 To read the media objects within the product listing we recommend the following procedure:
 
