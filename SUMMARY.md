@@ -18,6 +18,7 @@
   * [Architecture](concepts/framework/architecture/README.md)
     * [Storefront](concepts/framework/architecture/storefront-concept.md)
     * [Administration](concepts/framework/architecture/administration-concept.md)
+  * [Data Abstraction Layer](concepts/framework/data-abstraction-layer/README.md)
   * [Messaging](concepts/framework/messaging.md)
   * [Migrations](concepts/framework/migrations.md)
   * [Rules](concepts/framework/rules.md)
