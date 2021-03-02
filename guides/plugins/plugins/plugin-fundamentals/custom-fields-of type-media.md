@@ -12,6 +12,8 @@ public function searchMedia(array $ids, Context $context): MediaCollection { ...
 This function resolves out the corresponding media objects for the given IDs in order to continue working with them afterwards.
 Here is an example with a custom field (`custom_sports_media_id`) on the product detail page:
 
+
+{% code title="<plugin root>/src/Resources/views/storefront/page/content/product-detail.html.twig" %}
 ```twig
 {% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
 
@@ -28,6 +30,7 @@ Here is an example with a custom field (`custom_sports_media_id`) on the product
     {{ dump (sportsMedia) }}
 {% endblock %}
 ```
+{% endcode %}
 
 ## Avoid loops
 
@@ -36,6 +39,7 @@ To resolve multiple ID's at just pass it an array of ID's instead.
 
 To read the media objects within the product listing we recommend the following procedure:
 
+{% code title="<plugin root>/src/Resources/views/storefront/component/product/listing.html.twig" %}
 ```twig
 {% sw_extends '@Storefront/storefront/component/product/listing.html.twig' %}
 
@@ -65,3 +69,4 @@ To read the media objects within the product listing we recommend the following 
     {% endfor %}
 {% endblock %}
 ```
+{% endcode %}
