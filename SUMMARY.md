@@ -101,6 +101,7 @@
       * [Add custom CLI commands](guides/plugins/plugins/plugin-fundamentals/add-custom-commands.md)
       * [Database migrations](guides/plugins/plugins/plugin-fundamentals/database-migrations.md)
       * [Add scheduled task](guides/plugins/plugins/plugin-fundamentals/add-scheduled-task.md)
+      * [Using custom fields of type media](guides/plugins/plugins/plugin-fundamentals/custom-fields-of-type-media.md)
     * [Checkout](guides/plugins/plugins/checkout/README.md)
       * [Cart](guides/plugins/plugins/checkout/cart/README.md)
         * [Add cart items](guides/plugins/plugins/checkout/cart/add-cart-items.md)
