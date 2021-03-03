@@ -8,7 +8,7 @@ For the Admin API these apply to the `/search` endpoint, whilst for the Store AP
 
 It starts with a very simple underlying concept, which encapsulates your entire search description in one generic object, referred to as the **search criteria**.
 
-{% page-ref page="seach-criteria.md" %}
+{% page-ref page="search-criteria.md" %}
 
 There are some additional instructions that can be specified using **request headers**.
 

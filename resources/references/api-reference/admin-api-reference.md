@@ -9,7 +9,7 @@ The Admin API contains endpoints to read, write and update every entity. Instead
 In addition to all data-oriented endpoints, the Admin API has a list of endpoints used to execute business logic on the server. These endpoints are protected by user authentication and ACL.
 
 {% hint style="info" %}
-A list of these endpoints is currently not available, but you can find all endpoints by searching for `@Route("/api/_action` in the [`shopware/core`](/products/editions/community-edition.md) repository.
+A list of these endpoints is currently not available, but you can find all endpoints by searching for `@Route("/api/_action` in the [`shopware/core`](../../../products/editions/community-edition.md) repository.
 
 We are working having a documentation for you soon.
 {% endhint %}
@@ -23,4 +23,4 @@ The endpoints include operations such as
 * Manage plugins 
 * Run migrations
 
-Some of these endpoints have a corresponding [console command](/resources/references/core-reference/commands-reference.md).
+Some of these endpoints have a corresponding [console command](../../../resources/references/core-reference/commands-reference.md).

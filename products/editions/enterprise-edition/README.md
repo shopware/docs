@@ -2,7 +2,7 @@
 
 _Shopware's **Enterprise Edition** is the most extensive product variant of Shopware. It comes with enhanced B2B features, a sophisticated search engine and much more._
 
-_As for the_ [_Professional Edition_](../professional-edition.md)_, the Enterprise Edition is technically based on the_ [_Community Edition_](../community-edition/) _as all enhancements are added via plugins._
+_As for the_ [_Professional Edition_](../professional-edition.md)_, the Enterprise Edition is technically based on the_ [_Community Edition_](../community-edition.md) _as all enhancements are added via plugins._
 
 _The products currently included in the Enterprise Edition are the following:_
 

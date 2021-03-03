@@ -12,7 +12,7 @@ Identifier of a product. If it points to a "parent" product, it returns the chea
 
 **Body**
 
-[`Search Criteria`](../../../../guides/integrations-api/general-concepts/seach-criteria.md) | Criteria | optional  
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) | Criteria | optional  
 
 ## Returns
 
@@ -63,7 +63,7 @@ Identifier of a category.
 
 **Body**
 
-[`Search Criteria`](../../../../guides/integrations-api/general-concepts/seach-criteria.md) | Criteria | optional  
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) | Criteria | optional  
 
 ## Returns
 
@@ -96,7 +96,7 @@ Returns a product listing containing all products and additional fields to displ
 
 **Body**
 
-[`Search Criteria`](../../../../guides/integrations-api/general-concepts/seach-criteria.md) | Criteria | optional  
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) | Criteria | optional  
 
 ## Returns
 
@@ -130,7 +130,7 @@ Identifier of a product.
 
 **Body**
 
-[`includes`](../../../../guides/integrations-api/general-concepts/seach-criteria.md#includes-apialias) | object | optional  
+[`includes`](../../../../guides/integrations-api/general-concepts/search-criteria.md#includes-apialias) | object | optional  
 
 ## Returns
 
@@ -187,7 +187,7 @@ Returns a list of cross-selling groups for the given product including their res
 **`search`** | string | required  
 Term to search after.
 
-[`Search Criteria`](../../../../guides/integrations-api/general-concepts/seach-criteria.md) | Criteria | optional  
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) | Criteria | optional  
 
 ## Returns
 
@@ -237,7 +237,7 @@ Identifier of a product.
 
 **Body**
 
-[`Search Criteria`](../../../../guides/integrations-api/general-concepts/seach-criteria.md) | Criteria | optional  
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) | Criteria | optional  
 
 ## Returns
 

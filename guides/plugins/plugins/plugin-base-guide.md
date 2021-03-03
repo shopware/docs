@@ -24,7 +24,6 @@ For this example guide we'll use the plugin name **SwagBasicExample.**
 
 {% hint style="info" %}
 Using a prefix for your plugin name is not just a convention we'd recommend, but a hard requirement if you want to publish your plugin in the [Shopware Community Store](https://store.shopware.com/en).  
-You can find more information regarding publishing your plugin in the Store [here](../../../resources/guidelines/publishing-extensions/publishing.md).
 {% endhint %}
 
 ### **Create the plugin**

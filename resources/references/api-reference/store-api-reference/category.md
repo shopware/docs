@@ -16,7 +16,7 @@ Identifier of a category or string. Use the `"home"` alias to fetch the root cat
 `slots` | string | optional  
 Slot ids that should be resolved exclusively. Separate multiple slot ids using a `|` character.
 
-[`includes`](/guides/integrations-api/general-concepts/seach-criteria.md#includes-apialias) | object | optional  
+[`includes`](../../../../guides/integrations-api/general-concepts/search-criteria.md#includes-apialias) | object | optional  
 
 ## Returns
 
@@ -82,7 +82,7 @@ Perform a filtered search for categories.
 
 **Body**
 
-[`Search Criteria`](/guides/integrations-api/general-concepts/seach-criteria.md) | Criteria | optional  
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) | Criteria | optional  
 
 ## Returns
 
@@ -144,7 +144,7 @@ Return the categories as a tree or as a flat list. Default is `true`.
 `depth` | integer | optional  
 Determines the depth of fetched navigation levels.  Default is `2`.
 
-[`Search Criteria`](/guides/integrations-api/general-concepts/seach-criteria.md) | Criteria | optional  
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) | Criteria | optional  
 
 ## Returns
 

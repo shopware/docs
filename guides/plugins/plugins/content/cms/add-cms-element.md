@@ -138,7 +138,7 @@ image element. On top of that, you could place our icon `multicolor-action-play`
 to find this icon.
 
 That means: You'll need a container to contain both the image and the icon. In there, you create an `img` tag and 
-use the [sw-icon component](https://component-library.shopware.com/components/sw-icon) to display the icon.
+use the [sw-icon component](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/component/base/sw-icon/index.js) to display the icon.
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/preview/sw-cms-el-preview-dailymotion.html.twig" %}
 ```html

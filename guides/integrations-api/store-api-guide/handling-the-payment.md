@@ -1,7 +1,7 @@
 # Handling the payment
 
 {% hint style="info" %}
-For understanding the general principles of payment, please head to our [Payment](../../../concepts/commerce/checkout/payments.md) article in the concepts section
+For understanding the general principles of payment, please head to our [Payment](../../../concepts/commerce/checkout-concept/payments.md) article in the concepts section
 {% endhint %}
 
 In this guide, we'll go through the headless payment process in Shopware. You'll learn about the following things:
@@ -72,7 +72,7 @@ You might need more data / persist data along with the customer which is either 
 
 ## Payment Flows
 
-Depending on the payment method, the user can flow can differ. The concept of asynchronous and synchronous payment handlers is described in our concepts article on [payments](../../../concepts/commerce/checkout/payments.md). 
+Depending on the payment method, the user can flow can differ. The concept of asynchronous and synchronous payment handlers is described in our concepts article on [payments](../../../concepts/commerce/checkout-concept/payments.md). 
 
 **Synchronous payment**  
 In the synchronous case, the endpoint simply triggers an action that handles the payment \(e.g. an external payment API\) and receives an immediate response.

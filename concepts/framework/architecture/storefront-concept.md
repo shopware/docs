@@ -13,7 +13,7 @@ find answers to the following questions:
 
 ## Introduction
 
-The Storefront component is a frontend written in PHP. It conceptually sits on top of our [Core](core-concept.md) - similar to
+The Storefront component is a frontend written in PHP. It conceptually sits on top of our Core - similar to
 the [Administration](administration-concept.md) component. As the Storefront can be seen as a classical PHP application, it
 makes usage of HTML rendering, JavaScript and a CSS preprocessor. Speaking of technologies, the Storefront component
 uses Twig as the templating engine and SASS for styling purposes. The foundation of the Storefront template is based on
@@ -50,7 +50,7 @@ in [Composite data handling](#composite-data-handling).
 
 Last, but not least, the Storefront not only contains static templates but also inhibits a theming engine to modify the
 rendered templates or change the default layout programmatically with your
-own [Themes](../../../guides/plugins/themes.md)  or [Plugins](../../../guides/plugins/plugins/README.md).
+own [Themes](../../../guides/plugins/themes/README.md)  or [Plugins](../../../guides/plugins/plugins/README.md).
 
 ## Structure
 
@@ -123,7 +123,7 @@ composition should be.
 - By calling a specific route (e.g. `/account/order`) one should receive a specific page in our Storefront.
 - This page exists of generic information (e.g. Header, Footer) and detailed information (e.g. a list of orders).
 - Detailed information should be fetched throughout the Core component to make usage of
-  the [Store API routes](../../../resources/api-reference/store-api.md).
+  the [Store API routes](../../../resources/references/api-reference/store-api-reference/README.md).
 
 The best entry point to give you a good understanding how the composition works, is the corresponding Controller. In our
 case it is the `AccountOrderController`. The main and only task of the controller is to assign a page struct to a

@@ -8,7 +8,7 @@ The states of a state machine should not be changed directly on an entity if the
 
 ### **Order State Transition**
 
-The action route for the order state checks if the transition is allowed given to the state machine definition and writes the state machine history entries. It also takes care of sending the defined state change mails \(if there are any - see [Business Events](../../../concepts/framework/business-events.md)\). It takes arrays of mediaIds and/or documentIds to add them as attachments to the mails. The `transition` parameter can be one of the transitions defined in `\Core\Checkout\Order\OrderStates`.
+The action route for the order state checks if the transition is allowed given to the state machine definition and writes the state machine history entries. It also takes care of sending the defined state change mails. It takes arrays of mediaIds and/or documentIds to add them as attachments to the mails. The `transition` parameter can be one of the transitions defined in `\Core\Checkout\Order\OrderStates`.
 
 ```javascript
 // POST /api/v{version}/_action/order/{orderId}/state/{transition}

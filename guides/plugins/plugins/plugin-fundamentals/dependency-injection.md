@@ -10,7 +10,7 @@ In order to add your own custom service for your plugin, you first need a plugin
 
 Furthermore, you need a working service. Therefore, you can refer to [Adding a custom service](./add-custom-service.md) guide.
 
-## Injecting another services
+## Injecting another service
 
 Let's get started with an example how to inject a service. This example will be about injecting the `SystemConfigService` into our `ExampleService`.
 

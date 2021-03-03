@@ -29,7 +29,7 @@ A distinction is made here between normal `permissions` and `additional_permissi
 
 ### Normal permissions
 
-![Permissions GUI](https://github.com/shopware/docs/tree/e2bbafc28967d4173d60fed3f07199f12fd5d1b1/guides/plugins/plugins/administration/permissions-gui.png)
+![Permissions GUI](../../../../.gitbook/assets/permissions-gui.png)
 
 `permissions`:
 
@@ -54,7 +54,7 @@ For each admin privilege, the needed entity privileges need to be assigned. Depe
 
 In addition to the normal `permissions`, which represent CRUD functionality, there are also `additional_permissions`. These are intended for all functions that cannot be represented by CRUD.
 
-![Additional permissions GUI](https://github.com/shopware/docs/tree/e2bbafc28967d4173d60fed3f07199f12fd5d1b1/guides/plugins/plugins/administration/additional_permissions-gui.png)
+![Additional permissions GUI](../../../../.gitbook/assets/additional_permissions-gui.png)
 
 The `additional_permissions` have their own card below the normal permissions grid. An example for `additional_permissions` would be: "clearing the cache". This is an individual action without CRUD functionalities. The key is still used for grouping. Therefore the role can be individual and does not have to follow the scheme.
 

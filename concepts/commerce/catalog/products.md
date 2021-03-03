@@ -16,7 +16,7 @@ Exemplary property groups \(e.g. for garments\) are _Size_, _Color_ or _Material
 
 ## Product Variants
 
-Different variations of a product can be modeled using _product variants_. Products are a self-referencing entity, which is interpreted as a parent-child relationship. This mechanism is also used to model variants. Nicely this also provides [inheritance](../../framework/data-abstraction-layer/inheritance.md) between field values from parent products to child products.
+Different variations of a product can be modeled using _product variants_. Products are a self-referencing entity, which is interpreted as a parent-child relationship. This mechanism is also used to model variants. Nicely this also provides inheritance between field values from parent products to child products.
 
 ![Variant model](../../../.gitbook/assets/image%20%2810%29.png)
 

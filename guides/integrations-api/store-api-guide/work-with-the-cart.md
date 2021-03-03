@@ -257,7 +257,7 @@ All the above also applies to the `/order` endpoint, which simply lists orders f
 
 The endpoint `/store-api/v3/payment-method` can be used to list all payment methods of the sales channel. With the parameter `onlyAvailable` you can restrict the result to only valid payments methods \(some payment methods can be generally available, but dynamically disabled based on the cart configuration or other parameters\)
 
-Additionally, the api basic parameters \(`filter`, `aggregations`, etc.\) can be used to restrict the result, see [reading entities](../../../concepts/api/admin-api/reading-entities.md).
+Additionally, the api basic parameters \(`filter`, `aggregations`, etc.\) can be used to restrict the result.
 
 ```javascript
 // POST /store-api/v3/payment-method
@@ -288,7 +288,7 @@ Additionally, the api basic parameters \(`filter`, `aggregations`, etc.\) can be
 
 The endpoint `/store-api/v3/shipping-method` can be used to list all payment methods of the sales channel. With the parameter `onlyAvailable` you can restrict the result to only valid shipping methods. The same logic as for payment methods applies in here.
 
-Also here, the api basic parameters \(`filter`, `aggregations`, etc.\) can be used to restrict the result, see [reading entities](../../../concepts/api/admin-api/reading-entities.md).
+Also here, the api basic parameters \(`filter`, `aggregations`, etc.\) can be used to restrict the result.
 
 ```javascript
 // POST /store-api/v3/shipping-method
