@@ -15,12 +15,12 @@ The controller created in the previously mentioned controller guide will also be
 ## Adding custom page
 
 In the following sections, we'll create each of the necessary classes one by one.
-The first one will be controller, whose creation is not going to explained here again. Have a look at the guide about [creating a controller](./add-custom-controller.md)
-to see why it works.
+The first one will be controller, whose creation is not going to explained here again.
+Have a look at the guide about [creating a controller](./add-custom-controller.md) to see why it works.
 
 ### Creating ExampleController
 
-As already mentioned, the controller creation is not explained here, just an example controller.
+Let's have a look at an example controller.
 
 {% code title="<plugin root>/src/Storefront/Controller/ExampleController.php" %}
 ```php
@@ -126,7 +126,7 @@ helpful data. Once again, you don't have to do that, but if you want your page t
 
 The `EventDispatcherInterface` is of course necessary in order to fire an event later on.
 
-Every page loader should implement a `load` method, which is not mandatory, but common sense. You want your page loader to work
+Every page loader should implement a `load` method, which is not mandatory, but convention. You want your page loader to work
 like all the other page loaders, right?
 It should return an instance of your example page, in this case `ExamplePage`. Don't worry, we haven't created that one yet, it will be created in the next sections.
 So, the first thing it does is basically creating a `Page` instance, containing all necessary basic data, such as the footer etc.
