@@ -140,6 +140,8 @@
       * [Add own component](guides/plugins/plugins/administration/add-custom-component.md)
       * [Adding snippets](guides/plugins/plugins/administration/adding-snippets.md)
       * [Add custom styles](guides/plugins/plugins/administration/add-custom-styles.md)
+      * [Using the data handling](guides/plugins/plugins/administration/using-data-handling.md)
+      * [Using the data grid component](guides/plugins/plugins/administration/using-the-data-grid-component.md)
     * [Storefront](guides/plugins/plugins/storefront/README.md)
       * [Add custom controller](guides/plugins/plugins/storefront/add-custom-controller.md)
       * [Override existing routes](guides/plugins/plugins/storefront/override-existing-routes.md)
