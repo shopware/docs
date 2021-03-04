@@ -1,16 +1,27 @@
 # Jest unit tests in Shopware's administration
 
+## Overview
+
 You should write a unit test for every functional change. It should guarantee that your written code works and that a third developer can't break the functionality with their code.
 
 With a good test coverage we can have the confidence to deploy a stable software without needing to manually test the software in its entirety. This little guide will guide you how to write unit tests for the administration in Shopware 6.
 
-We are using [Jest](https://jestjs.io/) as our testing framework. It's a solid foundation and widely used by many developers. Before you are reading this guide you have to make sure you understand the basics of unit tests and how Jest works.
+We are using [Jest](https://jestjs.io) as our testing framework. It's a solid foundation and widely used by many developers. Before you are reading this guide you have to make sure you understand the basics of unit tests and how Jest works.
 
-You can find a good source for best practices in this Github Repo: [https://github.com/goldbergyoni/javascript-testing-best-practices](https://github.com/goldbergyoni/javascript-testing-best-practices)
+## Video
+
+Did you know that there's a video available to this topic? Please take a look:
+
+<!-- markdown-link-check-disable-next-line -->
+{% embed url="https://www.youtube.com/watch?v=nWUBK3fjwVg" %}
 
 ## Prerequisites
 
 This tutorial will have a strong focus on how unit tests should be written when it comes to components in the administration. So please make sure you already know what a unit test is and why we are doing it. Furthermore, you should know what components tests are and what we want to achieve with them.
+You can find a good source for best practices in this Github Repo:
+
+<!-- markdown-link-check-disable-next-line -->
+{% embed url="https://github.com/goldbergyoni/javascript-testing-best-practices" %}
 
 In addition, you need a running Shopware 6 installation. Your repository used for that should be based on development template, as we need to use some scripts provided by it.
 
@@ -29,17 +40,16 @@ Resources
               `-- sw-alert.spec.js
 ```
 
-Please note that in this example, `<environment>` is a placeholder for the environment you are working in. In your context, that should be `administration` or `storefront` in most cases.
+Please note that in this example, `<environment>` is a placeholder for the environment you are working in. In your context, that should be `administration`.
 
-## Setup for testing services and ES modules
+## Testing services and ES modules
 
 Services and isolated ECMAScript modules are well testable because you can import them directly without mocking or stubbing dependencies. A service can be used isolated and therefore is easy to test.
 
 Let's have a look at an example:
 
+{% code title="sanitizer.helper.spec.js" %}
 ```javascript
-// sanitizer.helper.spec.js
-
 import Sanitizer from 'src/core/helper/sanitizer.helper';
 
 describe('core/helper/sanitizer.helper.js', () => {
@@ -66,17 +76,23 @@ describe('core/helper/sanitizer.helper.js', () => {
     // ...more tests 
 });
 ```
+{% endcode %}
+
+You see, you are able to write the test the same way you're used to, writing Jest unit tests in general.
 
 ## Write tests for components
 
-After setting up your component test you need to write your tests. A good way to write them is to test input and output. The most common tests are:
+After setting up your component test, you need to write your tests. A good way to write them is to test input and output. The most common tests are:
 
 * set Vue Props and check if component looks correctly
 * interact with the DOM and check if the desired behaviour is happening
 
+However, when it comes to writing component tests for Shopware's administration, there are some further steps to go.
+We will take a look at them in the following paragraphs.
+
 ## Setup for testing Vue components
 
-We are using the [Vue Test Utils](https://vue-test-utils.vuejs.org/) for easier testing of Vue components. If you don't have experience with testing Vue components it is useful to read some basic guides on this topic. The main part of testing components is similar in Shopware 6.
+We are using the [Vue Test Utils](https://vue-test-utils.vuejs.org) for easier testing of Vue components. If you don't have experience with testing Vue components it is useful to read some basic guides on this topic. The main part of testing components is similar in Shopware 6.
 
 However, there are some important differences. We can't test components that easily like in other Vue projects because we are supporting template inheritance and extendability for third party developers. This causes overhead which we need to bear in mind.
 
@@ -86,7 +102,10 @@ We are using a global object as an interface for the whole administration. Every
 
 Before you are using the commands make sure that you installed all dependencies for your administration. If you haven't done this already, then you can do it running the following PSH command: `./psh.phar administration:install-dependencies`
 
-In order to run jest unit tests of the administration, you can use the psh commands provided by our development template. Beware: This only applies to the Shopware provided Administration! If you use unit tests in your Plugin, you might need to write your own scripts for that.
+In order to run jest unit tests of the administration, you can use the psh commands provided by our development template. 
+
+{% hint style="info" %} This only applies to the Shopware provided Administration! If you use unit tests in your plugin, you might need to write your own scripts for that.
+{% endhint %}
 
 This command executes all unit tests and shows you the complete code coverage.  
 `./psh.phar administration:unit`
@@ -100,33 +119,34 @@ For better understanding how to write component tests for Shopware 6 let's write
 
 When you want to mount your component it needs to be imported first:
 
+{% code title="test/app/component/form/select/base/sw-multi-select.spec.js" %}
 ```javascript
-// test/app/component/form/select/base/sw-multi-select.spec.js
-
 import 'src/app/component/form/select/base/sw-multi-select';
 ```
+{% endcode %}
 
 You see that we import the `sw-multi-select` without saving the return value. This blackbox import only executes code. However, this is important because this registers the component to the Shopware object:
 
+{% code title="test/app/component/form/select/base/sw-multi-select.spec.js" %}
 ```javascript
-// src/app/component/form/select/base/sw-multi-select.js
-
 Shopware.Component.register('sw-multi-select', {
     // The vue component
 });
 ```
+{% endcode %}
 
 ### Mounting components
 
 In the next step we can mount our Vue component which we get from the global Shopware object:
 
+{% code title="test/app/component/form/select/base/sw-multi-select.spec.js" %}
 ```javascript
-// test/app/component/form/select/base/sw-multi-select.spec.js
 
 import 'src/app/component/form/select/base/sw-multi-select';
 
 shallowMount(Shopware.Component.build('sw-multi-select'));
 ```
+{% endcode %}
 
 When we’re testing our vue.js components, we need a way to mount and render the component. Therefore, we use the following methods:
 
@@ -141,8 +161,8 @@ This way, we create a new `wrapper` before each test. The `build` method resolve
 
 Now you can test the component like any other component. Let's try to write our first test:
 
+{% code title="test/app/component/form/select/base/sw-multi-select.spec.js" %}
 ```javascript
-// test/app/component/form/select/base/sw-multi-select.spec.js
 
 import { shallowMount } from '@vue/test-utils';
 import 'src/app/component/form/select/base/sw-multi-select';
@@ -163,6 +183,7 @@ describe('components/sw-multi-select', () => {
     });
 });
 ```
+{% endcode %}
 
 This contains our component. In our first test we only check if the wrapper is a Vue instance.
 
@@ -187,6 +208,7 @@ wrapper = shallowMount(Shopware.Component.build('sw-multi-select'), {
 
 Now you should only see the last warning with an unknown custom element. The reason for this is that most components contain other components. In our case the `sw-multi-select` needs the `sw-select-base` component. Now we have several solutions to solve this. The two most common ways are stubbing or using the component.
 
+{% code title="test/app/component/form/select/base/sw-multi-select.spec.js" %}
 ```javascript
 import 'src/app/component/form/select/base/sw-select-base';
 
@@ -200,12 +222,12 @@ wrapper = shallowMount(Shopware.Component.build('sw-multi-select'), {
     }
 });
 ```
+{% endcode %}
 
 You need to choose which way is needed: Many tests do not need the real component, but in our case we need the real implementation. You will see that if we import another component that they can create also warnings. Let's look at the code that solve all warnings, then we should have a code like this:
 
+{% code title="test/app/component/form/select/base/sw-multi-select.spec.js" %}
 ```javascript
-// test/app/component/form/select/base/sw-multi-select.spec.js
-
 import { shallowMount } from '@vue/test-utils';
 import 'src/app/component/form/select/base/sw-multi-select';
 import 'src/app/component/form/select/base/sw-select-base';
@@ -255,10 +277,11 @@ describe('components/sw-multi-select', () => {
     });
 });
 ```
+{% endcode %}
 
 ## Second example: Testing of message inside the sw-alert component
 
-Of course, the complexity and structure of your test depends on what you are trying to achieve with your component. Here is one little example concerning the component `sw-alert`: Actually, he task of an alert is displaying a message for the user in most cases. So in this example, let's write a test for this text located in a slot. You can find this example in the [linked video](https://www.youtube.com/watch?v=nWUBK3fjwVg) as well.
+Of course, the complexity and structure of your test depends on what you are trying to achieve with your component. Here is one little example concerning the component `sw-alert`: Actually, he task of an alert is displaying a message for the user in most cases. So in this example, let's write a test for this text located in a slot. You can find this example in the linked video above as well.
 
 We will start with an already written test similar to the first example:
 
@@ -444,7 +467,23 @@ productRepository() {
 
 Now let's say you want to test the repository request which fetches the product list. You can mock the search method of the created repository and return an array of dummy data. By returning a Promise which immediately resolves you can test the .then\(\) branch of the actual implementation.
 
-provide: { repositoryFactory: { create: \(\) =&gt; \({ search: \(\) =&gt; { return Promise.resolve\(\[ { name: 'Foo bar', manufacturer: 'Test' }, { name: 'Lorem ipsum', manufacturer: 'Jest party' } \]\); } }\) } }
+```javascript
+provide: {
+    repositoryFactory: {
+        create: () => ({ 
+            search: () => ({
+              return Promise.resolve([{
+                  name: 'Foo bar', 
+                  manufacturer: 'Test' 
+              }, {
+                  name: 'Lorem ipsum', 
+                  manufacturer: 'Jest party' 
+              }])
+            })
+        }) 
+    }
+}
+```
 
 This is the equivalent to:
 
@@ -510,3 +549,13 @@ provide: {
 }
 ```
 
+## Next steps
+
+Do you want to see these examples in practise? Head over to our [video tutorial](https://youtu.be/nWUBK3fjwVg) on how
+to write component tests in jest for the Shopware administration. 
+
+However, it doesn't stop there. You might to write more tests for your plugin, so we got you covered with even more
+guides on testing:
+* [Unit testing with PHPUnit](./php-unit.md)
+* [Jest unit tests in Shopware's storefront](./jest-storefront.md)
+* [End-to-End testing in Shopware](./end-to-end-testing.md)

@@ -1,6 +1,8 @@
 # End-to-end testing
 
-In end-to-end testing \(E2E testing in short\) real user workflows are simulated, whereby as many as possible functional areas and parts of the technology stack used in the application should be included. This way, we are able to put our UI under constant stress and ensure that Shopware's main functionalities are always working correctly. As we are using Cypress as testing framework, please take a look at [official Cypress Dokumentation](https://docs.cypress.io) for further documentation.
+## Overview
+
+In end-to-end testing \(E2E testing in short\) real user workflows are simulated, whereby as many as possible functional areas and parts of the technology stack used in the application should be included. This way, we are able to put our UI under constant stress and ensure that Shopware's main functionalities are always working correctly. 
 
 ## Prerequisites
 
@@ -11,6 +13,11 @@ The easiest way to clean up your installation is the initialization. Using the c
 Since our tests should run on an installation that is as close as possible to a release package, we use production mode. If you run the tests on a development environment, the test results may vary.
 
 On top of that, please make sure your shop has a theme assigned. When using `./psh.phar e2e:open` or `run`, this is done automatically.
+
+This guide also won't teach you how to write Cypress tests in general. Please take a look at the official Cypress documentation for further guidance.
+
+<!-- markdown-link-check-disable-next-line -->
+{% embed url="http://docs.cypress.io" %}
 
 ### Using our testsuite
 
@@ -23,6 +30,10 @@ This test suite is built on top of [Cypress](https://www.cypress.io/) as well as
 * [cypress-select-tests](https://github.com/bahmutov/cypress-select-tests)
 * [cypress-log-to-output](https://github.com/flotwig/cypress-log-to-output)
 * [cypress-file-upload](https://github.com/abramenal/cypress-file-upload)
+
+Here you can find the npm package of our testsuite:
+<!-- markdown-link-check-disable-next-line -->
+{% embed url="http://www.npmjs.com/package/@shopware-ag/e2e-testsuite-platform" %}
 
 ## Setup steps
 
@@ -132,7 +143,10 @@ CYPRESS_baseUrl=<your-url> npm run open
 
 `<your-url>` means the Storefront-URL of your Shopware environment.
 
-It opens up the Cypress test runner which allows you to run and debug your tests, similar to the `e2e:open` command. However, don't forget that you might need to adjust test cleanup and other environment-related things according to your plugin's setup.
+It opens up the Cypress test runner which allows you to run and debug your tests, similar to the `e2e:open` command. 
+
+{% hint style="danger" %} Don't forget that you might need to adjust test cleanup and other environment-related things according to your plugin's setup.
+{% endhint %}
 
 ## Writing your first test
 
@@ -166,7 +180,7 @@ In the `cypress` folder, all test related folders are located. Most things will 
 
   contains a sequence of tests, performed in the order defined in it.
 
-* `plugins`: Contains extensions or plugins. By default Cypress will automatically include the plugins file before
+* `plugins`: Contains extensions or plugins. By default, Cypress will automatically include the plugins file before
 
   every single spec file it runs.
 
@@ -200,7 +214,7 @@ If you want to contribute to Shopware platform's tests, please ensure to place y
   `-- settings
 ```
 
-This is important because otherwise your test is not considered by our CI.
+{% hint style="warning" %} This is important because otherwise your test is not considered by our CI. {% endhint %}
 
 ### Test layout and syntax
 
@@ -305,7 +319,7 @@ One test should only test one workflow, the one it's written for. For example, i
 
 In Shopware platform, we use Shopware's REST API to create the data we need. As a result, our tests are able to focus on one single workflow without having to test the workflows which normaly need to be done to provide the data we need. Another aspect of handling it this way is, that creating test data via API is faster than doing it inside the test.
 
-## Cypress' fixtures
+### Cypress' fixtures
 
 To define the request you send to Shopware and to set first test data, store as `json` file in the folder `e2e/cypress/fixtures`. You can use those files to provide fixed test data which can be used directly to create the desired entity without any further searching or processing. Fortunately, Cypress provides a way to handle those fixtures by default. The command `cy.fixture()` loads this fixed set of data located in a json file.
 
@@ -327,17 +341,21 @@ In the example file below, this file is used in order to define and create a cus
 }
 ```
 
-Note: Use only fields, which you can access in the UI / Storefront. Keep in mind that all tests in the file may use the fixture. So keep an eye on compatibility. Plus, a little word on ID usage: Using ids may be easier for finding, but it isn't a proper way for testing in every case. t depends on your application. You need to be 100% sure that the id is persistant over all builds and won't change inbetween. At our case at Shopware, Ids on UUID basis tend to change installation to installation, so they are not suitable to be used as selector in your test. Never use ids here if you cannot be 100% sure they will not change at all, e.g. in another build.
+{% hint style="info" %} Use only fields, which you can access in the UI / Storefront. Keep in mind that all tests in the file may use the fixture. So keep an eye on compatibility. {% endhint %}
 
-## API implementation
+A small note on ID usage: Using ids may be easier for finding elements, but it isn't a proper way for testing in every case - It depends on your application. You need to be 100% sure that the id is persistent and won't change between builds. Never use ids here if you cannot be 100% sure they will not change at all, e.g. in another build.
+
+{% hint style="info" %} At our case at Shopware, Ids on UUID basis tend to change from one installation to the next, so they are not always suitable to be used as selector in your test. {% endhint %}
+
+### API implementation
 
 Analogue to the administration itself, the api access of the e2e test is based on [axios](https://www.npmjs.com/package/axios), a promise based HTTP client for the browser and node.js.
 
-Just like the administration, we use services to access Shopware's REST API. Therefore we use the ApiService to provide the basic methods for accessing the api. Located in `e2e/cypress/support/service/api.service.js`, ApiService is shared between all repositories and acts as a basis for all your next steps of creating fixtures. That implies that the axios implementation of all important api methods can be found there. This service acts as an interface: Next to the basic functions like get, post etc the request method is specified here as well as some Shopware-related methods which have to be available in all repositories.
+Just like the administration, we use services to access Shopware's REST API. Therefore, we use the ApiService to provide the basic methods for accessing the api. Located in `e2e/cypress/support/service/api.service.js`, ApiService is shared between all repositories and acts as a basis for all your next steps of creating fixtures. That implies that the axios implementation of all important api methods can be found there. This service acts as an interface: Next to the basic functions like get, post etc the request method is specified here as well as some Shopware-related methods which have to be available in all repositories.
 
-Important: Cypress provides an own axios-based way to handle requests in its command `cy.request`. However, Cypress commands are not real promises, see [Commands are not Promises](https://docs.cypress.io/guides/core-concepts/introduction-to-cypress.html#Commands-Are-Not-Promises). As we aim to parallelize the promises to fetch test data, we use our own implementation instead.
+{% hint style="info" %} Cypress provides an own axios-based way to handle requests in its command `cy.request`. However, Cypress commands are not real promises, see [Commands are not Promises](https://docs.cypress.io/guides/core-concepts/introduction-to-cypress.html#Commands-Are-Not-Promises). As we aim to parallelize the promises to fetch test data, we use our own implementation instead. {% endhint %}
 
-## Services and commands
+### Services and commands
 
 In order to get all test fixture data applied to our Shopware installation, we use services to send the API requests to find, create or update the data we need. To access these services conveniently, we provide custom commands, which we'll cover a bit later. Let's continue with the general things first.
 
@@ -359,7 +377,7 @@ service
 
 If you want to use all known services, you can access them using custom commands. These commands can be found in `cypress/support/commands/api-commands.js` for general operation and `cypress/support/commands/fixture-commands.js` specifically for fixture handling.
 
-### Default fixture command
+#### Default fixture command
 
 The stationary fixtures mentioned in the paragraph "Cypress' fixtures" can be sent to Shopware's REST API directly: In most cases Shopware does not need any additional data, like IDs or other data already stored in Shopware. That means the request can be sent, and the desired entity can be created immediately: You just need to use the `createDefaultFixture(endpoint, options = [])` command, as seen below:
 
@@ -392,7 +410,7 @@ Cypress.Commands.add('createDefaultFixture', (endpoint, data = {}, jsonPath) => 
 });
 ```
 
-### Commands of customised services
+#### Commands of customised services
 
 You will notice soon that some entities need data which has already been created. That means you have to find out specific IDs or employ a completely different handling. In this case, your own service has to be created, located in `e2e/cypress/support/service`. Some examples for these services are:
 
@@ -401,9 +419,9 @@ You will notice soon that some entities need data which has already been created
 * Languages
 * Products
 
-In most cases, the usage of these services is similar to the basic ones already implemented. There are commands for each of those services provided by our E2E testsuite package. You don't need to define the API endpoint when using those commands. As these services are extending the FixturesService, all methods of it can be used in all other services as well.
+In most cases, the usage of these services is similar to the basic ones already implemented. There are commands for each of those services provided by our E2E testsuite package. You don't need to define the API endpoint when using those commands. As these services are extending the `FixturesService`, all methods of it can be used in all other services as well.
 
-### Writing your own customised service
+#### Writing your own customised service
 
 Let's look at the custom service `shipping.fixture.js`. This service is a rather simple example - It depicts a service in need of some customization for creating a shipping method correctly. With that being said, let's start.
 
@@ -452,39 +470,19 @@ return Promise.all([
 });
 ```
 
-That's it! And there you go: You have successfully created a customised service that sets up a shipping method in Shopware. Actually, we use this service in our platform test to create our shipping method as well. You can find the full service [here](https://github.com/shopware/e2e-testsuite-platform/blob/master/cypress/support/service/administration/fixture/shipping.fixture.js). So please look at this example to see the whole class.
+That's it! There you go: You have successfully created a customised service that sets up a shipping method in Shopware. Actually, we use this service in our platform test to create our shipping method as well. You can find the full service [here](https://github.com/shopware/e2e-testsuite-platform/blob/master/cypress/support/service/administration/fixture/shipping.fixture.js). So please look at this example to see the whole class.
 
 Below you will find some best practices and tricks we explored to help you with your testing tasks:
 
-* A source of information can be found in FieldCollection of the several EntityDefinition files.
+* A source of information can be found in FieldCollection of the several EntityDefinition files. All fields belonging to an entity are defined there. For example, if you're searching for customer related data, please search for the `CustomerDefinition` in Shopware platform.
+* If you want to extract mandatory data that is not covered by the error message received with the API's response, it's useful to reproduce your workflow manually: E.g. if you need to find out what data is mandatory for creating a customer, try to save an empty one in the administration. Keep an eye on the developer tools of your browser while doing so, especially on the preview and response section of your request. As you get your response, you can see what data is still missing.
+* If you need to set non-mandatory data, reproducing the above mentioned workflow is recommended as well: Even if the error response does not contain a readable error, you can still inspect it: All the relevant information is stored in 'data'. IDs can be found there directly, other relevant data is stored in "attributes".
+* Cypress' test runner can help you a lot with inspecting API requests. Just click on the request in the test runner's log to get a full print of it in your console.
 
-  All fields belonging to an entity are defined there. For example, if you're searching for customer related data,
+## Next steps
 
-  please search for the `CustomerDefinition` in Shopware platform.
-
-* Furthermore, you can always look at our Swagger UI every Shopware installation is coming with to
-
-  find out the correct data structure besides looking up the EntityDefinitions. The UI can be found via
-
-  `http://<your-installation>/api/v3/_info/swagger.html`.
-
-* If you want to extract mandatory data that is not covered by the error message received with the API's response,
-
-  it's useful to reproduce your workflow manually: E.g. if you need to find out what data is mandatory for creating
-
-  a customer, try to save an empty one in the administration. Keep an eye on the developer tools of your browser while
-
-  doing so, especially on the preview and response section of your request. As you get your response,
-
-  you can see what data is still missing.
-
-* If you need to set non-mandatory data, reproducing the above mentioned workflow is recommended as well:
-
-  Even if the error response does not contain a readable error, you can still inspect it: All the relevant information
-
-  is stored in 'data'. IDs can be found there directly, other relevant data is stored in "attributes".
-
-* Cypress' test runner can help you a lot with inspecting API requests. Just click on the request in the test runner's
-
-  log to get a full print of it in your console.
-
+Our guides on testing don't stop here. You might to write more tests for your plugin, so we got you covered with even more
+guides on testing:
+* [Unit testing with PHPUnit](./php-unit.md)
+* [Jest unit tests in Shopware's administration](./jest-admin.md)
+* [Jest unit tests in Shopware's storefront](./jest-storefront.md)
