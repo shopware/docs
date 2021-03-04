@@ -8,11 +8,11 @@ There is a single category tree that represents the whole product catalog of you
 
 ## Product assignments
 
-There are two ways that products can be assigned to a category. Either through an explicit assignment or using a [Dynamic Product Group](dynamic-product-groups.md). Explicit assignments are stored in a database table, whereas dynamic groups are a collection of filters which get evaluated at execution time.
+There are two ways that products can be assigned to a category. Either through an explicit assignment or using a Dynamic Product Group. Explicit assignments are stored in a database table, whereas dynamic groups are a collection of filters which get evaluated at execution time.
 
 ## Navigation
 
-Categories also serve as entry points for your store navigation. For every [Sales Channel](sales-channels.md), you can select a category to be the root of your navigation. Shopware will then build the navigation based on that categories child categories. Parent categories also contain the explicit assignments of their children, based on the [Inheritance](../../framework/data-abstraction-layer/inheritance.md) relation between categories.
+Categories also serve as entry points for your store navigation. For every [Sales Channel](sales-channels.md), you can select a category to be the root of your navigation. Shopware will then build the navigation based on that categories child categories. Parent categories also contain the explicit assignments of their children, based on the Inheritance relation between categories.
 
 {% hint style="info" %}
 Categories can be globally hidden from store navigations based on a hide in navigation flag.

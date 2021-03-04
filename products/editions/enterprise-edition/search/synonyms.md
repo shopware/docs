@@ -55,7 +55,7 @@ return [
    2. Parametername `swag_ses_synonym_dir`
 
 2. Own Plugin
-   1. [Create a plugin](../../../../guides/plugins/plugin-plugins/plugin-base-guide.md)
+   1. [Create a plugin](../../../../guides/plugins/plugins/plugin-base-guide.md)
 
    2. Add a [dependency injection](../../../../guides/plugins/plugins/plugin-fundamentals/dependency-injection.md#injecting-another-service) file
 

@@ -246,7 +246,7 @@ it('test something', () => {
 You can chain commands by passing its return value to the next one. These commands may contain extra steps to take, e.g. a `click` or `type` operation.
 
 Cypress provides a lot of commands to represent a variety of steps a user could do.
-On top of that, our E2E testsuite contains a couple of [custom commands](/resources/references/testing-reference/e2e-custom-commands.md) specially for Shopware.
+On top of that, our E2E testsuite contains a couple of [custom commands](../../../../resources/references/testing-reference/e2e-custom-commands.md) specially for Shopware.
 
 ### Assertions
 

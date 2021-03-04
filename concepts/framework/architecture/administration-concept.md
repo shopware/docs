@@ -15,7 +15,7 @@ find answers to the following questions:
 ## Introduction
 
 The Administration component is a Symfony bundle which contains a Single Page Application (SPA) written in JavaScript.
-It conceptually sits on top of our [Core](core-concept.md) - similar to the [Storefront](storefront-concept.md) component. The SPA
+It conceptually sits on top of our Core - similar to the [Storefront](storefront-concept.md) component. The SPA
 itself provides a rich user interface on top of a REST-API based communication. It communicates with the Core component
 throughout the Admin API & is an Interaction Oriented System following the example of the web components patterns -
 albeit through [Vue.js](https://vuejs.org/). Similar to the frameworks being used in the Storefront component, the
@@ -27,7 +27,7 @@ compile the SPA.
 ## Main concerns
 
 As mentioned preliminary, the Administration component provides a SPA which communicates with the Core throughout the
-[Admin API](../../api/admin-api/README.md). To summarize, its main concern is to provide a UI for all administrative
+[Admin API](../../../guides/integrations-api/admin-api/README.md). To summarize, its main concern is to provide a UI for all administrative
 tasks for a shop owner in Shopware. And to be more precise: It does not contain any business logic. Therefore, there is
 no functional layering, but a flat list of modules structured along the Core component and containing Vue.js web
 components. Every single communication with the Core can e.g. be inspected throughout the network activities of your

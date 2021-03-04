@@ -14,7 +14,7 @@ A [middleware](https://symfony.com/doc/current/messenger.html#middleware) is cal
 A [handler](https://symfony.com/doc/current/messenger.html#registering-handlers) gets called once the message is dispatched by the `handle_messages` middleware. Handlers do the actual processing of the message, therefore they must extend the `AbstractMessageHandler`-class and implement the `handle()` method. To register a handler you have to tag it with the `messenger.message_handler` tag. To specify which methods should be handled by a given handler implement the static `getHandledMessages()` method and return the MessageClasses which that handler should handle. You can also define multiple handlers for the same message.
 
 ### Message
-A [message](https://symfony.com/doc/current/messenger.html#message) is a simple PHP class that you want to dispatch over the MessageQueue. It must be serializable and should contain all the necessary information that a [handler](/concepts/framework/messaging.md#handler) needs to process the message.
+A [message](https://symfony.com/doc/current/messenger.html#message) is a simple PHP class that you want to dispatch over the MessageQueue. It must be serializable and should contain all the necessary information that a [handler](./messaging.md#handler) needs to process the message.
 
 ### Envelope
 A message will be wrapped in [envelope](https://symfony.com/doc/current/components/messenger.html#adding-metadata-to-messages-envelopes) by the message bus that dispatches the message.
@@ -29,4 +29,4 @@ A [Transport](https://symfony.com/doc/current/messenger.html#transports) is resp
 To send messages the Shopware messenger bus is used which can be injected through DI and populated with metadata. Optionally, there is also a message bus for sensitive data that offers encryption.
 
 ### Consuming Messages
-Consuming messages can be done via both a [console command](/guides/hosting/infrastructure/message-queue.md#cli-worker), and via an API endpoint. The Console command starts a worker that will receive incoming messages from your transport and dispatch them. The API can be communicated with via a POST, which will consume messages for 2 seconds and then you get the count of the handled messages in the response.
+Consuming messages can be done via both a [console command](../../guides/hosting/infrastructure/message-queue.md#cli-worker), and via an API endpoint. The Console command starts a worker that will receive incoming messages from your transport and dispatch them. The API can be communicated with via a POST, which will consume messages for 2 seconds and then you get the count of the handled messages in the response.

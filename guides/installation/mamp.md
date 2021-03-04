@@ -108,7 +108,7 @@ git clone https://github.com/shopware/platform.git
 * Port = 8000
 * Document Root = Browse for the public directory inside the new directory that you used before \(e.g. /PhpstormProjects/shopware/development/public\)
 
-![hosts](https://github.com/shopware/docs/tree/1843e1c2b0ad995dd152f8901db381e6e84b49a1/assets/10-mac-os-x-net.png)
+![hosts](../../.gitbook/assets/10-mac-os-x-net.png)
 
 ### **Change the installation settings**
 
@@ -138,8 +138,10 @@ Afterwards a file called `.psh.yaml.override` is created, which contains all tho
 
 After that the setup is done. You can now access your Shopware 6 installation using the following urls:
 
+<!-- markdown-link-check-disable -->
 * Storefront: [http://shopware:8000](http://shopware:8000)
 * Admin: [http://shopware:8000/admin](http://shopware:8000/admin) \(User: admin, password: shopware\)
+<!-- markdown-link-check-enable -->
 
 ## Troubleshooting
 

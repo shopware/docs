@@ -5,12 +5,12 @@ Sales channels allow you to operate multiple, separate stores from a single Shop
 These stores can have different configurations with regard to
 
 * Channel type \(Storefront, API consumer, feed export, social channels\)
-* Appearance \([Themes]() for [Storefront](../../../guides/plugins/plugins/storefront/) sales channels\)
-* [Payment methods](../checkout/payments.md)
+* Appearance \([Themes]() for [Storefront](../../../guides/plugins/plugins/storefront/README.md) sales channels\)
+* [Payment methods](../checkout-concept/payments.md)
 * Languages
 * Currencies
 * Domains
-* [Prices](prices.md)
+* Prices
 * [Products](products.md) & [categories](categories.md)
 
 ## Store separation
@@ -23,10 +23,12 @@ Usually, sales channels are \(if possible identified by there URL\), however the
 
 A sales channel can have multiple associated domain configurations. These domains are used to resolve pre-configurations for currencies, snippet sets and languages based on routes. This way you can configure various domains such as:
 
+<!-- markdown-link-check-disable -->
 * https://fruitsandveggies.com/
   * Locale en-GB, British English, Pounds
 * https://fruitsandveggies.com/de
   * Locale de-DE, German, Euro
 * https://fruitsandveggies.es/
   * Locale es-ES, Spanish, Euro
+<!-- markdown-link-check-enable-->
 

@@ -60,8 +60,8 @@ We now have discussed the most commonly used parts of the `Shopware` object, but
 | Component  | A registry for VueJS `components`                                                            |
 | Context    | A set of contexts for the `app` and the `api`                                                |
 | Defaults   | A collection of default values                                                               |
-| Directive  | A registry for (VueJS `directives`)[https://vuejs.org/v2/guide/custom-directive.html]        |
-| Filter     | A registry for (VueJS template `filters`)[https://vuejs.org/v2/guide/filters.html]           |
+| Directive  | A registry for [VueJS `directives`](https://vuejs.org/v2/guide/custom-directive.html)        |
+| Filter     | A registry for [VueJS template `filters`](https://vuejs.org/v2/guide/filters.html)           |
 | Helper     | A collection of helpers, e.g. the `DeviceHelper` where you can listen on the `resize` event  |
 | Locale     | A registry for `locales`                                                                     |
 | Mixin      | A registry for `mixins`                                                                      |
@@ -69,7 +69,7 @@ We now have discussed the most commonly used parts of the `Shopware` object, but
 | Plugin     | An interface to add `promise`based hooks to run when the administration launches             |
 | Service    | A helper to get quick access to service, e.g. `Shopware.Service('snippetService')`           |
 | Shortcut   | A registry for keyboard shortcuts                                                            |
-| State      | A wrapper for the (VueX)[https://vuex.vuejs.org/] store to manage state                      |
+| State      | A wrapper for the [VueX](https://vuex.vuejs.org/) store to manage state                      |
 | Utils      | A collection of utility methods like `createId`                                              |
 
 

@@ -20,7 +20,7 @@ See the below section for an exemplary endpoint description.‌
 
 ## Example endpoint <a id="example-endpoint"></a>
 
-> The first line contains the HTTP method, the endpoint URL relative to the [base route](../../../../guides/integrations-api/store-api-guide/README.md#general) and the name of the corresponding route class within the [shopware/core](../../../../concepts/framework/architecture/core-concept.md) package.
+> The first line contains the HTTP method, the endpoint URL relative to the [base route](../../../../guides/integrations-api/store-api-guide/README.md#general) and the name of the corresponding route class within the `shopware/core` package.
 
 `POST /product/{productId}` \| ProductDetailRoute
 
@@ -28,7 +28,7 @@ See the below section for an exemplary endpoint description.‌
 
 ### **Parameters** <a id="parameters"></a>
 
-> The parameters section contains parameters of the endpoint. Depending on the endpoint parameters can be passed as a header, as a **query parameter** \(`?onlyAvailable=1` \), as a **route path parameter** \(`/product/{productId}` \) or \(for post requests\) as **body parameter.** The most common parameters are defined in the search criteria parameters, which can be passed in almost every list endpoint. More information about the [search criteria](../../../../guides/integrations-api/general-concepts/seach-criteria.md).
+> The parameters section contains parameters of the endpoint. Depending on the endpoint parameters can be passed as a header, as a **query parameter** \(`?onlyAvailable=1` \), as a **route path parameter** \(`/product/{productId}` \) or \(for post requests\) as **body parameter.** The most common parameters are defined in the search criteria parameters, which can be passed in almost every list endpoint. More information about the [search criteria](../../../../guides/integrations-api/general-concepts/search-criteria.md).
 
 **Path**‌
 
@@ -37,7 +37,7 @@ Identifier of a product. If it points to a "parent" product, it returns the chea
 
 **Body**‌
 
-​[**`Search Criteria`**](../../../../guides/integrations-api/general-concepts/seach-criteria.md) \| Criteria \| optional
+​[**`Search Criteria`**](../../../../guides/integrations-api/general-concepts/search-criteria.md) \| Criteria \| optional
 
 ‌
 

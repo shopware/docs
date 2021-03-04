@@ -1,5 +1,7 @@
 # Extensibility
 
+<!-- markdown-link-check-disable -->
+
 {% hint style="info" %}
 This Article use many Code-References to GitLab! Please contact the Shopware Sales department to get access to the private repository. Find more information in our [Enterprise Contribution Guidelines](../contribution-guidelines.md)
 {% endhint %}
@@ -123,4 +125,5 @@ Often you want to filter your definition.
 This can be done by extending the CriteriaBuilder.
 
 An example can be found here: [Swag\EnterpriseSearch\Category\SalesChannelCategorySearchCriteriaBuilder](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Category/SalesChannelCategorySearchCriteriaBuilder.php)
+<!-- markdown-link-check-enable-->
 
