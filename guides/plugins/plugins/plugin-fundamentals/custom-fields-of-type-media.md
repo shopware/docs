@@ -3,8 +3,8 @@
 After you have added a custom field of type media, with the administration or via plugin, you can assign media objects to the different entities.
 This is often used for products to add more images to the product detail page.
 If you want to learn more about custom fields you might want to take a look at this guide: [Adding custom fields](..\administration\add-custom-field.md)
-## Overview
 
+## Overview
 
 In the product detail page template, the key `page.product.translated.customFields.xxx` with the `xxx`, which is replaced with the corresponding custom field, contains the UUID of the media.
 Now the ID has just to be resolved with the function [searchMedia](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Framework/Adapter/Twig/Extension/MediaExtension.php#L31-L45):
