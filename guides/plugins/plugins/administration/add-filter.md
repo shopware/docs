@@ -3,7 +3,7 @@
 ## Overview
 
 In this guide you'll learn, how to create a filter for the Shopware administration. A filter is just a little helper for formatting text.
-In this example, we create a filter that makes text into caps and adds an underscore at the beginning and end.
+In this example, we create a filter that converts text into uppercase and adds an underscore at the beginning and end.
 
 ## Prerequisites
 
@@ -31,7 +31,7 @@ Filter.register('example', (value) => {
 ```
 {% endcode %}
 
-As you can see, it's very simple. We use `Filter` from the `Shopware` object where we can register our filter with the function `register`.
+As you can see, it's very simple. We use `Filter` from the `Shopware` object where we can register our filter with the method `register`.
 The first argument we pass is the name of our filter, which is `example`. The second argument is a function with which we format our text.
 
 If you want to use multiple arguments in your filter function, it could look like this:
@@ -42,7 +42,7 @@ Filter.register('example', (value, secondValue, thirdValue) => {
 });
 ```
 
-Last, import the filter into your `main.js` file.
+Last, import the filter into your plugin's `main.js` file.
 
 ## Next steps
 
