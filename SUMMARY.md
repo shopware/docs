@@ -95,6 +95,7 @@
     * [Checkout](guides/plugins/plugins/checkout/README.md)
       * [Cart](guides/plugins/plugins/checkout/cart/README.md)
         * [Add cart items](guides/plugins/plugins/checkout/cart/add-cart-items.md)
+        * [Add cart discounts](guides/plugins/plugins/checkout/cart/add-cart-discounts.md)
       * [Customer](guides/plugins/plugins/checkout/customer.md)
       * [Document](guides/plugins/plugins/checkout/document.md)
       * [Order](guides/plugins/plugins/checkout/order.md)
