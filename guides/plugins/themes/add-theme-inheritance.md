@@ -55,6 +55,7 @@ Now it is easy to see how we can inherit from our base theme `SwagBasicExampleTh
 Here is an example:
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
+```json
 {
   "name": "SwagBasicExampleThemeExtend",
   "author": "Shopware AG",
@@ -81,6 +82,7 @@ Here is an example:
     "app/storefront/src/assets"
   ]
 }
+```
 {% endcode %}
 
 Let's walk over each section and have a closer look.
