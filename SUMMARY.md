@@ -135,6 +135,7 @@
       * [Custom Fields](guides/plugins/plugins/framework/custom-field/README.md)
         * [Add custom field](guides/plugins/plugins/framework/custom-field/add-custom-field.md)
         * [Using custom fields](guides/plugins/plugins/framework/custom-field/using-custom-fields.md)
+        * [Fetching data from "entity selection" custom field](guides/plugins/plugins/framework/custom-field/fetching-data-from-entity-selection.md)
       * [Event](guides/plugins/plugins/framework/event/README.md)
         * [Add custom event](guides/plugins/plugins/framework/event/add-custom-event.md)
       * [Message Queue](guides/plugins/plugins/framework/message-queue.md)
