@@ -131,6 +131,8 @@
       * [Rule](guides/plugins/plugins/framework/rule.md)
       * [Store API](guides/plugins/plugins/framework/store-api.md)
     * [Administration](guides/plugins/plugins/administration/README.md)
+      * [Adding Mixins](guides/plugins/plugins/administration/add-mixins.md)
+      * [Adding Services](guides/plugins/plugins/administration/add-custom-service.md)
       * [Adding permissions](guides/plugins/plugins/administration/add-acl-rules.md)
       * [Add custom route](guides/plugins/plugins/administration/add-custom-route.md)
       * [Writing templates](guides/plugins/plugins/administration/writing-templates.md)
