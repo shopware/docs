@@ -1,4 +1,4 @@
-# Add menu module
+# Add custom module
 
 In the `Administration` core code, each module is defined in a directory called `module`, so simply stick to it. Inside of the `module` directory lies the list of several modules, each having their own directory named after the module itself.
 
