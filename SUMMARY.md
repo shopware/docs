@@ -92,6 +92,8 @@
       * [Database migrations](guides/plugins/plugins/plugin-fundamentals/database-migrations.md)
       * [Add scheduled task](guides/plugins/plugins/plugin-fundamentals/add-scheduled-task.md)
       * [Using custom fields of type media](guides/plugins/plugins/plugin-fundamentals/custom-fields-of-type-media.md)
+      * [Adding NPM dependencies](guides/plugins/plugins/plugin-fundamentals/using-npm-dependencies.md)
+      * [Adding Composer dependencies](guides/plugins/plugins/plugin-fundamentals/using-composer-dependencies.md)
     * [Checkout](guides/plugins/plugins/checkout/README.md)
       * [Cart](guides/plugins/plugins/checkout/cart/README.md)
         * [Add cart items](guides/plugins/plugins/checkout/cart/add-cart-items.md)
