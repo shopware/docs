@@ -219,6 +219,12 @@ use Shopware\Core\System\CustomField\CustomFieldTypes;
 $this->customFieldSetRepository->create([
     [
         'name' => 'swag_example_set',
+        'config' => [
+            'label' => [
+                'en-GB' => 'English custom field set label',
+                'de-DE' => 'German custom field set label'
+            ]
+        ],
         'customFields' => [
             [
                 'name' => 'swag_example_size',
@@ -227,14 +233,9 @@ $this->customFieldSetRepository->create([
                     'label' => [
                         'en-GB' => 'English custom field label',
                         'de-DE' => 'German custom field label'
-                    ]
+                    ],
+                    'customFieldPosition' => 1
                 ]
-            ]
-        ],
-        'config' => [
-            'label' => [
-                'en-GB' => 'English custom field set label',
-                'de-DE' => 'German custom field set label'
             ]
         ]
     ]
@@ -247,6 +248,7 @@ The type is important to mention, because the administration will use this infor
 Also, when trying to write the custom field `swag_example_size`, the value has to be an integer.
 
 Also we've taken care of adding translated labels to both the field and the set, which are going to be displayed in the administration.
+If you have several custom fields and want to order them within a specific order, you can do so with the `customFieldPosition` property.
 
 {% hint style="warning" %}
 Custom field sets are deletable by the shop administrator, so you cannot rely on their existence.
