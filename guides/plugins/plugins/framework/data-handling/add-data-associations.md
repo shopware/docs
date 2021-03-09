@@ -120,8 +120,8 @@ Its parameters are the name of the column in your database(snake_case), the prop
 definition class.
 
 Additional to that, we've got the `OneToOneAssociationField`.
-Here you to supply the name of the property, which should contain the associated entity, in your respective definition, e.g. in this case
-we the `FooDefinition` to appear in the `foo` property of our entity.
+Here you supply the name of the property, which should contain the associated entity, in your respective definition, e.g. in this case
+we want the `FooDefinition` to appear in the `foo` property of our entity.
 Following are `foo_id`, which is the name of the column in the database, `id` as the ID column in the referenced database (`foo` in this case) and the
 referenced definition.
 The last parameter defines, if you want to automatically load this association every time you load a `bar` entity.
