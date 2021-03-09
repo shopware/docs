@@ -15,7 +15,7 @@ If you want to contribute to the [Shopware Platform](https://github.com/shopware
 In each commit a `composer.lock` is contained to ensure that the version being deployed is the version that was tested in our CI. We currently provide the following branches:
 
 * `6.3`: stable minor and patch releases \(`v6.3.0.0-rc2`, `v6.3.0.1`, `v6.3.1.0`, `v6.1.*`, but not `v6.4.0.0`\)
-* `master`: stable major, minor and patch releases \(`v6.3.0.0`, `v6.3.1.0`, `v6.4.0.0`, `v6.5.0.0`...\)
+* `trunk`: stable major, minor and patch releases \(`v6.3.0.0`, `v6.3.1.0`, `v6.4.0.0`, `v6.5.0.0`...\)
 
 The `6.3` branch contains all the 6.3 releases. It's stable now and only gets non-breaking changes. \(security issues are an exception\).
 
