@@ -19,7 +19,7 @@ In each commit a `composer.lock` is contained to ensure that the version being d
 
 The `6.3` branch contains all the 6.3 releases. It's stable now and only gets non-breaking changes. \(security issues are an exception\).
 
-The `master` branch contains the newest stable release, including major releases. That may result in plugins being incompatible, so be careful.
+The `trunk` branch contains the newest stable release, including major releases. That may result in plugins being incompatible, so be careful.
 
 Starting with `6.3.0.0`, we use a slightly modified version of SemVer. The pattern looks like this: 6.MAJOR.MINOR.PATCH. Examples:
 
