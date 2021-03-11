@@ -114,6 +114,7 @@
       * [Product Stream](guides/plugins/plugins/content/product-stream.md)
       * [SEO](guides/plugins/plugins/content/seo.md)
       * [Sitemap](guides/plugins/plugins/content/sitemap.md)
+      * [Add custom sorting for product listing](guides/plugins/plugins/content/add-custom-sorting-product-listing.md)
     * [Framework](guides/plugins/plugins/framework/README.md)
       * [Data Handling / DataAbstractionLayer](guides/plugins/plugins/framework/data-handling/README.md)
         * [Adding custom complex data](guides/plugins/plugins/framework/data-handling/add-custom-complex-data.md)
