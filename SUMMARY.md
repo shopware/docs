@@ -22,6 +22,7 @@
   * [Messaging](concepts/framework/messaging.md)
   * [Migrations](concepts/framework/migrations.md)
   * [Rules](concepts/framework/rules.md)
+  * [HTTP Cache](concepts/framework/http_cache.md)
 * [Extensions](concepts/extensions/README.md)
   * [Apps](concepts/extensions/apps-concept.md)
   * [Plugins](concepts/extensions/plugins-concept.md)
