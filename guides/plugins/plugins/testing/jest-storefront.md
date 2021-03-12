@@ -10,14 +10,18 @@ every change. This little guide will guide you how to write unit tests for the a
 
 We are using JestJS as our testing framework as it's a solid foundation and widely used by many developers.
 
-<!-- markdown-link-check-disable-line --> {% embed url="https://jestjs.io" %}
+<!-- markdown-link-check-disable -->
+{% embed url="https://jestjs.io" %}
+<!-- markdown-link-check-enable -->
 
 ## Prerequisites
 
 Before you are reading this guide you have to make sure you understand the basics of unit tests and how Jest works.
 You can find a good source for best practices in this Github Repo:
 
-<!-- markdown-link-check-disable-line --> {% embed url="https://github.com/goldbergyoni/javascript-testing-best-practices" %}
+<!-- markdown-link-check-disable -->
+{% embed url="https://github.com/goldbergyoni/javascript-testing-best-practices" %}
+<!-- markdown-link-check-enable -->
 
 In addition, you need a running Shopware 6 installation. Your repository used for that should be based on development 
 template, as we will to use some scripts provided by it.
