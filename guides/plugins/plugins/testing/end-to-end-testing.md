@@ -16,7 +16,7 @@ On top of that, please make sure your shop has a theme assigned. When using `./p
 
 This guide also won't teach you how to write Cypress tests in general. Please take a look at the official Cypress documentation for further guidance.
 
-{% embed url="<http://docs.cypress.io>" %}
+<!-- markdown-link-check-disable-line --> {% embed url="http://docs.cypress.io" %}
 
 ### Using our testsuite
 
@@ -31,7 +31,7 @@ This test suite is built on top of [Cypress](https://www.cypress.io/) as well as
 * [cypress-file-upload](https://github.com/abramenal/cypress-file-upload)
 
 Here you can find the npm package of our testsuite:
-{% embed url="<http://www.npmjs.com/package/@shopware-ag/e2e-testsuite-platform>" %}
+<!-- markdown-link-check-disable-line --> {% embed url="http://www.npmjs.com/package/@shopware-ag/e2e-testsuite-platform" %}
 
 ## Setup steps
 
