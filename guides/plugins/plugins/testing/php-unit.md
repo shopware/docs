@@ -4,7 +4,7 @@
 
 In this guide you'll learn how to create PHPUnit tests in Shopware 6. You can read more about PHP unit testing at the official PHPUnit documentation.
 
-{% embed url="<https://phpunit.de/documentation.html>" %}
+<!-- markdown-link-check-disable-line --> {% embed url="https://phpunit.de/documentation.html" %}
 
 {% hint style="info" %} Throughout this guide, you will find the `$` symbol representing your command line. {% endhint %}
 
