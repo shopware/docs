@@ -10,16 +10,14 @@ every change. This little guide will guide you how to write unit tests for the a
 
 We are using JestJS as our testing framework as it's a solid foundation and widely used by many developers.
 
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://jestjs.io" %}
+{% embed url="<https://jestjs.io>" %}
 
 ## Prerequisites
 
 Before you are reading this guide you have to make sure you understand the basics of unit tests and how Jest works.
 You can find a good source for best practices in this Github Repo:
 
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://github.com/goldbergyoni/javascript-testing-best-practices" %}
+{% embed url="<https://github.com/goldbergyoni/javascript-testing-best-practices>" %}
 
 In addition, you need a running Shopware 6 installation. Your repository used for that should be based on development 
 template, as we will to use some scripts provided by it.
@@ -168,14 +166,14 @@ Before you are using the commands make sure that you installed all dependencies 
 done this already, then you can do it running the following PSH command:
 
 ```bash
-> ./psh.phar administration:install-dependencies
+> ./psh.phar storefront:install-dependencies
 ```
 
 In order to run jest unit tests of the storefront, you can use the psh commands provided by our development template.
 This command executes all unit tests and shows you the complete code coverage.
 
 ```bash
-> ./psh.phar administration:unit
+> ./psh.phar storefront:unit
 ```
 
 {% hint style="info" %} This only applies to the Shopware provided Storefront! If you use unit tests in your Plugin,

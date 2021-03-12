@@ -2,14 +2,17 @@
 
 ## Overview
 
-In this guide you'll learn how to create PHPUnit tests in Shopware 6. You can read more about PHP unit testing at the [official PHPUnit documentation](https://phpunit.de/documentation.html).
-Throughout this guide, you will find the `$` symbol representing your command line.
+In this guide you'll learn how to create PHPUnit tests in Shopware 6. You can read more about PHP unit testing at the official PHPUnit documentation.
+
+{% embed url="<https://phpunit.de/documentation.html>" %}
+
+{% hint style="info" %} Throughout this guide, you will find the `$` symbol representing your command line. {% endhint %}
 
 ## Prerequisites
 
 In order to create tests for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
 
-Furthermore you should have a look at our [Execute database queries / migrations](../plugin-fundamentals/database-migrations.md) guide since this guide will show you how to create a migration test for these example.
+Furthermore, you should have a look at our [Execute database queries / migrations](../plugin-fundamentals/database-migrations.md) guide since this guide will show you how to create a migration test for these example.
 
 ## PHPUnit configuration
 
