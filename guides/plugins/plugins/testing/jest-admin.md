@@ -12,14 +12,18 @@ We are using [Jest](https://jestjs.io) as our testing framework. It's a solid fo
 
 Did you know that there's a video available to this topic? Please take a look:
 
-<!-- markdown-link-check-disable-line --> {% embed url="https://www.youtube.com/watch?v=nWUBK3fjwVg" %}
+<!-- markdown-link-check-disable -->
+{% embed url="https://www.youtube.com/watch?v=nWUBK3fjwVg" %}
+<!-- markdown-link-check-enable -->
 
 ## Prerequisites
 
 This tutorial will have a strong focus on how unit tests should be written when it comes to components in the administration. So please make sure you already know what a unit test is and why we are doing it. Furthermore, you should know what components tests are and what we want to achieve with them.
 You can find a good source for best practices in this Github repository:
 
-<!-- markdown-link-check-disable-line --> {% embed url="https://github.com/goldbergyoni/javascript-testing-best-practices" %}
+<!-- markdown-link-check-disable -->
+{% embed url="https://github.com/goldbergyoni/javascript-testing-best-practices" %}
+<!-- markdown-link-check-enable -->
 
 In addition, you need a running Shopware 6 installation. Your repository used for that should be based on development template, as we need to use some scripts provided by it.
 
