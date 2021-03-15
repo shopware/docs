@@ -45,6 +45,8 @@ Component.register('swag-basic-example', {
 The first keyboard shortcut reacts to the key combination of `SYSTEMKEY+S`, only if the the user has the privilege `product.editor`, with the invocation of the component method with the name `myEditProductFunction`.
 The second keyboard shortcut defines that, upon the `ESCAPE` key being pressed, the function with the name `myCancelEditProductFunction` should be invoked.
 
+The before mentioned `SYSTEMKEY` is `CTRL` on macOS and `ALT` on windows, other system-keys like `CTRL` on windows or `⌥` on macOS are not supported.
+
 Since ACL is used in the first keyboard shortcut you might want to learn more about ACL and how to add your own ACL rules [here](./add-acl-rules.md).
 
 ## Next steps
