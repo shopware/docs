@@ -4,10 +4,7 @@ In the `Administration` core code, each module is defined in a directory called 
 
 ## Prerequisites
 
-This guide **does not** explain how to create a new plugin for Shopware 6. Head over to our Plugin base guide to learn how to create a plugin at first:
-
-{% page-ref page="./../plugin-base-guide.md" %}
-
+This guide **does not** explain how to create a new plugin for Shopware 6. Head over to our [plugin base guide](./../plugin-base-guide.md) to learn how to create a plugin at first.
 
 ## Creating the index.js file
 
@@ -58,13 +55,10 @@ Another important aspect are the routes which your module is going to use, such 
 
 ## Setting up menu entry and routes
 
-The next steps are covered in their own guides. The first one would be adding a menu entry, so please take a look at the guide regarding:
+The next steps are covered in their own guides. The first one would be adding a menu entry, so please take a look at the guide regarding
+[adding a menu entry](./add-menu-entry.md)
 
-{% page-ref page="./add-menu-entry.md" %}
-
-The second one refers to setting up custom routes, its guide can be found in the guide on adding custom routes:
-
-{% page-ref page="./add-custom-route.md" %}
+The second one refers to setting up custom routes, its guide can be found in the guide on [adding custom routes](./add-custom-route.md).
 
 ## Set up additional meta info
 

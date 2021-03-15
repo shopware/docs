@@ -10,9 +10,7 @@ some other product data not being handled by default.
 ## Prerequisites
 
 This guide **does not** explain how you can create a new plugin for Shopware 6.
-Head over to our plugin base guide to learn how to create a plugin at first:
-
-{% page-ref page="./../plugin-base-guide.md" %}
+Head over to our [plugin base guide](./../plugin-base-guide.md) to learn how to create a plugin at first.
 
 ## Injecting into the administration
 

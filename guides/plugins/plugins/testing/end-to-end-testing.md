@@ -14,11 +14,7 @@ Since our tests should run on an installation that is as close as possible to a 
 
 On top of that, please make sure your shop has a theme assigned. When using `./psh.phar e2e:open` or `run`, this is done automatically.
 
-This guide also won't teach you how to write Cypress tests in general. Please take a look at the official Cypress documentation for further guidance.
-
-<!-- markdown-link-check-disable -->
-{% embed url="http://docs.cypress.io" %}
-<!-- markdown-link-check-enable -->
+This guide also won't teach you how to write Cypress tests in general. Please take a look at the official [Cypress documentation](http://docs.cypress.io) for further guidance.
 
 ### Using our testsuite
 
@@ -33,9 +29,8 @@ This test suite is built on top of [Cypress](https://www.cypress.io/) as well as
 * [cypress-file-upload](https://github.com/abramenal/cypress-file-upload)
 
 Here you can find the npm package of our testsuite:
-<!-- markdown-link-check-disable -->
-{% embed url="http://www.npmjs.com/package/@shopware-ag/e2e-testsuite-platform" %}
-<!-- markdown-link-check-enable -->
+<!-- markdown-link-check-disable-next-line -->
+{% embed url="http://www.npmjs.com/package/@shopware-ag/e2e-testsuite-platform/" %}
 
 ## Setup steps
 
@@ -162,6 +157,8 @@ Please keep in mind that we use `Administration` as default app environment. If 
 
 To see a complete overview on all psh scripts for e2e tests, feel free to refer to our [e2e psh command reference](../../../../resources/references/testing-reference/e2e-psh-commands.md).
 
+{% page-ref page="../../../../resources/references/testing-reference/e2e-psh-commands.md" %}
+
 {% endtab %}
 
 {% endtabs %}
@@ -216,7 +213,7 @@ These two configuration files are important to mention as well:
   [Cypress configuration docs](https://docs.cypress.io/guides/references/configuration.html).
 
 If you need to use this structure in a plugin, it is just the path to the `e2e` folder, which is slightly different.
-You can find the folder structure in the paragraph [Setup](./end-to-end-testing.md#Plugin setup).
+You can find the folder structure in the paragraph [Setup](./end-to-end-testing.md#Setup steps).
 
 If you want to contribute to Shopware platform's tests, please ensure to place your test in one of those folders:
 
@@ -279,6 +276,8 @@ You can chain commands by passing its return value to the next one. These comman
 
 Cypress provides a lot of commands to represent a variety of steps a user could do.
 On top of that, our E2E testsuite contains a couple of [custom commands](../../../../resources/references/testing-reference/e2e-custom-commands.md) specially for Shopware.
+
+{% page-ref page="../../../../resources/references/testing-reference/e2e-custom-commands.md" %}
 
 ### Assertions
 
