@@ -1,6 +1,6 @@
 # Reverse Http Cache
 
-A reverse http cache is a cache server placed before the web shop. If you are not familar with http caching, please see our [http cache concept](../../../concepts/framework/http_cache.md). The reverse http cache needs following capabilities to fully functional with Shopware:
+A reverse http cache is a cache server placed before the web shop. If you are not familar with http caching, please see our [http cache concept](../../../concepts/framework/http_cache.md). The reverse http cache needs the following capabilities to fully function with Shopware:
 
 - Able to differentiate the reqeuest with multiple cookies
 - Allow clearing the cache using a web request for a specific site or with `/` for all pages
@@ -31,7 +31,7 @@ storefront:
         redis_url: "redis://redis" 
 ```
 
-also set `SHOPWARE_HTTP_CACHE_ENABLED=1` in `.env`
+Also set `SHOPWARE_HTTP_CACHE_ENABLED=1` in your `.env` file.
 
 As Shopware is now prepared to work with an reverse proxy. We need to configure our Varnish too with Shopware specific configuration. Below can you find an example Varnish configuration.
 
@@ -40,7 +40,7 @@ vcl 4.0;
 
 import std;
 
-# You should specificy here all your app nodes and use round rubin to select a backend
+# You should specificy here all your app nodes and use round robin to select a backend
 backend default {
     .host = "<app-host>";
     .port = "80";
@@ -201,4 +201,4 @@ sub vcl_deliver {
 }
 ```
 
-To verify anything works you can see in the http response a new response header `X-Cache`. It shows us was it an cache hit or not.
+To verify if it works, you can look for a new response header `X-Cache` in the http response. It shows you if it was a cache hit or miss.
