@@ -104,6 +104,7 @@
       * [Document](guides/plugins/plugins/checkout/document.md)
       * [Order](guides/plugins/plugins/checkout/order/README.md)
         * [Using the state machine](guides/plugins/plugins/checkout/order/using-the-state-machine.md)
+        * [Listen to order changes](guides/plugins/plugins/checkout/order/listen-to-order-changes.md)
       * [Payment](guides/plugins/plugins/checkout/payment/README.md)
         * [Add payment plugin](guides/plugins/plugins/checkout/payment/add-payment-plugin.md)
       * [Shipping](guides/plugins/plugins/checkout/shipping.md)
