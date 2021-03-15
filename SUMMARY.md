@@ -153,6 +153,7 @@
       * [Customizing components](guides/plugins/plugins/administration/customizing-components.md)
       * [Add custom component](guides/plugins/plugins/administration/add-custom-component.md)
       * [Add custom input field to existing component](guides/plugins/plugins/administration/add-custom-field.md)
+      * [Using base components](guides/plugins/plugins/administration/using-base-components.md)
       * [Adding snippets](guides/plugins/plugins/administration/adding-snippets.md)
       * [Add custom styles](guides/plugins/plugins/administration/add-custom-styles.md)
       * [Using the data handling](guides/plugins/plugins/administration/using-data-handling.md)
