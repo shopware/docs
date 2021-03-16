@@ -6,11 +6,13 @@ All components contain own templates and some style. Of course, you may want to 
 
 ## Prerequisites
 
-However, this guide does not explain how to create a custom component, so head over to the official guide about [creating a custom component](./add-custom-component.md) to learn this first.
+However, this guide does not explain how to create a custom component, so head over to the official guide about creating a custom component to learn this first.
+
+{% page-ref page="add-custom-component.md" %}
 
 In addition, you need to have a basic knowledge of CSS and SCSS in order to use custom styles. This is though considered a basic requirement and won't be taught in this guide.
 
-### Example: custom cms block
+### Example: Custom cms block
 
 We will base our guide on an example: Let's use a custom component printing out "Hello world!". So first of all, create a new directory for your`sw-hello-world`.
 As said before, more information about that topic, such as where to create this directory, can be found in [Add a custom component](./add-custom-component.md).

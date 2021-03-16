@@ -1,10 +1,19 @@
 # Add custom module
 
-In the `Administration` core code, each module is defined in a directory called `module`, so simply stick to it. Inside of the `module` directory lies the list of several modules, each having their own directory named after the module itself.
+In the `Administration` core code, each module is defined in a directory called `module`. Inside the `module` directory lies the list of several modules, each having their own directory named after the module itself.
+
+## Prerequisites
+
+This guide **does not** explain how to create a new plugin for Shopware 6. Head over to our Plugin base guide to learn how to create a plugin at first:
+
+{% page-ref page="../../plugin-base-guide.md" %}
+
 
 ## Creating the index.js file
 
-So, go ahead and create a new directory `<plugin root>/src/Resources/app/administration/src/module/swag-example`, so you can store your own modules files in there. Right afterwards create a new file called `index.js` in there. This is necessary, because Shopware 6 is automatically requiring an `index.js` file for each module. Consider it to be the main file for your custom module.
+The first step is creating a new directory `<plugin root>/src/Resources/app/administration/src/module/swag-example`, so you can store your own modules files in there. Right afterwards, create a new file called `index.js` in there. Consider it to be the main file for your custom module.
+
+{% hint style="warning" %} This is necessary, because Shopware 6 is automatically requiring an `index.js` file for each module. {% endhint %}
 
 Your custom module directory isn't known to Shopware 6 yet. As mentioned earlier, the only entry point of your plugin is the `main.js` file. That's the file you need to change now, so that it loads your new module. For this, simply add the following line to your `main.js` file:
 
@@ -22,7 +31,7 @@ Your `index.js` is still empty now, so let's get going to actually create a new 
 
 Instead, you're using the `Shopware.Module.register()` method, but why is that?
 
-`Shopware` is a global object created for third party developers. It is mainly the bridge between the Shopware Administration and our plugin. The `Module` object comes with a `register` helper method to easily register your module. The method needs two parameters to be set, the first one being the module's name, the second being a javascript object, which contains your module's configuration.
+`Shopware` is a [global object](./the-shopware-object.md) created for third party developers. It is mainly the bridge between the Shopware Administration and our plugin. The `Module` object comes with a `register` helper method to easily register your module. The method needs two parameters to be set, the first one being the module's name, the second being a javascript object, which contains your module's configuration.
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
 ```javascript
@@ -38,7 +47,8 @@ In this file, you can configure a couple of things, e.g. the color of your modul
 
 In this example `#ff3d58` is used as a color, which is a soft red. Also, each module has their own icon. You can see here [here](https://component-library.shopware.com/#/icons/) which icons are available in Shopware 6 by default. In our case here, let's say we use the icon `default-shopping-paper-bag-product`, which will also be used for the module.
 
-_Attention: This is not the icon being used for a menu entry!_ The icon for that needs to be configured separately. Please refer to the [Add a menu entry](./add-menu-entry.md) guide for more information on this topic.
+{% hint style="danger" %} This is not the icon being used for a menu entry! The icon for that needs to be configured separately. Please refer to the [Add a menu entry](./add-menu-entry.md) guide for more information on this topic.
+{% endhint %}
 
 In addition, you're able to configure a title here, which will be used for the actual browser title. Just add a string for the key `title`. This will be the default title for your module, you can edit this for each component later on.
 
@@ -48,7 +58,13 @@ Another important aspect are the routes which your module is going to use, such 
 
 ## Setting up menu entry and routes
 
-The next steps are covered in their own guides. The first one would be adding a menu entry, so please take a look at the guide regarding [adding an own menu entry](./add-menu-entry.md). The second one refers to setting up custom routes, its guide can be found in the [Add custom route](./add-custom-route.md) guide.
+The next steps are covered in their own guides. The first one would be adding a menu entry, so please take a look at the guide regarding:
+
+{% page-ref page="add-menu-entry.md" %}
+
+The second one refers to setting up custom routes, its guide can be found in the guide on adding custom routes:
+
+{% page-ref page="add-custom-route.md" %}
 
 ## Set up additional meta info
 
@@ -187,3 +203,12 @@ Shopware.Module.register('swag-example', {
 ```
 {% endcode %}
 
+## Next steps
+
+As you might have noticed, we are just adding a custom module to the module. However, there's a lot more possible 
+when it comes to extending the Administration. In addition, you surely want to customize your module
+even more. You may want to try the following things:
+
+* [Add custom component](./add-custom-component.md)
+* [Add custom input fields](./add-custom-field.md)
+* [Add custom styles](./add-custom-styles.md)

@@ -10,13 +10,15 @@ For quick and easy installation you can also use **MAMP** on Mac.
 
 ## Prerequisites
 
-As a first step, please make sure you installed MAMP beforehand. You can download MAMP on [this site](https://www.mamp.info/en/downloads/)
+As a first step, please make sure you installed MAMP beforehand. You can download MAMP on [this site](https://www.mamp.info/en/downloads/).
 
 ## Preparation
 
 ### Configure PHP settings
 
-First of all you have to modify the PHP settings inside MAMP as seen on the following screenshot: ![Variant model](../../.gitbook/assets/10-mac-os-x-php.png)
+First you have to modify the PHP settings inside MAMP as seen on the following screenshot: 
+
+![PHP settings](../../.gitbook/assets/10-mac-os-x-php.png)
 
 After that start the mysql webserver-service with the toggle buttons on the left side in the MAMP management console.
 
@@ -24,7 +26,7 @@ After that start the mysql webserver-service with the toggle buttons on the left
 
 Open the **MySQL Tab** on the left side and click on the _PhpMyAdmin_ icon - if the icon is grayed out, check if the mysql and webserver services are running.
 
-![Variant model](../../.gitbook/assets/10-mac-os-x-mysql.png)
+![Mysql settings](../../.gitbook/assets/10-mac-os-x-mysql.png)
 
 Inside PhpMyAdmin switch to the user account management on the top menu and click _add new user_.
 
@@ -88,7 +90,7 @@ brew install composer
 
 ## Checkout shopware
 
-Before you're able to set up Shopware, you need to checkout Shopware's repositories. This is explained in the "Preparatory steps" paragraph of the \[PLACEHOLDER-LINK: Installation overview\] guide. Nevertheless, below you see a brief summary on this process:
+Before you're able to set up Shopware, you need to checkout Shopware's repositories. This is explained in the "Preparatory steps" paragraph of the [Installation overview guide](./overview.md). Nevertheless, below you see a brief summary on this process:
 
 ```bash
 # Choose your own directory
@@ -102,7 +104,7 @@ git clone https://github.com/shopware/platform.git
 
 ## Shopware 6 setup in MAMP
 
-### **First of all add new host in MAMP:**​​​​&lt;/p&gt;
+First, add a new host in MAMP:
 
 * Hostname = shopware
 * Port = 8000
@@ -110,14 +112,14 @@ git clone https://github.com/shopware/platform.git
 
 ![hosts](../../.gitbook/assets/10-mac-os-x-net.png)
 
-### **Change the installation settings**
+As a next step, change the installation settings
 
 ```bash
 # Inside the shopware installation directory (e.g.  /PhpstormProjects/shopware/development)
 bin/setup
 ```
 
-You will be prompted to enter several information. In short:
+You will be prompted to enter specific information. In short:
 
 * Application environment: Just hit enter to apply the default `dev`
 * URL to your /public folder: `http://shopware:8000`
@@ -163,9 +165,16 @@ There are cases when the administration is not build correctly and having error 
 
 The underlying problem is that Mac supports case-insensitive paths but not the tools that build the administration. Therefore, make sure to execute the commands in a context where the `pwd` is written in the correct case.
 
-Ok: `/Users/shopware/Code/shopware-platform` Not ok: `/users/shopware/code/Shopware-Platform`
+✅ Ok: `/Users/shopware/Code/shopware-platform` 
+
+❌ Not ok: `/users/shopware/code/Shopware-Platform`
 
 ## Next steps
 
-As you installed Shopware successfully, maybe you want to start writing your very own plugin. Head over to \[PLACEHOLDER-LINK: PLugin base guide\] to get a grip on that topic.
+As you installed Shopware successfully, maybe you want to start writing your very own plugin. Head over to [Plugin base guide](./../plugins/plugins/plugin-base-guide.md) to get a grip on that topic.
+Did you know you can install Shopware on Mac with the help of other tools? See the guides below:
+
+* [Docker](./docker.md)
+* [Vagrant](./vagrant.md)
+* [Dockware](./dockware.md)
 

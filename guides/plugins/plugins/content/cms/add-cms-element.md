@@ -5,11 +5,17 @@
 This article will teach you how to create a new CMS element via plugin. The plugin in this example will be named 
 `SwagBasicExample`, similar to the other guides.
 
-## Prerequisiites
+## Prerequisites
 
-You won't learn how to create a plugin in this guide, head over to our [Plugin base guide](../../plugin-base-guide.md) to create 
-your first plugin. This guide will also not explain how a custom component can be created in general, so head over to 
-the official guide about [creating a custom component](../../administration/add-custom-component.md) to learn this first.
+You won't learn how to create a plugin in this guide, head over to our Plugin base guide to create 
+your first plugin. 
+
+{% page-ref page="../../plugin-base-guide.md" %}
+
+This guide will also not explain how a custom component can be created in general, so head over to 
+the official guide about creating a custom component to learn this first.
+
+{% page-ref page="../../administration/add-custom-component.md" %}
 
 ## Creating your custom element
 
@@ -368,7 +374,6 @@ Shopware.Component.register('sw-cms-el-config-dailymotion', {
 
 Just like always, it comes with a template, no styles necessary here though. Create the template file now. Also, 
 the `initElementConfig` method has to be called in here as well, just the same way you've done it in your main component.
-
 A little spoiler: This file will remain like this already, you can close it now.
 
 Open up the template `sw-cms-el-config-dailymotion.html.twig` instead. To be displayed in the config, we just need a 

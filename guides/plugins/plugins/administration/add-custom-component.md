@@ -8,11 +8,19 @@ In this example, you will create a component, that will print a 'Hello world!' e
 
 ## Prerequisites
 
-This guide **does not** explain how to create a new plugin for Shopware 6. Head over to our [Plugin base guide](../plugin-base-guide.md) to learn creating a plugin at first.
+This guide **does not** explain how to create a new plugin for Shopware 6. Head over to our Plugin base guide to learn how to create a plugin at first:
 
-If you want to work with entities in your custom component or page, it might be useful to take a look at [Create custom entity](../framework/data-handling/add-custom-complex-data.md) guide first.
+{% page-ref page="../../plugin-base-guide.md" %}
 
-Especially if you want to add a new page for an own module, you should consider to look at the process on how to [Add custom module](./add-custom-module.md) first. This way, you're able to start building your own module in the right order.
+If you want to work with entities in your custom component or page, it might be useful to take a look at how to create custom entity guide first:
+
+{% page-ref page="../framework/data-handling/add-custom-complex-data.md" %}
+
+Especially if you want to add a new page for an own module, you should consider to look at the process on how to add a custom module first. 
+
+{% page-ref page="add-custom-module.md" %}
+
+This way, you're able to start building your own module in the right order.
 
 ### Injecting into the administration
 
@@ -26,7 +34,8 @@ Usually there's one question you have to ask yourself first: Will your new compo
 
 Otherwise, if it's going to be a general component to be used by other components, the following will be the proper path. For this example, this component scenario is used. `<plugin-root>/src/Resources/app/administration/app/src/component/<name of your plugin>/<name of your component>`
 
-Using this path is **not** a hard requirement, but rather a recommendation. This way, third party developers having a glance at your code will get used to it real quick, because you stuck to Shopware 6's core conventions.
+{% hint style="info" %} Using this path is **not** a hard requirement, but rather a recommendation. This way, third party developers having a glance at your code will get used to it real quick, because you stuck to Shopware 6's core conventions.
+{% endhint %}
 
 Since the latter example is being used, this is the path being created in the plugin now: `<plugin-root>/src/Resources/app/administration/app/src/component/custom-component/hello-world`
 
@@ -100,7 +109,7 @@ This is a [shorthand](https://alligator.io/js/object-property-shorthand-es6/), w
 
 As mentioned above, Shopware 6 looks for a `main.js` file in your plugin. Its contents get minified into a new file named after your plugin and will be moved to the `public` directory of the Shopware 6 root directory. Given this plugin is named "CustomComponent", the minified javascript code for this example would be located under `<plugin root>/src/Resources/public/administration/js/custom-component.js`, once you run the command `./psh.phar administration:build` in your shopware root directory.
 
-{% hint style="info" %}
+{% hint style="danger" %}
 Your plugin has to be activated for this to work.
 {% endhint %}
 

@@ -4,7 +4,7 @@
 
 Shopware's custom field system allows you to extend entities, without writing a complete entity extension.
 This is possible by storing the additional data in a [JSON-Field](https://dev.mysql.com/doc/refman/8.0/en/json.html).
-If you want to learn more about custom fields or even add your own custom fields to entities you might want to take a look at this guide: [Add custom input field to existing component](administration\add-custom-field.md).
+If you want to learn more about custom fields or even add your own custom fields to entities you might want to take a look at this guide: [Add custom input field to existing component](../../administration/add-custom-field.md).
 
 This guide will cover how to write to custom fields with or without the `sw-custom-field-set-renderer`
 
@@ -14,8 +14,7 @@ All you need for this guide is a running Shopware 6 instance, the files and pref
 
 ## Preparing the template
 
-First we are creating a template to use the `sw-custom-field-set-renderer`. You don't have to do this but it makes it easier to see the `custom fields`.
-
+First we are creating a template to use the `sw-custom-field-set-renderer`. You don't have to do this, but it makes it easier to see the `custom fields`.
 
 {% code title="<plugin-root>/src/Resources/app/administration/app/src/component/swag-basic-example/swag-basic-example.html.twig" %}
 ```html 
@@ -32,7 +31,7 @@ First we are creating a template to use the `sw-custom-field-set-renderer`. You 
 
 ## Loading the custom fields
 
-The following code sample shows how to load and save the the custom field. This code sample is tailored to the `sw-custom-field-set-renderer`, but it's not essential to use the `sw-custom-field-set-renderer`. The custom fields are loaded automatically and it's possible to just modify the `custom-fields` without loading the schema in the `customFieldSets`, because the schema is just needed for display purposes.
+The following code sample shows how to load and save the custom field. This code sample is tailored to the `sw-custom-field-set-renderer`, but it's not essential to use the `sw-custom-field-set-renderer`. The custom fields are loaded automatically, and it's possible to just modify the `custom-fields` without loading the schema in the `customFieldSets`, because the schema is just needed for display purposes.
 
 {% code title="<plugin-root>/src/Resources/app/administration/app/src/component/swag-basic-example/index.js" %}
 ```javascript
