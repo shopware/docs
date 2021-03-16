@@ -1,8 +1,22 @@
 # Add menu entry
 
+## Overview
+
 When it comes to the module configuration, the menu entry is one of the mos important things to set up. It serves to open your module.
 
-This menu entry can be defined in your module configuration. Remember, your module configuration
+## Prerequisites
+
+This guide **does not** explain how to create a new plugin for Shopware 6. Head over to our Plugin base guide to learn how to create a plugin at first:
+
+{% page-ref page="../../plugin-base-guide.md" %}
+
+Especially if you want to add a new page for an own module, you should consider to look at the process on how to add a custom module first.
+
+{% page-ref page="add-custom-module.md" %}
+
+## Creating a simple menu entry
+
+This menu entry can be defined in your module configuration. Remember, your module configuration looks as seen below:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
 ```javascript
@@ -12,11 +26,7 @@ Shopware.Module.register('swag-plugin', {
 ```
 {% endcode %}
 
-For details on this module configuration, please refer to the guide about [adding a custom module](./add-custom-module.md).
-
 In order to create your own menu entry, you need to use the `navigation` key: It takes an array of objects, each one configuring a route connected to your module.
-
-## Simple menu entry
 
 So let's define a menu entry using the `navigation` key in your module configuration. It takes an array of objects, each one configuring a route connected to your module:
 
@@ -63,3 +73,13 @@ navigation: [{
 
 If you're planning to publish your plugin to the Shopware Store keep in mind we're rejecting plugins which have created their own menu entry on the first level.
 
+{% hint style="info" %} If you're planning to publish your plugin to the Shopware Store keep in mind we're rejecting plugins which have created their own menu entry on the first level. {% endhint %}
+
+## Next steps
+
+We just learned how to add an own menu entry. However, there's a lot more possible when it comes to extending the 
+Administration. You may want to continue to explore these possibilities:
+
+* [Add custom component](./add-custom-component.md)
+* [Add custom input fields](./add-custom-field.md)
+* [Add custom styles](./add-custom-styles.md)

@@ -1,4 +1,4 @@
-Working with media and thumbnails
+# Working with media and thumbnails
 
 ## Overview
 
@@ -9,10 +9,14 @@ starting point on how to use media and thumbnails in your Storefront plugin.
 ## Prerequisites
 
 In order to use your own media files or thumbnails of your plugin in the storefront, of course you first need a 
-plugin as base. To create an own plugin, you can refer to the [Plugin Base Guide](./../plugin-base-guide.md).
+plugin as base. To create an own plugin, you can refer to the Plugin Base Guide:
+
+{% page-ref page="../../plugin-base-guide.md" %}
 
 Displaying custom images is often done by using custom fields. To take full advantage of this guide, you might want to
-read the corresponding guide on [using custom fields](./../administration/add-custom-field.md).
+read the corresponding guide on using custom fields:
+
+{% page-ref page="./../administration/add-custom-field.md" %}
 
 ## Using searchMedia function
 

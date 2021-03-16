@@ -92,7 +92,8 @@ Various
 * APCu \(128M or more\)
 * Webserver with HTTP2 support
 
-Adminer \([https://www.adminer.org/](https://www.adminer.org/)\) is our recommended database administration tool since it has better support for binary data types.
+{% hint style="info" %} Adminer \([https://www.adminer.org/](https://www.adminer.org/)\) is our recommended database administration tool since it has better support for binary data types.
+{% endhint %}
 
 ### Requirements for docker setup
 
