@@ -10,11 +10,11 @@ In this example, you will create a component, that will print a 'Hello world!' e
 
 This guide **does not** explain how to create a new plugin for Shopware 6. Head over to our Plugin base guide to learn how to create a plugin at first:
 
-{% page-ref page="../../plugin-base-guide.md" %}
+{% page-ref page="./../plugin-base-guide.md" %}
 
 If you want to work with entities in your custom component or page, it might be useful to take a look at how to create custom entity guide first:
 
-{% page-ref page="../framework/data-handling/add-custom-complex-data.md" %}
+{% page-ref page="./../framework/data-handling/add-custom-complex-data.md" %}
 
 Especially if you want to add a new page for an own module, you should consider to look at the process on how to add a custom module first. 
 

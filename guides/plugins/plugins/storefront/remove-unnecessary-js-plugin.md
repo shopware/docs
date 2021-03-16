@@ -10,12 +10,12 @@ your own Shopware plugin.
 
 While this is not mandatory, having read the guide about adding custom javascript plugins beforehand might help you understand this guide a bit further: 
 
-{% page-ref page="add-custom-javascript.md" %}
+{% page-ref page="./add-custom-javascript.md" %}
 
 Other than that, this guide just requires you to have a running plugin installed, e.g. our plugin from the 
 plugin base guide:
 
-{% page-ref page="../../plugin-base-guide.md" %}
+{% page-ref page="./../plugin-base-guide.md" %}
 
 ## Unregistering Javascript Plugin
 
