@@ -10,7 +10,7 @@ This article will teach you how to create a new CMS element via plugin. The plug
 You won't learn how to create a plugin in this guide, head over to our Plugin base guide to create 
 your first plugin. 
 
-{% page-ref page="../../plugin-base-guide.md" %}
+{% page-ref page="./../plugin-base-guide.md" %}
 
 This guide will also not explain how a custom component can be created in general, so head over to 
 the official guide about creating a custom component to learn this first.
