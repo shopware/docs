@@ -33,7 +33,7 @@ storefront:
 
 Also set `SHOPWARE_HTTP_CACHE_ENABLED=1` in your `.env` file.
 
-As Shopware is now prepared to work with an reverse proxy. We need to configure our Varnish too with Shopware specific configuration. Below can you find an example Varnish configuration.
+As Shopware is now prepared to work with a reverse proxy, we need to configure our Varnish too using a Shopware specific configuration. Below you can find an example Varnish configuration.
 
 ```vcl
 vcl 4.0;
