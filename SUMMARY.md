@@ -100,6 +100,7 @@
         * [Add cart items](guides/plugins/plugins/checkout/cart/add-cart-items.md)
         * [Add cart discounts](guides/plugins/plugins/checkout/cart/add-cart-discounts.md)
         * [Change price of items in cart](guides/plugins/plugins/checkout/cart/change-price-of-item.md)
+        * [Add cart validator](guides/plugins/plugins/checkout/cart/add-cart-validator.md)
       * [Customer](guides/plugins/plugins/checkout/customer.md)
       * [Document](guides/plugins/plugins/checkout/document.md)
       * [Order](guides/plugins/plugins/checkout/order/README.md)
