@@ -83,6 +83,28 @@ class MySubscriber implements EventSubscriberInterface
 ```
 {% endcode %}
 
+## Adding private composer dependencies
+
+You can bundle composer dependencies with your plugin by adding them to the `/packages/` folder of your plugin.
+
+Example structure:
+````text
+SwagBasicExample
+├── packages
+│   └── my-private-dependency/
+│       ├── composer.json
+│       └── src/
+│           └── SomeCoolService.php
+├── src/
+│   └── SwagBasicExample.php
+└── composer.json
+````
+You can then require them like other dependencies:
+```text
+"require": {
+    "my-vendor-name/my-private-dependency": "^1.2.3",
+}
+```
 
 ## Next steps
 
