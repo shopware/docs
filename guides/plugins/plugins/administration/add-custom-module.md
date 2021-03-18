@@ -17,7 +17,7 @@ The first step is creating a new directory `<plugin root>/src/Resources/app/admi
 
 Your custom module directory isn't known to Shopware 6 yet. As mentioned earlier, the only entry point of your plugin is the `main.js` file. That's the file you need to change now, so that it loads your new module. For this, simply add the following line to your `main.js` file:
 
-{% code title="<plugin root>src/Resources/app/administration/src/main.js" %}
+{% code title="<plugin root>/src/Resources/app/administration/src/main.js" %}
 ```javascript
 import './module/swag-example';
 ```
