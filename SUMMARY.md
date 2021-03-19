@@ -128,6 +128,8 @@
         * [Using database events](guides/plugins/plugins/framework/data-handling/using-database-events.md)
         * [Using flags](guides/plugins/plugins/framework/data-handling/using-flags.md)
         * [Field inheritance](guides/plugins/plugins/framework/data-handling/field-inheritance.md)
+        * [Using database events](guides/plugins/plugins/framework/data-handling/using-database-events.md)
+        * [Versioning entities](guides/plugins/plugins/framework/data-handling/versioning-entities.md)
       * [Custom Fields](guides/plugins/plugins/framework/custom-field/README.md)
         * [Add custom field](guides/plugins/plugins/framework/custom-field/add-custom-field.md)
         * [Using custom fields](guides/plugins/plugins/framework/custom-field/using-custom-fields.md)
