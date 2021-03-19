@@ -39,11 +39,11 @@ Mixin.register('swag-basic-mixin', {
 
 Now that we have registered the mixin, we need to import it at the top of our `main.js` file.
 
-```javascript
 {% code title="<administration root>/src/main.js" %}
+```javascript
 import '<administration root>/mixins/swag-basic-example.js'
-{% endcode %}
 ```
+{% endcode %}
 
 ## Using the Mixin
 

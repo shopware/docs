@@ -38,21 +38,54 @@ export default {
 ```
 {% endcode %}
 
-## Creating the component to use the store
+## Registering the store
 
-Now that we've created our `namespaced` store, we need to register it to a component to use it.
-This is done through the [Shopware object](./the-shopware-object.md) as seen below in the `beforeCreate` [Vue lifecycle hook](https://vuejs.org/v2/guide/instance.html#Lifecycle-Diagram).
+The store can be registered in two scopes, on a module scope and on a per component scope.
+Both ways use the same functions from the [Shopware object](./the-shopware-object.md) to register and unregister the `namespaced store modules`.
 
-Learn more about the Shopware object [here](./the-shopware-object.md).
+Registering in a module scope is done by simply calling the function `Shopware.State.registerModule` in the `main.js` file.
+
+{% code title="<administration root>/src/main.js" %}
+```javascript
+import swagBasicState from './store';
+
+Shopware.State.registerModule('swagBasicState', swagBasicState);
+```
+{% endcode %}
+
+In the component scope `Namespaced` store modules can be registered in the `beforeCreate` [Vue lifecycle hook](https://vuejs.org/v2/guide/instance.html#Lifecycle-Diagram),
+with the previously mentioned `Shopware.State.registerModule` function.
+But then they also need to be `unregistered` in the `beforeDestroy` Vue lifecycle hook,
+in order to not leave unused stores behind after a component has been destroyed.
+
+All of this can be seen in the following code sample:
+
+{% code title="<plugin-root>/src/Resources/app/administration/app/src/component/store-example/index.js" %}
+```javascript
+    beforeCreate() {
+        // registering the store to vuex trough the Shopware objects helper function
+        // the first argument is the name the second the imported namespaced store
+        Shopware.State.registerModule('swagBasicState', swagBasicState);
+    },
+
+    beforeDestroy() {
+        // unregister the store before the component is destroyed
+        Shopware.State.unregisterModule('swagBasicState');
+    },
+```
+{% endcode %}
+
+Both methods make the store on the given name everywhere available, regardless of where it has been registered.
+
+## Using the store in a component
 
 The Shopware object also makes the native Vuex helper functions available, like [`mapState`](https://vuex.vuejs.org/guide/state.html#the-mapstate-helper), [`mapGetters`](https://vuex.vuejs.org/guide/getters.html#the-mapgetters-helper), [`mapMutations`](https://vuex.vuejs.org/guide/mutations.html#committing-mutations-in-components) and [`mapActions`](https://vuex.vuejs.org/guide/actions.html#dispatching-actions-in-components).
 The `namespaced` store itself can be accessed through the `Shopware.State.get()` function.
 
 {% code title="<plugin-root>/src/Resources/app/administration/app/src/component/store-example/index.js" %}
 ```javascript
-// import the template and the namespaced store
+// import the template
 import template from './store-example.html.twig';
-import swagBasicState from './store';
 
 const { Component } = Shopware;
 
@@ -64,12 +97,6 @@ const {
 
 Component.register('swag-basic-state', {
     template,
-
-    beforeCreate() {
-        // registering the store to vuex trough the Shopware objects helper function
-        // the first argument is the name the second the previusly imported namespaced store
-        Shopware.State.registerModule('swagBasicState', swagBasicState);
-    },
 
     computed: {
         // the native mapState vuex helper function 
@@ -87,6 +114,8 @@ Component.register('swag-basic-state', {
 });
 ```
 {% endcode %}
+
+## Adding a template
 
 After we have registered our `namespaced` store, mapped state and mutations, we can now use them in our components or templates.
 The component below displays the previously mapped state `content` in a `div` and a `sw-text-field`, mutating the state on the `changed` event of the `sw-text-field`.
