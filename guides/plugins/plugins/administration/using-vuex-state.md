@@ -1,5 +1,7 @@
 # Using Vuex Stores
 
+## Overview
+
 The Shopware 6 Administration uses [Vuex](https://vuex.vuejs.org/) stores to keep track of complex state, while just adding a wrapper around it.
 Learn what Vuex is, how to use it and when to use it from their great [documentation](https://vuex.vuejs.org/).
 This guide will show you how to use Vuex as you normally would, through the interfaces provided by the Shopware 6 Administration.
