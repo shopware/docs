@@ -11,10 +11,10 @@ Of course you'll have to understand JavaScript and have a basic familiarity with
 
 ## Creating a store
 
-The creation of a store is the same as in normal Vuex with the only limitation that all stores have to be `namespaced` in order to prevent collisions with other third party plugins or the Shopware 6 Administration itself.
+Creating a store works the same way as it would in standard Vuex with the only limitation being, that all stores have to be `namespaced` in order to prevent collisions with other third party plugins or the Shopware 6 Administration itself.
 
 The following code snippet is the `namespaced` store we will register later through Shopware to the underlying Vuex.
-It is admittedly rather short and has only one variable called `content` and a setter for it, but again this all the same as in Vuex.
+It is admittedly rather short and has only one variable called `content` and a setter for it, but again this all the same as in Vuex. Beware of the property `namespaced`, though.
 
 {% code title="<plugin-root>/src/Resources/app/administration/app/src/component/store-example/store.js" %}
 ```javascript
