@@ -110,7 +110,7 @@ Component.register('swag-basic-state', {
     methods: {
         // the native mapMutations vuex helper function
         ...mapMutations('swagBasicState', [
-          'setContent',
+            'setContent',
         ]),
     }
 });
@@ -125,11 +125,12 @@ The component below displays the previously mapped state `content` in a `div` an
 {% code title="<plugin-root>/src/Resources/app/administration/app/src/component/store-example/store-example.html.twig" %}
 ```html
 <div>
-	<h1>SW-6 State</h1>
-	<sw-text-field @change="value => setContent(value)" :value="content"></sw-text-field>
-	<div>
-		{{ content }}
-	</div>
+    <h1>SW-6 State</h1>
+    <sw-text-field @change="value => setContent(value)" :value="content">
+    </sw-text-field>
+    <div>
+        {{ content }}
+    </div>
 </div>
 ```
 {% endcode %}
