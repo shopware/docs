@@ -24,7 +24,7 @@ The Bundle System is Symfony's way of providing an extendable framework with plu
 ## Shopware plugins
 
 Shopware is building upon the `Symfony Bundle System` to extend its functionality even more.
-This allows the `Shopware Plugin System` to function as a traditional plugin system
+This allows the Shopware Plugin System to function as a traditional plugin system
 with features like plugin lifecycles and more.
 
 Whenever you create a Shopware plugin, you have to extend the `Shopware\Core\Framework\Plugin` class.
