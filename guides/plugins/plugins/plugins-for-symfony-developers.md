@@ -7,7 +7,7 @@ This guide serves as an entry point for developers familiar with the concepts of
 ## Prerequisites
 
 This guide handles some base concepts of Shopware plugins. 
-You may want to have a look at [plugin base guide](./plugin-base-guide.md) first.
+Therefore, you may want to have a look at [plugin base guide](./plugin-base-guide.md) first.
 
 As this guide also references the functionality of Symfony bundles,
 you should have at least a basic knowledge of it.
