@@ -153,7 +153,7 @@ class Migration1611740369ExampleDescriptionTest extends TestCase
     {
         /** @var Connection $conn */
         $conn = $this->getContainer()->get(Connection::class);
-        $conn->executeUpdate('DROP TABLE `swag_basic_example_general_settings`');
+        $conn->executeStatement('DROP TABLE `swag_basic_example_general_settings`');
 
         $migration = new Migration1611740369ExampleDescription();
         $migration->update($conn);

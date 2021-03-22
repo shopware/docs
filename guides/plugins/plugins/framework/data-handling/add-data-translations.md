@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `swag_example_translation` (
     DEFAULT CHARSET = utf8mb4
     COLLATE = utf8mb4_unicode_ci;
 SQL;
-        $connection->executeUpdate($query);
+        $connection->executeStatement($query);
     }
 
     public function updateDestructive(Connection $connection): void
