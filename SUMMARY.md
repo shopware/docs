@@ -112,6 +112,7 @@
       * [CMS](guides/plugins/plugins/content/cms/README.md)
         * [Add CMS block](guides/plugins/plugins/content/cms/add-cms-block.md)
         * [Add CMS element](guides/plugins/plugins/content/cms/add-cms-element.md)
+        * [Add data to CMS element](guides/plugins/plugins/content/cms/add-data-to-cms-elements.md)
       * [Import / export](guides/plugins/plugins/content/import-export.md)
       * [Mail](guides/plugins/plugins/content/mail.md)
       * [Media](guides/plugins/plugins/content/media.md)
