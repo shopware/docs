@@ -149,6 +149,8 @@
       * [Adding permissions](guides/plugins/plugins/administration/add-acl-rules.md)
       * [Using the data handling](guides/plugins/plugins/administration/using-data-handling.md)
       * [Customize modules](guides/plugins/plugins/administration/customizing-modules.md)
+      * [Override existing routes](guides/plugins/plugins/administration/overriding-routes.md)
+      * [Add tab to existing module](guides/plugins/plugins/administration/add-new-tab.md)
       * [Customizing components](guides/plugins/plugins/administration/customizing-components.md)
       * [Using assets](guides/plugins/plugins/administration/using-assets.md)
       * [Add tab to existing module](guides/plugins/plugins/administration/add-new-tab.md)
