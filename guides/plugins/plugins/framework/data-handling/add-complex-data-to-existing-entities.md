@@ -244,7 +244,7 @@ class Migration1614903457ExampleExtension extends MigrationStep
     public function update(Connection $connection): void
     {
         $sql = <<<SQL
-CREATE TABLE `swag_example_extension` (
+CREATE TABLE IF NOT EXISTS `swag_example_extension` (
     `id` BINARY(16) NOT NULL,
     `product_id` BINARY(16) NULL,
     `custom_string` VARCHAR(255) NULL,
