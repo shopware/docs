@@ -113,6 +113,11 @@ There's another two things that you need to know:
 1. The `shopware-plugin-class` information. This has to point to the plugin's base PHP class. The one, that you've previously created.
 2. The whole `autoload` part. This has to mention your [PSR-4](https://www.php-fig.org/psr/psr-4/) namespace. So if you'd like to have another namespace for your plugin, this is the place to go.
 
+{% hint style="warning" %}
+The path you've configured in the configuration `autoload.psr-4`, `src/` in this case, will be referred to as `<plugin root>/src` in almost all code examples.
+If you're using a custom path here, e.g. just a slash `/`, then the examples would be `<plugin root>/` here instead.
+{% endhint %}
+
 And that's it. The basic structure and all necessary files for your plugin to be installable are done.
 
 ## Install your plugin
