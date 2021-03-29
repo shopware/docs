@@ -75,9 +75,3 @@ Registering your subscriber to Shopware 6 is also as simple as it is in Symfony.
 {% endcode %}
 
 That's it, your subscriber service is now automatically loaded at runtime and it should start listening to the mentioned events to be dispatched.
-
-## Next steps
-
-Using these subscribers, you can work with lots of events in Shopware.
-To get a grip on which events you're able to use, please see [PLACEHOLDER-LINK: Finding events] guide.
-

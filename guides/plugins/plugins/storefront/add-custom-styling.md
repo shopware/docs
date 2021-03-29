@@ -80,13 +80,3 @@ If you want to see all style changes made by you live, you can also use our Stor
 Using the hot-proxy command, you will have to access your store with the port `9998`, e.g. `domainToYourEnvironment.in:9998`.
 
 That's it! Open the Storefront and see it turning blue due to your custom styles!
-
-## Next steps
-
-There's more to learn here.
-E.g. you've set a variable in SCSS, but what if you need to set a variable in PHP, e.g. if the plugin user can
-configure the color in its plugin configuration?
-Head over to our guide about [PLACEHOLDER-LINK: Adding SCSS variables] to see how that's done.
-
-Other than that, if you want to add custom JavaScript, our guide about [adding custom javascript](./add-custom-javascript.md) got
-you covered here

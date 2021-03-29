@@ -3,7 +3,6 @@
 ## Overview
 
 In this guide you'll learn how to create custom pagelets for your Storefront pages.
-What exactly pages and pagelets are, can be found on our respective concept guide [PLACEHOLDER-LINK: Concept pages & pagelets].
 
 In short: Pages are exactly that, a fully functioning page of your store with a template loaded by a route.
 A pagelet is an important and reusable fraction of several pages, such as a footer or the navigation.

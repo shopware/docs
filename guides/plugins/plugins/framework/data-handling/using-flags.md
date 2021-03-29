@@ -70,7 +70,3 @@ class ExampleDefinition extends EntityDefinition
 }
 ```
 {% endcode %}
-
-## Next steps
-
-Now that we know how to use flags, we can also create custom flags, for this head over to our [PLACEHOLDER-LINK: Add custom flags] guide.

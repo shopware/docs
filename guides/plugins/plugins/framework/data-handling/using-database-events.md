@@ -146,8 +146,3 @@ Here's our `services.xml`:
 </container>
 ```
 {% endcode %}
-
-## Next Steps
-
-Now that you know, how to use database events you may want to extend it with some validations,
-for this head over to our [PLACEHOLDER-LINK: Add a validator] guide.

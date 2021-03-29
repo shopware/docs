@@ -15,7 +15,7 @@ This documentation chapter will cover the following topics:
 * How to add admin snippets for your privileges
 * How you can check in your module at any place if the user has the required rights
 
-Note: ACL Rules in the Administration can be circumnavigated by making direct API calls to your backend. Learn how to protect API Routes with ACL here \[PLACEHOLDER-LINK: Adding ACL rules to API Routes\]
+Note: ACL Rules in the Administration can be circumnavigated by making direct API calls to your backend.
 
 ## Prerequisites
 
@@ -46,7 +46,7 @@ The role indicates which authorization is given for the key. So four predefined 
 * `creator`: The Creator is allowed to create new entities
 * `deleter`: The Deleter is allowed to delete entities
 
-It is important to note that these combinations are not API permissions. They are only intended to enable, disable, deactivate or hide certain elements in the administration. Learn how to protect API Routes here \[PLACEHOLDER-LINK: Adding ACL rules to API Routes\].
+It is important to note that these combinations are not API permissions. They are only intended to enable, disable, deactivate or hide certain elements in the administration.
 
 For each admin privilege, the needed entity privileges need to be assigned. Depending on the admin privileges, these can be much more complex. This means that for example if a user should be allowed to view reviews, then they also have to be allowed to view customers, products and sales channels.
 
@@ -412,5 +412,4 @@ Module.register('your-plugin-module', {
 Now that our privilege setup is complete, we can start adding our customizing components in the administration or learn to protect API routes using ACL:
 
 * [Creating a new administration component](./add-custom-component.md)
-* How to protect API Routes with ACL \[PLACEHOLDER-LINK: Adding ACL rules to API Routes\]
 

@@ -85,5 +85,5 @@ $this->trans('soldProducts', ['%count%' => 3, '%country%' => 'Germany']);
 Now you should know how to use translations in your templates.
 You might also know how to customize templates in general and how to override blocks.
 But do you know how to use medias in your template?
-If you're lacking that knowledge, head over to our guide about [PLACEHOLDER-LINK: Using medias].
+If you're lacking that knowledge, head over to our guide about [Using medias](../storefront/use-media-thumbnails.md).
 

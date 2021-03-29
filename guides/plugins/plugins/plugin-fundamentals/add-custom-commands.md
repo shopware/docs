@@ -136,7 +136,3 @@ Each command usually has a namespace like `cache`, so to clear the cache you wou
 
 In order to really do something with your command, you will most likely need other services.
 Head over to our guide about [injecting a service](../plugin-fundamentals/dependency-injection.md) into another to understand how that's done.
-
-Sometimes the question comes up how to get a context into your command.
-To learn about this, please refer to the guide on [PLACEHOLDER-LINK: how to get and use context].
-

@@ -113,11 +113,6 @@ There's another two things that you need to know:
 1. The `shopware-plugin-class` information. This has to point to the plugin's base PHP class. The one, that you've previously created.
 2. The whole `autoload` part. This has to mention your [PSR-4](https://www.php-fig.org/psr/psr-4/) namespace. So if you'd like to have another namespace for your plugin, this is the place to go.
 
-{% hint style="info" %}
-There's many more information that you can provide in your `composer.json` file, e.g. for Composer or to provide even more meta information about your plugin.  
-Head over to \[PLACEHOLDER-LINK: Composer.json Reference\] to see a more detailed example of what can be done here.
-{% endhint %}
-
 And that's it. The basic structure and all necessary files for your plugin to be installable are done.
 
 ## Install your plugin
@@ -166,8 +161,6 @@ Shopware Plugin Lifecycle Service
 
 And that's basically it.  
 **You've just successfully created your Shopware 6 plugin!**
-
-Head over to the plugin base class reference, to find out more about the plugin lifecycle and other methods available to you in the plugin base class. \[PLACEHOLDER-LINK: Plugin base class reference\]
 
 ## Next steps
 
