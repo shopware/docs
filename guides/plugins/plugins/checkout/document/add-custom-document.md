@@ -60,10 +60,15 @@ class Migration1616668698AddDocument extends MigrationStep
             'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT)
         ]);
 
+        $storefrontSalesChannelId = $this->getStorefrontSalesChannelId($connection);
+        if (!$storefrontSalesChannelId) {
+            return;
+        }
+
         $connection->insert('document_base_config_sales_channel', [
             'id' => Uuid::randomBytes(),
             'document_base_config_id' => $documentConfigId,
-            'sales_channel_id' => $this->getStorefrontSalesChannelId($connection),
+            'sales_channel_id' => $storefrontSalesChannelId,
             'document_type_id' => $documentTypeId,
             'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT)
         ]);
@@ -104,18 +109,25 @@ SQL;
         return json_encode($config);
     }
 
-    private function getStorefrontSalesChannelId(Connection $connection): string
+    private function getStorefrontSalesChannelId(Connection $connection): ?string
     {
         $sql = <<<SQL
             SELECT id
             FROM sales_channel
             WHERE type_id = :typeId
 SQL;
-        return $connection->fetchOne($sql, [
+        $salesChannelId = $connection->fetchOne($sql, [
             ':typeId' => Uuid::fromHexToBytes(Defaults::SALES_CHANNEL_TYPE_STOREFRONT)
         ]);
+
+        if (!$salesChannelId) {
+            return null;
+        }
+
+        return $salesChannelId;
     }
 }
+
 ```
 {% endcode %}
 

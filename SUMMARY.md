@@ -105,6 +105,7 @@
         * [Add cart validator](guides/plugins/plugins/checkout/cart/add-cart-validator.md)
       * [Document](guides/plugins/plugins/checkout/document/README.md)
         * [Add custom document](guides/plugins/plugins/checkout/document/add-custom-document.md)
+        * [Add custom document type](guides/plugins/plugins/checkout/document/add-custom-document-type.md)
       * [Order](guides/plugins/plugins/checkout/order/README.md)
         * [Using the state machine](guides/plugins/plugins/checkout/order/using-the-state-machine.md)
         * [Listen to order changes](guides/plugins/plugins/checkout/order/listen-to-order-changes.md)
