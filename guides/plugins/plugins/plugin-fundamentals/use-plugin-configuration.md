@@ -13,12 +13,13 @@ In this example, the configurations will be read inside of a subscriber, so know
 
 ## Overview
 
-The plugin in this example will be named `ReadingPluginConfig`. It already knows a subscriber, which listens to the `product.loaded` event and therefore will be called every time a product is loaded.
+The plugin in this example already knows a subscriber, which listens to the `product.loaded` event and therefore will be called every time a product is loaded.
 
+{% code title="<plugin root>/src/Subscriber/MySubscriber.php" %}
 ```php
 <?php declare(strict_types=1);
 
-namespace Swag\ReadingPluginConfig\Subscriber;
+namespace Swag\BasicExample\Subscriber;
 
 use Shopware\Core\Framework\DataAbstractionLayer\Event\EntityLoadedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -39,10 +40,12 @@ class MySubscriber implements EventSubscriberInterface
     }
 }
 ```
+{% endcode %}
 
 For this guide, a very small plugin configuration file is available as well:
 
-```markup
+{% code title="<plugin root>/src/Resources/config/config.xml" %}
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
@@ -55,6 +58,7 @@ For this guide, a very small plugin configuration file is available as well:
     </card>
 </config>
 ```
+{% endcode %}
 
 Just a simple input field with the technical name `example`. This will be necessary in the next step.
 
@@ -64,9 +68,8 @@ Let's get to the important part. Reading the plugin configuration is based on th
 
 Inject this service into your subscriber using the [DI container](https://symfony.com/doc/current/service_container.html).
 
-`services.xml`:
-
-```markup
+{% code title="<plugin root>/src/Resources/config/services.xml" %}
+```xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -74,20 +77,22 @@ Inject this service into your subscriber using the [DI container](https://symfon
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="Swag\ReadingPluginConfig\Subscriber\MySubscriber">
+        <service id="Swag\BasicExample\Subscriber\MySubscriber">
             <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
             <tag name="kernel.event_subscriber"/>
         </service>
     </services>
 </container>
 ```
+{% endcode %}
 
 Note the new `argument` being provided to your subscriber. Now create a new field in your subscriber and pass in the `SystemConfigService`:
 
+{% code title="<plugin root>/src/Subscriber/MySubscriber.php" %}
 ```php
 <?php declare(strict_types=1);
 
-namespace Swag\ReadingPluginConfig\Subscriber;
+namespace Swag\BasicExample\Subscriber;
 
 ...
 use Shopware\Core\System\SystemConfig\SystemConfigService;
@@ -111,6 +116,7 @@ class MySubscriber implements EventSubscriberInterface
     ...
 }
 ```
+{% endcode %}
 
 So far, so good. The `SystemConfigService` is now available in your subscriber.
 
@@ -118,12 +124,13 @@ This service comes with a `get` method to read the configurations. The first ide
 
 But what would happen, if there were more plugins providing the same technical name for their very own configuration field? How would you access the proper field, how would you prevent plugin conflicts?
 
-That's why the plugin configurations are always prefixed. By default, the pattern is the following: `<BundleName>.config.<configName>` Thus, it would be `ReadingPluginConfig.config.example` here.
+That's why the plugin configurations are always prefixed. By default, the pattern is the following: `<BundleName>.config.<configName>` Thus, it would be `SwagBasicExample.config.example` here.
 
+{% code title="<plugin root>/src/Subscriber/MySubscriber.php" %}
 ```php
 <?php declare(strict_types=1);
 
-namespace Swag\ReadingPluginConfig\Subscriber;
+namespace Swag\BasicExample\Subscriber;
 
 ...
 
@@ -132,8 +139,8 @@ class MySubscriber implements EventSubscriberInterface
     ...
     public function onProductsLoaded(EntityLoadedEvent $event): void
     {
-        $exampleConfig = $this->systemConfigService->get('ReadingPluginConfig.config.example');
+        $exampleConfig = $this->systemConfigService->get('SwagBasicExample.config.example');
     }
 }
 ```
-
+{% endcode %}

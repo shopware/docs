@@ -39,9 +39,8 @@ This new class `SwagBasicExample` has to extend from Shopware's abstract Plugin 
 
 Apart from this, only the namespace is missing. You can freely define it, but we'd recommend using a combination of your manufacturer prefix and the technical name, so in this `guide` this would be: `Swag\BasicExample`
 
+{% code title="<plugin root>/src/SwagBasicExample.php" %}
 ```php
-// custom/plugins/SwagBasicExample.php
-
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample;
@@ -52,6 +51,7 @@ class SwagBasicExample extends Plugin
 {
 }
 ```
+{% endcode %}
 
 Basically that's it for the PHP part, your basic plugin class is already done.
 
@@ -74,6 +74,7 @@ Another information you'll have to add in there: The `type` has to be `shopware-
 
 Here's an example `composer.json` for this guide, which will do the trick:
 
+{% code title="<plugin root>/composer.json" %}
 ```javascript
 {
     "name": "swag/basic-example",
@@ -107,6 +108,7 @@ Here's an example `composer.json` for this guide, which will do the trick:
     }
 }
 ```
+{% endcode %}
 
 There's another two things that you need to know:
 
