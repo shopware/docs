@@ -61,7 +61,21 @@ To override it now, just add the very same block into your custom file and repla
 
 If you wanted to append your text to the logo instead of replacing it, you could add a line like this to your override: `{{ parent() }}`
 
-And that's it already, you're done already. You might have to clear the cache and refresh your storefront to see your changes in action. This can be done by using the command `./psh.phar cache` inside your command line in the `development` or `production` template root.
+And that's it already, you're done already. You might have to clear the cache and refresh your storefront to see your changes in action.
+This can be done by using the command following command inside your command line.
+
+{% tabs %}
+{% tab title="Development template" %}
+```bash
+./psh.phar cache
+```
+{% endtab %}
+{% tab title="Production template" %}
+```bash
+./bin/console cache:clear
+```
+{% endtab %}
+{% endtabs %}
 
 ### Finding variables
 

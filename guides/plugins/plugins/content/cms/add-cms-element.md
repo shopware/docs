@@ -411,8 +411,23 @@ Shopware.Service('cmsService').registerCmsElement({
 ```
 {% endcode %}
 
-That's it! You could now go ahead and fully test your new element! Install this plugin via `bin/console plugin:install --activate SwagBasicExample`,
-rebuild the administration via `./psh.phar administration:build` and start using your new element in the administration.
+That's it! You could now go ahead and fully test your new element!
+Install this plugin via `bin/console plugin:install --activate SwagBasicExample`, rebuild the administration using the following command
+and then start using your new element in the administration.
+
+{% tabs %}
+{% tab title="Development template" %}
+```bash
+./psh.phar administration:build
+```
+{% endtab %}
+{% tab title="Production template" %}
+```bash
+./bin/build-administration.sh
+```
+{% endtab %}
+{% endtabs %}
+
 Of course, the Storefront implementation is still missing, so your element wouldn't be rendered in the Storefront yet.
 
 ## Storefront implementation

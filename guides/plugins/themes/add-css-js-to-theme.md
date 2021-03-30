@@ -91,7 +91,21 @@ It is detected by Shopware automatically and included in the Storefront. So you 
 
 Of course, the theme compilation with `bin/console theme:compile` will get tedious if you change files a lot and want to check the changes in the browser. So there is a better way while you are developing your theme with the `hot-proxy` option, which will give you the live reload feature.
 
-To activate the `hot-proxy` run `./psh.phar storefront:hot-proxy` in your terminal.
+To activate the hot-proxy, run the following command `./psh.phar storefront:hot-proxy` in your terminal.
+
+{% tabs %}
+{% tab title="Development template" %}
+```bash
+./psh.phar storefront:hot-proxy
+```
+{% endtab %}
+{% tab title="Production template" %}
+```bash
+./bin/watch-storefront.sh
+```
+{% endtab %}
+{% endtabs %}
+
 This command starts a NodeJS web server on port `9998`.
 If you open the Storefront of your Shopware installation on `localhost:9998`, this page will be automatically updated when you make changes to your theme.
 

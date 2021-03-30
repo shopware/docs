@@ -65,17 +65,35 @@ the hard coded values are not cluttered all over the codebase.
 
 Now you want to test if your custom styles actually apply to the Storefront.
 For this, you have to execute the compiling and building of the `.scss` files first.
-This is done by using the following command from inside the development template directory:
+This is done by using the following command:
 
+{% tabs %}
+{% tab title="Development template" %}
 ```bash
 ./psh.phar storefront:build
 ```
+{% endtab %}
+{% tab title="Production template" %}
+```bash
+./bin/build-storefront.sh
+```
+{% endtab %}
+{% endtabs %}
 
 If you want to see all style changes made by you live, you can also use our Storefront hot-proxy for that case:
 
+{% tabs %}
+{% tab title="Development template" %}
 ```bash
 ./psh.phar storefront:hot-proxy
 ```
+{% endtab %}
+{% tab title="Production template" %}
+```bash
+./bin/watch-storefront.sh
+```
+{% endtab %}
+{% endtabs %}
 
 Using the hot-proxy command, you will have to access your store with the port `9998`, e.g. `domainToYourEnvironment.in:9998`.
 

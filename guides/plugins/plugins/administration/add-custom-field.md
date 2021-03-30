@@ -82,7 +82,20 @@ Its contents get minified into a new file named after your plugin and will be mo
 of Shopware 6 root directory.
 Given this plugin would be named "AdministrationNewField", the minified javascript code for this example would be
 located under `<plugin root>/src/Resources/public/administration/js/administration-new-field.js`, once you run the 
-command `./psh.phar administration:build` in your shopware root directory.
+command following command in your shopware root directory:
+
+{% tabs %}
+{% tab title="Development template" %}
+```bash
+./psh.phar administration:build
+```
+{% endtab %}
+{% tab title="Production template" %}
+```bash
+./bin/build-administration.sh
+```
+{% endtab %}
+{% endtabs %}
 
 {% hint style="info" %}
 Your plugin has to be activated for this to work.

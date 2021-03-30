@@ -107,7 +107,22 @@ This is a [shorthand](https://alligator.io/js/object-property-shorthand-es6/), w
 
 ## Loading the JS files
 
-As mentioned above, Shopware 6 looks for a `main.js` file in your plugin. Its contents get minified into a new file named after your plugin and will be moved to the `public` directory of the Shopware 6 root directory. Given this plugin is named "CustomComponent", the minified javascript code for this example would be located under `<plugin root>/src/Resources/public/administration/js/custom-component.js`, once you run the command `./psh.phar administration:build` in your shopware root directory.
+As mentioned above, Shopware 6 looks for a `main.js` file in your plugin. Its contents get minified into a new file named after your plugin and will be moved to the `public` directory of the Shopware 6 root directory.
+Given this plugin is named "CustomComponent", the minified javascript code for this example would be located under `<plugin root>/src/Resources/public/administration/js/custom-component.js`,
+once you run the following command in your shopware root directory:
+
+{% tabs %}
+{% tab title="Development template" %}
+```bash
+./psh.phar administration:build
+```
+{% endtab %}
+{% tab title="Production template" %}
+```bash
+./bin/build-administration.sh
+```
+{% endtab %}
+{% endtabs %}
 
 {% hint style="danger" %}
 Your plugin has to be activated for this to work.
