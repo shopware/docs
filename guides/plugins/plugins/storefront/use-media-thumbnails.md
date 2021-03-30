@@ -1,4 +1,4 @@
-# Working with media and thumbnails
+# Working with media and thumbnails 
 
 ## Overview
 

@@ -1,4 +1,4 @@
-# Jest unit tests in Shopware's administration
+# Jest unit tests in Shopware's administration 
 
 ## Overview
 

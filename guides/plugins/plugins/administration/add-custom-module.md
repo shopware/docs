@@ -1,4 +1,4 @@
-# Add custom module
+# Add custom module 
 
 In the `Administration` core code, each module is defined in a directory called `module`. Inside the `module` directory lies the list of several modules, each having their own directory named after the module itself.
 
