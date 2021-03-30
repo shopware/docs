@@ -137,6 +137,7 @@
       * [Message Queue](guides/plugins/plugins/framework/message-queue/README.md)
         * [Add message to queue](guides/plugins/plugins/framework/message-queue/add-message-to-queue.md)
         * [Add message handler](guides/plugins/plugins/framework/message-queue/add-message-handler.md)
+        * [Add middleware](guides/plugins/plugins/framework/message-queue/add-middleware.md)
       * [Rule](guides/plugins/plugins/framework/rule/README.md)
         * [Add custom rules](guides/plugins/plugins/framework/rule/add-custom-rules.md)
       * [Store API](guides/plugins/plugins/framework/store-api/README.md)
