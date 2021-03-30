@@ -147,6 +147,7 @@
       * [Adding Mixins](guides/plugins/plugins/administration/add-mixins.md)
       * [Adding Services](guides/plugins/plugins/administration/add-custom-service.md)
       * [Adding permissions](guides/plugins/plugins/administration/add-acl-rules.md)
+      * [Using assets](guides/plugins/plugins/administration/using-assets.md)
       * [Add custom route](guides/plugins/plugins/administration/add-custom-route.md)
       * [Writing templates](guides/plugins/plugins/administration/writing-templates.md)
       * [Add custom module](guides/plugins/plugins/administration/add-custom-module.md)
