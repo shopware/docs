@@ -185,6 +185,7 @@
       * [Use CSRF protection](guides/plugins/plugins/storefront/use-csrf-protection.md)
       * [Working with media and thumbnails](guides/plugins/plugins/storefront/use-media-thumbnails.md)
       * [Remove Javascript plugin](guides/plugins/plugins/storefront/remove-unnecessary-js-plugin.md)
+      * [Fetching data with Javascript](guides/plugins/plugins/storefront/fetching-data-with-javascript.md)
     * [Testing](guides/plugins/plugins/testing/README.md)
       * [End-to-end testing](guides/plugins/plugins/testing/end-to-end-testing.md)
       * [Jest unit tests in Shopware's administration](guides/plugins/plugins/testing/jest-admin.md)
