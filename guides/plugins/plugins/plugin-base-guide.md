@@ -174,6 +174,7 @@ Head over to the plugin base class reference, to find out more about the plugin 
 As you might have noticed, your plugin is not doing anything right now.  
 But here's a list of things you can do now:
 
+* [Learning the plugin lifecycle methods](./plugin-fundamentals/plugin-lifecycle.md)
 * [Creating your first Storefront page](./storefront/add-custom-page.md)
 * [Creating a new administration module](./administration/add-custom-module.md)
 * [Listen to events](./plugin-fundamentals/listening-to-events.md)

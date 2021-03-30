@@ -95,6 +95,7 @@
       * [Using custom fields of type media](guides/plugins/plugins/framework/custom-field/custom-fields-of-type-media.md)
       * [Adding NPM dependencies](guides/plugins/plugins/plugin-fundamentals/using-npm-dependencies.md)
       * [Adding Composer dependencies](guides/plugins/plugins/plugin-fundamentals/using-composer-dependencies.md)
+      * [Plugin lifecycle methods](guides/plugins/plugins/plugin-fundamentals/plugin-lifecycle.md)
     * [Checkout](guides/plugins/plugins/checkout/README.md)
       * [Cart](guides/plugins/plugins/checkout/cart/README.md)
         * [Add cart items](guides/plugins/plugins/checkout/cart/add-cart-items.md)
