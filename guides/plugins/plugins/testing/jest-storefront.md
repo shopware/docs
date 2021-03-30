@@ -1,4 +1,4 @@
-# Jest unit tests in Shopware's storefront
+# Jest unit tests in Shopware's storefront 
 
 ## Overview
 
@@ -28,7 +28,6 @@ template, as we will to use some scripts provided by it.
 
 For one example, we use a Javascript plugin. In oder to follow this example, you need to know how to build a Javascript
 plugin in the first place. You can learn about it in the corresponding [guide](./../storefront/add-custom-javascript.md).
-
 
 ## Test structure
 

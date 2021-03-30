@@ -64,9 +64,9 @@ added your own asset to the administration.
 
 ## Next steps
 
-If you're already working with assets in your administration plugin, maybe you want to customise the administration 
+If you're already working with assets in your administration plugin, maybe you want to customize the administration 
 even more? Head over to the following guides to learn about even more customization possibilities:
 * [Add custom component](./add-custom-component.md)
-* [Customising components](./customizing-components.md)
-* [Customising modules](./customizing-modules.md)
+* [Customizing components](./customizing-components.md)
+* [Customizing modules](./customizing-modules.md)
 * [Add custom styles](./add-custom-styles.md)
