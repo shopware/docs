@@ -1,8 +1,9 @@
-# Fields Reference
+# Rules Reference
 
 List of all rule classes across Shopware 6.
 
 ## Checkout
+
 | Class | Description |
 | :--- | :--- |
 | [Shopware\Core\Checkout\Cart\Rule\AlwaysValidRule](https://github.com/shopware/platform/blob/trunk/src/Core/Checkout/Cart/Rule/AlwaysValidRule.php) | Matches always |

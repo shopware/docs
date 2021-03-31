@@ -35,17 +35,3 @@ When you started writing, there will be a new draft created with your changes. E
 ```
 
 After your draft has been reviewed a final time, it will be published once you notify one of the administrators.
-
-### Formatting
-
-The documentation uses Gitbook-flavoured markdown, which adds some additional UI components like tabs, hints or content embeds to name a few.
-
-Please make sure to follow common Markdown syntax and refer to the [Gitbook documentation](https://docs.gitbook.com/editing-content/markdown) for details.
-
-{% hint style="info" %}
-
-You can find more examples [in this space](https://gitbook.gitbook.io/git-sync/).
-
-{% endhint %}
-
-When you are creating new content, also add your documentation entry to the `SUMMARY.md` file located at the root of the repository.
