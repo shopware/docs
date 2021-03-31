@@ -140,7 +140,7 @@ With this option, the manufacturer already exists and should only be linked with
 
 Both payloads lead to the same result. This type of use is preferable because only the product entity is updated and not the manufacturer entity with every product update, which leads to less load on the server.
 
-## OneToMany associations
+## OneToMany Associations
 
 Unlike the `ManyToOne` and `ManyToMany` association, data in a `OneToMany` association is usually not data that should be linked, but data that belongs to the main entity.
 This association is the counterpart of the `ManyToOne` association. The foreign key is therefore located in the table of the entity to which the association refers. 
