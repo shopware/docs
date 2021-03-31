@@ -8,5 +8,4 @@ Alternatively, if you want to dive straight in, take a look at our introduction 
 
 {% page-ref page="apps/app-base-guide.md" %}
 
-[Theme Base Guide](./themes/theme-base-guide.md)
-
+{% page-ref page="themes/theme-base-guide.md" %}

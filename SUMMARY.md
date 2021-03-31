@@ -64,7 +64,6 @@
     * [Reference](products/plugins/migration-assistant/reference.md)
 * [Cloud](products/cloud-1.md)
 * [PWA](products/pwa-1/README.md)
-  * [Quick Setup](products/pwa-1/quick-setup.md)
 
 ## Guides
 
@@ -253,6 +252,7 @@
     * [Administration Reference](resources/references/core-reference/administration-reference/README.md)
       * [Utils](resources/references/core-reference/administration-reference/utils.md)
     * [Commands Reference](resources/references/core-reference/commands-reference.md)
+    * [Rules Reference](resources/references/core-reference/rules-reference.md)
   * [App Reference](resources/references/app-reference/README.md)
     * [Manifest Reference](resources/references/app-reference/manifest-reference.md)
   * [Extension Reference](resources/references/extension-reference/README.md)
