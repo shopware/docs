@@ -6,7 +6,9 @@ This guide shows you how the theme configuration works and explains the possibil
 
 ## Prerequisites
 
-This guide is built upon the [Create a first theme](./create-a-theme.md) guide.
+This guide is built upon the guide on creating a first theme:
+
+{% page-ref page="./create-a-theme.md" %}
 
 ## Structure of theme configuration
 
@@ -171,20 +173,20 @@ The following parameters can be defined for a config field item:
 
 | Name         | Meaning                                                                                          |
 |------------- |--------------------------------------------------------------------------------------------------|
-| label        | Array of translations with locale code as key                                                    |
-| type         | Type of the config. Possible values: color, text, number, fontFamily, media, checkbox and switch |
-| editable     | If set to false, the config option will not be displayed (e.g. in the administration)            |
-| tab          | Name of a tab to organize the config options                                                     |
-| block        | Name of a block to organize the config options                                                   |
-| section      | Name of a section to organize the config options                                                 |
-| custom       | The defined data will not be processed but is available via API                                  |
-| scss         | If set to false, the config option will not be injected as a SCSS variable                       |
-| fullWidth    | If set to true, the administration component width will be displayed in full width               |
+| `label`        | Array of translations with locale code as key                                                    |
+| `type`        | Type of the config. Possible values: color, text, number, fontFamily, media, checkbox and switch |
+| `editable`    | If set to false, the config option will not be displayed (e.g. in the administration)            |
+| `tab`          | Name of a tab to organize the config options                                                     |
+| `block `       | Name of a block to organize the config options                                                   |
+| `section`      | Name of a section to organize the config options                                                 |
+| `custom`    | The defined data will not be processed but is available via API                                  |
+| `scss`         | If set to false, the config option will not be injected as a SCSS variable                       |
+| `fullWidth`    | If set to true, the administration component width will be displayed in full width               |
 
 ## Field types
 You can use different field types in your theme manager:
 
-* A text field example:
+A text field example:
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
 ```json
@@ -207,7 +209,7 @@ You can use different field types in your theme manager:
 ```
 {% endcode %}
 
-* A number field example: 
+A number field example: 
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
 ```json
@@ -235,7 +237,7 @@ You can use different field types in your theme manager:
 ```
 {% endcode %}
 
-* Two boolean field examples:
+Two boolean field examples:
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
 ```json
@@ -283,7 +285,7 @@ or
 
 ## Examples for custom config fields
 
-* A custom single-select field example
+A custom single-select field example
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
 ```json
@@ -375,7 +377,7 @@ or
 
 ![Example of a custom single-select field](../../../.gitbook/assets/example-single-select-config.png)
 
-* A custom multi-select field example
+A custom multi-select field example
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
 ```json

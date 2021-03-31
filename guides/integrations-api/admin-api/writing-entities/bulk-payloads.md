@@ -1,5 +1,7 @@
 # Bulk Payloads
 
+## Overview
+
 The Sync API is an add-on to the Admin API that allows you to perform multiple write operations \(creating/updating and deleting\) simultaneously. All entities that can be written via the Admin API can also be written via the Sync API.
 
 The endpoint is located at

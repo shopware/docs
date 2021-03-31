@@ -1,5 +1,7 @@
 # Store API Guide
 
+## Overview
+
 In this guide, we'll explore the Shopware Store API using different examples.
 
 If you want to understand what the goal of it is and how it's built - go to out the concepts section

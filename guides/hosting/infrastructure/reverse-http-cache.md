@@ -1,19 +1,19 @@
 # Reverse Http Cache
 
-A reverse http cache is a cache server placed before the web shop. If you are not familar with http caching, please see our [http cache concept](../../../concepts/framework/http_cache.md). The reverse http cache needs the following capabilities to fully function with Shopware:
+## Overview
 
-- Able to differentiate the reqeuest with multiple cookies
+A reverse http cache is a cache server placed before the web shop. If you are not familiar with http caching, please see our [http cache concept](../../../concepts/framework/http_cache.md). The reverse http cache needs the following capabilities to fully function with Shopware:
+- Able to differentiate the request with multiple cookies
 - Allow clearing the cache using a web request for a specific site or with `/` for all pages
 
-
-Next we will use Varnish as example for an http cache.
+{% hint style="info" %} In this guide, we will use Varnish as example for an http cache. {% endhint %}
 
 ### The example Setup with Varnish
 
 ![](../../../.gitbook/assets/reverse_proxy_setup.svg)
 
 
-As first we need to activate the reverse proxy support in Shopware. To enable it we need to create a new file in `config/packages/storefront.yaml`
+At first we need to activate the reverse proxy support in Shopware. To enable it we need to create a new file in `config/packages/storefront.yaml`
 ```yaml
 storefront:
     csrf:

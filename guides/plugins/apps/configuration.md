@@ -33,7 +33,7 @@ GET /api/v{version}/_action/system-config?domain=DemoApp.config&salesChannelId=9
 }
 ```
 
-Keep in mind that your app needs the `system_config:read` permission to access this API.
+{% hint style="warning" %} Keep in mind that your app needs the `system_config:read` permission to access this API. {% endhint %}
 
 ### Reading the config in templates
 

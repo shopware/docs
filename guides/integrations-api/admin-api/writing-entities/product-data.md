@@ -1,5 +1,7 @@
 # Writing Product Data
 
+## Overview
+
 In this section the handling of the product data structure is explained, because the product contains a few special fields which might not be very clear at first looking at the API schema.
 
 ## Simple payload

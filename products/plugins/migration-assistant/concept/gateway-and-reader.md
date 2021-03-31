@@ -1,5 +1,7 @@
 # Gateway and Reader
 
+## Overview
+
 Users will have to specify a gateway for the connection. The gateway defines the way of communicating with the source system. Behind the user interface we use `Reader` objects to read the data from the source system. For the `shopware55` profile we have the `api` gateway, which communicates via http/s with the source system, and the `local` gateway, which communicates directly with the source system's database. Thus both systems must be on the same server for successfully using the `local` gateway.
 
 ## Gateway

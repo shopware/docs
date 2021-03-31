@@ -13,14 +13,13 @@ This carelessly uttered sentence relies on the knowledge of multiple different d
 - A product called car
 - A product called sunglasses
 
-Both independent and separately buyable. Stored to the database.
+Both are independent, separately buyable and stored to the database.
 
 - The whole state of a single cart
 - The quantity of a line item
 
-A runtime concept - in memory.
-
-Resulting in the adjustment of a single line items price, which in turn changes the whole **calculation of the cart**.
+This is a runtime concept - in memory, resulting in the adjustment of a single line items price, which in turn changes 
+the whole **calculation of the cart**.
 
 In this example the rule system sits right in the middle of the scenario, providing the necessary mapping information to get from point a (`car` is in the cart) to point b (`sunglasses` are free).
 
@@ -28,7 +27,7 @@ In this example the rule system sits right in the middle of the scenario, provid
 
 The center of the rule system is the `Rule`, it is realized as a variant of the [Specification pattern](https://en.wikipedia.org/wiki/Specification_pattern), but omits the name due to a few key differences.
 
-- Storable and retrievable and **identifiable** through the Data Abstraction Layer \[PLACEHOLDER-LINK: DAL\]
+- Storable and retrievable and **identifiable** through the [Data Abstraction Layer](./../../guides/plugins/plugins/framework/data-handling/README.md).
 - A RuleScope parameter instead of any arbitrary object
 - `match` instead of `isSatisfiedBy`
 
@@ -50,4 +49,6 @@ The last building block then is the **Rule Scope**. The Scope contains the curre
 
 Following Shopware 6s data driven approach the rule objects are stored to the database and used to trigger behaviour in the cart through the associations present.
 
-For more insights on the rule validation take a look at the [cart documentation](../commerce/checkout-concept/cart.md#context-rules).
+For more insights on the rule validation take a look at the cart documentation:
+
+{% page-ref url="./../commerce/checkout-concept/cart.md" %}

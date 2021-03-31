@@ -6,7 +6,7 @@ Automized deployments shouldn't be a pain and have several advantages like lower
 
 This article explains the fundamental steps it takes, to deploy Shopware 6 to a certain infrastructure, focussing on continuous deployment using [GitLab CI](https://docs.gitlab.com/ee/ci/) and [Deployer](https://deployer.org/). [Deployer](https://deployer.org/) is a deployment tool written in PHP.
 
-This "certain infrastructure" will be called "target server" in the following.
+{% hint style="info" %} This "certain infrastructure" will be called "target server" in the following. {% endhint %}
 
 ## Video
 
@@ -14,7 +14,9 @@ This "certain infrastructure" will be called "target server" in the following.
 
 ## Prerequisites
 
-Please make sure, that you already have a working Shopware 6 instance running, and your repository is based on the [Shopware production template](https://github.com/shopware/production), because this article relies on some scripts to exist in your repository.
+Please make sure you already have a working Shopware 6 instance running, and your repository is based on the Shopware production template, because this article relies on some scripts to exist in your repository.
+
+{% embed url="https://github.com/shopware/production" %}
 
 ### Preparations before the first deployment
 
@@ -39,9 +41,9 @@ For more information, please have a look into [Migrating existing instance to De
 
 ### Webserver configuration
 
-Please make sure, to set the document root of the domain to `/var/www/shopware/current/public`, assuming `/var/www/shopware` is the path you're uploading Shopware to, but this can of course differ. The more important part of this path is `current`, which is the symlink to the currently active release.
+Please make sure to set the document root of the domain to `/var/www/shopware/current/public`, assuming `/var/www/shopware` is the path you're uploading Shopware to, but this can of course differ. The more important part of this path is `current`, which is the symlink to the currently active release.
 
-Because `current` is a symlink, please also make sure, that your webserver is configured to resolve/follow symlinks correctly.
+Because `current` is a symlink, please also make sure your webserver is configured to resolve/follow symlinks correctly.
 
 ## GitLab Runner requirements
 
@@ -91,7 +93,8 @@ Install dependencies:
 
 ### 3. Building assets
 
-> From this step on, all other steps are handled by [Deployer](https://deployer.org/), defined in the [`deploy.php`](deployment-with-deployer.md#deploy-php).
+{% hint style="info" %} From this step on, all other steps are handled by [Deployer](https://deployer.org/), defined in the [`deploy.php`](deployment-with-deployer.md#deploy-php).
+{% endhint %}
 
 In order to compile and copy assets, the Shopware production template provides a script, which is located under [`bin/build-js.sh`](https://github.com/shopware/production/blob/6.3/bin/build-js.sh). This script installs the [NPM](https://www.npmjs.com/) dependencies and builds assets that are needed for the administration, storefront and plugins.
 
@@ -132,7 +135,8 @@ task('deploy:update_code', static function () {
 
 The migrations need to be applied on the target server.
 
-> If you are deploying to a cluster with multiple web servers, please make sure to run the migrations only on one of the servers.
+{% hint style="danger" %} If you are deploying to a cluster with multiple web servers, please make sure to run the migrations only on one of the servers.
+{% endhint %}
 
 This step is defined in the `sw:database:migrate` job in the [`deploy.php`](deployment-with-deployer.md#deploy-php), which is part of the `sw:deploy` task group:
 

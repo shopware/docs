@@ -2,7 +2,7 @@
 
 You can modify the whole appearance of the storefront within your app. This includes [customizing templates](../plugins/storefront/customize-templates.md), [adding custom Javascript](../plugins/storefront/add-custom-javascript.md) and [custom styling](../plugins/storefront/add-custom-styling.md).
 
-As the storefront will be build on the Shopware server you don't have to set up any external servers for this. All you have to do is including your modifications \(in form of .html.twig, .js. .scss files\) inside the `Resources` folder of your app. The base folder structure of your app my look like this:
+As the storefront will be build on the Shopware server you don't have to set up any external servers for this. All you have to do is including your modifications \(in form of `.html.twig`, `.js` or `.scss` files\) inside the `Resources` folder of your app. The base folder structure of your app my look like this:
 
 ```text
 └── DemoApp
@@ -13,7 +13,7 @@ As the storefront will be build on the Shopware server you don't have to set up 
 
 ## Themes as apps
 
-It is absolutely possible to ship whole [themes]() inside an app. All you have to do is include your theme configuration \(in form of a `theme.json` file\) inside your apps Resources folder.  
+It is absolutely possible to ship whole [themes](./../themes/README.md) inside an app. All you have to do is include your theme configuration \(in form of a `theme.json` file\) inside your apps Resources folder.  
 So the folder structure of a theme may look like this:
 
 ```text

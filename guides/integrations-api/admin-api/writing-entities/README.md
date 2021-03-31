@@ -1,5 +1,7 @@
 # Writing entities
 
+## Overview
+
 Analogous to the reading endpoints, the API also provides endpoints for all entities to be written in the same way. Once an entity is registered in the system, it can also be written via API. The appropriate routes for the entity are generated automatically and follow the REST pattern.
 
 **Example:** The entity `customer_group` is available under the endpoint `api/v1/customer-group`. For an entity, the system automatically generates the following routes where the entity can be written

@@ -16,7 +16,7 @@ There are some additional instructions that can be specified using **request hea
 
 ## Documentation
 
-And a common approach regarding the way that Shopware provides endpoint references for its APIs
+Here you find a common approach regarding the way that Shopware provides endpoint references for its APIs:
 
 {% page-ref page="generated-reference.md" %}
 

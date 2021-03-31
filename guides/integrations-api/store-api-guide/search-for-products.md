@@ -1,4 +1,6 @@
-# Search for products
+# Searching for products
+
+## Overview
 
 One of the most common actions that customers perform in an online store is browsing products. We'll cover different topics in this guide
 

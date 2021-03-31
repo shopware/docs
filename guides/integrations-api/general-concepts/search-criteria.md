@@ -1,5 +1,7 @@
 # Search Criteria
 
+## Overview
+
 All of the endpoints that make use of these `POST` method and receive the criteria as a JSON object. Generally, we refer to this object as the **search criteria** - as it takes the same arguments as a [DAL criteria](../../plugins/plugins/framework/data-handling/reading-data.md#filtering). Some endpoints expect more parameters than specified here - however, these differ from one endpoint to another, so we don't specify them here.
 
 A typical **search criteria** looks like this:
@@ -65,7 +67,9 @@ In the following we'll go through the different parameters, a criteria can be as
 | `aggregations` | Specify aggregations to be computed on-the-fly |
 | `grouping` | Lets you group records by fields |
 
-## `associations`
+## Parameters
+
+### `associations`
 
 The `associations` parameter allows you to load additional data to the minimal data set of an entity without sending an extra request - similar to a SQL Join. The key of the parameter is the property name of the association in the entity. You can pass a nested criteria just for that association - e.g. to perform a sort to or apply filters within the association.
 
@@ -85,7 +89,7 @@ The `associations` parameter allows you to load additional data to the minimal d
 }
 ```
 
-## `includes (apiAlias)`
+### `includes (apiAlias)`
 
 The `includes` parameter allows you to restrict the returned fields.
 
@@ -122,7 +126,7 @@ The `includes` parameter allows you to restrict the returned fields.
 All response types come with a `apiAlias` field which you can use to identify the type in your includes field. If you only want a categories id, add: `"category": ["id"]`. For entities, this is the entity name: `product`, `product_manufacturer`, `order_line_item`, ... For other non-entity-types like a listing result or a line item, check the full response. This pattern applies not only to simple fields but also to associations. 
 {% endhint %}
 
-## `ids`
+### `ids`
 
 If you want to perform a simple lookup using just the ids of records, you can pass a list of those using the `ids` field:
 
@@ -136,7 +140,7 @@ If you want to perform a simple lookup using just the ids of records, you can pa
 }
 ```
 
-## `total-count-mode`
+### `total-count-mode`
 
 The `total-count-mode` parameter can be used to define whether the total for the total number of hits should be determined for the search query. This parameter supports the following values:
 
@@ -156,7 +160,7 @@ The `total-count-mode` parameter can be used to define whether the total for the
 }
 ```
 
-## `page & limit`
+### `page & limit`
 
 The `page` and `limit` parameters can be used to control pagination. The `page` parameter is 1-indexed.
 
@@ -168,7 +172,7 @@ The `page` and `limit` parameters can be used to control pagination. The `page` 
 
 ```
 
-## `filter`
+### `filter`
 
 The `filter` parameter allows you to filter the result and aggregations using a multitude of filters and parameters. The filter types are equivalent to the filters available for the DAL.
 
@@ -219,11 +223,11 @@ When you are filtering for nested values - for example you're filtering orders b
 }
 ```
 
-## `post-filter`
+### `post-filter`
 
 Work the same as `filter` however, they don't apply to aggregations. This is great, when you want to work with aggregations to display facets for a filter navigation, but already filter results based on filters without making an additional request.
 
-## `query`
+### `query`
 
 Use this parameter to create a weighted search query that returns a `_score` for each found entity. Any filter type can be used for the `query`. A `score` has to be defined for each query. The sum of the matching queries then results in the total `_score` value.
 
@@ -293,7 +297,7 @@ The resulting score is appended to every resulting record in the `extensions.sea
 }
 ```
 
-## `term`
+### `term`
 
 Using the `term` parameter, the server performs a text search on all records based on their data model and weighting as defined in the entity definition using the `SearchRanking` flag. 
 

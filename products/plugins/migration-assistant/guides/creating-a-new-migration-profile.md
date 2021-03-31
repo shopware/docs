@@ -470,7 +470,8 @@ class ProductDataSelection implements DataSelectionInterface
 }
 ```
 
-Hint: The order in the `getDataSets` array is important, because this it determines the order in which the entities are processed. Because of that the the manufacturers, for example, have to be positioned before the products, so that the products can use those later on.
+{% hint style="info" %} The order in the `getDataSets` array is important, because this it determines the order in which the entities are processed. Because of that, the manufacturers, for example, have to be positioned before the products, so that the products can use those later on.
+{% endhint %}
 
 To see the created `ProductDataSelection` in the administration, you have to register it both in the `services.xml` and tag them with `shopware.migration.data_selection` and `shopware.migration.data_set`:
 

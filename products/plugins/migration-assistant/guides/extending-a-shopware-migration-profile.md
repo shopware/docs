@@ -1,14 +1,16 @@
 # Extending a Shopware migration profile
 
-In this HowTo you will see an example on how you can extend a Shopware migration profile of the [Shopware Migration Assistant](https://store.shopware.com/search?sSearch=Swag257162657297f). For this example the Shopware 5 [SwagAdvDevBundle](https://github.com/shopwareLabs/SwagAdvDevBundle) plugin is migrated to the Shopware 6 \[PLACEHOLDER-LINK: [SwagBundleExample](https://docs.shopware.com/en/shopware-platform-dev-en/how-to/indepth-guide-bundle/introduction)\]. For simplicities' sake, only the local gateway is implemented.
+## Overview
+
+In this guide you will see an example on how you can extend a Shopware migration profile of the [Shopware Migration Assistant](https://store.shopware.com/search?sSearch=Swag257162657297f). For this example the Shopware 5 [SwagAdvDevBundle](https://github.com/shopwareLabs/SwagAdvDevBundle) plugin is migrated to the Shopware 6. For simplicities' sake, only the local gateway is implemented.
 
 ## Setup
 
-It is required to already have a basic plugin running and you have installed the [SwagAdvDevBundle](https://github.com/shopwareLabs/SwagAdvDevBundle) plugin in Shopware 5, the \[PLACEHOLDER-LINK: [SwagBundleExample](https://docs.shopware.com/en/shopware-platform-dev-en/how-to/indepth-guide-bundle/introduction)\] and [Shopware Migration Assistant](https://store.shopware.com/search?sSearch=Swag257162657297f) in Shopware 6.
+It is required to already have a basic plugin running and you have installed the [SwagAdvDevBundle](https://github.com/shopwareLabs/SwagAdvDevBundle) plugin in Shopware 5, an own [plugin](../../../../guides/plugins/plugins/plugin-base-guide.md) and [Shopware Migration Assistant](https://store.shopware.com/search?sSearch=Swag257162657297f) in Shopware 6.
 
 ## Enrich existing plugin with migration features
 
-Instead of creating a new plugin for the migration, you might want to add migration features to your existing plugin. Of course, your plugin should then also be installable without the Migration Assistant plugin. So we have an optional requirement. Have a look at this \[PLACEHOLDER-LINK: [HowTo](https://docs.shopware.com/en/shopware-platform-dev-en/how-to/optional-plugin-requirements)\] on how to inject the needed migration services only if the Migration Assistant plugin is available. You could also have a look at the example plugin, to see how the conditional loading is managed in the plugin base class.
+Instead of creating a new plugin for the migration, you might want to add migration features to your existing plugin. Of course, your plugin should then also be installable without the Migration Assistant plugin. So we have an optional requirement. Have a look at this [guide](../../../../guides/plugins/plugins/plugin-fundamentals/database-migrations.md) on how to inject the needed migration services only if the Migration Assistant plugin is available. You could also have a look at the example plugin, to see how the conditional loading is managed in the plugin base class.
 
 ## Creating a new DataSet
 

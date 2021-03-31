@@ -1,5 +1,7 @@
 # Action Routes
 
+## ACtion Routes
+
 Some changes made to entities require some server-side business logic to be done correctly, such as state transitions with more complex validations or other affecting parameters. For this purpose we implemented action routes. These routes are not directly associated with an entity and differ for each case.
 
 ## **State Transitions**

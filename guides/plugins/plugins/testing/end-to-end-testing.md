@@ -359,7 +359,7 @@ In the example file below, this file is used in order to define and create a cus
 }
 ```
 
-{% hint style="info" %} Use only fields, which you can access in the UI / Storefront. Keep in mind that all tests in the file may use the fixture. So keep an eye on compatibility. {% endhint %}
+{% hint style="warning" %} Use only fields, which you can access in the UI / Storefront. Keep in mind that all tests in the file may use the fixture. So keep an eye on compatibility. {% endhint %}
 
 A small note on ID usage: Using ids may be easier for finding elements, but it isn't a proper way for testing in every case - It depends on your application. You need to be 100% sure that the id is persistent and won't change between builds. Never use ids here if you cannot be 100% sure they will not change at all, e.g. in another build.
 

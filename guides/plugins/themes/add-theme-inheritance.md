@@ -2,7 +2,9 @@
 
 ## Overview
 
-This guide explains how you can extend an existing theme. So, what are uses cases to inherit from a other themes? Maybe you already use a specific theme for a sales channel and you want to use it in another sales channel for a different project with slight changes. For example a dark version of the theme, so you have different looks for different sales channels.
+This guide explains how you can extend an existing theme. What are uses cases to inherit from a other themes? Maybe you already use a specific theme for a sales channel and you want to use it in another sales channel for a different project with slight changes. 
+
+For example, imagine you want to use a dark version of the theme, so you have different looks for different sales channels.
 Or maybe you own a store-bought theme and only need to change the appearance of it without changing the code of the theme itself.
 Sometimes it could be useful to develop some kind of base-theme and customize it for different clients.
 

@@ -1,6 +1,8 @@
 # Decorating a Shopware Migration Assistant converter
 
-In this HowTo, you will learn how you can decorate a Shopware migration converter of the [Migration Connector](https://github.com/shopware/SwagMigrationConnector) plugin. Here, the decorated converter will modify the converted products and get data out of a `premapping field`.
+## Overview
+
+In this guide, you will learn how you can decorate a Shopware migration converter of the [Migration Connector](https://github.com/shopware/SwagMigrationConnector) plugin. Here, the decorated converter will modify the converted products and get data out of a `premapping field`.
 
 ## Setup
 

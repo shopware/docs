@@ -2,7 +2,9 @@
 
 ## Overview
 
-The storefront theme is implemented as a skin on top of the [Boostrap](https://getbootstrap.com/).
+The storefront theme is implemented as a skin on top of Boostrap:
+
+{% embed url="https://getbootstrap.com/" %}
 
 Sometimes it is necessary to adjust SCSS variables if you want to change the look of the Storefront for example default variables like `$border-radius` which is defined by Boostrap.
 This guide will show how you can override those SCSS variables.
