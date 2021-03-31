@@ -450,9 +450,8 @@ describe('HelloWorldPlugin tests', () => {
 ```
 {% endcode %}
 
-## Next steps
+## More interesting topics
 
-You might to write more tests for your plugin, so we got you covered with even more guides on testing:
-* [Unit testing with PHPUnit](./php-unit.md)
-* [Jest unit tests in Shopware's administration](./jest-admin.md)
-* [End-to-End testing in Shopware](./end-to-end-testing.md)
+* [Jest tests for the storefront](./jest-storefront.md)
+* [PHPUnit tests](./php-unit.md)
+* [End-to-end tests](./end-to-end-testing.md)

@@ -220,8 +220,3 @@ the translation association.
 (new TranslatedField('name'))->addFlags(new Inherited()),
 (new TranslationsAssociationField(ExampleTranslationDefinition::class))->addFlags(new Inherited()),
 ```
-
-## Next steps
-
-As a follow up, you might want to have a look at the documentation on how to [create data associations](./add-data-associations.md) mentioned in this guide.
-Also you might want to have a look on how to [add data translations](./add-data-translations.md).

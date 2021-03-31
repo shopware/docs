@@ -138,3 +138,7 @@ It will dispatch a message to the message bus once your scheduled task's interva
 Now you still need to run the command `bin/console messenger:consume` to actually execute the dispatched messages.
 Make sure, that the `status` of your scheduled task is set to `scheduled` in the `scheduled_tasks` table, otherwise it won't be executed.
 This is not necessary, when you're using the admin worker.
+
+## More interesting topics
+
+* [Adding a custom command](./add-custom-commands.md)

@@ -358,9 +358,3 @@ You can identify your payment by the entity property `formattedHandlerIdentifier
 It shortens the original handler identifier (php class reference):
 `Custom/Payment/SEPAPayment` to `handler_custom_sepapayment`
 The syntax for the shortening can be looked up in [Shopware\Core\Checkout\Payment\DataAbstractionLayer\PaymentHandlerIdentifierSubscriber](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Checkout/Payment/DataAbstractionLayer/PaymentHandlerIdentifierSubscriber.php).
-
-## Next steps
-
-You've now successfully set up your custom payment provider.
-
-Maybe you now want to add custom line items to your cart, which is explained in this guide [Add custom line items](../cart/add-cart-items.md).

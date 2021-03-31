@@ -45,11 +45,7 @@ In the example before we just used the `deepCopy` function, but there more funct
 
 If want to look up at all available utility functions, take a look at the previously mentioned [reference page](./../../../../resources/references/core-reference/administration-reference/utils.md)
 
-## Next steps
+## More interesting topics
 
-As you might have noticed, there are quite a lot of functions in the utils object.
-Maybe you want to learn more about the Shopware global object or how to create components or modules:
-
-* [The Shopware object](./the-shopware-object.md)
-* [Creating administration component](./add-custom-component.md)
-* [Creating administration module](./add-custom-module.md)
+* [Adding filters](./add-filter.md)
+* [Adding mixins](./add-mixins.md)

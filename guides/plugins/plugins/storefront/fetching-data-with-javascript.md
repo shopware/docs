@@ -62,9 +62,3 @@ receives the `response` of the API call. We can now use this in our plugin to di
 
 The third parameter of the `get` method is the `contentType` which will be sent in the request header of the API call.
 It is optional and by default set to be `application/json`.
-
-## Next steps
-
-The `HttpClient` offers even more functions. Beside the `get` method to fetch data there is of course also the 
-possibility to send data e.g. by `post`, `patch` or `delete`. 
-If you want to send data to the API you can have a look at the HttpClient in detail [here](https://github.com/shopware/platform/blob/v6.3.4.1/src/Storefront/Resources/app/storefront/src/service/http-client.service.js).

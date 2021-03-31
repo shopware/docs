@@ -163,9 +163,3 @@ For our case we extend the footer template and add a new column to the navigatio
 Note the usage of the variable here. You're accessing the footer object, in which you can now find the path `extensions.product_count.count`.
 
 That's it for this guide, you've successfully added data to a storefront page\(let\).
-
-## Next steps
-
-The result of this guide probably lacks some style.
-Thus, you might want to have a look at our guide to [add custom styles to your storefront](./add-custom-styling.md).
-

@@ -173,8 +173,3 @@ class ExampleService extends AbstractExampleService
 }
 ```
 {% endcode %}
-
-## Next steps
-
-Sometimes you don't need to decorate a service, but you just could react to events instead. Read more about this in our [Listening to events](listening-to-events.md) guide.
-

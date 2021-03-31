@@ -93,8 +93,4 @@ custom assets into your theme. Please take a look on the guide about adding asse
 
 ## Next steps
 
-In this guide, you learnt how to add and use your own assets in your plugin. How about customizing your plugin even
-more? Take a look at the following articles to learn more ways to customize your plugin:
-* [Add custom styling](./add-custom-styling.md)
-* [Add custom JavaScript](./add-custom-javascript.md)
-* [Customize templates](./customize-templates.md)
+One of the said custom assets are medias. For those, we've got a separate [guide](./use-media-thumbnails.md).

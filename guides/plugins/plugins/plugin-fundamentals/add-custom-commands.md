@@ -133,7 +133,6 @@ Available commands:
 
 Each command usually has a namespace like `cache`, so to clear the cache you would execute `php bin/console cache:clear`. If you'd like to learn more about commands in general, have a look at [this article](https://symfony.com/doc/current/console.html) in the Symfony documentation.
 
-## Next steps
+## More interesting topics
 
-In order to really do something with your command, you will most likely need other services.
-Head over to our guide about [injecting a service](../plugin-fundamentals/dependency-injection.md) into another to understand how that's done.
+* [Adding a scheduled task](./add-scheduled-task.md)

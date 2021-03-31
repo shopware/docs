@@ -687,8 +687,6 @@ Shopware.Component.register('swag-basic-example', {
 ```
 
 ## Next steps
+
 As this is very similar to the DAL it might be interesting to learn more about that.
-Here's a list of things you can do now:
-* [Creating your own entities](../framework/data-handling/add-custom-complex-data.md)
-* [Reading data with the DAL](../framework/data-handling/reading-data.md)
-* [Writing data with the DAL](../framework/data-handling/writing-data.md)
+For this, head over to the section about the [data handling](../framework/data-handling/README.md) in PHP.

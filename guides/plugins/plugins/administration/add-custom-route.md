@@ -83,10 +83,8 @@ See in this example:
 
 The `bundle-name` is separated by dots instead of dashes here though. The second part is the **name** of the route, the key of the route configuration that is. Thus the path to the `list` route is `swag.example.list`. The same applies for the `create` route.
 
-## Next steps
+## More interesting topics
 
-As you might have noticed, your route is just rendering a Shopware made component. 
-However, here's a list of things you can do now:
-
-* [Creating a new administration component](./add-custom-component.md)
-* [Customize an existing component](./customizing-components.md)
+* [Adding a custom service](./add-custom-service.md)
+* [Customizing a module](./customizing-modules.md)
+* [Adding permissions](./add-acl-rules.md)

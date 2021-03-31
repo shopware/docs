@@ -108,8 +108,6 @@ By having a look at the [ProductMediaDefinition](https://github.com/shopware/pla
 
 This way the product will now lose the association to the media entity. Note: This will **not** delete the media entity itself, just the association between the product and the media entity.
 
-## Next steps
+## More interesting topics
 
-There's been a lot of talking about associations in entities.
-Maybe it's time now to [add your own entities via a plugin](./add-custom-complex-data.md) and to [add data associations](./add-data-associations.md) to it then.
-
+* [Replacing associated data](./replacing-associated-data.md)

@@ -270,8 +270,3 @@ class ExampleTranslationCollection extends EntityCollection
 }
 ```
 {% endcode %}
-
-## Next steps
-
-Now that you know, how to add translations to our entity, you may want to add some associations,
-for this head over to our [Adding data associations guide](./add-data-associations.md).

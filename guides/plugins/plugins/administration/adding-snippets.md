@@ -57,3 +57,7 @@ The same `$tc` helper function can be used in the templates to access translatio
 {% endblock %}
 ```
 
+## More interesting topics
+
+* [Learning about the global Shopware object](./the-shopware-object.md)
+* [Learning about the VueX state](./using-vuex-state.md)

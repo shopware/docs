@@ -62,11 +62,7 @@ Component.register('swag-basic-example', {
 ```
 {% endcode %}
 
-## Next steps
+## More interesting topics
 
-Now that you learned how to created a mixin, you might want to create or customize an administration component:
-* [Creating a new administration component](./add-custom-component.md)
-* [Extending an existing administration component](./customizing-components.md)
-
-If you however want to add your own service to the administration:
-* [Adding services](./add-custom-service.md)
+* [Adding filters](./add-filter.md)
+* [Using utils](./using-utils.md)

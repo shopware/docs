@@ -52,9 +52,7 @@ Generally speaking, twig is used for **extending** from another template and adj
 
 Vue is used to link the data and the DOM in order to make them reactive. Learn about Vue and its capabilities [here](https://vuejs.org/v2/guide/index.html).
 
-## Next steps
+## More interesting topics
 
-As you might have noticed, we are just rendering static text, so maybe you want to try the following things:
-
-* [How to override parts of existing components](./customizing-components.md)
-* [How to use the admin API to fetch data in the administration](./using-data-handling.md)
+* [Add custom styling](./add-custom-styles.md)
+* [Adding shortcuts](./add-shortcuts.md)

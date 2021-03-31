@@ -74,12 +74,3 @@ navigation: [{
 If you're planning to publish your plugin to the Shopware Store keep in mind we're rejecting plugins which have created their own menu entry on the first level.
 
 {% hint style="info" %} If you're planning to publish your plugin to the Shopware Store keep in mind we're rejecting plugins which have created their own menu entry on the first level. {% endhint %}
-
-## Next steps
-
-We just learned how to add an own menu entry. However, there's a lot more possible when it comes to extending the 
-Administration. You may want to continue to explore these possibilities:
-
-* [Add custom component](./add-custom-component.md)
-* [Add custom input fields](./add-custom-field.md)
-* [Add custom styles](./add-custom-styles.md)

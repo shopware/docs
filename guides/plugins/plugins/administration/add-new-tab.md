@@ -170,14 +170,3 @@ Here's what your new template could then look like:
 ```
 
 It simply creates a new card with a title, which only contains a 'Hello world!' string. And that's it - your tab should now be fully functional.
-
-## Next steps
-
-As you might have noticed, we are just adding a custom tab to the module. However, there's a lot more possible when it comes to extending the Adminsitration. You may want to try the following things:
-
-* If you want to learn about other possibilities to extend the Administration, we got you covered with other guides:
-  * [Writing templates](writing-templates.md)
-  * [Add custom module](add-custom-module.md)
-  * [Add menu entry](./add-menu-entry.md)
-  * [Add custom routes](./add-custom-route.md)
-

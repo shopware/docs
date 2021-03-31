@@ -62,10 +62,3 @@ Now, we finally add our custom field as explained before:
 {% endblock %}
 ```
 {% endcode %}
-
-## Next steps
-
-As you now learnt how to handle custom fields in the Storefront, you may want to get to know about the [custom field 
-handling in the Administration](./../framework/custom-field/using-custom-fields.md). You want to use a custom field in 
-combination with images or other media? Head over to the 
-[guide](./../framework/custom-field/custom-fields-of-type-media.md) on that!

@@ -61,12 +61,3 @@ Basically, you just need to use the Vue [filter](https://vuejs.org/v2/guide/filt
 
 You're able to use this line in your `twig`/`html` files as you please and that's basically it. You successfully 
 added your own asset to the administration.
-
-## Next steps
-
-If you're already working with assets in your administration plugin, maybe you want to customize the administration 
-even more? Head over to the following guides to learn about even more customization possibilities:
-* [Add custom component](./add-custom-component.md)
-* [Customizing components](./customizing-components.md)
-* [Customizing modules](./customizing-modules.md)
-* [Add custom styles](./add-custom-styles.md)

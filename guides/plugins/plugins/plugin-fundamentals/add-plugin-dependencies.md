@@ -66,3 +66,7 @@ Have a detailed look at the `require` keyword, which now requires both the Shopw
 
 Now your plugin isn't installable anymore, until that requirement is fulfilled.
 
+## More interesting topics
+
+* [Using composer dependencies](./using-composer-dependencies.md)
+* [Using NPM dependencies](./using-npm-dependencies.md)

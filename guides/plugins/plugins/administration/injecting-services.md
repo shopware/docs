@@ -35,9 +35,3 @@ Shopware.Component.register('swag-basic-example', {
     }
 });
 ```
-
-## Next steps
-
-Now that we know what services are, we might want to do one of the following things:
-* [Creating your own service](./add-custom-service.md)
-* [Using the Data handling](./using-data-handling.md)

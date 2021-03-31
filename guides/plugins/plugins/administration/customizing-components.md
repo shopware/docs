@@ -55,10 +55,8 @@ The only thing now left to just add an import for our of previously created `./s
 import './sw-dashboard-index-override/';
 ```
 
-## Next steps
+## More interesting topics
 
-As you might have noticed, our override is just static content and is not internationalized or maybe you want to create your component. Learn how to do all those things here:
-
-* [Creating a new administration component](./add-custom-component.md)
-* [Adding JavaScript overrides to the Administration](./customizing-components.md)
-* [Internationalization in the Shopware 6 Administration](./adding-snippets.md)
+* [Customizing templates](./writing-templates.md)
+* [Customizing via custom styles](./add-custom-styles.md)
+* [Using base components](./using-base-components.md)

@@ -105,11 +105,3 @@ Make sure to also include that file when publishing your plugin!
 A copy of this file will then be put into the directory `<shopware root>/public/bundles/administration/newfield/administration/js/administration-new-field.js`.
 
 Your minified javascript file will now be loaded in production environments.
-
-## Next steps:
-
-The possibility to customize the administration via `main.js` file provides more options than just the addition of a
-custom input field. You can check out following guides to get to know more possibilities:
-  * [Add custom tab to existing module](./add-new-tab.md)
-  * [Add custom module to administration](./add-custom-module.md)
-  * [Add translations to your module](./adding-snippets.md)
