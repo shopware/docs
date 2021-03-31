@@ -15,7 +15,7 @@ They only differ in the API they use and get displayed in a slightly different w
 
 ## Prerequisites
 
-For this guide, it's necessary of have a running Shopware 6 instance and full access to both the files and a 
+For this guide, it's necessary to have a running Shopware 6 instance and full access to both the files and a 
 running plugin. See our plugin page guide to learn how to create your own plugins.
 
 {% page-ref page="./../plugin-base-guide.md" %}
@@ -145,7 +145,7 @@ Shopware.Component.override('sw-search-more-results', {
 
 ### Potential pitfalls
 
-In case of a tag with a technical with a missing translation, proceed like this:
+In case of a tag with a technical name with a missing translation, proceed like this:
 ```json
 {
     "global": {
