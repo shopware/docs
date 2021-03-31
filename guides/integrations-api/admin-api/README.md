@@ -2,7 +2,8 @@
 
 In this guide, you'll learn how to use the Admin API. If you want to understand the concept behind the API or find a full endpoint reference, please visit the following sections:
 
-{% page-ref page="../../../concepts/api/admin-api/" %}
+{% page-ref page="../../../concepts/api" %}
+
 
 The Admin API provides an interface for all CRUD \(create, read, update, delete\) operations on every entity within Shopware. In the following guide, we'll discuss it's usage throughout these topics:
 
