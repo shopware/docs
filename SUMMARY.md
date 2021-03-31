@@ -64,7 +64,6 @@
     * [Reference](products/plugins/migration-assistant/reference.md)
 * [Cloud](products/cloud-1.md)
 * [PWA](products/pwa-1/README.md)
-  * [Quick Setup](products/pwa-1/quick-setup.md)
 
 ## Guides
 
