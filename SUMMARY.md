@@ -165,6 +165,7 @@
       * [The Shopware object](guides/plugins/plugins/administration/the-shopware-object.md)
       * [Add filter](guides/plugins/plugins/administration/add-filter.md)
       * [Using filter](guides/plugins/plugins/administration/using-filter.md)
+      * [Add custom data to the search](guides/plugins/plugins/administration/search-custom-data.md)
     * [Storefront](guides/plugins/plugins/storefront/README.md)
       * [Add custom controller](guides/plugins/plugins/storefront/add-custom-controller.md)
       * [Override existing routes](guides/plugins/plugins/storefront/override-existing-routes.md)
