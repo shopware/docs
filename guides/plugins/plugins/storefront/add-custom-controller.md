@@ -208,9 +208,6 @@ class ExampleController extends StorefrontController
 
 ## Next steps
 
-Now that you know how to create a custom controller, you can make it more beautiful with some styling.
-To get a grip on it, head over to our guide on [Add custom styling](add-custom-styling.md).
-
 Since you've already created a controller now, which is also part of creating a so called "page" in Shopware,
 you might want to head over to our guide about [creating a page](add-custom-page.md).
 

@@ -65,8 +65,3 @@ class ExampleService
 }
 ```
 {% endcode %}
-
-## Next steps
-
-Now that you know how to inject services into another, you might want to have a look at our guide about [Reading data](../framework/data-handling/reading-data.md).
-Your newly gained knowledge will be of use in that guide.

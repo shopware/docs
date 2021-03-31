@@ -146,9 +146,11 @@ Your minified javascript file will now be loaded in production environments.
 
 ## Next steps
 
-As you might have noticed, we are just adding a custom component to the module. However, there's a lot more possible when it comes to extending the Administration. In addition, you surely want to customize your page or component even more. You may want to try the following things:
+You've now added a custom component, including a little template.
+However, there's more discover here.
 
-* [Add custom input fields](./add-custom-field.md)
-* [Add menu entry](./add-menu-entry.md)
-* [Add custom routes](./add-custom-route.md)
+* [More about templates](./writing-templates.md)
+* [Add some styling to your component](./add-custom-styles.md)
+* [Use shortcuts for your component](./add-shortcuts.md)
 
+Furthermore, what about [customizing other components](./customizing-components.md), instead of creating new ones.

@@ -95,6 +95,11 @@ Once again, the plugin called [FroshDevelopmentHelper](https://github.com/Friend
 
 ## Next steps
 
-Now that you know how to customize your templates, you might wonder how to add new data to the said templates.
-This is covered in the guide [add data to storefront page](./add-data-to-storefront-page.md), so go for it.
+You're able to customize templates now, which is a good start.
+However, there's a few more things you should definitely learn here:
+
+* [Adding styles](./add-custom-styling.md)
+* [Adding translations](./add-translations.md)
+* [Using icons](./add-icons.md)
+* [Using custom assets](./add-custom-assets.md)
 

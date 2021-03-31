@@ -100,10 +100,3 @@ Shopware.Application.addServiceProviderDecorator('joker', joker => {
     return joker;
 });
 ```
-
-
-## Next steps
-
-Now that we have created a service, you might want to create or customize a administration component:
-* [Creating a new administration component](./add-custom-component.md)
-* [Extending an existing administration component](./customizing-components.md)

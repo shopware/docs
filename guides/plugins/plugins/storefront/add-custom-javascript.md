@@ -249,6 +249,5 @@ If you now scroll to the bottom of your page an alert should appear.
 
 ## Next steps
 
-You should now be able to add your own JavaScript classes to your plugin.
-If you're wondering how you can extend existing JavaScript from the Shopware core, head over to our guide about [Override existing javascript](./override-existing-javascript.md).
-
+You've got your own first javascript plugin running.
+You might want to start [listening to javascript events](./reacting-to-javascript-events.md) now, or even [override other javascript plugins](./override-existing-javascript.md) instead.

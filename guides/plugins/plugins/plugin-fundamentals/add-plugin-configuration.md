@@ -285,3 +285,9 @@ Now all that's left to do is to present you a working example `config.xml` and s
 </config>
 ```
 {% endcode %}
+
+## Next steps
+
+Now you've added your own plugin configuration.
+But how do you actually read which configurations the shop owner used?
+This will be covered in our guide about [Using the plugin configuration](./use-plugin-configuration.md).

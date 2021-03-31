@@ -330,6 +330,14 @@ That's it, your definition is now completely registered to Shopware 6! From here
 
 ## Next steps
 
-As a follow up, you might want to have a look at the documentation on how to [translate custom entities](./add-data-translations.md),
-e.g. for your `name` and `description` field. Also you might want to have a look on how to [add data associations](./add-data-associations.md).
+You've now got a simple entity about a single database table.
+However, your entity will most likely be even more complex.
 
+For example we also have a guide about [associations](./add-data-associations.md), since you most likely will have multiple
+tables that have a relation to each other.
+Furthermore, the fields in this example are already using flags, which are explained [here](./using-flags.md).
+When dealing with products, you're also dealing with [inheritance](./field-inheritance.md), which we also got covered.
+
+One more thing:
+Maybe you want to connect your database table to an already existing database table, hence an already existing entity.
+This is done by [extending the said existing entity](./add-complex-data-to-existing-entities.md).

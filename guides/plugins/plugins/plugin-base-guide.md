@@ -171,12 +171,22 @@ And that's basically it.
 
 ## Next steps
 
-As you might have noticed, your plugin is not doing anything right now.  
-But here's a list of things you can do now:
+There's many more things to discover when creating your first plugin.
+Hence, here's a list of important articles, that may be of interest for you.
 
-* [Learning the plugin lifecycle methods](./plugin-fundamentals/plugin-lifecycle.md)
-* [Creating your first Storefront page](./storefront/add-custom-page.md)
-* [Creating a new administration module](./administration/add-custom-module.md)
-* [Listen to events](./plugin-fundamentals/listening-to-events.md)
-* [Add a plugin configuration](./plugin-fundamentals/add-plugin-configuration.md)
+* [Installing data with your plugin](./plugin-fundamentals/database-migrations.md)
+* [Learn more about the plugin lifecycle methods](./plugin-fundamentals/plugin-lifecycle.md)
+* [Adding a configuration to your plugin](./plugin-fundamentals/add-plugin-configuration.md)
+* [Learning about the service container](./plugin-fundamentals/dependency-injection.md)
+* [Adding a custom service](./plugin-fundamentals/add-custom-service.md)
+* [Start listening to events](./plugin-fundamentals/listening-to-events.md)
 
+Furthermore, you should definitely have a look into these sections:
+
+{% page-ref page="./storefront/README.md" %}
+
+{% page-ref page="./administration/README.md" %}
+
+{% page-ref page="./framework/data-handling/README.md" %}
+
+{% page-ref page="./testing/README.md" %}

@@ -375,5 +375,3 @@ And that's basically it for this guide!
 
 Now that you know how to read data from the database using the Data Abstraction Layer,
 you can head over to our guide on [writing data](./writing-data.md).
-Maybe you want to add your new data to the storefront, which is explained [here](../../storefront/add-data-to-storefront-page.md).
-

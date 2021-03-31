@@ -129,8 +129,3 @@ Here's a list of attributes, that you can apply to a cookie array:
 
 Those changes will mainly just show your new cookies in the cookie consent manager, but without much function.
 Head over to our guide about [Reacting to cookie consent changes](./reacting-to-cookie-consent-changes.md) to see how you can implement your custom logic once your cookie got accepted or declined.
-
-Also, you'll most likely want to add snippets for your cookies.
-Since that's the same procedure as creating other storefront snippets, our guide about [adding translations](./add-translations.md) will suffice for this.
-Just use the key for the snippet, that you just used in your cookie arrays.
-

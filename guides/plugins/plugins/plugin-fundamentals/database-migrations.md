@@ -202,7 +202,3 @@ Therefore a typical update method might look more like this:
 ```
 
 If you don't use the Shopware migration system, an empty collection (NullObject) will be in the context.
-
-## Next steps
-
-Now that you are more familiar with migrations, you can head over to our [Add custom complex data (add own entities)](../framework/data-handling/add-custom-complex-data.md) guide where migrations are used as well.

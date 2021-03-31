@@ -315,6 +315,8 @@ And that's it, your `ManyToMany` association is now set up properly.
 
 ## Next steps
 
-Now that you know, how to create associations, you may want to do some more things with that. If you want to fetch some data with associated data, you can head over to our [Reading data](./reading-data.md) guide.
+One type of association you'll often stumble upon are translations.
+If you wonder how to add translations to your entity, [this is the place](./add-data-translations.md) to go.
+
 Otherwise you may want to update some data, for this you can look at our [Writing data](./writing-data.md) and [Replacing data](./reading-data.md) guide.
 If you plan to remove associated data from entities, you can head over to our [Remove associated data](./deleting-associated-data.md) guide.
