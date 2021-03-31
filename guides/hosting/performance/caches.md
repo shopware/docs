@@ -17,7 +17,7 @@ The HTTP cache configuration takes place completely in the .env file. The follow
 
 ### How to trigger the http cache warmer
 
-To warm up the HTTP cache you can simply use the console command `http:cache:warm:up`. This command sends a message to the message queue for each sales channel domain to warm it up as fast as possible. It is important that queue workers are started according to our \[PLACEHOLDER-LINK: hosting/infrastructure/message-queue\].
+To warm up the HTTP cache you can simply use the console command `http:cache:warm:up`. This command sends a message to the message queue for each sales channel domain to warm it up as fast as possible. It is important that queue workers are started according to our [message queue](../infrastructure/message-queue.md).
 
 ### How to change the cache storage
 
@@ -60,7 +60,7 @@ This is also a Symfony cache configuration and therefore supports all adapters f
 
 ## Object Cache
 
-The object cache pool is used for the caching the \[PLACEHOLDER-LINK: data-abstraction-layer info guide\] in shopware and can be configured like any other pool.
+The object cache pool is used for the caching of the data abstraction layer in shopware and can be configured like any other pool.
 
 ## Example: Replace some cache with Redis
 

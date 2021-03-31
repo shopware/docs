@@ -81,3 +81,5 @@ We import the function log as well as the constants tag via `destructuring` in t
 
 Now that you know how to include new `npm` dependencies you might want to create a service with them.
 Learn how to do that in this guide: [How to add a custom-service](../administration/add-custom-service.md)
+
+If you want to add [composer dependencies](./using-composer-dependencies.md), or even other [plugin dependencies](./add-plugin-dependencies.md), we've got you covered as well.

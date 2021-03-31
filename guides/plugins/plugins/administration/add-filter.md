@@ -46,4 +46,5 @@ Last, import the filter into your plugin's `main.js` file.
 
 ## Next steps
 
-Now that you know how to create a filter for the administration, we want to use it in our code. For this head over to our [using filter](./using-filter.md) guide.
+Now that you know how to create a filter for the administration, we want to use it in our code.
+For this head over to our [using filter](./using-filter.md) guide.

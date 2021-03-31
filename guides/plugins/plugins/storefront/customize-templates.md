@@ -61,7 +61,21 @@ To override it now, just add the very same block into your custom file and repla
 
 If you wanted to append your text to the logo instead of replacing it, you could add a line like this to your override: `{{ parent() }}`
 
-And that's it already, you're done already. You might have to clear the cache and refresh your storefront to see your changes in action. This can be done by using the command `./psh.phar cache` inside your command line in the `development` or `production` template root.
+And that's it already, you're done already. You might have to clear the cache and refresh your storefront to see your changes in action.
+This can be done by using the command following command inside your command line.
+
+{% tabs %}
+{% tab title="Development template" %}
+```bash
+./psh.phar cache
+```
+{% endtab %}
+{% tab title="Production template" %}
+```bash
+./bin/console cache:clear
+```
+{% endtab %}
+{% endtabs %}
 
 ### Finding variables
 
@@ -81,6 +95,11 @@ Once again, the plugin called [FroshDevelopmentHelper](https://github.com/Friend
 
 ## Next steps
 
-Now that you know how to customize your templates, you might wonder how to add new data to the said templates.
-This is covered in the guide [add data to storefront page](./add-data-to-storefront-page.md), so go for it.
+You're able to customize templates now, which is a good start.
+However, there's a few more things you should definitely learn here:
+
+* [Adding styles](./add-custom-styling.md)
+* [Adding translations](./add-translations.md)
+* [Using icons](./add-icons.md)
+* [Using custom assets](./add-custom-assets.md)
 

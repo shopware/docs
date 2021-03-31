@@ -171,9 +171,3 @@ public function postUpdate(UpdateContext $updateContext): void
 }
 ```
 {% endcode %}
-
-## Next steps
-
-You should now be familiar with the possibilities of the plugin bootstrap class and the plugin's lifecycle methods.
-Time to have a look at more fundamental plugin guides, maybe such as using the [plugin's database migration](./database-migrations.md) system or
-[adding a plugin configuration](./add-plugin-configuration.md).

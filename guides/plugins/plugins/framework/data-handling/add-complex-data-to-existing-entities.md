@@ -395,9 +395,3 @@ Custom fields are by default configurable by the admin user in the administratio
 e.g. a text-field, a number field or the likes.
 If you'd like to create associations between entities, you'll need to use an entity extension, just like we did here.
 Of course you can also add scalar values without an association to an entity via an extension.
-
-## Next steps
-
-Now that you know, how to extend existing entities you may want to create your own entity, to get a grip of this, you can head over to our [Adding custom complex data](./add-custom-complex-data.md) guide.
-Or maybe you want to get more familiar with custom fields, for this check out our [Add custom field](../custom-field/add-custom-field.md) guide.
-Since this guide talked about entity associations, you might want to have a look at our guide regarding [Adding data associations](./add-data-associations.md).

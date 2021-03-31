@@ -82,7 +82,20 @@ Its contents get minified into a new file named after your plugin and will be mo
 of Shopware 6 root directory.
 Given this plugin would be named "AdministrationNewField", the minified javascript code for this example would be
 located under `<plugin root>/src/Resources/public/administration/js/administration-new-field.js`, once you run the 
-command `./psh.phar administration:build` in your shopware root directory.
+command following command in your shopware root directory:
+
+{% tabs %}
+{% tab title="Development template" %}
+```bash
+./psh.phar administration:build
+```
+{% endtab %}
+{% tab title="Production template" %}
+```bash
+./bin/build-administration.sh
+```
+{% endtab %}
+{% endtabs %}
 
 {% hint style="info" %}
 Your plugin has to be activated for this to work.
@@ -92,11 +105,3 @@ Make sure to also include that file when publishing your plugin!
 A copy of this file will then be put into the directory `<shopware root>/public/bundles/administration/newfield/administration/js/administration-new-field.js`.
 
 Your minified javascript file will now be loaded in production environments.
-
-## Next steps:
-
-The possibility to customize the administration via `main.js` file provides more options than just the addition of a
-custom input field. You can check out following guides to get to know more possibilities:
-  * [Add custom tab to existing module](./add-new-tab.md)
-  * [Add custom module to administration](./add-custom-module.md)
-  * [Add translations to your module](./adding-snippets.md)

@@ -84,10 +84,3 @@ A simple but fully functional example could look like below:
 
 Inside your theme, you cannot put an icon in a directory corresponding the core folder structure and expect the core 
 one to be automatically overwritten by it, as you're used to with themes in general. 
-
-## Next steps
-
-There are many other possibilities to customise the storefront. You might want to take a look at the following guides:
-* [Add custom assets](./add-custom-assets.md)
-* [Add custom JavaScript](./add-custom-javascript.md)
-* [Add custom styling](./add-custom-styling.md)

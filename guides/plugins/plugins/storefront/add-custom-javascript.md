@@ -229,10 +229,25 @@ Make sure to ship the compiled file with your plugin as well.
 
 ## Testing your changes
 
-To see your changes you have to build the storefront. Use the `./psh.phar storefront:build` command and reload your storefront. If you now scroll to the bottom of your page an alert should appear.
+To see your changes you have to build the storefront.
+Use the following command and reload your storefront:
+
+{% tabs %}
+{% tab title="Development template" %}
+```bash
+./psh.phar storefront:build
+```
+{% endtab %}
+{% tab title="Production template" %}
+```bash
+./bin/build-storefront.sh
+```
+{% endtab %}
+{% endtabs %}
+
+If you now scroll to the bottom of your page an alert should appear.
 
 ## Next steps
 
-You should now be able to add your own JavaScript classes to your plugin.
-If you're wondering how you can extend existing JavaScript from the Shopware core, head over to our guide about [Override existing javascript](./override-existing-javascript.md).
-
+You've got your own first javascript plugin running.
+You might want to start [listening to javascript events](./reacting-to-javascript-events.md) now, or even [override other javascript plugins](./override-existing-javascript.md) instead.

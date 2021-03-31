@@ -49,11 +49,7 @@ The before mentioned `SYSTEMKEY` is `CTRL` on macOS and `ALT` on windows, other 
 
 Since ACL is used in the first keyboard shortcut you might want to learn more about ACL and how to add your own ACL rules [here](./add-acl-rules.md).
 
-## Next steps
+## More interesting topics
 
-Now you that know how to add shortcuts to your components, you may want to learn more about [ACL](./add-acl-rules.md). Furthermore, if you want to learn about other possibilities to extend the Administration, we got you covered with other guides:
-
-* [Writing templates](writing-templates.md)
-* [Add custom module](add-custom-module.md)
-* [Add menu entry](./add-menu-entry.md)
-* [Add custom routes](./add-custom-route.md)
+* [Writing templates](./writing-templates.md)
+* [Adding styles](./add-custom-styles.md)

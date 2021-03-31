@@ -56,8 +56,6 @@ Shopware.Component.register('swag-basic-example', {
 ```
 {% endcode %}
 
-# Next Steps
+## More interesting topics
 
-As this is just a static set of data so far you might want to learn:
-* [How to use the data handling](./using-data-handling.md)
-* [How to write templates](./writing-templates.md)
+* [Using base components](./using-base-components.md)

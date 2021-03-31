@@ -260,7 +260,8 @@ Therefore, this is how your configuration could then look like:
 
 ## Next steps
 
-Now that you know how to write PHP unit tests, you can have a look at our other guides about testing:
+You've learned about PHPUnit tests here now.
+But what about unit testing your javascript code, either in the storefront or the administration?
 
-- [End-to-end testing](./end-to-end-testing.md)
 - [Jest unit tests in Shopware's administration](./jest-admin.md)
+- [Jest unit tests in Shopware's storefront](./jest-storefront.md)

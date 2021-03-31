@@ -30,12 +30,4 @@ Using base components in your own administration templates is rather simple. In 
 ```
 {% endcode %}
 
-That's basically it. To continue building beautiful custom components, learn how to write templates and how to include them in your components [here](./writing-templates.md).
-
-## Next steps
-
-Now that you know that all components are accessible through the component registry, you might want to learn more about the following things:
-
-* [How to create custom templates](./writing-templates.md)
-* [How to add your own components](./add-custom-component.md)
-* [Customizing components](./add-custom-route.md)
+That's basically it. To continue building beautiful custom components, learn how to write templates and how to include them in your components [here](./writing-templates.md)

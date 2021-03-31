@@ -106,6 +106,7 @@ You can then require them like other dependencies:
 }
 ```
 
-## Next steps
+## More interesting topics
 
-Now that you know how to include new `composer` dependencies you might want to [install `npm` dependencies](./using-npm-dependencies.md) or even add [dependencies to other plugins](./add-plugin-dependencies.md)
+* [Using NPM dependencies](./using-npm-dependencies.md)
+* [Adding plugin dependencies](./add-plugin-dependencies.md)

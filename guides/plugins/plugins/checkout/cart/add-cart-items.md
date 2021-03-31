@@ -177,9 +177,3 @@ Implementing the `LineItemFactoryInterface` will force you to also implement thr
 
 And that's it. You should now be able to create line items of type `example` once your handler is properly registered.
 
-## Next steps
-
-You should by now how to add line items to the cart using just the code.
-But there's more to it, such as nested line items.
-If you're interested in learning that, make sure to have a look at our guide about [PLACEHOLDER-LINK: adding nested cart items].
-

@@ -3,7 +3,6 @@
 ## Overview
 
 In this guide you'll learn how to create custom pagelets for your Storefront pages.
-What exactly pages and pagelets are, can be found on our respective concept guide [PLACEHOLDER-LINK: Concept pages & pagelets].
 
 In short: Pages are exactly that, a fully functioning page of your store with a template loaded by a route.
 A pagelet is an important and reusable fraction of several pages, such as a footer or the navigation.
@@ -205,13 +204,3 @@ public function examplePagelet(Request $request, SalesChannelContext $context): 
 ```
 
 Using the part `defaults={"XmlHttpRequest"=true}` in the annotation ensures, that this pagelet can be loaded using an XML HTTP Request.
-
-## Next steps
-
-You should know how to create a page and now how to create a pagelet.
-But what about customizing the existing templates using those pages?
-What do you do if you want to style your custom pagelets and pages?
-The following guides will cover those subjects.
-
-- [Customize templates](./customize-templates.md)
-- [Add custom styling](./add-custom-styling.md)

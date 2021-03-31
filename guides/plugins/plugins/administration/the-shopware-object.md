@@ -75,8 +75,6 @@ We now have discussed the most commonly used parts of the `Shopware` object, but
 
 ## Next steps
 
-As you might have noticed, the `Shopware` object can be used in a lot of cases. See it in action here:
-
-* [Creating administration component](./add-custom-component.md)
-* [Creating administration module](./add-custom-module.md)
-* [Internationalization in the Shopware 6 Administration](./adding-snippets.md)
+As you might have noticed, the `Shopware` object can be used in a lot of cases.
+Besides registering components and modules, here are some guides about [adding filters](./add-filter.md),
+about [adding mixins](./add-mixins.md) and about [using our utils](./using-utils.md) - all by using the Shopware object.

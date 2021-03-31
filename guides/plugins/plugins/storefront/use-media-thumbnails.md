@@ -204,7 +204,6 @@ This will generate the output below:
     title="My beautiful image">
 ```
 
-## Next steps
+## More interesting topics
 
-Now you know how to work with media and especially thumbnails in the Storefront. As a next step, it might be useful to
-take a look at the most common use case when working with images: Adding images via [custom fields](./../administration/add-custom-field.md).
+* [Use custom assets in general](./add-custom-assets.md)

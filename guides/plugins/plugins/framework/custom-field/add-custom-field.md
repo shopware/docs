@@ -255,7 +255,7 @@ Custom field sets are deletable by the shop administrator, so you cannot rely on
 {% endhint %}
 
 While theoretically your custom field is now properly defined for the administration, you'll still have to do some work
-in your custom entities' administration module. This will be covered in the guide about [PLACEHOLDER-LINK: Using custom fields in your module].
+in your custom entities' administration module.
 
 ## Next steps
 

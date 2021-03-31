@@ -87,10 +87,8 @@ Because of [Sass](https://sass-lang.com/) usage, you are able to import external
 }
 ```
 
-## Next steps
+## More interesting topics
 
-As you might have noticed, we are just adding custom styles to the component. However, there's a lot more possible when it comes to extending the Administration. You may want to continue to explore these possibilities:
-
-* [Add custom input fields](./add-custom-field.md)
-* [Add custom tab to existing module](./add-new-tab.md)
+* [Writing templates](./writing-templates.md)
+* [Add shortcuts](./add-shortcuts.md)
 

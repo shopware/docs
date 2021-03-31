@@ -139,7 +139,6 @@ Now you still need to run the command `bin/console messenger:consume` to actuall
 Make sure, that the `status` of your scheduled task is set to `scheduled` in the `scheduled_tasks` table, otherwise it won't be executed.
 This is not necessary, when you're using the admin worker.
 
-## Next steps
+## More interesting topics
 
-You might want to have a look at our guides about [PLACEHOLDER-LINK: Add message to queue], [PLACEHOLDER-LINK: Add message handler] or
-[PLACEHOLDER-LINK: Add middleware].
+* [Adding a custom command](./add-custom-commands.md)

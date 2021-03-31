@@ -107,7 +107,22 @@ This is a [shorthand](https://alligator.io/js/object-property-shorthand-es6/), w
 
 ## Loading the JS files
 
-As mentioned above, Shopware 6 looks for a `main.js` file in your plugin. Its contents get minified into a new file named after your plugin and will be moved to the `public` directory of the Shopware 6 root directory. Given this plugin is named "CustomComponent", the minified javascript code for this example would be located under `<plugin root>/src/Resources/public/administration/js/custom-component.js`, once you run the command `./psh.phar administration:build` in your shopware root directory.
+As mentioned above, Shopware 6 looks for a `main.js` file in your plugin. Its contents get minified into a new file named after your plugin and will be moved to the `public` directory of the Shopware 6 root directory.
+Given this plugin is named "CustomComponent", the minified javascript code for this example would be located under `<plugin root>/src/Resources/public/administration/js/custom-component.js`,
+once you run the following command in your shopware root directory:
+
+{% tabs %}
+{% tab title="Development template" %}
+```bash
+./psh.phar administration:build
+```
+{% endtab %}
+{% tab title="Production template" %}
+```bash
+./bin/build-administration.sh
+```
+{% endtab %}
+{% endtabs %}
 
 {% hint style="danger" %}
 Your plugin has to be activated for this to work.
@@ -131,9 +146,11 @@ Your minified javascript file will now be loaded in production environments.
 
 ## Next steps
 
-As you might have noticed, we are just adding a custom component to the module. However, there's a lot more possible when it comes to extending the Administration. In addition, you surely want to customize your page or component even more. You may want to try the following things:
+You've now added a custom component, including a little template.
+However, there's more discover here.
 
-* [Add custom input fields](./add-custom-field.md)
-* [Add menu entry](./add-menu-entry.md)
-* [Add custom routes](./add-custom-route.md)
+* [More about templates](./writing-templates.md)
+* [Add some styling to your component](./add-custom-styles.md)
+* [Use shortcuts for your component](./add-shortcuts.md)
 
+Furthermore, what about [customizing other components](./customizing-components.md), instead of creating new ones.

@@ -20,7 +20,7 @@ From here on, everything works exactly like in Symfony itself.
 Commands are recognised by Shopware, once they're tagged with the `console.command` tag in the [dependency injection](../plugin-fundamentals/dependency-injection.md) container.
 So to register a new command, just add it to your plugin's `services.xml` and specify the `console.command` tag:
 
-```markup
+```xml
 <services>
    <!-- ... -->
 
@@ -28,13 +28,13 @@ So to register a new command, just add it to your plugin's `services.xml` and sp
        <tag name="console.command"/>
    </service>
 </services>
-
 <!-- ... -->
 ```
 
 Here's a full example `services.xml` which registers your custom command:
 
-```markup
+{% code title="<plugin root>/src/Resources/config/services.xml" %}
+```xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -48,12 +48,12 @@ Here's a full example `services.xml` which registers your custom command:
     </services>
 </container>
 ```
+{% endcode %}
 
 Your command's class should extend from the `Symfony\Component\Console\Command\Command` class, here's an example:
 
+{% code title="<plugin root>/src/Command/ExampleCommand.php" %}
 ```php
-// BasicExample/src/Command/ExampleCommand.php
-
 <?php declare(strict_types=1);
 
 namespace SwagBasicExample\Command;
@@ -83,6 +83,7 @@ class ExampleCommand extends Command
     }
 }
 ```
+{% endcode %}
 
 This command is of course only a basic example, so feel free to experiment. As stated above, you now have access to all the functionality offered by Symfony and Shopware.
 
@@ -132,11 +133,6 @@ Available commands:
 
 Each command usually has a namespace like `cache`, so to clear the cache you would execute `php bin/console cache:clear`. If you'd like to learn more about commands in general, have a look at [this article](https://symfony.com/doc/current/console.html) in the Symfony documentation.
 
-## Next steps
+## More interesting topics
 
-In order to really do something with your command, you will most likely need other services.
-Head over to our guide about [injecting a service](../plugin-fundamentals/dependency-injection.md) into another to understand how that's done.
-
-Sometimes the question comes up how to get a context into your command.
-To learn about this, please refer to the guide on [PLACEHOLDER-LINK: how to get and use context].
-
+* [Adding a scheduled task](./add-scheduled-task.md)

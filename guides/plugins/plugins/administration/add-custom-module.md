@@ -206,9 +206,15 @@ Shopware.Module.register('swag-example', {
 ## Next steps
 
 As you might have noticed, we are just adding a custom module to the module. However, there's a lot more possible 
-when it comes to extending the Administration. In addition, you surely want to customize your module
-even more. You may want to try the following things:
+when it comes to extending the administration. In addition, you surely want to customize your module
+even more.
+You may want to try the following things:
 
 * [Add custom component](./add-custom-component.md)
-* [Add custom input fields](./add-custom-field.md)
-* [Add custom styles](./add-custom-styles.md)
+* [Add a menu entry](./add-menu-entry.md)
+* [Add a custom route](./add-custom-route.md)
+* [Add a custom service](./add-custom-service.md)
+* [Add translations](./adding-snippets.md)
+* [Customizing another module](./customizing-modules.md)
+* [Dealing with data in the administration](./using-data-handling.md)
+* [Adding permissions to your module](./add-acl-rules.md)

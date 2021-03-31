@@ -47,11 +47,7 @@ If we find the route `sw.product.detail` we just add another child route by push
 
 You can find a detailed example in the [Add tab to existing module](./add-new-tab.md) guide.
 
-## Next steps
+## More interesting topics
 
-As you might have noticed, we are just adding a custom tab to the module. However, there's a lot more possible when it comes to extending the Adminsitration. You may want to try the following things:
-
-* [Writing templates](./writing-templates.md)
-* [Add custom module](./add-custom-module.md)
-* [Add menu entry](./add-menu-entry.md)
-* [Add custom routes](./add-custom-route.md)
+* [Customizing components](./customizing-components.md)
+* [Adding a route](./add-custom-route.md)

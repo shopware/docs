@@ -556,8 +556,7 @@ provide: {
 Do you want to see these examples in practise? Head over to our [video tutorial](https://youtu.be/nWUBK3fjwVg) on how
 to write component tests in jest for the Shopware administration. 
 
-However, it doesn't stop there. You might to write more tests for your plugin, so we got you covered with even more
-guides on testing:
-* [Unit testing with PHPUnit](./php-unit.md)
-* [Jest unit tests in Shopware's storefront](./jest-storefront.md)
-* [End-to-End testing in Shopware](./end-to-end-testing.md)
+Furthermore, you might want to have a look at one of the following guides as well:
+* [Jest tests for the storefront](./jest-storefront.md)
+* [PHPUnit tests](./php-unit.md)
+* [End-to-end tests](./end-to-end-testing.md)

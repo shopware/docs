@@ -14,7 +14,8 @@ Adding a custom service requires to load a `services.xml` file with your plugin.
 
 Here's our example `services.xml`:
 
-```markup
+{% code title="<plugin root>/src/Resources/config/services.xml" %}
+```xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -26,9 +27,11 @@ xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/sc
     </services>
 </container>
 ```
+{% endcode %}
 
 Therefore, this is how your service could then look like:
 
+{% code title="<plugin root>/src/Service/ExampleService.php" %}
 ```php
 // SwagBasicExample/src/Service/ExampleService.php
 
@@ -44,10 +47,15 @@ class ExampleService
     }
 }
 ```
+{% endcode %}
 
 Note: By default, all services in Shopware 6 are marked as _private_. Read more about private and public services [here](https://symfony.com/doc/current/service_container.html#public-versus-private-services).
 
 ## Next steps
 
-Now that you know how to create a service, you can head over to our guide on creating a subscriber of the service. [Listening to Events](listening-to-events.md)
+You've now created your own custom service.
+In the same manner, you can create other important plugin classes, such as [commands](./add-custom-commands.md),
+[scheduled tasks](./add-scheduled-task.md) or a [subscriber to listen to events](./listening-to-events.md).
+
+Furthermore, we also have a guide explaining how to [customize an existing service](./adjusting-service.md) instead.
 

@@ -135,11 +135,6 @@ The component below displays the previously mapped state `content` in a `div` an
 ```
 {% endcode %}
 
-## Next steps
-
-Now that you have learned how to use Vuex in the Shopware 6 Administration you might want to dive deeper into one of the following things:
+## More interesting topics
 
 * [The Shopware object](./the-shopware-object.md).
-* [How to create custom templates](./writing-templates.md)
-* [How to add your own components](./add-custom-component.md)
-* [Customizing components](./add-custom-route.md)

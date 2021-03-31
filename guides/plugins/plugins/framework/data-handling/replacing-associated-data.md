@@ -128,9 +128,7 @@ public function replaceData(Context $context): void
 
 This works as expected.
 
-## Next steps
+## More interesting topics
 
-Now, that you're able to read data, write data and even deal properly with associations,
-it might a good time to learn how to create those entities yourself, or how to add associations to it.
-Head over to our guide about [adding complex data](./add-custom-complex-data.md) to learn more about this.
+* [Deleting associated data](./deleting-associated-data.md)
 

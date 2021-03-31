@@ -497,10 +497,8 @@ Below you will find some best practices and tricks we explored to help you with 
 * If you need to set non-mandatory data, reproducing the above mentioned workflow is recommended as well: Even if the error response does not contain a readable error, you can still inspect it: All the relevant information is stored in 'data'. IDs can be found there directly, other relevant data is stored in "attributes".
 * Cypress' test runner can help you a lot with inspecting API requests. Just click on the request in the test runner's log to get a full print of it in your console.
 
-## Next steps
+## More interesting topics
 
-Our guides on testing don't stop here. You might to write more tests for your plugin, so we got you covered with even more
-guides on testing:
 * [Unit testing with PHPUnit](./php-unit.md)
 * [Jest unit tests in Shopware's administration](./jest-admin.md)
 * [Jest unit tests in Shopware's storefront](./jest-storefront.md)

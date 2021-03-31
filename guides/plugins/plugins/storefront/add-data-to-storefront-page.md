@@ -16,8 +16,6 @@ Also the following knowledge is necessary, even though some of them are covered 
 * Knowing how to [customize storefront templates](./customize-templates.md)
 * Knowing how to [read data using our data abstraction layer](../framework/data-handling/reading-data.md)
 
-Also, if you want to better understand the concepts behind Pages and Pagelets, have a look at our reference [PLACEHOLDER-LINK: Pages and pagelets concept].
-
 ## Adding data to the storefront
 
 The workflow you need here was already described in the overview: 1. Figure out which page you want to change 2. Register to the event that this page is firing 3. Add data to the page via the event 4. Display this data in the storefront
@@ -64,7 +62,7 @@ The next thing we need to do is register our subscriber in the DI-Container and 
 
 Now that we have registered our Subscriber to the right event, we first need to fetch the additional data we need and then add it as an extension to the pagelet.
 
-If you don't understand what's happening in the example, make sure to have a look at our guide about reading data first\[PLACEHOLDERE-LINK: Reading data\].
+If you don't understand what's happening in the example, make sure to have a look at our guide about [reading data](../framework/data-handling/reading-data.md) first.
 
 ```php
 <?php declare(strict_types=1);
@@ -165,9 +163,3 @@ For our case we extend the footer template and add a new column to the navigatio
 Note the usage of the variable here. You're accessing the footer object, in which you can now find the path `extensions.product_count.count`.
 
 That's it for this guide, you've successfully added data to a storefront page\(let\).
-
-## Next steps
-
-The result of this guide probably lacks some style.
-Thus, you might want to have a look at our guide to [add custom styles to your storefront](./add-custom-styling.md).
-

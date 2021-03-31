@@ -102,7 +102,23 @@ if (module.hot) {
 
 ### Testing your changes
 
-To see your changes you have to build the storefront. Use the `/psh.phar storefront:build` command and reload your storefront. You should see the cookie notice at the bottom of the page. If you click the "Accept" or the "Deny" button you should be prompted to confirm hiding the bar.
+To see your changes you have to build the storefront.
+Use the following command and reload your storefront.
+
+{% tabs %}
+{% tab title="Development template" %}
+```bash
+./psh.phar storefront:build
+```
+{% endtab %}
+{% tab title="Production template" %}
+```bash
+./bin/build-storefront.sh
+```
+{% endtab %}
+{% endtabs %}
+
+You should see the cookie notice at the bottom of the page. If you click the "Accept" or the "Deny" button you should be prompted to confirm hiding the bar.
 
 ## Next steps
 

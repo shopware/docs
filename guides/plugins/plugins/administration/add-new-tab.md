@@ -13,7 +13,7 @@ If you don't know how to do this in the first place, have a look at our [Plugin 
 
 ### Entrypoint for injecting custom javascript
 
-Please remember: The main entry point to customize the administration via plugin is the `main.js` file. It has to be placed into a `<plugin root>/src/Resources/app/administration/src` directory in order to be found by Shopware 6. So please use the file accordingly and refer to the \[PLACEHOLDER: Plugin base guide\] for more detail.
+Please remember: The main entry point to customize the administration via plugin is the `main.js` file. It has to be placed into a `<plugin root>/src/Resources/app/administration/src` directory in order to be found by Shopware 6. So please use the file accordingly and refer to the [plugin base guide](../plugin-base-guide.md) for more details.
 
 ## Creating a custom tab
 
@@ -170,14 +170,3 @@ Here's what your new template could then look like:
 ```
 
 It simply creates a new card with a title, which only contains a 'Hello world!' string. And that's it - your tab should now be fully functional.
-
-## Next steps
-
-As you might have noticed, we are just adding a custom tab to the module. However, there's a lot more possible when it comes to extending the Adminsitration. You may want to try the following things:
-
-* If you want to learn about other possibilities to extend the Administration, we got you covered with other guides:
-  * [Writing templates](writing-templates.md)
-  * [Add custom module](add-custom-module.md)
-  * [Add menu entry](./add-menu-entry.md)
-  * [Add custom routes](./add-custom-route.md)
-

@@ -2,7 +2,7 @@
 
 ## What is the Message Queue
 
-Shopware uses the Symfony Messenger component and Enqueue to handle asynchronous messages. This allows tasks to be processed in the background. Thus, tasks can be processed independently of timeouts or system crashes. By default, tasks in Shopware are stored in the database and processed via the browser, as long as you are logged into the administration. This is a simple and fast method for the development process, but not recommended for production systems. With multiple users logged into the administration, this can lead to high CPU load and interfere with the smooth execution of PHP FPM. If you want to know more about the implementation of the Message Queue within shopware, take a look at the \[PLACEHOLDER-LINK: Message queue implementation guides\].
+Shopware uses the Symfony Messenger component and Enqueue to handle asynchronous messages. This allows tasks to be processed in the background. Thus, tasks can be processed independently of timeouts or system crashes. By default, tasks in Shopware are stored in the database and processed via the browser, as long as you are logged into the administration. This is a simple and fast method for the development process, but not recommended for production systems. With multiple users logged into the administration, this can lead to high CPU load and interfere with the smooth execution of PHP FPM.
 
 ## Message Queue on production systems
 

@@ -304,8 +304,20 @@ Shopware.Service('cmsService').registerCmsBlock({
 ```
 {% endcode %}
 
-In order to test your changes now, you should rebuild your administration. This can be done with the command
-`./psh.phar administration:build`.
+In order to test your changes now, you should rebuild your administration. This can be done with the following command:
+
+{% tabs %}
+{% tab title="Development template" %}
+```bash
+./psh.phar administration:build
+```
+{% endtab %}
+{% tab title="Production template" %}
+```bash
+./bin/build-administration.sh
+```
+{% endtab %}
+{% endtabs %}
 
 You should now be able to use your new block in the "Shopping Experiences" module.
 

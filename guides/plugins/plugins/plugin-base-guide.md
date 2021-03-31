@@ -39,9 +39,8 @@ This new class `SwagBasicExample` has to extend from Shopware's abstract Plugin 
 
 Apart from this, only the namespace is missing. You can freely define it, but we'd recommend using a combination of your manufacturer prefix and the technical name, so in this `guide` this would be: `Swag\BasicExample`
 
+{% code title="<plugin root>/src/SwagBasicExample.php" %}
 ```php
-// custom/plugins/SwagBasicExample.php
-
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample;
@@ -52,6 +51,7 @@ class SwagBasicExample extends Plugin
 {
 }
 ```
+{% endcode %}
 
 Basically that's it for the PHP part, your basic plugin class is already done.
 
@@ -74,6 +74,7 @@ Another information you'll have to add in there: The `type` has to be `shopware-
 
 Here's an example `composer.json` for this guide, which will do the trick:
 
+{% code title="<plugin root>/composer.json" %}
 ```javascript
 {
     "name": "swag/basic-example",
@@ -107,15 +108,16 @@ Here's an example `composer.json` for this guide, which will do the trick:
     }
 }
 ```
+{% endcode %}
 
 There's another two things that you need to know:
 
 1. The `shopware-plugin-class` information. This has to point to the plugin's base PHP class. The one, that you've previously created.
 2. The whole `autoload` part. This has to mention your [PSR-4](https://www.php-fig.org/psr/psr-4/) namespace. So if you'd like to have another namespace for your plugin, this is the place to go.
 
-{% hint style="info" %}
-There's many more information that you can provide in your `composer.json` file, e.g. for Composer or to provide even more meta information about your plugin.  
-Head over to \[PLACEHOLDER-LINK: Composer.json Reference\] to see a more detailed example of what can be done here.
+{% hint style="warning" %}
+The path you've configured in the configuration `autoload.psr-4`, `src/` in this case, will be referred to as `<plugin root>/src` in almost all code examples.
+If you're using a custom path here, e.g. just a slash `/`, then the examples would be `<plugin root>/` here instead.
 {% endhint %}
 
 And that's it. The basic structure and all necessary files for your plugin to be installable are done.
@@ -167,16 +169,24 @@ Shopware Plugin Lifecycle Service
 And that's basically it.  
 **You've just successfully created your Shopware 6 plugin!**
 
-Head over to the plugin base class reference, to find out more about the plugin lifecycle and other methods available to you in the plugin base class. \[PLACEHOLDER-LINK: Plugin base class reference\]
-
 ## Next steps
 
-As you might have noticed, your plugin is not doing anything right now.  
-But here's a list of things you can do now:
+There's many more things to discover when creating your first plugin.
+Hence, here's a list of important articles, that may be of interest for you.
 
-* [Learning the plugin lifecycle methods](./plugin-fundamentals/plugin-lifecycle.md)
-* [Creating your first Storefront page](./storefront/add-custom-page.md)
-* [Creating a new administration module](./administration/add-custom-module.md)
-* [Listen to events](./plugin-fundamentals/listening-to-events.md)
-* [Add a plugin configuration](./plugin-fundamentals/add-plugin-configuration.md)
+* [Installing data with your plugin](./plugin-fundamentals/database-migrations.md)
+* [Learn more about the plugin lifecycle methods](./plugin-fundamentals/plugin-lifecycle.md)
+* [Adding a configuration to your plugin](./plugin-fundamentals/add-plugin-configuration.md)
+* [Learning about the service container](./plugin-fundamentals/dependency-injection.md)
+* [Adding a custom service](./plugin-fundamentals/add-custom-service.md)
+* [Start listening to events](./plugin-fundamentals/listening-to-events.md)
 
+Furthermore, you should definitely have a look into these sections:
+
+{% page-ref page="./storefront/README.md" %}
+
+{% page-ref page="./administration/README.md" %}
+
+{% page-ref page="./framework/data-handling/README.md" %}
+
+{% page-ref page="./testing/README.md" %}

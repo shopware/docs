@@ -81,7 +81,7 @@ public function removeAssocData(Context $context): void
 
 Just set the `manufacturerId` to null and there we go - the `OneToMany` association was removed. It's the very same code example again.
 
-Unfortunately, it's not always that simple. As explained above, sometimes `OneToMany` associations are hidden `ManyToMany` associations. To understand what I mean, have a look at the `media` field in the [product definition](https://github.com/shopware/platform/blob/v6.3.4.0/src/Core/Content/Product/ProductDefinition.php#L210-L211). Technically a product can have multiple medias, and a media can be assigned to multiple products, so this should have been a `ManyToMany` association, right? Yet, looking at the `media` field in the `ProductDefinition`, you can see that it's a `OneToMany` association. The second case, that we described earlier in this section, fits here: Technically a `ManyToMany` association, hidden by a `OneToMany` association for the reason mentioned above: There's more data needed for the mapping entity.
+Unfortunately, it's not always that simple. As explained above, sometimes `OneToMany` associations are hidden `ManyToMany` associations. To understand what we mean, have a look at the `media` field in the [product definition](https://github.com/shopware/platform/blob/v6.3.4.0/src/Core/Content/Product/ProductDefinition.php#L210-L211). Technically a product can have multiple medias, and a media can be assigned to multiple products, so this should have been a `ManyToMany` association, right? Yet, looking at the `media` field in the `ProductDefinition`, you can see that it's a `OneToMany` association. The second case, that we described earlier in this section, fits here: Technically a `ManyToMany` association, hidden by a `OneToMany` association for the reason mentioned above: There's more data needed for the mapping entity.
 
 If this is the case, you have to treat it just like a `ManyToMany` association in terms of deleting it. Get the mapping definition's repository, `product_media.repository` in this example, and execute a `delete` on that repository. This time though, you don't have to use the `productId` and the `mediaId` to delete it, since this kind of definition has its own ID field. And that's the one you need to use.
 
@@ -108,8 +108,6 @@ By having a look at the [ProductMediaDefinition](https://github.com/shopware/pla
 
 This way the product will now lose the association to the media entity. Note: This will **not** delete the media entity itself, just the association between the product and the media entity.
 
-## Next steps
+## More interesting topics
 
-There's been a lot of talking about associations in entities.
-Maybe it's time now to [add your own entities via a plugin](./add-custom-complex-data.md) and to [add data associations](./add-data-associations.md) to it then.
-
+* [Replacing associated data](./replacing-associated-data.md)

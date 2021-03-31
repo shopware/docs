@@ -62,7 +62,7 @@ Let's have a closer look at each section.
 Here change the `name` of your theme and the `author`.
 The `description` section is optional and as you notice it is also translatable.
 
-The `views` section controls the template inheritance. This will be covered in the [PLACEHOLDER_LINK: Theme inheritance] guide.
+The `views` section controls the template inheritance. This will be covered in the [Theme inheritance](./add-theme-inheritance.md) guide.
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
 ```json

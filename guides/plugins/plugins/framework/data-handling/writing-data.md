@@ -363,6 +363,6 @@ While "deleting associated data" is covered by the guide mentioned above already
 
 That's it for this guide already!
 
-You should now be able to both write and read data from the database using the Data Abstraction Layer from Shopware 6.
-You might want to have a look at our guides about [replacing (associated) data](./replacing-associated-data.md) or our guide about [deleting associated data](./deleting-associated-data.md).
+You should now be able to write data to the database using the Data Abstraction Layer from Shopware 6.
+You might have missed the guide about [reading data](./reading-data.md) in the first place though, and you should definitely know how that's done.
 

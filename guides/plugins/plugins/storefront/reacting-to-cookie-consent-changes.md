@@ -55,9 +55,3 @@ if (module.hot) {
 {% endcode %}
 
 And that's it for this guide!
-
-## Next steps
-
-You might want to show dynamic content once your cookie got accepted.
-For this case, head over to our guide on how to [PLACEHOLDER-LINK: Add dynamic content via AJAX].
-
