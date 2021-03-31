@@ -262,6 +262,7 @@
     + [PSH E2E Commands](resources/references/testing-reference/e2e-psh-commands.md)
 * [Guidelines](resources/guidelines/README.md)
   * [Code](resources/guidelines/code.md)
+    * [Contribution Guidelines](resources/guidelines/code/contribution.md) 
     * [Cart Process](resources/guidelines/code/cart-process.md) 
     * [Context Rules &amp; Rule Systems](resources/guidelines/code/context-rules-rule-systems.md) 
     * [Dependency Injection &amp; Dependency Handling](resources/guidelines/code/dependency-injection-dependency-handling.md) 
