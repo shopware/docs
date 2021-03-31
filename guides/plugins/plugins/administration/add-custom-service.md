@@ -72,6 +72,49 @@ Shopware.Component.register('swag-basic-example', {
 });
 ```
 
+## Adding a middleware
+
+BottleJS also allows us to add middleware to our services.
+
+{% hint style="warning" %}
+Adding Middleware to Shopware provided services is not supported.
+{% endhint %}
+
+This code sample is based on the example in the [BottleJS documentation](https://github.com/young-steveo/bottlejs#middlewarename-func).
+For this we need to change our previously used service, like this: 
+
+```javascript
+class JokeService {
+    constructor(httpClient) {
+        this.httpClient = httpClient;
+        this.isActive = false;
+    }
+
+    joke() {
+        return this.httpClient
+            .get(`https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political`)
+            .then(response => response.data)
+    }
+}
+```
+
+Now that we've added an `isActive` flag, we can react to it in our middleware and throw an exception if the service is not active.
+
+```javascript
+Shopware.Application.addServiceProviderMiddleware('joker', (service, next) => {
+    if(!service.isActive) {
+        return next(new Error('Service is inActive'));
+    }
+
+    next();
+});
+
+Shopware.Service().register('joker', (container) => {
+    const initContainer = Shopware.Application.getContainer('init');
+    return new JokeService(initContainer.httpClient);
+});
+```
+
 ## Decorating a service
 
 Service decoration can be us in a variety of ways.
@@ -81,6 +124,7 @@ Like in the service registration, a script that is part of the `main.js` is need
 {% hint style="warning" %}
 Decorators are just simple functions, which intercept a service in the provider phase.
 This means that a service can only be decorated in the timeframe between it being created and it being accessed for the first time.
+Which leads to Shopware provided services not being able to be decorated.
 {% endhint %}
 
 If you need to alter a service method return value or add an additional parameter you can also do this using decoration.
