@@ -110,6 +110,7 @@
         * [Listen to order changes](guides/plugins/plugins/checkout/order/listen-to-order-changes.md)
       * [Payment](guides/plugins/plugins/checkout/payment/README.md)
         * [Add payment plugin](guides/plugins/plugins/checkout/payment/add-payment-plugin.md)
+        * [Customize payment provider](guides/plugins/plugins/checkout/payment/customize-payment-provider.md)
     * [Content](guides/plugins/plugins/content/README.md)
       * [CMS](guides/plugins/plugins/content/cms/README.md)
         * [Add CMS block](guides/plugins/plugins/content/cms/add-cms-block.md)
