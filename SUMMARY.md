@@ -142,6 +142,7 @@
         * [Add custom rules](guides/plugins/plugins/framework/rule/add-custom-rules.md)
       * [Store API](guides/plugins/plugins/framework/store-api/README.md)
         * [Add store API route](guides/plugins/plugins/framework/store-api/add-store-api-route.md)
+        * [Override existing route](guides/plugins/plugins/framework/store-api/override-existing-route.md)
     * [Administration](guides/plugins/plugins/administration/README.md)
       * [Add custom module](guides/plugins/plugins/administration/add-custom-module.md)
       * [Add custom component](guides/plugins/plugins/administration/add-custom-component.md)
