@@ -10,13 +10,17 @@ This article explains the fundamental steps it takes, to deploy Shopware 6 to a 
 
 ## Video
 
+<!-- markdown-link-check-disable -->
 {% embed url="https://www.youtube.com/watch?v=Oo-KvyxJvpo" %}
+<!-- markdown-link-check-enable -->
 
 ## Prerequisites
 
 Please make sure you already have a working Shopware 6 instance running, and your repository is based on the Shopware production template, because this article relies on some scripts to exist in your repository.
 
+<!-- markdown-link-check-disable -->
 {% embed url="https://github.com/shopware/production" %}
+<!-- markdown-link-check-enable -->
 
 ### Preparations before the first deployment
 

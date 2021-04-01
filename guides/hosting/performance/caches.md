@@ -4,7 +4,7 @@ There are several caches in shopware which can be used to optimize the performan
 
 ## Overview
 
-The HTTP Cache is a *must have_ for every production system. With enabled cache the performance of the shop can be greatly increased.
+The HTTP Cache is a *must have* for every production system. With enabled cache the performance of the shop can be greatly increased.
 
 ### How to configure the http cache
 
