@@ -160,6 +160,7 @@
       * [The Shopware object](guides/plugins/plugins/administration/the-shopware-object.md)
       * [Add filter](guides/plugins/plugins/administration/add-filter.md)
       * [Using filter](guides/plugins/plugins/administration/using-filter.md)
+      * [Add custom data to the search](guides/plugins/plugins/administration/search-custom-data.md)
     * [Storefront](guides/plugins/plugins/storefront/README.md)
       * [Customize templates](guides/plugins/plugins/storefront/customize-templates.md)
       * [Add custom controller](guides/plugins/plugins/storefront/add-custom-controller.md)
