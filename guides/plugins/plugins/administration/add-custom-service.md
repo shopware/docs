@@ -144,3 +144,22 @@ Shopware.Application.addServiceProviderDecorator('joker', joker => {
     return joker;
 });
 ```
+```
+
+## Reset Providers
+
+Another useful BottleJS is the [`resetProviders`](https://github.com/young-steveo/bottlejs#resetprovidersnames) function.
+This function is used to reset providers for the next reference to re-instantiate the provider. 
+You would do this to add decorators or middleware to your services after you have instantiated them.
+
+```javascript
+Shopware.Application.$container.resetProviders()
+```
+
+If names param is passed, will reset only the named providers.
+
+## Next steps
+
+Now that we have created a service, you might want to create or customize a administration component:
+* [Creating a new administration component](./add-custom-component.md)
+* [Extending an existing administration component](./customizing-components.md)
