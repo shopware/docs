@@ -1,5 +1,7 @@
 # Handling the payment
 
+## Overview
+
 {% hint style="info" %}
 For understanding the general principles of payment, please head to our [Payment](../../../concepts/commerce/checkout-concept/payments.md) article in the concepts section
 {% endhint %}

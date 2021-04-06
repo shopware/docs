@@ -1,17 +1,19 @@
 # Enterprise Edition
 
-_Shopware's **Enterprise Edition** is the most extensive product variant of Shopware. It comes with enhanced B2B features, a sophisticated search engine and much more._
+Shopware's **Enterprise Edition** is the most extensive product variant of Shopware. It comes with enhanced B2B features, a sophisticated search engine and much more.
 
-_As for the_ [_Professional Edition_](../professional-edition.md)_, the Enterprise Edition is technically based on the_ [_Community Edition_](../community-edition.md) _as all enhancements are added via plugins._
+As for the [Professional Edition](../professional-edition.md), the Enterprise Edition is technically based on the [Community Edition](../community-edition.md) _as all enhancements are added via plugins.
 
-_The products currently included in the Enterprise Edition are the following:_
+The products currently included in the Enterprise Edition are the following:
 
 * _B2B Suite_
 * _Enterprise Search_
 
 \_\_
 
+Furthermore, this section will cover the following questions:
+
 * What are the requirements for Shopware EE
-* How do I "set it up"
-* think from the perspective of someone who only knew Shopware CE and plugins before
+* How do I "set it up"?
+* How to think from the perspective of someone who only knew Shopware CE and plugins before
 

@@ -1,5 +1,7 @@
 # Writing associations
 
+## Overview
+
 The Admin API allows you to create several data records simultaneously within one request. This is possible by using associations. 
 For example, when a product is written, the prices can be written at the same time. This is not limited to entities that are directly related to the main entity
 but can be continued for as long as you wish and another association is defined.

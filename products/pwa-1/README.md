@@ -4,7 +4,4 @@ If you think about providing a decoupled storefront for customers you can use **
 
 Shopware PWA is based on the [Store API](../../concepts/api/store-api.md).
 
-\*\*\*\*[**Official Documentation for Shopware PWA**](https://shopware-pwa-docs.vuestorefront.io) \(External, will open in a new window\)
-
-\*\*\*\*
-
+{% embed url="https://shopware-pwa-docs.vuestorefront.io" %}

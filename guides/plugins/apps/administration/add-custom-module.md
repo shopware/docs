@@ -27,14 +27,18 @@ In order to create a custom module, you need to define an admin element to defin
 
 For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference.md).
 
-When the user opens the module in the administration your app will receive a request to the given source url. Your app can determine the shop that has opened the module through query parameters added to the url: 
+If the user opens the module in the administration your app will receive a request to the given source url. Your app can determine the shop that has opened the module through query parameters added to the url: 
 
 * shop-id: The unique identifier of the shop, where the app was installed
 * shop-url: The URL of the shop, this can later be used to access the Shopware API
 * timestamp: The Unix timestamp when the request was created
 * shopware-shop-signature: sha256 hmac of the rest of the query string, signed with the `shop-secret`
 
-A sample request may look like this:`https://example.com//promotion/view/promotion-config?shop-id=HKTOOpH9nUQ2&shop-url=http%3A%2F%2Fmy.shop.com&timestamp=1592406102&shopware-shop-signature=3621fffa80187f6d43ce6cb25760340ab9ba2ea2f601e6a78a002e601579f415`
+A sample request may look like this:
+
+```text
+https://example.com//promotion/view/promotion-config?shop-id=HKTOOpH9nUQ2&shop-url=http%3A%2F%2Fmy.shop.com&timestamp=1592406102&shopware-shop-signature=3621fffa80187f6d43ce6cb25760340ab9ba2ea2f601e6a78a002e601579f415
+```
 
 In this case the `shopware-shop-signature` parameter contains an sha256 hmac of the rest of the query string, signed again with the secret your app assigned the shop during the [registration](../app-base-guide.md#setup). The signature can be used to verify the authenticity of the request.
 
@@ -49,4 +53,3 @@ function sendReadyState() {
 ```
 
 This has to be done as soon as everything is loaded so that the loading spinner disappears. If your view is not fully loaded after 5 seconds, it will be aborted.
-

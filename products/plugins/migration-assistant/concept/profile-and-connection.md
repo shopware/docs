@@ -1,10 +1,12 @@
 # Profile and Connection
 
+## Overview
+
 Users of the plugin can create connections to different source systems. A connection is used to allow multiple migrations from the same source and update the right data \(mapping\). Connections require a specific profile, indicating the type of source system. Users can, for example, create a connection to a Shopware shop using the Shopware 5.5 profile. Developers are able to create their own profiles from scratch and connect to different source systems or just build up on and extend existing ones.
 
 ## Profile
 
-The base of Shopware Migration Assistant is the profile, which enables you to migrate your shop system to Shopware 6. Shopware Migration Assistant comes with the default Shopware 5.5 profile and is located in the shopware55.xml:
+The base of Shopware Migration Assistant is the profile, which enables you to migrate your shop system to Shopware 6. Shopware Migration Assistant comes with the default Shopware 5.5 profile and is located in the `shopware55.xml`:
 
 ```markup
 <!-- Shopware 5.5 Profile -->

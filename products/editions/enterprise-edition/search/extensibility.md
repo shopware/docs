@@ -2,7 +2,7 @@
 
 <!-- markdown-link-check-disable -->
 
-{% hint style="info" %}
+{% hint style="warning" %}
 This Article use many Code-References to GitLab! Please contact the Shopware Sales department to get access to the private repository. Find more information in our [Enterprise Contribution Guidelines](../contribution-guidelines.md)
 {% endhint %}
 
@@ -10,11 +10,9 @@ To implement the full search experience for a own entity, you have to implement 
 
 ## The Search/Suggest Gateway
 
-Create a own `SuggestGatewayInterface`/`SearchGatewayInterface` or use the already existing SearchGateway.
+Here you can create a own `SuggestGatewayInterface`/`SearchGatewayInterface` or use the already existing SearchGateway.
 
-The Enterprise Search offers two ways to extend the search / suggest results.
-
-You can implement the following Interfaces within your services:
+The Enterprise Search offers two ways to extend the search / suggest results. You can implement the following Interfaces within your services:
 
 * [Swag\EnterpriseSearch\Suggest\SuggestGatewayInterface](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Suggest/SuggestGatewayInterface.php)
 * [Swag\EnterpriseSearch\Search\SearchGatewayInterface](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Search/SearchGatewayInterface.php)
@@ -24,7 +22,7 @@ Or use the existing class:
 * [Swag\EnterpriseSearch\Suggest\SuggestGateway](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Suggest/SuggestGateway.php)
 * [Swag\EnterpriseSearch\Search\SearchGateway](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Search/SearchGateway.php)
 
-E.g., for your Definition:
+E.g., for your definition it means the following:
 
 ```markup
 <service id="YourStuff" class="Swag\EnterpriseSearch\Suggest\SuggestGateway">
@@ -51,22 +49,27 @@ The tagged services are used in the following files:
 
 For showing the results in the search overview, you have to extend the `search/index.html.twig` and then apply the results in your desired styling.
 
-You can take a look for an example here: [SwagEnterpriseSearchPlatform/src/Resources/views/storefront/page/search/index.html.twig](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/tree/release/src/Resources/views/storefront/page/search/index.html.twig)
+You can take a look for an example here: 
+
+{% embed url="https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/tree/release/src/Resources/views/storefront/page/search/index.html.twig" %}
 
 ## The suggest gateway
 
-For showing the results in the suggest dropdown, you have to extend [Storefront/storefront/layout/header/search-suggest.html.twig](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Resources/views/storefront/layout/header/search-suggest.html.twig) like the Enterprise Search does.
+For showing the results in the suggest dropdown, you have to extend `Storefront/storefront/layout/header/search-suggest.html.twig` like the Enterprise Search does:
+
+{% embed url="https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Resources/views/storefront/layout/header/search-suggest.html.twig" %}
 
 ## Admin Boosting detail
 
 For creating boostings based on your definition, you have to add the name to the following file.
 
-Currently the values are hardcoded. See [here](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Resources/app/administration/src/module/swag-enterprise-search/components/swag-enterprise-search-boosting-detail-modal/swag-enterprise-search-boosting-detail-modal.html.twig#L48)
+Currently, the values are hardcoded. See here for reference:
+
+{% embed url="https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Resources/app/administration/src/module/swag-enterprise-search/components/swag-enterprise-search-boosting-detail-modal/swag-enterprise-search-boosting-detail-modal.html.twig#L48" %}
 
 ## Configuration Initial Value
 
-For a first search, you also need a first pair of configuration entries. Therefor you have to create a migration.
-
+For a first search, you also need a first pair of configuration entries. Therefore you have to create a migration.
 An example could look like this:
 
 ```php
@@ -92,19 +95,19 @@ An example could look like this:
         }
 ```
 
-This can be found here: [Swag\EnterpriseSearch\Migration\Migration1584020367CreateNewGatewayConfiguration](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Migration/Migration1584020367CreateNewGatewayConfiguration.php)
+This can be found in the `Swag\EnterpriseSearch\Migration\Migration1584020367CreateNewGatewayConfiguration` file:
+
+{% embed url="https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Migration/Migration1584020367CreateNewGatewayConfiguration.php" %}
 
 ## Configuration Entity
 
 For adding a new configuration while creating a SalesChannel, you have to create your own [Swag\EnterpriseSearch\Configuration\GatewayConfigurationCreator](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Configuration/GatewayConfigurationCreator.php)
-
-And override the `getEntityNames()` with your additional entity
+and override the `getEntityNames()` with your additional entity.
 
 ## Autocompletion
 
 For adding auto-completion of your definition, you have to add a [CompletionEsDefinitionDecorator](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Completion/CompletionEsDefinitionDecorator.php) to it.
-
-E.g.
+See this example:
 
 ```markup
  <service id="swag_completion.manufacturer_es_definition"
@@ -120,10 +123,10 @@ You can also change the `extendEntities()` here to apply "multi words auto sugge
 
 ## Additional Filtering
 
-Often you want to filter your definition.
+You may want to filter your definition. This can be done by extending the CriteriaBuilder.
+An example can be found in `Swag\EnterpriseSearch\Category\SalesChannelCategorySearchCriteriaBuilder`:
 
-This can be done by extending the CriteriaBuilder.
+{% embed url="https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Category/SalesChannelCategorySearchCriteriaBuilder.php" %}
 
-An example can be found here: [Swag\EnterpriseSearch\Category\SalesChannelCategorySearchCriteriaBuilder](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Category/SalesChannelCategorySearchCriteriaBuilder.php)
 <!-- markdown-link-check-enable-->
 

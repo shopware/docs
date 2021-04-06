@@ -1,8 +1,16 @@
 # App Base Guide
 
-This guide will walk you through the process of adding your own app to Shopware and configuring it, so it is able to communicate to your external backend server. If your are not familiar with the app system, please take a look at [the concept](../../../concepts/extensions/apps-concept.md) first.
+## Overview
 
-## File Structure
+This guide will walk you through the process of adding your own app to Shopware and configuring it, so it is able to communicate to your external backend server. 
+
+## Prerequisites
+
+If your're not familiar with the app system, please take a look at the concept first.
+
+{% page-ref page="./../../../concepts/extensions/apps-concept.md" %}
+
+## File structure
 
 To get started with your app, create an `apps` folder inside the `custom` folder of your Shopware dev installation. In there, create another folder for your application and provide a manifest file in it.
 
@@ -41,7 +49,13 @@ The manifest file is the central point of your app. It defines the interface bet
 The name of your app, that you provide in the manifest file, needs to match the folder name of your app.
 {% endhint %}
 
-The app can now be installed by running `bin/console app:install --activate MyExampleApp`. By default your app files will be [validated](./app-base-guide.md#Validation) before installation, to skip the validation you may use the `--no-validate` flag.
+The app can now be installed by running the following command:
+
+```bash
+bin/console app:install --activate MyExampleApp
+```
+
+By default, your app files will be [validated](./app-base-guide.md#Validation) before installation, to skip the validation you may use the `--no-validate` flag.
 
 {% hint style="info" %}
 Apps get installed as inactive. You can activate them by passing the `--activate` flag to the `app:install` command or by executing the `app:activate` command after installation.
@@ -82,9 +96,13 @@ The following query parameters will be send with the request:
 * shop-url: The URL of the shop, this can later be used to access the Shopware API
 * timestamp: The Unix timestamp when the request was created
 
-An example request may look like this: `GET https://my.example.com/registration?shop-id=KIPf0Fz6BUkN&shop-url=http%3A%2F%2Fmy.shop.com&timestamp=159239728`
+An example request may look like this: 
 
-Additionally the `shopware-app-signature` header will be provided, which contains a cryptographic signature of the query string.  
+```text
+GET https://my.example.com/registration?shop-id=KIPf0Fz6BUkN&shop-url=http%3A%2F%2Fmy.shop.com&timestamp=159239728
+```
+
+Additionally, the `shopware-app-signature` header will be provided, which contains a cryptographic signature of the query string.  
 The secret used to generate this signature is the `app secret`, that is unique per app and will be provided by the Shopware Account if you upload your app to the store. This secret won't leave the Shopware Account, so it won't be even leaked to the shops installing your app.
 
 {% hint style="danger" %}
@@ -156,11 +174,11 @@ A sample registration response may look like this:
 
 If the proof you provided in the [registration response](./app-base-guide.md#registration-response) matched the one generated on the shop side the registration is completed. As a result your app will receive a POST request against the URL specified as the `confirmation_url` of the registration with the following parameters send in the request body:
 
-* apiKey: The ApiKey used to authenticate against the Shopware API
-* secretKey: The SecretKey used to authenticate against the Shopware API
-* timestamp: The Unix timestamp when the request was created
-* shopUrl: The URL of the shop
-* shopId: The unique identifier of the shop
+* `apiKey`: The ApiKey used to authenticate against the Shopware API
+* `secretKey`: The SecretKey used to authenticate against the Shopware API
+* `timestamp`: The Unix timestamp when the request was created
+* `shopUrl`: The URL of the shop
+* `shopId`: The unique identifier of the shop
 
 The payload of that request may look like this:
 

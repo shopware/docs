@@ -2,25 +2,22 @@
 
 The variety of Shopware's extension interfaces can be overwhelming, so let's start with a simple overview comparing the three approaches **Plugins**, **Themes** and **Apps**. 
 
-| Task | Plugin | Theme | App |
-| :--- | :--- | :--- | :--- |
-| Change storefront appearance | ✅ | ✅ | ✅ |
-| Add admin modules | ✅ | ❌ | ❌ |
-| Execute Webhooks | ✅**\*** | ❌ | ✅ |
-| Modify database structure, add custom entities | ✅ | ❌ | ❌ |
-| Publish in App Store | ❌ | ❌ | ✅ |
-| Publish in Plugin Store | ✅ | ✅ | ❌ |
-| Install in Shopware 6 Cloud Shops | ❌ | ❌ | ✅ |
-| Install in Shopware 6 on-Premise Shops | ✅ | ✅ | ✅ |
-| Add custom logic/routes/commands | ✅ | ❌ | ✅\* |
-| Control order of style/template inheritance | ❌ | ✅ | ✅ |
-
-_\*1 - Apps main functionality is to call Webhooks, but Plugins can be implemented to do that as well  
-\*2 - Apps extract functionalities/logic into separate services, so technically they can add custom logic_
+| Task | Plugin | Theme | App | Remarks |
+| :--- | :--- | :--- | :--- | :--- |
+| Change storefront appearance | ✅ | ✅ | ✅ |  |
+| Add admin modules | ✅ | ❌ | ❌ |  |
+| Execute Webhooks | ✅ | ❌ | ✅ | Apps main functionality is to call Webhooks, but Plugins can be implemented to do that as well.  |
+| Modify database structure, add custom entities | ✅ | ❌ | ❌ |  |
+| Publish in App Store | ❌ | ❌ | ✅ |  |
+| Publish in Plugin Store | ✅ | ✅ | ❌ |  |
+| Install in Shopware 6 Cloud Shops | ❌ | ❌ | ✅ |  |
+| Install in Shopware 6 on-Premise Shops | ✅ | ✅ | ✅ |  |
+| Add custom logic/routes/commands | ✅ | ❌ | ✅ | Apps extract functionalities/logic into separate services, so technically they can add custom logic |
+| Control order of style/template inheritance | ❌ | ✅ | ✅ |  |
 
 ### Plugins
 
-... are the most powerful extension mechanism, as they can be used to extend, override, modify almost every part of the software. At the same time they can obviously be the most harmful one as well, just for the same reasons. If you want to make deep modifications or add complex functionalities such as
+Plugins are the most powerful extension mechanism, as they can be used to extend, override, modify almost every part of the software. At the same time they can obviously be the most harmful one as well, just for the same reasons. If you want to make deep modifications or add complex functionalities such as
 
 * Custom price calculation
 * Product imports
@@ -29,20 +26,22 @@ _\*1 - Apps main functionality is to call Webhooks, but Plugins can be implement
 * Dynamic validations
 * Customer tracking
 
-you will probably need to write a plugin for that. Follow our [Plugin Base Guide](plugins/plugin-base-guide.md) to learn how to develop a plugin. You will find further examples in the subsequent section [Plugin Fundamentals](plugins/plugin-fundamentals/).
+You will probably need to write a plugin for that. Follow our [Plugin Base Guide](plugins/plugin-base-guide.md) to learn how to develop a plugin. You will find further examples in the subsequent section [Plugin Fundamentals](plugins/plugin-fundamentals/).
 
-If your extensions requires nothing of the above but rather template changes, you might be fine with a Theme.
+{% hint style="info" %} If your extensions requires nothing of the above but rather template changes, you might be fine with a Theme. {% endhint %}
 
-### **Themes**
+### Themes
 
-A theme lets you perform the tasks listed below. \(Note, that a plugin can also override templates.\)
+A theme lets you perform the tasks listed below.
 
 * Template overrides
 * Custom styles
 * Configuration interfaces
 * Control the order in which styles and templates are loaded
 
-Technically, plugins and themes are very similar and overlap in most of their logic. However some particular aspects are handled differently, such as template and style priority or activation of the same. Once plugins are installed and activated, their styles and templates are immediately applied. When a theme is installed, it hast to be selected within the theme manager first.
+Technically, plugins and themes are very similar and overlap in most of their logic. However, some particular aspects are handled differently, such as template and style priority or activation of the same. Once plugins are installed and activated, their styles and templates are immediately applied. When a theme is installed, it hast to be selected within the theme manager first.
+
+{% hint style="info" %} Note, that a plugin can also override templates. {% endhint %}
 
 To start your first theme, follow our [Theme Base Guide](./themes/theme-base-guide.md).
 

@@ -1,6 +1,6 @@
 # Community Edition
 
-## Intro
+## Overview
 
 The **Community Edition** is the open source, basic variant of Shopware which is free for everyone to use. All other Shopware editions, such as [Professional](../../products/editions/professional-edition.md), [Enterprise](../../products/editions/enterprise-edition/README.md) and [Cloud](../../products/cloud-1.md) are based upon the Community Edition and include plugins, which are only available in these editions.
 
@@ -32,5 +32,5 @@ Shopware 6 consists of multiple repositories bundled inside a [mono repository](
 
 ## Contribution
 
-Shopware 6 is a **community driven platform** with a lot of contributions, and we really appreciate your support. Thank you very much for that! To ensure the quality of our code, our products and our documentation we have created a small guideline for contributing [code](../../resources/guidelines/code.md) and contributing to the [docs](../../resources/guidelines/documentation/README.md) we all should endorse to. It helps you and us to collaborate with our software. Following these guidelines will help us to integrate your changes in our daily workflow.
+Shopware 6 is a **community driven platform** with a lot of contributions, and we really appreciate your support. Thank you very much for that! To ensure the quality of our code, our products and our documentation we have created a small guideline for contributing [code](../../resources/guidelines/code/contribution.md) and contributing to the [docs](../../resources/guidelines/documentation/README.md) we all should endorse to. It helps you and us to collaborate with our software. Following these guidelines will help us to integrate your changes in our daily workflow.
 

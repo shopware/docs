@@ -1,4 +1,6 @@
-# Work with the cart
+# Working with the cart
+
+## Overiew
 
 Any online store would be useless if it wasn't shoppable. Hence we need a cart where we can collect items which we want to buy.
 

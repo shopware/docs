@@ -8,7 +8,7 @@ Here, we want to give you brief information about the internal usage of the diff
 
 The Enterprise Search adds some additional filters, which will be used by the [analyzer](field-config.md#analyzer).
 
-1. Numeric-Char-Filter \(`sesNumericCharFilter`\)  
+1. **Numeric-Char-Filter \(`sesNumericCharFilter`\)**
 
    The numeric char filter separates strings and numbers and it normalize the different spelling issues mostly found in shops.
 
@@ -22,17 +22,17 @@ The Enterprise Search adds some additional filters, which will be used by the [a
 
    It uses the regex `(\d*)([^\d]*)` and replace it with `$1 $2`  
 
-2. Character Filter \(`sesCharFilter`\)
+2.**Character Filter \(`sesCharFilter`\)**
 
    The char filter separates strings from special characters \(supported special chars: `-,.\®"/`\).
 
    When words are separated by one of these characters, the special character is removed and replaced by a whitespace.
 
-3. N-Gram Filter \(`ses_ngram`\)
+3. **N-Gram Filter \(`ses_ngram`\)**
 
    This n-gram filter uses the elastic search default [n-gram filter](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-ngram-tokenizer.html) with the parameters 3 for minimum and 27 for maximum value.
 
-4. Shingle \(`ses_shingle`\)
+4. **Shingle \(`ses_shingle`\)**
 
    This shingle filter uses the elastic search default [shingle](https://www.elastic.co/guide/en/elasticsearch/reference/7.10/analysis-shingle-tokenfilter.html)  
 
@@ -42,7 +42,7 @@ The Enterprise Search adds some additional filters, which will be used by the [a
    * Maximum shingle size -&gt; 3
    * Output Unigrams -&gt; false
 
-5. Synonym \(`ses_synonym`\)  
+5. **Synonym \(`ses_synonym`\)**
 
    In the Enterprise Search you can define synonyms, these [synonyms](./synonyms.md) were used by the search analyzer.
 

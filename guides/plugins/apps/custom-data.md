@@ -60,3 +60,4 @@ When defining custom fields in the `<fields>` element, you can configure additio
 
 Please refer to [Custom field](../../plugins/plugins/framework/custom-field/README.md) documentation for further details.
 
+{% page-ref page="./../../plugins/plugins/framework/custom-field/README.md" %}

@@ -50,7 +50,7 @@ in [Composite data handling](#composite-data-handling).
 
 Last, but not least, the Storefront not only contains static templates but also inhibits a theming engine to modify the
 rendered templates or change the default layout programmatically with your
-own [Themes](../../../guides/plugins/themes/README.md)  or [Plugins](../../../guides/plugins/plugins/README.md).
+own [Themes](../../../guides/plugins/themes/README.md) or [Plugins](../../../guides/plugins/plugins/README.md).
 
 ## Structure
 
@@ -157,8 +157,9 @@ that, there is also a set of translations inside our default Storefront componen
 JSON files, so it is very easy to structure and find snippets you want to change. However, when using pluralization
 and/or variables, you can expect slight differences between snippets in the Administration and the Storefront. In
 theory, you are free to place your snippets anywhere as long as you load your JSON files correctly. However, we
-recommend that you mirror the core structure of Shopware. Storefront snippets can be found
-in: `platform/src/Storefront/Resources/snippet`.
+recommend that you mirror the core structure of Shopware. 
+
+{% hint style="info" %} Storefront snippets can be found in: `platform/src/Storefront/Resources/snippet`. {% endhint %}
 
 Inside that directory you will find a specific sub-directory for each language like e.g. `de_DE` following the ISO
 standard. The localization is done via the exact ISO. In addition to the language, the country of destination is also

@@ -1,7 +1,12 @@
-# Register a customer
+# Registering a customer
 
-If you want to place orders, manage a profile or view old orders, you have to register a customer. A customer needs some personal data and a billing address to be created.
+## Overview
 
+If you want to place orders, manage a profile or view old orders, you have to register a customer. 
+
+## Registration of a customer
+
+A customer needs some personal data and a billing address to be created.
 In addition to that, you have to define a storefront URL. This URL is required for Shopware to correctly assemble a confirmation link so they can confirm their registration in case of a [double opt in](register-a-customer.md#double-opt-in). This is especially required for frontends that have a different host than the Shopware API itself.
 
 {% hint style="info" %}

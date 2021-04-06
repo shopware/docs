@@ -146,9 +146,9 @@ Within plugins, you do have the following options, when it comes to adjusting ex
 - Customize a component template with Twig.js
 - Extending methods and computed properties
 
-You will find more information
-about [customizing components](../../../guides/plugins/plugins/administration/customizing-components.md) of the
-Administration in our guided articles.
+You will find more information about customizing components of the administration in our guided articles:
+
+{% page-ref url="./../../../guides/plugins/plugins/administration/customizing-components.md" %}
 
 ## ACL in the Administration
 
@@ -158,4 +158,6 @@ Administrations UI or develop individual privileges with plugins. These roles do
 every shop operator can set up himself and can be assigned to users. By default, a module of the Administration has a
 directory called `acl` included. In this directory one will find specific mappings of privileges (permissions for roles;
 additional permissions) for the default roles: `viewer`, `editor`, `creator`, `deleter`. A more guided article about ACL
-can be found [here](../../../guides/plugins/plugins/administration/add-acl-rules.md).
+can be found here:
+
+{% page-ref url="./../../../guides/plugins/plugins/administration/add-acl-rules.md" %}

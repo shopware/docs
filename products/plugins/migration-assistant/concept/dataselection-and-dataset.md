@@ -19,7 +19,7 @@ These are the fundamental data structures for define what to migrate. Each `Data
 
 The order of the `DataSets` in the `DataSelection` class is important and specifies the processing order. `DataSelection` also holds a position specifying the order applied when migrating \(lower numbers are migrated earlier\). The `getDataSetsRequiredForCount` method returns an array of all DataSets. Its count should be displayed in the administration.
 
-`DataSelection` example:
+Please take a look at the `DataSelection` example:
 
 ```php
 <?php declare(strict_types=1);
@@ -90,7 +90,7 @@ class ProductDataSelection implements DataSelectionInterface
 }
 ```
 
-`DataSet` example:
+Here's a `DataSet` example:
 
 ```php
 <?php declare(strict_types=1);
@@ -201,5 +201,6 @@ class ProductReviewDataSelection implements DataSelectionInterface
 }
 ```
 
-There are duplicate DataSets from the `ProductDataSelection`, because they are also required if the user does not select the product `DataSelection`. If the user selects both, this `DataSets` will be only migrated once \(with their first occurrence\).
+{% hint style="info" %} There are duplicate DataSets from the `ProductDataSelection`, because they are also required if the user does not select the product `DataSelection`. If the user selects both, this `DataSets` will be only migrated once \(with their first occurrence\).
+{% endhint %}
 

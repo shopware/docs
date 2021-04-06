@@ -6,7 +6,9 @@ Your theme can include custom assets like images. This short guide will show you
 
 ## Prerequisites
 
-This guide is built upon the [Create a first theme](./create-a-theme.md) guide.
+This guide is built upon the guide on creating a first theme:
+
+{% page-ref page="./create-a-theme.md" %}
 
 ## Using custom assets 
 

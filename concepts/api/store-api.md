@@ -12,11 +12,10 @@ Using plugins you can add custom routes to the Store API \(as well as any other 
 
 ## What next?
 
-If you want to start working with the Store API, check out our guide
+If you want to start working with the Store API, check out our guide below or find a structured list of endpoints in 
+our endpoint reference.
 
-{% page-ref page="../../guides/integrations-api/store-api-guide/" %}
-
-or find a structured list of endpoints in our endpoint reference.
+{% page-ref page="./../../guides/integrations-api/store-api-guide/README.md" %}
 
 An interesting project based \(almost\) solely on the Store API is Shopware PWA.
 

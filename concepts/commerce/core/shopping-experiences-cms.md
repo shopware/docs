@@ -12,7 +12,7 @@ We'll start by taking a rather abstract approach to content organisation and lat
 
 ## Structure
 
-Every CMS page or layout \(they're really technically the same\) is a hierarchical structure made of sections, blocks, elements and additional configuration within each of those components. An exemplary CMS page printed in JSON would look similar to this
+Every CMS page or layout \(they're really technically the same\) is a hierarchical structure made of sections, blocks, elements and additional configuration within each of those components. An exemplary CMS page printed in JSON would look similar to this:
 
 ```javascript
 {
@@ -170,5 +170,6 @@ All this comes at a price: The admin preview of your content is only as represen
 
 ## Further reading
 
-* \[PLACEHOLDER-LINK: Add a custom CMS block / element / section\]
+{% page-ref page="./../../../guides/plugins/plugins/content/cms/add-cms-block.md" %}
 
+{% page-ref page="./../../../guides/plugins/plugins/content/cms/add-cms-element.md" %}
