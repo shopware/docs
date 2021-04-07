@@ -115,6 +115,8 @@
         * [Add CMS block](guides/plugins/plugins/content/cms/add-cms-block.md)
         * [Add CMS element](guides/plugins/plugins/content/cms/add-cms-element.md)
         * [Add data to CMS element](guides/plugins/plugins/content/cms/add-data-to-cms-elements.md)
+      * [Mail](guides/plugins/plugins/content/mail/README.md)
+          * [Add data to mails](guides/plugins/plugins/content/mail/add-data-to-mails.md)
     * [Framework](guides/plugins/plugins/framework/README.md)
       * [Data Handling / DataAbstractionLayer](guides/plugins/plugins/framework/data-handling/README.md)
         * [Reading data](guides/plugins/plugins/framework/data-handling/reading-data.md)
