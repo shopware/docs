@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Shopware 6 Sanitizer Helper is a wrapper around [`DOMPurify`](https://github.com/cure53/DOMPurify), wich is used to sanitize HTML in order to prevent `XSS attacks`.
+The Shopware 6 Sanitizer Helper is a wrapper around [`DOMPurify`](https://github.com/cure53/DOMPurify), which is used to sanitize HTML in order to prevent `XSS attacks`.
 
 ## Where is it registered?
 
@@ -13,7 +13,7 @@ const sanatizer = Shopware.Helper.SanitizerHelper;
 ```
 
 It also is registered in the Vue prototype as seen [here](https://github.com/shopware/platform/blob/trunk/src/Administration/Resources/app/administration/src/app/plugin/sanitize.plugin.js).
-This means it can also can accessed in your components like this:
+This means it can also be accessed in your components like this:
 
 ```javascript
 const Sanitizer = this.$sanitizer;
