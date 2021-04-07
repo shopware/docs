@@ -22,18 +22,16 @@ begin with. Here you can learn how to add your custom fields:
 In Shopware, we provide an own component called `sw-custom-field-set-renderer` for your template, being tailored 
 specifically to display custom field sets. 
 
-As a consequence, you're of course able to use this component to display your custom fields. See here:
+As a consequence, you're able to use this component to display your custom fields. See here:
 
 {% code title="<plugin-root>/src/Resources/app/administration/app/src/component/swag-basic-example/swag-basic-example.html.twig" %}
-```twig
+```html
 <sw-card title="Custom fields">
-    <div>
-        <sw-custom-field-set-renderer
-            :entity="customEntity"
-            showCustomFieldSetSelection
-            :sets="sets">
-        </sw-custom-field-set-renderer>
-    </div>
+    <sw-custom-field-set-renderer
+        :entity="customEntity"
+        showCustomFieldSetSelection
+        :sets="sets">
+    </sw-custom-field-set-renderer>
 </sw-card>
 ```
 {% endcode %}
@@ -47,7 +45,7 @@ library:
 
 The next step is loading your custom fields. First things first, create a variable for your custom fields in `data`:
 
-{% code title="<plugin-root>/src/Resources/app/administration/app/src/component/swag-basic-example/swag-basic-example.html.twig" %}
+{% code title="<plugin-root>/src/Resources/app/administration/app/src/component/swag-basic-example/index.js" %}
 ```javascript
     data() {
         return {
@@ -62,7 +60,7 @@ Afterwards, you can start to integrate the custom field data into your component
 `customFieldSetRepository` first as `computed` property. In this context, it may come in handy to already set the 
 `customFieldSetCriteria`. Both steps can be seen in the example below:
 
-{% code title="<plugin-root>/src/Resources/app/administration/app/src/component/swag-basic-example/swag-basic-example.html.twig" %}
+{% code title="<plugin-root>/src/Resources/app/administration/app/src/component/swag-basic-example/index.js" %}
 ```javascript
 computed: {
     // Using the repository to work with customFields
