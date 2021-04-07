@@ -1,4 +1,4 @@
-# The Sanitizer Helper
+# The Sanitizer helper
 
 ## Overview
 
@@ -48,7 +48,7 @@ Shopware.Helper.SanitizerHelper.clearConfig()
 
 See all of the configuration options [here](https://github.com/cure53/DOMPurify#can-i-configure-dompurify)
 
-## How to add Hooks
+## How to add hooks
 
 The aforementioned Wrapper also provides functions to add and remove hooks to DOMPurify.
 Learn what DOMPurify hooks are in their [documentation](https://github.com/cure53/DOMPurify#hooks).
