@@ -166,6 +166,7 @@
       * [Using base components](guides/plugins/plugins/administration/using-base-components.md)
       * [Add custom styles](guides/plugins/plugins/administration/add-custom-styles.md)
       * [Using the data grid component](guides/plugins/plugins/administration/using-the-data-grid-component.md)
+      * [Extending Webpack](guides/plugins/plugins/administration/extending-webpack.md)
       * [Using Utility functions](guides/plugins/plugins/administration/using-utils.md)
       * [The Shopware object](guides/plugins/plugins/administration/the-shopware-object.md)
       * [Add filter](guides/plugins/plugins/administration/add-filter.md)
