@@ -34,6 +34,12 @@ First up, we need to set up Apache to locate Shopware 6. Nginx is also possible 
 
 Please remember to replace `_DEVELOPMENT_DIR_` and `_HOST_NAME_` with your preferences respectively and add the corresponding entry to your `/etc/hosts` file.
 
+Make sure following Apache modules are enabled:
+
+- mod_rewrite
+- mod_headers
+- mod_negotiation
+
 After a quick restart of apache you are done here.
 
 A short recommendation, at least for Mac operating system: In the apache config, it is recommended to drag the document root folder to the own user folder in order to avoid permission issues. This is the folder where Apache looks to serve file from. By default, the document root is configured as `/usr/local/var/www`. As this is a development machine, let's assume we want to change the document root to point to a folder in our own home directory. Search for the term "DocumentRoot" in your `httpd.conf` apache configuration, and you should see the following line:
