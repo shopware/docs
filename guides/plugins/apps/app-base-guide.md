@@ -127,6 +127,19 @@ $queryString = $request->getUri()->getQuery();
 $signature = hash_hmac('sha256', $queryString, $appSecret);
 ```
 {% endtab %}
+{% tab title="Python 3" %}
+```python
+import hmac
+from hashlib import sha256
+
+
+def create_signature(app_secret: str, message: str) -> str:
+    key: bytes = app_secret.encode()
+    msg: bytes = message.encode()
+
+    return hmac.new(key, msg, sha256).hexdigest()
+```
+{% endtab %}
 {% endtabs %}
 
 ### Registration Response
@@ -148,6 +161,20 @@ $proof = \hash_hmac(
     $queryValues['shop-id'] . $queryValues['shop-url'] . $appname,
     $appSecret
 );
+```
+{% endtab %}
+{% tab title="Python 3" %}
+```python
+import hmac
+from hashlib import sha256
+
+
+def create_proof(app_secret: str, shop_id: str, shop_url: str, app_name: str) -> str:
+    key: bytes = app_secret.encode()
+    raw_msg: str = shop_id + shop_url + app_name
+    msg: bytes = raw_msg.encode()
+
+    return hmac.new(key, msg, sha256).hexdigest()
 ```
 {% endtab %}
 {% endtabs %}
@@ -206,6 +233,19 @@ use Psr\Http\Message\RequestInterface;
 
 /** @var RequestInterface $request */
 $hmac = \hash_hmac('sha256', $request->getBody()->getContents(), $shopSecret);
+```
+{% endtab %}
+{% tab title="Python 3" %}
+```python
+import hmac
+from hashlib import sha256
+
+
+def create_signature(app_secret: str, message: str) -> str:
+    key: bytes = app_secret.encode()
+    msg: bytes = message.encode()
+
+    return hmac.new(key, msg, sha256).hexdigest()
 ```
 {% endtab %}
 {% endtabs %}
