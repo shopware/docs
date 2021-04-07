@@ -224,7 +224,7 @@
     * [Storefront](guides/plugins/apps/storefront.md)
     * [Administration](guides/plugins/apps/administration/README.md)
       * [Add custom action button](guides/plugins/apps/administration/add-custom-action-button.md)
-      * [Add custom module](guides/plugins/apps/administration/add-custom-module.md)
+      * [Add custom module](guides/plugins/apps/administration/add-custom-modules.md)
     * [Custom Data](guides/plugins/apps/custom-data.md)
     * [Configuration](guides/plugins/apps/configuration.md)
 * [Hosting](guides/hosting/README.md)

@@ -1,7 +1,7 @@
 # Manifest Reference
 
 {% code title="manifest.xml" %}
-```markup
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/app-system/0.1.0/src/Core/Content/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
@@ -13,7 +13,7 @@
         <!-- Translatable, A description of your app -->
         <description>A description</description>
         <description lang="de-DE">Eine Beschreibung</description>
-
+        
         <author>Your Company Ltd.</author>
         <copyright>(c) by Your Company Ltd.</copyright>
         <version>1.0.0</version>
@@ -49,7 +49,7 @@
         <read>product</read>
         <create>product</create>
         <update>product</update>
-
+        
         <delete>order</delete>
     </permissions>
     <!-- Optional -->
@@ -59,11 +59,24 @@
     </webhooks>
     <!-- Optional, can be omitted if the administration should not be extended -->
     <admin>
+        <!-- Register a custom module that is used as a parent menu entry for other modules -->
+        <module name="myAdminModules"
+                parent="sw-marketing"
+                position="50"
+        >
+            <label>My modules</label>
+            <label lang="de-DE">Meine Module</label>
+        </module>
         <!-- Register a custom module (iframe), that should be loaded from the given surce -->
-        <module name="exampleModule" source="https://example.com/promotion/view/promotion-module">
+        <module name="exampleModule"
+                source="https://example.com/promotion/view/promotion-module"
+                parent="app-MyExampleApp-myAdminModules"
+        >
             <label>Example Module</label>
             <label lang="de-DE">Beispiel Modul</label>
         </module>
+        <!-- Register a module that is opened from the app store and your list of installed apps -->
+        <main-module source="https://example.com/main-module"/>
         <!-- Register action buttons that should be displayed in the detail and listing pages of the administration -->
         <!-- view is one of: "list", "detail" -->
         <action-button action="setPromotion" entity="promotion" view="detail" url="https://example.com/promotion/set-promotion">
