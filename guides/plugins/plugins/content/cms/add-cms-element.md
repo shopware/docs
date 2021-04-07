@@ -376,7 +376,7 @@ Just like always, it comes with a template, no styles necessary here though. Cre
 the `initElementConfig` method has to be called in here as well, just the same way you've done it in your main component.
 A little spoiler: This file will remain like this already, you can close it now.
 
-Open up the template `sw-cms-el-config-dailymotion.html.twig` instead. To be displayed in the config, we just need a 
+Open the template `sw-cms-el-config-dailymotion.html.twig` instead. To be displayed in the config, we just need a 
 text element, so the shop manager can apply a Dailymotion video ID.
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/config/sw-cms-el-config-dailymotion.html.twig" %}
@@ -387,16 +387,14 @@ text element, so the shop manager can apply a Dailymotion video ID.
           class="swag-dailymotion-field"
           label="Dailymotion video link"
           placeholder="Enter dailymotion link..."
-          :value="currentValue"
-          @input="beforeGetValue">
+          v-model="dailyUrl"
+          @element-update="onElementUpdate">
     </sw-text-field>
 {% endblock %}
 ```
 {% endcode %}
 
-This would render the `sw-field` component two times. Once as a `text` field, once as a switch field. The `v-model` takes 
-care of binding the field's values to the values from the config.
-
+The `v-model` takes care of binding the field's values to the values from the config.
 Don't forget to include your config in your `index.js`:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/index.js" %}
