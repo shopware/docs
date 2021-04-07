@@ -1,4 +1,4 @@
-# Using custom fields
+# Fill custom field with data
 
 ## Overview
 
@@ -6,28 +6,17 @@ Shopware's custom field system allows you to extend entities, without writing a 
 This is possible by storing the additional data in a [JSON-Field](https://dev.mysql.com/doc/refman/8.0/en/json.html).
 If you want to learn more about custom fields or even add your own custom fields to entities you might want to take a look at this guide: [Add custom input field to existing component](../../administration/add-custom-field.md).
 
-This guide will cover how to write to custom fields with or without the `sw-custom-field-set-renderer`
+This guide will cover how to write to custom fields.
 
 ## Prerequisites
 
 All you need for this guide is a running Shopware 6 instance, the files and preferably a registered module. Of course you'll have to understand JavaScript and have a basic familiarity with VueJS. However, that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation.
 
-## Preparing the template
+## Using the Administration to inspect your custom field
 
 First we are creating a template to use the `sw-custom-field-set-renderer`. You don't have to do this, but it makes it easier to see the `custom fields`.
 
-{% code title="<plugin-root>/src/Resources/app/administration/app/src/component/swag-basic-example/swag-basic-example.html.twig" %}
-```html 
-<div>
-    <sw-custom-field-set-renderer
-        :entity="product"
-        showCustomFieldSetSelection
-        :sets="sets">
-    </sw-custom-field-set-renderer>
-    <button @click="save">Save</button>
-</div>
-```
-{% endcode %}
+{% page-ref page="./../../administration/using-custom-fields.md" %}
 
 ## Loading the custom fields
 
