@@ -94,7 +94,7 @@ public function update(Connection $connection): void
         DEFAULT CHARSET = utf8mb4
         COLLATE = utf8mb4_unicode_ci;
     SQL;
-    $connection->executeUpdate($sql);
+    $connection->executeStatement($sql);
 }
 ```
 {% endcode %}
