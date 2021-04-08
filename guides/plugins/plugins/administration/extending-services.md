@@ -12,9 +12,8 @@ All you need for this guide is a running Shopware 6 instance and full access to 
 
 ## Reset Providers
 
-Another useful BottleJS is the [`resetProviders`](https://github.com/young-steveo/bottlejs#resetprovidersnames) function.
-This function is used to reset providers for the next reference to re-instantiate the provider. 
-You would do this to add decorators or middleware to your services after you have instantiated them.
+The [`resetProviders`](https://github.com/young-steveo/bottlejs#resetprovidersnames) function is used to reset providers for the next reference to re-instantiate the provider. 
+You need to do this to add decorators or middleware to shopware provided services after they are initially instantiated in the Shopware boot-process.
 
 ```javascript
 Shopware.Application.$container.resetProviders()
