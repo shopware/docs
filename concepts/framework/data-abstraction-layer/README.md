@@ -44,4 +44,4 @@ Alternatively, configure the product.repository service to be injected explicitl
 
 You can read more about dependency injection and service registration in Shopware in the services guides:
 
-{% page-ref url="./../../../guides/plugins/plugins/plugin-fundamentals/add-custom-service.md" %}
+{% page-ref page="./../../../guides/plugins/plugins/plugin-fundamentals/add-custom-service.md" %}
