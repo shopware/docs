@@ -6,10 +6,10 @@ The Shopware 6 Sanitizer Helper is a wrapper around [`DOMPurify`](https://github
 
 ## Where is it registered?
 
-The Sanitizer Helper is registered to the [Shopware Global Object](./the-shopware-object.md) and therefore can be accessed anywhere in your Plugin.
+The Sanitizer Helper is registered to the [Shopware Global Object](./the-shopware-object.md) and therefore can be accessed anywhere in your plugin.
 
 ```javascript
-const sanatizer = Shopware.Helper.SanitizerHelper; 
+const sanitizer = Shopware.Helper.SanitizerHelper; 
 ```
 
 It also is registered in the Vue prototype as seen [here](https://github.com/shopware/platform/blob/trunk/src/Administration/Resources/app/administration/src/app/plugin/sanitize.plugin.js).
