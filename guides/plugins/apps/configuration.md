@@ -29,7 +29,7 @@ To access your apps configuration over the api make a GET request against the `/
 GET /api/v{version}/_action/system-config?domain=DemoApp.config&salesChannelId=98432def39fc4624b33213a56b8c944d
 {
     "DemoApp.config.field1": true,
-    "DemoApp.config.field2": "sucessfully configured"
+    "DemoApp.config.field2": "successfully configured"
 }
 ```
 
