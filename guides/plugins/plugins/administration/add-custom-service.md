@@ -156,7 +156,7 @@ You would do this to add decorators or middleware to your services after you hav
 Shopware.Application.$container.resetProviders()
 ```
 
-If names param is passed, will reset only the named providers.
+If the `names` param is passed, it will reset only the named providers.
 
 ## Next steps
 
