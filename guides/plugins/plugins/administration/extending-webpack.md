@@ -32,6 +32,6 @@ Merging is done with the [webpackMerge](https://github.com/survivejs/webpack-mer
 
 {% hint style="danger" %}
 This merging makes it technically possible to override the Shopware provided configuration, 
-but you shouldn't change the default configurations output,
+but you shouldn't change the default configurations so that the builded core code will differ from the original builded code without your configuration,
 because this could break the administration, your plugin or other third-party plugins.
 {% endhint %}
