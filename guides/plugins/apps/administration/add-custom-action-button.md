@@ -63,5 +63,7 @@ A sample payload may look like the following:
 }
 ```
 
+The current shopware version will be sent as a `sw-version` header.
+
 Again you can verify the authenticity of the incoming request, like with [webhooks](../app-base-guide.md#webhooks), by checking the `shopware-shop-signature` it too contains the sha256 hmac of the request body, that is signed with the secret your app assigned the shop during the [registration](../app-base-guide.md#setup).
 

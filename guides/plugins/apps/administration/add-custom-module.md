@@ -15,7 +15,7 @@ In order to create a custom module, you need to define an admin element to defin
         ...
     </meta>
     <admin>
-        <module name="exampleModule" source="https://example.com//promotion/view/promotion-module">
+        <module name="exampleModule" source="https://example.com/promotion/view/promotion-module">
             <label>Example Module</label>
             <label lang="de-DE">Beispiel Modul</label>
         </module>
@@ -32,12 +32,13 @@ If the user opens the module in the administration your app will receive a reque
 * shop-id: The unique identifier of the shop, where the app was installed
 * shop-url: The URL of the shop, this can later be used to access the Shopware API
 * timestamp: The Unix timestamp when the request was created
+* sw-version: the current version of the shopware that the app installed on.
 * shopware-shop-signature: sha256 hmac of the rest of the query string, signed with the `shop-secret`
 
 A sample request may look like this:
 
 ```text
-https://example.com//promotion/view/promotion-config?shop-id=HKTOOpH9nUQ2&shop-url=http%3A%2F%2Fmy.shop.com&timestamp=1592406102&shopware-shop-signature=3621fffa80187f6d43ce6cb25760340ab9ba2ea2f601e6a78a002e601579f415
+https://example.com/promotion/view/promotion-config?shop-id=HKTOOpH9nUQ2&shop-url=http%3A%2F%2Fmy.shop.com&timestamp=1592406102&sw-version=6.4.9999999.9999999-dev&shopware-shop-signature=3621fffa80187f6d43ce6cb25760340ab9ba2ea2f601e6a78a002e601579f415
 ```
 
 In this case the `shopware-shop-signature` parameter contains an sha256 hmac of the rest of the query string, signed again with the secret your app assigned the shop during the [registration](../app-base-guide.md#setup). The signature can be used to verify the authenticity of the request.
