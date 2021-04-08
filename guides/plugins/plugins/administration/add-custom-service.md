@@ -2,7 +2,7 @@
 
 ## Overview
 
-This guide will teach you how to add a service to the Shopware 6 Administration.
+This guide will teach you how to add a service to the Shopware 6 Administration, using [BottleJS](https://github.com/young-steveo/bottlejs).
 
 This documentation chapter will cover the following topics:
 
@@ -76,10 +76,6 @@ Shopware.Component.register('swag-basic-example', {
 
 BottleJS also allows us to add middleware to our services.
 
-{% hint style="warning" %}
-Adding Middleware to Shopware provided services is not supported.
-{% endhint %}
-
 This code sample is based on the example in the [BottleJS documentation](https://github.com/young-steveo/bottlejs#middlewarename-func).
 For this we need to change our previously used service, like this: 
 
@@ -124,7 +120,6 @@ Like in the service registration, a script that is part of the `main.js` is need
 {% hint style="warning" %}
 Decorators are just simple functions, which intercept a service in the provider phase.
 This means that a service can only be decorated in the timeframe between it being created and it being accessed for the first time.
-Which leads to Shopware provided services not being able to be decorated.
 {% endhint %}
 
 If you need to alter a service method return value or add an additional parameter you can also do this using decoration.
@@ -144,19 +139,6 @@ Shopware.Application.addServiceProviderDecorator('joker', joker => {
     return joker;
 });
 ```
-```
-
-## Reset Providers
-
-Another useful BottleJS is the [`resetProviders`](https://github.com/young-steveo/bottlejs#resetprovidersnames) function.
-This function is used to reset providers for the next reference to re-instantiate the provider. 
-You would do this to add decorators or middleware to your services after you have instantiated them.
-
-```javascript
-Shopware.Application.$container.resetProviders()
-```
-
-If the `names` param is passed, it will reset only the named providers.
 
 ## Next steps
 
