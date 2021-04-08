@@ -1,12 +1,16 @@
 # Adding Mixins
 
 ## Overview
-This documentation chapter will cover how to add a new administration Mixin for your plugin.
-Generally, mixins behave the same as they do in Vue normally, differing only in the registration and the way mixins are included in a component.
+
+This documentation chapter will cover how to add a new administration mixin for your plugin.
+In general, mixins behave the same as they do in Vue normally, differing only in the registration and the way mixins are included in a component.
+If you want an overview over the shopware provided mixins look at them here: [Using Mixins](./using-mixins.md).
 
 ## Prerequisites
 
-All you need for this guide is a running Shopware 6 instance and full access to both the files and a running plugin. Of course you'll have to understand JavaScript, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation. As stated before mixins in Shopware are basically the same as in Vue so you should have read their [documentation](https://vuejs.org/v2/guide/mixins.html) on them first. 
+All you need for this guide is a running Shopware 6 instance and full access to both the files and a running plugin.
+Of course you'll have to understand JavaScript, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation.
+As stated before mixins in Shopware are basically the same as in Vue, so you should have read their [documentation](https://vuejs.org/v2/guide/mixins.html) on them first. 
 
 ## Register a new Mixin
 
@@ -61,6 +65,8 @@ Component.register('swag-basic-example', {
 });
 ```
 {% endcode %}
+
+This can also be done with Shopware provided mixins, learn more about them here: [Using Mixins](./using-mixins.md)
 
 ## More interesting topics
 
