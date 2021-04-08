@@ -3,9 +3,7 @@
 ## Overview
 
 The Shopware 6 Administration uses [Webpack](https://webpack.js.org/) as a static module bundler.
-The default configuration should work for most plugins, 
-but if you really need to extend the webpack configuration,
-this guide will show you how it's done.
+Normally you don't need to change the Webpack configuration, but if you need to here is how to do it.
 
 ## Extending the Webpack configuration
 
@@ -33,5 +31,7 @@ This way, the configuration is automatically loaded and then merged with the Sho
 Merging is done with the [webpackMerge](https://github.com/survivejs/webpack-merge) library.
 
 {% hint style="danger" %}
-This merging makes it technically possible to override the Shopware provided configuration, although it is generally advised against.
+This merging makes it technically possible to override the Shopware provided configuration, 
+but you shouldn't change the default configurations output,
+because this could break the administration, your plugin or other third-party plugins.
 {% endhint %}
