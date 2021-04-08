@@ -77,7 +77,7 @@ Shopware.Component.register('swag-basic-example', {
 BottleJS also allows us to add middleware to our services.
 
 This code sample is based on the example in the [BottleJS documentation](https://github.com/young-steveo/bottlejs#middlewarename-func).
-For this we need to change our previously used service, like this: 
+For this we need to change our previously used service, as seen below: 
 
 ```javascript
 class JokeService {
