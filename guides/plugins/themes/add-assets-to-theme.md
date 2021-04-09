@@ -44,9 +44,9 @@ Next, please run the bin/console assets:install command. This will copy your plu
 ├── administration
 ├── framework
 ├── storefront
-└── theme
-    └── <your-theme-id>
-        └── your-image.png <-- Your asset is copied here
+└── <your-theme-name> <-- f.e. swagbasicexampletheme
+    └── your-image.png <-- Your asset is copied here
+        
 ```
 {% endcode %}
 
@@ -63,7 +63,7 @@ You can link to the asset with the twig
 [asset](https://symfony.com/doc/current/templates.html#linking-to-css-javascript-and-image-assets) function:
 
 ```html
-<img src="{{ asset('bundles/swagbasicexampletheme/your-image.png') }}">
+<img src="{{ asset('bundles/swagbasicexampletheme/your-image.png', 'asset') }}">
 ```
 
 In SCSS you can link to the asset like the following:
@@ -78,5 +78,4 @@ body {
 
 Now that you know how to use your assets in a themes, here is a list of other related topics where assets can be used.
  
-* [Use assets in your SCSS](./add-assets-to-theme.md)
 * [Customize templates](../plugins/storefront/customize-templates.md)
