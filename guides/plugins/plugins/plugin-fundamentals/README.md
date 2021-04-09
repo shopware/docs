@@ -1,6 +1,2 @@
----
-description: Pre
----
-
 # Plugin fundamentals
 
