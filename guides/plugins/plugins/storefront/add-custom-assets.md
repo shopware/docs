@@ -41,7 +41,7 @@ to this by hand - the command `bin/console assets:install` will take care of it.
 ├── administration
 ├── framework
 ├── storefront
-└── SwagBasicExample
+└── swagbasicexample
     └── your-image.png <-- Your asset is copied here
 ```
 
@@ -61,7 +61,7 @@ function Symfony provides:
     <h2>Asset:</h2>
     
     {# Using asset function to display our custom asset #}
-    <img src="{{ asset('bundles/SwagBasicExample/image.png') }}"
+    <img src="{{ asset('bundles/swagbasicexample/image.png', 'asset') }}"
     {{ parent() }}
 {% endblock %}
 ```
@@ -77,7 +77,7 @@ at the following example:
 {% code title="<plugin root>/src/Resources/app/storefront/src/scss/base.scss" %}
 ```scss
 body {
-    background-image: url("/bundles/SwagBasicExample/image.png");
+    background-image: url("/bundles/swagbasicexample/image.png");
 }
 ```
 {% endcode %}
