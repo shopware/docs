@@ -6,7 +6,7 @@ Dockware is maintained by *dasistweb GmbH*. They provide a detailed [documentaio
 
 ## Dockware versions
 
-Dockware images come in several version so you can chosse the one which fits your needs best. You can find a brief overview below, but as always, please refer to [their website](https://dockware.io/) for a detailed comparison.
+Dockware images come in several version so you can choose the one which fits your needs best. You can find a brief overview below, but as always, please refer to [their website](https://dockware.io/) for a detailed comparison.
 
 | Image | Description | Basis |
 | :--- | :--- | :--- |
