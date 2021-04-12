@@ -23,7 +23,7 @@ The Admin API provides a base endpoint to which all other endpoints are relative
 The base endpoint depends on your Shopware host URL - for example:
 
 ```text
-https://shop.fruitandveggies.com/api/v3
+https://shop.example.com/api/v3
 ```
 
 From this base endpoint, we can assemble almost all paths described in the subsequent sections.
