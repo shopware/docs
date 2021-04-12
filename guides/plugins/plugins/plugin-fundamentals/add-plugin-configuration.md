@@ -177,7 +177,7 @@ Here are some examples:
 <component name="sw-entity-single-select">
     <name>exampleProduct</name>
     <entity>product</entity>
-    <title>Choose a product for the plugin configuration</title>
+    <label>Choose a product for the plugin configuration</label>
 </component>
 ```
 
