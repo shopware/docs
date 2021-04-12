@@ -112,7 +112,7 @@ Once you've obtained an access token, simply provide it in your requests `Author
 ```yaml
 // GET /api/v3/product/b7d2554b0ce847cd82f3ac9bd1c0dfad
 
-Host: shop.fruitandveggies.com
+Host: shop.example.com
 Content-Type: application/json
 Authorization: Bearer eyJ0....
 ```

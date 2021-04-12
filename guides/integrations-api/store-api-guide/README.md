@@ -28,13 +28,13 @@ If you want to follow along this guide, it is useful to use an API client like P
 The Store API has a base route which is always relative to your Shopware instance host. Note that it might differ from your sales channel domain. Let's assume your Shopware host is
 
 ```text
-https://shop.fruitandveggies.com/
+https://shop.example.com/
 ```
 
 then your Store API base route will be
 
 ```text
-https://shop.fruitandveggies.com/store-api/v3
+https://shop.example.com/store-api/v3
 ```
 
 The Store API offers a variety of functionalities referred to as _endpoints_ or _nodes_, where each has their own route. The endpoints mentioned subsequently are always relative to the API base route.
@@ -49,7 +49,7 @@ A typical Store API request including headers will look like this
 
 ```javascript
 // POST /store-api/v3/product HTTP/1.1
-// Host: shop.fruitandveggies.com
+// Host: shop.example.com
 // sw-access-key: SWSC02ZF39DBYIS6SLFKSAFI5A
 // Content-Type: application/json
 // Accept: application/json
