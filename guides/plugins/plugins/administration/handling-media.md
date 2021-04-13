@@ -1,5 +1,10 @@
 # Handling media
 
+## Overview
+
+The Shopware 6 Administration provides many components to work with media.
+This guide will show you how to use the most important of them.
+
 ## The media upload component
 
 The Shopware 6 Administration media upload component makes it relatively easy to upload media of various kinds such as images, videos and audio files.
