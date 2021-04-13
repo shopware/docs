@@ -72,7 +72,8 @@ Unfortunately, you cannot use the block mentioned above, because then your new t
 
 Knowing the block you have to override in your plugin, you can now start doing exactly this: Add your custom tab by overriding this block called `sw_product_detail_content_tabs_reviews`.
 
-{% hint style="danger" %} However, please keep in mind that "overriding" doesn't mean we want to replace the block completely with our new one. We want to add our tab, thus only extending the template. This will have some implications on our implementation.
+{% hint style="danger" %}
+However, please keep in mind that "overriding" doesn't mean we want to replace the block completely with our new one. We want to add our tab, thus only extending the template. This will have some implications on our implementation.
 {% endhint %}
 
 First, please re-create the directory structure from the core code in your plugin. In this case, you'll have to create a directory structure like the following: `<plugin root>/src/Resources/app/administration/src/page/sw-product-detail`
@@ -104,7 +105,8 @@ It then has to use the block we figured out earlier and override it by adding a 
 ```
 {% endcode %}
 
-{% hint style="warning" %} The block gets overridden and immediately the parent block is called, since you do not want to replace the 'Review' tab, you want to add a new tab instead.
+{% hint style="warning" %}
+The block gets overridden and immediately the parent block is called, since you do not want to replace the 'Review' tab, you want to add a new tab instead.
 {% endhint %}
 
 After that, we'll create the actual `sw-tabs-item` element, which, as the name suggests, represents a new tab item. We want this tab to have a custom route, so we're also adding this route directly. Don't worry, we'll explain this custom route in a bit. The product detail page's route contain the product's ID, which you also want to have in your custom tab: So make sure to also pass the ID in, like shown in the example above.
@@ -169,7 +171,9 @@ Shopware.Module.register('sw-new-tab-custom', {
 
 As already mentioned, you need to create a dummy module in order to override the `routeMiddleware` method. In there, you're listening for the current route, that got called. If the current route matches `sw.product.detail`, you want to add your new child route to it, and that's what's done here.
 
-{% hint style="warning" %} Your child route defines the routes name, so make sure to use the name you're already defined earlier!  {% endhint %}
+{% hint style="warning" %} 
+Your child route defines the routes name, so make sure to use the name you're already defined earlier!
+{% endhint %}
 
 The path should be identical to the default ones, which look like this: `/sw/product/detail/:id/base` Just replace the `base` here with `custom` or anything you like.
 
