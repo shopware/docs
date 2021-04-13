@@ -64,7 +64,8 @@ PHP
   * ext-pdo  
   * ext-pdo\_mysql  
   * ext-phar  
-  * ext-simplexml  
+  * ext-simplexml
+  * ext-sodium 
   * ext-xml  
   * ext-zip  
   * ext-zlib
@@ -89,7 +90,6 @@ Various
 ### Recommendations
 
 * Zend Opcache \(256M or more\)
-* APCu \(128M or more\)
 * Webserver with HTTP2 support
 
 {% hint style="info" %} Adminer \([https://www.adminer.org/](https://www.adminer.org/)\) is our recommended database administration tool since it has better support for binary data types.
