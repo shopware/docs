@@ -172,6 +172,7 @@
       * [Using the data grid component](guides/plugins/plugins/administration/using-the-data-grid-component.md)
       * [Extending Webpack](guides/plugins/plugins/administration/extending-webpack.md)
       * [Using Utility functions](guides/plugins/plugins/administration/using-utils.md)
+      * [Adding responsive behavior](guides/plugins/plugins/administration/adding-responsive-behavior.md)
       * [The Shopware object](guides/plugins/plugins/administration/the-shopware-object.md)
       * [Add filter](guides/plugins/plugins/administration/add-filter.md)
       * [Using filter](guides/plugins/plugins/administration/using-filter.md)
