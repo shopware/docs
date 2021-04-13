@@ -17,12 +17,12 @@ This is done through the `sw-media-upload-v2` component as seen below:
         :allowMultiSelect="false"
         variant="regular"
         :autoUpload="true"
-		label="My image-upload">
+        label="My image-upload">
     </sw-media-upload-v2>
 </div>
 ```
 
-As you saw in the code sample, the `sw-media-upload-v2` is pretty configurable trough props.
+As you can see in the code sample below, the `sw-media-upload-v2` is pretty configurable through properties.
 To get an overview of all the options, here is a list:   
 
 | Property           | Function                                                                                                                        |
@@ -40,7 +40,7 @@ To get an overview of all the options, here is a list:
 
 ## Keeping track of uploads
 
-The `sw-upload-listener` component, can as seen below, be used in conjunction with an `sw-media-upload-v2` component.
+As seen below, the `sw-upload-listener` component can be used in conjunction with an `sw-media-upload-v2` component.
 
 ```html
 <div>
@@ -48,7 +48,7 @@ The `sw-upload-listener` component, can as seen below, be used in conjunction wi
         uploadTag="my-upload-tag"
         :allowMultiSelect="false"
         variant="regular"
-		label="My image-upload">
+        label="My image-upload">
     </sw-media-upload-v2>
     <sw-upload-listener
         @media-upload-finish="onUploadFinish" 
@@ -64,7 +64,7 @@ Beyond the `media-upload-finish` event there are a few more events:
 |-----------------------|----------------------------------------------------|
 | `media-upload-add`    | This event is triggered when an upload is added    |
 | `media-upload-finish` | This event is triggered when an upload finishes    |
-| `media-upload-fail`   | This is triggered on an upload failing             |
+| `media-upload-fail`   | This event is triggered on an upload failing       |
 | `media-upload-cancel` | This event is triggered when an upload is canceled |
 
 
@@ -78,13 +78,13 @@ Media can be previewed with the `sw-media-preview-v2` component as seen below:
 </sw-media-preview-v2>
 ```
 
-As previously mention this component is already embedded within the `sw-media-upload-v2`.
-But using it as a separate component you get access to the following configuration options:
+As previously mentioned this component is already embedded within the `sw-media-upload-v2`.
+However, using it as a separate component you get access to the following configuration options:
 
 | Property         | Function                                                                            |
 |------------------|-------------------------------------------------------------------------------------|
 | `source`         | The `id` or alternately the path to the media to be previewed                       |
 | `showControls`   | Controls whether media such as videos or audio shows controls                       |
 | `autoplay`       | Controls whether media such as videos or audio autoplays                            |
-| `hideTooltip`    | Hides the tooltip witch the filename of the media in at the bottom of the component |
+| `hideTooltip`    | Hides the the filename tooltip of the media in at the bottom of the component       |
 | `mediaIsPrivate` | If set to true displays various lock symbols                                        |
