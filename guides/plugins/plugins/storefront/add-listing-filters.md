@@ -1,0 +1,174 @@
+# Add custom listing filters
+
+## Overview
+
+In an online shop, filters are an important feature. So you might use filters in your custom plugin. This guide will
+get you covered on how to implement your own, custom filters in Shopware's storefront.
+
+## Prerequisites
+
+Before you start reading this guide, make sure you got an own plugin installed to work with. If you need a starting 
+point for that, see this guide:
+
+{% page-ref page="./../plugin-base-guide.md" %}
+
+## Create new Filter
+
+At first, you need to create a subscriber - in this example we'll call it `ExampleListingSubscriber`. If you're not
+sure on working with subscribers, please refer to the guide on working with events in Shopware:
+
+{% page-ref page="./../plugin-fundamentals/listening-to-events.md" %}
+
+As usual, we'll start by creating this new class in the same path as you're seeing in
+Shopware's core - `/src/Subscriber/ExampleListingSubscriber.php`.
+
+New listing filters, e.g. for your product listing, can be registered via the event `\Shopware\Core\Content\Product\Events\ProductListingCollectFilterEvent`
+This event was introduced to enable every developer to specify the metadata for a filter. The handling, meaning if and 
+how a filter is added, is done by Shopware's core:
+
+```php
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            ProductListingCollectFilterEvent::class => 'addFilter'
+        ];
+    }
+```
+
+After that, you can start to actually add your custom filters. Arguably an important step is to define your filter.
+Therefore, you're able to use the `Filter` class, including the parameters below:
+
+| Parameter | Description |
+| --- | --- | 
+| `name` | Unique name of the filter |
+| `filtered` | Set this option to `true` if this filter is active |
+| `aggregations` | Defines aggregations behind a filter. Sometimes a filter contains multiple aggregations like properties |
+| `filter` | Sets the DAL filter which should be added to the criteria    |
+| `values` | Defines the values which will be added as `currentFilter` to the result |
+| `exclude` | Configure exclusions |
+
+As a result, an example filter could look like this:
+
+```php
+$filter = new Filter(
+    // name
+    'manufacturer',
+    
+    // filtered
+    !empty($ids),
+    
+    // aggregations
+    [new EntityAggregation('manufacturer', 'product.manufacturerId', 'product_manufacturer')],
+    
+    // filter
+    new EqualsAnyFilter('product.manufacturerId', $ids),
+    
+    // values
+    $ids
+);
+```
+
+Inside the `ProductListingCollectFilterEvent`, you get the existing filters, can define your new custom filters and merge them into the existing ones.
+Here is a complete example implementation, adding a filter on the product information `isCloseout`.
+Please note the comments for explanation:
+
+{% code title="<plugin root>/src/Subscriber/ExampleListingSubscriber.php" %}
+```php
+class ExampleListingSubscriber implements EventSubscriberInterface
+{
+    // register event
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            ProductListingCollectFilterEvent::class => 'addFilter'
+        ];
+    }
+
+    public function addFilter(ProductListingCollectFilterEvent $event): void
+    {
+        // fetch existing filters
+        $filters = $event->getFilters();
+        $request = $event->getRequest();
+
+        $filtered = (bool) $request->get('isCloseout');
+
+        $filter = new Filter(
+            // unique name of the filter
+            'isCloseout',
+            
+            // defines if this filter is active
+            $filtered,
+            
+            // Defines aggregations behind a filter. A filter can contain multiple aggregations like properties
+            [
+                new FilterAggregation(
+                    'active-filter',
+                    new MaxAggregation('active', 'product.isCloseout'),
+                    [new EqualsFilter('product.isCloseout', true)]
+                ),
+            ],
+            
+            
+            // defines the DAL filter which should be added to the criteria   
+            new EqualsFilter('product.isCloseout', true),
+            
+            // defines the values which will be added as currentFilter to the result
+            $filtered
+        );
+
+        // Add your custom filter
+        $filters->add($filter);
+    }
+}
+
+```
+{% endcode %}
+
+## Add your filter to the Storefront UI
+
+Well, fine - you successfully created a filter via subscriber. However, you want to enable your shop customer to use it, 
+right? Now you need to integrate your filter in the storefront. Let's start by searching the template file you need 
+to extend in Shopware's storefront. It's this one - `src/Storefront/Resources/views/storefront/component/listing/filter-panel.html.twig`.
+
+Let's use the last filter to extend this template with our filter. If you're not sure on how to customize templates
+in the storefront, we got you covered with another guide:
+
+{% page-ref page="./customize-templates.md" %}
+
+For example, let's use the last filter: It's the shipping free one, with the block 
+`component_filter_panel_item_shipping_free`. Including our filter will be done as seen below, please take the 
+comments into account:
+
+{% code title="<plugin root>/src/Subscriber/ExampleListingSubscriber.php" %}
+```twig
+{% sw_extends '@Storefront/storefront/component/listing/filter-panel.html.twig' %}
+
+{% block component_filter_panel_item_shipping_free %}
+    {{ parent() }}
+   
+    {# We'll include our filter element here #}
+    {% sw_include '@Storefront/storefront/component/listing/filter/filter-boolean.html.twig' with {
+        name: 'isCloseout',
+        displayName: 'Closeout'
+    } %}
+{% endblock %}
+```
+{% endcode %}
+
+As we want to filter a boolean value, we choose the `filter-boolean` component here. Sure, there are some more you 
+can use - dependent on your filter's values:
+
+| Name | Description |
+| --- | --- | 
+| `filter-boolean` | A filter to display boolean values  |
+| `filter-multi-select` | Filters with multiple values |
+| `filter-property-select` |  A filter tailored specifically for properties |
+| `filter-range` |  Displays a range which can be used for filtering  |
+| `filter-rating-select` and `filter-rating-select-item` |  Filter component for rating  |
+
+## Next steps
+
+Are you interested in adding custom sorting options to your listing in the storefront as well? Head over to the corresponding
+guide to learn more about that:
+
+{% page-ref page="./add-custom-sorting-product-listing.md" %}

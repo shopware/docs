@@ -188,6 +188,7 @@
       * [Add custom page](guides/plugins/plugins/storefront/add-custom-page.md)
       * [Add custom pagelet](guides/plugins/plugins/storefront/add-custom-pagelet.md)
       * [Add translations](guides/plugins/plugins/storefront/add-translations.md)
+      * [Add custom listing filters](guides/plugins/plugins/storefront/add-listing-filters.md)
       * [Fetching data with Javascript](guides/plugins/plugins/storefront/fetching-data-with-javascript.md)
       * [Add data to storefront page](guides/plugins/plugins/storefront/add-data-to-storefront-page.md)
       * [Add cookie to manager](guides/plugins/plugins/storefront/add-cookie-to-manager.md)
