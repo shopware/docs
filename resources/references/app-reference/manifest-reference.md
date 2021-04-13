@@ -60,7 +60,7 @@
     <!-- Optional, can be omitted if the administration should not be extended -->
     <admin>
         <!-- Register a custom module (iframe), that should be loaded from the given surce -->
-        <module name="exampleModule" source="https://example.com/promotion/view/promotion-module">
+        <module name="exampleModule" source="https://example.com//promotion/view/promotion-module">
             <label>Example Module</label>
             <label lang="de-DE">Beispiel Modul</label>
         </module>
