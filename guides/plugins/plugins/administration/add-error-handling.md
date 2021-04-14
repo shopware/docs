@@ -2,7 +2,7 @@
 ​
 ## Overview
 
-The Shopware 6 Administration stores API errors in the [Vuex](https://vuex.vuejs.org/).
+The Shopware 6 Administration stores API errors in the [Vuex store](https://vuex.vuejs.org/).
 Where they are centrally accessible to your components, with a flat data structure wich looks like this:
 
 ```
@@ -19,6 +19,8 @@ Where they are centrally accessible to your components, with a flat data structu
  |- entityNameB
    ...         
 ```
+
+In this guide u will learn how to access this error store directly or via one of the provided helper functions.
 ​
 ## Read errors from the store
 ​
@@ -102,7 +104,7 @@ Which then are bound to the inputs like this:
 When working with nested views, you need a way to tell the user that an error occurred on another view, e.g in another `tab`.
 For this you can write a config for your `sw-page` component which looks like seen below: 
 ​
-```
+```json
 {
   "sw.product.detail.base": {
     "product": [
