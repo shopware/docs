@@ -1,4 +1,4 @@
-# API error handling in administration)
+# API error handling in administration
 ​
 ## Overview
 
@@ -28,17 +28,17 @@ Errors can be read from the store by calling the getter method `getApiErrorFromP
 function getApiErrorFromPath (state) => (entityName, id, path)
 ```
 ​
-Where path is an `array` representing the nested property names of your entity.
+In there, the parameter `path` is an `array` representing the nested property names of your entity.
 
-Also we provide a wrapper which can also handle nested fields in object notation, which is much easier to use for scalar fields:
+Also we provide a wrapper which can also handle nested fields in object notation, being much easier to use for scalar fields:
 ​
 ```javascript
 function getApiError(state) => (entity, field)
 ```
 ​
-For example an empty product name would result in an error with the path `product.name`, instead of having the array `['product', 'name']`.
+For example, an empty product name would result in an error with the path `product.name`, instead of having the array `['product', 'name']` present.
 
-In your Vue component, use computed properties to not flood your templates with store calls.
+In your Vue component, use computed properties to avoid flooding your templates with store calls.
 ​
 ```javascript
 computed: {
@@ -51,7 +51,7 @@ computed: {
 }
 ```
 
-Those computed properties can then be normally used in your templates:
+Those computed properties can then be used in your templates the familiar way:
 
 ```html
 <div>
@@ -64,23 +64,20 @@ Those computed properties can then be normally used in your templates:
 Like every Vuex mapping, fetching the errors from the store may be very repetitive and error-prone.
 Because of this we provide you an Vuex like mapper function:
 ​
-​
 ```javascript
 mapPropertyErrors(subject, properties)
 ```
 ​
-where subject is the entity name (not the entity itself) and properties is an array of properties you want to map.
+Here, the `subject` parameter is the entity name (not the entity itself) and `properties` is an array of the properties you want to map.
 You can spread its result to create computed properties in your component.
-The functions returned by the mapper are named like a camelCase representation of your input suffixed with `Error`.
+The functions returned by the mapper are named like a camelCase representation of your input, suffixed with `Error`.
 
 This is an example from the `sw-product-basic-form` component:
 ​
 ```javascript
 const { mapPropertyErrors } = Shopware.Component.getComponentHelper();
     
-Component.register('sw-product-basic-form', {    
-    Component.register('sw-product-basic-form', {
-Component.register('sw-product-basic-form', {    
+Component.register('sw-product-basic-form', {
     computed: {
         ...mapPropertyErrors('product', [
             'name',
@@ -102,8 +99,8 @@ Which then are bound to the inputs like this:
 ​
 ### Error configuration for pages
 ​
-When working with nested views you need a way to tell the user that an error occurred on another view, e.g tab.
-For this you can write a config for your `sw-page` component which looks like: 
+When working with nested views, you need a way to tell the user that an error occurred on another view, e.g in another `tab`.
+For this you can write a config for your `sw-page` component which looks like seen below: 
 ​
 ```
 {
@@ -140,7 +137,7 @@ Shopware.Component.register('sw-product-detail', {
 }
 ```
 
-Wich then makes it possible to indicate if one or more errors exists, in another view or a tab:
+This makes it possible to indicate if one or more errors exists, in another view or a tab:
 
 ```html
 <sw-tabs
