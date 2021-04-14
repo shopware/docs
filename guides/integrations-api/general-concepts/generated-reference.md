@@ -1,10 +1,8 @@
 # Generated Reference
 
-Shopware generates schemas for both HTTP APIs that can be interpreted by API client libraries or documentation tools, such as Swagger.io:. 
+Shopware generates schemas for both HTTP APIs that can be interpreted by API client libraries or documentation tools, such as Swagger.io:.
 
-<!-- markdown-link-check-disable -->
-{% embed url="https://swagger.io/" %}
-<!-- markdown-link-check-enable -->
+{% embed url="https://swagger.io/" caption="" %}
 
 These schemas are generated using PHP annotations based on the [swagger-php](https://github.com/zircote/swagger-php) library. When building API extensions, you can also leverage these annotations to let Shopware generate a standardised endpoint-documentation for your custom endpoints on-the-fly
 

@@ -2,25 +2,20 @@
 
 ## Overview
 
-Using the Shopware administration, you can easily create new documents.
-This guide will teach you how to achieve the same result, which is creating a new document, using your plugin.
+Using the Shopware administration, you can easily create new documents. This guide will teach you how to achieve the same result, which is creating a new document, using your plugin.
 
 ## Prerequisites
 
-This guide is built upon the [plugin base guide](../../plugin-base-guide.md), but of course you can use those examples
-with any other plugin.
+This guide is built upon the [plugin base guide](../../plugin-base-guide.md), but of course you can use those examples with any other plugin.
 
-Furthermore adding a custom document type via your plugin is done by using [plugin database migrations](../../plugin-fundamentals/database-migrations.md).
-Since this isn't explained in this guide, you'll have to know and understand the plugin database migrations first.
+Furthermore adding a custom document type via your plugin is done by using [plugin database migrations](../../plugin-fundamentals/database-migrations.md). Since this isn't explained in this guide, you'll have to know and understand the plugin database migrations first.
 
 ## Adding a custom document type to the database
 
-Let's start with adding your custom document type to the database, so it's actually available for new document configurations.
-This is done by adding a plugin database migration.
-To be precise, we need to add an entry to the database table `document_type` table and an entry for each supported language
-to the `document_type_translation` table.
+Let's start with adding your custom document type to the database, so it's actually available for new document configurations. This is done by adding a plugin database migration. To be precise, we need to add an entry to the database table `document_type` table and an entry for each supported language to the `document_type_translation` table.
 
 Let's have a look at an example migration:
+
 {% code title="<plugin root>/src/Migration/Migration1616677952AddDocumentType.php" %}
 ```php
 <?php declare(strict_types=1);
@@ -83,45 +78,41 @@ class Migration1616677952AddDocumentType extends MigrationStep
         );
     }
 }
-
 ```
 {% endcode %}
 
-So first of all we're creating the new document type with the `technical_name` "example". Make sure to save the ID here,
-since you're going to need it for the following translations.
+So first of all we're creating the new document type with the `technical_name` "example". Make sure to save the ID here, since you're going to need it for the following translations.
 
-Afterwards we're inserting the translations, one for german, one for english.
-For this we're using the `Shopware\Core\Migration\Traits\ImportTranslationsTrait`, which adds the helper method `importTranslation`.
-There you have to supply the translation table and an instance of `Shopware\Core\Migration\Traits\Translations`.
-The latter accepts two constructor parameters:
-- An array of german translations, plus the respective ID column
-- An array of english translations, plus the respective ID column
-It will then take care of properly inserting those translations.
+Afterwards we're inserting the translations, one for german, one for english. For this we're using the `Shopware\Core\Migration\Traits\ImportTranslationsTrait`, which adds the helper method `importTranslation`. There you have to supply the translation table and an instance of `Shopware\Core\Migration\Traits\Translations`. The latter accepts two constructor parameters:
 
-After installing your plugin, your new document type should be available in the administration.
-However, it wouldn't work yet, since every document type has to come with a respective `DocumentGeneratorInterface`.
-This is covered in the next section.
+* An array of german translations, plus the respective ID column
+* An array of english translations, plus the respective ID column
+
+  It will then take care of properly inserting those translations.
+
+After installing your plugin, your new document type should be available in the administration. However, it wouldn't work yet, since every document type has to come with a respective `DocumentGeneratorInterface`. This is covered in the next section.
 
 ## Adding a generator
 
-The generator for a document type is responsible for actually generating the respective document, including a template.
-That's why we'll have to create a custom generator for the new type as well, we'll call it `ExampleDocumentGenerator`.
+The generator for a document type is responsible for actually generating the respective document, including a template. That's why we'll have to create a custom generator for the new type as well, we'll call it `ExampleDocumentGenerator`.
 
-We'll place it in the same directory like all other default document generators:
-`<plugin root>/src/Core/Checkout/Document/DocumentGenerator`
+We'll place it in the same directory like all other default document generators: `<plugin root>/src/Core/Checkout/Document/DocumentGenerator`
 
-Your custom document generator has to implement the `Shopware\Core\Checkout\Document\DocumentGenerator\DocumentGeneratorInterface`,
-which forces you to implement two more methods:
-- `supports`: Has to return a string of the document type it supports. We named our document type "example", so our generator has to return "example".
-- `generate`: This needs to return the actually rendered template as a string. You will have access to the respective order, the document configuration,
-the context and the optional template path.
-- `getFileName`: Return the file name here. This is basically the same for all generators, but if you want to do custom stuff
-with the file name, this is the place to go.
+Your custom document generator has to implement the `Shopware\Core\Checkout\Document\DocumentGenerator\DocumentGeneratorInterface`, which forces you to implement two more methods:
 
-Furthermore your generator has to be registered to the [service container](../../plugin-fundamentals/dependency-injection.md)
-using the tag `document.generator`.
+* `supports`: Has to return a string of the document type it supports. We named our document type "example", so our generator has to return "example".
+* `generate`: This needs to return the actually rendered template as a string. You will have access to the respective order, the document configuration,
+
+  the context and the optional template path.
+
+* `getFileName`: Return the file name here. This is basically the same for all generators, but if you want to do custom stuff
+
+  with the file name, this is the place to go.
+
+Furthermore your generator has to be registered to the [service container](../../plugin-fundamentals/dependency-injection.md) using the tag `document.generator`.
 
 Let's have a look at an example generator:
+
 {% code title="<plugin root>/src/Core/Checkout/Document/DocumentGenerator/ExampleDocumentGenerator.php" %}
 ```php
 <?php declare(strict_types=1);
@@ -185,57 +176,45 @@ class ExampleDocumentGenerator implements DocumentGeneratorInterface
 ```
 {% endcode %}
 
-First of all we're injecting the `rootDir` of the Shopware installation into our generator, since we'll need that for rendering our
-template, and the `DocumentTemplateRenderer`, which will do the template rendering.
+First of all we're injecting the `rootDir` of the Shopware installation into our generator, since we'll need that for rendering our template, and the `DocumentTemplateRenderer`, which will do the template rendering.
 
-The `supports` method just returns the string "example", which is the technical name of our new document type.
-The `getFileName` method is very default - it just builds a string consisting of the file name prefix, that you configured, the current document number
-and the file name suffix.
+The `supports` method just returns the string "example", which is the technical name of our new document type. The `getFileName` method is very default - it just builds a string consisting of the file name prefix, that you configured, the current document number and the file name suffix.
 
-Now let's have a look at the `generate` method.
-Technically it's possible to apply a custom template path, which is why this is an optional parameter, which we have to check for.
-Yet, it can't be defined in the administration and will most likely be empty.
-We're using a default template path here, which has to point to a template file for our new document type.
-This can be an existing default document template, in that case you can use them via the following path:
-`@Framework/documents/delivery_note.html.twig`
+Now let's have a look at the `generate` method. Technically it's possible to apply a custom template path, which is why this is an optional parameter, which we have to check for. Yet, it can't be defined in the administration and will most likely be empty. We're using a default template path here, which has to point to a template file for our new document type. This can be an existing default document template, in that case you can use them via the following path: `@Framework/documents/delivery_note.html.twig`
 
 In this example we're rendering a custom template though, which we will have a short look at in the next section.
 
-Afterwards we're using the previously injected `DocumentTemplateRenderer` to actually render and return the template at the said
-template path.
+Afterwards we're using the previously injected `DocumentTemplateRenderer` to actually render and return the template at the said template path.
 
 ### Adding a document type template
 
-Let's have a quick look at an example document type template.
-Go ahead and create a new file at the path `<plugin root>/src/Resources/views/documents/example_document.html.twig`.
+Let's have a quick look at an example document type template. Go ahead and create a new file at the path `<plugin root>/src/Resources/views/documents/example_document.html.twig`.
 
 In there you should extend from the default document base template:
-{% code title="<plugin root>/src/Resources/views/documents/example_document.html.twig" %}
+
+{% code title="<plugin root>/src/Resources/views/documents/example\_document.html.twig" %}
 ```php
 {% sw_extends '@Framework/documents/base.html.twig' %}
 ```
 {% endcode %}
 
-This could be it already.
-The [base.html.twig](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Framework/Resources/views/documents/base.html.twig)
-template comes with a lot of default templating, which you can now override by using blocks.
-If you don't know how that's done, have a look at our guide regarding [customizing templates](../../storefront/customize-templates.md).
+This could be it already. The [base.html.twig](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Framework/Resources/views/documents/base.html.twig) template comes with a lot of default templating, which you can now override by using blocks. If you don't know how that's done, have a look at our guide regarding [customizing templates](../../storefront/customize-templates.md).
 
 ## Adding a number range
 
-You're almost done here.
-You've got a new document type in the database, a generator for your new document type and it even uses a custom template.
-However, you also need to add a new number range for your documents, otherwise a new number for your documents wouldn't be generated.
+You're almost done here. You've got a new document type in the database, a generator for your new document type and it even uses a custom template. However, you also need to add a new number range for your documents, otherwise a new number for your documents wouldn't be generated.
 
 Adding a new number range is also done by using a [plugin database migration](../../plugin-fundamentals/database-migrations.md).
 
 For this we need a few more things:
-- An entry in `number_range_type`, which is just a new type of a number range with a technical name
-- An entry in `number_range`, which represents a properly configured number range, which then will use the previously created type
-- An entry in `number_range_sales_channel` to assign a sales channel to our configured number range
-- An entry for each language in the tables `number_range_translation` and `number_range_type_translation`
+
+* An entry in `number_range_type`, which is just a new type of a number range with a technical name
+* An entry in `number_range`, which represents a properly configured number range, which then will use the previously created type
+* An entry in `number_range_sales_channel` to assign a sales channel to our configured number range
+* An entry for each language in the tables `number_range_translation` and `number_range_type_translation`
 
 Sounds like a lot, but having a look at an example migration, you will notice that it's not too much of a hassle.
+
 {% code title="<plugin root>/src/Migration/Migration1616974646AddDocumentNumberRange.php" %}
 ```php
 <?php declare(strict_types=1);
@@ -359,25 +338,20 @@ SQL;
         );
     }
 }
-
 ```
 {% endcode %}
 
-As already said, we're first creating the entries in the tables `number_range`, `number_range_type` and `number_range_sales_channel`.
-For the latter, we're assigning a Storefront sales channel, if any available. Make sure to check here, since in theory there could be
-no storefront sales channel.
+As already said, we're first creating the entries in the tables `number_range`, `number_range_type` and `number_range_sales_channel`. For the latter, we're assigning a Storefront sales channel, if any available. Make sure to check here, since in theory there could be no storefront sales channel.
 
-Afterwards we import the translations for the `number_range_translation` and the `number_range_type_translation` tables by using the 
-`ImportTranslationsTrait` once again.
+Afterwards we import the translations for the `number_range_translation` and the `number_range_type_translation` tables by using the `ImportTranslationsTrait` once again.
 
+And that's it now! You've just created:
 
-And that's it now!
-You've just created:
-- A custom document type, including translations
-- A custom document generator, including a custom template
-- A custom number range and number range type, which will now be used by your custom document type
+* A custom document type, including translations
+* A custom document generator, including a custom template
+* A custom number range and number range type, which will now be used by your custom document type
 
 ## Next steps
 
-With your custom document type, you also might want to add a new actual document configuration, which is making use of your new type.
-Creating a custom document is explained in [this guide](./add-custom-document.md).
+With your custom document type, you also might want to add a new actual document configuration, which is making use of your new type. Creating a custom document is explained in [this guide](add-custom-document.md).
+

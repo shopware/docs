@@ -1,24 +1,26 @@
-# Fetch a single category
+# Category
 
-`POST /category/{categoryId}` | CategoryRoute
+## Fetch a single category
 
-This endpoint returns information about the category, as well as a fully resolved (hydrated with mapping values) CMS page, if one is assigned to the category. You can pass slots which should be resolved exclusively.
+`POST /category/{categoryId}` \| CategoryRoute
 
-## Parameters
+This endpoint returns information about the category, as well as a fully resolved \(hydrated with mapping values\) CMS page, if one is assigned to the category. You can pass slots which should be resolved exclusively.
+
+### Parameters
 
 **Path**
 
-**`categoryId`** | string | required  
+**`categoryId`** \| string \| required  
 Identifier of a category or string. Use the `"home"` alias to fetch the root category for the sales channel.
 
 **Body**
 
-`slots` | string | optional  
+`slots` \| string \| optional  
 Slot ids that should be resolved exclusively. Separate multiple slot ids using a `|` character.
 
-[`includes`](../../../../guides/integrations-api/general-concepts/search-criteria.md#includes-apialias) | object | optional  
+[`includes`](../../../../guides/integrations-api/general-concepts/search-criteria.md#includes-apialias) \| object \| optional
 
-## Returns
+### Returns
 
 Returns a category object.
 
@@ -72,19 +74,19 @@ Returns a category object.
 {% endtab %}
 {% endtabs %}
 
-# Fetch a list of categories by criteria
+## Fetch a list of categories by criteria
 
-`POST /category` | CategoryListRoute
+`POST /category` \| CategoryListRoute
 
 Perform a filtered search for categories.
 
-## Parameters
+### Parameters
 
 **Body**
 
-[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) | Criteria | optional  
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) \| Criteria \| optional
 
-## Returns
+### Returns
 
 Returns a search result containing categories, aggregations and pagination properties.
 
@@ -103,50 +105,50 @@ Returns a search result containing categories, aggregations and pagination prope
 {% endtab %}
 {% endtabs %}
 
-# Fetch a navigation menu
+## Fetch a navigation menu
 
-`POST /navigation/{activeId}/{rootId}` | NavigationRoute
+`POST /navigation/{activeId}/{rootId}` \| NavigationRoute
 
 This endpoint returns a categories that can be used as a page navigation. You can either return them as a tree or as a flat list. You can also control the depth of the tree.
 
-## Parameters
+### Parameters
 
 **Header**
 
-`sw-include-seo-urls` | boolean | optional  
+`sw-include-seo-urls` \| boolean \| optional  
 Fetch routes for every category. Default is `false`.
 
 **Path**
 
-**`activeId`** | uuid | required  
-Id of the active category in the navigation tree (if not used, just set to the same as `rootId`.
+**`activeId`** \| uuid \| required  
+Id of the active category in the navigation tree \(if not used, just set to the same as `rootId`.
 
-**`rootId`** | uuid | required  
+**`rootId`** \| uuid \| required  
 Id of the root category for your desired navigation tree. You can use it to fetch sub-trees of your navigation tree.
 
 {% hint style="info" %}
 Instead of passing **uuids**, you can also use one of the following **aliases** for the **`activeId`** and **`rootId`** parameters to get the respective navigations of your sales channel.
- 
- * `main-navigation`
- * `service-navigation`
- * `service-navigation`
 
-```
+* `main-navigation`
+* `service-navigation`
+* `service-navigation`
+
+```text
 POST /navigation/main-navigation/main-navigation
 ```
 {% endhint %}
 
 **Body**
 
-`buildTree` | boolean | optional  
+`buildTree` \| boolean \| optional  
 Return the categories as a tree or as a flat list. Default is `true`.
 
-`depth` | integer | optional  
-Determines the depth of fetched navigation levels.  Default is `2`.
+`depth` \| integer \| optional  
+Determines the depth of fetched navigation levels. Default is `2`.
 
-[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) | Criteria | optional  
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) \| Criteria \| optional
 
-## Returns
+### Returns
 
 Returns a collection of categories.
 
@@ -205,3 +207,4 @@ Returns a collection of categories.
 ```
 {% endtab %}
 {% endtabs %}
+

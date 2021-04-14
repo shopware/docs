@@ -1,47 +1,41 @@
-# Add search option for custom data
+# Add custom data to the search
 
 ## Overview
 
-When developing a customization that has a frequently visited entity listing you're able to make use of an interesting 
-opportunity: You can enable the user to take a shortcut finding his desired entry using the global search.
+When developing a customization that has a frequently visited entity listing you're able to make use of an interesting opportunity: You can enable the user to take a shortcut finding his desired entry using the global search.
 
 There are two different ways how the global search works:
+
 * Global search without type specification
 * Typed global search
 
 They only differ in the API they use and get displayed in a slightly different way.
 
-{% hint style="warning" %} Think twice about adding this shortcut because if every plugin adds their own search tag it gets cluttered. {% endhint %}
+{% hint style="warning" %}
+Think twice about adding this shortcut because if every plugin adds their own search tag it gets cluttered.
+{% endhint %}
 
 ## Prerequisites
 
-For this guide, it's necessary to have a running Shopware 6 instance and full access to both the files and a 
-running plugin. See our plugin page guide to learn how to create your own plugins.
+For this guide, it's necessary to have a running Shopware 6 instance and full access to both the files and a running plugin. See our plugin page guide to learn how to create your own plugins.
 
-{% page-ref page="./../plugin-base-guide.md" %}
+{% page-ref page="../plugin-base-guide.md" %}
 
-In addition, you need a custom entity to add to the search to begin with. Head over to the following guide to learn 
-how to achieve that:
+In addition, you need a custom entity to add to the search to begin with. Head over to the following guide to learn how to achieve that:
 
-[](./../framework/data-handling/add-custom-complex-data.md)
-{% page-ref page="./../plugin-base-guide.md" %}
+{% page-ref page="../plugin-base-guide.md" %}
 
 ## Support custom entity via search API
 
-To support an entity in the untyped global search the definition in the symfony container needs the tag 
-`shopware.composite_search.definition`. The priority of the tag defines the order in the search order.
+To support an entity in the untyped global search the definition in the symfony container needs the tag `shopware.composite_search.definition`. The priority of the tag defines the order in the search order.
 
-The typed global search needs an instance of the JavaScript class `ApiService` with the key of the entity in camelcase 
-suffixed with `Service`. E.g. The service key is `yourCustomSearchService` when requesting a service for 
-`your_custom_search`. Every entity definition gets automatically an instance in the injection container but can be 
-overridden so there is no additional work needed.
+The typed global search needs an instance of the JavaScript class `ApiService` with the key of the entity in camelcase suffixed with `Service`. E.g. The service key is `yourCustomSearchService` when requesting a service for `your_custom_search`. Every entity definition gets automatically an instance in the injection container but can be overridden so there is no additional work needed.
 
 ## Support in the Administration UI
 
 ### Add search tag
 
-The search tag displays the entity type that is used in the typed search and is a clickable button to switch from 
-the untyped to the typed search. In order to add the tag, a service decorator is used to add a type to the `searchTypeService`:
+The search tag displays the entity type that is used in the typed search and is a clickable button to switch from the untyped to the typed search. In order to add the tag, a service decorator is used to add a type to the `searchTypeService`:
 
 ```javascript
 const { Application } = Shopware;
@@ -59,6 +53,7 @@ Application.addServiceProviderDecorator('searchTypeService', searchTypeService =
 ```
 
 Let's take a closer look on how this decorator is used:
+
 * The key and `entityName` is used as the same to change also existing types.
 * The `entityService` is used for the typed search.
 * This service can be overridden with an own implementation for customization.
@@ -67,12 +62,10 @@ Let's take a closer look on how this decorator is used:
 
 ### Add the search result item
 
-By default, the search bar does not know how to display the result items, so a current search request will not show any 
-result. In order to declare a search result view the `sw-search-bar-item` template has to be altered as seen below,
-starting with the template:
+By default, the search bar does not know how to display the result items, so a current search request will not show any result. In order to declare a search result view the `sw-search-bar-item` template has to be altered as seen below, starting with the template:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-bar-item/sw-search-bar-item.html.twig" %}
-```twig
+```text
 {% block sw_search_bar_item_cms_page %}
     {% parent %}
 
@@ -104,16 +97,14 @@ Shopware.Component.override('sw-search-bar-item', {
 ```
 {% endcode %}
 
-The `sw_search_bar_item_cms_page` block is used as it is the last block, but it is not important which shopware type 
-is extended as long as the vue else-if structure is kept working.
+The `sw_search_bar_item_cms_page` block is used as it is the last block, but it is not important which shopware type is extended as long as the vue else-if structure is kept working.
 
 ### Add custom show more results link
 
-By default, the search bar tries to resolve to the registered listing route.
-If your entity can be searched externally you can edit the `sw-search-more-results` or `sw-search` components as well:
+By default, the search bar tries to resolve to the registered listing route. If your entity can be searched externally you can edit the `sw-search-more-results` or `sw-search` components as well:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-more-results/sw-search-more-results.html.twig" %}
-```twig
+```text
 {% block sw_search_more_results %}
     <template v-if="result.entity === 'foo_bar'">
         There are so many hits.
@@ -146,7 +137,8 @@ Shopware.Component.override('sw-search-more-results', {
 ### Potential pitfalls
 
 In case of a tag with a technical name with a missing translation, proceed like this:
-```json
+
+```javascript
 {
     "global": {
         "entities": {
@@ -156,8 +148,7 @@ In case of a tag with a technical name with a missing translation, proceed like 
 }
 ```
 
-To change the color of the tag, or the icon in the untyped global search a module has to be registered with an 
-entity reference in the module:
+To change the color of the tag, or the icon in the untyped global search a module has to be registered with an entity reference in the module:
 
 ```javascript
 Shopware.Module.register('any-name', {
@@ -166,3 +157,4 @@ Shopware.Module.register('any-name', {
     entity: 'my_entity',
 })
 ```
+

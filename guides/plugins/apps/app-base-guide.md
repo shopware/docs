@@ -2,13 +2,13 @@
 
 ## Overview
 
-This guide will walk you through the process of adding your own app to Shopware and configuring it, so it is able to communicate to your external backend server. 
+This guide will walk you through the process of adding your own app to Shopware and configuring it, so it is able to communicate to your external backend server.
 
 ## Prerequisites
 
 If your're not familiar with the app system, please take a look at the concept first.
 
-{% page-ref page="./../../../concepts/extensions/apps-concept.md" %}
+{% page-ref page="../../../concepts/extensions/apps-concept.md" %}
 
 ## File structure
 
@@ -55,7 +55,7 @@ The app can now be installed by running the following command:
 bin/console app:install --activate MyExampleApp
 ```
 
-By default, your app files will be [validated](./app-base-guide.md#Validation) before installation, to skip the validation you may use the `--no-validate` flag.
+By default, your app files will be [validated](app-base-guide.md#Validation) before installation, to skip the validation you may use the `--no-validate` flag.
 
 {% hint style="info" %}
 Apps get installed as inactive. You can activate them by passing the `--activate` flag to the `app:install` command or by executing the `app:activate` command after installation.
@@ -96,7 +96,7 @@ The following query parameters will be send with the request:
 * shop-url: The URL of the shop, this can later be used to access the Shopware API
 * timestamp: The Unix timestamp when the request was created
 
-An example request may look like this: 
+An example request may look like this:
 
 ```text
 GET https://my.example.com/registration?shop-id=KIPf0Fz6BUkN&shop-url=http%3A%2F%2Fmy.shop.com&timestamp=159239728
@@ -172,7 +172,7 @@ A sample registration response may look like this:
 
 ### Confirmation Request
 
-If the proof you provided in the [registration response](./app-base-guide.md#registration-response) matched the one generated on the shop side the registration is completed. As a result your app will receive a POST request against the URL specified as the `confirmation_url` of the registration with the following parameters send in the request body:
+If the proof you provided in the [registration response](app-base-guide.md#registration-response) matched the one generated on the shop side the registration is completed. As a result your app will receive a POST request against the URL specified as the `confirmation_url` of the registration with the following parameters send in the request body:
 
 * `apiKey`: The ApiKey used to authenticate against the Shopware API
 * `secretKey`: The SecretKey used to authenticate against the Shopware API
@@ -194,7 +194,7 @@ The payload of that request may look like this:
 
 Make sure that you save the api-credentials for that shopId.
 
-The request is signed with the `shop-secret`, that your app provided in the [registration response](./app-base-guide.md#registration-response) and the signature can be found in the `shopware-shop-signature` header.  
+The request is signed with the `shop-secret`, that your app provided in the [registration response](app-base-guide.md#registration-response) and the signature can be found in the `shopware-shop-signature` header.  
 You need to recalculate that signature and check that it matches the provided one, to make sure that the request is really send from shop with that shopId.
 
 You can use following code snippet to generate the signature:
@@ -212,8 +212,7 @@ $hmac = \hash_hmac('sha256', $request->getBody()->getContents(), $shopSecret);
 
 ## Permissions
 
-Shopware comes with the possibility to create fine grained [Access Control Lists](../plugins/administration/add-acl-rules.md) (ACLs). That means that that you need to request permissions if your app needs to read or write data over the API or wants to receive webhooks.
-The permissions your app needs are defined in the manifest file and are composed of the privilege (`read`, `create`, `update`, `delete`) and the entity.
+Shopware comes with the possibility to create fine grained [Access Control Lists](../plugins/administration/add-acl-rules.md) \(ACLs\). That means that that you need to request permissions if your app needs to read or write data over the API or wants to receive webhooks. The permissions your app needs are defined in the manifest file and are composed of the privilege \(`read`, `create`, `update`, `delete`\) and the entity.
 
 Sample permissions to read, create and update products, as well as delete orders look like this:
 
@@ -235,10 +234,10 @@ Sample permissions to read, create and update products, as well as delete orders
 ```
 {% endcode %}
 
-The permissions you request need to be accepted by the user during the installation of your app. After that these permissions are granted for your app and your API access through the credentials from the [confirmation request](./app-base-guide.md#confirmation-request) of the [setup workflow](./app-base-guide.md#setup) are limited to those permissions.
+The permissions you request need to be accepted by the user during the installation of your app. After that these permissions are granted for your app and your API access through the credentials from the [confirmation request](app-base-guide.md#confirmation-request) of the [setup workflow](app-base-guide.md#setup) are limited to those permissions.
 
 {% hint style="warning" %}
-Keep in mind that read permissions also extend to the data contained in the requests so that your app needs read permissions for the entities contained in the subscribed [webhooks](./app-base-guide.md#webhooks).
+Keep in mind that read permissions also extend to the data contained in the requests so that your app needs read permissions for the entities contained in the subscribed [webhooks](app-base-guide.md#webhooks).
 {% endhint %}
 
 ## Webhooks
@@ -295,7 +294,7 @@ Where the `source` property contains all necessary information about the Shopwar
 
 The next property `data` contains the name of the event so that a single endpoint can handle several different events, should you desire. `data` also contains the event data in the `payload` property, due to the asynchronous nature of theses webhooks the `payload` for `entity.written` events does not contain complete entities as these might become outdated. Instead the entity in the payload is characterized by its id, stored under `primaryKey`, so that the app can fetch additional data through the shops API. This also has the advantage of giving the app explicit control over the associations that get fetched instead of relying on the associations determined by the event. Other events in contrast contain the entity data that defines the event, but keep in mind that event might not contain all associations.
 
-You can verify the authenticity of the incoming request by checking the `shopware-shop-signature` every request should have a sha256 hmac of the request body, that is signed with the secret your app assigned the shop during the [registration](./app-base-guide.md#setup). The mechanism to verify the request is exactly the same as the one used for the [confirmation request](./app-base-guide.md#confirmation-request).
+You can verify the authenticity of the incoming request by checking the `shopware-shop-signature` every request should have a sha256 hmac of the request body, that is signed with the secret your app assigned the shop during the [registration](app-base-guide.md#setup). The mechanism to verify the request is exactly the same as the one used for the [confirmation request](app-base-guide.md#confirmation-request).
 
 You can use a variety of events to react to changes in Shopware that way. See the table below for an overview of most important ones.
 
@@ -371,7 +370,6 @@ bin/console app:validate MyExampleApp
 
 ## API Docs
 
-<!-- markdown-link-check-disable-next-line -->
 {% api-method method="get" host="https://my.example.com" path="" %}
 {% api-method-summary %}
 registration
@@ -422,7 +420,6 @@ The unique identifier of the shop, where the app was installed
 {% endapi-method-spec %}
 {% endapi-method %}
 
-<!-- markdown-link-check-disable-next-line -->
 {% api-method method="post" host="https://my.example.com" path="" %}
 {% api-method-summary %}
 confirmation

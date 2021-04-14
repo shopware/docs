@@ -1,7 +1,6 @@
 # Completion
 
-The Enterprise Search does not use the default [Elasticsearch Completion](https://www.elastic.co/guide/en/elasticsearch/reference/7.10/search-suggesters.html#completion-suggester), because it does only support a fixed order and the storage size is high.
-As an alternative, the Enterprise Search uses aggregations to find the most important words combinations for your search input.
+The Enterprise Search does not use the default [Elasticsearch Completion](https://www.elastic.co/guide/en/elasticsearch/reference/7.10/search-suggesters.html#completion-suggester), because it does only support a fixed order and the storage size is high. As an alternative, the Enterprise Search uses aggregations to find the most important words combinations for your search input.
 
 The Full Text Boosted field is used to generate a list of completions. Each word is a separate completion suggestion.
 
@@ -11,11 +10,9 @@ The Full Text Boosted field is used to generate a list of completions. Each word
 The default Enterprise Search does not support compound completions from multiple words.
 {% endhint %}
 
-To support compound completions, it's necessary to decorate the appropriate Elasticsearch Definition. And add the [Tag](https://symfony.com/doc/current/service_container/tags.html) `swag_ses.completion_definition` to the service, like to Enterprise Search default services.
-Make sure, that the new created decorator runs after the Enterprise Search decorator, otherwise it will override your values.
+To support compound completions, it's necessary to decorate the appropriate Elasticsearch Definition. And add the [Tag](https://symfony.com/doc/current/service_container/tags.html) `swag_ses.completion_definition` to the service, like to Enterprise Search default services. Make sure, that the new created decorator runs after the Enterprise Search decorator, otherwise it will override your values.
 
 {% code title="MyProductDefinitionDecorator.php" %}
-
 ```php
 <?php declare(strict_types=1);
 
@@ -77,5 +74,5 @@ class MyProductDefinitionDecorator extends AbstractElasticsearchDefinition
     }
 }
 ```
-
 {% endcode %}
+

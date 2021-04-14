@@ -123,7 +123,7 @@ The `includes` parameter allows you to restrict the returned fields.
 ```
 
 {% hint style="info" %}
-All response types come with a `apiAlias` field which you can use to identify the type in your includes field. If you only want a categories id, add: `"category": ["id"]`. For entities, this is the entity name: `product`, `product_manufacturer`, `order_line_item`, ... For other non-entity-types like a listing result or a line item, check the full response. This pattern applies not only to simple fields but also to associations. 
+All response types come with a `apiAlias` field which you can use to identify the type in your includes field. If you only want a categories id, add: `"category": ["id"]`. For entities, this is the entity name: `product`, `product_manufacturer`, `order_line_item`, ... For other non-entity-types like a listing result or a line item, check the full response. This pattern applies not only to simple fields but also to associations.
 {% endhint %}
 
 ### `ids`
@@ -169,7 +169,6 @@ The `page` and `limit` parameters can be used to control pagination. The `page` 
     "page": 1,
     "limit": 5
 }
-
 ```
 
 ### `filter`
@@ -206,10 +205,10 @@ When you are filtering for nested values - for example you're filtering orders b
               "value": "paid"
             },
             {
-  	        "type": "equals",
-  	        "field": "transactions.stateMachineState.technicalName",
-  	        "value": "open"
-  	      }
+              "type": "equals",
+              "field": "transactions.stateMachineState.technicalName",
+              "value": "open"
+            }
           ]
         },
         {
@@ -299,7 +298,7 @@ The resulting score is appended to every resulting record in the `extensions.sea
 
 ### `term`
 
-Using the `term` parameter, the server performs a text search on all records based on their data model and weighting as defined in the entity definition using the `SearchRanking` flag. 
+Using the `term` parameter, the server performs a text search on all records based on their data model and weighting as defined in the entity definition using the `SearchRanking` flag.
 
 {% hint style="info" %}
 Don't use `term` parameters together with `query` parameters.
@@ -333,7 +332,7 @@ The `sort` parameter allows to control the sorting of the result. Several sorts 
 
 ## `aggregations`
 
-With the `aggregations` parameter, meta data can be determined for a search query. There are different types of aggregations which are listed in the reference documentation. A simple example is the determination of the average price from a product search query. 
+With the `aggregations` parameter, meta data can be determined for a search query. There are different types of aggregations which are listed in the reference documentation. A simple example is the determination of the average price from a product search query.
 
 * Purpose: Calculation of statistics and metrics
 * Purpose: Determination of possible filters

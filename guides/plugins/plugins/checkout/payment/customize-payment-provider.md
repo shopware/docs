@@ -2,22 +2,15 @@
 
 ## Overview
 
-In this guide you'll learn how to customize an existing payment provider. In this example we are customizing a
-`SynchronousPaymentHandler`, but the procedure also applies to `AsynchronousPaymentHandler`.
+In this guide you'll learn how to customize an existing payment provider. In this example we are customizing a `SynchronousPaymentHandler`, but the procedure also applies to `AsynchronousPaymentHandler`.
 
 ## Prerequisites
 
-As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide.md), but you don't necessarily need that.
-It is helpful to have looked at the guide about [adding a custom payment method](./add-payment-plugin.md) beforehand.
-Furthermore, decorating a service is also not explained here,
-but it's covered in our guide about [adjusting a service](../../plugin-fundamentals/adjusting-service.md), so having this open in another tab won't hurt.
+As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide.md), but you don't necessarily need that. It is helpful to have looked at the guide about [adding a custom payment method](add-payment-plugin.md) beforehand. Furthermore, decorating a service is also not explained here, but it's covered in our guide about [adjusting a service](../../plugin-fundamentals/adjusting-service.md), so having this open in another tab won't hurt.
 
 ## Customize the payment provider
 
-First, we create a new class that extends from the provider we want to customise. In this example we customise the class
-`Shopware\Core\Checkout\Payment\Cart\PaymentHandler\DebitPayment` and name our class `ExampleDebitPayment`.
-The constructor has to accept an instance of `OrderTransactionStateHandler` like the original service and additionally
-an instance of `DebitPayment` that we want to decorate.
+First, we create a new class that extends from the provider we want to customise. In this example we customise the class `Shopware\Core\Checkout\Payment\Cart\PaymentHandler\DebitPayment` and name our class `ExampleDebitPayment`. The constructor has to accept an instance of `OrderTransactionStateHandler` like the original service and additionally an instance of `DebitPayment` that we want to decorate.
 
 {% code title="<plugin root>/src/Service/ExampleDebitPayment.php" %}
 ```php
@@ -52,7 +45,7 @@ class ExampleDebitPayment extends DebitPayment
     public function pay(SyncPaymentTransactionStruct $transaction, RequestDataBag $dataBag, SalesChannelContext $salesChannelContext): void
     {
         // do some custom stuff here
-        
+
         $this->transactionStateHandler->process($transaction->getOrderTransaction()->getId(), $salesChannelContext->getContext());
     }
 }
@@ -62,7 +55,7 @@ class ExampleDebitPayment extends DebitPayment
 After we've created our customized payment provider class, we have to register it to the DI-container.
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
-```xml
+```markup
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -78,3 +71,4 @@ xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/sc
 </container>
 ```
 {% endcode %}
+

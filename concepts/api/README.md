@@ -5,9 +5,6 @@ In operational environments, a lot of applications interact with your shop platf
 In fact, Shopware exposes every core functionality via a dedicated API endpoints. Our approach to API design as well as the concepts of our APIs are explained in the following section.
 
 {% hint style="info" %}
-Find out how to obtain a structured [API Endpoint Reference](./../../guides/integrations-api/general-concepts/README.md).
-Of course, we can provide you some [guides](./../../guides/integrations-api/README.md)? as well.
+Find out how to obtain a structured [API Endpoint Reference](../../guides/integrations-api/general-concepts/). Of course, we can provide you some [guides](../../guides/integrations-api/)? as well.
 {% endhint %}
-
-
 

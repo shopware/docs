@@ -8,7 +8,7 @@ In this guide you'll learn how to override existing store API routes to add addi
 
 As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide.md), but you don't necessarily need that.
 
-Furthermore you should have a look at our guide about [Adding a store API route](./add-store-api-route.md), since this guide is built upon it.
+Furthermore you should have a look at our guide about [Adding a store API route](add-store-api-route.md), since this guide is built upon it.
 
 ## Decorating our route
 
@@ -96,18 +96,14 @@ class ExampleRouteDecorator extends AbstractExampleRoute
 ```
 {% endcode %}
 
-As you can see, our decorated route has to extend from the `AbstractExampleService` and the constructor has to accept an instance of `AbstractExampleService`. 
-Furthermore, the `getDecorated()` function has to return the decorated route passed into the constructor.
-Now we can add some additional data in the `load` method, which we can retrieve with the criteria.
+As you can see, our decorated route has to extend from the `AbstractExampleService` and the constructor has to accept an instance of `AbstractExampleService`. Furthermore, the `getDecorated()` function has to return the decorated route passed into the constructor. Now we can add some additional data in the `load` method, which we can retrieve with the criteria.
 
 ## Registering route
 
-Last, we have to register the decorated route to the DI-container. The `ExampleRouteDecorator` has to be registered after the
-`ExampleRoute` with the attribute `decorated` which points to the `ExampleRoute`. For the second argument we have to use
-the `ExampleRouteDecorator.inner`.
+Last, we have to register the decorated route to the DI-container. The `ExampleRouteDecorator` has to be registered after the `ExampleRoute` with the attribute `decorated` which points to the `ExampleRoute`. For the second argument we have to use the `ExampleRouteDecorator.inner`.
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
-```xml
+```markup
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -116,7 +112,7 @@ the `ExampleRouteDecorator.inner`.
 
     <services>
         ...
-        
+
         <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRouteDecorator" decorates="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute" public="true">
             <argument type="service" id="swag_example.repository"/>
             <argument type="service" id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRouteDecorator.inner"/>
@@ -125,3 +121,4 @@ the `ExampleRouteDecorator.inner`.
 </container>
 ```
 {% endcode %}
+

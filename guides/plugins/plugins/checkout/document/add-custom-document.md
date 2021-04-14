@@ -2,30 +2,26 @@
 
 ## Overview
 
-Using the Shopware administration, you can easily create new documents.
-This guide will teach you how to achieve the same result, which is creating a new document, using your plugin.
+Using the Shopware administration, you can easily create new documents. This guide will teach you how to achieve the same result, which is creating a new document, using your plugin.
 
 ## Prerequisites
 
-This guide is built upon the [plugin base guide](../../plugin-base-guide.md), but of course you can use those examples
-with any other plugin.
+This guide is built upon the [plugin base guide](../../plugin-base-guide.md), but of course you can use those examples with any other plugin.
 
-Furthermore adding a document via your plugin is done by using [plugin database migrations](../../plugin-fundamentals/database-migrations.md).
-Since this isn't explained in this guide, you'll have to know and understand the plugin database migrations first.
+Furthermore adding a document via your plugin is done by using [plugin database migrations](../../plugin-fundamentals/database-migrations.md). Since this isn't explained in this guide, you'll have to know and understand the plugin database migrations first.
 
 ## Adding a custom document
 
-Documents in Shopware are stored in the database table `document_base_config`.
-Do not confuse it with the `document` table, which contains the actually generated documents (e.g. for an order) and not the config
-for them.
+Documents in Shopware are stored in the database table `document_base_config`. Do not confuse it with the `document` table, which contains the actually generated documents \(e.g. for an order\) and not the config for them.
 
 Adding a new document is done by adding two entries to the database:
-- One entry in the `document_base_config` table, which contains the whole configuration and the documents name
-- One or more entries in the `document_base_config_sales_channel` table for each sales channel you want this document to be available
-for
 
-We're doing this via a migration.
-In the following example migration, a new document named "custom" will be created, which is assigned to the `Storefront` sales channel.
+* One entry in the `document_base_config` table, which contains the whole configuration and the documents name
+* One or more entries in the `document_base_config_sales_channel` table for each sales channel you want this document to be available
+
+  for
+
+We're doing this via a migration. In the following example migration, a new document named "custom" will be created, which is assigned to the `Storefront` sales channel.
 
 {% code title="<plugin root>/src/Migration/Migration1616668698AddDocument.php" %}
 ```php
@@ -127,21 +123,16 @@ SQL;
         return $salesChannelId;
     }
 }
-
 ```
 {% endcode %}
 
-So it's basically fetching the "Storefront" sales channel ID, and the document type ID of the "Delivery note" document type
-and then inserts the necessary entries with some example data.
+So it's basically fetching the "Storefront" sales channel ID, and the document type ID of the "Delivery note" document type and then inserts the necessary entries with some example data.
 
-You'll have to provide a `name` and a `filename_prefix` for your custom document. 
-If you create a new document for e.g. a completely new document type, you might want to set `global` to `1`, so it acts like a fallback.
-Also make sure to have a look at the `getConfig` method here, since it contains important configurations you can set for your custom document.
+You'll have to provide a `name` and a `filename_prefix` for your custom document. If you create a new document for e.g. a completely new document type, you might want to set `global` to `1`, so it acts like a fallback. Also make sure to have a look at the `getConfig` method here, since it contains important configurations you can set for your custom document.
 
-Basically, that's it already!
-You can now browse your administration and use your newly configured document.
+Basically, that's it already! You can now browse your administration and use your newly configured document.
 
 ## Next steps
 
-You might wonder "But where do I define my custom template for my custom document?".
-This is done by adding a new document **type**, which is covered in [this guide](./add-custom-document-type.md).
+You might wonder "But where do I define my custom template for my custom document?". This is done by adding a new document **type**, which is covered in [this guide](add-custom-document-type.md).
+

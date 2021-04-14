@@ -3,7 +3,7 @@
 ## Overview
 
 {% hint style="info" %}
-For understanding the general principles of payment, please head to our [Payment](../../../concepts/commerce/checkout-concept/payments.md) article in the concepts section
+For understanding the general principles of payment, please head to our [Payment](https://github.com/shopware/docs/tree/4dd18decd18d812c20a9c2b9c224299c519af522/concepts/commerce/checkout-concept/payments.md) article in the concepts section
 {% endhint %}
 
 In this guide, we'll go through the headless payment process in Shopware. You'll learn about the following things:
@@ -68,13 +68,13 @@ In order to provide a more common interface, we advise to use the **optional** p
 }
 ```
 
-The content or structure of the `paymentDetails` parameter would rely entirely on the implementation of the selected payment methods and is not standardised to any further extent. 
+The content or structure of the `paymentDetails` parameter would rely entirely on the implementation of the selected payment methods and is not standardised to any further extent.
 
 You might need more data / persist data along with the customer which is either - not available when calling the endpoint - or - not supposed to be transmitted at that point - such as saved payment credentials, access tokens or secrets. This data should be transmitted through separate endpoints or be part of the plugin configuration.
 
 ## Payment Flows
 
-Depending on the payment method, the user can flow can differ. The concept of asynchronous and synchronous payment handlers is described in our concepts article on [payments](../../../concepts/commerce/checkout-concept/payments.md). 
+Depending on the payment method, the user can flow can differ. The concept of asynchronous and synchronous payment handlers is described in our concepts article on [payments](https://github.com/shopware/docs/tree/4dd18decd18d812c20a9c2b9c224299c519af522/concepts/commerce/checkout-concept/payments.md).
 
 **Synchronous payment**  
 In the synchronous case, the endpoint simply triggers an action that handles the payment \(e.g. an external payment API\) and receives an immediate response.
@@ -94,9 +94,9 @@ After the payment has been conducted \(or if it has been cancelled\), the paymen
 The endpoint called in this return URL is `/payment/finalize-transaction`. This method will internally decrypt the JWT \(which is still contained in the `_sw_payment_token` parameter\) and route the user depending on the outcome of the payment according to your `finishUrl` and `errorUrl`.
 
 {% hint style="warning" %}
-**Why does my payment status remain open after calling** `/handle-payment`**?**  
-  
-After handling the payment, the state of your payment transaction might still remain `open`. It depends on how your payment integration \(or the payment provider\) handles they payment. 
+**Why does my payment status remain open after calling** `/handle-payment`**?**
+
+After handling the payment, the state of your payment transaction might still remain `open`. It depends on how your payment integration \(or the payment provider\) handles they payment.
 
 Some providers \(e.g. PayPal\) return immediate responses about the transactions' success. Some providers \(e.g. Stripe\) set up additional web hooks that allow the payment platform to asynchronously inform your store, that a payment has changed state. In those cases, please consult the documentation from these providers to get further details on their specific implementation.
 {% endhint %}

@@ -6,18 +6,15 @@ If you set up a custom field with an entity selection in the administration, you
 
 ## Prerequisites
 
-This guide will not explain how to create custom field in general, so head over to
-the official guide about [custom field](./add-custom-field.md) to learn this first.
+This guide will not explain how to create custom field in general, so head over to the official guide about [custom field](add-custom-field.md) to learn this first.
 
 ## Fetching data
 
-In this example we assume that we already set up a custom field called `custom_linked_product`, which is assigned to the products entity.
-The type of the custom field `custom_linked_product` is also a product.
+In this example we assume that we already set up a custom field called `custom_linked_product`, which is assigned to the products entity. The type of the custom field `custom_linked_product` is also a product.
 
 If you now update a product in the administration and select a value for `custom_linked_product` only the `id` of the selected product entity gets store in the custom field.
 
-To resolve the `id` and getting access to the product we have linked here, we can create a `ProductSubscriber` which listens to the `ProductEvents::PRODUCT_LOADED_EVENT`.
-The event will be triggered, when the associated main product will be loaded. So we can easily resolve the id in the custom field.
+To resolve the `id` and getting access to the product we have linked here, we can create a `ProductSubscriber` which listens to the `ProductEvents::PRODUCT_LOADED_EVENT`. The event will be triggered, when the associated main product will be loaded. So we can easily resolve the id in the custom field.
 
 Lets create a `ProductSubscriber` first which will listen to the `ProductEvents::PRODUCT_LOADED_EVENT`.
 
@@ -50,7 +47,7 @@ class ProductSubscriber implements EventSubscriberInterface
 For this subscriber to work we need to register it in the service container via the `service.xml` file:
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
-```xml
+```markup
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -89,7 +86,7 @@ class ProductSubscriber implements EventSubscriberInterface
 
     public function onProductLoaded(EntityLoadedEvent $event): void
     {
-  
+
         // loop through all loaded product      
         /** @var ProductEntity $productEntity */
         foreach ($event->getEntities() as $productEntity) {
@@ -111,16 +108,14 @@ class ProductSubscriber implements EventSubscriberInterface
 ```
 {% endcode %}
 
-Inside the `onProductLoaded` method we can get access to the loaded product entities by calling `$event->getEntities()`.
-Now for every product we look for our `custom_linked_product` custom field.
+Inside the `onProductLoaded` method we can get access to the loaded product entities by calling `$event->getEntities()`. Now for every product we look for our `custom_linked_product` custom field.
 
-But, how we can load the linked product by its `id` if the custom field was set?
-We have to inject the product repository to achieve it.
+But, how we can load the linked product by its `id` if the custom field was set? We have to inject the product repository to achieve it.
 
 First we update the `services.xml` and inject the product repository.
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
-```xml
+```markup
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -170,8 +165,7 @@ class ProductSubscriber implements EventSubscriberInterface
 ```
 {% endcode %}
 
-As you can see, the product repository was injected and is now available to the `ProductRepository`.
-The last step is to resolve the `custom_linked_product` value inside the `onProductLoaded` method.
+As you can see, the product repository was injected and is now available to the `ProductRepository`. The last step is to resolve the `custom_linked_product` value inside the `onProductLoaded` method.
 
 Let's have a look at the final implementation of the subscriber.
 
@@ -227,7 +221,7 @@ class ProductSubscriber implements EventSubscriberInterface
                 /** @var ProductEntity $productEntity */
                 $product = $this->productRepository
                     ->search(new Criteria([$value]), $context)->first();
-                
+
                 if($product) {
                     // replace the custom field's value with the actual entity
                     $customFields[$name] = $product;
@@ -240,3 +234,4 @@ class ProductSubscriber implements EventSubscriberInterface
 }
 ```
 {% endcode %}
+

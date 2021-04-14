@@ -32,7 +32,7 @@ To make use of the custom fields register your custom field sets in your manifes
 
 For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../resources/references/app-reference/manifest-reference.md).
 
-For the data needed, please refer to the custom fields in general: At first, you need a custom field set, as [custom fields](../plugins/framework/custom-field/README.md) in Shopware are organised in sets. Here you need to consider some important fields:
+For the data needed, please refer to the custom fields in general: At first, you need a custom field set, as [custom fields](../plugins/framework/custom-field/) in Shopware are organised in sets. Here you need to consider some important fields:
 
 * `name`: A technical name for your set
 * `label`: This element provides the label of the text and can be used for defining translations of the label as well. 
@@ -58,6 +58,7 @@ When defining custom fields in the `<fields>` element, you can configure additio
 </float>
 ```
 
-Please refer to [Custom field](../../plugins/plugins/framework/custom-field/README.md) documentation for further details.
+Please refer to [Custom field](../plugins/framework/custom-field/) documentation for further details.
 
-{% page-ref page="./../../plugins/plugins/framework/custom-field/README.md" %}
+{% page-ref page="../plugins/framework/custom-field/" %}
+

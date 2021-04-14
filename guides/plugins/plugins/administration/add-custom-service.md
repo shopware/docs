@@ -1,4 +1,4 @@
-# Adding services
+# Adding Services
 
 ## Overview
 
@@ -15,8 +15,7 @@ All you need for this guide is a running Shopware 6 instance and full access to 
 
 ## Register a new service
 
-For this example, we want to use the following service. It's supposed to get random jokes.
-It is placed in `<administration root>/services/joke.service.js` and looks like the example seen below:
+For this example, we want to use the following service. It's supposed to get random jokes. It is placed in `<administration root>/services/joke.service.js` and looks like the example seen below:
 
 ```javascript
 export default class JokeService {
@@ -32,8 +31,7 @@ export default class JokeService {
 }
 ```
 
-For now this service class is not available in the injection container.
-To fix this, a new script is placed at `<administration root>/init/joke-service.init.js` and imported in the `main.js` file of our plugin:
+For now this service class is not available in the injection container. To fix this, a new script is placed at `<administration root>/init/joke-service.init.js` and imported in the `main.js` file of our plugin:
 
 ```javascript
 import JokeService from '../services/joke.service'
@@ -76,8 +74,7 @@ Shopware.Component.register('swag-basic-example', {
 
 BottleJS also allows us to add middleware to our services.
 
-This code sample is based on the example in the [BottleJS documentation](https://github.com/young-steveo/bottlejs#middlewarename-func).
-For this we need to change our previously used service, as seen below: 
+This code sample is based on the example in the [BottleJS documentation](https://github.com/young-steveo/bottlejs#middlewarename-func). For this we need to change our previously used service, as seen below:
 
 ```javascript
 class JokeService {
@@ -113,17 +110,13 @@ Shopware.Service().register('joker', (container) => {
 
 ## Decorating a service
 
-Service decoration can be us in a variety of ways.
-Services can be initialized right after their creation and single methods can get an altered behavior.
-Like in the service registration, a script that is part of the `main.js` is needed.
+Service decoration can be us in a variety of ways. Services can be initialized right after their creation and single methods can get an altered behavior. Like in the service registration, a script that is part of the `main.js` is needed.
 
 {% hint style="warning" %}
-Decorators are just simple functions, which intercept a service in the provider phase.
-This means that a service can only be decorated in the timeframe between it being created and it being accessed for the first time.
+Decorators are just simple functions, which intercept a service in the provider phase. This means that a service can only be decorated in the timeframe between it being created and it being accessed for the first time.
 {% endhint %}
 
-If you need to alter a service method return value or add an additional parameter you can also do this using decoration.
-For this example a `funny` attribute is added to the requested jokes by the previously registered `JokeService`:
+If you need to alter a service method return value or add an additional parameter you can also do this using decoration. For this example a `funny` attribute is added to the requested jokes by the previously registered `JokeService`:
 
 ```javascript
 Shopware.Application.addServiceProviderDecorator('joker', joker => {
@@ -143,5 +136,7 @@ Shopware.Application.addServiceProviderDecorator('joker', joker => {
 ## Next steps
 
 Now that we have created a service, you might want to create or customize a administration component:
-* [Creating a new administration component](./add-custom-component.md)
-* [Extending an existing administration component](./customizing-components.md)
+
+* [Creating a new administration component](add-custom-component.md)
+* [Extending an existing administration component](customizing-components.md)
+

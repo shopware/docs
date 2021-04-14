@@ -79,3 +79,4 @@ Translation with placeholders:
 ```php
 $this->trans('soldProducts', ['%count%' => 3, '%country%' => 'Germany']);
 ```
+

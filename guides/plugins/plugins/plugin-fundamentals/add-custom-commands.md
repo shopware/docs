@@ -1,26 +1,24 @@
-# Add custom CLI commands 
+# Add custom CLI commands
 
 To ease development tasks, Shopware contains the Symfony commands functionality. This allows \(plugin-\) developers to define new commands executable via the Symfony console at `bin/console`. The best thing about commands is, that they're more than just simple standalone PHP scripts - they integrate into Symfony and Shopware, so you've got access to all the functionality offered by both of them.
 
 Creating a command for Shopware 6 via a plugin works exactly like you would add a command to Symfony. Make sure to have a look at the Symfony commands guide:
 
-{% embed url="https://symfony.com/doc/current/console.html#registering-the-command" %}
+{% embed url="https://symfony.com/doc/current/console.html\#registering-the-command" caption="" %}
 
 ## Prerequisites
 
 This guide **does not** explain how to create a new plugin for Shopware 6. Head over to our plugin base guide to learn how to create a plugin at first:
 
-{% page-ref page="./../plugin-base-guide.md" %}
+{% page-ref page="../plugin-base-guide.md" %}
 
 The main requirement here is to have a `services.xml` file loaded in your plugin. This can be achieved by placing the file into a `Resources/config` directory relative to your plugin's base class location.
 
 ## Registering your command
 
-From here on, everything works exactly like in Symfony itself.
-Commands are recognised by Shopware, once they're tagged with the `console.command` tag in the [dependency injection](../plugin-fundamentals/dependency-injection.md) container.
-So to register a new command, just add it to your plugin's `services.xml` and specify the `console.command` tag:
+From here on, everything works exactly like in Symfony itself. Commands are recognised by Shopware, once they're tagged with the `console.command` tag in the [dependency injection](dependency-injection.md) container. So to register a new command, just add it to your plugin's `services.xml` and specify the `console.command` tag:
 
-```xml
+```markup
 <services>
    <!-- ... -->
 
@@ -34,7 +32,7 @@ So to register a new command, just add it to your plugin's `services.xml` and sp
 Here's a full example `services.xml` which registers your custom command:
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
-```xml
+```markup
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -87,7 +85,9 @@ class ExampleCommand extends Command
 
 This command is of course only a basic example, so feel free to experiment. As stated above, you now have access to all the functionality offered by Symfony and Shopware.
 
-{% hint style="info" %} For inspiration, maybe have a look at the Symfony documentation - you may for example use [tables](https://symfony.com/doc/current/components/console/helpers/table.html), [progress bars](https://symfony.com/doc/current/components/console/helpers/progressbar.html), or [custom formats](https://symfony.com/doc/current/components/console/helpers/formatterhelper.html). {% endhint %}
+{% hint style="info" %}
+For inspiration, maybe have a look at the Symfony documentation - you may for example use [tables](https://symfony.com/doc/current/components/console/helpers/table.html), [progress bars](https://symfony.com/doc/current/components/console/helpers/progressbar.html), or [custom formats](https://symfony.com/doc/current/components/console/helpers/formatterhelper.html).
+{% endhint %}
 
 ### Running commands
 
@@ -135,4 +135,5 @@ Each command usually has a namespace like `cache`, so to clear the cache you wou
 
 ## More interesting topics
 
-* [Adding a scheduled task](./add-scheduled-task.md)
+* [Adding a scheduled task](add-scheduled-task.md)
+

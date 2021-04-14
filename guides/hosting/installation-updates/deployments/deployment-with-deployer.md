@@ -2,25 +2,23 @@
 
 ## Overview
 
-Automized deployments shouldn't be a pain and have several advantages like lower failure rates, reproducible builds, and they increase the overall productivity, because actual testing can get more attention. 
+Automized deployments shouldn't be a pain and have several advantages like lower failure rates, reproducible builds, and they increase the overall productivity, because actual testing can get more attention.
 
 This article explains the fundamental steps it takes, to deploy Shopware 6 to a certain infrastructure, focussing on continuous deployment using [GitLab CI](https://docs.gitlab.com/ee/ci/) and [Deployer](https://deployer.org/). [Deployer](https://deployer.org/) is a deployment tool written in PHP.
 
-{% hint style="info" %} This "certain infrastructure" will be called "target server" in the following. {% endhint %}
+{% hint style="info" %}
+This "certain infrastructure" will be called "target server" in the following.
+{% endhint %}
 
 ## Video
 
-<!-- markdown-link-check-disable -->
-{% embed url="https://www.youtube.com/watch?v=Oo-KvyxJvpo" %}
-<!-- markdown-link-check-enable -->
+{% embed url="https://www.youtube.com/watch?v=Oo-KvyxJvpo" caption="" %}
 
 ## Prerequisites
 
 Please make sure you already have a working Shopware 6 instance running, and your repository is based on the Shopware production template, because this article relies on some scripts to exist in your repository.
 
-<!-- markdown-link-check-disable -->
-{% embed url="https://github.com/shopware/production" %}
-<!-- markdown-link-check-enable -->
+{% embed url="https://github.com/shopware/production" caption="" %}
 
 ### Preparations before the first deployment
 
@@ -97,7 +95,8 @@ Install dependencies:
 
 ### 3. Building assets
 
-{% hint style="info" %} From this step on, all other steps are handled by [Deployer](https://deployer.org/), defined in the [`deploy.php`](deployment-with-deployer.md#deploy-php).
+{% hint style="info" %}
+From this step on, all other steps are handled by [Deployer](https://deployer.org/), defined in the [`deploy.php`](deployment-with-deployer.md#deploy-php).
 {% endhint %}
 
 In order to compile and copy assets, the Shopware production template provides a script, which is located under [`bin/build-js.sh`](https://github.com/shopware/production/blob/6.3/bin/build-js.sh). This script installs the [NPM](https://www.npmjs.com/) dependencies and builds assets that are needed for the administration, storefront and plugins.
@@ -139,7 +138,8 @@ task('deploy:update_code', static function () {
 
 The migrations need to be applied on the target server.
 
-{% hint style="danger" %} If you are deploying to a cluster with multiple web servers, please make sure to run the migrations only on one of the servers.
+{% hint style="danger" %}
+If you are deploying to a cluster with multiple web servers, please make sure to run the migrations only on one of the servers.
 {% endhint %}
 
 This step is defined in the `sw:database:migrate` job in the [`deploy.php`](deployment-with-deployer.md#deploy-php), which is part of the `sw:deploy` task group:
@@ -211,7 +211,7 @@ Successfully deployed!
 
 After the very first deployment with [Deployer](https://deployer.org/), you have to copy some files and directories from your existing Shopware instance into the directory structure, that was created by [Deployer](https://deployer.org/).
 
-Lets agree on the following two paths for the examples: 
+Lets agree on the following two paths for the examples:
 
 1. You have copied your existing Shopware instance to `/var/www/shopware_backup`.   
 2. You have set the `deploy_path` in the [`deploy.php`](deployment-with-deployer.md#deploy-php) to `/var/www/shopware`.

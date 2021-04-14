@@ -17,15 +17,15 @@ Every CMS page or layout \(they're really technically the same\) is a hierarchic
 ```javascript
 {
   cmsPage: {
-  	sections: [{
-  		blocks: [{
-  			slots: [{
-  				slot: "content",
-  				type: "product-listing",
-  				/* ... */
-  			}]
-  		}, /* ... */]
-  	}, /* ... */]
+      sections: [{
+          blocks: [{
+              slots: [{
+                  slot: "content",
+                  type: "product-listing",
+                  /* ... */
+              }]
+          }, /* ... */]
+      }, /* ... */]
   }
 }
 ```
@@ -65,17 +65,17 @@ Each block can contain none up to multiple **slots**. A slot has a name and is j
 
 ```javascript
 block: {
-	type: "text-hero",
-	slots: [{
-		type: "text",
-		slot: "content",
-		config: {
-			content: {
-				source: "static",
-				value: "Hello World"
-			}
-		},
-	}]
+    type: "text-hero",
+    slots: [{
+        type: "text",
+        slot: "content",
+        config: {
+            content: {
+                source: "static",
+                value: "Hello World"
+            }
+        },
+    }]
 }
 ```
 
@@ -85,22 +85,22 @@ Let's take a step back and look at another example:
 
 ```javascript
 block: {
-	type: "text-hero",
-	slots: [{
-		type: "image",
-		slot: "content",
-		config: {
-			media: {
-				source: "static",
-				value: "ebc314b11cb74c2080f6f27f005e9c1d"
-			}
-		},
-		data: {
-			media: {
-				url: "https://my-shop-host.com/media/ab/cd/ef/image.jpg"
-			}
-		}
-	}]
+    type: "text-hero",
+    slots: [{
+        type: "image",
+        slot: "content",
+        config: {
+            media: {
+                source: "static",
+                value: "ebc314b11cb74c2080f6f27f005e9c1d"
+            }
+        },
+        data: {
+            media: {
+                url: "https://my-shop-host.com/media/ab/cd/ef/image.jpg"
+            }
+        }
+    }]
 }
 ```
 
@@ -162,7 +162,7 @@ Shopware allows registering custom resolvers by implementing a corresponding int
 
 The CMS is designed in a way that doesn't fix it to a single presentation channel \(fancy people refer to it as "headless"\). What at first might seem like an unnecessary abstraction turns out to give us a lot of flexibility. Each presentation channel can have its own twist on interpreting the content and displaying it to the user. A browser can leverage the [Shopware Storefront](../../../guides/plugins/plugins/storefront/) and display the HTML or use the resulting markup from a single page application that interprets the API responses. A native mobile application can strip out unnecessary blocks and only display texts and images as view components. A smart speaker simply reads out the content of elements with the `voice` type. You name it...
 
-By default, Shopware provides the server-side rendered Storefront as a default presentation channel, but [Shopware PWA](../../../products/pwa-1/) also support CMS pages. Using the CMS through the API you'll have full flexibility of how to display your content.
+By default, Shopware provides the server-side rendered Storefront as a default presentation channel, but [Shopware PWA](../../../products/pwa-1.md) also support CMS pages. Using the CMS through the API you'll have full flexibility of how to display your content.
 
 {% hint style="info" %}
 All this comes at a price: The admin preview of your content is only as representative of your content presentation as your presentation channel resembles it. **A major implication for headless frontends.** For that reason, Shopware PWA has a functionality built into the plugin, which allows you to preview content pages right in the PWA.
@@ -170,6 +170,7 @@ All this comes at a price: The admin preview of your content is only as represen
 
 ## Further reading
 
-{% page-ref page="./../../../guides/plugins/plugins/content/cms/add-cms-block.md" %}
+{% page-ref page="../../../guides/plugins/plugins/content/cms/add-cms-block.md" %}
 
-{% page-ref page="./../../../guides/plugins/plugins/content/cms/add-cms-element.md" %}
+{% page-ref page="../../../guides/plugins/plugins/content/cms/add-cms-element.md" %}
+

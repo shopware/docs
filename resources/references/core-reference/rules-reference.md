@@ -49,12 +49,12 @@ List of all rule classes across Shopware 6.
 | [Shopware\Core\Checkout\Customer\Rule\DaysSinceLastOrderRule](https://github.com/shopware/platform/blob/trunk/src/Core/Checkout/Customer/Rule/DaysSinceLastOrderRule.php) | Matches a specific number of days to the last order creation date. |
 | [Shopware\Core\Checkout\Customer\Rule\DifferentAddressesRule](https://github.com/shopware/platform/blob/trunk/src/Core/Checkout/Customer/Rule/DifferentAddressesRule.php) | Matches if active billing address is not the default. |
 | [Shopware\Core\Checkout\Customer\Rule\IsCompanyRule](https://github.com/shopware/platform/blob/trunk/src/Core/Checkout/Customer/Rule/IsCompanyRule.php) | Matches if the customer is a company |
-| [Shopware\Core\Checkout\Customer\Rule\IsNewCustomerRule](https://github.com/shopware/platform/blob/trunk/src/Core/Checkout/Customer/Rule/IsNewCustomerRule.php) | Matches if a customer is new, by matching the <code>firstLogin</code> property with today. |
+| [Shopware\Core\Checkout\Customer\Rule\IsNewCustomerRule](https://github.com/shopware/platform/blob/trunk/src/Core/Checkout/Customer/Rule/IsNewCustomerRule.php) | Matches if a customer is new, by matching the `firstLogin` property with today. |
 | [Shopware\Core\Checkout\Customer\Rule\LastNameRule](https://github.com/shopware/platform/blob/trunk/src/Core/Checkout/Customer/Rule/LastNameRule.php) | Exactly matches a string to the customer's last name. |
 | [Shopware\Core\Checkout\Customer\Rule\OrderCountRule](https://github.com/shopware/platform/blob/trunk/src/Core/Checkout/Customer/Rule/OrderCountRule.php) | Matches a specific number to the number of orders of the current customer. |
 | [Shopware\Core\Checkout\Customer\Rule\ShippingCountryRule](https://github.com/shopware/platform/blob/trunk/src/Core/Checkout/Customer/Rule/ShippingCountryRule.php) | Matches multiple countries to the customer's active shipping address country. True if one country matches. |
 | [Shopware\Core\Checkout\Customer\Rule\ShippingStreetRule](https://github.com/shopware/platform/blob/trunk/src/Core/Checkout/Customer/Rule/ShippingStreetRule.php) | Matches multiple street names to the customer's active shipping address street name. True if one street name matches. |
-| [Shopware\Core\Checkout\Customer\Rule\ShippingZipCodeRule](https://github.com/shopware/platform/blob/trunk/src/Core/Checkout/Customer/Rule/ShippingZipCodeRule.php) | Matches multiple zip codes to the customer's active shipping address zip code. True if one zip code matches.
+| [Shopware\Core\Checkout\Customer\Rule\ShippingZipCodeRule](https://github.com/shopware/platform/blob/trunk/src/Core/Checkout/Customer/Rule/ShippingZipCodeRule.php) | Matches multiple zip codes to the customer's active shipping address zip code. True if one zip code matches. |
 
 ## Framework
 
@@ -74,3 +74,4 @@ List of all rule classes across Shopware 6.
 | Class | Description |
 | :--- | :--- |
 | [Shopware\Core\System\Currency\Rule\CurrencyRule](https://github.com/shopware/platform/blob/trunk/src/Core/System/Currency/Rule/CurrencyRule.php) | Match a specific currency to the current context. |
+

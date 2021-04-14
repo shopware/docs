@@ -59,5 +59,6 @@ The same `$tc` helper function can be used in the templates to access translatio
 
 ## More interesting topics
 
-* [Learning about the global Shopware object](./the-shopware-object.md)
-* [Learning about the VueX state](./using-vuex-state.md)
+* [Learning about the global Shopware object](the-shopware-object.md)
+* [Learning about the VueX state](https://github.com/shopware/docs/tree/575c2fa12ef272dc25744975e2f1e4d44721f0f1/guides/plugins/plugins/administration/using-vuex-state.md)
+

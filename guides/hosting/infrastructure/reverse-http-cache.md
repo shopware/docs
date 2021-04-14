@@ -3,17 +3,20 @@
 ## Overview
 
 A reverse http cache is a cache server placed before the web shop. If you are not familiar with http caching, please see our [http cache concept](../../../concepts/framework/http_cache.md). The reverse http cache needs the following capabilities to fully function with Shopware:
-- Able to differentiate the request with multiple cookies
-- Allow clearing the cache using a web request for a specific site or with `/` for all pages
 
-{% hint style="info" %} In this guide, we will use Varnish as example for an http cache. {% endhint %}
+* Able to differentiate the request with multiple cookies
+* Allow clearing the cache using a web request for a specific site or with `/` for all pages
+
+{% hint style="info" %}
+In this guide, we will use Varnish as example for an http cache.
+{% endhint %}
 
 ### The example Setup with Varnish
 
 ![](../../../.gitbook/assets/reverse_proxy_setup.svg)
 
-
 At first we need to activate the reverse proxy support in Shopware. To enable it we need to create a new file in `config/packages/storefront.yaml`
+
 ```yaml
 storefront:
     csrf:
@@ -28,14 +31,14 @@ storefront:
         # Max parallel invalidations at same time for a single worker
         max_parallel_invalidations: 3
         # Redis Storage for the http cache tags
-        redis_url: "redis://redis" 
+        redis_url: "redis://redis"
 ```
 
 Also set `SHOPWARE_HTTP_CACHE_ENABLED=1` in your `.env` file.
 
 As Shopware is now prepared to work with a reverse proxy, we need to configure our Varnish too using a Shopware specific configuration. Below you can find an example Varnish configuration.
 
-```vcl
+```text
 vcl 4.0;
 
 import std;
@@ -183,7 +186,7 @@ sub vcl_backend_response {
 sub vcl_deliver {
     ## we don't want the client to cache
     set resp.http.Cache-Control = "max-age=0, private";
-    
+
     # remove link header, if session is already started to save client resources
     if (req.http.cookie ~ "session-") {
         unset resp.http.Link;
@@ -202,3 +205,4 @@ sub vcl_deliver {
 ```
 
 To verify if it works, you can look for a new response header `X-Cache` in the http response. It shows you if it was a cache hit or miss.
+

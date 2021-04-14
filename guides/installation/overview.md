@@ -4,15 +4,15 @@
 
 There are a couple of ways to get Shopware running on your system. Depending on what best suits your development environment, you have the following choices:
 
-* [Docker](./docker.md): The docker installation is the easiest way to get a running Shopware 6.
-* [MAMP](./mamp.md): For quick and easy installation you can also use MAMP tool on mac.
-* [Valet+](./valet.md): You can install Shopware with the epl of Valet+, which is a fork of laravel/valet. 
-* [Dockware](./dockware.md): This is a managed docker setup for Shopware 6 by shopware agency dasistweb.
-* [Installation from scratch](./from-scratch.md): You can install Shopware 6 locally. However, be aware that this will be the more complex solution since additional or changed system requirements need to be managed by you.
+* [Docker](docker.md): The docker installation is the easiest way to get a running Shopware 6.
+* [MAMP](mamp.md): For quick and easy installation you can also use MAMP tool on mac.
+* [Valet+](valet.md): You can install Shopware with the epl of Valet+, which is a fork of laravel/valet. 
+* [Dockware](dockware.md): This is a managed docker setup for Shopware 6 by shopware agency dasistweb.
+* [Installation from scratch](from-scratch.md): You can install Shopware 6 locally. However, be aware that this will be the more complex solution since additional or changed system requirements need to be managed by you.
 
 Did you know that there's a video available to this topic? Please take a look:
 
-{% embed url="https://www.youtube.com/watch?v=ML1QyUr0wsk" %}
+{% embed url="https://www.youtube.com/watch?v=ML1QyUr0wsk" caption="" %}
 
 ## Prerequisites
 
@@ -92,7 +92,8 @@ Various
 * Zend Opcache \(256M or more\)
 * Webserver with HTTP2 support
 
-{% hint style="info" %} Adminer \([https://www.adminer.org/](https://www.adminer.org/)\) is our recommended database administration tool since it has better support for binary data types.
+{% hint style="info" %}
+Adminer \([https://www.adminer.org/](https://www.adminer.org/)\) is our recommended database administration tool since it has better support for binary data types.
 {% endhint %}
 
 ### Requirements for docker setup
@@ -153,8 +154,8 @@ Otherwise, the Shopware platform code would be placed into a `vendor/shopware/pl
 
 As already mentioned, there are several ways to install Shopware. So we got you covered, no matter which operation system or environment you like to use. Head over to whatever way you like:
 
-* [Docker](./docker.md)
-* [Dockware](./dockware.md)
-* [Valet+](./valet.md)
-* [MAMP](./mamp.md)
+* [Docker](docker.md)
+* [Dockware](dockware.md)
+* [Valet+](valet.md)
+* [MAMP](mamp.md)
 

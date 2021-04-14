@@ -4,7 +4,7 @@ Though the Admin API and the Store API serve very different purposes, they have 
 
 ## Querying data
 
-For the Admin API these apply to the `/search` endpoint, whilst for the Store API they apply to almost every endpoint that returns a list of records. 
+For the Admin API these apply to the `/search` endpoint, whilst for the Store API they apply to almost every endpoint that returns a list of records.
 
 It starts with a very simple underlying concept, which encapsulates your entire search description in one generic object, referred to as the **search criteria**.
 
@@ -19,6 +19,4 @@ There are some additional instructions that can be specified using **request hea
 Here you find a common approach regarding the way that Shopware provides endpoint references for its APIs:
 
 {% page-ref page="generated-reference.md" %}
-
-
 

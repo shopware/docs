@@ -13,7 +13,7 @@
         <!-- Translatable, A description of your app -->
         <description>A description</description>
         <description lang="de-DE">Eine Beschreibung</description>
-        
+
         <author>Your Company Ltd.</author>
         <copyright>(c) by Your Company Ltd.</copyright>
         <version>1.0.0</version>
@@ -49,7 +49,7 @@
         <read>product</read>
         <create>product</create>
         <update>product</update>
-        
+
         <delete>order</delete>
     </permissions>
     <!-- Optional -->

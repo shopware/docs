@@ -1,26 +1,20 @@
-# Overview
+# Using the data handling
+
 The Shopware 6 Administration allows you to fetch and write nearly everything in the database. This guide will teach you the basics of the data handling.
 
 ## Prerequisites
-All you need for this guide is a running Shopware 6 instance and full access to both the files, as well as the command line and preferably registered module.
-Of course you'll have to understand JavaScript, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation.
 
-Considering that the data handling in the administration is remotely operating the Data Abstraction Layer its highly encouraged
-to read the articles [Reading data with the DAL](../framework/data-handling/reading-data.md) and [Writing data with the DAL](../framework/data-handling/writing-data.md).
+All you need for this guide is a running Shopware 6 instance and full access to both the files, as well as the command line and preferably registered module. Of course you'll have to understand JavaScript, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation.
 
- ## Relevant classes
-`Repository`: Allows to send requests to the server - used for all CRUD operations
-`Entity`: Object for a single storage record
-`EntityCollection`: Enable object-oriented access to a collection of entities
-`SearchResult`: Contains all information available through a search request
-`RepositoryFactory`: Allows to create a repository for an entity
-`Context`: Contains the global state of the administration (language, version, auth, ...)
-`Criteria`: Contains all information for a search request (filter, sorting, pagination, ...)
+Considering that the data handling in the administration is remotely operating the Data Abstraction Layer its highly encouraged to read the articles [Reading data with the DAL](../framework/data-handling/reading-data.md) and [Writing data with the DAL](../framework/data-handling/writing-data.md).
+
+## Relevant classes
+
+`Repository`: Allows to send requests to the server - used for all CRUD operations `Entity`: Object for a single storage record `EntityCollection`: Enable object-oriented access to a collection of entities `SearchResult`: Contains all information available through a search request `RepositoryFactory`: Allows to create a repository for an entity `Context`: Contains the global state of the administration \(language, version, auth, ...\) `Criteria`: Contains all information for a search request \(filter, sorting, pagination, ...\)
 
 ## The repository service
-Accessing the Shopware API in the Administration is done by using the repository service, which can be injected with a [bottleJs](https://github.com/young-steveo/bottlejs) dependency injection container.
-In the Shopware administration, there's a wrapper that makes `bottleJs` work with the [inject / provide](https://vuejs.org/v2/api/#provide-inject) from [`Vue`](https://vuejs.org/).
-In short: You can use the `inject` key in your component configuration to fetch services from the `bottleJs` DI container, such as the `repositoryFactory`, that you will need in order to get a repository for a single entity.
+
+Accessing the Shopware API in the Administration is done by using the repository service, which can be injected with a [bottleJs](https://github.com/young-steveo/bottlejs) dependency injection container. In the Shopware administration, there's a wrapper that makes `bottleJs` work with the [inject / provide](https://vuejs.org/v2/api/#provide-inject) from [`Vue`](https://vuejs.org/). In short: You can use the `inject` key in your component configuration to fetch services from the `bottleJs` DI container, such as the `repositoryFactory`, that you will need in order to get a repository for a single entity.
 
 Add those lines to your component configuration:
 
@@ -38,7 +32,7 @@ const productRepository = this.repositoryFactory.create('product')
 
 Note: You can also change some options in the repository, with the third parameter:
 
-```js
+```javascript
 Component.register('swag-basic-example', {
     inject: ['repositoryFactory'],
 
@@ -59,14 +53,14 @@ Component.register('swag-basic-example', {
     }
 });
 ```
-Note: The version 1 used in the options is just an example, how to select a version.
-Then again the default would be the newest version. There are no other options.
+
+Note: The version 1 used in the options is just an example, how to select a version. Then again the default would be the newest version. There are no other options.
 
 ## Working with the criteria class
-To fetch data from the server, the repository has a `search` function. Each repository function requires the API `context` and `criteria` class, witch contains all functionality of the core criteria class.
-If you want to see all the options take a look at the file `src/Administration/Resources/app/administration/src/core/data/criteria.data.js`.
 
-```js
+To fetch data from the server, the repository has a `search` function. Each repository function requires the API `context` and `criteria` class, witch contains all functionality of the core criteria class. If you want to see all the options take a look at the file `src/Administration/Resources/app/administration/src/core/data/criteria.data.js`.
+
+```javascript
 Shopware.Component.register('swag-basic-example', {
     inject: ['repositoryFactory'],
 
@@ -92,7 +86,7 @@ Shopware.Component.register('swag-basic-example', {
         criteria.setLimit(10);
         criteria.setTerm('foo');
         criteria.setIds(['some-id', 'some-id']); // Allows to provide a list of ids which are used as a filter
-        
+
         /**
             * Configures the total value of a search result.
             * 0 - no total count will be selected. Should be used if no pagination required (fastest)
@@ -129,9 +123,10 @@ Shopware.Component.register('swag-basic-example', {
 ```
 
 ## How to fetch a single entity
+
 Since the context of an edit or update form is usually a single root entity, the data handling diverges here from the Data Abstraction Layer and provides loading of a single resource from the Admin API.
 
-```js
+```javascript
 Shopware.Component.register('swag-basic-example', {
     inject: ['repositoryFactory'],
 
@@ -147,10 +142,10 @@ Shopware.Component.register('swag-basic-example', {
             return this.repositoryFactory.create('product');
         }
     },
-    
+
     created() {
         const entityId = 'some-id';
-        
+
         this.productRepository
             .get(entityId, Shopware.Context.api)
             .then(entity => {
@@ -161,9 +156,10 @@ Shopware.Component.register('swag-basic-example', {
 ```
 
 ## Update an entity
+
 The data handling contains change tracking and sends only changed properties to the Admin API endpoint. Please be aware that in order to be as transparent as possible, updating data will not be handled automatically. A manual update is mandatory.
 
-```js
+```javascript
 Shopware.Component.register('swag-basic-example', {
     inject: ['repositoryFactory'],
 
@@ -212,9 +208,10 @@ Shopware.Component.register('swag-basic-example', {
 ```
 
 ## Delete an entity
+
 The `delete` method sends a `delete` request for a provided id. To delete multiple entities at once use the `syncDeleted` method by passing an array of `ids`.
 
-```js
+```javascript
 Shopware.Component.register('swag-basic-example', {
     inject: ['repositoryFactory'],
 
@@ -233,9 +230,10 @@ Shopware.Component.register('swag-basic-example', {
 ```
 
 ## Create an entity
+
 Although entities are detached from the data handling once retrieved or created they still must be set up through a repository. You can create an entity by using the `this.repositoryFactory.create()` method, fill it with data and save it as seen below:
 
-```js
+```javascript
 Shopware.Component.register('swag-basic-example', {
     inject: ['repositoryFactory'],
 
@@ -257,16 +255,17 @@ Shopware.Component.register('swag-basic-example', {
         this.entity = this.manufacturerRepository.create(Shopware.Context.api);
 
         this.entity.name = 'test';
-        
+
         this.manufacturerRepository.save(this.entity, Shopware.Context.api);
     }
 });
 ```
 
 ## Working with associations
+
 Each association can be accessed via normal property access:
 
-```js
+```javascript
 Shopware.Component.register('swag-basic-example', {
     inject: ['repositoryFactory'],
 
@@ -316,12 +315,13 @@ Shopware.Component.register('swag-basic-example', {
 ```
 
 ### Set a ManyToOne
+
 If you have a ManyToOne association, you can write changes as seen below:
 
-```js
+```javascript
 Shopware.Component.register('swag-basic-example', {
     inject: ['repositoryFactory'],
-    
+
     template,
 
     data: function () {
@@ -355,9 +355,10 @@ Shopware.Component.register('swag-basic-example', {
 ```
 
 ### Working with lazy loaded associations
-In most cases, *ToMany* associations can be loaded by adding a the association with the `.addAsscoiation()` method of the Criteria object.
 
-```js
+In most cases, _ToMany_ associations can be loaded by adding a the association with the `.addAsscoiation()` method of the Criteria object.
+
+```javascript
 Shopware.Component.register('swag-basic-example', {
     inject: ['repositoryFactory'],
 
@@ -392,14 +393,14 @@ Shopware.Component.register('swag-basic-example', {
 });
 ```
 
-
 ### Working with OneToMany associations
+
 The following example shows how to create a repository based on associated data. In this case the `priceRepository` contains associated `prices` to the product with the `id` 'some-id'.
 
-```js
+```javascript
 Shopware.Component.register('swag-basic-example', {
     inject: ['repositoryFactory'],
-   
+
     template,
 
     data: function () {
@@ -434,7 +435,7 @@ Shopware.Component.register('swag-basic-example', {
                 this.product = product;
             });
     },
-    
+
     methods: {
         loadPrices() {
             this.priceRepository
@@ -471,12 +472,13 @@ Shopware.Component.register('swag-basic-example', {
 ```
 
 ### Working with ManyToMany associations
+
 The following example shows how to create a repository based on associated data. In this case the `categoryRepository` contains associated categories to the product with the `id` 'some-id'.
 
-```js
+```javascript
 Shopware.Component.register('swag-basic-example', {
     inject: ['repositoryFactory'],
-    
+
     template,
 
     data: function () {
@@ -511,7 +513,7 @@ Shopware.Component.register('swag-basic-example', {
                 this.product = product;
             });
     },
-    
+
     methods: {
         loadCategories() {
             this.categoryRepository
@@ -520,13 +522,13 @@ Shopware.Component.register('swag-basic-example', {
                     this.categories = categories;
                 });
         },
-        
+
         addCategoryToProduct(category) {
             this.categoryRepository
                 .assign(category.id, Shopware.Context.api)
                 .then(this.loadCategories);
         },
-        
+
         removeCategoryFromProduct(categoryId) {
             this.categoryRepository
                 .delete(categoryId, Shopware.Context.api)
@@ -537,6 +539,7 @@ Shopware.Component.register('swag-basic-example', {
 ```
 
 ### Working with local associations
+
 In case of a new entity, the associations can not be sent directly to the server using the repository, because the parent entity isn't saved yet. For example: You can not add prices to a product which is not even saved in the database yet.
 
 For this case the association can be used as storage as well and will be updated with the parent entity. In the following examples, `this.productRepository.save(this.product, Shopware.Context.api)` will send the prices and category changes.
@@ -544,9 +547,10 @@ For this case the association can be used as storage as well and will be updated
 Notice: It is mandatory to `add` entities to collections in order to get reactive data for the UI.
 
 #### Working with local OneToMany associations
+
 The following example shows how to create a repository based on associated data. In this case the `priceRepository` contains associated `prices` to the product with the `id` 'some-id'.
 
-```js
+```javascript
 Shopware.Component.register('swag-basic-example', {
     inject: ['repositoryFactory'],
 
@@ -616,9 +620,10 @@ Shopware.Component.register('swag-basic-example', {
 ```
 
 #### Working with local ManyToMany associations
+
 The following example shows how to create a repository based on associated data. In this case the `categoryRepository` contains associated categories to the product with the `id` 'some-id'.
 
-```js
+```javascript
 Shopware.Component.register('swag-basic-example', {
     inject: ['repositoryFactory'],
 
@@ -670,7 +675,7 @@ Shopware.Component.register('swag-basic-example', {
 
             this.product.prices.add(newPrice);
         },
-        
+
         savePrice() {
             this.productRepository.save(this.product)
         },
@@ -688,5 +693,5 @@ Shopware.Component.register('swag-basic-example', {
 
 ## Next steps
 
-As this is very similar to the DAL it might be interesting to learn more about that.
-For this, head over to the section about the [data handling](../framework/data-handling/README.md) in PHP.
+As this is very similar to the DAL it might be interesting to learn more about that. For this, head over to the section about the [data handling](../framework/data-handling/) in PHP.
+

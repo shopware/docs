@@ -4,14 +4,13 @@ New in Shopware 6 is the possibility to properly require on other plugins to be 
 
 ## Setup
 
-Each plugin for Shopware 6 has to own a `composer.json` file for it to be a valid plugin.
-Creating a plugin is not explained here, make sure to read our [Plugin base guide](../plugin-base-guide.md) first.
+Each plugin for Shopware 6 has to own a `composer.json` file for it to be a valid plugin. Creating a plugin is not explained here, make sure to read our [Plugin base guide](../plugin-base-guide.md) first.
 
 Since every plugin has to own a `composer.json` file, you can simply refer to this plugin by its technical name and its version mentioned in the respective plugin's `composer.json`.
 
 So, those are example lines of the `SwagBasicExample` plugin's `composer.json`:
 
-```json
+```javascript
 {
     "name": "swag/swag-basic-example",
     "description": "Plugin quick start plugin",
@@ -25,7 +24,7 @@ Important to note is the `name` as well as the `version` mentioned here, the res
 In order to require the `SwagBasicExample` plugin now, you simply have to add these two information to your own `composer.json` as a key value pair:
 
 {% code title="<plugin root>/composer.json" %}
-```json
+```javascript
 {
     "name": "swag/plugin-dependency",
     "description": "Plugin requiring other plugins",
@@ -68,5 +67,6 @@ Now your plugin isn't installable anymore, until that requirement is fulfilled.
 
 ## More interesting topics
 
-* [Using composer dependencies](./using-composer-dependencies.md)
-* [Using NPM dependencies](./using-npm-dependencies.md)
+* [Using composer dependencies](using-composer-dependencies.md)
+* [Using NPM dependencies](using-npm-dependencies.md)
+

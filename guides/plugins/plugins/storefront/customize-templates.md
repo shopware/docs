@@ -6,8 +6,7 @@ This guide will cover customizing Storefront templates with a plugin.
 
 ## Prerequisites
 
-As most guides, this guide is built upon the [plugin base guide](../plugin-base-guide.md), so you might want to have a look at it.
-Other than that, knowing [Twig](https://twig.symfony.com/) is a big advantage for this guide, but that's not necessary.
+As most guides, this guide is built upon the [plugin base guide](../plugin-base-guide.md), so you might want to have a look at it. Other than that, knowing [Twig](https://twig.symfony.com/) is a big advantage for this guide, but that's not necessary.
 
 ## Getting started
 
@@ -61,8 +60,7 @@ To override it now, just add the very same block into your custom file and repla
 
 If you wanted to append your text to the logo instead of replacing it, you could add a line like this to your override: `{{ parent() }}`
 
-And that's it already, you're done already. You might have to clear the cache and refresh your storefront to see your changes in action.
-This can be done by using the command following command inside your command line.
+And that's it already, you're done already. You might have to clear the cache and refresh your storefront to see your changes in action. This can be done by using the command following command inside your command line.
 
 {% tabs %}
 {% tab title="Development template" %}
@@ -70,6 +68,7 @@ This can be done by using the command following command inside your command line
 ./psh.phar cache
 ```
 {% endtab %}
+
 {% tab title="Production template" %}
 ```bash
 ./bin/console cache:clear
@@ -95,11 +94,10 @@ Once again, the plugin called [FroshDevelopmentHelper](https://github.com/Friend
 
 ## Next steps
 
-You're able to customize templates now, which is a good start.
-However, there's a few more things you should definitely learn here:
+You're able to customize templates now, which is a good start. However, there's a few more things you should definitely learn here:
 
-* [Adding styles](./add-custom-styling.md)
-* [Adding translations](./add-translations.md)
-* [Using icons](./add-icons.md)
-* [Using custom assets](./add-custom-assets.md)
+* [Adding styles](add-custom-styling.md)
+* [Adding translations](add-translations.md)
+* [Using icons]()
+* [Using custom assets](add-custom-assets.md)
 

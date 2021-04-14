@@ -6,15 +6,13 @@ This small guide will bring a short example on how to react on changes for the c
 
 ## Prerequisites
 
-This guide was built upon both the [plugin base guide](../plugin-base-guide.md) as well as the [Adding a cookie to the consent manager guide](./add-cookie-to-manager.md), so make sure to know those beforehand.
-Also nice to know is the guide about [Reacting to javascript events](./reacting-to-javascript-events.md), since this will be done here,
-same as how to create and load a JavaScript file in the first place, which can be found [here](./add-custom-javascript.md).
+This guide was built upon both the [plugin base guide](../plugin-base-guide.md) as well as the [Adding a cookie to the consent manager guide](add-cookie-to-manager.md), so make sure to know those beforehand. Also nice to know is the guide about [Reacting to javascript events](reacting-to-javascript-events.md), since this will be done here, same as how to create and load a JavaScript file in the first place, which can be found [here](add-custom-javascript.md).
 
 ## Reacting to cookie configuration changes via JavaScript
 
 Everytime a user saves a cookie configuration, an event is published to the document's event emitter. The event only contains the changeset for the cookie configuration as an object.
 
-In the following example we'll check for a cookie with name `cookie-key-1`, just like we created one of the cookies in our guide about [Adding a cookie to the consent manager](./add-cookie-to-manager.md).
+In the following example we'll check for a cookie with name `cookie-key-1`, just like we created one of the cookies in our guide about [Adding a cookie to the consent manager](add-cookie-to-manager.md).
 
 You can listen for this event using the following lines:
 
@@ -55,3 +53,4 @@ if (module.hot) {
 {% endcode %}
 
 And that's it for this guide!
+

@@ -1,2 +1,2 @@
-# Server Config Reference
+# Server
 

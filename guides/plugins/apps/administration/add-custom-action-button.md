@@ -25,11 +25,10 @@ To get those buttons, you start in the `admin` section of your manifest file. Th
         </action-button>
     </admin>
 </manifest>
-
 ```
 {% endcode %}
 
-For a complete reference of the structure of the manifest file take a look at the [Manifest reference](./../../../../resources/references/app-reference/manifest-reference.md).
+For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference.md).
 
 An action button must have the following attributes:
 

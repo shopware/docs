@@ -69,7 +69,7 @@ To create a new one, make sure to set a context token header. If you want to, yo
 
 If you want to delete your cart, you can sent a `DELETE` request to the same endpoint.
 
-##  Adding new items to the cart
+## Adding new items to the cart
 
 The api `POST /store-api/v3/checkout/cart/line-item` can be used to add multiple new line items.
 
@@ -243,7 +243,7 @@ Shopware's data model is capable of representing multiple deliveries or shipment
 
 A transaction represents a payment for an order. It contains a payment method, an amount and a state. An order can have multiple payments \(for example, if a payment fails, you can [switch methods](handling-the-payment.md#handle-exceptions) and create a second transaction with an alternative payment method\).
 
-### `order.addresses` 
+### `order.addresses`
 
 An order can have multipel associated addresses \(e.g. for shipping or deliverie/s\). Those will be passed in the `addresses` association. You can map them using their references in the order, such as `order.billingMethodId` or `order.deliveries[*].shippingOrderAddressId` .
 
@@ -315,6 +315,4 @@ Also here, the api basic parameters \(`filter`, `aggregations`, etc.\) can be us
     }
 ]
 ```
-
-
 

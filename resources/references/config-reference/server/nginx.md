@@ -1,10 +1,10 @@
-# Nginx Config Reference
+# Nginx
 
 {% hint style="info" %}
 The document root must always point to the public folder, to ensure all functionality works.
 {% endhint %}
 
-```
+```text
 server {
     listen 80;
 
@@ -14,7 +14,7 @@ server {
     client_max_body_size 128M;
 
     root __DOCUMENT_ROOT__/public;
-    
+
     # Shopware install / update
     location /recovery/install {
         index index.php;
@@ -71,3 +71,4 @@ server {
     }
 }
 ```
+

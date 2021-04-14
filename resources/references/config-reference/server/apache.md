@@ -1,10 +1,10 @@
-# Apache Config Reference
+# Apache
 
 {% hint style="info" %}
 The document root must always point to the public folder, to ensure all functionality works.
 {% endhint %}
 
-```
+```text
 <VirtualHost *:80>
    ServerName "HOST_NAME"
    DocumentRoot _SHOPWARE_LOCATION_/public
@@ -20,3 +20,4 @@ The document root must always point to the public folder, to ensure all function
    CustomLog ${APACHE_LOG_DIR}/shopware.access.log combined
 </VirtualHost>
 ```
+

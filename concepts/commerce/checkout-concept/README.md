@@ -4,6 +4,9 @@ The checkout in Shopware deals with the entire process of turning a cart into an
 
 {% page-ref page="cart.md" %}
 
+{% endpage-ref %}
+
 {% page-ref page="orders.md" %}
 
-{% page-ref page="payments.md" %}
+{% endpage-ref %}
+

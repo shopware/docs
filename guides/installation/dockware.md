@@ -2,7 +2,7 @@
 
 Dockware is basically a managed docker setup for Shopware 6. It makes it possible to start Shopware 6 in just a couple of seconds using dockware.io. It already comes with everything you need for a smooth development workflow. This includes all available Shopware 6 versions, MySQL, Adminer, Mailcatcher, easy PHP switching, XDebug, useful make commands and way more.
 
-Dockware is maintained by *dasistweb GmbH*. They provide a detailed [documentaion](https://dockware.io/docs) as well. This way, we'll cover just the basics here - For details please feel free to refer to the original dockware docs at any time.
+Dockware is maintained by _dasistweb GmbH_. They provide a detailed [documentaion](https://dockware.io/docs) as well. This way, we'll cover just the basics here - For details please feel free to refer to the original dockware docs at any time.
 
 ## Dockware versions
 
@@ -30,7 +30,7 @@ First things first, please install Docker on your local maschine.
   * [Docker for Fedora](https://docs.docker.com/install/linux/docker-ce/fedora/)
 
 * For Windows operating system. please download the latest version of [Docker desktop for Windows](https://hub.docker.com/editions/community/docker-ce-desktop-windows/).
-* If using Mac, please start by downloading the latest version of 
+* If using Mac, please start by downloading the latest version of
 
   [Docker Desktop](https://hub.docker.com/editions/community/docker-ce-desktop-mac/) for Mac and install it.
 
@@ -41,7 +41,8 @@ Afterwards, you are almost ready to start. You just need to use the following co
 $ docker run --rm -p 80:80 dockware/dev:latest
 ```
 
-{% hint style="danger" %} Beware that this is meant for quickstart. The parameter `--rm` will throw everything away. If the container is stopped the whole database etc. will be gone. So if you want a persistent solution, head over to the "Using docker-compose" paragraph.
+{% hint style="danger" %}
+Beware that this is meant for quickstart. The parameter `--rm` will throw everything away. If the container is stopped the whole database etc. will be gone. So if you want a persistent solution, head over to the "Using docker-compose" paragraph.
 {% endhint %}
 
 This command will install Dockware \#dev version, which is based on `Production` template. If you want to use `development` template, you need to use \#contribute version. As soon as the docker image is downloaded and dockware is ready, you will see this text:
@@ -135,16 +136,17 @@ Open the "src" folder with your preferred IDE and wait until finished loading. T
 
 That's it, you're done and ready to develop your own plugins and projects.
 
-{% hint style="info" %} Default credentials for dockware can be found at [https://dockware.io/docs\#default-credentials](https://dockware.io/docs#default-credentials)
+{% hint style="info" %}
+Default credentials for dockware can be found at [https://dockware.io/docs\#default-credentials](https://dockware.io/docs#default-credentials)
 {% endhint %}
 
 ## Next steps
 
-Would you like to explore alternative ways to install Shopware? You can install Shopware on Mac with the help of other
-tools:
+Would you like to explore alternative ways to install Shopware? You can install Shopware on Mac with the help of other tools:
 
-* [Docker](./docker.md)
-* [Vagrant](./vagrant.md)
-* [MAMP](./mamp.md)
+* [Docker](docker.md)
+* [Vagrant](vagrant.md)
+* [MAMP](mamp.md)
 
-Otherwise, you might want to start writing your very own plugin. Head over to [Plugin base guide](./../plugins/plugins/plugin-base-guide.md) to get a grip on that topic.
+Otherwise, you might want to start writing your very own plugin. Head over to [Plugin base guide](../plugins/plugins/plugin-base-guide.md) to get a grip on that topic.
+

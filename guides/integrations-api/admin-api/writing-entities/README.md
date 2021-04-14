@@ -153,7 +153,7 @@ When deleting data, it can happen that this is prevented by foreign key restrict
 
 ## Cloning an entity
 
-To clone an entity the route `POST /api/v3/_action/clone/{entity}/{id}` can be used. The API clones all associations which are marked with `CascadeDelete`. 
+To clone an entity the route `POST /api/v3/_action/clone/{entity}/{id}` can be used. The API clones all associations which are marked with `CascadeDelete`.
 
 {% hint style="success" %}
 The behaviour can be disabled explicitly by setting the constructor argument for `CascadeDelete` to false in the entity definition

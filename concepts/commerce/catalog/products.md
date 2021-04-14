@@ -20,7 +20,7 @@ Different variations of a product can be modeled using _product variants_. Produ
 
 ![Variant model](../../../.gitbook/assets/image%20%2810%29.png)
 
-However, next to the field inheritance, it is also useful to attach some additional properties to be able to differ product variants. For that reason, it is critical to understand the difference between _properties_ and _options_: 
+However, next to the field inheritance, it is also useful to attach some additional properties to be able to differ product variants. For that reason, it is critical to understand the difference between _properties_ and _options_:
 
 **Properties** are used to model facts about a product, but usually different product variants share these facts. We can refer to properties as _non variant defining_. They could be useful to represent the following information:
 
@@ -38,5 +38,5 @@ It is important to understand the difference between those two, because both pro
 
 ### Configurator
 
-When a variant product is loaded for a [Store API](../../api/store-api.md)-scoped request, Shopware assembles a configurator object which includes all different property groups and the corresponding variants. This way client applications, such as the [Storefront](../../../guides/plugins/plugins/storefront/) or the [PWA](../../../products/pwa-1/) can display the different variant options of the product.
+When a variant product is loaded for a [Store API](../../api/store-api.md)-scoped request, Shopware assembles a configurator object which includes all different property groups and the corresponding variants. This way client applications, such as the [Storefront](../../../guides/plugins/plugins/storefront/) or the [PWA](../../../products/pwa-1.md) can display the different variant options of the product.
 

@@ -1,4 +1,4 @@
-# Add own component 
+# Add custom component
 
 ## Overview
 
@@ -10,13 +10,13 @@ In this example, you will create a component, that will print a 'Hello world!' e
 
 This guide **does not** explain how to create a new plugin for Shopware 6. Head over to our Plugin base guide to learn how to create a plugin at first:
 
-{% page-ref page="./../plugin-base-guide.md" %}
+{% page-ref page="../plugin-base-guide.md" %}
 
 If you want to work with entities in your custom component or page, it might be useful to take a look at how to create custom entity guide first:
 
-{% page-ref page="./../framework/data-handling/add-custom-complex-data.md" %}
+{% page-ref page="../framework/data-handling/add-custom-complex-data.md" %}
 
-Especially if you want to add a new page for an own module, you should consider to look at the process on how to add a custom module first. 
+Especially if you want to add a new page for an own module, you should consider to look at the process on how to add a custom module first.
 
 {% page-ref page="add-custom-module.md" %}
 
@@ -34,7 +34,8 @@ Usually there's one question you have to ask yourself first: Will your new compo
 
 Otherwise, if it's going to be a general component to be used by other components, the following will be the proper path. For this example, this component scenario is used. `<plugin-root>/src/Resources/app/administration/app/src/component/<name of your plugin>/<name of your component>`
 
-{% hint style="info" %} Using this path is **not** a hard requirement, but rather a recommendation. This way, third party developers having a glance at your code will get used to it real quick, because you stuck to Shopware 6's core conventions.
+{% hint style="info" %}
+Using this path is **not** a hard requirement, but rather a recommendation. This way, third party developers having a glance at your code will get used to it real quick, because you stuck to Shopware 6's core conventions.
 {% endhint %}
 
 Since the latter example is being used, this is the path being created in the plugin now: `<plugin-root>/src/Resources/app/administration/app/src/component/custom-component/hello-world`
@@ -107,9 +108,7 @@ This is a [shorthand](https://alligator.io/js/object-property-shorthand-es6/), w
 
 ## Loading the JS files
 
-As mentioned above, Shopware 6 looks for a `main.js` file in your plugin. Its contents get minified into a new file named after your plugin and will be moved to the `public` directory of the Shopware 6 root directory.
-Given this plugin is named "CustomComponent", the minified javascript code for this example would be located under `<plugin root>/src/Resources/public/administration/js/custom-component.js`,
-once you run the following command in your shopware root directory:
+As mentioned above, Shopware 6 looks for a `main.js` file in your plugin. Its contents get minified into a new file named after your plugin and will be moved to the `public` directory of the Shopware 6 root directory. Given this plugin is named "CustomComponent", the minified javascript code for this example would be located under `<plugin root>/src/Resources/public/administration/js/custom-component.js`, once you run the following command in your shopware root directory:
 
 {% tabs %}
 {% tab title="Development template" %}
@@ -117,6 +116,7 @@ once you run the following command in your shopware root directory:
 ./psh.phar administration:build
 ```
 {% endtab %}
+
 {% tab title="Production template" %}
 ```bash
 ./bin/build-administration.sh
@@ -146,11 +146,11 @@ Your minified javascript file will now be loaded in production environments.
 
 ## Next steps
 
-You've now added a custom component, including a little template.
-However, there's more discover here.
+You've now added a custom component, including a little template. However, there's more discover here.
 
-* [More about templates](./writing-templates.md)
-* [Add some styling to your component](./add-custom-styles.md)
-* [Use shortcuts for your component](./add-shortcuts.md)
+* [More about templates](writing-templates.md)
+* [Add some styling to your component](add-custom-styles.md)
+* [Use shortcuts for your component](https://github.com/shopware/docs/tree/575c2fa12ef272dc25744975e2f1e4d44721f0f1/guides/plugins/plugins/administration/add-shortcuts.md)
 
-Furthermore, what about [customizing other components](./customizing-components.md), instead of creating new ones.
+Furthermore, what about [customizing other components](customizing-components.md), instead of creating new ones.
+

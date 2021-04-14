@@ -8,7 +8,7 @@ This is a modified version of the [official Installation Guide](https://github.c
 
 ## Prerequisites
 
-You should have a look at our [overview](./overview.md) before proceeding with this guide. Also, your system should be running [brew](https://brew.sh/) and [composer](https://getcomposer.org/) already.
+You should have a look at our [overview](overview.md) before proceeding with this guide. Also, your system should be running [brew](https://brew.sh/) and [composer](https://getcomposer.org/) already.
 
 ## If you have Valet installed
 

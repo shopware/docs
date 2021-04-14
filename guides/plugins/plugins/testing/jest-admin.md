@@ -1,4 +1,4 @@
-# Jest unit tests in Shopware's administration 
+# Jest unit tests in Shopware's administration
 
 ## Overview
 
@@ -12,18 +12,13 @@ We are using [Jest](https://jestjs.io) as our testing framework. It's a solid fo
 
 Did you know that there's a video available to this topic? Please take a look:
 
-<!-- markdown-link-check-disable -->
-{% embed url="https://www.youtube.com/watch?v=nWUBK3fjwVg" %}
-<!-- markdown-link-check-enable -->
+{% embed url="https://www.youtube.com/watch?v=nWUBK3fjwVg" caption="" %}
 
 ## Prerequisites
 
-This tutorial will have a strong focus on how unit tests should be written when it comes to components in the administration. So please make sure you already know what a unit test is and why we are doing it. Furthermore, you should know what components tests are and what we want to achieve with them.
-You can find a good source for best practices in this Github repository:
+This tutorial will have a strong focus on how unit tests should be written when it comes to components in the administration. So please make sure you already know what a unit test is and why we are doing it. Furthermore, you should know what components tests are and what we want to achieve with them. You can find a good source for best practices in this Github repository:
 
-<!-- markdown-link-check-disable -->
-{% embed url="https://github.com/goldbergyoni/javascript-testing-best-practices" %}
-<!-- markdown-link-check-enable -->
+{% embed url="https://github.com/goldbergyoni/javascript-testing-best-practices" caption="" %}
 
 In addition, you need a running Shopware 6 installation. Your repository used for that should be based on development template, as we need to use some scripts provided by it.
 
@@ -89,8 +84,7 @@ After setting up your component test, you need to write your tests. A good way t
 * set Vue Props and check if component looks correctly
 * interact with the DOM and check if the desired behaviour is happening
 
-However, when it comes to writing component tests for Shopware's administration, there are some further steps to go.
-We will take a look at them in the following paragraphs.
+However, when it comes to writing component tests for Shopware's administration, there are some further steps to go. We will take a look at them in the following paragraphs.
 
 ## Setup for testing Vue components
 
@@ -104,9 +98,10 @@ We are using a global object as an interface for the whole administration. Every
 
 Before you are using the commands make sure that you installed all dependencies for your administration. If you haven't done this already, then you can do it running the following PSH command: `./psh.phar administration:install-dependencies`
 
-In order to run jest unit tests of the administration, you can use the psh commands provided by our development template. 
+In order to run jest unit tests of the administration, you can use the psh commands provided by our development template.
 
-{% hint style="info" %} This only applies to the Shopware provided Administration! If you use unit tests in your plugin, you might need to write your own scripts for that.
+{% hint style="info" %}
+This only applies to the Shopware provided Administration! If you use unit tests in your plugin, you might need to write your own scripts for that.
 {% endhint %}
 
 This command executes all unit tests and shows you the complete code coverage.  
@@ -143,7 +138,6 @@ In the next step we can mount our Vue component which we get from the global Sho
 
 {% code title="test/app/component/form/select/base/sw-multi-select.spec.js" %}
 ```javascript
-
 import 'src/app/component/form/select/base/sw-multi-select';
 
 shallowMount(Shopware.Component.build('sw-multi-select'));
@@ -153,7 +147,7 @@ shallowMount(Shopware.Component.build('sw-multi-select'));
 When we’re testing our vue.js components, we need a way to mount and render the component. Therefore, we use the following methods:
 
 * `mount()`: Creates a Wrapper that contains the mounted and rendered Vue component.
-* `shallowMount()`: Like mount, it creates a Wrapper that contains the mounted and rendered Vue component, 
+* `shallowMount()`: Like mount, it creates a Wrapper that contains the mounted and rendered Vue component,
 
   but with stubbed child components.
 
@@ -165,7 +159,6 @@ Now you can test the component like any other component. Let's try to write our 
 
 {% code title="test/app/component/form/select/base/sw-multi-select.spec.js" %}
 ```javascript
-
 import { shallowMount } from '@vue/test-utils';
 import 'src/app/component/form/select/base/sw-multi-select';
 
@@ -553,10 +546,11 @@ provide: {
 
 ## Next steps
 
-Do you want to see these examples in practise? Head over to our [video tutorial](https://youtu.be/nWUBK3fjwVg) on how
-to write component tests in jest for the Shopware administration. 
+Do you want to see these examples in practise? Head over to our [video tutorial](https://youtu.be/nWUBK3fjwVg) on how to write component tests in jest for the Shopware administration.
 
 Furthermore, you might want to have a look at one of the following guides as well:
-* [Jest tests for the storefront](./jest-storefront.md)
-* [PHPUnit tests](./php-unit.md)
-* [End-to-end tests](./end-to-end-testing.md)
+
+* [Jest tests for the storefront](jest-storefront.md)
+* [PHPUnit tests](php-unit.md)
+* [End-to-end tests](end-to-end-testing.md)
+

@@ -1,4 +1,4 @@
-# Use NPM dependencies
+# Adding NPM dependencies
 
 In this guide you'll learn how add NPM dependencies to your project.
 
@@ -10,7 +10,7 @@ All you need for this guide is a running Shopware 6 instance and full access to 
 
 This guide is also available as a video:
 
-{% embed url="https://www.youtube.com/watch?v=wfBuWdff35c" %}
+{% embed url="https://www.youtube.com/watch?v=wfBuWdff35c" caption="" %}
 
 ## Adding a npm package to the Administration or the Storefront
 
@@ -52,7 +52,7 @@ We proceed from the inside to the outside. We use [`join`](https://nodejs.org/ap
 Once we have installed all the dependencies and registered the package in the build system with an alias, we can use the package in our own code.
 
 {% code title="<plugin root>/src/Resources/app/src/main.js" %}
-```javascript 
+```javascript
 import Plugin from 'src/plugin-system/plugin.class';
 
 // Import logger
@@ -67,7 +67,7 @@ log.init({ initializer: 'INFO' }, (level, tag, msg, params) => {
 export default class ExamplePlugin extends Plugin {
     init() {
         console.log('init');
-      
+
         // Use logger
         log.info('initializer', 'example plugin got started', this);
     }
@@ -79,7 +79,7 @@ We import the function log as well as the constants tag via `destructuring` in t
 
 ## Next steps
 
-Now that you know how to include new `npm` dependencies you might want to create a service with them.
-Learn how to do that in this guide: [How to add a custom-service](../administration/add-custom-service.md)
+Now that you know how to include new `npm` dependencies you might want to create a service with them. Learn how to do that in this guide: [How to add a custom-service](../administration/add-custom-service.md)
 
-If you want to add [composer dependencies](./using-composer-dependencies.md), or even other [plugin dependencies](./add-plugin-dependencies.md), we've got you covered as well.
+If you want to add [composer dependencies](using-composer-dependencies.md), or even other [plugin dependencies](add-plugin-dependencies.md), we've got you covered as well.
+

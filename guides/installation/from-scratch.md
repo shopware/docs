@@ -2,11 +2,13 @@
 
 If it's impossible to get docker up and running on your development environment you can install Shopware 6 locally.
 
-{% hint style="info" %} Be aware this will be by far the more complex solution since additional or changed system requirements need to be managed by you. {% endhint %}
+{% hint style="info" %}
+Be aware this will be by far the more complex solution since additional or changed system requirements need to be managed by you.
+{% endhint %}
 
 ## Prerequisites
 
-Once you set up all the required packages mentioned in the [Installation overview](./overview.md), there are two main goals you need to accomplish.
+Once you set up all the required packages mentioned in the [Installation overview](overview.md), there are two main goals you need to accomplish.
 
 Please note that this guide is rather based on plugin development and contribution. If you need a template for full composer based shop projects, please refer to the [production template](https://github.com/shopware/production).
 
@@ -36,9 +38,9 @@ Please remember to replace `_DEVELOPMENT_DIR_` and `_HOST_NAME_` with your prefe
 
 Make sure following Apache modules are enabled:
 
-- mod_rewrite
-- mod_headers
-- mod_negotiation
+* mod\_rewrite
+* mod\_headers
+* mod\_negotiation
 
 After a quick restart of apache you are done here.
 
@@ -54,7 +56,7 @@ Change this to point to your user directory where your\_user is the name of your
 DocumentRoot /Users/your_user/Sites
 ```
 
-You also need to change the  tag reference right below the DocumentRoot line. This should also be changed to point to your new document root also:
+You also need to change the tag reference right below the DocumentRoot line. This should also be changed to point to your new document root also:
 
 ```text
 <Directory "/Users/your_user/Sites">
@@ -62,7 +64,7 @@ You also need to change the  tag reference right below the DocumentRoot line. Th
 
 ## Setting up Shopware
 
-Before you're able to set up Shopware, you need to checkout our Shopware's repositories. This is explained in the "Preparatory steps" paragraph of the [Installation overview](./overview.md).
+Before you're able to set up Shopware, you need to checkout our Shopware's repositories. This is explained in the "Preparatory steps" paragraph of the [Installation overview](overview.md).
 
 ### Starting Shopware installation
 
@@ -72,7 +74,8 @@ A simple cli installation wizard can be invoked by executing:
 > bin/setup
 ```
 
-{% hint style="info" %} One little note: If something goes wrong during installation check if `.psh.yaml.override` exists. If not restart setup, if yes execute `./psh.phar install` to restart the setup process.
+{% hint style="info" %}
+One little note: If something goes wrong during installation check if `.psh.yaml.override` exists. If not restart setup, if yes execute `./psh.phar install` to restart the setup process.
 {% endhint %}
 
 Voila, Shopware 6 is installed. To be sure the installation succeeded, just open the configured host url in your favorite browser.
@@ -81,7 +84,9 @@ Voila, Shopware 6 is installed. To be sure the installation succeeded, just open
 
 It is important to keep the `platform` and the `development` repository in sync.
 
-{% hint style="danger" %} We highly discourage to update each without the other! {% endhint %}
+{% hint style="danger" %}
+We highly discourage to update each without the other!
+{% endhint %}
 
 The following steps should always yield a positive result:
 

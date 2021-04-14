@@ -21,13 +21,12 @@ In order to create a custom module, you need to define an admin element to defin
         </module>
     </admin>
 </manifest>
-
 ```
 {% endcode %}
 
 For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference.md).
 
-If the user opens the module in the administration your app will receive a request to the given source url. Your app can determine the shop that has opened the module through query parameters added to the url: 
+If the user opens the module in the administration your app will receive a request to the given source url. Your app can determine the shop that has opened the module through query parameters added to the url:
 
 * shop-id: The unique identifier of the shop, where the app was installed
 * shop-url: The URL of the shop, this can later be used to access the Shopware API
@@ -53,3 +52,4 @@ function sendReadyState() {
 ```
 
 This has to be done as soon as everything is loaded so that the loading spinner disappears. If your view is not fully loaded after 5 seconds, it will be aborted.
+

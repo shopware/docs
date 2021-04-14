@@ -6,10 +6,9 @@ In this guide you'll learn how to use filters in the Shopware administration.
 
 ## Prerequisites
 
-This guide requires you to already have a basic plugin running.
-If you don't know how to do this in the first place, have a look at our [Plugin base guide](../plugin-base-guide.md).
+This guide requires you to already have a basic plugin running. If you don't know how to do this in the first place, have a look at our [Plugin base guide](../plugin-base-guide.md).
 
-Furthermore you should have a look at our [add filter](./add-filter.md) guide, since this guide is built upon it.
+Furthermore you should have a look at our [add filter](add-filter.md) guide, since this guide is built upon it.
 
 ## Using the filter
 
@@ -25,12 +24,11 @@ this.$options.filters.example('firstArgument')
 
 ### Filter in Twig templates
 
-If we want to use our filter in Twig templates, we can easily use it by using a pipe `|` and the name of our filter.
-It is also possible to use filters in `v-bind` expressions.
+If we want to use our filter in Twig templates, we can easily use it by using a pipe `|` and the name of our filter. It is also possible to use filters in `v-bind` expressions.
 
 Below you can see two example implementations, how it could be done with single argument filters.
 
-```twig
+```text
 {% block my_custom_block %}
     <p>
        {{ $tc('swag-example.general.myCustomText')|example }}
@@ -38,13 +36,13 @@ Below you can see two example implementations, how it could be done with single 
 {% endblock %}
 ```
 
-```vue
+```text
 <example-component :name="$tc('swag-example.general.myCustomText')|example"></example-component>
 ```
 
 When using multiple arguments, we can pass them as shown below.
 
-```twig
+```text
 {% block my_custom_block %}
     <p>
        {{ $tc('swag-example.general.myCustomText')|example('secondArgument', 'thirdArgument') }}
@@ -52,6 +50,7 @@ When using multiple arguments, we can pass them as shown below.
 {% endblock %}
 ```
 
-```vue
+```text
 <example-component :title="$tc('swag-example.general.myCustomText')|example('secondArgument', 'thirdArgument')"></example-component>
 ```
+

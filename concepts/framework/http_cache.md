@@ -6,14 +6,14 @@ The http cache allows you to cache responses of the shop system. That means the 
 
 If you think about a simple web page, you will usually have a setup like this:
 
-- A user that requests a page
-- The web application generates a result
+* A user that requests a page
+* The web application generates a result
 
 So whenever a user requests a page, Shopware will create a result page individually. If you have many users requesting the same pages, it makes sense to have an additional instance in between:
 
-- A user that requests a page
-- A reverse proxy cache
-- The web application generates a result
+* A user that requests a page
+* A reverse proxy cache
+* The web application generates a result
 
 ![](../../.gitbook/assets/reverse-proxy.svg)
 
@@ -25,9 +25,9 @@ So a reverse proxy is basically a thin layer between user and web application th
 
 Caching is always about questions like:
 
-- Did I return the same page before?
-- Did the content of the page changed meanwhile?
-- Is this page the same for all customers - or will the current customer get another result (e.g. price).
+* Did I return the same page before?
+* Did the content of the page changed meanwhile?
+* Is this page the same for all customers - or will the current customer get another result \(e.g. price\).
 
 The Shopware http cache has a variety of mechanisms to answer these questions.
 
@@ -50,15 +50,15 @@ Shopware uses several client cookies to differentiate the requests. This allows 
 
 #### sw-currency
 
-This cookie will be set when the non-logged in customer with empty cart changes the current currency. Why does Shopware need a seperate cookie for currency?
-It allows us to maximize the cache-hits for non-logged in customers as we seperate the cache as less as possible.
+This cookie will be set when the non-logged in customer with empty cart changes the current currency. Why does Shopware need a seperate cookie for currency? It allows us to maximize the cache-hits for non-logged in customers as we seperate the cache as less as possible.
 
 ### sw-cache-hash
 
-This cookie replaces the `sw-currency` cookie and contains the active rules and active currency. This cookie will be set when the active rules do not match the default anymore (e.g. customer login / items in cart).
+This cookie replaces the `sw-currency` cookie and contains the active rules and active currency. This cookie will be set when the active rules do not match the default anymore \(e.g. customer login / items in cart\).
 
 ### sw-states
 
 This cookie describes the current session in simple tags like `cart-filled` and `logged-in`. When the client tags fit to the response `sw-invalidation-states` header the cache will be skipped.
 
 Example usage for this feature is to save the cache for logged in customers only.
+

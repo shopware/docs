@@ -1,6 +1,6 @@
 # Migrations
 
-Migrations are PHP classes containing database schema changesets. These changesets can be applied or reverted to bring the database into a certain state. You might know the concept of migrations from other Frameworks or Symfony as well. 
+Migrations are PHP classes containing database schema changesets. These changesets can be applied or reverted to bring the database into a certain state. You might know the concept of migrations from other Frameworks or Symfony as well.
 
 ## Adding migrations to a plugin
 
@@ -10,7 +10,7 @@ Each migration filename follows a specific pattern. To ease plugin development, 
 
 ## Modifying the database
 
-Each migration can have two methods. The `update` and `updateDestructive`. The `update` method must contain only non-destructive changes which can be rolled back at any time. The `updateDestructive` method can contain destructive changes, which cannot be reversed, like dropping columns or tables.
-For examples of database migrations please refer to the guide on how to use database migrations:
+Each migration can have two methods. The `update` and `updateDestructive`. The `update` method must contain only non-destructive changes which can be rolled back at any time. The `updateDestructive` method can contain destructive changes, which cannot be reversed, like dropping columns or tables. For examples of database migrations please refer to the guide on how to use database migrations:
 
-{% page-ref url="../../guides/plugins/plugins/plugin-fundamentals/database-migrations.md" %}
+{% page-ref page="migrations.md" %}
+

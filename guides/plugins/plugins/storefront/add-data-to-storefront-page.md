@@ -13,7 +13,7 @@ This guide is built upon our [Plugin base guide](../plugin-base-guide.md), so ke
 Also the following knowledge is necessary, even though some of them are covered here as well:
 
 * Knowing how to [listen to events by using a subscriber](../plugin-fundamentals/listening-to-events.md)
-* Knowing how to [customize storefront templates](./customize-templates.md)
+* Knowing how to [customize storefront templates](customize-templates.md)
 * Knowing how to [read data using our data abstraction layer](../framework/data-handling/reading-data.md)
 
 ## Adding data to the storefront
@@ -112,10 +112,7 @@ class AddDataToPage implements EventSubscriberInterface
 }
 ```
 
-So you should know and understand the first few lines if you've read our guide about [reading data](../framework/data-handling/reading-data.md) first.
-Make sure to also understand the usage of aggregations, since this is what is done here.
-The only main difference you might notice is, that we're using the `aggregate()` method instead of the `search()` method.
-This will not actually search for any products and return the whole products dataset, but rather just the aggregated data, nothing else.
+So you should know and understand the first few lines if you've read our guide about [reading data](../framework/data-handling/reading-data.md) first. Make sure to also understand the usage of aggregations, since this is what is done here. The only main difference you might notice is, that we're using the `aggregate()` method instead of the `search()` method. This will not actually search for any products and return the whole products dataset, but rather just the aggregated data, nothing else.
 
 Completely new should only be the last line: `$event->getPagelet()->addExtension('product_count', $productCountResult);`
 
@@ -140,8 +137,7 @@ Now you only have to adjust your service definition to inject the product reposi
 
 ### Displaying the data in the storefront
 
-To display the additional data we need to override the footer template and render the data.
-You can find detailed information on how to extend templates and override blocks [here](./customize-templates.md).
+To display the additional data we need to override the footer template and render the data. You can find detailed information on how to extend templates and override blocks [here](customize-templates.md).
 
 For our case we extend the footer template and add a new column to the navigation block:
 
@@ -163,3 +159,4 @@ For our case we extend the footer template and add a new column to the navigatio
 Note the usage of the variable here. You're accessing the footer object, in which you can now find the path `extensions.product_count.count`.
 
 That's it for this guide, you've successfully added data to a storefront page\(let\).
+

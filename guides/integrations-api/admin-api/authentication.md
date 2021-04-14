@@ -14,9 +14,9 @@ OAuth 2.0 defines various ways that users can authenticate, so-called **applicat
 
 {% tabs %}
 {% tab title="Client Credentials" %}
-Per standard, the client credentials grant type should be used for machine-to-machine communications, such as CLI jobs or automated services. Once an access token has been obtained, it remains valid for 10 minutes. 
+Per standard, the client credentials grant type should be used for machine-to-machine communications, such as CLI jobs or automated services. Once an access token has been obtained, it remains valid for 10 minutes.
 
-It requires the setup of an integration and two credentials - an **application id** and an **application secret**. 
+It requires the setup of an integration and two credentials - an **application id** and an **application secret**.
 {% endtab %}
 
 {% tab title="Resource Owner Password" %}
@@ -100,7 +100,6 @@ which will return
   "access_token": "xxxxxxxxxxxxxx",
   "refresh_token": "token"
 }
-
 ```
 {% endtab %}
 {% endtabs %}

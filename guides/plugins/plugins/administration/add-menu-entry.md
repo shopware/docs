@@ -1,4 +1,4 @@
-# Add menu entry 
+# Add menu entry
 
 ## Overview
 
@@ -8,7 +8,7 @@ When it comes to the module configuration, the menu entry is one of the mos impo
 
 This guide **does not** explain how to create a new plugin for Shopware 6. Head over to our Plugin base guide to learn how to create a plugin at first:
 
-{% page-ref page="./../plugin-base-guide.md" %}
+{% page-ref page="../plugin-base-guide.md" %}
 
 Especially if you want to add a new page for an own module, you should consider to look at the process on how to add a custom module first.
 
@@ -73,4 +73,7 @@ navigation: [{
 
 If you're planning to publish your plugin to the Shopware Store keep in mind we're rejecting plugins which have created their own menu entry on the first level.
 
-{% hint style="info" %} If you're planning to publish your plugin to the Shopware Store keep in mind we're rejecting plugins which have created their own menu entry on the first level. {% endhint %}
+{% hint style="info" %}
+If you're planning to publish your plugin to the Shopware Store keep in mind we're rejecting plugins which have created their own menu entry on the first level.
+{% endhint %}
+

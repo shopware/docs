@@ -2,7 +2,7 @@
 
 
 
-{% page-ref page="community-edition/" %}
+{% page-ref page="community-edition.md" %}
 
 {% page-ref page="professional-edition.md" %}
 

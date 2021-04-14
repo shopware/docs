@@ -11,8 +11,8 @@ The actual structure and functionality of the endpoints can differ from this ref
 ### Helpful guides to read before using this reference <a id="helpful-guides-to-read-before-using-this-reference"></a>
 
 * ​[Concept of the Store API](../../../../concepts/api/store-api.md)​
-* ​[Common API Concepts](../../../../guides/integrations-api/general-concepts/README.md)​
-* ​[Store API Guide](../../../../guides/integrations-api/store-api-guide/README.md)​
+* ​[Common API Concepts](../../../../guides/integrations-api/general-concepts/)​
+* ​[Store API Guide](../../../../guides/integrations-api/store-api-guide/)​
 
 This reference contains endpoints and data schemas for our Store API. Each endpoint reference is structured in the same way.‌
 
@@ -20,7 +20,7 @@ See the below section for an exemplary endpoint description.‌
 
 ## Example endpoint <a id="example-endpoint"></a>
 
-> The first line contains the HTTP method, the endpoint URL relative to the [base route](../../../../guides/integrations-api/store-api-guide/README.md#general) and the name of the corresponding route class within the `shopware/core` package.
+> The first line contains the HTTP method, the endpoint URL relative to the [base route](../../../../guides/integrations-api/store-api-guide/#general) and the name of the corresponding route class within the `shopware/core` package.
 
 `POST /product/{productId}` \| ProductDetailRoute
 
@@ -75,13 +75,13 @@ The API tries to resolve client errors and give an indication of what has gone w
 
 **400 Bad Request** This response usually indicates that there's an issue with your request format - for example a missing parameter or violated constraints.‌
 
-**401 Unauthorized** The unauthorised error indicates, that your [sales channel access key](../../../../guides/integrations-api/store-api-guide/README.md#authentication-and-setup) is missing.‌
+**401 Unauthorized** The unauthorised error indicates, that your [sales channel access key](../../../../guides/integrations-api/store-api-guide/#authentication-and-setup) is missing.‌
 
 **403 Forbidden** This response indicates that you are not authorised to perform that operation. For some operations, such as _placing an order_ or _submitting a review_ you need to be logged in as a customer. In those cases, check your `sw-context-token` header and whether you're [logged in](https://app.gitbook.com/@shopware/s/shopware-1/~/drafts/-MU8LxyY2Ad3ushWb8Jl/guides/integrations-api/store-api-guide/register-a-customer#logging-in/@drafts).‌
 
 **405 Method Not Allowed** The HTTP method used for the request is not valid.‌
 
-**412 Precondition Failed** This error occurs if your [sales channel access key](../../../../guides/integrations-api/store-api-guide/README.md) is invalid. Make sure that it matches any of your configured sales channels.‌
+**412 Precondition Failed** This error occurs if your [sales channel access key](../../../../guides/integrations-api/store-api-guide/) is invalid. Make sure that it matches any of your configured sales channels.‌
 
 ### Server Error <a id="server-error"></a>
 

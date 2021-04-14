@@ -4,7 +4,7 @@
 
 Individual sortings are groups of sorting options which you can use to sort product listings. The sortings are available in the storefront.
 
-This guide will show you how to add individual sorting options using a migration (manageable) or at runtime (non-manageable).
+This guide will show you how to add individual sorting options using a migration \(manageable\) or at runtime \(non-manageable\).
 
 ## Prerequisites
 
@@ -18,9 +18,8 @@ In order to make your sorting manageable in the administration by the user, you 
 
 Create a new Migration in your plugin:
 
-{% hint type="warning" %}
-Note: Do not change an existing migration if your plugin is already in use by someone. 
-In that case, create a new Migration instead! This also means, that you have to re-install your plugin if you adjust the migration.
+{% hint style="info" %}
+Note: Do not change an existing migration if your plugin is already in use by someone. In that case, create a new Migration instead! This also means, that you have to re-install your plugin if you adjust the migration.
 {% endhint %}
 
 {% code title="<plugin root>/src/Migration/Migration1615470599ExampleSorting.php" %}
@@ -90,12 +89,10 @@ class Migration1615470599ExampleSorting extends MigrationStep
 
 ## Create individual sorting at runtime
 
-You can subscribe to the `ProductListingCriteriaEvent` to add a `ProductSortingEntity` as available sorting on the fly.
-If you don't know how to do this, head over to our [Listening to events](../plugin-fundamentals/listening-to-events.md) guide.
+You can subscribe to the `ProductListingCriteriaEvent` to add a `ProductSortingEntity` as available sorting on the fly. If you don't know how to do this, head over to our [Listening to events](../plugin-fundamentals/listening-to-events.md) guide.
 
-{% hint type="warning" %}
-While possible, it is not recommended adding an individual sorting at runtime. 
-If you just wish for your individual sorting to be not editable by users in the administration, create a migration and set the parameter `locked` to be `true`.
+{% hint style="info" %}
+While possible, it is not recommended adding an individual sorting at runtime. If you just wish for your individual sorting to be not editable by users in the administration, create a migration and set the parameter `locked` to be `true`.
 {% endhint %}
 
 Here's an example how your subscriber could look like:
@@ -154,7 +151,7 @@ class ExampleListingSubscriber implements EventSubscriberInterface
 
 ## Next steps
 
-Are you interested to add a custom filter to your listing in the storefront, as well? Head over to the corresponding
-guide to learn more about that:
+Are you interested to add a custom filter to your listing in the storefront, as well? Head over to the corresponding guide to learn more about that:
 
-{% page-ref page="./../storefront/add-listing-filters.md" %}
+{% page-ref page="add-listing-filters.md" %}
+

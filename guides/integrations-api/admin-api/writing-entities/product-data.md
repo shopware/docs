@@ -1,4 +1,4 @@
-# Writing Product Data
+# Product Data
 
 ## Overview
 
@@ -8,11 +8,11 @@ In this section the handling of the product data structure is explained, because
 
 A product has only a handful of required fields:
 
-* `name` [string]
-* `productNumber` [string]
-* `taxId` [string]
-* `price` [object]
-* `stock` [int]
+* `name` \[string\]
+* `productNumber` \[string\]
+* `taxId` \[string\]
+* `price` \[object\]
+* `stock` \[int\]
 
 The smallest required payload for a product can therefore be as follows:
 
@@ -43,8 +43,7 @@ Price handling is one of the edge cases in the product data structure. There are
 * `product.prices`
 * `product.listingPrices`
 
-Only the first two can be written via API (`product.price`, `product.prices`). 
-The `product.price` is the "simple" price of a product. It does not contain any quantity information nor is it bound to any `rule`. 
+Only the first two can be written via API \(`product.price`, `product.prices`\). The `product.price` is the "simple" price of a product. It does not contain any quantity information nor is it bound to any `rule`.
 
 ## Currency price structure
 
@@ -57,7 +56,7 @@ Within the price, the different currency prices are available. Each of these cur
 
 To define prices for a product in different currencies, this is an exemplary payload:
 
-```javascript 
+```javascript
 {
     "name": "test",
     "productNumber": "random",
@@ -91,20 +90,18 @@ To define prices for a product in different currencies, this is an exemplary pay
 
 ## Quantity and rule price structure
 
-As an extension to the `product.price` there are `product.prices`. These are prices that are bound to a `rule`.
-Rules (`rule` entity) are prioritised. If there are several rules for a customer, the customer will see the rule price with the highest priority.
-In addition to the dependency on a rule, a quantity discount can be defined using these prices. 
+As an extension to the `product.price` there are `product.prices`. These are prices that are bound to a `rule`. Rules \(`rule` entity\) are prioritised. If there are several rules for a customer, the customer will see the rule price with the highest priority. In addition to the dependency on a rule, a quantity discount can be defined using these prices.
 
 Each price in `product.prices` has the following properties:
 
-* `quantityStart` [int]     - Indicates the quantity from which this price applies
-* `quantityEnd` [int|null]  - Specifies the quantity until this price is valid. 
-* `ruleId` [string]         - Id of the rule to which the price applies
-* `price` [object[]]        - Includes currency prices (same structure as `product.price`)
+* `quantityStart` \[int\]     - Indicates the quantity from which this price applies
+* `quantityEnd` \[int\|null\]  - Specifies the quantity until this price is valid. 
+* `ruleId` \[string\]         - Id of the rule to which the price applies
+* `price` \[object\[\]\]        - Includes currency prices \(same structure as `product.price`\)
 
 To define prices for a rule including a quantity discount, this is an exemplary payload:
 
-```javascript 
+```javascript
 {
     "name": "test",
     "productNumber": "random",
@@ -132,7 +129,7 @@ To define prices for a rule including a quantity discount, this is an exemplary 
                     "linked": true 
                 }
             ]
-            
+
         },
         { 
             "id": "db6f3ed762d14b0395a3fd2dc460db42",
@@ -150,26 +147,22 @@ To define prices for a rule including a quantity discount, this is an exemplary 
         }
     ]
 }
-``` 
-    
+```
+
 ## Listing price handling
 
-The third price property that is available on the product is the `product.listingPrices`.
-These prices are determined automatically by the system.
-The price ranges for the corresponding product are available here.
-The prices are determined on the base of all variants of prices that could be displayed to the customer in the shop.
+The third price property that is available on the product is the `product.listingPrices`. These prices are determined automatically by the system. The price ranges for the corresponding product are available here. The prices are determined on the base of all variants of prices that could be displayed to the customer in the shop.
 
 Each price within this object contains the following properties:
 
-* `currencyId` [string] - The currency to which this price applies
-* `ruleId` [string]     - The rule to which this price applies
-* `from` [price-obj]    - The lowest price possible for the product in this currency
-* `to` [price-obj]      - The highest price that is possible for the product in this currency
+* `currencyId` \[string\] - The currency to which this price applies
+* `ruleId` \[string\]     - The rule to which this price applies
+* `from` \[price-obj\]    - The lowest price possible for the product in this currency
+* `to` \[price-obj\]      - The highest price that is possible for the product in this currency
 
 ### Assigning of properties and categories
 
-The product has various `many-to-many` associations. This type of association is a link between the records.
-Examples are the `properties` and `categories` of a product.
+The product has various `many-to-many` associations. This type of association is a link between the records. Examples are the `properties` and `categories` of a product.
 
 For assigning several `properties` and `categories` this is an exemplary payload:
 
@@ -188,16 +181,16 @@ For assigning several `properties` and `categories` this is an exemplary payload
         { "id": "cdea94b4f9452254a20b91ec1cd538b9" }
     ]
 }
-``` 
+```
 
 To remove these `properties` and `categories`, the corresponding routes can be used for the mapping entities:
- 
+
 * `DELETE /api/v3/product/{productId}/properties/{optionId}`
 * `DELETE /api/v3/product/{productId}/categories/{categoryId}`
 
 To delete several assignments at once, the `/_action/sync` route can be used:
 
-``` 
+```text
 {
     // This key can be defined individually
     "unassign-categories": {
@@ -208,7 +201,7 @@ To delete several assignments at once, the `/_action/sync` route can be used:
             { "productId": "073db754b4d14ecdb3aa6cefa2ba98a7", "categoryId": "a6d1212c774546db9b54f05d355376c1" }
         ]
     },
-    
+
     // This key can be defined individually
     "unassign-properties": {
         "entity": "product_property",
@@ -224,18 +217,13 @@ To delete several assignments at once, the `/_action/sync` route can be used:
 
 ### `CategoriesRo` Association
 
-The `product.categories` association contains the assignment of products and their categories.
-This table is not queried in the storefront, because all products of subcategories should be displayed in listings as well.
-Therefore there is another association: `product.categoriesRo`.
-This association is read-only and is filled automatically by the system.
-This table contains all assigned categories of the product as well as all parent categories. 
+The `product.categories` association contains the assignment of products and their categories. This table is not queried in the storefront, because all products of subcategories should be displayed in listings as well. Therefore there is another association: `product.categoriesRo`. This association is read-only and is filled automatically by the system. This table contains all assigned categories of the product as well as all parent categories.
 
 ## Media handling
 
-Media of products are maintained via the association `product.media` and `product.cover`. 
-The `product.media` association is a `one-to-many` association on the `product_media` entity. To assign a media to a product, a new `product_media` entity must be created, in which the foreign key for the corresponding `media` entity is defined. In addition to the foreign key, a `position` can be specified, which defines the display order.
+Media of products are maintained via the association `product.media` and `product.cover`. The `product.media` association is a `one-to-many` association on the `product_media` entity. To assign a media to a product, a new `product_media` entity must be created, in which the foreign key for the corresponding `media` entity is defined. In addition to the foreign key, a `position` can be specified, which defines the display order.
 
-```
+```text
 {
     "name": "test",
     "productNumber": "random",
@@ -256,7 +244,7 @@ The `product.media` association is a `one-to-many` association on the `product_m
 
 To delete a media assignment, the ID of the `product_media` entity is required. In the above case this is the `5f78f2d4b19f49648eb1b38881463da0`. The corresponding route `DELETE /api/v3/product/{productId}/media/{productMediaId}` can be used for this. To delete multiple assignments, the `/_action/sync` route can also be used here:
 
-```
+```text
 {
     // This key can be defined individually
     "unassign-media": {
@@ -274,7 +262,7 @@ To delete a media assignment, the ID of the `product_media` entity is required. 
 
 The `cover` of a product is controlled via `coverId` and the `cover` association. This contains a direct reference to a `product_media` entity. To set the cover of a product the following payload can be used:
 
-``` 
+```text
 {
     "name": "test",
     "productNumber": "random",
@@ -285,7 +273,7 @@ The `cover` of a product is controlled via `coverId` and the `cover` association
     ],
     "coverId": "00a9742db2e643ccb9d969f5a30c2758"
 }
-``` 
+```
 
 To reset the cover, the value `null` can be passed instead of a UUID.
 
@@ -297,11 +285,11 @@ Instead of just assigning a sales channel, the data structure allows a specifica
 
 This can be set to three different values:
 
-|**Visbility**|**Behaviour**|
-|---|---|
-|10|The product is only available via a direct link. It does not appear in listings or searches.|
-|20|The product is only available via a direct link or search. The product is not displayed in listings.|
-|30|The product is displayed everywhere.|
+| **Visbility** | **Behaviour** |
+| :--- | :--- |
+| 10 | The product is only available via a direct link. It does not appear in listings or searches. |
+| 20 | The product is only available via a direct link or search. The product is not displayed in listings. |
+| 30 | The product is displayed everywhere. |
 
 Since visibility can be configured per sales channel, the entity also has its own ID. This is needed to delete or update the assignment later. To assign a product to several sales channels, the following payload can be used:
 
@@ -319,12 +307,11 @@ Since visibility can be configured per sales channel, the entity also has its ow
         { "id": "b7d2554b0ce847cd82f3ac9bd1c0dfca", "salesChannelId": "ddcb57c32d6e4b598d8b6082a9ca7b42", "visibility": 30 }
     ]
 }
-``` 
+```
 
-Deleting a sales channel assignment is done via the route `/api/v3/product/{productId}/visibilities/{visibilityId}`.
-To delete several assignments at once, the `/_action/sync` route can be used:
+Deleting a sales channel assignment is done via the route `/api/v3/product/{productId}/visibilities/{visibilityId}`. To delete several assignments at once, the `/_action/sync` route can be used:
 
-``` 
+```text
 {
     // This key can be defined individually
     "unassign-media": {
@@ -336,18 +323,18 @@ To delete several assignments at once, the `/_action/sync` route can be used:
         ]
     }
 }
-``` 
+```
 
 ## Variant handling
 
 Variants are child elements of a product. As soon as a product is configured with variants, the parent product is only a kind of container. To create a variant, the following properties are required:
 
-* `parentId` [string]      - Defines for which product the variant should be created
-* `stock` [int]            - Defines the stock of the variant
-* `productNumber` [string] - Defines the unique product number
-* `options` [array]        - Defines the characteristic of the variant.
+* `parentId` \[string\]      - Defines for which product the variant should be created
+* `stock` \[int\]            - Defines the stock of the variant
+* `productNumber` \[string\] - Defines the unique product number
+* `options` \[array\]        - Defines the characteristic of the variant.
 
-```javascript 
+```javascript
 {
     "id": "0d0adf2a3aa1488eb177288cfac9d47e",
     "parentId": "17f255e0a12848c38b7ec6767a6d6adf",
@@ -358,7 +345,7 @@ Variants are child elements of a product. As soon as a product is configured wit
         {"id": "0a30f132eb1b4f34a05dcb1c6493ced7"}  // xl
     ]
 }
-``` 
+```
 
 ## Inheritance
 
@@ -380,11 +367,11 @@ To define a separate `price` for a variant, the same payload can be used as for 
         { "currencyId" : "b7d2554b0ce847cd82f3ac9bd1c0dfca", "gross": 15, "net": 10, "linked" : false }
     ]
 }
-``` 
+```
 
 To restore inheritance, the value `null` can be passed for simple data fields:
 
-``` 
+```text
 // PATCH /api/v3/product/0d0adf2a3aa1488eb177288cfac9d47e
 {
     "price": null
@@ -393,18 +380,15 @@ To restore inheritance, the value `null` can be passed for simple data fields:
 
 In order to have an association such as `product.prices` inherited again from the parent product, the corresponding entities must be deleted.
 
-If a variant is read via `/api`, only the not inherited data is returned. The data of the parent is not loaded here. In the `store-api`, however, the variant is always read with the inheritance, so that all information is already available  to display the variant in a shop.
+If a variant is read via `/api`, only the not inherited data is returned. The data of the parent is not loaded here. In the `store-api`, however, the variant is always read with the inheritance, so that all information is already available to display the variant in a shop.
 
 However, it is also possible to resolve the inheritance in the `/api` by providing the `sw-inheritance` header.
 
 ## Configurator handling
 
-To create a complete product with variants, not only the variants have to be created but also the corresponding `options` have to be configured. 
-For the variants this is done via the `options` association. This association defines the characteristics of the variant, i.e. whether it is the yellow or red t-shirt.
-For the parent product, the `configuratorSettings` association must be defined. This defines which options are generally available. The Admin UI and the Storefront UI are built using this data. 
-The following payload can be used to generate a product with the variants: red-xl, red-l, yellow-xl, yellow-l.
+To create a complete product with variants, not only the variants have to be created but also the corresponding `options` have to be configured. For the variants this is done via the `options` association. This association defines the characteristics of the variant, i.e. whether it is the yellow or red t-shirt. For the parent product, the `configuratorSettings` association must be defined. This defines which options are generally available. The Admin UI and the Storefront UI are built using this data. The following payload can be used to generate a product with the variants: red-xl, red-l, yellow-xl, yellow-l.
 
-```javascript 
+```javascript
 {
     "stock": 10,
     "productNumber": "random",
@@ -481,3 +465,4 @@ The following payload can be used to generate a product with the variants: red-x
     ]
 }
 ```
+

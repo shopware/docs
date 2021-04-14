@@ -1,4 +1,4 @@
-# Use Composer dependencies
+# Adding Composer dependencies
 
 In this guide you'll learn how to add Composer dependencies to your project.
 
@@ -10,16 +10,14 @@ All you need for this guide is a running Shopware 6 instance and full access to 
 
 In this guide we will install [`exporter`](https://github.com/sebastianbergmann/exporter), which provides the functionality to export PHP variables for visualization.
 
-We have to manually remove all of the references to Shopware itself from the `composer.json` file, that was created in the [Plugin base guide](../plugin-base-guide.md),
-before we add our own dependencies to it. This is done to prevent `composer` from downloading Shopware into the `vendor` folder.
+We have to manually remove all of the references to Shopware itself from the `composer.json` file, that was created in the [Plugin base guide](../plugin-base-guide.md), before we add our own dependencies to it. This is done to prevent `composer` from downloading Shopware into the `vendor` folder.
 
 Now we can simply install `exporter` by running `composer require sebastian/exporter` in your plugin directory.
 
 After that we have to add our dependency to shopware back in.
 
 {% hint style="warning" %}
-The `vendor` directory, where the composer saves the dependencies, has to be included in the plugin bundle.
-The plugin bundle size is not allowed to exceed 5 MB.
+The `vendor` directory, where the composer saves the dependencies, has to be included in the plugin bundle. The plugin bundle size is not allowed to exceed 5 MB.
 {% endhint %}
 
 ## Loading the `autoload.php`
@@ -38,8 +36,7 @@ if (file_exists(dirname(__DIR__) . '/vendor/autoload.php')) {
 
 PHP doesn't require a build system, which means that we can just add `use` statements and then use the composer dependency directly.
 
-The following code sample imports `SebastianBergmann\Exporter\Exporter` and logs `hello, world!` to the Symfony profiler logs whenever the `NavigationPageLoadedEvent` is fired.
-Learn how to register this listener [here](./listening-to-events.md).
+The following code sample imports `SebastianBergmann\Exporter\Exporter` and logs `hello, world!` to the Symfony profiler logs whenever the `NavigationPageLoadedEvent` is fired. Learn how to register this listener [here](listening-to-events.md).
 
 {% code title="<plugin root>/src/SwagBasicExample.php" %}
 ```php
@@ -59,7 +56,7 @@ class MySubscriber implements EventSubscriberInterface
      * @var LoggerInterface
      */
      private $logger;
-    
+
     public function __construct(
         LoggerInterface $logger
     ) {
@@ -88,7 +85,8 @@ class MySubscriber implements EventSubscriberInterface
 You can bundle composer dependencies with your plugin by adding them to the `/packages/` folder of your plugin.
 
 Example structure:
-````text
+
+```text
 SwagBasicExample
 ├── packages
 │   └── my-private-dependency/
@@ -98,8 +96,10 @@ SwagBasicExample
 ├── src/
 │   └── SwagBasicExample.php
 └── composer.json
-````
+```
+
 You can then require them like other dependencies:
+
 ```text
 "require": {
     "my-vendor-name/my-private-dependency": "^1.2.3",
@@ -108,5 +108,6 @@ You can then require them like other dependencies:
 
 ## More interesting topics
 
-* [Using NPM dependencies](./using-npm-dependencies.md)
-* [Adding plugin dependencies](./add-plugin-dependencies.md)
+* [Using NPM dependencies](using-npm-dependencies.md)
+* [Adding plugin dependencies](add-plugin-dependencies.md)
+

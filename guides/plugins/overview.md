@@ -1,12 +1,12 @@
 # Overview
 
-The variety of Shopware's extension interfaces can be overwhelming, so let's start with a simple overview comparing the three approaches **Plugins**, **Themes** and **Apps**. 
+The variety of Shopware's extension interfaces can be overwhelming, so let's start with a simple overview comparing the three approaches **Plugins**, **Themes** and **Apps**.
 
 | Task | Plugin | Theme | App | Remarks |
 | :--- | :--- | :--- | :--- | :--- |
 | Change storefront appearance | ✅ | ✅ | ✅ |  |
 | Add admin modules | ✅ | ❌ | ❌ |  |
-| Execute Webhooks | ✅ | ❌ | ✅ | Apps main functionality is to call Webhooks, but Plugins can be implemented to do that as well.  |
+| Execute Webhooks | ✅ | ❌ | ✅ | Apps main functionality is to call Webhooks, but Plugins can be implemented to do that as well. |
 | Modify database structure, add custom entities | ✅ | ❌ | ❌ |  |
 | Publish in App Store | ❌ | ❌ | ✅ |  |
 | Publish in Plugin Store | ✅ | ✅ | ❌ |  |
@@ -15,7 +15,7 @@ The variety of Shopware's extension interfaces can be overwhelming, so let's sta
 | Add custom logic/routes/commands | ✅ | ❌ | ✅ | Apps extract functionalities/logic into separate services, so technically they can add custom logic |
 | Control order of style/template inheritance | ❌ | ✅ | ✅ |  |
 
-### Plugins
+## Plugins
 
 Plugins are the most powerful extension mechanism, as they can be used to extend, override, modify almost every part of the software. At the same time they can obviously be the most harmful one as well, just for the same reasons. If you want to make deep modifications or add complex functionalities such as
 
@@ -28,9 +28,11 @@ Plugins are the most powerful extension mechanism, as they can be used to extend
 
 You will probably need to write a plugin for that. Follow our [Plugin Base Guide](plugins/plugin-base-guide.md) to learn how to develop a plugin. You will find further examples in the subsequent section [Plugin Fundamentals](plugins/plugin-fundamentals/).
 
-{% hint style="info" %} If your extensions requires nothing of the above but rather template changes, you might be fine with a Theme. {% endhint %}
+{% hint style="info" %}
+If your extensions requires nothing of the above but rather template changes, you might be fine with a Theme.
+{% endhint %}
 
-### Themes
+## Themes
 
 A theme lets you perform the tasks listed below.
 
@@ -41,11 +43,13 @@ A theme lets you perform the tasks listed below.
 
 Technically, plugins and themes are very similar and overlap in most of their logic. However, some particular aspects are handled differently, such as template and style priority or activation of the same. Once plugins are installed and activated, their styles and templates are immediately applied. When a theme is installed, it hast to be selected within the theme manager first.
 
-{% hint style="info" %} Note, that a plugin can also override templates. {% endhint %}
+{% hint style="info" %}
+Note, that a plugin can also override templates.
+{% endhint %}
 
-To start your first theme, follow our [Theme Base Guide](./themes/theme-base-guide.md).
+To start your first theme, follow our [Theme Base Guide](themes/theme-base-guide.md).
 
-### Apps
+## Apps
 
 For the aspects listed under [Plugins](overview.md#plugins), it is not possible to operate those in cloud environments. Therefore, a different, less intrusive pattern has been introduced. Apps allow for event-based integrations which communicate with external services through a synchronous API.
 

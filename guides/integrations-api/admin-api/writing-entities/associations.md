@@ -1,10 +1,8 @@
-# Writing associations
+# Associations
 
 ## Overview
 
-The Admin API allows you to create several data records simultaneously within one request. This is possible by using associations. 
-For example, when a product is written, the prices can be written at the same time. This is not limited to entities that are directly related to the main entity
-but can be continued for as long as you wish and another association is defined.
+The Admin API allows you to create several data records simultaneously within one request. This is possible by using associations. For example, when a product is written, the prices can be written at the same time. This is not limited to entities that are directly related to the main entity but can be continued for as long as you wish and another association is defined.
 
 {% hint style="info" %}
 When writing association via API the following applies: Only data is written, not deleted. So writing a `OneToMany` or `ManyToMany` association only adds new data, the existing data will not be deleted.
@@ -22,11 +20,11 @@ In general, if no ID is given for an association, the API creates a new record
 * The association is available under the property `categories`
 * The data for this association is stored in the `product_category` table.
 
-There are three ways in which `ManyToMany` associations can be used in the API 
+There are three ways in which `ManyToMany` associations can be used in the API
 
 **1: The entity to be linked should be created in the same request.**
 
-In this case all required fields are sent with the entity. 
+In this case all required fields are sent with the entity.
 
 ```javascript
 // PATCH /api/v3/product/b7d2554b0ce847cd82f3ac9bd1c0dfca
@@ -43,8 +41,7 @@ In this case all required fields are sent with the entity.
 
 **2: The entity to be linked should be updated in the same request.**
 
-In this case, the entity already exists in the system, but it can be updated in the same request like all other associations.
-For this purpose, the corresponding ID of the entity is sent with the request. If the ID does not exist in the system, the API creates a new entity with this id.
+In this case, the entity already exists in the system, but it can be updated in the same request like all other associations. For this purpose, the corresponding ID of the entity is sent with the request. If the ID does not exist in the system, the API creates a new entity with this id.
 
 ```javascript
 // PATCH /api/v3/product/b7d2554b0ce847cd82f3ac9bd1c0dfca
@@ -58,10 +55,9 @@ For this purpose, the corresponding ID of the entity is sent with the request. I
 }
 ```
 
-**3: Records should only be linked *(performant)***
+**3: Records should only be linked** _**\(performant\)**_
 
-If both data records already exist in the system and are to be linked to the PATCH request exclusively, it is recommended that you send only the ID of the entity.
-This has the advantage that there is no update of the linked entity, which means less load on the system:
+If both data records already exist in the system and are to be linked to the PATCH request exclusively, it is recommended that you send only the ID of the entity. This has the advantage that there is no update of the linked entity, which means less load on the system:
 
 ```javascript
 // PATCH /api/v3/product/b7d2554b0ce847cd82f3ac9bd1c0dfca
@@ -77,8 +73,8 @@ This has the advantage that there is no update of the linked entity, which means
 
 ## ManyToOne Associations
 
-`ManyToOne` associations are associations where the foreign key is stored in the root entity.
-An example: 
+`ManyToOne` associations are associations where the foreign key is stored in the root entity. An example:
+
 * The `ProductEntity` has a `ManyToOneAssociation` to `ProductManufacturerEntity`
 * The association is available under the property `manufacturer`
 * The foreign key is stored in the property `manufacturerId`.
@@ -98,6 +94,7 @@ In this case all required fields of the entity must be given:
     }
 }
 ```
+
 With the above payload, the system creates a new manufacturer in the system and links it to the product `b7d2554b0ce847cd82f3ac9bd1c0dfca`.
 
 **2: The entity to be linked should be updated in the same request.**
@@ -115,10 +112,9 @@ In this case it is necessary to send the ID of the existing entity.
 }
 ```
 
-With the above payload, the system first checks whether a manufacturer with the id `98432def39fc4624b33213a56b8c944d` exists. If this is not the case, a new manufacturer with this ID is created.
-If the manufacturer already exists, the name of the manufacturer is updated. Then the manufacturer will be linked to the product.
+With the above payload, the system first checks whether a manufacturer with the id `98432def39fc4624b33213a56b8c944d` exists. If this is not the case, a new manufacturer with this ID is created. If the manufacturer already exists, the name of the manufacturer is updated. Then the manufacturer will be linked to the product.
 
-**3: The entity should be linked exclusively** *(performant)*
+**3: The entity should be linked exclusively** _\(performant\)_
 
 With this option, the manufacturer already exists and should only be linked with the product. For this, either only the `id` can be sent, or the foreign key can be specified directly:
 
@@ -144,10 +140,10 @@ Both payloads lead to the same result. This type of use is preferable because on
 
 ## OneToMany Associations
 
-Unlike the `ManyToOne` and `ManyToMany` association, data in a `OneToMany` association is usually not data that should be linked, but data that belongs to the main entity.
-This association is the counterpart of the `ManyToOne` association. The foreign key is therefore located in the table of the entity to which the association refers. 
+Unlike the `ManyToOne` and `ManyToMany` association, data in a `OneToMany` association is usually not data that should be linked, but data that belongs to the main entity. This association is the counterpart of the `ManyToOne` association. The foreign key is therefore located in the table of the entity to which the association refers.
 
-For example: 
+For example:
+
 * The `CountryEntity` has a `OneToMany` association with the `CountryStateEntity`
 * The association is available under the `states` property
 * The foreign key is located in the `CountryStateEntity::countryId` property.
@@ -167,7 +163,7 @@ In this case all fields marked as required must be given. An ID can also be give
         { "name": "state-b", "shortCode": "B" },
         { "name": "state-c", "shortCode": "C" }
     ]    
-    
+
 }
 ```
 
@@ -186,8 +182,7 @@ In this case, it is necessary that the ID of the entity is also given. If this i
 }
 ```
 
-If an error occurs while writing the data, the API returns a `400 Bad Request` response in which all errors are listed.
-The affected records and fields can be identified via `source.pointer`:
+If an error occurs while writing the data, the API returns a `400 Bad Request` response in which all errors are listed. The affected records and fields can be identified via `source.pointer`:
 
 ```javascript
 // POST /api/v3/country
@@ -199,7 +194,7 @@ The affected records and fields can be identified via `source.pointer`:
         { "name": "state-b", "shortCode": 1 },
         { "name": "state-c" }
     ]    
-    
+
 }
 
 {
@@ -224,11 +219,7 @@ The affected records and fields can be identified via `source.pointer`:
 
 ## Translated Fields
 
-In Shopware 6 translatable fields of an entity can be written directly at the entity itself. For example, the `name` of a product is a translatable field. 
-If no other language is set per header, the default language of the system is used for reading and writing. 
-When an entity object is created in the system, it must have a translation in the default language of the system. This translation is used as a fallback if the entity is displayed in another
-language for which there is no translation.
-When writing an entity, it is possible to write several languages at the same time. This is done via the `translations` association:
+In Shopware 6 translatable fields of an entity can be written directly at the entity itself. For example, the `name` of a product is a translatable field. If no other language is set per header, the default language of the system is used for reading and writing. When an entity object is created in the system, it must have a translation in the default language of the system. This translation is used as a fallback if the entity is displayed in another language for which there is no translation. When writing an entity, it is possible to write several languages at the same time. This is done via the `translations` association:
 
 ```javascript
 {
@@ -246,8 +237,7 @@ When writing an entity, it is possible to write several languages at the same ti
 }
 ```
 
-Within the `translations` property the language id, for which this translation is used, is then passed as key. All translatable fields can be specified within the object. 
-If the language id is not known, the locale code can be used instead of the id:
+Within the `translations` property the language id, for which this translation is used, is then passed as key. All translatable fields can be specified within the object. If the language id is not known, the locale code can be used instead of the id:
 
 ```javascript
 {
@@ -265,5 +255,5 @@ If the language id is not known, the locale code can be used instead of the id:
 }
 ```
 
-Unlike the other types of associations, an update of a translation does not require an ID of the translation entity to be provided. This 
-entities are an exception in the system and are uniquely identified by the language ID.
+Unlike the other types of associations, an update of a translation does not require an ID of the translation entity to be provided. This entities are an exception in the system and are uniquely identified by the language ID.
+

@@ -16,7 +16,7 @@ As a first step, please make sure you installed MAMP beforehand. You can downloa
 
 ### Configure PHP settings
 
-First you have to modify the PHP settings inside MAMP as seen on the following screenshot: 
+First you have to modify the PHP settings inside MAMP as seen on the following screenshot:
 
 ![PHP settings](../../.gitbook/assets/10-mac-os-x-php.png)
 
@@ -90,7 +90,7 @@ brew install composer
 
 ## Checkout shopware
 
-Before you're able to set up Shopware, you need to checkout Shopware's repositories. This is explained in the "Preparatory steps" paragraph of the [Installation overview guide](./overview.md). Nevertheless, below you see a brief summary on this process:
+Before you're able to set up Shopware, you need to checkout Shopware's repositories. This is explained in the "Preparatory steps" paragraph of the [Installation overview guide](overview.md). Nevertheless, below you see a brief summary on this process:
 
 ```bash
 # Choose your own directory
@@ -140,10 +140,8 @@ Afterwards a file called `.psh.yaml.override` is created, which contains all tho
 
 After that the setup is done. You can now access your Shopware 6 installation using the following urls:
 
-<!-- markdown-link-check-disable -->
 * Storefront: [http://shopware:8000](http://shopware:8000)
 * Admin: [http://shopware:8000/admin](http://shopware:8000/admin) \(User: admin, password: shopware\)
-<!-- markdown-link-check-enable -->
 
 ## Troubleshooting
 
@@ -165,16 +163,15 @@ There are cases when the administration is not build correctly and having error 
 
 The underlying problem is that Mac supports case-insensitive paths but not the tools that build the administration. Therefore, make sure to execute the commands in a context where the `pwd` is written in the correct case.
 
-✅ Ok: `/Users/shopware/Code/shopware-platform` 
+✅ Ok: `/Users/shopware/Code/shopware-platform`
 
 ❌ Not ok: `/users/shopware/code/Shopware-Platform`
 
 ## Next steps
 
-As you installed Shopware successfully, maybe you want to start writing your very own plugin. Head over to [Plugin base guide](./../plugins/plugins/plugin-base-guide.md) to get a grip on that topic.
-Did you know you can install Shopware on Mac with the help of other tools? See the guides below:
+As you installed Shopware successfully, maybe you want to start writing your very own plugin. Head over to [Plugin base guide](../plugins/plugins/plugin-base-guide.md) to get a grip on that topic. Did you know you can install Shopware on Mac with the help of other tools? See the guides below:
 
-* [Docker](./docker.md)
-* [Vagrant](./vagrant.md)
-* [Dockware](./dockware.md)
+* [Docker](docker.md)
+* [Vagrant](vagrant.md)
+* [Dockware](dockware.md)
 

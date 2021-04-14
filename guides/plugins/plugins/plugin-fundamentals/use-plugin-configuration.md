@@ -1,15 +1,10 @@
 # Use plugin configuration
 
-In our guide on how to [add a plugin configuration](./add-plugin-configuration.md), you can learn how to provide this possibility to use configuration options in your plugins.
-This guide will aid you on how to then use this configuration in your plugin.
+In our guide on how to [add a plugin configuration](add-plugin-configuration.md), you can learn how to provide this possibility to use configuration options in your plugins. This guide will aid you on how to then use this configuration in your plugin.
 
 ## Prerequisites
 
-In order to add a plugin configuration, you sure need to provide your plugin first.
-However, you won't learn to create a plugin in this guide.
-Head over to our [plugin base guide](../plugin-base-guide.md) to create your plugin first.
-It is also recommended to know how to setup a [plugin configuration](./add-plugin-configuration.md) in the first instance.
-In this example, the configurations will be read inside of a subscriber, so knowing the [Listening to events](./listening-to-events.md) guide will also be helpful.
+In order to add a plugin configuration, you sure need to provide your plugin first. However, you won't learn to create a plugin in this guide. Head over to our [plugin base guide](../plugin-base-guide.md) to create your plugin first. It is also recommended to know how to setup a [plugin configuration](add-plugin-configuration.md) in the first instance. In this example, the configurations will be read inside of a subscriber, so knowing the [Listening to events](listening-to-events.md) guide will also be helpful.
 
 ## Overview
 
@@ -45,7 +40,7 @@ class MySubscriber implements EventSubscriberInterface
 For this guide, a very small plugin configuration file is available as well:
 
 {% code title="<plugin root>/src/Resources/config/config.xml" %}
-```xml
+```markup
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
@@ -69,7 +64,7 @@ Let's get to the important part. Reading the plugin configuration is based on th
 Inject this service into your subscriber using the [DI container](https://symfony.com/doc/current/service_container.html).
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
-```xml
+```markup
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -144,3 +139,4 @@ class MySubscriber implements EventSubscriberInterface
 }
 ```
 {% endcode %}
+

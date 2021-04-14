@@ -6,29 +6,26 @@ The data grid component makes it easy to render tables with data. It also suppor
 
 ## Prerequisites
 
-All you need for this guide is a running Shopware 6 instance and full access to both the files, as well as the command line and preferably registered module.
-Of course you'll have to understand JavaScript, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation.
+All you need for this guide is a running Shopware 6 instance and full access to both the files, as well as the command line and preferably registered module. Of course you'll have to understand JavaScript, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation.
 
 ## Creating a template for the data grid component
 
 Let's create the simplest template we need in order to use the [`sw-data-grid`](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/component/data-grid/sw-data-grid/index.js).
 
 {% code title="<plugin-root>/src/Resources/app/administration/app/src/component/swag-example/swag-example.html.twig" %}
-```html
+```markup
 <div>
     <sw-data-grid :dataSource="dataSource" :columns="columns">
-	</sw-data-grid>
+    </sw-data-grid>
 </div>
 ```
 {% endcode %}
 
-This template will be used in a new component. Learn how to override existing components [here](./customizing-components.md) .
+This template will be used in a new component. Learn how to override existing components [here](customizing-components.md) .
 
 ## Declaring the data
 
-Since this is a very basic example the following code will just statically assign data to the `dataSource` and `columns` data attribute. 
-If you want to load data and render that instead, please consult the guide [How to use the data handling](./using-data-handling.md)
-
+Since this is a very basic example the following code will just statically assign data to the `dataSource` and `columns` data attribute. If you want to load data and render that instead, please consult the guide [How to use the data handling](using-data-handling.md)
 
 {% code title="<plugin-root>/src/Resources/app/administration/app/src/component/swag-example/index.js" %}
 ```javascript
@@ -58,4 +55,5 @@ Shopware.Component.register('swag-basic-example', {
 
 ## More interesting topics
 
-* [Using base components](./using-base-components.md)
+* [Using base components](using-base-components.md)
+

@@ -8,22 +8,18 @@ Your theme can include custom assets like images. This short guide will show you
 
 This guide is built upon the guide on creating a first theme:
 
-{% page-ref page="./create-a-theme.md" %}
+{% page-ref page="create-a-theme.md" %}
 
-## Using custom assets 
+## Using custom assets
 
-There are basically two ways of adding custom assets to your theme. The first one is using the `theme.json` to define 
-the path to your custom assets, the second being the default way of using custom assets in plugins. We'll take a closer
-look at them in the following sections.
+There are basically two ways of adding custom assets to your theme. The first one is using the `theme.json` to define the path to your custom assets, the second being the default way of using custom assets in plugins. We'll take a closer look at them in the following sections.
 
 ### Adding assets in theme.json file
 
-While working with your own theme, you might already came across the [theme configuration](./theme-configuration.md).
-In there, you have the possibility to configure your paths to your custom assets like images, fonts, etc. This way,
-please configure your asset path accordingly.
+While working with your own theme, you might already came across the [theme configuration](theme-configuration.md). In there, you have the possibility to configure your paths to your custom assets like images, fonts, etc. This way, please configure your asset path accordingly.
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
-```json
+```javascript
 # src/Resources/theme.json
 {
   ...
@@ -38,7 +34,7 @@ please configure your asset path accordingly.
 Next, please run the bin/console assets:install command. This will copy your plugin assets over to the public/bundles folder:
 
 {% code title="<shopware root>/public/bundles" %}
-```
+```text
 # 
 .
 ├── administration
@@ -46,23 +42,20 @@ Next, please run the bin/console assets:install command. This will copy your plu
 ├── storefront
 └── <your-theme-name> <-- f.e. swagbasicexampletheme
     └── your-image.png <-- Your asset is copied here
-        
 ```
 {% endcode %}
 
 ### Adding assets the plugin way
 
-This way of adding custom assets refers to the default was of dealing with assets. For more detail on this way, please
-check out the article that specifically addresses this topic: 
+This way of adding custom assets refers to the default was of dealing with assets. For more detail on this way, please check out the article that specifically addresses this topic:
 
-{% page-ref page="./../plugins/storefront/add-custom-assets.md" %}
+{% page-ref page="../plugins/storefront/add-custom-assets.md" %}
 
 ## Linking to assets
 
-You can link to the asset with the twig 
-[asset](https://symfony.com/doc/current/templates.html#linking-to-css-javascript-and-image-assets) function:
+You can link to the asset with the twig [asset](https://symfony.com/doc/current/templates.html#linking-to-css-javascript-and-image-assets) function:
 
-```html
+```markup
 <img src="{{ asset('bundles/swagbasicexampletheme/your-image.png', 'asset') }}">
 ```
 
@@ -77,5 +70,6 @@ body {
 ## Next steps
 
 Now that you know how to use your assets in a themes, here is a list of other related topics where assets can be used.
- 
+
 * [Customize templates](../plugins/storefront/customize-templates.md)
+

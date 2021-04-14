@@ -42,7 +42,7 @@ If you want to use the `ShopwareApiGateway` you have to download the [Shopware C
 
 ## Converter, Mapping and Deltas
 
-Data gathered by `Reader` objects is transferred to `Converter` objects that put the data in a format Shopware 6 is able to work with. Simultaneously entries in the underlying mapping table are inserted to map the old identifiers to the new ones for future migrations \(Have a look at the `MappingService` for that\). The mapping is saved for the current connection. Converted data will be removed after the migration, the mapping will stay persistent. Also a checksum is saved to the mapping to identify and skip the same source data \(data has not been changed since last migration\). You can find out more about them here: 
+Data gathered by `Reader` objects is transferred to `Converter` objects that put the data in a format Shopware 6 is able to work with. Simultaneously entries in the underlying mapping table are inserted to map the old identifiers to the new ones for future migrations \(Have a look at the `MappingService` for that\). The mapping is saved for the current connection. Converted data will be removed after the migration, the mapping will stay persistent. Also a checksum is saved to the mapping to identify and skip the same source data \(data has not been changed since last migration\). You can find out more about them here:
 
 {% page-ref page="convert-and-mapping.md" %}
 

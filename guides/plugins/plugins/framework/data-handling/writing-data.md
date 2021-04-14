@@ -6,10 +6,9 @@ This guide will teach you everything you need to know in order to write data to 
 
 ## Prerequisites
 
-This guide is built upon the [plugin base guide](../../plugin-base-guide.md), so having a look at it first won't hurt.
-Having read the guide about [reading data](./reading-data.md) or understanding how to read data is mandatory for at least one short part of this guide.
+This guide is built upon the [plugin base guide](../../plugin-base-guide.md), so having a look at it first won't hurt. Having read the guide about [reading data](reading-data.md) or understanding how to read data is mandatory for at least one short part of this guide.
 
-You also might want to have a look at the concept behind the [Data abstraction layer](../../../../../concepts/framework/data-abstraction-layer/README.md) first to get a better grasp of how it works.
+You also might want to have a look at the concept behind the [Data abstraction layer](../../../../../concepts/framework/data-abstraction-layer.md) first to get a better grasp of how it works.
 
 ## Writing data
 
@@ -19,8 +18,8 @@ Let's get started with examples to write data. This example will be about writin
 
 Dealing with the Data Abstraction Layer is done by using the automatically generated repositories for each entity, such as a product. This means, that you have to inject the repository into your service first.
 
-The repository's service name follows this pattern: `entity_name.repository`   
- For products this then would be `product.repository`. Additional to that, you're going to need the `tax` repository later for this guide, so let's add this as well already.
+The repository's service name follows this pattern: `entity_name.repository`  
+For products this then would be `product.repository`. Additional to that, you're going to need the `tax` repository later for this guide, so let's add this as well already.
 
 ```markup
 // SwagBasicExample/src/Resources/config/services.xml
@@ -114,12 +113,7 @@ In there, we're calling the `create` method on the product repository with two p
 
 This minimal example is just filling in the product's mandatory fields: The `name`, the `productNumber`, the `stock`, the `taxId` and the `price`. So the first three fields are just plain values, easy as that.
 
-The `taxId` though represents the ID of the associated `tax`.
-Since we want to assign an existing tax here, we've created a new method called `getTaxId` to actually read the ID that we need.
-For this purpose, you need to understand how to read data from Shopware, so have a look at our guide about [reading data](./reading-data.md).
-We're calling `searchIds` on the `taxRepository` to only get IDs, since we don't need the full tax data here.
-Since we only need the first ID with the given tax rate here, we're just grabbing the first ID by using the `firstId` method on the collection.
-And there we go, we got a tax ID to fill into the mandatory field `taxId`.
+The `taxId` though represents the ID of the associated `tax`. Since we want to assign an existing tax here, we've created a new method called `getTaxId` to actually read the ID that we need. For this purpose, you need to understand how to read data from Shopware, so have a look at our guide about [reading data](reading-data.md). We're calling `searchIds` on the `taxRepository` to only get IDs, since we don't need the full tax data here. Since we only need the first ID with the given tax rate here, we're just grabbing the first ID by using the `firstId` method on the collection. And there we go, we got a tax ID to fill into the mandatory field `taxId`.
 
 A further explanation on how to write new associated data, instead of using existing entities, is also provided in the section [Assigning associated data](writing-data.md#assigning-associated-data).
 
@@ -220,7 +214,7 @@ Once again: An array of arrays, since you can delete more than one entry at once
 
 Assigning associated data is different for each kind of association. Every single of them will be covered here, from `OneToOne` associations, to `ManyToOne` and `OneToMany` associations and `ManyToMany` associations.
 
-If you don't know how to add associations to an entity, maybe to your own entity, head over to our guide for adding an assocation to an entity [Add data associations](./add-data-associations.md).
+If you don't know how to add associations to an entity, maybe to your own entity, head over to our guide for adding an assocation to an entity [Add data associations](add-data-associations.md).
 
 #### OneToOne and ManyToOne associations
 
@@ -304,7 +298,7 @@ public function writeData(Context $context): void
 
 The reason for that is simple: With every update action, you need to provide the primary key and the data to be updated. For mapping entities though, all data you could provide are primary keys themselves and you can't update primary keys.
 
-Your only way to solve this is by replacing the association. Head over to our guide regarding [replacing associated data](./replacing-associated-data.md).
+Your only way to solve this is by replacing the association. Head over to our guide regarding [replacing associated data](replacing-associated-data.md).
 
 ### Creating associated data
 
@@ -356,13 +350,11 @@ Note the `categories` field here. Just remember to use an array of arrays for `T
 
 ### Replacing and deleting associated data
 
-Replacing associated data is not always as easy as it seems. Head over to our [guide about replacing data](./replacing-associated-data.md) to get a full grasp of how it's done properly.
-While "deleting associated data" is covered by the guide mentioned above already, we've created a [separate guide](./deleting-associated-data.md) for this case.
+Replacing associated data is not always as easy as it seems. Head over to our [guide about replacing data](replacing-associated-data.md) to get a full grasp of how it's done properly. While "deleting associated data" is covered by the guide mentioned above already, we've created a [separate guide](deleting-associated-data.md) for this case.
 
 ## Next steps
 
 That's it for this guide already!
 
-You should now be able to write data to the database using the Data Abstraction Layer from Shopware 6.
-You might have missed the guide about [reading data](./reading-data.md) in the first place though, and you should definitely know how that's done.
+You should now be able to write data to the database using the Data Abstraction Layer from Shopware 6. You might have missed the guide about [reading data](reading-data.md) in the first place though, and you should definitely know how that's done.
 

@@ -201,6 +201,7 @@ class ProductReviewDataSelection implements DataSelectionInterface
 }
 ```
 
-{% hint style="info" %} There are duplicate DataSets from the `ProductDataSelection`, because they are also required if the user does not select the product `DataSelection`. If the user selects both, this `DataSets` will be only migrated once \(with their first occurrence\).
+{% hint style="info" %}
+There are duplicate DataSets from the `ProductDataSelection`, because they are also required if the user does not select the product `DataSelection`. If the user selects both, this `DataSets` will be only migrated once \(with their first occurrence\).
 {% endhint %}
 

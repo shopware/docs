@@ -23,13 +23,9 @@ Now that we know where to place our override, we need to decide what to override
 {% endblock %}
 ```
 
-This overrides the entire Twig block with our new markup.
-However, if we want to retain the original content of the Twig block and just add our markup to the existing one,
-we can do that by including a `\{% parent %\}` somewhere in the Twig block.
-Learn more about the capabilities of twig.js [here](https://github.com/twigjs/twig.js/wiki).
+This overrides the entire Twig block with our new markup. However, if we want to retain the original content of the Twig block and just add our markup to the existing one, we can do that by including a `\{% parent %\}` somewhere in the Twig block. Learn more about the capabilities of twig.js [here](https://github.com/twigjs/twig.js/wiki).
 
-As you might have noticed the heading we just replaced had a `{ $tc() }` [string interpolation](https://vuejs.org/v2/guide/syntax.html#Text) which is used to make it multilingual.
-Learn more about internationalization in the Shopware 6 Administration and about adding your own snippets to the administration [here](./adding-snippets.md).
+As you might have noticed the heading we just replaced had a `{ $tc() }` [string interpolation](https://vuejs.org/v2/guide/syntax.html#Text) which is used to make it multilingual. Learn more about internationalization in the Shopware 6 Administration and about adding your own snippets to the administration [here](adding-snippets.md).
 
 ## Applying the override
 
@@ -57,6 +53,7 @@ import './sw-dashboard-index-override/';
 
 ## More interesting topics
 
-* [Customizing templates](./writing-templates.md)
-* [Customizing via custom styles](./add-custom-styles.md)
-* [Using base components](./using-base-components.md)
+* [Customizing templates](writing-templates.md)
+* [Customizing via custom styles](add-custom-styles.md)
+* [Using base components](using-base-components.md)
+

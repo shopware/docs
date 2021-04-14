@@ -10,8 +10,6 @@ If you want to understand what the goal of it is and how it's built - go to out 
 
 Go to the Store API reference to see a structured list of endpoints, parameters and responses.
 
-{% page-ref page="../../../resources/references/api-reference/store-api-reference.md" %}
-
 In the upcoming sections we'll discuss usage scenarios of the Store API and you'll learn how to:
 
 * Authenticate against the API
@@ -63,7 +61,6 @@ A typical Store API request including headers will look like this
     "media": ["url"]
   }
 }
-
 ```
 
 The following examples will skip all the headers and simply show the request URL and the response.
@@ -98,7 +95,7 @@ The `/context` endpoint gives some general information about the store and the u
 
 The full response is too big to be included in here - but we already have a lot of things to work with. For example the current sales channel, the selected currency or the customer group.
 
-In a later section we'll also see how we can make changes to the context - e.g. changing the selected shipping method or the language. 
+In a later section we'll also see how we can make changes to the context - e.g. changing the selected shipping method or the language.
 
 But for now let's leave it here - as you can see above, the `customer` field is still empty. Time to change that.
 

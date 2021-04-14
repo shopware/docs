@@ -2,28 +2,24 @@
 
 ## Overview
 
-The mail templates in Shopware have access to a given set of data, e.g. the customer data, the order data, etc.
-Sometimes you want add your custom entity to that data set though, so you can use this data in your mail templates as well.
+The mail templates in Shopware have access to a given set of data, e.g. the customer data, the order data, etc. Sometimes you want add your custom entity to that data set though, so you can use this data in your mail templates as well.
 
 This guide will teach you how to add new data to the mail templates using your plugin.
 
 ## Prerequisites
 
-This guide is built upon our [plugin base guide](../../plugin-base-guide.md), whose namespace is going to be used in the examples
-of this guide.
-However, you can use those examples with any plugin, you'll just have to adjust the namespace and the directory the files
-are located in.
+This guide is built upon our [plugin base guide](../../plugin-base-guide.md), whose namespace is going to be used in the examples of this guide. However, you can use those examples with any plugin, you'll just have to adjust the namespace and the directory the files are located in.
 
 Furthermore, you should know how to decorate a service, which is explained in this [guide](../../plugin-fundamentals/adjusting-service.md).
 
 ## Adding data via decorator
 
-In order to add new data to the mail templates, you'll have to decorate the
-[MailService](https://github.com/shopware/platform/blob/trunk/src/Core/Content/Mail/Service/MailService.php).
+In order to add new data to the mail templates, you'll have to decorate the [MailService](https://github.com/shopware/platform/blob/trunk/src/Core/Content/Mail/Service/MailService.php).
 
 To be precise, you have to extend the `send` method, whose last parameter is the `$templateData`, that we want to enrich.
 
 So let's do that, here's an example of a decorated mail service:
+
 {% code title="<plugin root>/src/Service/AddDataToMails.php" %}
 ```php
 <?php declare(strict_types=1);
@@ -63,22 +59,20 @@ class AddDataToMails extends AbstractMailService
 
 If you don't recognise the decoration pattern used here, make sure to have a look at our [guide about decorations](../../plugin-fundamentals/adjusting-service.md).
 
-As always, we're passing in the original `MailService` as a constructor parameter, so we can return it in the `getDecorated` method,
-as well as use the original `send` method after having adjusted the `$templateData`.
+As always, we're passing in the original `MailService` as a constructor parameter, so we can return it in the `getDecorated` method, as well as use the original `send` method after having adjusted the `$templateData`.
 
 In this example, we're adding `myCustomData` to the `$templateData`, so that one should be available then.
 
-If we add `{{ myCustomData }}` to any mail template, it should then print "Example data".
-You can use any kind of data here, e.g. an array of data.
+If we add `{{ myCustomData }}` to any mail template, it should then print "Example data". You can use any kind of data here, e.g. an array of data.
 
 ### Register your decorator
 
-Of course you still have to register the decoration to the service container.
-Beware of the `decorates` attribute of our service.
+Of course you still have to register the decoration to the service container. Beware of the `decorates` attribute of our service.
 
 Here's the respective example `services.xml`:
+
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
-```xml
+```markup
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -92,3 +86,4 @@ Here's the respective example `services.xml`:
 </container>
 ```
 {% endcode %}
+

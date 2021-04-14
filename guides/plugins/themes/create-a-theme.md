@@ -6,7 +6,7 @@ This guide will show you how to create a theme fom the scratch. You will also le
 
 ## Prerequisites
 
-All you need for this guide is a running Shopware 6 instance and full access to both the files, as well as the command line.  
+All you need for this guide is a running Shopware 6 instance and full access to both the files, as well as the command line.
 
 ## Create your first plugin theme
 
@@ -57,8 +57,7 @@ Shopware Plugin Service
  1 plugins, 0 installed, 0 active , 0 upgradeable
 ```
 
-Now Shopware recognises your plugin theme. The next step is the installation and activation of your theme.
-Run the following command in terminal.
+Now Shopware recognises your plugin theme. The next step is the installation and activation of your theme. Run the following command in terminal.
 
 ```bash
 # run this command to install and activate your plugin
@@ -97,7 +96,7 @@ Please select a theme:
 > 1
 
 Set "SwagBasicExampleTheme" as new theme for sales channel "Storefront"
-Compiling theme 13e0a4a46af547479b1347617926995b for sales channel SwagBasicExampleTheme  
+Compiling theme 13e0a4a46af547479b1347617926995b for sales channel SwagBasicExampleTheme
 ```
 
 At first, we have to select a sales channel. The obvious choice here is the 'Storefront'. Afterwards enter the number for our theme.
@@ -131,6 +130,7 @@ Now your theme is fully installed, and you can start your customization.
 
 Now that you have created your own theme, the next step is to learn how to make settings and adjustments.
 
-* [Theme configuration](./theme-configuration.md) 
-* [Add SCSS Styling and JavaScript to a theme](./add-css-js-to-theme.md)
-* [Add assets to theme](./add-assets-to-theme.md)
+* [Theme configuration](theme-configuration.md) 
+* [Add SCSS Styling and JavaScript to a theme](add-css-js-to-theme.md)
+* [Add assets to theme](add-assets-to-theme.md)
+

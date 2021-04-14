@@ -17,7 +17,7 @@ For an entity object, the system automatically creates the following routes thro
 | Name | Method | Route | Usage |
 | :--- | :--- | :--- | :--- |
 | api.customer\_group.list | GET | /api/v{version}/customer-group | Fetch a list of entities |
-| api.customer\_group.detail | GET | /api/v{version}/customer-group/{id} | Fetch a single entity  |
+| api.customer\_group.detail | GET | /api/v{version}/customer-group/{id} | Fetch a single entity |
 | api.customer\_group.search | POST | /api/v{version}/search/customer-group | Perform a more [sophisticated search](../general-concepts/search-criteria.md) |
 | api.customer\_group.search-ids | POST | /api/v{version}/search-ids/customer-group | Perform a more [sophisticated search](../general-concepts/search-criteria.md) and fetching only matching ids |
 

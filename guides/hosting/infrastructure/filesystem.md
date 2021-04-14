@@ -9,6 +9,7 @@ Shopware 6 stores and processes a wide variety of files. This goes from product 
 Shopware 6 can be used with several cloud storage providers, it uses [Flysystem](https://flysystem.thephpleague.com/docs/) to provide a common interface between different providers as well as the local filesystem. This enables your shops to read and write files through a common interface.
 
 The filesystem can be divided into multiple adapters. Each adapter can handle one or more of the following directories: media. sitemaps, and more. Of course, you can also use the same configuration for each and all of them:
+
 * One for private files: invoices, delivery notes, plugin files, etc
 * One for public files: product pictures, media files, plugin files in general
 * One for theme files

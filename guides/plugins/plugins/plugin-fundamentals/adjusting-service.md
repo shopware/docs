@@ -15,7 +15,7 @@ First of all we have to create a new service for this example which gets decorat
 Here's our example `services.xml`:
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
-```xml
+```markup
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -39,7 +39,6 @@ Therefore, this is how your abstract class could then look like:
 
 {% code title="<plugin root>/src/Service/AbstractExampleService.php" %}
 ```php
-
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -145,7 +144,6 @@ abstract class AbstractExampleService
 
 After we have implemented our new function in the abstract class, we implement it in our service too.
 
-
 {% code title="<plugin root>/src/Service/ExampleService.php" %}
 ```php
 <?php declare(strict_types=1);
@@ -173,3 +171,4 @@ class ExampleService extends AbstractExampleService
 }
 ```
 {% endcode %}
+

@@ -8,7 +8,7 @@ In this guide you'll learn how to inject services into other services. You can r
 
 In order to add your own custom service for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
 
-Furthermore, you need a working service. Therefore, you can refer to [Adding a custom service](./add-custom-service.md) guide.
+Furthermore, you need a working service. Therefore, you can refer to [Adding a custom service](add-custom-service.md) guide.
 
 ## Injecting another service
 
@@ -17,7 +17,7 @@ Let's get started with an example how to inject a service. This example will be 
 Here's our example `services.xml`:
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
-```xml
+```markup
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -65,3 +65,4 @@ class ExampleService
 }
 ```
 {% endcode %}
+

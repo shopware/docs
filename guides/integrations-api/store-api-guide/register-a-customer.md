@@ -2,12 +2,11 @@
 
 ## Overview
 
-If you want to place orders, manage a profile or view old orders, you have to register a customer. 
+If you want to place orders, manage a profile or view old orders, you have to register a customer.
 
 ## Registration of a customer
 
-A customer needs some personal data and a billing address to be created.
-In addition to that, you have to define a storefront URL. This URL is required for Shopware to correctly assemble a confirmation link so they can confirm their registration in case of a [double opt in](register-a-customer.md#double-opt-in). This is especially required for frontends that have a different host than the Shopware API itself.
+A customer needs some personal data and a billing address to be created. In addition to that, you have to define a storefront URL. This URL is required for Shopware to correctly assemble a confirmation link so they can confirm their registration in case of a [double opt in](register-a-customer.md#double-opt-in). This is especially required for frontends that have a different host than the Shopware API itself.
 
 {% hint style="info" %}
 The customer requires a **salutationId** and a **countryId** parameter. You can fetch the different options using the `/store-api/v3/salutation` and `/store-api/v3/country` endpoints respectively.
@@ -17,22 +16,22 @@ The customer requires a **salutationId** and a **countryId** parameter. You can 
 // POST /store-api/v3/account/register
 
 {
-	"salutationId": "32d6c76401d749d2b025eba20a511e54",
-	"firstName": "Alice",
-	"lastName": "Apple",
-	"email": "alice.apple@example.com",
-	"password": "ilovefruits",
-	"storefrontUrl": "http://localhost",
-	"billingAddress": {
-		"street": "Apple Alley 42",
-		"zipcode": "1234-5",
-		"city": "Appleton",
-		"countryId": "de7ca8cbb8934e63bed964f8d592d501"
-	}
+    "salutationId": "32d6c76401d749d2b025eba20a511e54",
+    "firstName": "Alice",
+    "lastName": "Apple",
+    "email": "alice.apple@example.com",
+    "password": "ilovefruits",
+    "storefrontUrl": "http://localhost",
+    "billingAddress": {
+        "street": "Apple Alley 42",
+        "zipcode": "1234-5",
+        "city": "Appleton",
+        "countryId": "de7ca8cbb8934e63bed964f8d592d501"
+    }
 }
 ```
 
-If your request is successful, the response contains a representation of the newly created customer. 
+If your request is successful, the response contains a representation of the newly created customer.
 
 **Context Token**
 
@@ -43,7 +42,7 @@ When you're using double opt-in, please follow [these steps](register-a-customer
 There's one more interesting thing. If you look at the response headers, you will find the `sw-context-token` header. Usually that header contains the token which identifies your current session. However, when you register a customer, it contains both the new and the old token, separated by a comma:
 
 ```text
-sw-context-token	GP6Yin6JlKeFP55oKVpVYx8Zt4Um1fqc, YoKCWdUdMYh5FEszia4ZrcoyAh7hJNY1
+sw-context-token    GP6Yin6JlKeFP55oKVpVYx8Zt4Um1fqc, YoKCWdUdMYh5FEszia4ZrcoyAh7hJNY1
 ```
 
 The first token is the new one - you can use it on subsequent requests and your customer is already logged in. The old token is still valid and contains the cart and other settings. You can pass it as an additional header `sw-context-token` to identify your requests.
@@ -109,8 +108,8 @@ Logging in as a user is even easier. You just have to pass the user's email and 
 // POST /store-api/v3/account/login
 
 {
-	"email": "alice.apple@example.com",
-	"password": "ilovefruits"
+    "email": "alice.apple@example.com",
+    "password": "ilovefruits"
 }
 ```
 

@@ -17,7 +17,7 @@ Let's start by performing a simple product search
 // POST /store-api/v3/search
 
 {
-	"search": "braeburn"
+    "search": "braeburn"
 }
 ```
 
@@ -142,8 +142,8 @@ We can apply any of the given sortings by passing them through the `order` field
 // POST /store-api/v3/search
 
 {
-	"search": "braeburn",
-	"order": "topseller"
+    "search": "braeburn",
+    "order": "topseller"
 }
 ```
 
@@ -153,17 +153,17 @@ Let's say you want to filter out products with a price higher than 50.00. We sim
 // POST /store-api/v3/search
 
 {
-	"search": "braeburn",
-	"order": "topseller",
-	"filter": [
-		{
-			"type": "range",
-			"field": "price",
-			"parameters": {
-				"lt": 50.0
-			}
-		}
-	]
+    "search": "braeburn",
+    "order": "topseller",
+    "filter": [
+        {
+            "type": "range",
+            "field": "price",
+            "parameters": {
+                "lt": 50.0
+            }
+        }
+    ]
 }
 ```
 
@@ -179,16 +179,16 @@ The following request provides us with a response containing the most essential 
 // POST /store-api/v3/search
 
 {
-	"search": "braeburn",
-	"includes": {
-		"product_sorting": ["id", "translated"],
-		"product_manufacturer": ["id", "translated"],
-		"product": ["id", "translated", "cover", "calculatedPrice"],
-		"calculated_price": ["totalPrice", "listPrice"],
-		"product_media": ["media"],
-		"media": ["thumbnails"],
-		"media_thumbnail": ["width", "height", "url"]
-	}
+    "search": "braeburn",
+    "includes": {
+        "product_sorting": ["id", "translated"],
+        "product_manufacturer": ["id", "translated"],
+        "product": ["id", "translated", "cover", "calculatedPrice"],
+        "calculated_price": ["totalPrice", "listPrice"],
+        "product_media": ["media"],
+        "media": ["thumbnails"],
+        "media_thumbnail": ["width", "height", "url"]
+    }
 }
 ```
 
@@ -210,15 +210,15 @@ Sometimes it's necessary to fetch additional associations like categories or pro
 // POST /store-api/v3/search
 
 {
-	"search": "braeburn",
-	"associations": {
-		"categories": {}
-	},
-	"includes": {
-		"product_listing": ["elements"],
-		"product": ["id", "translated", "categories"],
-		"category": ["id", "translated"]
-	}
+    "search": "braeburn",
+    "associations": {
+        "categories": {}
+    },
+    "includes": {
+        "product_listing": ["elements"],
+        "product": ["id", "translated", "categories"],
+        "category": ["id", "translated"]
+    }
 }
 ```
 

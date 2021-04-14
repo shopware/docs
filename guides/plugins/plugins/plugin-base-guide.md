@@ -2,7 +2,7 @@
 
 ## Overview
 
-Plugins in Shopware are essentially an extension of [Symfony bundles](./plugins-for-symfony-developers.md). Such bundles and plugins can provide their own resources like assets, controllers, services or tests, which you'll learn in the next guides.  
+Plugins in Shopware are essentially an extension of [Symfony bundles](plugins-for-symfony-developers.md). Such bundles and plugins can provide their own resources like assets, controllers, services or tests, which you'll learn in the next guides.  
 A plugin is the main way to extend your Shopware 6 instance programmatically.
 
 This guide will teach you the basics of creating your very first plugin from scratch, which then can be installed to your Shopware 6 instance. A guide to install Shopware 6 in the first place can be found [here](../../installation/overview.md).
@@ -23,7 +23,7 @@ Shopware uses "Swag" as a prefix for that case.
 For this example guide we'll use the plugin name **SwagBasicExample.**
 
 {% hint style="info" %}
-Using a prefix for your plugin name is not just a convention we'd recommend, but a hard requirement if you want to publish your plugin in the [Shopware Community Store](https://store.shopware.com/en).  
+Using a prefix for your plugin name is not just a convention we'd recommend, but a hard requirement if you want to publish your plugin in the [Shopware Community Store](https://store.shopware.com/en).
 {% endhint %}
 
 ### **Create the plugin**
@@ -116,8 +116,7 @@ There's another two things that you need to know:
 2. The whole `autoload` part. This has to mention your [PSR-4](https://www.php-fig.org/psr/psr-4/) namespace. So if you'd like to have another namespace for your plugin, this is the place to go.
 
 {% hint style="warning" %}
-The path you've configured in the configuration `autoload.psr-4`, `src/` in this case, will be referred to as `<plugin root>/src` in almost all code examples.
-If you're using a custom path here, e.g. just a slash `/`, then the examples would be `<plugin root>/` here instead.
+The path you've configured in the configuration `autoload.psr-4`, `src/` in this case, will be referred to as `<plugin root>/src` in almost all code examples. If you're using a custom path here, e.g. just a slash `/`, then the examples would be `<plugin root>/` here instead.
 {% endhint %}
 
 And that's it. The basic structure and all necessary files for your plugin to be installable are done.
@@ -171,22 +170,22 @@ And that's basically it.
 
 ## Next steps
 
-There's many more things to discover when creating your first plugin.
-Hence, here's a list of important articles, that may be of interest for you.
+There's many more things to discover when creating your first plugin. Hence, here's a list of important articles, that may be of interest for you.
 
-* [Installing data with your plugin](./plugin-fundamentals/database-migrations.md)
-* [Learn more about the plugin lifecycle methods](./plugin-fundamentals/plugin-lifecycle.md)
-* [Adding a configuration to your plugin](./plugin-fundamentals/add-plugin-configuration.md)
-* [Learning about the service container](./plugin-fundamentals/dependency-injection.md)
-* [Adding a custom service](./plugin-fundamentals/add-custom-service.md)
-* [Start listening to events](./plugin-fundamentals/listening-to-events.md)
+* [Installing data with your plugin](plugin-fundamentals/database-migrations.md)
+* [Learn more about the plugin lifecycle methods](plugin-fundamentals/plugin-lifecycle.md)
+* [Adding a configuration to your plugin](plugin-fundamentals/add-plugin-configuration.md)
+* [Learning about the service container](plugin-fundamentals/dependency-injection.md)
+* [Adding a custom service](plugin-fundamentals/add-custom-service.md)
+* [Start listening to events](plugin-fundamentals/listening-to-events.md)
 
 Furthermore, you should definitely have a look into these sections:
 
-{% page-ref page="./storefront/README.md" %}
+{% page-ref page="storefront/" %}
 
-{% page-ref page="./administration/README.md" %}
+{% page-ref page="administration/" %}
 
-{% page-ref page="./framework/data-handling/README.md" %}
+{% page-ref page="framework/data-handling/" %}
 
-{% page-ref page="./testing/README.md" %}
+{% page-ref page="testing/" %}
+

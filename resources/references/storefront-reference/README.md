@@ -1,2 +1,2 @@
-# Storefront reference
+# Storefront Reference
 

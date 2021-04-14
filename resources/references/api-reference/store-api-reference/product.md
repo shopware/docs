@@ -1,20 +1,21 @@
+# Product
 
-# Fetch a single product
+## Fetch a single product
 
-`POST /product/{productId}` | ProductDetailRoute
+`POST /product/{productId}` \| ProductDetailRoute
 
-## Parameters
+### Parameters
 
 **Path**
 
-**`navigationId`** | uuid | required  
+**`navigationId`** \| uuid \| required  
 Identifier of a product. If it points to a "parent" product, it returns the cheapest variant of that product.
 
 **Body**
 
-[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) | Criteria | optional  
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) \| Criteria \| optional
 
-## Returns
+### Returns
 
 Returns a single product together with a configurator object that contains its variant options.
 
@@ -50,22 +51,22 @@ Returns a single product together with a configurator object that contains its v
 {% endtab %}
 {% endtabs %}
 
-# Fetch a list of products by category
+## Fetch a list of products by category
 
-`POST /product-listing/{categoryId}` | ProductListingRoute
+`POST /product-listing/{categoryId}` \| ProductListingRoute
 
-## Parameters
+### Parameters
 
 **Path**
 
-**`navigationId`** | uuid | required  
+**`navigationId`** \| uuid \| required  
 Identifier of a category.
 
 **Body**
 
-[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) | Criteria | optional  
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) \| Criteria \| optional
 
-## Returns
+### Returns
 
 Returns a product listing containing all products and additional fields to display a listing.
 
@@ -88,17 +89,17 @@ Returns a product listing containing all products and additional fields to displ
 {% endtab %}
 {% endtabs %}
 
-# Fetch a list of products by criteria
+## Fetch a list of products by criteria
 
-`POST /product` | ProductListListRoute
+`POST /product` \| ProductListListRoute
 
-## Parameters
+### Parameters
 
 **Body**
 
-[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) | Criteria | optional  
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) \| Criteria \| optional
 
-## Returns
+### Returns
 
 Returns a search result containing products, aggregations and pagination properties.
 
@@ -117,22 +118,22 @@ Returns a search result containing products, aggregations and pagination propert
 {% endtab %}
 {% endtabs %}
 
-# Fetch cross-selling groups of a product
+## Fetch cross-selling groups of a product
 
-`POST /product/{productId}/cross-selling` | ProductCrossSellingRoute
+`POST /product/{productId}/cross-selling` \| ProductCrossSellingRoute
 
-## Parameters
+### Parameters
 
 **Path**
 
-**`productId`** | uuid | required  
+**`productId`** \| uuid \| required  
 Identifier of a product.
 
 **Body**
 
-[`includes`](../../../../guides/integrations-api/general-concepts/search-criteria.md#includes-apialias) | object | optional  
+[`includes`](../../../../guides/integrations-api/general-concepts/search-criteria.md#includes-apialias) \| object \| optional
 
-## Returns
+### Returns
 
 Returns a list of cross-selling groups for the given product including their respective items.
 
@@ -174,24 +175,24 @@ Returns a list of cross-selling groups for the given product including their res
 {% endtab %}
 {% endtabs %}
 
-# Search for products
+## Search for products
 
-`POST /search` | ProductSearchRoute
+`POST /search` \| ProductSearchRoute
 
-`POST /search-suggest` | ProductSuggestRoute
+`POST /search-suggest` \| ProductSuggestRoute
 
-## Parameters
+### Parameters
 
 **Body**
 
-**`search`** | string | required  
+**`search`** \| string \| required  
 Term to search after.
 
-[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) | Criteria | optional  
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) \| Criteria \| optional
 
-## Returns
+### Returns
 
-Returns a product listing including all products that match your search term.  Additionally, all products contain a extensions.search._score field, which shows the relevance score of the product.
+Returns a product listing including all products that match your search term. Additionally, all products contain a extensions.search.\_score field, which shows the relevance score of the product.
 
 When you're using the /search-suggest endpoint, aggregations, currentFilters and availableSortings are not included in the response.
 
@@ -224,22 +225,22 @@ When you're using the /search-suggest endpoint, aggregations, currentFilters and
 {% endtab %}
 {% endtabs %}
 
-# Fetch product reviews
+## Fetch product reviews
 
-`POST /product/{productId}/reviews` | ProductReviewRoute
+`POST /product/{productId}/reviews` \| ProductReviewRoute
 
-## Parameters
+### Parameters
 
 **Path**
 
-**`productId`** | uuid | required  
+**`productId`** \| uuid \| required  
 Identifier of a product.
 
 **Body**
 
-[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) | Criteria | optional  
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) \| Criteria \| optional
 
-## Returns
+### Returns
 
 Returns a search result containing all reviews for the given product.
 
@@ -282,43 +283,43 @@ Returns a search result containing all reviews for the given product.
 {% endtab %}
 {% endtabs %}
 
-# Save product reviews
+## Save product reviews
 
-`POST /product/{productId}/review` | ProductReviewSaveRoute
+`POST /product/{productId}/review` \| ProductReviewSaveRoute
 
-## Parameters
+### Parameters
 
 **Header**
 
-**`sw-context-token`** | string | required  
+**`sw-context-token`** \| string \| required  
 Context token of a [logged in](../../../../guides/integrations-api/store-api-guide/register-a-customer.md#logging-in) user.
 
 **Path**
 
-**`productId`** | uuid | required  
+**`productId`** \| uuid \| required  
 Identifier of a product.
 
 **Body**
 
-**`title`** | string | required  
+**`title`** \| string \| required  
 Identifier of a product.
 
-**`content`** | string | required  
+**`content`** \| string \| required  
 Identifier of a product.
 
-`id` | uuid | optional  
+`id` \| uuid \| optional  
 Used for edits only. The review will be updated, if it's created by the [logged in](../../../../guides/integrations-api/store-api-guide/register-a-customer.md#logging-in) user.
 
-`name` | string | optional  
+`name` \| string \| optional  
 Name of the reviewer. If not set, it defaults to the customer's first name.
 
-`email` | string | optional  
+`email` \| string \| optional  
 Identifier of a product. If not set, it defaults to the customer's email
 
-`points` | float | optional  
+`points` \| float \| optional  
 Identifier of a product.
 
-## Returns
+### Returns
 
 Returns an empty when the response was created or modified.
 
@@ -329,3 +330,4 @@ Returns an empty when the response was created or modified.
 ```
 {% endtab %}
 {% endtabs %}
+

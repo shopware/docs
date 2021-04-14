@@ -15,7 +15,7 @@ Adding a custom service requires to load a `services.xml` file with your plugin.
 Here's our example `services.xml`:
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
-```xml
+```markup
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -53,9 +53,7 @@ Note: By default, all services in Shopware 6 are marked as _private_. Read more 
 
 ## Next steps
 
-You've now created your own custom service.
-In the same manner, you can create other important plugin classes, such as [commands](./add-custom-commands.md),
-[scheduled tasks](./add-scheduled-task.md) or a [subscriber to listen to events](./listening-to-events.md).
+You've now created your own custom service. In the same manner, you can create other important plugin classes, such as [commands](add-custom-commands.md), [scheduled tasks](add-scheduled-task.md) or a [subscriber to listen to events](listening-to-events.md).
 
-Furthermore, we also have a guide explaining how to [customize an existing service](./adjusting-service.md) instead.
+Furthermore, we also have a guide explaining how to [customize an existing service](adjusting-service.md) instead.
 

@@ -18,9 +18,7 @@ Visit the [academy](https://academy.shopware.com/collections?category=developer-
 
 ## Need help getting started?
 
-{% page-ref page="guides/installation/overview" %}
+{% page-ref page="guides/plugins/" %}
 
-{% page-ref page="guides/plugins" %}
-
-{% page-ref page="resources/references/api-reference/store-api-reference" %}
+{% page-ref page="resources/references/api-reference/store-api-reference/" %}
 

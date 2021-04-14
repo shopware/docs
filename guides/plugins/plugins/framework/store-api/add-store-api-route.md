@@ -2,9 +2,7 @@
 
 ## Overview
 
-In this guide you'll learn how to add a custom store API route.
-In this example, we will create a new route called `ExampleRoute` that searches entities of type `swag_example`. 
-The route will be accessible under `/store-api/example`.
+In this guide you'll learn how to add a custom store API route. In this example, we will create a new route called `ExampleRoute` that searches entities of type `swag_example`. The route will be accessible under `/store-api/example`.
 
 ## Prerequisites
 
@@ -14,8 +12,7 @@ You also should have a look at our [Adding custom complex data](../data-handling
 
 ## Add Store API route
 
-As you may already know from the [adjusting service](../../plugin-fundamentals/adjusting-service.md) guide, 
-we use abstract classes to make our routes more decoratable.
+As you may already know from the [adjusting service](../../plugin-fundamentals/adjusting-service.md) guide, we use abstract classes to make our routes more decoratable.
 
 {% hint style="warning" %}
 All fields that should be available through the API require the flag `ApiAware` in the definition.
@@ -23,9 +20,7 @@ All fields that should be available through the API require the flag `ApiAware` 
 
 ### Create abstract route class
 
-First of all, we create an abstract class called `AbstractExampleRoute`. This class has to contain a method `getDecorated`
-and a method `load` with a `Criteria` and `SalesChannelContext` as parameter.
-The `load` method has to  return an instance of `ExampleRouteResponse`, which we will create later on.
+First of all, we create an abstract class called `AbstractExampleRoute`. This class has to contain a method `getDecorated` and a method `load` with a `Criteria` and `SalesChannelContext` as parameter. The `load` method has to return an instance of `ExampleRouteResponse`, which we will create later on.
 
 {% code title="<plugin root>/src/Core/Content/Example/SalesChannel/AbstractExampleRoute.php" %}
 ```php
@@ -126,41 +121,28 @@ class ExampleRoute extends AbstractExampleRoute
 
 As you can see, our class is annotated with `@RouteScope` and the defined scope `store-api`.
 
-In our class constructor we've injected our `swag_example.repository`.
-The method `getDecorated()` must throw a `DecorationPatternException` because it has no decoration yet and
-the method `load`, which fetches the data, returns a new `ExampleRouteResponse` with the respective
-repository search result as argument.
+In our class constructor we've injected our `swag_example.repository`. The method `getDecorated()` must throw a `DecorationPatternException` because it has no decoration yet and the method `load`, which fetches the data, returns a new `ExampleRouteResponse` with the respective repository search result as argument.
 
-Now let's take a look at the annotation of our `load` method which is required for the automatic OpenAPI generation
-using [Swagger UI](https://zircote.github.io/swagger-php/).
+Now let's take a look at the annotation of our `load` method which is required for the automatic OpenAPI generation using [Swagger UI](https://zircote.github.io/swagger-php/).
 
-- `@Entity`: The entity we are representing.
-- `@OA\Post`:
-    - `path`: The route, where we can access this action.
-    - `summary`: A description for this route.
-    - `operationId`: An **unique** name for this action.
-    - `tags`: First argument is the API we're using e.g. 'Store API' or 'API', the second is the name of the group where this action is grouped.
-- `@OA\Parameter`: Parameter for our route. 'Api-Basic-Parameters' is used for the abstraction of a criteria which adds parameters like sort, post-filters, ...
-- `@OA\Response`:
-  - `response`: HTTP status code of the response.
-  - `description`: A description for the response, e.g. Successfully saved.
+* `@Entity`: The entity we are representing.
+* `@OA\Post`:
+  * `path`: The route, where we can access this action.
+  * `summary`: A description for this route.
+  * `operationId`: An **unique** name for this action.
+  * `tags`: First argument is the API we're using e.g. 'Store API' or 'API', the second is the name of the group where this action is grouped.
+* `@OA\Parameter`: Parameter for our route. 'Api-Basic-Parameters' is used for the abstraction of a criteria which adds parameters like sort, post-filters, ...
+* `@OA\Response`:
+  * `response`: HTTP status code of the response.
+  * `description`: A description for the response, e.g. Successfully saved.
 
-The last part of our response is the content, using an `@OA\JsonContent` annotation with type `Object`, since
-we are returning a JSON object. Within the JSON content, we have three properties annotated with `@OA\Property`.
-The first property is the amount of entities we retrieved. The next property contains the aggregations of our criteria.
+The last part of our response is the content, using an `@OA\JsonContent` annotation with type `Object`, since we are returning a JSON object. Within the JSON content, we have three properties annotated with `@OA\Property`. The first property is the amount of entities we retrieved. The next property contains the aggregations of our criteria.
 
-Finally, we have our retrieved entities, using an `@OA\Items` annotation which references to `#/components/schemas/`
-and the technical name of our entity, so in our case `#/components/schemas/swag_example`.
-This is used to generate the schema according to our definition.
+Finally, we have our retrieved entities, using an `@OA\Items` annotation which references to `#/components/schemas/` and the technical name of our entity, so in our case `#/components/schemas/swag_example`. This is used to generate the schema according to our definition.
 
 ### Route response
 
-After we have created our route, we need to create the mentioned `ExampleRouteResponse`. This class should extend
-from `Shopware\Core\System\SalesChannel\StoreApiResponse`. In this class we have a property `$object` of type
-`Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult`. The class constructor has one argument 
-`EntitySearchResult`, which was passed to it by our `ExampleRoute`. The constructor calls the parent constructor with the 
-parameter `$object` which sets the value for our object property. Finally, we add a method `getExamples` in which we 
-return our entity collection that we got from the object.
+After we have created our route, we need to create the mentioned `ExampleRouteResponse`. This class should extend from `Shopware\Core\System\SalesChannel\StoreApiResponse`. In this class we have a property `$object` of type `Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult`. The class constructor has one argument `EntitySearchResult`, which was passed to it by our `ExampleRoute`. The constructor calls the parent constructor with the parameter `$object` which sets the value for our object property. Finally, we add a method `getExamples` in which we return our entity collection that we got from the object.
 
 {% code title="<plugin root>/src/Core/Content/Example/SalesChannel/ExampleRouteResponse.php" %}
 ```php
@@ -197,18 +179,16 @@ class ExampleRouteResponse extends StoreApiResponse
 
 ## Register route
 
-The last thing we need to do now is to tell Shopware how to look for new routes in our plugin.
-This is done with a `routes.xml` file at `<plugin root>/src/Resources/config/` location.
-Have a look at the official [Symfony documentation](https://symfony.com/doc/current/routing.html) about routes and how they are registered.
+The last thing we need to do now is to tell Shopware how to look for new routes in our plugin. This is done with a `routes.xml` file at `<plugin root>/src/Resources/config/` location. Have a look at the official [Symfony documentation](https://symfony.com/doc/current/routing.html) about routes and how they are registered.
 
 {% code title="<plugin root>/src/Resources/config/routes.xml" %}
-```xml
+```markup
 <?xml version="1.0" encoding="UTF-8" ?>
 <routes xmlns="http://symfony.com/schema/routing"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://symfony.com/schema/routing
         https://symfony.com/schema/routing/routing-1.0.xsd">
-  
+
     <import resource="../../Core/**/*Route.php" type="annotation" />
 </routes>
 ```
@@ -218,7 +198,7 @@ Have a look at the official [Symfony documentation](https://symfony.com/doc/curr
 
 To check, if your route was registered correctly, you can use the [Symfony route debugger](https://symfony.com/doc/current/routing.html#debugging-routes).
 
-{% code %}
+{% code title="" %}
 ```bash
 $ ./bin/console debug:router store-api.example.search
 ```
@@ -226,14 +206,13 @@ $ ./bin/console debug:router store-api.example.search
 
 ## Check route in Swagger
 
-To check, if your OpenApi Annotations are correct, you'll have to check Swagger.
-To do this, go to the following route: `/store-api/_info/swagger.html`.
+To check, if your OpenApi Annotations are correct, you'll have to check Swagger. To do this, go to the following route: `/store-api/_info/swagger.html`.
 
 Your generated request and response could look like this:
 
 ### Request
 
-```json
+```javascript
 {
   "page": 0,
   "limit": 0,
@@ -282,9 +261,10 @@ Your generated request and response could look like this:
   ]
 }
 ```
+
 ### Response
 
-```json
+```javascript
 {
   "total": 0,
   "aggregations": {},
@@ -300,3 +280,4 @@ Your generated request and response could look like this:
   ]
 }
 ```
+
