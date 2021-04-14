@@ -3,7 +3,7 @@
 ## Overview
 
 The Shopware 6 Administration stores API errors in the [Vuex store](https://vuex.vuejs.org/).
-Where they are centrally accessible to your components, with a flat data structure wich looks like this:
+There they are centrally accessible to your components, with a flat data structure looking like this:
 
 ```
 (state)
@@ -96,7 +96,7 @@ Component.register('sw-product-basic-form', {
 Which then are bound to the inputs like this:
 
 ```html
-<sw-field type="text" v-model="product.name" :error="productNameError"
+<sw-field type="text" v-model="product.name" :error="productNameError">
 ``` 
 ​
 ### Error configuration for pages
