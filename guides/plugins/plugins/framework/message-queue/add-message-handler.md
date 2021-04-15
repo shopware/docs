@@ -213,5 +213,6 @@ shopware:
 
 ## Next steps
 
-Now that you know how to add a message handler and configure a bus for it, you may want to add a custom middleware for your bus. To do this, head over to our [Add middleware](https://github.com/shopware/docs/tree/05346e0536e104217e604215cbef11f2e10a5162/guides/plugins/plugins/framework/message-queue/add-middleware.md) guide.
+Now that you know how to add a message handler and configure a bus for it, you may want to add a custom middleware for your bus. To do this, head over to our "Add middleware" guide:
 
+{% page-ref page="add-middleware.md" %}

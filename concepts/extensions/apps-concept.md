@@ -9,7 +9,7 @@ The app system is designed to be decoupled from Shopware itself. This has two gr
 
 The central interface between your app and Shopware is defined by a dedicated manifest file. The manifest is what glues Shopware and your app together. It defines what features your app uses and how Shopware can connect to your app. You can find more information about how to use the manifest file in the App Base Guide.
 
-{% page-ref page="apps-concept.md" %}
+{% page-ref page="../../guides/plugins/apps/app-base-guide.md" %}
 
 ## Communication between Shopware and your app
 
@@ -26,6 +26,4 @@ Notice that this is optional in the case that Shopware and your app don't need t
 ## Modify the appearance of the storefront
 
 Your app can modify the appearance of the storefront, by shipping your storefront assets \(template files, javascript sources, SCSS sources, snippet files\) alongside your manifest file. You don't need to serve those assets from your external server, as Shopware will build the storefront anew on installation of your app and will consider your modifications in that process. Find out more about modifying the appearance of the storefront in the App Storefront Guide.
-
-{% page-ref page="apps-concept.md" %}
-
+{% page-ref page="../../guides/plugins/apps/app-base-guide.md" %}

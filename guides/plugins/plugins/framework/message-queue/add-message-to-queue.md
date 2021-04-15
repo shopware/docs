@@ -105,5 +105,6 @@ As the sent messages may travel through some 3rd party services you may want to 
 
 ## Next steps
 
-Now that you know how to create a message and add it to the queue, let's create a handler to process our message. To do this, head over to our [Add message handler](https://github.com/shopware/docs/tree/a5b138a8048f3569e6ae5562142e841565ee29f4/guides/plugins/plugins/framework/message-queue/add-message-handler.md) guide.
+Now that you know how to create a message and add it to the queue, let's create a handler to process our message. To do this, head over to our "Add message handler"  guide:
+{% page-ref page="add-message-handler.md" %}
 

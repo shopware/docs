@@ -76,6 +76,7 @@ The setup workflow is shown in the following schema, each step will be explained
 
 The registration request is made as a GET-Request against a URL that you provide in the manifest file of your app.
 
+<!-- markdown-link-check-disable -->
 {% code title="manifest.xml" %}
 ```markup
 <?xml version="1.0" encoding="UTF-8"?>
@@ -89,6 +90,7 @@ The registration request is made as a GET-Request against a URL that you provide
 </manifest>
 ```
 {% endcode %}
+<!-- markdown-link-check-enable-->
 
 The following query parameters will be send with the request:
 
