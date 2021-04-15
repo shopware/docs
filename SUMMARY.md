@@ -165,7 +165,6 @@
       * [Customizing components](guides/plugins/plugins/administration/customizing-components.md)
       * [Using assets](guides/plugins/plugins/administration/using-assets.md)
       * [Using Directives](guides/plugins/plugins/administration/adding-directives.md)
-      * [Add tab to existing module](guides/plugins/plugins/administration/add-new-tab-1.md)
       * [Add custom input field to existing component](guides/plugins/plugins/administration/add-custom-field.md)
       * [Using base components](guides/plugins/plugins/administration/using-base-components.md)
       * [Add custom styles](guides/plugins/plugins/administration/add-custom-styles.md)
