@@ -4,5 +4,5 @@ In order to provide users \(i.e. developers\) with a clear abstraction, Shopware
 
 Refer to our Guides section to learn how to use both extension systems, and also how they differ:
 
-{% page-ref page="./" %}
+{% page-ref page="../../guides/plugins/README.md" %}
 
