@@ -27,7 +27,7 @@ There are three ways in which `ManyToMany` associations can be used in the API
 In this case all required fields are sent with the entity.
 
 ```javascript
-// PATCH /api/v3/product/b7d2554b0ce847cd82f3ac9bd1c0dfca
+// PATCH /api/product/b7d2554b0ce847cd82f3ac9bd1c0dfca
 
 {
     "id": "b7d2554b0ce847cd82f3ac9bd1c0dfca",
@@ -44,7 +44,7 @@ In this case all required fields are sent with the entity.
 In this case, the entity already exists in the system, but it can be updated in the same request like all other associations. For this purpose, the corresponding ID of the entity is sent with the request. If the ID does not exist in the system, the API creates a new entity with this id.
 
 ```javascript
-// PATCH /api/v3/product/b7d2554b0ce847cd82f3ac9bd1c0dfca
+// PATCH /api/product/b7d2554b0ce847cd82f3ac9bd1c0dfca
 {
     "id": "b7d2554b0ce847cd82f3ac9bd1c0dfca",
     "categories": [
@@ -60,7 +60,7 @@ In this case, the entity already exists in the system, but it can be updated in 
 If both data records already exist in the system and are to be linked to the PATCH request exclusively, it is recommended that you send only the ID of the entity. This has the advantage that there is no update of the linked entity, which means less load on the system:
 
 ```javascript
-// PATCH /api/v3/product/b7d2554b0ce847cd82f3ac9bd1c0dfca
+// PATCH /api/product/b7d2554b0ce847cd82f3ac9bd1c0dfca
 {
     "id": "b7d2554b0ce847cd82f3ac9bd1c0dfca",
     "categories": [
@@ -86,7 +86,7 @@ There are three ways in which `ManyToOne` associations can be used in the API
 In this case all required fields of the entity must be given:
 
 ```javascript
-// PATCH {{host}}/api/v3/product/b7d2554b0ce847cd82f3ac9bd1c0dfca
+// PATCH {{host}}/api/product/b7d2554b0ce847cd82f3ac9bd1c0dfca
 {
     "id": "b7d2554b0ce847cd82f3ac9bd1c0dfca",
     "manufacturer": { 
@@ -102,7 +102,7 @@ With the above payload, the system creates a new manufacturer in the system and 
 In this case it is necessary to send the ID of the existing entity.
 
 ```javascript
-// PATCH {{host}}/api/v3/product/b7d2554b0ce847cd82f3ac9bd1c0dfca
+// PATCH {{host}}/api/product/b7d2554b0ce847cd82f3ac9bd1c0dfca
 {
     "id": "b7d2554b0ce847cd82f3ac9bd1c0dfca",
     "manufacturer": { 
@@ -119,7 +119,7 @@ With the above payload, the system first checks whether a manufacturer with the 
 With this option, the manufacturer already exists and should only be linked with the product. For this, either only the `id` can be sent, or the foreign key can be specified directly:
 
 ```javascript
-// PATCH {{host}}/api/v3/product/b7d2554b0ce847cd82f3ac9bd1c0dfca
+// PATCH {{host}}/api/product/b7d2554b0ce847cd82f3ac9bd1c0dfca
 {
     "id": "b7d2554b0ce847cd82f3ac9bd1c0dfca",
     "manufacturer": { 
@@ -129,7 +129,7 @@ With this option, the manufacturer already exists and should only be linked with
 ```
 
 ```javascript
-// PATCH {{host}}/api/v3/product/b7d2554b0ce847cd82f3ac9bd1c0dfca
+// PATCH {{host}}/api/product/b7d2554b0ce847cd82f3ac9bd1c0dfca
 {
     "id": "b7d2554b0ce847cd82f3ac9bd1c0dfca",
     "manufacturerId": "98432def39fc4624b33213a56b8c944d"
@@ -155,7 +155,7 @@ There are two ways to use `OneToMany` associations in the API.
 In this case all fields marked as required must be given. An ID can also be given here if it is not to be generated on server side:
 
 ```javascript
-// POST /api/v3/country
+// POST /api/country
 {
     "name" : "new country",
     "states": [
@@ -172,7 +172,7 @@ In this case all fields marked as required must be given. An ID can also be give
 In this case, it is necessary that the ID of the entity is also given. If this is not done, the system tries to create a new entity:
 
 ```javascript
-// PATCH /api/v3/country
+// PATCH /api/country
 {
     "id": "98432def39fc4624b33213a56b8c944d",
     "name" : "new country",
@@ -185,7 +185,7 @@ In this case, it is necessary that the ID of the entity is also given. If this i
 If an error occurs while writing the data, the API returns a `400 Bad Request` response in which all errors are listed. The affected records and fields can be identified via `source.pointer`:
 
 ```javascript
-// POST /api/v3/country
+// POST /api/country
 
 {
     "name" : "new country",

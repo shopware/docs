@@ -4,13 +4,13 @@
 
 Analogous to the reading endpoints, the API also provides endpoints for all entities to be written in the same way. Once an entity is registered in the system, it can also be written via API. The appropriate routes for the entity are generated automatically and follow the REST pattern.
 
-**Example:** The entity `customer_group` is available under the endpoint `api/v1/customer-group`. For an entity, the system automatically generates the following routes where the entity can be written
+**Example:** The entity `customer_group` is available under the endpoint `api/customer-group`. For an entity, the system automatically generates the following routes where the entity can be written
 
 | Name | Method | Route | Usage |
 | :--- | :--- | :--- | :--- |
-| api.customer\_group.update | PATCH | /api/v{version}/customer-group/{id} | Update the entity with the provided ID |
-| api.customer\_group.delete | DELETE | /api/v{version}/customer-group/{id} | Delete the entity |
-| api.customer\_group.create | POST | /api/v{version}/customer-group | Create a new entity |
+| api.customer\_group.update | PATCH | /api/customer-group/{id} | Update the entity with the provided ID |
+| api.customer\_group.delete | DELETE | /api/customer-group/{id} | Delete the entity |
+| api.customer\_group.create | POST | /api/customer-group | Create a new entity |
 
 ## Payload
 
@@ -41,7 +41,7 @@ If you intend to write multiple entities of a different type or perform various 
 When creating an entity, all `required` fields must be provided in the request body. If one or more fields have not been passed or contain incorrect data, the API outputs all errors for an entity:
 
 ```javascript
-// POST /api/v3/product/
+// POST /api/product/
 {
     "name" : "test"
 }
@@ -87,7 +87,7 @@ When creating an entity, all `required` fields must be provided in the request b
 If the entity has been successfully created, the API responds with a `204 No Content` status code.
 
 ```javascript
-// POST /api/v3/product/
+// POST /api/product/
 
 {
     "name" : "test",
@@ -115,7 +115,7 @@ Updating an entity can, and should, be done partially. This means that only the 
 For example, to update the stock of a product and update the price at the same time, we recommend the following partial payload:
 
 ```javascript
-// PATCH /api/v3/product/021523dde52d42c9a0b005c22ac85043
+// PATCH /api/product/021523dde52d42c9a0b005c22ac85043
 
 {
     "stock": 10,
@@ -132,12 +132,12 @@ For example, to update the stock of a product and update the price at the same t
 
 ## Deleting entities
 
-To delete an entity the route `DELETE /api/v3/product/{id}` can be used. If the entity has been successfully deleted, the API returns a `204 - No Content` response.
+To delete an entity the route `DELETE /api/product/{id}` can be used. If the entity has been successfully deleted, the API returns a `204 - No Content` response.
 
 When deleting data, it can happen that this is prevented by foreign key restrictions. This happens if the entity is still linked to another entity which requires the relation. For example, if you try to delete a tax record which is marked as required for a product, the delete request will be prevented with a `409 - Conflict.` Make sure to resolve these cascading conflicts before deleting a referenced entity.
 
 ```javascript
-// DELETE /api/v3/tax/5840ff0975ac428ebf7838359e47737f
+// DELETE /api/tax/5840ff0975ac428ebf7838359e47737f
 
 {
     "errors": [
@@ -153,7 +153,7 @@ When deleting data, it can happen that this is prevented by foreign key restrict
 
 ## Cloning an entity
 
-To clone an entity the route `POST /api/v3/_action/clone/{entity}/{id}` can be used. The API clones all associations which are marked with `CascadeDelete`.
+To clone an entity the route `POST /api/_action/clone/{entity}/{id}` can be used. The API clones all associations which are marked with `CascadeDelete`.
 
 {% hint style="success" %}
 The behaviour can be disabled explicitly by setting the constructor argument for `CascadeDelete` to false in the entity definition
@@ -167,7 +167,7 @@ The behaviour can be disabled explicitly by setting the constructor argument for
 Some entities have a `ChildrenAssociationField`. The children are also considered in a clone request. However, since this results in large amounts of data, the parameter `cloneChildren: false` can be sent in the payload so that they are no longer duplicated. It is also possible to overwrite fields in the clone using the payload parameter 'overwrites'. This is especially helpful if the entity has a unique constraint in the database. As response, the API returns the new id of the entity:
 
 ```javascript
-// POST /api/v3/_action/clone/product/53be6fb93e4b44ed877736cbe01a47b8
+// POST /api/_action/clone/product/53be6fb93e4b44ed877736cbe01a47b8
 
 {
     "overwrites": {

@@ -11,7 +11,7 @@ Implicitly, a cart is associated with your `sw-context-token` header.
 To create a new one, make sure to set a context token header. If you want to, you can also pass a name to identify the cart later on.
 
 ```javascript
-// POST /store-api/v3/checkout/cart
+// POST /store-api/checkout/cart
 
 {
   "name": "my-cart"
@@ -71,12 +71,12 @@ If you want to delete your cart, you can sent a `DELETE` request to the same end
 
 ## Adding new items to the cart
 
-The api `POST /store-api/v3/checkout/cart/line-item` can be used to add multiple new line items.
+The api `POST /store-api/checkout/cart/line-item` can be used to add multiple new line items.
 
 **Product**
 
 ```javascript
-// POST /store-api/v3/checkout/cart/line-item
+// POST /store-api/checkout/cart/line-item
 
 {
     "items": [
@@ -98,7 +98,7 @@ You can set following properties on a product line item: `referencedId`, `payloa
 **Promotion**
 
 ```javascript
-// POST /store-api/v3/checkout/cart/line-item
+// POST /store-api/checkout/cart/line-item
 
 {
     "items": [
@@ -130,10 +130,10 @@ When you pass invalid line item configuration to the API the cart calculation pr
 
 #### Updating items in the cart
 
-Use the `PATCH /store-api/v3/checkout/cart/line-item` endpoint to update line items in to cart.
+Use the `PATCH /store-api/checkout/cart/line-item` endpoint to update line items in to cart.
 
 ```javascript
-// PATCH /store-api/v3/checkout/cart/line-item
+// PATCH /store-api/checkout/cart/line-item
 
 {
     "items": [
@@ -148,10 +148,10 @@ Use the `PATCH /store-api/v3/checkout/cart/line-item` endpoint to update line it
 
 #### Deleting items in the cart
 
-The api `DELETE /store-api/v3/checkout/cart/line-item` can be used to remove line items to the cart
+The api `DELETE /store-api/checkout/cart/line-item` can be used to remove line items to the cart
 
 ```javascript
-// DELETE /store-api/v3/checkout/cart/line-item
+// DELETE /store-api/checkout/cart/line-item
 
 {
     "ids": [
@@ -162,10 +162,10 @@ The api `DELETE /store-api/v3/checkout/cart/line-item` can be used to remove lin
 
 ## Creating an order from the cart
 
-The endpoint `/store-api/v3/checkout/order` can be used to create an order from the cart. You will need items in the cart and you need to be logged in.
+The endpoint `/store-api/checkout/order` can be used to create an order from the cart. You will need items in the cart and you need to be logged in.
 
 ```javascript
-// POST /store-api/v3/checkout/order
+// POST /store-api/checkout/order
 
 {
     "includes": {
@@ -257,12 +257,12 @@ All the above also applies to the `/order` endpoint, which simply lists orders f
 
 ## Payment methods
 
-The endpoint `/store-api/v3/payment-method` can be used to list all payment methods of the sales channel. With the parameter `onlyAvailable` you can restrict the result to only valid payments methods \(some payment methods can be generally available, but dynamically disabled based on the cart configuration or other parameters\)
+The endpoint `/store-api/payment-method` can be used to list all payment methods of the sales channel. With the parameter `onlyAvailable` you can restrict the result to only valid payments methods \(some payment methods can be generally available, but dynamically disabled based on the cart configuration or other parameters\)
 
 Additionally, the api basic parameters \(`filter`, `aggregations`, etc.\) can be used to restrict the result.
 
 ```javascript
-// POST /store-api/v3/payment-method
+// POST /store-api/payment-method
 
 {
     "includes": {
@@ -288,12 +288,12 @@ Additionally, the api basic parameters \(`filter`, `aggregations`, etc.\) can be
 
 ## Shipping methods
 
-The endpoint `/store-api/v3/shipping-method` can be used to list all payment methods of the sales channel. With the parameter `onlyAvailable` you can restrict the result to only valid shipping methods. The same logic as for payment methods applies in here.
+The endpoint `/store-api/shipping-method` can be used to list all payment methods of the sales channel. With the parameter `onlyAvailable` you can restrict the result to only valid shipping methods. The same logic as for payment methods applies in here.
 
 Also here, the api basic parameters \(`filter`, `aggregations`, etc.\) can be used to restrict the result.
 
 ```javascript
-// POST /store-api/v3/shipping-method
+// POST /store-api/shipping-method
 
 {
     "includes": {

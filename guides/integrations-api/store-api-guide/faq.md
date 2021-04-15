@@ -17,7 +17,7 @@
 > The least you need in order to have a logged in is a `sw-context-token` header. In order to check whether you're actually logged in call the following endpoint
 >
 > ```text
-> GET /store-api/v3/account/customer
+> GET /store-api/account/customer
 > ```
 >
 > If you're logged in, you should see user related information, it not the response will contain a `403 Forbidden - CHECKOUT__CUSTOMER_NOT_LOGGED_IN` response exception.

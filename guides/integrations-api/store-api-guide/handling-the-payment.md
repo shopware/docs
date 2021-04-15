@@ -18,7 +18,7 @@ In this guide, we'll go through the headless payment process in Shopware. You'll
 The payment method for an order is part of the users context. You can obtain the context using the `/context` endpoint. If you call that endpoint, you will be able to see the currently selected shipping method in `context.paymentMethod` . You can update the current payment method of the user by performing the following request before **placing** an order.
 
 ```javascript
-// PATCH /store-api/v3/context
+// PATCH /store-api/context
 
 {
   "paymentMethodId": "<new-payment-method-id>"
@@ -38,7 +38,7 @@ Every order is created together with a transaction which contains information ab
 We can initiate the payment using the handle payment endpoint as follows:
 
 ```javascript
-// POST /store-api/v3/handle-payment
+// POST /store-api/handle-payment
 
 {
   "orderId": "<id-of-the-order>",
@@ -56,7 +56,7 @@ Depending on the payment integration, you might have to provide some additional 
 In order to provide a more common interface, we advise to use the **optional** parameter `paymentDetails` when calling the `/handle-payment` endpoint. A call could look like this:
 
 ```javascript
-// POST /store-api/v3/handle-payment
+// POST /store-api/handle-payment
 
 {
   "orderId": "<id-of-the-order>",
@@ -110,7 +110,7 @@ Shopware provides a way to modify existing orders \(i.e. change the selected pay
 In order to alter the payment method for your order, call the **order payment** endpoint:
 
 ```javascript
-// POST /store-api/v3/order/payment
+// POST /store-api/order/payment
 
 {
     "paymentMethodId": "1901dc5e888f4b1ea4168c2c5f005540",

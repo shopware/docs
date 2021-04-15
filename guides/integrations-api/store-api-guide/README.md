@@ -32,7 +32,7 @@ https://shop.example.com/
 then your Store API base route will be
 
 ```text
-https://shop.example.com/store-api/v3
+https://shop.example.com/store-api
 ```
 
 The Store API offers a variety of functionalities referred to as _endpoints_ or _nodes_, where each has their own route. The endpoints mentioned subsequently are always relative to the API base route.
@@ -46,7 +46,7 @@ The Store API doesn't have a real authentication - it is a public API - just as 
 A typical Store API request including headers will look like this
 
 ```javascript
-// POST /store-api/v3/product HTTP/1.1
+// POST /store-api/product HTTP/1.1
 // Host: shop.example.com
 // sw-access-key: SWSC02ZF39DBYIS6SLFKSAFI5A
 // Content-Type: application/json
@@ -72,7 +72,7 @@ Now that we've authenticated we're able to perform our first request
 The `/context` endpoint gives some general information about the store and the user. Let's try it out
 
 ```javascript
-// GET /store-api/v3/context
+// GET /store-api/context
 
 {
   "token": "jDUPcIRg1Mi7WZQJAm1nFTqhoMc0Eqev",

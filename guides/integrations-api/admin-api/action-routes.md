@@ -13,7 +13,7 @@ The states of a state machine should not be changed directly on an entity if the
 The action route for the order state checks if the transition is allowed given to the state machine definition and writes the state machine history entries. It also takes care of sending the defined state change mails. It takes arrays of mediaIds and/or documentIds to add them as attachments to the mails. The `transition` parameter can be one of the transitions defined in `\Core\Checkout\Order\OrderStates`.
 
 ```javascript
-// POST /api/v{version}/_action/order/{orderId}/state/{transition}
+// POST /api/_action/order/{orderId}/state/{transition}
 
 {
     "mediaIds" : [
@@ -33,7 +33,7 @@ The action route for the order state checks if the transition is allowed given t
 The action route for the order delivery state checks if the transition is allowed due to the state machine definitions and writes the state machine history entries. It also takes care of sending the defined state change mails. It takes arrays of mediaIds and/or documentIds to add them as attachments to the mails. The `transition` parameter can be one of the transitions defined in `\Core\Checkout\Order\Aggregate\OrderDelivery\OrderDeliveryStates`.
 
 ```javascript
-// POST /api/v{version}/_action/order_delivery/{orderDeliveryId}/state/{transition}
+// POST /api/_action/order_delivery/{orderDeliveryId}/state/{transition}
 
 {
     "mediaIds" : [
@@ -53,7 +53,7 @@ The action route for the order delivery state checks if the transition is allowe
 The action route for the order transaction state checks if the transition is allowed due to the state machine definitions and writes the state machine history entries. It also takes care of sending the defined state change mails. It takes arrays of mediaIds and/or documentIds to add them as attachments to the mails. The `transition` parameter can be one of the transitions defined in `\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStates`.
 
 ```javascript
-// POST /api/v{version}/_action/order_transaction/{orderTransactionId}/state/{transition}
+// POST /api/_action/order_transaction/{orderTransactionId}/state/{transition}
 
 {
     "mediaIds" : [

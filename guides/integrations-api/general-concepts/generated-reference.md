@@ -16,7 +16,7 @@ Due to security restrictions, your **`APP_ENV`** environment variable has to be 
 The easiest way to access the generated Swagger UI. Swagger UI is a small library that takes an OpenAPI specification and renders it into a more accessible user interface. Shopware already ships with these user interfaces - they are accessible at the following endpoint relative to their respective base path:
 
 ```yaml
-/(api|store-api)/v{version}/_info/swagger.html
+/(api|store-api)/_info/swagger.html
 ```
 
 ## OpenAPI Schema
@@ -24,7 +24,7 @@ The easiest way to access the generated Swagger UI. Swagger UI is a small librar
 If you don't want to bother with the UI, but just fetch the schema definition instead, use the following endpoint:
 
 ```text
-/(api|store-api)/v{version}/_info/openapi3.json
+/(api|store-api)/_info/openapi3.json
 ```
 
 ## Entity Schema
@@ -32,6 +32,6 @@ If you don't want to bother with the UI, but just fetch the schema definition in
 If you would like to access the schema definitions of all available entities instead of an endpoint reference, use on of the corresponding schema endpoints instead:
 
 ```text
-/(api|store-api)/v{version}/_info/open-api-schema.json
+/(api|store-api)/_info/open-api-schema.json
 ```
 
