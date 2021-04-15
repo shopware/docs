@@ -76,6 +76,7 @@ The setup workflow is shown in the following schema, each step will be explained
 
 The registration request is made as a GET-Request against a URL that you provide in the manifest file of your app.
 
+<!-- markdown-link-check-disable -->
 {% code title="manifest.xml" %}
 ```markup
 <?xml version="1.0" encoding="UTF-8"?>
@@ -89,6 +90,7 @@ The registration request is made as a GET-Request against a URL that you provide
 </manifest>
 ```
 {% endcode %}
+<!-- markdown-link-check-enable-->
 
 The following query parameters will be send with the request:
 
@@ -101,6 +103,9 @@ An example request may look like this:
 ```text
 GET https://my.example.com/registration?shop-id=KIPf0Fz6BUkN&shop-url=http%3A%2F%2Fmy.shop.com&timestamp=159239728
 ```
+
+{% hint style="info" %} Starting from Shopware version 6.4.1.0, the current shopware version will be sent as a `sw-version` header.
+{% endhint %}
 
 Additionally, the `shopware-app-signature` header will be provided, which contains a cryptographic signature of the query string.  
 The secret used to generate this signature is the `app secret`, that is unique per app and will be provided by the Shopware Account if you upload your app to the store. This secret won't leave the Shopware Account, so it won't be even leaked to the shops installing your app.
@@ -193,6 +198,9 @@ The payload of that request may look like this:
 ```
 
 Make sure that you save the api-credentials for that shopId.
+
+{% hint style="info" %} Starting from Shopware version 6.4.1.0, the current shopware version will be sent as a `sw-version` header.
+{% endhint %}
 
 The request is signed with the `shop-secret`, that your app provided in the [registration response](app-base-guide.md#registration-response) and the signature can be found in the `shopware-shop-signature` header.  
 You need to recalculate that signature and check that it matches the provided one, to make sure that the request is really send from shop with that shopId.
@@ -293,6 +301,9 @@ Where the `source` property contains all necessary information about the Shopwar
 * `shopId` is the id by which you can identify the Shopware instance
 
 The next property `data` contains the name of the event so that a single endpoint can handle several different events, should you desire. `data` also contains the event data in the `payload` property, due to the asynchronous nature of theses webhooks the `payload` for `entity.written` events does not contain complete entities as these might become outdated. Instead the entity in the payload is characterized by its id, stored under `primaryKey`, so that the app can fetch additional data through the shops API. This also has the advantage of giving the app explicit control over the associations that get fetched instead of relying on the associations determined by the event. Other events in contrast contain the entity data that defines the event, but keep in mind that event might not contain all associations.
+
+{% hint style="info" %} Starting from Shopware version 6.4.1.0, the current shopware version will be sent as a `sw-version` header.
+{% endhint %}
 
 You can verify the authenticity of the incoming request by checking the `shopware-shop-signature` every request should have a sha256 hmac of the request body, that is signed with the secret your app assigned the shop during the [registration](app-base-guide.md#setup). The mechanism to verify the request is exactly the same as the one used for the [confirmation request](app-base-guide.md#confirmation-request).
 
@@ -434,6 +445,10 @@ confirmation
 {% api-method-headers %}
 {% api-method-parameter name="shopware-shop-signature" type="string" required=true %}
 The hmac-signature of the body content, signed with the shop secret returned from the registration request
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="sw-version" type="string" required=true %}
+Starting from Shopware version 6.4.1.0, the current shopware version will be sent as a `sw-version` header.
 {% endapi-method-parameter %}
 {% endapi-method-headers %}
 
