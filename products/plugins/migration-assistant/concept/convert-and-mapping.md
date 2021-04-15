@@ -237,16 +237,14 @@ public function getMapping(
     if (isset($this->mappings[md5($entityName . $oldIdentifier)])) {
         return $this->mappings[md5($entityName . $oldIdentifier)];
     }
-    /** @var EntitySearchResult $result */
-    $result = $context->disableCache(function (Context $context) use ($connectionId, $entityName, $oldIdentifier) {
-        $criteria = new Criteria();
-        $criteria->addFilter(new EqualsFilter('connectionId', $connectionId));
-        $criteria->addFilter(new EqualsFilter('entity', $entityName));
-        $criteria->addFilter(new EqualsFilter('oldIdentifier', $oldIdentifier));
-        $criteria->setLimit(1);
 
-        return $this->migrationMappingRepo->search($criteria, $context);
-    });
+    $criteria = new Criteria();
+    $criteria->addFilter(new EqualsFilter('connectionId', $connectionId));
+    $criteria->addFilter(new EqualsFilter('entity', $entityName));
+    $criteria->addFilter(new EqualsFilter('oldIdentifier', $oldIdentifier));
+    $criteria->setLimit(1);
+
+    $result =  $this->migrationMappingRepo->search($criteria, $context);
 
     if ($result->getTotal() > 0) {
         /** @var SwagMigrationMappingEntity $element */
