@@ -10,7 +10,7 @@ As most guides, this guide is built upon the [plugin base guide](../plugin-base-
 
 ## Getting started
 
-In this guide you will see a very short example on how you can extend a storefront block. For simplicities' sake, only the logo is replaced with a "Hello world!" text.
+In this guide you will see a very short example on how you can extend a storefront block. For simplicity's sake, only the logo is replaced with a 'Hello world!' text.
 
 ### Setting up your view directory
 
@@ -38,7 +38,7 @@ Starting from the `views` directory, the path is **exactly the same**, and that'
 
 It's time to fill your custom `logo.html.twig` file. First of all you want to extend from the original file, so you can override its blocks.
 
-Put this line at the very beginning of your file.
+Put this line at the very beginning of your file:
 
 ```text
 {% sw_extends '@Storefront/storefront/layout/header/logo.html.twig' %}
@@ -60,7 +60,7 @@ To override it now, just add the very same block into your custom file and repla
 
 If you wanted to append your text to the logo instead of replacing it, you could add a line like this to your override: `{{ parent() }}`
 
-And that's it already, you're done already. You might have to clear the cache and refresh your storefront to see your changes in action. This can be done by using the command following command inside your command line.
+And that's it already, you're done. You might have to clear the cache and refresh your storefront to see your changes in action. This can be done by using the command following command inside your command line:
 
 {% tabs %}
 {% tab title="Development template" %}
