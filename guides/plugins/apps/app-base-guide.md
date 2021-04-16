@@ -55,7 +55,7 @@ The app can now be installed by running the following command:
 bin/console app:install --activate MyExampleApp
 ```
 
-By default, your app files will be [validated](app-base-guide.md#Validation) before installation, to skip the validation you may use the `--no-validate` flag.
+By default, your app files will be [validated](app-base-guide.md#validation) before installation, to skip the validation you may use the `--no-validate` flag.
 
 {% hint style="info" %}
 Apps get installed as inactive. You can activate them by passing the `--activate` flag to the `app:install` command or by executing the `app:activate` command after installation.
