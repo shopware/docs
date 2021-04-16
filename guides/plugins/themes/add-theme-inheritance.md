@@ -2,13 +2,13 @@
 
 ## Overview
 
-This guide explains how you can extend an existing theme. What are uses cases to inherit from a other themes? Maybe you already use a specific theme for a sales channel and you want to use it in another sales channel for a different project with slight changes.
+This guide explains how you can extend an existing theme. What are uses cases to inherit from another theme? Maybe you already use a specific theme for a sales channel and you want to use it in another sales channel for a different project with slight changes.
 
-For example, imagine you want to use a dark version of the theme, so you have different looks for different sales channels. Or maybe you own a store-bought theme and only need to change the appearance of it without changing the code of the theme itself. Sometimes it could be useful to develop some kind of base-theme and customize it for different clients.
+For example, imagine you want to use a dark version of the theme, so you have different looks for different sales channels. Or maybe you own a store-bought theme and only need to change the appearance of it without changing the code of the theme itself. Sometimes it could be useful to develop some kind of base theme and customize it for different clients.
 
 ## Prerequisites
 
-All you need for this guide is a running Shopware 6 instance and full access to both the files, as well as the command line. You also need to have an installed and activated theme which you want to extend. Let's imagine we already have an installed and activated them called `SwagBasicExampleTheme`.
+All you need for this guide is a running Shopware 6 instance and full access to both the files, as well as the command line. You also need to have an installed and activated theme which you want to extend. Let's imagine we already have an installed and activated theme called `SwagBasicExampleTheme`.
 
 ## Extending an existing theme with a new theme
 
@@ -16,7 +16,7 @@ The first step is to create a new theme which will extend the existing `SwagBasi
 
 ## Set up the inheritance
 
-To set up the inheritance we need to edit the theme configuration file called `theme.json` and it is located in `<plugin root>/src/Resources` folder.
+To set up the inheritance we need to edit the theme configuration file called `theme.json` and it is located in the `<plugin root>/src/Resources` folder.
 
 The content of the `theme.json` file looks like this:
 
