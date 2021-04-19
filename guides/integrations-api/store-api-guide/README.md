@@ -35,6 +35,10 @@ then your Store API base route will be
 https://shop.example.com/store-api
 ```
 
+{% hint style="info" %}
+Before Shopware Version 6.4, the API version was passed within the endpoint path (e.g. `/store-api/v3/product`).
+{% endhint %}
+
 The Store API offers a variety of functionalities referred to as _endpoints_ or _nodes_, where each has their own route. The endpoints mentioned subsequently are always relative to the API base route.
 
 ### Authentication and setup
