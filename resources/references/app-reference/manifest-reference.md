@@ -7,10 +7,10 @@
     <meta>
         <!-- This is the element for the technical name of your app and must equal the name of the folder your app is contained in -->
         <name>MyExampleApp</name>
-        <!-- In this element, you can set al label for your app. To include translations use the `lang` attribute -->
+        <!-- In this element, you can set a label for your app. To include translations use the `lang` attribute -->
         <label>Label</label>
         <label lang="de-DE">Name</label>
-        <!-- Translatable, A description of your app -->
+        <!-- Translatable, a description of your app -->
         <description>A description</description>
         <description lang="de-DE">Eine Beschreibung</description>
 
@@ -36,7 +36,7 @@
             - Bestellsumme
         </privacyPolicyExtensions>
     </meta>
-    <!-- Optinal, can be omitted if no communication between Shopware and your app is needed -->
+    <!-- Optional, can be omitted if no communication between Shopware and your app is needed -->
     <setup>
         <!-- The URL which will be used for the registration -->
         <registrationUrl>https://my.example.com/registration</registrationUrl>
@@ -118,6 +118,24 @@
             </fields>
         </custom-field-set>
     </custom-fields>
+    <payments>
+        <payment-method>
+            <!-- The identifier of the payment method (and the app name) should not change. Otherwise a separate method is created. -->
+            <identifier>myAsynchronousPayment</identifier>
+            <!-- Translatable, a name of your payment method -->
+            <name>Asynchronous payment</name>
+            <name lang="de-DE">Asynchrone Zahlung</name>
+            <!-- Optional, Translatable, a description of your payment method -->
+            <description>This payment method requires forwarding to payment provider.</description>
+            <description lang="de-DE">Diese Zahlungsmethode erfordert eine Weiterleitung zu einem Zahlungsanbieter.</description>
+            <!-- Optional for synchronous payments, required for asynchronous payments. -->
+            <pay-url>https://payment.app/async/pay</pay-url>
+            <!-- Optional, without the payment method becomes synchronous. -->
+            <finalize-url>https://payment.app/async/finalize</finalize-url>
+            <!-- Optional, you can set the path relative to the manifest.xml to an icon that should be shown for your payment app -->
+            <icon>Resources/paymentLogo.png</icon>
+        </payment-method>
+    </payments>
 </manifest>
 ```
 {% endcode %}
