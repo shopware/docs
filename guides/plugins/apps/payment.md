@@ -277,4 +277,4 @@ private function sign(array $content, string $shopId): JsonResponse
 
 ## API docs
 
-{% page-ref page="resources/references/app-reference/payment-reference.md" %}
+{% page-ref page="../../../resources/references/app-reference/payment-reference.md" %}
