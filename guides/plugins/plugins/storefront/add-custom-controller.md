@@ -114,11 +114,17 @@ Next, we need to register our controller in the DI-container and make it public.
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="Swag\BasicExample\Storefront\Controller\ExampleController" public="true"/>
+        <service id="Swag\BasicExample\Storefront\Controller\ExampleController" public="true">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
     </services>
 </container>
 ```
 {% endcode %}
+
+Please also note the `call` tag, which is necessary in order to set the DI container to the controller.
 
 ### Routes.xml example
 
