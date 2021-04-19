@@ -62,23 +62,16 @@ The version of the app that is installed in the shop.
 {% api-method-response %}
 {% api-method-response-example httpCode=200 %}
 {% api-method-response-example-description %}
-Successful redirect
+See comments for different successful responses
 {% endapi-method-response-example-description %}
 
 ```javascript
+/* Successful redirect */
 {
     "redirectUrl": "https://payment.app/user/go/here/068b1ec4d7ff431b95d3b7431cc725aa/"
 }
-```
 
-{% endapi-method-response-example %}
-
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-Failure due to missing credentials
-{% endapi-method-response-example-description %}
-
-```javascript
+/* Failure due to missing credentials */
 {
     "status": "fail",
     "message": "The shop has not provided all credentials for the payment provider."
@@ -140,37 +133,22 @@ The version of the app that is installed in the shop.
 {% api-method-response %}
 {% api-method-response-example httpCode=200 %}
 {% api-method-response-example-description %}
-Successful redirect
+See comments for different successful responses
 {% endapi-method-response-example-description %}
 
 ```javascript
+/* Successful redirect */
 {
     "status": "paid"
 }
-```
 
-{% endapi-method-response-example %}
-
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-Failure due to missing funds
-{% endapi-method-response-example-description %}
-
-```javascript
+/* Failure due to missing funds */
 {
     "status": "fail",
     "message": "The user did not have adequate funds."
 }
-```
 
-{% endapi-method-response-example %}
-
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-Failure if the user has not finished the payment process.
-{% endapi-method-response-example-description %}
-
-```javascript
+/* Failure if the user has not finished the payment process. */
 {
     "status": "cancel",
     "message": "The user did not finish payment."
