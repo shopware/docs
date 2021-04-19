@@ -14,7 +14,7 @@ One of the most common actions that customers perform in an online store is brow
 Let's start by performing a simple product search
 
 ```javascript
-// POST /store-api/v3/search
+// POST /store-api/search
 
 {
     "search": "braeburn"
@@ -139,7 +139,7 @@ Contains the actual search result.
 We can apply any of the given sortings by passing them through the `order` field:
 
 ```javascript
-// POST /store-api/v3/search
+// POST /store-api/search
 
 {
     "search": "braeburn",
@@ -150,7 +150,7 @@ We can apply any of the given sortings by passing them through the `order` field
 Let's say you want to filter out products with a price higher than 50.00. We simply add a `filter` section and applying a `range` filter for the price field. Note, that `filter` is an array - you can pass in multiple filters at once.
 
 ```javascript
-// POST /store-api/v3/search
+// POST /store-api/search
 
 {
     "search": "braeburn",
@@ -176,7 +176,7 @@ If you take a look at the search response from above - almost every object conta
 The following request provides us with a response containing the most essential fields that we need to display a simple product listing which only measures ~2.5KB for a single-product listing.
 
 ```javascript
-// POST /store-api/v3/search
+// POST /store-api/search
 
 {
     "search": "braeburn",
@@ -207,7 +207,7 @@ By using **`product.translated.name`** instead of **`product.name`** you can mak
 Sometimes it's necessary to fetch additional associations like categories or properties of a product. We can specify those additional associations using a corresponding field within the request body:
 
 ```javascript
-// POST /store-api/v3/search
+// POST /store-api/search
 
 {
     "search": "braeburn",
@@ -235,7 +235,7 @@ Normally, an unfiltered response already suggests which associations you could l
 Sometimes, you just want to fetch a single product, the product endpoint \(as well as doing searches\) lets you do this:
 
 ```text
-// POST /store-api/v3/product/eaf1ee42ef884f3c941f22596aa0163f
+// POST /store-api/product/eaf1ee42ef884f3c941f22596aa0163f
 ```
 
 Now that we're done with searching products, let's do something with them.

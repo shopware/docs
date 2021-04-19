@@ -9,11 +9,11 @@ If you want to place orders, manage a profile or view old orders, you have to re
 A customer needs some personal data and a billing address to be created. In addition to that, you have to define a storefront URL. This URL is required for Shopware to correctly assemble a confirmation link so they can confirm their registration in case of a [double opt in](register-a-customer.md#double-opt-in). This is especially required for frontends that have a different host than the Shopware API itself.
 
 {% hint style="info" %}
-The customer requires a **salutationId** and a **countryId** parameter. You can fetch the different options using the `/store-api/v3/salutation` and `/store-api/v3/country` endpoints respectively.
+The customer requires a **salutationId** and a **countryId** parameter. You can fetch the different options using the `/store-api/salutation` and `/store-api/country` endpoints respectively.
 {% endhint %}
 
 ```javascript
-// POST /store-api/v3/account/register
+// POST /store-api/account/register
 
 {
     "salutationId": "32d6c76401d749d2b025eba20a511e54",
@@ -51,10 +51,10 @@ The first token is the new one - you can use it on subsequent requests and your 
 The **context token** also works for non-logged-in users. If you don't provide a context-token with each of your requests, Shopware will generate one for you and pass it as a response header.
 {% endhint %}
 
-You can always double check the state of your session using the `/store-api/v3/account/customer` endpoint. If you're logged in, it returns information about the customer, otherwise it returns a **403 Forbidden** errror:
+You can always double check the state of your session using the `/store-api/account/customer` endpoint. If you're logged in, it returns information about the customer, otherwise it returns a **403 Forbidden** errror:
 
 ```javascript
-// GET /store-api/v3/account/customer
+// GET /store-api/account/customer
 
 {
   "errors": [
@@ -86,7 +86,7 @@ Your application has to listen on the **`/registration/confirm`** route in order
 This URL will direct the user to your application, so you have to make sure that your application calls the following endpoint to confirm the registration:
 
 ```javascript
-// POST /store-api/v3/account/register-confirm
+// POST /store-api/account/register-confirm
 
 {
   "em": "[email-hash]",
@@ -105,7 +105,7 @@ The double opt-in procedure described above works the same for guest customers.
 Logging in as a user is even easier. You just have to pass the user's email and password to authenticate.
 
 ```javascript
-// POST /store-api/v3/account/login
+// POST /store-api/account/login
 
 {
     "email": "alice.apple@example.com",

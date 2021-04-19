@@ -185,8 +185,8 @@ For assigning several `properties` and `categories` this is an exemplary payload
 
 To remove these `properties` and `categories`, the corresponding routes can be used for the mapping entities:
 
-* `DELETE /api/v3/product/{productId}/properties/{optionId}`
-* `DELETE /api/v3/product/{productId}/categories/{categoryId}`
+* `DELETE /api/product/{productId}/properties/{optionId}`
+* `DELETE /api/product/{productId}/categories/{categoryId}`
 
 To delete several assignments at once, the `/_action/sync` route can be used:
 
@@ -242,7 +242,7 @@ Media of products are maintained via the association `product.media` and `produc
 }
 ```
 
-To delete a media assignment, the ID of the `product_media` entity is required. In the above case this is the `5f78f2d4b19f49648eb1b38881463da0`. The corresponding route `DELETE /api/v3/product/{productId}/media/{productMediaId}` can be used for this. To delete multiple assignments, the `/_action/sync` route can also be used here:
+To delete a media assignment, the ID of the `product_media` entity is required. In the above case this is the `5f78f2d4b19f49648eb1b38881463da0`. The corresponding route `DELETE /api/product/{productId}/media/{productMediaId}` can be used for this. To delete multiple assignments, the `/_action/sync` route can also be used here:
 
 ```text
 {
@@ -309,7 +309,7 @@ Since visibility can be configured per sales channel, the entity also has its ow
 }
 ```
 
-Deleting a sales channel assignment is done via the route `/api/v3/product/{productId}/visibilities/{visibilityId}`. To delete several assignments at once, the `/_action/sync` route can be used:
+Deleting a sales channel assignment is done via the route `/api/product/{productId}/visibilities/{visibilityId}`. To delete several assignments at once, the `/_action/sync` route can be used:
 
 ```text
 {
@@ -372,7 +372,7 @@ To define a separate `price` for a variant, the same payload can be used as for 
 To restore inheritance, the value `null` can be passed for simple data fields:
 
 ```text
-// PATCH /api/v3/product/0d0adf2a3aa1488eb177288cfac9d47e
+// PATCH /api/product/0d0adf2a3aa1488eb177288cfac9d47e
 {
     "price": null
 }

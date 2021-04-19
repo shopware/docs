@@ -109,7 +109,7 @@ which will return
 Once you've obtained an access token, simply provide it in your requests `Authorization` header as as a Bearer token:
 
 ```yaml
-// GET /api/v3/product/b7d2554b0ce847cd82f3ac9bd1c0dfad
+// GET /api/product/b7d2554b0ce847cd82f3ac9bd1c0dfad
 
 Host: shop.example.com
 Content-Type: application/json

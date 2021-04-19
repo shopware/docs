@@ -67,7 +67,7 @@ cy.server();
 
 // Route POST requests with matching url and assign an alias to it
 cy.route({
-    url: '/api/v3/search/category',
+    url: '/api/search/category',
     method: 'post'
 }).as('getData');
 

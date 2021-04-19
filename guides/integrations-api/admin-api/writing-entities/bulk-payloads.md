@@ -7,7 +7,7 @@ The Sync API is an add-on to the Admin API that allows you to perform multiple w
 The endpoint is located at
 
 ```text
-/api/v{version}/_action/sync
+/api/_action/sync
 ```
 
 and expects payloads via `POST` and `Content-Type: application/json`.
@@ -29,7 +29,7 @@ A request always contains a **list of operations**. An operation defines the `ac
 ### Writing entities
 
 ```javascript
-// POST /api/v3/_action/sync
+// POST /api/_action/sync
 
 {
     "write-tax": {
@@ -124,7 +124,7 @@ A request always contains a **list of operations**. An operation defines the `ac
 To delete entities, the `payload` of an operation contains the IDs. If the entity is a `MappingEntityDefinition` \(e.g. `product_category`\) the foreign keys, which are the primary key, must be passed:
 
 ```javascript
-// POST /api/v3/_action/sync 
+// POST /api/_action/sync 
 
 {
     "delete-tax": {
@@ -158,7 +158,7 @@ To delete entities, the `payload` of an operation contains the IDs. If the entit
 You can not delete relations by updating the owning entity. Instead you have to delete the relation on the relation entity `MappingEntityDefinition` \(e.g. `product_property`\). The corresponding entries in the main entity \(here `product`\) will be updated with an indexer that will immediately run after the delete \(for details on indexers, see the next section\).
 
 ```javascript
-// POST /api/v3/_action/sync 
+// POST /api/_action/sync 
 
 {
     "delete-product-property": {
@@ -189,7 +189,7 @@ You can control the behaviour using the following headers:
 |  | `disable-indexing` | Data indexing is completely disabled |
 
 ```javascript
-// POST /api/v3/_action/sync
+// POST /api/_action/sync
 // --header 'single-operation: 1'
 // --header 'indexing-behavior: use-queue-indexing'
 

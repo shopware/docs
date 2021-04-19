@@ -478,7 +478,7 @@ return Promise.all([
         deliveryTimeId: deliveryTime.id
     });
 }).then((finalShippingData) => {
-    return this.apiClient.post('/v1/shipping-method?_response=true', finalShippingData);
+    return this.apiClient.post('/shipping-method?_response=true', finalShippingData);
 });
 ```
 

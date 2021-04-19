@@ -22,7 +22,7 @@ The Admin API provides a base endpoint to which all other endpoints are relative
 The base endpoint depends on your Shopware host URL - for example:
 
 ```text
-https://shop.example.com/api/v3
+https://shop.example.com/api
 ```
 
 From this base endpoint, we can assemble almost all paths described in the subsequent sections.
@@ -97,13 +97,13 @@ The format has a rich structure that makes discovering the API easier, even with
                 }
             },
             "links": {
-                "self": "http://localhost:8000/api/v3/product/01bd7e70a50443ec96a01fd34890dcc5"
+                "self": "http://localhost:8000/api/product/01bd7e70a50443ec96a01fd34890dcc5"
             },
             "relationships": {
                 "children": {
                     "data": [],
                     "links": {
-                        "related": "http://localhost:8000/api/v3/product/01bd7e70a50443ec96a01fd34890dcc5/children"
+                        "related": "http://localhost:8000/api/product/01bd7e70a50443ec96a01fd34890dcc5/children"
                     }
                 }
             }
@@ -119,23 +119,23 @@ The format has a rich structure that makes discovering the API easier, even with
                 "createdAt": "2018-09-13T09:54:01+02:00"
             },
             "links": {
-                "self": "http://localhost:8000/api/v3/tax/792203a53e564e28bcb7ffa1867fb485"
+                "self": "http://localhost:8000/api/tax/792203a53e564e28bcb7ffa1867fb485"
             },
             "relationships": {
                 "products": {
                     "data": [],
                     "links": {
-                        "related": "http://localhost:8000/api/v3/tax/792203a53e564e28bcb7ffa1867fb485/products"
+                        "related": "http://localhost:8000/api/tax/792203a53e564e28bcb7ffa1867fb485/products"
                     }
                 }
             }
         }
     ],
     "links": {
-        "first": "http://localhost:8000/api/v3/product?limit=1&page=1",
-        "last": "http://localhost:8000/api/v3/product?limit=1&page=50",
-        "next": "http://localhost:8000/api/v3/product?limit=1&page=2",
-        "self": "http://localhost:8000/api/v3/product?limit=1"
+        "first": "http://localhost:8000/api/product?limit=1&page=1",
+        "last": "http://localhost:8000/api/product?limit=1&page=50",
+        "next": "http://localhost:8000/api/product?limit=1&page=2",
+        "self": "http://localhost:8000/api/product?limit=1"
     },
     "meta": {
         "fetchCount": 1,
