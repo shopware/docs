@@ -157,6 +157,7 @@
       * [Adding Services](guides/plugins/plugins/administration/add-custom-service.md)
       * [Adding permissions](guides/plugins/plugins/administration/add-acl-rules.md)
       * [Using the data handling](guides/plugins/plugins/administration/using-data-handling.md)
+      * [Adding error handling](./guides/plugins/plugins/administration/add-error-handling.md)
       * [Customize modules](guides/plugins/plugins/administration/customizing-modules.md)
       * [Override existing routes](guides/plugins/plugins/administration/overriding-routes.md)
       * [Add tab to existing module](guides/plugins/plugins/administration/add-new-tab.md)
