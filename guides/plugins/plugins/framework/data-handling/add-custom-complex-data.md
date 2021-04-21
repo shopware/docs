@@ -280,8 +280,8 @@ namespace Swag\BasicExample\Core\Content\Bundle;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityCollection;
 
 /**
- * @method void               add(CustomEntity $entity)
- * @method void               set(string $key, CustomEntity $entity)
+ * @method void               add(ExampleEntity $entity)
+ * @method void               set(string $key, ExampleEntity $entity)
  * @method ExampleEntity[]    getIterator()
  * @method ExampleEntity[]    getElements()
  * @method ExampleEntity|null get(string $key)
