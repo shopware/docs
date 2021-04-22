@@ -12,7 +12,7 @@ To configure your module you can set it up with with some addtional attributes.
 * `name` (required): The technical name of the module. This is the name your module is referenced with.
 * `source` (optional): The URL to your app servers endpoint from which the module is served from. This can be omitted if you want to define a menu item that should serve as a parent menu item for other app modules.
 * `parent` (optional): The administration navigation id from the menu item that serves as the parrent menu item. If omitted your module will be listed under the "My apps" menu entry. **This field will be required in future versions as we are going to remove the "My Apps" menu item**
-* `position` (optional): A numeric index that sets the position of your menu entry regarding to it's sibblings.
+* `position` (optional): A numeric index that sets the position of your menu entry regarding to it's siblings.
 
 Additionally you can define `label` elements inside of your `module` element, to set up how your module will be displayed in the admin menu.
 
@@ -50,7 +50,7 @@ If the user opens the module in the administration your app will receive a reque
 A sample request may look like this:
 
 ```text
-https://example.com//promotion/view/promotion-config?shop-id=HKTOOpH9nUQ2&shop-url=http%3A%2F%2Fmy.shop.com&timestamp=1592406102&shopware-shop-signature=3621fffa80187f6d43ce6cb25760340ab9ba2ea2f601e6a78a002e601579f415
+https://example.com/promotion/view/promotion-config?shop-id=HKTOOpH9nUQ2&shop-url=http%3A%2F%2Fmy.shop.com&timestamp=1592406102&shopware-shop-signature=3621fffa80187f6d43ce6cb25760340ab9ba2ea2f601e6a78a002e601579f415
 ```
 
 In this case the `shopware-shop-signature` parameter contains an sha256 hmac of the rest of the query string, signed again with the secret your app assigned the shop during the [registration](../app-base-guide.md#setup). The signature can be used to verify the authenticity of the request.
