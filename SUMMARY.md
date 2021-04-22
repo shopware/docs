@@ -61,8 +61,8 @@
       * [Extending the Migration Connector](products/plugins/migration-assistant/guides/extending-the-migration-connector.md)
       * [Decorating a Shopware Migration Assistant converter](products/plugins/migration-assistant/guides/decorating-a-shopware-migration-assistant-converter.md)
       * [Creating a new migration profile](products/plugins/migration-assistant/guides/creating-a-new-migration-profile.md)
-* [Cloud](products/cloud-1.md)
-* [PWA](products/pwa-1.md)
+* [Cloud](products/cloud.md)
+* [PWA](products/pwa/README.md)
 
 ## Guides
 
@@ -90,7 +90,7 @@
       * [Add plugin dependencies](guides/plugins/plugins/plugin-fundamentals/add-plugin-dependencies.md)
       * [Add custom CLI commands](guides/plugins/plugins/plugin-fundamentals/add-custom-commands.md)
       * [Add scheduled task](guides/plugins/plugins/plugin-fundamentals/add-scheduled-task.md)
-      * [Using custom fields of type media](guides/plugins/plugins/plugin-fundamentals/custom-fields-of-type-media.md)
+      * [Using custom fields of type media](guides/plugins/plugins/framework/custom-field/custom-fields-of-type-media.md)
       * [Adding NPM dependencies](guides/plugins/plugins/plugin-fundamentals/using-npm-dependencies.md)
       * [Adding Composer dependencies](guides/plugins/plugins/plugin-fundamentals/using-composer-dependencies.md)
       * [Plugin lifecycle methods](guides/plugins/plugins/plugin-fundamentals/plugin-lifecycle.md)
