@@ -20,7 +20,7 @@ There they are centrally accessible to your components, with a flat data structu
    ...         
 ```
 
-In this guide u will learn how to access this error store directly or via one of the provided helper functions.
+In this guide you will learn how to access this error store directly or via one of the provided helper functions.
 ​
 ## Read errors from the store
 ​
