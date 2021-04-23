@@ -1,5 +1,7 @@
 # Add dynamic content via ajax calls
 
+## Overview
+
 This guide will show you how to add dynamic content to your storefront.
 It combines and builds upon the the guides about [adding custom Javascript](./add-custom-javascript.md) and [adding a custom controller](./add-custom-controller.md), so you should probably read them first.
 
@@ -10,6 +12,7 @@ For this guide we will use a very simple controller that returns a timestamp wra
 As mentioned before this guide builds up upon the [adding a custom controller](./add-custom-controller.md) guide.
 This means that this article will only cover the differences between returning a template and a `JSON` response and making it accessible to `XmlHttpRequests`.
 
+{% code title="<plugin base>/Storefront/Controller/ExampleController.php" %}
 ```php
 <?php declare(strict_types=1);
 
@@ -34,12 +37,13 @@ class ExampleController extends StorefrontController
     }
 }
 ```
+{% endcode %}
 
-As you might have seen this controller isn't too different from the controller used in the before mentioned article.
+As you might have seen this controller isn't too different from the controller used in the article mentioned before.
 The route annotation has an added `defaults={"XmlHttpRequest"=true}` to allow XmlHttpRequest and it returns a `JsonResponse` instead of a normal `Response`.
 Using a `JsonResponse` instead of a normal `Response` causes the data structures passed to it to be automatically turned into a `JSON` string.
 
-The following `services.xml` and `routes.xml` are identical to before mentioned article, but here they are for reference anyways:
+The following `services.xml` and `routes.xml` are identical as in the before mentioned article, but here they are for reference anyways:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -71,15 +75,14 @@ The following `services.xml` and `routes.xml` are identical to before mentioned 
 
 ## Preparing the Plugin
 
-Now we have to add a `plugin` to display the timestamp we get from our controller.
+Now we have to add a `Storefront Javascript plugin` to display the timestamp we get from our controller.
 
 Again this builds upon the [adding custom Javascript](./add-custom-javascript.md),
-so if you don't already now what storefront `plugins` are go ahead and read that.
+so if you don't already know what storefront `plugins` are, go ahead and read that.
 
 ```javascript
 import HttpClient from 'src/service/http-client.service';
 import Plugin from 'src/plugin-system/plugin.class';
-
 
 export default class AjaxPlugin extends Plugin {
     init() {
@@ -100,7 +103,7 @@ export default class AjaxPlugin extends Plugin {
     }
 
     _fetch() {
-        // make the  network request and call the `_setContent` function as a callback
+        // make the network request and call the `_setContent` function as a callback
         this._client.get('/example', this._setContent.bind(this), 'application/json', true)
     }
 
@@ -111,11 +114,9 @@ export default class AjaxPlugin extends Plugin {
 }
 ```
 
-
-
 ## Adding the Template
 
-The only thing that is now left to do is to provide an template for the storefront plugin to hook into:
+The only thing that is now left, is to provide a template for the storefront plugin to hook into:
 
 ```twig
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
@@ -134,5 +135,5 @@ The only thing that is now left to do is to provide an template for the storefro
 
 ## Next steps
 
-The controller we used in this example isn't awfully useful, but this pattern of providing and using data is generally the same.
+The controller we used in this example doesn't do a lot of things, but this pattern of providing and using data is generally the same in all controllers of this kind.
 Even is you use it to fetch data form the database and in that case you probably want to learn more about the DAL [here](../../../../concepts/framework/data-abstraction-layer.md).
