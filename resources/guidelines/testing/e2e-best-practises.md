@@ -40,7 +40,7 @@ You see, due to running times it is not advisable to cover every single workflow
 
 {% hint style="danger" %} Write E2E test as you would write unit tests. {% endhint %}
 
-{% hint style="success" %} Write E2E tests in a "workflow-based" manner, that means writing the test describing a reals
+{% hint style="success" %} Write E2E tests in a "workflow-based" manner, that means writing the test describing a real
 user's workflow - just like a real user would use your application.{% endhint %}
 
 A test should be written "workflow-based" -  We like to use this word very much, because it is simply apt for this purpose. You should always keep your persona and goal of an E2E test in mind: The test is then written from the user's point of view, not from the developer's point of view.
@@ -130,6 +130,6 @@ cy.wait('@getData').then((xhr) => {
 
 Cypress commands are asynchronous and get queued for execution at a later time. During execution, subjects are yielded from one command to the next, and a lot of helpful Cypress code runs between each command to ensure everything is in order.
 
-This won't happen with Vanilla JS though, it will be executed immediately. In the worst case, this difference can cause timing issues. So always wrap your vannila JavaScript code into Cypress commands or `then` in order to make use of Cypress' command queue.
+This won't happen with Vanilla JS though, it will be executed immediately. In the worst case, this difference can cause timing issues. So always wrap your vanilla JavaScript code into Cypress commands or `then` in order to make use of Cypress' command queue.
 
 {% hint style="warning" %} Concerning Cypress' `then`: Even though Cypress' commands look like promises, they aren't completely the same! Head over to the [Cypress docs](https://docs.cypress.io/guides/core-concepts/introduction-to-cypress#Commands-Are-Not-Promises) for more information. {% endhint %}
