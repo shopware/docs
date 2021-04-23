@@ -45,6 +45,7 @@ Using a `JsonResponse` instead of a normal `Response` causes the data structures
 
 The following `services.xml` and `routes.xml` are identical as in the before mentioned article, but here they are for reference anyways:
 
+{% code title="<plugin root>/src/Resources/config/services.xml" %}
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <routes xmlns="http://symfony.com/schema/routing"
@@ -55,7 +56,9 @@ The following `services.xml` and `routes.xml` are identical as in the before men
     <import resource="../../Storefront/Controller/**/*Controller.php" type="annotation" />
 </routes>
 ```
+{% endcode %}
 
+{% code title="<plugin root>/src/Resources/config/routes.xml" %}
 ```xml
 <?xml version="1.0" ?>
 
@@ -72,6 +75,7 @@ The following `services.xml` and `routes.xml` are identical as in the before men
     </services>
 </container>
 ```
+{% endcode %}
 
 ## Preparing the Plugin
 
@@ -80,6 +84,7 @@ Now we have to add a `Storefront Javascript plugin` to display the timestamp we 
 Again this builds upon the [adding custom Javascript](./add-custom-javascript.md),
 so if you don't already know what storefront `plugins` are, go ahead and read that.
 
+{% code title="<plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js" %}
 ```javascript
 import HttpClient from 'src/service/http-client.service';
 import Plugin from 'src/plugin-system/plugin.class';
@@ -113,11 +118,13 @@ export default class AjaxPlugin extends Plugin {
     }
 }
 ```
+{% endcode %}
 
 ## Adding the Template
 
 The only thing that is now left, is to provide a template for the storefront plugin to hook into:
 
+{% code title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig" %}
 ```twig
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
@@ -132,8 +139,9 @@ The only thing that is now left, is to provide a template for the storefront plu
 	</div>
 {% endblock %}
 ```
+{% endcode %}
 
 ## Next steps
 
-The controller we used in this example doesn't do a lot of things, but this pattern of providing and using data is generally the same in all controllers of this kind.
-Even is you use it to fetch data form the database and in that case you probably want to learn more about the DAL [here](../../../../concepts/framework/data-abstraction-layer.md).
+The controller we used in this example doesn't do a lot, but this pattern of providing and using data is generally the same.
+Even if you use it to fetch data form the database, but in that case you probably want to learn more about the DAL [here](../../../../concepts/framework/data-abstraction-layer.md).
