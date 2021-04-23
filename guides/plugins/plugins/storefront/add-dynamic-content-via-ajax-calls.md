@@ -33,7 +33,7 @@ class ExampleController extends StorefrontController
     */
     public function showExample(): JsonResponse
     {
-        return new JsonResponse(['timestamp' => \date(\DateTimeInterface::W3C)]);
+        return new JsonResponse(['timestamp' => (new \DateTime())->format(\DateTimeInterface::W3C)]);
     }
 }
 ```
@@ -81,8 +81,8 @@ The following `services.xml` and `routes.xml` are identical as in the before men
 
 Now we have to add a `Storefront Javascript plugin` to display the timestamp we get from our controller.
 
-Again this builds upon the [adding custom Javascript](./add-custom-javascript.md),
-so if you don't already know what storefront `plugins` are, go ahead and read that.
+Again this is built upon the [adding custom Javascript](./add-custom-javascript.md) article,
+so if you don't already know what storefront `plugins` are, hold on and read it first.
 
 {% code title="<plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js" %}
 ```javascript
