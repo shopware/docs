@@ -33,7 +33,7 @@ class ExampleController extends StorefrontController
     */
     public function showExample(): JsonResponse
     {
-        return new JsonResponse(['timestamp' => gmdate("Y-m-d\TH:i:s\Z")]);
+        return new JsonResponse(['timestamp' => \date(\DateTimeInterface::W3C)]);
     }
 }
 ```
