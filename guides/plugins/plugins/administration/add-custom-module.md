@@ -160,12 +160,12 @@ section of the administration. You can add the `settingsItem` option to the modu
 import './page/swag-plugin-list';
 import './page/swag-plugin-detail';
 Shopware.Module.register('swag-plugin', {
-...
-settingsItem: {
-group: 'system',
-to: 'swag.plugin.list',
-icon: 'default-object-rocket'
-}
+    ...
+    settingsItem: {
+        group: 'system',
+        to: 'swag.plugin.list',
+        icon: 'default-object-rocket'
+    }
 });
 ```
 {% endcode %}
