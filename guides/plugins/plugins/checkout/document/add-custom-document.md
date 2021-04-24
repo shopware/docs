@@ -12,7 +12,7 @@ Furthermore adding a document via your plugin is done by using [plugin database 
 
 ## Adding a custom document
 
-Documents in Shopware are stored in the database table `document_base_config`. Do not confuse it with the `document` table, which contains the actually generated documents \(e.g. for an order\) and not the config for them.
+Documents in Shopware are stored in the database table `document_base_config`. Do not confuse it with the `document` table, which contains the actually generated documents for an order and not the config for them.
 
 Adding a new document is done by adding two entries to the database:
 
