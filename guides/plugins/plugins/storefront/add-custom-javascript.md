@@ -6,7 +6,7 @@ If you want to add interactivity to your storefront you probably have to write y
 
 ## Prerequisites
 
-You need for this guide a running plugin and therefore a running Shopware 6 instance, with full access to all files. This also includes access to the command line to execute a command, which then builds the storefront. A general understanding of vanilla JavaScript EC6 is also mandatory. Everything else is explained in this guide itself.
+You need for this guide a running plugin and therefore a running Shopware 6 instance, with full access to all files. This also includes access to the command line to execute a command, which then builds the storefront. A general understanding of vanilla JavaScript ES6 is also mandatory. Everything else is explained in this guide itself.
 
 ## Writing a JavaScript plugin
 
