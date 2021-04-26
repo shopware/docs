@@ -96,8 +96,6 @@ SQL;
         $defaultLangId = $this->getLanguageIdByLocale($connection, 'en-GB');
         $deLangId = $this->getLanguageIdByLocale($connection, 'de-DE');
 
-
-
         $connection->insert('mail_template', [
             'id' => Uuid::fromHexToBytes($mailTemplateId),
             'mail_template_type_id' => Uuid::fromHexToBytes($mailTemplateTypeId),
@@ -190,9 +188,9 @@ Now on to the `createMailTemplate` method, which looks big, but isn't that scary
 
 We then create the entry for the `mail_template` table. Make sure to set `system_default` to 0 here!
 
-Afterwards we're inserting the entries into the `mail_template_translation` table. Due to several possible Shopware configurations \(en\_GB is default, or de\_DE is default, or another language is set as default language\), we need to check when exactly to insert the english, and when to insert the german translation.
+Afterwards we're inserting the entries into the `mail_template_translation` table. Due to several possible Shopware configurations \(en\_GB is default, or de\_DE is default, or another language is set as default language\), we need to check when exactly to insert the English, and when to insert the German translation.
 
-Note the variables for the english and the german subject and description, make sure to change those as well to your needs.
+Note the variables for the English and the German subject and description, make sure to change those as well to your needs.
 
 Each of those calls uses a little helper method `getContentHtml` or `getContentPlain` respectively, where you can use your template.
 
@@ -291,9 +289,7 @@ So having a look at the `createMailTemplateType` method, you will see some simil
 
 * First of all we're fetching the language IDs for `en_GB` and `de_DE`
 * Then we define the translated names for the mail template type
-* And then the respective `mail_template_type` entry, as well as the translated `mail_template_type_translation` entries
-
-  are created
+* And then the respective `mail_template_type` entry, as well as the translated `mail_template_type_translation` entries are created
 
 Note the `available_entities` column when creating the mail template type itself though. In here, you define which entities should be available for the respective mail template, in this example we'll just provide the `ProductEntity`.
 
@@ -301,5 +297,5 @@ Note the `available_entities` column when creating the mail template type itself
 
 Now that you know how to add custom mail templates, you might wonder how you can actually add new mail template data to existing mail templates.
 
-For that case, we've created a seperate guide about [adding data to mail templates](add-data-to-mails.md).
+For that case, we've created a separate guide about [adding data to mail templates](add-data-to-mails.md).
 
