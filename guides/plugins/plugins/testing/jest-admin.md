@@ -125,7 +125,7 @@ import 'src/app/component/form/select/base/sw-multi-select';
 
 You see that we import the `sw-multi-select` without saving the return value. This blackbox import only executes code. However, this is important because this registers the component to the Shopware object:
 
-{% code title="test/app/component/form/select/base/sw-multi-select.spec.js" %}
+{% code title="src/app/component/form/select/base/sw-multi-select/index.js" %}
 ```javascript
 Shopware.Component.register('sw-multi-select', {
     // The vue component
