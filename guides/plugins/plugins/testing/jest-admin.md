@@ -411,7 +411,6 @@ responses.addResponse({
     }
 });
 
-```suggestion
 /*
  * ############### Example ###############
 */
