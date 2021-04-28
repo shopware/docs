@@ -180,6 +180,7 @@
     * [Storefront](guides/plugins/plugins/storefront/README.md)
       * [Customize templates](guides/plugins/plugins/storefront/customize-templates.md)
       * [Add custom controller](guides/plugins/plugins/storefront/add-custom-controller.md)
+      * [Add dynamic content via AJAX calls](./guides/plugins/plugins/storefront/add-dynamic-content-via-ajax-calls.md)
       * [Add custom Javascript](guides/plugins/plugins/storefront/add-custom-javascript.md)
       * [Override existing Javascript](guides/plugins/plugins/storefront/override-existing-javascript.md)
       * [Add custom assets](guides/plugins/plugins/storefront/add-custom-assets.md)
