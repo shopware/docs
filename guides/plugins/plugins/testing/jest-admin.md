@@ -386,7 +386,7 @@ The data handling and the repository factory works by default. It will be genera
 
 Every time the repository factory requests something from a URL, you get a notification in the console. This notification also includes a short guide on how to implement the response. This information may look like this:
 
-```
+```js
 // You should implement mock data for this route: "/search/product".
 
 /*
