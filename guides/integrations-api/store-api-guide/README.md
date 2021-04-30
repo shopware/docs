@@ -104,4 +104,3 @@ In a later section we'll also see how we can make changes to the context - e.g. 
 But for now let's leave it here - as you can see above, the `customer` field is still empty. Time to change that.
 
 {% page-ref page="register-a-customer.md" %}
-
