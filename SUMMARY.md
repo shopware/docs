@@ -247,6 +247,7 @@
     * [Search Criteria](guides/integrations-api/general-concepts/search-criteria.md)
     * [Request Headers](guides/integrations-api/general-concepts/request-headers.md)
     * [Generated Reference](guides/integrations-api/general-concepts/generated-reference.md)
+    * [API Versioning](guides/integrations-api/general-concepts/api-versioning.md)
   * [Admin API Guide](guides/integrations-api/admin-api/README.md)
     * [Authentication](guides/integrations-api/admin-api/authentication.md)
     * [Reading entities](guides/integrations-api/admin-api/reading-entities.md)
