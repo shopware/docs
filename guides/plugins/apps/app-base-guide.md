@@ -290,7 +290,8 @@ An event contains as much data as is needed to react to that event. The data is 
     "url":"http:\/\/localhost:8000",
     "appVersion":"0.0.1",
     "shopId":"dgrH7nLU6tlE"
-  }
+  },
+  "timestamp": 123123123
 }
 ```
 
@@ -301,6 +302,8 @@ Where the `source` property contains all necessary information about the Shopwar
 * `shopId` is the id by which you can identify the Shopware instance
 
 The next property `data` contains the name of the event so that a single endpoint can handle several different events, should you desire. `data` also contains the event data in the `payload` property, due to the asynchronous nature of theses webhooks the `payload` for `entity.written` events does not contain complete entities as these might become outdated. Instead the entity in the payload is characterized by its id, stored under `primaryKey`, so that the app can fetch additional data through the shops API. This also has the advantage of giving the app explicit control over the associations that get fetched instead of relying on the associations determined by the event. Other events in contrast contain the entity data that defines the event, but keep in mind that event might not contain all associations.
+
+The next property `timestamp` is the time which the webhook was handled. This can be used to prevent replay attacks, as an attacker cannot change the timestamp without making the signature invalid. If the timestamp is too old, your app should reject the request. This property is only available from 6.4.1.0 onwards
 
 {% hint style="info" %}
 Starting from Shopware version 6.4.1.0, the current shopware version will be sent as a `sw-version` header.
