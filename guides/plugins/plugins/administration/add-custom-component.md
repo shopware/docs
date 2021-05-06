@@ -128,21 +128,30 @@ As mentioned above, Shopware 6 looks for a `main.js` file in your plugin. Its co
 Your plugin has to be activated for this to work.
 {% endhint %}
 
-Make sure to also include that file when publishing your plugin! A copy of this file will then be put into the directory `<shopware root>/public/bundles/customcomponent/administration/js/custom-component.js`.
+<!--
+    NOTES to bottom part of code: 
+    - I have tried to include file in Shopware v6.3.5.2 but including or having this twig file has no effect. It works out of the box. Can you please recheck this part of documentation?
+    - There is strange bug when using name e.g. CustomBundle as it will ignore word Bundle and compile folder name just `custom` instead of `custombundle`, then SW will not find it to load. Though it works with name e.g. CustomBundles (note the s letter).
+    - I apologize to make a PR with this comment as I could provide the solution - but still, it would be nice to check this behavour.
 
-The latter javascript file has to be injected into the template by your plugin as well for production environments. In order to do this, create a new file called `index.html.twig` here: `<plugin root>/src/Resources/views/administration/`
+-->
+<!--
+    Make sure to also include that file when publishing your plugin! A copy of this file will then be put into the directory `<shopware root>/public/bundles/customcomponent/administration/js/custom-component.js`.
 
-{% code title="<plugin root>/src/Resources/views/administration/" %}
-```markup
-{% sw_extends 'administration/index.html.twig' %}
+    The latter javascript file has to be injected into the template by your plugin as well for production environments. In order to do this, create a new file called `index.html.twig` here: `<plugin root>/src/Resources/views/administration/`
 
-{% block administration_scripts %}
-    <script type="text/javascript" src="{{ asset('bundles/customcomponent/administration/js/custom-component.js') }}"></script>
-{% endblock %}
-```
-{% endcode %}
+    {% code title="<plugin root>/src/Resources/views/administration/" %}
+    ```markup
+    {% sw_extends 'administration/index.html.twig' %}
 
-Your minified javascript file will now be loaded in production environments.
+    {% block administration_scripts %}
+        <script type="text/javascript" src="{{ asset('bundles/customcomponent/administration/js/custom-component.js') }}"></script>
+    {% endblock %}
+    ```
+    {% endcode %}
+
+    Your minified javascript file will now be loaded in production environments.
+-->
 
 ## Next steps
 
