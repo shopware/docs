@@ -121,7 +121,7 @@ protected function defineFields(): FieldCollection
         (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
         (new StringField('name', 'name'))->addFlags(new Required()),
 
-        (new OneToOneAssociationField('bar', 'id', 'foo_id', BarDefinition::class, false))
+        (new OneToOneAssociationField('bar', 'foo_id', 'id', BarDefinition::class, false))
     ]);
 }
 ```
