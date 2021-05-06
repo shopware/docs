@@ -267,9 +267,7 @@
 
 * [References](resources/references/README.md)
   * [API Reference](resources/references/api-reference/README.md)
-    * [Store API Reference](resources/references/api-reference/store-api-reference/README.md)
-      * [Product](resources/references/api-reference/store-api-reference/product.md)
-      * [Category](resources/references/api-reference/store-api-reference/category.md)
+    * [Store API Reference](https://shopware.stoplight.io/docs/store-api/storeapi.json)
     * [Admin API Reference](resources/references/api-reference/admin-api-reference.md)
   * [Core Reference](resources/references/core-reference/README.md)
     * [DAL Reference](resources/references/core-reference/dal-reference/README.md)

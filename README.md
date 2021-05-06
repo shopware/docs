@@ -20,5 +20,5 @@ Visit the [academy](https://academy.shopware.com/collections?category=developer-
 
 {% page-ref page="guides/plugins/" %}
 
-{% page-ref page="resources/references/api-reference/store-api-reference/" %}
+{% page-ref page="guides/integrations-api/" %}
 

@@ -20,3 +20,7 @@ An interesting project based \(almost\) solely on the Store API is Shopware PWA.
 
 {% page-ref page="../../products/pwa/README.md" %}
 
+Explore all endpoints of our Store API in our reference
+
+<!-- markdown-link-check-disable-next-line -->
+{% embed url="https://shopware.stoplight.io/docs/store-api/storeapi.json" caption="" %}

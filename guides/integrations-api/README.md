@@ -10,6 +10,8 @@ Such as applications are usually considered "frontends" and provide interfaces f
 
 {% page-ref page="store-api-guide/" %}
 
+{% embed url="https://shopware.stoplight.io/docs/store-api/storeapi.json" caption="" %}
+
 ## Backend-facing integrations - Admin API
 
 These integrations are characterised by the exchange of structured data, synchronisations, imports, exports or notifications. Performance is also important, but rather in terms of high data loads rather than fast response times. Consistency, error handling, transaction-safety are critical.
