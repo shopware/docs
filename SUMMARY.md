@@ -118,6 +118,8 @@
       * [Mail](guides/plugins/plugins/content/mail/README.md)
         * [Add data to mails](guides/plugins/plugins/content/mail/add-data-to-mails.md)
         * [Add mail templates](guides/plugins/plugins/content/mail/add-mail-template.md)
+      * [SEO](guides/plugins/plugins/content/seo/README.md)
+        * [Add custom SEO URLs](guides/plugins/plugins/content/seo/add-custom-seo-url.md)
     * [Framework](guides/plugins/plugins/framework/README.md)
       * [Data Handling / DataAbstractionLayer](guides/plugins/plugins/framework/data-handling/README.md)
         * [Reading data](guides/plugins/plugins/framework/data-handling/reading-data.md)
