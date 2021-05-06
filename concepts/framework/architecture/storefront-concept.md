@@ -78,7 +78,7 @@ Starting to describe how the composition of the page works, we would at first li
 * This page exists of generic information \(e.g. Header, Footer\) and detailed information \(e.g. a list of orders\).
 * Detailed information should be fetched throughout the Core component to make usage of
 
-  the [Store API routes](../../../resources/references/api-reference/store-api-reference/).
+the [Store API routes](../../../concepts/api/store-api.md).
 
 The best entry point to give you a good understanding how the composition works, is the corresponding Controller. In our case it is the `AccountOrderController`. The main and only task of the controller is to assign a page struct to a variable, which will later be passed to a Twig template. The page is received by the specific `AccountOrderPageLoader`. Additionally, the method annotations of the controller do also set routing information like path, name, options and methods.
 
