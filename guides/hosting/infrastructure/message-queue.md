@@ -14,18 +14,27 @@ The recommended method for consuming messages is using the cli worker.
 
 #### Cli worker
 
-You can configure the command just to run a certain amount of time or to stop if it exceeds a certain memory limit like: \`\`\`shell script bin/console messenger:consume-messages default --time-limit=60
+You can configure the command just to run a certain amount of time or to stop if it exceeds a certain memory limit like: 
 
-```text
-```shell script
+```bash
 bin/console messenger:consume-messages default --memory-limit=128M
 ```
 
-For more information about the command and its configuration use the -h option: \`\`\`shell script bin/console messenger:consume-messages -h
+For more information about the command and its configuration use the -h option: 
 
-```text
+```bash
+bin/console messenger:consume-messages -h
+```
+
 You should use the limit option to periodically restart the worker processes, because of the memory leak issues of long-running php processes. To automatically start the processes again after they stopped because of exceeding the given limits you can use something like [upstart](http://upstart.ubuntu.com/getting-started.html) or [supervisor](http://supervisord.org/running.html). Alternatively you can configure a cron job that runs the command again shortly after the time limit exceeds.
+
+```bash
+bin/console messenger:consume-messages default --time-limit=60
+```
+
+
 If you have configured the cli-worker, you can turn off the admin worker in the shopware configuration file, therefore create or edit the configuration `shopware.yaml`.
+
 ```yaml
 # config/packages/shopware.yaml
 shopware:
