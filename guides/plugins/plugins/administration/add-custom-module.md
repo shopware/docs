@@ -181,7 +181,7 @@ This can be achieved by adding the key settingsItem to your module object:
 ```javascript
 settingsItem: [{ // this can be a single object if no collection is needed
     to: 'custom.module.overview', // route to anything
-    group: 'system', // either system, shop or plugin
+    group: 'system', // either system, shop or plugins
     icon: 'default-object-lab-flask',
     iconComponent: YourCustomIconRenderingComponent, // optional, this overrides icon attribute
     id: '', // optional, fallback is taken from module
