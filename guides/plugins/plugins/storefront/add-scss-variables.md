@@ -6,21 +6,20 @@ To order to add SCSS variables to your plugin, you can use a subscriber class.
 
 ## Prerequisites
 
-You won't learn how to create a plugin in this guide, head over to our Plugin base guide to create
-your first plugin:
+You won't learn how to create a plugin in this guide, head over to our Plugin base guide to create your first plugin:
 
-{% page-ref page="./../plugin-base-guide.md" %}
+{% page-ref page="../plugin-base-guide.md" %}
 
 You should also know how to listen to events:
 
-{% page-ref page="./../plugin-fundamentals/listening-to-events.md" %}
+{% page-ref page="../plugin-fundamentals/listening-to-events.md" %}
 
 ## Setup a default value for a custom SCSS variable
 
 Before you start adding your subscriber, you should provide a fallback value for your custom SCSS variable in your plugin `base.scss`:
 
 {% code title="<plugin root>/src/Resources/app/storefront/src/scss/base.scss" %}
-```scss
+```css
 // The value will be overwritten by the subscriber when the plugin is installed and activated
 $sass-plugin-header-bg-color: #ffcc00 !default;
 
@@ -32,8 +31,7 @@ $sass-plugin-header-bg-color: #ffcc00 !default;
 
 ## Theme variables subscriber
 
-You can add a new subscriber according to the [Listening to events](../plugin-fundamentals/listening-to-events.md) guide.
-In this example we name the subscriber `ThemeVariableSubscriber`. The subscriber listens to the `ThemeCompilerEnrichScssVariablesEvent`.
+You can add a new subscriber according to the [Listening to events](../plugin-fundamentals/listening-to-events.md) guide. In this example we name the subscriber `ThemeVariableSubscriber`. The subscriber listens to the `ThemeCompilerEnrichScssVariablesEvent`.
 
 {% tabs %}
 {% tab title="<plugin root>/src/Subscriber/ThemeVariableSubscriber.php" %}
@@ -62,14 +60,15 @@ class ThemeVariableSubscriber implements EventSubscriberInterface
 }
 ```
 {% endtab %}
+
 {% tab title="<plugin root>/src/Resources/config/services.xml" %}
-```xml
+```markup
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-    
+
     <services>
         <service id="Swag\BasicExample\Subscriber\ThemeVariableSubscriber">
             <tag name="kernel.event_subscriber"/>
@@ -82,9 +81,9 @@ class ThemeVariableSubscriber implements EventSubscriberInterface
 
 The `ThemeCompilerEnrichScssVariablesEvent` provides the `addVariable()` method which takes the following parameters:
 
-* `$name:` (string): The name of the SCSS variable. In your SCSS, the passed string will be used exactly as its stated here, so please be careful with special characters. We recommend using kebab-case here. The variable prefix `$` will be added automatically. We also recommend prefixing your variable name with your plugin's or company's name to prevent naming conflicts.
-* `$value:` (string): The value which should be assigned to the SCSS variable.
-* `$sanitize` (bool - optional): Optional parameter to remove special characters from the variables value. The parameter will also add quotes around the variables value. In most cases quotes are not needed e.g. for color hex values. However, there may be situations where you want to pass individual strings to your SCSS variable.
+* `$name:` \(string\): The name of the SCSS variable. In your SCSS, the passed string will be used exactly as its stated here, so please be careful with special characters. We recommend using kebab-case here. The variable prefix `$` will be added automatically. We also recommend prefixing your variable name with your plugin's or company's name to prevent naming conflicts.
+* `$value:` \(string\): The value which should be assigned to the SCSS variable.
+* `$sanitize` \(bool - optional\): Optional parameter to remove special characters from the variables value. The parameter will also add quotes around the variables value. In most cases quotes are not needed e.g. for color hex values. However, there may be situations where you want to pass individual strings to your SCSS variable.
 
 {% hint style="warning" %}
 Please note that plugins are not sales channel specific. Your SCSS variables are directly added in the SCSS compilation process and will be globally available throughout all themes and storefront sales channels. If you want to change a variables value for each sales channel you should use plugin config fields and follow the next example.
@@ -97,7 +96,7 @@ Inside your `ThemeVariableSubscriber` you can also read values from the plugin c
 First, lets add a new plugin configuration field according to the [Plugin Configurations](../plugin-fundamentals/add-plugin-configuration.md):
 
 {% code title="<plugin root>/src/Resources/config/config.xml" %}
-```xml
+```markup
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
@@ -113,11 +112,10 @@ First, lets add a new plugin configuration field according to the [Plugin Config
 ```
 {% endcode %}
 
-As you can see in the example, we add an input field of the type colorpicker for our plugin. In the administration, the component 'sw-colorpicker' will later be displayed for the selection of the value.
-You also can set a `defaultValue` which will be pre-selected like the following:
+As you can see in the example, we add an input field of the type colorpicker for our plugin. In the administration, the component 'sw-colorpicker' will later be displayed for the selection of the value. You also can set a `defaultValue` which will be pre-selected like the following:
 
 {% code title="<plugin root>/src/Resources/config/config.xml" %}
-```xml
+```markup
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
@@ -180,14 +178,15 @@ class ThemeVariableSubscriber implements EventSubscriberInterface
 }
 ```
 {% endtab %}
+
 {% tab title="<plugin root>/src/Resources/config/services.xml" %}
-```xml
+```markup
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-    
+
     <services>
         <service id="Swag\BasicExample\Subscriber\ThemeVariableSubscriber">
             <!-- add argument `SystemConfigService` -->
@@ -237,3 +236,4 @@ class ThemeVariableSubscriber implements EventSubscriberInterface
 {% endcode %}
 
 To avoid camelCase variable names when reading from the `config.xml`, we recommend using the `CamelCaseToSnakeCaseNameConverter` to format the variable before adding it.
+

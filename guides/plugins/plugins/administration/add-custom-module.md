@@ -152,8 +152,7 @@ This should be your snippet file now:
 
 ### Link you module into settings
 
-If you think about creating a module concerning settings, you might want to link your module in the `settings` 
-section of the administration. You can add the `settingsItem` option to the module configuration as seen below:
+If you think about creating a module concerning settings, you might want to link your module in the `settings` section of the administration. You can add the `settingsItem` option to the module configuration as seen below:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
 ```javascript
@@ -170,13 +169,11 @@ Shopware.Module.register('swag-plugin', {
 ```
 {% endcode %}
 
-The `group` property targets to the group section, the item will be displayed in 'shop', 'system' and 'plugin' sections.
-The `to` gets the link path of the route. The `icon` contains the icon name which will be display.
+The `group` property targets to the group section, the item will be displayed in 'shop', 'system' and 'plugin' sections. The `to` gets the link path of the route. The `icon` contains the icon name which will be display.
 
 ### Add custom settings card
 
-You can even provide custom setting cards that are either placed in shop, system or plugin tab.
-This can be achieved by adding the key settingsItem to your module object:
+You can even provide custom setting cards that are either placed in shop, system or plugin tab. This can be achieved by adding the key settingsItem to your module object:
 
 ```javascript
 settingsItem: [{ // this can be a single object if no collection is needed

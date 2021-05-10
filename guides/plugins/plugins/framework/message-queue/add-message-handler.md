@@ -216,3 +216,4 @@ shopware:
 Now that you know how to add a message handler and configure a bus for it, you may want to add a custom middleware for your bus. To do this, head over to our "Add middleware" guide:
 
 {% page-ref page="add-middleware.md" %}
+

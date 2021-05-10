@@ -6,7 +6,6 @@ This feature is only available starting with Shopware 6.4.1.0.
 
 These two requests are executed against your API, the up to two endpoints you define per payment method. All bodies are JSON encoded.
 
-<!-- markdown-link-check-disable-next-line -->
 {% api-method method="post" host="https://payment.app" path="/pay" %}
 {% api-method-summary %}
 pay
@@ -26,7 +25,7 @@ The hmac-signature of the JSON encoded body content, signed with the shop secret
 
 {% api-method-body-parameters %}
 {% api-method-parameter name="order" type="OrderEntity" required=true %}
-The order entity from Shopware including all necessary associations (like currency, shipping address, billing address, line items). See Shopware for detailed and current structure.
+The order entity from Shopware including all necessary associations \(like currency, shipping address, billing address, line items\). See Shopware for detailed and current structure.
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="orderTransaction" type="OrderTransactionEntity" required=true %}
@@ -77,15 +76,11 @@ See comments for different successful responses
     "message": "The shop has not provided all credentials for the payment provider."
 }
 ```
-
 {% endapi-method-response-example %}
 {% endapi-method-response %}
 {% endapi-method-spec %}
 {% endapi-method %}
 
-
-
-<!-- markdown-link-check-disable-next-line -->
 {% api-method method="post" host="https://payment.app" path="/finalize" %}
 {% api-method-summary %}
 finalize
@@ -154,8 +149,8 @@ See comments for different successful responses
     "message": "The user did not finish payment."
 }
 ```
-
 {% endapi-method-response-example %}
 {% endapi-method-response %}
 {% endapi-method-spec %}
 {% endapi-method %}
+

@@ -122,7 +122,6 @@ bin/setup
 You will be prompted to enter specific information. In short:
 
 * Application environment: Just hit enter to apply the default `dev`
-<!-- markdown-link-check-disable-next-line -->
 * URL to your /public folder: `http://shopware:8000`
 * Database host: Just hit enter to apply the default `localhost`
 * Database port: Just hit enter to apply the default `3306`
@@ -139,10 +138,9 @@ Afterwards a file called `.psh.yaml.override` is created, which contains all tho
 ./psh.phar install
 ```
 
-After that the setup is done. You can now access your Shopware 6 installation using the following urls:
-<!-- markdown-link-check-disable-next-line -->
+After that the setup is done. You can now access your Shopware 6 installation using the following urls: 
+
 * Storefront: [http://shopware:8000](http://shopware:8000)
-<!-- markdown-link-check-disable-next-line -->
 * Admin: [http://shopware:8000/admin](http://shopware:8000/admin) \(User: admin, password: shopware\)
 
 ## Troubleshooting

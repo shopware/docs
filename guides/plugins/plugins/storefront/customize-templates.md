@@ -98,6 +98,6 @@ You're able to customize templates now, which is a good start. However, there's 
 
 * [Adding styles](add-custom-styling.md)
 * [Adding translations](add-translations.md)
-* [Using icons]()
+* [Using icons](customize-templates.md)
 * [Using custom assets](add-custom-assets.md)
 

@@ -62,7 +62,7 @@
       * [Decorating a Shopware Migration Assistant converter](products/plugins/migration-assistant/guides/decorating-a-shopware-migration-assistant-converter.md)
       * [Creating a new migration profile](products/plugins/migration-assistant/guides/creating-a-new-migration-profile.md)
 * [Cloud](products/cloud.md)
-* [PWA](products/pwa/README.md)
+* [PWA](products/pwa.md)
 
 ## Guides
 
@@ -90,7 +90,7 @@
       * [Add plugin dependencies](guides/plugins/plugins/plugin-fundamentals/add-plugin-dependencies.md)
       * [Add custom CLI commands](guides/plugins/plugins/plugin-fundamentals/add-custom-commands.md)
       * [Add scheduled task](guides/plugins/plugins/plugin-fundamentals/add-scheduled-task.md)
-      * [Using custom fields of type media](guides/plugins/plugins/framework/custom-field/custom-fields-of-type-media.md)
+      * [Using custom fields of type media](guides/plugins/plugins/plugin-fundamentals/custom-fields-of-type-media.md)
       * [Adding NPM dependencies](guides/plugins/plugins/plugin-fundamentals/using-npm-dependencies.md)
       * [Adding Composer dependencies](guides/plugins/plugins/plugin-fundamentals/using-composer-dependencies.md)
       * [Plugin lifecycle methods](guides/plugins/plugins/plugin-fundamentals/plugin-lifecycle.md)
@@ -160,7 +160,7 @@
       * [Adding Services](guides/plugins/plugins/administration/add-custom-service.md)
       * [Adding permissions](guides/plugins/plugins/administration/add-acl-rules.md)
       * [Using the data handling](guides/plugins/plugins/administration/using-data-handling.md)
-      * [Adding error handling](./guides/plugins/plugins/administration/add-error-handling.md)
+      * [Adding error handling](guides/plugins/plugins/administration/add-error-handling.md)
       * [Customize modules](guides/plugins/plugins/administration/customizing-modules.md)
       * [Override existing routes](guides/plugins/plugins/administration/overriding-routes.md)
       * [Add tab to existing module](guides/plugins/plugins/administration/add-new-tab.md)
@@ -182,7 +182,7 @@
     * [Storefront](guides/plugins/plugins/storefront/README.md)
       * [Customize templates](guides/plugins/plugins/storefront/customize-templates.md)
       * [Add custom controller](guides/plugins/plugins/storefront/add-custom-controller.md)
-      * [Add dynamic content via AJAX calls](./guides/plugins/plugins/storefront/add-dynamic-content-via-ajax-calls.md)
+      * [Add dynamic content via AJAX calls](guides/plugins/plugins/storefront/add-dynamic-content-via-ajax-calls.md)
       * [Add custom Javascript](guides/plugins/plugins/storefront/add-custom-javascript.md)
       * [Override existing Javascript](guides/plugins/plugins/storefront/override-existing-javascript.md)
       * [Add custom assets](guides/plugins/plugins/storefront/add-custom-assets.md)

@@ -18,5 +18,3 @@ These integrations are characterised by the exchange of structured data, synchro
 
 {% page-ref page="admin-api/" %}
 
-
-

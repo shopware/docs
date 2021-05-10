@@ -28,7 +28,6 @@ At least on Linux operating systems, docker installation is the easiest way to g
 
 This may take a while since many caches need to be generated on first execution, but only on first execution.
 
-<!-- markdown-link-check-disable-next-line -->
 To be sure the installation succeeded, just open the following url in your favorite browser: [http://localhost:8000/](http://localhost:8000/)
 
 After exploring Shopware 6 you can terminate it with these two commands:

@@ -1,11 +1,12 @@
-# API error handling in administration
+# Adding error handling
+
 ​
+
 ## Overview
 
-The Shopware 6 Administration stores API errors in the [Vuex store](https://vuex.vuejs.org/).
-There they are centrally accessible to your components, with a flat data structure looking like this:
+The Shopware 6 Administration stores API errors in the [Vuex store](https://vuex.vuejs.org/). There they are centrally accessible to your components, with a flat data structure looking like this:
 
-```
+```text
 (state)
  |- entityNameA
     |- id1
@@ -17,31 +18,31 @@ There they are centrally accessible to your components, with a flat data structu
         |- property2
         ...
  |- entityNameB
-   ...         
+   ...
 ```
 
-In this guide you will learn how to access this error store directly or via one of the provided helper functions.
-​
+In this guide you will learn how to access this error store directly or via one of the provided helper functions. ​
+
 ## Read errors from the store
-​
-Errors can be read from the store by calling the getter method `getApiErrorFromPath`.
-​
+
+​ Errors can be read from the store by calling the getter method `getApiErrorFromPath`. ​
+
 ```javascript
 function getApiErrorFromPath (state) => (entityName, id, path)
 ```
-​
-In there, the parameter `path` is an `array` representing the nested property names of your entity.
 
-Also we provide a wrapper which can also handle nested fields in object notation, being much easier to use for scalar fields:
-​
+​ In there, the parameter `path` is an `array` representing the nested property names of your entity.
+
+Also we provide a wrapper which can also handle nested fields in object notation, being much easier to use for scalar fields: ​
+
 ```javascript
 function getApiError(state) => (entity, field)
 ```
-​
-For example, an empty product name would result in an error with the path `product.name`, instead of having the array `['product', 'name']` present.
 
-In your Vue component, use computed properties to avoid flooding your templates with store calls.
-​
+​ For example, an empty product name would result in an error with the path `product.name`, instead of having the array `['product', 'name']` present.
+
+In your Vue component, use computed properties to avoid flooding your templates with store calls. ​
+
 ```javascript
 computed: {
     propertyError() {
@@ -55,30 +56,29 @@ computed: {
 
 Those computed properties can then be used in your templates the familiar way:
 
-```html
+```markup
 <div>
     <sw-field ... :error="propertyError"></sw-field>
 </div>
 ```
+
 ​
+
 ### The mapErrors Service
-​
-Like every Vuex mapping, fetching the errors from the store may be very repetitive and error-prone.
-Because of this we provide you an Vuex like mapper function:
-​
+
+​ Like every Vuex mapping, fetching the errors from the store may be very repetitive and error-prone. Because of this we provide you an Vuex like mapper function: ​
+
 ```javascript
 mapPropertyErrors(subject, properties)
 ```
-​
-Here, the `subject` parameter is the entity name (not the entity itself) and `properties` is an array of the properties you want to map.
-You can spread its result to create computed properties in your component.
-The functions returned by the mapper are named like a camelCase representation of your input, suffixed with `Error`.
 
-This is an example from the `sw-product-basic-form` component:
-​
+​ Here, the `subject` parameter is the entity name \(not the entity itself\) and `properties` is an array of the properties you want to map. You can spread its result to create computed properties in your component. The functions returned by the mapper are named like a camelCase representation of your input, suffixed with `Error`.
+
+This is an example from the `sw-product-basic-form` component: ​
+
 ```javascript
 const { mapPropertyErrors } = Shopware.Component.getComponentHelper();
-    
+
 Component.register('sw-product-basic-form', {
     computed: {
         ...mapPropertyErrors('product', [
@@ -95,16 +95,17 @@ Component.register('sw-product-basic-form', {
 
 Which then are bound to the inputs like this:
 
-```html
+```markup
 <sw-field type="text" v-model="product.name" :error="productNameError">
-``` 
+```
+
 ​
+
 ### Error configuration for pages
-​
-When working with nested views, you need a way to tell the user that an error occurred on another view, e.g in another `tab`.
-For this you can write a config for your `sw-page` component which looks like seen below: 
-​
-```json
+
+​ When working with nested views, you need a way to tell the user that an error occurred on another view, e.g in another `tab`. For this you can write a config for your `sw-page` component which looks like seen below: ​
+
+```javascript
 {
   "sw.product.detail.base": {
     "product": [
@@ -124,8 +125,8 @@ For this you can write a config for your `sw-page` component which looks like se
   }
 }
 ```
-​
-This can then directly imported and used in the `mapPageError` computed property:
+
+​ This can then directly imported and used in the `mapPageError` computed property:
 
 ```javascript
 import errorConfiguration from './error.cfg.json';
@@ -141,8 +142,9 @@ Shopware.Component.register('sw-product-detail', {
 
 This makes it possible to indicate if one or more errors exists, in another view or a tab:
 
-```html
+```markup
 <sw-tabs
     :hasError="swProductDetailBaseError">
 </sw-tabs>
 ```
+

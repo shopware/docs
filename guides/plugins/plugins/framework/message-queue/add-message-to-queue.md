@@ -105,6 +105,7 @@ As the sent messages may travel through some 3rd party services you may want to 
 
 ## Next steps
 
-Now that you know how to create a message and add it to the queue, let's create a handler to process our message. To do this, head over to our "Add message handler"  guide:
+Now that you know how to create a message and add it to the queue, let's create a handler to process our message. To do this, head over to our "Add message handler" guide:
+
 {% page-ref page="add-message-handler.md" %}
 

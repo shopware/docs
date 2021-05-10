@@ -36,7 +36,7 @@ https://shop.example.com/store-api
 ```
 
 {% hint style="info" %}
-Before Shopware Version 6.4, the API version was passed within the endpoint path (e.g. `/store-api/v3/product`).
+Before Shopware Version 6.4, the API version was passed within the endpoint path \(e.g. `/store-api/v3/product`\).
 {% endhint %}
 
 The Store API offers a variety of functionalities referred to as _endpoints_ or _nodes_, where each has their own route. The endpoints mentioned subsequently are always relative to the API base route.
@@ -104,3 +104,4 @@ In a later section we'll also see how we can make changes to the context - e.g. 
 But for now let's leave it here - as you can see above, the `customer` field is still empty. Time to change that.
 
 {% page-ref page="register-a-customer.md" %}
+

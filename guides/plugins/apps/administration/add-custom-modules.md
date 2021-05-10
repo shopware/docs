@@ -1,23 +1,22 @@
-# Add custom modules
+# Add custom module
 
 ## Overview
 
 In your app, you are able to add your own modules to the administration. Your custom modules are loaded as iframes which are embedded in the Shopware administration and within this iframe, your website will be loaded and shown.
 
-Creating custom modules takes place at the `<admin>` section of your `manifest.xml`.
-Take a look at the [Manifest Reference](../../../../resources/references/app-reference/manifest-reference.md)
-You can add anny amount of custom modules by adding new `<module>` elements to your manifest.
+Creating custom modules takes place at the `<admin>` section of your `manifest.xml`. Take a look at the [Manifest Reference](../../../../resources/references/app-reference/manifest-reference.md) You can add anny amount of custom modules by adding new `<module>` elements to your manifest.
 
 To configure your module you can set it up with with some addtional attributes.
-* `name` (required): The technical name of the module. This is the name your module is referenced with.
-* `source` (optional): The URL to your app servers endpoint from which the module is served from. This can be omitted if you want to define a menu item that should serve as a parent menu item for other app modules.
-* `parent` (optional): The administration navigation id from the menu item that serves as the parrent menu item. If omitted your module will be listed under the "My apps" menu entry. **This field will be required in future versions as we are going to remove the "My Apps" menu item**
-* `position` (optional): A numeric index that sets the position of your menu entry regarding to it's siblings.
+
+* `name` \(required\): The technical name of the module. This is the name your module is referenced with.
+* `source` \(optional\): The URL to your app servers endpoint from which the module is served from. This can be omitted if you want to define a menu item that should serve as a parent menu item for other app modules.
+* `parent` \(optional\): The administration navigation id from the menu item that serves as the parrent menu item. If omitted your module will be listed under the "My apps" menu entry. **This field will be required in future versions as we are going to remove the "My Apps" menu item**
+* `position` \(optional\): A numeric index that sets the position of your menu entry regarding to it's siblings.
 
 Additionally you can define `label` elements inside of your `module` element, to set up how your module will be displayed in the admin menu.
 
 {% code title="manifest.xml" %}
-```xml
+```markup
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
@@ -34,13 +33,12 @@ Additionally you can define `label` elements inside of your `module` element, to
         </module>
     </admin>
 </manifest>
-
 ```
 {% endcode %}
 
 For a complete reference of the structure of the manifest file, take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference.md).
 
-If the user opens the module in the administration your app will receive a request to the URL defined in the `source` attribute of your `module` element. Your app can determine the shop that has opened the module through query parameters added to the url: 
+If the user opens the module in the administration your app will receive a request to the URL defined in the `source` attribute of your `module` element. Your app can determine the shop that has opened the module through query parameters added to the url:
 
 * `shop-id`: The unique identifier of the shop, where the app was installed
 * `shop-url`: The URL of the shop, this can later be used to access the Shopware API
@@ -57,8 +55,7 @@ In this case the `shopware-shop-signature` parameter contains an sha256 hmac of 
 
 ## Leave loading state
 
-Because your module is displayed as an iframe in the administration, Shopware can not easily tell when your module has finished loading.
-Therefore, your new module will display a loading spinner to signalize your iframe is loading. To leave the loading state, your iframe needs to give a notification when the loading process is done.
+Because your module is displayed as an iframe in the administration, Shopware can not easily tell when your module has finished loading. Therefore, your new module will display a loading spinner to signalize your iframe is loading. To leave the loading state, your iframe needs to give a notification when the loading process is done.
 
 ```javascript
 function sendReadyState() {
@@ -77,7 +74,7 @@ When you define a module, it gets automatically loaded by the administration. Ad
 The navigation id of your modules uses always pattern `app-<appName>-<moduleName>`. So, within your manifest you can add a reference to modules that you just created:
 
 {% code title="manifest.xml" %}
-```xml
+```markup
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
@@ -104,7 +101,6 @@ The navigation id of your modules uses always pattern `app-<appName>-<moduleName
         </module>
     </admin>
 </manifest>
-
 ```
 {% endcode %}
 
@@ -119,7 +115,7 @@ Your main module can be defined by adding a `main-module` element within your `a
 To avoid mixing other modules with your main module, we decided to separate the main module from modules with navigation entries. You can still use the same URL on both, a module that is available through the menu and your main module.
 
 {% code title="manifest.xml" %}
-```xml
+```markup
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
@@ -140,8 +136,8 @@ To avoid mixing other modules with your main module, we decided to separate the 
         <main-module source="https://example.com/main"/>
     </admin>
 </manifest>
-
 ```
 {% endcode %}
 
 This feature is not compatible with themes as they will always open the theme config by default.
+

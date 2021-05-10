@@ -199,3 +199,4 @@ And that's it, you've now successfully added your own cart validator.
 ## Next steps
 
 In the examples mentioned above, we're asking for custom line item payloads. This subject is covered in our guide about [adding cart items](add-cart-items.md), so you might want to have a look at that.
+

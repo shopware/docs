@@ -1,7 +1,7 @@
 # Manifest Reference
 
 {% code title="manifest.xml" %}
-```xml
+```markup
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/app-system/0.1.0/src/Core/Content/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
@@ -13,7 +13,7 @@
         <!-- Translatable, a description of your app -->
         <description>A description</description>
         <description lang="de-DE">Eine Beschreibung</description>
-        
+
         <author>Your Company Ltd.</author>
         <copyright>(c) by Your Company Ltd.</copyright>
         <version>1.0.0</version>
@@ -49,7 +49,7 @@
         <read>product</read>
         <create>product</create>
         <update>product</update>
-        
+
         <delete>order</delete>
     </permissions>
     <!-- Optional -->
