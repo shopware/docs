@@ -123,6 +123,12 @@ Let's discuss their differences, so you can make an informed decision.
 | Build a custom project / deployment | ✅ | ❌ |
 | Manage dependencies / bundles | ✅ | ❌ |
 
+{% embed url="https://www.youtube.com/watch?v=ML1QyUr0wsk" caption="" %}
+
+{% hint style="info" %}
+This video is part of the online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma) available on Shopware Academy for **free**.
+{% endhint %}
+
 ## Preparatory steps
 
 Either installation method requires you to check out the sources first. Shopware 6 is split into two repositories the [development template](https://github.com/shopware/development) and the [platform](https://github.com/shopware/platform) itself.
