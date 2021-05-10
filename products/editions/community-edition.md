@@ -30,6 +30,12 @@ Last but not least, there is the most important technical feature, which gives y
 
 Shopware 6 consists of multiple repositories bundled inside a [mono repository](https://www.atlassian.com/git/tutorials/monorepos) called `shopware/platform`\([GitHub](https://github.com/shopware/platform)\). This is where the Shopware core is developed. You need it as dependency in your projects and this is where you can participate in the development of Shopware through pull requests. It's split into multiple repositories for production setups, all of them are read-only and include the Core, [Storefront](../../guides/plugins/plugins/storefront/) , [Administration](../../concepts/framework/architecture/administration-concept.md) and Elasticsearch. Beside that, there is also a `Recovery` directory, which provides the opportunity to interactively update, install and maintain Shopware throughout the browser. If you want to start developing with Shopware 6, there are two setup templates and preparatory/installation steps explained [here](../../guides/installation/overview.md#setup-templates).
 
+{% embed url="https://www.youtube.com/watch?v=oPf4-8eU8jQ" caption="" %}
+
+{% hint style="info" %}
+This video is part of the online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma) available on Shopware Academy for **free**.
+{% endhint %}
+
 ## Contribution
 
 Shopware 6 is a **community driven platform** with a lot of contributions, and we really appreciate your support. Thank you very much for that! To ensure the quality of our code, our products and our documentation we have created a small guideline for contributing [code](../../resources/guidelines/code/contribution.md) and contributing to the [docs](../../resources/guidelines/documentation/) we all should endorse to. It helps you and us to collaborate with our software. Following these guidelines will help us to integrate your changes in our daily workflow.
