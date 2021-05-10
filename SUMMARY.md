@@ -257,7 +257,7 @@
       * [Associations](guides/integrations-api/admin-api/writing-entities/associations.md)
       * [Bulk Payloads](guides/integrations-api/admin-api/writing-entities/bulk-payloads.md)
       * [Product Data](guides/integrations-api/admin-api/writing-entities/product-data.md)
-    * [Action Routes](guides/integrations-api/admin-api/action-routes.md)
+    * [Action Routes](guides/integrations-api/admin-api/action-routes.md
 
 ## Resources
 
