@@ -47,7 +47,7 @@ A Shopware plugin runs through a lifecycle. Your plugin's base class can impleme
 | :--- | :--- |
 | `install()` | Executed on plugin install |
 | `postInstall()` | Executed **after** successful plugin install |
-| `update` | Executed on plugin update |
+| `update()` | Executed on plugin update |
 | `postUpdate()` | Executed **after** successful plugin update |
 | `uninstall()` | Executed on plugin uninstallation |
 | `activate()` | Executed **before** plugin activation |
@@ -60,3 +60,9 @@ Now that you know about the differences between a Symfony bundle and a Shopware 
 * [Dependency Injection](plugin-fundamentals/dependency-injection.md)
 * [Listening to events](plugin-fundamentals/listening-to-events.md)
 
+{% hint style="info" %}
+    Here are some useful videos explaining the basics of bundle methods and Symfony services taken from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+
+ * **[Bundle Methods in a plugin](https://www.youtube.com/watch?v=cUXcDwQwmPk)**
+ * **[Symfony services in Shopware 6](https://www.youtube.com/watch?v=l5QJ8EtilaY)**
+{% endhint %}

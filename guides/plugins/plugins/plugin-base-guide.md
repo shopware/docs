@@ -55,6 +55,12 @@ class SwagBasicExample extends Plugin
 
 Basically that's it for the PHP part, your basic plugin class is already done.
 
+{% hint style="info" %}
+Here's a video showing how to bootstrap a plugin from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+
+**[Creating a plugin](https://www.youtube.com/watch?v=_Tkoq5W7woI)**
+{% endhint %}
+
 #### The composer.json file
 
 You've created the necessary plugin structure and the plugin base class. The only thing missing for your plugin to be fully functional, is a `composer.json` file inside your plugin's root directory.  
@@ -120,6 +126,12 @@ The path you've configured in the configuration `autoload.psr-4`, `src/` in this
 {% endhint %}
 
 And that's it. The basic structure and all necessary files for your plugin to be installable are done.
+
+{% hint style="info" %}
+Here's a video explaining the basic structure of the `composer.json` plugin file from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+
+**[The composer.json plugin file](https://www.youtube.com/watch?v=CY3SlfwkTm8)**
+{% endhint %}
 
 ## Install your plugin
 

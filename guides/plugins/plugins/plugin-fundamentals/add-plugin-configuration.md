@@ -8,6 +8,12 @@ To build your own configuration page for your plugin, you first need a plugin as
 
 ## Create your plugin configuration
 
+{% embed url="https://www.youtube.com/watch?v=XXcmgKBRh-s" caption="" %}
+
+{% hint style="info" %}
+This video is part of the online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma) available on Shopware Academy for **free**.
+{% endhint %}
+
 All you need to do is creating a `config.xml` file inside of a `Resources/config` directory in your plugin root. The content of the `config.xml` will be dynamically rendered in the administration. Below you'll find an example structure:
 
 ```text
