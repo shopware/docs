@@ -258,12 +258,6 @@
       * [Bulk Payloads](guides/integrations-api/admin-api/writing-entities/bulk-payloads.md)
       * [Product Data](guides/integrations-api/admin-api/writing-entities/product-data.md)
     * [Action Routes](guides/integrations-api/admin-api/action-routes.md)
-  * [Store API Guide](guides/integrations-api/store-api-guide/README.md)
-    * [Registering a customer](guides/integrations-api/store-api-guide/register-a-customer.md)
-    * [Searching for products](guides/integrations-api/store-api-guide/search-for-products.md)
-    * [Working with the cart](guides/integrations-api/store-api-guide/work-with-the-cart.md)
-    * [Handling the payment](guides/integrations-api/store-api-guide/handling-the-payment.md)
-    * [FAQ](guides/integrations-api/store-api-guide/faq.md)
 
 ## Resources
 
