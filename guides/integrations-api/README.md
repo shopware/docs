@@ -7,9 +7,9 @@ Generally, Shopware provides two APIs that serve two aspects of integrations tha
 ## **Customer-facing interactions - Store API**
 
 Such as applications are usually considered "frontends" and provide interfaces for users \(customers\). These applications usually don't expose sensitive data and have two layers of users - anonymous and authenticated - i.e. unregistered and registered. Payloads are usually small, performance and availability are critical.
-
+<!-- markdown-link-check-disable-next-line -->
 {% embed url="https://shopware.stoplight.io/docs/store-api/storeapi.json" caption="Endpoint Reference" %}
-
+<!-- markdown-link-check-disable-next-line -->
 {% embed url="https://shopware.stoplight.io/docs/store-api/docs/guides/quick-start/README.md" caption="Quickstart Guide" %}
 
 ## Backend-facing integrations - Admin API

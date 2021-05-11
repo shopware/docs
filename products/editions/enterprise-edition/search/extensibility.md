@@ -1,5 +1,5 @@
 # Extensibility
-
+<!-- markdown-link-check-disable -->
 {% hint style="warning" %}
 This article use many Code-References to GitLab! Please contact the Shopware Sales department to get access to the private repository. Find more information in our [Enterprise Contribution Guidelines](https://github.com/shopware/docs/tree/4dd18decd18d812c20a9c2b9c224299c519af522/products/editions/enterprise-edition/contribution-guidelines.md) Without having access, you cannot access the repository and all corresponding links.
 {% endhint %}
@@ -119,6 +119,6 @@ You can also change the `extendEntities()` here to apply "multi words auto sugge
 ## Additional Filtering
 
 You may want to filter your definition. This can be done by extending the CriteriaBuilder. An example can be found in `Swag\EnterpriseSearch\Category\SalesChannelCategorySearchCriteriaBuilder`:
-
 {% embed url="https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Category/SalesChannelCategorySearchCriteriaBuilder.php" caption="" %}
 
+<!-- markdown-link-check-enable -->

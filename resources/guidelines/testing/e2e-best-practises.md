@@ -5,7 +5,7 @@
 A typical E2E test can be complex, with many steps that take a lot of time to complete manually. Because of this complexity, E2E tests can be difficult to automate and slow to execute. The following tips can help reduce the cost and pain of E2E testing and still reap the benefits.
 
 Cypress got you covered with their best practices as well: So please also look at their best practices to get to know their patterns:
-
+<!-- markdown-link-check-disable-next-line -->
 {% embed url="https://docs.cypress.io/guides/references/best-practices.html" caption="" %}
 
 {% hint style="warning" %}
@@ -19,7 +19,7 @@ We strongly recommend following Cypress' own best practices as well.
 When it comes to dividing test types, selecting and prioritizing test cases, and thus designing tests, things get a bit more complicated. We have generally aligned our test strategy with the test pyramid, although not 100%. The pyramid states that end-to-end tests should be written in a few, but well-chosen test cases - because end-to-end tests are slow and therefore expensive.
 
 At [Shopware Community Day](https://scd.shopware.com/en/) 2020, we gave a talk on how we approach automated testing in Shopware, how far we have come on this journey, and what we have gained so far:
-
+<!-- markdown-link-check-disable-next-line -->
 {% embed url="https://www.youtube.com/watch?v=sxvQoWF4KS0" caption="" %}
 
 To sum it up briefly for your End-to-End testing context, End-To-End tests are the one tests being slow and thus expensive to maintain. That's why we need a way to prioritize our test cases.
@@ -89,7 +89,7 @@ Keep tests isolated, enable them to run independently and restore a clean instal
 {% endhint %}
 
 It's important to focus stability as most important asset of a test suite. A flaky test like this can block the continuous deployment pipeline, making feature delivery slower than it needs to be. Moreover, imagine the following case: Tests that fail to deliver deterministic results: Those flaky test is problematic because their won't show valid results anymore — making it useless. After all, you wouldn't trust one any more than you would trust a liar. If you want to find out more on that topic, including solutions, please take a look at this article:
-
+<!-- markdown-link-check-disable-next-line -->
 {% embed url="https://www.smashingmagazine.com/2021/04/flaky-tests-living-nightmare/" caption="Flaky tests" %}
 
 This was one of the reasons you absolutely need stable tests to create value. To achieve that, you have several possibilities. We will introduce you some of them in the following paragraphs.

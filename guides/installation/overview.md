@@ -11,7 +11,7 @@ There are a couple of ways to get Shopware running on your system. Depending on 
 * [Installation from scratch](from-scratch.md): You can install Shopware 6 locally. However, be aware that this will be the more complex solution since additional or changed system requirements need to be managed by you.
 
 Did you know that there's a video available to this topic? Please take a look:
-
+<!-- markdown-link-check-disable-next-line -->
 {% embed url="https://www.youtube.com/watch?v=ML1QyUr0wsk" caption="" %}
 
 ## Prerequisites

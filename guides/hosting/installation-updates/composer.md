@@ -5,7 +5,7 @@
 ### Shopware 6 production template
 
 The Shopware 6 production template enables you to build, package and deploy Shopware 6 to production shops. This template is also used to build the official packages distributed by [shopware](https://www.shopware.com/en/download).
-
+<!-- markdown-link-check-disable-next-line -->
 {% embed url="https://github.com/shopware/production" caption="" %}
 
 The template is optimized for production usage and contains basic development tooling. It's intended as a basis for project customizations, which are usually done by agencies.
@@ -31,7 +31,7 @@ Starting with `6.3.0.0`, we use a slightly modified version of SemVer. The patte
 * 6.4.1.0 - Major=4, Minor=1, Patch=0
 
 See also: 
-
+<!-- markdown-link-check-disable-next-line -->
 {% embed url="https://www.shopware.com/en/news/shopware-6-versioning-strategy" caption="" %}
 
 ### Requirements
@@ -220,7 +220,7 @@ composer require "exampleorg/myplugin"
 ```
 
 External plugins in private repositories can also be required by adding the repository to your `composer.json`. To learn more about the usage of private repositories, see here:
-
+<!-- markdown-link-check-disable-next-line -->
 {% embed url="https://getcomposer.org/doc/05-repositories.md\#using-private-repositories" caption="" %}
 
 #### Update shopware packages

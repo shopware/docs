@@ -3,7 +3,7 @@
 To ease development tasks, Shopware contains the Symfony commands functionality. This allows \(plugin-\) developers to define new commands executable via the Symfony console at `bin/console`. The best thing about commands is, that they're more than just simple standalone PHP scripts - they integrate into Symfony and Shopware, so you've got access to all the functionality offered by both of them.
 
 Creating a command for Shopware 6 via a plugin works exactly like you would add a command to Symfony. Make sure to have a look at the Symfony commands guide:
-
+<!-- markdown-link-check-disable-next-line -->
 {% embed url="https://symfony.com/doc/current/console.html\#registering-the-command" caption="" %}
 
 ## Prerequisites

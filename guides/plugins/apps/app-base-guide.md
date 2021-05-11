@@ -381,7 +381,7 @@ bin/console app:validate MyExampleApp
 ```
 
 ## API Docs
-
+<!-- markdown-link-check-disable-next-line -->
 {% api-method method="get" host="https://my.example.com" path="" %}
 {% api-method-summary %}
 registration
@@ -432,6 +432,7 @@ The unique identifier of the shop, where the app was installed
 {% endapi-method-spec %}
 {% endapi-method %}
 
+<!-- markdown-link-check-disable-next-line -->
 {% api-method method="post" host="https://my.example.com" path="" %}
 {% api-method-summary %}
 confirmation
