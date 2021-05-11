@@ -7,13 +7,13 @@ You should write a unit test for every functional change. Writing tests will ens
 With a good test coverage you gain confidence to deploy a stable software without the requirement to manually test every change. This little guide will guide you how to write unit tests for the administration in Shopware 6.
 
 We are using JestJS as our testing framework as it's a solid foundation and widely used by many developers.
-
+<!-- markdown-link-check-disable-next-line -->
 {% embed url="https://jestjs.io" caption="" %}
 
 ## Prerequisites
 
 Before you are reading this guide you have to make sure you understand the basics of unit tests and how Jest works. You can find a good source for best practices in this Github Repo:
-
+<!-- markdown-link-check-disable-next-line -->
 {% embed url="https://github.com/goldbergyoni/javascript-testing-best-practices" caption="" %}
 
 In addition, you need a running Shopware 6 installation. Your repository used for that should be based on development template, as we will to use some scripts provided by it.

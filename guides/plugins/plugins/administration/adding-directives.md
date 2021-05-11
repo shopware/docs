@@ -5,7 +5,7 @@
 Directives in the Shopware 6 Administration are essentially the same as in any other Vue application. This guide will teach you how to register your directives on a global and on a local scope.
 
 Learn more about Vue Directives in their documentation:
-
+<!-- markdown-link-check-disable-next-line -->
 {% embed url="https://vuejs.org/v2/guide/custom-directive.html" caption="" %}
 
 ## Prerequisites

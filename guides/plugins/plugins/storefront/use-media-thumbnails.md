@@ -98,7 +98,7 @@ As you see, `sw_thumbnail` makes use of one required parameter: `media` is requi
 With the `sizes` parameter you can control the `sizes` attribute of the `img` and define which of the thumbnails should be used in a media query / viewport.
 
 You can find more information on those sizes here: 
-
+<!-- markdown-link-check-disable-next-line -->
 {% embed url="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img\#attr-srcset" caption="" %}
 
 E.g. if the browser is in Bootstrap viewport `lg` \(which is 992px - 1199px\) use an image which is closest to 333px. If `sizes` is not set, Shopware will automatically use fallback values from global `shopware.theme.breakpoint`.
