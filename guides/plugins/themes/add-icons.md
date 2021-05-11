@@ -84,3 +84,26 @@ Icons or other custom assets are not included in the theme inheritance.
 
 Inside your theme, you cannot put an icon in a directory corresponding the core folder structure and expect the core one to be automatically overwritten by it, as you're used to with themes in general.
 
+## Load icons from custom locations
+
+Since Shopware 6.4.1.0 it is possible to define custom locations of your custom icons inside your theme.json file.
+You can define the name of the icon pack and the path to those icons under the `iconSets`-key:
+```json
+{
+  ...
+  "iconSets": {
+    "custom-icons": "app/storefront/src/assets/icon-pack/custom-icons"
+  }
+}
+```
+
+You can use your custom icons by specifying your icon pack:
+```text
+{% sw_icon 'done-outline-24px' style {
+    'pack': 'custom-icons'
+} %}
+```
+
+{% hint style="warning" %}
+This setup is mandatory if you ship your Theme as an App, because otherwise your custom icons can't be loaded.
+{% endhint %}
