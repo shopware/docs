@@ -2,13 +2,13 @@
 
 ## Overview
 
-In this guide you'll learn how to override existing store API routes to add additional data to it.
+In this guide you'll learn how to override existing Store API routes to add additional data to it.
 
 ## Prerequisites
 
 As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide.md), but you don't necessarily need that.
 
-Furthermore you should have a look at our guide about [Adding a store API route](add-store-api-route.md), since this guide is built upon it.
+Furthermore you should have a look at our guide about [Adding a Store API route](add-store-api-route.md), since this guide is built upon it.
 
 ## Decorating our route
 
