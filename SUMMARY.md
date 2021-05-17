@@ -148,6 +148,8 @@
       * [Store API](guides/plugins/plugins/framework/store-api/README.md)
         * [Add store API route](guides/plugins/plugins/framework/store-api/add-store-api-route.md)
         * [Override existing route](guides/plugins/plugins/framework/store-api/override-existing-route.md)
+      * [Filesystem](guides/plugins/plugins/framework/filesystem/README.md)
+        * [Filesystem - Flysystem](guides/plugins/plugins/framework/filesystem/filesystem.md)
     * [Administration](guides/plugins/plugins/administration/README.md)
       * [Add custom module](guides/plugins/plugins/administration/add-custom-module.md)
       * [Add custom component](guides/plugins/plugins/administration/add-custom-component.md)
