@@ -6,7 +6,7 @@ In this guide you'll learn how to add a custom store API route. In this example,
 
 ## Prerequisites
 
-In order to add your own store API route for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md).
+In order to add your own Store API route for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md).
 
 You also should have a look at our [Adding custom complex data](../data-handling/add-custom-complex-data.md) guide, since this guide is built upon it.
 
