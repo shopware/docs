@@ -124,7 +124,7 @@ Let's use the last filter to extend this template with our filter. If you're not
 
 For example, let's use the last filter: It's the shipping free one, with the block `component_filter_panel_item_shipping_free`. Including our filter will be done as seen below, please take the comments into account:
 
-{% code title="<plugin root>/src/Subscriber/ExampleListingSubscriber.php" %}
+{% code title="<plugin root>/src/Resources/views/storefront/component/listing/filter-panel.html.twig" %}
 ```text
 {% sw_extends '@Storefront/storefront/component/listing/filter-panel.html.twig' %}
 
