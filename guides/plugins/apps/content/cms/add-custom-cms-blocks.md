@@ -6,9 +6,9 @@ This functionality is available starting with Shopware 6.4.2.0.
 
 Didn't get in touch with Shopware's Shopping Experiences \(CMS\) yet? Check out the concept behind it first:
 
-{% page-ref page="../../../../concepts/commerce/core/shopping-experiences-cms.md" %}
+{% page-ref page="../../../../../concepts/commerce/core/shopping-experiences-cms.md" %}
 
-If you're not yet familiar with custom CMS blocks you might want to head over to the section on [adding CMS blocks via plugin](../../../plugins/content/cms/add-cms-block.md) to get some basic understanding.
+If you're not yet familiar with custom CMS blocks you might want to head over to the section on adding CMS blocks via plugin to get some basic understanding:
 
 {% page-ref page="../../../plugins/content/cms/add-cms-block.md" %}
 
@@ -165,13 +165,13 @@ Unlike adding blocks from a plugin, blocks provided from an app will be automati
 Providing the storefront representation of your blocks works just the same as in the [plugin example](../../../plugins/content/cms/add-cms-block.md#storefront-representation).
 In `<app root>/Resources/views/storefront/block/` a Twig template file matching your block's technical name is expected, e.g.
 
-{% code title="<app root>/Resources/views/storefront/block/my-first-block.html.twig"}
+{% code title="<app root>/Resources/views/storefront/block/my-first-block.html.twig" %}
 ```text
 {% sw_extends '@Storefront/storefront/block/cms-block-image-text.html.twig' %}
 ```
 {% endcode %}
 
 ## Further reading
-{% page-ref page="../../../resources/references/app-reference/cms-reference.md" %}
+{% page-ref page="../../../../../resources/references/app-reference/cms-reference.md" %}
 
 {% page-ref page="../../../guides/plugins/plugins/content/cms/add-cms-block.md" %}
