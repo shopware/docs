@@ -6,7 +6,7 @@ This guide will walk you through the process of adding your own app to Shopware 
 
 ## Prerequisites
 
-If your're not familiar with the app system, please take a look at the concept first.
+If you're not familiar with the app system, please take a look at the concept first.
 
 {% page-ref page="../../../concepts/extensions/apps-concept.md" %}
 
