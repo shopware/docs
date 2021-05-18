@@ -106,44 +106,6 @@ Shopware.Component.register('hello-world', {
 
 This is a [shorthand](https://alligator.io/js/object-property-shorthand-es6/), which can only be used if the variable is named exactly like the property.
 
-## Loading the JS files
-
-As mentioned above, Shopware 6 looks for a `main.js` file in your plugin. Its contents get minified into a new file named after your plugin and will be moved to the `public` directory of the Shopware 6 root directory. Given this plugin is named "CustomComponent", the minified javascript code for this example would be located under `<plugin root>/src/Resources/public/administration/js/custom-component.js`, once you run the following command in your shopware root directory:
-
-{% tabs %}
-{% tab title="Development template" %}
-```bash
-./psh.phar administration:build
-```
-{% endtab %}
-
-{% tab title="Production template" %}
-```bash
-./bin/build-administration.sh
-```
-{% endtab %}
-{% endtabs %}
-
-{% hint style="danger" %}
-Your plugin has to be activated for this to work.
-{% endhint %}
-
-Make sure to also include that file when publishing your plugin! A copy of this file will then be put into the directory `<shopware root>/public/bundles/customcomponent/administration/js/custom-component.js`.
-
-The latter javascript file has to be injected into the template by your plugin as well for production environments. In order to do this, create a new file called `index.html.twig` here: `<plugin root>/src/Resources/views/administration/`
-
-{% code title="<plugin root>/src/Resources/views/administration/" %}
-```markup
-{% sw_extends 'administration/index.html.twig' %}
-
-{% block administration_scripts %}
-    <script type="text/javascript" src="{{ asset('bundles/customcomponent/administration/js/custom-component.js') }}"></script>
-{% endblock %}
-```
-{% endcode %}
-
-Your minified javascript file will now be loaded in production environments.
-
 ## Next steps
 
 You've now added a custom component, including a little template. However, there's more discover here.
