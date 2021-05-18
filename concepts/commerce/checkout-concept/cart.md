@@ -88,13 +88,13 @@ $lineItem->getPrice(); // is now null
 $lineItem->getPrice(); // now set up
 ```
 
-This process is transparently controlled from the cart but executed through implementations of the `\Shopware\Core\Checkout\Cart\CollectorInterface`. This interface is cut in order to reduce the number of database calls necessary to set up the cart's data structure for **price calculation** and **inspection** \(meaning: rendering in a storefront, reading from the API\).
+This process is transparently controlled from the cart but executed through implementations of the `\Shopware\Core\Checkout\Cart\CartDataCollectorInterface`. This interface is cut in order to reduce the number of database calls necessary to set up the cart's data structure for **price calculation** and **inspection** \(meaning: rendering in a storefront, reading from the API\).
 
 A default set of collectors is implemented in Shopware 6 which has a set call order shown in the diagram below.
 
 | Service ID | Task |
 | :--- | :--- |
-| Shopware\Core\Content\Product\Cart\ProductCollector | Enrich all referenced products |
+| Shopware\Core\Content\Product\Cart\ProductCartProcessor | Enrich all referenced products |
 | Shopware\Core\Checkout\Promotion\Cart\CartPromotionsCollector | Enrich add, remove and validate promotions |
 | Shopware\Core\Checkout\Shipping\Cart\ShippingMethodPriceCollector | Handle shipping prices |
 
