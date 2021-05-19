@@ -295,6 +295,7 @@
   * [App Reference](resources/references/app-reference/README.md)
     * [Manifest Reference](resources/references/app-reference/manifest-reference.md)
     * [Payment Reference](resources/references/app-reference/payment-reference.md)
+    * [CMS Reference](resources/references/app-reference/cms-reference.md)
   * [Administration Reference](resources/references/administration-reference/README.md)
     * [Utils](resources/references/administration-reference/utils.md)
   * [Storefront Reference](resources/references/storefront-reference/README.md)
