@@ -55,6 +55,18 @@ shopware:
         transports: ["default"]
 ```
 
+### Sending Mails over the Message Queue
+
+By default sends Shopware the Mails synchronous. This can affect the page speed. You can switch it to use the Message Queue with an small configuration change.
+
+```yaml
+# config/packages/framework.yaml
+framework:
+    mailer:
+        message_bus: 'messenger.default_bus'
+```
+
+
 ### Transport: RabbitMQ example
 
 In this example we replace the standard transport, which stores the messages in the database, with RabbitMQ. Of course, other transports can be used as well. A detailed documentation of the parameters and possibilities can be found in the [enqueue symfony documentation](https://php-enqueue.github.io/bundle/config_reference/). In the following I assume that RabbitMQ is installed and started. Furthermore, a queue, here called `shopware-queue`, should be created inside RabbitMQ. The only thing left is to tell shopware about the new transport. Therefore we edit/create the configuration file `enqueue.yaml` with the following content:
