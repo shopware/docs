@@ -123,6 +123,7 @@
         * [Add custom SEO URLs](guides/plugins/plugins/content/seo/add-custom-seo-url.md)
       * [Sitemap](guides/plugins/plugins/content/sitemap/README.md)
         * [Add custom sitemap entries](guides/plugins/plugins/content/sitemap/add-custom-sitemap-entries.md)
+        * [Modifying sitemap entries](guides/plugins/plugins/content/sitemap/modify-sitemap-entries.md)
     * [Elasticsearch](guides/plugins/plugins/elasticsearch/README.md)
       * [Add product entity extension to elasticsearch](guides/plugins/plugins/elasticsearch/add-product-entity-extension-to-elasticsearch.md)        
     * [Framework](guides/plugins/plugins/framework/README.md)
