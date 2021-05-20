@@ -57,7 +57,7 @@ shopware:
 
 ### Sending Mails over the Message Queue
 
-By default sends Shopware the Mails synchronous. This can affect the page speed. You can switch it to use the Message Queue with an small configuration change.
+By default Shopware sends the mails synchronously. Since this can affect the page speed, you can switch it to use the Message Queue with a small configuration change.
 
 ```yaml
 # config/packages/framework.yaml
@@ -92,4 +92,3 @@ framework:
 ```
 
 Notice that `shopware-queue` is the name of the previously created queue in RabbitMQ. Also `rabbitmq` matches the name of the new transport in the previously created `enqueue.yaml`.
-
