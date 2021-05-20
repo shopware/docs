@@ -89,6 +89,53 @@ require('@shopware-ag/e2e-testsuite-platform/cypress/support');
 If you are using docker, you don't need to install a thing: We use the [Cypress/Included image](https://github.com/cypress-io/cypress-docker-images/tree/master/included) to use Cypress in Docker completely.
 
 However, as we're using this image for running the test runner as well, you may need to do some configuration first. Based on this [guide](https://www.cypress.io/blog/2019/05/02/run-cypress-with-a-single-docker-command) you need to forward the XVFB messages from Cypress out of the Docker container into an X11 server running on the host machine. The guide shows an example for Mac; other operating systems might require different commands.
+
+In case you're using Docker on Mac we have summarized the steps from the guide mentioned above, so you can follow these to prepare your environment to get the Test Runner up and running:
+
+**Install and configure XQuartz**  
+
+Install XQuartz via [Homebrew](https://docs.brew.sh/Installation) or alternatively [download](https://www.xquartz.org/) it from the official homepage:
+```bash
+brew install --cask xquartz
+```
+
+Run XQuartz via CLI or open it from your Desktop:
+```bash
+open -a XQuartz
+```
+
+Got to `XQuartz > Preferences` (`⌘ + ,`) and enable `Allow connections from network clients`:
+![XQuartz Preferences](../../../../.gitbook/assets/xquartz-allow-connections-from-network-clients.png)
+
+{% hint style="warning" %}
+Restart your Mc before proceeding with the following steps.
+{% endhint %}
+
+**Configure your environment**
+
+Grab your IP address and save it to the environment variable `IP`:
+```bash
+IP=$(ipconfig getifaddr en0)
+```
+
+Depending on how you're connected you might have to use another interface instead of `en0`.
+
+Now set the `DISPLAY` environment variable:
+```bash
+DISPLAY=$IP:0
+```
+
+Add `$IP` to xhost's ACL:
+```bash
+xhost + $IP
+```
+
+{% hint style="danger" %}
+It is **crucial** to set these environment variables in the **same terminal session** from where you will later run `psh e2e:open`!
+
+Make sure that the `DISPLAY` environment variable on your Mac is properly set **before** you start the containers as it will be **passed** to the Cypress container when the container is **created**.
+Updating the variable on your host won't update it in the container until it is re-created!
+{% endhint %}
 {% endtab %}
 
 {% tab title="Platform: Local environment" %}
