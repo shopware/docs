@@ -132,7 +132,7 @@ Either installation method requires you to check out the sources first. Shopware
 Let's start by cloning the development template:
 
 ```bash
-> git clone https://github.com/shopware/development.git
+git clone https://github.com/shopware/development.git
 ```
 
 You now have the application template for Shopware 6 in the directory `development`, we now navigate into it:
