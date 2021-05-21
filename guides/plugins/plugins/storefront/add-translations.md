@@ -80,3 +80,27 @@ Translation with placeholders:
 $this->trans('soldProducts', ['%count%' => 3, '%country%' => 'Germany']);
 ```
 
+## Using translation generally in PHP
+
+If we need to use a snippet elsewhere in PHP, we can use Dependency Injection to inject `Shopware\Core\Framework\Adapter\Translation\Translator` which implements Symfony's `Symfony\Contracts\Translation\TranslatorInterface`:
+
+```xml
+<service id="Swag\Example\Service\SwagService" public="true" >
+    <argument type="service" id="Shopware\Core\Framework\Adapter\Translation\Translator" />
+</service>
+```
+
+```php
+private $translator;
+public function __construct(TranslatorInterface $translator)
+{
+    $this->translator = $translator;
+}
+```
+
+Your class can then use translation similarly to controllers:
+
+```php
+$this->translator->trans('soldProducts', ['%count%' => 3, '%country%' => 'Germany']);
+```
+
