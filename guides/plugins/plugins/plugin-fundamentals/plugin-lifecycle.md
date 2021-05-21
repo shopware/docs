@@ -77,6 +77,12 @@ public function uninstall(UninstallContext $context): void
 ```
 {% endcode %}
 
+{% hint style="info" %}
+Here's a video dealing with plugin uninstall routines from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+
+**[Uninstalling a plugin](https://www.youtube.com/watch?v=v9OXrUJzC1I)**
+{% endhint %}
+
 ### Activate
 
 The `activate` method is executed once the plugin gets actually activated. You most likely want to do one of the following things here:

@@ -10,6 +10,14 @@ This guide is built upon the [plugin base guide](../../plugin-base-guide.md), bu
 
 In order to create data translations you need an existing entity, as this guide is based on the [Adding custom complex data](add-custom-complex-data.md) guide, you should have a look at it first.
 
+
+<!-- markdown-link-check-disable-next-line -->
+{% hint style="info" %}
+Here's a video dealing with data translations from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+
+**[Translating your entity](https://www.youtube.com/watch?v=FfqxfQl3I4w)**
+{% endhint %}
+
 ## Creating the migration
 
 We'll start with creating a new database table. Make sure to use the name of your entity appending `_translation`.

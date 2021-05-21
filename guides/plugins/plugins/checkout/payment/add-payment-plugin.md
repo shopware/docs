@@ -8,6 +8,13 @@ Payments are an essential part of the checkout process. That's the reason why Sh
 
 The examples mentioned in this guide are built upon our [Plugin base guide](../../plugin-base-guide.md).
 
+<!-- markdown-link-check-disable-next-line -->
+{% hint style="info" %}
+Here's a video on payment extensions and payment handlers from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+
+**[Introduction to payment handlers](https://www.youtube.com/watch?v=K58--Pxvudk)**
+{% endhint %}
+
 ## Creating a custom payment handler
 
 In order to create your own payment method with your plugin, you have to add a custom payment handler.
@@ -16,8 +23,8 @@ You can create your own payment handler by implementing one of the following int
 
 | Interface | DI container tag | Usage |
 | :--- | :--- | :--- |
-| SynchronousPaymentHandlerInterface | shopware.payment.method.sync | Payment can be handled locally, e.g. pre-payment |
-| AsynchronousPaymentHandlerInterface | shopware.payment.method.async | A redirect to an external payment provider is required, e.g. PayPal |
+| SynchronousPaymentHandlerInterface | `shopware.payment.method.sync` | Payment can be handled locally, e.g. pre-payment |
+| AsynchronousPaymentHandlerInterface | `shopware.payment.method.async` | A redirect to an external payment provider is required, e.g. PayPal |
 
 Depending on the interface, those two methods are required:
 

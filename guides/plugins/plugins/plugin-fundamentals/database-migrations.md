@@ -8,6 +8,13 @@ In this guide, you'll learn what migrations are and how to use them. Migrations 
 
 In order to add your own database migrations for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
 
+<!-- markdown-link-check-disable-next-line -->
+{% hint style="info" %}
+Here's a video explaining database migrations from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+
+**[Database migrations](https://www.youtube.com/watch?v=__pWwaK6lxw)**
+{% endhint %}
+
 ## File structure
 
 By default, Shopware 6 is looking for migration files in a directory called `Migration` relative to your plugin's base class.

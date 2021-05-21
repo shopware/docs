@@ -8,6 +8,13 @@ In this guide you'll learn how to adjust a service. You can read more about serv
 
 In order to add your own custom service for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
 
+<!-- markdown-link-check-disable-next-line -->
+{% hint style="info" %}
+Here's a video explaining service decorations with an easy example from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+
+**[Decorating services](https://www.youtube.com/watch?v=Rgf4c9rd1kw)**
+{% endhint %}
+
 ## Decorating the service
 
 First of all we have to create a new service for this example which gets decorated in the next step. Then we have to add a new service to our `services.xml` with the attribute `decorates` pointing to our service we want to decorate. Next we have to add our service decorator as argument, but we append an `.inner` to the end of the service to keep the old one as reference.

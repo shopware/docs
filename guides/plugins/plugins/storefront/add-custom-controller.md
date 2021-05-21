@@ -8,6 +8,13 @@ In this guide you'll learn how to create a custom storefront controller.
 
 In order to add your own controller for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
 
+<!-- markdown-link-check-disable-next-line -->
+{% hint style="info" %}
+Here's a video explaning the basics about storefront controllers from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+
+**[Common Storefront controller tasks](https://www.youtube.com/watch?v=5eXXNh4cQG0)**
+{% endhint %}
+
 ## Adding custom storefront controller
 
 ### Storefront Controller class example
