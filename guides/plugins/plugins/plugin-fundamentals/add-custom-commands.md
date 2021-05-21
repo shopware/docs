@@ -14,6 +14,13 @@ This guide **does not** explain how to create a new plugin for Shopware 6. Head 
 
 The main requirement here is to have a `services.xml` file loaded in your plugin. This can be achieved by placing the file into a `Resources/config` directory relative to your plugin's base class location.
 
+<!-- markdown-link-check-disable-next-line -->
+{% hint style="info" %}
+Here's a video on creating custom commands from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+
+**[Creating a CLI command](https://www.youtube.com/watch?v=OL_qNVLLyaI)**
+{% endhint %}
+
 ## Registering your command
 
 From here on, everything works exactly like in Symfony itself. Commands are recognised by Shopware, once they're tagged with the `console.command` tag in the [dependency injection](dependency-injection.md) container. So to register a new command, just add it to your plugin's `services.xml` and specify the `console.command` tag:
