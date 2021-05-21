@@ -10,6 +10,7 @@ To ensure the quality of our code and our products we have created a small guide
 
 To avoid that your pull request gets rejected, you should always check that you provided all necessary information, so that we can integrate your changes in our internal workflow very easily. Here is a check-list with some requirements you should always consider when committing new changes.
 
+* A pull request to the Showpare core always has to be made to the [platform](https://github.com/shopware/platform) repository.
 * Did you fill out the [pull request info template](https://github.com/shopware/platform/blob/master/.github/PULL_REQUEST_TEMPLATE.md) as detailed as possible?
 * Did you create a changelog file with documentation of your changes? You can find detailed information about writing changelog [here](https://github.com/shopware/platform/blob/master/adr/2020-08-03-Implement-New-Changelog.md)!
 * Does your pull request address the correct shopware version? Breaks and features cannot be merged in a patch release.
