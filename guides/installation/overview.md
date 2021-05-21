@@ -138,7 +138,7 @@ Let's start by cloning the development template:
 You now have the application template for Shopware 6 in the directory `development`, we now navigate into it:
 
 ```bash
-> cd development
+cd development
 ```
 
 Per default the development template has `shopware/platform` in the version `dev-master` as requirement in its `composer.json` file. This always corresponds to the latest commit on the master branch on GitHub. If you want to use a specific version change `dev-master` to `6.1` for example. Now Shopware 6.1 will be installed instead of the latest master state.
@@ -146,8 +146,8 @@ Per default the development template has `shopware/platform` in the version `dev
 Only if you want to work with the Shopware platform code itself, e.g. in order to create a pull request for it, you should clone the `platform` code manually. Before doing so, remove the existing platform directory.
 
 ```bash
-> rm -rf platform
-> git clone https://github.com/shopware/platform.git
+rm -rf platform
+git clone https://github.com/shopware/platform.git
 ```
 
 Otherwise, the Shopware platform code would be placed into a `vendor/shopware/platform` directory, where you don't want to change any code. There's a good reason why many IDEs try to prevent you from changing code in the `vendor` directory.
