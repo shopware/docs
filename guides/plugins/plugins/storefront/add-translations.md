@@ -82,7 +82,7 @@ $this->trans('soldProducts', ['%count%' => 3, '%country%' => 'Germany']);
 
 ## Using translation generally in PHP
 
-If we need to use a snippet elsewhere in PHP, we can use Dependency Injection to inject `translator` which implements Symfony's `Symfony\Contracts\Translation\TranslatorInterface`:
+If we need to use a snippet elsewhere in PHP, we can use [Dependency Injection](../plugin-fundamentals/dependency-injection.md) to inject the `translator`, which implements Symfony's `Symfony\Contracts\Translation\TranslatorInterface`:
 
 ```xml
 <service id="Swag\Example\Service\SwagService" public="true" >
@@ -103,4 +103,3 @@ Your class can then use translation similarly to controllers:
 ```php
 $this->translator->trans('soldProducts', ['%count%' => 3, '%country%' => 'Germany']);
 ```
-
