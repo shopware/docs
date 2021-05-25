@@ -169,7 +169,7 @@ As Shopware is based on the PHP framework Symfony, we also have to make sure to 
 | Changing the "ref" attribute of elements.                                       | 🔴 NO      |                                                                                          |
 | Changing VueJS specific template functions, like v-if.                          | 🔴 NO      |                                                                                          |
 | Changing VueJS data functions, like v-model, or v-bind.                         | 🔴 NO      |                                                                                          |
-| Renaming or removing VueJS slots.                                               | 🔴 NO      |                                                                                          |
+| Renaming or removing VueJS slots.                                               | 🔴 NO      | Use the deprecation workflow.<br>Code Example: [Deprecate Vue Slot](#deprecate-vue-slot) |
 | Using new functionality of the VueJS framework, which has a breaking behaviour. | 🔴 NO      |                                                                                          |
 | Renaming or removing of global available VueJS template functions.              | 🔴 NO      |                                                                                          |
 
@@ -177,20 +177,20 @@ As Shopware is based on the PHP framework Symfony, we also have to make sure to 
 
 | Use Case                                                     | Allowed?   | Notes / Alternatives                                                                                                                                                                                                                        |
 |---                                                           | ---        | ---                                                                                                                                                                                                                                         |
-| Renaming or removing of base components.                     | 🔴 NO      | Use the deprecation workflow.Code Example: [Deprecate admin components](#deprecate-admin-components)                                                                                                                                        |
-| Renaming or removing of module components.                   | 🔴 NO      | Use the deprecation workflow.Code Example: [Deprecate admin components](#deprecate-admin-components)                                                                                                                                        |
-| Renaming or removing methods                                 | 🔴 NO      | Use the deprecation workflow.Code Example: [Rename a method](#rename-a-method)                                                                                                                                                              |
-| Changing the return value of a method                        | 🔴 NO      | Use the deprecation workflow.Code Example: [Add new public function](#add-new-public-function)                                                                                                                                              |
+| Renaming or removing of base components.                     | 🔴 NO      | Use the deprecation workflow.<br>Code Example: [Deprecate admin components](#deprecate-admin-components)                                                                                                                                    |
+| Renaming or removing of module components.                   | 🔴 NO      | Use the deprecation workflow.<br>Code Example: [Deprecate admin components](#deprecate-admin-components)                                                                                                                                    |
+| Renaming or removing methods                                 | 🔴 NO      | Use the deprecation workflow.<br>Code Example: [Rename a method](#rename-a-method)                                                                                                                                                          |
+| Changing the return value of a method                        | 🔴 NO      | Use the deprecation workflow.<br>Code Example: [Add new public function](#add-new-public-function)                                                                                                                                          |
 | Changing the parameters of a method                          | 🔴 NO      | Only with new optional parameters which have a default value or if the method uses a single object as parameter via destructering. Otherwise use the deprecation workflow.Code Example: [Add new public function](#add-new-public-function) |
-| Renaming or removing of required props                       | 🔴 NO      | Use the deprecation workflow.Code Example: [Deprecate properties](#deprecate-admin-component-properties)                                                                                                                                    |
-| Renaming or removing of vue events                           | 🔴 NO      |                                                                                                                                                                                                                                             |
-| Changing the parameters of a vue event                       | ⚪ PARTIAL |                                                                                                                                                                                                                                             |
-| Adding required properties to components.                    | 🔴 NO      |                                                                                                                                                                                                                                             |
+| Renaming or removing of required props                       | 🔴 NO      | Use the deprecation workflow.<br>Code Example: [Deprecate properties](#deprecate-admin-component-properties)                                                                                                                                |
+| Renaming or removing of vue events                           | 🔴 NO      | Use the deprecation workflow.<br>Add a deprecation annotation to the event which needs to be renamed or removed and offer an alternative inside the deprecation comment when possible                                                       |
+| Changing the parameters of a vue event                       | ⚪ PARTIAL | <ul><li>Only with new optional parameters which have a default value</li><li>Only when the method receives an object as parameter and when working with destructuring</li></ul>                                                             |
+| Adding required properties to components.                    | 🔴 NO      | Add the property as optional property and show a warning if the property is empty. This could be done on component creation or with a property validator.<br>Code Example: [Adding required properties to components](#adding-required-properties-to-components) |
 | Renaming or removing data which is used in the data binding. | 🔴 NO      |                                                                                                                                                                                                                                             |
 | Renaming or removing the routes of a module.                 | 🔴 NO      |                                                                                                                                                                                                                                             |
 | Changing the parameters of a route.                          | 🔴 NO      |                                                                                                                                                                                                                                             |
 | Adding required parameters to a route.                       | 🔴 NO      |                                                                                                                                                                                                                                             |
-| Changing the public API of the global "Shopware" object.     | 🔴 NO      |                                                                                                                                                                                                                                             |
+| Changing the public API of the global "Shopware" object.     | 🔴 NO      | Use the deprecation workflow. Use same workflow as for other methods.<br>Code Example: [Rename a method](#rename-a-method)                                                                                                                  |
 | Changing the public API of state stores. (VueX)              | 🔴 NO      |                                                                                                                                                                                                                                             |
 | Renaming, removing or not-using of assets or other imports.  | 🔴 NO      |                                                                                                                                                                                                                                             |
 
@@ -310,6 +310,14 @@ abstract class AbstractProductRoute
 </div>
 ```
 
+#### Deprecate Vue Slot
+
+```html
+{# @deprecated tag:v6.5.0 - Use slot "main-content" instead #}
+<slot name="content"></slot>
+<slot name="main-content"></slot>
+```
+
 ### JavaScript
 
 #### Add new public function
@@ -377,6 +385,22 @@ Shopware.Component.register('sw-old', {
                 version: '6.5.0',
                 comment: 'Insert additional information in comments'
             }
+        }
+    }
+}
+```
+
+#### Adding required properties to components
+
+```javascript
+{
+    createdComponent() {
+        /** @deprecated tag:v6.5.0 - Warning will be removed when prop is requirerd */
+        if (!this.newProp) {
+            debug.warn(
+                'sw-example-component',
+                '"newProp" will be requirerd in tag:v6.5.0'
+            );
         }
     }
 }
