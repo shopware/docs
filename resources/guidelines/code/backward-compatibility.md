@@ -139,14 +139,14 @@ As Shopware is based on the PHP framework Symfony, we also have to make sure to 
 
 #### JavaScript
 
-| Use Case                                           | Allowed? | Notes / Alternatives                                                                               |
-| ---                                                | ---      | ---                                                                                                |
-| Renaming or removing JS services.                  | 🔴 NO    |                                                                                                    |
-| Renaming or removing of JS plugins.                | 🔴 NO    |                                                                                                    |
-| Changing the public API of a JS plugin or service. | 🔴 NO    | Use the deprecation workflow.<br>Code Example: [Add new public function](#add-new-public-function) |
-| Renaming methods of JS plugins or services.        | 🔴 NO    | Use the deprecation workflow.<br>Code Example: [Rename a method](#rename-a-method)                 |
-| Renaming or removing of JS events.                 | 🔴 NO    |                                                                                                    |
-| Changing the parameters of JS events.              | 🔴 NO    |                                                                                                    |
+| Use Case                                           | Allowed? | Notes / Alternatives                                                                                                  |
+| ---                                                | ---      | ---                                                                                                                   |
+| Renaming or removing JS services.                  | 🔴 NO    | Use the deprecation workflow.<br>Code Example: [Renaming or removing JS services](#renaming-or-removing-js-services)  |
+| Renaming or removing of JS plugins.                | 🔴 NO    | Use the deprecation workflow.<br>Code Example: [Renaming or removing JS plugins](#renaming-or-removing-js-plugins) |
+| Changing the public API of a JS plugin or service. | 🔴 NO    | Use the deprecation workflow.<br>Code Example: [Add new public function](#add-new-public-function)                    |
+| Renaming methods of JS plugins or services.        | 🔴 NO    | Use the deprecation workflow.<br>Code Example: [Rename a method](#rename-a-method)                                    |
+| Renaming or removing of JS events.                 | 🔴 NO    |                                                                                                                       |
+| Changing the parameters of JS events.              | 🔴 NO    |                                                                                                                       |
 
 #### Styling / CSS
 
@@ -403,5 +403,39 @@ Shopware.Component.register('sw-old', {
             );
         }
     }
+}
+```
+
+#### Renaming or removing JS services
+
+```javascript
+// http-client.service.js
+/**
+* @deprecated tag:v6.5.0 - Use NewHttpClient instead (new-http-client.service.js)
+*/
+export default class HttpClient {
+    // ...
+}
+ 
+// new-http-client.service.js
+export default class NewHttpClient {
+    // ...
+}
+```
+
+#### Renaming or removing JS plugins
+
+```javascript
+// buy-button.plugin.js
+/**
+* @deprecated tag:v6.5.0 - Use NewBuyButtonPlugin instead (new-buy-button.plugin.js)
+*/
+export default class BuyButtonPlugin extends Plugin {
+    // ...
+}
+ 
+// new-buy-button.plugin.js
+export default class NewBuyButtonPlugin extends Plugin {
+    // ...
 }
 ```
