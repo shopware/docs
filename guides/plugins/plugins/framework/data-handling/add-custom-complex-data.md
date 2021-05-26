@@ -8,6 +8,13 @@ Quite often, your plugin has to save data into a custom database table. Shopware
 
 This guide is built upon the [plugin base guide](../../plugin-base-guide.md), but any plugin will work here. Just note that all examples are using the plugin mentioned above. In order to create a database table, you need to understand plugin migrations [Plugin migrations](../../plugin-fundamentals/database-migrations.md). Also, you'll have to understand how the [dependency injection](../../plugin-fundamentals/dependency-injection.md) works as well.
 
+<!-- markdown-link-check-disable-next-line -->
+{% hint style="info" %}
+Here's a video on creating custom entities from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+
+**[Creating a custom entity](https://www.youtube.com/watch?v=mTHTyof4gPk)**
+{% endhint %}
+
 ## Creating the database
 
 We'll start with creating a new database table. Make sure to always add your individual prefix to your plugin's database tables, e.g. your manufacturer name.

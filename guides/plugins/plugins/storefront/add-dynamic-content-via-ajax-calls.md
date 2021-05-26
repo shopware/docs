@@ -8,6 +8,13 @@ This guide will show you how to add dynamic content to your storefront. It combi
 
 For this guide we will use a very simple controller that returns a timestamp wrapped in the JSON format.
 
+<!-- markdown-link-check-disable-next-line -->
+{% hint style="info" %}
+Here's a video dealing with the creation of a controller that returns JSON data from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+
+**[Creating a JSON controller](https://www.youtube.com/watch?v=VzREUDdpZ3E)**
+{% endhint %}
+
 As mentioned before this guide builds up upon the [adding a custom controller](add-custom-controller.md) guide. This means that this article will only cover the differences between returning a template and a `JSON` response and making it accessible to `XmlHttpRequests`.
 
 {% code title="<plugin base>/Storefront/Controller/ExampleController.php" %}
