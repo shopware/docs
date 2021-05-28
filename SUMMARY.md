@@ -308,6 +308,7 @@
 * [Guidelines](resources/guidelines/README.md)
   * [Code](resources/guidelines/code/README.md)
     * [Contribution Guidelines](resources/guidelines/code/contribution.md)
+    * [Backward Compatibility](resources/guidelines/code/backward-compatibility.md)
     * [Cart Process](resources/guidelines/code/cart-process.md)
     * [Context Rules & Rule Systems](resources/guidelines/code/context-rules-rule-systems.md)
     * [Dependency Injection & Dependency Handling](resources/guidelines/code/dependency-injection-dependency-handling.md)
