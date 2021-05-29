@@ -71,8 +71,6 @@ navigation: [{
 ```
 {% endcode %}
 
-If you're planning to publish your plugin to the Shopware Store keep in mind we're rejecting plugins which have created their own menu entry on the first level.
-
 {% hint style="info" %}
 If you're planning to publish your plugin to the Shopware Store keep in mind we're rejecting plugins which have created their own menu entry on the first level.
 {% endhint %}
