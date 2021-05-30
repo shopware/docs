@@ -33,7 +33,7 @@ This grant is only available, when a preceding authentication with the resource 
 In order to obtain an access token, perform one of the following requests
 
 {% tabs %}
-{% tab title="Integration" %}
+{% tab title="Client Credentials" %}
 ```javascript
 // POST /api/oauth/token
 
