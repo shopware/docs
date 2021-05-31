@@ -137,18 +137,23 @@ In our example we will define two custom CMS blocks:
 ```
 {% endcode %}
 
+The full CMS reference is available here:
+
+{% page-ref page="../../../../../resources/references/app-reference/cms-reference.md" %}
+
 Let's have a look at how to configure a CMS block from your app's `cms.xml`:
-`name` : A **unique** technical name for your block. This name is also used to discover the block's `preview.html` and `styles.css` in the `Resources/cms/blocks/` directory.
 
-`category` : Blocks are divided into categories. Available categories can be found in the [plugin guide](../../../plugins/content/cms/add-cms-block.md#custom-block-in-the-administration).
+`<name>` : A **unique** technical name for your block. This name is also used to discover the block's `preview.html` and `styles.css` in the `Resources/cms/blocks/` directory.
 
-`label` : The **translatable** label will be shown in the Administration.
+`<category>` : Blocks are divided into categories. Available categories can be found in the [plugin guide](../../../plugins/content/cms/add-cms-block.md#custom-block-in-the-administration).
 
-`default-config` : Some default configuration for the block.
+`<label>` : The **translatable** label will be shown in the Administration.
 
-`slots` : Each block holds slots that configure which element they show.
+`<default-config>` : Some default configuration for the block.
 
-Here you can find the complete [CMS Reference](../../../../../resources/references/app-reference/cms-reference.md).
+`<slots>` : Each block holds slots that configure which element they show.
+
+### Block preview
 
 A simple preview template for `my-first-block` might look like this:
 
