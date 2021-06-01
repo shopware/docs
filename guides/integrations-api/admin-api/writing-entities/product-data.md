@@ -190,7 +190,7 @@ To remove these `properties` and `categories`, the corresponding routes can be u
 
 To delete several assignments at once, the `/_action/sync` route can be used:
 
-```text
+```javascript
 {
     // This key can be defined individually
     "unassign-categories": {
@@ -223,7 +223,7 @@ The `product.categories` association contains the assignment of products and the
 
 Media of products are maintained via the association `product.media` and `product.cover`. The `product.media` association is a `one-to-many` association on the `product_media` entity. To assign a media to a product, a new `product_media` entity must be created, in which the foreign key for the corresponding `media` entity is defined. In addition to the foreign key, a `position` can be specified, which defines the display order.
 
-```text
+```javascript
 {
     "name": "test",
     "productNumber": "random",
@@ -244,7 +244,7 @@ Media of products are maintained via the association `product.media` and `produc
 
 To delete a media assignment, the ID of the `product_media` entity is required. In the above case this is the `5f78f2d4b19f49648eb1b38881463da0`. The corresponding route `DELETE /api/product/{productId}/media/{productMediaId}` can be used for this. To delete multiple assignments, the `/_action/sync` route can also be used here:
 
-```text
+```javascript
 {
     // This key can be defined individually
     "unassign-media": {
@@ -262,7 +262,7 @@ To delete a media assignment, the ID of the `product_media` entity is required. 
 
 The `cover` of a product is controlled via `coverId` and the `cover` association. This contains a direct reference to a `product_media` entity. To set the cover of a product the following payload can be used:
 
-```text
+```javascript
 {
     "name": "test",
     "productNumber": "random",
@@ -311,7 +311,7 @@ Since visibility can be configured per sales channel, the entity also has its ow
 
 Deleting a sales channel assignment is done via the route `/api/product/{productId}/visibilities/{visibilityId}`. To delete several assignments at once, the `/_action/sync` route can be used:
 
-```text
+```javascript
 {
     // This key can be defined individually
     "unassign-media": {
@@ -371,8 +371,9 @@ To define a separate `price` for a variant, the same payload can be used as for 
 
 To restore inheritance, the value `null` can be passed for simple data fields:
 
-```text
+```javascript
 // PATCH /api/product/0d0adf2a3aa1488eb177288cfac9d47e
+
 {
     "price": null
 }
