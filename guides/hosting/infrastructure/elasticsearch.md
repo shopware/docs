@@ -2,7 +2,7 @@
 
 ## Overview
 
-As soon as several thousand data sets are used in a project, it makes sense to deal with Elasticsearch. Elasticsearch 7.3 or newer is required. The Elasticsearch integration for Shopware is in the [shopware/elasticsearch](https://github.com/shopware/elasticsearch) bundle. If this is not available in your project you can simply add it via `composer require shopware/elasticsearch`.
+As soon as several thousand data sets are used in a project, it makes sense to deal with Elasticsearch. Elasticsearch 7.8 or newer is required. The Elasticsearch integration for Shopware is in the [shopware/elasticsearch](https://github.com/shopware/elasticsearch) bundle. If this is not available in your project you can simply add it via `composer require shopware/elasticsearch`.
 
 ## Requirements
 
