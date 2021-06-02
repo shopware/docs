@@ -61,7 +61,7 @@ Here's an example configuration for the development template:
 
 ## Example Tests
 
-### Unit test
+### Integration test
 
 After we've configured PHPUnit, we can start writing our first test. In this example we have a test which simply tries to instantiate every `.php` class, to see if any used core classes went missing. In our test we use the `IntegrationTestBehaviour` trait which comes in with some handy features, such as automatically setting up a database transaction or clearing the cache before starting your tests.
 
