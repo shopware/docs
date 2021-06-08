@@ -6,7 +6,7 @@ Quite often, your plugin has to save data into a custom database table. Shopware
 
 ## Prerequisites
 
-This guide is build upon the [plugin base guide](../../plugin-base-guide.md), but any plugin will work here. Just note that all examples are using the plugin mentioned above. In order to create a database table, you need to understand plugin migrations [Plugin migrations](../../plugin-fundamentals/database-migrations.md). Also, you'll have to understand how the [dependency injection](../../plugin-fundamentals/dependency-injection.md) works as well.
+This guide is built upon the [plugin base guide](../../plugin-base-guide.md), but any plugin will work here. Just note that all examples are using the plugin mentioned above. In order to create a database table, you need to understand plugin migrations [Plugin migrations](../../plugin-fundamentals/database-migrations.md). Also, you'll have to understand how the [dependency injection](../../plugin-fundamentals/dependency-injection.md) works as well.
 
 <!-- markdown-link-check-disable-next-line -->
 {% hint style="info" %}
