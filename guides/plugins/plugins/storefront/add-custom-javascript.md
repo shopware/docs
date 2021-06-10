@@ -112,7 +112,7 @@ A lot of text, here is the respective example:
 {% block base_main_inner %}
     {{ parent() }}
 
-    <template data-example-plugin></template>
+    <template data-example-plugin="true"></template>
 {% endblock %}
 ```
 {% endcode %}
