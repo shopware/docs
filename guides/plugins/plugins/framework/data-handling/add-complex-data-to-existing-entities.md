@@ -1,7 +1,5 @@
 # Adding complex data to existing entities
 
-## Adding complex data to existing entities
-
 ## Overview
 
 Sometimes you want to extend existing entities with some custom information, this guide will have you covered. Extensions are technical and not configurable by the admin user just like that. Also they can deal with more complex types than scalar ones.
