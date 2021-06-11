@@ -24,3 +24,4 @@ Here you find a common approach regarding the way that Shopware provides endpoin
 
 Starting with Shopware version 6.4.0.0, we decided to change our API versioning strategy. The following article will cover what has been done and changed, how it used to be and how the version strategy looks like now.
 
+{% page-ref page="api-versioning.md" %}
