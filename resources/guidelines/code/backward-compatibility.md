@@ -48,7 +48,7 @@ The `@major-deprecated` annotation is used for breaking code which has to stay b
  */
 ```
 
-The `@internal` annotation is used for new introduced code, which is not yet released or hidden behind a feature flag. This ensures, that it will not be treated as public API until the corresponding feature is released and makes it possible to change the code in any way until the final release. Always add the name of the corresponding feature flag to the annotation, so that it will not be forgotten, when the corresponding feature is released.
+In combination with a feature flag, like shown above, the `@internal` annotation is used for newly introduced code, which is not yet released. This ensures, that it will not be treated as public API until the corresponding feature is released and makes it possible to change the code in any way until the final release. Always add the name of the corresponding feature flag to the annotation, so that it will not be forgotten, when the corresponding feature is released.
 
 ## Workflows
 
