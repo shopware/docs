@@ -147,6 +147,7 @@
         * [Fetching data from "entity selection" custom field](guides/plugins/plugins/framework/custom-field/fetching-data-from-entity-selection.md)
       * [Event](guides/plugins/plugins/framework/event/README.md)
         * [Add custom event](guides/plugins/plugins/framework/event/add-custom-event.md)
+        * [Finding events](guides/plugins/plugins/framework/event/finding-events.md)
       * [Message Queue](guides/plugins/plugins/framework/message-queue/README.md)
         * [Add message to queue](guides/plugins/plugins/framework/message-queue/add-message-to-queue.md)
         * [Add message handler](guides/plugins/plugins/framework/message-queue/add-message-handler.md)
