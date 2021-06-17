@@ -12,6 +12,8 @@ In order to add your own custom rules for your plugin, you first need a plugin a
 
 You also should be familiar with the [Dependency Injection container](../../plugin-fundamentals/dependency-injection.md) as this is used to register your custom rule.
 
+It might be helpful to gather some general understanding about the [concept of rules](../../../../../concepts/framework/rules) as well.
+
 ## Create custom rule
 
 To create a custom rule, we have to implement both backend \(PHP\) code and a user interface in the administration to manage it. Let's start with the PHP part first, which basically handles the main logic of our rule. After that, there will be an example to actually show your new rule in the administration.
@@ -83,6 +85,10 @@ As you can see, several methods are already implemented:
 * `getConstraints`: This method returns an array of the possible fields and its types. You could also return the `NotBlank` class here, to require this field.
 
 After we've created our rule class, we have to register it in our `services.xml` and tag it as `shopware.rule.definition`.
+
+{% hint style="warning" %}
+Never execute database queries or any other time consuming operations within the `match()` method of your rule, as it will drastically impact the performance of your store. Stick to the rule scope when evaluating whether your rule matches or not.
+{% endhint %}
 
 ### Active rules
 
