@@ -12,7 +12,7 @@ In order to add your own custom rules for your plugin, you first need a plugin a
 
 You also should be familiar with the [Dependency Injection container](../../plugin-fundamentals/dependency-injection.md) as this is used to register your custom rule.
 
-It might be helpful to gather some general understanding about the [concept of rules](../../../../../../concepts/framework/rules) as well.
+It might be helpful to gather some general understanding about the [concept of rules](../../../../../concepts/framework/rules.md) as well.
 
 ## Create custom rule
 
