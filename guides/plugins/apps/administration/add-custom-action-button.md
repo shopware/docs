@@ -65,3 +65,48 @@ A sample payload may look like the following:
 
 Again you can verify the authenticity of the incoming request, like with [webhooks](../app-base-guide.md#webhooks), by checking the `shopware-shop-signature` it too contains the sha256 hmac of the request body, that is signed with the secret your app assigned the shop during the [registration](../app-base-guide.md#setup).
 
+If you want to trigger an action inside the administration upon completing the action, the app should return a response with a valid body and the header `shopware-app-signature` containing the sha256 hmac of the whole response body signed with the app secret.
+If you do not need to trigger any actions, a response with an empty body is also always valid.
+
+{% hint style="info" %}
+This feature was added in Shopware 6.4.3.0, previous versions will ignore the response content.
+{% endhint %}
+
+Examples response body:
+To open a new tab in the user browser you can use the `openNewTab` action type. You need to pass the url that should be opened as the `redirectUrl` property inside the payload.
+```json
+{
+  "actionType": "openNewTab",
+  "payload": {
+    "redirectUrl": "http://google.com"
+  }
+}
+
+```
+
+To send a notification, you can use the `notification` action type. You need to pass the `status` property and the content of the notification as `message` property inside the payload.
+```json
+{
+  "actionType": "notification",
+  "payload": {
+    "status": "success",
+    "message": "This is the successful message"
+  }
+}
+
+```
+
+To reload the data in the user's current page you can use the `reload` action type with an empty payload.
+```json
+{
+  "actionType": "reload",
+  "payload": {}
+}
+
+```
+
+* `actionType`: The type of action the app want to be triggered, including `notification`, `reload`, `openNewTab`
+* `payload`: The needed data to perform the action.
+* `redirectUrl`: The url to open new tab
+* `status`: Notification status, including `success`, `error`, `info`, `warning`
+* `message`: The content of the notification
