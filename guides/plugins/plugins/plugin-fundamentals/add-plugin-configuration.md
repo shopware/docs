@@ -35,7 +35,7 @@ As we now know how to create your configuration, we can start to fill it with li
 
 ### Cards in your configuration
 
-The `config.xml` follows a simple syntax. You can organize the content in `<card>` elements. Every `config.xml` must exist of minimum one `<card>` element and each `<card>` must contain one `<title>` and at least one `<input-field>`, see a minimum `config.xml` below:
+The `config.xml` follows a simple syntax. You can organize the content in `<card>` elements. Every `config.xml` must contain a minimum of one `<card>` element and each `<card>` must contain one `<title>` and at least one `<input-field>`. See the minimum `config.xml` below:
 
 {% code title="<plugin root>/src/Resources/config/config.xml" %}
 ```markup
