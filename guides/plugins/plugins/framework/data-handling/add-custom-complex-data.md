@@ -15,7 +15,7 @@ Here's a video on creating custom entities from our free online training ["Backe
 **[Creating a custom entity](https://www.youtube.com/watch?v=mTHTyof4gPk)**
 {% endhint %}
 
-## Creating the database
+## Creating the database table
 
 We'll start with creating a new database table. Make sure to always add your individual prefix to your plugin's database tables, e.g. your manufacturer name.
 
