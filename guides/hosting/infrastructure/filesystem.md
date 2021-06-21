@@ -69,13 +69,12 @@ shopware:
     filesystem:
       {ADAPTER_NAME}:
         type: "amazon-s3"
+        visibility: "public" # On private adapters need this to be private
         config:
             bucket: "{your-public-bucket-name}"
             region: "{your-bucket-region}"
             endpoint: "{your-s3-provider-endpoint}"
             root: "{your-root-folder}"
-            options:
-              visibility: "public" # On private adapters need this to be private
 ```
 
 For the usage of Minio, consider setting `use_path_style_endpoint` to `true`.
@@ -87,12 +86,11 @@ shopware:
     filesystem:
       {ADAPTER_NAME}:
         type: "google-storage"
+        visibility: "public" # On private adapters need this to be private
         config:
             bucket: "{your-public-bucket-name}"
             projectId: "{your-project-id}"
             keyFilePath: "{path-to-your-keyfile}"
-            options:
-              visibility: "public" # On private adapters need this to be private
 ```
 
 ## Add your own adapter
