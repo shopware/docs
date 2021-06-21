@@ -1,6 +1,6 @@
 # Add custom route
 
-Routes in the Shopware 6 Administration are essentially the same as in any other \[Vue Router\]\([https://router.vuejs.org/](https://router.vuejs.org/)\) This guide will teach you the basics of creating your very first route from scratch.
+Routes in the Shopware 6 Administration are essentially the same as in any other [Vue Router](https://router.vuejs.org). This guide will teach you the basics of creating your very first route from scratch.
 
 ## Prerequisites
 
