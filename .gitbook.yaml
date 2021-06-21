@@ -6,3 +6,12 @@ redirects:
     guides/integrations-api/store-api-guide/work-with-the-cart: guides/integrations-api/README.md
     guides/integrations-api/store-api-guide/handling-the-payment: guides/integrations-api/README.md
     guides/integrations-api/store-api-guide/faq: guides/integrations-api/README.md
+    guides/integrations-api/admin-api/: guides/integrations-api/README.md
+    guides/integrations-api/admin-api/action-routes: guides/integrations-api/README.md
+    guides/integrations-api/admin-api/authentication: guides/integrations-api/README.md
+    guides/integrations-api/admin-api/reading-entities: guides/integrations-api/README.md
+    guides/integrations-api/admin-api/writing-entities/: guides/integrations-api/README.md
+    guides/integrations-api/admin-api/writing-entities/associations: guides/integrations-api/README.md
+    guides/integrations-api/admin-api/writing-entities/bulk-payloads: guides/integrations-api/README.md
+    guides/integrations-api/admin-api/writing-entities/product-data: guides/integrations-api/README.md
+    resources/references/api-reference/admin-api-reference: guides/integrations-api/README.md
