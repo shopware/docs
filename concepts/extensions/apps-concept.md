@@ -27,7 +27,7 @@ Notice that this is optional in the case that Shopware and your app don't need t
 
 Your app can modify the appearance of the storefront, by shipping your storefront assets \(template files, javascript sources, SCSS sources, snippet files\) alongside your manifest file. You don't need to serve those assets from your external server, as Shopware will build the storefront anew on installation of your app and will consider your modifications in that process. Find out more about modifying the appearance of the storefront in the App Storefront Guide.
 
-{% page-ref page="../../guides/plugins/apps/app-base-guide.md" %}
+{% page-ref page="../../guides/plugins/apps/storefront.md" %}
 
 ## Integrate payment providers
 

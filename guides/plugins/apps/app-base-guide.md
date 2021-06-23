@@ -196,7 +196,13 @@ The payload of that request may look like this:
 }
 ```
 
-Make sure that you save the api-credentials for that shopId.
+Make sure that you save the api-credentials for that shopId. You can use the `apiKey` and 
+the `secretKey` as `client_id` and `client_secret` respectively when you request an OAuth token
+from the admin api.
+
+You can find out more about how to use these api-credentials in our api authentication guide.
+
+{% page-ref page="../../integrations-api/admin-api/authentication.md" %}
 
 {% hint style="info" %}
 Starting from Shopware version 6.4.1.0, the current shopware version will be sent as a `sw-version` header.
