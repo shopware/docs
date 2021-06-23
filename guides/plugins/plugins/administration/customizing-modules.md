@@ -42,7 +42,7 @@ Shopware.Module.register('my-new-custom-route', {
 
 In this example we register a new module which uses the `routeMiddleWare` to scan the routes while the `Vue router` is being set up. If we find the route `sw.product.detail` we just add another child route by pushing it to the `currentRoute.children`.
 
-You can find a detailed example in the [Add tab to existing module]() guide.
+You can find a detailed example in the [Add tab to existing module](add-new-tab.md) guide.
 
 ## More interesting topics
 
