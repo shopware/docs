@@ -69,7 +69,7 @@ shopware:
     filesystem:
       {ADAPTER_NAME}:
         type: "amazon-s3"
-        visibility: "public" # On private adapters need this to be private
+        visibility: "private" # Default is "public", can be set only on shopware.filesystem.private
         config:
             bucket: "{your-public-bucket-name}"
             region: "{your-bucket-region}"
@@ -86,7 +86,7 @@ shopware:
     filesystem:
       {ADAPTER_NAME}:
         type: "google-storage"
-        visibility: "public" # On private adapters need this to be private
+        visibility: "private" # Default is "public", can be set only on shopware.filesystem.private
         config:
             bucket: "{your-public-bucket-name}"
             projectId: "{your-project-id}"
