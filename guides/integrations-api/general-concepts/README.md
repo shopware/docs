@@ -1,6 +1,6 @@
 # General Concepts
 
-Though the Admin API and the Store API serve very different purposes, they have some commonalities handy to be aware of.
+Even though the Admin API and the Store API serve very different purposes, they have some commonalities handy to be aware of.
 
 ## Querying data
 

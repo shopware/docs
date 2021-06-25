@@ -29,6 +29,7 @@
   * [Plugins](concepts/extensions/plugins-concept.md)
 * [API](concepts/api/README.md)
   * [Store API](concepts/api/store-api.md)
+  * [Admin API](concepts/api/admin-api.md)
 
 ## Products
 
@@ -270,21 +271,13 @@
     * [Request Headers](guides/integrations-api/general-concepts/request-headers.md)
     * [Generated Reference](guides/integrations-api/general-concepts/generated-reference.md)
     * [API Versioning](guides/integrations-api/general-concepts/api-versioning.md)
-  * [Admin API Guide](guides/integrations-api/admin-api/README.md)
-    * [Authentication](guides/integrations-api/admin-api/authentication.md)
-    * [Reading entities](guides/integrations-api/admin-api/reading-entities.md)
-    * [Writing entities](guides/integrations-api/admin-api/writing-entities/README.md)
-      * [Associations](guides/integrations-api/admin-api/writing-entities/associations.md)
-      * [Bulk Payloads](guides/integrations-api/admin-api/writing-entities/bulk-payloads.md)
-      * [Product Data](guides/integrations-api/admin-api/writing-entities/product-data.md)
-    * [Action Routes](guides/integrations-api/admin-api/action-routes.md)
 
 ## Resources
 
 * [References](resources/references/README.md)
   * [API Reference](resources/references/api-reference/README.md)
     * [Store API Reference](https://shopware.stoplight.io/docs/store-api/storeapi.json)
-    * [Admin API Reference](resources/references/api-reference/admin-api-reference.md)
+    * [Admin API Reference](https://shopware.stoplight.io/docs/admin-api/adminapi.json)
   * [Core Reference](resources/references/core-reference/README.md)
     * [DAL Reference](resources/references/core-reference/dal-reference/README.md)
       * [Fields Reference](resources/references/core-reference/dal-reference/fields-reference.md)
