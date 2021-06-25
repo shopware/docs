@@ -95,7 +95,7 @@ class ProductSubscriber implements EventSubscriberInterface
             // loop through each product's custom fields
             foreach($customFields as $name => $value) {
                 if ($name !== 'custom_linked_product' || empty($value)) {
-                    return;
+                    continue;
                 }
 
                // resolve the $value here
@@ -212,7 +212,7 @@ class ProductSubscriber implements EventSubscriberInterface
             // loop through each product's custom fields
             foreach($customFields as $name => $value) {
                 if ($name !== 'custom_demo_test' || emtpy($value)) {
-                    return;
+                    continue;
                 }
 
                 $context = $event->getContext();
