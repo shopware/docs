@@ -359,5 +359,5 @@ After we've created our subscriber, we have to adjust our `services.xml` to regi
 
 ## Entity extension vs. Custom fields
 
-[Custom fields](../custom-field/add-custom-field) are by default configurable by the admin user in the administration and they mostly support scalar types, e.g. a text-field, a number field or the likes. If you'd like to create associations between entities, you'll need to use an entity extension, just like we did here. Of course you can also add scalar values without an association to an entity via an extension.
+[Custom fields](../custom-field/add-custom-field.md) are by default configurable by the admin user in the administration and they mostly support scalar types, e.g. a text-field, a number field or the likes. If you'd like to create associations between entities, you'll need to use an entity extension, just like we did here. Of course you can also add scalar values without an association to an entity via an extension.
 
