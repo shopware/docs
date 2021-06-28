@@ -1,22 +1,21 @@
 # Flags Reference
 
-| Name | Description |
+| Classname | Description |
 | :--- | :--- |
-| AllowEmptyStringField | Flags "AllowEmptyString" |
-| AllowHtmlField | Flags "AllowHtml" |
-| CascadeDeleteField | Flags "CascadeDelete" |
-| ComputedField | Flags "Computed" |
-| DeprecatedField | Flags "Deprecated" |
-| ExtensionField | Flags "Extension" |
-| InheritedField | Flags "Inherited" |
-| PrimaryKeyField | Flags "PrimaryKey" |
-| ReadProtectedField | Flags "ReadProtected" |
-| RequiredField | Flags "Required" |
-| RestrictDeleteField | Flags "RestrictDelete" |
-| ReverseInheritedField | Flags "ReverseInherited" |
-| RuntimeField | Flags "Runtime" |
-| SearchRankingField | Flags "SearchRanking" |
-| SetNullOnDeleteField | Flags "SetNullOnDelete" |
-| SinceField | Flags "Since" |
-| WriteProtectedField | Flags "WriteProtected" |
-
+| AllowEmptyString | Flags "AllowEmptyString" |
+| AllowHtml | Flags "AllowHtml" |
+| CascadeDelete | Flags "CascadeDelete" |
+| Computed | Flags "Computed" |
+| Deprecated | Flags "Deprecated" |
+| Extension | Flags "Extension" |
+| Inherited | Flags "Inherited" |
+| PrimaryKey | Flags "PrimaryKey" |
+| ReadProtected | Flags "ReadProtected" |
+| Required | Flags "Required" |
+| RestrictDelete | Flags "RestrictDelete" |
+| ReverseInherited | Flags "ReverseInherited" |
+| Runtime | Flags "Runtime" |
+| SearchRanking | Flags "SearchRanking" |
+| SetNullOnDelete | Flags "SetNullOnDelete" |
+| Since | Flags "Since" |
+| WriteProtected | Flags "WriteProtected" |
