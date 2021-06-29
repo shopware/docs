@@ -65,8 +65,7 @@ Since Shopware knows where your style files are located, they are automatically 
     │   ├── app
     │   │   └── storefront
     │   │       └── src
-    │   │           └── js
-    │   │               └── main.js <-- JS entry
+    │   │           └── main.js <-- JS entry
     └── SwagBasicExampleTheme.php
 ```
 
