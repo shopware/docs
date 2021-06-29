@@ -105,8 +105,8 @@ class CustomExtension extends EntityExtension
 
 As you can see, we're adding a new `OneToOneAssociationField`. Its parameters are the following, in correct order:
 
-* `propertyName`: The name of the property which should contain the associated entity of type `ExampleExtensionDefinition` in the `ProductDefinition`.
-* `storageName`: Use the `id` column here, which refers to the `id` field of your product. This will be used for the connection to your association.
+* `propertyName`: The name of the property which should contain the associated entity of type `ExampleExtensionDefinition` in the `ProductDefinition`. Property names are usually camelCase, with the first character being lower cased.
+* `storageName`: Use the `id` column here, which refers to the `id` field of your product. This will be used for the connection to your association. Storage names are always lowercase and snake_cased.
 * `referenceField`: In the `storageName` you defined one of the two connected columns, `id`. The name of the other column in the database, which you want to connect via this
 
   association, belongs into this parameter. In that case, it will be a column called `product_id`, which we will define in the `ExampleExtensionDefinition`.
@@ -168,7 +168,7 @@ class ExampleExtensionDefinition extends EntityDefinition
 ```
 {% endcode %}
 
-We've created a new entity definition called `ExampleExtensionDefinition`, as mentioned in the `CustomExtension` class. Its database name will be `swag_example_extension` and it will have custom entity class called `ExampleExtensionEntity`, as you can see in the `getEntityClass` method. This will remain an example, creating the actual entity `ExampleExtensionEntity` is not part of this guide.
+We've created a new entity definition called `ExampleExtensionDefinition`, as mentioned in the `CustomExtension` class. Its table name will be `swag_example_extension` and it will have custom entity class called `ExampleExtensionEntity`, as you can see in the `getEntityClass` method. This will remain an example, creating the actual entity `ExampleExtensionEntity` is not part of this guide.
 
 So let's have a look at the `defineFields` method. There's the default `IdField`, that almost every entity owns. The next field is the actual `product_id` column, which will be necessary in order to properly this entity with the product and vice versa. It has to be defined as `FkField`, since that's what it is: A foreign key.
 
@@ -203,7 +203,7 @@ Of course, this new definition also needs to be registered to the DI container:
 
 #### Adding the new database table
 
-Of course you have to add the new database table via a [plugin migration](../../plugin-fundamentals/database-migrations.md). Have a look into the guide linked above to see how exactly this is done. Here's the example migration and how it could look like:
+Of course you have to add the new database table via a [database migration](../../plugin-fundamentals/database-migrations.md). Have a look into the guide linked above to see how exactly this is done. Here's the example migration and how it could look like:
 
 ```php
 <?php declare(strict_types=1);
@@ -359,5 +359,4 @@ After we've created our subscriber, we have to adjust our `services.xml` to regi
 
 ## Entity extension vs. Custom fields
 
-Custom fields are by default configurable by the admin user in the administration and they mostly support scalar types, e.g. a text-field, a number field or the likes. If you'd like to create associations between entities, you'll need to use an entity extension, just like we did here. Of course you can also add scalar values without an association to an entity via an extension.
-
+[Custom fields](../custom-field/add-custom-field.md) are by default configurable by the admin user in the administration and they mostly support scalar types, e.g. a text-field, a number field or the likes. If you'd like to create associations between entities, you'll need to use an entity extension, just like we did here. Of course you can also add scalar values without an association to an entity via an extension.
