@@ -171,6 +171,7 @@
       * [Adding Mixins](guides/plugins/plugins/administration/add-mixins.md)
       * [Using Mixins](guides/plugins/plugins/administration/using-mixins.md)
       * [Adding Services](guides/plugins/plugins/administration/add-custom-service.md)
+      * [Extending Services](guides/plugins/plugins/administration/extending-services.md)
       * [Adding permissions](guides/plugins/plugins/administration/add-acl-rules.md)
       * [Using the data handling](guides/plugins/plugins/administration/using-data-handling.md)
       * [Adding error handling](guides/plugins/plugins/administration/add-error-handling.md)
