@@ -40,7 +40,7 @@ Keep in mind that your app needs the `system_config:read` permission to access t
 
 ### Reading the config in templates
 
-Inside twig templates you can use the `config` property of the global `shopware` object to read your configuration. An example twig template could look like this:
+Inside twig templates you can use the twig function `config` (see [Shopware Twig functions](../../../resources/references/storefront-reference/twig-function-reference.md)). An example twig template could look like this:
 
 ```markup
 {{ config('DemoApp.config.field1') }}
