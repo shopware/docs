@@ -43,6 +43,6 @@ Keep in mind that your app needs the `system_config:read` permission to access t
 Inside twig templates you can use the `config` property of the global `shopware` object to read your configuration. An example twig template could look like this:
 
 ```markup
-{{ config(DemoApp.config.field1) }}
+{{ config('DemoApp.config.field1') }}
 ```
 
