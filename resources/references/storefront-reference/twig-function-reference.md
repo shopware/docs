@@ -12,6 +12,8 @@ In Shopware, we extend Twig's functionality by custom ones. See our own actions 
 | `sw_icon` | Displays an icon from a given icon set | See [Add custom icon]() guide for details. |
 | `sw_thumbnails` | Renders a  tag with correctly configured “srcset” and “sizes” attributes based on the provided parameters | See [Add thumbnail](../../../guides/plugins/plugins/storefront/use-media-thumbnails.md) guide for more information. |
 | `sw_csrf` | Generates a valid CSRF token and inject it as a hidden input field to the form | More details in [CSRF protection](../../../guides/plugins/plugins/storefront/use-csrf-protection.md) guide. |
+| `config` | Gets a value from the system config (used by plugins and global settings) for the given sales channel |  See [Reading the configuration values](../../../guides/plugins/apps/configuration.md) |
+| `theme_config` | Gets a value from the current theme |  See [Theme configuration](../../../guides/plugins/themes/theme-configuration.md) |
 
 ## Filter
 
