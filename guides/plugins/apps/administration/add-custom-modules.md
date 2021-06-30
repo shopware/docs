@@ -141,3 +141,10 @@ To avoid mixing other modules with your main module, we decided to separate the 
 
 This feature is not compatible with themes as they will always open the theme config by default.
 
+## Admin design compatibility
+
+As your module page is integrated as an iframe you are not able to use the stylesheet and javascript out of the box.
+Having the stylesheets that are used in the administration can be beneficial for the app module to seamlessly integrate into the administration.
+You can use the shop version that is passed as `sw-version` within the request query to determine what stylesheets you want to load.
+The compiled administration stylesheets for each version can be found within the tagged releases of the `shopware/administration` package within the `Resources/public/static` folder.
+Combining these information enables your app the look exactly like the administration although it is encapsuled within an iframe.
