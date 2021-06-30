@@ -16,7 +16,7 @@ There are basically two ways of adding custom assets to your theme. The first on
 
 ### Adding assets in theme.json file
 
-While working with your own theme, you might already came across the [theme configuration](theme-configuration.md). In there, you have the possibility to configure your paths to your custom assets like images, fonts, etc. This way, please configure your asset path accordingly.
+While working with your own theme, you might have already come across the [theme configuration](theme-configuration.md). In there, you have the possibility to configure your paths to your custom assets like images, fonts, etc. This way, please configure your asset path accordingly.
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
 ```javascript
@@ -40,14 +40,14 @@ Next, please run the bin/console assets:install command. This will copy your plu
 ├── administration
 ├── framework
 ├── storefront
-└── <your-theme-name> <-- f.e. swagbasicexampletheme
+└── <your-theme-name> <-- e.g. swagbasicexampletheme
     └── your-image.png <-- Your asset is copied here
 ```
 {% endcode %}
 
 ### Adding assets the plugin way
 
-This way of adding custom assets refers to the default was of dealing with assets. For more detail on this way, please check out the article that specifically addresses this topic:
+This way of adding custom assets refers to the default way of dealing with assets. For more details, please check out the article that specifically addresses this topic:
 
 {% page-ref page="../plugins/storefront/add-custom-assets.md" %}
 
@@ -69,7 +69,7 @@ body {
 
 ## Next steps
 
-Now that you know how to use your assets in a themes, here is a list of other related topics where assets can be used.
+Now that you know how to use your assets in a theme, here is a list of other related topics where assets can be used.
 
 * [Customize templates](../plugins/storefront/customize-templates.md)
 
