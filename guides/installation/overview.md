@@ -79,6 +79,7 @@ SQL
 JavaScript
 
 * Node.js 12.21.0 or higher
+  * Node.js 16 may not be compatible with macOS
 * NPM 6.5.0 or higher
 
 Various
