@@ -18,9 +18,15 @@ Also the following knowledge is necessary, even though some of them are covered 
 
 ## Adding data to the storefront
 
-The workflow you need here was already described in the overview: 1. Figure out which page you want to change 2. Register to the event that this page is firing 3. Add data to the page via the event 4. Display this data in the storefront
+The workflow you need here was already described in the overview: 
 
-### Register to an event
+1. Figure out which page you want to change 
+2. Register to the event that this page is firing 
+3. Add data to the page via the event 
+4. Display this data in the storefront
+
+
+### Subscribe to an event
 
 So first of all you need to know which page or pagelet you actually want to extend. In this example, we're going to extend the [FooterPagelet](https://github.com/shopware/platform/blob/master/src/Storefront/Pagelet/Footer/FooterPagelet.php). All pages or pagelets throw `Loaded` events and this is the right event to subscribe to if you want to add data to the page or pagelet. In our case we want to add data to the `FooterPagelet` so we need to subscribe to the `FooterPageletLoadedEvent`.
 
