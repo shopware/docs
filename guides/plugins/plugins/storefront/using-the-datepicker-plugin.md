@@ -80,17 +80,17 @@ Here you can see how this is done by setting up a local Twig variable `pickerOpt
 
 {% block base_main_inner %}
 
-    {% set pickerOptions = '{
-        "locale": "' ~ app.request.locale ~ '",
-        "enableTime": true
-    }' %}
+    {% set pickerOptions = {
+        locale: app.request.locale,
+        enableTime: true
+    } %}
     
     <label>
         <input type="text"
                name="customDate"
                class="customDate"
                data-date-picker
-               data-date-picker-options="{{ pickerOptions }}"
+               data-date-picker-options="{{ pickerOptions|json_encode|escape('html_attr') }}"
         />
     </label>
 
@@ -113,10 +113,10 @@ To preselect the value of the datepicker we can simply set its value in the inpu
 
 {% block base_main_inner %}
 
-    {% set pickerOptions = '{
-        "locale": "' ~ app.request.locale ~ '",
-        "enableTime": true
-    }' %}
+    {% set pickerOptions = {
+        locale: app.request.locale,
+        enableTime: true
+    } %}
     
     <label>
         <input type="text"
@@ -124,7 +124,7 @@ To preselect the value of the datepicker we can simply set its value in the inpu
                class="customDate"
                value="2021-01-01T00:00:00+00:00"
                data-date-picker
-               data-date-picker-options="{{ pickerOptions }}"
+               data-date-picker-options="{{ pickerOptions|json_encode|escape('html_attr') }}"
         />
     </label>
 
@@ -144,15 +144,15 @@ Here is an example which shows all three selectors in action.
 
 {% block base_main_inner %}
 
-    {% set pickerProperties = '{
-        "locale": "' ~ app.request.locale ~ '",
-        "enableTime": true,
-        "selectors": {
-            "openButton" : ".openDatePicker",
-            "closeButton": ".closeDatePicker",
-            "clearButton": ".resetDatePicker"
+    {% set pickerProperties = {
+        locale: app.request.locale,
+        enableTime: true,
+        selectors: {
+            openButton: ".openDatePicker",
+            closeButton: ".closeDatePicker",
+            clearButton: ".resetDatePicker"
         }
-    }' %}
+    } %}
 
     <label>
         <input type="text"
@@ -160,7 +160,7 @@ Here is an example which shows all three selectors in action.
                class="customDate"
                value="2021-04-13T00:00:00+00:00"
                data-date-picker
-               data-date-picker-options="{{ pickerProperties }}"
+               data-date-picker-options="{{ pickerProperties|json_encode|escape('html_attr') }}"
         />
 
         <button class="openDatePicker">Open</button>
