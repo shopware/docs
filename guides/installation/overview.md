@@ -74,7 +74,7 @@ PHP
 SQL
 
 * MySQL 5.7.21 or higher
-  * MySQL 8.0.20 is not compatible
+  * MySQL 8.0.20 is not compatible (only this specific version, 8.0.23 for example is working)
 * MariaDB 10.3.22 or higher
   * MariaDB 10.3.29, 10.4.19, 10.5.10 are not compatible at the moment
 
