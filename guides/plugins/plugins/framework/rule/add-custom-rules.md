@@ -122,6 +122,14 @@ Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderServi
 
 As you can see, this is decorating the `RuleConditionService` by using its name `ruleConditionDataProviderService`. The decoration adds a new condition called `lunar_eclipse`. Make sure to match the name we've used in the `getName` method in PHP. Next, we define the component, in our case `swag-lunar-eclipse`, which is responsible for rendering the rule inside the administration. We will create this component in the next step. Furthermore we defined a label, which will be displayed in the rule builder selection. The last option is the scope, which in our case is `global`, as we have not specified a specific one in our core class.
 
+We also have to create a `main.js` file in our administration sources directory and import the decorator file we've created above. The `main.js` file is used as an entry point to load administration modules from Shopware plugins:
+
+{% code title="<plugin root>/src/Resources/app/administration/src/main.js" %}
+```javascript
+import './decorator/rule-condition-service-decoration';
+```
+{% endcode %}
+
 ### Custom rule component
 
 Since we've registered our rule to the administration now, we're still lacking the actual component `swag-lunar-eclipse`. As previously mentioned, we've already defined a path for it in our service decoration. So create the following directory: `<plugin root>/src/Resources/app/administration/src/core/component/swag-lunar-eclipse`. If you are not familiar with creating components in Shopware, take a look at our [Add your own component](../../administration/add-custom-component.md) guide.
