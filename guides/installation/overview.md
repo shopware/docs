@@ -74,7 +74,7 @@ PHP
 SQL
 
 * MySQL 5.7.21 or higher
-  * MySQL 8.0.20 is not compatible
+  * Only MySQL 8.0.20 in specific is not compatible
 * MariaDB 10.3.22 or higher
   * MariaDB 10.3.29, 10.4.19, 10.5.10 are not compatible at the moment
 
@@ -166,4 +166,3 @@ As already mentioned, there are several ways to install Shopware. So we got you 
 * [Dockware](dockware.md)
 * [Valet+](valet.md)
 * [MAMP](mamp.md)
-
