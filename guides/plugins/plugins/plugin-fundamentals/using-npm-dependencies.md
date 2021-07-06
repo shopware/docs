@@ -51,7 +51,7 @@ We proceed from the inside to the outside. We use [`join`](https://nodejs.org/ap
 
 Once we have installed all the dependencies and registered the package in the build system with an alias, we can use the package in our own code.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/main.js" %}
+{% code title="<plugin root>/src/Resources/app/storefront/src/main.js" %}
 ```javascript
 import Plugin from 'src/plugin-system/plugin.class';
 
@@ -84,4 +84,3 @@ The final step in this process is to build your storefront or administration so 
 Now that you know how to include new `npm` dependencies you might want to create a service with them. Learn how to do that in this guide: [How to add a custom-service](../administration/add-custom-service.md)
 
 If you want to add [composer dependencies](using-composer-dependencies.md), or even other [plugin dependencies](add-plugin-dependencies.md), we've got you covered as well.
-
