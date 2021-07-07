@@ -20,11 +20,11 @@ So in order to install `missionlog`, run `npm install missionlog` in the folder 
 
 ## Registering a package in the build system
 
-Shopware's storefront as well as for administration is based on the build system [Webpack](https://webpack.js.org/). Webpack is a source file bundler: In essence it bundles all the source files into a single `bundle.js` to be shipped to a browser. So in order to make Webpack aware of the new dependency, we have to register it and give it an alias/pseudonym so that the package can be bundled correctly.
+Shopware's storefront as well as administration is based on the build system [Webpack](https://webpack.js.org/). Webpack is a source file bundler: In essence it bundles all the source files into a single `bundle.js` to be shipped to a browser. So in order to make Webpack aware of the new dependency, we have to register it and give it an alias/pseudonym so that the package can be bundled correctly.
 
-To do this we put a new “build” folder below the current area: Either `Resources/app/storefront` or `Resources/app/administration`. We then create a new file with the name `webpack.config.js`. We thereby make it possible to extend the Webpack configuration of Shopware.
+To do this we create a new folder called "build" under either `Resources/app/storefront` or `Resources/app/administration`. In this build folder we create a new file with the name `webpack.config.js`. We thereby make it possible to extend the Webpack configuration of Shopware.
 
-{% code title="<plugin root>/src/Resources/app/administration/webpack.config.js" %}
+{% code title="<plugin root>/src/Resources/app/administration/build/webpack.config.js" %}
 ```javascript
 const { join, resolve } = require('path'); 
 module.exports = () => { 
@@ -51,7 +51,7 @@ We proceed from the inside to the outside. We use [`join`](https://nodejs.org/ap
 
 Once we have installed all the dependencies and registered the package in the build system with an alias, we can use the package in our own code.
 
-{% code title="<plugin root>/src/Resources/app/src/main.js" %}
+{% code title="<plugin root>/src/Resources/app/storefront/src/main.js" %}
 ```javascript
 import Plugin from 'src/plugin-system/plugin.class';
 
@@ -76,10 +76,11 @@ export default class ExamplePlugin extends Plugin {
 {% endcode %}
 
 We import the function log as well as the constants tag via `destructuring` in the specified code. Through the use of the alias, we keep the paths short and recognize that this is an alias at first glance via the prefix.
+    
+The final step in this process is to build your storefront or administration so that your changes are processed by Webpack.
 
 ## Next steps
 
 Now that you know how to include new `npm` dependencies you might want to create a service with them. Learn how to do that in this guide: [How to add a custom-service](../administration/add-custom-service.md)
 
 If you want to add [composer dependencies](using-composer-dependencies.md), or even other [plugin dependencies](add-plugin-dependencies.md), we've got you covered as well.
-
