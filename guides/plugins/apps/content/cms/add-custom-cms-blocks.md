@@ -1,7 +1,7 @@
 # Add custom CMS blocks
 
 {% hint style="info" %}
-This functionality is available starting with Shopware 6.4.2.0.
+This functionality is available starting with Shopware 6.4.3.0.
 {% endhint %}
 
 Didn't get in touch with Shopware's Shopping Experiences \(CMS\) yet? Check out the concept behind it first:
