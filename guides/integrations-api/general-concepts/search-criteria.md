@@ -12,7 +12,6 @@ A typical **search criteria** looks like this:
   "associations": {
     "manufacturer": {},
     "propertyIds": {}
-    },
     "cover": {},
     "options": {
       "associations": {
