@@ -43,7 +43,7 @@ xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/sc
 Now we have to define an abstract class because it's more beautiful and not so strict like interfaces. With an abstract class we can add new functions easier, you can read more about this at the end of this article. The abstract class has to include an abstract function called `getDecorated()` which has the return type of our instance.
 
 {% hint style="info" %}
-    To avoid misunderstandings: The abstract service class and the implementation of it is not part of the decoration process itself and comes most of the times either from the shopware core or from a plugin you want to extend. They are added here to have an example to decorate.
+To avoid misunderstandings: The abstract service class and the implementation of it is not part of the decoration process itself and most of the times comes either from the Shopware core or from a plugin you want to extend. They are added here to have an example to decorate.
 {% endhint %}
     
     
@@ -183,4 +183,3 @@ class ExampleService extends AbstractExampleService
 }
 ```
 {% endcode %}
-
