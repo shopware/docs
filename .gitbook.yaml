@@ -1,4 +1,4 @@
-redirects:  
+redirects:
     developers-guide/plugin-guidelines/: https://developers.shopware.com/developers-guide/plugin-guidelines/
     guides/integrations-api/store-api-guide: guides/integrations-api/README.md
     guides/integrations-api/store-api-guide/register-a-customer: guides/integrations-api/README.md
@@ -15,3 +15,4 @@ redirects:
     guides/integrations-api/admin-api/writing-entities/bulk-payloads: guides/integrations-api/README.md
     guides/integrations-api/admin-api/writing-entities/product-data: guides/integrations-api/README.md
     resources/references/api-reference/admin-api-reference: guides/integrations-api/README.md
+    concepts/extensions/elasticsearch-concept: concepts/framework/elasticsearch.md
