@@ -6,7 +6,7 @@ In order to provide users \(i.e. developers\) with a clear abstraction, Shopware
 
 ![](../../.gitbook/assets/app-extension-model.png)
 
-Apps are not executed within the process of the Shopware core, but are notified about events via Webhooks which they can register. They have can modify and interact with Shopware resources through the [Admin REST API](https://shopware.stoplight.io/docs/admin-api).
+Apps are not executed within the process of the Shopware core, but are notified about events via Webhooks which they can register. They can modify and interact with Shopware resources through the [Admin REST API](https://shopware.stoplight.io/docs/admin-api).
 
 [Learn more about apps](apps-concept.md)
 
@@ -14,9 +14,11 @@ Apps are not executed within the process of the Shopware core, but are notified 
 
 ![](../../.gitbook/assets/plugin-extension-model.png)
 
-Plugins are exectued within the Shopware core and can react to events, execute custom code or extend services. They have direct access to the database, though there are guidelines in place to ensure update-compatibility, such as a service facade or database migrations.
+Plugins are exectued within the Shopware core process and can react to events, execute custom code or extend services. They have direct access to the database, though there are guidelines in place to ensure update-compatibility, such as a service facade or database migrations.
 
 {% hint style="warning" %}
+**Plugins & Shopware Cloud**
+
 Due to their direct access to the Shopware process and the database, plugins are not supported by Shopware Cloud. 
 {% endhint %}
 
