@@ -57,7 +57,7 @@ class CustomCookieProvider implements CookieProviderInterface {
 
     private $originalService;
 
-    function __construct(CookieProviderInterface $service)
+    public function __construct(CookieProviderInterface $service)
     {
         $this->originalService = $service;
     }
@@ -66,7 +66,7 @@ class CustomCookieProvider implements CookieProviderInterface {
         'snippet_name' => 'cookie.name',
         'snippet_description' => 'cookie.description ',
         'cookie' => 'cookie-key',
-        'value'=> 'cookie value',
+        'value' => 'cookie value',
         'expiration' => '30'
     ];
 
