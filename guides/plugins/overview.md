@@ -41,7 +41,7 @@ A theme lets you perform the tasks listed below.
 * Configuration interfaces
 * Control the order in which styles and templates are loaded
 
-Technically, plugins and themes are very similar and overlap in most of their logic. However, some particular aspects are handled differently, such as template and style priority or activation of the same. Once plugins are installed and activated, their styles and templates are immediately applied. When a theme is installed, it hast to be selected within the theme manager first.
+Technically, plugins and themes are very similar and overlap in most of their logic. However, some particular aspects are handled differently, such as template and style priority or activation of the same. Once plugins are installed and activated, their styles and templates are immediately applied. When a theme is installed, it has to be selected within the theme manager first.
 
 {% hint style="info" %}
 Note, that a plugin can also override templates.
