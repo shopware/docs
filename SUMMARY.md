@@ -258,6 +258,7 @@
   * [Installation & Updates](guides/hosting/installation-updates/README.md)
     * [Deployments](guides/hosting/installation-updates/deployments/README.md)
       * [Deployment with Deployer](guides/hosting/installation-updates/deployments/deployment-with-deployer.md)
+      * [Building assets of administration and storefront without a database](guides/hosting/installation-updates/deployments/databaseless.md)
     * [Versioning & Dependencies](guides/hosting/installation-updates/composer.md)
   * [Performance](guides/hosting/performance/README.md)
     * [HTTP Cache](guides/hosting/performance/caches.md)
