@@ -296,6 +296,7 @@
       * [Nginx](resources/references/config-reference/server/nginx.md)
   * [App Reference](resources/references/app-reference/README.md)
     * [Manifest Reference](resources/references/app-reference/manifest-reference.md)
+    * [Webhook Events Reference](resources/references/app-reference/webhook-events-reference.md)
     * [Payment Reference](resources/references/app-reference/payment-reference.md)
     * [CMS Reference](resources/references/app-reference/cms-reference.md)
   * [Administration Reference](resources/references/administration-reference/README.md)
