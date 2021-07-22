@@ -282,7 +282,7 @@ This is how your collection class could then look like:
 ```php
 <?php declare(strict_types=1);
 
-namespace Swag\BasicExample\Core\Content\Bundle;
+namespace Swag\BasicExample\Core\Content\Example;
 
 use Shopware\Core\Framework\DataAbstractionLayer\EntityCollection;
 
