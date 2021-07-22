@@ -26,9 +26,20 @@ In this guide we'll name our table `swag_example_translation` since our entity i
 
 The translation table's columns should be the following:
 
-swag\_example\_idThis will refer to the swag\_example this translation belongs to. This is also a foreign key.language\_idThis will contain the ID of the language for this translation. This is also a foreign key.nameThe actual translated value, the translated name of the swag\_example.created\_atNot much explanation required here.updated\_atNot much explanation required here.
+<dl>
+    <dt>`swag_example_id`</dt>
+    <dd>This will refer to the `swag_example` entity this translation belongs to. This is also a foreign key.</dd>
+    <dt>`language_id`</dt>
+    <dd>This will contain the ID of the language for this translation. This is also a foreign key.</dd>
+    <dt>`name`</dt>
+    <dd>The actual translated value, the translated name of the `swag_example` entity.</dd>
+    <dt>`created_at`</dt>
+    <dd>Date when the translations has been created.</dd>
+    <dt>`updated_at`</dt>
+    <dd>Date when the translations has been updated.</dd>
+</dl>
 
-Therefore, this is how your migration could then look like:
+This is how your migration could look like:
 
 {% code title="<plugin root>/src/Migration/Migration1612863838ExampleTranslation.php" %}
 ```php
