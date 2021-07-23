@@ -50,19 +50,6 @@ The following `services.xml` and `routes.xml` are identical as in the before men
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
 ```markup
-<?xml version="1.0" encoding="UTF-8" ?>
-<routes xmlns="http://symfony.com/schema/routing"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://symfony.com/schema/routing
-        https://symfony.com/schema/routing/routing-1.0.xsd">
-
-    <import resource="../../Storefront/Controller/**/*Controller.php" type="annotation" />
-</routes>
-```
-{% endcode %}
-
-{% code title="<plugin root>/src/Resources/config/routes.xml" %}
-```markup
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services" 
@@ -77,6 +64,19 @@ The following `services.xml` and `routes.xml` are identical as in the before men
         </service>
     </services>
 </container>
+```
+{% endcode %}
+   
+{% code title="<plugin root>/src/Resources/config/routes.xml" %}
+```markup
+<?xml version="1.0" encoding="UTF-8" ?>
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing
+        https://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <import resource="../../Storefront/Controller/**/*Controller.php" type="annotation" />
+</routes>
 ```
 {% endcode %}
 
