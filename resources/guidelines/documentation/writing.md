@@ -36,3 +36,20 @@ When you started writing, there will be a new draft created with your changes. E
 
 After your draft has been reviewed a final time, it will be published once you notify one of the administrators.
 
+## Maintaining Versions
+
+All content of this content is based on Shopware Major versions, such as 6.3, 6.4, 6.5 etc. The current version is reflected by our GitHub repositories' `master` branch, whereas each older version has its respective seperate branch.
+
+If a documented feature or functionality is introduced within major versions (and also in cases where you think it's applicable), please include a hint showing the version constraints:
+
+{% hint style="info" %}
+This functionality is available starting with Shopware 6.4.3.0.
+{% endhint %}
+
+The markup for this hint:
+
+```
+{% hint style="info" %}
+This functionality is available starting with Shopware 6.4.3.0.
+{% endhint %}
+```
