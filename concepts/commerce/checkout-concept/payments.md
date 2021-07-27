@@ -90,5 +90,3 @@ Will only be called if you returned a RedirectResponse in your pay method and th
 The order module provides a useful interface to simplify state changes on a transaction.
 
 `\Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler` contains the state change methods as a pragmatical interface.
-
-# Read on

@@ -11,6 +11,7 @@
     * [Sales Channels](concepts/commerce/catalog/sales-channels.md)
   * [Checkout](concepts/commerce/checkout-concept/README.md)
     * [Cart](concepts/commerce/checkout-concept/cart.md)
+    * [Payments](concepts/commerce/checkout-concept/payments.md)
     * [Orders](concepts/commerce/checkout-concept/orders.md)
   * [Content](concepts/commerce/core/README.md)
     * [Shopping Experiences \(CMS\)](concepts/commerce/core/shopping-experiences-cms.md)
