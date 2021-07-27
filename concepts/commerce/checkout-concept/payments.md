@@ -73,24 +73,6 @@ This step is only executed for asynchronous payments. It is triggered by the cal
 The actual implementation of payment integrations differ between providers. For that reason our specification does not include any guidelines about payment states or specific API calls to be made. Some integrations share data between the steps or provide and call upon web hooks after the payment process has been finished. These implementations go beyond our standards.
 {% endhint %}
 
-## Payment Handler Implementation
+## Next steps
 
-Payment handlers get executed after an order was placed. Per default this happens during the checkout.
-
-As illustrated in the diagram above, the payment handler is invoked to redirect to the foreign system handling the payment. This foreign system then notifies the platform and the successful payment is stored. This is achieved by a handler implementing `\Shopware\Core\Checkout\Payment\Cart\PaymentHandler\AsynchronousPaymentHandlerInterface`
-
-This interface is composed out of two methods:
-
-### `pay`
-
-Will be called after an order has been placed. You receive a `Shopware\Core\Checkout\Payment\Cart\PaymentTransactionStruct` which contains the transactionId, order details, the amount of the transaction, return URL, payment method information and language information. Please be aware, Shopware supports transactions and you must use the amount provided and not the total order amount. The pay method can return a RedirectResponse to redirect the customer to an external payment gateway. Note: The PaymentTransactionStruct contains a return URL. Pass this URL to the external payment gateway to ensure that the user will be redirected to this URL.
-
-### `finalize`
-
-Will only be called if you returned a RedirectResponse in your pay method and the customer has been redirected from the payment gateway back to Shopware. You might check here if the payment was successful or not and update the order transaction state accordingly.
-
-## Transaction Handler
-
-The order module provides a useful interface to simplify state changes on a transaction.
-
-`\Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler` contains the state change methods as a pragmatical interface.
+{% page-ref page="../../../guides/plugins/plugins/checkout/payment/add-payment-plugin" %}

@@ -8,6 +8,8 @@ Payments are an essential part of the checkout process. That's the reason why Sh
 
 The examples mentioned in this guide are built upon our [Plugin base guide](../../plugin-base-guide.md).
 
+If you want to understand the payment process in detail, head to our [Payment Concept](../../../../../concepts/commerce/checkout-concept/payments.md). 
+
 <!-- markdown-link-check-disable-next-line -->
 {% hint style="info" %}
 Here's a video on payment extensions and payment handlers from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
