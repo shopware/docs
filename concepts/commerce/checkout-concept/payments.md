@@ -35,7 +35,7 @@ Some payment integrations already create a payment reservation or authorization 
 This step can only be executed **after** an order has been placed. It starts the payment by determining the correct payment handler for the selected payment method.
 
 {% hint style="info" %}
-Whilst from a functional perspective steps 2 and 3 are separated, in our default storefront both are executed in the same request. 
+Whilst from a functional perspective steps 2 and 3 are separated, in our default storefront both are initiated in the same request. 
 {% endhint %}
 
 #### 3.1 Payment Handler
