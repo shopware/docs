@@ -8,7 +8,7 @@ The **Concepts** section does not contain code examples, instead it we focus on 
 
 {% page-ref page="catalog/" %}
 
-{% page-ref page="../../guides/plugins/plugins/checkout/" %}
+{% page-ref page="checkout-concept/" %}
 
 {% page-ref page="core/" %}
 
