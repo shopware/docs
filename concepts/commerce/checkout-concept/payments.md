@@ -3,7 +3,7 @@
 Shopware 6's payment system is an integral part of the checkout process. A payment is applied to a transaction of an order. As with any order change this is done through the state machine. At its core the payment system is composed from payment handlers, these extend Shopware to support multiple different payment types. A list of all payment handlers is stored in the database.
 
 {% hint style="info" %}
-If you want to skip to the implementation details go straight to our guide on [implementing a payment plugin](../../../guides/plugins/plugins/checkout/payment/add-payment-plugin).
+If you want to skip to the implementation details go straight to our guide on [implementing a payment plugin](../../../guides/plugins/plugins/checkout/payment/add-payment-plugin.md).
 {% endhint %}
 
 ## Payment Flow
@@ -73,4 +73,4 @@ The actual implementation of payment integrations differ between providers. For 
 
 ## Next steps
 
-{% page-ref page="../../../guides/plugins/plugins/checkout/payment/add-payment-plugin" %}
+{% page-ref page="../../../guides/plugins/plugins/checkout/payment/add-payment-plugin.md" %}
