@@ -201,9 +201,7 @@ class OverwritePriceCollector implements CartDataCollectorInterface, CartProcess
             $definition = new QuantityPriceDefinition(
                 $newPrice,
                 $product->getPrice()->getTaxRules(),
-                $context->getCurrency()->getDecimalPrecision(),
-                $product->getPrice()->getQuantity(),
-                true
+                $product->getPrice()->getQuantity()
             );
 
             // build CalculatedPrice over calculator class for overwritten price
