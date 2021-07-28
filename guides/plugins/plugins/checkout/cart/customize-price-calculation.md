@@ -59,7 +59,7 @@ class CustomProductPriceCalculator extends AbstractProductPriceCalculator
             $price->first()->setNet(50);
         }
 
-        $this->productPriceCalculator->calculate($products, $context);
+        $this->getDecorated()->calculate($products, $context);
     }
 }
 ```
