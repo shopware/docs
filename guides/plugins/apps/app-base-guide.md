@@ -135,6 +135,14 @@ $signature = hash_hmac('sha256', $queryString, $appSecret);
 
 ### Registration Response
 
+There may be valid cases where the app installation fails, because the domain is blocked, or some other prerequisite in that shop is not met, in which case you can return the message error as follows
+```javascript
+{
+  "error": "The shop URL is invalid"
+}
+```
+
+When the registration is successful.
 To verify that you are also in possession of the `app secret` you need to provide a proof that is signed with the `app secret` too. The proof consist of the sha256 hmac of the concatenated `shopId`, `shopUrl` and your app's name.
 
 Following code snippet can be used to calculate the proof:
@@ -443,6 +451,12 @@ The unique identifier of the shop, where the app was installed
 {% api-method-response-example-description %}
 
 {% endapi-method-response-example-description %}
+
+```text
+{
+  "error": "The shop URL is invalid"
+}
+```
 
 ```text
 {
