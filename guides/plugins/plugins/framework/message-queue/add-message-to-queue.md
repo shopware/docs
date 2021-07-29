@@ -45,7 +45,7 @@ class SmsNotification
 
 ## Send a message
 
-After we've created our notification, we will create a service that will send our `SmsNotifcation`. We will name this service `ExampleSender`. In this service we need to inject the `Symfony\Component\Messenger\MessageBusInterface`, that is needed to send the message through the desired bus, which is called `messenger.bus.shopware`.
+After we've created our notification, we will create a service that will send our `SmsNotification`. We will name this service `ExampleSender`. In this service we need to inject the `Symfony\Component\Messenger\MessageBusInterface`, that is needed to send the message through the desired bus, which is called `messenger.bus.shopware`.
 
 {% code title="<plugin root>/src/Service/ExampleSender.php" %}
 ```php
