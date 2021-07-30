@@ -32,13 +32,13 @@ Same as with all custom extensions of the Administration, the main entry point t
 
 Usually there's one question you have to ask yourself first: Will your new component be used as a `page` for your plugin's custom route, or is this going to be a component to be used by several other components, such as an element that prints 'Hello world' everywhere it's used? In order to properly structure your plugin's code and to be similar to the core structure, you have to answer this question first. If it's going to be used as page for a module, it should be placed here: `<plugin-root>/src/Resources/app/administration/src/module/<your module's name>/page/<your component name>`
 
-Otherwise, if it's going to be a general component to be used by other components, the following will be the proper path. For this example, this component scenario is used. `<plugin-root>/src/Resources/app/administration/app/src/component/<name of your plugin>/<name of your component>`
+Otherwise, if it's going to be a general component to be used by other components, the following will be the proper path. For this example, this component scenario is used. `<plugin-root>/src/Resources/app/administration/src/app/component/<name of your plugin>/<name of your component>`
 
 {% hint style="info" %}
 Using this path is **not** a hard requirement, but rather a recommendation. This way, third party developers having a glance at your code will get used to it real quick, because you stuck to Shopware 6's core conventions.
 {% endhint %}
 
-Since the latter example is being used, this is the path being created in the plugin now: `<plugin-root>/src/Resources/app/administration/app/src/component/custom-component/hello-world`
+Since the latter example is being used, this is the path being created in the plugin now: `<plugin-root>/src/Resources/app/administration/src/app/component/custom-component/hello-world`
 
 ### Import your custom component via main.js file
 
@@ -56,7 +56,7 @@ Head back to the `index.js` file, this one will be the most important for your c
 
 First you have to register your component using the `ComponentFactory`, which is available throughout our third party wrapper. This `Component` object provides a method `register`, which expects a name and a configuration for your component.
 
-{% code title="<plugin-root>/src/Resources/app/administration/app/src/component/custom-component/hello-world" %}
+{% code title="<plugin-root>/src/Resources/app/administration/src/app/component/custom-component/hello-world" %}
 ```javascript
 Shopware.Component.register('hello-world', {
     // Configuration here
@@ -66,7 +66,7 @@ Shopware.Component.register('hello-world', {
 
 A component's template is being defined by using the `template` property. For this short example, the template will be defined inline. An example for a bigger template will also be provided later on this page.
 
-{% code title="<plugin-root>/src/Resources/app/administration/app/src/component/custom-component/hello-world" %}
+{% code title="<plugin-root>/src/Resources/app/administration/src/app/component/custom-component/hello-world" %}
 ```javascript
 Shopware.Component.register('hello-world', {
     template: '<h2>Hello world!</h2>'
@@ -82,7 +82,7 @@ It's quite uncommon to have such a small template example and you don't want to 
 
 Now simply import this file in your component's JS file and use the variable for your property.
 
-{% code title="<plugin-root>/src/Resources/app/administration/app/src/component/custom-component/hello-world.html.twig" %}
+{% code title="<plugin-root>/src/Resources/app/administration/src/app/component/custom-component/hello-world.html.twig" %}
 ```javascript
 import template from 'hello-world.html.twig';
 
@@ -94,7 +94,7 @@ Shopware.Component.register('hello-world', {
 
 In the core code, you will find another syntax for the same result though:
 
-{% code title="<plugin-root>/src/Resources/app/administration/app/src/component/custom-component/hello-world.html.twig" %}
+{% code title="<plugin-root>/src/Resources/app/administration/src/app/component/custom-component/hello-world.html.twig" %}
 ```javascript
 import template from 'hello-world.html.twig';
 
