@@ -238,7 +238,6 @@
   * [Infrastructure](guides/hosting/infrastructure/README.md)
     * [Filesystem](guides/hosting/infrastructure/filesystem.md)
     * [Message Queue](guides/hosting/infrastructure/message-queue.md)
-    * [Reverse Http Cache](guides/hosting/infrastructure/reverse-http-cache.md)
     * [Elasticsearch](guides/hosting/infrastructure/elasticsearch.md)
 * [Integrations / API](guides/integrations-api/README.md)
   * [General Concepts](guides/integrations-api/general-concepts/README.md)
