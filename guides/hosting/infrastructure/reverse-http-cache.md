@@ -13,6 +13,8 @@ In this guide, we will use Varnish as example for an http cache.
 
 ### The example Setup with Varnish
 
+{% hint style="warning" %} This setup is compatible from Shopware version 6.4. {% endhint %}
+
 ![](../../../.gitbook/assets/reverse_proxy_setup.svg)
 
 At first we need to activate the reverse proxy support in Shopware. To enable it we need to create a new file in `config/packages/storefront.yaml`
@@ -43,7 +45,7 @@ vcl 4.0;
 
 import std;
 
-# You should specificy here all your app nodes and use round robin to select a backend
+# You should specify here all your app nodes and use round robin to select a backend
 backend default {
     .host = "<app-host>";
     .port = "80";
