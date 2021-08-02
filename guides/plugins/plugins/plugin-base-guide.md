@@ -94,7 +94,7 @@ Here's an example `composer.json` for this guide, which will do the trick:
         }
     ],
     "require": {
-        "shopware/core": "6.3.*"
+        "shopware/core": "6.4.*"
     },
     "extra": {
         "shopware-plugin-class": "Swag\\BasicExample\\SwagBasicExample",
