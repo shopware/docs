@@ -274,3 +274,51 @@ class ExampleTranslationCollection extends EntityCollection
 ```
 {% endcode %}
 
+### Main Entity Class
+
+The main entity class, that is the class with the field(s) we are going to translate, must define:
+* a TranslatedField for the “name” field
+* a TranslationsAssociationField, with a reference to the ExampleTranslationDefinition
+
+{% code title="/src/Core/Content/Example/ExampleDefinition.php" %}
+```php
+<?php declare(strict_types=1);
+
+namespace Swag\BasicExample\Core\Content\Example;
+
+use ...
+
+class ExampleDefinition extends EntityDefinition
+{
+    public const ENTITY_NAME = 'example';
+
+    public function getEntityName(): string
+    {
+        return self::ENTITY_NAME;
+    }
+
+    public function getCollectionClass(): string
+    {
+        return ExampleCollection::class;
+    }
+
+    public function getEntityClass(): string
+    {
+        return ExampleEntity::class;
+    }
+
+    protected function defineFields(): FieldCollection
+    {
+        return new FieldCollection([
+            (new IdField('id', 'id'))->addFlags(new PrimaryKey(), new ApiAware(), new Required()),
+            (new StringField('not_translated_field', 'notTranslatedField'))->addFlags(new ApiAware()),
+            (new TranslatedField('name'))->addFlags(new ApiAware(), new Required()),
+            (new TranslationsAssociationField(
+                ExampleTranslationDefinition::class,
+                'swag_example_id'
+            ))->addFlags(new ApiAware(), new Required())
+        ]);
+    }
+}
+
+{% endcode %}
