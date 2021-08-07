@@ -132,6 +132,22 @@ This is an example of what your `main.js` should look like in order to load your
 ```javascript
 import './page/sw-product-detail';
 ```
+{% hint style="info" %}
+Don't forget to rebuild the administration after making changes to your `main.js`.
+{% tabs %}
+{% tab title="Development template" %}
+```bash
+./psh.phar administration:build
+```
+{% endtab %}
+
+{% tab title="Production template" %}
+```bash
+./bin/build-administration.sh
+```
+{% endtab %}
+{% endtabs %}
+{% endhint %}
 
 ## Registering the tab's new route
 
