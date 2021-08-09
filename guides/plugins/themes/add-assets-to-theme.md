@@ -63,7 +63,7 @@ In SCSS you can link to the asset like the following:
 
 ```css
 body {
-    background-image: url("bundles/swagbasicexampletheme/your-image.png");
+    background-image: url("/bundles/swagbasicexampletheme/your-image.png");
 }
 ```
 
