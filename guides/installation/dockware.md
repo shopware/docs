@@ -137,7 +137,7 @@ Open the "src" folder with your preferred IDE and wait until finished loading. T
 That's it, you're done and ready to develop your own plugins and projects.
 
 {% hint style="info" %}
-Default credentials for dockware can be found at [https://dockware.io/docs\#default-credentials](https://dockware.io/docs#default-credentials)
+Default credentials for dockware can be found at [https://docs.dockware.io/use-dockware/default-credentials](https://docs.dockware.io/use-dockware/default-credentials)
 {% endhint %}
 
 ## Next steps
