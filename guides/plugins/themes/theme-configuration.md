@@ -163,7 +163,7 @@ The following parameters can be defined for a config field item:
 | Name | Meaning |
 | :--- | :--- |
 | `label` | Array of translations with locale code as key |
-| `type` | Type of the config. Possible values: color, text, number, fontFamily, media, checkbox and switch |
+| `type` | Type of the config. Possible values: color, text, number, fontFamily, media, checkbox, switch and url |
 | `editable` | If set to false, the config option will not be displayed \(e.g. in the administration\) |
 | `tab` | Name of a tab to organize the config options |
 | `block` | Name of a block to organize the config options |
