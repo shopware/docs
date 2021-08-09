@@ -234,11 +234,11 @@ use Shopware\Core\Framework\Adapter\Cache\CacheInvalidator;
 
 class CacheInvalidationSubscriber implements EventSubscriberInterface
 {
-    private CacheInvalidator $logger;
+    private CacheInvalidator $cacheInvalidator;
 
-    public function __construct(CacheInvalidator $logger) 
+    public function __construct(CacheInvalidator $cacheInvalidator) 
     {
-        $this->logger = $logger;
+        $this->cacheInvalidator = $cacheInvalidator;
     }
     
     public static function getSubscribedEvents()
@@ -261,7 +261,7 @@ class CacheInvalidationSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $this->logger->invalidate([
+        $this->cacheInvalidator->invalidate([
             CachedExampleRoute::buildName()  
         ]);
     }
