@@ -133,7 +133,7 @@ This is an example of what your `main.js` should look like in order to load your
 import './page/sw-product-detail';
 ```
 {% hint style="info" %}
-Don't forget to rebuild the administration after making changes to your `main.js`.
+Don't forget to rebuild the administration after applying changes to your `main.js`.
 {% tabs %}
 {% tab title="Development template" %}
 ```bash
@@ -238,4 +238,3 @@ Here's what this new template could look like:
 {% endcode %}
 
 It simply creates a new card with a title, which only contains a 'Hello world!' string. And that's it - your tab should now be fully functional.
-
