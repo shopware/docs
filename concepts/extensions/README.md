@@ -6,7 +6,7 @@ In order to provide users \(i.e. developers\) with a clear abstraction, Shopware
 
 ![](../../.gitbook/assets/app-extension-model.png)
 
-Apps are not executed within the process of the Shopware core, but are notified about events via Webhooks which they can register. They can modify and interact with Shopware resources through the [Admin REST API](https://shopware.stoplight.io/docs/admin-api).
+Starting with Shopware 6.4.0.0, we introduced a new way to extend Shopware using the newly created app system. Apps are not executed within the process of the Shopware core, but are notified about events via Webhooks which they can register. They can modify and interact with Shopware resources through the [Admin REST API](https://shopware.stoplight.io/docs/admin-api).
 
 [Learn more about apps](apps-concept.md)
 
