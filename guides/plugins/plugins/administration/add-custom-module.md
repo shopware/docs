@@ -169,7 +169,7 @@ Shopware.Module.register('swag-plugin', {
 ```
 {% endcode %}
 
-The `group` property targets to the group section, the item will be displayed in 'shop', 'system' and 'plugin' sections. The `to` gets the link path of the route. The `icon` contains the icon name which will be display.
+The `group` property targets to the group section, the item will be displayed in 'shop', 'system' and 'plugins' sections. The `to` gets the link path of the route. The `icon` contains the icon name which will be display.
 
 ### Add custom settings card
 
