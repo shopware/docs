@@ -9,10 +9,9 @@ The variety of Shopware's extension interfaces can be overwhelming, so let's sta
 | Execute Webhooks | ✅ | ❌ | ✅ | Apps main functionality is to call Webhooks, but Plugins can be implemented to do that as well. |
 | Modify database structure, add custom entities | ✅ | ❌ | ❌ |  |
 | Integrate payment providers | ✅ | ❌ | ✅ |  |
-| Publish in App Store | ❌ | ❌ | ✅ |  |
-| Publish in Plugin Store | ✅ | ✅ | ❌ |  |
+| Publish in the Shopware Store | ✅ | ✅ | ✅ |  |
 | Install in Shopware 6 Cloud Shops | ❌ | ❌ | ✅ |  |
-| Install in Shopware 6 on-Premise Shops | ✅ | ✅ | ✅ |  |
+| Install in Shopware 6 on-Premise Shops | ✅ | ✅ | ✅ | Apps can be installed and used since Shopware 6.4.0.0 |
 | Add custom logic/routes/commands | ✅ | ❌ | ✅ | Apps extract functionalities/logic into separate services, so technically they can add custom logic |
 | Control order of style/template inheritance | ❌ | ✅ | ✅ |  |
 

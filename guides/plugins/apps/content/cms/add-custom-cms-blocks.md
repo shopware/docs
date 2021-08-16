@@ -1,7 +1,7 @@
 # Add custom CMS blocks
 
 {% hint style="info" %}
-This functionality is available starting with Shopware 6.4.3.0.
+This functionality is available starting with Shopware 6.4.4.0.
 {% endhint %}
 
 Didn't get in touch with Shopware's Shopping Experiences \(CMS\) yet? Check out the concept behind it first:
@@ -157,7 +157,7 @@ Let's have a look at how to configure a CMS block from your app's `cms.xml`:
 
 A simple preview template for `my-first-block` might look like this:
 
-{% code title="<app root>/Resources/cms/my-first-block/preview.html" %}
+{% code title="<app root>/Resources/cms/blocks/my-first-block/preview.html" %}
 ```html
 <div id="swag-example--my-first-block">
     <slot name="left"></slot>
