@@ -241,6 +241,65 @@ SQL;
 }
 ```
 
+#### Load extension with your product entity
+
+At this point you'd expect that `exampleExtension` is loaded by default by calling product entity. But it does not do that, for the reason DAL is to be made as fast and memory-saving as possible. One has to make a conscious decision to load data only where it is really needed.  
+
+In this example `exampleExtension` data should be available on product detail page. For this purpose, we are looking for the right event, where we can adjust the criteria object to fetch data from product repository. In our case, `Shopware\Storefront\Page\Product\ProductPageCriteriaEvent` is the right candidate. If you are not familiar with a subscriber, have a look at our [Listening to events](../../plugin-fundamentals/listening-to-events.md) guide.
+
+We have to create a subscriber class, to load all related data to the product you've found. You can do so by adding associations to the criteria object.
+
+{% code title="<plugin root>/src/Subscriber/ProductPageCriteriaSubscriber" %}
+```php
+<?php declare(strict_types=1);
+
+namespace Swag\BasicExample\Subscriber;
+
+use Shopware\Storefront\Page\Product\ProductPageCriteriaEvent;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+
+class ProductPageCriteriaSubscriber implements EventSubscriberInterface
+{
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            ProductPageCriteriaEvent::class => 'onProductCriteriaLoaded',
+        ];
+    }
+
+    public function onProductCriteriaLoaded(ProductPageCriteriaEvent $event): void
+    {
+        $event->getCriteria()->addAssociation('exampleExtension');
+    }
+}
+```
+Of course, registering your subscriber via services.xml
+
+{% code title="<plugin root>/src/Resources/config/services.xml" %}
+```markup
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="Swag\BasicExample\Extension\Content\Product\CustomExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <service id="Swag\BasicExample\Extension\Content\Product\ExampleExtensionDefinition">
+            <tag name="shopware.entity.definition" entity="swag_example_extension" />
+        </service>
+        
+        <service id="Swag\BasicExample\Subscriber\ProductPageCriteriaSubscriber">
+            <tag name="kernel.event_subscriber"/>
+        </service>
+    </services>
+</container>
+```
+{% endcode %}
+
 #### Writing into the new field
 
 As already mentioned, your new association is automatically being loaded every time a product entity is loaded. This section here will show you how to write to the new field instead.
