@@ -60,7 +60,7 @@ Translation with placeholders:
 
 ```text
 <div class="product-detail-headline">
-    {{ 'soldProducts' | trans({'%count%': 3, '%country%': 'Germany') }}
+    {{ 'soldProducts' | trans({'%count%': 3, '%country%': 'Germany'}) }}
 </div>
 ```
 
