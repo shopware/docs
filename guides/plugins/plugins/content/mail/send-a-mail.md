@@ -1,10 +1,14 @@
-# Programmically sending Emails
+{% hint style="info" %}
+This guide only applies to Shopware versions greater than 6.4.0.
+{% endhint %}
 
-In this guide you'll learn how to send Emails programmically using the `Mailservice` provided in Shopware v6.4.x.
+# Send a mail
+
+In this guide you'll learn how to send emails programmatically using the `MailService` provided in Shopware v6.4.x.
 
 ## Prerequisites
 
-In order to add the MailService for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md) and [how to add a custom controller](./add-custom-controller)
+In order to add the `MailService` for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md) and [how to add a custom controller](./add-custom-controller)
 
 ## Registering the service
 
@@ -12,7 +16,7 @@ Before we're working with the `MailSerivce` we need to register our controller t
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
 
-```markup
+```php
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -34,12 +38,11 @@ Before we're working with the `MailSerivce` we need to register our controller t
 
 {% endcode %}
 
-We're injecting the `MailService` as an argument to the controller. This is the recommend way to programmatically send Emails. The service throws events and provides the ability to use templates instead
-of basic strings for the content.
+We're injecting the `MailService` as an argument to the controller. This is the recommend way to programmatically send emails. The service throws events and provides the ability to use templates instead of basic strings for the content.
 
-## Preparing & sending an Email
+## Preparing & sending an email
 
-Now we have the `MailService` available in our controller we can start preparing the Email to be send out. Please be aware that the `send()` method of the service is using a data validator which requires the following properties to be given in the `$data` array which we provide as the first argument:
+Now we have the `MailService` available in our controller we can start preparing the email to be sent out. Please be aware that the `send()` method of the service is using a data validator which requires the following properties to be given in the `$data` array which we provide as the first argument:
 
 -   `recipients`
 -   `salesChannelId`
@@ -48,9 +51,9 @@ Now we have the `MailService` available in our controller we can start preparing
 -   `subject`
 -   `senderName`
 
-If one of these property is getting omitted we're running in a `ConstraintViolationException`. Based on these properties we can construct the necessary `$data` array for the method as the following:
+If one of these property is getting omitted we're running in a `ConstraintViolationException`. Based on these properties we can construct the necessary `$data` array for the method as follows:
 
-```markup
+```php
 public function send(SalesChannelContext $salesChannelContext): ?Response
 {
     $salesChannelId = $salesChannelContext->getSalesChannelId();
@@ -72,21 +75,22 @@ public function send(SalesChannelContext $salesChannelContext): ?Response
 }
 ```
 
-Please note that the controller action redirects to the home page after the Email was sent out successfully.
+Please note that the controller action redirects to the home page after the email was sent out successfully.
 
-### Customize the Email subject and sender name using twig variables
+### Customize the email subject and sender name using twig variables
 
-The subject and the sender name will be parsed using a string template render which allows us to customize the these properties using Twig variables which we can provide as the third argument of the `send()` method.
+The subject and the sender name will be parsed using a string template renderer. This allows us to customize these properties using Twig variables. These can be provided as the third argument of the `send()` method.
 
-```markup
+```php
  $templateData = [
     'exampleVariable' => 'Example customer name'
 ];
+
 $data = [
     'salesChannelId' => $salesChannelId,
     'recipients' => ['example@test.com' => 'readable name'],
     'subject' => 'Hey {{ exampleVariable }}',
-    'senderName' => 'Test Email from sales channel {{ salesChannel.name }}',
+    'senderName' => 'Test email from sales channel {{ salesChannel.name }}',
     'contentPlain' => $content,
     'contentHtml' => $content
 ];
@@ -94,11 +98,11 @@ $data = [
 $this->mailService->send($data, $context, $templateData);
 ```
 
-### Customize the Email content using a Twig template
+### Customize the email content using a Twig template
 
-We can take the customization of the Email one step further when we're using the `$this->render()` method to render a Twig template and using it as the content for the Email.
+We can take the customization of the email one step further when we're using the `$this->render()` method to render a Twig template and using it as the content for the email.
 
-```markup
+```php
 $templateData = [
     'exampleVariable' => 'Example customer name'
 ];
@@ -110,7 +114,7 @@ $data = [
     'salesChannelId' => $salesChannelId,
     'recipients' => ['example@test.com' => 'readable name'],
     'subject' => 'Hey {{ exampleVariable }}',
-    'senderName' => 'Test Email from sales channel {{ salesChannel.name }}',
+    'senderName' => 'Test email from sales channel {{ salesChannel.name }}',
     'contentPlain' => $plainContent,
     'contentHtml' => $content
 ];

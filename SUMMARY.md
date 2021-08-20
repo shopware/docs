@@ -120,6 +120,7 @@
         * [Add data to CMS element](guides/plugins/plugins/content/cms/add-data-to-cms-elements.md)
       * [Mail](guides/plugins/plugins/content/mail/README.md)
         * [Add data to mails](guides/plugins/plugins/content/mail/add-data-to-mails.md)
+        * [Send a mail](guide/plugins/plugins/content/mail/send-a-mail.md)
         * [Add mail templates](guides/plugins/plugins/content/mail/add-mail-template.md)
       * [Media](guides/plugins/plugins/content/media/README.md)
         * [Add custom media extension](guides/plugins/plugins/content/media/add-custom-file-extension.md)
@@ -329,4 +330,3 @@
     * [Writing](resources/guidelines/documentation/writing.md)
   * [Testing](resources/guidelines/testing/README.md)
     * [Best practises on writing end-to-end tests](resources/guidelines/testing/e2e-best-practises.md)
-
