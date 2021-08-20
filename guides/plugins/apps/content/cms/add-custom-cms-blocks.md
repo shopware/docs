@@ -12,6 +12,10 @@ If you're not yet familiar with custom CMS blocks you might want to head over to
 
 {% page-ref page="../../../plugins/content/cms/add-cms-block.md" %}
 
+## Prerequisites
+
+This guide is based on our [App Base Guide](../../app-base-guide.md) and assumes you have already set up an app.
+
 ## Overview
 
 Adding custom CMS blocks from an app works a bit differently than [adding them from a plugin](../../../plugins/content/cms/add-cms-block.md).
@@ -20,36 +24,38 @@ The basic directory structure looks as follows:
 
 ```text
 ├── Resources
+│   ├── app
+│   │   └── storefront
+│   │       └── src
+│   │           └── scss
+│   │               └── base.scss
 │   ├── cms
 │   │   └── blocks
-│   │       ├── my-first-block
+│   │       ├── swag-image-text-reversed
 │   │       │   ├── preview.html
 │   │       │   └── styles.css
-│   │       └── my-second-block
-│   │           ├── preview.html
-│   │           └── styles.css
 │   ├── views
 │   │   └── storefront
-│   │       └── cms
-│   │           └── block
-│   │               ├── my-first-block.html.twig
-│   │               └── my-second-block.html.twig
+│   │       └── block
+│   │           └── cms-block-swag-image-text-reversed-component.html.twig
 │   └── cms.xml
 └── manifest.xml
 ```
 
 Each CMS block defined within your `cms.xml` must have a directory matching the block's name in `Resources/cms/blocks/`.
-In those directories you shape your blocks by supplying a `preview.html` containing the template used for displaying a preview.
-Styling the preview is possible from the `styles.css`.
+In those directories you shape your blocks for the CMS module in the Administration by supplying a `preview.html` containing the template used for displaying a preview.
+Styling the preview in the sidebar and the component in the CMS editor is possible from the `styles.css`.
 
 {% hint type=info %}
 Due to technical limitations it's not possible to use templating engines \(like Twig\) or preprocessors \(like Sass\) for rendering and styling the preview.
 {% endhint %}
 
+The Storefront representations of your custom blocks reside in the `Resources/views/storefront/block/` directory.
+
 ## Defining blocks
 
-As already mentioned above and similarly to an app's `manifest.xml` CMS blocks also require some definition which is done in a `cms.xml`.
-In our example we will define two custom CMS blocks:
+As already mentioned above and similar to an app's `manifest.xml`, CMS blocks also require some definition done in the `cms.xml`.
+In our example we will define a custom CMS block that will extend the default block `image-text` and reverse its elements:
 
 {% code title="<app root>/Resources/cms.xml" %}
 ```xml
@@ -58,78 +64,42 @@ In our example we will define two custom CMS blocks:
     <blocks>
         <block>
             <!-- A unique technical name for your block. We recommend to use a shorthand prefix for your company, e.g. "Swag" for shopware AG. -->
-            <name>my-first-block</name>
+            <name>swag-image-text-reversed</name>
+
             <!-- The category your block is associated with. See the XSD for available categories. -->
             <category>text-image</category>
 
             <!-- Your block's label which will be shown in the CMS module in the Administration. -->
-            <label>First block from app</label>
-            <!-- The label is translatable by providing ISO codes. -->
-            <label lang="de-DE">Erster Block einer App</label>
+            <label>Two columns, text &amp; boxed image</label>
+            <label lang="de-DE">Zwei Spalten, Text &amp; gerahmtes Bild</label>
 
             <!-- The slots that your block holds which again hold CMS elements. -->
             <slots>
                 <!-- A slot requires a unique name and a type which refers to the CMS element it shows. Right now you can only use the CMS elements provided by Shopware but at a later point you will be able to add custom elements too. -->
-                <slot name="left" type="manufacturer-logo">
+                <slot name="left" type="text">
                     <!-- The slot requires some basic configuration. The following config-value elements highly depend on which element the slot holds. -->
                     <config>
-                        <!-- The following config-value will be interpreted as "displayMode: { source: "static", value: "cover"}" in the JavaScript. -->
-                        <config-value name="display-mode" source="static" value="cover"/>
+                        <!-- The following config-value will be interpreted as 'verticalAlign: { source: "static", value: "top"}' in the JavaScript. -->
+                        <config-value name="vertical-align" source="static" value="top"/>
                     </config>
                 </slot>
-                <slot name="middle" type="image-gallery">
+
+                <slot name="right" type="image">
                     <config>
                         <config-value name="display-mode" source="static" value="auto"/>
-                        <config-value name="min-height" source="static" value="300px"/>
-                    </config>
-                </slot>
-                <slot name="right" type="buy-box">
-                    <config>
-                        <config-value name="display-mode" source="static" value="contain"/>
+                        <config-value name="vertical-align" source="static" value="top"/>
                     </config>
                 </slot>
             </slots>
 
             <!-- Each block comes with a default configuration which is pre-filled and customizable when adding a block to a section in the CMS module in the Administration. -->
             <default-config>
-                <margin-bottom>20px</margin-bottom>
                 <margin-top>20px</margin-top>
-                <margin-left>20px</margin-left>
                 <margin-right>20px</margin-right>
+                <margin-bottom>20px</margin-bottom>
+                <margin-left>20px</margin-left>
                 <!-- The sizing mode of your block. Allowed values are "boxed" or "full_width". -->
                 <sizing-mode>boxed</sizing-mode>
-                <background-color>#000</background-color>
-            </default-config>
-        </block>
-
-        <block>
-            <name>my-second-block</name>
-            <category>text-image</category>
-
-            <label>Second block from app</label>
-            <label lang="de-DE">Zweiter Block einer App</label>
-
-            <slots>
-                <slot name="left" type="form">
-                    <config>
-                        <config-value name="display-mode" source="static" value="cover"/>
-                    </config>
-                </slot>
-                <slot name="right" type="image">
-                    <config>
-                        <config-value name="display-mode" source="static" value="auto"/>
-                        <config-value name="background-color" source="static" value="red"/>
-                    </config>
-                </slot>
-            </slots>
-
-            <default-config>
-                <margin-bottom>20px</margin-bottom>
-                <margin-top>20px</margin-top>
-                <margin-left>20px</margin-left>
-                <margin-right>20px</margin-right>
-                <sizing-mode>boxed</sizing-mode>
-                <background-color>#000</background-color>
             </default-config>
         </block>
     </blocks>
@@ -137,13 +107,9 @@ In our example we will define two custom CMS blocks:
 ```
 {% endcode %}
 
-The full CMS reference is available here:
-
-{% page-ref page="../../../../../resources/references/app-reference/cms-reference.md" %}
-
 Let's have a look at how to configure a CMS block from your app's `cms.xml`:
 
-`<name>` : A **unique** technical name for your block. This name is also used to discover the block's `preview.html` and `styles.css` in the `Resources/cms/blocks/` directory.
+`<name>` : A **unique** technical name for your block. This name is used to discover the block's `preview.html` and `styles.css` in `Resources/cms/blocks/` as well as the Storefront representation in `Resources/views/storefront/block/`.
 
 `<category>` : Blocks are divided into categories. Available categories can be found in the [plugin guide](../../../plugins/content/cms/add-cms-block.md#custom-block-in-the-administration).
 
@@ -153,17 +119,45 @@ Let's have a look at how to configure a CMS block from your app's `cms.xml`:
 
 `<slots>` : Each block holds slots that configure which element they show.
 
+The full CMS reference is available here:
+
+{% page-ref page="../../../../../resources/references/app-reference/cms-reference.md" %}
+
 ### Block preview
 
-A simple preview template for `my-first-block` might look like this:
+The preview template for `swag-image-text-reversed` looks like this:
 
-{% code title="<app root>/Resources/cms/blocks/my-first-block/preview.html" %}
+{% code title="<app root>/Resources/cms/blocks/swag-image-text-reversed/preview.html" %}
 ```html
-<div id="swag-example--my-first-block">
-    <slot name="left"></slot>
-    <slot name="middle"></slot>
-    <slot name="right"></slot>
+<div class="sw-cms-preview-swag-image-text-reversed">
+    <div>
+        <h2>Lorem ipsum dolor</h2>
+        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</p>
+    </div>
+
+    <img :src="'/administration/static/img/cms/preview_mountain_small.jpg' | asset">
 </div>
+```
+{% endcode %}
+
+The styling of the preview looks as follows:
+{% code title="<app root>/Resources/cms/blocks/swag-image-text-reversed/styles.css" %}
+```css
+/* Styling of your block preview in the CMS sidebar */
+.sw-cms-preview-swag-image-text-reversed {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 20px;
+    padding: 15px;
+}
+
+/* Styling of your block in the CMS editor */
+/* Pattern: sw-cms-block-{$block}-component */
+.sw-cms-block-swag-image-text-reversed-component {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+    grid-gap: 40px;
+}
 ```
 {% endcode %}
 
@@ -173,18 +167,20 @@ Each slot has a **unique** `name` and a `type` that refers to which element it s
 All available elements can be found in [src/Administration/Resources/app/administration/src/module/sw-cms/elements](https://github.com/shopware/platform/tree/trunk/src/Administration/Resources/app/administration/src/module/sw-cms/elements).
 At a later point you will also be able to define custom elements but for now you can use the elements shipped by Shopware.
 
-The `config` of a slot is very dynamic as it highly depends on which `type` you have chosen.
+The `config` of a slot is very dynamic as it highly depends on which `type` you have chosen. 
+A good starting point to find out which elements require which configuration is each element's `index.js` in the corresponding directory in [src/Administration/Resources/app/administration/src/module/sw-cms/blocks](https://github.com/shopware/platform/tree/trunk/src/Administration/Resources/app/administration/src/module/sw-cms/blocks)
 
 ## Registering blocks
 
-Unlike adding blocks from a plugin, blocks provided from an app will be automatically registered during runtime - so all you have to take care of is to properly define and configure them.
+Unlike adding blocks from a plugin, blocks provided from an app will be automatically registered during runtime - so all you need to take care of is to properly define and configure them.
 
 ## Storefront representation
 
-Providing the storefront representation of your blocks works just the same as in the [plugin example](../../../plugins/content/cms/add-cms-block.md#storefront-representation).
-In `<app root>/Resources/views/storefront/block/` a Twig template file matching your block's technical name is expected, e.g.
+Providing the storefront representation of your blocks works very similarly as in the [plugin example](../../../plugins/content/cms/add-cms-block.md#storefront-representation).
+In `Resources/views/storefront/block/` a Twig template matching the pattern `cms-block-{$block}-component.html.twig` is expected.
 
-{% code title="<app root>/Resources/views/storefront/block/my-first-block.html.twig" %}
+So in our example, it's sufficient to simply extend the existing `image-text` element:
+{% code title="<app root>/Resources/views/storefront/block/cms-block-swag-image-text-reversed-component.html.twig" %}
 ```text
 {% sw_extends '@Storefront/storefront/block/cms-block-image-text.html.twig' %}
 ```
