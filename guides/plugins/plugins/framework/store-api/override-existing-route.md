@@ -96,7 +96,7 @@ class ExampleRouteDecorator extends AbstractExampleRoute
 ```
 {% endcode %}
 
-As you can see, our decorated route has to extend from the `AbstractExampleService` and the constructor has to accept an instance of `AbstractExampleService`. Furthermore, the `getDecorated()` function has to return the decorated route passed into the constructor. Now we can add some additional data in the `load` method, which we can retrieve with the criteria.
+As you can see, our decorated route has to extend from the `AbstractExampleRoute` and the constructor has to accept an instance of `AbstractExampleRoute`. Furthermore, the `getDecorated()` function has to return the decorated route passed into the constructor. Now we can add some additional data in the `load` method, which we can retrieve with the criteria.
 
 ## Registering route
 
