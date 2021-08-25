@@ -47,7 +47,7 @@ There is a console command to start a worker that will receive incoming messages
 
 {% code title="" %}
 ```bash
-bin\console messenger:consume-messages default
+bin/console messenger:consume default
 ```
 {% endcode %}
 
@@ -81,13 +81,13 @@ The recommended way to consume messages is through the cli command. You can conf
 
 {% code title="" %}
 ```bash
-bin/console messenger:consume-messages default --time-limit=60
+bin/console messenger:consume default --time-limit=60
 ```
 {% endcode %}
 
 {% code title="" %}
 ```bash
-bin/console messenger:consume-messages default --memory-limit=128M
+bin/console messenger:consume default --memory-limit=128M
 ```
 {% endcode %}
 
@@ -95,7 +95,7 @@ For more information about the command and its configuration use the `-h` option
 
 {% code title="" %}
 ```bash
-bin/console messenger:consume-messages -h
+bin/console messenger:consume -h
 ```
 {% endcode %}
 
