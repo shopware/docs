@@ -182,7 +182,7 @@ Shopware.Component.register('sw-cms-preview-image-text-reversed', {
 ```
 {% endcode %}
 
-The preview element doesn't have to deal with mobile viewports or anything alike, it's just a simplified preview of your block. Thus, create a template containing a text and an image and use the styles to place them next to each other. Create a `sw-cms-preview-image-text-reversed.html` file in your `preview` directory with the following content.
+The preview element doesn't have to deal with mobile viewports or anything alike, it's just a simplified preview of your block. Thus, create a template containing a text and an image and use the styles to place them next to each other. Create a `sw-cms-preview-image-text-reversed.html.twig` file in your `preview` directory with the following content.
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/image-text-reversed/preview/sw-cms-preview-image-text-reversed.html.twig" %}
 ```text
