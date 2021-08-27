@@ -73,10 +73,12 @@ This file consists of basic information, that Shopware needs to know about your 
 * The author
 * The used license
 * The current plugin version
+* The required dependencies
 * ... and a few more
 
 This file can also be read by [Composer](https://getcomposer.org/), but that's not part of this guide.  
-Another information you'll have to add in there: The `type` has to be `shopware-platform-plugin`, so Shopware can safely recognize your plugin as such.
+Further information you'll have to add in there: The `type` has to be `shopware-platform-plugin`, so Shopware can safely recognize your plugin as such
+and the `require` field must include at least `shopware/core`, to check for compatibility.
 
 Here's an example `composer.json` for this guide, which will do the trick:
 
