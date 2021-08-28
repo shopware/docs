@@ -16,7 +16,7 @@ The first step is creating a new directory `<plugin root>/src/Resources/app/admi
 This is necessary, because Shopware 6 is automatically requiring an `index.js` file for each module.
 {% endhint %}
 
-Your custom module directory isn't known to Shopware 6 yet. As mentioned earlier, the only entry point of your plugin is the `main.js` file. That's the file you need to change now, so that it loads your new module. For this, simply add the following line to your `main.js` file:
+Your custom module directory isn't known to Shopware 6 yet. The entry point of your plugin is the `main.js` file. That's the file you need to change now, so that it loads your new module. For this, simply add the following line to your `main.js` file:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/main.js" %}
 ```javascript
@@ -147,6 +147,32 @@ This should be your snippet file now:
     }
 }
 ```
+
+## Build the administration
+    
+As mentioned above, Shopware 6 is looking for a `main.js` file in your plugin. Its contents get minified into a new file named after your plugin and will be moved to the `public` directory of Shopware 6 root directory. Given this plugin would be named "AdministrationNewModule", the bundled and minified javascript code for this example would be located under `<plugin root>/src/Resources/public/administration/js/administration-new-module.js`, once you run the command following command in your shopware root directory:
+
+{% tabs %}
+{% tab title="Development template" %}
+```bash
+./psh.phar administration:build
+```
+{% endtab %}
+
+{% tab title="Production template" %}
+```bash
+./bin/build-administration.sh
+```
+{% endtab %}
+{% endtabs %}
+
+{% hint style="info" %}
+Your plugin has to be activated for this to work.
+{% endhint %}
+
+Make sure to also include that file when publishing your plugin! A copy of this file will then be put into the directory `<shopware root>/public/bundles/administration/administrationnewmodule/administration/js/administration-new-module.js`.
+
+Your minified javascript file will now be loaded in production environments.
 
 ## Special: Case Settings
 

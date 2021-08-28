@@ -62,13 +62,13 @@ Shopware.Service('cmsService').registerCmsBlock();
 
 The method `registerCmsBlock` takes a configuration object, containing the following necessary data:
 
-`name` : The technical name of your block. Will be used for the template loading later on.
+`name` : The technical name of your block. Will be used for the template and component loading later on.
 
 `label` : A name to be shown for your block in the User Interface.
 
 `category` : The category this block belongs to.
 
-`component` : The Vue component to be used when rendering your actual block in the administration.
+`component` : The Vue component to be used when rendering your actual block in the administration sidebar.
 
 `previewComponent` : The Vue component to be used in the "list of available blocks". Just shows a tiny preview of what your block would look like if it was used.
 
@@ -81,7 +81,7 @@ Go ahead and create this configuration object yourself. Here's what it should lo
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/image-text-reversed/index.js" %}
 ```javascript
 Shopware.Service('cmsService').registerCmsBlock({
-    name: 'image-text-reversed',
+    name: 'my-image-text-reversed',
     category: 'text-image',
     label: 'Image next to text',
     component: 'sw-cms-block-image-text-reversed',
@@ -105,16 +105,18 @@ The `component` and `previewComponent` do not exist yet, but they are created la
 
 ### Rendering the block
 
-You've set the `component` to be used when rendering your block to be 'sw-cms-block-image-text-reversed'. This component does not exist yet, so let's create this one real quick. As already mentioned, creating a component is not explained by this guide in detail, so you might want to head over to our guide about [Creating a component](../../administration/add-custom-component.md) first.
+You've set the `name` of the component to be used when rendering your block to be 'sw-cms-block-my-image-text-reversed'. This component does not exist yet, so let's create this one real quick. As already mentioned, creating a component is not explained by this guide in detail, so you might want to head over to our guide about [Creating a component](../../administration/add-custom-component.md) first.
 
-First of all, create a new directory `component` in your block's directory. In there, create a new `index.js` file and register your custom component `sw-cms-block-image-text-reversed`.
+First of all, create a new directory `component` in your block's directory. In there, create a new `index.js` file and register your custom component `sw-cms-block-my-image-text-reversed`.
+
+Keep in mind: The component name consists of `sw-cms-block-` and the `name` property mentioned in your `index.js`, while registering your cms block component via `registerCmsBlock()`!
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/image-text-reversed/component/index.js" %}
 ```javascript
 import template from './sw-cms-block-image-text-reversed.html.twig';
 import './sw-cms-block-image-text-reversed.scss';
 
-Shopware.Component.register('sw-cms-block-image-text-reversed', {
+Shopware.Component.register('sw-cms-block-my-image-text-reversed', {
     template
 });
 ```
@@ -154,11 +156,6 @@ In there, use a grid to display your elements next to each other. You've set a C
 That's it for this component! Make sure to import your `component` directory in your `index.js` file, so your new component actually gets loaded.
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/image-text-reversed/index.js" %}
-```
-
-```
-{% endcode %}
-
 ```javascript
 import './component';
 
@@ -166,6 +163,7 @@ Shopware.Service('cmsService').registerCmsBlock({
     ...
 });
 ```
+{% endcode %}
 
 Your block can now be rendered in the designer. Let's continue with the preview component.
 
@@ -184,7 +182,7 @@ Shopware.Component.register('sw-cms-preview-image-text-reversed', {
 ```
 {% endcode %}
 
-The preview element doesn't have to deal with mobile viewports or anything alike, it's just a simplified preview of your block. Thus, create a template containing a text and an image and use the styles to place them next to each other. Create a `sw-cms-preview-image-text-reversed.html` file in your `preview` directory with the following content.
+The preview element doesn't have to deal with mobile viewports or anything alike, it's just a simplified preview of your block. Thus, create a template containing a text and an image and use the styles to place them next to each other. Create a `sw-cms-preview-image-text-reversed.html.twig` file in your `preview` directory with the following content.
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/image-text-reversed/preview/sw-cms-preview-image-text-reversed.html.twig" %}
 ```text
@@ -225,7 +223,7 @@ import './component';
 import './preview';
 
 Shopware.Service('cmsService').registerCmsBlock({
-    name: 'image-text-reversed',
+    name: 'my-image-text-reversed',
     category: 'text-image',
     label: 'Image next to text',
     component: 'sw-cms-block-image-text-reversed',
