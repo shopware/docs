@@ -297,15 +297,7 @@ class ExampleDefinition extends EntityDefinition
         return self::ENTITY_NAME;
     }
 
-    public function getCollectionClass(): string
-    {
-        return ExampleCollection::class;
-    }
-
-    public function getEntityClass(): string
-    {
-        return ExampleEntity::class;
-    }
+    [...]
 
     protected function defineFields(): FieldCollection
     {
