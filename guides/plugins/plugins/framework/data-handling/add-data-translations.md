@@ -277,8 +277,8 @@ class ExampleTranslationCollection extends EntityCollection
 ### Main Entity Class
 
 The main entity class, that is the class with the field(s) we are going to translate, must define:
-* a TranslatedField for the “name” field
-* a TranslationsAssociationField, with a reference to the ExampleTranslationDefinition
+* a `TranslatedField` for the “name” field
+* a `TranslationsAssociationField`, with a reference to the ExampleTranslationDefinition
 
 {% code title="/src/Core/Content/Example/ExampleDefinition.php" %}
 ```php
