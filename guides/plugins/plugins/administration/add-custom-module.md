@@ -46,7 +46,7 @@ Shopware.Module.register('swag-example', {
 
 In this file, you can configure a couple of things, e.g. the color of your module. Each module needs a primary color, which will be used on specific accents and locations throughout your module. To name a few, it's the color of the main icon of the module, the tag in the global search input and the accent color of the smart bar.
 
-In this example `#ff3d58` is used as a color, which is a soft red. Also, each module has their own icon. You can see here [here](https://component-library.shopware.com/#/icons/) which icons are available in Shopware 6 by default. In our case here, let's say we use the icon `default-shopping-paper-bag-product`, which will also be used for the module.
+In this example `#ff3d58` is used as a color, which is a soft red. Also, each module has their own icon. You can see here [here](https://component-library.shopware.com/icons/) which icons are available in Shopware 6 by default. In our case here, let's say we use the icon `default-shopping-paper-bag-product`, which will also be used for the module.
 
 {% hint style="danger" %}
 This is not the icon being used for a menu entry! The icon for that needs to be configured separately. Please refer to the [Add a menu entry](add-menu-entry.md) guide for more information on this topic.
@@ -195,7 +195,7 @@ Shopware.Module.register('swag-plugin', {
 ```
 {% endcode %}
 
-The `group` property targets to the group section, the item will be displayed in 'shop', 'system' and 'plugin' sections. The `to` gets the link path of the route. The `icon` contains the icon name which will be display.
+The `group` property targets to the group section, the item will be displayed in 'shop', 'system' and 'plugins' sections. The `to` gets the link path of the route. The `icon` contains the icon name which will be display.
 
 ### Add custom settings card
 
