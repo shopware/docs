@@ -26,6 +26,7 @@ First up, we need to set up Apache to locate Shopware 6. Nginx is also possible 
       AllowOverride All
       Order allow,deny
       allow from all
+      Require all granted
    </Directory>
 
    ErrorLog ${APACHE_LOG_DIR}/shopware-platform.error.log
