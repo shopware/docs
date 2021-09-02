@@ -24,7 +24,7 @@ Shopware's storefront as well as administration is based on the build system [We
 
 To do this we create a new folder called "build" under either `Resources/app/storefront` or `Resources/app/administration`. In this build folder we create a new file with the name `webpack.config.js`. We thereby make it possible to extend the Webpack configuration of Shopware.
 
-{% code title="<plugin root>/src/Resources/app/administration/build/webpack.config.js" %}
+{% code title="<plugin root>/src/Resources/app/storefront/build/webpack.config.js" %}
 ```javascript
 const { join, resolve } = require('path'); 
 module.exports = () => { 
