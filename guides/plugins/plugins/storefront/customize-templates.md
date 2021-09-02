@@ -73,8 +73,6 @@ And that's it already, you're done. You might have to clear the cache and refres
 Also remember to not only activate your plugin but also to assign your theme to the correct sales channel by clicking on it in the sidebar, going to the tab Theme and selecting your theme.
 {% endhint %}
 
-
-
 {% tab title="Production template" %}
 ```bash
 ./bin/console cache:clear
