@@ -104,6 +104,7 @@ GET https://my.example.com/registration?shop-id=KIPf0Fz6BUkN&shop-url=http%3A%2F
 
 {% hint style="info" %}
 Starting from Shopware version 6.4.1.0, the current shopware version will be sent as a `sw-version` header.
+Starting from Shopware version 6.4.5.0, the current language id of the shopware context will be sent as a  `sw-context-language` header , and the locale of the user or locale of the context language is available under the `sw-user-language` header.
 {% endhint %}
 
 Additionally, the `shopware-app-signature` header will be provided, which contains a cryptographic signature of the query string.  
@@ -214,6 +215,7 @@ You can find out more about how to use these api-credentials in our api authenti
 
 {% hint style="info" %}
 Starting from Shopware version 6.4.1.0, the current shopware version will be sent as a `sw-version` header.
+Starting from Shopware version 6.4.5.0, the current language id of the shopware context will be sent as a  `sw-context-language` header , and the locale of the user or locale of the context language is available under the `sw-user-language` header.
 {% endhint %}
 
 The request is signed with the `shop-secret`, that your app provided in the [registration response](app-base-guide.md#registration-response) and the signature can be found in the `shopware-shop-signature` header.  
@@ -321,6 +323,7 @@ The next property `timestamp` is the time which the webhook was handled. This ca
 
 {% hint style="info" %}
 Starting from Shopware version 6.4.1.0, the current shopware version will be sent as a `sw-version` header.
+Starting from Shopware version 6.4.5.0, the current language id of the shopware context will be sent as a  `sw-context-language` header , and the locale of the user or locale of the context language is available under the `sw-user-language` header.
 {% endhint %}
 
 You can verify the authenticity of the incoming request by checking the `shopware-shop-signature` every request should have a sha256 hmac of the request body, that is signed with the secret your app assigned the shop during the [registration](app-base-guide.md#setup). The mechanism to verify the request is exactly the same as the one used for the [confirmation request](app-base-guide.md#confirmation-request).
@@ -489,6 +492,7 @@ The hmac-signature of the body content, signed with the shop secret returned fro
 
 {% api-method-parameter name="sw-version" type="string" required=true %}
 Starting from Shopware version 6.4.1.0, the current shopware version will be sent as a `sw-version` header.
+Starting from Shopware version 6.4.5.0, the current language id of the shopware context will be sent as a  `sw-context-language` header , and the locale of the user or locale of the context language is available under the `sw-user-language` header.
 {% endapi-method-parameter %}
 {% endapi-method-headers %}
 
