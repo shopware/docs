@@ -93,7 +93,7 @@ You can also bind your plugin to a DOM element by providing a css selector:
 ```
 {% endcode %}
 
-In this case the plugin just gets executed if the HTML document contains at least one element with the `data-scroll-detector` attribute. You can then use `this.el` inside your plugin to access the DOM element your plugin is bound to.
+In this case the plugin just gets executed if the HTML document contains at least one element with the `data-example-plugin` attribute. You can then use `this.el` inside your plugin to access the DOM element your plugin is bound to.
 
 ### Loading your plugin
 
