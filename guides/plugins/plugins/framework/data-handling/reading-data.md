@@ -364,6 +364,21 @@ public function readData(Context $context): void
 
 In this example, you'd get a batch of 500 products with each iteration of the `while` loop. This way, `$result` will not cause a "memory exhausted" error and you can handle huge amounts of data this way.
 
+One small caveat to be aware of: When using the `RepositoryIterator`, make sure that the `Criteria` uses a sorting which is deterministic. 
+
+Put differently, you must ensure that your sorting means that there's only one correct way to order your results, otherwise different batches might decide to sort the entities differently in the database. That would mean you risk getting the same entity in several batches (and having entities that won't be iterated at all).
+
+For example, ordering products by `manufacturerNumber` alone could cause this issue, because several products can have the same `manufacturerNumber`, so there's several correct orderings of those products. On the other hand, because each product is guaranteed to have a unique ID, sorting by ID is an easy way to mitigate this issue:
+
+```php
+$criteria = new Criteria();
+//This sorting alone would result in sorting that is nondeterministic as several products might have the same value for this field:
+$criteria->addSorting(new FieldSorting('manufacturerNumber'));  
+//However, simply by adding a secondary sorting by ID, the sorting becomes deterministic again, as the IDs are unique per product.
+$criteria->addSorting(new FieldSorting('id'));  
+$criteria->setLimit(500);
+```
+
 And that's basically it for this guide!
 
 ## Next steps
