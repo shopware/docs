@@ -16,7 +16,7 @@ In this example we're going to add a new string field to the product entity.
 
 You can choose whether or not you want to save the new string field to the database or not. Therefore, you're going to see two sections, one for each way.
 
-For both cases, you need to create a new "extension" class in the directory `<plugin root>/src/Extension/`. In this case we want to extend the `product` entity, so we create a subdirectory `Content/Product/` since the entity is located there in the Core. Our class then has to extend from the abstract `Shopware\Core\Framework\DataAbstractionLayer\EntityExtension` class, which forces you to implement the `getDefinition` method. It has to point to the entity definition you want to extend, so `ProductDefinition` in this case.
+For both cases, you need to create a new "extension" class in the directory `<plugin root>/src/Extension/`. In this case we want to extend the `product` entity, so we create a subdirectory `Content/Product/` since the entity is located there in the Core. Our class then has to extend from the abstract `Shopware\Core\Framework\DataAbstractionLayer\EntityExtension` class, which forces you to implement the `getDefinitionClass` method. It has to point to the entity definition you want to extend, so `ProductDefinition` in this case.
 
 Now you add new fields by overriding the method `extendFields` and add your new fields in there.
 
