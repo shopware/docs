@@ -2,7 +2,7 @@
 
 ## Overview
 
-If you want to develop your own app but don't want to host it yourself this will fit perfect for you. This guide will walk you through the process of getting started with our template for Platform.sh
+If you want to develop your own app but don't want to host it yourself this will fit perfect for you. This guide will walk you through the process of getting started with our template for [Platform.sh](https://platform.sh).
 
 ## Getting started
 
@@ -56,11 +56,14 @@ The `SwagAppsystem\Client` and `SwagAppsystem\Event` will be injected in each co
 {% code title="AppExample/src/Controller/Order/OrderController.php" %}
 ```php
 <?php declare(strict_types=1);
+
 namespace App\Controller;
+
 use App\SwagAppsystem\Client;
 use App\SwagAppsystem\Event;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+
 class OrderController
 {
     /**
@@ -89,13 +92,13 @@ The registration is the most important thing in your app. It is handled by the [
 The registration will go through several steps.
 
 * authenticate the registration request
-* generate an unique secret for the shop
+* generate a unique secret for the shop
 * save the secret with the id and the url of the shop
 * send the secret to the shop with a confirmation url
 * authenticate the confirmation request
 * save the access keys for the shop
 
-Now the shop is registered to the app and it can start communicating with it.
+Now the shop is registered to the app, and it can start communicating with it.
 
 ## Communicating with the shop
 
@@ -118,7 +121,7 @@ The event itself has all the necessary information you might need. It includes t
 The above objects are provided by two argument resolvers. One for the [Client](https://github.com/shopwareLabs/AppTemplate/blob/master/src/SwagAppsystem/Client.php) and one for the [Event](https://github.com/shopwareLabs/AppTemplate/blob/master/src/SwagAppsystem/Event.php).  
 The purpose of those is to inject the [Client](https://github.com/shopwareLabs/AppTemplate/blob/master/src/SwagAppsystem/Client.php) and the [Event](https://github.com/shopwareLabs/AppTemplate/blob/master/src/SwagAppsystem/Event.php) whenever you need them.
 
-For example you define a route for incoming webhooks and want to fetch some extra data. Then you can use them as a parameter of the method which will be called when a request is send to the route.
+For example, you define a route for incoming webhooks and want to fetch some extra data. Then you can use them as a parameter of the method which will be called when a request is sent to the route.
 
 But how do you know that the request is from the shop and not from someone who is sending post requests to your app? The argument resolvers take care of it. Whenever you use one of them as a parameter the request will be authenticated. If the request isn't authenticated the [Client](https://github.com/shopwareLabs/AppTemplate/blob/master/src/SwagAppsystem/Client.php) or the [Event](https://github.com/shopwareLabs/AppTemplate/blob/master/src/SwagAppsystem/Event.php) will be null.
 
@@ -175,16 +178,9 @@ The webhook could look like this:
 ```
 {% endcode %}
 
-## Deployment on platform.sh
+## Deployment on Platform.sh
 
-To deploy your app on [platform.sh](https://platform.sh) just follow the instructions:
-
-* [Public GitHub repository](https://docs.platform.sh/integrations/source/github.html)
-* [Private GitHub repository](https://docs.platform.sh/development/private-repository.html)
-* [Using the Platform.sh CLI](https://github.com/platformsh/platformsh-cli)
-
-After the deployment you can use the [Plaform.sh CLI](https://github.com/platformsh/platformsh-cli) to set up the database. First ssh to your server: `platform ssh` and then run the migrations: `vendor/bin/doctrine-migrations migrations:migrate`  
-That's is. Your server is running and you can start developing your own app.
+To deploy your app on [Platform.sh](https://platform.sh) you might check out the [Platform.sh Deployment](hosting-guide/platform-sh-deployment.md) part of our documentation.
 
 ## Infrastructure
 
@@ -196,16 +192,16 @@ The infrastructure is coupled to your plan which you are paying for. Each resour
 The resources for cpu and ram are shared between all your container in the cluster. If one container in your application needs much more ram than another application then you can set the resources with the `size` key.  
 You can configure this for your application in your [.platform.app.yaml](https://github.com/shopwareLabs/AppTemplate/blob/master/.platform.app.yaml). And configure this for your services in your [services.yaml](https://github.com/shopwareLabs/AppTemplate/blob/master/.platform/services.yaml).
 
-This key is optional and by default set to `AUTO`. However if you want to change it, you can set it to `S`, `M`, `L`, `XL`, `2XL` or `4XL`.  
+This key is optional and by default set to `AUTO`. However, if you want to change it, you can set it to `S`, `M`, `L`, `XL`, `2XL` or `4XL`.  
 This defines how much resources one container gets. If the total resources requested by all apps and services is larger than that what the plan size allows then a production deployment will fail with an error.
 
 You need to keep in mind that the `size` key only has impact on your production environment. The key will be ignored in the development environment and will be set to `S`. If you need to increase this you can do it on you plan settings page for a fee.
 
 ### Disc space
 
-Another thing you can configure is the disk space of each application and service. You can also configure this in [.platform.app.yaml](https://github.com/shopwareLabs/AppTemplate/blob/master/.platform.app.yaml) and [services.yaml](https://github.com/shopwareLabs/AppTemplate/blob/master/.platform/services.yaml).
+Another thing you can configure is the disk space of each application and service. You can also configure this in [.platform.app.yaml](https://github.com/shopwareLabs/AppTemplate/blob/master/.platform.app.yaml#L40) and [services.yaml](https://github.com/shopwareLabs/AppTemplate/blob/master/.platform/services.yaml).
 
-The resources for the disc space are also shared between all container in the cluster. The key for this is the `disk` key. It is optional so if you don't set it platform-sh will handle it for you.  
-However if you need much storage for your database then you can change this key in your [services.yaml](https://github.com/shopwareLabs/AppTemplate/blob/master/.platform/services.yaml). The value of this key is always in MB. For our example we used 2GB or 2048MB for our application and another 2GB or 2048MB for our database.  
+The resources for the disc space are also shared between all container in the cluster. The key for this is the `disk` key. It is optional so if you don't set it Platform.sh will handle it for you.  
+However, if you need much storage for your database then you can change this key in your [services.yaml](https://github.com/shopwareLabs/AppTemplate/blob/master/.platform/services.yaml). The value of this key is always in MB. For our example we used 2GB or 2048MB for our application and another 2GB or 2048MB for our database.  
 The default storage you get with each plan is 5GB or 5120MB. In our case we only used 4GB or 4096MB so you have 1GB or 1024 left which you can give to your application or to your database. Whether you use it or not won't affect your costs.
 
