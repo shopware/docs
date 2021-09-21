@@ -73,6 +73,8 @@ navigation: [{
 
 You can find the parent id at the `index.js` file in each module folder. You can see the property `navigation` in the `Module.register` method. The id here can be used as the parent key.
     
+## Nesting menu entries
+    
 The parent can be on any level because the menu supports infinite depth nesting. For example, if `sw-manufacturer` were taken as the `parent`, the menu item would be present on the third level. So whats important here is that the configured parent defines where the menu entry will take place.
 
 {% hint style="info" %}
