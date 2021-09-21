@@ -70,6 +70,8 @@ navigation: [{
 }]
 ```
 {% endcode %}
+    
+The parent can be on any level because the menu supports infinite depth nesting. For example, if `sw-manufacturer` were taken as the `parent`, the menu item would be present on the third level.
 
 {% hint style="info" %}
 If you're planning to publish your plugin to the Shopware Store keep in mind we're rejecting plugins which have created their own menu entry on the first level.
