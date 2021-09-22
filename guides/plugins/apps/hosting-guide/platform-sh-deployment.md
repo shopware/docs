@@ -4,13 +4,13 @@
 
 [Platform.sh](https://platform.sh) is a powerful hosting provider for your infrastructure that's quite easy to use.
 
-Keep in mind though, that this is **not** the only way to go for Apps! You can of course use different services, provider or host everything on a dedicated machine.
-In this guide we just tell you what we would do to start hosting an App von Platform.sh.
+Keep in mind though, that this is **not** the only way to go for Apps! You can of course use different services, providers or host everything on a dedicated machine.
+In this guide, we'd like to let you know what we'd do to get started hosting an App on Platform.sh.
 
-Read more about why this kind of hosting could be useful [here](README.md) or on there [official documentation](https://docs.platform.sh/).
+Read more about why this kind of hosting could be useful [here](README.md) or in there [official documentation](https://docs.platform.sh/).
 
 ## Getting started
-To deploy your app on [Platform.sh](https://platform.sh), just follow the instructions:
+To deploy your app on [Platform.sh](https://platform.sh), just follow those instructions:
 
 * [Source Integrations](https://docs.platform.sh/integrations/source.html)
 * [Private Git repository](https://docs.platform.sh/development/private-repository.html)
@@ -26,7 +26,7 @@ To deploy your app on [Platform.sh](https://platform.sh), just follow the instru
     * [services.yaml](https://docs.platform.sh/configuration/services.html)
     * [.platform.app.yaml](https://docs.platform.sh/configuration/app.html)
 5. Push your changes to your Git Repo
-6. After it's deployed, migrate the database by connecting via [SSH to your project](#ssh-into-your-project) and running the command `vendor/bin/doctrine-migrations migrations:migrate`
+6. After it's been deployed, migrate the database by connecting via [SSH to your project](#ssh-into-your-project) and running the command `vendor/bin/doctrine-migrations migrations:migrate`
 7. That's it!
 
 Your project should now be running at [https://console.platform.sh](https://console.platform.sh), and you can start developing your own app!
@@ -36,7 +36,7 @@ Your project should now be running at [https://console.platform.sh](https://cons
 ### Automatic TLS certificates based on Branch / Pull Request
 [Platform.sh](https://platform.sh) automatically creates a URL and TLS certificate using [Let's Encrypt](https://letsencrypt.org/) based on your [routes.yaml](https://docs.platform.sh/configuration/routes.html) file for every active environment.
 
-You should be aware though that the URL will be build in a specific way. If your branch name gets to long, [Let's Encrypt](https://letsencrypt.org/) won't be able to generate a certificate.
+You should be aware though that the URL will be built in a specific way. If your branch name gets too long, [Let's Encrypt](https://letsencrypt.org/) won't be able to generate a certificate.
 
 To avoid this you should configure your [Source Integrations](https://docs.platform.sh/integrations/source.html) to use the name of your **Pull Request** instead of the **Branch Name**.
 
@@ -59,6 +59,7 @@ hooks:
 {% endcode %}
 
 ## Useful Platform.sh commands
+In order to use the following commands you need to have the [Platform.sh CLI](https://docs.platform.sh/development/cli.html) installed.
 
 ### List all Platform.sh CLI commands
 ```bash
