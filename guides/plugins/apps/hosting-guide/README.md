@@ -2,7 +2,7 @@
 
 When you plan to build an app there will come a point when you will have to
 consider which kinds of server infrastructure you will need. This article is a
-starting point so you can investigate further and make an informed decision.
+starting point, so you can investigate further and make an informed decision.
 
 ## Does your app need hosting
 
@@ -10,41 +10,41 @@ Not all apps need hosting. If your app requires a server depends on the kinds of
 functionalities that it uses.
 
 - **Features that require a server**
-  - [Custom Modules](administration/add-custom-modules.md)
-  - [Action Buttons](administration/add-custom-action-button.md)
-  - [Webhooks](app-base-guide.md#webhooks)
-  - [Payment Processing](payment.md)
+  - [Custom Modules](../administration/add-custom-modules.md)
+  - [Action Buttons](../administration/add-custom-action-button.md)
+  - [Webhooks](../app-base-guide.md#webhooks)
+  - [Payment Processing](../payment.md)
 - **Features that work without a server**
-  - [Themes](storefront.md)
-  - [Template changes](storefront.md)
-  - [CMS Blocks](content/cms/add-custom-cms-blocks.md)
-  - [App configuration](configuration.md)
+  - [Themes](../storefront.md)
+  - [Template changes](../storefront.md)
+  - [CMS Blocks](../content/cms/add-custom-cms-blocks.md)
+  - [App configuration](../configuration.md)
   
 ## Hosting Options
 
-Modern server providers offer serveral ways to host web based applications.
+Modern server providers offer several ways to host web based applications.
 Booking such a hosting is often tied to different tiers of resources available
 to you, these are generally measured in units like the amount of virtual CPUs
 and gigabytes of RAM and billing intervals are per millisecond, hour or month.
-Here are the most common options starting with the most labour intensive.
+Here are the most common options starting with the most labour-intensive.
 
 ### Dedicated server
 
 A dedicated server is the classic way to host performance critical
-applications. With this model you rent one or serveral pieces of hardware from
+applications. With this model you rent one or several pieces of hardware from
 your provider. This is cheaper if your order compute and memory resources in
 bulk. But this model also has the drawback of high management overhead. With a 
-dedicated server you are responsible for operating systen and software upgrades,
+dedicated server you are responsible for operating system and software upgrades,
 as well as backups.
 
 ### Infrastructure as a Service
 
-So called IaaS providers provide a solid layer of abstraction over dedicated
+So-called IaaS providers provide a solid layer of abstraction over dedicated
 hosting solutions. With an IaaS model you are no longer forced to rent physical
 pieces of hardware, but rather virtual machines with configurable amounts of
 compute power and memory. Another improvement is the availability of so called
 managed services, like databases, object storage and queues. These services
-allow you to off-load maintenace, backups and availability to the cloud provider
+allow you to off-load maintenance, backups and availability to the cloud provider
 so that you can concentrate on using these services.
 
 Be aware that even though IaaS solutions massively reduce the amount of
@@ -56,11 +56,11 @@ servers and services and how they are networked together.
 The next step in abstraction are the PaaS providers. They allow you to declare
 the resources you need in a few configuration files. Once the config is set up
 they take care of getting your code up and running on their infrastructure. They
-not only provide managed services like databases for you they also help with
-deploying your application and creating serveral environments for production,
+not only provide managed services like databases for you, they also help with
+deploying your application and creating several environments for production,
 staging and testing use. Many PaaS providers use git to integrate directly with
 development workflows, this also in contrast to IaaS providers where it is your
-responsebilty to provide deployables.
+responsibility to provide deployables.
 
 ### Serverless
 
@@ -78,15 +78,15 @@ large loads. This approach abstracts away any notion of reserved resources,
 billing is by handled by the millisecond, hence the name serverless.
 
 This makes this approach the easiest to get started quickly, at least in theory.
-Keep in mind, that in in real world applications things like databases even as
+Keep in mind, that in real world applications things like databases even as
 managed services are still often modeled as reserved resources. Also it's
 necessary to take care of a dedicated entry point to map incoming requests to
 the function as a service model.
 
-This is where where tools like ["Serverless Framework"](https://serverless.com/)
+This is where tools like ["Serverless Framework"](https://serverless.com/)
 come into play to help you. It allows you manage the lifecycle of your
-serverless application in many different languages and on all big FaaS
-providers. It's optimized to be used with continous integration allowing for
+serverless application in many languages and on all big FaaS
+providers. It's optimized to be used with continuous integration allowing for
 automated deployments.
 
 ## Pricing
@@ -94,7 +94,7 @@ automated deployments.
 To give you an example for the potential costs of hosting an App we've provided
 the following example calculation:
 
-Let's assume your app is a PHP application on platform.sh and it generates a
+Let's assume your app is a PHP application on platform.sh, and it generates a
 revenue of 5\$ per user per month. This means with 50 users that app makes 205\$
 a month. A standard plan on platform.sh costs 50\$ a month and provides 0.96
 vCPU and 0.8 GB of RAM. According to the [symfony
