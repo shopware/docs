@@ -60,7 +60,7 @@ class ExampleService
     */
     private $systemConfigService;
 
-    public function __construct(SystemConfigService $systemConfigService): void
+    public function __construct(SystemConfigService $systemConfigService)
     {
         $this->systemConfigService = $systemConfigService;
     }

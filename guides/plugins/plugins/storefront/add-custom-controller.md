@@ -68,7 +68,7 @@ class ExampleController extends StorefrontController
     */
     public function showExample(): Response
     {
-        return $this->renderStorefront('@SwagBasicExample/storefront/page/example/index.html.twig', [
+        return $this->renderStorefront('@SwagBasicExample/storefront/page/example.html.twig', [
             'example' => 'Hello world'
         ]);
     }
