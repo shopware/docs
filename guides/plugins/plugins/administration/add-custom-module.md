@@ -186,11 +186,12 @@ import './page/swag-plugin-list';
 import './page/swag-plugin-detail';
 Shopware.Module.register('swag-plugin', {
     ...
-    settingsItem: {
-        group: 'system',
+    settingsItem: [{
+        group: 'plugin',
         to: 'swag.plugin.list',
-        icon: 'default-object-rocket'
-    }
+        icon: 'default-object-rocket',
+        name: 'swag-example.general.mainMenuItemGeneral'
+    }]
 });
 ```
 {% endcode %}
