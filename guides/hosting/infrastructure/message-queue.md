@@ -6,7 +6,11 @@ Shopware uses the Symfony Messenger component and Enqueue to handle asynchronous
 
 ## Message Queue on production systems
 
-On a productive system, the message queue should not be processed via the browser in the administration, but via the CLI. This way, tasks are also completed when no one is logged into the administration and high CPU load due to multiple users in the admin is also avoided. Furthermore you can change the transport to another system like [RabbitMQ](https://www.rabbitmq.com/) for example. This would on the one hand relieve the database and on the other hand use a much more specialized service for handling message queues. The following are examples of the steps needed.
+On a productive system, the message queue should be processed via the CLI instead of the browser in the administration ([Admin worker](#admin-worker)). This way, tasks are also completed when no one is logged into the administration and high CPU load due to multiple users in the admin is also avoided. Furthermore you can change the transport to another system like [RabbitMQ](https://www.rabbitmq.com/) for example. This would on the one hand relieve the database and on the other hand use a much more specialized service for handling message queues. The following are examples of the steps needed.  
+It's recommended to run one or more `messenger:consume`-workers. To automatically start the processes again after they stopped because of exceeding the given limits you can use a process control system like [systemd](https://www.freedesktop.org/wiki/Software/systemd/) or [supervisor](http://supervisord.org/running.html).  
+Alternatively you can configure a cron job that runs the command periodically. Please note: Using cron jobs won't take care of maximum running worker, like supervisor can do. They don't wait for another worker to stop. So there is a risk starting an unwanted amount of workers when you have messages running longer than the set time-limit. If the time-limit has been exceeded worker will wait for the current message being finished.
+
+Find here the docs of Symfony: https://symfony.com/doc/current/messenger.html#deploying-to-production  
 
 ### Consuming Messages
 
@@ -14,10 +18,10 @@ The recommended method for consuming messages is using the cli worker.
 
 #### Cli worker
 
-You can configure the command just to run a certain amount of time or to stop if it exceeds a certain memory limit like: 
+You can configure the command just to run a certain amount of time and to stop if it exceeds a certain memory limit like: 
 
 ```bash
-bin/console messenger:consume default --memory-limit=128M
+bin/console messenger:consume default --time-limit=60 --memory-limit=128M
 ```
 
 For more information about the command and its configuration use the -h option: 
@@ -26,14 +30,9 @@ For more information about the command and its configuration use the -h option:
 bin/console messenger:consume -h
 ```
 
-You should use the limit option to periodically restart the worker processes, because of the memory leak issues of long-running php processes. To automatically start the processes again after they stopped because of exceeding the given limits you can use something like [upstart](http://upstart.ubuntu.com/getting-started.html) or [supervisor](http://supervisord.org/running.html). Alternatively you can configure a cron job that runs the command again shortly after the time limit exceeds.
+#### Admin worker
 
-```bash
-bin/console messenger:consume default --time-limit=60
-```
-
-
-If you have configured the cli-worker, you can turn off the admin worker in the shopware configuration file, therefore create or edit the configuration `shopware.yaml`.
+If you have configured the cli-worker, you should turn off the admin worker in the shopware configuration file, therefore create or edit the configuration `shopware.yaml`.
 
 ```yaml
 # config/packages/shopware.yaml
@@ -41,8 +40,6 @@ shopware:
     admin_worker:
         enable_admin_worker: false
 ```
-
-#### Admin worker
 
 The admin-worker, if used, can be configured in the general `shopware.yml` configuration. If you want to use the admin worker you have to specify each transport, that previously was configured. The poll interval is the time in seconds that the admin-worker polls messages from the queue. After the poll-interval is over the request terminates and the administration initiates a new request.
 
@@ -54,6 +51,46 @@ shopware:
         poll_interval: 30
         transports: ["default"]
 ```
+
+#### systemd example
+
+We assume the services to be called `shopware_consumer`.
+
+Create a new file `/etc/systemd/system/shopware_consumer@.service`
+```bash
+[Unit]
+Description=Shopware Message Queue Consumer, instance %i
+PartOf=shopware_consumer.target
+
+[Service]
+Type=simple
+User=www-data # Change this to webservers user name
+Restart=always
+RestartSec=always
+# Change the path to your shop path
+ExecStart=php /var/www/html/bin/console messenger:consume --time-limit=60 --memory-limit=512M
+
+[Install]
+WantedBy=shopware_consumer.target
+```
+
+Create a new file `/etc/systemd/system/shopware_consumer.target`
+```bash
+[Install]
+WantedBy=multi-user.target
+
+[Unit]
+Description=shopware_consumer service
+```
+
+Enable multiple instances. Example for three instances:
+`systemctl enable shopware_consumer@{1..3}.service`
+
+Enable the dummy target:
+`systemctl enable shopware_consumer.target`
+
+At the end start the services:
+`systemctl start shopware_consumer.target`
 
 ### Sending Mails over the Message Queue
 
