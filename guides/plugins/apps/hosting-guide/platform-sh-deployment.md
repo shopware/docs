@@ -44,19 +44,25 @@ To avoid this you should configure your [Source Integrations](https://docs.platf
 
 ### Hook commands
 You can place commands like the database migration mentioned above inside your `.platform.app.yaml` under [hooks](https://docs.platform.sh/configuration/app/build.html#hooks).
-This way your commands will be executed every time it creates a new build.
+This way your commands will be executed every time it deploys a new build _(e.g. if your branch gets updated)_.
+
+Your file could than look like this _(with the default [AppTemplate](https://github.com/shopware/AppTemplate))_:
 
 {% code title=".platform.app.yaml" %}
 ```yaml
 hooks:
     build: |
         set -e
-        php vendor/bin/doctrine-migrations migrations:migrate --no-interaction
+        php bin/console assets:install --no-debug
     deploy: |
         set -e
-        php vendor/bin/doctrine-migrations migrations:migrate --no-interaction
+        php bin/console cache:clear
+        php bin/console doctrine:migrations:migrate --no-interaction
 ```
 {% endcode %}
+
+By default, PHP images already run a `composer install` command, so we don't need that in our hooks.
+Learn more about that [here](https://docs.platform.sh/languages/php.html#build-flavor).
 
 ## Useful Platform.sh commands
 In order to use the following commands you need to have the [Platform.sh CLI](https://docs.platform.sh/development/cli.html) installed.
