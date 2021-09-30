@@ -37,7 +37,7 @@ class LunarEclipseRule extends Rule
     /**
      * @var bool
      */
-    protected $isLunarEclipse;
+    protected $isLunarEclipse; // 'protected' is very important here!
 
     public function __construct()
     {
@@ -85,6 +85,7 @@ As you can see, several methods are already implemented:
 * `getConstraints`: This method returns an array of the possible fields and its types. You could also return the `NotBlank` class here, to require this field.
 
 After we've created our rule class, we have to register it in our `services.xml` and tag it as `shopware.rule.definition`.
+Please keep in mind: The variables to be used in the rule have to be 'protected' and not 'private', otherwise they won't work properly.
 
 {% hint style="warning" %}
 Never execute database queries or any other time consuming operations within the `match()` method of your rule, as it will drastically impact the performance of your store. Stick to the rule scope when evaluating whether your rule matches or not.
