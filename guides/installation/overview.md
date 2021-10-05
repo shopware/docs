@@ -16,6 +16,14 @@ Did you know that there's a video available to this topic? Please take a look:
 
 ## Prerequisites
 
+### IDE / Editors
+
+You can technically use any text editor you wish to develop in. However, many developers prefer IDEs (integrated development environments) because of the features they offer.
+
+For JavaScript development, many developers go with [Visual Studio Code](https://code.visualstudio.com/) (short VSCode). For PHP development, many developers go with [PHPStorm](https://www.jetbrains.com/phpstorm/). Both tools offer a marketplace with plugins or extensions. To learn more, check out the [IDE](../../resources/tooling/ide) section.
+
+If you are going to write Shopware extensions based on the [App System](../../concepts/extensions/apps-concept.md), you can really choose whatever programming language or runtime you want, so choose whatever Editor or IDE suits you best.
+
 ### System requirements
 
 Before installing Shopware 6, you should take a quick look at the requirements to check if your local environment is capable of running it.

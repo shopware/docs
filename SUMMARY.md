@@ -331,4 +331,7 @@
     * [Writing](resources/guidelines/documentation/writing.md)
   * [Testing](resources/guidelines/testing/README.md)
     * [Best practises on writing end-to-end tests](resources/guidelines/testing/e2e-best-practises.md)
+* [Tooling](resources/tooling/README.md)
+  * [IDE](resources/tooling/ide/README.md)
+    * [Shopware Toolbox](resources/tooling/ide/shopware-toolbox.md)
 
