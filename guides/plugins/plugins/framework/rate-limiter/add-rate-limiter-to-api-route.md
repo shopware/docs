@@ -90,11 +90,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class SwagBasicExample extends Plugin
 {
-    public function install(InstallContext $installContext): void
-    {
-        parent::install($installContext);
-    }
-
     public function build(ContainerBuilder $container): void
     {
         parent::build($container);
