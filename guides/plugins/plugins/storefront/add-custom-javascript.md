@@ -197,7 +197,7 @@ Imagine the following example can be found in the core:
 {% block element_product_slider_slider %}
     <div class="base-slider"
          data-product-slider="true"
-         data-product-slider-options="{{ productSliderOptions|json_encode }}">
+         data-product-slider-options="{{ productSliderOptions|default({})|json_encode|escape('html_attr') }}">
     </div>
 {% endblock %}
 ```
