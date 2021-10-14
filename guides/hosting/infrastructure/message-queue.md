@@ -12,6 +12,10 @@ Alternatively you can configure a cron job that runs the command periodically. P
 
 Find here the docs of Symfony: https://symfony.com/doc/current/messenger.html#deploying-to-production  
 
+{% hint style="info" %}
+It is recommended to use a third party message queue to support multiple consumers and / or a greater amount of data to index.
+{% endhint %}
+
 ### Consuming Messages
 
 The recommended method for consuming messages is using the cli worker.
