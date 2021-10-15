@@ -39,6 +39,7 @@ The manifest file is the central point of your app. It defines the interface bet
         <author>Your Company Ltd.</author>
         <copyright>(c) by Your Company Ltd.</copyright>
         <version>1.0.0</version>
+        <icon>Resources/config/plugin.png</icon>
         <license>MIT</license>
     </meta>
 </manifest>
