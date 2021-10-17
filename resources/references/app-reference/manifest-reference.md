@@ -88,6 +88,19 @@
         <action-button action="restockProduct" entity="product" view="list" url="https://example.com/restock">
             <label>restock</label>
         </action-button>
+        <!-- Register a custom tab that is a structure element that should be shown on a page -->
+        <tab parent="sw.product.detail" path="newTab">
+            <label>New tab</label>
+        </tab>
+        <!-- Register a custom card (iframe), that should be loaded from the given source -->
+        <card source="https://example.com/iframe/product-card">
+            <label>Product card</label>
+            <!-- display on product detail page -->
+            <page>sw.product.detail.base</page>
+            <page>sw.product.detail.specifications</page>
+            <!-- additionally show our card on our new tab -->
+            <page>sw.product.detail.newTab</page>
+        </card>
     </admin>
     <!-- Optional -->
     <custom-fields>
