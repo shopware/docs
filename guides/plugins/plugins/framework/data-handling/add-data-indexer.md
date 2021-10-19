@@ -59,7 +59,7 @@ class ExampleIndexer extends EntityIndexer
      */
     public function getName(): string
     {
-        return 'swag.basix.example.indexer';
+        return 'swag.basic.example.indexer';
     }
 
     /**

@@ -28,7 +28,7 @@ The workflow you need here was already described in the overview:
 
 ### Subscribe to an event
 
-So first of all you need to know which page or pagelet you actually want to extend. In this example, we're going to extend the [FooterPagelet](https://github.com/shopware/platform/blob/master/src/Storefront/Pagelet/Footer/FooterPagelet.php). All pages or pagelets throw `Loaded` events and this is the right event to subscribe to if you want to add data to the page or pagelet. In our case we want to add data to the `FooterPagelet` so we need to subscribe to the `FooterPageletLoadedEvent`.
+So first of all, you need to know which page or pagelet you actually want to extend. In this example, we're going to extend the [FooterPagelet](https://github.com/shopware/platform/blob/master/src/Storefront/Pagelet/Footer/FooterPagelet.php). All pages or pagelets throw `Loaded` events and this is the right event to subscribe to if you want to add data to the page or pagelet. In our case we want to add data to the `FooterPagelet` so we need to subscribe to the `FooterPageletLoadedEvent`.
 
 ```php
 // SwagBasicExample/src/Service/AddDataToPage.php

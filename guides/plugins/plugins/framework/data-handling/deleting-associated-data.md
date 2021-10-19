@@ -40,7 +40,7 @@ We're simply setting the ID field of the respective association to `null`. Now t
 
 This section will only cover `ManyToMany` associations. If you're looking for `OneToMany` associations, head over to the next section. But for now, let's have a look at a `ManyToMany` example.
 
-Assuming you want to unassign a category from a product, this is how it's done.
+Assuming you want to un-assign a category from a product, this is how it's done.
 
 ```php
 public function removeAssocData(Context $context): void

@@ -10,7 +10,7 @@ In order to add your own controller for your plugin, you first need a plugin as 
 
 <!-- markdown-link-check-disable-next-line -->
 {% hint style="info" %}
-Here's a video explaning the basics about storefront controllers from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+Here's a video explaining the basics about storefront controllers from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 
 **[Common Storefront controller tasks](https://www.youtube.com/watch?v=5eXXNh4cQG0)**
 {% endhint %}

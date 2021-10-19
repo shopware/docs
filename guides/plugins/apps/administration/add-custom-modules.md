@@ -6,7 +6,7 @@ In your app, you are able to add your own modules to the administration. Your cu
 
 Creating custom modules takes place at the `<admin>` section of your `manifest.xml`. Take a look at the [Manifest Reference](../../../../resources/references/app-reference/manifest-reference.md) You can add any amount of custom modules by adding new `<module>` elements to your manifest.
 
-To configure your module you can set it up with with some addtional attributes.
+To configure your module you can set it up with with some additional attributes.
 
 * `name` \(required\): The technical name of the module. This is the name your module is referenced with.
 * `source` \(optional\): The URL to your app servers endpoint from which the module is served from. This can be omitted if you want to define a menu item that should serve as a parent menu item for other app modules.
