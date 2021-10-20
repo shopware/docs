@@ -14,7 +14,7 @@ Starting with Shopware 6.4.0.0, we introduced a new way to extend Shopware using
 
 ![](../../.gitbook/assets/plugin-extension-model.png)
 
-Plugins are exectued within the Shopware core process and can react to events, execute custom code or extend services. They have direct access to the database, though there are guidelines in place to ensure update-compatibility, such as a service facade or database migrations.
+Plugins are executed within the Shopware core process and can react to events, execute custom code or extend services. They have direct access to the database, though there are guidelines in place to ensure update-compatibility, such as a service facade or database migrations.
 
 {% hint style="warning" %}
 **Plugins & Shopware Cloud**

@@ -10,7 +10,7 @@ An order in Shopware consists of three states:
 
 Each of those comes with several possible values, e.g. for the transactions some of those are: "open", "reopen", "cancel", etc. States are connected in a way, that you cannot just jump from each state to each other state, e.g. you can't set the order transaction state to "refunded" when the state was not "paid" yet. Those connections are called `transitions`.
 
-Each of those states can be changed using the [StateMachineRegistry](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/System/StateMachine/StateMachineRegistry.php). This guide will cover how to use the state machine and show somes examples.
+Each of those states can be changed using the [StateMachineRegistry](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/System/StateMachine/StateMachineRegistry.php). This guide will cover how to use the state machine and show some examples.
 
 ## Transitioning
 

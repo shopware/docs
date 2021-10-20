@@ -5,8 +5,8 @@ This feature is only available starting with Shopware 6.4.1.0.
 {% endhint %}
 
 These two requests are executed against your API, the up to two endpoints you define per payment method. All bodies are JSON encoded.
-
-{% api-method method="post" host="https://payment.app" path="/pay" %}
+<!-- markdown-link-check-disable-next-line --><!-- markdown-link-check-disable-next-line -->
+{% api-method method="post" host="https://payment.app/" path="/pay" %}
 {% api-method-summary %}
 pay
 {% endapi-method-summary %}
@@ -80,8 +80,8 @@ See comments for different successful responses
 {% endapi-method-response %}
 {% endapi-method-spec %}
 {% endapi-method %}
-
-{% api-method method="post" host="https://payment.app" path="/finalize" %}
+<!-- markdown-link-check-disable-next-line -->
+{% api-method method="post" host="https://payment.app/" path="/finalize" %}
 {% api-method-summary %}
 finalize
 {% endapi-method-summary %}

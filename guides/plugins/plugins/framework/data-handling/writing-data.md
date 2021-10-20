@@ -221,7 +221,7 @@ Once again: An array of arrays, since you can delete more than one entry at once
 
 Assigning associated data is different for each kind of association. Every single of them will be covered here, from `OneToOne` associations, to `ManyToOne` and `OneToMany` associations and `ManyToMany` associations.
 
-If you don't know how to add associations to an entity, maybe to your own entity, head over to our guide for adding an assocation to an entity [Add data associations](add-data-associations.md).
+If you don't know how to add associations to an entity, maybe to your own entity, head over to our guide for adding an association to an entity [Add data associations](add-data-associations.md).
 
 #### OneToOne and ManyToOne associations
 

@@ -120,5 +120,5 @@ class MyFlysystemAdapterFactory implements AdapterFactoryInterface
 }
 ```
 
-This new class needs to be registered in the DI with the tag `shopware.filesystem.factory` to be useable.
+This new class needs to be registered in the DI with the tag `shopware.filesystem.factory` to be usable.
 

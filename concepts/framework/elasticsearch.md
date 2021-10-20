@@ -52,7 +52,7 @@ The command `es:create:alias` refreshes the current elasticsearch index and sets
 This will happen automatically when a new index is published, so this command can force the alias creation for testing purposes or if something went wrong.
 
 ### es:index
-The command `es:index` reindexes all configured entities to elasticsearch.
+The command `es:index` re-indexes all configured entities to elasticsearch.
 
 ### es:reset
 The command `es:reset` resets all active indices and clears the queue. This command should be used only if an index is corrupted or needs to be setup completely from scratch.

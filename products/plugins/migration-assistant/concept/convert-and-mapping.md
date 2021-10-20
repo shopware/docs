@@ -192,7 +192,7 @@ public function getOrCreateMapping(
 }
 ```
 
-Sometimes it is not necessary to create a new identifier and it may be enough to only get the mapping identifier. In the following example there is an entity with a premapping and the converter simply uses the mapping service's `getMapping` method:
+Sometimes it is not necessary to create a new identifier, and it may be enough to only get the mapping identifier. In the following example there is an entity with a premapping and the converter simply uses the mapping service's `getMapping` method:
 
 ```php
 /* SwagMigrationAssistant/Profile/Shopware/Converter/CustomerConverter.php */
