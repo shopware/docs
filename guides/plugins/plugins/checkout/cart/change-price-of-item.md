@@ -149,10 +149,7 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 
 class OverwritePriceCollector implements CartDataCollectorInterface, CartProcessorInterface
 {
-    /**
-     * @var QuantityPriceCalculator
-     */
-    private $calculator;
+    private QuantityPriceCalculator $calculator;
 
     public function __construct(QuantityPriceCalculator $calculator) {
         $this->calculator = $calculator;

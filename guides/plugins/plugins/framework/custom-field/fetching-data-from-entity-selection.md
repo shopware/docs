@@ -149,10 +149,7 @@ use Shopware\Core\Content\Product\ProductEvents;
 
 class ProductSubscriber implements EventSubscriberInterface
 {
-    /**
-     * @var EntityRepositoryInterface
-     */
-    private $productRepository;
+    private EntityRepositoryInterface $productRepository;
 
     public function __construct(
         EntityRepositoryInterface $productRepository
@@ -184,10 +181,7 @@ use Shopware\Core\Content\Product\ProductEvents;
 
 class ProductSubscriber implements EventSubscriberInterface
 {
-    /**
-     * @var EntityRepositoryInterface
-     */
-    private $productRepository;
+    private EntityRepositoryInterface $productRepository;
 
     public function __construct(
         EntityRepositoryInterface $productRepository

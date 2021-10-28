@@ -64,10 +64,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ExampleRoute extends AbstractExampleRoute
 {
-    /**
-     * @var EntityRepositoryInterface
-     */
-    protected $exampleRepository;
+    protected EntityRepositoryInterface $exampleRepository;
 
     public function __construct(EntityRepositoryInterface $exampleRepository)
     {
@@ -156,10 +153,7 @@ use Swag\BasicExample\Core\Content\Example\ExampleCollection;
 
 class ExampleRouteResponse extends StoreApiResponse
 {
-    /**
-     * @var EntitySearchResult
-     */
-    protected $object;
+    protected EntitySearchResult $object;
 
     public function __construct(EntitySearchResult $object)
     {

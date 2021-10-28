@@ -33,15 +33,9 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ExampleRouteDecorator extends AbstractExampleRoute
 {
-    /**
-     * @var EntityRepositoryInterface
-     */
-    protected $exampleRepository;
+    protected EntityRepositoryInterface $exampleRepository;
 
-    /**
-     * @var AbstractExampleRoute
-     */
-    private $decorated;
+    private AbstractExampleRoute $decorated;
 
     public function __construct(EntityRepositoryInterface $exampleRepository, AbstractExampleRoute $exampleRoute)
     {

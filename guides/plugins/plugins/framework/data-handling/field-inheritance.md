@@ -141,20 +141,11 @@ class ExampleEntity extends Entity
 {
     ...
 
-    /**
-     * @var self|null
-     */
-    protected $parent;
+    protected ?self $parent;
 
-    /**
-     * @var string|null
-     */
-    protected $parentId;
+    protected ?string $parentId;
 
-    /**
-     * @var ExampleCollection|null
-     */
-    protected $children;
+    protected ?ExampleCollection $children;
 
     ...
 

@@ -34,10 +34,7 @@ use Symfony\Component\Validator\Constraints\Type;
 
 class LunarEclipseRule extends Rule
 {
-    /**
-     * @var bool
-     */
-    protected $isLunarEclipse; // 'protected' is very important here!
+    protected bool $isLunarEclipse; // 'protected' is very important here!
 
     public function __construct()
     {

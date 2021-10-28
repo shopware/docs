@@ -52,10 +52,7 @@ use SebastianBergmann\Exporter\Exporter;
 
 class MySubscriber implements EventSubscriberInterface
 {
-    /**
-     * @var LoggerInterface
-     */
-     private $logger;
+     private LoggerInterface $logger;
 
     public function __construct(
         LoggerInterface $logger

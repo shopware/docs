@@ -47,7 +47,7 @@ class GatewayRegistry implements GatewayRegistryInterface
     /**
      * @var GatewayInterface[]
      */
-    private $gateways;
+    private iterable $gateways;
 
     /**
      * @param GatewayInterface[] $gateways
@@ -125,30 +125,15 @@ class ShopwareLocalGateway implements ShopwareGatewayInterface
 {
     public const GATEWAY_NAME = 'local';
 
-    /**
-     * @var ReaderRegistry
-     */
-    private $readerRegistry;
+    private ReaderRegistry $readerRegistry;
 
-    /**
-     * @var EnvironmentReaderInterface
-     */
-    private $localEnvironmentReader;
+    private EnvironmentReaderInterface $localEnvironmentReader;
 
-    /**
-     * @var TableReaderInterface
-     */
-    private $localTableReader;
+    private TableReaderInterface $localTableReader;
 
-    /**
-     * @var ConnectionFactoryInterface
-     */
-    private $connectionFactory;
+    private ConnectionFactoryInterface $connectionFactory;
 
-    /**
-     * @var EntityRepositoryInterface
-     */
-    private $currencyRepository;
+    private EntityRepositoryInterface $currencyRepository;
 
     public function __construct(
         ReaderRegistry $readerRegistry,

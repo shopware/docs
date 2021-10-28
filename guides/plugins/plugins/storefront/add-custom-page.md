@@ -71,15 +71,9 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ExamplePageLoader
 {
-    /**
-     * @var GenericPageLoaderInterface
-     */
-    private $genericPageLoader;
+    private GenericPageLoaderInterface $genericPageLoader;
 
-    /**
-     * @var EventDispatcherInterface
-     */
-    private $eventDispatcher;
+    private EventDispatcherInterface $eventDispatcher;
 
     public function __construct(GenericPageLoaderInterface $genericPageLoader, EventDispatcherInterface $eventDispatcher)
     {
@@ -146,10 +140,7 @@ namespace Swag\BasicExample\Storefront\Controller;
 
 class ExampleController extends StorefrontController
 {
-    /**
-     * @var ExamplePageLoader
-     */
-    private $examplePageLoader;
+    private ExamplePageLoader $examplePageLoader;
 
     public function __construct(ExamplePageLoader $examplePageLoader)
     {
@@ -193,10 +184,7 @@ use Swag\BasicExample\Core\Content\Example\ExampleEntity;
 
 class ExamplePage extends Page
 {
-    /**
-     * @var ExampleEntity
-     */
-    protected $exampleData;
+    protected ExampleEntity $exampleData;
 
     public function getExampleData(): ExampleEntity
     {
@@ -235,10 +223,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ExamplePageLoadedEvent extends PageLoadedEvent
 {
-    /**
-     * @var ExamplePage
-     */
-    protected $page;
+    protected ExamplePage $page;
 
     public function __construct(ExamplePage $page, SalesChannelContext $salesChannelContext, Request $request)
     {
