@@ -56,15 +56,9 @@ use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
 
 class WritingData
 {
-    /**
-     * @var EntityRepositoryInterface
-     */
-    private $productRepository;
+    private EntityRepositoryInterface $productRepository;
 
-    /**
-     * @var EntityRepositoryInterface
-     */
-    private $taxRepository;
+    private EntityRepositoryInterface $taxRepository;
 
     public function __construct(EntityRepositoryInterface $productRepository, EntityRepositoryInterface $taxRepository)
     {

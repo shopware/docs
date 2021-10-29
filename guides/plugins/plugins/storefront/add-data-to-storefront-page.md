@@ -85,10 +85,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class AddDataToPage implements EventSubscriberInterface
 {
-    /**
-     * @var EntityRepositoryInterface
-     */
-    private $productRepository;
+    private EntityRepositoryInterface $productRepository;
 
     public function __construct(EntityRepositoryInterface $productRepository)
     {

@@ -47,10 +47,7 @@ use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
 
 class ReadingData
 {
-    /**
-     * @var EntityRepositoryInterface
-     */
-    private $productRepository;
+    private EntityRepositoryInterface $productRepository;
 
     public function __construct(EntityRepositoryInterface $productRepository)
     {

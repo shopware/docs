@@ -35,10 +35,7 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 
 class ExampleProcessor implements CartProcessorInterface
 {
-    /**
-     * @var PercentagePriceCalculator
-     */
-    private $calculator;
+    private PercentagePriceCalculator $calculator;
 
     public function __construct(PercentagePriceCalculator $calculator)
     {

@@ -147,10 +147,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class ThemeVariableSubscriber implements EventSubscriberInterface
 {
-    /**
-     * @var SystemConfigService
-     */
-    protected $systemConfig;
+    protected SystemConfigService $systemConfig;
 
     // add the `SystemConfigService` to your constructor
     public function __construct(SystemConfigService $systemConfig)

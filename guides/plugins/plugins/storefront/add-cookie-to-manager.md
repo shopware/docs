@@ -55,7 +55,7 @@ use Shopware\Storefront\Framework\Cookie\CookieProviderInterface;
 
 class CustomCookieProvider implements CookieProviderInterface {
 
-    private $originalService;
+    private CookieProviderInterface $originalService;
 
     public function __construct(CookieProviderInterface $service)
     {

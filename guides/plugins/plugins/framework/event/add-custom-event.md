@@ -45,15 +45,9 @@ use Swag\BasicExample\Core\Content\Example\ExampleEntity;
 
 class ExampleEvent implements ShopwareSalesChannelEvent
 {
-    /**
-     * @var ExampleEntity
-     */
-    protected $exampleEntity;
+    protected ExampleEntity $exampleEntity;
 
-    /**
-     * @var SalesChannelContext
-     */
-    protected $salesChannelContext;
+    protected SalesChannelContext $salesChannelContext;
 
     public function __construct(ExampleEntity $exampleEntity, SalesChannelContext $context)
     {
@@ -96,10 +90,7 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 class ExampleEventService
 {
-    /**
-     * @var EventDispatcherInterface
-     */
-    private $eventDispatcher;
+    private EventDispatcherInterface $eventDispatcher;
 
     public function __construct(EventDispatcherInterface $eventDispatcher)
     {

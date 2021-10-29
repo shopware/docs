@@ -41,15 +41,9 @@ use Shopware\Core\Checkout\Cart\Cart;
  */
 class ExampleController extends StorefrontController
 {
-    /**
-     * @var LineItemFactoryRegistry
-     */
-    private $factory;
+    private LineItemFactoryRegistry $factory;
 
-    /**
-     * @var CartService
-     */
-    private $cartService;
+    private CartService $cartService;
 
     public function __construct(LineItemFactoryRegistry $factory, CartService $cartService)
     {

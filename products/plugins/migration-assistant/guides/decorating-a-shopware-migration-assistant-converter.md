@@ -40,25 +40,13 @@ class ManufacturerReader extends AbstractPremappingReader
 {
     private const MAPPING_NAME = 'swag_manufacturer';
 
-    /**
-     * @var EntityRepositoryInterface
-     */
-    private $manufacturerRepo;
+    private EntityRepositoryInterface $manufacturerRepo;
 
-    /**
-     * @var GatewayRegistryInterface
-     */
-    private $gatewayRegistry;
+    private GatewayRegistryInterface $gatewayRegistry;
 
-    /**
-     * @var string[]
-     */
-    private $preselectionDictionary;
+    private array $preselectionDictionary;
 
-    /**
-     * @var string[]
-     */
-    private $preselectionSourceNameDictionary;
+    private array $preselectionSourceNameDictionary;
 
     public function __construct(
         EntityRepositoryInterface $manufacturerRepo,
@@ -238,10 +226,7 @@ After creating your premapping reader, you have a new premapping card, but this 
 
  class Shopware55DecoratedProductConverter extends ProductConverter
  {
-     /**
-      * @var ConverterInterface
-      */
-     private $originalProductConverter;
+     private ConverterInterface $originalProductConverter;
 
      public function __construct(
          ConverterInterface $originalProductConverter,

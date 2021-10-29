@@ -173,20 +173,11 @@ use Swag\BasicExample\Core\Content\Example\ExampleEntity;
 
 class ExampleTranslationEntity extends TranslationEntity
 {
-    /**
-     * @var string
-     */
-    protected $exampleId;
+    protected string $exampleId;
 
-    /**
-     * @var string|null
-     */
-    protected $name;
+    protected ?string $name;
 
-    /**
-     * @var ExampleEntity
-     */
-    protected $example;
+    protected ExampleEntity $example;
 
     public function getExampleId(): string
     {

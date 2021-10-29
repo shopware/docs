@@ -202,20 +202,11 @@ class ExampleEntity extends Entity
 {
     use EntityIdTrait;
 
-    /**
-     * @var string|null
-     */
-    protected $name;
+    protected ?string $name;
 
-    /**
-     * @var string|null
-     */
-    protected $description;
+    protected ?string $description;
 
-    /**
-     * @var bool
-     */
-    protected $active;
+    protected bool $active;
 
     public function getName(): ?string
     {
