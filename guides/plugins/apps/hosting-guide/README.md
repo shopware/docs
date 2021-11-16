@@ -15,8 +15,8 @@ functionalities that it uses.
   - [Webhooks](../app-base-guide.md#webhooks)
   - [Payment Processing](../payment.md)
 - **Features that work without a server**
-  - [Themes](../storefront.md)
-  - [Template changes](../storefront.md)
+  - [Themes](../storefront/apps-as-themes.md)
+  - [Template changes](../storefront/README.md)
   - [CMS Blocks](../content/cms/add-custom-cms-blocks.md)
   - [App configuration](../configuration.md)
   

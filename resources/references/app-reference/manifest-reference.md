@@ -131,6 +131,38 @@
             </fields>
         </custom-field-set>
     </custom-fields>
+    <cookies>
+        <!-- Add a single cookie to cookie consent manager -->
+        <cookie>
+            <!-- The technical name of the cookie -->
+            <cookie>my-cookie</cookie>
+            <!-- Key of a Storefront snippet that represents the cookie's label in the consent manager -->
+            <snippet-name>example-app-with-cookies.my-cookie.name</snippet-name>
+            <!-- Key of a Storefront snippet that represents the cookie's description in the consent manager -->
+            <snippet-description>example-app-with-cookies.my-cookie.description</snippet-description>
+            <!-- A value that should be set to the cookie when the user accepts it -->
+            <value>a static value for the cookie</value>
+            <!-- Expiration in days -->
+            <expiration>1</expiration>
+        </cookie>
+        <!-- Add a cookie group to cookie consent manager -->
+        <group>
+            <!-- Key of a Storefront snippet that represents the cookie group's label in the consent manager -->
+            <snippet-name>example-app-with-cookies.cookie-group.name</snippet-name>
+            <!-- Key of a Storefront snippet that represents the cookie group's description in the consent manager -->
+            <snippet-description>example-app-with-cookies.cookie-group.description</snippet-description>
+            <!-- Add a collection of single cookies to the group -->
+            <entries>
+                <cookie>
+                    <cookie>my-cookie</cookie>
+                    <snippet-name>example-app-with-cookies.my-cookie.name</snippet-name>
+                    <snippet-description>example-app-with-cookies.my-cookie.description</snippet-description>
+                    <value>a static value for the cookie</value>
+                    <expiration>1</expiration>
+                </cookie>
+            </entries>
+        </group>
+    </cookies>
     <payments>
         <payment-method>
             <!-- The identifier of the payment method (and the app name) should not change. Otherwise a separate method is created. -->
