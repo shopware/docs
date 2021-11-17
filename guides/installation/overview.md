@@ -103,6 +103,7 @@ Various
 * Webserver with HTTP2 support
 
 {% hint style="info" %}
+<!-- markdown-link-check-disable-next-line -->
 Adminer \([https://www.adminer.org/](https://www.adminer.org/)\) is our recommended database administration tool since it has better support for binary data types.
 {% endhint %}
 
