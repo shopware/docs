@@ -335,7 +335,7 @@ Now you've added an ascending sort by the `createdAt` field, so the result becom
 
 ### Using the RepositoryIterator
 
-Another special way to read data in Shopware is by using the [RepositoryInterator](https://github.com/shopware/platform/blob/master/src/Core/Framework/DataAbstractionLayer/Dbal/Common/RepositoryIterator.php).
+Another special way to read data in Shopware is by using the [RepositoryInterator](https://github.com/shopware/platform/blob/trunk/src/Core/Framework/DataAbstractionLayer/Dbal/Common/RepositoryIterator.php).
 
 But what does it do? Basically it's a little helper class that helps you deal with big data sets by being iterable and returning a batch of data with each iteration, but never all data at once.
 
@@ -381,4 +381,3 @@ And that's basically it for this guide!
 ## Next steps
 
 Now that you know how to read data from the database using the Data Abstraction Layer, you can head over to our guide on [writing data](writing-data.md).
-
