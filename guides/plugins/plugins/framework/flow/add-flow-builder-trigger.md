@@ -6,19 +6,19 @@ In this guide you'll learn how to create custom flow action in Shopware. Actions
 
 This example will introduce a new custom action, which creates tags. The shop owner is then able to create tags via flow builder.
 
-# Prerequisites
+## Prerequisites
 
 In order to add your own custom flow action for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide.](../../plugin-base-guide.md)
 
-You also should be familiar with the [Dependency Injection container](../../plugin-fundamentals/dependency-injection) as this is used to register your custom flow action and [Listening to events]../../plugins/plugin-fundamentals/listening-to-events#creating-your-own-subscriber) to create a subscriber class.
+You also should be familiar with the [Dependency Injection container](../../plugin-fundamentals/dependency-injection.md) as this is used to register your custom flow action and [Listening to events]../../plugins/plugin-fundamentals/listening-to-events#creating-your-own-subscriber) to create a subscriber class.
 
 It might be helpful to gather some general understanding about the concept of flow builder as well.
 
-# Existing triggers and actions
+## Existing triggers and actions
 
 You can refer to the [Overview Events and Actions](https://shopware.atlassian.net/wiki/spaces/~m.friedmann/pages/18987974805/Flow+Builder+-+Overview+Events+and+Actions) to read triggers and actions detail.
 
-# Create custom flow action
+## Create custom flow action
 
 To create a custom flow action, firstly you have to create a plugin and install it, you can refer to the [Plugin Base Guide](../../plugin-base-guide) to do it. I will create a plugin named `AddTagPlugin`. we have to implement both backend (PHP) code and a user interface in the administration to manage it. Let's start with the PHP part first, which basically handles the main logic of our action. After that, there will be an example to actually show your new action in the administration.
 
@@ -123,7 +123,7 @@ As you can see, several methods are already implemented:
 
 And we also need to register this action in the container as a service, make sure you have defined a tag `<tag name="flow.action" priotity="600">` at `<pluglin root> src/Resources/config/services.xml`, that your action would be added to response of *`/api/_info/flow-actions.json`* API and `priority` will decide the order of action of API response:
 
-```php
+```xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -257,6 +257,7 @@ Component.override('sw-flow-sequence-action', {
 ```
 
 - Create a custom modal to set action configuration
+// TODO: Add a example code for custom modal here
 
 <div data-gb-custom-block data-tag="hint" data-style='info'>
   This functionality is available starting with Shopware 6.4.6.0.
