@@ -77,12 +77,12 @@ This feature was added in Shopware 6.4.3.0, previous versions will ignore the re
 
 {% hint style="info" %}
 Starting from Shopware version 6.4.8.0, the requests of the [tab](#opening-a-new-tab-for-the-user) and [custom modal](#open-a-custom-modal) have the following additional query parameters:
-* shop-id
-* shop-url
-* timestamp
-* sw-context-language
-* sw-user-language
-* shopware-shop-signature
+* `shop-id`
+* `shop-url`
+* `timestamp`
+* `sw-context-language`
+* `sw-user-language`
+* `shopware-shop-signature`
 
 You **must** make sure to verify the authenticity of the incoming request by checking the `shopware-shop-signature`, which is a hash of the request's query part, signed with the shop's secret key.
 {% endhint %}
