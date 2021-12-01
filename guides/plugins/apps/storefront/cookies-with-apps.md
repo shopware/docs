@@ -96,4 +96,4 @@ If you are not familiar with setting up Storefront snippets, please refer to our
 
 As described in the previous section, `cookie` elements without a `value` element will not be set automatically. Instead, you have to react to cookie consent changes within your JavaScript. Find out how to respond to cookie consent changes in the following article:
 
-{% page-ref page="../../../plugins/storefront/reacting-to-cookie-consent-changes.md" %}
+{% page-ref page="../../../plugins/plugins/storefront/reacting-to-cookie-consent-changes.md" %}
