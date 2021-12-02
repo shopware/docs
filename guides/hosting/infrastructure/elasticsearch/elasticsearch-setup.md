@@ -1,4 +1,4 @@
-# Elasticsearch
+# Set up Elasticsearch
 
 ## Overview
 
