@@ -19,6 +19,7 @@ It might be helpful to gather some general understanding about the [concept of F
 ## Existing triggers and actions
 
 You can refer to the [Flow reference](../../../../../resources/references/core-reference/flow-reference.md) to read triggers and actions detail.
+
 ## Create custom flow action
 
 To create a custom flow action, firstly you have to create a plugin and install it, you can refer to the [Plugin Base Guide](../../plugin-base-guide) to do it. I will create a plugin named `ExamplePlugin`. we have to implement both backend (PHP) code and a user interface in the administration to manage it. Let's start with the PHP part first, which basically handles the main logic of our action. After that, there will be an example to actually show your new action in the administration.
@@ -370,10 +371,11 @@ Component.register('swag-example-plugin-modal', {
 {% endblock %}
 ```
 {% endcode %}
+
 ### Demo
-Now you can view the demo for this custom Flow builder triger and action as below.
+
+Now you can view the demo for this custom Flow builder trigger and action as below.
 
 ![Flow Builder demo](../../../../../.gitbook/assets/flow-builder-demo.gif)
-
 
 The source code for this demo you could find it at [Flow Builder ExamplePlugin](https://github.com/huytdq94/sw-example-plugin-flow-builder).
