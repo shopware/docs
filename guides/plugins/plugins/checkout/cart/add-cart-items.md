@@ -204,7 +204,7 @@ Now register this processor in your `services.xml` like this:
 ...
 <services>
     ...
-    <service id="IclLoyaltyCard\Core\Checkout\Cart\LoyaltyCardProcessor">
+    <service id="Swag\BasicExample\Core\Checkout\Cart\ExampleProcessor">
         <tag name="shopware.cart.processor" priority="4800"/>
     </service>
 </services>
