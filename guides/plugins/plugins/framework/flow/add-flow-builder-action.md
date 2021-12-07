@@ -6,8 +6,7 @@
 
 ## Overview
 
-In this guide you'll learn how to create custom flow action in Shopware. Actions are used by the flow builder. This example will introduce a new custom action, which creates tags or assigning the tags.
-
+In this guide, you'll learn how to create custom flow action in Shopware. The flow builder uses actions to perform business tasks. This example will introduce a new custom action called `create tags`.
 ## Prerequisites
 
 In order to add your own custom flow action for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide.](../../plugin-base-guide.md)
@@ -22,13 +21,13 @@ You can refer to the [Flow reference](../../../../../resources/references/core-r
 
 ## Create custom flow action
 
-To create a custom flow action, firstly you have to create a plugin and install it, you can refer to the [Plugin Base Guide](../../plugin-base-guide) to do it. I will create a plugin named `ExamplePlugin`. we have to implement both backend (PHP) code and a user interface in the administration to manage it. Let's start with the PHP part first, which basically handles the main logic of our action. After that, there will be an example to actually show your new action in the administration.
+To create a custom flow action, firstly you have to make a plugin and install it, you can refer to the [Plugin Base Guide](../../plugin-base-guide) to do it. I will create a plugin named `ExamplePlugin`. We have to implement both backend (PHP) code and a user interface in the Administration to manage it. Let's start with the PHP part first, which handles the main logic of our action. After that, there will be an example to show your new actions in the Administration.
 
 ## Creating flow action in PHP
 
 ### Create new Aware interface
 
- First of all, we need to define an aware interface for your own action, I intended to create the `CreateTagAction`, so I need to create a related aware named `TagAware`, will be placed in directory `<plugin root>/src/Core/Framework/Event`. Our new interface has to extend from interfaces `Shopware\Core\Framework\Event\FLowEventAware`:
+ First of all, we need to define an aware interface for your own action. I intended to create the `CreateTagAction`, so I need to create a related aware named `TagAware`, will be placed in directory `<plugin root>/src/Core/Framework/Event`. Our new interface has to extend from interfaces `Shopware\Core\Framework\Event\FLowEventAware`:
 
 {% code title="<plugin root>/src/Core/Framework/Event/TagAware.php" %}
 ```php
@@ -122,13 +121,12 @@ class CreateTagAction extends FlowAction
 
 As you can see, several methods are already implemented:
 
-- `__constructor`: This only defines the default expected value. This is overwritten at runtime with the actual value, that the shop owner set in the administration.
+- `__constructor`: This only defines the default expected value. This is overwritten at runtime with the actual value, that the shop owner set in the Administration.
 - `getName`: Returns a unique technical name for your action.
-- `requirements`: This defined which interfaces that the action belongs to.
+- `requirements`: This defines which interfaces that the action belongs to.
 - `handle`: Use this method to handle your action stuff.
 
 And we also need to register this action in the container as a service, make sure you have defined a tag `<tag name="flow.action" priority="600">` at `<plugin root>/src/Resources/config/services.xml`, that your action would be added to response of *`/api/_info/flow-actions.json`* API and `priority` will decide the order of action of API response:
-
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
 ```xml
@@ -140,11 +138,11 @@ And we also need to register this action in the container as a service, make sur
 ```
 {% endcode %}
 
-Great, your own action is created completely, let's go to the next step.
+Great, your own action is created completely. Let's go to the next step.
 
 ### Define action scope
 
- At this step you will know how to define your action scope, for `CreateTagAction`, I intended it would be available for all events, let see the code below:
+ At this step, you will know how to define your action scope, for `CreateTagAction`, I intended it would be available for all events. Let's see the code below:
 
 {% code title="<plugin root>/src/Core/Content/Flow/Subscriber/BusinessEventCollectorSubscriber.php" %}
 ```php
@@ -185,7 +183,7 @@ And don't forget to register your subscriber to the container at `<plugin root>/
 ```
 {% endcode %}
 
-Well done, you are successfully created your own custom action in Backend in PHP.
+Well done, you are successfully created your custom action in Backend in PHP.
 
 {% hint style="info" %}
   This functionality is available starting with Shopware 6.4.6.0
@@ -193,7 +191,21 @@ Well done, you are successfully created your own custom action in Backend in PHP
 
 ## Add custom action in Administration
 
-- Define action name in `example-plugin.constant.js`
+After we are done with the PHP code, `action.create.tag` is received from the response of `/api/_info/flow-actions.json`. However, the custom action displays in the action list without label. These further steps in Administration will help you show the action label and add configuration for it.
+
+To see action list, we select a Trigger, for example [Example\Event] from the Trigger drop-down in the Flow tab. After that, we choose option `ACTION (THEN)`. A action component appears with action list.
+
+![Flow Builder trigger](../../../../../.gitbook/assets/flow-builder-trigger-drop.png)
+
+![Flow Builder action then](../../../../../.gitbook/assets/flow-builder-action-then.png)
+
+![Flow Builder trigger](../../../../../.gitbook/assets/flow-builder-action-no-label.png)
+
+### Step 1: Show action label in action list
+
+First, we need to define an action name in `example-plugin.constant.js`. To be consistent with the custom action defined in our PHP code, we also create a constant called `CREATE_TAG` to represent `action.create.tag` which get from the response of `/api/_info/flow-actions.json`.
+
+![Flow Builder action services list](../../../../../.gitbook/assets/flow-builder-action-sevices-list.png)
 
 {% code title="<plugin root>/src/Resources/app/administration/src/constant/swag-example-plugin.constant.js" %}
 ```jsx
@@ -207,55 +219,22 @@ export default {
 ```
 {% endcode %}
 
-- Override `sw-flow-sequence-action` to show custom action in action list
+Next, we override `sw-flow-sequence-action` component to show `CREATE_TAG` label in action list. For example, we override `getActionTitle` method to add icon, label for `CREATE_TAG` action.
 
 {% code title="<plugin root>/src/Resources/app/administration/src/extension/sw-flow-sequence-action/index.js" %}
 ```jsx
-import { ACTION } from '../../constant/example-plugin.constant';
+import { ACTION } from '../../constant/swag-example-plugin.constant';
 
 const { Component } = Shopware;
 
 Component.override('sw-flow-sequence-action', {
-    computed: {
-        modalName() {
-            if (this.selectedAction === ACTION.CREATE_TAG) {
-                return 'example-plugin-create-tag-modal';
-            }
-
-            return this.$super('modalName');
-        },
-
-        actionDescription() {
-            const actionDescriptionList = this.$super('actionDescription');
-
-            return {
-                ...actionDescriptionList,
-                [ACTION.CALL_WEBHOOK] : (config) => this.getWebhookDescription(config),
-            };
-        },
-    },
-
     methods: {
-        getWebhookDescription(config) {
-            let description = this.$tc('example-plugin.action.description', 0, {
-                tag: config.method,
-            });
-
-            if (config.description) {
-                description = description.concat(`<div class='sw-flow-sequence-action__example-description'>
-                    ${this.$tc('example-plugin.modal.general.labelDescription')}: ${config.description}
-                    </div>`);
-            }
-
-            return description;
-        },
-
         getActionTitle(actionName) {
-            if (actionName === ACTION.CREATE_TAG {
+            if (actionName === ACTION.CREATE_TAG) {
                 return {
                     value: actionName,
-                    icon: 'default-web-link',
-                    label: this.$tc('example-plugin.action.titleAddCustomTag'),
+                    icon: 'default-badge-help',
+                    label: this.$tc('swag-example-plugin.titleCreateTag'),
                 }
             }
 
@@ -266,18 +245,71 @@ Component.override('sw-flow-sequence-action', {
 ```
 {% endcode %}
 
-![Flow Builder trigger](../../../../../.gitbook/assets/flow-builder-trigger-drop.png)
+Here is the result for the after the **Step 1**.
 
 ![Choose a Flow Builder Action](../../../../../.gitbook/assets/flow-builder-trigger-action.png)
 
+### Step 2: Add configuration for action
 
-You might need a modal to save your action config. For example , `swag-example-plugin-modal`.
+First, we customise `modalName` for the configuration modal, add an `actionDescription` computed property and create the `getCreateTagDescription` method to show action the configuration description.
 
-![Flow Builder create tag](../../../../../.gitbook/assets/flow-builder-tag.png)
+{% code title="<plugin root>/src/Resources/app/administration/src/extension/sw-flow-sequence-action/index.js" %}
+```jsx
+import { ACTION } from '../../constant/swag-example-plugin.constant';
 
+const { Component } = Shopware;
+
+Component.override('sw-flow-sequence-action', {
+    computed: {
+        modalName() {
+            if (this.selectedAction === ACTION.CREATE_TAG) {
+                return 'swag-example-plugin-modal';
+            }
+
+            return this.$super('modalName');
+        },
+
+        actionDescription() {
+            const actionDescriptionList = this.$super('actionDescription');
+
+            return {
+                ...actionDescriptionList,
+                [ACTION.CREATE_TAG] : (config) => this.getCreateTagDescription(config),
+            };
+        },
+    },
+
+    methods: {
+        getCreateTagDescription(config) {
+            const tags = config.tags.join(', ');
+
+           return this.$tc('swag-example-plugin.descriptionTags', 0, {
+                tags
+            });
+        },
+
+        getActionTitle(actionName) {
+            if (actionName === ACTION.CREATE_TAG) {
+                return {
+                    value: actionName,
+                    icon: 'default-badge-help',
+                    label: this.$tc('swag-example-plugin.titleCreateTag'),
+                }
+            }
+
+            return this.$super('getActionTitle', actionName);
+        },
+    },
+});
+```
+{% endcode %}
+
+Then, we need a modal to save your action config. For example, we create a component `swag-example-plugin-modal`.
+
+#### JavaScript file
 
 {% code title="<plugin root>/src/Resources/app/administration/src/component/swag-example-plugin-modal/index.js" %}
-```tsx
+```jsx
 import template from './swag-example-plugin-modal.html.twig';
 const { Component } = Shopware;
 
@@ -326,6 +358,8 @@ Component.register('swag-example-plugin-modal', {
 ```
 {% endcode %}
 
+#### Twig template file
+
 {% code title="<plugin root>/src/Resources/app/administration/src/component/swag-example-plugin-modal/swag-example-plugin-modal.html.twig" %}
 ```html
 {% block swag_example_plugin_modal %}
@@ -372,9 +406,17 @@ Component.register('swag-example-plugin-modal', {
 ```
 {% endcode %}
 
+Here is the final result
+
+![Flow Builder create tag](../../../../../.gitbook/assets/flow-builder-tag.png)
+
+Click on [Save action] and we will get the result as below screenshot.
+
+![Flow Builder create tag result](../../../../../.gitbook/assets/flow-builder-tag-result.png)
+
 ### Demo
 
-Now you can view the demo for this custom Flow builder trigger and action as below.
+Now you can view the whole demo for this custom Flow builder trigger and action as below.
 
 ![Flow Builder demo](../../../../../.gitbook/assets/flow-builder-demo.gif)
 
