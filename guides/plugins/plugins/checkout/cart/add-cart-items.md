@@ -127,14 +127,16 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 
 class ExampleHandler implements LineItemFactoryInterface
 {
+    public const TYPE = 'example';
+
     public function supports(string $type): bool
     {
-        return $type === 'example';
+        return $type === self::TYPE;
     }
 
     public function create(array $data, SalesChannelContext $context): LineItem
     {
-        return new LineItem($data['id'], 'MyType', $data['referencedId'] ?? null, 1);
+        return new LineItem($data['id'], self::TYPE, $data['referencedId'] ?? null, 1);
     }
 
     public function update(LineItem $lineItem, array $data, SalesChannelContext $context): void
@@ -171,6 +173,7 @@ Implementing the `LineItemFactoryInterface` will force you to also implement thr
 
 namespace Swag\BasicExample\Core\Checkout\Cart;
 
+use Swag\BasicExample\Service\ExampleHandler;
 use Shopware\Core\Checkout\Cart\Cart;
 use Shopware\Core\Checkout\Cart\CartBehavior;
 use Shopware\Core\Checkout\Cart\CartProcessorInterface;
@@ -182,7 +185,7 @@ class ExampleProcessor implements CartProcessorInterface
 
     public function process(CartDataCollection $data, Cart $original, Cart $toCalculate, SalesChannelContext $context, CartBehavior $behavior): void
     {
-        $lineItems = $original->getLineItems()->filterFlatByType('MyType');
+        $lineItems = $original->getLineItems()->filterFlatByType(ExampleHandler::TYPE);
 
         foreach ($lineItems as $lineItem){
             $toCalculate->add($lineItem);
