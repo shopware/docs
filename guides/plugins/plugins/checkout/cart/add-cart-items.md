@@ -163,5 +163,50 @@ Implementing the `LineItemFactoryInterface` will force you to also implement thr
 
   Here you can define which properties of your line item may actually be updated. E.g. if you really want property X to contain "Y", you can do so here.
 
-And that's it. You should now be able to create line items of type `example` once your handler is properly registered.
+  Now you'll need to add a processor for your type. Otherwise your item won't be persisted in the cart. A simple processor for our ExampleHandler could look like this:
+
+{% code title="<plugin root>/Core/Checkout/Cart/ExampleProcessor.php" %}
+```php
+<?php declare(strict_types=1);
+
+namespace Swag\BasicExample\Core\Checkout\Cart;
+
+use Shopware\Core\Checkout\Cart\Cart;
+use Shopware\Core\Checkout\Cart\CartBehavior;
+use Shopware\Core\Checkout\Cart\CartProcessorInterface;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Core\Checkout\Cart\LineItem\CartDataCollection;
+
+class ExampleProcessor implements CartProcessorInterface
+{
+
+    public function process(CartDataCollection $data, Cart $original, Cart $toCalculate, SalesChannelContext $context, CartBehavior $behavior): void
+    {
+        $lineItems = $original->getLineItems()->filterFlatByType('MyType');
+
+        foreach ($lineItems as $lineItem){
+            $toCalculate->add($lineItem);
+        }
+    }
+}
+```
+{% endcode %}
+As you can see, this processor takes an "original cart" as an input and adds all instances of our example type to a second cart, which will actually be persisted.
+
+Of course you can use processors to do much more than this. Have a look at [adding cart processors and collectors](./add-cart-processor-collecor.md).
+
+Now register this processor in your `services.xml` like this:
+{% code title="<plugin root>/Resources/config/services.xml" %}
+```markup
+...
+<services>
+    ...
+    <service id="IclLoyaltyCard\Core\Checkout\Cart\LoyaltyCardProcessor">
+        <tag name="shopware.cart.processor" priority="4800"/>
+    </service>
+</services>
+```
+{% endcode %}
+
+And that's it. You should now be able to create line items of type `example`.
 
