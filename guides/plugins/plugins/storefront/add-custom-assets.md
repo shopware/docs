@@ -53,7 +53,7 @@ Let's think about a simple example, displaying our image right in the base templ
     <h2>Asset:</h2>
 
     {# Using asset function to display our custom asset #}
-    <img src="{{ asset('bundles/swagbasicexample/image.png', 'asset') }}"
+    <img src="{{ asset('bundles/swagbasicexample/image.png', 'asset') }}">
     {{ parent() }}
 {% endblock %}
 ```

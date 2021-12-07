@@ -101,15 +101,9 @@ class OwnLocaleGateway implements GatewayInterface
 {
     public const GATEWAY_NAME = 'local';
 
-    /**
-     * @var ConnectionFactoryInterface
-     */
-    private $connectionFactory;
+    private ConnectionFactoryInterface $connectionFactory;
 
-    /**
-     * @var ReaderRegistry
-     */
-    private $readerRegistry;
+    private ReaderRegistry $readerRegistry;
 
     public function __construct(
         ReaderRegistry $readerRegistry,
@@ -598,15 +592,9 @@ class OwnLocaleGateway implements GatewayInterface
 {
     public const GATEWAY_NAME = 'local';
 
-    /**
-     * @var ConnectionFactoryInterface
-     */
-    private $connectionFactory;
+    private ConnectionFactoryInterface $connectionFactory;
 
-    /**
-     * @var ReaderRegistry
-     */
-    private $readerRegistry;
+    private ReaderRegistry $readerRegistry;
 
     public function __construct(
         ReaderRegistry $readerRegistry,
@@ -713,15 +701,9 @@ use SwagMigrationOwnProfileExample\Profile\OwnProfile\OwnProfile;
 
 class ProductConverter extends ShopwareConverter
 {
-    /**
-     * @var string
-     */
-    private $connectionId;
+    private string $connectionId;
 
-    /**
-     * @var Context
-     */
-    private $context;
+    private Context $context;
 
     public function getSourceIdentifier(array $data): string
     {

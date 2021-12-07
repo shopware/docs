@@ -76,7 +76,7 @@ Shopware Plugin Lifecycle Service
 
 Your theme was successfully installed and activated.
 
-The last thing we need to do to work with the theme is to assign it to a sales channel. You can do that by running the `theme:change` command in the terminal and follow the instuctions.
+The last thing we need to do to work with the theme is to assign it to a sales channel. You can do that by running the `theme:change` command in the terminal and follow the instructions.
 
 ```bash
 # run this to change the current storefront theme

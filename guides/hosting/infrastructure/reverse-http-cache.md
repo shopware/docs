@@ -184,6 +184,9 @@ sub vcl_backend_response {
     set beresp.http.x-url = bereq.url;
     set beresp.http.X-Cacheable = "YES";
 
+    # Remove the exact PHP Version from the response for more security
+    unset beresp.http.x-powered-by;
+    
     return (deliver);
 }
 

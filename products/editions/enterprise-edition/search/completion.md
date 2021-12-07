@@ -28,10 +28,7 @@ use Shopware\Elasticsearch\Framework\FullText;
 
 class MyProductDefinitionDecorator extends AbstractElasticsearchDefinition
 {
-    /**
-     * @var AbstractElasticsearchDefinition
-     */
-    private $decorated;
+    private AbstractElasticsearchDefinition $decorated;
 
     public function __construct(
         AbstractElasticsearchDefinition $decorated

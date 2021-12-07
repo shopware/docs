@@ -40,6 +40,7 @@ You can read more about dependency injection and service registration in Shopwar
 {% page-ref page="../../guides/plugins/plugins/plugin-fundamentals/add-custom-service.md" %}
 
 ### Translations
+
 The DAL was designed, among other things, to enable the special requirements of Shopware's translation system. When a record is read or searched, three language levels are searched.
 
 1. current language: The first level is the current language that is set and displayed to the user.
@@ -51,14 +52,17 @@ The DAL was designed, among other things, to enable the special requirements of 
 The translations for a record are stored in a separate table. The name of this table is always the same as the table for which the records are translated, with the additional suffix `_translation`.
 
 ### Versioning
+
 Another feature of the DAL is the versioning it brings with it. This makes it possible to store multiple versions of an entity. All data that is subordinate to an entity is duplicated and made available under the new version. Multiple entities or changes to different entities can be stored for one version. The versioning was designed for previews, publishing or campaign features, to prepare changes that are not yet live and to be able to view them in the store.
 
-The versioning is also reflected in the database. Entities that are versionable always have a compound foreign key: `id`, `version_id`. Also the foreign keys, which point to a versioned record, always consist of two columns, e.g.: `product_id` and `product_version_id`.
+The versioning is also reflected in the database. Entities that are versionable always have a compound foreign key: `id`, `version_id`. Also, the foreign keys, which point to a versioned record, always consist of two columns, e.g.: `product_id` and `product_version_id`.
 
 ### Inheritance
+
 Another reason why the DAL was designed is to meet the requirements of the product and variant system. For this purpose, a parent-child inheritance system was implemented in the DAL. This allows variants to inherit records, properties or even whole associations from the parent or also called container product. For example, if a variant has not been assigned any categories or images, those of the parent product are used.
 
 ### Indexing
+
 The DAL was designed to be optimized for use in e-commerce. There is one principle that has proven to be very effective so far: "The more time you put into indexing data, the faster it is possible to read it". This is reflected in Shopware as follows:
 
 * A product is written once every X minutes

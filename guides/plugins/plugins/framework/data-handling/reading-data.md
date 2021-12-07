@@ -47,10 +47,7 @@ use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
 
 class ReadingData
 {
-    /**
-     * @var EntityRepositoryInterface
-     */
-    private $productRepository;
+    private EntityRepositoryInterface $productRepository;
 
     public function __construct(EntityRepositoryInterface $productRepository)
     {
@@ -338,7 +335,7 @@ Now you've added an ascending sort by the `createdAt` field, so the result becom
 
 ### Using the RepositoryIterator
 
-Another special way to read data in Shopware is by using the [RepositoryInterator](https://github.com/shopware/platform/blob/master/src/Core/Framework/DataAbstractionLayer/Dbal/Common/RepositoryIterator.php).
+Another special way to read data in Shopware is by using the [RepositoryInterator](https://github.com/shopware/platform/blob/trunk/src/Core/Framework/DataAbstractionLayer/Dbal/Common/RepositoryIterator.php).
 
 But what does it do? Basically it's a little helper class that helps you deal with big data sets by being iterable and returning a batch of data with each iteration, but never all data at once.
 
@@ -364,9 +361,23 @@ public function readData(Context $context): void
 
 In this example, you'd get a batch of 500 products with each iteration of the `while` loop. This way, `$result` will not cause a "memory exhausted" error and you can handle huge amounts of data this way.
 
+One small caveat to be aware of: When using the `RepositoryIterator`, make sure that the `Criteria` uses a sorting which is deterministic. 
+
+Put differently, you must ensure that your sorting means that there's only one correct way to order your results, otherwise different batches might decide to sort the entities differently in the database. That would mean you risk getting the same entity in several batches (and having entities that won't be iterated at all).
+
+For example, ordering products by `manufacturerNumber` alone could cause this issue, because several products can have the same `manufacturerNumber`, so there's several correct orderings of those products. On the other hand, because each product is guaranteed to have a unique ID, sorting by ID is an easy way to mitigate this issue:
+
+```php
+$criteria = new Criteria();
+//This sorting alone would result in sorting that is nondeterministic as several products might have the same value for this field:
+$criteria->addSorting(new FieldSorting('manufacturerNumber'));  
+//However, simply by adding a secondary sorting by ID, the sorting becomes deterministic again, as the IDs are unique per product.
+$criteria->addSorting(new FieldSorting('id'));  
+$criteria->setLimit(500);
+```
+
 And that's basically it for this guide!
 
 ## Next steps
 
 Now that you know how to read data from the database using the Data Abstraction Layer, you can head over to our guide on [writing data](writing-data.md).
-

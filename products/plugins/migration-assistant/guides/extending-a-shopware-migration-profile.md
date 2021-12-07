@@ -60,10 +60,7 @@ use SwagMigrationOwnProfileExample\Profile\OwnProfile\DataSelection\DataSet\Prod
 
 class ProductDataSelection implements DataSelectionInterface
 {
-    /**
-     * @var DataSelectionInterface
-     */
-    private $originalDataSelection;
+    private DataSelectionInterface $originalDataSelection;
 
     public function __construct(DataSelectionInterface $originalDataSelection)
     {

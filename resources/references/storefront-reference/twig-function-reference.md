@@ -9,7 +9,7 @@ In Shopware, we extend Twig's functionality by custom ones. See our own actions 
 | `sw_extends` | Inherits from another file with support for multi inheritance. The API is the same like in twigs default `extends` | --- |
 | `sw_include` | Includes template partials with support for multi inheritance. The API is the same like in twigs default `include` |  |
 | --- |  |  |
-| `sw_icon` | Displays an icon from a given icon set | See [Add custom icon]() guide for details. |
+| `sw_icon` | Displays an icon from a given icon set | See [Add custom icon](../../../guides/plugins/plugins/storefront/add-icons.md#adding-icon) guide for details. |
 | `sw_thumbnails` | Renders a  tag with correctly configured “srcset” and “sizes” attributes based on the provided parameters | See [Add thumbnail](../../../guides/plugins/plugins/storefront/use-media-thumbnails.md) guide for more information. |
 | `sw_csrf` | Generates a valid CSRF token and inject it as a hidden input field to the form | More details in [CSRF protection](../../../guides/plugins/plugins/storefront/use-csrf-protection.md) guide. |
 | `config` | Gets a value from the system config (used by plugins and global settings) for the given sales channel |  See [Reading the configuration values](../../../guides/plugins/apps/configuration.md) |

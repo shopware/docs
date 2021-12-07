@@ -28,7 +28,7 @@ namespace Swag\BasicExample\MessageQueue\Message;
 
 class SmsNotification
 {
-    private $content;
+    private string $content;
 
     public function __construct(string $content)
     {
@@ -58,10 +58,7 @@ use Symfony\Component\Messenger\MessageBusInterface;
 
 class ExampleSender
 {
-    /**
-     * @var MessageBusInterface
-     */
-    private $bus;
+    private MessageBusInterface $bus;
 
     public function __construct(MessageBusInterface $bus)
     {

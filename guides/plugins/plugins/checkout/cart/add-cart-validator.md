@@ -126,10 +126,7 @@ class CustomCartBlockedError extends Error
 {
     private const KEY = 'custom-line-item-blocked';
 
-    /**
-     * @var string
-     */
-    private $lineItemId;
+    private string $lineItemId;
 
     public function __construct(string $lineItemId)
     {

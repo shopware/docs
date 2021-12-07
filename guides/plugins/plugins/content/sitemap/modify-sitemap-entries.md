@@ -39,10 +39,7 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 
 class DecoratedProductUrlProvider extends AbstractUrlProvider
 {
-    /**
-     * @var AbstractUrlProvider
-     */
-    private $decoratedUrlProvider;
+    private AbstractUrlProvider $decoratedUrlProvider;
 
     public function __construct(AbstractUrlProvider $abstractUrlProvider)
     {

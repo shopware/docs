@@ -39,6 +39,7 @@ The manifest file is the central point of your app. It defines the interface bet
         <author>Your Company Ltd.</author>
         <copyright>(c) by Your Company Ltd.</copyright>
         <version>1.0.0</version>
+        <icon>Resources/config/plugin.png</icon>
         <license>MIT</license>
     </meta>
 </manifest>
@@ -104,6 +105,7 @@ GET https://my.example.com/registration?shop-id=KIPf0Fz6BUkN&shop-url=http%3A%2F
 
 {% hint style="info" %}
 Starting from Shopware version 6.4.1.0, the current shopware version will be sent as a `sw-version` header.
+Starting from Shopware version 6.4.5.0, the current language id of the shopware context will be sent as a  `sw-context-language` header , and the locale of the user or locale of the context language is available under the `sw-user-language` header.
 {% endhint %}
 
 Additionally, the `shopware-app-signature` header will be provided, which contains a cryptographic signature of the query string.  
@@ -214,6 +216,7 @@ You can find out more about how to use these api-credentials in our api authenti
 
 {% hint style="info" %}
 Starting from Shopware version 6.4.1.0, the current shopware version will be sent as a `sw-version` header.
+Starting from Shopware version 6.4.5.0, the current language id of the shopware context will be sent as a  `sw-context-language` header , and the locale of the user or locale of the context language is available under the `sw-user-language` header.
 {% endhint %}
 
 The request is signed with the `shop-secret`, that your app provided in the [registration response](app-base-guide.md#registration-response) and the signature can be found in the `shopware-shop-signature` header.  
@@ -321,11 +324,39 @@ The next property `timestamp` is the time which the webhook was handled. This ca
 
 {% hint style="info" %}
 Starting from Shopware version 6.4.1.0, the current shopware version will be sent as a `sw-version` header.
+Starting from Shopware version 6.4.5.0, the current language id of the shopware context will be sent as a  `sw-context-language` header , and the locale of the user or locale of the context language is available under the `sw-user-language` header.
 {% endhint %}
 
 You can verify the authenticity of the incoming request by checking the `shopware-shop-signature` every request should have a sha256 hmac of the request body, that is signed with the secret your app assigned the shop during the [registration](app-base-guide.md#setup). The mechanism to verify the request is exactly the same as the one used for the [confirmation request](app-base-guide.md#confirmation-request).
 
 You can use a variety of events to react to changes in Shopware that way. See that table [Webhook-Events-Reference](../../../resources/references/app-reference/webhook-events-reference.md) for an overview.
+
+### App Notification
+Starting from Shopware version 6.4.7.0, If you want to send notifications to the admin, to inform the user about some actions that happened on the app side, the app should send a POST request to the `api/notification` endpoint with a valid body and the header `Authorization` token.
+Your app can request 10 times before being delayed by the system.
+
+After 10 attempts you need to wait 10 seconds before trying to make requests again.
+After 15 attempts it's 30 seconds.
+After 20 attempts it's 60 seconds.
+After 24 hours without a failed request the limit is reset.
+
+Examples request body:
+You need to pass the `status` property, the content of the notification as `message` property and you should pass the email of the user that will be sent notifications as `adminEmail` inside the payload.
+If you don't send the `adminEmail`, the notifications will be displayed to every user.
+```
+POST /api/notification
+{
+    "status": "success",
+    "message": "This is a successful message",
+    "adminEmail": "test@example.com"
+}
+
+```
+* `status`: Notification status, one of `success`, `error`, `info`, `warning`
+* `message`: The content of the notification
+* `adminEmail`: The email of the user this notification should be shown to
+
+Keep in mind that your app needs the `notification:create` permission to access this api.
 
 ### **App lifecycle events**
 
@@ -489,6 +520,7 @@ The hmac-signature of the body content, signed with the shop secret returned fro
 
 {% api-method-parameter name="sw-version" type="string" required=true %}
 Starting from Shopware version 6.4.1.0, the current shopware version will be sent as a `sw-version` header.
+Starting from Shopware version 6.4.5.0, the current language id of the shopware context will be sent as a  `sw-context-language` header , and the locale of the user or locale of the context language is available under the `sw-user-language` header.
 {% endapi-method-parameter %}
 {% endapi-method-headers %}
 

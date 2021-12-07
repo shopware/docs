@@ -132,15 +132,9 @@ class ExampleDocumentGenerator implements DocumentGeneratorInterface
     public const DEFAULT_TEMPLATE = '@SwagBasicExample/documents/example_document.html.twig';
     public const EXAMPLE_DOC = 'example';
 
-    /**
-     * @var string
-     */
-    private $rootDir;
+    private string $rootDir;
 
-    /**
-     * @var DocumentTemplateRenderer
-     */
-    private $documentTemplateRenderer;
+    private DocumentTemplateRenderer $documentTemplateRenderer;
 
     public function __construct(DocumentTemplateRenderer $documentTemplateRenderer, string $rootDir)
     {

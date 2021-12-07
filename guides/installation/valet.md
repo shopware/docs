@@ -63,7 +63,7 @@ valet domain test
 
 ### Watchers not working
 
-Try disabing SSL via `valet unsecure`.
+Try disabling SSL via `valet unsecure`.
 
 ## Next steps
 

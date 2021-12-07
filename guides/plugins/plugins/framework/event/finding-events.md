@@ -61,7 +61,7 @@ There are multiple ways to find them:
 ### Looking at the code
 
 You will most likely look into our Core code quite a lot, while trying to understand what's happening and why things are happening.
-On your journey looking through the code, you may stumple upon code looking like this:
+On your journey looking through the code, you may stumble upon code looking like this:
 
 ```php
 $someEvent = new SomeEvent($parameters, $moreParameters);

@@ -89,7 +89,7 @@ framework:
 
 ## Twig Cache
 
-Twig caches all compiled template files by default. With the `cache` option a directory can be defined, where twig saves the compiled templates. This path can be overriden by creating/editing a `twig.yaml`:
+Twig caches all compiled template files by default. With the `cache` option a directory can be defined, where twig saves the compiled templates. This path can be overridden by creating/editing a `twig.yaml`:
 
 ```yaml
 # config/packages/twig.yaml

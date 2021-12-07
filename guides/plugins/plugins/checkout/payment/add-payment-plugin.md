@@ -82,10 +82,7 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 
 class ExamplePayment implements SynchronousPaymentHandlerInterface
 {
-    /**
-     * @var OrderTransactionStateHandler
-     */
-    private $transactionStateHandler;
+    private OrderTransactionStateHandler $transactionStateHandler;
 
     public function __construct(OrderTransactionStateHandler $transactionStateHandler)
     {
@@ -129,10 +126,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ExamplePayment implements AsynchronousPaymentHandlerInterface
 {
-    /**
-     * @var OrderTransactionStateHandler
-     */
-    private $transactionStateHandler;
+    private OrderTransactionStateHandler $transactionStateHandler;
 
     public function __construct(OrderTransactionStateHandler $transactionStateHandler) {
         $this->transactionStateHandler = $transactionStateHandler;

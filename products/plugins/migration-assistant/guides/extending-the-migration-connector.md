@@ -100,10 +100,7 @@ use SwagMigrationConnector\Service\AbstractApiService;
 
 class BundleService extends AbstractApiService
 {
-    /**
-     * @var BundleRepository
-     */
-    private $bundleRepository;
+    private BundleRepository $bundleRepository;
 
     /**
      * @param ApiRepositoryInterface $bundleRepository

@@ -2,7 +2,7 @@
 
 ## Overview
 
-A Shopware plugin can be installed, activated, deactivated and then again deinstalled. Those are some plugin lifecycle methods, which will be covered a bit more in this guide.
+A Shopware plugin can be installed, activated, deactivated and then again uninstalled. Those are some plugin lifecycle methods, which will be covered a bit more in this guide.
 
 ## Prerequisites
 

@@ -10,7 +10,7 @@ This guide is built upon both the [Plugin base guide](../../plugin-base-guide.md
 
 ## Flysystem overview
 
-The Flysystem enables your plugin to read and write files through a common interface. There are several default namespaces/direcories that are available, for example:
+The Flysystem enables your plugin to read and write files through a common interface. There are several default namespaces/directories that are available, for example:
 
 * One for general private files of the shop: invoices, delivery notes
 * One for general public files: product pictures, media files

@@ -93,7 +93,7 @@ You can also bind your plugin to a DOM element by providing a css selector:
 ```
 {% endcode %}
 
-In this case the plugin just gets executed if the HTML document contains at least one element with the `data-scroll-detector` attribute. You can then use `this.el` inside your plugin to access the DOM element your plugin is bound to.
+In this case the plugin just gets executed if the HTML document contains at least one element with the `data-example-plugin` attribute. You can then use `this.el` inside your plugin to access the DOM element your plugin is bound to.
 
 ### Loading your plugin
 
@@ -197,7 +197,7 @@ Imagine the following example can be found in the core:
 {% block element_product_slider_slider %}
     <div class="base-slider"
          data-product-slider="true"
-         data-product-slider-options="{{ productSliderOptions|json_encode }}">
+         data-product-slider-options="{{ productSliderOptions|default({})|json_encode|escape('html_attr') }}">
     </div>
 {% endblock %}
 ```

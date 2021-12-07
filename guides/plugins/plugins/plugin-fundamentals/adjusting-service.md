@@ -103,10 +103,7 @@ namespace Swag\BasicExample\Service;
 
 class ExampleServiceDecorator extends AbstractExampleService
 {
-    /**
-     * @var AbstractExampleService
-     */
-    private $decoratedService;
+    private AbstractExampleService $decoratedService;
 
     public function __construct(AbstractExampleService $exampleService)
     {

@@ -2,7 +2,7 @@
 
 ## Overview
 
-Quite often your plugin will have to change a few templates for the Storefront. Those might require custom stylings to look neat, which will be explained in this guide.
+Quite often your plugin will have to change a few templates for the Storefront. Those might require custom styling to look neat, which will be explained in this guide.
 
 ## Prerequisites
 

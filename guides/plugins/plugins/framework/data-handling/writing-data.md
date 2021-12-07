@@ -56,15 +56,9 @@ use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
 
 class WritingData
 {
-    /**
-     * @var EntityRepositoryInterface
-     */
-    private $productRepository;
+    private EntityRepositoryInterface $productRepository;
 
-    /**
-     * @var EntityRepositoryInterface
-     */
-    private $taxRepository;
+    private EntityRepositoryInterface $taxRepository;
 
     public function __construct(EntityRepositoryInterface $productRepository, EntityRepositoryInterface $taxRepository)
     {
@@ -126,7 +120,7 @@ A further explanation on how to write new associated data, instead of using exis
 
 Now let's go on to the last field, the `price`. The price is saved to the product entity via a `JsonField`, so it's saved in the JSON format in the database. A product can have multiple prices, thus we're providing an array of arrays again here. For this example we'll still just write a single price. The structure for the JSON can be found in the [getConstraints method of the PriceFieldSerializer](https://github.com/shopware/platform/blob/v6.3.4.0/src/Core/Framework/DataAbstractionLayer/FieldSerializer/PriceFieldSerializer.php#L112-L141). Basically you need to provide a currency ID, for which we'll just use the shop's default currency, a gross and a net price and a boolean value of whether or not the gross and the net price are linked. If `linked` is set to `true`, changes to the gross price will also affect the net price, using the product's tax.
 
-And that's it, this will write and create your first entity, a product. Of course there are way more fields you could have filled here for the product. All of them can be found in the [product definition](https://github.com/shopware/platform/blob/master/src/Core/Content/Product/ProductDefinition.php).
+And that's it, this will write and create your first entity, a product. Of course there are way more fields you could have filled here for the product. All of them can be found in the [product definition](https://github.com/shopware/platform/blob/trunk/src/Core/Content/Product/ProductDefinition.php).
 
 #### Creating data with a given ID
 
@@ -221,7 +215,7 @@ Once again: An array of arrays, since you can delete more than one entry at once
 
 Assigning associated data is different for each kind of association. Every single of them will be covered here, from `OneToOne` associations, to `ManyToOne` and `OneToMany` associations and `ManyToMany` associations.
 
-If you don't know how to add associations to an entity, maybe to your own entity, head over to our guide for adding an assocation to an entity [Add data associations](add-data-associations.md).
+If you don't know how to add associations to an entity, maybe to your own entity, head over to our guide for adding an association to an entity [Add data associations](add-data-associations.md).
 
 #### OneToOne and ManyToOne associations
 
@@ -364,4 +358,3 @@ Replacing associated data is not always as easy as it seems. Head over to our [g
 That's it for this guide already!
 
 You should now be able to write data to the database using the Data Abstraction Layer from Shopware 6. You might have missed the guide about [reading data](reading-data.md) in the first place though, and you should definitely know how that's done.
-

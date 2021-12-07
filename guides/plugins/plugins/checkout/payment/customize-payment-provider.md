@@ -26,10 +26,7 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 
 class ExampleDebitPayment extends DebitPayment
 {
-    /**
-     * @var DebitPayment
-     */
-    private $decorated;
+    private DebitPayment $decorated;
 
     public function __construct(OrderTransactionStateHandler $transactionStateHandler, DebitPayment $decorated)
     {

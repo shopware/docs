@@ -50,7 +50,7 @@ Shopware uses several client cookies to differentiate the requests. This allows 
 
 #### sw-currency
 
-This cookie will be set when the non-logged in customer with empty cart changes the current currency. Why does Shopware need a seperate cookie for currency? It allows us to maximize the cache-hits for non-logged in customers as we seperate the cache as less as possible.
+This cookie will be set when the non-logged in customer with empty cart changes the current currency. Why does Shopware need a separate cookie for currency? It allows us to maximize the cache-hits for non-logged in customers as we seperate the cache as less as possible.
 
 ### sw-cache-hash
 

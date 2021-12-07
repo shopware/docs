@@ -91,7 +91,8 @@ If we need to use a snippet elsewhere in PHP, we can use [Dependency Injection](
 ```
 
 ```php
-private $translator;
+private TranslatorInterface $translator;
+
 public function __construct(TranslatorInterface $translator)
 {
     $this->translator = $translator;

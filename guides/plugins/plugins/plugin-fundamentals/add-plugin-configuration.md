@@ -222,14 +222,23 @@ Stores an array with IDs of the selected products into the system config.
 ### Snippet field
 
 ```markup
-        <component name="sw-snippet-field">
-            <name>snippetField</name>
-            <label>Description</label>
-            <snippet>myPlugin.test.snippet</snippet>
-        </component>
+<component name="sw-snippet-field">
+    <name>snippetField</name>
+    <label>Description</label>
+    <snippet>myPlugin.test.snippet</snippet>
+</component>
 ```
 
 Allows you to edit snippet values within the configuration page. This component does not store values in the system config, but changes the translations for the snippet key. **Note: This field is only available from 6.3.4.0 onward.**
+
+### Supported component types
+
+Please Note: It is impossible to allow every component to the config.xml, due to their complexities. If you can't efficiently resolve your plugin's necessities with, it is probably better to create an own module instead. Therefore, Shopware supports the following components by default (also to be found in the [ConfigValidator class](https://github.com/shopware/platform/blob/729fbf368a065177a17e0fc190334ce02b45f418/src/Core/Framework/App/Validation/ConfigValidator.php#L16)):
+* sw-entity-single-select
+* sw-entity-multi-id-select
+* sw-media-field
+* sw-text-editor
+* sw-snippet-field
 
 ## Example
 

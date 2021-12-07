@@ -55,12 +55,9 @@ use Shopware\Core\System\SystemConfig\SystemConfigService;
 
 class ExampleService
 {
-    /**
-    * @var SystemConfigService 
-    */
-    private $systemConfigService;
+    private SystemConfigService $systemConfigService;
 
-    public function __construct(SystemConfigService $systemConfigService): void
+    public function __construct(SystemConfigService $systemConfigService)
     {
         $this->systemConfigService = $systemConfigService;
     }

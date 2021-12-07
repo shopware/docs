@@ -100,7 +100,7 @@ If you have an entity with foreign keys, your foreign keys also need to be versi
 
 ### Migration
 
-In this step we have to additionally add a foreign key constraint for your `parent_id` and `parent_version_id` refrencing to our `id` and `version_id`. The same pattern applies to other entities.
+In this step we have to additionally add a foreign key constraint for your `parent_id` and `parent_version_id` referencing to our `id` and `version_id`. The same pattern applies to other entities.
 
 ```sql
 ALTER TABLE `swag_example`

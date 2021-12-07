@@ -4,7 +4,9 @@
 
 Pages or pagelets are the objects that get handed to the templates and provide all necessary information for the template to render.
 
-If you make template changes you probably want to display some data that is currently not available in the page. In this case you will have to listen on the page loaded event and then load the additional data and add it to the page object. This guide will show you how to achieve this, by adding the total number of active products to the footer pagelet and displaying them in the storefront.
+If you make template changes you probably want to display some data that is currently not available in the page.
+In this case you will have to listen on the page loaded event and then load the additional data and add it to the page object.
+This guide will show you how to achieve this, by adding the total number of active products to the footer pagelet and displaying them in the storefront.
 
 ## Prerequisites
 
@@ -28,7 +30,10 @@ The workflow you need here was already described in the overview:
 
 ### Subscribe to an event
 
-So first of all you need to know which page or pagelet you actually want to extend. In this example, we're going to extend the [FooterPagelet](https://github.com/shopware/platform/blob/master/src/Storefront/Pagelet/Footer/FooterPagelet.php). All pages or pagelets throw `Loaded` events and this is the right event to subscribe to if you want to add data to the page or pagelet. In our case we want to add data to the `FooterPagelet` so we need to subscribe to the `FooterPageletLoadedEvent`.
+So first of all, you need to know which page or pagelet you actually want to extend.
+In this example, we're going to extend the [FooterPagelet](https://github.com/shopware/platform/blob/trunk/src/Storefront/Pagelet/Footer/FooterPagelet.php).
+All pages or pagelets throw `Loaded` events and this is the right event to subscribe to if you want to add data to the page or pagelet.
+In our case we want to add data to the `FooterPagelet` so we need to subscribe to the `FooterPageletLoadedEvent`.
 
 ```php
 // SwagBasicExample/src/Service/AddDataToPage.php
@@ -85,10 +90,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class AddDataToPage implements EventSubscriberInterface
 {
-    /**
-     * @var EntityRepositoryInterface
-     */
-    private $productRepository;
+    private EntityRepositoryInterface $productRepository;
 
     public function __construct(EntityRepositoryInterface $productRepository)
     {
@@ -118,11 +120,15 @@ class AddDataToPage implements EventSubscriberInterface
 }
 ```
 
-So you should know and understand the first few lines if you've read our guide about [reading data](../framework/data-handling/reading-data.md) first. Make sure to also understand the usage of aggregations, since this is what is done here. The only main difference you might notice is, that we're using the `aggregate()` method instead of the `search()` method. This will not actually search for any products and return the whole products dataset, but rather just the aggregated data, nothing else.
+So you should know and understand the first few lines if you've read our guide about [reading data](../framework/data-handling/reading-data.md) first.
+Make sure to also understand the usage of aggregations, since this is what is done here.
+The only main difference you might notice is, that we're using the `aggregate()` method instead of the `search()` method.
+This will not actually search for any products and return the whole products dataset, but rather just the aggregated data, nothing else.
 
 Completely new should only be the last line: `$event->getPagelet()->addExtension('product_count', $productCountResult);`
 
-Basically you're doing here, is to fetch actual pagelet instance from the event and add the data to the template. This data will then be available via the name `product_count`, but we'll get to that in the next section.
+Basically you're doing here, is to fetch actual pagelet instance from the event and add the data to the template.
+This data will then be available via the name `product_count`, but we'll get to that in the next section.
 
 Now you only have to adjust your service definition to inject the product repository:
 
@@ -143,7 +149,8 @@ Now you only have to adjust your service definition to inject the product reposi
 
 ### Displaying the data in the storefront
 
-To display the additional data we need to override the footer template and render the data. You can find detailed information on how to extend templates and override blocks [here](customize-templates.md).
+To display the additional data we need to override the footer template and render the data.
+You can find detailed information on how to extend templates and override blocks [here](customize-templates.md).
 
 For our case we extend the footer template and add a new column to the navigation block:
 
@@ -165,4 +172,3 @@ For our case we extend the footer template and add a new column to the navigatio
 Note the usage of the variable here. You're accessing the footer object, in which you can now find the path `extensions.product_count.count`.
 
 That's it for this guide, you've successfully added data to a storefront page\(let\).
-

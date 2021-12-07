@@ -48,10 +48,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ExamplePageletLoader
 {
-    /**
-     * @var EventDispatcherInterface
-     */
-    private $eventDispatcher;
+    private EventDispatcherInterface $eventDispatcher;
 
     public function __construct(EventDispatcherInterface $eventDispatcher)
     {
@@ -90,10 +87,7 @@ use Swag\BasicExample\Core\Content\Example\ExampleEntity;
 
 class ExamplePagelet extends Pagelet
 {
-    /**
-     * @var ExampleEntity
-     */
-    protected $exampleData;
+    protected ExampleEntity $exampleData;
 
     public function getExampleData(): ExampleEntity
     {
@@ -124,10 +118,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ExamplePageletLoadedEvent extends PageletLoadedEvent
 {
-    /**
-     * @var ExamplePagelet
-     */
-    protected $pagelet;
+    protected ExamplePagelet $pagelet;
 
     public function __construct(ExamplePagelet $pagelet, SalesChannelContext $salesChannelContext, Request $request)
     {

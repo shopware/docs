@@ -196,10 +196,7 @@ class ExamplePageSeoUrlRoute implements SeoUrlRouteInterface
     public const ROUTE_NAME = 'frontend.example.example';
     public const DEFAULT_TEMPLATE = '{{ example.name }}';
 
-    /**
-     * @var ExampleDefinition
-     */
-    private $exampleDefinition;
+    private ExampleDefinition $exampleDefinition;
 
     public function __construct(ExampleDefinition $exampleDefinition)
     {
@@ -311,10 +308,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class DynamicSeoUrlPageSubscriber implements EventSubscriberInterface
 {
-    /**
-     * @var SeoUrlUpdater
-     */
-    private $seoUrlUpdater;
+    private SeoUrlUpdater $seoUrlUpdater;
 
     public function __construct(SeoUrlUpdater $seoUrlUpdater) {
         $this->seoUrlUpdater = $seoUrlUpdater;
