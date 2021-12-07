@@ -199,3 +199,6 @@ The last step is, creating a template for our condition. We will create a new fi
 
 As you can see, our `sw-single-select` uses the previously created computed property `selectValues` as the `options` prop, and the value is saved into the variable `isLunarEclipse`. That's it, your rule is now fully integrated.
 
+## Further reading
+
+{% page-ref page="../../administration/add-rule-assignment-configuration.md" %}
