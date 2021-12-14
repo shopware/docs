@@ -100,6 +100,7 @@
       * [Plugin lifecycle methods](guides/plugins/plugins/plugin-fundamentals/plugin-lifecycle.md)
     * [Checkout](guides/plugins/plugins/checkout/README.md)
       * [Cart](guides/plugins/plugins/checkout/cart/README.md)
+        * [Add cart collector/processor](guides/plugins/plugins/checkout/cart/add-cart-processor-collector.md)
         * [Add cart items](guides/plugins/plugins/checkout/cart/add-cart-items.md)
         * [Add cart discounts](guides/plugins/plugins/checkout/cart/add-cart-discounts.md)
         * [Add cart validator](guides/plugins/plugins/checkout/cart/add-cart-validator.md)
