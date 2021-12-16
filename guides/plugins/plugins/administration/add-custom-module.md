@@ -216,7 +216,7 @@ Your minified javascript file will now be loaded in production environments.
 
 ## Special: Case Settings
 
-### Link you module into settings
+### Link your module into settings
 
 If you think about creating a module concerning settings, you might want to link your module in the `settings` section of the administration.
 You can add the `settingsItem` option to the module configuration as seen below:
