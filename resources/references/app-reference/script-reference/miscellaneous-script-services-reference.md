@@ -10,10 +10,6 @@ The `config` service allows you to access the shop&#039;s and your app&#039;s co
 The `get()` method allows you to access all config values of the store.
 Notice that your app needs the `system_config:read` privilege to use this method.
 
-```php
-public function get(string $key, ?string $salesChannelId = null)
-```
-
 #### Arguments
 
 ##### `key`: string
@@ -38,10 +34,6 @@ The SalesChannelId if you need the config value for a specific SalesChannel, if 
 
 The `app()` method allows you to access the config values your app&#039;s configuration.
 Notice that your app does not need any additional privileges to use this method, as you can only access your own app&#039;s configuration.
-
-```php
-public function app(string $key, ?string $salesChannelId = null)
-```
 
 #### Arguments
 

@@ -10,10 +10,6 @@ Keep in mind that your app needs to have the correct permissions for the data it
 The `search()` method allows you to search for Entities that match a given criteria.
 
 
-```php
-public function search(string $entityName, array $criteria): EntitySearchResult
-```
-
 #### Arguments
 
 ##### `entityName`: string
@@ -38,10 +34,6 @@ A `EntitySearchResult` including all entities that matched your criteria.
 The `ids()` method allows you to search for the Ids of Entities that match a given criteria.
 
 
-```php
-public function ids(string $entityName, array $criteria): IdSearchResult
-```
-
 #### Arguments
 
 ##### `entityName`: string
@@ -65,10 +57,6 @@ A `IdSearchResult` including all entity-ids that matched your criteria.
 
 The `aggregate()` method allows you to execute aggregations specified in the given criteria.
 
-
-```php
-public function aggregate(string $entityName, array $criteria): AggregationResultCollection
-```
 
 #### Arguments
 
@@ -105,10 +93,6 @@ this means that e.g. product prices are already calculated based on the current 
 The `search()` method allows you to search for Entities that match a given criteria.
 
 
-```php
-public function search(string $entityName, array $criteria): EntitySearchResult
-```
-
 #### Arguments
 
 ##### `entityName`: string
@@ -133,10 +117,6 @@ A `EntitySearchResult` including all entities that matched your criteria.
 The `ids()` method allows you to search for the Ids of Entities that match a given criteria.
 
 
-```php
-public function ids(string $entityName, array $criteria): IdSearchResult
-```
-
 #### Arguments
 
 ##### `entityName`: string
@@ -160,10 +140,6 @@ A `IdSearchResult` including all entity-ids that matched your criteria.
 
 The `aggregate()` method allows you to execute aggregations specified in the given criteria.
 
-
-```php
-public function aggregate(string $entityName, array $criteria): AggregationResultCollection
-```
 
 #### Arguments
 

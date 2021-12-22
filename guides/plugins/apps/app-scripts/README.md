@@ -3,7 +3,7 @@
 App Scripts allow your app to include logic that is executed inside the Shopware execution stack. It allows you to build richer extensions that integrate more deeply with Shopware.
 
 {% hint style="info" %}
-Note that App scripting was introduced in Shopware 6.4.6.0, and is not supported by prior versions.
+Note that app scripting was introduced in Shopware 6.4.8.0, and is not supported by prior versions.
 {% endhint %}
 
 ## Script Hooks
@@ -200,7 +200,7 @@ For this case you can add an app script on the `product-page-loaded`-hook, that 
 
 {% set media = services.repository.search('media', criteria).first %}
 
-{% do page.addExtension('myCustomMediaField', media) %}
+{% do page.addExtension('swagMyCustomMediaField', media) %}
 ```
 {% endcode %}
 
