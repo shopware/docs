@@ -110,6 +110,68 @@ Use selectors which won't change often.
 
 XPath selectors are quite fuzzy and rely a lot on the texts, which can change quickly. Please avoid using them as much as possible. If you work in Shopware platform and notice that one selector is missing or not unique enough, just add another one in the form of an additional class.
 
+### Avoid framework specific selectors
+
+{% hint style="danger" %}
+Choose framework specific syntax as a selector which is prone to change, e.g. `.btn-primary`.
+{% endhint %}
+
+{% hint style="success" %}
+Use individual selectors which won't change often, e.g. `.btn-buy`.
+{% endhint %}
+
+Using selectors which rely on a framework specific syntax can be unstable because the framework selectors are prone to change. Instead, you should use individual selectors which are less likely to change.
+
+```html
+<button class="btn btn-primary btn-buy">Add to cart</button>
+```
+
+```js
+// ✗ Avoid using framework specific syntax from Bootstrap as a selector.
+cy.get('.btn.btn-primary').click();
+
+// ✓ Instead, you should use a shopware specific class like `.btn-buy`.
+// (This also remains stable when the button variant is changed to e.g. `.btn-secondary`.)
+cy.get('.btn-buy').click();
+```
+
+```html
+<button
+    data-toggle="modal"
+    data-target="#exampleModal"
+    class="btn btn-primary btn-open-settings">
+    Open settings modal
+</button>
+```
+
+```js
+// ✗ Avoid using framework specific syntax from Bootstrap as a selector.
+cy.get('[data-toggle="modal"]').click();
+
+// ✓ Instead, you should use a shopware specific class like `.btn-open-settings`.
+cy.get('.btn-open-settings').click();
+```
+
+```html
+<div class="custom-control custom-checkbox">
+  <label 
+      for="tos" 
+      class="checkout-confirm-tos-label custom-control-label">
+      I have read and accepted the general terms and conditions.
+  </label>
+</div>
+```
+
+```js
+// ✗ Avoid using framework specific syntax from Bootstrap as a selector.
+cy.get('.custom-checkbox label').click();
+
+// ✓ Instead, you should use a shopware specific class like `.checkout-confirm-tos-label`.
+cy.get('.checkout-confirm-tos-label').click();
+```
+
+If there are no suitable selectors available, please add descriptive classes or IDs for your desired elements. 
+
 ## Waiting in E2E tests
 
 {% hint style="danger" %}
