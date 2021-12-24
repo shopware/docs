@@ -126,7 +126,7 @@ Using selectors which rely on a framework specific syntax can be unstable becaus
 <button class="btn btn-primary btn-buy">Add to cart</button>
 ```
 
-```js
+```javascript
 // ✗ Avoid using framework specific syntax from Bootstrap as a selector.
 cy.get('.btn.btn-primary').click();
 
@@ -144,7 +144,7 @@ cy.get('.btn-buy').click();
 </button>
 ```
 
-```js
+```javascript
 // ✗ Avoid using framework specific syntax from Bootstrap as a selector.
 cy.get('[data-toggle="modal"]').click();
 
@@ -162,7 +162,7 @@ cy.get('.btn-open-settings').click();
 </div>
 ```
 
-```js
+```javascript
 // ✗ Avoid using framework specific syntax from Bootstrap as a selector.
 cy.get('.custom-checkbox label').click();
 
