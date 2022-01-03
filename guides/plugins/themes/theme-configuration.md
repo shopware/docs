@@ -1,4 +1,7 @@
 # Theme configuration
+{% hint style="info" %}
+The `configInheritance` is available from Shopware Version 6.4.8.0
+{% endhint %}
 
 ## Overview
 
@@ -36,7 +39,11 @@ The theme configuration for a theme is located in the `theme.json` file `<plugin
   "asset": [
     "@Storefront",
     "app/storefront/src/assets"
-  ]
+  ],
+  "configInheritance": [
+    "@Storefront",
+    "@OtherTheme"
+    ]
 }
 ```
 {% endcode %}
@@ -556,6 +563,28 @@ You can extend the config to add translated labels for the tabs, blocks and sect
 }
 ```
 {% endcode %}
+
+
+## Config inheritance
+
+The `configInheritance` option lets you configure additional themes from which your theme will inherit its fields configuration. Every theme will always inherit the fields from the `Storefront` standard theme. With this option you can add additional other themes. For example, you can have a basic theme for your corporate design and special themes for different sales channels with specific changes only needed for a single sales channel.  
+
+{% code title="<plugin root>/src/Resources/theme.json" %}
+```javascript
+{
+  ...
+  "configInheritance": [
+     "@Storefront", 
+     "@BasicTheme"
+   ]
+  ...
+}
+```
+{% endcode %}
+
+In this example the `BasicTheme` is a theme that adds all the configurations you need for your corporate design. This configurations will be inherited in your new theme which can add or change some configurations only needed in a special sales channel or for a special time. See [Theme inheritance](./add-theme-inheritance.md) for a more detailed example.
+
+All configuration fields and their values from the mentioned themes in `configInheritance` are available inside the current theme, unless they are explicitly overwritten. This way custom themes can be extended without copying their configuration inside the theme.json.
 
 ## Next steps
 
