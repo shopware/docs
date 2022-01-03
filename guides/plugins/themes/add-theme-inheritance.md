@@ -103,7 +103,7 @@ The `style` section behaves similarly to the others. The only difference here is
 If you want to use assets from the `@SwagBasicExampleTheme` you have add it to the list here as well.
 
 ### `configInheritance` section
-Finally, the `configInheritance` section will use the field configuration from the given themes and defines the last of the themes, that is different from the current theme, as the parent theme. The configuration values are inherited from the themes mentioned in `configInheritance`. The Storefront theme configuration will always be inherited, even if no `configInheritance` is given. See [Theme inheritance](../themes/theme-inheritance-configuration.md) for a more detailed example.
+Finally, the `configInheritance` section will use the field configuration from the given themes and defines the last of the themes, that is different from the current theme, as the parent theme. The configuration values are inherited from the themes mentioned in `configInheritance`. The Storefront theme configuration will always be inherited, even if no `configInheritance` is given. See [Theme inheritance](theme-inheritance-configuration.md) for a more detailed example.
 
 ## Next steps
 
