@@ -246,6 +246,7 @@
     * [Add custom icons](guides/plugins/themes/add-icons.md)
     * [Theme inheritance](guides/plugins/themes/add-theme-inheritance.md)
     * [Theme with Bootstrap styling](guides/plugins/themes/add-theme-inheritance-without-resources.md)
+    * [Theme inheritance configuration](guides/plugins/themes/theme-inheritance-configuration.md)
   * [Apps](guides/plugins/apps/README.md)
     * [App Base Guide](guides/plugins/apps/app-base-guide.md)
     * [Hosting Guide](guides/plugins/apps/hosting-guide/README.md)
