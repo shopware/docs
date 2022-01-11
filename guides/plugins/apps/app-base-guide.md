@@ -341,20 +341,22 @@ After 20 attempts it's 60 seconds.
 After 24 hours without a failed request the limit is reset.
 
 Examples request body:
-You need to pass the `status` property, the content of the notification as `message` property and you should pass the email of the user that will be sent notifications as `adminEmail` inside the payload.
-If you don't send the `adminEmail`, the notifications will be displayed to every user.
+You need to pass the `status` property, the content of the notification as `message` property and you can restrict users who can read the notification by passing `requiredPrivileges` property and `adminOnly` property inside the payload.
+When `adminOnly` is true, only admins can read this notification. If you don't send the `adminOnly` or `adminOnly` is false, you can pass the `requiredPrivileges` property so that users with specific permissions can read the notification. Otherwise, it will be displayed to every user.
 ```
 POST /api/notification
 {
     "status": "success",
     "message": "This is a successful message",
-    "adminEmail": "test@example.com"
+    "adminOnly": "true",
+    "requiredPrivileges": []
 }
 
 ```
 * `status`: Notification status, one of `success`, `error`, `info`, `warning`
 * `message`: The content of the notification
-* `adminEmail`: The email of the user this notification should be shown to
+* `adminOnly`: Only admins can read this notification if this value is true
+* `requiredPrivileges`: The required privileges that users need to have to read the notification
 
 Keep in mind that your app needs the `notification:create` permission to access this api.
 
