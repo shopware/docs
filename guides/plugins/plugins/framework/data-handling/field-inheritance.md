@@ -22,9 +22,10 @@ To start using inheritance, we have to update our definition and database.
 
 ### Make fields nullable
 
-The first thing we need to do is to make all our fields that we want to make inheritable nullable in our migration. If you lack knowledge about migrations, have a look at our [database migrations](../../plugin-fundamentals/database-migrations.md) guide.
+The first thing we need to do is to make all our fields that we want to make inheritable nullable in our migration. If you lack knowledge about migrations, have a look at our [database migrations](../../plugin-fundamentals/database-migrations.md) guide. We also need a 'parent_id' field for the parent reference.
 
 ```sql
+ALTER TABLE `swag_example` ADD `parent_id` BINARY(16) NULL;
 ALTER TABLE `swag_example` MODIFY `description` VARCHAR(255) NULL;
 ```
 
@@ -51,6 +52,13 @@ class Migration1615363012AddInheritanceColumnToExample extends MigrationStep
 
     public function update(Connection $connection): void
     {
+        $query = <<<SQL
+            ALTER TABLE `swag_example` 
+                ADD `parent_id` BINARY(16) NULL,
+                MODIFY `description` VARCHAR(255) NULL;
+        SQL;
+        
+        $connection->executeStatement($query);
         $this->updateInheritance($connection, 'swag_example', 'example_field');
     }
 
@@ -69,7 +77,7 @@ After we've made all our fields nullable, we still need to add the following fie
 * `ParentAssociationField`: Field that the DAL knows where to load the parent association from.
 * `ChildrenAssociationField`: Field that the DAL knows where to load the children association from.
 
-In default, it points to a `parent_id` column in the database. All these fields must refer to our definition by using `self::class`. The `ParentAssociationField` has as its second parameter the referenceField, which in our case is `id`. Below you can find an example of how it should then look.
+In default, ParentFkField points to a `parent_id` column in the database. All these fields must refer to our definition by using `self::class`. The `ParentAssociationField` has as its second parameter the referenceField, which in our case is `id`. Below you can find an example of how it should then look.
 
 {% code title="<plugin root>/src/Core/Content/Example/ExampleDefinition.php" %}
 ```php
@@ -141,11 +149,11 @@ class ExampleEntity extends Entity
 {
     ...
 
-    protected ?self $parent;
+    protected ?self $parent = null;
 
     protected ?string $parentId;
 
-    protected ?ExampleCollection $children;
+    protected ?ExampleCollection $children = null;
 
     ...
 
