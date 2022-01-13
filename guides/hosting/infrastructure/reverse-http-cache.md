@@ -19,6 +19,8 @@ This setup is compatible from Shopware version 6.4.
 
 ![](../../../.gitbook/assets/reverse_proxy_setup.svg)
 
+### Configure shopware
+
 At first we need to activate the reverse proxy support in Shopware. To enable it we need to create a new file in `config/packages/storefront.yaml`
 
 ```yaml
@@ -40,7 +42,9 @@ storefront:
 
 Also set `SHOPWARE_HTTP_CACHE_ENABLED=1` in your `.env` file.
 
-As Shopware is now prepared to work with a reverse proxy, we need to configure our Varnish too using a Shopware specific configuration. Below you can find an example Varnish configuration.
+### Configure Varnish
+
+As Shopware is now prepared to work with a reverse proxy, we need to configure Varnish to use a Shopware specific configuration (VCL). Below you can find an example Shopware 6 Varnish configuration.
 
 ```text
 vcl 4.0;
@@ -213,4 +217,36 @@ sub vcl_deliver {
 ```
 
 To verify if it works, you can look for a new response header `X-Cache` in the http response. It shows you if it was a cache hit or miss.
+
+### Disable the verification headers
+
+The `X-Cache` and `X-Cache-Hits` headers are only meant to verify that Varnish is doing it's job. You typically don't want to have those headers enabled on a production environment.
+
+To disable these headers, comment out the lines by prefixing them with the `#` character. The lines in questions are:
+```
+# Set a cache header to allow us to inspect the response headers during testing
+if (obj.hits > 0) {
+    unset resp.http.set-cookie;
+    set resp.http.X-Cache = "HIT";
+}  else {
+    set resp.http.X-Cache = "MISS";
+}
+
+set resp.http.X-Cache-Hits = obj.hits;
+```
+
+Make it so that the lines look like the following:
+```
+# Set a cache header to allow us to inspect the response headers during testing
+if (obj.hits > 0) {
+    unset resp.http.set-cookie;
+    #set resp.http.X-Cache = "HIT";
+}  else {
+    #set resp.http.X-Cache = "MISS";
+}
+
+#set resp.http.X-Cache-Hits = obj.hits;
+```
+
+
 
