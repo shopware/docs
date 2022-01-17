@@ -3,20 +3,24 @@
 App Scripts allow your app to include logic that is executed inside the Shopware execution stack. It allows you to build richer extensions that integrate more deeply with Shopware.
 
 {% hint style="info" %}
-Note that app scripts were introduced in Shopware 6.4.8.0, and is not supported by prior versions.
+Note that app scripting was introduced in Shopware 6.4.8.0, and is not supported in previous versions.
 {% endhint %}
 
 ## Script Hooks
 
 The entry point for each script are the so-called "Hooks". You can register one or more scripts inside your app, that should be executed whenever a specific hook is triggered.
 Through the hook your script gets access to the data of the current execution context and can react to or manipulate the data in some way.  
-See the [Hooks reference](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md) for a complete list of all hooks, that are available.
+
+See the [Hooks reference](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md) for a complete list of all available.
 
 ## Scripts
 
-At the core App Scripts are [twig files](https://twig.symfony.com/) that are executed in a sandboxed environment. Based on which hook the script is registered to, the script as access to the data of that hook, and pre-defined services, that can be used to execute your custom logic.
-Apps scripts are placed in the `Resources/scripts`-folder of your app. Inside that folder you need to create a subfolder for each hook, you want to execute a script on. The name of the subfolder needs to match the name of the hook. 
-You can place one or more `.twig`-files inside each of these subfolders, that will be executed when the hook is triggered.
+At the core App Scripts are [twig files](https://twig.symfony.com/) that are executed in a sandboxed environment. Based on which hook the script is registered to, the script has access to the data of that hook, and pre-defined services, that can be used to execute your custom logic.
+
+Apps scripts are placed in the `Resources/scripts` directory of your app. For each hook you want to execute a script on, create a new subdirectory. The name of the subdirectory needs to match the name of the hook. 
+
+You can place one or more `.twig` files inside each of these subdirectories, that will be executed when the hook gets triggered.
+
 The file structure of your apps should look like this:
 
 ```text
@@ -34,8 +38,9 @@ The file structure of your apps should look like this:
 
 ### Including scripts
 
-If your scripts get more complex, or you have some common functionality that you want to execute on multiple hooks it is handy to split your scripts into smaller parts that can be included and used from within other scripts.
-In order to do that you can compose your reusable scripts into [twig macros](https://twig.symfony.com/doc/3.x/tags/macro.html), put them inside a special `include` folder and then import them using the [twig import functionality](https://twig.symfony.com/doc/3.x/tags/import.html).
+Sometimes scripts can become more complex or you want to extract common functionaltiy. Thus it is handy to split your scripts into smaller parts that can later be included in other scripts.
+
+In order to do that you can compose your reusable scripts into [twig macros](https://twig.symfony.com/doc/3.x/tags/macro.html), put them inside a dedicated `include` folder and then import them using the [twig import functionality](https://twig.symfony.com/doc/3.x/tags/import.html).
 
 ```text
 └── DemoApp
@@ -50,6 +55,7 @@ In order to do that you can compose your reusable scripts into [twig macros](htt
 ```
 
 Note that app scripts can use the `return` keyword to return values to the caller.
+
 A basic example may look like this:
 
 {% code title="Resources/scripts/includes/media-repository.twig" %}
@@ -87,6 +93,7 @@ Instead of using the rather verbose `{% if var is same as(1) %}` you can use the
 ```
 
 Additionally, you can also use the `!==` not equals operator as well.
+
 ```twig
 {% if var !== 1 %}
     ...
@@ -115,6 +122,7 @@ You can use a `is` check to check the type of a variable.
 ```
 
 The following types are supported:
+
 * `true`
 * `false`
 * `boolean` / `bool`
@@ -135,7 +143,9 @@ You can cast variables into different types with the `intval` filter.
     {# always evaluates to true #}
 {% endif %}
 ```
+
 The following type casts are supported:
+
 * `intval`
 * `strval`
 * `boolval`
@@ -167,6 +177,7 @@ Depending on the hook that triggered the execution of you script you get access 
 Take a look at the [hook reference](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md) to get a complete list of all available services per hook.
 
 Additionally, we added a `ServiceStubs`-class, that can be used as typehint in your script, so you get auto-completion features of your IDE.
+
 ```twig
 {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
 
@@ -180,7 +191,9 @@ The stub class contains all services, but depending on the hook not all of them 
 ## Example Script - loading media entities
 
 Assuming your app adds a [custom field set](../custom-data.md) for the product entity with a custom media entity select field.
+
 When you want to display the file of the media entity in the [storefront](../storefront/README.md), it is not easily possible, because in the template's data you only get the id of the media entity, but not the url of the media file itself.
+
 For this case you can add an app script on the `product-page-loaded`-hook, that loads the media entity by id and adds it to the page object, so the data is available in templates.
 
 {% code title="Resources/scripts/product-page-loaded/add-custom-media.twig" %}
@@ -205,19 +218,24 @@ For this case you can add an app script on the `product-page-loaded`-hook, that 
 {% endcode %}
 
 For a more detailed example on how to load additional data, please refer to the [data loading guide](./data-loading.md). 
+
 Alternatively take a look at the [cart manipulation guide](./cart-manipulation.md) to get an in-depth explanation on how to manipulate the cart with scripts.
 
 ## Developing / Debugging Scripts
 
 You can get information about what scripts were triggered on a specific storefront page inside the [Symfony debug toolbar](https://symfony.com/doc/current/the-fast-track/en/5-debug.html#discovering-the-symfony-debugging-tools).
+
 {% hint style="info" %}
-The debug toolbar is only visible if your Shopware installation is in `APP_ENV = dev`, please ensure you set the right env when developing app scripts.
+The debug toolbar is only visible if your Shopware installation is in `APP_ENV = dev`, please ensure you set the correct env - e.g. in your `.env` file - when developing app scripts .
 {% endhint %}
 
 You can find all hooks that are triggered and the scripts that are executed for each by clicking on the `script` icon.
-![](../../../../.gitbook/assets/script-debug-toolbar.png)
+
+![Symfony Debug Toolbar](../../../../.gitbook/assets/script-debug-toolbar.png)
+
 That will open the Symfony profiler in the script detail view, where you can see all triggered hooks and the count of the scripts that were executed for each script at the top.
-![](../../../../.gitbook/assets/script-debug-detail.png)
+
+![Script Debug Toolbar](../../../../.gitbook/assets/script-debug-detail.png)
 
 Additionally, you can use the `debug.dump()` function inside your scripts to dump data to the debug view.
 A script like this:
@@ -225,4 +243,5 @@ A script like this:
 {% do debug.dump(hook.page) %}
 ```
 Will dump the page object to the debug view.
-![](../../../../.gitbook/assets/script-debug-dump.png)
+
+![Output of debug.dump()](../../../../.gitbook/assets/script-debug-dump.png)

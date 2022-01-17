@@ -3,15 +3,15 @@
 If your app needs to manipulate the cart, you can do so by using the [`cart`](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#cart) script hook.
 
 {% hint style="info" %}
-Note that app scripts were introduced in Shopware 6.4.8.0, and is not supported by prior versions.
+Note that app scripts were introduced in Shopware 6.4.8.0, and is not supported in previous versions.
 {% endhint %}
 
 ## Overview
 
-The cart manipulation in App Scripts expands on the general [cart concept](../../../../concepts/commerce/checkout-concept/cart.md), in that concept your cart scripts acts as another [cart processor](../../../../concepts/commerce/checkout-concept/cart.md#cart-processors---price-calculation-and-validation).
+The cart manipulation in App Scripts expands on the general [cart concept](../../../../concepts/commerce/checkout-concept/cart.md). In that concept your cart scripts act as another [cart processor](../../../../concepts/commerce/checkout-concept/cart.md#cart-processors---price-calculation-and-validation).
 
-Your `cart`-scripts run whenever the cart is calculated, this means that the script will be executed when an item is added to the cart, when the selected shipping and payment methods change, etc.
-You have access to a `cart`-service that provides a fluid API to get data from the cart or to manipulate the cart. For an overview of all data and services that are available, please refer to the [cart hook reference](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#cart).
+Your `cart` scripts run whenever the cart is calculated, this means that the script will be executed when an item is added to the cart, when the selected shipping and payment methods change, etc.
+You have access to a `cart`-service that provides a [fluent API](https://www.martinfowler.com/bliki/FluentInterface.html) to get data from the cart or to manipulate the cart. For an overview of all data and services that are available, please refer to the [cart hook reference](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#cart).
 
 ## Prerequisites
 
@@ -23,7 +23,7 @@ We will expand on that concept and refer to ideas defined there in this guide.
 If you add line-items (products, discounts, etc.) in your `cart`-script it may be necessary to manually recalculate the cart.
 After changing the price definitions in the cart, the total prices of the cart are not recalculated automatically, the recalculation will only happen automatically after your whole script was executed.
 
-But if your script depends on updated and recalculated prices, you can recalculate the whole cart manually.
+But if your script depends on updated and recalculated prices, you can recalculate the entire cart manually.
 
 {% code title="Resources/scripts/cart/my-cart-script.twig" %}
 ```twig
@@ -57,7 +57,7 @@ For example, you could only add a discount to the cart, if it not already exists
 {% endcode %}
 
 An alternative solution would be to mark that you already did perform an action by adding a custom state to the cart.
-This way you can only perform the action, if your custom state is not present and additionally, you can remove the state again if you reverted your action.
+This way you can only perform the action, if your custom state is not present and additionally, you can remove the state again when you revert your action.
 
 {% code title="Resources/scripts/cart/my-cart-script.twig" %}
 ```twig
@@ -85,8 +85,7 @@ Note that the state name should be unique, this means you should always use your
 
 ## Price definitions
 
-In general inside shopware prices consist of gross and net prices and are also currency dependent.
-If you need price definitions in your app scripts (e.g. to add a absolute discount with a specific price) there are multiple ways to do so.
+In general, Showpare prices consist of gross and net prices and are currency dependent.  If you need price definitions in your app scripts (e.g. to add a absolute discount with a specific price) there are multiple ways to do so.
 
 ### Manual price definition
 
@@ -119,11 +118,11 @@ Note, that if you don't provide a default value for your configuration, you shou
 
 ## Line-items
 
-Inside your card scripts you can modify the line-items inside the current cart.
+Inside your cart scripts you can modify the line-items inside the current cart.
 
 ### Add product a line-item
 
-You can add a new product line-item simply by providing the product-id of the product that should be added. 
+You can add a new product line-item simply by providing the product `id` of the product that should be added. 
 Additionally, you may provide a quantity as second parameter if the product should be added with a quantity higher than 1.
 
 {% code title="Resources/scripts/cart/my-cart-script.twig" %}
@@ -157,7 +156,7 @@ Note that you should check if your discount was already added, as your script ma
 
 ### Add a relative discount
 
-Adding a relative discount is very similiar to adding an absolute discount. Instead of providing a `PriceDefinition` you can provide a percentage value that should be discounted and the absolute value will be calculated automatically based on the current total price of the cart.
+Adding a relative discount is very similiar to adding an absolute discount. Instead of providing a price definition, you can provide a percentage value that should be discounted and the absolute value will be calculated automatically based on the current total price of the cart.
 
 {% code title="Resources/scripts/cart/my-cart-script.twig" %}
 ```twig
@@ -167,7 +166,7 @@ Adding a relative discount is very similiar to adding an absolute discount. Inst
 
 ### Remove a line item
 
-You can remove line-items by providing the `id` of the line-item that should be removed.
+You can remove line items by providing the `id` of the line-item that should be removed.
 
 {% code title="Resources/scripts/cart/my-cart-script.twig" %}
 ```twig
@@ -235,7 +234,8 @@ Lastly you can provide an array of parameters as the optional third parameter, i
 ```
 {% endcode %}
 
-If you only want to display some information to the user, during the checkout process you can also add `warnings` and `notices`, that will be displayed during the checkout process, but it won't prevent the customer from completing the checkout.
+If you only want to display some information to the user, during the checkout process you can also add messages using `warning` and `notice`. Those will be displayed during the checkout process, but won't prevent the customer from completing the checkout.
+
 The API is basically the same as for adding errors.
 
 {% code title="Resources/scripts/cart/my-cart-script.twig" %}
@@ -245,7 +245,5 @@ The API is basically the same as for adding errors.
 {% endcode %}
 
 ## Further information
-
-For a full overview of the API that is available to you refer to the [cart manipulation service reference](../../../../resources/references/app-reference/script-reference/cart-manipulation-script-services-reference.md).
 
 {% page-ref page="../../../../resources/references/app-reference/script-reference/cart-manipulation-script-services-reference.md" %}
