@@ -1,5 +1,11 @@
 # App Scripts
 
+{% test %}
+
+{% raw %}
+{% test %}
+{% endraw %}
+
 App Scripts allow your app to include logic that is executed inside the Shopware execution stack. It allows you to build richer extensions that integrate more deeply with Shopware.
 
 {% hint style="info" %}
@@ -58,8 +64,16 @@ Note that app scripts can use the `return` keyword to return values to the calle
 
 A basic example may look like this:
 
-{% code title="Resources/scripts/includes/media-repository.twig" %}
+## test
+
+{% test %}
+
+{% verbatim %}
+{% test %}
+{% verbatim %}
+
 ```twig
+{% verbatim %}
 {% macro getById(mediaId) %}
     {% set criteria = {
         'ids': [ mediaId ]
@@ -67,8 +81,8 @@ A basic example may look like this:
     
      {% return services.repository.search('media', criteria).first %}
 {% endmacro %}
+{% endverbatim %}
 ```
-{% endcode %}
 
 {% code title="Resources/scripts/cart/first-cart-script.twig" %}
 ```twig
