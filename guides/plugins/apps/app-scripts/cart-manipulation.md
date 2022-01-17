@@ -3,7 +3,7 @@
 If your app needs to manipulate the cart, you can do so by using the [`cart`](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#cart) script hook.
 
 {% hint style="info" %}
-Note that app scripts were introduced in Shopware 6.4.8.0, and is not supported in previous versions.
+Note that app scripts were introduced in Shopware 6.4.8.0, and are not supported in previous versions.
 {% endhint %}
 
 ## Overview

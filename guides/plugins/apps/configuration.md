@@ -51,7 +51,7 @@ Inside twig templates you can use the twig function `config` (see [Shopware Twig
 In app scripts you have access to the [`config` service](../../../../resources/references/app-reference/script-reference/miscellaneous-script-services-reference.md#SystemConfigFacade), that can be used to access config values.
 
 {% hint style="info" %}
-Note that app scrips were introduced in Shopware 6.4.8.0, and is not supported in previous versions.
+Note that app scripts were introduced in Shopware 6.4.8.0, and are not supported in previous versions.
 {% endhint %}
 
 The `config` service provides an `app()` method, that can be used to access your app's configuration. When using this method you don't need to provide the `{appName}.config` prefix and your app does not need any additional permissions.

@@ -3,7 +3,7 @@
 If your app needs additional data in your [customized storefront templates](../../../plugins/plugins/storefront/customize-templates.md), you can load that data with app scripts and make it available to your template.
 
 {% hint style="info" %}
-Note that app scripting was introduced in Shopware 6.4.8.0, and is not supported in previous versions.
+Note that app scripts were introduced in Shopware 6.4.8.0, and are not supported in previous versions.
 {% endhint %}
 
 ## Overview
