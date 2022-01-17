@@ -3,7 +3,7 @@
 App Scripts allow your app to include logic that is executed inside the Shopware execution stack. It allows you to build richer extensions that integrate more deeply with Shopware.
 
 {% hint style="info" %}
-Note that app scripting was introduced in Shopware 6.4.8.0, and is not supported by prior versions.
+Note that app scripts were introduced in Shopware 6.4.8.0, and is not supported by prior versions.
 {% endhint %}
 
 ## Script Hooks
