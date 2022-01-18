@@ -87,6 +87,40 @@ Note that the state name should be unique, this means you should always use your
 
 In general, Showpare prices consist of gross and net prices and are currency dependent.  If you need price definitions in your app scripts (e.g. to add a absolute discount with a specific price) there are multiple ways to do so.
 
+### You can define price fields for custom field sets:
+```
+<custom-fields>
+    <custom-field-set>
+        <name>custom_field_test</name>
+        <label>Custom field test</label>
+        <label lang="de-DE">Zusatzfeld Test</label>
+        <related-entities>
+            <product/>
+            <customer/>
+        </related-entities>
+        <fields>
+            <price name="test_price_field">
+                <label>Test price field</label>
+            </price>
+        </fields>
+    </custom-field-set>
+</custom-fields>
+```
+
+### Or define price fields directly in your app config.xml:
+```
+<card>
+    <title>Basic configuration</title>
+    <title lang="de-DE">Grundeinstellungen</title>
+    <name>TestCard</name>
+    <input-field type="price">
+        <name>priceField</name>
+        <label>Test price field</label>
+        <defaultValue>null</defaultValue>
+    </input-field>
+</card>
+```
+
 ### Manual price definition
 
 The simplest way is to define the price manually and hard coded into your app scripts. We provide a factory method that you can use to create price definitions.
@@ -103,8 +137,7 @@ You can specify the `gross` and `net` prices for each currency.
 {% endcode %}
 
 ### Prices inside the app config
-
-It is also possible to use price fields inside the [app configuration](../configuration.md). In your cart scripts you can access those config values over the [`config` service](../../../../resources/references/app-reference/script-reference/miscellaneous-script-services-reference.md#SystemConfigFacade) and pass them to the same price factory as the manual definitions.
+As described above, it is also possible to use price fields inside the [app configuration](../configuration.md). In your cart scripts you can access those config values over the [`config` service](../../../../resources/references/app-reference/script-reference/miscellaneous-script-services-reference.md#SystemConfigFacade) and pass them to the same price factory as the manual definitions.
 
 {% code title="Resources/scripts/cart/my-cart-script.twig" %}
 ```twig
