@@ -63,7 +63,7 @@ This way you can only perform the action, if your custom state is not present an
 ```twig
 {% set isEligable = services.cart.items.count > 3 %}
 
-{% if not services.cart.hasState('swag-my-state') %}
+{% if not services.cart.states.has('swag-my-state') %}
 
     {% if isEligable %}
         {# perform action #}
