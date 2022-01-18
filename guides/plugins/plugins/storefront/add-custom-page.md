@@ -44,7 +44,7 @@ class ExampleController extends StorefrontController
 
 It has a method `examplePage`, which is accessible via the route `example-page`. This method will be responsible for loading your page later on, but we'll leave it like that for now.
 
-Don't forget to [register your controller via the DI](<add-custom-controller.md#Services.xml example>).
+Don't forget to [register your controller via the DI](add-custom-controller.md#Services.xml%20example).
 
 ### Creating the pageloader
 
@@ -54,7 +54,7 @@ In there, we will proceed to create all page related classes, such as the page l
 
 Go ahead and create a new file called `ExamplePageLoader.php`. It's a new service, which doesn't have to extend from any other class. You might want to implement a `ExamplePageLoaderInterface` interface, which is not explained in this guide. You can do that in order to have a decoratable page loader class.
 
-The page loader is responsible for creating your page class instance (`ExamplePage`, will be created in the next section), filling it with data, e.g. from repositories, and firing a `PageLoaded` event, so others can react to your page being loaded.
+The page loader is responsible for creating your page class instance \(`ExamplePage`, will be created in the next section\), filling it with data, e.g. from repositories, and firing a `PageLoaded` event, so others can react to your page being loaded.
 
 Let's have a look at a full example `ExamplePageLoader`:
 
@@ -199,7 +199,7 @@ class ExamplePage extends Page
 ```
 {% endcode %}
 
-As explained in the page loader section, your page can contain all kinds of custom data. It has to provide a getter and a setter for the custom data, so it can be applied and read. In this example, the entity from our guide about [creating custom complex data](<../framework/data-handling/add-custom-complex-data.md#Entity class>) is being used.
+As explained in the page loader section, your page can contain all kinds of custom data. It has to provide a getter and a setter for the custom data, so it can be applied and read. In this example, the entity from our guide about [creating custom complex data](../framework/data-handling/add-custom-complex-data.md#Entity%20class) is being used.
 
 And that's it already. Your page is ready to go.
 
@@ -248,3 +248,4 @@ Your example page should now be fully functioning.
 You've now successfully created a whole new page, including a custom controller, a custom template, and the necessary classes to create a new page, a loader, the page struct and the page loaded event.
 
 In your `load` method, you've used the `GenericPageLoader`, which takes care of such a thing as the footer or the header. Those two are so called "pagelets", basically reusable fractions of a page. Learn how to create a custom pagelet yourself [here](add-custom-pagelet.md).
+

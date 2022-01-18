@@ -99,13 +99,14 @@ class OverwritePriceCollector implements CartDataCollectorInterface
 
 So the example class is called `OverwritePriceCollector` here and it implements the method `collect`. This method's parameters are the following:
 
-*   `CartDataCollection`: This is the object, that will contain our new data, which is then processed in the processor.
+* `CartDataCollection`: This is the object, that will contain our new data, which is then processed in the processor.
 
-    Here you're going to save the new price. It contains key-value pairs, so we will save the new price as the value, and its key
+  Here you're going to save the new price. It contains key-value pairs, so we will save the new price as the value, and its key
 
-    being the line item ID. We will prefix a custom string to the line item ID, so our code will not interfere with other collectors,
+  being the line item ID. We will prefix a custom string to the line item ID, so our code will not interfere with other collectors,
 
-    that might also save the line item ID as a key.
+  that might also save the line item ID as a key.
+
 * `Cart`: Well, the current cart and its line items.
 * `SalesChannelContext`: The current sales channel context, containing information about the currency, the country, etc.
 * `CartBehavior`: It contains cart permissions, which are not necessary for our example.
@@ -118,7 +119,7 @@ Afterwards we're iterating over all product IDs, that still need to request a ne
 
 The last step is to save that new price to the `CartDataCollector`.
 
-And that's it, we're now collecting the prices for our product line items. Registering the class to the [dependency injection container](../../plugin-fundamentals/dependency-injection.md) will be done in the [last section](<change-price-of-item.md#Registering to DI container>) of this guide.
+And that's it, we're now collecting the prices for our product line items. Registering the class to the [dependency injection container](../../plugin-fundamentals/dependency-injection.md) will be done in the [last section](change-price-of-item.md#Registering%20to%20DI%20container) of this guide.
 
 ### The processor
 
@@ -278,3 +279,4 @@ Let's have a look at it:
 {% endcode %}
 
 And that's it. Your processor / collector should now be working.
+

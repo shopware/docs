@@ -26,7 +26,9 @@ At least on Linux operating systems, docker installation is the easiest way to g
 > ./psh.phar install
 ```
 
-This may take a while since many caches need to be generated on first execution, but only on first execution.  To be sure the installation succeeded, just open the following url in your favorite browser: [http://localhost:8000/](http://localhost:8000)
+This may take a while since many caches need to be generated on first execution, but only on first execution.
+<!-- markdown-link-check-disable-next-line -->
+To be sure the installation succeeded, just open the following url in your favorite browser: [http://localhost:8000/](http://localhost:8000/)
 
 After exploring Shopware 6 you can terminate it with these two commands:
 
@@ -46,11 +48,11 @@ After exploring Shopware 6 you can terminate it with these two commands:
 
 ### Using native mounting with Docker Volumes and docker-sync
 
-If you are working with Mac/OSX and are facing performance issues, you should use [docker-sync](http://docker-sync.io) instead of the default mounting strategy.
+If you are working with Mac/OSX and are facing performance issues, you should use [docker-sync](http://docker-sync.io/) instead of the default mounting strategy.
 
 ### Preparation
 
-Download & install `docker-sync` from [http://docker-sync.io/](http://docker-sync.io), which supports OSX, Windows, Linux and FreeBSD. `docker-sync` uses Ruby, which is pre-installed on OSX. On other operating systems, you might have to [install Ruby](https://www.ruby-lang.org/en/) separately.
+Download & install `docker-sync` from [http://docker-sync.io/](http://docker-sync.io/), which supports OSX, Windows, Linux and FreeBSD. `docker-sync` uses Ruby, which is pre-installed on OSX. On other operating systems, you might have to [install Ruby](https://www.ruby-lang.org/en/) separately.
 
 * For OSX, see [OSX](https://docker-sync.readthedocs.io/en/latest/getting-started/installation.html#installation-osx).
 * For Windows, see [Windows](https://docker-sync.readthedocs.io/en/latest/getting-started/installation.html#installation-windows).
@@ -98,3 +100,4 @@ As next step, you might want to start writing your very own plugin. Head over to
 * [Dockware](dockware.md)
 * [Vagrant](vagrant.md)
 * [MAMP](mamp.md)
+

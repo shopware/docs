@@ -14,7 +14,7 @@
     * [Payments](concepts/commerce/checkout-concept/payments.md)
     * [Orders](concepts/commerce/checkout-concept/orders.md)
   * [Content](concepts/commerce/core/README.md)
-    * [Shopping Experiences (CMS)](concepts/commerce/core/shopping-experiences-cms.md)
+    * [Shopping Experiences \(CMS\)](concepts/commerce/core/shopping-experiences-cms.md)
 * [Framework](concepts/framework/README.md)
   * [Architecture](concepts/framework/architecture/README.md)
     * [Storefront](concepts/framework/architecture/storefront-concept.md)
@@ -23,7 +23,7 @@
   * [Messaging](concepts/framework/messaging.md)
   * [Migrations](concepts/framework/migrations.md)
   * [Rules](concepts/framework/rules.md)
-  * [HTTP Cache](concepts/framework/http\_cache.md)
+  * [HTTP Cache](concepts/framework/http_cache.md)
   * [Elasticsearch](concepts/framework/elasticsearch.md)
   * [Flow](concepts/framework/flow-concept.md)
 * [Extensions](concepts/extensions/README.md)
@@ -279,7 +279,9 @@
     * [Filesystem](guides/hosting/infrastructure/filesystem.md)
     * [Message Queue](guides/hosting/infrastructure/message-queue.md)
     * [Reverse Http Cache](guides/hosting/infrastructure/reverse-http-cache.md)
-    *
+    * [Elasticsearch](guides/hosting/infrastructure/README.md)
+      * [Set up Elasticsearch](guides/hosting/infrastructure/elasticsearch/elasticsearch.md)
+      * [Debugging Elasticsearch](guides/hosting/infrastructure/elasticsearch/elasticsearch-debugging.md)
     * [Rate Limiter](guides/hosting/infrastructure/rate-limiter.md)
 * [Integrations / API](guides/integrations-api/README.md)
   * [General Concepts](guides/integrations-api/general-concepts/README.md)
@@ -346,3 +348,4 @@
 * [Tooling](resources/tooling/README.md)
   * [IDE](resources/tooling/ide/README.md)
     * [Shopware Toolbox](resources/tooling/ide/shopware-toolbox.md)
+
