@@ -1,7 +1,7 @@
 # CMS Reference
 
 {% code title="cms.xml" %}
-```markup
+```xml
 <?xml version="1.0" encoding="utf-8" ?>
 <cms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Cms/Schema/cms-1.0.xsd">
     <blocks>
@@ -90,3 +90,4 @@
 </cms>
 ```
 {% endcode %}
+

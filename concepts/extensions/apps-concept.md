@@ -9,9 +9,7 @@ The app system is designed to be decoupled from Shopware itself. This has two gr
 
 The central interface between your app and Shopware is defined by a dedicated manifest file. The manifest is what glues Shopware and your app together. It defines what features your app uses and how Shopware can connect to your app. You can find more information about how to use the manifest file in the App Base Guide.
 
-{% content-ref url="../../guides/plugins/apps/app-base-guide.md" %}
-[app-base-guide.md](../../guides/plugins/apps/app-base-guide.md)
-{% endcontent-ref %}
+{% page-ref page="../../guides/plugins/apps/app-base-guide.md" %}
 
 ## Communication between Shopware and your app
 
@@ -27,12 +25,11 @@ Notice that this is optional in the case that Shopware and your app don't need t
 
 ## Modify the appearance of the storefront
 
-Your app can modify the appearance of the storefront, by shipping your storefront assets (template files, javascript sources, SCSS sources, snippet files) alongside your manifest file. You don't need to serve those assets from your external server, as Shopware will build the storefront anew on installation of your app and will consider your modifications in that process. Find out more about modifying the appearance of the storefront in the App Storefront Guide.
+Your app can modify the appearance of the storefront, by shipping your storefront assets \(template files, javascript sources, SCSS sources, snippet files\) alongside your manifest file. You don't need to serve those assets from your external server, as Shopware will build the storefront anew on installation of your app and will consider your modifications in that process. Find out more about modifying the appearance of the storefront in the App Storefront Guide.
 
-{% content-ref url="../../guides/plugins/apps/storefront/" %}
-[storefront](../../guides/plugins/apps/storefront/)
-{% endcontent-ref %}
+{% page-ref page="../../guides/plugins/apps/storefront.md" %}
 
 ## Integrate payment providers
 
 Starting with version 6.4.1.0, Shopware provides functionality for your app to be able to integrate payment providers. If you would like to provide payment with a provider that does not require any user interaction, you can choose a simple request for approval in the background, also called a synchronous payment. If you would like to redirect a user to a payment provider, you can use an asynchronous payment. Your app therefore provides a URL for redirection. After the user has returned to the shop, Shopware will verify the status of the payment with your app. Find out more about providing payment endpoints in the [App Payment Guide](../../guides/plugins/apps/payment.md).
+

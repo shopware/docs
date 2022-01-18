@@ -10,9 +10,7 @@ This guide however will cover the question on how you can define your own SEO UR
 
 As every almost every guide in the plugins section, this guide as well is built upon the plugin base guide.
 
-{% content-ref url="../../plugin-base-guide.md" %}
-[plugin-base-guide.md](../../plugin-base-guide.md)
-{% endcontent-ref %}
+{% page-ref page="../../plugin-base-guide.md" %}
 
 Furthermore, we're going to use a [custom storefront controller](../../storefront/add-custom-controller.md) for the static SEO URL example, as well as [custom entities](../../framework/data-handling/add-custom-complex-data.md) for the dynamic SEO URLs. Make sure you know and understand those two as well before diving deeper into this guide. Those come with two different solutions:
 
@@ -164,7 +162,7 @@ You can only access the German SEO URL if you've configured a German domain in y
 
 Dynamic SEO URLs are URLs, that have to change every now and then. Yet, there's another separation necessary.
 
-If you're going to generate custom SEO URLs for your custom entities, you'll have to follow the section about [Dynamic SEO URLs for entities](<add-custom-seo-url.md#Dynamic SEO URLs for entities>). For all other kinds of dynamic content, that are not DAL entities, the section about [Dynamic SEO URLs for other content](<add-custom-seo-url.md#Dynamic SEO URLs for custom content>) is your way to go.
+If you're going to generate custom SEO URLs for your custom entities, you'll have to follow the section about [Dynamic SEO URLs for entities](add-custom-seo-url.md#Dynamic%20SEO%20URLs%20for%20entities). For all other kinds of dynamic content, that are not DAL entities, the section about [Dynamic SEO URLs for other content](add-custom-seo-url.md#Dynamic%20SEO%20URLs%20for%20custom%20content) is your way to go.
 
 #### Dynamic SEO URLs for entities
 
@@ -265,21 +263,23 @@ Okay, so let's look through this step by step.
 
 Your custom "SeoUrlRoute" class has to implement the `SeoUrlRouteInterface`, which comes with three necessary methods:
 
-*   `getConfig`: Here you have to return an instance of `SeoUrlRouteConfig`, containing your entity's definition,
+* `getConfig`: Here you have to return an instance of `SeoUrlRouteConfig`, containing your entity's definition,
 
-    the technical name of the route to be used, and the desired SEO path.
-*   `prepareCriteria`: Here you can adjust the criteria instance, which will be used to fetch your entities.
+  the technical name of the route to be used, and the desired SEO path.
 
-    Here you can e.g. narrow down which entities may be used for the SEO URL generation. For example you could add a filter
+* `prepareCriteria`: Here you can adjust the criteria instance, which will be used to fetch your entities.
 
-    on an `active` field and therefore only generate SEO URLs for active entities. Also you can add associations here,
+  Here you can e.g. narrow down which entities may be used for the SEO URL generation. For example you could add a filter
 
-    which will then be available with the entity provided in the `getMapping` method.
-*   `getMapping`: In this method you have to return an instance of `SeoUrlMapping`. It has to contain the actually
+  on an `active` field and therefore only generate SEO URLs for active entities. Also you can add associations here,
 
-    available data for the SEO URL template. If you're using a variable `example.name` in the SEO URL template, you have to
+  which will then be available with the entity provided in the `getMapping` method.
 
-    provide the data for the key `example` here.
+* `getMapping`: In this method you have to return an instance of `SeoUrlMapping`. It has to contain the actually
+
+  available data for the SEO URL template. If you're using a variable `example.name` in the SEO URL template, you have to 
+
+  provide the data for the key `example` here.
 
 Make sure to check which kind of entity has been applied to the `getMapping` method, since you don't want to provide mappings for other entities than your custom one.
 
@@ -587,3 +587,4 @@ $context = new Context(
 ```
 
 You can then pass this context to the `updateSeoUrls` method.
+

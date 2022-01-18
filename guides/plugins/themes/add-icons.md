@@ -18,20 +18,20 @@ In order to add any icons to the Storefront, you use our `sw_icon` twig action. 
 
 Needless to say, the first step is saving your image somewhere in your plugin where Shopware can find it. The default path for icons is the following:
 
-```
+```text
 <YourPlugin>/src/Resources/app/storefront/dist/assets/icon/default
 `
 ```
 
 You can also provide "solid" icons or any other custom pack names which can be configured later with the `pack` parameter. You can do that by creating a folder with the pack name:
 
-```
+```text
 <YourPlugin>/src/Resources/app/storefront/dist/assets/icon/<pack-name>
 ```
 
 By default, Shopware looks inside the "default" folder.
 
-```
+```text
 {% sw_icon 'done-outline-24px' style {
     'namespace': 'TestPlugin'
 } %}
@@ -51,17 +51,17 @@ If you configure no deviating namespace, Shopware will display the Storefront's 
 
 However, these are not all of your possibilities of configuration. As you see, you're able to configure even more things. Let's take a look at the `style` object's possible parameters:
 
-| Configuration | Description                                                                      | Remarks                                                  |
-| ------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| `size`        | Sets the size of the icon                                                        | ---                                                      |
-| `namespace`   | Selection of the namespace of the icon, you can compare it with the source of it | Important configuration if you want to use custom icons. |
-| `pack`        | Selects the pack of different icons                                              | ---                                                      |
-| `color`       | Sets the color of the icon                                                       | ---                                                      |
-| `class`       | Defines a class of the icon                                                      | ---                                                      |
+| Configuration | Description | Remarks |
+| :--- | :--- | :--- |
+| `size` | Sets the size of the icon | --- |
+| `namespace` | Selection of the namespace of the icon, you can compare it with the source of it | Important configuration if you want to use custom icons. |
+| `pack` | Selects the pack of different icons | --- |
+| `color` | Sets the color of the icon | --- |
+| `class` | Defines a class of the icon | --- |
 
 A simple but fully functional example could look like below:
 
-```
+```text
 {% sw_extends '@Storefront/storefront/base.html.twig' %}
 
 {% block base_body %}
@@ -86,9 +86,9 @@ Inside your theme, you cannot put an icon in a directory corresponding the core 
 
 ## Load icons from custom locations
 
-Since Shopware 6.4.1.0 it is possible to define custom locations of your custom icons inside your theme.json file. You can define the name of the icon pack and the path to those icons under the `iconSets`-key:
-
-```javascript
+Since Shopware 6.4.1.0 it is possible to define custom locations of your custom icons inside your theme.json file.
+You can define the name of the icon pack and the path to those icons under the `iconSets`-key:
+```json
 {
   ...
   "iconSets": {
@@ -98,8 +98,7 @@ Since Shopware 6.4.1.0 it is possible to define custom locations of your custom 
 ```
 
 You can use your custom icons by specifying your icon pack:
-
-```
+```text
 {% sw_icon 'done-outline-24px' style {
     'pack': 'custom-icons'
 } %}

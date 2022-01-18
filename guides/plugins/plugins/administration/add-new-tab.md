@@ -8,21 +8,15 @@ You want to create a new tab in the administration? This guide gets you covered 
 
 This guide requires you to already have a basic plugin running. If you don't know how to do this in the first place, have a look at our plugin base guide:
 
-{% content-ref url="../plugin-base-guide.md" %}
-[plugin-base-guide.md](../plugin-base-guide.md)
-{% endcontent-ref %}
+{% page-ref page="../plugin-base-guide.md" %}
 
 In the course of this guide, you need to create a custom route. If you want to learn on how to create a custom component, please refer to the guide on it:
 
-{% content-ref url="add-custom-route.md" %}
-[add-custom-route.md](add-custom-route.md)
-{% endcontent-ref %}
+{% page-ref page="add-custom-route.md" %}
 
 Also, we will use a small, custom component to fill our custom tab. In order to get used to that, it might come in handy to read the corresponding guide first:
 
-{% content-ref url="add-custom-component.md" %}
-[add-custom-component.md](add-custom-component.md)
-{% endcontent-ref %}
+{% page-ref page="add-custom-component.md" %}
 
 {% hint style="info" %}
 ### Please remember
@@ -34,14 +28,14 @@ The main entry point to customize the administration via plugin is the `main.js`
 
 ### Find the block to extend
 
-For this guide, we'll think about the following example: The product detail page is extended by a new tab, which then only contains a 'Hello world!'. In order to refer to this example, let's have a look at the twig code of the product detail page found here:&#x20;
-
-{% embed url="https://github.com/shopware/platform/blob/552675ba24284dec2bb01c2107bf45f86b362550/src/Administration/Resources/app/administration/src/module/sw-product/page/sw-product-detail/sw-product-detail.html.twig#L120" %}
+For this guide, we'll think about the following example: The product detail page is extended by a new tab, which then only contains a 'Hello world!'. In order to refer to this example, let's have a look at the twig code of the product detail page found here:
+<!-- markdown-link-check-disable-next-line -->
+{% embed url="https://github.com/shopware/platform/blob/552675ba24284dec2bb01c2107bf45f86b362550/src/Administration/Resources/app/administration/src/module/sw-product/page/sw-product-detail/sw-product-detail.html.twig\#L120" caption="" %}
 
 Let's imagine your first goal is to create a new tab on the product detail page. Having a look at the template, you might find the block `sw_product_detail_content_tabs`, which seems to contain all available tabs. It starts by creating a new `<sw-tabs>` element to contain all the tabs available. Here you can see excerpt of this block:
 
 {% code title="platform/src/Administration/Resources/app/administration/src/module/sw-product/page/sw-product-detail/sw-product-detail.html.twig" %}
-```
+```text
 {% block sw_product_detail_content_tabs %}
     <sw-tabs class="sw-product-detail-page__tabs" v-if="productId">
         {% block sw_product_detail_content_tabs_general %}
@@ -97,7 +91,7 @@ Shopware.Component.override('sw-product-detail', {
 All this file is doing is to basically override the `sw-product-detail` component with a new template. The new template does not exist yet though, so create a new file `sw-product-detail.html.twig` in the same directory as your `index.js` file. It then has to use the block we figured out earlier and override it by adding a new tab element:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/page/sw-product-detail/sw-product-detail.html.twig" %}
-```
+```text
 {% block sw_product_detail_content_tabs_reviews %}
 
     {# This parent is very important as you don't want to override the review tab completely #}
@@ -114,7 +108,7 @@ The block gets overridden and immediately the parent block is called, since you 
 After that, we'll create the actual `sw-tabs-item` element, which, as the name suggests, represents a new tab item. We want this tab to have a custom route, so we're also adding this route directly. Don't worry, we'll explain this custom route in a bit. The product detail page's route contain the product's ID, which you also want to have in your custom tab: So make sure to also pass the ID in, like shown in the example above.
 
 {% code title="<plugin root>/src/Resources/app/administration/src/page/sw-product-detail/sw-product-detail.html.twig" %}
-```
+```text
 {% block sw_product_detail_content_tabs_reviews %}
 
     {% parent %}
@@ -138,17 +132,21 @@ This is an example of what your `main.js` should look like in order to load your
 ```javascript
 import './page/sw-product-detail';
 ```
-
 {% hint style="info" %}
 Don't forget to rebuild the administration after applying changes to your `main.js`.
-
+{% tabs %}
+{% tab title="Development template" %}
 ```bash
 ./psh.phar administration:build
 ```
+{% endtab %}
 
+{% tab title="Production template" %}
 ```bash
 ./bin/build-administration.sh
 ```
+{% endtab %}
+{% endtabs %}
 {% endhint %}
 
 ## Registering the tab's new route
@@ -197,7 +195,7 @@ It then points to a component, which represents the routes actual content - so y
 
 As shown in the previous example, your custom component is expected to be in a directory `view/sw-product-detail-custom`, so create this directory in your plugin now. The directory structure inside of your administration directory should then look like this:
 
-```
+```text
 administration
 ├── page
 │   └── sw-product-detail
@@ -232,7 +230,7 @@ This file mainly registers a new component with a custom title and a custom temp
 Here's what this new template could look like:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/view/sw-product-detail-custom/sw-product-detail-custom.html.twig" %}
-```
+```text
 <sw-card title="Custom">
     Hello world!
 </sw-card>
