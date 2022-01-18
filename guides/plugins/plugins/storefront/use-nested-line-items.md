@@ -23,8 +23,7 @@ If the nested line item should be removable in the cart, the `removable` propert
 
 ## Make nested line item changeable
 
-Most of the time, the root line item defines the nested line items, therefore there is a change button for its root line item in the cart.
-In the block of the change button, the variable `isChangeable` has to be set, and the button has to be surrounded with a link to the action like this:
+Most of the time, the root line item defines the nested line items, therefore there is a change button for its root line item in the cart. In the block of the change button, the variable `isChangeable` has to be set, and the button has to be surrounded with a link to the action like this:
 
 ```
 {% block component_offcanvas_item_children_header_content_change_button %}
@@ -34,7 +33,7 @@ In the block of the change button, the variable `isChangeable` has to be set, an
             'swagCustomizedProductsConfigurationEdit': lineItem.extensions.customizedProductConfiguration.id
         })
     %}
-    
+
     <a href="{{ seo }}" class="order-item-product-name" title="{{ label }}">
         {{ parent() }}
     </a>
@@ -43,4 +42,4 @@ In the block of the change button, the variable `isChangeable` has to be set, an
 
 ## About extended functionality
 
-Please notice: Nested line items can be implemented in various ways, so there's no telling what a __default handling__ could be. Therefore, it is necessary to implement a change or remove handling by yourself.
+Please notice: Nested line items can be implemented in various ways, so there's no telling what a **default handling** could be. Therefore, it is necessary to implement a change or remove handling by yourself.

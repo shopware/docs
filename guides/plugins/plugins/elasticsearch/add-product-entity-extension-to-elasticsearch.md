@@ -1,4 +1,4 @@
-# Adding product entity extension to elasticsearch
+# Add product entity extension to elasticsearch
 
 ## Overview
 
@@ -8,17 +8,16 @@ In this example we'll assume an extension of the `ProductDefinition` with a stri
 
 ## Prerequisites
 
-This guide is built upon the [Plugin Base Guide](../plugin-base-guide.md), and the entity extension described in [Adding Complex data to existing entities](../framework/data-handling/add-complex-data-to-existing-entities.md#adding-a-field-without-database).
-We will extend the product extension with an `OneToOneAssociationField` and `OneToManyAssociationField`. 
+This guide is built upon the [Plugin Base Guide](../plugin-base-guide.md), and the entity extension described in [Adding Complex data to existing entities](../framework/data-handling/add-complex-data-to-existing-entities.md#adding-a-field-without-database). We will extend the product extension with an `OneToOneAssociationField` and `OneToManyAssociationField`.
 
 ## Decorate the ElasticsearchProductDefinition
 
-To extend the elasticsearch definition we need to extend the product definition first and add the subscriber. This is described in the above mentioned articles.
-Here we show you how this could look like in the end.
+To extend the elasticsearch definition we need to extend the product definition first and add the subscriber. This is described in the above mentioned articles. Here we show you how this could look like in the end.
 
 The service.xml with all needed definitions.
+
 {% code title="<plugin root>/src/Core/Content/DependencyInjection/product.xml" %}
-```xml
+```markup
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -52,6 +51,7 @@ The service.xml with all needed definitions.
 {% endcode %}
 
 The product extension `CustomExtension.php` provides the extensions to the product entity.
+
 {% code title="<plugin root>/src/Extension/Content/Product/CustomExtension.php" %}
 ```php
 <?php declare(strict_types=1);
@@ -93,6 +93,7 @@ class CustomExtension extends EntityExtension
 {% endcode %}
 
 The entity definition `OneToManyExampleExtensionDefinition.php`.
+
 {% code title="<plugin root>/src/Extension/Content/Product/OneToManyExampleExtensionDefinition.php" %}
 ```php
 <?php declare(strict_types=1);
@@ -142,6 +143,7 @@ class OneToManyExampleExtensionDefinition extends EntityDefinition
 {% endcode %}
 
 The entity definition `OneToOneExampleExtensionDefinition.php`.
+
 {% code title="<plugin root>/src/Extension/Content/Product/OneToOneExampleExtensionDefinition.php" %}
 ```php
 <?php declare(strict_types=1);
@@ -187,12 +189,10 @@ class OneToOneExampleExtensionDefinition extends EntityDefinition
         ]);
     }
 }
-
 ```
 {% endcode %}
 
-Here is a decoration to add a new field named `customString`, an `oneToOneAssociationField` named `oneToOneExampleExtension` and an `oneToManyAssociationField` named `oneToManyExampleExtension` to the index.
-For adding more information from the database you should execute a single query with all document ids `(array_column($documents, 'id'))` and map the values.
+Here is a decoration to add a new field named `customString`, an `oneToOneAssociationField` named `oneToOneExampleExtension` and an `oneToManyAssociationField` named `oneToManyExampleExtension` to the index. For adding more information from the database you should execute a single query with all document ids `(array_column($documents, 'id'))` and map the values.
 
 {% code title="<plugin root>/src/Elasticsearch/Product/MyProductEsDecorator.php" %}
 ```php
@@ -336,6 +336,5 @@ class MyProductEsDecorator extends AbstractElasticsearchDefinition
         );
     }
 }
-
 ```
 {% endcode %}

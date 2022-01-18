@@ -5,65 +5,53 @@ This feature is only available starting with Shopware 6.4.1.0.
 {% endhint %}
 
 These two requests are executed against your API, the up to two endpoints you define per payment method. All bodies are JSON encoded.
-<!-- markdown-link-check-disable-next-line --><!-- markdown-link-check-disable-next-line -->
-{% api-method method="post" host="https://payment.app/" path="/pay" %}
-{% api-method-summary %}
-pay
-{% endapi-method-summary %}
 
-{% api-method-description %}
-This request gets called, when the users hits _Confirm Order_ in Shopware.
-{% endapi-method-description %}
+{% swagger baseUrl="https://payment.app/" path="/pay" method="post" summary="pay" %}
+{% swagger-description %}
+This request gets called, when the users hits 
 
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-headers %}
-{% api-method-parameter name="shopware-shop-signature" type="string" required=true %}
+_Confirm Order_
+
+ in Shopware.
+{% endswagger-description %}
+
+{% swagger-parameter name="shopware-shop-signature" type="string" required="true" in="header" %}
 The hmac-signature of the JSON encoded body content, signed with the shop secret returned from the registration request
-{% endapi-method-parameter %}
-{% endapi-method-headers %}
+{% endswagger-parameter %}
 
-{% api-method-body-parameters %}
-{% api-method-parameter name="order" type="OrderEntity" required=true %}
-The order entity from Shopware including all necessary associations \(like currency, shipping address, billing address, line items\). See Shopware for detailed and current structure.
-{% endapi-method-parameter %}
+{% swagger-parameter name="order" type="OrderEntity" required="true" in="body" %}
+The order entity from Shopware including all necessary associations (like currency, shipping address, billing address, line items). See Shopware for detailed and current structure.
+{% endswagger-parameter %}
 
-{% api-method-parameter name="orderTransaction" type="OrderTransactionEntity" required=true %}
+{% swagger-parameter name="orderTransaction" type="OrderTransactionEntity" required="true" in="body" %}
 The order transaction entity from Shopware representing the payment your are supposed to process. See Shopware for detailed and current structure.
-{% endapi-method-parameter %}
+{% endswagger-parameter %}
 
-{% api-method-parameter name="orderTransaction.id" type="string" required=true %}
+{% swagger-parameter name="orderTransaction.id" type="string" required="true" in="body" %}
 This should be used to identify the order transaction on a second finalize request.
-{% endapi-method-parameter %}
+{% endswagger-parameter %}
 
-{% api-method-parameter name="returnUrl" type="string" required=false %}
+{% swagger-parameter name="returnUrl" type="string" required="false" in="body" %}
 This URL is the URL your app or your payment provider is supposed to redirect back to, once the user has been redirected to the payment provider with the URL you provide in your response. Only supplied on asynchronous payments.
-{% endapi-method-parameter %}
+{% endswagger-parameter %}
 
-{% api-method-parameter name="source" type="array" required=true %}
+{% swagger-parameter name="source" type="array" required="true" in="body" %}
 Data to identify the shop that sent this request
-{% endapi-method-parameter %}
+{% endswagger-parameter %}
 
-{% api-method-parameter name="source.url" type="string" required=true %}
+{% swagger-parameter name="source.url" type="string" required="true" in="body" %}
 The shop URL sending this request
-{% endapi-method-parameter %}
+{% endswagger-parameter %}
 
-{% api-method-parameter name="source.shopId" type="string" required=true %}
+{% swagger-parameter name="source.shopId" type="string" required="true" in="body" %}
 The shop id you can use to identify the shop that has been registered before with your app.
-{% endapi-method-parameter %}
+{% endswagger-parameter %}
 
-{% api-method-parameter name="source.appVersion" type="string" required=true %}
+{% swagger-parameter name="source.appVersion" type="string" required="true" in="body" %}
 The version of the app that is installed in the shop.
-{% endapi-method-parameter %}
-{% endapi-method-body-parameters %}
-{% endapi-method-request %}
+{% endswagger-parameter %}
 
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-See comments for different successful responses
-{% endapi-method-response-example-description %}
-
+{% swagger-response status="200" description="" %}
 ```javascript
 /* Successful redirect */
 {
@@ -76,61 +64,47 @@ See comments for different successful responses
     "message": "The shop has not provided all credentials for the payment provider."
 }
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
-<!-- markdown-link-check-disable-next-line -->
-{% api-method method="post" host="https://payment.app/" path="/finalize" %}
-{% api-method-summary %}
-finalize
-{% endapi-method-summary %}
+{% endswagger-response %}
+{% endswagger %}
 
-{% api-method-description %}
-This request gets called once the user returns to the `returnUrl` Shopware provided in the first request.
-{% endapi-method-description %}
+{% swagger baseUrl="https://payment.app/" path="/finalize" method="post" summary="finalize" %}
+{% swagger-description %}
+This request gets called once the user returns to the 
 
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-headers %}
-{% api-method-parameter name="shopware-shop-signature" type="string" required=true %}
+`returnUrl`
+
+ Shopware provided in the first request.
+{% endswagger-description %}
+
+{% swagger-parameter name="shopware-shop-signature" type="string" required="true" in="header" %}
 The hmac-signature of the JSON encoded body content, signed with the shop secret returned from the registration request
-{% endapi-method-parameter %}
-{% endapi-method-headers %}
+{% endswagger-parameter %}
 
-{% api-method-body-parameters %}
-{% api-method-parameter name="orderTransaction" type="OrderTransactionEntity" required=true %}
+{% swagger-parameter name="orderTransaction" type="OrderTransactionEntity" required="true" in="body" %}
 The order transaction entity from Shopware representing the payment your are supposed to process. See Shopware for detailed and current structure.
-{% endapi-method-parameter %}
+{% endswagger-parameter %}
 
-{% api-method-parameter name="orderTransaction.id" type="string" required=true %}
+{% swagger-parameter name="orderTransaction.id" type="string" required="true" in="body" %}
 This should be used to identify the order transaction on a second finalize request.
-{% endapi-method-parameter %}
+{% endswagger-parameter %}
 
-{% api-method-parameter name="source" type="array" required=true %}
+{% swagger-parameter name="source" type="array" required="true" in="body" %}
 Data to identify the shop that sent this request
-{% endapi-method-parameter %}
+{% endswagger-parameter %}
 
-{% api-method-parameter name="source.url" type="string" required=true %}
+{% swagger-parameter name="source.url" type="string" required="true" in="body" %}
 The shop URL sending this request
-{% endapi-method-parameter %}
+{% endswagger-parameter %}
 
-{% api-method-parameter name="source.shopId" type="string" required=true %}
+{% swagger-parameter name="source.shopId" type="string" required="true" in="body" %}
 The shop id you can use to identify the shop that has been registered before with your app.
-{% endapi-method-parameter %}
+{% endswagger-parameter %}
 
-{% api-method-parameter name="source.appVersion" type="string" required=true %}
+{% swagger-parameter name="source.appVersion" type="string" required="true" in="body" %}
 The version of the app that is installed in the shop.
-{% endapi-method-parameter %}
-{% endapi-method-body-parameters %}
-{% endapi-method-request %}
+{% endswagger-parameter %}
 
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-See comments for different successful responses
-{% endapi-method-response-example-description %}
-
+{% swagger-response status="200" description="" %}
 ```javascript
 /* Successful redirect */
 {
@@ -149,8 +123,5 @@ See comments for different successful responses
     "message": "The user did not finish payment."
 }
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
-
+{% endswagger-response %}
+{% endswagger %}

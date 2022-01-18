@@ -2,7 +2,7 @@
 
 ## Overview
 
-Since the Shopware 6 Administration is using [VueJS](https://vuejs.org/) as its framework, it also supports creating custom components. This guide will teach you how to register your own custom component with your plugin.
+Since the Shopware 6 Administration is using [VueJS](https://vuejs.org) as its framework, it also supports creating custom components. This guide will teach you how to register your own custom component with your plugin.
 
 In this example, you will create a component, that will print a 'Hello world!' everywhere it's being used.
 
@@ -10,15 +10,21 @@ In this example, you will create a component, that will print a 'Hello world!' e
 
 This guide **does not** explain how to create a new plugin for Shopware 6. Head over to our Plugin base guide to learn how to create a plugin at first:
 
-{% page-ref page="../plugin-base-guide.md" %}
+{% content-ref url="../plugin-base-guide.md" %}
+[plugin-base-guide.md](../plugin-base-guide.md)
+{% endcontent-ref %}
 
 If you want to work with entities in your custom component or page, it might be useful to take a look at how to create custom entity guide first:
 
-{% page-ref page="../framework/data-handling/add-custom-complex-data.md" %}
+{% content-ref url="../framework/data-handling/add-custom-complex-data.md" %}
+[add-custom-complex-data.md](../framework/data-handling/add-custom-complex-data.md)
+{% endcontent-ref %}
 
 Especially if you want to add a new page for an own module, you should consider to look at the process on how to add a custom module first.
 
-{% page-ref page="add-custom-module.md" %}
+{% content-ref url="add-custom-module.md" %}
+[add-custom-module.md](add-custom-module.md)
+{% endcontent-ref %}
 
 This way, you're able to start building your own module in the right order.
 
@@ -112,7 +118,6 @@ You've now added a custom component, including a little template. However, there
 
 * [More about templates](writing-templates.md)
 * [Add some styling to your component](add-custom-styles.md)
-* [Use shortcuts for your component](add-shortcuts.md)
+* [Use shortcuts for your component](https://github.com/shopware/docs/tree/93ac75e3daedd33a3c6bcda2ece973449ca23a8f/guides/plugins/plugins/administration/add-shortcuts.md)
 
 Furthermore, what about [customizing other components](customizing-components.md), instead of creating new ones.
-

@@ -56,27 +56,27 @@ In combination with a feature flag, like shown above, the `@internal` annotation
 
 When developing new features, the goal should always be, to do this in a backward compatible way. This ensures that the feature can be shipped with a minor release, to provide value for customers as soon as possible. The following table should help you to use the correct approach for each type of change.
 
-| Case                    | During development                                                                                                                                                                                                                                                                                                                                       | On feature release                                                                                                                                       | Next major release                          |
-| ---                     | ---                                                                                                                                                                                                                                                                                                                                                      | ---                                                                                                                                                      | ---                                         |
-| 🚩 **Feature Flag**     | Hide code behind normal [feature flag](#using-feature-flags).                                                                                                                                                                                                                                                                                            | Remove feature flag.                                                                                                                                     |                                             |
-| ➕ **New code**         | Add `@internal annotation` for new public API.                                                                                                                                                                                                                                                                                                           | Remove `@internal` annotation.                                                                                                                           |                                             |
-| ⚪ **Obsolete code**    | Add `@feature-deprecated` annotation.                                                                                                                                                                                                                                                                                                                    | Replace @feature-deprecated with normal `@deprecated` annotation.                                                                                        | Remove old code.                            |
-| 🔴 **Breaking change**  | Add `@major-deprecated` annotation. Hide breaking code behind additional major [feature flag](https://github.com/shopware/platform/blob/trunk/adr/2020-08-10-Feature-flag-system.md)! Also create a separate [changelog](https://github.com/shopware/platform/blob/master/adr/2020-08-03-Implement-New-Changelog.md) for the change with the major flag. |                                                                                                                                                          | Remove old code. Remove major feature flag. |
-| 🔍 **Tests**            | Add new tests behind feature flag.                                                                                                                                                                                                                                                                                                                       | Remove feature flags from new tests. Declare old tests as [legacy](https://symfony.com/doc/current/components/phpunit_bridge.html#mark-tests-as-legacy). | Remove legacy tests.                        |
+| Case                   | During development                                                                                                                                                                                                                                                                                                                                       | On feature release                                                                                                                                        | Next major release                          |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| 🚩 **Feature Flag**    | Hide code behind normal [feature flag](backward-compatibility.md#using-feature-flags).                                                                                                                                                                                                                                                                   | Remove feature flag.                                                                                                                                      |                                             |
+| ➕ **New code**         | Add `@internal annotation` for new public API.                                                                                                                                                                                                                                                                                                           | Remove `@internal` annotation.                                                                                                                            |                                             |
+| ⚪ **Obsolete code**    | Add `@feature-deprecated` annotation.                                                                                                                                                                                                                                                                                                                    | Replace @feature-deprecated with normal `@deprecated` annotation.                                                                                         | Remove old code.                            |
+| 🔴 **Breaking change** | Add `@major-deprecated` annotation. Hide breaking code behind additional major [feature flag](https://github.com/shopware/platform/blob/trunk/adr/2020-08-10-Feature-flag-system.md)! Also create a separate [changelog](https://github.com/shopware/platform/blob/master/adr/2020-08-03-Implement-New-Changelog.md) for the change with the major flag. |                                                                                                                                                           | Remove old code. Remove major feature flag. |
+| 🔍 **Tests**           | Add new tests behind feature flag.                                                                                                                                                                                                                                                                                                                       | Remove feature flags from new tests. Declare old tests as [legacy](https://symfony.com/doc/current/components/phpunit\_bridge.html#mark-tests-as-legacy). | Remove legacy tests.                        |
 
-You can also find more detailed information and code examples in the corresponding **[ADR](https://github.com/shopware/platform/blob/trunk/adr/)** for the deprecation strategy.
+You can also find more detailed information and code examples in the corresponding [**ADR**](https://github.com/shopware/platform/blob/trunk/adr/) for the deprecation strategy.
 
 ### Breaking Changes / Features
 
 The first goal should always be to make your changes backward compatible. But there might be some special case, where it isn't possible in any way. In this case, the change can only be released with a major version. As we develop all changes in the same code base, the `trunk` branch, the changes have to stay behind a special feature flag, which is especially marked as a major feature flag.
 
-| Case                    | During development                                                                                                                                           | Next major release (feature release) |
-| ---                     | ---                                                                                                                                                          | ---                                  |
-| 🚩 **Feature Flag**     | Hide code behind major feature flag.                                                                                                                         | Remove major feature flag.           |
-| ➕ **New code**         | Add `@internal` annotation for new public API.                                                                                                               | Remove `@internal` annotation.       |
-| ⚪ **Obsolete code**    | Add `@major-deprecated` annotation.                                                                                                                          | Remove old code.                     |
-| 🔴 **Breaking change**  | Add `@major-deprecated` annotation.                                                                                                                          | Remove old code.                     |
-| 🔍 **Tests**            | Add new tests behind major feature flag. Declare old tests as [legacy](https://symfony.com/doc/current/components/phpunit_bridge.html#mark-tests-as-legacy). | Remove legacy tests.                 |
+| Case                   | During development                                                                                                                                            | Next major release (feature release) |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| 🚩 **Feature Flag**    | Hide code behind major feature flag.                                                                                                                          | Remove major feature flag.           |
+| ➕ **New code**         | Add `@internal` annotation for new public API.                                                                                                                | Remove `@internal` annotation.       |
+| ⚪ **Obsolete code**    | Add `@major-deprecated` annotation.                                                                                                                           | Remove old code.                     |
+| 🔴 **Breaking change** | Add `@major-deprecated` annotation.                                                                                                                           | Remove old code.                     |
+| 🔍 **Tests**           | Add new tests behind major feature flag. Declare old tests as [legacy](https://symfony.com/doc/current/components/phpunit\_bridge.html#mark-tests-as-legacy). | Remove legacy tests.                 |
 
 ## Compatibility Sheet
 
@@ -86,121 +86,121 @@ To ensure the backward compatibility it is important to know what you are allowe
 
 As Shopware is based on the PHP framework Symfony, we also have to make sure to use the rules, which the framework follows. Besides the list below, always keep in mind the backward compatibility promise and implement your changes in a way the promise is kept.
 
-**[Symfony Backward Compatibility Promise](https://symfony.com/doc/current/contributing/code/bc.html)**
+[**Symfony Backward Compatibility Promise**](https://symfony.com/doc/current/contributing/code/bc.html)
 
-| Use Case                                                                                                      | Allowed?   | Notes / Alternatives                                                                                                                                                                                                           |
-| ---                                                                                                           | ---        | ---                                                                                                                                                                                                                            |
-| Change the typehint of a class, interface or trait.                                                           | 🔴 NO      | Add the new typehint as an abstract class. <br>Code Example: [Extend class with abstract class](#extend-class-with-abstract-class)                                                                                             |
+| Use Case                                                                                                      | Allowed?  | Notes / Alternatives                                                                                                                                                                                                           |
+| ------------------------------------------------------------------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Change the typehint of a class, interface or trait.                                                           | 🔴 NO     | <p>Add the new typehint as an abstract class. <br>Code Example: <a href="backward-compatibility.md#extend-class-with-abstract-class">Extend class with abstract class</a></p>                                                  |
 | Change the constructor of a service.                                                                          | ✅ YES     | Services have to be instantiated over the container, so the changes should not break anything.                                                                                                                                 |
-| Change the constructor of a class, that is not a service. (Instantiated with new Class())                     | ⚪ PARTIAL | Only optional arguments are allowed to be added and this should be made via `func_get_args()`. <br> Code Example: [Add an argument](#add-an-argument)                                                                            |
-| Change the arguments of a public method.                                                                      | ⚪ PARTIAL | Only optional arguments are allowed to be added and this should be made via `func_get_args()`. <br>Code Example: [Add an argument](#add-an-argument)                                                                             |
-| Change the arguments of a protected method.                                                                   | ⚪ PARTIAL | Only optional arguments are allowed to be added and this should be made via `func_get_args()`. <br>Code Example: [Add an argument](#add-an-argument)                                                                             |
+| Change the constructor of a class, that is not a service. (Instantiated with new Class())                     | ⚪ PARTIAL | <p>Only optional arguments are allowed to be added and this should be made via <code>func_get_args()</code>. <br> Code Example: <a href="backward-compatibility.md#add-an-argument">Add an argument</a></p>                    |
+| Change the arguments of a public method.                                                                      | ⚪ PARTIAL | <p>Only optional arguments are allowed to be added and this should be made via <code>func_get_args()</code>. <br>Code Example: <a href="backward-compatibility.md#add-an-argument">Add an argument</a></p>                     |
+| Change the arguments of a protected method.                                                                   | ⚪ PARTIAL | <p>Only optional arguments are allowed to be added and this should be made via <code>func_get_args()</code>. <br>Code Example: <a href="backward-compatibility.md#add-an-argument">Add an argument</a></p>                     |
 | Change the arguments of a private method.                                                                     | ✅ YES     |                                                                                                                                                                                                                                |
-| Change the return the type of a method.                                                                       | 🔴 NO      | Create a new method and deprecate the old one.                                                                                                                                                                                 |
-| Change the value of a public constant.                                                                        | 🔴 NO      | You should add a new constant. Annotate the old constant as deprecated and remove it in the next major version.                                                                                                                |
+| Change the return the type of a method.                                                                       | 🔴 NO     | Create a new method and deprecate the old one.                                                                                                                                                                                 |
+| Change the value of a public constant.                                                                        | 🔴 NO     | You should add a new constant. Annotate the old constant as deprecated and remove it in the next major version.                                                                                                                |
 | Change the value of a private constant.                                                                       | ✅ YES     | Check all potential usages of the constant. Maybe it is used somewhere to be stored in the database. In that case, you must write a migration for it which ensures every use of the constant in a db-value is updated as well. |
-| Change a class or method to final.                                                                            | 🔴 NO      | You will have to deprecate the class or method and add an annotation that it will be final in the next major version.                                                                                                          |
-| Change the visibility of a class, method or property from public to private/protected or protected to private | 🔴 NO      | Annotate it as deprecated and change the visibility in the next major version.                                                                                                                                                 |
-| Change the namespace of a class.                                                                              | 🔴 NO      | Duplicate the class and mark the old one as deprecated.                                                                                                                                                                        |
-| Change static state (remove static or delete static keyword).                                                 | 🔴 NO      | Annotate it as deprecated and add or remove the static keyword in the next major version.                                                                                                                                      |
-| Add parameter to interface or abstract class function.                                                        | ⚪ PARTIAL | Only optional arguments are allowed to be added and this should be made via `func_get_args()`. <br> Code Example: [Add an argument](#add-an-argument)                                                                            |
-| Add new public function to interface.                                                                         | 🔴 NO      |                                                                                                                                                                                                                                |
-| Add new public function to abstract class.                                                                    | ⚪ PARTIAL | Only possible if the abstract class already contains the `getDecorated` call. <br> Code Example: [Add a public function](#add-a-public-function)                                                                                 |
+| Change a class or method to final.                                                                            | 🔴 NO     | You will have to deprecate the class or method and add an annotation that it will be final in the next major version.                                                                                                          |
+| Change the visibility of a class, method or property from public to private/protected or protected to private | 🔴 NO     | Annotate it as deprecated and change the visibility in the next major version.                                                                                                                                                 |
+| Change the namespace of a class.                                                                              | 🔴 NO     | Duplicate the class and mark the old one as deprecated.                                                                                                                                                                        |
+| Change static state (remove static or delete static keyword).                                                 | 🔴 NO     | Annotate it as deprecated and add or remove the static keyword in the next major version.                                                                                                                                      |
+| Add parameter to interface or abstract class function.                                                        | ⚪ PARTIAL | <p>Only optional arguments are allowed to be added and this should be made via <code>func_get_args()</code>. <br> Code Example: <a href="backward-compatibility.md#add-an-argument">Add an argument</a></p>                    |
+| Add new public function to interface.                                                                         | 🔴 NO     |                                                                                                                                                                                                                                |
+| Add new public function to abstract class.                                                                    | ⚪ PARTIAL | <p>Only possible if the abstract class already contains the <code>getDecorated</code> call. <br> Code Example: <a href="backward-compatibility.md#add-a-public-function">Add a public function</a></p>                         |
 | Add an event or event dispatch.                                                                               | ✅ YES     |                                                                                                                                                                                                                                |
 | Add a constant.                                                                                               | ✅ YES     |                                                                                                                                                                                                                                |
-| Remove an event or event dispatch.                                                                            | 🔴 NO      |                                                                                                                                                                                                                                |
-| Remove a public property, constant or method.                                                                 | 🔴 NO      | Annotate it as deprecated and remove it in the next major release.                                                                                                                                                             |
-| Remove a protected property, constant or method.                                                              | 🔴 NO      | Annotate it as deprecated and remove it in the next major release.                                                                                                                                                             |
+| Remove an event or event dispatch.                                                                            | 🔴 NO     |                                                                                                                                                                                                                                |
+| Remove a public property, constant or method.                                                                 | 🔴 NO     | Annotate it as deprecated and remove it in the next major release.                                                                                                                                                             |
+| Remove a protected property, constant or method.                                                              | 🔴 NO     | Annotate it as deprecated and remove it in the next major release.                                                                                                                                                             |
 | Remove a private property, constant, or method.                                                               | ✅ YES     |                                                                                                                                                                                                                                |
 
 ### Storefront
 
 #### TWIG Templates
 
-| Use Case                                                           | Allowed?     | Notes / Alternatives                                                                                                                                                                                                                                                                |
-| ---                                                                | ---          | ---                                                                                                                                                                                                                                                                                 |
-| Removing TWIG blocks.                                              | 🔴 NO        | Use the deprecation workflow.<br>Code Example: [Deprecate TWIG block](#deprecate-twig-block)                                                                                                                                                                                            |
-| Renaming TWIG blocks.                                              | 🔴 NO        | Use the deprecation workflow. Create a new surrounding block with the new name and deprecate the old one. All variables which are defined in the scope of the old block, must be moved to the new surrounding block scope.<br>Code Example: [Rename TWIG block](#rename-twig-block) |
-| Moving TWIG blocks within the same file.                           | ⚪ PARTIAL   | Only within the same scope / parent block.                                                                                                                                                                                                                                          |
-| Removing TWIG variables.                                           | 🔴 NO        |                                                                                                                                                                                                                                                                                     |
-| Renaming TWIG variables.                                           | 🔴 NO        | Create a new variable within the same scope and deprecate the old one.                                                                                                                                                                                                              |
-| Changing the value of TWIG variables                               | ⚪ PARTIAL   | The data type has to stay the same. Otherwise use the deprecation workflow.                                                                                                                                                                                                         |
-| Moving TWIG variable definitions to other TWIG blocks.             | ⚪ PARTIAL   | Only when they are being moved higher up in the block scope.                                                                                                                                                                                                                        |
-| Adding TWIG blocks which affect the scope of variable definitions. | 🔴 NO        |                                                                                                                                                                                                                                                                                     |
-| Moving template files to other directories.                        | 🔴 NO        |                                                                                                                                                                                                                                                                                     |
+| Use Case                                                           | Allowed?  | Notes / Alternatives                                                                                                                                                                                                                                                                                                           |
+| ------------------------------------------------------------------ | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Removing TWIG blocks.                                              | 🔴 NO     | <p>Use the deprecation workflow.<br>Code Example: <a href="backward-compatibility.md#deprecate-twig-block">Deprecate TWIG block</a></p>                                                                                                                                                                                        |
+| Renaming TWIG blocks.                                              | 🔴 NO     | <p>Use the deprecation workflow. Create a new surrounding block with the new name and deprecate the old one. All variables which are defined in the scope of the old block, must be moved to the new surrounding block scope.<br>Code Example: <a href="backward-compatibility.md#rename-twig-block">Rename TWIG block</a></p> |
+| Moving TWIG blocks within the same file.                           | ⚪ PARTIAL | Only within the same scope / parent block.                                                                                                                                                                                                                                                                                     |
+| Removing TWIG variables.                                           | 🔴 NO     |                                                                                                                                                                                                                                                                                                                                |
+| Renaming TWIG variables.                                           | 🔴 NO     | Create a new variable within the same scope and deprecate the old one.                                                                                                                                                                                                                                                         |
+| Changing the value of TWIG variables                               | ⚪ PARTIAL | The data type has to stay the same. Otherwise use the deprecation workflow.                                                                                                                                                                                                                                                    |
+| Moving TWIG variable definitions to other TWIG blocks.             | ⚪ PARTIAL | Only when they are being moved higher up in the block scope.                                                                                                                                                                                                                                                                   |
+| Adding TWIG blocks which affect the scope of variable definitions. | 🔴 NO     |                                                                                                                                                                                                                                                                                                                                |
+| Moving template files to other directories.                        | 🔴 NO     |                                                                                                                                                                                                                                                                                                                                |
 
 #### HTML
 
-| Use Case                                   | Allowed?   | Notes / Alternatives                                                                              |
-| ---                                        | ---        | ---                                                                                               |
-| Removing HTML sections.                    | 🔴 NO      |                                                                                                   |
-| Moving HTML sections within the same file. | ⚪ PARTIAL | Only within the same TWIG Block.                                                                  |
-| Renaming of removing CSS selectors.        | 🔴 NO      | Use the deprecation workflow.<br>Code Example: [Deprecate CSS selectors](#deprecate-css-selectors) |
+| Use Case                                   | Allowed?  | Notes / Alternatives                                                                                                                          |
+| ------------------------------------------ | --------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Removing HTML sections.                    | 🔴 NO     |                                                                                                                                               |
+| Moving HTML sections within the same file. | ⚪ PARTIAL | Only within the same TWIG Block.                                                                                                              |
+| Renaming of removing CSS selectors.        | 🔴 NO     | <p>Use the deprecation workflow.<br>Code Example: <a href="backward-compatibility.md#deprecate-css-selectors">Deprecate CSS selectors</a></p> |
 
 #### JavaScript
 
-| Use Case                                           | Allowed? | Notes / Alternatives                                                                                                  |
-| ---                                                | ---      | ---                                                                                                                   |
-| Renaming or removing JS services.                  | 🔴 NO    | Use the deprecation workflow.<br>Code Example: [Renaming or removing JS services](#renaming-or-removing-js-services)  |
-| Renaming or removing of JS plugins.                | 🔴 NO    | Use the deprecation workflow.<br>Code Example: [Renaming or removing JS plugins](#renaming-or-removing-js-plugins) |
-| Changing the public API of a JS plugin or service. | 🔴 NO    | Use the deprecation workflow.<br>Code Example: [Add new public function](#add-new-public-function)                    |
-| Renaming methods of JS plugins or services.        | 🔴 NO    | Use the deprecation workflow.<br>Code Example: [Rename a method](#rename-a-method)                                    |
-| Renaming or removing of JS events.                 | 🔴 NO    |                                                                                                                       |
-| Changing the parameters of JS events.              | 🔴 NO    |                                                                                                                       |
+| Use Case                                           | Allowed? | Notes / Alternatives                                                                                                                                            |
+| -------------------------------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Renaming or removing JS services.                  | 🔴 NO    | <p>Use the deprecation workflow.<br>Code Example: <a href="backward-compatibility.md#renaming-or-removing-js-services">Renaming or removing JS services</a></p> |
+| Renaming or removing of JS plugins.                | 🔴 NO    | <p>Use the deprecation workflow.<br>Code Example: <a href="backward-compatibility.md#renaming-or-removing-js-plugins">Renaming or removing JS plugins</a></p>   |
+| Changing the public API of a JS plugin or service. | 🔴 NO    | <p>Use the deprecation workflow.<br>Code Example: <a href="backward-compatibility.md#add-new-public-function">Add new public function</a></p>                   |
+| Renaming methods of JS plugins or services.        | 🔴 NO    | <p>Use the deprecation workflow.<br>Code Example: <a href="backward-compatibility.md#rename-a-method">Rename a method</a></p>                                   |
+| Renaming or removing of JS events.                 | 🔴 NO    |                                                                                                                                                                 |
+| Changing the parameters of JS events.              | 🔴 NO    |                                                                                                                                                                 |
 
 #### Styling / CSS
 
-| Use Case                                                  | Allowed?   | Notes / Alternatives                                                                                                                                                                                                                       |
-| ---                                                       | ---        | ---                                                                                                                                                                                                                                        |
-| Renaming or removing CSS definitions.                     | ⚪ PARTIAL | Only CSS properties which have a visual effect, but no structure or functional CSS properties. Not allowed are: <br>`display`, `position`, `visibility`, `z-index`, `pointer-events`, `overflow`, `transform`                              |
-| Changing generic selectors of the Bootstrap framework.    | ⚪ PARTIAL | Be aware of what you are doing. Fixing a small styling issue might be ok. Changing structural properties might have a big impact on the layout and the functionality.                                                                      |
-| Changing the CSS properties of generic Bootstrap classes. | ⚪ PARTIAL | Be aware of what you are doing. Fixing a small styling issue might be ok. Changing structural properties might have a big impact on the layout and the functionality.                                                                      |
-| Renaming or removing SASS variables or mixins.            | 🔴 NO      |                                                                                                                                                                                                                                            |
-| Renaming or removing of standard theme variables.         | 🔴 NO      |                                                                                                                                                                                                                                            |
+| Use Case                                                  | Allowed?  | Notes / Alternatives                                                                                                                                                                                                                                                                              |
+| --------------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Renaming or removing CSS definitions.                     | ⚪ PARTIAL | <p>Only CSS properties which have a visual effect, but no structure or functional CSS properties. Not allowed are: <br><code>display</code>, <code>position</code>, <code>visibility</code>, <code>z-index</code>, <code>pointer-events</code>, <code>overflow</code>, <code>transform</code></p> |
+| Changing generic selectors of the Bootstrap framework.    | ⚪ PARTIAL | Be aware of what you are doing. Fixing a small styling issue might be ok. Changing structural properties might have a big impact on the layout and the functionality.                                                                                                                             |
+| Changing the CSS properties of generic Bootstrap classes. | ⚪ PARTIAL | Be aware of what you are doing. Fixing a small styling issue might be ok. Changing structural properties might have a big impact on the layout and the functionality.                                                                                                                             |
+| Renaming or removing SASS variables or mixins.            | 🔴 NO     |                                                                                                                                                                                                                                                                                                   |
+| Renaming or removing of standard theme variables.         | 🔴 NO     |                                                                                                                                                                                                                                                                                                   |
 
 ### Administration
 
 #### Component Templates
 
-| Use Case                                                                        | Allowed?   | Notes / Alternatives                                                                     |
-| ---                                                                             | ---        | ---                                                                                      |
-| Renaming or removing TWIG blocks.                                               | 🔴 NO      | Use the deprecation workflow.<br>Code Example: [Deprecate TWIG block](#deprecate-twig-block) |
-| Moving TWIG blocks within the same file.                                        | ⚪ PARTIAL | Only within the same scope / parent block.                                               |
-| Changing the "ref" attribute of elements.                                       | 🔴 NO      |                                                                                          |
-| Changing VueJS specific template functions, like v-if.                          | 🔴 NO      |                                                                                          |
-| Changing VueJS data functions, like v-model, or v-bind.                         | 🔴 NO      |                                                                                          |
-| Renaming or removing VueJS slots.                                               | 🔴 NO      | Use the deprecation workflow.<br>Code Example: [Deprecate Vue Slot](#deprecate-vue-slot) |
-| Using new functionality of the VueJS framework, which has a breaking behaviour. | 🔴 NO      |                                                                                          |
-| Renaming or removing of global available VueJS template functions.              | 🔴 NO      |                                                                                          |
+| Use Case                                                                        | Allowed?  | Notes / Alternatives                                                                                                                    |
+| ------------------------------------------------------------------------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| Renaming or removing TWIG blocks.                                               | 🔴 NO     | <p>Use the deprecation workflow.<br>Code Example: <a href="backward-compatibility.md#deprecate-twig-block">Deprecate TWIG block</a></p> |
+| Moving TWIG blocks within the same file.                                        | ⚪ PARTIAL | Only within the same scope / parent block.                                                                                              |
+| Changing the "ref" attribute of elements.                                       | 🔴 NO     |                                                                                                                                         |
+| Changing VueJS specific template functions, like v-if.                          | 🔴 NO     |                                                                                                                                         |
+| Changing VueJS data functions, like v-model, or v-bind.                         | 🔴 NO     |                                                                                                                                         |
+| Renaming or removing VueJS slots.                                               | 🔴 NO     | <p>Use the deprecation workflow.<br>Code Example: <a href="backward-compatibility.md#deprecate-vue-slot">Deprecate Vue Slot</a></p>     |
+| Using new functionality of the VueJS framework, which has a breaking behaviour. | 🔴 NO     |                                                                                                                                         |
+| Renaming or removing of global available VueJS template functions.              | 🔴 NO     |                                                                                                                                         |
 
 #### JavaScript Modules & Components
 
-| Use Case                                                     | Allowed?   | Notes / Alternatives                                                                                                                                                                                                                        |
-|---                                                           | ---        | ---                                                                                                                                                                                                                                         |
-| Renaming or removing of base components.                     | 🔴 NO      | Use the deprecation workflow.<br>Code Example: [Deprecate admin components](#deprecate-admin-components)                                                                                                                                    |
-| Renaming or removing of module components.                   | 🔴 NO      | Use the deprecation workflow.<br>Code Example: [Deprecate admin components](#deprecate-admin-components)                                                                                                                                    |
-| Renaming or removing methods                                 | 🔴 NO      | Use the deprecation workflow.<br>Code Example: [Rename a method](#rename-a-method)                                                                                                                                                          |
-| Changing the return value of a method                        | 🔴 NO      | Use the deprecation workflow.<br>Code Example: [Add new public function](#add-new-public-function)                                                                                                                                          |
-| Changing the parameters of a method                          | 🔴 NO      | Only with new optional parameters which have a default value or if the method uses a single object as parameter via destructering. Otherwise use the deprecation workflow.<br>Code Example: [Add new public function](#add-new-public-function) |
-| Renaming or removing of required props                       | 🔴 NO      | Use the deprecation workflow.<br>Code Example: [Deprecate properties](#deprecate-admin-component-properties)                                                                                                                                |
-| Renaming or removing of vue events                           | 🔴 NO      | Use the deprecation workflow.<br>Add a deprecation annotation to the event which needs to be renamed or removed and offer an alternative inside the deprecation comment when possible                                                       |
-| Changing the parameters of a vue event                       | ⚪ PARTIAL | Only with new optional parameters which have a default value.<br> Only when the method receives an object as parameter and when working with destructuring                                                             |
-| Adding required properties to components.                    | 🔴 NO      | Add the property as optional property and show a warning if the property is empty. This could be done on component creation or with a property validator.<br>Code Example: [Adding required properties to components](#adding-required-properties-to-components) |
-| Renaming or removing data which is used in the data binding. | 🔴 NO      |                                                                                                                                                                                                                                             |
-| Renaming or removing the routes of a module.                 | 🔴 NO      |                                                                                                                                                                                                                                             |
-| Changing the parameters of a route.                          | 🔴 NO      |                                                                                                                                                                                                                                             |
-| Adding required parameters to a route.                       | 🔴 NO      |                                                                                                                                                                                                                                             |
-| Changing the public API of the global "Shopware" object.     | 🔴 NO      | Use the deprecation workflow. Use same workflow as for other methods.<br>Code Example: [Rename a method](#rename-a-method)                                                                                                                  |
-| Changing the public API of state stores. (VueX)              | 🔴 NO      |                                                                                                                                                                                                                                             |
-| Renaming, removing or not-using of assets or other imports.  | 🔴 NO      |                                                                                                                                                                                                                                             |
+| Use Case                                                     | Allowed?  | Notes / Alternatives                                                                                                                                                                                                                                                                                        |
+| ------------------------------------------------------------ | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Renaming or removing of base components.                     | 🔴 NO     | <p>Use the deprecation workflow.<br>Code Example: <a href="backward-compatibility.md#deprecate-admin-components">Deprecate admin components</a></p>                                                                                                                                                         |
+| Renaming or removing of module components.                   | 🔴 NO     | <p>Use the deprecation workflow.<br>Code Example: <a href="backward-compatibility.md#deprecate-admin-components">Deprecate admin components</a></p>                                                                                                                                                         |
+| Renaming or removing methods                                 | 🔴 NO     | <p>Use the deprecation workflow.<br>Code Example: <a href="backward-compatibility.md#rename-a-method">Rename a method</a></p>                                                                                                                                                                               |
+| Changing the return value of a method                        | 🔴 NO     | <p>Use the deprecation workflow.<br>Code Example: <a href="backward-compatibility.md#add-new-public-function">Add new public function</a></p>                                                                                                                                                               |
+| Changing the parameters of a method                          | 🔴 NO     | <p>Only with new optional parameters which have a default value or if the method uses a single object as parameter via destructering. Otherwise use the deprecation workflow.<br>Code Example: <a href="backward-compatibility.md#add-new-public-function">Add new public function</a></p>                  |
+| Renaming or removing of required props                       | 🔴 NO     | <p>Use the deprecation workflow.<br>Code Example: <a href="backward-compatibility.md#deprecate-admin-component-properties">Deprecate properties</a></p>                                                                                                                                                     |
+| Renaming or removing of vue events                           | 🔴 NO     | <p>Use the deprecation workflow.<br>Add a deprecation annotation to the event which needs to be renamed or removed and offer an alternative inside the deprecation comment when possible</p>                                                                                                                |
+| Changing the parameters of a vue event                       | ⚪ PARTIAL | <p>Only with new optional parameters which have a default value.<br> Only when the method receives an object as parameter and when working with destructuring</p>                                                                                                                                           |
+| Adding required properties to components.                    | 🔴 NO     | <p>Add the property as optional property and show a warning if the property is empty. This could be done on component creation or with a property validator.<br>Code Example: <a href="backward-compatibility.md#adding-required-properties-to-components">Adding required properties to components</a></p> |
+| Renaming or removing data which is used in the data binding. | 🔴 NO     |                                                                                                                                                                                                                                                                                                             |
+| Renaming or removing the routes of a module.                 | 🔴 NO     |                                                                                                                                                                                                                                                                                                             |
+| Changing the parameters of a route.                          | 🔴 NO     |                                                                                                                                                                                                                                                                                                             |
+| Adding required parameters to a route.                       | 🔴 NO     |                                                                                                                                                                                                                                                                                                             |
+| Changing the public API of the global "Shopware" object.     | 🔴 NO     | <p>Use the deprecation workflow. Use same workflow as for other methods.<br>Code Example: <a href="backward-compatibility.md#rename-a-method">Rename a method</a></p>                                                                                                                                       |
+| Changing the public API of state stores. (VueX)              | 🔴 NO     |                                                                                                                                                                                                                                                                                                             |
+| Renaming, removing or not-using of assets or other imports.  | 🔴 NO     |                                                                                                                                                                                                                                                                                                             |
 
 #### Component Styling
 
-| Use Case                                                    | Allowed?   | Notes / Alternatives                                                                                                                                                                                                                                        |
-| ---                                                         | ---        | ---                                                                                                                                                                                                                                                         |
-| Renaming or removing CSS definitions.                       | ⚪ PARTIAL | Only CSS properties which have a visual effect, but no structure or functional CSS properties. Not allowed are: <br>`display`, `position`, `visibility`, `z-index`, `pointer-events`, `overflow`, `transform`                                               |
-| Renaming or removing of functional selectors, like `is--*`. | 🔴 NO      |                                                                                                                                                                                                                                                             |
-| Renaming or removing root CSS selectors.                    | 🔴 NO      |                                                                                                                                                                                                                                                             |
+| Use Case                                                    | Allowed?  | Notes / Alternatives                                                                                                                                                                                                                                                                              |
+| ----------------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Renaming or removing CSS definitions.                       | ⚪ PARTIAL | <p>Only CSS properties which have a visual effect, but no structure or functional CSS properties. Not allowed are: <br><code>display</code>, <code>position</code>, <code>visibility</code>, <code>z-index</code>, <code>pointer-events</code>, <code>overflow</code>, <code>transform</code></p> |
+| Renaming or removing of functional selectors, like `is--*`. | 🔴 NO     |                                                                                                                                                                                                                                                                                                   |
+| Renaming or removing root CSS selectors.                    | 🔴 NO     |                                                                                                                                                                                                                                                                                                   |
 
 ## Code Examples
 
@@ -211,7 +211,7 @@ As Shopware is based on the PHP framework Symfony, we also have to make sure to 
 ```php
 /** Before */
 class MailService implements MailServiceInterface
- 
+
 /** After */
 class MailService extends AbstractMailService
 class AbstractMailService implements MailServiceInterface
@@ -246,18 +246,18 @@ public function calculate(ProductEntity $product, Context $context /*, int $prec
 abstract class AbstractProductRoute
 {
     abstract public function getDecorated(): AbstractProductRoute;
- 
+
     abstract public function load();
 }
- 
- 
+
+
 /** After */
 abstract class AbstractProductRoute
 {
     abstract public function getDecorated(): AbstractProductRoute;
- 
+
     abstract public function load();
- 
+
     /**
      * @deprecated tag:v6.5.0 - Will be abstract 
      */
@@ -274,7 +274,7 @@ abstract class AbstractProductRoute
 
 **Storefront**: Use the `deprecated` tag from TWIG including a comment with the normal annotation.
 
-```HTML
+```markup
 {% block the_block_name %}
     {% deprecated '@deprecated tag:v6.5.0 - Block will be removed completely including the content' %}
     <div>Content</div>
@@ -283,7 +283,7 @@ abstract class AbstractProductRoute
 
 **Administration**: Use normal TWIG comments for the annotation, as the other syntax is not supported.
 
-```HTML
+```markup
 {% block the_block_name %}
     {# @deprecated tag:v6.5.0 - Block will be removed completely including the content #}
     <div>Content</div>
@@ -292,7 +292,7 @@ abstract class AbstractProductRoute
 
 #### Rename TWIG block
 
-```HTML
+```markup
 {% block new_block_name %}
     {% block old_block_name %}
     {% deprecated '@deprecated tag:v6.5.0 - Use `new_block_name` instead' %}
@@ -303,7 +303,7 @@ abstract class AbstractProductRoute
 
 #### Deprecate CSS selectors
 
-```HTML
+```markup
 {# @deprecated tag:v6.5.0 - CSS class "card-primary" is deprecated, use "card-major" instead #}
 <div class="card card-major card-primary">
     ...
@@ -312,7 +312,7 @@ abstract class AbstractProductRoute
 
 #### Deprecate Vue Slot
 
-```html
+```markup
 {# @deprecated tag:v6.5.0 - Use slot "main-content" instead #}
 <slot name="content"></slot>
 <slot name="main-content"></slot>
@@ -332,7 +332,7 @@ export default class RouteService {
         // Returns string 'foo/bar'
         return this._someMagic(symfonyRoute);
     }
- 
+
     getRouteConfig() {
         // Returns object { name: 'foo/bar', params: [] }
         return {
@@ -352,7 +352,7 @@ export default class RouteService {
 onClick(event) {
     return onItemClick(event);
 },
- 
+
 onItemClick(event) {
     // ...
 }
@@ -416,7 +416,7 @@ Shopware.Component.register('sw-old', {
 export default class HttpClient {
     // ...
 }
- 
+
 // new-http-client.service.js
 export default class NewHttpClient {
     // ...
@@ -433,7 +433,7 @@ export default class NewHttpClient {
 export default class BuyButtonPlugin extends Plugin {
     // ...
 }
- 
+
 // new-buy-button.plugin.js
 export default class NewBuyButtonPlugin extends Plugin {
     // ...

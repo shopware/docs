@@ -1,6 +1,6 @@
-# Shopping Experiences \(CMS\)
+# Shopping Experiences (CMS)
 
-Shopware comes with an extensive CMS system \(referred to as "Shopping Experiences"\) built upon pages or layouts which can be reused and dynamically hydrated based on their assignments to categories or other entities.
+Shopware comes with an extensive CMS system (referred to as "Shopping Experiences") built upon pages or layouts which can be reused and dynamically hydrated based on their assignments to categories or other entities.
 
 In the following concept we'll take a look at the following aspects:
 
@@ -12,7 +12,7 @@ We'll start by taking a rather abstract approach to content organisation and lat
 
 ## Structure
 
-Every CMS page or layout \(they're really technically the same\) is a hierarchical structure made of sections, blocks, elements and additional configuration within each of those components. An exemplary CMS page printed in JSON would look similar to this:
+Every CMS page or layout (they're really technically the same) is a hierarchical structure made of sections, blocks, elements and additional configuration within each of those components. An exemplary CMS page printed in JSON would look similar to this:
 
 ```javascript
 {
@@ -41,7 +41,7 @@ A page serves as a wrapper and contains all content information as well as a `ty
 * Category / Listing page
 * Shop page
 * Static page
-* \(at some point we will support CMS for _Product pages_ as well\)
+* (at some point we will support CMS for _Product pages_ as well)
 
 ### Section
 
@@ -120,12 +120,12 @@ Types of elements comprise
 
 ### Configuration
 
-Every component \(section, block, element\) contains a configuration which specifies detailed information about how it's supposed to be rendered. Such configuration can contain:
+Every component (section, block, element) contains a configuration which specifies detailed information about how it's supposed to be rendered. Such configuration can contain:
 
 * Product ID
-* Mapped field \(e.g. category.description\)
+* Mapped field (e.g. category.description)
 * Static values
-* CSS config \(properties, classes\)
+* CSS config (properties, classes)
 
 Static values will be passed to the page as-is. Mapped fields will be resolved at runtime based on the dynamic content hydration - described subsequently.
 
@@ -137,20 +137,20 @@ Whereas the structure of a CMS page remains somewhat static, its content can be 
 
 The following diagram illustrates how that works using the example of a category:
 
-![Flow of resolving CMS page content](../../../.gitbook/assets/image%20%282%29.png)
+![Flow of resolving CMS page content](<../../../.gitbook/assets/image (2).png>)
 
 Let's go through the steps one by one.
 
-1. **Load category** This can be initiated through an API call or a page request \(e.g. through the storefront\). 
-2. **Load CMS layout** Shopware will load the CMS layout associated with the category. 
-3. **Build resolver context** This object will be passed on and contains information about the request and the sales channel context. 
-4. **Assemble criteria for every element** Every CMS element within the layout has a `type` configuration which determines the correct page resolver to resolve its content. Together with the **resolver context** the resolver is be able to resolve the correct criteria for the element. All criterias are collected in a criteria collection. Shopware will optimize those criterias \(e.g. by splitting searches from direct lookups or merging duplicate requests\) and execute the resulting queries. 
-5. **Override slot configuration** The resulting configuration determine the ultimate configuration of the slots that will be displayed, so Shopware will use it to override the existing configuration. 
+1. **Load category** This can be initiated through an API call or a page request (e.g. through the storefront).&#x20;
+2. **Load CMS layout** Shopware will load the CMS layout associated with the category.&#x20;
+3. **Build resolver context** This object will be passed on and contains information about the request and the sales channel context.&#x20;
+4. **Assemble criteria for every element** Every CMS element within the layout has a `type` configuration which determines the correct page resolver to resolve its content. Together with the **resolver context** the resolver is be able to resolve the correct criteria for the element. All criterias are collected in a criteria collection. Shopware will optimize those criterias (e.g. by splitting searches from direct lookups or merging duplicate requests) and execute the resulting queries.&#x20;
+5. **Override slot configuration** The resulting configuration determine the ultimate configuration of the slots that will be displayed, so Shopware will use it to override the existing configuration.&#x20;
 6. **Respond with CMS page** Since the page data is finally assembled, it can be passed on to the view layer where it will be interpreted and displayed.
 
 ### Extensibility
 
-As you can see, the **element resolvers** play a central role in the whole process of getting the configuration \(and by extension, content\) of CMS elements.
+As you can see, the **element resolvers** play a central role in the whole process of getting the configuration (and by extension, content) of CMS elements.
 
 Shopware allows registering custom resolvers by implementing a corresponding interface, which dictates the following methods:
 
@@ -160,7 +160,7 @@ Shopware allows registering custom resolvers by implementing a corresponding int
 
 ## Separation of content and presentation
 
-The CMS is designed in a way that doesn't fix it to a single presentation channel \(fancy people refer to it as "headless"\). What at first might seem like an unnecessary abstraction turns out to give us a lot of flexibility. Each presentation channel can have its own twist on interpreting the content and displaying it to the user. A browser can leverage the [Shopware Storefront](../../../guides/plugins/plugins/storefront/) and display the HTML or use the resulting markup from a single page application that interprets the API responses. A native mobile application can strip out unnecessary blocks and only display texts and images as view components. A smart speaker simply reads out the content of elements with the `voice` type. You name it...
+The CMS is designed in a way that doesn't fix it to a single presentation channel (fancy people refer to it as "headless"). What at first might seem like an unnecessary abstraction turns out to give us a lot of flexibility. Each presentation channel can have its own twist on interpreting the content and displaying it to the user. A browser can leverage the [Shopware Storefront](../../../guides/plugins/plugins/storefront/) and display the HTML or use the resulting markup from a single page application that interprets the API responses. A native mobile application can strip out unnecessary blocks and only display texts and images as view components. A smart speaker simply reads out the content of elements with the `voice` type. You name it...
 
 By default, Shopware provides the server-side rendered Storefront as a default presentation channel, but [Shopware PWA](../../../products/pwa.md) also support CMS pages. Using the CMS through the API you'll have full flexibility of how to display your content.
 
@@ -170,9 +170,10 @@ All this comes at a price: The admin preview of your content is only as represen
 
 ## Further reading
 
-{% page-ref page="../../../guides/plugins/plugins/content/cms/add-cms-block.md" %}
+{% content-ref url="../../../guides/plugins/plugins/content/cms/add-cms-block.md" %}
+[add-cms-block.md](../../../guides/plugins/plugins/content/cms/add-cms-block.md)
+{% endcontent-ref %}
 
-{% page-ref page="../../../guides/plugins/apps/content/cms/add-custom-cms-block.md" %}
-
-{% page-ref page="../../../guides/plugins/plugins/content/cms/add-cms-element.md" %}
-
+{% content-ref url="../../../guides/plugins/plugins/content/cms/add-cms-element.md" %}
+[add-cms-element.md](../../../guides/plugins/plugins/content/cms/add-cms-element.md)
+{% endcontent-ref %}

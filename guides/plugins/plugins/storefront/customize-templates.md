@@ -6,7 +6,7 @@ This guide will cover customizing Storefront templates with a plugin.
 
 ## Prerequisites
 
-As most guides, this guide is built upon the [plugin base guide](../plugin-base-guide.md), so you might want to have a look at it. Other than that, knowing [Twig](https://twig.symfony.com/) is a big advantage for this guide, but that's not necessary.
+As most guides, this guide is built upon the [plugin base guide](../plugin-base-guide.md), so you might want to have a look at it. Other than that, knowing [Twig](https://twig.symfony.com) is a big advantage for this guide, but that's not necessary.
 
 ## Getting started
 
@@ -40,7 +40,7 @@ It's time to fill your custom `logo.html.twig` file. First of all you want to ex
 
 Put this line at the very beginning of your file:
 
-```text
+```
 {% sw_extends '@Storefront/storefront/layout/header/logo.html.twig' %}
 ```
 
@@ -50,7 +50,7 @@ You want to replace the logo with some custom text though, so let's have a look 
 
 To override it now, just add the very same block into your custom file and replace its contents:
 
-```text
+```
 {% sw_extends '@Storefront/storefront/layout/header/logo.html.twig' %}
 
 {% block layout_header_logo_link %}
@@ -69,9 +69,9 @@ And that's it already, you're done. You might have to clear the cache and refres
 ```
 {% endtab %}
 
-{% hint style="info" %}
+{% tab title="undefined" %}
 Also remember to not only activate your plugin but also to assign your theme to the correct sales channel by clicking on it in the sidebar, going to the tab Theme and selecting your theme.
-{% endhint %}
+{% endtab %}
 
 {% tab title="Production template" %}
 ```bash
@@ -86,7 +86,7 @@ Of course this example is very simplified and does not use any variables, even t
 
 But rather than that, how do you know which variables are available to use? For this case, you can just dump all available variables:
 
-```text
+```
 {{ dump() }}
 ```
 
@@ -104,4 +104,3 @@ You're able to customize templates now, which is a good start. However, there's 
 * [Adding translations](add-translations.md)
 * [Using icons](customize-templates.md)
 * [Using custom assets](add-custom-assets.md)
-
