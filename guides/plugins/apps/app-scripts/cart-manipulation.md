@@ -87,7 +87,8 @@ Note that the state name should be unique, this means you should always use your
 
 In general, Showpare prices consist of gross and net prices and are currency dependent.  If you need price definitions in your app scripts (e.g. to add a absolute discount with a specific price) there are multiple ways to do so.
 
-### You can define price fields for custom field sets:
+### Price fields inside custom fields 
+You can define price fields for [custom fields](../custom-data.md)
 ```
 <custom-fields>
     <custom-field-set>
@@ -107,7 +108,9 @@ In general, Showpare prices consist of gross and net prices and are currency dep
 </custom-fields>
 ```
 
-### Or define price fields directly in your app config.xml:
+### Price fields inside app config
+
+You can define price fields for [app configuration](../configuration.md).
 ```
 <card>
     <title>Basic configuration</title>
