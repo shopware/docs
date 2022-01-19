@@ -123,7 +123,7 @@ In this template, the existing filters are contained in the block `component_fil
 {% page-ref page="customize-templates.md" %}
 
 {% hint style="info" %}
-The block `component_filter_panel_items` is available from Shopware Version 6.X.X.X
+The block `component_filter_panel_items` is available from Shopware Version 6.4.8.0
 {% endhint %}
 
 Including our filter will be done as seen below, please take the comments into account:
