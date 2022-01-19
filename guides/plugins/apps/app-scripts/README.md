@@ -46,7 +46,7 @@ In order to do that you can compose your reusable scripts into [twig macros](htt
 └── DemoApp
     ├── Resources
     │   └── scripts                         
-    │       ├── includes    
+    │       ├── include    
     │       │   └── media-repository.twig         // this script may be included into the other scripts
     │       ├── cart
     │       │   ├── first-cart-script.twig
@@ -58,7 +58,7 @@ Note that app scripts can use the `return` keyword to return values to the calle
 
 A basic example may look like this:
 
-{% code title="Resources/scripts/includes/media-repository.twig" %}
+{% code title="Resources/scripts/include/media-repository.twig" %}
 ```twig
 {% macro getById(mediaId) %}
     {% set criteria = {
@@ -72,11 +72,21 @@ A basic example may look like this:
 
 {% code title="Resources/scripts/cart/first-cart-script.twig" %}
 ```twig
-{% import "includes/media-repository.twig" as mediaRepository %}
+{% import "include/media-repository.twig" as mediaRepository %}
 
 {% set mediaEntity = mediaRepository.getById(myMediaId) %}
 ```
 {% endcode %}
+
+### Translation
+
+Inside the app script you have access to the [storefront translation mechanism](../../plugins/storefront/add-translations.md), by using the `|trans`-filter.
+
+```twig
+{% set translated = 'my.snippet.key'|trans %}
+
+{% do call.something('my.snippet.key'|trans) %}
+```
 
 ### Extended syntax
 

@@ -173,7 +173,7 @@ Additionally, you may provide a quantity as second parameter if the product shou
 
 To add an absolute discount you can use the `discount()` function, but you have to define a [price definition](#price-definitions) beforehand.
 The first argument is the `id` of the line-item you can use that `id`, e.g. to check if the discount was already added to cart.
-The fourth parameter is the label of the discount, you can either use a hard coded string label, but it is also supported to use a [storefront snippet-key](../../plugins/storefront/add-translations.md) here.
+The fourth parameter is the label of the discount, you can either use a hard coded string label, or use the `|trans` filter to use a storefront snippet as the label.
 
 Note that you should check if your discount was already added, as your script may run multiple times.
 
@@ -185,7 +185,7 @@ Note that you should check if your discount was already added, as your script ma
 }) %}
 
 {% if not services.cart.has('my-custom-discount') %}
-    {% do services.cart.discount('my-custom-discount', 'absolute', discountPrice, 'A custom discount') %}
+    {% do services.cart.discount('my-custom-discount', 'absolute', discountPrice, 'my.custom.discount.label'|trans) %}
 {% endif %}
 ```
 {% endcode %}
