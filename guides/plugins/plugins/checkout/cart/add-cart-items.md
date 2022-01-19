@@ -165,7 +165,7 @@ Implementing the `LineItemFactoryInterface` will force you to also implement thr
 
   Here you can define which properties of your line item may actually be updated. E.g. if you really want property X to contain "Y", you can do so here.
 
-  Now you'll need to add a processor for your type. Otherwise your item won't be persisted in the cart. A simple processor for our ExampleHandler could look like this:
+Now you'll need to add a processor for your type. Otherwise your item won't be persisted in the cart. A simple processor for our ExampleHandler could look like this:
 
 {% code title="<plugin root>/Core/Checkout/Cart/ExampleProcessor.php" %}
 ```php
