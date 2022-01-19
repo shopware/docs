@@ -108,6 +108,7 @@ Add configurations to your extended theme
   }
 }
 ```
+{% endcode %}
 
 In this theme (`SwagBasicExampleThemeExtend`) all the configuration fields from the themes `Storefront` and `SwagBasicExampleTheme` will be used as inherited values. They will be shown in the administration with an inherit anchor and will use the value of the parent themes as long as they are not set to a different value. In the `theme.json` the `sw-brand-icon` field value will be overwritten with a different default value. So this field will not be inherited regardless that it is already defined in the `SwagBasicExampleTheme`. This theme also adds a new field for the background color of the advent calendar (`sw-advent-calendar-background-color`) because this is only needed in this special theme which will only be used for 4-6 weeks a year.
 
