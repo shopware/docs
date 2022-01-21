@@ -89,7 +89,9 @@ In general, Showpare prices consist of gross and net prices and are currency dep
 
 ### Price fields inside custom fields 
 You can define price fields for [custom fields](../custom-data.md)
-```
+
+{% code title="manifest.xml" %}
+```xml
 <custom-fields>
     <custom-field-set>
         <name>custom_field_test</name>
@@ -107,11 +109,14 @@ You can define price fields for [custom fields](../custom-data.md)
     </custom-field-set>
 </custom-fields>
 ```
+{% endcode %}
 
 ### Price fields inside app config
 
 You can define price fields for [app configuration](../configuration.md).
-```
+
+{% code title="Resources/config/config.xml" %}
+```xml
 <card>
     <title>Basic configuration</title>
     <title lang="de-DE">Grundeinstellungen</title>
@@ -123,6 +128,7 @@ You can define price fields for [app configuration](../configuration.md).
     </input-field>
 </card>
 ```
+{% endcode %}
 
 ### Manual price definition
 
@@ -277,6 +283,40 @@ The API is basically the same as for adding errors.
 {% code title="Resources/scripts/cart/my-cart-script.twig" %}
 ```twig
 {% do services.cart.errors.notice('my-notice') %}
+```
+{% endcode %}
+
+## Rule based cart scripts
+
+The cart scripts automatically integrate with the [Rule Builder](../../../../concepts/framework/rules.md) and you can use the full power of the rule builder to only do your cart manipulations if a given rule matches.
+For example, you can add an entity-single-select field to your [apps config](../configuration.md) to allow the merchant to choose a rule that needs to match for your app script taking affect.
+
+{% code title="Resources/config/config.xml" %}
+```xml
+<card>
+    <title>Basic configuration</title>
+    <title lang="de-DE">Grundeinstellungen</title>
+    <name>TestCard</name>
+    <component name="sw-entity-single-select">
+        <name>exampleRule</name>
+        <entity>rule</entity>
+        <label>Choose a rule that activates the cart script</label>
+    </component>
+</card>
+```
+{% endcode %}
+
+Inside your cart script you can check if the rule matches, by checking if the configures rule id exists in the list of matched rule ids of the context:
+
+{% code title="Resources/scripts/cart/my-cart-script.twig" %}
+```twig
+{% set ruleId = services.config.app('exampleRule') %}
+
+{% if ruleId and ruleId in hook.context.ruleIds %}
+    {# perform action #}
+{% else %}
+   {# revert action #}
+{% endif %}
 ```
 {% endcode %}
 
