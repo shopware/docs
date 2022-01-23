@@ -32,6 +32,8 @@ Here you can find the npm package of our testsuite:
 <!-- markdown-link-check-disable-next-line -->
 {% embed url="http://www.npmjs.com/package/@shopware-ag/e2e-testsuite-platform" caption="" %}
 
+Please have a look on our [cypress.json](https://github.com/shopware/e2e-testsuite-platform/blob/3.x/cypress.json), a few of our commands expect some configuration, e.g. viewportHeight and width, because the admin menu only opens if the viewport is wide enough.
+
 ## Setup steps
 
 When you use our [Development template](https://github.com/shopware/development), we provide you some tooling scripts located in `dev-ops/e2e/actions`, to use E2E tests more comfortably.
