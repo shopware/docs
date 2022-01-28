@@ -110,7 +110,7 @@ framework:
 
 ### Transport: RabbitMQ example
 
-In this example we replace the standard transport, which stores the messages in the database, with RabbitMQ. Of course, other transports can be used as well. A detailed documentation of the parameters and possibilities can be found in the [enqueue symfony documentation](https://php-enqueue.github.io/bundle/config_reference/). In the following I assume that RabbitMQ is installed and started. Furthermore, a queue, here called `shopware-queue`, should be created inside RabbitMQ. The only thing left is to tell shopware about the new transport. Therefore we edit/create the configuration file `enqueue.yaml` with the following content:
+In this example we replace the standard transport, which stores the messages in the database, with RabbitMQ. Of course, other transports can be used as well. A detailed documentation of the parameters and possibilities can be found in the [enqueue symfony documentation](https://php-enqueue.github.io/bundle/config_reference/). In the following I assume that RabbitMQ is installed and started. Furthermore, a queue, here called `shopware-queue`, should be created inside RabbitMQ. The only thing left is to tell Shopware about the new transport. Therefore we edit/create the configuration file `enqueue.yaml` with the following content:
 
 ```yaml
 # config/packages/enqueue.yaml
@@ -133,3 +133,32 @@ framework:
 ```
 
 Notice that `shopware-queue` is the name of the previously created queue in RabbitMQ. Also `rabbitmq` matches the name of the new transport in the previously created `enqueue.yaml`.
+
+### Transport: Redis example
+
+In the following I assume that Redis is installed and started. Since Shopware 6.4.9.0 is the Redis transport preinstalled. In previous versions this must be installed using `composer require enqueue/redis`. If the Redis PHP extension is not installed, you need also to install Predis using `composer require predis/predis`. The only thing left is to tell Shopware about the new transport. Therefore we edit/create the configuration file `enqueue.yaml` with the following content:
+
+```yaml
+# config/packages/enqueue.yaml
+enqueue:
+    redis:
+        transport:
+            # PHP Redis extension
+            dsn: “redis+phpredis://host:port”
+            # predis/predis composer package
+            dsn: “redis+predis://host:port”
+        client: ~
+```
+
+By default enqueue tries to use predis, if you want to force to use PhpRedis you have to use the scheme `redis+phpredis://host:port`.
+
+Be sure to replace the host and port with your correct parameters in the connection string. And now we activate that transport and replace the default one of shopware. This can be done by editing/creating the file `framework.yaml`.
+
+```yaml
+# config/packages/framework.yaml
+framework:
+    messenger:
+        transports:
+            default:
+                dsn: “enqueue://redis?queue[name]=messages”
+```
