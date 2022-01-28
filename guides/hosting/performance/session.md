@@ -1,7 +1,7 @@
 # Shopware Session
 
 Shopware, by default, uses the session storage configured in PHP. On most installations, this is the file system. So, in smaller setups, you will not need to take care of sessions. 
-For larger setups with much traffic or clustering, however, you will most probably want to configure alternative session storage such as Redis in order to reduce the load on the database.
+For larger setups with a lot of traffic, or that are using clustering however, you will most probably want to configure alternative session storage such as Redis, in order to reduce the load on the database.
 
 ## Session Adapters
 
