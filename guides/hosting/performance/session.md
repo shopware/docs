@@ -14,7 +14,7 @@ session.save_handler = redis
 session.save_path = "tcp://host:6379"
 ```
 
-See official [PhpRedis documentation](https://github.com/phpredis/phpredis#php-session-handler) for all possible options
+Please refer to the official [PhpRedis documentation](https://github.com/phpredis/phpredis#php-session-handler) for all possible options.
 
 ### Configure Redis using Shopware configuration
 
