@@ -96,6 +96,10 @@ Enable the dummy target:
 At the end start the services:
 `systemctl start shopware_consumer.target`
 
+#### supervisord example
+
+Please refer to the [Symfony documentation](https://symfony.com/doc/current/messenger.html#supervisor-configuration) for the setup.
+
 ### Sending Mails over the Message Queue
 
 By default Shopware sends the mails synchronously. Since this can affect the page speed, you can switch it to use the Message Queue with a small configuration change.
