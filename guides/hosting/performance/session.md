@@ -7,7 +7,7 @@ For larger setups with much traffic or clustering, however, you will most probab
 
 ### Configure Redis using PHP.ini
 
-As Shopware uses by default the PHP configured settings, you can configure the Session config directly in your `php.ini`. Here is an example for configure it directly in PHP.
+As Shopware by default uses the settings configured in PHP, you can reconfigure the Session config directly in your `php.ini`. Here is an example to configure it directly in PHP.
 
 ```ini
 session.save_handler = redis
