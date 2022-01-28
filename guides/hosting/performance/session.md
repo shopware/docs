@@ -18,7 +18,7 @@ See official [PhpRedis documentation](https://github.com/phpredis/phpredis#php-s
 
 ### Configure Redis using Shopware configuration
 
-If you don't have access to the php.ini, you can configure it directly in Shopware itself. For this create a `config/packages/redis.yml` file with following content
+If you don't have access to the php.ini configuration, you can configure it directly in Shopware itself. For this create a `config/packages/redis.yml` file with the following content
 
 ```yaml
 # config/packages/redis.yml
