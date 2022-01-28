@@ -1,4 +1,4 @@
-# HTTP Cache
+# Cache
 
 There are several caches in shopware which can be used to optimize the performance. This page gives a brief overview and shows how to configure them.
 
@@ -29,7 +29,6 @@ framework:
         pools:
             cache.http:
                 adapter: cache.adapter.filesystem
-                tags: true
 ```
 
 This is a Symfony cache pool configuration and therefore supports all adapters from the [Symfony FrameworkBundle](https://symfony.com/doc/current/cache.html#configuring-cache-with-frameworkbundle).
@@ -73,7 +72,6 @@ framework:
         default_redis_provider: 'redis://host:port'
         pools:
             cache.http:
-                default_lifetime: 3600
                 adapter: cache.adapter.redis
                 tags: cache.tags
 ```
