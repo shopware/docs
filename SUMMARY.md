@@ -276,6 +276,7 @@
   * [Performance](guides/hosting/performance/README.md)
     * [Cache](guides/hosting/performance/caches.md)
     * [Session](guides/hosting/performance/session.md)
+    * [Increment](guides/hosting/performance/increment.md)
   * [Infrastructure](guides/hosting/infrastructure/README.md)
     * [Filesystem](guides/hosting/infrastructure/filesystem.md)
     * [Message Queue](guides/hosting/infrastructure/message-queue.md)
