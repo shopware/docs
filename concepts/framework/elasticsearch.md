@@ -12,7 +12,7 @@ This is by default set to the `ProductSearchRoute`, `ProductListingRoute` and `P
 To use elasticsearch on your own searches make sure to add the elasticsearch aware state to your criteria.
 
 {% hint style="info" %}
-If the Elasticsearch query fails, the data will be gathered using MySQL. You can disable this behaviour by setting the environment variable `SHOPWARE_ES_THROW_EXCEPTION=0`
+If the Elasticsearch query fails, the data will be gathered using MySQL. You can disable this behaviour by setting the environment variable `SHOPWARE_ES_THROW_EXCEPTION=1`
 {% endhint %}
 
 ```php
