@@ -29,7 +29,7 @@ framework:
 
 ### Other adapters
 
-Symfony provides also PHP implementations of some adapters:
+Symfony also provides PHP implementations of some adapters:
 
 - [PdoSessionHandler](https://github.com/symfony/symfony/blob/6.0/src/Symfony/Component/HttpFoundation/Session/Storage/Handler/PdoSessionHandler.php)
 - [MemcachedSessionHandler](https://github.com/symfony/symfony/blob/6.0/src/Symfony/Component/HttpFoundation/Session/Storage/Handler/MemcachedSessionHandler.php)
