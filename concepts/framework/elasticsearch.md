@@ -11,6 +11,10 @@ Elasticsearch is only used in searches that are explicitly defined.
 This is by default set to the `ProductSearchRoute`, `ProductListingRoute` and `ProductSuggestRoute`.
 To use elasticsearch on your own searches make sure to add the elasticsearch aware state to your criteria.
 
+{% hint style="info" %}
+If the Elasticsearch query fails, the data will be gathered using MySQL. You can disable this behaviour by setting the environment variable `SHOPWARE_ES_THROW_EXCEPTION=0`
+{% endhint %}
+
 ```php
 $criteria = new \Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria();
 $context = \Shopware\Core\Framework\Context::createDefaultContext();
@@ -21,7 +25,7 @@ $repository->search($criteria, $context);
 ```
 
 ### ElasticsearchDefinition
-To provide elasticsearch for an entity a corresponding `ElasticsearchDefinition` needs to be added. Currently, Shopware has such a definition for the product entity called `ProductElasticsearchDefinition`.
+To provide Elasticsearch for an entity a corresponding `ElasticsearchDefinition` needs to be added. Currently, Shopware has such a definition for the product entity called `ProductElasticsearchDefinition`.
 This definition defines the fields which are provided to elasticsearch and how they are aggregated.
 
 ### ElasticsearchEntitySearcher
