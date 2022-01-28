@@ -136,7 +136,7 @@ Notice that `shopware-queue` is the name of the previously created queue in Rabb
 
 ### Transport: Redis example
 
-In the following I assume that Redis is installed and started. Since Shopware 6.4.9.0 is the Redis transport preinstalled. In previous versions this must be installed using `composer require enqueue/redis`. If the Redis PHP extension is not installed, you need also to install Predis using `composer require predis/predis`. The only thing left is to tell Shopware about the new transport. Therefore we edit/create the configuration file `enqueue.yaml` with the following content:
+In the following I assume that Redis is installed and started. Since Shopware 6.4.9.0, the Redis transport is preinstalled. In previous versions this had to be installed using `composer require enqueue/redis`. If the Redis PHP extension is not installed, you also need to install Predis using `composer require predis/predis`. The only thing left is to tell Shopware about the new transport. Therefore, we edit/create the configuration file `enqueue.yaml` with the following content:
 
 ```yaml
 # config/packages/enqueue.yaml
