@@ -274,7 +274,7 @@
       * [Building without Database](guides/hosting/installation-updates/deployments/build-w-o-db.md)
     * [Versioning & Dependencies](guides/hosting/installation-updates/composer.md)
   * [Performance](guides/hosting/performance/README.md)
-    * [HTTP Cache](guides/hosting/performance/caches.md)
+    * [Cache](guides/hosting/performance/caches.md)
   * [Infrastructure](guides/hosting/infrastructure/README.md)
     * [Filesystem](guides/hosting/infrastructure/filesystem.md)
     * [Message Queue](guides/hosting/infrastructure/message-queue.md)
