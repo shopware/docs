@@ -34,7 +34,7 @@ shopware:
 
 ## Disabling the Increment Storage
 
-The usage of the increment storage is optional and can be disabled. When this feature is disabled, the Queue Notification and Module usage will not work in the Administration
+The usage of the increment storage is optional and can be disabled. When this feature is disabled, Queue Notification and Module Usage Overview will not work in the Administration
 
 To disable it, create a `config/packages/shopware.yml` file with the following content
 
