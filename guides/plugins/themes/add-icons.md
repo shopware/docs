@@ -88,9 +88,10 @@ Inside your theme, you cannot put an icon in a directory corresponding the core 
 
 Since Shopware 6.4.1.0 it is possible to define custom locations of your custom icons inside your theme.json file.
 You can define the name of the icon pack and the path to those icons under the `iconSets`-key:
+
 ```json
 {
-  ...
+  /* ... */
   "iconSets": {
     "custom-icons": "app/storefront/src/assets/icon-pack/custom-icons"
   }
