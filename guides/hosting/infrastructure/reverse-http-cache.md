@@ -211,7 +211,9 @@ sub vcl_deliver {
     }  else {
         set resp.http.X-Cache = "MISS";
     }
-
+    
+    # Remove the exact PHP Version from the response for more security (e.g. 404 pages)
+    unset resp.http.x-powered-by;
     set resp.http.X-Cache-Hits = obj.hits;
 }
 ```
