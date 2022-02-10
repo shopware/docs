@@ -2,7 +2,7 @@
 
 ## Overview
 
-When it comes to the module configuration, the menu entry is one of the mos important things to set up. It serves to open your module.
+When it comes to the module configuration, the menu entry is one of the most important things to set up. It serves to open your module.
 
 ## Prerequisites
 
