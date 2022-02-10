@@ -21,6 +21,7 @@ This may come in handy if you are searching for the right hook for your script.
 For example, you would like to enrich a storefront detail page with some additional data, you just set it within a custom app script and attach it to the `page` object.
 
 {% code title="Resources/scripts/product-page-loaded/my-example-script.twig" %}
+{% raw %}
 ```twig
 {% set page = hook.page %}
 {# @var page \Shopware\Storefront\Page\Product\ProductPage #}
@@ -35,11 +36,13 @@ For example, you would like to enrich a storefront detail page with some additio
 {# it also lets you add data to it, that you can later use in your storefront templates #}
 {% do page.addArrayExtension('swagMyAdditionalData', myAdditionalData) %}
 ```
+{% endraw %}
 {% endcode %}
 
 In your storefront templates you can read the data again from the `page` object:
 
 {% code title="Resources/views/storefront/page/product-detail/index.html.twig" %}
+{% raw %}
 ```twig
 {% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
 
@@ -49,6 +52,7 @@ In your storefront templates you can read the data again from the `page` object:
     {{ parent() }}
 {% endblock %}
 ```
+{% endraw %}
 {% endcode %}
 
 ## Loading data 
@@ -64,9 +68,11 @@ The `repository` service provides methods to load exactly the data you need:
 
 All those methods can be used in the same way, first you pass the entity name the search should be performed on, next you pass the criteria that should be used.
 
+{% raw %}
 ```twig
 {% set mediaEntities = services.repository.search('media', criteria) %}
 ```
+{% endraw %}
 
 ### Search Criteria
 
@@ -78,6 +84,7 @@ So please refer to that documentation to get an overview of what features can be
 {% page-ref page="../../../integrations-api/general-concepts/search-criteria.md" %}
 
 The criteria object can be assembled inside scripts as follows:
+{% raw %}
 ```twig
 {% set criteria = {
     'ids': [ 'id1', 'id2' ],
@@ -92,6 +99,7 @@ The criteria object can be assembled inside scripts as follows:
 
 {% set matchedProducts = services.repository.search('product', criteria) %}
 ```
+{% endraw %}
 
 ### `repository` and `store` services
 
@@ -127,6 +135,7 @@ If you want to add scalar values or want to add more than one struct in your ext
 
 In your **scripts** that would look something like this:
 
+{% raw %}
 ```twig
 {% set products = services.repository.search('product', criteria) %}
 
@@ -142,9 +151,11 @@ In your **scripts** that would look something like this:
 } %}
 {% do page.addArrayExtension('swagArrayExtension', arrayExtension) %}
 ```
+{% endraw %}
 
 You can access the extensions again in your **storefront templates** like this:
 
+{% raw %}
 ```twig
 {# via addExtension #}
 {% for product in page.getExtension('swagCollection') %}
@@ -162,6 +173,7 @@ You can access the extensions again in your **storefront templates** like this:
 
 <h1>{{ page.getExtension('swagArrayExtension').scalar }}</h1>
 ```
+{% endraw %}
 
 {% hint style="info" %}
 Note that you can not only add extensions to the page object, but to every struct, therefore you can also add an extension e.g. to every product inside the page.
