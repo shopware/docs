@@ -31,5 +31,18 @@ Your app can modify the appearance of the storefront, by shipping your storefron
 
 ## Integrate payment providers
 
-Starting with version 6.4.1.0, Shopware provides functionality for your app to be able to integrate payment providers. If you would like to provide payment with a provider that does not require any user interaction, you can choose a simple request for approval in the background, also called a synchronous payment. If you would like to redirect a user to a payment provider, you can use an asynchronous payment. Your app therefore provides a URL for redirection. After the user has returned to the shop, Shopware will verify the status of the payment with your app. Find out more about providing payment endpoints in the [App Payment Guide](../../guides/plugins/apps/payment.md).
+{% hint style="info" %}
+This functionality is available starting with Shopware 6.4.1.0.
+{% endhint %}
 
+Shopware provides functionality for your app to be able to integrate payment providers. If you would like to provide payment with a provider that does not require any user interaction, you can choose a simple request for approval in the background, also called a synchronous payment. If you would like to redirect a user to a payment provider, you can use an asynchronous payment. Your app therefore provides a URL for redirection. After the user has returned to the shop, Shopware will verify the status of the payment with your app. Find out more about providing payment endpoints in the [App Payment Guide](../../guides/plugins/apps/payment.md).
+
+## Execute business logic inside Shopware with App Scripts
+
+{% hint style="info" %}
+This functionality is available starting with Shopware 6.4.8.0.
+{% endhint %}
+
+App Scripts allow your app to execute custom business logic inside the Shopware execution stack. This allows for new use cases, e.g. if you need to load additional data that should be rendered in the storefront or need to manipulate the cart.
+
+{% page-ref page="../../guides/plugins/apps/app-scripts.md" %}

@@ -42,7 +42,39 @@ Keep in mind that your app needs the `system_config:read` permission to access t
 
 Inside twig templates you can use the twig function `config` (see [Shopware Twig functions](../../../resources/references/storefront-reference/twig-function-reference.md)). An example twig template could look like this:
 
-```markup
+{% raw %}
+```twig
 {{ config('DemoApp.config.field1') }}
 ```
+{% endraw %}
 
+### Reading the config in app scripts
+
+In app scripts you have access to the [`config` service](../../../../resources/references/app-reference/script-reference/miscellaneous-script-services-reference.md#SystemConfigFacade), that can be used to access config values.
+
+{% hint style="info" %}
+Note that app scripts were introduced in Shopware 6.4.8.0, and are not supported in previous versions.
+{% endhint %}
+
+The `config` service provides an `app()` method, that can be used to access your app's configuration. When using this method you don't need to provide the `{appName}.config` prefix and your app does not need any additional permissions.
+{% raw %}
+```twig
+{% set configValue = services.config.app('field1') %}
+```
+{% endraw %}
+
+Additionally, you can use the `get()` method, to access any configuration value and not just the ones of your app.
+
+{% hint style="warning" %}
+Keep in mind that your app needs the `system_config:read` permission to use the `config.get()` method.
+{% endhint %}
+
+{% raw %}
+```twig
+{% set configValue = services.config.get('core.listing.productsPerPage') %}
+```
+{% endraw %}
+
+For a detailed description about app scripts refer to this [guide](./app-scripts/README.md).
+
+For a full description of the `config` service take a look at the [service's reference](../../../resources/references/app-reference/script-reference/miscellaneous-script-services-reference.md#servicesconfig-shopwarecoresystemsystemconfigfacadesystemconfigfacade).
