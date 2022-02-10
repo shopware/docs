@@ -15,8 +15,16 @@ When it comes to CSS and SCSS, they are processed by a PHP SASS compiler.
 The main entry point to deploy your SCSS code is defined in the `theme.json` file. By default it is the `<plugin root>/app/storefront/src/scss/base.scss` file.
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
-```
-
+```javascript
+ {
+   ...
+   "style": [
+     "app/storefront/src/scss/overrides.scss",
+     "@Storefront",
+     "app/storefront/src/scss/base.scss"
+   ],
+   ...
+ }
 ```
 {% endcode %}
 
@@ -40,8 +48,10 @@ In order to add some custom SCSS in your theme, you just need to edit the `base.
 To apply your styles and test them, please use some test code:
 
 {% code title="<plugin root>/src/Resources/app/storefront/src/scss/base.scss" %}
-```
-
+```css
+body {
+    background-color: blue;
+}
 ```
 {% endcode %}
 
@@ -72,8 +82,8 @@ Since Shopware knows where your style files are located, they are automatically 
 Add some test code in order to see if it works out:
 
 {% code title="<plugin root>/src/Resources/app/storefront/src/js/main.js" %}
-```
-
+```javascript
+console.log('SwagBasicExampleTheme JS loaded');
 ```
 {% endcode %}
 
