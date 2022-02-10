@@ -118,17 +118,21 @@ class ExampleListingSubscriber implements EventSubscriberInterface
 
 Well, fine - you successfully created a filter via subscriber. However, you want to enable your shop customer to use it, right? Now you need to integrate your filter in the storefront. Let's start by searching the template file you need to extend in Shopware's storefront. It's this one - `src/Storefront/Resources/views/storefront/component/listing/filter-panel.html.twig`.
 
-Let's use the last filter to extend this template with our filter. If you're not sure on how to customize templates in the storefront, we got you covered with another guide:
+In this template, the existing filters are contained in the block `component_filter_panel_items`. We are going to extend this block with our new filter. If you're not sure on how to customize templates in the storefront, we got you covered with another guide:
 
 {% page-ref page="customize-templates.md" %}
 
-For example, let's use the last filter: It's the shipping free one, with the block `component_filter_panel_item_shipping_free`. Including our filter will be done as seen below, please take the comments into account:
+{% hint style="info" %}
+The block `component_filter_panel_items` is available from Shopware Version 6.4.8.0
+{% endhint %}
+
+Including our filter will be done as seen below, please take the comments into account:
 
 {% code title="<plugin root>/src/Resources/views/storefront/component/listing/filter-panel.html.twig" %}
 ```text
 {% sw_extends '@Storefront/storefront/component/listing/filter-panel.html.twig' %}
 
-{% block component_filter_panel_item_shipping_free %}
+{% block component_filter_panel_items %}
     {{ parent() }}
 
     {# We'll include our filter element here #}
@@ -149,6 +153,26 @@ As we want to filter a boolean value, we choose the `filter-boolean` component h
 | `filter-property-select` | A filter tailored specifically for properties |
 | `filter-range` | Displays a range which can be used for filtering |
 | `filter-rating-select` and `filter-rating-select-item` | Filter component for rating |
+
+Extending  `component_filter_panel_items` as shown above puts our filter *after* the already existing ones. We could put it at the beginning by moving the `parent()` call to the end of the block.
+
+If we instead want our filter to be placed before or after a specific filter in the middle of the list, we can instead extend the block for that filter. For example, if we want our filter to be displayed after the price filter, we would extend the block `component_filter_panel_item_price`:
+
+{% code title="<plugin root>/src/Resources/views/storefront/component/listing/filter-panel.html.twig" %}
+```text
+{% sw_extends '@Storefront/storefront/component/listing/filter-panel.html.twig' %}
+
+{% block component_filter_panel_item_price %}
+    {{ parent() }}
+
+    {# We'll include our filter element here #}
+    {% sw_include '@Storefront/storefront/component/listing/filter/filter-boolean.html.twig' with {
+        name: 'isCloseout',
+        displayName: 'Closeout'
+    } %}
+{% endblock %}
+```
+{% endcode %}
 
 ## Next steps
 
