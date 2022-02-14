@@ -217,9 +217,11 @@ In `Resources/views/storefront/block/` a Twig template matching the pattern `cms
 
 So in this example, it's sufficient to simply extend the existing `image-text` element:
 {% code title="<app root>/Resources/views/storefront/block/cms-block-swag-image-text-reversed-component.html.twig" %}
+{% raw %}
 ```text
 {% sw_extends '@Storefront/storefront/block/cms-block-image-text.html.twig' %}
 ```
+{% endraw %}
 {% endcode %}
 
 Styling of your blocks in the Storefront can then be done in `Resources/app/storefront/src/scss/base.scss`.

@@ -184,6 +184,7 @@ The second and last computed property is `isLunarEclipse`, which uses a getter a
 The last step is, creating a template for our condition. We will create a new file called `swag-lunar-eclipse.html.twig` in the same directory as the component. In our template, we have to overwrite the block `sw_condition_value_content`. In this example we define a `sw-single-select` in this block.
 
 {% code title="<plugin root>/src/Resources/app/administration/src/core/component/swag-lunar-eclipse/swag-lunar-eclipse.html.twig" %}
+{% raw %}
 ```text
 {% block sw_condition_value_content %}
     <sw-single-select name="lunar-eclipse"
@@ -195,6 +196,7 @@ The last step is, creating a template for our condition. We will create a new fi
     </sw-single-select>
 {% endblock %}
 ```
+{% endraw %}
 {% endcode %}
 
 As you can see, our `sw-single-select` uses the previously created computed property `selectValues` as the `options` prop, and the value is saved into the variable `isLunarEclipse`. That's it, your rule is now fully integrated.

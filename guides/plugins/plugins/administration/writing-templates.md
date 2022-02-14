@@ -14,6 +14,7 @@ Templates in Shopware are usually defined in a separate `.twig` file, named afte
 
 Let's look at all of this in practice, with the example of a component statically printing `'Hello World'`:
 
+{% raw %}
 ```markup
 {% block swag_basic_example_page %}
     <sw-page class="swag-example-list">
@@ -23,6 +24,7 @@ Let's look at all of this in practice, with the example of a component staticall
     </sw-page>
 {% endblock %}
 ```
+{% endraw %}
 
 ## Setting the Template
 

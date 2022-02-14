@@ -361,6 +361,7 @@ Component.register('swag-example-plugin-modal', {
 #### Twig template file
 
 {% code title="<plugin root>/src/Resources/app/administration/src/component/swag-example-plugin-modal/swag-example-plugin-modal.html.twig" %}
+{% raw %}
 ```html
 {% block swag_example_plugin_modal %}
     <sw-modal
@@ -404,6 +405,7 @@ Component.register('swag-example-plugin-modal', {
     </sw-modal>
 {% endblock %}
 ```
+{% endraw %}
 {% endcode %}
 
 Here is the final result

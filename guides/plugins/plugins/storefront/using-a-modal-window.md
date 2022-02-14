@@ -21,6 +21,7 @@ The simples solution to create a modal is by using Boostrap. More info: [Modal B
 Here is a basic implementation as an example. We override the `base_main_inner` from the `@Storefront/storefront/page/content/index.html.twig` template to insert the modal specific DOM elements.
 
 {% code title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig" %}
+{% raw %}
 ```text
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
@@ -55,6 +56,7 @@ Here is a basic implementation as an example. We override the `base_main_inner` 
     {{ parent() }}
 {% endblock %}
 ```
+{% endraw %}
 {% endcode %}
 
 ## Create a modal using AJAX Modal Utility
@@ -62,6 +64,7 @@ Here is a basic implementation as an example. We override the `base_main_inner` 
 When setting a `data-url` in addition to `data-toggle="modal"` shopware automatically uses the `PseudoModalUtil` and the pseudo modal template from the `base.html.twig` to render a modal:
 
 {% code title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig" %}
+{% raw %}
 ```text
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
@@ -74,6 +77,7 @@ When setting a `data-url` in addition to `data-toggle="modal"` shopware automati
     {{ parent() }}
 {% endblock %}
 ```
+{% endraw %}
 {% endcode %}
 
 {% hint style="warning" %}
@@ -88,6 +92,7 @@ As explained in the guide on [adding custom javascript](./add-custom-javascript.
 Inside this template, extend from the `@Storefront/storefront/page/content/index.html.twig` and overwrite the `base_main_inner` block. After the parent content of the blog, add a template tag with the `data-example-plugin` attribute.
 
 {% code title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig" %}
+{% raw %}
 ```text
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
@@ -97,6 +102,7 @@ Inside this template, extend from the `@Storefront/storefront/page/content/index
     <template data-example-plugin></template>
 {% endblock %}
 ```
+{% endraw %}
 {% endcode %}
 
 Now we need to register the plugin which should create a modal in the `PluginManager`. To achieve this you can add the following code to the `main.js` file.
