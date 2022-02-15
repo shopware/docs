@@ -46,6 +46,7 @@ Afterwards, you need to make sure your plugin assets are copied over to the publ
 Let's think about a simple example, displaying our image right in the base template of the storefront. In there we're able to link our assets by simply using the [asset](https://symfony.com/doc/current/templates.html#linking-to-css-javascript-and-image-assets) function Symfony provides:
 
 {% code title="<plugin root>/src/Resources/views/storefront/base.html.twig" %}
+{% raw %}
 ```text
 {% sw_extends '@Storefront/storefront/base.html.twig' %}
 
@@ -57,6 +58,7 @@ Let's think about a simple example, displaying our image right in the base templ
     {{ parent() }}
 {% endblock %}
 ```
+{% endraw %}
 {% endcode %}
 
 That's basically all you need to do to link your plugin's custom assets.

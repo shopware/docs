@@ -48,8 +48,10 @@ This functionality is available starting with Shopware 6.4.3.0.
 
 The markup for this hint:
 
+{% raw %}
 ```
 {% hint style="info" %}
 This functionality is available starting with Shopware 6.4.3.0.
 {% endhint %}
 ```
+{% endraw %}

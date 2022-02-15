@@ -26,6 +26,7 @@ public function searchMedia (array $ids, Context $context): MediaCollection {
 
 This `searchMedia` function reads out the corresponding media objects for the given IDs in order to continue working with them afterwards. Here is an example with a custom field \(`custom_sports_media_id`\) on the product detail page:
 
+{% raw %}
 ```text
 {% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
 
@@ -42,6 +43,7 @@ This `searchMedia` function reads out the corresponding media objects for the gi
     {{ dump (sportsMedia) }}
 {% endblock %}
 ```
+{% endraw %}
 
 {% hint style="danger" %}
 Please note that this function performs a query against the database and should therefore not be used within a loop.
@@ -49,6 +51,7 @@ Please note that this function performs a query against the database and should 
 
 The function is already structured in a way that several IDs can be passed. To read the media objects within the product listing we recommend the following procedure:
 
+{% raw %}
 ```text
 {% sw_extends '@Storefront/storefront/component/product/listing.html.twig' %}
 
@@ -78,6 +81,7 @@ The function is already structured in a way that several IDs can be passed. To r
     {% endfor %}
 {% endblock %}
 ```
+{% endraw %}
 
 ## Working with sw\_thumbnail
 

@@ -49,6 +49,7 @@ Component.register('my-custom-page', {
 
 The same `$tc` helper function can be used in the templates to access translations.
 
+{% raw %}
 ```text
 {% block my_custom_block %}
     <p>
@@ -56,6 +57,7 @@ The same `$tc` helper function can be used in the templates to access translatio
     </p>
 {% endblock %}
 ```
+{% endraw %}
 
 ## More interesting topics
 

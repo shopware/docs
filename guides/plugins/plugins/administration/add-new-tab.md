@@ -35,6 +35,7 @@ For this guide, we'll think about the following example: The product detail page
 Let's imagine your first goal is to create a new tab on the product detail page. Having a look at the template, you might find the block `sw_product_detail_content_tabs`, which seems to contain all available tabs. It starts by creating a new `<sw-tabs>` element to contain all the tabs available. Here you can see excerpt of this block:
 
 {% code title="platform/src/Administration/Resources/app/administration/src/module/sw-product/page/sw-product-detail/sw-product-detail.html.twig" %}
+{% raw %}
 ```text
 {% block sw_product_detail_content_tabs %}
     <sw-tabs class="sw-product-detail-page__tabs" v-if="productId">
@@ -61,6 +62,7 @@ Let's imagine your first goal is to create a new tab on the product detail page.
     </sw-tabs>
 {% endblock %}
 ```
+{% endraw %}
 {% endcode %}
 
 Unfortunately, you cannot use the block mentioned above, because then your new tab wouldn't be inside the `<sw-tabs>` element. Instead, you can choose the last available block inside the element, which is `sw_product_detail_content_tabs_reviews` at this moment.
@@ -91,6 +93,7 @@ Shopware.Component.override('sw-product-detail', {
 All this file is doing is to basically override the `sw-product-detail` component with a new template. The new template does not exist yet though, so create a new file `sw-product-detail.html.twig` in the same directory as your `index.js` file. It then has to use the block we figured out earlier and override it by adding a new tab element:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/page/sw-product-detail/sw-product-detail.html.twig" %}
+{% raw %}
 ```text
 {% block sw_product_detail_content_tabs_reviews %}
 
@@ -99,6 +102,7 @@ All this file is doing is to basically override the `sw-product-detail` componen
 
 {% endblock %}
 ```
+{% endraw %}
 {% endcode %}
 
 {% hint style="warning" %}
@@ -108,6 +112,7 @@ The block gets overridden and immediately the parent block is called, since you 
 After that, we'll create the actual `sw-tabs-item` element, which, as the name suggests, represents a new tab item. We want this tab to have a custom route, so we're also adding this route directly. Don't worry, we'll explain this custom route in a bit. The product detail page's route contain the product's ID, which you also want to have in your custom tab: So make sure to also pass the ID in, like shown in the example above.
 
 {% code title="<plugin root>/src/Resources/app/administration/src/page/sw-product-detail/sw-product-detail.html.twig" %}
+{% raw %}
 ```text
 {% block sw_product_detail_content_tabs_reviews %}
 
@@ -119,6 +124,7 @@ After that, we'll create the actual `sw-tabs-item` element, which, as the name s
     </sw-tabs-item>
 {% endblock %}
 ```
+{% endraw %}
 {% endcode %}
 
 The [route](add-custom-route.md) being used here has the name `sw.product.detail.custom`, this will become important again later on.

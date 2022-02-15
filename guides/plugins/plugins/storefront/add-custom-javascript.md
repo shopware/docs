@@ -106,6 +106,7 @@ Create a `<plugin root>/src/Resources/views/storefront/page/content/` folder and
 A lot of text, here is the respective example:
 
 {% code title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig" %}
+{% raw %}
 ```text
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
@@ -115,6 +116,7 @@ A lot of text, here is the respective example:
     <template data-example-plugin></template>
 {% endblock %}
 ```
+{% endraw %}
 {% endcode %}
 
 With this template extension your plugin is active on every content page, like the homepage or category listing pages.
@@ -156,6 +158,7 @@ Therefore create a `product-detail` folder inside your `<plugin root>/src/Resour
 After the parent content add a template tag with the `data-example-plugin` tag to activate your plugin on product detail pages as well. Next add a `data-{your-plugin-name-in-kebab-case}-options` \(in this example: `data-example-plugin-options`\) attribute to the DOM element you registered your plugin on \(the template tag\). The value of this attribute are the options you want to override as a JSON object.
 
 {% code title="<plugin root>/src/Resources/views/storefront/page/product-detail/index.html.twig" %}
+{% raw %}
 ```text
 {% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
 
@@ -169,6 +172,7 @@ After the parent content add a template tag with the `data-example-plugin` tag t
     <template data-example-plugin data-example-plugin-options='{{ examplePluginOptions|json_encode }}'></template>
 {% endblock %}
 ```
+{% endraw %}
 {% endcode %}
 
 It is best practice to use a variable for the options because this is extendable from plugins.
@@ -181,6 +185,7 @@ You can use the `replace_recursive` Twig filter for this case.
 
 Imagine the following example can be found in the core:
 
+{% raw %}
 ```text
 {% set productSliderOptions = {
     productboxMinWidth: sliderConfig.elMinWidth.value ? sliderConfig.elMinWidth.value : '',
@@ -201,9 +206,11 @@ Imagine the following example can be found in the core:
     </div>
 {% endblock %}
 ```
+{% endraw %}
 
 Now you want to overwrite the value `slider.mouseDrag` with your plugin. The variable can be overwritten with `replace_recursive`:
 
+{% raw %}
 ```text
 {% block element_product_slider_slider %}
     {% set productSliderOptions = productSliderOptions|replace_recursive({
@@ -215,6 +222,7 @@ Now you want to overwrite the value `slider.mouseDrag` with your plugin. The var
     {{ parent() }}
 {% endblock %}
 ```
+{% endraw %}
 
 ## Plugin script path
 
