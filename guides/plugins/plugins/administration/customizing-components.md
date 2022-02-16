@@ -38,7 +38,7 @@ This overrides the entire Twig block with our new markup.
 However, if we want to retain the original content of the Twig block and just add our markup to the existing one, we can do that by including a `\{% parent %\}` somewhere in the Twig block.
 Learn more about the capabilities of twig.js [here](https://github.com/twigjs/twig.js/wiki).
 
-As you might have noticed the heading we just replaced had a `{ $tc() }` [string interpolation](https://vuejs.org/v2/guide/syntax.html#Text) which is used to make it multilingual.
+As you might have noticed, in the heading we just replaced a `{ $tc() }` [string interpolation](https://vuejs.org/v2/guide/syntax.html#Text) which is used to make it multilingual.
 Learn more about internationalization in the Shopware 6 Administration and about adding your own snippets to the administration [here](adding-snippets.md).
 
 ## Applying the override
