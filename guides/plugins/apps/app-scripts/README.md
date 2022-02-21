@@ -82,6 +82,31 @@ A basic example may look like this:
 {% endraw %}
 {% endcode %}
 
+### Interface Hooks
+
+Some "Hooks" describe interfaces this means that your scripts for that hook need to implement one or more functions.
+E.g. the `store-api-hook` defines a `cache_key` and a `response` function. Those functions are closely related, but are executed separately. 
+To implement the different functions, you use different twig blocks with the name of the function:
+
+{% raw %}
+```twig
+{% block cache_key %}
+    // provide a cacheKey for the incoming request
+{% endblock %}
+
+{% block response %}
+    // produce the response for the request
+{% endblock %}
+```
+{% endraw %}
+
+Some functions are optional whereas others are required, in the above example the `cache_key` function is optional.
+That means you can omit that block in your script without an error (but caching for the endpoint won't work in that case).
+The `response` function is required, which means that if your script does not provide a `response` block it will lead to an error.
+
+Note that for each function you get access to different input data or services, so in the `cache_key` block you don't necessarily have access to the same data and services as in the `response` block.
+The available data and services are described for each hook (or each function in InterfaceHooks) in the [reference documentation](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md).
+
 ### Translation
 
 Inside the app script you have access to the [storefront translation mechanism](../../plugins/storefront/add-translations.md), by using the `|trans`-filter.
