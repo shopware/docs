@@ -29,7 +29,7 @@ From here on, everything works exactly like in Symfony itself. Commands are reco
 <services>
    <!-- ... -->
 
-   <service id="SwagBasicExample\Command\ExampleCommand">
+   <service id="Swag\BasicExample\Command\ExampleCommand">
        <tag name="console.command"/>
    </service>
 </services>
@@ -47,7 +47,7 @@ Here's a full example `services.xml` which registers your custom command:
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="SwagBasicExample\Command\ExampleCommand">
+        <service id="Swag\BasicExample\Command\ExampleCommand">
             <tag name="console.command"/>
         </service>
     </services>
@@ -61,7 +61,7 @@ Your command's class should extend from the `Symfony\Component\Console\Command\C
 ```php
 <?php declare(strict_types=1);
 
-namespace SwagBasicExample\Command;
+namespace Swag\BasicExample\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
