@@ -2,15 +2,13 @@
 
 {% hint style="info" %}
 This functionality is available starting with Shopware 6.4.4.0.
+
+You can [add custom CMS blocks](../../../plugins/content/cms/add-cms-block.md) using the plugin system, however these will not be available in Shopware Cloud stores. 
 {% endhint %}
 
 Didn't get in touch with Shopware's Shopping Experiences \(CMS\) yet? Check out the concept behind it first:
 
 {% page-ref page="../../../../../concepts/commerce/core/shopping-experiences-cms.md" %}
-
-If you're not yet familiar with custom CMS blocks you might want to head over to the section on adding CMS blocks via plugin to get some basic understanding:
-
-{% page-ref page="../../../plugins/content/cms/add-cms-block.md" %}
 
 ## Prerequisites
 
