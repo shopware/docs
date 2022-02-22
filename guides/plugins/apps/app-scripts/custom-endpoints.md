@@ -4,7 +4,7 @@ If you want to execute some logic in shopware and trigger the execution over a H
 you can create custom API-endpoints in your app, that allow you to execute a script when a request to that endpoint is made.
 
 {% hint style="info" %}
-Note that app scripts were introduced in Shopware 6.4.9.0, and are not supported in previous versions.
+Note that custom endpoints with app scripts were introduced in Shopware 6.4.9.0, and are not supported in previous versions.
 {% endhint %}
 
 ## Custom Endpoints
