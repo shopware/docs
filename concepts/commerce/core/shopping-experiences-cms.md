@@ -172,7 +172,7 @@ All this comes at a price: The admin preview of your content is only as represen
 
 {% page-ref page="../../../guides/plugins/plugins/content/cms/add-cms-block.md" %}
 
-{% page-ref page="../../../guides/plugins/apps/content/cms/add-custom-cms-block.md" %}
+{% page-ref page="../../../guides/plugins/apps/content/cms/add-custom-cms-blocks.md" %}
 
 {% page-ref page="../../../guides/plugins/plugins/content/cms/add-cms-element.md" %}
 
