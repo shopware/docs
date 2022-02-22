@@ -22,7 +22,7 @@ Let's start easy. The first step for a user is to select their desired payment. 
 
 ### 2. Place Order
 
-In this step, an order is created. It takes no required parameters, but creates the order basend on the users current context and cart. You can add additional information like tracking parameters or comments. Shopware creates the order internally together with an open transaction which acts as a placeholder for the payment.
+In this step, an order is created. It takes no required parameters, but creates the order based on the users current context and cart. You can add additional information like tracking parameters or comments. Shopware creates the order internally together with an open transaction which acts as a placeholder for the payment.
 
 A transaction contains information like a unique ID, the payment method or the total amount to be payed. An order can have multiple transactions, but in this step only a single one is created.
 
