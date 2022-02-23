@@ -168,6 +168,10 @@ Once we've created our tests, we have to initialize the test databases for our m
 ```bash
 $ ./psh.phar init-test-databases
 ```
+## Mocking services
+In some cases you want a service to behave differently in the test run. Such a case could be where a service deletes a file or makes a critical api call. To avoid this in a test run it is possible to create a `<plugin root>/Resources/config/services_test.{xml|yml}` file which will override your `<plugin root>/Resources/config/services.{xml|yml}`. But only for the test environment.  
+
+In this test-only service config you can override arguments, aliases or parameters to change what the service container injects into your services during a test run.
 
 ## Executing the test
 
