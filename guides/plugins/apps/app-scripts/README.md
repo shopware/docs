@@ -222,7 +222,7 @@ The stub class contains all services, but depending on the hook not all of them 
 
 ## Example Script - loading media entities
 
-Assuming your app adds a [custom field set](../custom-data.md) for the product entity with a custom media entity select field.
+Assuming your app adds a [custom field set](../custom-data/custom-fields.md) for the product entity with a custom media entity select field.
 
 When you want to display the file of the media entity in the [storefront](../storefront/README.md), it is not easily possible, because in the template's data you only get the id of the media entity, but not the url of the media file itself.
 

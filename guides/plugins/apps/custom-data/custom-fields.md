@@ -35,7 +35,7 @@ For a complete reference of the structure of the manifest file take a look at th
 For the data needed, please refer to the custom fields in general: At first, you need a custom field set, as [custom fields](../plugins/framework/custom-field/) in Shopware are organised in sets. Here you need to consider some important fields:
 
 * `name`: A technical name for your set
-* `label`: This element provides the label of the text and can be used for defining translations of the label as well. 
+* `label`: This element provides the label of the text and can be used for defining translations of the label as well.
 * `related-entities`: With this element set the entities the custom field set is used in
 * `fields`: Finally, the fields are configured in this section.
 
