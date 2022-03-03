@@ -66,8 +66,11 @@ For a complete reference of the structure of the manifest file take a look at th
 
 ## Setup
 
-If your app backend server and Shopware need to communicate, it is necessary that a registration is performed during the installation of your app. This process is called setup.  
-During the setup it is verified, that Shopware connects to the right backend server and keys are exchanged to secure all further communications. During the setup process your app backend will obtain credentials that can be used to authenticate against the Shopware API. Additionally your app will provide a secret that Shopware will use to sign all further requests it makes to your app backend, allowing you to verify that the incoming requests originate from authenticated Shopware installations.
+If your app backend server and Shopware need to communicate, it is necessary that a registration is performed during the installation of your app.
+This process is called setup.  
+During the setup it is verified, that Shopware connects to the right backend server and keys are exchanged to secure all further communications.
+During the setup process your app backend will obtain credentials that can be used to authenticate against the Shopware API.
+Additionally, your app will provide a secret that Shopware will use to sign all further requests it makes to your app backend, allowing you to verify that the incoming requests originate from authenticated Shopware installations.
 
 The setup workflow is shown in the following schema, each step will be explained in detail.
 
@@ -75,7 +78,7 @@ The setup workflow is shown in the following schema, each step will be explained
 
 ### Registration Request
 
-The registration request is made as a GET-Request against a URL that you provide in the manifest file of your app.
+The registration request is made as a GET request against a URL that you provide in the manifest file of your app.
 
 {% code title="manifest.xml" %}
 ```xml
@@ -91,22 +94,24 @@ The registration request is made as a GET-Request against a URL that you provide
 ```
 {% endcode %}
 
-The following query parameters will be send with the request:
+The following query parameters will be sent with the request:
 
-* shop-id: The unique identifier of the shop, where the app was installed
-* shop-url: The URL of the shop, this can later be used to access the Shopware API
-* timestamp: The Unix timestamp when the request was created
+* `shop-id`: The unique identifier of the shop the app was installed |
+* `shop-url`: The URL of the shop, this can later be used to access the Shopware API |
+* `timestamp`: The Unix timestamp when the request was created |
+
+Additionally, the request has the following headers:
+
+* `shopware-app-signature`: The signature of the query string
+* `sw-version`: The Shopware version of the shop *(since 6.4.1.0)*
 
 An example request may look like this:
 
 ```http request
 GET https://my.example.com/registration?shop-id=KIPf0Fz6BUkN&shop-url=http%3A%2F%2Fmy.shop.com&timestamp=159239728
+shopware-app-signature: a8830aface4ac4a21be94844426e62c77078ca9a10f694737b75ca156b950a2d
+sw-version: 6.4.5.0
 ```
-
-{% hint style="info" %}
-Starting from Shopware version 6.4.1.0, the current shopware version will be sent as a `sw-version` header.
-Starting from Shopware version 6.4.5.0, the current language id of the shopware context will be sent as a  `sw-context-language` header , and the locale of the user or locale of the context language is available under the `sw-user-language` header.
-{% endhint %}
 
 Additionally, the `shopware-app-signature` header will be provided, which contains a cryptographic signature of the query string.  
 The secret used to generate this signature is the `app secret`, that is unique per app and will be provided by the Shopware Account if you upload your app to the store. This secret won't leave the Shopware Account, so it won't be even leaked to the shops installing your app.
@@ -116,12 +121,12 @@ You and the Shopware Account are the only parties that should know your `app-sec
 {% endhint %}
 
 {% hint style="warning" %}
-For local development you can specify a &lt;secret&gt; in the manifest file, that is used for signing the registration request. However if a app uses a hard-coded secret in the manifest it can not be uploaded to the store.
+For local development you can specify a &lt;secret&gt; in the manifest file, that is used for signing the registration request. However, if an app uses a hard-coded secret in the manifest it can not be uploaded to the store.
 {% endhint %}
 
 To verify that the registration can only be triggered by authenticated Shopware shops you need to recalculate the signature and check that the signatures match, thus you've verified that the sender of the request possesses the `app secret`.
 
-Following code snippet can be used to recalculate the signature:
+Thw following code snippet can be used to recalculate the signature:
 
 {% tabs %}
 {% tab title="PHP" %}
@@ -166,13 +171,13 @@ $proof = \hash_hmac(
 {% endtab %}
 {% endtabs %}
 
-Besides the proof your app needs to provide a randomly generated secret, that should be used to sign every further request from this shop. Make sure to save the shopId, shopUrl and generated secret, so you can associate and use this information later.
+Besides the proof, your app needs to provide a randomly generated secret, that should be used to sign every further request from this shop. Make sure to save the `shopId`, `shopUrl` and generated secret, so you can associate and use this information later.
 
 {% hint style="info" %}
 This secret will be called `shop-secret` to distinguish it from the `app-secret`. The `app-secret` is unique for your app and is used to sign the registration request of every shop that installs your app. The `shop-secret` will be provided by your app during the registration and should be unique for every shop
 {% endhint %}
 
-The last thing needed in the registration response is a URL, which the confirmation request will be send to.
+The last thing needed in the registration response is a URL, to which the confirmation request will be sent.
 
 A sample registration response may look like this:
 
@@ -208,18 +213,18 @@ The payload of that request may look like this:
 }
 ```
 
-Make sure that you save the api-credentials for that shopId. You can use the `apiKey` and 
+Make sure that you save the API credentials for that `shopId`. You can use the `apiKey` and 
 the `secretKey` as `client_id` and `client_secret` respectively when you request an OAuth token
 from the Admin API.
 
-You can find out more about how to use these api-credentials in our Admin API authentication guide.
+You can find out more about how to use these credentials in our Admin API authentication guide:
 
 <!-- markdown-link-check-disable-next-line -->
 {% embed url="https://shopware.stoplight.io/docs/admin-api/ZG9jOjEwODA3NjQx-authentication-and-authorisation#integration-client-credentials-grant-type" caption="Admin API Authentication & Authorisation" %}
 
 {% hint style="info" %}
-Starting from Shopware version 6.4.1.0, the current shopware version will be sent as a `sw-version` header.
-Starting from Shopware version 6.4.5.0, the current language id of the shopware context will be sent as a  `sw-context-language` header , and the locale of the user or locale of the context language is available under the `sw-user-language` header.
+Starting from Shopware version 6.4.1.0, the current Shopware version will be sent as a `sw-version` header.
+Starting from Shopware version 6.4.5.0, the current language id of the Shopware context will be sent as a  `sw-context-language` header , and the locale of the user or locale of the context language is available under the `sw-user-language` header.
 {% endhint %}
 
 The request is signed with the `shop-secret`, that your app provided in the [registration response](app-base-guide.md#registration-response) and the signature can be found in the `shopware-shop-signature` header.  
@@ -326,7 +331,7 @@ The next property `data` contains the name of the event so that a single endpoin
 The next property `timestamp` is the time which the webhook was handled. This can be used to prevent replay attacks, as an attacker cannot change the timestamp without making the signature invalid. If the timestamp is too old, your app should reject the request. This property is only available from 6.4.1.0 onwards
 
 {% hint style="info" %}
-Starting from Shopware version 6.4.1.0, the current shopware version will be sent as a `sw-version` header.
+Starting from Shopware version 6.4.1.0, the current Shopware version will be sent as a `sw-version` header.
 Starting from Shopware version 6.4.5.0, the current language id of the shopware context will be sent as a  `sw-context-language` header , and the locale of the user or locale of the context language is available under the `sw-user-language` header.
 {% endhint %}
 
@@ -335,7 +340,7 @@ You can verify the authenticity of the incoming request by checking the `shopwar
 You can use a variety of events to react to changes in Shopware that way. See that table [Webhook-Events-Reference](../../../resources/references/app-reference/webhook-events-reference.md) for an overview.
 
 ### App Notification
-Starting from Shopware version 6.4.7.0, If you want to send notifications to the admin, to inform the user about some actions that happened on the app side, the app should send a POST request to the `api/notification` endpoint with a valid body and the header `Authorization` token.
+Starting from Shopware version 6.4.7.0, if you want to send notifications to the admin, to inform the user about some actions that happened on the app side, the app should send a POST request to the `api/notification` endpoint with a valid body and the header `Authorization` token.
 Your app can request 10 times before being delayed by the system.
 
 After 10 attempts you need to wait 10 seconds before trying to make requests again.
@@ -525,8 +530,8 @@ The hmac-signature of the body content, signed with the shop secret returned fro
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="sw-version" type="string" required=true %}
-Starting from Shopware version 6.4.1.0, the current shopware version will be sent as a `sw-version` header.
-Starting from Shopware version 6.4.5.0, the current language id of the shopware context will be sent as a  `sw-context-language` header , and the locale of the user or locale of the context language is available under the `sw-user-language` header.
+Starting from Shopware version 6.4.1.0, the current Shopware version will be sent as a `sw-version` header.
+Starting from Shopware version 6.4.5.0, the current language id of the Shopware context will be sent as a  `sw-context-language` header , and the locale of the user or locale of the context language is available under the `sw-user-language` header.
 {% endapi-method-parameter %}
 {% endapi-method-headers %}
 
