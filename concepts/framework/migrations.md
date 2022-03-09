@@ -8,7 +8,7 @@ For Shopware to recognise additional plugin migrations, they need to be placed i
 
 Each migration filename follows a specific pattern. To ease plugin development, Shopware provides a console command which can be used to generate a correctly named migration file with the default methods needed.
 
-{% page-ref page="guides/plugins/plugins/plugin-fundamentals/database-migrations#create-migration" %}
+{% page-ref page="../../guides/plugins/plugins/plugin-fundamentals/database-migrations#create-migration" %}
 
 ## Modifying the database
 
