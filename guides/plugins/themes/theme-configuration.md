@@ -15,7 +15,7 @@ This guide is built upon the guide on creating a first theme:
 
 ## Structure of theme configuration
 
-The theme configuration for a theme is located in the `theme.json` file `<plugin root>/src/Resources` folder. Open up the `<plugin root>/src/Rescoure/theme.json` file with your favorite code-editor. The configuration looks like this.
+The theme configuration for a theme is located in the `theme.json` file `<plugin root>/src/Resources` folder. Open up the `<plugin root>/src/Resources/theme.json` file with your favorite code-editor. The configuration looks like this.
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
 ```javascript
