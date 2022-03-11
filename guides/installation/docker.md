@@ -11,19 +11,19 @@ At least on Linux operating systems, docker installation is the easiest way to g
 1. Build and start the containers:
 
 ```bash
-> ./psh.phar docker:start
+./psh.phar docker:start
 ```
 
 1. Access the application container:
 
 ```bash
-> ./psh.phar docker:ssh
+./psh.phar docker:ssh
 ```
 
 1. Execute the installer inside the docker container:
 
 ```bash
-> ./psh.phar install
+./psh.phar install
 ```
 
 This may take a while since many caches need to be generated on first execution, but only on first execution.
@@ -35,13 +35,13 @@ After exploring Shopware 6 you can terminate it with these two commands:
 1. Leave the shell:
 
 ```bash
-> exit
+exit
 ```
 
 1. Stop the containers:
 
 ```bash
-> ./psh.phar docker:stop
+./psh.phar docker:stop
 ```
 
 ## Possibilities to use Docker on Mac
@@ -74,7 +74,7 @@ That's it. Continue to install Shopware 6 as usual:
 1. Build and start the containers:
 
 ```bash
-> ./psh.phar docker:start
+./psh.phar docker:start
 ```
 
 This command creates and starts the containers, watchers, and the sync itself. Running start the first time takes several minutes to complete. Subsequent starts are a lot faster since the images and volumes are reused.
@@ -82,13 +82,13 @@ This command creates and starts the containers, watchers, and the sync itself. R
 1. Access the application container:
 
 ```bash
-> ./psh.phar docker:ssh
+./psh.phar docker:ssh
 ```
 
 1. Execute the installer inside the Docker container:
 
 ```bash
-> ./psh.phar install
+./psh.phar install
 ```
 
 For more information about Shopware Installation, take a look at the [Installation overview](overview.md).
