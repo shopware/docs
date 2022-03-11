@@ -72,7 +72,7 @@ Before you're able to set up Shopware, you need to checkout our Shopware's repos
 A simple cli installation wizard can be invoked by executing:
 
 ```bash
-> bin/setup
+bin/setup
 ```
 
 {% hint style="info" %}
@@ -92,13 +92,13 @@ We highly discourage to update each without the other!
 The following steps should always yield a positive result:
 
 ```bash
-> git pull
-> cd platform
-> git pull
-> cd ..
-> composer update
-> rm -R var/cache/*
-> ./psh.phar install
+git pull
+cd platform
+git pull
+cd ..
+composer update
+rm -R var/cache/*
+./psh.phar install
 ```
 
 Please note that this will reset your database.
