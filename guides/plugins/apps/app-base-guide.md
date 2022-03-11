@@ -373,12 +373,12 @@ Keep in mind that your app needs the `notification:create` permission to access 
 
 Apps can also register to lifecycle events of its own lifecycle, namely its installation, updates and deletion. For example they maybe used to delete user relevant data from your data stores once somebody removes your app from their shop.
 
-| Event | Description |
-| :--- | :--- |
-| `app.installed` | Triggers once the app is installed |
-| `app.updated` | Triggers if the app is updated |
-| `app.deleted` | Triggers once the app is removed |
-| `app.activated` | Triggers if an inactive app is activated |
+| Event             | Description                              |
+|:------------------|:-----------------------------------------|
+| `app.installed`   | Triggers once the app is installed       |
+| `app.updated`     | Triggers if the app is updated           |
+| `app.deleted`     | Triggers once the app is removed         |
+| `app.activated`   | Triggers if an inactive app is activated |
 | `app.deactivated` | Triggers if an active app is deactivated |
 
 Example request body:
@@ -398,6 +398,13 @@ Example request body:
   }
 }
 ```
+
+#### App lifecycle events for app scripts
+
+Since Shopware 6.4.9.0 it is also possible to create [app scripts](./app-scripts/README.md), that are executed during the lifecycle of your app.
+You get access to the Database and can change or create some data e.g. when your app is activated, without the need of an external server.
+
+For a full list of the available hook points and the available services refer to the [reference documentation](../../../resources/references/app-reference/script-reference/script-hooks-reference.md#app-lifecycle).
 
 ## Validation
 
