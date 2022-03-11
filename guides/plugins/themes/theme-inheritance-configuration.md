@@ -84,10 +84,10 @@ Add configurations to your extended theme
 {
   "name": "SwagBasicExampleThemeExtend",
   .....
-  "configInheritance": {
+  "configInheritance": [
     "@Storefront",
     "@SwagBasicExampleTheme"
-  },
+  ],
   "config": {
     "fields": {
       "sw-brand-icon": {
