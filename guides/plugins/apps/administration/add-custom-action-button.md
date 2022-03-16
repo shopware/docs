@@ -7,7 +7,7 @@ One extension possibility in the administration is the ability to add custom act
 To get those buttons, you start in the `admin` section of your manifest file. There you can define `<action-button>` elements in order to add your button, as seen as below:
 
 {% code title="manifest.xml" %}
-```markup
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
@@ -147,3 +147,51 @@ To open a modal with the embedded link in the iframe, you can use the `openModal
   * `message`: The content of the notification
   * `size`: The size of the modal in `openModal` type, including `small`, `medium`, `large`, `fullscreen`, default `medium`
   * `expand`: The expansion of the modal in `openModal` type, including `true`, `false`, default `false`
+
+## Using Custom Endpoints as target
+
+It is also possible to use [custom endpoints](../app-scripts/custom-endpoints.md) as target for action buttons.
+
+{% hint style="info" %}
+This feature was added in Shopware 6.4.10.0, previous versions don't support relative target urls for action buttons.
+{% endhint %}
+
+To use custom endpoints as the target url for action buttons you can define the target url as a relative url in your apps manifest.xml:
+
+{% code title="manifest.xml" %}
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
+    <meta>
+        ...
+    </meta>
+    <admin>
+      <action-button action="test-button" entity="product" view="list" url="/api/script/action-button">
+        <label>test-api-endpoint</label>
+      </action-button>
+    </admin>
+</manifest>
+```
+{% endcode %}
+
+And then add the corresponding app script that should be executed when the user clicks the action button.
+
+{% code title="Resources/scripts/api-action-button/action-button-script.twig" %}
+{% raw %}
+```twig
+{% set ids = hook.request.ids %}
+
+{% set response = services.response.json({
+    "actionType": "notification",
+    "payload": {
+        "status": "success",
+        "message": "You selected " ~ ids|length ~ " products."
+    }
+}) %}
+
+{% do hook.setResponse(response) %}
+```
+{% endraw %}
+{% endcode %}
+
+As you can see it is possible to provide a [`JsonResponse`](../../../../resources/references/app-reference/script-reference/custom-endpoint-script-services-reference.md#json) to give [feedback to the user in the administration](#providing-feedback-in-the-administration).
