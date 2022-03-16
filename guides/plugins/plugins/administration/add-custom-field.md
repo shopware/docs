@@ -20,7 +20,7 @@ The first parameter matches the component to override, the second parameter has 
 
 {% code title="<plugin root>/src/Resources/app/administration/src/main.js" %}
 ```javascript
-import template from './src/extension/sw-product-settings-form/sw-product-settings-form.html.twig';
+import template from './extension/sw-product-settings-form/sw-product-settings-form.html.twig';
 
 Shopware.Component.override('sw-product-settings-form', {
     template
@@ -50,7 +50,7 @@ The path starting from 'src' is fully customizable, yet we recommend choosing a 
 {% block sw_product_settings_form_content %}
     {% parent %}
 
-    <sw-container columns="repeat(auto-fit, minmax(250px, 1fr)" gap="0px 30px">
+    <sw-container columns="repeat(auto-fit, minmax(250px, 1fr))" gap="0px 30px">
         <sw-text-field label="Manufacturer ID" v-model="product.manufacturerId" disabled></sw-text-field>
     </sw-container>
 {% endblock %}
