@@ -162,7 +162,7 @@ You can only access the German SEO URL if you've configured a German domain in y
 
 Dynamic SEO URLs are URLs, that have to change every now and then. Yet, there's another separation necessary.
 
-If you're going to generate custom SEO URLs for your custom entities, you'll have to follow the section about [Dynamic SEO URLs for entities](add-custom-seo-url.md#Dynamic%20SEO%20URLs%20for%20entities). For all other kinds of dynamic content, that are not DAL entities, the section about [Dynamic SEO URLs for other content](add-custom-seo-url.md#Dynamic%20SEO%20URLs%20for%20custom%20content) is your way to go.
+If you're going to generate custom SEO URLs for your custom entities, you'll have to follow the section about [Dynamic SEO URLs for entities](add-custom-seo-url.md#dynamic-seo-urls-for-entities). For all other kinds of dynamic content, that are not DAL entities, the section about [Dynamic SEO URLs for other content](add-custom-seo-url.md#dynamic-seo-urls-for-custom-content) is your way to go.
 
 #### Dynamic SEO URLs for entities
 
