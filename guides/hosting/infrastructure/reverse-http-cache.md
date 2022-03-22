@@ -152,6 +152,18 @@ sub vcl_hash {
 }
 
 sub vcl_hit {
+  # Consider client states for response headers
+  if (req.http.cookie ~ "sw-states=") {
+     set req.http.states = regsub(req.http.cookie, "^.*?sw-states=([^;]*);*.*$", "\1");
+
+     if (req.http.states ~ "logged-in" && obj.http.sw-invalidation-states ~ "logged-in" ) {
+        return (pass);
+     }
+
+     if (req.http.states ~ "cart-filled" && obj.http.sw-invalidation-states ~ "cart-filled" ) {
+        return (pass);
+     }
+  }
 }
 
 sub vcl_backend_response {
@@ -191,7 +203,7 @@ sub vcl_backend_response {
 
     # Remove the exact PHP Version from the response for more security
     unset beresp.http.x-powered-by;
-    
+
     return (deliver);
 }
 
@@ -214,6 +226,10 @@ sub vcl_deliver {
     
     # Remove the exact PHP Version from the response for more security (e.g. 404 pages)
     unset resp.http.x-powered-by;
+
+    # invalidation headers are only for internal use
+    unset resp.http.sw-invalidation-states;
+
     set resp.http.X-Cache-Hits = obj.hits;
 }
 ```
