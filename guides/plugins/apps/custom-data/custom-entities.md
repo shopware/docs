@@ -22,6 +22,7 @@ To make use of the custom entities register your entities in your `entities.xml`
 For a complete reference of the structure of the entities file take a look at the [Custom entity xml reference](../../../resources/references/app-reference/entities-reference.md).
 
 ## Functionality
+
 All registered entities will get an automatically registered repository. It is also available in the [App scripts](../app-scripts/README.md) section, in case you are allowed to access the repository service inside the hook.
 {% raw %}
 ```twig
@@ -35,6 +36,7 @@ POST /api/search/custom-entity-blog
 ```
 
 ## Permissions
+
 Unlike core entities, your app directly has full access rights to your own custom entities. However, if your entity has associations that reference core tables,
 you need the appropriate [permissions](../../../resources/references/app-reference/manifest-reference.md) to load and write these associations.
 ```xml
