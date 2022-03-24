@@ -5,7 +5,7 @@ Unlike [Custom fields](custom-fields.md), you can generate completely custom dat
 To make use of the custom entities register your entities in your `entities.xml` file, which is located in the `config` directory of your app.
 
 {% code title="entities.xml" %}
-```markup
+```xml
 <?xml version="1.0" encoding="utf-8" ?>
 <entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Entities/Schema/entity-1.0.xsd">
     <entity name="custom_entity_bundle">
