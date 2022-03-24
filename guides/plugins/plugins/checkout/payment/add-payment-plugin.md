@@ -28,19 +28,21 @@ You can create your own payment handler by implementing one of the following int
 | SynchronousPaymentHandlerInterface | `shopware.payment.method.sync` | Payment can be handled locally, e.g. pre-payment |
 | AsynchronousPaymentHandlerInterface | `shopware.payment.method.async` | A redirect to an external payment provider is required, e.g. PayPal |
 | PreparedPaymentHandlerInterface | `shopware.payment.method.prepared` | The payment was prepared beforehand and will only be validated and captured by your implementation |
+| RefundPaymentHandlerInterface | `shopware.payment.method.refund` | The payment allows refund handling |
 
 Depending on the interface, those methods are required:
 
 * `pay`: This method will be called after an order has been placed. You receive a `Shopware\Core\Checkout\Payment\Cart\AsyncPaymentTransactionStruct` or a `Shopware\Core\Checkout\Payment\Cart\SyncPaymentTransactionStruct` which contains the transactionId, order details, the amount of the transaction, a return URL, payment method information and language information. Please be aware, Shopware 6 supports multiple transactions, and you have to use the amount provided and not the total order amount. If you're using the `AsynchronousPaymentHandlerInterface`, the `pay` method has to return a `RedirectResponse` to redirect the customer to an external payment provider. Note: The [AsyncPaymentTransactionStruct](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Checkout/Payment/Cart/AsyncPaymentTransactionStruct.php) contains a return URL. This represents the URL that the external payment provider needs to know, so they can also redirect your customer back to your shop. If an error occurs while e.g. calling the API of your external payment provider, you should throw an `AsyncPaymentProcessException`. Shopware 6 will handle this exception and set the transaction to the `cancelled` state. The same happens if you are using the `SynchronousPaymentHandlerInterface`: throw a `SyncPaymentProcessException` in an error case.
 * `finalize`: The `finalize` method is only required if you implemented the `AsynchronousPaymentHandlerInterface`, returned a `RedirectResponse` in your `pay` method and the customer has been redirected from the payment provider back to Shopware 6. You must check here if the payment was successful or not and update the order transaction state accordingly. Similar to the pay action you are able to throw exceptions if some error cases occur. Throw the `CustomerCanceledAsyncPaymentException` if the customer canceled the payment process on the payment provider site. If another general error occurs throw the `AsyncPaymentFinalizeException` e.g. if your call to the payment provider API fails. Shopware 6 will handle these exceptions and will set the transaction to the `cancelled` state.
 * `validate`: This method will be called before an order was placed and should check, if a given prepared payment is valid. The payment handler has to verify the given payload with the payment service, because Shopware cannot ensure that the transaction created by the frontend is valid for the current cart. Throw an `ValidatePreparedPaymentException` to fail the validation in your implementation.
-* `capture`: This method will be called after an order was placed, but only if the validation did not fail and stop the payment flow before. At this point, the order was created and the payment handler will be called again to charge the payment. When the charge was successful, the paymant handler should update the transaction state to `paid`. The user will be forwarded to the finish page. Throw an `CapturePreparedPaymentException` on any errors to fail the capture process and the after order process will be active, so the customer can complete the payment again.
+* `capture`: This method will be called after an order was placed, but only if the validation did not fail and stop the payment flow before. At this point, the order was created and the payment handler will be called again to charge the payment. When the charge was successful, the payment handler should update the transaction state to `paid`. The user will be forwarded to the finish page. Throw an `CapturePreparedPaymentException` on any errors to fail the capture process and the after order process will be active, so the customer can complete the payment again.
+* `refund`: This method is called, whenever a successful transaction is claimed to be refunded. The implementation of the refund handler should validate the legitimacy of the refund and call the PSP to refund the given transaction. Throw a `RefundException` to let the refund fail.
 
 All methods get the `\Shopware\Core\System\SalesChannel\SalesChannelContext` injected. Please note, that this class contains properties, which are nullable. If you want to use this information, you have to ensure in your code that they are set and not `NULL`.
 
 ### Registering the service
 
-Before we're going to have a look at both a synchronous, as well as an asynchronous example, we need to register our new service to the [Dependency Injection](../../plugin-fundamentals/dependency-injection.md) container. We'll use a class called `ExamplePayment` here.
+Before we're going to have a look at some examples, we need to register our new service to the [Dependency Injection](../../plugin-fundamentals/dependency-injection.md) container. We'll use a class called `ExamplePayment` here.
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
 ```markup
@@ -56,6 +58,7 @@ Before we're going to have a look at both a synchronous, as well as an asynchron
             <tag name="shopware.payment.method.sync" />
 <!--        <tag name="shopware.payment.method.async" />-->
 <!--        <tag name="shopware.payment.method.prepared" />-->
+<!--        <tag name="shopware.payment.method.refund" />-->
         </service>
     </services>
 </container>
@@ -288,6 +291,79 @@ class ExamplePayment implements PreparedPaymentHandlerInterface
 
 ```
 {% endcode %}
+
+### Refund example
+
+To allow easy refund handling, Shopware introduced a centralized way of handling refund for transactions.
+
+For this, have your payment handler implement the `RefundPaymentHandlerInterface`.
+
+Let's have a look at a short example, on how to implement such payment handlers.
+
+{% code title="<plugin root>/src/ExamplePayment.php" %}
+```php
+<?php declare(strict_types=1);
+
+namespace Swag\BasicExample\Service;
+
+use Shopware\Core\Checkout\Order\Aggregate\OrderTransactionCaptureRefund\OrderTransactionCaptureRefundEntity;
+use Shopware\Core\Checkout\Order\Aggregate\OrderTransactionCaptureRefund\OrderTransactionCaptureRefundStateHandler;
+use Shopware\Core\Checkout\Order\Aggregate\OrderTransactionCaptureRefundPosition\OrderTransactionCaptureRefundPositionEntity;
+use Shopware\Core\Checkout\Payment\Cart\PaymentHandler\RefundPaymentHandlerInterface;
+use Shopware\Core\Checkout\Payment\Exception\RefundException;
+use Shopware\Core\Framework\Context;
+
+class ExamplePayment implements RefundPaymentHandlerInterface
+{
+    private OrderTransactionCaptureRefundStateHandler $stateHandler;
+
+    public function __construct(OrderTransactionCaptureRefundStateHandler $stateHandler)
+    {
+        $this->stateHandler = $stateHandler;
+    }
+
+    public function refund(OrderTransactionCaptureRefundEntity $refund, Context $context): void
+    {
+        if ($refund->getAmount() > 100.00) {
+            // this will stop the refund process and set the refunds state to `failed`
+            throw new RefundException($refund->getId(), 'Refunds over 100 € are not allowed');
+        }
+
+        // a refund can have multiple positions, with different order line items and amounts
+        /** @var OrderTransactionCaptureRefundPositionEntity $position */
+        foreach ($refund->getPositions() as $position) {
+            $amount = $position->getAmount()->getTotalPrice();
+            $reason = $position->getReason();
+            $lineItem = $position->getOrderLineItem();
+
+            // let's say, you allow a position, which was delivered, however broken
+            if ($reason === 'malfunction') {
+                // you can call your PSP here to refund
+
+                try {
+                    $this->callPSPForRefund($amount, $reason, $lineItem->getId());
+                } catch (\Exception $e) {
+                    // something went wrong at PSP side, throw a refund exception
+                    // this will set the refund state to `failed`
+                    throw new RefundException($refund->getId(), 'Something went wrong');
+                }
+            }
+        }
+
+        // let Shopware know, that the refund was successful
+        $this->stateHandler->complete($refund->getId(), $context);
+    }
+
+    private function callPSPForRefund(float $amount, string $reason, string $id): void
+    {
+        // call you PSP here and process the response
+        // throw an exception to stop the refund process
+    }
+}
+```
+{% endcode %}
+
+As you can see, you have full control on how to handle the refund request and which positions to refund. 
 
 ## Setting up new payment method
 
