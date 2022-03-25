@@ -2,6 +2,14 @@
 
 Our documentation follows a structure which provides different levels of detail, abstraction and focus. In order to give our readers a good experience, we're also establishing guidelines for writing documentation in the different sections.
 
+### Guides
+
+This section will be home to all the _how-tos_, _examples_, _cook-books_ and _tutorials_. In contrast to articles within the _Concepts_ section, _Guides_ should show code, give concrete examples and have step-by-step instructions. It is important to refer to the concepts which are related to a particular guide.
+
+Example - A Guide _"How to create a custom cart processor"_ might contain terms and concepts which were explained within the "Concepts &gt; Commerce &gt; Checkout &gt; Cart" sections and also relate to topics dealt with in the "Concepts &gt; Framework &gt; Rules" section. A clear structure allows us to create these cross-references and make the documentation more readable and enjoyable.
+
+> Start with the [Guide Documentation Template](templates/guide-documentation-template.md)
+
 ### Concepts
 
 This section contains articles which deal with the core concepts of Shopware and provide an entry point to collect knowledge about how the platform is organised. These articles should **explain** rather than **show** how things work - therefore please stick to these common guidelines when you're writing _Concepts_.
@@ -22,12 +30,6 @@ This section contains articles which deal with the core concepts of Shopware and
 The _Products_ section deals with topics which are specific to a single product of Shopware. Since almost all of our products share at least some aspects, it also serves as an "entry point" to other sections and articles. For example, the "catalog" used within our Community Edition and Professional Edition is technically the same.
 
 However, every edition features some things that others don't - such as the B2B Suite within the enterprise edition. The corresponding documentation can then be found in "Products &gt; Enterprise Edition &gt; B2B Suite". At some point we might create dedicated spaces \(documentations\) for some of those entries. These spaces can then follow a similar structure to the entire documentation.
-
-### Guides
-
-This section will be home to all the _how-tos_, _examples_, _cook-books_ and _tutorials_. In contrast to articles within the _Concepts_ section, _Guides_ should show code, give concrete examples and have step-by-step instructions. It is important to refer to the concepts which are related to a particular guide.
-
-Example - A Guide _"How to create a custom cart processor"_ might contain terms and concepts which were explained within the "Concepts &gt; Commerce &gt; Checkout &gt; Cart" sections and also relate to topics dealt with in the "Concepts &gt; Framework &gt; Rules" section. A clear structure allows us to create these cross-references and make the documentation more readable and enjoyable.
 
 ### Resources
 

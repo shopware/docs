@@ -357,6 +357,8 @@
   * [Documentation](resources/guidelines/documentation/README.md)
     * [Structure](resources/guidelines/documentation/structure.md)
     * [Writing](resources/guidelines/documentation/writing.md)
+    * [Templates](resources/guidelines/documentation/templates/README.md)
+      * [Guide Documentation Template](resources/guidelines/documentation/templates/guide-documentation-template.md)
   * [Testing](resources/guidelines/testing/README.md)
     * [Best practises on writing end-to-end tests](resources/guidelines/testing/e2e-best-practises.md)
 * [Tooling](resources/tooling/README.md)
