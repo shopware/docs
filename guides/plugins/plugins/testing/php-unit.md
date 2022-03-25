@@ -183,7 +183,9 @@ For easier usage, you could create a batch file called `phpunit.sh` into a `/bin
 {% code title="<plugin root>/bin/phpunit.sh" %}
 ```bash
 #!/usr/bin/env bash
-./../../../vendor/bin/phpunit "$@"
+dir=`pwd`
+cd ./../../../
+./vendor/bin/phpunit --configuration="$dir"
 ```
 {% endcode %}
 
