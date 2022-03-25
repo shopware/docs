@@ -54,7 +54,7 @@ Although Shopware 6 supports most UNIX like environments, we recommend using **U
 
 PHP
 
-* 7.4.3 or higher
+* tested on 7.4.3, 8.0 and 8.1
 * `memory_limit` 512M minimum
 * `max_execution_time` 30 seconds minimum
 * Extensions:
@@ -81,9 +81,9 @@ PHP
 
 SQL
 
-* MySQL 5.7.21 or higher
+* tested on MySQL 5.7.21, and 8.0
   * Only MySQL 8.0.20 in specific is not compatible
-* MariaDB 10.3.22 or higher
+* tested on MariaDB 10.3.22, 10.4 and 10.5
   * MariaDB 10.3.29, 10.4.19, 10.5.10 are not compatible at the moment
 
 JavaScript
@@ -94,8 +94,11 @@ JavaScript
 Various
 
 * Apache 2.4 or higher with mod-rewrite enabled
+* tested on elasticsearch 7.8.0
 * Bash
 * Git
+
+Please note: we always want to support latest versions. If you find an issue with a newer version, please let us know about it in our [issue tracker](https://issues.shopware.com)
 
 ### Recommendations
 
