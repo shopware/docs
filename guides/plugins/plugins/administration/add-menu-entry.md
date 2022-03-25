@@ -56,11 +56,12 @@ Of course there's more to be configured here, but more's not necessary for this 
 
 ## Menu entry in category
 
-Due to UX reasons, we're not supporting plugin modules to add new menu entries on the first level of the main menu. Please use the "parent" property inside your navigation object to define the category where you want your menu entry will be appended to:
+Due to UX reasons, we're not supporting plugin modules to add new menu entries on the first level of the main menu. Please use the "parent" property inside your navigation object to define the category where you want your menu entry will be appended to. Your navigation entry will also have to have an `id` to show up in the rendered navigation:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
 ```javascript
 navigation: [{
+    id: 'swag-custommodule-list'
     label: 'CustomModule',
     color: '#ff3d58',
     path: 'swag.custommodule.list',
