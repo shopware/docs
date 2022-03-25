@@ -29,6 +29,8 @@ This section will be home to all the _how-tos_, _examples_, _cook-books_ and _tu
 
 Example - A Guide _"How to create a custom cart processor"_ might contain terms and concepts which were explained within the "Concepts &gt; Commerce &gt; Checkout &gt; Cart" sections and also relate to topics dealt with in the "Concepts &gt; Framework &gt; Rules" section. A clear structure allows us to create these cross-references and make the documentation more readable and enjoyable.
 
+> [Guide Documentation Template](templates/guide-documentation-template.md)
+
 ### Resources
 
 Resources contain structured documentation, such as API references, tooling, links, SDKs, libraries but also guidelines for contribution, publishing.
