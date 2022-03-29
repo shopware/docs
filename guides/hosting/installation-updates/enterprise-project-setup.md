@@ -17,7 +17,7 @@ The following folders are available in the production template:
 - **/config/bundles.php**: In this file all Symfonfy bundles are defined, which should be included in the project.
 
 ## Third party sources
-Most enterprise projects are projects in which the development team is responsible for the stability and performance of the system. The integration of external sources via apps or plugins is of course not forbidden, but should always be viewed with a critical eye. By including those sources, the development team partially relinquishes control over the system. If some plugins are necessary, we recommend not to include them as a installable and uninstallable plugin, but as a composer plugin.
+Most enterprise projects are projects in which the development team is responsible for the stability and performance of the system. The integration of external sources via apps or plugins is of course not forbidden, but should always be viewed with a critical eye. By including those sources, the development team partially relinquishes control over the system. If some plugins are necessary, we recommend not to include them as a installable and uninstallable plugin, but as a package through composer.
 
 ### Disable extensions
 In general, the entire handling of the app and plugin system, via the database, should be deactivated via the configuration `DISABLE_EXTENSIONS`. If this parameter is activated, it is no longer possible to obtain plug-ins via the Extension Store, or to deactivate or uninstall them via a UI or database. The control over plugins is thus completely regulated via the project deployment.
