@@ -5,7 +5,7 @@ The setup of enterprise systems differs from a normal installation of Shopware. 
 This guide is meant to serve as a suffering guide for all those who do not have any experience in this area yet.
 
 ## Production template
-We start with the [production](composer#shopware-6-production-template) template. We recommend this repository for use on production systems. A fork should be made of the template, in which the desired Shopware repositories (core, storefront, admin, elastic, etc) are then pinned to the desired version.
+We start with the [production](composer.md#shopware-6-production-template) template. We recommend this repository for use on production systems. A fork should be made of the template, in which the desired Shopware repositories (core, storefront, admin, elastic, etc) are then pinned to the desired version.
 
 By pinning the versions, it is prevented that unwanted updates are imported into the system when deploying.
 
@@ -37,11 +37,11 @@ shopware:
 ```
 
 ## Message queue
-Enterprise projects are mostly self-hosted systems. On a productive system, the message queue should be processed via the CLI instead of the browser in the administration ([Admin worker](../infrastructure/message-queue#admin-worker)). This way, tasks are also completed when no one is logged into the administration and high CPU load due to multiple users in the admin is also avoided. Furthermore you can change the transport to another system like [RabbitMQ](https://www.rabbitmq.com/) for example.
+Enterprise projects are mostly self-hosted systems. On a productive system, the message queue should be processed via the CLI instead of the browser in the administration ([Admin worker](../infrastructure/message-queue.md#admin-worker)). This way, tasks are also completed when no one is logged into the administration and high CPU load due to multiple users in the admin is also avoided. Furthermore you can change the transport to another system like [RabbitMQ](https://www.rabbitmq.com/) for example.
 
 It's recommended to run multiple `messenger:consume`-workers. To automatically start the processes again after they stopped because of exceeding the given limits you can use a process control system like [systemd](https://www.freedesktop.org/wiki/Software/systemd/) or [supervisor](http://supervisord.org/running.html).
 
-[Read more](../infrastructure/message-queue)
+[Read more](../infrastructure/message-queue.md)
 
 ### Own queue
 
@@ -78,7 +78,7 @@ It is recommended to always adapt the local development environments of the deve
 
 The theme compilation in Shopware depends by default on the settings in the database. However, since a connection to the database is usually not guaranteed during deployment, we recommend configuring static theme compilation
 
-[Read more](deployments/build-w-o-db#compiling-the-storefront-without-database)
+[Read more](deployments/build-w-o-db.md#compiling-the-storefront-without-database)
 
 ## Performance Tweaks
 When setting up enterprise projects, there are some settings and conditions that should be taken into account with regard to performance
@@ -88,22 +88,22 @@ For the server setup, it is recommended to choose machines with the most powerfu
 
 ### Redis
 It is also recommended configuring different Redis servers. We recommend setting up at least four Redis servers for the following resources:
-- Session + cart - [Read more](../performance/session)
-- cache.object - [Read more](../performance/caches#example-replace-some-cache-with-redis)
-- Enqueue - [Read more](../infrastructure/message-queue#transport-redis-example)
-- Lock + Increment storage - [Read more](../performance/increment)
+- Session + cart - [Read more](../performance/session.md)
+- cache.object - [Read more](../performance/caches.md#example-replace-some-cache-with-redis)
+- Enqueue - [Read more](../infrastructure/message-queue.md#transport-redis-example)
+- Lock + Increment storage - [Read more](../performance/increment.md)
 
-Instead of setting up a Redis server for `enqueue`, you can also work directly with [RabbitMQ](../infrastructure/message-queue#transport-rabbitmq-example)
+Instead of setting up a Redis server for `enqueue`, you can also work directly with [RabbitMQ](../infrastructure/message-queue.md#transport-rabbitmq-example)
 
 ### Filesystem
 In a multi-app server system, it is always recommended to run certain directories over a shared filesystem. This includes assets as well as theme files and private and public filesystems.
 
-[Read more](../infrastructure/filesystem)
+[Read more](../infrastructure/filesystem.md)
 
 ### HTTP Cache
 To ensure a high RPS (requests per second), Shopware offers an integrated HTTP cache with a possible reverse proxy configuration. Any system that handles high user numbers should always use such technology to reduce server resources.
 
-[Read more](../infrastructure/reverse-http-cache)
+[Read more](../infrastructure/reverse-http-cache.md)
 
 #### logged-in / cart-filled
 By default, shopware can no longer deliver complete pages from a cache once the customer is logged in or there are products in the shopping cart. As soon as this is the case, the user sessions differ and the context rules could be different depending on the user. This can result in different content for each customer, a good example is the plugin [Dynamic Access](https://store.shopware.com/swag140583558965t/dynamic-access.html).
@@ -140,7 +140,7 @@ Elasticsearch is a great tool to reduce the load of MySQL. Especially for system
 
 When using Elasticsearch, it is important to set the `SHOPWARE_ES_THROW_EXCEPTION=1` `.env` variable. This ensures that if an error occurs when querying the data via Elasticsearch, there is no fallback to the MySQL server. In most larger projects this leads to the MySQL server being completely overloaded.
 
-[Read more](../infrastructure/elasticsearch/elasticsearch-setup)
+[Read more](../infrastructure/elasticsearch/elasticsearch-setup.md)
 
 ### Prevent mail data updates
 In order to guarantee an autocompletion for the different mail templates in the administration UI, we currently have a mechanism, which writes an example mail into the database when sending the mail.
@@ -172,7 +172,7 @@ shopware:
             url: 'redis://host:port/dbindex'
 ```
 
-[Read more](../performance/increment)
+[Read more](../performance/increment.md)
 
 ### Lock storage
 Shopware uses [Symfony's Lock component](https://symfony.com/doc/5.4/lock.html) to implement locking functionality.
@@ -183,7 +183,7 @@ framework:
     lock: 'redis://host:port'
 ```
 
-[Read more](../performance/lock-store)
+[Read more](../performance/lock-store.md)
 
 ### Benchmarks
 In addition to the benchmarks that Shopware regularly performs with the software, we strongly recommend integrating your own benchmark tools and pipelines for larger systems. A generic benchmark of a product can rarely be adapted to individual, highly customized projects.
