@@ -277,6 +277,7 @@
     * [Deployments](guides/hosting/installation-updates/deployments/README.md)
       * [Deployment with Deployer](guides/hosting/installation-updates/deployments/deployment-with-deployer.md)
       * [Building without Database](guides/hosting/installation-updates/deployments/build-w-o-db.md)
+    * [Enterprise project setup](guides/hosting/installation-updates/enterprise-project-setup.md)
     * [Versioning & Dependencies](guides/hosting/installation-updates/composer.md)
   * [Performance](guides/hosting/performance/README.md)
     * [Cache](guides/hosting/performance/caches.md)
