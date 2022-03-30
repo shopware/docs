@@ -42,6 +42,13 @@ storefront:
 
 Also set `SHOPWARE_HTTP_CACHE_ENABLED=1` in your `.env` file.
 
+#### Trusted proxies
+For the most part, using symfony and varnish doesn't cause any problems. But, when a request passes through a proxy, certain request information is sent using either the standard Forwarded header or X-Forwarded-* headers. For example, instead of reading the REMOTE_ADDR header (which will now be the IP address of your reverse proxy), the user's true IP will be stored in a standard Forwarded: for="..." header or a X-Forwarded-For header.
+
+If you don't configure Symfony to look for these headers, you'll get incorrect information about the client's IP address, whether or not the client is connecting via HTTPS, the client's port and the hostname being requested.
+
+[Read more](https://symfony.com/doc/current/deployment/proxies.html)
+
 ### Configure Varnish
 
 As Shopware is now prepared to work with a reverse proxy, we need to configure Varnish to use a Shopware specific configuration (VCL). Below you can find an example Shopware 6 Varnish configuration.
