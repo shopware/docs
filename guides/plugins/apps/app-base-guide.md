@@ -4,6 +4,8 @@
 
 This guide will walk you through the process of adding your own app to Shopware and configuring it, so it is able to communicate to your external backend server.
 
+DO NOT MERGE ME!
+
 ## Prerequisites
 
 If you're not familiar with the app system, please take a look at the concept first.
