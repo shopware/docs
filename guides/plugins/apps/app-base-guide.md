@@ -121,7 +121,9 @@ You and the Shopware Account are the only parties that should know your `app-sec
 {% endhint %}
 
 {% hint style="warning" %}
-For local development you can specify a &lt;secret&gt; in the manifest file, that is used for signing the registration request. However, if an app uses a hard-coded secret in the manifest it can not be uploaded to the store.
+For **local development** you can specify a `<secret>` in the manifest file, that is used for signing the registration request. However, if an app uses a hard-coded secret in the manifest it can not be uploaded to the store.
+
+If you're developing a **private app** - which is not published in the Shopware Store - you **must** also provide the `<secret>` if you have an external app server. 
 {% endhint %}
 
 To verify that the registration can only be triggered by authenticated Shopware shops you need to recalculate the signature and check that the signatures match, thus you've verified that the sender of the request possesses the `app secret`.
