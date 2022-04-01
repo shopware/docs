@@ -250,6 +250,8 @@
     * [Theme inheritance configuration](guides/plugins/themes/theme-inheritance-configuration.md)
   * [Apps](guides/plugins/apps/README.md)
     * [App Base Guide](guides/plugins/apps/app-base-guide.md)
+    * [App Starter Guides](guides/plugins/apps/starter/README.md)
+      * [Starter Guide - Admin Extensions](guides/plugins/apps/starter/starter-admin-extension.md)
     * [App Scripts](guides/plugins/apps/app-scripts/README.md)
       * [Cart manipulation](guides/plugins/apps/app-scripts/cart-manipulation.md)
       * [Data loading](guides/plugins/apps/app-scripts/data-loading.md)
