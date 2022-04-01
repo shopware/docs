@@ -12,13 +12,21 @@ In this guide, you will learn how to create an Admin Extension using the Admin E
     * ngrok
     * live-server (small local development live-reloading server)
 
-## Initial Setup
+## Create the App Wrapper
+
+First of all we need to create the app "wrapper", the so-called app manifest. It contains just a single file with some basic configuration.
+
+### Create manifest file
+
+We create this file in a directory where all other app resources will reside in. Let's name this `ListingExtension`. Please execute the command below in your Shopware root directory.
 
 ```bash
 mkdir -p custom/apps/ListingExtension
 cd custom/apps/ListingExtension
 touch manifest.xml
 ```
+
+Next, we're gonna put our basic configuration into the file we just created.
 
 {% code title="manifest.xml" %}
 ```xml
@@ -38,15 +46,20 @@ touch manifest.xml
 ```
 {% endcode %}
 
-go back to the root directory of Shopware and install the App:
+### Install the App
+
+In order to install the app, go back to the root directory of Shopware and run the following command:
 
 ```bash
 bin/console app:install --activate ListingExtension
 ```
 
-## Create and expose the Extension API entry point
+## Set up communication between Shopware and the App
 
-Next, we need to create an entry point for our app. The entry point is a static `.html` file, which includes the Extension SDK script and defines our extension.
+Next, we need to set up an entry point, so Shopware and your app can communicate. The entry point is a static `.html` file, which includes the Extension SDK script and defines our extension.
+
+
+> Create a graphic illustrating communication between Shopware and the App.
 
 Let's create this file in a directory called `src`.
 
@@ -94,23 +107,26 @@ For the next step, we will use ngrok, so your local file gets exposed to the int
 ngrok http 8080
 ```
 
-This will output something similar to 
+This command will expose your local port `8080` (which is the port of the [local development server](#start-the-local-development-server)) to the internet and make it accessible via http/s. If your development server is running on a different port, make sure to use that port when running `ngrok http`.
+
+The output will be something similar to 
 
 ```bash
-Session Status                online                                                                                                                                                                                                    
-Account                       John Doe (Plan: Free)                                                                                                                                                                                
-Version                       2.3.40                                                                                                                                                                                                    
-Region                        United States (us)                                                                                                                                                                                        
-Web Interface                 http://127.0.0.1:4040                                                                                                                                                                                     
-Forwarding                    http://9481-31-22-212-113.ngrok.io -> http://localhost:8080                                                                                                                                               
-Forwarding                    https://9481-31-22-212-113.ngrok.io -> http://localhost:8080        
+Session Status                online
+Account                       John Doe (Plan: Free)
+Version                       2.3.40
+Version                       2.3.40
+Region                        United States (us)
+Web Interface                 http://127.0.0.1:4040
+Forwarding                    http://9481-31-22-212-113.ngrok.io -> http://localhost:8080
+Forwarding                    https://9481-31-22-212-113.ngrok.io -> http://localhost:8080
 ```
 
 You `src` directory will now be available at the public ***.ngrok.io** links.
 
 ### Add the public link to your manifest
 
-The final step of the setup is to configure your App to use correct public link for your entry point. In our case this is `https://9481-31-22-212-113.ngrok.io`.
+The final step of the setup is to configure your app to use correct public link for your entry point. In our case this is `https://9481-31-22-212-113.ngrok.io`.
 
 In order to do that, we have to add an `admin` section to our `manifest.xml` file and pass it into the `base-app-url` tag:
 
