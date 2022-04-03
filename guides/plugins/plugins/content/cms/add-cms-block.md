@@ -275,9 +275,9 @@ So go ahead and re-create that structure in your plugin: `<plugin root>/src/Reso
 
 In there create a new twig template named after your block, so `cms-block-image-text-reversed.html.twig` that is.
 
-Since the [original 'image\_text' file](https://github.com/shopware/platform/blob/v6.3.4.1/src/Storefront/Resources/views/storefront/block/cms-block-image-text.html.twig) is already perfectly fine, you can go ahead and extend from it in your storefront template.
+Since the [original 'image\_text' file](https://github.com/shopware/platform/blob/v6.3.4.1/src/Storefront/Resources/views/storefront/block/cms-block-my-image-text.html.twig) is already perfectly fine, you can go ahead and extend from it in your storefront template.
 
-{% code title="<plugin root>/src/Resources/views/storefront/block/cms-block-image-text-reversed.html.twig" %}
+{% code title="<plugin root>/src/Resources/views/storefront/block/cms-block-my-image-text-reversed.html.twig" %}
 {% raw %}
 ```text
 {% sw_extends '@Storefront/storefront/block/cms-block-image-text.html.twig' %}
