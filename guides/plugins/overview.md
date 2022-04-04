@@ -11,7 +11,7 @@ The variety of Shopware's extension interfaces can be overwhelming, so let's sta
 | Integrate payment providers | ✅ | ❌ | ✅ |  |
 | Publish in the Shopware Store | ✅ | ✅ | ✅ |  |
 | Install in Shopware 6 Cloud Shops | ❌ | ❌ | ✅ |  |
-| Install in Shopware 6 on-Premise Shops | ✅ | ✅ | ✅ | Apps can be installed and used since Shopware 6.4.0.0 |
+| Install in Shopware 6 self-managed Shops | ✅ | ✅ | ✅ | Apps can be installed and used since Shopware 6.4.0.0 |
 | Add custom logic/routes/commands | ✅ | ❌ | ✅ | Apps extract functionalities/logic into separate services, so technically they can add custom logic |
 | Control order of style/template inheritance | ❌ | ✅ | ✅ |  |
 
