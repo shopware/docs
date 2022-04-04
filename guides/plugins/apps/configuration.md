@@ -15,7 +15,7 @@ To offer configuration possibilities to your users you can provide a `config.xml
       └── manifest.xml
 ```
 
-The configuration page will be displayed in the administration under the `Extension store`. This means that the UI for configuring apps is currently only available in the Cloud environment, but in the future the extension store will also be available for on-premise. For development purposes you can use the administration component to configure plugins to provide configuration for your app, therefore use the URL `{appUrl}/admin##/sw/plugin/settings/{appName}`.
+The configuration page will be displayed in the administration under the `Extension store`. For development purposes you can use the administration component to configure plugins to provide configuration for your app, therefore use the URL `{appUrl}/admin##/sw/plugin/settings/{appName}`.
 
 ## Reading the configuration values
 
