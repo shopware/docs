@@ -46,14 +46,6 @@ Next, we're gonna put our basic configuration into the file we just created.
 ```
 {% endcode %}
 
-### Install the App
-
-In order to install the app, go back to the root directory of Shopware and run the following command:
-
-```bash
-bin/console app:install --activate ListingExtension
-```
-
 ## Set up communication between Shopware and the App
 
 Next, we need to set up an entry point, so Shopware and your app can communicate. The entry point is a static `.html` file, which includes the Extension SDK script and defines our extension.
@@ -143,3 +135,15 @@ In order to do that, we have to add an `admin` section to our `manifest.xml` fil
 </manifest>
 ```
 {% endcode %}
+
+### Install the App
+
+In order to install the app, go back to the root directory of Shopware and run the following command:
+
+```bash
+bin/console app:install --activate ListingExtension
+```
+
+{% hint style="warning" %}
+It is a currently known issue that whenever you make changes to the `manifest.xml` file, you need to increment the version number, so Shopware picks up the changes.
+{% endhint %}
