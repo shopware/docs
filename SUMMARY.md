@@ -40,6 +40,7 @@
   * [Professional Edition](products/editions/professional-edition.md)
   * [Enterprise Edition](products/editions/enterprise-edition/README.md)
     * [B2B Suite](products/editions/enterprise-edition/b2b-suite.md)
+      * [Administration](products/editions/enterprise-edition/b2b-suite/administration/administration.md)
     * [Search](products/editions/enterprise-edition/search/README.md)
       * [Installation](products/editions/enterprise-edition/search/installation.md)
       * [Field Configuration](products/editions/enterprise-edition/search/field-config.md)
