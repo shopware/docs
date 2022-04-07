@@ -1,5 +1,7 @@
 # Performance Tweaks
 
+Shopware is a platform for many different projects. It needs to handle a broad range of load characteristics and environments. That means that the default configuration is optimized for the best out-of-the-box experience. But there are many opportunities to increase the performance by fitting the configuration to your needs.
+
 ## Strong CPU
 
 For the server setup, pay special attention to the speed of the CPU. This applies to all servers (app, SQL, Elasticsearch, Redis). Usually, it is more optimal to choose a slightly stronger CPU instead of many weaker ones. But this has to be determined more precisely depending on the project and load. Experience has shown so far that systems with powerful CPUs finish processes faster and can therefore release the resources sooner.
