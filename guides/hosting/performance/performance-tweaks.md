@@ -120,6 +120,7 @@ shopware:
 
 The increment storage is used to store the state and display it in the Administration.
 This storage increments or decrements a given key in a transaction-safe way, which causes locks upon the storage. Therefore, we recommend moving this load to a separate Redis:
+
 ```yaml
 shopware:
     increment:
@@ -142,7 +143,7 @@ If you don't need such functionality, it is highly recommended to disable this b
 Shopware uses [Symfony's Lock component](https://symfony.com/doc/5.4/lock.html) to implement locking functionality.
 By default, Symfony will use a local file-based lock store, which breaks in multi-machine (cluster) setups. This is avoided by using one of the [supported remote stores](https://symfony.com/doc/5.4/components/lock.html#available-stores).
 
-```
+```yaml
 framework:
     lock: 'redis://host:port'
 ```
@@ -153,7 +154,7 @@ framework:
 
 Shopware sends the mails by default synchronously. This process can take a while on load or when the remote SMTP server is struggling. For this purpose, it is possible to handle the mails in the message queue. To enable this, add the following config to your config
 
-```
+```yaml
 framework:
     mailer:
         message_bus: 'messenger.default_bus'
