@@ -316,7 +316,8 @@ An event contains as much data as is needed to react to that event. The data is 
   "source":{
     "url":"http:\/\/localhost:8000",
     "appVersion":"0.0.1",
-    "shopId":"dgrH7nLU6tlE"
+    "shopId":"dgrH7nLU6tlE",
+    "eventId": "7b04ebe416db4ebc93de4d791325e1d9"
   },
   "timestamp": 123123123
 }
@@ -327,6 +328,7 @@ Where the `source` property contains all necessary information about the Shopwar
 * `url` is the url under which your app can reach the Shopware instance and its api
 * `appVersion` is the version of the app that is installed
 * `shopId` is the id by which you can identify the Shopware instance
+* `eventId` is a unique identifier of the event, this id will not change if sending of the webhook is retried, etc. **Since 6.4.11.0**.
 
 The next property `data` contains the name of the event so that a single endpoint can handle several different events, should you desire. `data` also contains the event data in the `payload` property, due to the asynchronous nature of theses webhooks the `payload` for `entity.written` events does not contain complete entities as these might become outdated. Instead the entity in the payload is characterized by its id, stored under `primaryKey`, so that the app can fetch additional data through the shops API. This also has the advantage of giving the app explicit control over the associations that get fetched instead of relying on the associations determined by the event. Other events in contrast contain the entity data that defines the event, but keep in mind that event might not contain all associations.
 
