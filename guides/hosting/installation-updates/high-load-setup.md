@@ -66,6 +66,10 @@ The theme compilation in Shopware by default depends on the settings in the data
 
 [Read more](deployments/build-w-o-db.md#compiling-the-storefront-without-database)
 
+## Strong CPU
+
+For the server setup, pay special attention to the speed of the CPU. This applies to all servers (app, SQL, Elasticsearch, Redis). Usually, it is more optimal to choose a slightly stronger CPU instead of many weaker ones. But this has to be determined more precisely depending on the project and load. Experience has shown so far that systems with powerful CPUs finish processes faster and can therefore release the resources sooner.
+
 ## Performance Tweaks
 When setting up enterprise projects, there are some settings and conditions that should be taken into account with regard to performance
 
