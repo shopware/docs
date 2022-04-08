@@ -9,6 +9,7 @@ We recommend setting up at least four Redis servers for the following resources:
 - cache.object - [Read more](../performance/caches.md#example-replace-some-cache-with-redis)
 - Lock + Increment storage - [Read more](../performance/increment.md)
 - Enqueue - [Read more](../infrastructure/message-queue.md#transport-redis-example)
+- Number Ranges - [Read more](../performance/number-ranges.md)
 
 Instead of setting up a Redis server for `enqueue`, you can also work directly with [RabbitMQ](../infrastructure/message-queue.md#transport-rabbitmq-example)
 
@@ -147,6 +148,23 @@ framework:
 ```
 
 [Read more](../performance/lock-store.md)
+
+## Number Ranges
+Number Ranges provide a consistent way to generate a consecutive number sequence that is used for order numbers, invoice numbers, etc.
+The generation of the number ranges is an **atomic** operation, this guarantees that the generated sequence is consecutive and no number is generated twice.
+
+By default, the number range states are stored in the database.
+In scenarios where a high throughput is required (e.g. thousands of orders per minute), the database can become a performance bottleneck, because of the requirement for atomicity.
+Redis offers better support for atomic increments than the database, therefore the number ranges should be stored in Redis in such scenarios.
+
+```yaml
+shopware:
+  number_ranges:
+    increment_storage: "Redis"
+    redis_url: 'redis://host:port/dbindex'
+```
+
+[Read more](../performance/number-ranges.md)
 
 ## Sending mails with the Queue
 
