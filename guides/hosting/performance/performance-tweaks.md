@@ -16,7 +16,7 @@ We recommend setting up at least four Redis servers for the following resources:
 
 Instead of setting up a Redis server for `enqueue`, you can also work directly with [RabbitMQ](../infrastructure/message-queue.md#transport-rabbitmq-example)
 
-The PHP Redis extension should be preferred to be installed on the machine as of Predis to use a persistent Redis connection. Persistent connection opens per FPM process a Redis connection and uses it for all requests, which can help in high load scenarios as each request doesn't have to open and close a connection and may hit the system max open sockets
+The PHP Redis extension provides persistent Redis connections. Persistent connections can help in high load scenarios as each request doesn't have to open and close connections. Using non-persistent Redis connections can also hit the system's maximum of open sockets. Because of these limitations, the Redis extension is preferred over Predis.
 
 When a Redis cluster is in usage, the `php.ini` setting `redis.clusters.cache_slots=1` should be set to skip the cluster node lookup on each connection 
 
@@ -34,7 +34,7 @@ monolog:
             level: error
 ```
 
-The `business_event_handler_buffer` handler logs flows. Setting it to `error` will disable the logging of flow activities that succeed
+The `business_event_handler_buffer` handler logs flows. Setting it to `error` will disable the logging of flow activities that succeed.
 
 ## Filesystem
 
@@ -58,7 +58,7 @@ When you have a lot of app servers, you should consider using a reverse proxy ca
 
 By default, Shopware can no longer deliver complete pages from a cache for a logged-in customer or if products are in the shopping cart. As soon as this happens, the user sessions differ, and the context rules could be different depending on the user. The result is different content for each customer; a good example is the [Dynamic Access](https://store.shopware.com/swag140583558965t/dynamic-access.html) plugin.
 
-However, if the project does not require such functionality, pages can also be cached by the HTTP cache/reverse proxy. The HTTP cache significantly reduces the load for the system. To disable Cache invalidation in these cases:
+However, if the project does not require such functionality, pages can also be cached by the HTTP cache/reverse proxy. To disable Cache invalidation in these cases:
 
 ```yaml
 shopware:
@@ -69,7 +69,7 @@ shopware:
 
 ### Delayed invalidation
 
-For systems with a high update frequency for the inventory (products, categories), it is recommended to activate a delay for the cache invalidation. Suppose the instruction to delete the cache entries for a specific product or category occurs in the code. In that case, the cache is not deleted directly but processed by a background task afterward. However, if another process also tries to invalidate one of the cache entries of the first process, there will be no overlap, but the timer for the invalidation of this cache entry will only reset.
+A delay for the cache invalidation can be activated for systems with a high update frequency for the inventory (products, categories). Once the instruction to delete the cache entries for a specific product or category occurs, they are not deleted instantly but processed by a background task afterwards. Thus, if two processes invalidate the cache in quick succession, the timer for the invalidation of this cache entry will only reset.
 
 ```yaml
 shopware:
@@ -121,7 +121,7 @@ shopware:
 ## Increment storage
 
 The increment storage is used to store the state and display it in the Administration.
-This storage increments or decrements a given key in a transaction-safe way, which causes locks upon the storage. Therefore, we recommend moving this load to a separate Redis:
+This storage increments or decrements a given key in a transaction-safe way, which causes locks upon the storage. Therefore, we recommend moving this source of server load to a separate Redis:
 
 ```yaml
 shopware:
@@ -154,7 +154,7 @@ framework:
 
 ## Sending mails with the Queue
 
-Shopware sends the mails by default synchronously. This process can take a while on load or when the remote SMTP server is struggling. For this purpose, it is possible to handle the mails in the message queue. To enable this, add the following config to your config
+Shopware sends the mails by default synchronously. This process can take a while when the remote SMTP server is struggling. For this purpose, it is possible to handle the mails in the message queue. To enable this, add the following config to your config
 
 ```yaml
 framework:
