@@ -73,4 +73,4 @@ For the server setup, pay special attention to the speed of the CPU. This applie
 ## Performance Tweaks
 When setting up enterprise projects, there are some settings and conditions that should be taken into account with regard to performance
 
-[Read more](../performance/performance-tweaks)
+[Read more](../performance/performance-tweaks.md)
