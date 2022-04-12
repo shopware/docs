@@ -170,6 +170,7 @@
         * [Add Flow Builder trigger](guides/plugins/plugins/framework/flow/add-flow-builder-trigger.md)
       * [Rate Limiter](guides/plugins/plugins/framework/rate-limiter/README.md)
         * [Add Rate Limiter to API Route](guides/plugins/plugins/framework/rate-limiter/add-rate-limiter-to-api-route.md)
+      * [Metrics](guides/plugins/plugins/framework/metrics/README.md)
     * [Administration](guides/plugins/plugins/administration/README.md)
       * [Add custom module](guides/plugins/plugins/administration/add-custom-module.md)
       * [Add custom component](guides/plugins/plugins/administration/add-custom-component.md)
@@ -367,4 +368,3 @@
 * [Tooling](resources/tooling/README.md)
   * [IDE](resources/tooling/ide/README.md)
     * [Shopware Toolbox](resources/tooling/ide/shopware-toolbox.md)
-
