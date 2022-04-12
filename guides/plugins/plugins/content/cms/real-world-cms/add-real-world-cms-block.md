@@ -200,6 +200,20 @@ correct directory with the same name. It should look like this:
 {% endraw %}
 {% endcode %}
 
+Mayb you remember the storefront implementation from the [Add CMS block](../add-cms-block.md) guide. In that guide we were just extending from
+a different file like this:
+
+{% code title="<plugin root>/src/Resources/views/storefront/block/cms-block-image-text-reversed.html.twig" %}
+{% raw %}
+```text
+{% sw_extends '@Storefront/storefront/block/cms-block-image-text.html.twig' %}
+```
+{% endraw %}
+{% endcode %}
+
+It would be possible to override the code from the [original 'image\_text' file](https://github.com/shopware/platform/blob/v6.3.4.1/src/Storefront/Resources/views/storefront/block/cms-block-image-text.html.twig) file here. We just extend so the code in that file exactly matches 
+the code from the original file.
+
 Now we already should see a button in the storefront if we save a page with our new created CMS-Block.
 However the view in the administration and in the storefront are completely different. We could simply but our code in the storefront twig file
 and display whatever we want. To really create a button with a config we need to create a matching CMS-Element.
@@ -250,4 +264,6 @@ Before we do that we quickly add a bit CSS to our storefront like this:
 {% endcode %}
 
 As you already may see from the CSS code we want to configure how the button is placed and a bit more. To learn how you can to that please head over
-to <!-- INSERT CMS-Element Guide here -->
+to [Add real world CMS element](add-real-world-cms-element.md)>
+
+You also can see the code for this guide here [shopware-real-world-cms-block](https://github.com/NinjaArmy/shopware-real-world-cms) 
