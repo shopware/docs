@@ -285,6 +285,7 @@
     * [Session](guides/hosting/performance/session.md)
     * [Increment Storage](guides/hosting/performance/increment.md)
     * [Lock Storage](guides/hosting/performance/lock-store.md)
+    * [Number Ranges](guides/hosting/performance/number-ranges.md)
     * [Performance Tweaks](guides/hosting/performance/performance-tweaks.md)
   * [Infrastructure](guides/hosting/infrastructure/README.md)
     * [Filesystem](guides/hosting/infrastructure/filesystem.md)
