@@ -200,8 +200,7 @@ correct directory with the same name. It should look like this:
 {% endraw %}
 {% endcode %}
 
-Mayb you remember the storefront implementation from the [Add CMS block](../add-cms-block.md) guide. In that guide we were just extending from
-a different file like this:
+Let's do the storefront implementation as previously mentioned in the [Add CMS block](../add-cms-block.md) guide:
 
 {% code title="<plugin root>/src/Resources/views/storefront/block/cms-block-image-text-reversed.html.twig" %}
 {% raw %}
