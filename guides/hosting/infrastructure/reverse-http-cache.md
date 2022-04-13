@@ -295,6 +295,7 @@ storefront:
 Additionally we need to setup some VCL Snippets in the Fastly interface:
 
 **Name:** Normalize URLs
+
 **Subroutine:** vcl_recv
 
 ```
@@ -366,6 +367,7 @@ return (lookup);
 ```
 
 **Name:** Add Shopware Custom Hashing
+
 **Subroutine:** vcl_hash
 
 
@@ -380,6 +382,7 @@ if (req.http.cookie ~ "sw-cache-hash=") {
 
 
 **Name:** Respect Shopware States to Pass the cache
+
 **Subroutine:** vcl_hit
 
 ```
@@ -397,6 +400,7 @@ if (req.http.cookie ~ "sw-states=") {
 ```
 
 **Name:** Remove internal headers
+
 **Subroutine:** vcl_deliver
 
 
