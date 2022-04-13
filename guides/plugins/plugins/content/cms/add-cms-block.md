@@ -38,13 +38,13 @@ Create this `main.js` file for now, it will be used later.
 
 Your plugin's structure should always match the core's structure. When thinking about creating a new block, you should recreate the directory structure of core blocks in your plugin. The block, which you're going to create, consists of an `image` and a `text` element, so it belongs to the category `text-image`. Thus, create the directory `<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image`.
 
-In there, you have to create a new directory for each block you want to create, the directory's name representing the block's name. For this example, the name `image-text-reversed` is going to be used, so create this directory in there.
+In there, you have to create a new directory for each block you want to create, the directory's name representing the block's name. For this example, the name `my-image-text-reversed` is going to be used, so create this directory in there.
 
-Now create a new file `index.js` inside the `image-text-reversed` directory, since it will be automatically loaded when importing this block in your `main.js`. Speaking of that, right after having created the `index.js` file, you can actually import your new block directory in the `main.js` file already:
+Now create a new file `index.js` inside the `my-image-text-reversed` directory, since it will be automatically loaded when importing this block in your `main.js`. Speaking of that, right after having created the `index.js` file, you can actually import your new block directory in the `main.js` file already:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/main.js" %}
 ```javascript
-import './module/sw-cms/blocks/text-image/image-text-reversed';
+import './module/sw-cms/blocks/text-image/my-image-text-reversed';
 ```
 {% endcode %}
 
@@ -52,7 +52,7 @@ Back to your `index.js`, which is still empty. In order to register a new block,
 
 First of all, access our `Application` wrapper, which will grant you access to the DI container. This `Application` wrapper has access to the DI container, so go ahead and fetch the `cmsService` from it and call the mentioned `registerCmsBlock` method.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/image-text-reversed/index.js" %}
+{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/index.js" %}
 ```javascript
 Shopware.Service('cmsService').registerCmsBlock();
 ```
@@ -78,14 +78,14 @@ The method `registerCmsBlock` takes a configuration object, containing the follo
 
 Go ahead and create this configuration object yourself. Here's what it should look like after having set all of those options:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/image-text-reversed/index.js" %}
+{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/index.js" %}
 ```javascript
 Shopware.Service('cmsService').registerCmsBlock({
     name: 'my-image-text-reversed',
     category: 'text-image',
-    label: 'Image next to text',
-    component: 'sw-cms-block-image-text-reversed',
-    previewComponent: 'sw-cms-preview-image-text-reversed',
+    label: 'My Image Text Block!',
+    component: 'sw-cms-block-my-image-text-reversed',
+    previewComponent: 'sw-cms-preview-my-image-text-reversed',
     defaultConfig: {
         marginBottom: '20px',
         marginTop: '20px',
@@ -109,12 +109,12 @@ You've set the `name` of the component to be used when rendering your block to b
 
 First of all, create a new directory `component` in your block's directory. In there, create a new `index.js` file and register your custom component `sw-cms-block-my-image-text-reversed`.
 
-Keep in mind: The component name consists of `sw-cms-block-` and the `name` property mentioned in your `index.js`, while registering your cms block component via `registerCmsBlock()`!
+**Keep in mind: The component name consists of `sw-cms-block-` and the `name` property mentioned in your `index.js`, while registering your cms block component via `registerCmsBlock()`!**
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/image-text-reversed/component/index.js" %}
+{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/component/index.js" %}
 ```javascript
-import template from './sw-cms-block-image-text-reversed.html.twig';
-import './sw-cms-block-image-text-reversed.scss';
+import template from './sw-cms-block-my-image-text-reversed.html.twig';
+import './sw-cms-block-my-image-text-reversed.scss';
 
 Shopware.Component.register('sw-cms-block-my-image-text-reversed', {
     template
@@ -122,17 +122,17 @@ Shopware.Component.register('sw-cms-block-my-image-text-reversed', {
 ```
 {% endcode %}
 
-Just like most components, it has a custom template and also some styles. Focus on the template first, create a new file `sw-cms-block-image-text-reversed.html.twig`.
+Just like most components, it has a custom template and also some styles. Focus on the template first, create a new file `sw-cms-block-my-image-text-reversed.html.twig`.
 
 This template now has to define the basic structure of your custom block. In this simple case, you only need a parent container and two sub-elements, whatever those are. That's also were the slots come into play: You've used two slots in your block's configuration, `left` and `right`. Make sure to create those slots in the template as well now.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/image-text-reversed/component/sw-cms-block-image-text-reversed.html.twig" %}
+{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/component/sw-cms-block-my-image-text-reversed.html.twig" %}
 {% raw %}
 ```text
-{% block sw_cms_block_image_text_reversed %}
-    <div class="sw-cms-block-image-text-reversed">
-        <slot name="left">{% block sw_cms_block_image_text_reversed_slot_left %}{% endblock %}</slot>
-        <slot name="right">{% block sw_cms_block_image_text_reversed_slot_right %}{% endblock %}</slot>
+{% block sw_cms_block_my_image_text_reversed %}
+    <div class="sw-cms-block-my-image-text-reversed">
+        <slot name="left">{% block sw_cms_block_my_image_text_reversed_slot_left %}{% endblock %}</slot>
+        <slot name="right">{% block sw_cms_block_my_image_text_reversed_slot_right %}{% endblock %}</slot>
     </div>
 {% endblock %}
 ```
@@ -145,9 +145,9 @@ Those slots would be rendered from top to bottom now, instead of from left to ri
 
 In there, use a grid to display your elements next to each other. You've set a CSS class for your block, which is the same as its name.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/image-text-reversed/component/sw-cms-block-image-text-reversed.scss" %}
+{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/component/sw-cms-block-my-image-text-reversed.scss" %}
 ```css
-.sw-cms-block-image-text-reversed {
+.sw-cms-block-my-image-text-reversed {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 40px;
@@ -157,9 +157,9 @@ In there, use a grid to display your elements next to each other. You've set a C
 
 That's it for this component! Make sure to import your `component` directory in your `index.js` file, so your new component actually gets loaded.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/image-text-reversed/index.js" %}
+{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/index.js" %}
 ```javascript
-import './component';
+import './component'; // <- Right here!
 
 Shopware.Service('cmsService').registerCmsBlock({
     ...
@@ -171,26 +171,26 @@ Your block can now be rendered in the designer. Let's continue with the preview 
 
 ### Block preview
 
-You've also set a property `previewComponent` containing the value `sw-cms-preview-image-text-reversed`. Time to create this component as well. For this purpose, stick to the core structure again and create a new directory `preview`. In there, again, create an `index.js` file, register your component by its name and load a template and a `.scss` file.
+You've also set a property `previewComponent` containing the value `sw-cms-preview-my-image-text-reversed`. Time to create this component as well. For this purpose, stick to the core structure again and create a new directory `preview`. In there, again, create an `index.js` file, register your component by its name and load a template and a `.scss` file.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/image-text-reversed/preview/index.js" %}
+{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/preview/index.js" %}
 ```javascript
-import template from './sw-cms-preview-image-text-reversed.html.twig';
-import './sw-cms-preview-image-text-reversed.scss';
+import template from './sw-cms-preview-my-image-text-reversed.html.twig';
+import './sw-cms-preview-my-image-text-reversed.scss';
 
-Shopware.Component.register('sw-cms-preview-image-text-reversed', {
+Shopware.Component.register('sw-cms-preview-my-image-text-reversed', {
     template
 });
 ```
 {% endcode %}
 
-The preview element doesn't have to deal with mobile viewports or anything alike, it's just a simplified preview of your block. Thus, create a template containing a text and an image and use the styles to place them next to each other. Create a `sw-cms-preview-image-text-reversed.html.twig` file in your `preview` directory with the following content.
+The preview element doesn't have to deal with mobile viewports or anything alike, it's just a simplified preview of your block. Thus, create a template containing a text and an image and use the styles to place them next to each other. Create a `sw-cms-preview-my-image-text-reversed.html.twig` file in your `preview` directory with the following content.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/image-text-reversed/preview/sw-cms-preview-image-text-reversed.html.twig" %}
+{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/preview/sw-cms-preview-my-image-text-reversed.html.twig" %}
 {% raw %}
 ```text
-{% block sw_cms_block_image_text_reversed_preview %}
-    <div class="sw-cms-preview-image-text-reversed">
+{% block sw_cms_block_my_image_text_reversed_preview %}
+    <div class="sw-cms-preview-my-image-text-reversed">
         <div>
             <h2>Lorem ipsum dolor</h2>
             <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</p>
@@ -204,11 +204,11 @@ The preview element doesn't have to deal with mobile viewports or anything alike
 
 Just a div containing some text and an example image next to that. For the styles, you can simply use the grid property of CSS again. Since you don't have to care about mobile viewports, this is even easier this time.
 
-Now create the styles file `sw-cms-preview-image-text-reversed.scss` with the following styles:
+Now create the styles file `sw-cms-preview-my-image-text-reversed.scss` with the following styles:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/image-text-reversed/preview/sw-cms-preview-image-text-reversed.scss" %}
+{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/preview/sw-cms-preview-my-image-text-reversed.scss" %}
 ```css
-.sw-cms-preview-image-text-reversed {
+.sw-cms-preview-my-image-text-reversed {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 20px;
@@ -221,7 +221,7 @@ A two-column layout, some padding and spacing here and there, done.
 
 Now, import this component in your block's `index.js` as well. This is, what your final block's `index.js` file should look like now:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/image-text-reversed/index.js" %}
+{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/index.js" %}
 ```javascript
 import './component';
 import './preview';
@@ -229,9 +229,9 @@ import './preview';
 Shopware.Service('cmsService').registerCmsBlock({
     name: 'my-image-text-reversed',
     category: 'text-image',
-    label: 'Image next to text',
-    component: 'sw-cms-block-image-text-reversed',
-    previewComponent: 'sw-cms-preview-image-text-reversed',
+    label: 'My Image Text Block!',
+    component: 'sw-cms-block-my-image-text-reversed',
+    previewComponent: 'sw-cms-preview-my-image-text-reversed',
     defaultConfig: {
         marginBottom: '20px',
         marginTop: '20px',
@@ -273,11 +273,11 @@ A block's storefront representation is always expected in the directory [platfor
 
 So go ahead and re-create that structure in your plugin: `<plugin root>/src/Resources/views/storefront/block/`
 
-In there create a new twig template named after your block, so `cms-block-image-text-reversed.html.twig` that is.
+In there create a new twig template named after your block, so `cms-block-my-image-text-reversed.html.twig` it is.
 
 Since the [original 'image\_text' file](https://github.com/shopware/platform/blob/v6.3.4.1/src/Storefront/Resources/views/storefront/block/cms-block-image-text.html.twig) is already perfectly fine, you can go ahead and extend from it in your storefront template.
 
-{% code title="<plugin root>/src/Resources/views/storefront/block/cms-block-image-text-reversed.html.twig" %}
+{% code title="<plugin root>/src/Resources/views/storefront/block/cms-block-my-image-text-reversed.html.twig" %}
 {% raw %}
 ```text
 {% sw_extends '@Storefront/storefront/block/cms-block-image-text.html.twig' %}
