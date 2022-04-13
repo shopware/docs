@@ -1,4 +1,4 @@
-# Enterprise project setup
+# High load setup
 
 The setup of enterprise systems differs from a normal installation of Shopware. Most enterprise systems are a completely customized stores with individual templates and extensions.
 
