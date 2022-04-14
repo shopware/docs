@@ -2,11 +2,11 @@
 
 ## Overview
 
-This guide will teach you how to create a CMS-Block with your plugin. This guide will cover a real world example to keep everything easy we will just create a simple button. The CMS-block for the button we will cover right here.
+This guide will teach you how to create a CMS block with your plugin. This guide will cover a real world example to keep everything easy we will just create a  button. The CMS block for the button we will cover right here.
 
 ## Prerequisites
 
-This plugin is built based on the [Add CMS block](../add-cms-block.md) guide. We assume that you know the basics for a CMS-Block from this guide.
+This plugin is built based on the [Add CMS block](../add-cms-block.md) guide. We assume that you know the basics for a CMS block from this guide.
 
 ## Custom block in the administration
 
@@ -59,7 +59,7 @@ Shopware.Service('cmsService').registerCmsBlock({
 
 ### Block component
 
-Luckily we are just creating a simple button in this guide so the code will be very simple.
+Luckily we are just creating a basic button in this guide so the code should be good to understand how everything works.
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text/cms-button/component/sw-cms-block-button.html.twig" %}
 {% raw %}
@@ -90,7 +90,7 @@ Component.register('sw-cms-button', {
 
 ### Block preview
 
-We'll keep the preview also very simple in this guide like this:
+We'll keep the preview very basic in this guide like this:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text/cms-button/preview/sw-cms-preview-button.html.twig" %}
 {% raw %}
@@ -166,7 +166,7 @@ Note: Your plugin has to be installed and activated. If you still can't see the 
 
 ## What about the slots?
 
-If you did everything correct so far, you should see the CMS-Block in your "Shopping Experiences" module in the category text. You also should be able
+If you did everything correct so far, you should see the CMS block in your "Shopping Experiences" module in the category text. You also should be able
 to drag and drop the block into your CMS-Page but you will not see a button there. Instead you will see the exact same "Lorem Ipsum" text like you do
 when you drag and drop a normal text block into your page. Why?
 
@@ -174,7 +174,7 @@ Because of the slot we defined. In our `<plugin root>/src/Resources/app/administ
 the element "text". You can throw in every other element here as well. Since we haven't created a element for the button it's one of our To-Do's now.
 
 We also need a config and we need to react on the settings which are made in the administration to display everything correct in the frontend. First of all
-we need to create a simple frontend view first. So let's start with that!
+we need to create a frontend view first. So let's start with that!
 
 ## Frontend implemantation
 
@@ -213,7 +213,7 @@ Let's do the storefront implementation as previously mentioned in the [Add CMS b
 It would be possible to override the code from the [original 'image\_text' file](https://github.com/shopware/platform/blob/v6.3.4.1/src/Storefront/Resources/views/storefront/block/cms-block-image-text.html.twig) file here. We just extend so the code in that file exactly matches 
 the code from the original file.
 
-Now we already should see a button in the storefront if we save a page with our new created CMS-Block.
+Now we already should see a button in the storefront if we save a page with our new created CMS block.
 However the view in the administration and in the storefront are completely different. We could simply but our code in the storefront twig file
 and display whatever we want. To really create a button with a config we need to create a matching CMS-Element.
 

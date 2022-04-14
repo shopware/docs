@@ -2,18 +2,18 @@
 
 ## Overview
 
-This guide is based on the [Add a real world CMS block](add-real-world-cms-block.md) guide. We will create a real world CMS-Element in this guide.
+This guide is based on the [Add a real world CMS block](add-real-world-cms-block.md) guide. We will create a real world CMS element in this guide.
 That means we are creating an element with a config which fits to our CMS-Button block. 
 
 ## Prerequisites
 
-We assume that you know the basics for about creating a CMS-Element from [Creating a custom CMS element](../add-cms-element.md). So if you don't understand
+We assume that you know the basics for about creating a CMS element from [Creating a custom CMS element](../add-cms-element.md). So if you don't understand
 something please make sure to take a look at that guide as well.
 
 ## Creating your custom CMS element
 
 Imagine you want to create a new element to display a button which is fully configurable by the shop manager. We already build a CMS-Block for the button in the 
-last guide but if you just have a block you don't have a configuration that's why you need a CMS-Element
+last guide but if you just have a block you don't have a configuration that's why you need a CMS element
 
 ## Administration Code
 
@@ -31,7 +31,7 @@ import './module/sw-cms/elements/cms-button'
 ```
 {% endcode %}
 
-Of course we need to create the directory which we just imported now. So let's do that and place an `index.js` in your `<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/cms-button/index.js`. We need to register our element here and we will keep it pretty simple:
+Of course we need to create the directory which we just imported now. So let's do that and place an `index.js` in your `<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/cms-button/index.js`. We need to register our element here and we will do it like this:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/index.js" %}
 ```javascript
@@ -85,7 +85,7 @@ Shopware.Service('cmsService').registerCmsElement({
 ```
 {% endcode %}
 
-Of course you could add a bit more configuration but we want to keep it simple in this guide. Now we also need to create the component, preview and the config. Let's start by doing the component.
+Of course you could add a bit more configuration but we want to keep everything good to understand in this guide. Now we also need to create the component, preview and the config. Let's start by doing the component.
 
 ### Element component
 
@@ -259,10 +259,10 @@ We only display a simple button right here. Let's add some styles so people can 
 ```
 {% endcode %}
 
-
+The preview for the element is visible when you just drag and drop in an element and hit the exchange button. A modal will open up and will show you some elements and this is where you element preview should be visible now as well.
 ### Element config component
 
-The last thing you need for the CMS-Element in the administration is the config. And it's about the same here as well. We create a `config` directory and place 3 different files in here. Let's start with the `index.js`
+The last thing you need for the CMS element in the administration is the config. And it's about the same here as well. We create a `config` directory and place 3 different files in here. Let's start with the `index.js`
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/cms-button/config/index.js" %}
 ```javascript
@@ -457,4 +457,4 @@ Now we want to react to the configuration we gave the element in the backend so 
 {% endcode %}
 
 And that's it! Now we created our very first own real world CMS-Element.
-You also can see the code for this guide here [shopware-real-world-cms-block](https://github.com/NinjaArmy/shopware-real-world-cms/tree/02-add-real-world-cms-element) 
+You also can see the code for this guide here [shopware-real-world-cms-block](https://github.com/NinjaArmy/shopware-real-world-cms/tree/02-add-real-world-CMS element) 
