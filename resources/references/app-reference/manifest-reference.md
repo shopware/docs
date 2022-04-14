@@ -181,6 +181,44 @@
             <icon>Resources/paymentLogo.png</icon>
         </payment-method>
     </payments>
+    <rule-conditions>
+        <rule-condition>
+            <!-- The identifier of the rule condition must be unique should not change. Otherwise a separate rule condition is created and uses of the old one are lost. -->
+            <identifier>my_custom_condition</identifier>
+            <!-- Translatable, a name of your rule condition -->
+            <name>Custom condition</name>
+            <name lang="de-DE">Eigene Bedingung</name>
+            <!-- A thematic group the condition should be assigned too, available groups are: general, customer, cart, item, promotion, misc -->
+            <group>misc</group>
+            <!-- The *.twig file that contains the corresponding script for the condition. It must be placed in the directory Resources/scripts/rule-conditions starting from your app's root directory -->
+            <script>custom-condition.twig</script>
+            <!-- Define the fields you want the user to fill out for use as data within your condition -->
+            <constraints>
+                <!-- the element type, defines the type of the field -->
+                <!-- the elements available here are the same as for custom fields -->
+                <single-select name="operator">
+                    <placeholder>Choose an operator...</placeholder>
+                    <placeholder lang="de-DE">Bitte Operatoren wählen</placeholder>
+                    <options>
+                        <option value="=">
+                            <name>Is equal to</name>
+                            <name lang="de-DE">Ist gleich</name>
+                        </option>
+                        <option value="!=">
+                            <name>Is not equal to</name>
+                            <name lang="de-DE">Ist nicht gleich</name>
+                        </option>
+                    </options>
+                    <required>true</required>
+                </single-select>
+                <text name="firstName">
+                    <placeholder>Enter first name</placeholder>
+                    <placeholder lang="de-DE">Bitte Vornamen eingeben</placeholder>
+                    <required>true</required>
+                </text>
+            </constraints>
+        </rule-condition>
+    </rule-conditions>
 </manifest>
 ```
 {% endcode %}

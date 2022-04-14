@@ -46,3 +46,13 @@ This functionality is available starting with Shopware 6.4.8.0.
 App Scripts allow your app to execute custom business logic inside the Shopware execution stack. This allows for new use cases, e.g. if you need to load additional data that should be rendered in the storefront or need to manipulate the cart.
 
 {% page-ref page="../../guides/plugins/apps/app-scripts/README.md" %}
+
+## Add conditions to the Rule Builder
+
+{% hint style="info" %}
+This functionality is available starting with Shopware 6.4.12.0.
+{% endhint %}
+
+Your app may introduce custom conditions for use in the [Rule Builder](../framework/rules.md).
+
+{% page-ref page="../../guides/plugins/apps/app-rule-conditions/README.md" %}
