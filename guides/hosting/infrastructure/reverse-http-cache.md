@@ -405,17 +405,14 @@ if (req.http.cookie ~ "sw-states=") {
 
 
 ```
-## we don't want the client to cache
-set resp.http.Cache-Control = "max-age=0, private";
-
-# remove link header, if session is already started to save client resources
-if (req.http.cookie ~ "session-") {
-    unset resp.http.Link;
-}
-
 # Remove the exact PHP Version from the response for more security (e.g. 404 pages)
 unset resp.http.x-powered-by;
 
-# invalidation headers are only for internal use
-unset resp.http.sw-invalidation-states;
+if (resp.http.sw-invalidation-states) {
+  # invalidation headers are only for internal use
+  unset resp.http.sw-invalidation-states; 
+  
+  ## we don't want the client to cache
+  set resp.http.Cache-Control = "max-age=0, private";
+}
 ```
