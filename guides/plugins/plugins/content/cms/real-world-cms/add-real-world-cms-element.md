@@ -3,7 +3,7 @@
 ## Overview
 
 This guide is based on the [Add a real world CMS block](add-real-world-cms-block.md) guide. We will create a real world CMS element in this guide.
-That means we are creating an element with a config which fits to our CMS-Button block. 
+That means we are creating an element with a config which fits to our CMS-Button block.
 
 ## Prerequisites
 
@@ -12,33 +12,35 @@ something please make sure to take a look at that guide as well.
 
 ## Creating your custom CMS element
 
-Imagine you want to create a new element to display a button which is fully configurable by the shop manager. We already build a CMS-Block for the button in the 
+Imagine you want to create a new element to display a button which is fully configurable by the shop manager. We already build a CMS-Block for the button in the
 last guide but if you just have a block you don't have a configuration that's why you need a CMS element
 
 ## Administration Code
 
 Since you already know the basics from [Add CMS Element](../add-cms-element.md), we will just look a quick look at the code.
-If you followed the real world block guide you already should have a `main.js` in the  `<plugin root>/src/Resources/app/administration/src` directory. 
+If you followed the real world block guide you already should have a `main.js` in the `<plugin root>/src/Resources/app/administration/src` directory.
 In this file we need to import our new element's directory. So let's do it:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/main.js" %}
+
 ```javascript
 /* Import the block directory */
 import './module/sw-cms/blocks/text/cms-button';
 
 /* Import the elements directory */
-import './module/sw-cms/elements/cms-button'
+import './module/sw-cms/elements/cms-button';
 ```
+
 {% endcode %}
 
 Of course we need to create the directory which we just imported now. So let's do that and place an `index.js` in your `<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/cms-button/index.js`. We need to register our element here and we will do it like this:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/index.js" %}
+
 ```javascript
 import './component';
 import './config';
 import './preview';
-
 
 Shopware.Service('cmsService').registerCmsElement({
     name: 'cms-button',
@@ -49,40 +51,40 @@ Shopware.Service('cmsService').registerCmsElement({
     defaultConfig: {
         title: {
             source: 'static',
-            value: 'ButtonText'
+            value: 'ButtonText',
         },
         textColor: {
             source: 'static',
-            value: '#fff'
+            value: '#fff',
         },
         url: {
             source: 'static',
-            value: ''
+            value: '',
         },
         newTab: {
             source: 'static',
-            value: 'true'
+            value: 'true',
         },
         buttonAlign: {
             source: 'static',
-            value: 'center'
+            value: 'center',
         },
         buttonColor: {
             source: 'static',
-            value: '#4492ed'
+            value: '#4492ed',
         },
         buttonWidth: {
             source: 'static',
-            value: ''
+            value: '',
         },
         buttonHeight: {
             source: 'static',
-            value: ''
-        }
+            value: '',
+        },
     },
-
 });
 ```
+
 {% endcode %}
 
 Of course you could add a bit more configuration but we want to keep everything good to understand in this guide. Now we also need to create the component, preview and the config. Let's start by doing the component.
@@ -92,6 +94,7 @@ Of course you could add a bit more configuration but we want to keep everything 
 In the component folder we have 3 different files. The index.js
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/cms-button/component/index.js" %}
+
 ```javascript
 import template from './sw-cms-el-cms-button.html.twig';
 import './sw-cms-el-cms-button.scss';
@@ -103,21 +106,21 @@ Component.register('sw-cms-el-cms-button', {
 
     inject: ['repositoryFactory'],
 
-    mixins: [
-        Mixin.getByName('cms-element')
-    ],
+    mixins: [Mixin.getByName('cms-element')],
 
     created() {
         this.createdComponent();
     },
-   
+
     computed: {
         buttonStyles() {
             const styles = {};
-            if (this.element.config.textColor.value && this.element.config.buttonColor.value ) {
+            if (
+                this.element.config.textColor.value &&
+                this.element.config.buttonColor.value
+            ) {
                 styles.color = `${this.element.config.textColor.value}`;
                 styles.backgroundColor = `${this.element.config.buttonColor.value}`;
-                
             }
             if (this.element.config.buttonWidth.value) {
                 styles.width = `${this.element.config.buttonWidth.value}px`;
@@ -136,11 +139,11 @@ Component.register('sw-cms-el-cms-button', {
         buttonAlignStyle() {
             const styles = {};
             if (this.element.config.buttonAlign.value) {
-                styles.justifyContent = `${this.element.config.buttonAlign.value}`
+                styles.justifyContent = `${this.element.config.buttonAlign.value}`;
             }
 
             return styles;
-        }
+        },
     },
 
     methods: {
@@ -152,17 +155,19 @@ Component.register('sw-cms-el-cms-button', {
         onInputText(text) {
             this.emitChanges(text);
         },
-    }
+    },
 });
 ```
+
 {% endcode %}
 
-We add computed properties which will handle the styling in that file as you can see. If you don't know how computed properties work take a look at  [computed property](https://vuejs.org/v2/guide/computed.html)
+We add computed properties which will handle the styling in that file as you can see. If you don't know how computed properties work take a look at [computed property](https://vuejs.org/v2/guide/computed.html)
 
 The twig file for your element:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/cms-button/component/sw-cms-el-cms-button.html.twig" %}
 {% raw %}
+
 ```markup
 {% block sw_cms_element_ninja_cms_button %}
 	<div class="sw-cms-el-ninja-cms-button" v-model="element.config.buttonAlign.value" :style="buttonAlignStyle">
@@ -172,12 +177,14 @@ The twig file for your element:
 	</div>
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
 And of course you also have a .scss file for your element in the component folder:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/cms-button/component/sw-cms-el-cms-button.scss" %}
+
 ```css
 .sw-cms-el-ninja-cms-button {
     display: flex;
@@ -186,7 +193,6 @@ And of course you also have a .scss file for your element in the component folde
     button {
         outline: none;
     }
-
 }
 
 .sw-el-ninja-btn {
@@ -197,8 +203,8 @@ And of course you also have a .scss file for your element in the component folde
     outline: none;
 }
 ```
-{% endcode %}
 
+{% endcode %}
 
 Let's move on with the preview component.
 
@@ -207,6 +213,7 @@ Let's move on with the preview component.
 The preview directory is not much different, we also have 3 files here. Let's start with the `index.js` again:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/cms-button/preview/index.js" %}
+
 ```javascript
 import template from './sw-cms-el-preview-cms-button.html.twig';
 import './sw-cms-el-preview-cms-button.scss';
@@ -214,15 +221,17 @@ import './sw-cms-el-preview-cms-button.scss';
 const { Component } = Shopware;
 
 Component.register('sw-cms-el-preview-cms-button', {
-    template
+    template,
 });
 ```
+
 {% endcode %}
 
 We registered the preview now we only have to do the template and some styles. So we create a new file `sw-cms-el-preview-cms-button.html.twig`.
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/cms-button/preview/sw-cms-el-preview-cms-button.html.twig" %}
 {% raw %}
+
 ```markup
 {% block sw_cms_element_ninja_button_preview %}
 	<div class="ninja-button-preview">
@@ -231,12 +240,14 @@ We registered the preview now we only have to do the template and some styles. S
 {% endblock %}
 
 ```
+
 {% endraw %}
 {% endcode %}
 
 We only display a simple button right here. Let's add some styles so people can actually take a look at it:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/cms-button/preview/sw-cms-el-preview-cms-button.scss" %}
+
 ```css
 .ninja-button-preview {
     display: flex;
@@ -257,28 +268,28 @@ We only display a simple button right here. Let's add some styles so people can 
     }
 }
 ```
+
 {% endcode %}
 
 The preview for the element is visible when you just drag and drop in an element and hit the exchange button. A modal will open up and will show you some elements and this is where you element preview should be visible now as well.
+
 ### Element config component
 
 The last thing you need for the CMS element in the administration is the config. And it's about the same here as well. We create a `config` directory and place 3 different files in here. Let's start with the `index.js`
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/cms-button/config/index.js" %}
+
 ```javascript
 import template from './sw-cms-el-config-cms-button.html.twig';
 
 const { Component, Mixin } = Shopware;
-
 
 Component.register('sw-cms-el-config-cms-button', {
     template,
 
     inject: ['repositoryFactory'],
 
-    mixins: [
-        Mixin.getByName('cms-element')
-    ],
+    mixins: [Mixin.getByName('cms-element')],
 
     created() {
         this.createdComponent();
@@ -294,17 +305,18 @@ Component.register('sw-cms-el-config-cms-button', {
         },
         onInputText(title) {
             this.emitChanges(title);
-        }
-    }
-
+        },
+    },
 });
 ```
+
 {% endcode %}
 
 Let's create the twig file as well real quick so we have the option to actually configure the button:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/cms-button/config/sw-cms-el-config-cms-button.html.twig" %}
 {% raw %}
+
 ```markup
 {% block sw_cms_el_ninja_cms_button %}
 	<sw-tabs class="sw-cms-el-config-ninja-cms-button__tabs" defaultItem="content">
@@ -354,7 +366,7 @@ Let's create the twig file as well real quick so we have the option to actually 
                                       :placeholder="$tc('sw-cms.elements.ninja-cms-button.config.placeholder.height')">
                                 <template #suffix>px</template>
                         </sw-field>
-						
+
 					{% endblock %}
 				</sw-container>
 			{% endblock %}
@@ -364,12 +376,14 @@ Let's create the twig file as well real quick so we have the option to actually 
 
 
 ```
+
 {% endraw %}
 {% endcode %}
 
 Now we are pretty much done. We also could add a .scss file if we need to style the configuration but in this case it's not necessary. So we skip that. Before we see anything changing in the administration we still need to change one little line of code from our [Add a real world CMS block](add-real-world-cms-block.md) guide. Our code should like this:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text/cms-button/index.js" %}
+
 ```javascript
 import './component';
 import './preview';
@@ -385,14 +399,15 @@ Shopware.Service('cmsService').registerCmsBlock({
         marginTop: '20px',
         marginLeft: '20px',
         marginRight: '20px',
-        sizingMode: 'boxed'
+        sizingMode: 'boxed',
     },
     /* Changed this line of code */
     slots: {
-        button: 'cms-button'
-    }
+        button: 'cms-button',
+    },
 });
 ```
+
 {% endcode %}
 
 #### Build the administration
@@ -401,24 +416,29 @@ Your element in the administration is almost ready. The only thing you need to d
 
 {% tabs %}
 {% tab title="Development template" %}
+
 ```bash
 ./psh.phar administration:build
 ```
+
 {% endtab %}
 
 {% tab title="Production template" %}
+
 ```bash
 ./bin/build-administration.sh
 ```
+
 {% endtab %}
 {% endtabs %}
 
 ### The storefront view
 
-First let's adjust the code for our block from our last guide.
+First let"s adjust the code for our block from our last guide.
 
 {% code title="<plugin root>/src/Resources/views/storefront/block/cms-block-cms-button.html.twig" %}
 {% raw %}
+
 ```text
 {% block block_cms_button_block %}
 	{% set element = block.slots.getSlot('button') %}
@@ -431,6 +451,7 @@ First let's adjust the code for our block from our last guide.
 	</div>
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -438,6 +459,7 @@ Now we want to react to the configuration we gave the element in the backend so 
 
 {% code title="<plugin root>/src/Resources/views/storefront/element/cms-element-cms-button.html.twig" %}
 {% raw %}
+
 ```text
 {% block element_text %}
 	{%  set config = element.fieldConfig.elements %}
@@ -453,8 +475,9 @@ Now we want to react to the configuration we gave the element in the backend so 
 	</div>
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
 And that's it! Now we created our very first own real world CMS-Element.
-You also can see the code for this guide here [shopware-real-world-cms-block](https://github.com/NinjaArmy/shopware-real-world-cms/tree/02-add-real-world-CMS element) 
+You also can see the code for this guide here [shopware-real-world-cms-block](https://github.com/NinjaArmy/shopware-real-world-cms/tree/02-add-real-world-CMS element)
