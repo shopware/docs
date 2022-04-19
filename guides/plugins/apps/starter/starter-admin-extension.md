@@ -4,9 +4,10 @@ In this guide, you will learn how to create an Admin Extension using the Admin E
 
 ## Prerequisites
 
-> Required: Feature Flag FEATURE_NEXT_17950=1 
+> Required: Feature Flag FEATURE_NEXT_17950=1 // Todo: Remove before merge
 
  * Basic CLI usage (creating files, directories, running commands)
+ * Installed `shopware-cli` tools
  * We will use the following libraries / softwares
     * npm
     * ngrok
@@ -18,13 +19,22 @@ First of all we need to create the app "wrapper", the so-called app manifest. It
 
 ### Create manifest file
 
-We create this file in a directory where all other app resources will reside in. Let's name this `ListingExtension`. Please execute the command below in your Shopware root directory.
+First of all, we create a new directory that contains our project.
 
 ```bash
-mkdir -p custom/apps/ListingExtension
-cd custom/apps/ListingExtension
+mkdir ListingExtension
+```
+
+within that directory, we create the manifest file.
+
+```bash
+cd ListingExtension
 touch manifest.xml
 ```
+
+{% hint style="warning" %}
+When you are using a self-managed Shopware Version, you can also create the app base directory in the `custom/apps` directory of your Shopware installation. However, the descriptions in this guide apply to both Shopware cloud and self-managed stores.
+{% endhint %}
 
 Next, we're gonna put our basic configuration into the file we just created.
 
@@ -56,11 +66,11 @@ Next, we need to set up an entry point, so Shopware and your app can communicate
 Let's create this file in a directory called `src`.
 
 ```bash
-cd custom/apps/ListingExtension
 mkdir src
 touch src/index.html
 ```
 
+{% code title="index.html" %}
 ```html
 <!doctype html>
 <html>
@@ -76,22 +86,24 @@ touch src/index.html
 </html>
 
 ```
+{% endcode %}
 
 ### Start the local development server
 
 Next, we need to start the live server so you don't always have to reload the page manually.
 
 ```bash
-cd custom/apps/ListingExtension
 npm install -g live-server
-live-server src 
+live-server src
 ```
 
-Now the file should be available on [http://127.0.0.1:8080
-](http://127.0.0.1:8080
-).
+Now the file should be available on [http://127.0.0.1:8080](http://127.0.0.1:8080).
 
 ### Initiate the ngrok tunnel
+
+{% hint style="info" %}
+For local development you don't need to set up the ngrok tunnel. As long as Shopware runs within your browser, it will be able to access the file locally. In that case, please continue with [Add the public link to your manifest](#add-the-public-link-to-your-manifest).
+{% endhint %}
 
 For the next step, we will use ngrok, so your local file gets exposed to the internet. This is required, so Shopware can access your extension point. We do that by simply running
 
@@ -120,6 +132,10 @@ You `src` directory will now be available at the public ***.ngrok.io** links.
 
 The final step of the setup is to configure your app to use correct public link for your entry point. In our case this is `https://9481-31-22-212-113.ngrok.io`.
 
+{% hint style="info" %}
+As mentioned above, for testing/local development purposes the ngrok tunnel is not needed. Instead, just use the URL of your local node server (in our case this is [http://127.0.0.1:8080](http://127.0.0.1:8080)) and use it as your `app-base-url`.
+{% endhint %}
+
 In order to do that, we have to add an `admin` section to our `manifest.xml` file and pass it into the `base-app-url` tag:
 
 {% code title="manifest.xml" %}
@@ -136,13 +152,19 @@ In order to do that, we have to add an `admin` section to our `manifest.xml` fil
 ```
 {% endcode %}
 
-### Install the App
+## Install the App
 
-In order to install the app, go back to the root directory of Shopware and run the following command:
+Next, we're going to install the app using the Shopware CLI tools.
+
+{% hint style="info" %}
+If this is your first time using the Shopware CLI, you have to [install](https://sw-cli.fos.gg/install/) it first. Next, configure it using the `shopware-cli project config init` command.
+{% endhint %}
 
 ```bash
-bin/console app:install --activate ListingExtension
+shopware-cli project extension upload ListingExtension --activate
 ```
+
+This will zip your extension directory and upload it to your configured store.
 
 {% hint style="warning" %}
 It is a currently known issue that whenever you make changes to the `manifest.xml` file, you need to increment the version number, so Shopware picks up the changes.
