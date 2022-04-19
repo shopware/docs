@@ -303,11 +303,9 @@ Additionally we need to setup some VCL Snippets in the Fastly interface:
 unset req.http.Proxy;
 
 # Strip query strings only needed by browser javascript. Customize to used tags.
-if (req.url ~ "(\?|&)(pk_campaign|piwik_campaign|pk_kwd|piwik_kwd|pk_keyword|pixelId|kwid|kw|adid|chl|dv|nk|pa|camid|adgid|cx|ie|cof|siteurl|utm_[a-z]+|_ga|gclid)=") {
-    # see rfc3986#section-2.3 "Unreserved Characters" for regex
-    set req.url = regsuball(req.url, "(pk_campaign|piwik_campaign|pk_kwd|piwik_kwd|pk_keyword|pixelId|kwid|kw|adid|chl|dv|nk|pa|camid|adgid|cx|ie|cof|siteurl|utm_[a-z]+|_ga|gclid)=[A-Za-z0-9\-\_\.\~]+&?", "");
+if (req.url != req.url.path) {
+  set req.url = querystring.regfilter(req.url, "pk_campaign|piwik_campaign|pk_kwd|piwik_kwd|pk_keyword|pixelId|kwid|kw|adid|chl|dv|nk|pa|camid|adgid|cx|ie|cof|siteurl|utm_[a-z]+|_ga|gclid");
 }
-set req.url = regsub(req.url, "(\?|\?&|&)$", "");
 
 # Normalize query arguments
 set req.url = querystring.sort(req.url);
@@ -319,37 +317,10 @@ if (req.http.x-forwarded-for) {
     set req.http.X-Forwarded-For = client.ip;
 }
 
-# Normalize Accept-Encoding header
-# straight from the manual: https://www.varnish-cache.org/docs/3.0/tutorial/vary.html
-if (req.http.Accept-Encoding) {
-    if (req.url ~ "\.(jpg|png|gif|gz|tgz|bz2|tbz|mp3|ogg)$") {
-        # No point in compressing these
-        unset req.http.Accept-Encoding;
-    } elsif (req.http.Accept-Encoding ~ "gzip") {
-        set req.http.Accept-Encoding = "gzip";
-    } elsif (req.http.Accept-Encoding ~ "deflate") {
-        set req.http.Accept-Encoding = "deflate";
-    } else {
-        # unkown algorithm
-        unset req.http.Accept-Encoding;
-    }
-}
-
-if (req.method != "GET" &&
-    req.method != "HEAD" &&
-    req.method != "PUT" &&
-    req.method != "POST" &&
-    req.method != "TRACE" &&
-    req.method != "OPTIONS" &&
-    req.method != "PATCH" &&
-    req.method != "DELETE") {
-    /* Non-RFC2616 or CONNECT which is weird. */
-    return (pass);
-}
-
-# We only deal with GET and HEAD by default
-if (req.method != "GET" && req.method != "HEAD") {
-    return (pass);
+# Normally, you should consider requests other than GET and HEAD to be uncacheable
+# (to this we add the special FASTLYPURGE method)
+if (req.method != "HEAD" && req.method != "GET" && req.method != "FASTLYPURGE") {
+  return(pass);
 }
 
 # Don't cache Authenticate & Authorization
@@ -359,7 +330,7 @@ if (req.http.Authenticate || req.http.Authorization) {
 
 # Always pass these paths directly to php without caching
 # Note: virtual URLs might bypass this rule (e.g. /en/checkout)
-if (req.url ~ "^/(checkout|account|admin|api)(/.*)?$") {
+if (req.url.path ~ "^/(checkout|account|admin|api)(/.*)?$") {
     return (pass);
 }
 
@@ -373,10 +344,10 @@ return (lookup);
 
 ```
 # Consider Shopware http cache cookies
-if (req.http.cookie ~ "sw-cache-hash=") {
-    set req.hash += regsub(req.http.cookie, "^.*?sw-cache-hash=([^;]*);*.*$", "\1");
-} elseif (req.http.cookie ~ "sw-currency=") {
-    set req.hash += regsub(req.http.cookie, "^.*?sw-currency=([^;]*);*.*$", "\1");
+if (req.http.cookie:sw-cache-hash) {
+  set req.hash += req.http.cookie:sw-cache-hash;
+} elseif (req.http.cookie:sw-currency) {
+  set req.hash += req.http.cookie:sw-currency;
 }
 ```
 
