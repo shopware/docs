@@ -273,5 +273,117 @@ if (obj.hits > 0) {
 #set resp.http.X-Cache-Hits = obj.hits;
 ```
 
+## Configure Fastly
+
+Fastly is supported since Shopware 6.4.11.0 out of the box with some configurations. To enable it we need to create a new file in `config/packages/storefront.yaml`
+
+```yaml
+storefront:
+    csrf:
+        enabled: true
+        mode: ajax
+    reverse_proxy:
+        enabled: true
+        fastly:
+          enabled: true
+          api_key: '<personal-token-from-fastly>'
+          service_id: '<service-id>'
+```
+
+### Fastly VCL Snippets
+
+Additionally we need to setup some VCL Snippets in the Fastly interface:
+
+**Name:** Normalize URLs
+
+**Subroutine:** vcl_recv
+
+```
+# Mitigate httpoxy application vulnerability, see: https://httpoxy.org/
+unset req.http.Proxy;
+
+# Strip query strings only needed by browser javascript. Customize to used tags.
+if (req.url != req.url.path) {
+  set req.url = querystring.regfilter(req.url, "pk_campaign|piwik_campaign|pk_kwd|piwik_kwd|pk_keyword|pixelId|kwid|kw|adid|chl|dv|nk|pa|camid|adgid|cx|ie|cof|siteurl|utm_[a-z]+|_ga|gclid");
+}
+
+# Normalize query arguments
+set req.url = querystring.sort(req.url);
+
+# Make sure that the client ip is forward to the client.
+if (req.http.x-forwarded-for) {
+    set req.http.X-Forwarded-For = req.http.X-Forwarded-For + ", " + client.ip;
+} else {
+    set req.http.X-Forwarded-For = client.ip;
+}
+
+# Normally, you should consider requests other than GET and HEAD to be uncacheable
+# (to this we add the special FASTLYPURGE method)
+if (req.method != "HEAD" && req.method != "GET" && req.method != "FASTLYPURGE") {
+  return(pass);
+}
+
+# Don't cache Authenticate & Authorization
+if (req.http.Authenticate || req.http.Authorization) {
+    return (pass);
+}
+
+# Always pass these paths directly to php without caching
+# Note: virtual URLs might bypass this rule (e.g. /en/checkout)
+if (req.url.path ~ "^/(checkout|account|admin|api)(/.*)?$") {
+    return (pass);
+}
+
+return (lookup);
+```
+
+**Name:** Add Shopware Custom Hashing
+
+**Subroutine:** vcl_hash
 
 
+```
+# Consider Shopware http cache cookies
+if (req.http.cookie:sw-cache-hash) {
+  set req.hash += req.http.cookie:sw-cache-hash;
+} elseif (req.http.cookie:sw-currency) {
+  set req.hash += req.http.cookie:sw-currency;
+}
+```
+
+
+**Name:** Respect Shopware States to Pass the cache
+
+**Subroutine:** vcl_hit
+
+```
+if (req.http.cookie ~ "sw-states=") {
+   set req.http.states = regsub(req.http.cookie, "^.*?sw-states=([^;]*);*.*$", "\1");
+
+   if (req.http.states ~ "logged-in" && obj.http.sw-invalidation-states ~ "logged-in" ) {
+      return (pass);
+   }
+
+   if (req.http.states ~ "cart-filled" && obj.http.sw-invalidation-states ~ "cart-filled" ) {
+      return (pass);
+   }
+}
+```
+
+**Name:** Remove internal headers
+
+**Subroutine:** vcl_deliver
+
+
+```
+# Remove the exact PHP Version from the response for more security (e.g. 404 pages)
+unset resp.http.x-powered-by;
+
+if (resp.http.sw-invalidation-states) {
+  # invalidation headers are only for internal use
+  unset resp.http.sw-invalidation-states; 
+  
+  ## we don't want the client to cache
+  set resp.http.Cache-Control = "max-age=0, private";
+}
+```
