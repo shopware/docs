@@ -248,8 +248,9 @@ $hmac = \hash_hmac('sha256', $request->getBody()->getContents(), $shopSecret);
 ## Permissions
 
 Shopware comes with the possibility to create fine grained [Access Control Lists](../plugins/administration/add-acl-rules.md) \(ACLs\). That means that that you need to request permissions if your app needs to read or write data over the API or wants to receive webhooks. The permissions your app needs are defined in the manifest file and are composed of the privilege \(`read`, `create`, `update`, `delete`\) and the entity.
+Since version 6.4.12.0 your app can also request additional non-CRUD privileges with the `<permission>` element.
 
-Sample permissions to read, create and update products, as well as delete orders look like this:
+Sample permissions to read, create and update products, delete orders, as well as reading the cache configuration looks like this:
 
 {% code title="manifest.xml" %}
 ```xml
@@ -264,6 +265,9 @@ Sample permissions to read, create and update products, as well as delete orders
         <update>product</update>
 
         <delete>order</delete>
+
+        <!-- Since version 6.4.12.0 your app can request additional non-CRUD privileges-->
+        <permission>system:cache:info</permission>
     </permissions>
 </manifest>
 ```
