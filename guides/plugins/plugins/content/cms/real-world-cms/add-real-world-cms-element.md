@@ -271,7 +271,7 @@ We only display a simple button right here. Let's add some styles so people can 
 
 {% endcode %}
 
-The preview for the element is visible when you just drag and drop in an element and hit the exchange button. A modal will open up and will show you some elements and this is where you element preview should be visible now as well.
+The preview for the element is visible when you just drag and drop in an element and hit the exchange button. A modal will open up and show you some elements, and this is where your element preview should be visible now.
 
 ### Element config component
 
