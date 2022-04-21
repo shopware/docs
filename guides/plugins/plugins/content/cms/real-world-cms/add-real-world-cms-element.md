@@ -380,7 +380,7 @@ Let's create the twig file as well real quick, so we have the option to configur
 {% endraw %}
 {% endcode %}
 
-Now we are pretty much done. We also could add a .scss file if we need to style the configuration but in this case it's not necessary. So we skip that. Before we see anything changing in the administration we still need to change one little line of code from our [Add a real world CMS block](add-real-world-cms-block.md) guide. Our code should like this:
+Now we are pretty much done. We could also add a .scss file if we need to style the configuration, but it's not necessary in this case. So we skip that. Before we see anything changing in the administration, we still need to change one little line of code from our [Add a real-world CMS block](add-real-world-cms-block.md) guide. Our code should be like this:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text/cms-button/index.js" %}
 
