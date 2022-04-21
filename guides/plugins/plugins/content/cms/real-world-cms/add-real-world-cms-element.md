@@ -17,9 +17,9 @@ last guide, but if you just have a block, you don't have a configuration. That's
 
 ## Administration Code
 
-Since you already know the basics from [Add CMS Element](../add-cms-element.md), we will just look a quick look at the code.
-If you followed the real world block guide you already should have a `main.js` in the `<plugin root>/src/Resources/app/administration/src` directory.
-In this file we need to import our new element's directory. So let's do it:
+We will look at the code briefly since you already know the basics from [Add CMS Element](../add-cms-element.md).
+If you followed the real-world block guide, you already should have a `main.js` in the `<plugin root>/src/Resources/app/administration/src` directory.
+In this file, we need to import our new element's directory. So let's do it:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/main.js" %}
 
