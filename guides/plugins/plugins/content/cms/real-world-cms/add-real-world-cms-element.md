@@ -210,7 +210,7 @@ Let's move on with the preview component.
 
 ### Element preview component
 
-The preview directory is not much different, we also have 3 files here. Let's start with the `index.js` again:
+The preview directory is not much different. We also have 3 files here. Let's start with the `index.js` again:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/cms-button/preview/index.js" %}
 
