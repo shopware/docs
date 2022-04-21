@@ -312,7 +312,7 @@ Component.register('sw-cms-el-config-cms-button', {
 
 {% endcode %}
 
-Let's create the twig file as well real quick so we have the option to actually configure the button:
+Let's create the twig file as well real quick, so we have the option to configure the button:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/cms-button/config/sw-cms-el-config-cms-button.html.twig" %}
 {% raw %}
