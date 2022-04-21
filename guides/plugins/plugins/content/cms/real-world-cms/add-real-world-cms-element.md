@@ -33,7 +33,7 @@ import './module/sw-cms/elements/cms-button';
 
 {% endcode %}
 
-Of course we need to create the directory which we just imported now. So let's do that and place an `index.js` in your `<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/cms-button/index.js`. We need to register our element here and we will do it like this:
+Of course, we need to create the directory we just imported now. So let's do that and place an `index.js` in your `<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/cms-button/index.js`. We need to register our element here, and we will do it like this:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/index.js" %}
 
