@@ -12,8 +12,8 @@ something please make sure to take a look at that guide as well.
 
 ## Creating your custom CMS element
 
-Imagine you want to create a new element to display a button which is fully configurable by the shop manager. We already build a CMS-Block for the button in the
-last guide but if you just have a block you don't have a configuration that's why you need a CMS element
+Imagine you want to create a new element to display a fully configurable button by the shop manager. We have already built a CMS-Block for the button in the
+last guide, but if you just have a block, you don't have a configuration. That's why you need a CMS element
 
 ## Administration Code
 
