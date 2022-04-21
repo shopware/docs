@@ -2,8 +2,8 @@
 
 ## Overview
 
-This guide is based on the [Add a real world CMS block](add-real-world-cms-block.md) guide. We will create a real world CMS element in this guide.
-That means we are creating an element with a config which fits to our CMS-Button block.
+This guide is based on the [Add a real-world CMS block](add-real-world-cms-block.md) guide. We will create a real-world CMS element in this guide.
+That means we are creating an element with a config that fits our CMS-Button block.
 
 ## Prerequisites
 
