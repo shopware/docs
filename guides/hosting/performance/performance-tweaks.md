@@ -2,43 +2,6 @@
 
 Shopware is a platform for many different projects. It needs to handle a broad range of load characteristics and environments. That means that the default configuration is optimized for the best out-of-the-box experience. But there are many opportunities to increase the performance by fitting the configuration to your needs.
 
-## Redis
-
-We recommend setting up at least four Redis servers for the following resources:
-- Session + cart - [Read more](../performance/session.md)
-- cache.object - [Read more](../performance/caches.md#example-replace-some-cache-with-redis)
-- Lock + Increment storage - [Read more](../performance/increment.md)
-- Enqueue - [Read more](../infrastructure/message-queue.md#transport-redis-example)
-- Number Ranges - [Read more](../performance/number-ranges.md)
-
-Instead of setting up a Redis server for `enqueue`, you can also work directly with [RabbitMQ](../infrastructure/message-queue.md#transport-rabbitmq-example)
-
-The PHP Redis extension provides persistent Redis connections. Persistent connections can help in high load scenarios as each request doesn't have to open and close connections. Using non-persistent Redis connections can also hit the system's maximum of open sockets. Because of these limitations, the Redis extension is preferred over Predis.
-
-When a Redis cluster is in usage, the `php.ini` setting `redis.clusters.cache_slots=1` should be set to skip the cluster node lookup on each connection 
-
-## Logging
-
-Set the log level of monolog to `error` to reduce the amount of logged events. Also, limiting the `buffer_size` of monolog prevents memory overflows for long-lived jobs:
-
-```yaml
-monolog:
-    handlers:
-        main:
-            level: error  
-            buffer_size: 30
-        business_event_handler_buffer:
-            level: error
-```
-
-The `business_event_handler_buffer` handler logs flows. Setting it to `error` will disable the logging of flow activities that succeed.
-
-## Filesystem
-
-In a multi-app-server system, manage specific directories over a shared filesystem. This includes assets as well as theme files and private and public filesystems. The recommendation is to use a S3 compatible bucket.
-
-[Read more](../infrastructure/filesystem.md)
-
 ## HTTP Cache
 
 To ensure a high RPS (requests per second), Shopware offers an integrated HTTP cache with a possible reverse proxy configuration. Any system that handles high user numbers should always use HTTP caching to reduce server resources.
@@ -103,6 +66,11 @@ When using Elasticsearch, it is important to set the `SHOPWARE_ES_THROW_EXCEPTIO
 [Read more](../infrastructure/elasticsearch/elasticsearch-setup.md)
 
 ## Prevent mail data updates
+
+{% hint style="info" %}
+This feature will be available starting with Shopware 6.5.
+{% endhint %}
+
 To provide autocompletion for the different mail templates in the administration UI, Shopware has a mechanism that writes an example mail into the database when sending the mail.
 
 With the `shopware.mail.update_mail_variables_on_send` configuration, you can disable this source of database load:
@@ -220,3 +188,19 @@ Symfony recommended that a `.env.local.php` file is used in Production instead o
 
 In addition to the benchmarks that Shopware regularly performs with the software, we strongly recommend integrating your benchmark tools and pipelines for larger systems. A generic benchmark of a product can rarely be adapted to the individual, highly customized projects.
 Tools such as [locust](https://locust.io/) or [k6](https://k6.io/) can be used for this purpose.
+
+## Logging
+
+Set the log level of monolog to `error` to reduce the amount of logged events. Also, limiting the `buffer_size` of monolog prevents memory overflows for long-lived jobs:
+
+```yaml
+monolog:
+    handlers:
+        main:
+            level: error  
+            buffer_size: 30
+        business_event_handler_buffer:
+            level: error
+```
+
+The `business_event_handler_buffer` handler logs flows. Setting it to `error` will disable the logging of flow activities that succeed.
