@@ -161,7 +161,7 @@ Component.register('sw-cms-el-cms-button', {
 
 {% endcode %}
 
-We add computed properties which will handle the styling in that file as you can see. If you don't know how computed properties work take a look at [computed property](https://vuejs.org/v2/guide/computed.html)
+As you can see, we add computed properties that will handle the styling in that file. If you don't know how computed properties work take a look at [computed property](https://vuejs.org/v2/guide/computed.html)
 
 The twig file for your element:
 
