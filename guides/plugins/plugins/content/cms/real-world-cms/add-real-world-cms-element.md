@@ -227,7 +227,7 @@ Component.register('sw-cms-el-preview-cms-button', {
 
 {% endcode %}
 
-We registered the preview now we only have to do the template and some styles. So we create a new file `sw-cms-el-preview-cms-button.html.twig`.
+We registered the preview. Now we only have to do the template and some styles. So we create a new file, `sw-cms-el-preview-cms-button.html.twig`.
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/cms-button/preview/sw-cms-el-preview-cms-button.html.twig" %}
 {% raw %}
