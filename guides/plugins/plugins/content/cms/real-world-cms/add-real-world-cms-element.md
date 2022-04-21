@@ -412,7 +412,7 @@ Shopware.Service('cmsService').registerCmsBlock({
 
 #### Build the administration
 
-Your element in the administration is almost ready. The only thing you need to do now is to build the administration again!
+Your element in the administration is almost ready. The only thing you need to do now is building the administration again!
 
 {% tabs %}
 {% tab title="Development template" %}
