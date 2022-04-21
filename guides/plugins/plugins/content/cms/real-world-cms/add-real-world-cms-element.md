@@ -455,7 +455,7 @@ First, let's adjust the code for our block from our last guide.
 {% endraw %}
 {% endcode %}
 
-Now we want to react to the configuration we gave the element in the backend so we need to create a new file `cms-element-cms-button.html.twig`
+Now we want to react to the configuration we gave the element in the backend, so we need to create a new file `cms-element-cms-button.html.twig`
 
 {% code title="<plugin root>/src/Resources/views/storefront/element/cms-element-cms-button.html.twig" %}
 {% raw %}
