@@ -181,7 +181,7 @@ The twig file for your element:
 {% endraw %}
 {% endcode %}
 
-And of course you also have a .scss file for your element in the component folder:
+And of course, you also have a .scss file for your element in the component folder:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/cms-button/component/sw-cms-el-cms-button.scss" %}
 
