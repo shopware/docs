@@ -19,7 +19,7 @@ In order to make your sorting manageable in the administration by the user, you 
 Create a new Migration in your plugin:
 
 {% hint style="info" %}
-Note: Do not change an existing migration if your plugin is already in use by someone. In that case, create a new Migration instead! This also means, that you have to re-install your plugin if you adjust the migration.
+Note: Do not change an existing migration if your plugin is already in use by someone. In that case, create a new Migration instead! This also means, that you have to re-install or update your plugin if you adjust the migration.
 {% endhint %}
 
 {% code title="<plugin root>/src/Migration/Migration1615470599ExampleSorting.php" %}
