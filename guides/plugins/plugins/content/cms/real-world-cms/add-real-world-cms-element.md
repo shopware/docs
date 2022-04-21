@@ -244,7 +244,7 @@ We registered the preview. Now we only have to do the template and some styles. 
 {% endraw %}
 {% endcode %}
 
-We only display a simple button right here. Let's add some styles so people can actually take a look at it:
+We only display a simple button right here. Let's add some styles so people can take a look at it:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/cms-button/preview/sw-cms-el-preview-cms-button.scss" %}
 
