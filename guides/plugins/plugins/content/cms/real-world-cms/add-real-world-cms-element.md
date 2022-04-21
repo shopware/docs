@@ -87,7 +87,7 @@ Shopware.Service('cmsService').registerCmsElement({
 
 {% endcode %}
 
-Of course you could add a bit more configuration but we want to keep everything good to understand in this guide. Now we also need to create the component, preview and the config. Let's start by doing the component.
+Of course, you could add a bit more configuration, but we want to keep everything good to understand in this guide. Now we also need to create the component, preview, and the config. Let's start with the component.
 
 ### Element component
 
