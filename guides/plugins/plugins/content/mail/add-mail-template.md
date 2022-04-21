@@ -189,7 +189,7 @@ Now on to the `createMailTemplate` method, which looks big, but isn't that scary
 
 We then create the entry for the `mail_template` table. Make sure to set `system_default` to 0 here!
 
-Afterwards we're inserting the entries into the `mail_template_translation` table. For compability reasons we have to check whether the languages exist in the database so we can insert our translations for these languages. The same principle applies to other ISO Languages.
+Afterwards we're inserting the entries into the `mail_template_translation` table. For compatibility reasons we have to check whether the languages exist in the database so we can insert our translations for these languages. The same principle applies to other ISO languages.
 
 The variables for the English and the German subject and description, may be changed to fit your needs.
 
