@@ -479,5 +479,5 @@ Now we want to react to the configuration we gave the element in the backend, so
 {% endraw %}
 {% endcode %}
 
-And that's it! Now we created our very first own real world CMS-Element.
+And that's it! Now we created our very first own real-world CMS Element.
 You also can see the code for this guide here [shopware-real-world-cms-block](https://github.com/NinjaArmy/shopware-real-world-cms/tree/02-add-real-world-CMS element)
