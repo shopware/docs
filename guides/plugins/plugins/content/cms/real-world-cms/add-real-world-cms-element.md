@@ -434,7 +434,7 @@ Your element in the administration is almost ready. The only thing you need to d
 
 ### The storefront view
 
-First let"s adjust the code for our block from our last guide.
+First, let's adjust the code for our block from our last guide.
 
 {% code title="<plugin root>/src/Resources/views/storefront/block/cms-block-cms-button.html.twig" %}
 {% raw %}
