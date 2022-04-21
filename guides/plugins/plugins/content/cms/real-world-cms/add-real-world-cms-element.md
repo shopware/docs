@@ -275,7 +275,7 @@ The preview for the element is visible when you just drag and drop in an element
 
 ### Element config component
 
-The last thing you need for the CMS element in the administration is the config. And it's about the same here as well. We create a `config` directory and place 3 different files in here. Let's start with the `index.js`
+The last thing you need for the CMS element in the administration is the config. And it's about the same here as well. We create a `config` directory and place 3 different files here. Let's start with the `index.js`
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/cms-button/config/index.js" %}
 
