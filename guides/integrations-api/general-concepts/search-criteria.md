@@ -318,14 +318,17 @@ The `sort` parameter allows to control the sorting of the result. Several sorts 
 * The `field` parameter defines which field is to be used for sorting.
 * The `order` parameter defines the sort direction.
 * The parameter `naturalSorting` allows to use a [Natural Sorting Algorithm](https://en.wikipedia.org/wiki/Natural_sort_order)
+* The parameter `type` allows to use divergent sorting behavior. Valid values are:
+  * `count`: Sort by the count of associations via the given field. SQL representation: `COUNT({field}) {order}`
 
 ```javascript
 {
     "limit": 5,
     "sort": [
         { "field": "name", "order": "ASC", "naturalSorting": true },
-        { "field": "active", "order": "DESC" }    
-    ]
+        { "field": "active", "order": "DESC" },
+        { "field": "products.id", "order": "DESC", "type": "count" }
+  ]
 }
 ```
 
