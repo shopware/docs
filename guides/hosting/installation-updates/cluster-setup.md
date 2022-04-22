@@ -1,4 +1,4 @@
-# Enterprise project setup
+# High load setup
 
 The setup of enterprise systems differs from a normal installation of Shopware. Most enterprise systems are a completely customized stores with individual templates and extensions.
 
@@ -21,6 +21,32 @@ Most enterprise projects have a development team assigned. It's responsible for 
 
 ### Disable extensions
 For requests, the entire handling of the app and plugin system, via the database, should be deactivated via the configuration `DISABLE_EXTENSIONS` for request handling PHP processes like php-fpm. If this environment variable is activated, the plugin list is acquired from the required composer dependencies. This hands over the control over active plugin list to be regulated via the project deployment.  Third party sources can rely on [plugin lifecycle events](https://developer.shopware.com/docs/guides/plugins/plugins/plugin-fundamentals/plugin-lifecycle), so running commands like `bin/console plugin:install --activate SwagExample` or `bin/console plugin:update SwagExample` needs to be integrated into the deployment without the `DISABLE_EXTENSIONS` flag. In the future it will be no longer possible to obtain plug-ins via the built-in Extension Store, or to deactivate or uninstall them via a UI or database.
+
+## Redis
+
+We recommend setting up at least four Redis servers for the following resources:
+- Session + cart - [Read more](../performance/session.md)
+- cache.object - [Read more](../performance/caches.md#example-replace-some-cache-with-redis)
+- Lock + Increment storage - [Read more](../performance/increment.md)
+- Enqueue - [Read more](../infrastructure/message-queue.md#transport-redis-example)
+- Number Ranges - [Read more](../performance/number-ranges.md)
+
+Instead of setting up a Redis server for `enqueue`, you can also work directly with [RabbitMQ](../infrastructure/message-queue.md#transport-rabbitmq-example)
+
+The PHP Redis extension provides persistent Redis connections. Persistent connections can help in high load scenarios as each request doesn't have to open and close connections. Using non-persistent Redis connections can also hit the system's maximum of open sockets. Because of these limitations, the Redis extension is preferred over Predis.
+
+When a Redis cluster is in usage, the `php.ini` setting `redis.clusters.cache_slots=1` should be set to skip the cluster node lookup on each connection
+
+## Filesystem
+
+In a multi-app-server system, manage specific directories over a shared filesystem. This includes assets as well as theme files and private and public filesystems. The recommendation is to use a S3 compatible bucket.
+
+[Read more](../infrastructure/filesystem.md)
+
+### Shared directories
+Besides the S3 bucket, it is also necessary to create certain directories for the app servers as shared filesystem. 
+
+[Read more](./composer#storage-and-caches.md)
 
 ## Shopware updates + security
 To update an enterprise project, we always recommend using a staging environment. However, updates for a project should only be obtained if there are critical problems with the system or if essential features have been provided by Shopware.
