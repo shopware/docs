@@ -65,7 +65,7 @@ Next, we're gonna put our basic configuration into the file we just created.
 
 Next, we need to set up an entry point, so Shopware and your app can communicate. The entry point is a static `.html` file, which includes the Extension SDK script and defines our extension.
 
-> Create a graphic illustrating communication between Shopware and the App.
+![Communication between the admin panel and your entry point](../../../../.gitbook/assets/extension-api-communication.png)
 
 The file will be rendered as a hidden iFrame within your admin panel. Using `postMessage` requests, the iFrame and your admin panel can communicate and exchange data.
 
