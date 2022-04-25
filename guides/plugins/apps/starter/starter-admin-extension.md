@@ -1,21 +1,27 @@
 # App-Starter - Create an Admin Extension
 
-In this guide, you will learn how to create an Admin Extension using the Admin Extension SDK.
+In this guide, you will learn how to set up an extension for the administration UI.
+
+{% hint style="info" %}
+When you are using a self-managed Shopware Version, make sure to set the feature flag `FEATURE_NEXT_17950=1` to enable the Admin Extension API.
+{% endhint %}
+
+![An admin notification](../../../../.gitbook/assets/extension-api-notification.png)
 
 ## Prerequisites
 
-> Required: Feature Flag FEATURE_NEXT_17950=1 // Todo: Remove before merge
+In order to follow this guide, make sure you're familiar with and meet the following requirements:
 
  * Basic CLI usage (creating files, directories, running commands)
- * Installed `shopware-cli` tools
+ * Installed [shopware-cli](https://sw-cli.fos.gg/) tools
  * We will use the following libraries / softwares
     * npm
-    * ngrok
+    * ngrok (not required)
     * live-server (small local development live-reloading server)
 
 ## Create the App Wrapper
 
-First of all we need to create the app "wrapper", the so-called app manifest. It contains just a single file with some basic configuration.
+First of all we need to create the app "wrapper", the so-called app manifest. It is just a single XML file with some basic configuration.
 
 ### Create manifest file
 
@@ -32,7 +38,7 @@ cd ListingExtension
 touch manifest.xml
 ```
 
-{% hint style="warning" %}
+{% hint style="info" %}
 When you are using a self-managed Shopware Version, you can also create the app base directory in the `custom/apps` directory of your Shopware installation. However, the descriptions in this guide apply to both Shopware cloud and self-managed stores.
 {% endhint %}
 
@@ -81,12 +87,14 @@ touch src/index.html
         sw.notification.dispatch({
             title: 'Hi there',
             message: 'Looks like someone sent you a message'
-        })
+        });
     </script>
 </html>
 
 ```
 {% endcode %}
+
+This file contains example code that displays a simple notification within the administration. 
 
 ### Start the local development server
 
@@ -154,18 +162,25 @@ In order to do that, we have to add an `admin` section to our `manifest.xml` fil
 
 ## Install the App
 
-Next, we're going to install the app using the Shopware CLI tools.
+In this last setp, we're going to install the app using the Shopware CLI tools.
 
 {% hint style="info" %}
 If this is your first time using the Shopware CLI, you have to [install](https://sw-cli.fos.gg/install/) it first. Next, configure it using the `shopware-cli project config init` command.
 {% endhint %}
 
 ```bash
-shopware-cli project extension upload ListingExtension --activate
+shopware-cli project extension upload ListingExtension --activate --increase-version
 ```
 
-This will zip your extension directory and upload it to your configured store.
+This command will create a zip file from the specified extension directory and upload it to your configured store.
+The `--increase-version` parameter increases the version specified in the `manifest.xml` file. 
 
-{% hint style="warning" %}
+{% hint style="info" %}
 It is a currently known issue that whenever you make changes to the `manifest.xml` file, you need to increment the version number, so Shopware picks up the changes.
 {% endhint %}
+
+## Where from here?
+
+ * Check out Admin Extension API
+ * Set up with Webpack
+ * What else can I do.
