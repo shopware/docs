@@ -52,6 +52,10 @@
 
         <delete>order</delete>
     </permissions>
+    <!-- Optional, Since version 6.4.12.0 a list of all external endpoints your app communicates with -->
+    <allowed-hosts>
+        <host>example.com</host>
+    </allowed-hosts>
     <!-- Optional -->
     <webhooks>
         <!-- register webhooks you want to receive, keep in mind that the name needs to be unique -->
