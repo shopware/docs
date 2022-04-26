@@ -66,6 +66,7 @@
       * [Decorating a Shopware Migration Assistant converter](products/plugins/migration-assistant/guides/decorating-a-shopware-migration-assistant-converter.md)
       * [Creating a new migration profile](products/plugins/migration-assistant/guides/creating-a-new-migration-profile.md)
 * [Cloud](products/cloud.md)
+* [PaaS](products/paas.md)
 * [PWA](products/pwa.md)
 
 ## Guides
