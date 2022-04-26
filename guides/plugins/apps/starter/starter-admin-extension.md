@@ -24,21 +24,15 @@ First of all we need to create the app "wrapper", the so-called app manifest. It
 
 ### Create manifest file
 
-First of all, we create a new directory that contains our project.
+First of all, we create the manifest file in a new directory. We'll call that our "project directory".
 
-```bash
-mkdir ListingExtension
 ```
-
-within that directory, we create the manifest file.
-
-```bash
-cd ListingExtension
-touch manifest.xml
+SimpleNotification/
+├─ manifest.xml
 ```
 
 {% hint style="info" %}
-When you are using a self-managed Shopware Version, you can also create the app base directory in the `custom/apps` directory of your Shopware installation. However, the descriptions in this guide apply to both Shopware cloud and self-managed stores.
+When you are using a self-managed Shopware Version, you can also create the project directory in the `custom/apps` directory of your Shopware installation. However, the descriptions in this guide apply to both Shopware cloud and self-managed stores.
 {% endhint %}
 
 Next, we're gonna put our basic configuration into the file we just created.
@@ -48,9 +42,9 @@ Next, we're gonna put our basic configuration into the file we just created.
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
-        <name>ListingExtension</name>
-        <label>Listing Extension App</label>
-        <description>This app extends the product listing</description>
+        <name>SimpleNotification</name>
+        <label>Hi Developer App</label>
+        <description>This app shows a notification in the admin panel</description>
         <author>shopware AG</author>
         <copyright>(c) shopware AG</copyright>
         <version>1.0.0</version>
@@ -69,19 +63,22 @@ Next, we need to set up an entry point, so Shopware and your app can communicate
 
 The file will be rendered as a hidden iFrame within your admin panel. Using `postMessage` requests, the iFrame and your admin panel can communicate and exchange data.
 
-Let's create this file in a directory called `src`.
+Let's create an `index.html` file in a directory called `src`.
 
-```bash
-mkdir src
-touch src/index.html
+```
+SimpleNotification/
+├─ src/
+│  ├─ index.html
+├─ manifest.xml
+
 ```
 
-{% code title="index.html" %}
+{% code title="src/index.html" %}
 ```html
 <!doctype html>
 <html>
     <head>
-        <script src="https://unpkg.com/@shopware-ag/admin-extension-sdk/cdn"></script>
+        <script src="https://unpkg.com/@shopware-ag/admin-extension-sdk@0.0.52/cdn"></script>
     </head>
     <script>
         sw.notification.dispatch({
@@ -94,7 +91,11 @@ touch src/index.html
 ```
 {% endcode %}
 
-This file contains example code that displays a simple notification within the administration. 
+This file contains the basic setup for our app to display the notification:
+
+ * The HTML is rendered in a hidden iFrame when the administration panel is loaded
+ * The Admin Extension SDK script is loaded through a CDN and exposed as the `sw` object
+ * We use the `notification.dispatch` SDK method to display a simple notification with a title and a message.
 
 ### Start the local development server
 
@@ -127,8 +128,9 @@ In order to do that, we have to add an `admin` section to our `manifest.xml` fil
 ```
 {% endcode %}
 
-Since the URL passed is only available locally, you will only be able to see changes on your own machine.
-If you want to share it, you need to host the entry point file somewhere or use services to expose local files as public URLs, such as [ngrok](https://ngrok.com/).
+Since the URL to your entry point only available locally, you will only be able to see changes on your own machine. If you want to share it, for development purposes, you need to host the entry point file somewhere or use services to expose local files as public URLs, such as [ngrok](https://ngrok.com/).
+
+For production usage you should host the entry point file on a public CDN or a static site hosting.
 
 ## Install the App
 
@@ -139,7 +141,7 @@ If this is your first time using the Shopware CLI, you have to [install](https:/
 {% endhint %}
 
 ```bash
-shopware-cli project extension upload ListingExtension --activate --increase-version
+shopware-cli project extension upload SimpleNotification --activate --increase-version
 ```
 
 This command will create a zip file from the specified extension directory and upload it to your configured store.
