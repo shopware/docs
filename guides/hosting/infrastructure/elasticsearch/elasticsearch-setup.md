@@ -109,6 +109,8 @@ SHOPWARE_ES_INDEX_PREFIX="sw"
 SHOPWARE_ES_THROW_EXCEPTION=1
 ```
 
+### Example for changing index configuration
+
 Shopware will use in default 3 shards and 3 replicas for the created index. This configuration can be overwritten with a new config file in `config/packages/elasticsearch.yml`
 
 {% hint style="info" %}
