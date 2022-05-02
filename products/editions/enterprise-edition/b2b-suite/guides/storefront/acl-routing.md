@@ -63,7 +63,8 @@ It is quite natural to map CRUD Actions like this. However, assignment is a litt
 
 ## Automatic generation
 
-You can autogenerate this format with the `RoutingIndexer`. This service expects a format that is automatically created by the IndexerService. This could be a part of your deployment or testing workflow.
+You can autogenerate this format with the `RoutingIndexer`. This service expects a format that is automatically created by the IndexerService. 
+This could be a part of your deployment or testing workflow.
 
 ```php
 require __DIR__ . '/../B2bContact.php';
@@ -84,24 +85,26 @@ The generated file looks like this:
       ),
 ```
 
-If you spot a privilege or resource that is called `NOT_MAPPED`, the action is new and you have to update the file to add the correct privilege name.
+If you spot a privilege or resource that is called `NOT_MAPPED`, 
+the action is new and you have to update the file to add the correct privilege name.
 
 ## Template extension
 
-The ACL implementation is safe at the php level. Any route you have no access to will automatically be blocked but for a better user experience you should also extend the template to hide inaccessible actions.
-```
-<a href="{url action=assign}" class="{b2b_acl controller=b2broleaddress action=assign}">
+The ACL implementation is safe at the php level. Any route you have no access to will automatically be blocked but 
+for a better user experience you should also extend the template to hide inaccessible actions.
+```twig
+<a href="{{ url("frontend.b2b." ~ page.route ~ ".assign") }}" class="{{ b2b_acl('b2broleaddress', 'assign') }}">
 ```
 
 This will add a few vital css classes:
 
 Allowed actions:
-```
+```html
 <a [...] class="is--b2b-acl is--b2b-acl-controller-b2broleaddress is--b2b-acl-action-assign is--b2b-acl-allowed"/>
 ```
 
 Denied actions:
-```
+```html
 <a [...] class="is--b2b-acl is--b2b-acl-controller-b2broleaddress is--b2b-acl-action-assign is--b2b-acl-forbidden"/>
 ```
 
