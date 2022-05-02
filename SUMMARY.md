@@ -81,7 +81,6 @@
   * [Docker](guides/installation/docker.md)
   * [Installation from scratch](guides/installation/from-scratch.md)
   * [Valet+](guides/installation/valet.md)
-  * [Vagrant](guides/installation/vagrant.md)
   * [MAMP](guides/installation/mamp.md)
 * [Extensions](guides/plugins/README.md)
   * [Overview](guides/plugins/overview.md)
