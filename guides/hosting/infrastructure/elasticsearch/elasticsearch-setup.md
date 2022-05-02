@@ -88,7 +88,7 @@ SHOPWARE_ES_HOSTS="elasticsearchhostname:9200"
 SHOPWARE_ES_ENABLED="1"
 SHOPWARE_ES_INDEXING_ENABLED="1"
 SHOPWARE_ES_INDEX_PREFIX="sw"
-SHOPWARE_ES_THROW_EXCEPTION=0
+SHOPWARE_ES_THROW_EXCEPTION=1
 ```
 
 ### Example file for debug configuration
@@ -107,6 +107,21 @@ SHOPWARE_ES_ENABLED="1"
 SHOPWARE_ES_INDEXING_ENABLED="1"
 SHOPWARE_ES_INDEX_PREFIX="sw"
 SHOPWARE_ES_THROW_EXCEPTION=1
+```
+
+### Example for changing index configuration
+
+Shopware will use in default 3 shards and 3 replicas for the created index. This configuration can be overwritten with a new config file in `config/packages/elasticsearch.yml`
+
+{% hint style="info" %}
+This configuration is available since Shopware version 6.4.12.0
+{% endhint %}
+
+```yml
+elasticsearch:
+  index_settings:
+    number_of_shards: 1
+    number_of_replicas: 0
 ```
 
 ## Indexing
