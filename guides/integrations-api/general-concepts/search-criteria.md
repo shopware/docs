@@ -336,7 +336,7 @@ The `sort` parameter allows to control the sorting of the result. Several sorts 
   
 For demonstration purposes see the following request payload that additionally includes a `count` aggregation.
 
-```json
+```javascript
 {
   "limit": 3,
   "includes": {
@@ -364,7 +364,7 @@ For demonstration purposes see the following request payload that additionally i
 
 In the response the order of the `product` elements is now equal to the order of the aggregated buckets: 
 
-```json
+```javascript
 {
     "total": 3,
     "aggregations": {
