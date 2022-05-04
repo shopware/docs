@@ -16,14 +16,13 @@
 |`contact_form.send` | Triggers when a contact form is send | - | {"contactFormData":"object"}
 |`customer.group.registration.accepted` | __EMPTY__ | `customer:read` `customer_group:read` | {"entity":"customer_group"}
 |`customer.group.registration.declined` | __EMPTY__ | `customer:read` `customer_group:read` | {"entity":"customer_group"}
-|`customer.recovery.request` | Triggers when a customer recovers his password | `customer_recovery:read` | {"entity":"customer_recovery","resetUrl":"string","shopName":"string"}
+|`customer.recovery.request` | Triggers when a customer recovers his password | `customer_recovery:read` `customer:read` | {"entity":"customer","resetUrl":"string","shopName":"string"}
 |`mail.after.create.message` | __EMPTY__ | - | {"data":"array","message":"object"}
 |`mail.before.send` | Triggers before a mail is send | - | {"data":"array","templateData":"array"}
 |`mail.sent` | Triggers when a mail is send from Shopware | - | {"subject":"string","contents":"string","recipients":"array"}
 |`newsletter.confirm` | __EMPTY__ | `newsletter_recipient:read` | {"entity":"newsletter_recipient"}
 |`newsletter.register` | __EMPTY__ | `newsletter_recipient:read` | {"entity":"newsletter_recipient","url":"string"}
 |`newsletter.unsubscribe` | __EMPTY__ | `newsletter_recipient:read` | {"entity":"newsletter_recipient"}
-|`newsletter.update` | __EMPTY__ | `newsletter_recipient:read` | {"entity":"newsletter_recipient"}
 |`product_export.log` | __EMPTY__ | - | {"name":"string"}
 |`state_enter.order.state.cancelled` | __EMPTY__ | `order:read` | {"entity":"order"}
 |`state_enter.order.state.completed` | __EMPTY__ | `order:read` | {"entity":"order"}
@@ -46,6 +45,15 @@
 |`state_enter.order_transaction.state.refunded` | __EMPTY__ | `order:read` | {"entity":"order"}
 |`state_enter.order_transaction.state.refunded_partially` | __EMPTY__ | `order:read` | {"entity":"order"}
 |`state_enter.order_transaction.state.reminded` | __EMPTY__ | `order:read` | {"entity":"order"}
+|`state_enter.order_transaction.state.unconfirmed` | __EMPTY__ | `order:read` | {"entity":"order"}
+|`state_enter.order_transaction_capture.state.completed` | __EMPTY__ | `order:read` | {"entity":"order"}
+|`state_enter.order_transaction_capture.state.failed` | __EMPTY__ | `order:read` | {"entity":"order"}
+|`state_enter.order_transaction_capture.state.pending` | __EMPTY__ | `order:read` | {"entity":"order"}
+|`state_enter.order_transaction_capture_refund.state.cancelled` | __EMPTY__ | `order:read` | {"entity":"order"}
+|`state_enter.order_transaction_capture_refund.state.completed` | __EMPTY__ | `order:read` | {"entity":"order"}
+|`state_enter.order_transaction_capture_refund.state.failed` | __EMPTY__ | `order:read` | {"entity":"order"}
+|`state_enter.order_transaction_capture_refund.state.in_progress` | __EMPTY__ | `order:read` | {"entity":"order"}
+|`state_enter.order_transaction_capture_refund.state.open` | __EMPTY__ | `order:read` | {"entity":"order"}
 |`state_leave.order.state.cancelled` | __EMPTY__ | `order:read` | {"entity":"order"}
 |`state_leave.order.state.completed` | __EMPTY__ | `order:read` | {"entity":"order"}
 |`state_leave.order.state.in_progress` | __EMPTY__ | `order:read` | {"entity":"order"}
@@ -67,6 +75,15 @@
 |`state_leave.order_transaction.state.refunded` | __EMPTY__ | `order:read` | {"entity":"order"}
 |`state_leave.order_transaction.state.refunded_partially` | __EMPTY__ | `order:read` | {"entity":"order"}
 |`state_leave.order_transaction.state.reminded` | __EMPTY__ | `order:read` | {"entity":"order"}
+|`state_leave.order_transaction.state.unconfirmed` | __EMPTY__ | `order:read` | {"entity":"order"}
+|`state_leave.order_transaction_capture.state.completed` | __EMPTY__ | `order:read` | {"entity":"order"}
+|`state_leave.order_transaction_capture.state.failed` | __EMPTY__ | `order:read` | {"entity":"order"}
+|`state_leave.order_transaction_capture.state.pending` | __EMPTY__ | `order:read` | {"entity":"order"}
+|`state_leave.order_transaction_capture_refund.state.cancelled` | __EMPTY__ | `order:read` | {"entity":"order"}
+|`state_leave.order_transaction_capture_refund.state.completed` | __EMPTY__ | `order:read` | {"entity":"order"}
+|`state_leave.order_transaction_capture_refund.state.failed` | __EMPTY__ | `order:read` | {"entity":"order"}
+|`state_leave.order_transaction_capture_refund.state.in_progress` | __EMPTY__ | `order:read` | {"entity":"order"}
+|`state_leave.order_transaction_capture_refund.state.open` | __EMPTY__ | `order:read` | {"entity":"order"}
 |`user.recovery.request` | __EMPTY__ | `user_recovery:read` | {"entity":"user_recovery","resetUrl":"string"}
 |`product.written` | Triggers when a product is written | `product:read` | {"entity":"product","operation":true,"primaryKey":"array string","payload":"array"}
 |`product.deleted` | Triggers when a product is deleted | `product:read` | {"entity":"product","operation":"update insert","primaryKey":"array string","payload":"array"}
@@ -84,3 +101,7 @@
 |`customer_address.deleted` | Triggers when a customer_address is deleted | `customer_address:read` | {"entity":"customer_address","operation":"update insert","primaryKey":"array string","payload":"array"}
 |`order.written` | Triggers when a order is written | `order:read` | {"entity":"order","operation":true,"primaryKey":"array string","payload":"array"}
 |`order.deleted` | Triggers when a order is deleted | `order:read` | {"entity":"order","operation":"update insert","primaryKey":"array string","payload":"array"}
+|`order_address.written` | Triggers when a order_address is written | `order_address:read` | {"entity":"order_address","operation":true,"primaryKey":"array string","payload":"array"}
+|`order_address.deleted` | Triggers when a order_address is deleted | `order_address:read` | {"entity":"order_address","operation":"update insert","primaryKey":"array string","payload":"array"}
+|`document.written` | Triggers when a document is written | `document:read` | {"entity":"document","operation":true,"primaryKey":"array string","payload":"array"}
+|`document.deleted` | Triggers when a document is deleted | `document:read` | {"entity":"document","operation":"update insert","primaryKey":"array string","payload":"array"}
