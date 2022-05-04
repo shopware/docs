@@ -334,6 +334,7 @@
     * [Webhook Events Reference](resources/references/app-reference/webhook-events-reference.md)
     * [Payment Reference](resources/references/app-reference/payment-reference.md)
     * [CMS Reference](resources/references/app-reference/cms-reference.md)
+    * [Entities Reference](resources/references/app-reference/entities-reference.md)
     * [Script Reference](resources/references/app-reference/script-reference/README.md)
       * [Cart manipulation services reference](resources/references/app-reference/script-reference/cart-manipulation-script-services-reference.md)
       * [Data loading services reference](resources/references/app-reference/script-reference/data-loading-script-services-reference.md)
