@@ -19,7 +19,7 @@ To make use of the custom entities register your entities in your `entities.xml`
 ```
 {% endcode %}
 
-For a complete reference of the structure of the entities file take a look at the [Custom entity xml reference](../../../resources/references/app-reference/entities-reference.md).
+For a complete reference of the structure of the entities file take a look at the [Custom entity xml reference](../../../../resources/references/app-reference/entities-reference.md).
 
 ## Functionality
 
@@ -38,7 +38,7 @@ POST /api/search/custom-entity-blog
 ## Permissions
 
 Unlike core entities, your app directly has full access rights to your own custom entities. However, if your entity has associations that reference core tables,
-you need the appropriate [permissions](../../../resources/references/app-reference/manifest-reference.md) to load and write these associations.
+you need the appropriate [permissions](../../../../resources/references/app-reference/manifest-reference.md) to load and write these associations.
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
