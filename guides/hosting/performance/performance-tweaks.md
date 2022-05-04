@@ -68,7 +68,7 @@ When using Elasticsearch, it is important to set the `SHOPWARE_ES_THROW_EXCEPTIO
 ## Prevent mail data updates
 
 {% hint style="info" %}
-This feature will be available starting with Shopware 6.5.
+This feature will be available starting with Shopware 6.4.11.0.
 {% endhint %}
 
 To provide autocompletion for the different mail templates in the administration UI, Shopware has a mechanism that writes an example mail into the database when sending the mail.
