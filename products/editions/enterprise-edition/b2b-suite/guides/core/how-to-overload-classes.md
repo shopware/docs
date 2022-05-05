@@ -1,4 +1,5 @@
 # How to overload classes
+
 You can download a plugin showcasing the topic [here](https://docs.enterprise.shopware.com/exampleplugins/B2bServiceExtension.zip).
 
 ## Table of contents
@@ -10,9 +11,12 @@ You can download a plugin showcasing the topic [here](https://docs.enterprise.sh
 *   [What are the problems with this approach](#what-are-the-problems-with-this-approach)
 
 ## Description
-To add new functionality or overload existing classes to change functionality, the B2B-Suite uses the [Dependency Injection](https://symfony.com/doc/current/components/dependency_injection.html) as an extension system instead of events and hooks, which shopware uses.
+
+To add new functionality or overload existing classes to change functionality, 
+the B2B-Suite uses the [Dependency Injection](../../../../../../guides/plugins/plugins/plugin-fundamentals/dependency-injection.md) as an extension system instead of events and hooks, which shopware uses.
 
 ### How does a services.xml look like
+
 In the release package, our service.xml looks like this
 
 ```xml
@@ -38,6 +42,7 @@ In the release package, our service.xml looks like this
 ```
 
 For development (GitHub) it looks like this
+
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -72,12 +77,14 @@ For development (GitHub) it looks like this
 
 We generate the new services.xml files for our package automatically.
 
-### How do I use it[
+### How do I use it
+
 The whole system works exactly like [this](http://symfony.com/doc/current/service_container/parent_services.html).
 
 You only have to change the parameter or overload the service id.
 
-Your service file could look like this
+Your service file could look like this:
+
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -92,39 +99,44 @@ Your service file could look like this
 </container>
 ```
 
-Just define a class with the same service id as our normal class and add our abstract class as the parent. After that, add your own arguments or override ours.
+Just define a class with the same service id as our normal class and add our abstract class as the parent. 
+After that, add your own arguments or override ours.
 
 An example of your class could look like this:
 
 ```php
-    <?php declare(strict_types=1);
+<?php declare(strict_types=1);
     
-    [...]
+[...]
     
-    class YourRoleRepository extends RoleRepository
-    {
-        public $myService;
+class YourRoleRepository extends RoleRepository
+{
+    public array $myService;
         
-        public function __construct()
-        {
-            $args = func_get_args();
-    
-            $this->myService = array_pop($args);       
-    
-            parent::__construct(... $args);
-        }
-         
-        public function updateRole(RoleEntity $role): RoleEntity
-        {
-            [your stuff]
-        }
+    public function __construct()
+    {
+        $args = func_get_args();
+        
+        $this->myService = array_pop($args);       
+        
+        parent::__construct(... $args);
     }
+         
+    public function updateRole(RoleEntity $role): RoleEntity
+    {
+        // your stuff
+    }
+}
 ```
 
 You extend the B2B class and just change any action you need.
 
 ### What is the profit
-By building our extension system in this way, we can still add and delete constructor arguments without breaking your plugins. Also, we don't have to add too many interfaces to the B2B-Suite.
+
+By building our extension system in this way, we can still add and delete constructor arguments without breaking your plugins. 
+Also, we don't have to add too many interfaces to the B2B-Suite.
 
 ### What are the problems with this approach
-Since we don't know which plugin is loaded first, we can't say which class overload another one. To prevent any random errors, you should only overload each class once.
+
+Since we don't know which plugin is loaded first, we can't say which class overload another one. 
+To prevent any random errors, you should only overload each class once.

@@ -1,8 +1,10 @@
 # Store Front Authentication
+
 You can download a plugin showcasing how to add a provider [here](https://docs.enterprise.shopware.com/exampleplugins/B2bAuth.zip).  
 And you can download a plugin which exchange the login value [here](https://docs.enterprise.shopware.com/exampleplugins/B2bLogin.zip).
 
 ## Table of contents
+
 *   [Description](#description)
 *   [Working with the Identity as a Context](#working-with-the-identity-as-a-context)
 *   [Working with the Identity as an Owner](#working-with-the-identity-as-an-owner)
@@ -10,7 +12,9 @@ And you can download a plugin which exchange the login value [here](https://docs
 *   [Sales Representative](#sales-representative)
 
 ## Description
-The Store front authentication component provides a common B2B interface for login, ownership and authentication processes. It extends the Shopware default authentication component and provides several benefits for developers:
+
+The Store front authentication component provides a common B2B interface for login, ownership and authentication processes. 
+It extends the Shopware default authentication component and provides several benefits for developers:
 
 *   Use multiple different source tables for authentication
 *   Provide a unified Identity interface
@@ -18,7 +22,7 @@ The Store front authentication component provides a common B2B interface for log
 
 A schematic overview of the central usage of the Authentication component looks like this:
 
-![image](/.gitbook/assets/authentication-overview.svg)
+![image](../../../../../../.gitbook/assets/authentication-overview.svg)
 
 | Color  |   Type   |                                                                                  Description                                                                                  |
 |--------|:--------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -27,10 +31,13 @@ A schematic overview of the central usage of the Authentication component looks 
 | blue´  |  Owner   |                                                          Uses the `Identity` to store the specific owner of a record                                                          |
 
 ## Working with the Identity as a Context
-The `StoreFrontAuthentication` component provides an identity representing the currently logged-in user, that can easily be retrieved and inspected through `\Shopware\B2B\StoreFrontAuthentication\Framework\AuthenticationService`.
 
-Typically, you want to use the identity as a global criteria to secure that data does not leak from one debtor to another. Therefore, you should add a `context_owner_id` to your mysql table design.
-```php
+The `StoreFrontAuthentication` component provides an identity representing the currently logged-in user, 
+that can easily be retrieved and inspected through `Shopware\B2B\StoreFrontAuthentication\Framework\AuthenticationService`.
+
+Typically, you want to use the identity as a global criteria to secure that data does not leak from one debtor to another. 
+Therefore, you should add a `context_owner_id` to your mysql table design.
+```sql
 CREATE TABLE IF NOT EXISTS `b2b_my` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `context_owner_id` INT(11) NOT NULL,
@@ -45,12 +52,14 @@ CREATE TABLE IF NOT EXISTS `b2b_my` (
 )
 ```
 
-This modifier column allows you to store the context owner independent of the actual source table of the context owner. You can access the current context owner always through the Identity.
+This modifier column allows you to store the context owner independent of the actual source table of the context owner. 
+You can access the current context owner always through the Identity.
+
 ```php
 [...]
 
 /** @var AuthenticationService $authenticationService */
-$authenticationService = Shopware()->Container()->get('b2b_front_auth.authentication_service');
+$authenticationService = $this->container->get('b2b_front_auth.authentication_service');
 
 if (!$authenticationService->isB2b()) {
     throw new \Exception('User must be logged in');
@@ -60,7 +69,7 @@ $ownershipContext = $authenticationService
     ->getIdentity()
     ->getOwnershipContext();
 
-echo "The context owner id " . $ownershipContext->contextOwnerId . "\n"
+echo 'The context owner id ' . $ownershipContext->contextOwnerId . '\n';
 
 [...]
 ```
@@ -75,8 +84,10 @@ $ownerIdentity = $authenticationService->getIdentityByAuthId($contextOwnerId);
 ```
 
 ## Working with the Identity as an Owner
+
 Sometimes you want to flag records to be owned by certain identities.
-```php
+
+```sql
 CREATE TABLE IF NOT EXISTS `b2b_my` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `auth_id` INT(11) NULL DEFAULT NULL,
@@ -90,7 +101,8 @@ CREATE TABLE IF NOT EXISTS `b2b_my` (
 )
 ```
 
-To fill this column we again access the current identity but instead of the `contextOwnerId` we access the `authId`
+To fill this column we again access the current identity but instead of the `contextOwnerId` we access the `authId`.
+
 ```php
 [...]
 
@@ -98,27 +110,28 @@ $ownershipContext = $authenticationService
     ->getIdentity()
     ->getOwnershipContext();
 
-echo "The common identity id " . $ownershipContext->authId . "\n"
+echo 'The common identity id ' . $ownershipContext->authId . '\n';
 
 [...]
 ```
 
-The B2B-Suite views the context owner as some kind of admin that - from the perspective of the authentication component - owns all individual users and their data _(Of course the ACL component may overwrite this.)_.
+The B2B-Suite views the context owner as some kind of admin that - from the perspective 
+of the authentication component - owns all individual users and their data _(Of course the ACL component may overwrite this.)_.
 
 Therefore, commonly used queries are:
 
 ```php
 /** @var Connection $connection */
-$connection = Shopware()->Container()->get('dbal_connection');
+$connection = $this->container->get('dbal_connection');
 /** @var Identity $identity */
-$identity = Shopware()->Container()->get('b2b_front_auth.authentication_service')
+$identity = $this->container->get('b2b_front_auth.authentication_service')
     ->getIdentity();
 
 // get all records relative to the user
 $connection->fetchAll(
     'SELECT * FROM b2b_my my WHERE my.auth_id = :authId',
     [
-        'authId' => $identity->getOwnershipContext()->authId
+        'authId' => $identity->getOwnershipContext()->authId->getValue(),
     ]
 );
 
@@ -126,7 +139,7 @@ $connection->fetchAll(
 $connection->fetchAll(
     'SELECT * FROM b2b_my my WHERE my.auth_id IN (SELECT auth_id FROM b2b_store_front_auth WHERE context_owner_id = :identityContextOwnerId)',
     [
-        'identityContextOwnerId' => $identity->getOwnershipContext()->contextOwnerId
+        'identityContextOwnerId' => $identity->getOwnershipContext()->contextOwnerId->getValue(),
     ]
 );
 
@@ -141,10 +154,13 @@ $connection->fetchAll(
 ```
 
 ## Working with the Identity as a Provider
-If you need another type of user you can follow the `Contact` and `Debtor` implementations. This guide will show you which classes need to be extended.
+
+If you need another type of user you can follow the `Contact` and `Debtor` implementations. 
+This guide will show you which classes need to be extended.
 
 ### Implement your own Identity
-The B2B-Suites `\Shopware\B2B\StoreFrontAuthentication\Framework\Identity` is an interface which means that every user has to reimplement it.
+
+The B2B-Suites `Shopware\B2B\StoreFrontAuthentication\Framework\Identity` is an interface which means that every user has to reimplement it.
 
 The interface acts as a factory for different contexts that are used throughout the B2B-Suite. It contains:
 
@@ -153,22 +169,21 @@ The interface acts as a factory for different contexts that are used throughout 
 
 Therefore, it can be seen as a _man in the middle_ between Shopware and the B2B-Suite.
 
-Example implementations are either `\Shopware\B2B\Debtor\Framework\DebtorIdentity` or `\Shopware\B2B\Contact\Framework\ContactIdentity`.
+Example implementations are either `Shopware\B2B\Debtor\Framework\DebtorIdentity` or `Shopware\B2B\Contact\Framework\ContactIdentity`.
 
 ### Implement your own CredentialsBuilder
+
 In the CredentialsBuilder you create the CredentialsEntity witch is used to log in the B2B-Suite.
 
 ```php
-    /**
-     * @param Enlight_Event_EventArgs $args
-     * @return CredentialsEntity
-     */
-    public function createCredentials(Enlight_Event_EventArgs $args): CredentialsEntity
+    public function createCredentials(array $parameters): AbstractCredentialsEntity
     {
         $entity = new CredentialsEntity();
     
-        $entity->email = $args->get('post')['email'];
-        
+        $entity->email = $parameters['email'];
+        $entity->salesChannelId = IdValue::create($this->contextProvider->getSalesChannelContext()->getSalesChannel()->getId());
+        $entity->customerScope = $this->systemConfigService->get('core.systemWideLoginRegistration.isCustomerBoundToSalesChannel');
+
         return $entity;
     }
 ```
@@ -176,18 +191,16 @@ In the CredentialsBuilder you create the CredentialsEntity witch is used to log 
 The CredentialsEntity represents the data which are used to log in with.
 
 ### Implement your own AuthenticationIdentityLoader
-Next you have to provide the means to register your identity on login this is done through implementing `\Shopware\B2B\StoreFrontAuthentication\Framework\AuthenticationIdentityLoaderInterface`.
 
-The LoginContextService is passed as an argument to help you to retrieve and creating the appropriate auth and context owner ids. Notice that the interface is designed to be chained, so dependant auth ids can be created on the fly.
+Next you have to provide the means to register your identity on login this is done through 
+implementing `Shopware\B2B\StoreFrontAuthentication\Framework\AuthenticationIdentityLoaderInterface`.
+
+The LoginContextService is passed as an argument to help you to retrieve and creating the appropriate auth and 
+context owner ids. Notice that the interface is designed to be chained, 
+so dependant auth ids can be created on the fly.
 
 ```php
 [...]
-/**
- * @param string $email
- * @param LoginContextService $contextService
-    /**
-     * {@inheritdoc}
-     */
     public function fetchIdentityByCredentials(CredentialsEntity $credentialsEntity, LoginContextService $contextService, bool $isApi = false): Identity
     {
         if (!$credentialsEntity->email) {
@@ -197,15 +210,13 @@ The LoginContextService is passed as an argument to help you to retrieve and cre
         $entity = $this->yourEntityRepository->fetchOneByEmail($email);
 
         /** @var DebtorIdentity $debtorIdentity */
-                $debtorIdentity = $this
-                    ->debtorRepository
-                    ->fetchIdentityById($entity->debtor->id, $contextService);
+        $debtorIdentity = $this->debtorRepository->fetchIdentityById($entity->debtor->id, $contextService);
         
-                $authId = $contextService->getAuthId(YourEntityRepository::class, $entity->id, $debtorIdentity->getAuthId());
+        $authId = $contextService->getAuthId(YourEntityRepository::class, $entity->id, $debtorIdentity->getAuthId());
         
-                $this->yourEntityRepository->setAuthId($entity->id, $authId);
+        $this->yourEntityRepository->setAuthId($entity->id, $authId);
         
-                return new YourEntityIdentity($authId, (int) $entity->id, YourEntityRepository::TABLE_NAME, $entity, $debtorIdentity);
+        return new YourEntityIdentity($authId, (int) $entity->id, YourEntityRepository::TABLE_NAME, $entity, $debtorIdentity);
     }
 [...]
 ```
@@ -221,8 +232,11 @@ Finally, you register your authentication provider (in our case a repository) as
 ```
 
 ## Sales Representative
-Both sales representative identities extend the debtor identity. The sales representative identity is to log in as clients (debtors).
 
-After log in, the sales representative gets the sales representative debtor identity. With this structure, the original sales representative identity can be identified, when logged in as a client.
+Both sales representative identities extend the debtor identity. 
+The sales representative identity is to log in as clients (debtors).
+
+After log in, the sales representative gets the sales representative debtor identity. 
+With this structure, the original sales representative identity can be identified, when logged in as a client.
 
 As a sales representative debtor, he is actually logged in as the client with additional possibilities.

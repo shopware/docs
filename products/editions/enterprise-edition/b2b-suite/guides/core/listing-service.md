@@ -10,51 +10,41 @@ You can download a plugin showcasing the topic [here](https://docs.enterprise.sh
 * [The Grid Helper](#the-grid-helper)
 
 ## The Pattern
-A repeating pattern used throughout the B2B-Suite are listing services. The B2B-Suite ships without an ORM but still has use for semi automated basic listing and filtering capabilities. To reduce the necessary duplications, there are common implementations for this.
+
+A repeating pattern used throughout the B2B-Suite are listing services.
+The B2B-Suite ships without an ORM but still has use for semi automated basic listing and filtering capabilities. 
+To reduce the necessary duplications, there are common implementations for this.
 
 The diagram below shows the usually implemented objects with their outside dependencies.
 
-![image](/.gitbook/assets/listing-service.svg)
+![image](../../../../../../.gitbook/assets/listing-service.svg)
 
 ## The Search Struct
 
 The globally used `SearchStruct` is a data container moving the requested filter, sorting and pagination data from HTTP request to the repository/query.
 ```php
-<?php
+<?php declare(strict_types=1);
 
 namespace Shopware\B2B\Common\Repository;
+
+use Shopware\B2B\Common\Filter\Filter;
 
 class SearchStruct
 {
     /**
-     * @var Shopware\B2B\Common\Filter\Filter[]
+     * @var Filter[]
      */
-    public $filters = [];
+    public array $filters = [];
 
-    /**
-     * @var int
-     */
-    public $limit;
+    public int $limit;
 
-    /**
-     * @var int
-     */
-    public $offset;
+    public int $offset;
 
-    /**
-     * @var string
-     */
-    public $orderBy;
+    public string $orderBy;
 
-    /**
-     * @var string
-     */
-    public $orderDirection = 'ASC';
+    public string $orderDirection = 'ASC';
 
-    /**
-     * @var string
-     */
-    public $searchTerm;
+    public string $searchTerm;
 }
 ```
 
