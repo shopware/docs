@@ -1,4 +1,4 @@
-# How to overload classes
+# Overloading classes
 
 You can download a plugin showcasing the topic [here](https://docs.enterprise.shopware.com/exampleplugins/B2bServiceExtension.zip).
 

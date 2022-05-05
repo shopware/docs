@@ -1,4 +1,4 @@
-# REST api
+# REST API
 
 You can download a plugin showcasing the topic [here](https://docs.enterprise.shopware.com/exampleplugins/B2bRestApi.zip).
 
