@@ -29,6 +29,6 @@ because the identity is fetched from the context token.
 
 ### Route replacement examples
 
-*   `/api/b2b/debtor//address/type/` becomes `/store-api/v3/b2b/address/type/`
-*   `/api/b2b/debtor//offer` becomes `/store-api/v3/b2b/offer`
-*   `/api/b2b/debtor//order` becomes `/store-api/v3/b2b/order`
+*   `/api/b2b/debtor/address/type/` becomes `/store-api/b2b/address/type/`
+*   `/api/b2b/debtor/offer` becomes `/store-api/b2b/offer`
+*   `/api/b2b/debtor/order` becomes `/store-api/b2b/order`

@@ -88,6 +88,7 @@ The repository then provides the following methods. If you are already familiar 
 
 namespace Shopware\B2B\Acl\Framework;
 
+use Shopware\B2B\Acl\Framework\AclQuery;
 use Shopware\B2B\Acl\Framework\AclUnsupportedContextException;
 use Shopware\B2B\Common\IdValue;
 
@@ -102,7 +103,6 @@ class AclRepository
     }
 
     /**
-     * @param object $context
      * @throws AclUnsupportedContextException
      */
     public function allowAll($context, array $subjectIds, bool $grantable = false): void 
@@ -111,7 +111,6 @@ class AclRepository
     }
 
     /**
-     * @param object $context
      * @throws AclUnsupportedContextException
      */
     public function deny($context, IdValue $subjectId): void
@@ -120,7 +119,6 @@ class AclRepository
     }
 
     /**
-     * @param object $context
      * @throws AclUnsupportedContextException
      */
     public function denyAll($context, array $subjectIds): void
@@ -129,7 +127,6 @@ class AclRepository
     }
 
     /**
-     * @param object $context
      * @throws AclUnsupportedContextException
      */
     public function isAllowed($context, IdValue $subjectId): bool 
@@ -138,7 +135,6 @@ class AclRepository
     }
 
     /**
-     * @param object $context
      * @throws AclUnsupportedContextException
      */
     public function isGrantable($context, IdValue $subjectId): bool 
@@ -147,7 +143,6 @@ class AclRepository
     }
 
     /**
-     * @param object $context
      * @throws AclUnsupportedContextException
      * @return IdValue[]
      */
@@ -157,7 +152,6 @@ class AclRepository
     }
 
     /**
-     * @param object $context
      * @throws AclUnsupportedContextException
      */
     public function fetchAllGrantableIds($context): array 
@@ -166,7 +160,6 @@ class AclRepository
     }
 
     /**
-     * @param $context
      * @throws AclUnsupportedContextException
      */
     public function fetchAllDirectlyIds($context): array 
@@ -175,8 +168,7 @@ class AclRepository
     }
 
     /**
-     * @param object $context
-     * @throws \Shopware\B2B\Acl\Framework\AclUnsupportedContextException
+     * @throws AclUnsupportedContextException
      */
     public function getUnionizedSqlQuery($context): AclQuery 
     { 
@@ -271,6 +263,8 @@ This can be achieved by this snippet:
 ```php
 <?php declare(strict_types=1);
 
+namespace My\Namespace;
+
 use Doctrine\DBAL\Query\QueryBuilder;
 use Shopware\B2B\Acl\Framework\AclUnsupportedContextException;
 use Shopware\B2B\StoreFrontAuthentication\Framework\OwnershipContext;
@@ -320,9 +314,6 @@ use Shopware\B2B\Contact\Framework\AclTableContactContextResolver;
 
 class AddressContactAclTable extends AclTable
 {
-    /**
-     * {@inheritdoc}
-     */
     public function __construct()
     {
         parent::__construct(
@@ -334,9 +325,6 @@ class AddressContactAclTable extends AclTable
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getContextResolvers(): array
     {
         return [
@@ -390,6 +378,14 @@ An `AclContextResolver` is responsible for extracting the primary key out of a g
 This is done by implementing `getQuery`, `isMainContext` and `extractId`.
 
 ```php
+<?php declare(strict_types=1);
+
+namespace My\Namespace;
+
+use Doctrine\DBAL\Query\QueryBuilder;
+use Shopware\B2B\Acl\Framework\AclContextResolver;
+use Shopware\B2B\Acl\Framework\AclQuery;
+
 class MyContextResolver extends AclContextResolver
 {
     public function getQuery(string $aclTableName, int $contextId, QueryBuilder $queryContext): AclQuery

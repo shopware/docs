@@ -61,9 +61,6 @@ class MyB2bPlugin extends Plugin
 {
     [...]
 
-    /**
-     * {@inheritdoc}
-     */
     public function build(ContainerBuilder $container)
     {
         $containerBuilder = B2BContainerBuilder::create();

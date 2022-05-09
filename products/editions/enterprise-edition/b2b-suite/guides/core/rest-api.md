@@ -31,7 +31,7 @@ use Shopware\B2B\Common\MvcExtension\Request;
 
 class MyApiController
 {
-    public function helloAction(Request $request)
+    public function helloAction(Request $request): array
     {
         return ['message' => 'hello']; // will automatically be converted to JSON
     }
