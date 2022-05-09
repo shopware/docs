@@ -29,7 +29,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route(defaults={"_routeScope"={"storefront"})
+ * @Route(defaults={"_routeScope"={"storefront"}})
  */
 class ExampleController extends StorefrontController
 {

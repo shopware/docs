@@ -33,7 +33,7 @@ use Shopware\Core\Framework\Routing\Annotation\RouteScope;
 use Shopware\Storefront\Controller\StorefrontController;
 
 /**
- * @Route(defaults={"_routeScope"={"storefront"})
+ * @Route(defaults={"_routeScope"={"storefront"}})
  */
 class ExampleController extends StorefrontController
 {
@@ -59,7 +59,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route(defaults={"_routeScope"={"storefront"})
+ * @Route(defaults={"_routeScope"={"storefront"}})
  */
 class ExampleController extends StorefrontController
 {
@@ -92,12 +92,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route(defaults={"_routeScope"={"storefront"})
+ * @Route(defaults={"_routeScope"={"storefront"}})
  */
 class ExampleController extends StorefrontController
 {
     /**
-    * @Route(defaults={"_routeScope"={"storefront"})
+    * @Route(defaults={"_routeScope"={"storefront"}})
     * @Route("/example", name="frontend.example.example", methods={"GET"})
     */
     public function showExample(): Response
@@ -188,7 +188,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route(defaults={"_routeScope"={"storefront"})
+ * @Route(defaults={"_routeScope"={"storefront"}})
  */
 class ExampleController extends StorefrontController
 {

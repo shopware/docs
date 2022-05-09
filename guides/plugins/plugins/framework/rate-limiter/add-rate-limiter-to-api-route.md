@@ -117,7 +117,7 @@ use Shopware\Core\Framework\RateLimiter\RateLimiter;
 ...
 
 /**
- * @Route(defaults={"_routeScope"={"store-api"})
+ * @Route(defaults={"_routeScope"={"store-api"}})
  */
 class ExampleRoute extends AbstractExampleRoute
 {

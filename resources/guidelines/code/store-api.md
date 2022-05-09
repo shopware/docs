@@ -4,7 +4,7 @@
 
 * Stop implementing the Sales Channel API, it will be deprecated in the 6.4 major release. Define API Controllers \(Routes\) as services. Use named Routes internally.
 * RouteScope “store-api” has to be presented.
-* The class or each API method requires the annotation: `@Route(defaults={"_routeScope"={"store-api"})`
+* The class or each API method requires the annotation: `@Route(defaults={"_routeScope"={"store-api"}})`
 * OpenApi doc is required \(`@OA`\)
 * Decorator of response extends on `StoreApiResponse`
 

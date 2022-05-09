@@ -12,7 +12,7 @@
 * Use Symfony flash bags for error reporting
 * Each storefront functionality has to be available inside the store-api too
 * A storefront controller should never contain business logic
-* The class requires the annotation: `@Route(defaults={"_routeScope"={"storefront"})`
+* The class requires the annotation: `@Route(defaults={"_routeScope"={"storefront"}})`
 * Depending services has to be injected over the class constructor
 * Depending services has to be defined in the DI-Container service definition
 * Depending services has to be assigned to a private class property

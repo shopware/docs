@@ -44,7 +44,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 /**
- * @Route(defaults={"_routeScope"={"store-api"})
+ * @Route(defaults={"_routeScope"={"store-api"}})
  */
 class CachedExampleRoute extends AbstractExampleRoute
 {
