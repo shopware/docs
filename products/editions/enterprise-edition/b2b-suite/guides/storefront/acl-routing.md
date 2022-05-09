@@ -2,12 +2,12 @@
 
 ## Table of contents
 
-*   [Introduction](#introduction)
-*   [Registering routes](#registering-routes)
-*   [Privilege names](#privilege-names)
-*   [Automatic generation](#automatic-generation)
-*   [Template extension](#template-extension)
-*   [Download](#download)
+* [Introduction](#introduction)
+* [Registering routes](#registering-routes)
+* [Privilege names](#privilege-names)
+* [Automatic generation](#automatic-generation)
+* [Template extension](#template-extension)
+* [Download](#download)
 
 ## Introduction
 
