@@ -306,6 +306,7 @@ Below you can find an example implementation where we add our extension, when th
 namespace Swag\BasicExample\Subscriber;
 
 use Shopware\Core\Content\Product\ProductEntity;
+use Shopware\Core\Framework\Struct\ArrayEntity;
 use Shopware\Core\Framework\DataAbstractionLayer\Event\EntityLoadedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Shopware\Core\Content\Product\ProductEvents;
