@@ -33,52 +33,54 @@ We distinguish here between _root controller_ and _sub controller_. A root contr
 The root controller usually looks like this:
 
 ```php
-    <?php
+<?php declare(strict_types=1);
 
-    class RootController
-    {
-        /**
-         * Provides the page layout and display a listing containing the entities
-         */
-        public function indexAction() { [...] }
+namespace My\Namespace;
 
-        /**
-         * Display an empty form or optionally errors and the invalid entries
-         */
-        public function newAction() { [...] }
+class RootController
+{
+    /**
+    * Provides the page layout and display a listing containing the entities
+    */
+    public function indexAction() { [...] }
+    
+    /**
+    * Display an empty form or optionally errors and the invalid entries
+    */
+    public function newAction() { [...] }
 
-        /**
-         * Post only!
-         *
-         * Store new entity, if invalid input forward to `newAction`, if successful forward to `detailAction`
-         */
-        public function createAction() { [...] }
+    /**
+    * Post only!
+    *
+    * Store new entity, if invalid input forward to `newAction`, if successful forward to `detailAction`
+    */
+    public function createAction() { [...] }
 
-        /**
-         * Provides the detail layout. Usually a modal box containing a navigation and initially selecting the `editAction`
-         *
-         */
-        public function detailAction() { [...] }
+    /**
+    * Provides the detail layout. Usually a modal box containing a navigation and initially selecting the `editAction`
+    *
+    */
+    public function detailAction() { [...] }
 
-        /**
-         * Display the Form containing all stored data
-         */
-        public function editAction() { [...] }
+    /**
+    * Display the Form containing all stored data
+    */
+    public function editAction() { [...] }
 
-        /**
-         * Post only!
-         *
-         * Store updates to the entity, forward to `editAction`
-         */
-        public function updateAction() { [...] }
+    /**
+     * Post only!
+     *
+     * Store updates to the entity, forward to `editAction`
+     */
+    public function updateAction() { [...] }
 
-        /**
-         * Post only!
-         *
-         * Removes a record, Forwards to `indexAction`
-         */
-        public function removeAction() { [...] }
-    }
+    /**
+     * Post only!
+     *
+     * Removes a record, Forwards to `indexAction`
+     */
+     public function removeAction() { [...] }
+}
 ```
 
 As you can see there are a few `POST` only actions, these are solely for data processing and do not have a view of their own. This decision was made to provide smaller and easier to understand methods, easing the handling for extension developers. So actually there are fewer views than actions:
@@ -96,7 +98,9 @@ As you can see there are a few `POST` only actions, these are solely for data pr
 The sub controller depends on parameters to get the context it should act on. A typical assignment controller looks like this:
 
 ```php
-<?php
+<?php declare(strict_types=1);
+
+namespace My\Namespace;
 
 class SubController
 {
