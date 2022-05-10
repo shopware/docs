@@ -30,6 +30,7 @@ The diagram below shows how this schematically behaves:
 The `AjaxPanel` plugin is part of the b2b frontend and will scan your page automatically for the trigger class `b2b--ajax-panel`. 
 The most basic ajax panel looks like this:
 
+{% raw %}
 ```twig
 <div
     class="b2b--ajax-panel"
@@ -38,6 +39,7 @@ The most basic ajax panel looks like this:
     <!-- will load content here -->
 </div>
 ```
+{% endraw %}
 
 After the document is ready, the ajax panel will trigger a XHR GET-Request and replace it's inner html with the responses content. 
 Now all clicks on links and form submits inside the container will be changed to XHR-Requests. 
@@ -50,9 +52,11 @@ but it is used across the B2B-Suite.
 
 Any HTML element can be used to trigger a location change in an ajax panel, just add a class and set a destination:
 
+{% raw %}
 ```twig
 <p class="ajax-panel-link" data-href="{{ path('frontend.b2b.b2bcontact.grid') }}">Click</p>
 ```
+{% endraw %}
 
 ### Ignore links
 
