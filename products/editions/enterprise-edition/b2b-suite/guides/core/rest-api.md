@@ -20,7 +20,7 @@ of the Doctrine ORM the B2B-Suite reuses the same services defined for the Store
 
 A REST-API Controller is just a plain old PHP-Class, registered to the DIC. 
 An action is a public method suffixed with `Action`. 
-It always gets called with the request implementation derived from Shopware default `\Enlight_Controller_Request_Request` as a parameter.
+It always gets called with the request implementation derived from Shopware default `Shopware\B2B\Common\MvcExtension\Request` as a parameter.
 
 ```php
 <?php declare(strict_types=1);
