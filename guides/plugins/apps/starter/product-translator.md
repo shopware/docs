@@ -93,6 +93,8 @@ Let's start by filling in all the meta information:
 Take care to use the same `<name>` as in the `.env` file, otherwise stores can't install the app!
 {% endhint %}
 
+### Setup hook
+
 Next up we will define the `<setup>` part of the manifest. This part describes how the store will connect itself with the app server.
 
 {% code title="release/manifest.xml" %}
@@ -112,6 +114,8 @@ Next up we will define the `<setup>` part of the manifest. This part describes h
 
 The `<registraionUrl>` is already implementend by the app template, and is always `/register`, unless you modify `src/Controller/RegistrationController.php`.
 The `<secret>` element is only present in development versions of the app. In production, the extension store will provide the secret to authenticate your app buyers.
+
+### Permissions
 
 Because this app will need to read product descriptions and translate them the it needs permissions to do so:
 
@@ -135,6 +139,8 @@ Because this app will need to read product descriptions and translate them the i
 </manifest>
 ```
 {% endcode %}
+
+### Webhooks
 
 Finally, your app needs to be notified every time a product description is modified.
 The app system provides webhooks to subscribe your app server to any changes in the data
@@ -168,7 +174,7 @@ The `product-update` webhook is the path on which your app server will be notifi
 
 This webhook needs a custom controller, which will be the next part of this guide.
 
-## Implementing the translation
+## Handling shop events
 
 To get started write a let's write a simple Symfony controller:
 
@@ -221,7 +227,7 @@ A failed validation raises an exception, thus stopping unauthorized requests fro
 ```
 {% endcode %}
 
-
+### Creating a shop client
 
 Once the request has been verified you can use the `$shop` to create a api-client for that particular shop.
 {% code title="src/Controller/ProductController.php" %}
@@ -262,6 +268,8 @@ Now we can inspect the event payload:
     }
 ```
 {% endcode %}
+
+### Fetching data from the shop
 
 All `$entity.written` events contain a list of fields that a write event has changed.
 The code above uses this information to determine if the description of a product was changed.
@@ -340,6 +348,8 @@ We will get to the generation of the hash later but we need to check it first:
 ```
 {% endcode %}
 
+### Writing a translated description
+
 Now that the app can be sure the description has not been translated before it can write the new description like so:
 
 {% code title="src/Controller/ProductController.php" %}
@@ -394,7 +404,7 @@ And when you save a product, the description will automatically update.
 
 In this example, you've learned how to receive events and modify data through the app system. But that is just the tip of the iceberg:
 
- * Did you know you can add [new payments](../payment) as apps?
- * Write code that runs during checkout [app scripting](../app-scripts/cart-manipulation)
- * Add new endpoints to both store and admin API [custom endpoints](../app-scripts/custom-endpoints)
+ * Did you know you can add [new payments](../payment.md) as apps?
+ * Write code that runs during checkout [app scripting](../app-scripts/cart-manipulation.md)
+ * Add new endpoints to both store and admin API [custom endpoints](../app-scripts/custom-endpoints.md)
 
