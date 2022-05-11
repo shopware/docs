@@ -1,7 +1,7 @@
 # App-Starter - Read and write data
 
 This guide will show you how to set up an app server with our [app template](https://github.com/shopware/AppTemplate).
-You will learn how to read and write data to the Shopware Admin API.
+You will learn how to read and write data to the Shopware Admin API using an example of fetching dynamic translations for products when they are updated.
 
 ## Prerequisites
 
@@ -320,7 +320,7 @@ The request contains a criteria that fetches a the product for which we received
 {% endcode %}
 
 {% hint style="info" %}
-A common gotcha with `entity.written` webhooks is that they trigger themselves when you're performing write operations. Updating the description, triggers another entity.written event which again calls the webhook which updates the description and so on.
+A common gotcha with `entity.written` webhooks is that they trigger themselves when you're performing write operations. Updating the description, triggers another `entity.written` event which again calls the webhook which updates the description and so on.
 {% endhint %}
 
 Because our goal is to write a french translation of the product, the app needs to take care to avoid endless loops.
