@@ -7,7 +7,7 @@ To make use of the custom entities register your entities in your `entities.xml`
 {% code title="<app root>/Resources/entities.xml" %}
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
-<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Entities/Schema/entity-1.0.xsd">
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/CustomEntity/Xml/entity-1.0.xsd">
     <entity name="custom_entity_bundle">
         <fields>
             <string name="name" required="true" translatable="true" store-api-aware="true" />
