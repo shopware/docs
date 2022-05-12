@@ -6,7 +6,7 @@ The B2B-Suite is a collection of loosely coupled mostly uniform **components** p
 
 A single component with all layers and the maximum of allowed dependencies looks like this:
 
-![image](../../../../.gitbook/assets/b2b-architecture-component.svg)
+![image](../../../../../.gitbook/assets/b2b-architecture-component.png)
 
 The responsibilities from bottom to top:
 
@@ -32,19 +32,19 @@ There is a small library of shared functionality. It contains a few commonly use
 
 The user management is based on the `StoreFrontAuthentication` component and then provides `Contact` and `Debtor` entities which have `Address`es and `Role`s. These entities are mostly informational and CRUD based. Other parts of the system only depend on the `StoreFrontAuthentication` component but not the specific implementations as debtor or contact.
 
-![image](../../../../.gitbook/assets/b2b-architecture-users.svg)
+![image](../../../../../.gitbook/assets/b2b-architecture-users.png)
 
 #### ACL
 
 The `Acl` implementation is connected to most other entities provided by the B2B-Suite.
 
-![image](../../../../.gitbook/assets/b2b-architecture-acl.svg)
+![image](../../../../../.gitbook/assets/b2b-architecture-acl.png)
 
 #### Order and Contingent Management
 
 `ContingentGroups`s are connected to `Debtor`s and can have `Acl` settings based on `Role`s or `Contact`s. `Order`s are personalized through the `StoreFrontAuthentication`.
 
-![image](../../../../.gitbook/assets/b2b-architecture-order.svg)
+![image](../../../../../.gitbook/assets/b2b-architecture-order.png)
 
 #### The whole picture
 
@@ -55,6 +55,6 @@ Most dependencies are directly derived from requirements. So, the dependency flo
 
 So - for the sake of completeness - this is the whole picture:
 
-![image](../../../../.gitbook/assets/b2b-architecture-components-complete.svg)
+![image](../../../../../.gitbook/assets/b2b-architecture-components-complete.png)
 
 Everything you should get from that is, that there is a left to right propagation of dependencies. The components on the left side can be used and even useful entirely without the components on the right side.
