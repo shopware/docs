@@ -140,29 +140,17 @@ Notice that `shopware-queue` is the name of the previously created queue in Rabb
 
 ### Transport: Redis example
 
-In the following I assume that Redis is installed and started. Since Shopware 6.4.9.0, the Redis transport is preinstalled. In previous versions this had to be installed using `composer require enqueue/redis`. If the Redis PHP extension is not installed, you also need to install Predis using `composer require predis/predis`. The only thing left is to tell Shopware about the new transport. Therefore, we edit/create the configuration file `enqueue.yaml` with the following content:
-
-```yaml
-# config/packages/enqueue.yaml
-enqueue:
-    redis:
-        transport:
-            # PHP Redis extension
-            dsn: “redis+phpredis://host:port”
-            # predis/predis composer package
-            dsn: “redis+predis://host:port”
-        client: ~
-```
-
-By default enqueue tries to use predis, if you want to force to use PhpRedis you have to use the scheme `redis+phpredis://host:port`.
-
-Be sure to replace the host and port with your correct parameters in the connection string. And now we activate that transport and replace the default one of shopware. This can be done by editing/creating the file `framework.yaml`.
+In the following I assume that Redis is installed and started. To use the Symfony Messenger Redis Transport configure like below:
 
 ```yaml
 # config/packages/framework.yaml
 framework:
-    messenger:
-        transports:
-            default:
-                dsn: “enqueue://redis?queue[name]=messages”
+  messenger:
+    transports:
+      default:
+        dsn: "redis://redis:port?delete_after_ack=true&delete_after_reject=true"
 ```
+
+{% hint style="info" %}
+As Shopware handles failed messages on it's own, we can enable deleting of failed or acknowledged messages
+{% endhint %}
