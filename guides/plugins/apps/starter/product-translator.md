@@ -406,5 +406,5 @@ In this example, you've learned how to receive events and modify data through th
 
  * Did you know you can add [new payments](../payment.md) as apps?
  * Write code that runs during checkout [app scripting](../app-scripts/cart-manipulation.md)
- * Add new endpoints to both store and admin API [custom endpoints](../app-scripts/custom-endpoints.md)
+ * Add new endpoints to the API [custom endpoints](./add-api-endpoint.md)
 
