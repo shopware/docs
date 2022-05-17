@@ -114,18 +114,7 @@ framework:
 
 ### Transport: RabbitMQ example
 
-In this example we replace the standard transport, which stores the messages in the database, with RabbitMQ. Of course, other transports can be used as well. A detailed documentation of the parameters and possibilities can be found in the [enqueue symfony documentation](https://php-enqueue.github.io/bundle/config_reference/). In the following I assume that RabbitMQ is installed and started. Furthermore, a queue, here called `shopware-queue`, should be created inside RabbitMQ. The only thing left is to tell Shopware about the new transport. Therefore we edit/create the configuration file `enqueue.yaml` with the following content:
-
-```yaml
-# config/packages/enqueue.yaml
-enqueue:
-    rabbitmq:
-        transport:
-            dsn: "amqp://guest:guest@rabbitmq:5672/%2F?connection_timeout=1000&heartbeat=100"
-        client: ~
-```
-
-Be sure to replace the login credentials, host and port with your correct parameters in the connection string. And now we activate that transport and replace the default one of shopware. This can be done by editing/creating the file `framework.yaml`.
+In this example we replace the standard transport, which stores the messages in the database, with RabbitMQ. Of course, other transports can be used as well. A detailed documentation of the parameters and possibilities can be found in the [symfony documentation](https://symfony.com/doc/5.4/messenger.html#amqp-transport). In the following I assume that RabbitMQ is installed and started. Furthermore, a queue, here called `messages`, should be created inside RabbitMQ. The only thing left is to tell Shopware about the new transport. Therefore we edit/create the configuration file `framework.yaml` with the following content:
 
 ```yaml
 # config/packages/framework.yaml
@@ -133,14 +122,16 @@ framework:
     messenger:
         transports:
             default:
-                dsn: "enqueue://rabbitmq?queue[name]=shopware-queue"
+                dsn: "amqp://localhost:5672/%2f/messages"
 ```
 
-Notice that `shopware-queue` is the name of the previously created queue in RabbitMQ. Also `rabbitmq` matches the name of the new transport in the previously created `enqueue.yaml`.
+{% hint style="info" %}
+The system needs the AMQP php extension
+{% endhint %}
 
 ### Transport: Redis example
 
-In the following I assume that Redis is installed and started. To use the Symfony Messenger Redis Transport configure like below:
+In the following I assume that Redis is installed and started. To use the [Symfony Messenger Redis Transport](https://symfony.com/doc/current/messenger.html#redis-transport) configure like below:
 
 ```yaml
 # config/packages/framework.yaml
