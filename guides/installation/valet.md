@@ -35,9 +35,10 @@ Run `composer remove laravel/valet`.
 
 1. Create a new empty folder for example `~/sites`
 2. Clone the development template like you normally would \(dev + platform\) into this folder
-3. Run `./psh.phar install`
-4. Move to `~/sites` and run `valet park` to register valet for this directory. Shopware should now be accessible via the `folder-name.test`. Notice: "folder-name" is the name of the Shopware development template in `~/sites`
-5. Optional: Disable SSL via `valet unsecure` because this might cause problems with the watcher
+3. Adjust params instalation editing `.psh.yaml.dist`
+4. Run `./psh.phar install`
+5. Move to `~/sites` and run `valet park` to register valet for this directory. Shopware should now be accessible via the `folder-name.test`. Notice: "folder-name" is the name of the Shopware development template in `~/sites`
+6. Optional: Disable SSL via `valet unsecure` because this might cause problems with the watcher
 
 ## Troubleshooting
 
