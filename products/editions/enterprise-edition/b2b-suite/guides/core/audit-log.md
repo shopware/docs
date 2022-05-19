@@ -1,6 +1,6 @@
 # Audit Log
 
-You can download a plugin showcasing the topic [here](https://docs.enterprise.shopware.com/exampleplugins/B2bAuditLog.zip).
+You can download a plugin showcasing the topic [here](../example-plugins/B2bAuditLog.zip).
 
 ## Table of contents
 

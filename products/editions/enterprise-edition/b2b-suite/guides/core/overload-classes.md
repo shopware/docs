@@ -1,6 +1,6 @@
 # Overloading classes
 
-You can download a plugin showcasing the topic [here](https://docs.enterprise.shopware.com/exampleplugins/B2bServiceExtension.zip).
+You can download a plugin showcasing the topic [here](../example-plugins/B2bServiceExtension.zip).
 
 ## Table of contents
 

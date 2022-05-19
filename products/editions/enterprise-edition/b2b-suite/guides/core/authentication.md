@@ -1,7 +1,7 @@
 # Store Front Authentication
 
-You can download a plugin showcasing how to add a provider [here](https://docs.enterprise.shopware.com/exampleplugins/B2bAuth.zip).  
-And you can download a plugin which exchange the login value [here](https://docs.enterprise.shopware.com/exampleplugins/B2bLogin.zip).
+You can download a plugin showcasing how to add a provider [here](../example-plugins/B2bAuth.zip).  
+And you can download a plugin which exchange the login value [here](../example-plugins/B2bLogin.zip).
 
 ## Table of contents
 
