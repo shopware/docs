@@ -64,6 +64,20 @@ Below you can see three different definitions of payment methods.
             <description lang="de-DE">Diese Zahlungsmethode wird die Transaktion auf 'offen' belassen.</description>
             <!-- No URL is provided. -->
         </payment-method>
+
+        <payment-method>
+            <!-- The identifier of the payment method should not change. Otherwise a separate method is created. -->
+            <identifier>allBellsAndWhistlesPayment</identifier>
+            <name>Payment, that offers everything</name>
+            <name lang="de-DE">Eine Zahlungsart, die alles kann</name>
+            <pay-url>https://payment.app/async/pay</pay-url>
+            <finalize-url>https://payment.app/async/finalize</finalize-url>
+            <validate-url>https://payment.app/prepared/validate</validate-url>
+            <capture-url>https://payment.app/prepared/capture</capture-url>
+            <refund-url>https://payment.app/refund</refund-url>
+            <!-- This optional path to this icon must be relative to the manifest.xml -->
+            <icon>Resources/paymentLogo.png</icon>
+        </payment-method>
     </payments>
 </manifest>
 ```
@@ -203,6 +217,107 @@ $response = [
 {% hint style="warning" %}
 Keep in mind that just by providing a `message` in either request response, the payment will default to status `fail`, except if you also provide the status `cancel` in the `finalize` request.
 {% endhint %}
+
+## Prepared payments
+
+If you would like to not only offer forwarding to a payment provider, but integrate more deeply into the checkout process, with Shopware 6.4.9.0 and later you might like to use prepared payments. This method allows you to prepare the payment already before the order is placed, e.g. with credit card fields on the checkout confirm page. By adding parameters to the order placement request -- in the Storefront, this is the checkout confirm form -- you can then hand your prepared payment handler the parameters to successfully capture the payment when the order is placed.
+
+For this, you have two calls available during the order placement, the `validate` call to verify, that the payment reference is valid and if not, stop the placement of the order, and the `capture` call, which then allows the payment to be processed to completion after the order has been placed and persisted.
+
+Let's first talk about the `validate` call. Here, you will receive three items to validate your payment. The `cart` with all its line items, the `requestData` from the `CartOrderRoute` request and the current `salesChannelContext`. This allows you to validate, if the payment reference you may have given your payment handler via the Storefront implementation is valid and will be able to be used to pay the order which is about to be placed. The array data you may send as the `preOrderPayment` object in your response will be forwarded to your `capture` call, so you don't have to worry about identifying the order by looking at the cart from the `validate` call. If the payment is invalid, either return a response with an error response code or provide a `message` in your response.
+
+```php
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Routing\Annotation\Route;
+
+/**
+ * @Route("/prepared/validate", name="prepared.validate", methods={"POST"})
+ */
+public function validatePreparedPayment(Request $request): JsonResponse
+{
+    // more on this in section "Validation"
+    $this->checkSignature($request);
+
+    $content = json_decode($request->getContent(), true);
+
+    // you may validate your payment now with e.g. this data
+    $yourPaymentReference = $content['requestData']['myAppPaymentId'];
+    $cartAmount = $content['cart']['price']['totalPrice'];
+
+    // this helps you later identify the payment reference in your capture call
+    $response = [ 'preOrderPayment' => ['paymentId' => $yourPaymentReference] ];
+
+    // this returns a json encoded response with the `shopware-app-signature` in the header
+    return $this->sign($response, $content['source']['shopId']);
+}
+```
+
+If the payment has been validated and the order has been placed, you then receive another call to your `capture` endpoint. You will receive the `order`, the `orderTransaction` and also the `preOrderPayment` array data, that you have sent in your validate call.
+
+```php
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Routing\Annotation\Route;
+
+/**
+ * @Route("/prepared/capture", name="prepared.capture", methods={"POST"})
+ */
+public function capturePreparedPayment(Request $request): JsonResponse
+{
+    // more on this in section "Validation"
+    $this->checkSignature($request);
+
+    $content = json_decode($request->getContent(), true);
+
+    // you may capture your payment now with e.g. this data
+    $yourPaymentReference = $content['preOrderPayment']['paymentId'];
+    $orderAmount = $content['order']['price']['totalPrice'];   
+    
+    // you can provide any status here that the payment should have later on in Shopware
+    $response = [ 'status' => 'paid' ];
+
+    // this returns a json encoded response with the `shopware-app-signature` in the header
+    return $this->sign($response, $content['source']['shopId']);
+}
+```
+
+{% hint style="warning" %}
+Keep in mind that if the integration into the checkout process does not work as expected, your customer might not be able to use the prepared payment. This is especially valid for after order payments, since there the order already exists. For these cases, you should still offer a traditional synchronous / asynchronous payment flow. Don't worry, if you have set the transaction state in your capture call to anything but open, the asynchronous payment process will not be started immediately after the prepared payment flow.
+{% endhint %}
+
+## Refund
+
+With Shopware 6.4.12.0, we have also added basic functionality to be able to refund payments. Your app will need to register captured amounts and create and persist a refund beforehand for Shopware to be able to process a refund of a capture.
+
+Similar to the other requests, on your `refund` call you will receive the data required to process your refund. This is the `order` with all its details and also the `refund` which holds the information on the `amount`, the referenced `capture` and, if provided, a `reason` and specific `positions` which items are being refunded.
+
+```php
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Routing\Annotation\Route;
+
+/**
+ * @Route("/refund", name="refund", methods={"POST"})
+ */
+public function refundPayment(Request $request): JsonResponse
+{
+    // more on this in section "Validation"
+    $this->checkSignature($request);
+
+    $content = json_decode($request->getContent(), true);
+
+    // you may capture your payment now with e.g. this data
+    $captureId = $content['refund']['captureId'];
+    $refundAmount = $content['refund']['amount']['totalPrice'];
+    
+    // you can provide any status here that the refund should have later on in Shopware
+    $response = [ 'status' => 'refunded' ];
+
+    // this returns a json encoded response with the `shopware-app-signature` in the header
+    return $this->sign($response, $content['source']['shopId']);
+}
+```
 
 ## Validation
 
