@@ -135,13 +135,16 @@ In the following I assume that Redis is installed and started. To use the [Symfo
 
 ```yaml
 # config/packages/framework.yaml
+parameters:
+  env(MESSENGER_CONSUMER_NAME): 'consumer'
+
 framework:
   messenger:
     transports:
       default:
-        dsn: "redis://redis:port?delete_after_ack=true&delete_after_reject=true"
+        dsn: "redis://redis:port/messages/symfony/%env(MESSENGER_CONSUMER_NAME)%?delete_after_ack=true&delete_after_reject=true&dbindex=0"
 ```
 
 {% hint style="info" %}
-As Shopware handles failed messages on it's own, we can enable deleting of failed or acknowledged messages
+As Shopware handles failed messages on it's own, we can enable deleting of failed or acknowledged messages. When running more than one consumer, env MESSENGER_CONSUMER_NAME needs to be set. F.e. in Supervisor with `environment=MESSENGER_CONSUMER_NAME=%(program_name)s_%(process_num)02d`.
 {% endhint %}
