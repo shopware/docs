@@ -1,31 +1,28 @@
-# Add custom flow actions via App System
+# Add custom flow actions
 
 {% hint style="info" %}
-The App Flow Action is available in Shopware 6.4.10.0, and are not supported in previous versions.
+Custom flow actions in Shopware Apps are available starting with Shopware 6.4.10.0 and are not supported in previous versions.
 {% endhint %}
 
-Besides the default actions, one extending way for the App System developer is to add more actions to the Flow Builder actions list via App System:
+Besides the default actions, developers can add custom, predefined, and configurable web hook actions to the flow builder.
 
-![App Flow Action preview](../../../../../.gitbook/assets/flow-builder-app-action-preview.png)
-
-The app flow action can allow shopware to interact with your third-party services. 
+![Custom flow action in Administration](../../../../../.gitbook/assets/flow-builder-app-action-preview.png)
 
 After reading, you will be able to
 
- * Create the basic setup of an app to create more action for Flow Builder actions.
- * Use the new actions to interact with your third-party services.
+ * Create the basic setup of an app
+ * Create custom actions for the flow builder
+ * Use custom actions to interact with third-party services
 
 ## Prerequisites
 
 Please make sure you already have a working Shopware 6 store running (either cloud or self-managed). Prior knowledge about the Flow Builder feature of Shopware 6 is useful.
 
-Reference the flow-concept here:
+Please see the [Flow Builder Concept](../../../../../concepts/framework/flow-concept.md) for more information.
 
-{% page-ref page="../../../../../concepts/framework/flow-concept.md" %}
+## Create the app wrapper
 
-## Create the App Flow Actions
-
-To get started with your app, create an apps folder inside the custom folder of your Shopware dev installation. In there, create another folder for your application, provide a manifest file, and so on with this structure.
+To get started with your app, create an `apps` folder inside the `custom` folder of your Shopware dev installation. In there, create another directory for your application and provide a `manifest.xml` file, following the structure below:
 
 ```text
 └── custom
@@ -39,15 +36,15 @@ To get started with your app, create an apps folder inside the custom folder of 
     └── plugins
 ```
 
-| File Name | Description |
+| File name | Description |
 | :--- | :--- |
-| FlowBuilderActionApp | Your app technical name.
-| app-icon.png | Your icon app. |
-| slack-icon.png | Your action icon will be defined for each action in the `flow-action.xml` file. (optional, because if you are not defined, the actions will get the fallback icons). |
-| flow-action.xml | Place to define your new actions. |
-| manifest.xml | Base information about your app. |
+| FlowBuilderActionApp | Your app's technical name |
+| app-icon.png | The app's icon |
+| slack-icon.png | Your action icon will be defined for each action in the `flow-action.xml` file. (optional, icons will default to a fallback) |
+| flow-action.xml | Place to define your new actions |
+| manifest.xml | Base information about your app |
 
-## Manifest file
+### Manifest file
 
 The manifest file is the central point of your app. It defines the interface between your app and the Shopware instance. It provides all the information concerning your app, as seen in the minimal version below:
 
@@ -75,11 +72,11 @@ The manifest file is the central point of your app. It defines the interface bet
 The name of your app that you provide in the manifest file needs to match the folder name of your app.
 {% endhint %}
 
-## Flow-action file
+## Define the flow action
 
-To create an action, you need to define a `<flow-action>` block. Each `<flow-action>` represents one action and you can define an arbitrary number of actions.
+To create a flow action, you need to define a `<flow-action>` block within a file called `flow-action.xml`. Each `<flow-action>` represents one action and you can define an arbitrary number of actions.
 
-{% code title="flow-action.xml" %}
+{% code title="Resources/flow-action.xml" %}
 ```xml
 <flow-actions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/FlowAction/Schema/flow-action-1.0.xsd">
     <flow-action>
@@ -96,9 +93,7 @@ To create an action, you need to define a `<flow-action>` block. Each `<flow-act
 ```
 {% endcode %}
 
-Refer the [flow-action-1.0.xsd](https://gitlab.shopware.com/shopware/6/product/platform/-/raw/next-19083/update-app-manifest-xsd-for-flow-action/src/Core/Framework/App/FlowAction/Schema/flow-action-1.0.xsd) to coutinue define the other tag inside the `<flow-action>`.
-
-### Meta tag
+A single flow action would look like this:
 
 ```xml
 <flow-action>
@@ -121,17 +116,21 @@ Refer the [flow-action-1.0.xsd](https://gitlab.shopware.com/shopware/6/product/p
 
 | Key | Required | Description |
 | :--- | :--- | :--- |
-| name | Yes | The technical name of your action, that is unique for all actions |
-| label | Yes | A name to be shown for your action in the Actions list or action modal title. |
-| badge | No | A attached badge showed behind the label in the action modal title. |
-| description| Yes | The detail information for you action. |
-| sw-icon | No | The icon component name, see more icons at [Shopware](https://component-library.shopware.com/icons/) |
-| icon | No | The icon path for you action. You can use `<sw-icon>` or `<icon>` to define you action icon.
-| requirements | Yes | Like `aware` on the `FlowAction`, it will decide if you action is allowed to use each `TrriggerEvent` or not.<br> For Exam: <br> The `checkout.order.placed` has `orderAware`, that means your action is allow to use to trigger the `checkout.order.placed` event, because you have been define the `<requirements>orderAware</requirements>` on your app action.
-| url | Yes | The most impotant tag. This is place to define your services webhook. Shopware will interact with your services via this URL webhook.
+| name | yes | The technical name of your action, unique for all actions |
+| label | yes | A name to be shown for your action in the actions list or action modal title |
+| badge | no | An attached badge shown behind the label in the action modal title |
+| description | yes | Detailed information for your action |
+| sw-icon | no | An icon component name from the [icon library](https://component-library.shopware.com/icons/) |
+| icon | no | Alternatively, a path to your action icon |
+| requirements | yes | Available action triggers, read more below |
+| url | yes | External webhook location. Shopware will call this URL when the action is executed |
 
+**requirements**
 
-### Header tag
+Requirements will decide for which trigger events you action is available.
+Example: The `checkout.order.placed` has an `orderAware` requirements - indicating that your action is allow to use be used in the `checkout.order.placed` event. It is defined using `<requirements>orderAware</requirements>` in your app action definition.
+
+### Header parameters
 
 ```xml
 <flow-action>
@@ -147,13 +146,11 @@ Refer the [flow-action-1.0.xsd](https://gitlab.shopware.com/shopware/6/product/p
 
 | Key | Description |
 | :--- | :--- |
-| type | Type of parameter, only support `string` type. |
-| name | The header key. |
-| value | The header value. |
+| type | Parameter type - currently only `string` supported |
+| name | The header key |
+| value | The header value |
 
-Define the `parameter` for the URL header based on your URL webhook services.
-
-### Parameter
+### Parameters
 
 ```xml
 <flow-action>
@@ -177,10 +174,12 @@ Define the `parameter` for the URL body based on your URL webhook services.
 | type | Type of parameter, only support `string` type. |
 | name | The body key for your URL. |
 | value | The content message for your URL; free to design your content message here. |
-| {{ message }} | The variable on your `<input-field>` you will define on `flow-action.xml`. |
+| {{ message }} | The variable from your `<input-field>` defined in `flow-action.xml`. |
 | {{ order.orderNumber }} | For each trigger event, the action will have the variables suitable. In this case, the `checkout.order.placed` will have `order` variable. |
 
-### Input-field tag
+### Action configuration
+
+You can make your flow action configurable in the administration by adding input fields. Based on your configuration - similar to the [app configurations](../../../plugins/plugin-fundamentals/add-plugin-configuration.md) - you can later on use these configuration values within flow parameters.
 
 ```xml
 <flow-action>
@@ -208,7 +207,7 @@ Define the `parameter` for the URL body based on your URL webhook services.
 <flow-action>
 ```
 
-Define your input field attributes.
+Available input field field attributes:
 
 | Key | Required |
 | :--- | :--- |
@@ -218,10 +217,13 @@ Define your input field attributes.
 | required | No |
 | helpText | No |
 
-Define your input field type like ```<input-field type="text"> ```. The following types are supported:
+You assemble your configuration from a variety of input fields.
 
+{% hint type="info" %}
+To get more information on how to create configuration forms, see [Plugin Configurations](../../../plugins/plugin-fundamentals/add-plugin-configuration.md#the-different-types-of-input-field).
+{% endhint %}
 
-| Type | The shopware component will be render |
+| Type | Shopware component |
 | :--- | :--- |
 | text | `<sw-text-field/>` |
 | textarea | `<sw-textarea-field/>` |
@@ -239,7 +241,7 @@ Define your input field type like ```<input-field type="text"> ```. The followin
 | single-select | `<sw-single-select/>` |
 | ulti-select | `<sw-multi-select/>` |
 
-# Install the App Flow Action
+## Install the App
 
 The app can now be installed by running the following command:
 
@@ -247,7 +249,7 @@ The app can now be installed by running the following command:
 bin/console app:install --activate FlowBuilderActionApp
 ```
 
+## Further steps
 
-Reference the example for App flow action here:
-
-{% page-ref page="../../../../../resources/references/app-reference/flow-action-reference.md" %}
+ * [Flow action example configuration](../../../../../resources/references/app-reference/flow-action-reference.md) page
+ * [Schema definiton for flow actions (GitHub)](https://github.com/shopware/platform/blob/trunk/src/Core/Framework/App/FlowAction/Schema/flow-action-1.0.xsd)
