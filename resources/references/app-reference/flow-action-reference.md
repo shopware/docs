@@ -11,7 +11,7 @@
             <label lang="de-DE">Send slack message</label>
             <description>Slack send message description</description>
             <description lang="de-DE">Slack send message description DE</description>
-            <url>https://hooks.slack.com/services/JHUWIHMSDSKAJBU868/JDUIGDSABDKJKAFT87687</url>
+            <url>https://hooks.slack.com/services/{id}</url>
             <sw-icon>default-communication-speech-bubbles</sw-icon>
             <icon>slack.png</icon>
             <requirements>orderAware</requirements>
