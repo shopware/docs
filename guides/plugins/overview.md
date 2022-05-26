@@ -7,7 +7,8 @@ The variety of Shopware's extension interfaces can be overwhelming, so let's sta
 | Change storefront appearance | ✅ | ✅ | ✅ |  |
 | Add admin modules | ✅ | ❌ | ✅ |  |
 | Execute Webhooks | ✅ | ❌ | ✅ | Apps main functionality is to call Webhooks, but Plugins can be implemented to do that as well. |
-| Modify database structure, add custom entities | ✅ | ❌ | ❌ |  |
+| Add custom entities | ✅ | ❌ | ✅ |  |
+| Modify database structure | ✅ | ❌ | ❌ |  |
 | Integrate payment providers | ✅ | ❌ | ✅ |  |
 | Publish in the Shopware Store | ✅ | ✅ | ✅ |  |
 | Install in Shopware 6 Cloud Shops | ❌ | ❌ | ✅ |  |
