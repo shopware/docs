@@ -335,6 +335,7 @@
       * [Set up Elasticsearch](guides/hosting/infrastructure/elasticsearch/elasticsearch-setup.md)
       * [Debugging Elasticsearch](guides/hosting/infrastructure/elasticsearch/elasticsearch-debugging.md)
     * [Rate Limiter](guides/hosting/infrastructure/rate-limiter.md)
+    * [Database Cluster](guides/hosting/infrastructure/database-cluster.md)
 * [Integrations / API](guides/integrations-api/README.md)
   * [General Concepts](guides/integrations-api/general-concepts/README.md)
     * [Search Criteria](guides/integrations-api/general-concepts/search-criteria.md)
