@@ -1,7 +1,7 @@
 # Database Cluster
 
 To scale Shopware beyond the horizon, we recommend you to use a database cluster. A database cluster consists of multiple read-only servers that are managed by a single primeray instance. Shopware comes in default with an read write splitting of SQL queries. When an Insert/Update/Delete query is executed, the query is distributed to the primary server and the connection uses only the primary until the end of the connection, this will be also triggered by the ``executeStatement`` in the [DebugStack decoration](https://github.com/shopware/platform/blob/v6.4.11.1/src/Core/Profiling/Doctrine/DebugStack.php#L48).
-This makes it possible to write an record and read it directly, without taking care of the cluster in the Application.
+This makes it possible to write or read a record, without taking the possibility into account that the read-only child nodes might not be in sync with the primary node.
 
 ## Preparing Shopware
 
