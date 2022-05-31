@@ -6,7 +6,7 @@ Custom flow actions in Shopware Apps are available starting with Shopware 6.4.10
 
 Besides the default actions, developers can add custom, predefined, and configurable web hook actions to the flow builder.
 
-![Custom flow action in Administration](../../../../../.gitbook/assets/flow-builder-app-action-preview.png)
+![Custom flow action in Administration](../../../../.gitbook/assets/flow-builder-app-action-preview.png)
 
 After reading, you will be able to
 
@@ -18,7 +18,7 @@ After reading, you will be able to
 
 Please make sure you already have a working Shopware 6 store running (either cloud or self-managed). Prior knowledge about the Flow Builder feature of Shopware 6 is useful.
 
-Please see the [Flow Builder Concept](../../../../../concepts/framework/flow-concept.md) for more information.
+Please see the [Flow Builder Concept](../../../../concepts/framework/flow-concept.md) for more information.
 
 ## Create the app wrapper
 
@@ -55,9 +55,9 @@ The manifest file is the central point of your app. It defines the interface bet
     <meta>
         <name>FlowBuilderActionApp</name>
         <label>Flow Builder Action App</label>
-        <label lang="de-DE">Flow Builder Action App DE</label>
+        <label lang="de-DE">Flow Builder Aktions-App</label>
         <description>This is the example description for app</description>
-        <description lang="de-DE">This is the example description for app</description>
+        <description lang="de-DE">Dies ist die Beispielbeschreibung für app</description>
         <author>shopware AG</author>
         <copyright>(c) shopware AG</copyright>
         <version>4.14.0</version>
@@ -98,12 +98,12 @@ A single flow action would look like this:
 ```xml
 <flow-action>
     <meta>
-        <name>slack.send.message</name>
+        <name>slack_message</name>
         <label>Send slack message</label>
-        <label lang="de-DE">Send slack message</label>
+        <label lang="de-DE">Slack-Nachricht senden</label>
         <badge>Slack</badge>
         <description>Slack send message description</description>
-        <description lang="de-DE">Slack send message description DE</description>
+        <description lang="de-DE">Dies ist die Beispielbeschreibung für app</description>
         <url>https://hooks.slack.com/services/{id}</url>
         <sw-icon>default-communication-speech-bubbles</sw-icon>
         <icon>slack.png</icon>
@@ -121,14 +121,29 @@ A single flow action would look like this:
 | badge | no | An attached badge shown behind the label in the action modal title |
 | description | yes | Detailed information for your action |
 | sw-icon | no | An icon component name from the [icon library](https://component-library.shopware.com/icons/) |
-| icon | no | Alternatively, a path to your action icon |
+| icon | no | Alternatively, a path to your action icon. In the case you define both `<sw-icon>` and `<icon>`, the `<icon>` will be take precedence in this case. |
 | requirements | yes | Available action triggers, read more below |
 | url | yes | External webhook location. Shopware will call this URL when the action is executed |
 
 **requirements**
 
-Requirements will decide for which trigger events you action is available.
+Requirements will decide for which trigger events your action is available.
 Example: The `checkout.order.placed` has an `orderAware` requirements - indicating that your action is allow to use be used in the `checkout.order.placed` event. It is defined using `<requirements>orderAware</requirements>` in your app action definition.
+
+For each value when you define, it'll represent one of the `aware` interfaces from the `core`.
+
+To fulfill the requirements, refer to a subset of action triggers aware: 
+
+| Value | Interface |
+| :--- | :--- |
+| customerAware | Shopware\Core\Framework\Event\CustomerAware |
+| customerGroupAware | Shopware\Core\Framework\Event\CustomerGroupAware |
+| delayAware | Shopware\Core\Framework\Event\DelayAware |
+| mailAware | Shopware\Core\Framework\Event\MailAware |
+| orderAware | Shopware\Core\Framework\Event\OrderAware |
+| salesChannelAware | Shopware\Core\Framework\Event\SalesChannelAware |
+| userAware | Shopware\Core\Framework\Event\UserAware |
+
 
 ### Header parameters
 
@@ -175,11 +190,22 @@ Define the `parameter` for the URL body based on your URL webhook services.
 | name | The body key for your URL. |
 | value | The content message for your URL; free to design your content message here. |
 | {{ message }} | The variable from your `<input-field>` defined in `flow-action.xml`. |
-| {{ order.orderNumber }} | For each trigger event, the action will have the variables suitable. In this case, the `checkout.order.placed` will have `order` variable. |
+| {{ order.orderNumber }} | For each trigger event, the action will have the variables suitable. [Read more variables here](../../../../resources/references/app-reference/flow-action-reference.md). |
+
+With the values `<headers>` and `<parameters`> we configured above, when the App Flow Action is executed, it will call your 3rd party api, like this:
+
+```text
+    POST https://hooks.slack.com/services/{id} {
+        headers:
+            content-typ: application/json
+        body:
+            text: {{ message }} \n Order Number: {{ order.orderNumber }}
+    }
+```
 
 ### Action configuration
 
-You can make your flow action configurable in the administration by adding input fields. Based on your configuration - similar to the [app configurations](../../../plugins/plugin-fundamentals/add-plugin-configuration.md) - you can later on use these configuration values within flow parameters.
+You can make your flow action configurable in the administration by adding input fields. Based on your configuration - similar to the [app configurations](../../plugins/plugin-fundamentals/add-plugin-configuration.md) - you can later on use these configuration values within flow parameters.
 
 ```xml
 <flow-action>
@@ -196,12 +222,12 @@ You can make your flow action configurable in the administration by adding input
         <input-field type="text">
             <name>message</name>
             <label>Message</label>
-            <label lang="de-DE">Text DE</label>
-            <place-holder>Enter Text...</place-holder>
-            <place-holder lang="de-DE">Enter Text DE...</place-holder>
+            <label lang="de-DE">Gegenstand</label>
+            <place-holder>Placeholder</place-holder>
+            <place-holder lang="de-DE">Platzhalter</place-holder>
             <required>true</required>
             <helpText>Help Text</helpText>
-            <helpText lang="de-DE">Help DE</helpText>
+            <helpText lang="de-DE">Hilfstext</helpText>
         </input-field>
     </config>
 <flow-action>
@@ -220,7 +246,7 @@ Available input field field attributes:
 You assemble your configuration from a variety of input fields.
 
 {% hint type="info" %}
-To get more information on how to create configuration forms, see [Plugin Configurations](../../../plugins/plugin-fundamentals/add-plugin-configuration.md#the-different-types-of-input-field).
+To get more information on how to create configuration forms, see [Plugin Configurations](../../plugins/plugin-fundamentals/add-plugin-configuration.md#the-different-types-of-input-field).
 {% endhint %}
 
 | Type | Shopware component |
@@ -251,5 +277,5 @@ bin/console app:install --activate FlowBuilderActionApp
 
 ## Further steps
 
- * [Flow action example configuration](../../../../../resources/references/app-reference/flow-action-reference.md) page
- * [Schema definiton for flow actions (GitHub)](https://github.com/shopware/platform/blob/trunk/src/Core/Framework/App/FlowAction/Schema/flow-action-1.0.xsd)
+ * [Flow action example configuration](../../../../resources/references/app-reference/flow-action-reference.md) page
+ * [Schema definiton for flow actions (GitHub)](https://github.com/shopware/platform/blob/trunk/src/Core/Framework/App/FlowAction/Schema/flow-action-1.0.xsd)`
