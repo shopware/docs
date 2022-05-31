@@ -275,3 +275,88 @@ Your generated request and response could look like this:
 }
 ```
 
+## Make the route available for the storefront
+
+If you want to access the functionality of your route also from the storefront you need to make it available there by adding a custom [storefront controller](../../storefront/add-custom-controller.md) that will wrap your just created route.
+
+{% code title="<plugin root>/src/Storefront/Controller/ExampleController.php" %}
+```php
+<?php declare(strict_types=1);
+
+namespace Swag\BasicExample\Storefront\Controller;
+
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Controller\StorefrontController;
+use Swag\BasicExample\Core\Content\Example\SalesChannel\AbstractExampleRoute;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+/**
+ * @Route(defaults={"_routeScope"={"storefront"}})
+ */
+class ExampleController extends StorefrontController
+{
+    private AbstractExampleRoute $route;
+
+    public function __construct(AbstractExampleRoute $route)
+    {
+        $this->route = $route;
+    }
+
+    /**
+     * @Route("/example", name="frontend.example.search", methods={"GET", "POST"}, defaults={"XmlHttpRequest"=true})
+     */
+    public function load(Criteria $criteria, SalesChannelContext $context): Response
+    {
+        return $this->route->load($criteria, $context);
+    }
+}
+```
+
+This looks very similar then what we did in the `ExampleRoute` itself. The main difference is that this route is registered for the `storefront` route scope.
+Additionally, we also use the `defaults={"XmlHttpRequest"=true}` config option on the route, this will enable us to request that route via AJAX-calls from the storefronts javascript.
+
+### Register storefront api-route
+
+We need to tell Shopware that there is a new API-route for the `storefront` scope by extending the `routes.xml` to also include all storefront controllers.
+
+{% code title="<plugin root>/src/Resources/config/routes.xml" %}
+```markup
+<?xml version="1.0" encoding="UTF-8" ?>
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing
+        https://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <import resource="../../Core/**/*Route.php" type="annotation" />
+    <import resource="../../Storefront/**/*Controller.php" type="annotation" />
+</routes>
+```
+{% endcode %}
+
+### Requesting your route from the storefront
+
+You can request your new route from the storefront from inside a [custom javascript plugin](../../storefront/add-custom-javascript.md).
+We expect that you have followed that guide and know how to register your custom javascript plugin in the storefront.
+
+When you want to request your custom route you can use the existing `http-client` service for that.
+
+{% code title="<plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js" %}
+```javascript
+import Plugin from 'src/plugin-system/plugin.class';
+import HttpClient from 'src/service/http-client.service';
+
+export default class ExamplePlugin extends Plugin {
+    init() {
+        this._client = new HttpClient();
+    }
+    
+    requestCustomRoute() {
+        this._client.post('/example', { limit: 10, offset: 0}, (response) => {
+            alert(response);
+        });
+    }
+}
+```
+{% endcode %}
