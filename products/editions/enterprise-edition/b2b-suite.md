@@ -1,6 +1,37 @@
 # B2B Suite
 
-If you're searching for information on our B2B suite, we got you covered! Please follow this link to find our more:
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://docs.enterprise.shopware.com/b2b-suite/" caption="" %}
+* [B2B Suite](b2b-suite.md)
+  * [Concepts](b2b-suite/concepts/README.md)  
+    * [System architecture](b2b-suite/concepts/system-architecture.md)
+    * [Basic conventions](b2b-suite/concepts/basic-conventions.md)
+    * [Method structure](b2b-suite/concepts/method-structure.md)
+    * [Line Item List](b2b-suite/concepts/line-item-list.md)
+  * [Guides](b2b-suite/guides/README.md)
+    * [Installation](b2b-suite/guides/installation/README.md)
+    * [Core](b2b-suite/guides/core/README.md)
+      * [Dependency injection](b2b-suite/guides/core/dependency-injection.md)
+      * [Store API](b2b-suite/guides/core/store-api.md)
+      * [REST API](b2b-suite/guides/core/rest-api.md)
+      * [Listing service](b2b-suite/guides/core/listing-service.md)
+      * [CRUD service](b2b-suite/guides/core/crud-service.md)
+      * [Assignment service](b2b-suite/guides/core/assignment-service.md)
+      * [Audit Log](b2b-suite/guides/core/audit-log.md)
+      * [Exception](b2b-suite/guides/core/exception.md)
+      * [Currency](b2b-suite/guides/core/currency.md)
+      * [Entity based ACL](b2b-suite/guides/core/entity-acl.md)
+      * [Overloading classes](b2b-suite/guides/core/overload-classes.md)
+      * [Store Front Authentication](b2b-suite/guides/core/authentication.md)
+    * [Storefront](b2b-suite/guides/storefront/README.md)
+      * [Ajax Panel](b2b-suite/guides/storefront/ajax-panel.md)
+      * [Product Search](b2b-suite/guides/storefront/product-search.md)
+      * [Complex views](b2b-suite/guides/storefront/complex-views.md)
+      * [Modal component](b2b-suite/guides/storefront/modal-component.md)
+      * [Company](b2b-suite/guides/storefront/company.md)
+      * [Acl Routing](b2b-suite/guides/storefront/acl-routing.md)
+      * [Extending the storefront](b2b-suite/guides/storefront/how-to-extend-the-storefront.md)
+    * [Administration](b2b-suite/guides/administration/README.md)
+    * [Example Plugins](b2b-suite/guides/example-plugins/README.md)
+
+If you're searching for Shopware 5 related information on our B2B suite, we got you covered! More info: [B2B-Suite Shopware 5 documentation](https://docs.enterprise.shopware.com/b2b-suite/)
+
 

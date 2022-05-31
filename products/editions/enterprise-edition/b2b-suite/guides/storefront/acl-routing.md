@@ -123,4 +123,4 @@ But there are certain specials to this:
 
 ## Download
 
-A simple example plugin can be found [here](https://docs.enterprise.shopware.com/exampleplugins/B2bAcl.zip)
+A simple example plugin can be found [here](../example-plugins/B2bAcl.zip)

@@ -1,6 +1,6 @@
 # CRUD service
 
-You can download a plugin showcasing the topic [here](https://docs.enterprise.shopware.com/exampleplugins/B2bAcl.zip).
+You can download a plugin showcasing the topic [here](../example-plugins/B2bAcl.zip).
 
 ## Table of contents
 
