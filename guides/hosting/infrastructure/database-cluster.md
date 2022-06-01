@@ -1,28 +1,30 @@
 # Database Cluster
 
-To scale Shopware even further, we recommend to use a database cluster. A database cluster consists of multiple read-only servers that are managed by a single primary instance. Shopware comes in default with an read write splitting of SQL queries. When an [`INSERT`/`UPDATE`/`DELETE`/...](https://github.com/shopware/platform/blob/v6.4.11.1/src/Core/Profiling/Doctrine/DebugStack.php#L48) query is executed, the query is distributed to the primary server and the connection uses only the primary node until the end of the connection. This will be ensured by the `executeStatement` in the [DebugStack decoration](https://github.com/shopware/platform/blob/v6.4.11.1/src/Core/Profiling/Doctrine/DebugStack.php#L48).
-This makes it possible to write or read a record, without taking the possibility into account that the read-only child nodes might not be in sync with the primary node.
+To scale Shopware even further, we recommend to use a database cluster. A database cluster consists of multiple read-only servers that are managed by a single primary instance.
+
+Shopware already splits read and write SQL queries by default. When a write  [`INSERT`/`UPDATE`/`DELETE`/...](https://github.com/shopware/platform/blob/v6.4.11.1/src/Core/Profiling/Doctrine/DebugStack.php#L48) query is executed, the query is delegated to the primary server and the current connection uses only the primary node for subsequent calls. This is ensured by the `executeStatement` method in the [DebugStack decoration](https://github.com/shopware/platform/blob/v6.4.11.1/src/Core/Profiling/Doctrine/DebugStack.php#L48).
+That way, Shopware can ensure read-write consistency for records within the same request. However, it doesn't take into account that read-only child nodes might not be in sync with the primary node. This is left to the database replication process.
 
 ## Preparing Shopware
 
-To make the Splitting most effective, we recommend to configure the following steps:
+We suggest following the steps below to make the splitting most effective.
 
 ### Using the optimal MySQL configuration
 
-Shopware does set by default some specific MySQL configuration to make sure that the database is optimized for the Shopware usage. 
-This variables are set in the cluster mode only on the read-only server. To make sure that Shopware works flawlessly these configuration must be configured directly on the MySQL server so these variables are set on any server.
+By default, Shopware does not set specific MySQL configurations that make sure the database is optimized for the Shopware usage. 
+These variables are set in the cluster mode only on the read-only server. To make sure that Shopware works flawlessly these configuration must be configured directly on the MySQL server so these variables are set on any server.
 
 The following options should be set:
 
 - Make sure that `group_concat_max_len` is by default higher or equal to `320000`
 - Make sure that `sql_mode` doesn't contain `ONLY_FULL_GROUP_BY`
 
-After this change, you can set also `SQL_SET_DEFAULT_SESSION_VARIABLES=0` in the `.env` file so Shopware does not check for those variables in runtime.
+After this change, you can set also `SQL_SET_DEFAULT_SESSION_VARIABLES=0` in the `.env` file so Shopware does not check for those variables at runtime.
 
 ### Cart in Redis
 
-As we learned in the beginning, Shopware uses read-only MySQL server until the first write attempt. To maximaze this behaviour it is hightly recommanded to outsource much as you can the writes on the Database. One of the easiest solutions is to use the Redis as storage for the Cart.
-To use Redis add following snippet to `config/packages/cart.yml`
+As we learned in the beginning, Shopware queries a read-only MySQL server until the first write attempt. To maximize this behaviour it is highly recommended to outsource as many write operations as possible from the database. One of the easiest solutions is to use the Redis as storage for store carts.
+To use Redis, add the following snippet to `config/packages/cart.yml`
 
 ```yml
 shopware:
@@ -30,7 +32,7 @@ shopware:
         redis_url: 'redis://localhost:6379/0?persistent=1'
 ```
 
-It is recommanded to use a persistent Redis connection to avoid connection issues in high load scenarios. There is also an `cart:migrate` command to Migrate the cart between MySQL and Redis so the users can continue to use the existing carts.
+It is recommended to use a persistent Redis connection to avoid connection issues in high load scenarios. There is also a `cart:migrate` command to migrate the existing carts between MySQL and Redis so the migration does not influence end user experience.
 
 ## Configure the Database Cluster
 
