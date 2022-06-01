@@ -1,4 +1,4 @@
-# High load setup
+# Cluster setup
 
 The setup of enterprise systems differs from a normal installation of Shopware. Most enterprise systems are a completely customized stores with individual templates and extensions.
 
@@ -36,6 +36,12 @@ Instead of setting up a Redis server for `enqueue`, you can also work directly w
 The PHP Redis extension provides persistent Redis connections. Persistent connections can help in high load scenarios as each request doesn't have to open and close connections. Using non-persistent Redis connections can also hit the system's maximum of open sockets. Because of these limitations, the Redis extension is preferred over Predis.
 
 When a Redis cluster is in usage, the `php.ini` setting `redis.clusters.cache_slots=1` should be set to skip the cluster node lookup on each connection
+
+## Database Cluster
+
+We have compiled some best practices and configurations that will allow you to operate Shopware in a clustered database environment. Please refer to the guide below.
+
+{% page-ref page="../infrastructure/database-cluster.md" %}
 
 ## Filesystem
 
