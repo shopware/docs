@@ -98,7 +98,7 @@ A single flow action would look like this:
 ```xml
 <flow-action>
     <meta>
-        <name>slack_message</name>
+        <name>slackmessage</name>
         <label>Send slack message</label>
         <label lang="de-DE">Slack-Nachricht senden</label>
         <badge>Slack</badge>
