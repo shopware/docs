@@ -311,7 +311,7 @@ Shopware.Component.register('sw-cms-el-config-dailymotion', {
 
     computed: {
         dailyUrl() {
-            return this.element.config.dailyUrl;
+            return this.element.config.dailyUrl.value;
         }
     },
 
