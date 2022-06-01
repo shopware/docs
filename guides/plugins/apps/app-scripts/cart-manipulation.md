@@ -54,7 +54,7 @@ For example, you could only add a discount to the cart, if it not already exists
 {% raw %}
 ```twig
 {% if not services.cart.has('my-custom-discount') %}
-    {% do services.cart.discount('my-custom-discount', 'relative', 10, 'A custom discount') %}
+    {% do services.cart.discount('my-custom-discount', 'percentage', 10, 'A custom discount') %}
 {% endif %}
 ```
 {% endraw %}
@@ -217,7 +217,7 @@ Adding a relative discount is very similiar to adding an absolute discount. Inst
 {% code title="Resources/scripts/cart/my-cart-script.twig" %}
 {% raw %}
 ```twig
-{% do services.cart.discount('my-custom-discount', 'relative', 10, 'A custom 10% discount') %}
+{% do services.cart.discount('my-custom-discount', 'percentage', 10, 'A custom 10% discount') %}
 ```
 {% endraw %}
 {% endcode %}
@@ -235,7 +235,7 @@ You can remove line items by providing the `id` of the line-item that should be 
 {% do services.cart.remove(productId) %}
 
 {# first add the discount #}
-{% do services.cart.discount('my-custom-discount', 'relative', 10, 'A custom 10% discount') %}
+{% do services.cart.discount('my-custom-discount', 'percentage', 10, 'A custom 10% discount') %}
 {# then remove it again #}
 {% do services.cart.remove('my-custom-discount') %}
 ```
