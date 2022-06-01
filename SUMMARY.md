@@ -289,6 +289,7 @@
   * [Apps](guides/plugins/apps/README.md)
     * [App Starter Guides](guides/plugins/apps/starter/README.md)
       * [Starter Guide - Reading and writing data](guides/plugins/apps/starter/product-translator.md)
+      * [Starter Guide - Add an API endpoint](guides/plugins/apps/starter/add-api-endpoint.md)
     * [App Base Guide](guides/plugins/apps/app-base-guide.md)
     * [App Scripts](guides/plugins/apps/app-scripts/README.md)
       * [Cart manipulation](guides/plugins/apps/app-scripts/cart-manipulation.md)
