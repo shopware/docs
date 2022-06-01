@@ -37,6 +37,18 @@ The PHP Redis extension provides persistent Redis connections. Persistent connec
 
 When a Redis cluster is in usage, the `php.ini` setting `redis.clusters.cache_slots=1` should be set to skip the cluster node lookup on each connection
 
+## Database Cluster
+
+To scale Shopware even further, we recommend to use a database cluster. A database cluster consists of multiple read-only servers that are managed by a single primary instance.
+Shopware already splits read and write SQL queries by default. When a write  [`INSERT`/`UPDATE`/`DELETE`/...](https://github.com/shopware/platform/blob/v6.4.11.1/src/Core/Profiling/Doctrine/DebugStack.php#L48) query is executed, the query is delegated to the primary server and the current connection uses only the primary node for subsequent calls.
+
+To use the MySQL Cluster, you have to configure the following in the `.env` file:
+
+- `DATABASE_URL` is the connection string for the MySQL primary.
+- `DATABASE_REPLICA_x_URL` (e.g `DATABASE_REPLICA_0_URL`, `DATABASE_REPLICA_1_URL`) - is the connection string for the MySQL read-only server.
+
+ [Read more](../infrastructure/database-cluster.md)
+
 ## Filesystem
 
 In a multi-app-server system, manage specific directories over a shared filesystem. This includes assets as well as theme files and private and public filesystems. The recommendation is to use a S3 compatible bucket.
