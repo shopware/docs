@@ -192,12 +192,12 @@ Define the `parameter` for the URL body based on your URL webhook services.
 | {{ message }} | The variable from your `<input-field>` defined in `flow-action.xml`. |
 | {{ order.orderNumber }} | For each trigger event, the action will have the variables suitable. [Read more variables here](../../../../resources/references/app-reference/flow-action-reference.md). |
 
-With the values `<headers>` and `<parameters`> we configured above, when the App Flow Action is executed, it will call your 3rd party api, like this:
+With the parameters configured like described above, an exemplary call of your Webhook Action could look like this:
 
 ```text
     POST https://hooks.slack.com/services/{id} {
         headers:
-            content-typ: application/json
+            content-type: application/json
         body:
             text: {{ message }} \n Order Number: {{ order.orderNumber }}
     }
