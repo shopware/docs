@@ -361,9 +361,9 @@ export default class ExamplePlugin extends Plugin {
         this.modal = new PseudoModalUtil(
             content,
             useBackrop,
-            'custom-js-pseudo-modal-template',
-            'custom-js-pseudo-modal-template-content-element',
-            'custom-js-pseudo-modal-template-title-element'
+            '.custom-js-pseudo-modal-template',
+            '.custom-js-pseudo-modal-template-content-element',
+            '.custom-js-pseudo-modal-template-title-element'
         );
 
         // open the modal window and make it visible
