@@ -1,6 +1,6 @@
 # Theme Build
 
-The entire build process is performed without an active database connection. However, for theme builds, Shopware needs to access the theme configuration. We make it available, by checking it into our VCS repository. This process has to performed **after** you first installed Shopware in your Enterprise cloud environment, because it runs a command that requires an existing database which has not been created on the first run.
+The entire build process is performed without an active database connection. However, for theme builds, Shopware needs to access the theme configuration. We make it available, by checking it into our VCS repository. This process has to performed **after** you first installed Shopware in your Enterprise Cloud environment, because it runs a command that requires an existing database which has not been created on the first run.
 
 ## Dump configuration
 

@@ -1,8 +1,8 @@
 # Setup Template
 
-The setup template is a derivation from the [shopware/production](https://github.com/shopware/production) template. It contains build and deployment logic for Shopware Enterprise cloud as well as configuration for the underlying infrastructure and services. In this chapter we will have a look at these customizations.
+The setup template is a derivation from the [shopware/production](https://github.com/shopware/production) template. It contains build and deployment logic for Shopware Enterprise Cloud as well as configuration for the underlying infrastructure and services. In this chapter we will have a look at these customizations.
 
-Below is a directory overview of the Enterprise cloud setup template.
+Below is a directory overview of the Enterprise Cloud setup template.
 
 ```
 shopware/paas/
@@ -20,7 +20,7 @@ shopware/paas/
 
 ## [.platform.app.yaml](https://github.com/shopware/paas/blob/main/.platform.app.yaml)
 
-This file contains Shopware Enterprise cloud specific configuration and can be customized as needed for your individual project.
+This file contains Shopware Enterprise Cloud specific configuration and can be customized as needed for your individual project.
 
 ### name
 

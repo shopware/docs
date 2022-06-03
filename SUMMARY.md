@@ -96,7 +96,7 @@
       * [Decorating a Shopware Migration Assistant converter](products/plugins/migration-assistant/guides/decorating-a-shopware-migration-assistant-converter.md)
       * [Creating a new migration profile](products/plugins/migration-assistant/guides/creating-a-new-migration-profile.md)
 * [Cloud](products/cloud.md)
-* [Enterprise cloud](products/enterprise-cloud/README.md)
+* [Enterprise Cloud](products/enterprise-cloud/README.md)
   * [CLI Setup](products/enterprise-cloud/cli-setup.md)
   * [Repository](products/enterprise-cloud/repository.md)
   * [Build & Deploy](products/enterprise-cloud/build-deploy.md)
