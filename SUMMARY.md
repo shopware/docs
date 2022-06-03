@@ -266,6 +266,7 @@
       * [Add custom field in the storefront](guides/plugins/plugins/storefront/using-custom-fields-storefront.md)
       * [Add custom sorting for product listing](guides/plugins/plugins/storefront/add-custom-sorting-product-listing.md)
       * [Add SCSS variables](guides/plugins/plugins/storefront/add-scss-variables.md)
+      * [Add SCSS variables via Subscriber](guides/plugins/plugins/storefront/add-scss-variables-via-subscriber.md)
       * [Using a modal window](guides/plugins/plugins/storefront/using-a-modal-window.md)
       * [Using the datepicker plugin](guides/plugins/plugins/storefront/using-the-datepicker-plugin.md)
       * [Use nested line items](guides/plugins/plugins/storefront/use-nested-line-items.md)
