@@ -127,7 +127,7 @@ Redis offers better support for atomic increments than the database, therefore t
 
 ```yaml
 shopware:
-  number_ranges:
+  number_range:
     increment_storage: "Redis"
     redis_url: 'redis://host:port/dbindex'
 ```

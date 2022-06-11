@@ -16,7 +16,7 @@ Redis offers better support for atomic increments than the database, therefore t
 To use Redis, create a `config/packages/shopware.yml` file with the following content:
 ```yaml
 shopware:
-  number_ranges:
+  number_range:
     increment_storage: "Redis"
     redis_url: 'redis://host:port/dbindex'
 ```
