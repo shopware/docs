@@ -15,6 +15,7 @@ As most guides, this guide is also built upon the [Plugin base guide](../../plug
 First, we have to create a new class which we will name `SmsHandler` in this example. Our handler has to extend the `Shopware\Core\Framework\MessageQueue\Handler\AbstractMessageHandler` class and implement the method `handle`. To specify which methods should be handled by a given handler we implement the static method `getHandledMessages` and return a reference to the MessageClasses our handler should handle. We can also define multiple handlers for the same message. To register a handler, we have to tag it with the `messenger.message_handler` tag.
 
 {% code title="<plugin root>/src/MessageQueue/Handler/SmsHandler.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -39,6 +40,7 @@ class SmsHandler extends AbstractMessageHandler
     }
 }
 ```
+
 {% endcode %}
 
 ## Consuming messages
@@ -46,29 +48,35 @@ class SmsHandler extends AbstractMessageHandler
 There is a console command to start a worker that will receive incoming messages from your transport and dispatch them. Simply start the worker with the following command:
 
 {% code title="" %}
+
 ```bash
 bin/console messenger:consume default
 ```
+
 {% endcode %}
 
 Where `default` is the transport you want to consume message from. There is also an API-Route that lets you consume messages for a given transport. Just post to the route `/api/_action/message-queue/consume` and define the transport from which you want to consume:
 
 {% code title="" %}
+
 ```javascript
 {
   "receiver": "default"
 }
 ```
+
 {% endcode %}
 
 The receiver will consume messages for 2 seconds and then you get the count of the handled messages in the response:
 
 {% code title="" %}
+
 ```javascript
 {
   "handledMessages": 15
 }
 ```
+
 {% endcode %}
 
 ### The admin-worker
@@ -80,23 +88,29 @@ Per default there is an admin-worker that will periodically ping the endpoint to
 The recommended way to consume messages is through the cli command. You can configure the command to run a certain amount of time or to stop if it exceeds a certain memory limit like:
 
 {% code title="" %}
+
 ```bash
 bin/console messenger:consume default --time-limit=60
 ```
+
 {% endcode %}
 
 {% code title="" %}
+
 ```bash
 bin/console messenger:consume default --memory-limit=128M
 ```
+
 {% endcode %}
 
 For more information about the command and its configuration use the `-h` option:
 
 {% code title="" %}
+
 ```bash
 bin/console messenger:consume -h
 ```
+
 {% endcode %}
 
 You should use the limit option to periodically restart the worker processes, because of the memory leak issues of long running php processes. To automatically start the processes again after they stopped because of exceeding the given limits you can use something like [upstart](http://upstart.ubuntu.com/getting-started.html) or [supervisor](http://supervisord.org/running.html). Alternatively you can configure a `CronJob` that runs the command periodically.
@@ -104,11 +118,13 @@ You should use the limit option to periodically restart the worker processes, be
 If you have configured the cli-worker, you can turn off the admin worker in your `shopware.yaml`.
 
 {% code title="<platform root>/src/Core/Framework/Resources/config/packages/shopware.yaml" %}
+
 ```yaml
 shopware:
     admin_worker:
         enable_admin_worker: false
 ```
+
 {% endcode %}
 
 **Note:** This will disable the AdminWorker completely and you have to configure the cli-worker for scheduled tasks as well.
@@ -122,6 +138,7 @@ The message bus is used to dispatch your messages to your registered handlers. W
 You can configure an array of buses and define one default bus in your `framework.yaml`.
 
 {% code title="<platform root>/src/Core/Framework/Resources/config/packages/framework.yaml" %}
+
 ```yaml
 framework:
     messenger:
@@ -129,6 +146,7 @@ framework:
         buses:
             messenger.bus.shopware:
 ```
+
 {% endcode %}
 
 For more information on this check the [Symfony docs](https://symfony.com/doc/current/messenger/multiple_buses.html).
@@ -142,23 +160,27 @@ You can configure an amqp transport directly in your `framework.yaml`, but since
 In your `enqueue.yaml` you simply configure your transports as follows:
 
 {% code title="<platform root>/src/Core/Framework/Resources/config/packages/enqueue.yaml" %}
+
 ```yaml
 enqueue:
   default: # the name of your transport
     transport: ~ # the transport configuration
     client: ~ # the client configuration
 ```
+
 {% endcode %}
 
 In a simple setup you only need to set the transport to a valid DSN like:
 
 {% code title="<platform root>/src/Core/Framework/Resources/config/packages/enqueue.yaml" %}
+
 ```yaml
 enqueue:
   default:
     transport: "file://path/to/my/file"
     client: ~
 ```
+
 {% endcode %}
 
 Notice that for different schemas \(e.g. `file://`, `amqp://)` different enqueue transports are required. Shopware just ships with the `Filesystem` transport, so you need to require the transport you want to use.
@@ -168,6 +190,7 @@ For more information on this check the [enqueue docs](https://github.com/php-enq
 To tell Symfony to use your transports from your `enqueue.yaml` simply use:
 
 {% code title="<platform root>/src/Core/Framework/Resources/config/packages/enqueue.yaml" %}
+
 ```yaml
 framework:
     messenger:
@@ -175,6 +198,7 @@ framework:
           default: # the name for the transport used by symfony
             enqueue: //default # 'enqueue://' followed by the name of your transport used in 'enqueue.yaml'
 ```
+
 {% endcode %}
 
 ### Routing
@@ -182,6 +206,7 @@ framework:
 You can route messages to different transports. For that, just configure your routing in the `framework.yaml`.
 
 {% code title="<plugin root>/src/" %}
+
 ```yaml
 framework:
     messenger:
@@ -193,6 +218,7 @@ framework:
           'Swag\BasicExample\MessageQueue\Message\AnotherExampleNotification': [default, another_transport]
           '*': default
 ```
+
 {% endcode %}
 
 You can route messages by their classname and use the asterisk as a fallback for all other messages. If you specify a list of transports the messages will be routed to all of them. For more information on this check the [Symfony docs](https://symfony.com/doc/current/messenger.html#routing-messages-to-a-transport).
@@ -202,6 +228,7 @@ You can route messages by their classname and use the asterisk as a fallback for
 The admin-worker can be configured or disabled in the general `shopware.yml` configuration. If you want to use the admin worker you have to specify each transport, that previously was configured. The poll interval is the time in seconds that the admin-worker polls messages from the queue. After the poll-interval is over the request terminates and the administration initiates a new request.
 
 {% code title="<platform root>/src/Core/Framework/Resources/config/packages/shopware.yaml" %}
+
 ```yaml
 shopware:
     admin_worker:
@@ -209,6 +236,7 @@ shopware:
         poll_interval: 30
         transports: ["default"]
 ```
+
 {% endcode %}
 
 ## Next steps
@@ -216,4 +244,3 @@ shopware:
 Now that you know how to add a message handler and configure a bus for it, you may want to add a custom middleware for your bus. To do this, head over to our "Add middleware" guide:
 
 {% page-ref page="add-middleware.md" %}
-

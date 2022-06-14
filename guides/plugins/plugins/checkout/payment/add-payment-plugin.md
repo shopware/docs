@@ -8,7 +8,7 @@ Payments are an essential part of the checkout process. That's the reason why Sh
 
 The examples mentioned in this guide are built upon our [Plugin base guide](../../plugin-base-guide.md).
 
-If you want to understand the payment process in detail, head to our [Payment Concept](../../../../../concepts/commerce/checkout-concept/payments.md). 
+If you want to understand the payment process in detail, head to our [Payment Concept](../../../../../concepts/commerce/checkout-concept/payments.md).
 
 <!-- markdown-link-check-disable-next-line -->
 {% hint style="info" %}
@@ -45,6 +45,7 @@ All methods get the `\Shopware\Core\System\SalesChannel\SalesChannelContext` inj
 Before we're going to have a look at some examples, we need to register our new service to the [Dependency Injection](../../plugin-fundamentals/dependency-injection.md) container. We'll use a class called `ExamplePayment` here.
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
+
 ```markup
 <?xml version="1.0" ?>
 
@@ -63,6 +64,7 @@ Before we're going to have a look at some examples, we need to register our new 
     </services>
 </container>
 ```
+
 {% endcode %}
 
 We inject the `OrderTransactionStateHandler` in this example, as it is helpful for changing an order's transaction state, e.g. to `paid`. The payment handler has to be marked as such as well, hence the tag `shopware.payment.method.sync`, `shopware.payment.method.async` or `shopware.payment.method.prepared` respectively for a synchronous, an asynchronous or a prepared payment handler.
@@ -76,6 +78,7 @@ The following will be a synchronous example, so no redirect will happen and the 
 Therefore, changing the `stateId` of the order should already be done in the `pay` method, since there will be no `finalize` method. If you have to execute some logic which might fail, e.g. a call to an external API, you should throw a `SyncPaymentProcessException`. Shopware 6 will handle this exception and set the transaction to the `cancelled` state.
 
 {% code title="<plugin root>/src/Service/ExamplePayment.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -103,6 +106,7 @@ class ExamplePayment implements SynchronousPaymentHandlerInterface
     }
 }
 ```
+
 {% endcode %}
 
 All it does now is to set the state of the order transaction to `paid`.
@@ -116,6 +120,7 @@ Also you need a `finalize` method to properly handle your customer, when he was 
 Let's have a look at an example implementation of your custom asynchronous payment handler:
 
 {% code title="<plugin root>/src/Service/ExamplePayment.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -196,6 +201,7 @@ class ExamplePayment implements AsynchronousPaymentHandlerInterface
     }
 }
 ```
+
 {% endcode %}
 
 Let's start with the `pay` method. You'll have to start with letting your external payment provider know, where he should redirect your customer in return when the payment was done. This is usually done by making an API call and transmitting the return URL, which you can fetch from the passed `AsyncPaymentTransactionStruct` by using the method `getReturnUrl`. Since this is just an example, the method `sendReturnUrlToExternalGateway` is empty. Fill in your logic in there in order to actually send the return URL to the external payment provider. The last thing you need to do, is to redirect your customer to the external payment provider via a `RedirectResponse`.
@@ -213,6 +219,7 @@ This comes in two steps: The handler has to validate the payment beforehand, or 
 Let's have a look at a simple example:
 
 {% code title="<plugin root>/src/ExamplePayment.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -290,6 +297,7 @@ class ExamplePayment implements PreparedPaymentHandlerInterface
 }
 
 ```
+
 {% endcode %}
 
 ### Refund example
@@ -301,6 +309,7 @@ For this, have your payment handler implement the `RefundPaymentHandlerInterface
 Let's have a look at a short example, on how to implement such payment handlers.
 
 {% code title="<plugin root>/src/ExamplePayment.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -361,9 +370,10 @@ class ExamplePayment implements RefundPaymentHandlerInterface
     }
 }
 ```
+
 {% endcode %}
 
-As you can see, you have full control on how to handle the refund request and which positions to refund. 
+As you can see, you have full control on how to handle the refund request and which positions to refund.
 
 ## Setting up new payment method
 
@@ -372,6 +382,7 @@ The handler itself is not used yet, since there is no payment method actually us
 An example for your plugin could look like this:
 
 {% code title="<plugin root>/src/SwagBasicExample.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -472,6 +483,7 @@ class SwagBasicExample extends Plugin
     }
 }
 ```
+
 {% endcode %}
 
 In the `install` method, you actually start by creating a new payment method, if it doesn't exist yet. If you don't know what's happening in there, you might want to have a look at our guide regarding [Writing data](../../framework/data-handling/writing-data.md).
@@ -483,4 +495,3 @@ The `activate` method and `deactivate` method just do that, activating and deact
 ### Identify your payment
 
 You can identify your payment by the entity property `formattedHandlerIdentifier`. It shortens the original handler identifier \(php class reference\): `Custom/Payment/SEPAPayment` to `handler_custom_sepapayment` The syntax for the shortening can be looked up in [Shopware\Core\Checkout\Payment\DataAbstractionLayer\PaymentHandlerIdentifierSubscriber](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Checkout/Payment/DataAbstractionLayer/PaymentHandlerIdentifierSubscriber.php).
-

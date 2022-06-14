@@ -39,4 +39,3 @@ To send messages the Shopware messenger bus is used which can be injected throug
 ### Consuming Messages
 
 Consuming messages can be done via both a [console command](../../guides/hosting/infrastructure/message-queue.md#cli-worker), and via an API endpoint. The Console command starts a worker that will receive incoming messages from your transport and dispatch them. The API can be communicated with via a POST, which will consume messages for 2 seconds and then you get the count of the handled messages in the response.
-

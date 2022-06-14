@@ -28,6 +28,7 @@ ALTER TABLE `swag_example`
 After we've added the new field to our table, we also have to add it to our definition. For this we use a `Shopware\Core\Framework\DataAbstractionLayer\Field\VersionField` which is always required, if we want to version our entity.
 
 {% code title="<plugin root>/src/Core/Content/Example/ExampleDefinition.php" %}
+
 ```php
 protected function defineFields(): FieldCollection
 {
@@ -37,6 +38,7 @@ protected function defineFields(): FieldCollection
     ]);
 }
 ```
+
 {% endcode %}
 
 ## Create and merge version
@@ -44,6 +46,7 @@ protected function defineFields(): FieldCollection
 In this section we will create a new version of our entity which will create a new entry in the database with our updated values. When we merge a particular version, all versions before the merged version are deleted. In the example below, we are using a service where we injected a `swag_example.repository`.
 
 {% code title="<plugin root>/src/" %}
+
 ```php
 public function exampleVersioning(Context $context): void
 {
@@ -82,6 +85,7 @@ public function exampleVersioning(Context $context): void
     $exampleThree = $this->exampleRepository->search(new Criteria([$exampleId]), $context)->first();
 }
 ```
+
 {% endcode %}
 
 As you can see above, we first created a new `ExampleEntity` with the description 'This is an example'.
@@ -117,6 +121,7 @@ ALTER TABLE `swag_example`
 After we've added the new field to our table, we also have to add it to our definition. For this we use a `Shopware\Core\Framework\DataAbstractionLayer\Field\ReferenceVersionField` which references to our entity by using `self::class` and the related field `parent_version_id`.
 
 {% code title="<plugin root>/src/Core/Content/Example/ExampleDefinition.php" %}
+
 ```php
 protected function defineFields(): FieldCollection
 {
@@ -127,5 +132,5 @@ protected function defineFields(): FieldCollection
     ]);
 }
 ```
-{% endcode %}
 
+{% endcode %}

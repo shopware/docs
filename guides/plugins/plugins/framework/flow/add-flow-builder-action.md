@@ -7,6 +7,7 @@
 ## Overview
 
 In this guide, you'll learn how to create custom flow action in Shopware. The flow builder uses actions to perform business tasks. This example will introduce a new custom action called `create tags`.
+
 ## Prerequisites
 
 In order to add your own custom flow action for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide.](../../plugin-base-guide.md)
@@ -30,6 +31,7 @@ To create a custom flow action, firstly you have to make a plugin and install it
  First of all, we need to define an aware interface for your own action. I intended to create the `CreateTagAction`, so I need to create a related aware named `TagAware`, will be placed in directory `<plugin root>/src/Core/Framework/Event`. Our new interface has to extend from interfaces `Shopware\Core\Framework\Event\FLowEventAware`:
 
 {% code title="<plugin root>/src/Core/Framework/Event/TagAware.php" %}
+
 ```php
 <?php declare(strict_types=1);
 namespace Swag\ExamplePlugin\Core\Framework\Event;
@@ -39,6 +41,7 @@ interface TagAware extends FlowEventAware
 {
 }
 ```
+
 {% endcode %}
 
 ### Create new action
@@ -46,6 +49,7 @@ interface TagAware extends FlowEventAware
 In this example, we will name it `CreateTagAction`. It will be placed in the directory `<plugin root>/src/Core/Content/Flow/Dispatching/Action`. Our new class has to extend from the abstract class `Shopware\Core\Framework\Event\FLowEvent`. Below you can find an example implementation:
 
 {% code title="<plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -117,6 +121,7 @@ class CreateTagAction extends FlowAction
     }
 }
 ```
+
 {% endcode %}
 
 As you can see, several methods are already implemented:
@@ -129,6 +134,7 @@ As you can see, several methods are already implemented:
 And we also need to register this action in the container as a service, make sure you have defined a tag `<tag name="flow.action" priority="600">` at `<plugin root>/src/Resources/config/services.xml`, that your action would be added to response of *`/api/_info/flow-actions.json`* API and `priority` will decide the order of action of API response:
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
+
 ```xml
 <service id="Swag\ExamplePlugin\Core\Content\Flow\Dispatching\Action\CreateTagAction">
     <argument type="service" id="tag.repository" />
@@ -136,6 +142,7 @@ And we also need to register this action in the container as a service, make sur
     <tag name="flow.action" priority="600"/>
 </service>
 ```
+
 {% endcode %}
 
 Great, your own action is created completely. Let's go to the next step.
@@ -145,6 +152,7 @@ Great, your own action is created completely. Let's go to the next step.
  At this step, you will know how to define your action scope, for `CreateTagAction`, I intended it would be available for all events. Let's see the code below:
 
 {% code title="<plugin root>/src/Core/Content/Flow/Subscriber/BusinessEventCollectorSubscriber.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -171,16 +179,19 @@ class BusinessEventCollectorSubscriber implements EventSubscriberInterface
     }
 }
 ```
+
 {% endcode %}
 
 And don't forget to register your subscriber to the container at `<plugin root>/src/Resources/config/services.xml`.
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
+
 ```xml
 <service id="Swag\ExamplePlugin\Core\Content\Flow\Subscriber\BusinessEventCollectorSubscriber">
     <tag name="kernel.event_subscriber"/>
 </service>
 ```
+
 {% endcode %}
 
 Well done, you are successfully created your custom action in Backend in PHP.
@@ -208,6 +219,7 @@ First, we need to define an action name in `example-plugin.constant.js`. To be c
 ![Flow Builder action services list](../../../../../.gitbook/assets/flow-builder-action-sevices-list.png)
 
 {% code title="<plugin root>/src/Resources/app/administration/src/constant/swag-example-plugin.constant.js" %}
+
 ```jsx
 export const ACTION = Object.freeze({
     CREATE_TAG: 'action.create.tag',
@@ -217,11 +229,13 @@ export default {
     ACTION,
 };
 ```
+
 {% endcode %}
 
 Next, we override `sw-flow-sequence-action` component to show `CREATE_TAG` label in action list. For example, we override `getActionTitle` method to add icon, label for `CREATE_TAG` action.
 
 {% code title="<plugin root>/src/Resources/app/administration/src/extension/sw-flow-sequence-action/index.js" %}
+
 ```jsx
 import { ACTION } from '../../constant/swag-example-plugin.constant';
 
@@ -243,6 +257,7 @@ Component.override('sw-flow-sequence-action', {
     },
 });
 ```
+
 {% endcode %}
 
 Here is the result for the after the **Step 1**.
@@ -254,6 +269,7 @@ Here is the result for the after the **Step 1**.
 First, we customise `modalName` for the configuration modal, add an `actionDescription` computed property and create the `getCreateTagDescription` method to show action the configuration description.
 
 {% code title="<plugin root>/src/Resources/app/administration/src/extension/sw-flow-sequence-action/index.js" %}
+
 ```jsx
 import { ACTION } from '../../constant/swag-example-plugin.constant';
 
@@ -302,6 +318,7 @@ Component.override('sw-flow-sequence-action', {
     },
 });
 ```
+
 {% endcode %}
 
 Then, we need a modal to save your action config. For example, we create a component `swag-example-plugin-modal`.
@@ -309,6 +326,7 @@ Then, we need a modal to save your action config. For example, we create a compo
 #### JavaScript file
 
 {% code title="<plugin root>/src/Resources/app/administration/src/component/swag-example-plugin-modal/index.js" %}
+
 ```jsx
 import template from './swag-example-plugin-modal.html.twig';
 const { Component } = Shopware;
@@ -356,12 +374,14 @@ Component.register('swag-example-plugin-modal', {
     },
 });
 ```
+
 {% endcode %}
 
 #### Twig template file
 
 {% code title="<plugin root>/src/Resources/app/administration/src/component/swag-example-plugin-modal/swag-example-plugin-modal.html.twig" %}
 {% raw %}
+
 ```html
 {% block swag_example_plugin_modal %}
     <sw-modal
@@ -405,6 +425,7 @@ Component.register('swag-example-plugin-modal', {
     </sw-modal>
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 

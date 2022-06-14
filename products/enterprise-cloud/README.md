@@ -1,5 +1,7 @@
+# Enterprise Cloud
+
 {% hint style="info" %}
-**Enterprise only** 
+**Enterprise only**
 
 Shopware Enterprise Cloud is available at request for Shopware Enterprise merchants. Please approach the Shopware Sales to get more information on Shopware Enterprise Cloud
 {% endhint %}

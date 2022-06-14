@@ -10,7 +10,7 @@ On a productive system, the message queue should be processed via the CLI instea
 It's recommended to run one or more `messenger:consume`-workers. To automatically start the processes again after they stopped because of exceeding the given limits you can use a process control system like [systemd](https://www.freedesktop.org/wiki/Software/systemd/) or [supervisor](http://supervisord.org/running.html).  
 Alternatively you can configure a cron job that runs the command periodically. Please note: Using cron jobs won't take care of maximum running worker, like supervisor can do. They don't wait for another worker to stop. So there is a risk starting an unwanted amount of workers when you have messages running longer than the set time-limit. If the time-limit has been exceeded worker will wait for the current message being finished.
 
-Find here the docs of Symfony: https://symfony.com/doc/current/messenger.html#deploying-to-production  
+Find here the docs of Symfony: <https://symfony.com/doc/current/messenger.html#deploying-to-production>  
 
 {% hint style="info" %}
 It is recommended to use a third party message queue to support multiple consumers and / or a greater amount of data to index.
@@ -22,13 +22,13 @@ The recommended method for consuming messages is using the cli worker.
 
 #### Cli worker
 
-You can configure the command just to run a certain amount of time and to stop if it exceeds a certain memory limit like: 
+You can configure the command just to run a certain amount of time and to stop if it exceeds a certain memory limit like:
 
 ```bash
 bin/console messenger:consume default --time-limit=60 --memory-limit=128M
 ```
 
-For more information about the command and its configuration use the -h option: 
+For more information about the command and its configuration use the -h option:
 
 ```bash
 bin/console messenger:consume -h
@@ -61,6 +61,7 @@ shopware:
 We assume the services to be called `shopware_consumer`.
 
 Create a new file `/etc/systemd/system/shopware_consumer@.service`
+
 ```bash
 [Unit]
 Description=Shopware Message Queue Consumer, instance %i
@@ -79,6 +80,7 @@ WantedBy=shopware_consumer.target
 ```
 
 Create a new file `/etc/systemd/system/shopware_consumer.target`
+
 ```bash
 [Install]
 WantedBy=multi-user.target
@@ -110,7 +112,6 @@ framework:
     mailer:
         message_bus: 'messenger.default_bus'
 ```
-
 
 ### Transport: RabbitMQ example
 

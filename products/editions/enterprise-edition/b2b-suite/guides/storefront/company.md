@@ -2,10 +2,10 @@
 
 ## Table of contents
 
-*   [Introduction](#introduction)
-*   [The Context](#the-context)
-*   [Create entity](#create-entity)
-*   [Company filter](#company-filter)
+* [Introduction](#introduction)
+* [The Context](#the-context)
+* [Create entity](#create-entity)
+* [Company filter](#company-filter)
 
 ## Introduction
 
@@ -24,7 +24,6 @@ To create a new entity (which is managed in the company component), you have to 
 ## Company filter
 
 The `CompanyFilterStruct` is used by company module to filter and search for the entities. It extends the `SearchStruct` by the `companyFilterType` and `aclGrantContext`. The correct filter type can be applied by the `CompanyFilterHelper`, possible filter types see in the list below.
-
 
 | Filter name   |                        What it applies                         |
 |---------------|:--------------------------------------------------------------:|

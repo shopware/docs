@@ -13,4 +13,3 @@ Following is a list of important Storefront topics, that you might want to have 
 {% page-ref page="add-cookie-to-manager.md" %}
 
 {% page-ref page="use-csrf-protection.md" %}
-

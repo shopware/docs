@@ -39,4 +39,3 @@ It is important to understand the difference between those two, because both pro
 ### Configurator
 
 When a variant product is loaded for a [Store API](../../api/store-api.md)-scoped request, Shopware assembles a configurator object which includes all different property groups and the corresponding variants. This way client applications, such as the [Storefront](../../../guides/plugins/plugins/storefront/) or the [PWA](../../../products/pwa.md) can display the different variant options of the product.
-

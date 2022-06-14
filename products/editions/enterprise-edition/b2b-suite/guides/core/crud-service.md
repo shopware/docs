@@ -4,16 +4,16 @@ You can download a plugin showcasing the topic [here](../example-plugins/B2bAcl.
 
 ## Table of contents
 
-*   [The Pattern](#the-pattern)
-*   [The Entity](#the-entity)
-*   [The Repository](#the-repository)
-*   [The Validation Service](#the-validation-service)
-*   [The CRUD Service](#the-crud-service)
+* [The Pattern](#the-pattern)
+* [The Entity](#the-entity)
+* [The Repository](#the-repository)
+* [The Validation Service](#the-validation-service)
+* [The CRUD Service](#the-crud-service)
 
 ## The Pattern
 
-A repeating pattern used throughout the B2B-Suite are CRUD services. 
-The B2B-Suite ships with its own entities, and therefore provides the means to **cr**eate **u**pdate and **d**elete them. 
+A repeating pattern used throughout the B2B-Suite are CRUD services.
+The B2B-Suite ships with its own entities, and therefore provides the means to **cr**eate **u**pdate and **d**elete them.
 Although these entities may have special requirements, there is an exclusively used naming convention and pattern used to implement all CRUD operations.
 
 The Diagram below shows the usually implemented objects with their outside dependencies.
@@ -22,8 +22,8 @@ The Diagram below shows the usually implemented objects with their outside depen
 
 ## The Entity
 
-There always is an entity representing the data that has to be written. 
-Entities are uniquely identifiable storage objects, with public properties and only a few convenience functions. 
+There always is an entity representing the data that has to be written.
+Entities are uniquely identifiable storage objects, with public properties and only a few convenience functions.
 An example entity looks like this:
 
 ```php
@@ -118,14 +118,14 @@ class RoleEntity implements CrudEntity
 }
 ```
 
-The convenience interface `Shopware\B2B\Common\CrudEntity` is not required to assign context to the object. 
-Furthermore, the definition whether an entity can be stored or retrieved from storage can only securely be determined 
+The convenience interface `Shopware\B2B\Common\CrudEntity` is not required to assign context to the object.
+Furthermore, the definition whether an entity can be stored or retrieved from storage can only securely be determined
 if corresponding repository methods exist.
 
 ## The Repository
 
-There always is a repository, that handles all storage and retrieval functionality. 
-Contrary to Shopware default repositories they do not use the ORM and do not expose queries. 
+There always is a repository, that handles all storage and retrieval functionality.
+Contrary to Shopware default repositories they do not use the ORM and do not expose queries.
 A sample repository might look like this:
 
 ```php
@@ -184,7 +184,7 @@ class RoleRepository
 }
 ```
 
-Since it seems to be a sufficient workload for a single object to just interact with the storage layer, 
+Since it seems to be a sufficient workload for a single object to just interact with the storage layer,
 here is no additional validation of any sort. Everything that is solvable in PHP only is not part of this object.
 Notice that the exceptions are all typed and can be caught easily by the implementation code.
 
@@ -236,10 +236,10 @@ It provides assertions that can be evaluated by a controller and printed to the 
 
 Services are the real entry point to an entity. They are reusable and not dependant of any specific I/O mechanism.
 
-They are not allowed to depend on HTTP implementations directly, 
-and therefore provide their own request classes that contain the source independent required raw data. 
-Notice that they are also used to initially filter a possibly larger request, 
-and they allow just the right data points to enter the service, 
+They are not allowed to depend on HTTP implementations directly,
+and therefore provide their own request classes that contain the source independent required raw data.
+Notice that they are also used to initially filter a possibly larger request,
+and they allow just the right data points to enter the service,
 although the contents is validated by the `ValidationService`.
 
 ```php
@@ -282,8 +282,8 @@ class RoleCrudService extends AbstractCrudService
 }
 ```
 
-With a filled `CrudServiceRequest` you then call the actual action you want the service to perform. 
-Keep in mind that there may be other parameters required. For example an `Identity` determining if the currently 
+With a filled `CrudServiceRequest` you then call the actual action you want the service to perform.
+Keep in mind that there may be other parameters required. For example an `Identity` determining if the currently
 logged-in user may even access the requested data.
 
 ```php

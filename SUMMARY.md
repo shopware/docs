@@ -64,11 +64,11 @@
            * [Ajax Panel](products/editions/enterprise-edition/b2b-suite/guides/storefront/ajax-panel.md)
            * [Product Search](products/editions/enterprise-edition/b2b-suite/guides/storefront/product-search.md)
            * [Complex views](products/editions/enterprise-edition/b2b-suite/guides/storefront/complex-views.md)
-           * [Modal component](products/editions/enterprise-edition/b2b-suite/guides/storefront/modal-component.md) 
+           * [Modal component](products/editions/enterprise-edition/b2b-suite/guides/storefront/modal-component.md)
            * [Company](products/editions/enterprise-edition/b2b-suite/guides/storefront/company.md)
            * [Acl Routing](products/editions/enterprise-edition/b2b-suite/guides/storefront/acl-routing.md)
            * [Extending the storefront](products/editions/enterprise-edition/b2b-suite/guides/storefront/how-to-extend-the-storefront.md)
-         * [Administration](products/editions/enterprise-edition/b2b-suite/guides/administration/README.md) 
+         * [Administration](products/editions/enterprise-edition/b2b-suite/guides/administration/README.md)
          * [Example Plugins](products/editions/enterprise-edition/b2b-suite/guides/example-plugins/README.md)
     * [Search](products/editions/enterprise-edition/search/README.md)
       * [Installation](products/editions/enterprise-edition/search/installation.md)
@@ -416,4 +416,3 @@
 * [Tooling](resources/tooling/README.md)
   * [IDE](resources/tooling/ide/README.md)
     * [Shopware Toolbox](resources/tooling/ide/shopware-toolbox.md)
-

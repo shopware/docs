@@ -147,4 +147,3 @@ This makes it possible to indicate if one or more errors exists, in another view
     :hasError="swProductDetailBaseError">
 </sw-tabs>
 ```
-

@@ -93,7 +93,7 @@ MD034: true
 MD035: false
 
 # Emphasis used instead of a heading <https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md036>
-MD036: true
+MD036: false
 
 # Spaces inside emphasis markers <https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md037>
 MD037: true

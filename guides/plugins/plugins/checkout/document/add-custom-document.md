@@ -24,6 +24,7 @@ Adding a new document is done by adding two entries to the database:
 We're doing this via a migration. In the following example migration, a new document named "custom" will be created, which is assigned to the `Storefront` sales channel.
 
 {% code title="<plugin root>/src/Migration/Migration1616668698AddDocument.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -124,6 +125,7 @@ SQL;
     }
 }
 ```
+
 {% endcode %}
 
 So it's basically fetching the "Storefront" sales channel ID, and the document type ID of the "Delivery note" document type and then inserts the necessary entries with some example data.
@@ -135,4 +137,3 @@ Basically, that's it already! You can now browse your administration and use you
 ## Next steps
 
 You might wonder "But where do I define my custom template for my custom document?". This is done by adding a new document **type**, which is covered in [this guide](add-custom-document-type.md).
-

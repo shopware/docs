@@ -24,11 +24,11 @@ Make sure you've understood the basics of **plugin development** and **API Handl
 
 > Feel free to add multiple steps within your guide using second level headings. You can also add sub-steps with lower level headings.
 
-## Next steps 
+## Next steps
 
 > If applicable, enhance the reading experience by adding further articles that can complement your guide.
 
 Example:
 
- * [Writing documentation](../writing.md)
- * [Structure of the documentation](../structure.md)
+* [Writing documentation](../writing.md)
+* [Structure of the documentation](../structure.md)

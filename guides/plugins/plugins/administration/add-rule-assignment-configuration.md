@@ -28,9 +28,11 @@ That's the file you need to change now, so that it loads your extended component
 For this, simply add the following line to your `main.js` file:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/main.js" %}
+
 ```javascript
 import './module/sw-settings-rule/extension/sw-settings-rule-detail-assignments';
 ```
+
 {% endcode %}
 
 Now your module's `index.js` will be executed.
@@ -42,11 +44,13 @@ This is technically done by calling the method `override` method of our [Compone
 This method expects a name, and a configuration for the component you want to override.
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-settings-rule/extension/sw-settings-rule-detail-assignments/index.js" %}
+
 ```javascript
 Component.override('sw-settings-rule-detail-assignments', {
     // override configuration here
 });
 ```
+
 {% endcode %}
 
 ## Overriding the computed
@@ -56,6 +60,7 @@ In the `associationEntitiesConfig` computed property the configuration of the ru
 Because of this, you have to override this computed property, get the computed property of the original component, add your own configuration of the rule assignment and return the whole configuration array.
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-settings-rule/extension/sw-settings-rule-detail-assignments/index.js" %}
+
 ```javascript
 Component.override('sw-settings-rule-detail-assignments', {
     computed: {
@@ -67,6 +72,7 @@ Component.override('sw-settings-rule-detail-assignments', {
     }
 });
 ```
+
 {% endcode %}
 
 ## Adding the configuration
@@ -75,6 +81,7 @@ The configuration of the rule assignment is passed as an object and offers a wid
 Just have a look onto one example configuration item of the `Dynamic Access` plugin:
 
 {% code title="Example of a configuration item" %}
+
 ```javascript
 getRuleAssignmentConfig()
 {
@@ -144,8 +151,8 @@ getRuleAssignmentConfig()
     ];
 }
 ```
-{% endcode %}
 
+{% endcode %}
 
 Let's go through the most important entries, how to configure your rule assignment:
 
@@ -161,25 +168,29 @@ If you want to provide to delete an assignment, you have to define the `deleteCo
 The first one is the `one-to-many` type, which link to a column of the assignment entity like this:
 
 {% code title="Example of a one-to-many deleteContext" %}
-```
+
+```js
 deleteContext: {
     type: 'one-to-many',
     entity: 'cms_block',
     column: 'extensions.swagCmsExtensionsBlockRule.visibilityRuleId',
 },
 ```
+
 {% endcode %}
 
 The other type is `many-to-many`, which has to link to the `ManyToManyAssociationField` of the extension like this:
 
 {% code title="Example of a many-to-many deleteContext" %}
-```
+
+```js
 deleteContext: {
     type: 'many-to-many',
     entity: 'category',
     column: 'extensions.swagDynamicAccessRules',
 },
 ```
+
 {% endcode %}
 
 ### Provide to add an assignment
@@ -188,7 +199,8 @@ If you want to provide to add an assignment, you have to define the `addContext`
 but the `addContext` has more options to fill out, because an add assignment modal has to be configured:
 
 {% code title="Example of a one-to-many addContext" %}
-```
+
+```js
 addContext: {
     type: 'one-to-many',
     entity: 'shipping_method',
@@ -235,6 +247,7 @@ addContext: {
     ],
 },
 ```
+
 {% endcode %}
 
 The `addContext` needs a definition of the `gridColumns`, the `entity` and the `criteria`, like in the general configuration.
@@ -243,7 +256,8 @@ Also, the context needs the `column` of the assignment and the `searchColumn` of
 A context of the `many-to-many` type would look like this:
 
 {% code title="Example of a many-to-many addContext" %}
-```
+
+```js
 addContext: {
     type: 'many-to-many',
     entity: 'swag_dynamic_access_category_rule',
@@ -261,6 +275,7 @@ addContext: {
     ],
 },
 ```
+
 {% endcode %}
 
 Beside the properties of a `one-to-many` type you have to define the `association` with the name of the `ManyToManyAssociationField`.

@@ -30,4 +30,3 @@ A sales channel can have multiple associated domain configurations. These domain
 * [https://example.es/](https://example.es/)
   * Locale es-ES, Spanish, Euro
 <!-- markdown-link-check-enable -->
-

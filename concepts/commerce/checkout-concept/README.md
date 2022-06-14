@@ -7,4 +7,3 @@ The checkout in Shopware deals with the entire process of turning a cart into an
 {% page-ref page="payments.md" %}
 
 {% page-ref page="orders.md" %}
-

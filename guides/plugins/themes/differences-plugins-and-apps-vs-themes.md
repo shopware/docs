@@ -13,4 +13,3 @@ You do not need to write any PHP code in a theme. If you need PHP code you shoul
 Now that you have learned the differences between themes, plugins and apps, you can create your first theme.
 
 * [Create a first Shopware theme](create-a-theme.md)
-

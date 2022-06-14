@@ -130,7 +130,6 @@ Now your theme is fully installed, and you can start your customization.
 
 Now that you have created your own theme, the next step is to learn how to make settings and adjustments.
 
-* [Theme configuration](theme-configuration.md) 
+* [Theme configuration](theme-configuration.md)
 * [Add SCSS Styling and JavaScript to a theme](add-css-js-to-theme.md)
 * [Add assets to theme](add-assets-to-theme.md)
-

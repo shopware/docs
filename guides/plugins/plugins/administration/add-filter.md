@@ -15,6 +15,7 @@ First we create a new file in the directory `<plugin root>/src/Resources/app/adm
 Here's an example how your filter could look like:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/app/filter/example.filter.js" %}
+
 ```javascript
 const { Filter } = Shopware;
 
@@ -26,6 +27,7 @@ Filter.register('example', (value) => {
     return `_${value.toLocaleUpperCase()}_`;
 });
 ```
+
 {% endcode %}
 
 As you can see, it's very simple. We use `Filter` from the `Shopware` object where we can register our filter with the method `register`. The first argument we pass is the name of our filter, which is `example`. The second argument is a function with which we format our text.
@@ -43,4 +45,3 @@ Last, import the filter into your plugin's `main.js` file.
 ## Next steps
 
 Now that you know how to create a filter for the administration, we want to use it in our code. For this head over to our [using filter](using-filter.md) guide.
-

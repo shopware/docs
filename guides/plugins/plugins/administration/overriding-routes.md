@@ -17,6 +17,7 @@ At some point you might want to override or change existing routes, for example,
 This is done by creating a new module and implementing a `routeMiddleware`. You can add those changes to your `main.js` file, which could then look like this:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/main.js" %}
+
 ```javascript
 Module.register('my-new-custom-route', {
     routeMiddleware(next, currentRoute) {
@@ -38,9 +39,9 @@ Module.register('my-new-custom-route', {
     }
 });
 ```
+
 {% endcode %}
 
 This `routeMiddleware` changes the required privileges for the `sw.product.detail.base` route from `product.viewer` to `product.editor`. The rest of the route configurations stays the same in this example.
 
 If you want to learn more about ACL take a look at this [guide](add-acl-rules.md) and if you want to learn everything about administration routes, head over to this [guide](add-custom-route.md)
-

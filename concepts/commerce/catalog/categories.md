@@ -25,4 +25,3 @@ Every category has a [CMS layout](../core/shopping-experiences-cms.md) assigned 
 ## Types
 
 In addition to being a product collection and a navigation item, categories can also be used as a _structuring element_ \(which in itself is not a category that can be visited, but it's visible in the tree\) or a _custom link_ redirecting to an external resource.
-

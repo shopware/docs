@@ -33,5 +33,3 @@
     * [Example Plugins](b2b-suite/guides/example-plugins/README.md)
 
 If you're searching for Shopware 5 related information on our B2B suite, we got you covered! More info: [B2B-Suite Shopware 5 documentation](https://docs.enterprise.shopware.com/b2b-suite/)
-
-

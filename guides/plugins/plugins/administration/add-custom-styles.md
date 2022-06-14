@@ -29,6 +29,7 @@ Just like most components, it has a custom template. First we create the templat
 This template now has to define the basic structure of your component. In this simple case, you only need a parent container and two sub-elements, whatever those are.
 
 {% raw %}
+
 ```markup
 {% block example_block %}
     <div class="sw-hello-world">
@@ -36,6 +37,7 @@ This template now has to define the basic structure of your component. In this s
     </div>
 {% endblock %}
 ```
+
 {% endraw %}
 
 You've got a parent `div` containing the content of your template, an abstract with the text "Hello world!" in this case. Next up, you need to import that template in your `index.js` file of your component:
@@ -92,4 +94,3 @@ Because of [Sass](https://sass-lang.com/) usage, you are able to import external
 
 * [Writing templates](writing-templates.md)
 * [Add shortcuts](https://github.com/shopware/docs/tree/575c2fa12ef272dc25744975e2f1e4d44721f0f1/guides/plugins/plugins/administration/add-shortcuts.md)
-

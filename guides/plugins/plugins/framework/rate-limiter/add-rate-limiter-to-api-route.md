@@ -3,7 +3,7 @@
 ## Overview
 
 In this guide you'll learn how to secure API routes with a rate limit to reduce the risk against bruteforce attacks.
-If you want to learn more about the configuration of the rate limiter in Shopware, 
+If you want to learn more about the configuration of the rate limiter in Shopware,
 have a look at the [rate limiter](../../../../hosting/infrastructure/rate-limiter.md) guide.
 
 ## Prerequisites
@@ -20,6 +20,7 @@ First of all, we have to create a new configuration file for our rate limit. In 
 The root key of the configuration is the name which has to be a unique key. In this example we named it `example_route`.
 
 Each rate limit configuration needs the following keys:
+
 - `enabled`: Enables / Disables the rate limit for the specific route (default value: true).
 - `policy`: Possible policies are `fixed_window`, `sliding_window`, `token_bucket`, `time_backoff`. For more information check the [Symfony documentation](https://symfony.com/doc/current/rate_limiter.html#rate-limiting-policies).
 
@@ -27,11 +28,13 @@ If you plan to configure the `time_backoff` policy, head over to [rate limiter](
 Otherwise, check the [Symfony documentation](https://symfony.com/doc/current/rate_limiter.html#configuration) for the other keys you need for each policy.
 
 {% code title="<plugin root>/src/Resources/config/rate_limiter.yaml" %}
+
 ```yaml
 example_route:
     enabled: true
     policy: 'time_backoff'
 ```
+
 {% endcode %}
 
 ### Extending rate limit configuration in the DI-container
@@ -42,6 +45,7 @@ head over to the [Symfony documentation](https://symfony.com/doc/current/service
 ### Creating compiler pass
 
 {% code title="<plugin root>/src/CompilerPass/RateLimiterCompilerPass.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -65,6 +69,7 @@ class RateLimiterCompilerPass implements CompilerPassInterface
 }
 
 ```
+
 {% endcode %}
 
 As you can see, we're getting the current configuration of the rate limit from the DI-container and extend it by our `rate_limiter.yaml`
@@ -77,6 +82,7 @@ our `SwagBasicExample` plugin class. Important here is to use `Symfony\Component
 with a higher priority, otherwise it will be built too late.
 
 {% code title="<plugin root>/src/SwagBasicExample.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -98,6 +104,7 @@ class SwagBasicExample extends Plugin
     }
 }
 ```
+
 {% endcode %}
 
 ## Implementing rate limit in API route
@@ -108,6 +115,7 @@ After we've configured our rate limit, we want to use it in our API route.
 For this we need to inject the `Shopware\Core\Framework\RateLimiter\RateLimiter` service.
 
 {% code title="<plugin root>/src/Core/Content/Example/SalesChannel/ExampleRoute.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -131,6 +139,7 @@ class ExampleRoute extends AbstractExampleRoute
     ...
 }
 ```
+
 {% endcode %}
 
 ### Call the rate limiter
@@ -138,6 +147,7 @@ class ExampleRoute extends AbstractExampleRoute
 After we've injected the service into our API route, we can call the limiter in our route method.
 
 To do this, we call the method `ensureAccepted` of the rate limiter which accepts the following arguments:
+
 - `route`: Unique name of the rate limit, we defined in the configuration.
 - `key`: Key we want to use to limit the request e.g., the client IP.
 
@@ -145,6 +155,7 @@ When calling the `ensureAccepted` method it counts the request for the key in th
 If the limit has been exceeded, it throws `Shopware\Core\Framework\RateLimiter\Exception\RateLimitExceededException`.
 
 {% code title="<plugin root>/src/Core/Content/Example/SalesChannel/ExampleRoute.php" %}
+
 ```php
 /**
  * @Route("/store-api/example", name="store-api.example.search", methods={"GET", "POST"})
@@ -157,14 +168,16 @@ public function load(Request $request, SalesChannelContext $context): ExampleRou
     ...
 }
 ```
+
 {% endcode %}
 
 ### Reset the rate limit
 
-Once we've made a successful request, we want to reset the rate limit for the client. 
+Once we've made a successful request, we want to reset the rate limit for the client.
 We just have to call the `reset` method as you can see below.
 
 {% code title="<plugin root>/src/Core/Content/Example/SalesChannel/ExampleRoute.php" %}
+
 ```php
 /**
  * @Route("/store-api/example", name="store-api.example.search", methods={"GET", "POST"})
@@ -182,4 +195,5 @@ public function load(Request $request, SalesChannelContext $context): ExampleRou
     ...
 }
 ```
+
 {% endcode %}

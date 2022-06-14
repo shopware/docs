@@ -30,7 +30,7 @@ Starting with `6.3.0.0`, we use a slightly modified version of SemVer. The patte
 * 6.3.2.5 - Major=3, Minor=2, Patch=5
 * 6.4.1.0 - Major=4, Minor=1, Patch=0
 
-See also: 
+See also:
 <!-- markdown-link-check-disable-next-line -->
 {% embed url="https://www.shopware.com/en/news/shopware-6-versioning-strategy" caption="" %}
 
@@ -262,4 +262,3 @@ rw local - locale read and write access
 ```
 
 Some of these directories like `public` can also be changed to different flysystem to host the files on s3 for example.
-

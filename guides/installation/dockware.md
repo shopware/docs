@@ -66,7 +66,7 @@ docker run --rm -p 80:80 --env PHP_VERSION=7.2 dockware/dev:latest
 
 ## Using docker-compose
 
-#### Create docker-compose.yml
+### Create docker-compose.yml
 
 Create a new `docker-compose.yml` in the folder where you want to start your project and use our template below.
 
@@ -111,7 +111,7 @@ networks:
     external: false
 ```
 
-#### Start Docker
+### Start Docker
 
 Open the folder with your compose file in your terminal and execute this command to start your container:
 
@@ -119,7 +119,7 @@ Open the folder with your compose file in your terminal and execute this command
 docker-compose up -d
 ```
 
-#### Prepare Development
+### Prepare Development
 
 Now download the current version of Shopware to your host into a "src" directory.
 
@@ -130,7 +130,7 @@ mkdir -p ./src
 docker cp shopware:/var/www/html/. ./src
 ```
 
-#### Prepare IDE
+### Prepare IDE
 
 Open the "src" folder with your preferred IDE and wait until finished loading. Then add a new SFTP connection to your container. \(We recommend Automatic-Upload if possible\)
 
@@ -149,7 +149,6 @@ Would you like to explore alternative ways to install Shopware? You can install 
 * [MAMP](mamp.md)
 
 Otherwise, you might want to start writing your very own plugin. Head over to [Plugin base guide](../plugins/plugins/plugin-base-guide.md) to get a grip on that topic.
-
 
 {% hint style="info" %}
 Here's a video explaining the basics of Dockware from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).

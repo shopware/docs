@@ -81,4 +81,3 @@ Prior to that, the version was readable using the following route: `GET /api/v2/
 ### How do I actually open up the Swagger page?
 
 Simply navigate to the following URL in your shop: `/api/_info/swagger.html`
-

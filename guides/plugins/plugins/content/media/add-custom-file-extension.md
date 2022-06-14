@@ -24,6 +24,7 @@ This is of course done via a [subscriber](../../plugin-fundamentals/listening-to
 
 Have a look at the following code example:
 {% code title="<plugin root>/src/Service/Subscriber.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -50,6 +51,7 @@ class Subscriber implements EventSubscriberInterface
     }
 }
 ```
+
 {% endcode %}
 
 You can use the method `getWhitelist` of the `$event` variable to get the current whitelist, which is just a plain array of extensions.
@@ -76,6 +78,7 @@ Have a look at the following example:
 {% tabs %}
 {% tab title="CustomImageTypeDetector.php" %}
 {% code title="<plugin root>/src/Core/Content/Media/TypeDetector/CustomImageTypeDetector.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -109,11 +112,13 @@ class CustomImageTypeDetector implements TypeDetectorInterface
     }
 }
 ```
+
 {% endcode %}
 {% endtab %}
 
 {% tab title="services.xml" %}
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
+
 ```xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -127,6 +132,7 @@ class CustomImageTypeDetector implements TypeDetectorInterface
     </services>
 </container>
 ```
+
 {% endtab %}
 {% endtabs %}
 

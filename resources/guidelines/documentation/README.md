@@ -4,13 +4,10 @@ A well-defined writing and review process for our documentation will lead to a m
 
 The Documentation is mirrored into the following Github repository:
 
-#### [shopware/docs](https://github.com/shopware/docs)
+{% embed url="https://github.com/shopware/docs" caption="shopware/docs" %}
 
 Please respect the following writing guidelines when contributing to our documentation
 
 {% page-ref page="structure.md" %}
 
 {% page-ref page="writing.md" %}
-
-
-

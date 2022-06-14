@@ -19,11 +19,13 @@ Especially if you want to add a new page for an own module, you should consider 
 This menu entry can be defined in your module configuration. Remember, your module configuration looks as seen below:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
+
 ```javascript
 Shopware.Module.register('swag-plugin', {
     // configuration here
 });
 ```
+
 {% endcode %}
 
 In order to create your own menu entry, you need to use the `navigation` key: It takes an array of objects, each one configuring a route connected to your module.
@@ -31,6 +33,7 @@ In order to create your own menu entry, you need to use the `navigation` key: It
 So let's define a menu entry using the `navigation` key in your module configuration. It takes an array of objects, each one configuring a route connected to your module:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
+
 ```javascript
 navigation: [{
     label: 'CustomModule',
@@ -40,6 +43,7 @@ navigation: [{
     position: 100
 }]
 ```
+
 {% endcode %}
 
 As you see, you are able to configure several things in there:
@@ -59,6 +63,7 @@ Of course there's more to be configured here, but more's not necessary for this 
 Due to UX reasons, we're not supporting plugin modules to add new menu entries on the first level of the main menu. Please use the "parent" property inside your navigation object to define the category where you want your menu entry will be appended to. Your navigation entry will also have to have an `id` to show up in the rendered navigation:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
+
 ```javascript
 navigation: [{
     id: 'swag-custommodule-list'
@@ -70,15 +75,15 @@ navigation: [{
     position: 100
 }]
 ```
+
 {% endcode %}
 
 You can find the parent id at the `index.js` file in each module folder. You can see the property `navigation` in the `Module.register` method. The id here can be used as the parent key.
-    
+
 ## Nesting menu entries
-    
+
 The parent can be on any level because the menu supports infinite depth nesting. For example, if `sw-manufacturer` were taken as the `parent`, the menu item would be present on the third level. So whats important here is that the configured parent defines where the menu entry will take place.
 
 {% hint style="info" %}
 If you're planning to publish your plugin to the Shopware Store keep in mind we're rejecting plugins which have created their own menu entry on the first level.
 {% endhint %}
-

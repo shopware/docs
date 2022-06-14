@@ -1,4 +1,5 @@
 # Theme inheritance configuration
+
 {% hint style="info" %}
 The `configInheritance` is available from Shopware Version 6.4.8.0
 {% endhint %}
@@ -12,12 +13,15 @@ Imagine you have a theme that is applying your corporate design to the storefron
 ## Setup
 
 ### Create two themes
+
 Create the two themes like described in [Theme inheritance](./add-theme-inheritance.md).
 
 ### Configure your themes
+
 Add some configuration fields you need in your basic theme inside the `theme.json` of the `SwagBasicExampleTheme`
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
+
 ```javascript
 {
   "name": "SwagBasicExampleTheme",
@@ -73,6 +77,7 @@ Add some configuration fields you need in your basic theme inside the `theme.jso
   }
 }
 ```
+
 {% endcode %}
 
 ## Extending an existing theme configuration with a new theme
@@ -80,6 +85,7 @@ Add some configuration fields you need in your basic theme inside the `theme.jso
 Add configurations to your extended theme
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
+
 ```javascript
 {
   "name": "SwagBasicExampleThemeExtend",
@@ -108,6 +114,7 @@ Add configurations to your extended theme
   }
 }
 ```
+
 {% endcode %}
 
 In this theme (`SwagBasicExampleThemeExtend`) all the configuration fields from the themes `Storefront` and `SwagBasicExampleTheme` will be used as inherited values. They will be shown in the administration with an inherit anchor and will use the value of the parent themes as long as they are not set to a different value. In the `theme.json` the `sw-brand-icon` field value will be overwritten with a different default value. So this field will not be inherited regardless that it is already defined in the `SwagBasicExampleTheme`. This theme also adds a new field for the background color of the advent calendar (`sw-advent-calendar-background-color`) because this is only needed in this special theme which will only be used for 4-6 weeks a year.
@@ -118,4 +125,3 @@ Now that you know how the theme inheritance works you can start with own customi
 
 * [Add SCSS Styling and JavaScript to a theme](add-css-js-to-theme.md)
 * [Customize templates](../plugins/storefront/customize-templates.md)
-

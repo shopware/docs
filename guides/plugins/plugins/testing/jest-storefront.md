@@ -53,6 +53,7 @@ Let's start from scratch with a simple example: Imagine we want to write a test 
 At first, you need to create your test file, e.g. `feature.helper.test.js`. With your new created test file, let's create the test structure for it:
 
 {% code title="<plugin root>/src/Resources/app/storefront/test/helper/feature.helper.test.js" %}
+
 ```javascript
 // descrube is meant for grouping and structure
 describe('feature.helper.js', () => {
@@ -63,11 +64,13 @@ describe('feature.helper.js', () => {
     });
 });
 ```
+
 {% endcode %}
 
 Now, let's fill this empty test with life. Our first step is importing the helper under test - the `feature.helper` class. However, there one more step to be done for preparation.
 
 {% code title="<plugin root>/src/Resources/app/storefront/test/helper/feature.helper.test.js" %}
+
 ```javascript
 // Import for the helper to test
 import Feature from 'src/helper/feature.helper';
@@ -78,6 +81,7 @@ describe('feature.helper.js', () => {
     });
 });
 ```
+
 {% endcode %}
 
 In order to be able to test our feature flag integration, we of course need some fixtures to be present - some active and inactive feature flags. So we need to ensure their presence before running the tests, ideally in a setup step. As you might know from other frameworks, it's convenient to use [lifecycle hooks](https://jestjs.io/docs/en/setup-teardown) for that purpose.
@@ -85,6 +89,7 @@ In order to be able to test our feature flag integration, we of course need some
 To sum it up, we need a feature flag fixture and the implementation of it in the `beforeEach` hook of our test. In our example, that looks like below:
 
 {% code title="<plugin root>/src/Resources/app/storefront/test/helper/feature.helper.test.js" %}
+
 ```javascript
 import Feature from 'src/helper/feature.helper';
 
@@ -107,11 +112,13 @@ describe('feature.helper.js', () => {
     });
 });
 ```
+
 {% endcode %}
 
 Alright, let's get to the point now, writing the actual test. Remember we want to make sure we have active and inactive feature flags. In addition, it may be useful to check the behavior if a third, non-existent feature flag is introduced. Using [Jest's matchers](https://jestjs.io/docs/en/using-matchers) for these assertions, we get the following test:
 
 {% code title="<plugin root>/src/Resources/app/storefront/test/helper/feature.helper.test.js" %}
+
 ```javascript
 import Feature from 'src/helper/feature.helper';
 
@@ -132,6 +139,7 @@ describe('feature.helper.js', () => {
     });
 });
 ```
+
 {% endcode %}
 
 That's basically it! We wrote our first jest unit test in the Storefront.
@@ -165,6 +173,7 @@ The folder structure, and the corresponding file locations of the following exam
 Let's start with the plugin we want to test later. For the sake of simplicity, we will use a plugin which returns "Hello world":
 
 {% code title="<plugin root>/src/Resources/app/storefront/src/plugin/hello-world/hello-world.plugin.js" %}
+
 ```javascript
 import Plugin from 'src/plugin-system/plugin.class'
 
@@ -180,6 +189,7 @@ export default class HelloWorldPlugin extends Plugin {
     }
 }
 ```
+
 {% endcode %}
 
 Of course, you need to make sure that your plugin is registered, more details in the guide on [Javascript plugins](../storefront/add-custom-javascript.md).
@@ -187,6 +197,7 @@ Of course, you need to make sure that your plugin is registered, more details in
 In the beginning, writing plugin tests is still similar to other jest unit tests: You import your plugin's class and use the familiar test structure:
 
 {% code title="<plugin root>/src/Resources/app/storefront/test/plugin/hello-world/hello-world.plugin.test.js" %}
+
 ```javascript
 /**
  * @jest-environment jsdom
@@ -210,6 +221,7 @@ describe('HelloWorldPlugin tests', () => {
     });
 });
 ```
+
 {% endcode %}
 
 You might notice the lifecycle hook we use in this test. These will be important in the next steps where we begin to mock our plugin and clean it up after our tests.
@@ -217,6 +229,7 @@ You might notice the lifecycle hook we use in this test. These will be important
 The `beforeEach` hook will be executed before each test. Thus, it's the perfect location for creating our plugin under test. Therefore, we need to get an element first. We'll use it to create our plugin - resembling the usage of a plugin on an element.
 
 {% code title="<plugin root>/src/Resources/app/storefront/test/plugin/hello-world/hello-world.plugin.test.js" %}
+
 ```javascript
 /**
  * @jest-environment jsdom
@@ -246,6 +259,7 @@ describe('HelloWorldPlugin tests', () => {
     });
 });
 ```
+
 {% endcode %}
 
 If you execute your test now, you'll run into an error:
@@ -270,6 +284,7 @@ If you execute your test now, you'll run into an error:
 This was to be expected because you need to mock some more things required for the plugin to run. To solve this issue, you need to mock the `PluginManager` which holds all plugin instances globally in the Storefront. Because our test is just testing the single plugin class, the actual implementation on the real DOM element in the storefront isn't too important at this moment.
 
 {% code title="<plugin root>/src/Resources/app/storefront/test/plugin/hello-world/hello-world.plugin.test.js" %}
+
 ```javascript
 /**
  * @jest-environment jsdom
@@ -309,6 +324,7 @@ describe('HelloWorldPlugin tests', () => {
     });
 });
 ```
+
 {% endcode %}
 
 {% hint style="warning" %}
@@ -318,6 +334,7 @@ Don't forget the cleanup after each test! You need to set your plugin to `null` 
 Finally, we're ready to write our actual test. Write your assertions as you're used to. In this example, we first want to test if our plugin can be instantiated:
 
 {% code title="<plugin root>/src/Resources/app/storefront/test/plugin/hello-world/hello-world.plugin.test.js" %}
+
 ```javascript
 /**
  * @jest-environment jsdom
@@ -355,21 +372,25 @@ describe('HelloWorldPlugin tests', () => {
     });
 });
 ```
+
 {% endcode %}
 
 Afterwards, we can add more tests as we want to. To give an example, it's useful to rest if our plugin returns the "Hello World" test as expected:
 
 {% code title="<plugin root>/src/Resources/app/storefront/test/plugin/hello-world/hello-world.plugin.test.js" %}
+
 ```javascript
     test('Shows text', () => {
         expect(plugin.sayHello()).toBe('Hello World!')
     });
 ```
+
 {% endcode %}
 
 Now you're ready to go! Below the full example of our test, for reference:
 
 {% code title="<plugin root>/src/Resources/app/storefront/test/plugin/hello-world/hello-world.plugin.test.js" %}
+
 ```javascript
 /**
  * @jest-environment jsdom
@@ -412,6 +433,7 @@ describe('HelloWorldPlugin tests', () => {
     });
 });
 ```
+
 {% endcode %}
 
 ## More interesting topics
@@ -419,4 +441,3 @@ describe('HelloWorldPlugin tests', () => {
 * [Jest tests for the storefront](jest-storefront.md)
 * [PHPUnit tests](php-unit.md)
 * [End-to-end tests](end-to-end-testing.md)
-

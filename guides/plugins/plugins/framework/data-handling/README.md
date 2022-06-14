@@ -13,4 +13,3 @@ Hence, here are some good starting topics:
 Also, listening to events of the DAL will come in handy for sure, so here's that:
 
 {% page-ref page="using-database-events.md" %}
-

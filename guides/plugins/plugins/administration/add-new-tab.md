@@ -19,6 +19,7 @@ Also, we will use a small, custom component to fill our custom tab. In order to 
 {% page-ref page="add-custom-component.md" %}
 
 {% hint style="info" %}
+
 ### Please remember
 
 The main entry point to customize the administration via plugin is the `main.js` file. It has to be placed into a `<plugin root>/src/Resources/app/administration/src` directory in order to be found by Shopware 6. So please use the file accordingly and refer to the [plugin base guide](../plugin-base-guide.md) for more details.
@@ -36,6 +37,7 @@ Let's imagine your first goal is to create a new tab on the product detail page.
 
 {% code title="platform/src/Administration/Resources/app/administration/src/module/sw-product/page/sw-product-detail/sw-product-detail.html.twig" %}
 {% raw %}
+
 ```text
 {% block sw_product_detail_content_tabs %}
     <sw-tabs class="sw-product-detail-page__tabs" v-if="productId">
@@ -62,6 +64,7 @@ Let's imagine your first goal is to create a new tab on the product detail page.
     </sw-tabs>
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -80,6 +83,7 @@ First, please re-create the directory structure from the core code in your plugi
 In there you create a new file `index.js`, which then contains the following code:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/page/sw-product-detail/index.js" %}
+
 ```javascript
 import template from './sw-product-detail.html.twig';
 
@@ -88,12 +92,14 @@ Shopware.Component.override('sw-product-detail', {
     template
 });
 ```
+
 {% endcode %}
 
 All this file is doing is to basically override the `sw-product-detail` component with a new template. The new template does not exist yet though, so create a new file `sw-product-detail.html.twig` in the same directory as your `index.js` file. It then has to use the block we figured out earlier and override it by adding a new tab element:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/page/sw-product-detail/sw-product-detail.html.twig" %}
 {% raw %}
+
 ```text
 {% block sw_product_detail_content_tabs_reviews %}
 
@@ -102,6 +108,7 @@ All this file is doing is to basically override the `sw-product-detail` componen
 
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -113,6 +120,7 @@ After that, we'll create the actual `sw-tabs-item` element, which, as the name s
 
 {% code title="<plugin root>/src/Resources/app/administration/src/page/sw-product-detail/sw-product-detail.html.twig" %}
 {% raw %}
+
 ```text
 {% block sw_product_detail_content_tabs_reviews %}
 
@@ -124,6 +132,7 @@ After that, we'll create the actual `sw-tabs-item` element, which, as the name s
     </sw-tabs-item>
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -138,19 +147,24 @@ This is an example of what your `main.js` should look like in order to load your
 ```javascript
 import './page/sw-product-detail';
 ```
+
 {% hint style="info" %}
 Don't forget to rebuild the administration after applying changes to your `main.js`.
 {% tabs %}
 {% tab title="Development template" %}
+
 ```bash
 ./psh.phar administration:build
 ```
+
 {% endtab %}
 
 {% tab title="Production template" %}
+
 ```bash
 ./bin/build-administration.sh
 ```
+
 {% endtab %}
 {% endtabs %}
 {% endhint %}
@@ -164,6 +178,7 @@ Next step would be the following: Create a new route and map it to your own comp
 You can add those changes to your `main.js` file, which could then look like this:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/main.js" %}
+
 ```javascript
 import './page/sw-product-detail';
 import './view/sw-product-detail-custom';
@@ -185,6 +200,7 @@ Shopware.Module.register('sw-new-tab-custom', {
     }
 });
 ```
+
 {% endcode %}
 
 As already mentioned, you need to create a dummy module in order to override the `routeMiddleware` method. In there, you're listening for the current route, that got called. If the current route matches `sw.product.detail`, you want to add your new child route to it, and that's what's done here.
@@ -216,6 +232,7 @@ administration
 Since a component always gets initiated by a file called `index.js`, create such a new file in the `sw-product-detail-custom` directory:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/view/sw-product-detail-custom/index.js" %}
+
 ```javascript
 import template from './sw-product-detail-custom.html.twig';
 
@@ -229,6 +246,7 @@ Shopware.Component.register('sw-product-detail-custom', {
     },
 });
 ```
+
 {% endcode %}
 
 This file mainly registers a new component with a custom title and a custom template. Once more, the referenced template is still missing, so make sure to create the file `sw-product-detail-custom.html.twig` next to your `index.js` file.
@@ -236,11 +254,13 @@ This file mainly registers a new component with a custom title and a custom temp
 Here's what this new template could look like:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/view/sw-product-detail-custom/sw-product-detail-custom.html.twig" %}
+
 ```text
 <sw-card title="Custom">
     Hello world!
 </sw-card>
 ```
+
 {% endcode %}
 
 It simply creates a new card with a title, which only contains a 'Hello world!' string. And that's it - your tab should now be fully functional.

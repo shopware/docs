@@ -106,4 +106,3 @@ Please note that this will reset your database.
 ## Next steps
 
 You're all set now! Now that you got a running Shopware installation, why not start with your first very own plugin? Please refer to the [Plugin base guide](../plugins/plugins/plugin-base-guide.md) for a nice starting point.
-

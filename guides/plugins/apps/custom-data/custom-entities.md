@@ -5,6 +5,7 @@ Unlike [Custom fields](custom-fields.md), you can generate completely custom dat
 To make use of the custom entities register your entities in your `entities.xml` file, which is located in the `Resources` directory of your app.
 
 {% code title="<app root>/Resources/entities.xml" %}
+
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
 <entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/CustomEntity/Xml/entity-1.0.xsd">
@@ -17,6 +18,7 @@ To make use of the custom entities register your entities in your `entities.xml`
     </entity>
 </entities>
 ```
+
 {% endcode %}
 
 For a complete reference of the structure of the entities file take a look at the [Custom entity xml reference](../../../../resources/references/app-reference/entities-reference.md).
@@ -25,12 +27,15 @@ For a complete reference of the structure of the entities file take a look at th
 
 All registered entities will get an automatically registered repository. It is also available in the [App scripts](../app-scripts/README.md) section, in case you are allowed to access the repository service inside the hook.
 {% raw %}
+
 ```twig
 {% set blogs = services.repository.search('custom_entity_blog', criteria) %}
 ```
+
 {% endraw %}
 
 Additionally, to the repository you can also access your custom entities via [Admin api](../../../../concepts/api/admin-api.md).
+
 ```bash
 POST /api/search/custom-entity-blog
 ```
@@ -39,6 +44,7 @@ POST /api/search/custom-entity-blog
 
 Unlike core entities, your app directly has full access rights to your own custom entities. However, if your entity has associations that reference core tables,
 you need the appropriate [permissions](../../../../resources/references/app-reference/manifest-reference.md) to load and write these associations.
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -52,4 +58,3 @@ you need the appropriate [permissions](../../../../resources/references/app-refe
     </permissions>
 </manifest>
 ```
-

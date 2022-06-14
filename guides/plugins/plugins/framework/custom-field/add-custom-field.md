@@ -33,6 +33,7 @@ Also, you may want to add translatable custom fields, which is also covered in v
 Let's assume you already got a working and running entity definition. If you want to support custom fields with your custom entity, you have to add the Data Abstraction Layer \(DAL\) field `CustomFields` to it.
 
 {% code title="<plugin root>/src/Core/Content/Example/ExampleDefinition.php" %}
+
 ```php
 use Shopware\Core\Framework\DataAbstractionLayer\Field\CustomFields;                                                                    
 
@@ -55,6 +56,7 @@ class ExampleDefinition extends EntityDefinition
     }
 }
 ```
+
 {% endcode %}
 
 Note the new field that was added in the `FieldCollection`. That's already it for your custom entity definition. Now go ahead and add the column to the database.
@@ -66,6 +68,7 @@ Once again, this example is built upon the [Add custom complex data](../data-han
 If you want to support custom fields now, you have to add a new column `custom_fields` of type `JSON` to your migration.
 
 {% code title="<plugin root>/src/Migration/Migration1611664789Example.php" %}
+
 ```php
 public function update(Connection $connection): void
 {
@@ -89,6 +92,7 @@ public function update(Connection $connection): void
     $connection->executeStatement($sql);
 }
 ```
+
 {% endcode %}
 
 Note the new `custom_fields` column here. It has to be a JSON field and should default to `NULL`, since it doesn't have to contain values.
@@ -98,6 +102,7 @@ Note the new `custom_fields` column here. It has to be a JSON field and should d
 Make sure to understand entity translations in general first, which is explained here [Add data translations](../data-handling/add-data-translations.md). If you want your custom fields to be translatable, you can simply work with a `TranslatedField` here as well.
 
 {% code title="<plugin root>/src/Core/Content/Example/ExampleDefinition.php" %}
+
 ```php
 use Shopware\Core\Framework\DataAbstractionLayer\Field\TranslatedField;                                                               
 
@@ -120,6 +125,7 @@ class ExampleDefinition extends EntityDefinition
     }
 }
 ```
+
 {% endcode %}
 
 Just add the `TranslatedField` and apply `customFields` as a parameter.
@@ -127,6 +133,7 @@ Just add the `TranslatedField` and apply `customFields` as a parameter.
 In your translated entity definition, you then add the `CustomFields` field instead.
 
 {% code title="<plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationDefinition.php" %}
+
 ```php
 use Shopware\Core\Framework\DataAbstractionLayer\Field\CustomFields;                                                                    
 
@@ -145,6 +152,7 @@ class ExampleTranslationDefinition extends EntityTranslationDefinition
     }
 }
 ```
+
 {% endcode %}
 
 ## Add custom fields to an entity
@@ -235,4 +243,3 @@ While theoretically your custom field is now properly defined for the administra
 ## Next steps
 
 If you want to extend an entity with new associations and non-scalar values, head over to our guide regarding [Extending existing entities](../data-handling/add-complex-data-to-existing-entities.md).
-

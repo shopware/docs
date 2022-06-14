@@ -13,6 +13,7 @@ This guide is built upon the [plugin base guide](../../plugin-base-guide.md), bu
 It is possible to add data indexer for your own entities, like the one created in the [adding complex data guide](./add-custom-complex-data.md) or for existing entities. However, if you want to react on changes of existing entities the preferred way should be subscribing to the events if available. See the [Index data using existing events](Index data using existing events) section below. To create a new indexer, just create a new class in your plugin:
 
 {% code title="<plugin root>/src/Core/Framework/DataAbstractionLayer/Indexing/ExampleIndexer.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -123,7 +124,9 @@ class ExampleIndexer extends EntityIndexer
     }
 }
 ```
+
 With the corresponding service registration:
+
 ```xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -140,10 +143,12 @@ With the corresponding service registration:
     </services>
 </container>
 ```
+
 The indexer service has to be tagged as `shopware.entity_indexer` in order to work.
 
 Let's take a closer look at the functions of the entity indexer class.
-* `public function getName(): string`: 
+
+* `public function getName(): string`:
     * This function returns the name of the indexer and should be unique. It is used in the `EntityIndexerRegistry` to identify which messages should be handled by which indexer.
 * `public function iterate($offset): ?EntityIndexingMessage`:
     * This function is called when a full entity indexing was requested. This is for example the case if the console command `bin/console dal:refresh:index` is used or if a user of the administration requested an update of all indexes in the settings.
@@ -152,8 +157,8 @@ Let's take a closer look at the functions of the entity indexer class.
     * This function is called when entities are updated over the DAL. This function should react to the provided entity written events and generate a list of messages which has to be processed by the `handle` function. In the example implementation above, we get all customer identifiers that have been updated by `$updates = $event->getPrimaryKeys(CustomerDefinition::ENTITY_NAME);`. A closer look at the `EntityWrittenContainerEvent` class is also good idea. It is for example possible to filter the updated customer by the updated column. For example if you only need to index customers with a changed firstname. It is always a good idea to filter the entities as much as possible to save performance.
     * The `update()` can also be used to update data that has always to be changed synchronously.
 * `public function handle(EntityIndexingMessage $message): void`
-    * The `handle()` method handles the messages which were generated in the `self::iterate` or `self::update` function. In the example above a small log entry is written to the database indicating that a customer was indexed. The preferred way to manipulate data here is using the `connection` directly and not to use the DAL. See the section [Use DAL functionalities in the indexer](Use DAL functionalities in the indexer) for more information. 
-    
+    * The `handle()` method handles the messages which were generated in the `self::iterate` or `self::update` function. In the example above a small log entry is written to the database indicating that a customer was indexed. The preferred way to manipulate data here is using the `connection` directly and not to use the DAL. See the section [Use DAL functionalities in the indexer](Use DAL functionalities in the indexer) for more information.
+
 ### Handle messages asynchronously or synchronously
 
 By default, all messages which are returned by the `public function update()` function in the indexer are handled synchronously. That means the `handle()` function is called directly after the `update()` function. To handle the messages asynchronously over the [message queue](../../../../hosting/infrastructure/message-queue.md) the `EntityIndexingMessage` can be used with different constructor parameters. A closer look at the `EntityIndexingMessage` class shows that it has a fourth parameter named `$forceQueue` which is `false` by default. This parameter can be set to `true` and then the message will be handled asynchronously by the message queue.
@@ -161,6 +166,7 @@ By default, all messages which are returned by the `public function update()` fu
 ### Use DAL functionalities in the indexer
 
 By default, indexing is also active while working with an indexer, which means, that entities that are written over the DAL also trigger `EntityWrittenContainerEvent` events. So the indexers are triggered again. This can lead to an infinite loop. Therefore, the connection should be used directly to alter data in the database. You can find more information in the about this in the corresponding ADR [When to use plain SQL or the DAL](https://github.com/shopware/platform/blob/trunk/adr/2021-05-14-when-to-use-plain-sql-or-dal.md). However, if you want to use the DAL for manipulation data in a data indexer, indexing can be disabled. This can be done by passing adding a flag to the context, as shown in the example below:
+
 ```php
 public function update(EntityWrittenContainerEvent $event): ?EntityIndexingMessage
 {
@@ -180,6 +186,7 @@ public function update(EntityWrittenContainerEvent $event): ?EntityIndexingMessa
 ## Index data using existing events
 
 There are already a bunch of indexers in shopware that you can use. If you take a look at the `CustomerIndexer` or `CategoryIndexer` classes for example, you will see that they dispatch an event in the `handle` method. This should be used for indexing data of the main entities. Among others, the following indexers already exist and dispatch events that can be used for indexing data:  
+
 * `CustomerIndexer`
 * `CategoryIndexer`
 * `LandingPageIndexer`
@@ -198,6 +205,7 @@ There are already a bunch of indexers in shopware that you can use. If you take 
 For this we need a new subscriber. If you are not familiar with a subscriber, have a look at our [Listening to events](../../plugin-fundamentals/listening-to-events.md) guide. For this example, we just write a new entry to the `log_entry` database table, indicating that a customer was updated.
 
 {% code title="<plugin root>/src/Service/Subscriber.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -248,7 +256,9 @@ class Subscriber implements EventSubscriberInterface
     }
 }
 ```
+
 The service definition for the subscriber would look like this.
+
 ```xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -265,4 +275,3 @@ The service definition for the subscriber would look like this.
 ```
 
 It is recommended to work directly with the `Connection` since the event is dispatched in the context of an indexer. If we would use the Data Abstraction Layer \(DAL\) for writing changes to the database, the indexer  would be triggered again, because it listens for `EntityWrittenContainerEvent` events. This would lead to an infinite loop. Using the `Connection` directly prevents the DAL from dispatching entity written events. Also the performance of plain sql is much higher, which is very important for indexers in general.
-

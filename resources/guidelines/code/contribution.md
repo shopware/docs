@@ -50,4 +50,3 @@ Here is a list with common reasons why we reject a pull request:
 * The benefit of your change is not relevant for the whole product but only for your personal intent.
 * The benefit of your change is too minor. Sometimes we do not have enough resources to handle every small change.
 * Your change implements a feature which does not fit to our roadmap, or our company values.
-

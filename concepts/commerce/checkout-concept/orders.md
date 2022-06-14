@@ -29,4 +29,3 @@ _Note: The state machines displayed in the following sections can actually be mo
 ![The transaction state machine](../../../.gitbook/assets/order-payment-state-machine.png)
 
 ![The delivery state machine](../../../.gitbook/assets/order-delivery-state-machine.png)
-

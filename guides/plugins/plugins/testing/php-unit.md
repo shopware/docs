@@ -23,6 +23,7 @@ First of all we have to configure PHPUnit a bit. Therefore we have to create a f
 Here's an example configuration for the development template:
 
 {% code title="<plugin root>/phpunit.xml.dist" %}
+
 ```markup
 <?xml version="1.0" encoding="UTF-8"?>
 
@@ -58,6 +59,7 @@ Here's an example configuration for the development template:
     </filter>
 </phpunit>
 ```
+
 {% endcode %}
 
 ## Example Tests
@@ -69,6 +71,7 @@ After we've configured PHPUnit, we can start writing our first test. In this exa
 Therefore, this is how your service could then look like:
 
 {% code title="<plugin root>/src/Test/UsedClassesAvailableTest.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -107,6 +110,7 @@ class UsedClassesAvailableTest extends TestCase
     }
 }
 ```
+
 {% endcode %}
 
 ### Migration test
@@ -116,6 +120,7 @@ In order to test our example migration `Migration1611740369ExampleDescription`, 
 Here's an example for a migration test:
 
 {% code title="<plugin root>/src/Migration/Test/Migration1611740369ExampleDescriptionTest.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -160,6 +165,7 @@ class Migration1611740369ExampleDescriptionTest extends TestCase
     }
 }
 ```
+
 {% endcode %}
 
 ## Database setup
@@ -169,7 +175,9 @@ Once we've created our tests, we have to initialize the test databases for our m
 ```bash
 $ ./psh.phar init-test-databases
 ```
+
 ## Mocking services
+
 In some cases you want a service to behave differently in the test run. Such a case could be where a service deletes a file or makes a critical api call. To avoid this in a test run it is possible to create a `<plugin root>/Resources/config/services_test.{xml|yml}` file which will override your `<plugin root>/Resources/config/services.{xml|yml}`. But only for the test environment.  
 
 In this test-only service config you can override arguments, aliases or parameters to change what the service container injects into your services during a test run.
@@ -181,12 +189,14 @@ All commands in this section will be executed in the root directory of our plugi
 For easier usage, you could create a batch file called `phpunit.sh` into a `/bin` directory of your plugin. Its only purpose then would be executing the PHPUnit testsuite. Make sure the path in the following file actually fits.
 
 {% code title="<plugin root>/bin/phpunit.sh" %}
+
 ```bash
 #!/usr/bin/env bash
 dir=`pwd`
 cd ./../../../
 ./vendor/bin/phpunit --configuration="$dir" "$@"
 ```
+
 {% endcode %}
 
 ### Executing all tests in the plugin
@@ -222,6 +232,7 @@ We also need to change the `KERNEL_CLASS` from `Shopware\Development\Kernel` to 
 Therefore, this is how your configuration could then look like:
 
 {% code title="<plugin root>/phpunit.xml.dist" %}
+
 ```markup
 <?xml version="1.0" encoding="UTF-8"?>
 
@@ -256,6 +267,7 @@ Therefore, this is how your configuration could then look like:
     </filter>
 </phpunit>
 ```
+
 {% endcode %}
 
 ## Next steps
@@ -264,4 +276,3 @@ You've learned about PHPUnit tests here now. But what about unit testing your ja
 
 * [Jest unit tests in Shopware's administration](jest-admin.md)
 * [Jest unit tests in Shopware's storefront](jest-storefront.md)
-

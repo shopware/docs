@@ -25,6 +25,7 @@ Shopware is building upon the `Symfony Bundle System` to extend its functionalit
 Whenever you create a Shopware plugin, you have to extend the `Shopware\Core\Framework\Plugin` class. If you investigate this class, you will see that this class extends `Shopware\Core\Framework\Bundle`, which in return extends the Symfony's `Bundle` class:
 
 {% code title="" %}
+
 ```php
 class YourNamespace\PluginName extends
 
@@ -37,6 +38,7 @@ class YourNamespace\PluginName extends
             // Symfony base bundle
             abstract class Symfony\Component\HttpKernel\Bundle
 ```
+
 {% endcode %}
 
 As you can see, any Shopware plugin is also a Symfony bundle internally as well, and will be handled as such by Symfony. A plugin adds support for some cases, specific to the Shopware environment. These include, for example, handling plugin migrations and registering Shopware business events.
@@ -64,10 +66,9 @@ Now that you know about the differences between a Symfony bundle and a Shopware 
 * [Dependency Injection](plugin-fundamentals/dependency-injection.md)
 * [Listening to events](plugin-fundamentals/listening-to-events.md)
 
-
 {% hint style="info" %}
 Here are some useful videos explaining the basics of bundle methods and Symfony services taken from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 
- * **[Bundle Methods in a plugin](https://www.youtube.com/watch?v=cUXcDwQwmPk)**
- * **[Symfony services in Shopware 6](https://www.youtube.com/watch?v=l5QJ8EtilaY)**
+* **[Bundle Methods in a plugin](https://www.youtube.com/watch?v=cUXcDwQwmPk)**
+* **[Symfony services in Shopware 6](https://www.youtube.com/watch?v=l5QJ8EtilaY)**
 {% endhint %}

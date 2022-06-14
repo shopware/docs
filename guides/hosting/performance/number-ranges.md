@@ -4,7 +4,7 @@
 The Redis storage and the configuration options for this have been introduced with Shopware version 6.4.11.0
 {% endhint %}
 
-Number Ranges provide a consistent way to generate a consecutive number sequence that is used for order numbers, invoice numbers, etc. 
+Number Ranges provide a consistent way to generate a consecutive number sequence that is used for order numbers, invoice numbers, etc.
 The generation of the number ranges is an **atomic** operation, this guarantees that the generated sequence is consecutive and no number is generated twice.
 
 By default, the number range states are stored in the database.
@@ -14,6 +14,7 @@ Redis offers better support for atomic increments than the database, therefore t
 ## Using Redis as storage
 
 To use Redis, create a `config/packages/shopware.yml` file with the following content:
+
 ```yaml
 shopware:
   number_ranges:
@@ -24,10 +25,13 @@ shopware:
 ## Migrating between storages
 
 You can migrate the current state of the number ranges from your current storage to a new one by running the following CLI command:
+
 ```shell
 bin/console number-range:migrate {fromStorage} {toStorage}
 ```
+
 For example if ou want to migrate from the default `SQL` storage, to the high-performing `Redis` storage the command is:
+
 ```shell
 bin/console number-range:migrate SQL Redis
 ```

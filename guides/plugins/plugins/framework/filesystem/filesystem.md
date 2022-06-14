@@ -19,15 +19,16 @@ The Flysystem enables your plugin to read and write files through a common inter
 * One for bundle assets files
 
 However, every plugin/bundle gets an own namespace that should be used for private or public plugin files. These are automatically generated during the plugin installation. The namespace is prefixed with the [Snake case](https://en.wikipedia.org/wiki/Snake_case) plugin name followed by `filesystem` `.` `private` or `plugin`. For our example plugin this would be
+
 * `swag_example_plugin.filesystem.public` for public plugin files
 * `swag_example_plugin.filesystem.private` for private plugin files
-
 
 ## Use filesystem in a service
 
 To make use of the filesystem we register a new service, which helps to read and write files to the filesystem.
 
 {% code title="<plugin root>/src/Service/ExampleFilesystemService.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -70,10 +71,11 @@ class ExampleFilesystemService
     }
 }
 ```
- 
+
 This service makes use of the private und public filesystem of the plugin. As you already know, this php class has to be registered as a service in the dependency injection container. This is also the place where we define which filesystem will be handed over to the constructor. To make use of the plugin private and public files, the service definition could look like this:
- 
+
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
+
 ```xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -90,4 +92,3 @@ This service makes use of the private und public filesystem of the plugin. As yo
 ```
 
 Now, this service can be used to read or write files to the private plugin filesystem or to list all files in the public plugin filesystem. You should visit the [Flysystem API documentation](https://flysystem.thephpleague.com/v1/docs/usage/filesystem-api/) for more information.
-

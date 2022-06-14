@@ -19,11 +19,13 @@ So just try it out, create a `base.scss` file in the directory mentioned above.
 Inside of the `.scss` file, we add some basic styles to see if it's actually working. In this example, the background of the `body` will be changed.
 
 {% code title="<plugin root>/src/Resources/app/storefront/src/scss/base.scss" %}
+
 ```css
 body {
     background: blue;
 }
 ```
+
 {% endcode %}
 
 ### Adding variables
@@ -33,15 +35,18 @@ In case you want to use the same color in several places, but want to define it 
 Create a `abstract/variables.scss` file inside your `<plugin root>/src/Resources/app/storefront/src/scss` directory and define your background color variable.
 
 {% code title="<plugin root>/src/Resources/app/storefront/src/scss/abstract/variables.scss" %}
+
 ```css
 // in variables.scss
 $sw-storefront-assets-color-background: blue;
 ```
+
 {% endcode %}
 
 Inside your `base.scss` file you can now import your previously defined variables and use them:
 
 {% code title="<plugin root>/src/Resources/app/storefront/src/scss/base.scss" %}
+
 ```css
 @import 'abstract/variables.scss';
 
@@ -49,6 +54,7 @@ body {
     background: $sw-storefront-assets-color-background;
 }
 ```
+
 {% endcode %}
 
 This comes with the advantage that when you want to change this color for all occurrences, you only have to change this variable once and the hard coded values are not cluttered all over the codebase.
@@ -59,15 +65,19 @@ Now you want to test if your custom styles actually apply to the Storefront. For
 
 {% tabs %}
 {% tab title="Development template" %}
+
 ```bash
 ./psh.phar storefront:build
 ```
+
 {% endtab %}
 
 {% tab title="Production template" %}
+
 ```bash
 ./bin/build-storefront.sh
 ```
+
 {% endtab %}
 {% endtabs %}
 
@@ -75,19 +85,22 @@ If you want to see all style changes made by you live, you can also use our Stor
 
 {% tabs %}
 {% tab title="Development template" %}
+
 ```bash
 ./psh.phar storefront:hot-proxy
 ```
+
 {% endtab %}
 
 {% tab title="Production template" %}
+
 ```bash
 ./bin/watch-storefront.sh
 ```
+
 {% endtab %}
 {% endtabs %}
 
 Using the hot-proxy command, you will have to access your store with the port `9998`, e.g. `domainToYourEnvironment.in:9998`.
 
 That's it! Open the Storefront and see it turning blue due to your custom styles!
-

@@ -33,7 +33,7 @@ Here are the most common options starting with the most labour-intensive.
 A dedicated server is the classic way to host performance critical
 applications. With this model you rent one or several pieces of hardware from
 your provider. This is cheaper if your order compute and memory resources in
-bulk. But this model also has the drawback of high management overhead. With a 
+bulk. But this model also has the drawback of high management overhead. With a
 dedicated server you are responsible for operating system and software upgrades,
 as well as backups.
 
