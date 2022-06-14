@@ -1,0 +1,16 @@
+name: markdown-style-check
+on: [push]
+jobs:
+  lint-docs:
+    name: Documentation Markdown Linter
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Lint changelog file
+      uses: docker://avtodev/markdown-lint:v1.5
+      with:
+        config: 'markdown-style-config.yml'
+        args: './'
+        ignore: './resources/references/*'
