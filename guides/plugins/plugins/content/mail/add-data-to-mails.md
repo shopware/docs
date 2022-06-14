@@ -21,6 +21,7 @@ To be precise, you have to extend the `send` method, whose last parameter is the
 So let's do that, here's an example of a decorated mail service:
 
 {% code title="<plugin root>/src/Service/AddDataToMails.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -55,6 +56,7 @@ class AddDataToMails extends AbstractMailService
     }
 }
 ```
+
 {% endcode %}
 
 If you don't recognise the decoration pattern used here, make sure to have a look at our [guide about decorations](../../plugin-fundamentals/adjusting-service.md).
@@ -72,6 +74,7 @@ Of course you still have to register the decoration to the service container. Be
 Here's the respective example `services.xml`:
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
+
 ```markup
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -85,5 +88,5 @@ Here's the respective example `services.xml`:
     </services>
 </container>
 ```
-{% endcode %}
 
+{% endcode %}

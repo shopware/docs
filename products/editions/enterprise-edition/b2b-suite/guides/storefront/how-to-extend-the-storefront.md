@@ -4,9 +4,9 @@ You can download a plugin showcasing the topic [here](/products/editions/enterpr
 
 ## Table of contents
 
-*   [Description](#description)
-*   [Registering a TemplateNamespaceHierarchyBuilder](#registering-a-templatenamespacehierarchybuilder)
-*   [The TemplateNamespaceHierarchyBuilder service](#the-templatenamespacehierarchybuilder-service)
+* [Description](#description)
+* [Registering a TemplateNamespaceHierarchyBuilder](#registering-a-templatenamespacehierarchybuilder)
+* [The TemplateNamespaceHierarchyBuilder service](#the-templatenamespacehierarchybuilder-service)
 
 ## Description
 
@@ -28,7 +28,6 @@ Register the `TemplateNamespaceHierarchyBuilder` by tagging it in the `services.
     </services>
 </container>
 ```
-
 
 The really important part here is the priority. `750` should work fine for most cases, but if you are having problems here, play around with the priority.
 

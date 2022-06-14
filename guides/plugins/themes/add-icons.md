@@ -103,6 +103,7 @@ You can define the name of the icon pack and the path to those icons under the `
 ```
 
 You can use your custom icons by specifying your icon pack:
+
 ```text
 {% raw %}
 {% sw_icon 'done-outline-24px' style {

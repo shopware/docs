@@ -32,7 +32,7 @@ This is a highly mutable data structure that is acted upon from requests and cal
 
 A line item represents an order position.
 
-* It may be a _shippable_ good, a download article, or even a bundle of many products. 
+* It may be a _shippable_ good, a download article, or even a bundle of many products.
 * Line items contain properties that tell the cart how to handle changes in line items. E.g. _stackable_ - quantity can be changed, _removable_ - removable through the api, and so on.
 * A line item is the main extension point for the cart process. Therefore a promotion, a discount, or a surcharge is also a line item.
 * A line item can even contain other line items. So a single order position can be the composition of multiple single line items.
@@ -128,4 +128,3 @@ Contrary to other entities in the System the Cart is not managed through the Dat
 ## Cart Control
 
 The state changes and cart mutation is handled automatically by a facade the `\Shopware\Core\Checkout\Cart\SalesChannel\CartService`. It controls, sets up, and modifies the cart struct.
-

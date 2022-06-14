@@ -52,4 +52,3 @@ Let's do a small explanation of this directive:
 
 * Apply class \(in this case: `is--compact`\) when the width of the element is smaller than 1620px.
 * `timeout`: Sets the duration on how much the throttle should wait.
-

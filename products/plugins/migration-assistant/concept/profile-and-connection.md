@@ -96,4 +96,3 @@ class SwagMigrationConnectionDefinition extends EntityDefinition
     }
 }
 ```
-

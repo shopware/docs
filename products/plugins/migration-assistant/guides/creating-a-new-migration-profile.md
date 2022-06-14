@@ -290,6 +290,7 @@ Component.register('swag-migration-profile-ownProfile-local-credential-form', {
 As you can see above, currently the template does not exists and you have to create this file: `swag-migration-profile-ownProfile-local-credential-form.html.twig`
 
 {% raw %}
+
 ```markup
 {% block own_profile_page_credentials %}
     <div class="swag-migration-wizard swag-migration-wizard-page-credentials"
@@ -358,14 +359,15 @@ As you can see above, currently the template does not exists and you have to cre
     </div>
 {% endblock %}
 ```
+
 {% endraw %}
 
 A few things to notice: The component name isn't random, it has to consist of:
 
 1. The prefix: `swag-migration-profile-`
-2. The name of the profile
-3. The name of the gateway
-4. The suffix: `-credential-form`
+1. The name of the profile
+1. The name of the gateway
+1. The suffix: `-credential-form`
 
 To see your credentials page, you have to register this component in your `main.js`:
 
@@ -866,4 +868,3 @@ This writer will automatically be called, because the `getEntityName` method of 
 ## Source
 
 There's a GitHub repository available, containing a full example source. Check it out [here](https://github.com/shopware/swag-docs-create-migration-profile).
-

@@ -18,6 +18,7 @@ The configuration for the rate limiter of Shopware 6 resides in the general bund
 To configure the default rate limiters for your shop you need to add the `shopware.api.rate_limiter` map to the `shopware.yml`. Under this key you can separately define the rate limiters.
 
 In the following you can find a list of the default limiters:
+
 - `login`: Storefront / Store-API customer authentication.
 - `guest_login`: Storefront / Store-API after order guest authentication.
 - `oauth`: API oauth authentication / Administration login.
@@ -26,6 +27,7 @@ In the following you can find a list of the default limiters:
 - `contact_form`: Storefront / Store-API contact form.
 
 {% code title="<shop root>/config/packages/shopware.yaml" %}
+
 ```yaml
 shopware:
   api:
@@ -42,6 +44,7 @@ shopware:
           - limit: 5
             interval: '60 seconds'
 ```
+
 {% endcode %}
 
 ### Configuring time backoff policy
@@ -51,6 +54,7 @@ Below you can find an example which throttles the request for 10 seconds after 3
 throttles for 60 seconds. If there are no more requests, it will be reset after 24 hours.
 
 {% code title="<plugin root>/src/Resources/config/rate_limiter.yaml" %}
+
 ```yaml
 example_route:
     enabled: true
@@ -62,4 +66,5 @@ example_route:
         - limit: 5
           interval: '60 seconds'
 ```
+
 {% endcode %}

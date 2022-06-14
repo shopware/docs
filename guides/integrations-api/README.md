@@ -15,6 +15,3 @@ Such as applications are usually considered "frontends" and provide interfaces f
 These integrations are characterised by the exchange of structured data, synchronisations, imports, exports or notifications. Performance is also important, but rather in terms of high data loads rather than fast response times. Consistency, error handling, transaction-safety are critical.
 <!-- markdown-link-check-disable-next-line -->
 {% embed url="https://shopware.stoplight.io/docs/admin-api/adminapi.json" caption="Endpoint Admin API Reference" %}
-
-
-

@@ -6,4 +6,3 @@
 * At the end of each pageloader an individual `*PageLoaded` event is thrown. This event can be used to provide further data by third-party developers
 * Page loaders are not allowed to work directly with repositories, but are only allowed to load data via the Store API. This is to ensure that all storefront functionalities can also be accessed via the Store API.
 * A Page object must always extend from the base `\Shopware\Storefront\Page\Page` class
-

@@ -38,6 +38,7 @@ As we now know how to create your configuration, we can start to fill it with li
 The `config.xml` follows a simple syntax. You can organize the content in `<card>` elements. Every `config.xml` must contain a minimum of one `<card>` element and each `<card>` must contain one `<title>` and at least one `<input-field>`. See the minimum `config.xml` below:
 
 {% code title="<plugin root>/src/Resources/config/config.xml" %}
+
 ```markup
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -51,6 +52,7 @@ The `config.xml` follows a simple syntax. You can organize the content in `<card
     </card>
 </config>
 ```
+
 {% endcode %}
 
 Please make sure to specify the `xsi:noNamespaceSchemaLocation` as shown above and fetch the external resource into your IDE if possible. This enables auto-completion and suggestions for this XML file and will therefore help you to prevent issues and bugs.
@@ -234,6 +236,7 @@ Allows you to edit snippet values within the configuration page. This component 
 ### Supported component types
 
 Please Note: It is impossible to allow every component to the config.xml, due to their complexities. If you can't efficiently resolve your plugin's necessities with, it is probably better to create an own module instead. Therefore, Shopware supports the following components by default (also to be found in the [ConfigValidator class](https://github.com/shopware/platform/blob/729fbf368a065177a17e0fc190334ce02b45f418/src/Core/Framework/App/Validation/ConfigValidator.php#L16)):
+
 * sw-entity-single-select
 * sw-entity-multi-id-select
 * sw-media-field
@@ -245,6 +248,7 @@ Please Note: It is impossible to allow every component to the config.xml, due to
 Now all that's left to do is to present you a working example `config.xml` and show you the result.
 
 {% code title="<plugin root>/src/Resources/config/config.xml" %}
+
 ```markup
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -299,9 +303,9 @@ Now all that's left to do is to present you a working example `config.xml` and s
     </card>
 </config>
 ```
+
 {% endcode %}
 
 ## Next steps
 
 Now you've added your own plugin configuration. But how do you actually read which configurations the shop owner used? This will be covered in our guide about [Using the plugin configuration](use-plugin-configuration.md).
-

@@ -15,7 +15,7 @@ We suggest following the steps below to make the splitting most effective.
 
 ### Using the optimal MySQL configuration
 
-By default, Shopware does not set specific MySQL configurations that make sure the database is optimized for the Shopware usage. 
+By default, Shopware does not set specific MySQL configurations that make sure the database is optimized for the Shopware usage.
 These variables are set in the cluster mode only on the read-only server. To make sure that Shopware works flawlessly these configuration must be configured directly on the MySQL server so these variables are set on any server.
 
 The following options should be set:
@@ -44,4 +44,3 @@ To use the MySQL Cluster, you have to configure the following in the `.env` file
 
 - `DATABASE_URL` is the connection string for the MySQL primary.
 - `DATABASE_REPLICA_x_URL` (e.g `DATABASE_REPLICA_0_URL`, `DATABASE_REPLICA_1_URL`) - is the connection string for the MySQL read-only server.
-

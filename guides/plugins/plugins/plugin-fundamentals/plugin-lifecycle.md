@@ -19,12 +19,14 @@ Throughout all of the lifecycle methods, you have access to the [service contain
 The install method of a plugin is executed when the plugin is installed. You can use this method to install all the necessary requirements for your plugin, e.g. a new payment method.
 
 {% code title="<plugin root>/src/SwagBasicExample" %}
+
 ```php
 public function install(InstallContext $context): void
 {
     // Do stuff such as creating a new payment method
 }
 ```
+
 {% endcode %}
 
 In your install method, you have access to the `InstallContext`, which provides information such as:
@@ -48,12 +50,14 @@ You can't simply remove everything that your plugin created previously. Think ab
 {% endhint %}
 
 {% code title="<plugin root>/src/SwagBasicExample" %}
+
 ```php
 public function uninstall(UninstallContext $context): void
 {
     // Remove or deactivate the data created by the plugin
 }
 ```
+
 {% endcode %}
 
 The `uninstall` method comes with the `UninstallContext`, which offers the same information as the `install` method. There's one more very important information available with the `UninstallContext`, which is the method `keepUserData`.
@@ -63,6 +67,7 @@ The `uninstall` method comes with the `UninstallContext`, which offers the same 
 When uninstalling a plugin, the user is asked if he really wants to delete all the plugin data. The method `keepUserData` of the `UninstallContext` will provide the users decision. If `keepUserData` returns `true`, you should **not** remove important data of your plugin, the user wants to keep them.
 
 {% code title="<plugin root>/src/SwagBasicExample" %}
+
 ```php
 public function uninstall(UninstallContext $context): void
 {
@@ -75,6 +80,7 @@ public function uninstall(UninstallContext $context): void
     // Remove or deactivate the data created by the plugin
 }
 ```
+
 {% endcode %}
 
 {% hint style="info" %}
@@ -91,6 +97,7 @@ The `activate` method is executed once the plugin gets actually activated. You m
 * Create new entities or data, that you couldn't create in the install method
 
 {% code title="<plugin root>/src/SwagBasicExample" %}
+
 ```php
 public function activate(ActivateContext $context): void
 {
@@ -98,6 +105,7 @@ public function activate(ActivateContext $context): void
     // Or create new entities here, because now your plugin is installed and active for sure
 }
 ```
+
 {% endcode %}
 
 The `ActivateContext` provides the same information as the `InstallContext`.
@@ -112,6 +120,7 @@ The opposite of the `activate` method. Its triggered once the plugin deactivates
   is inactive
 
 {% code title="<plugin root>/src/SwagBasicExample" %}
+
 ```php
 public function deactivate(DeactivateContext $context): void
 {
@@ -119,6 +128,7 @@ public function deactivate(DeactivateContext $context): void
     // Or remove previously created entities
 }
 ```
+
 {% endcode %}
 
 The `DeactivateContext` provides the same information as the `InstallContext`.
@@ -130,12 +140,14 @@ The `update` method is executed once your plugin gets updated to a new version. 
 However, of course you can still do that if necessary. Also, non-database updates can be done here.
 
 {% code title="<plugin root>/src/SwagBasicExample" %}
+
 ```php
 public function update(UpdateContext $context): void
 {
     // Update necessary stuff, mostly non-database related
 }
 ```
+
 {% endcode %}
 
 The `UpdateContext` provides the same information as the `InstallContext`, but comes with one more method. In order to get the new plugin version, you can use the method `getUpdatePluginVersion` in contrast to the `getCurrentPluginVersion`, which will return the currently installed plugin version.
@@ -145,6 +157,7 @@ The `UpdateContext` provides the same information as the `InstallContext`, but c
 There are two more lifecycle methods, that are worth mentioning: `PostUpdate` and `PostInstall`, which are executed **after** the respective process of installing or updating your plugin is fully and successfully done.
 
 {% code title="<plugin root>/src/SwagBasicExample" %}
+
 ```php
 public function postInstall(InstallContext $installContext): void
 {
@@ -154,5 +167,5 @@ public function postUpdate(UpdateContext $updateContext): void
 {
 }
 ```
-{% endcode %}
 
+{% endcode %}

@@ -21,12 +21,14 @@ Now create an actual file for your JavaScript plugin, in this example it will be
 Inside this file create and export an ExamplePlugin class that extends the base Plugin class:
 
 {% code title="<plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js" %}
+
 ```javascript
 import Plugin from 'src/plugin-system/plugin.class';
 
 export default class ExamplePlugin extends Plugin {
 }
 ```
+
 {% endcode %}
 
 This is just a basic vanilla JavaScript ES6 class, which extends the `Plugin` class.
@@ -34,6 +36,7 @@ This is just a basic vanilla JavaScript ES6 class, which extends the `Plugin` cl
 Each plugin has to implement the `init()` method. This method will be called when your plugin gets initialized and is the entrypoint to your custom logic. The plugin initialization runs on `DOMContentLoaded` event, so you can be sure, that the dom is already completely loaded. In your case you add a callback to the `scroll` event from the window and check if the user has scrolled to the bottom of the page. If so we display an alert. Your full plugin now looks like this:
 
 {% code title="<plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js" %}
+
 ```javascript
 import Plugin from 'src/plugin-system/plugin.class';
 
@@ -49,6 +52,7 @@ export default class ExamplePlugin extends Plugin {
     }
 }
 ```
+
 {% endcode %}
 
 A short explanation what the condition is doing here: The `window.innerHeight` contains the height of the window, as you might have guessed.
@@ -66,6 +70,7 @@ Shopware is automatically looking for a `main.js` file in a directory `<plugin r
 Create a `main.js` file inside your `<plugin root>/src/Resources/app/storefront/src` folder and get the PluginManager from the global window object. Then register your own plugin:
 
 {% code title="<plugin root>/src/Resources/app/storefront/src/main.js" %}
+
 ```javascript
 // Import all necessary Storefront plugins
 import ExamplePlugin from './example-plugin/example-plugin.plugin';
@@ -74,6 +79,7 @@ import ExamplePlugin from './example-plugin/example-plugin.plugin';
 const PluginManager = window.PluginManager;
 PluginManager.register('ExamplePlugin', ExamplePlugin);
 ```
+
 {% endcode %}
 
 Right now, your plugin will automatically be loaded once you load the website.
@@ -83,6 +89,7 @@ Right now, your plugin will automatically be loaded once you load the website.
 You can also bind your plugin to a DOM element by providing a css selector:
 
 {% code title="<plugin root>/src/Resources/app/storefront/src/main.js" %}
+
 ```javascript
  // Import all necessary Storefront plugins
  import ExamplePlugin from './example-plugin/example-plugin.plugin';
@@ -91,6 +98,7 @@ You can also bind your plugin to a DOM element by providing a css selector:
  const PluginManager = window.PluginManager;
  PluginManager.register('ExamplePlugin', ExamplePlugin, '[data-example-plugin]');
 ```
+
 {% endcode %}
 
 In this case the plugin just gets executed if the HTML document contains at least one element with the `data-example-plugin` attribute. You can then use `this.el` inside your plugin to access the DOM element your plugin is bound to.
@@ -107,6 +115,7 @@ A lot of text, here is the respective example:
 
 {% code title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig" %}
 {% raw %}
+
 ```text
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
@@ -116,6 +125,7 @@ A lot of text, here is the respective example:
     <template data-example-plugin></template>
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -126,6 +136,7 @@ With this template extension your plugin is active on every content page, like t
 You can configure your plugins from inside the templates via data-options. First you have to define a static `options` object inside your plugin and assign your options with default values to it. In your case define a `text` option and as a default value use the text you previously directly prompted to the user. And instead of the hard coded string inside the `alert()`, use your new option value.
 
 {% code title="<plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js" %}
+
 ```javascript
 import Plugin from 'src/plugin-system/plugin.class';
 
@@ -149,6 +160,7 @@ export default class ExamplePlugin extends Plugin {
     }
 }
 ```
+
 {% endcode %}
 
 Now you are able to override the text that is prompted to the user from inside your templates. For this example we're going to display another message on product detail pages.
@@ -159,6 +171,7 @@ After the parent content add a template tag with the `data-example-plugin` tag t
 
 {% code title="<plugin root>/src/Resources/views/storefront/page/product-detail/index.html.twig" %}
 {% raw %}
+
 ```text
 {% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
 
@@ -172,6 +185,7 @@ After the parent content add a template tag with the `data-example-plugin` tag t
     <template data-example-plugin data-example-plugin-options='{{ examplePluginOptions|json_encode }}'></template>
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -186,6 +200,7 @@ You can use the `replace_recursive` Twig filter for this case.
 Imagine the following example can be found in the core:
 
 {% raw %}
+
 ```text
 {% set productSliderOptions = {
     productboxMinWidth: sliderConfig.elMinWidth.value ? sliderConfig.elMinWidth.value : '',
@@ -206,11 +221,13 @@ Imagine the following example can be found in the core:
     </div>
 {% endblock %}
 ```
+
 {% endraw %}
 
 Now you want to overwrite the value `slider.mouseDrag` with your plugin. The variable can be overwritten with `replace_recursive`:
 
 {% raw %}
+
 ```text
 {% block element_product_slider_slider %}
     {% set productSliderOptions = productSliderOptions|replace_recursive({
@@ -222,6 +239,7 @@ Now you want to overwrite the value `slider.mouseDrag` with your plugin. The var
     {{ parent() }}
 {% endblock %}
 ```
+
 {% endraw %}
 
 ## Plugin script path
@@ -238,15 +256,19 @@ To see your changes you have to build the storefront. Use the following command 
 
 {% tabs %}
 {% tab title="Development template" %}
+
 ```bash
 ./psh.phar storefront:build
 ```
+
 {% endtab %}
 
 {% tab title="Production template" %}
+
 ```bash
 ./bin/build-storefront.sh
 ```
+
 {% endtab %}
 {% endtabs %}
 
@@ -255,4 +277,3 @@ If you now scroll to the bottom of your page an alert should appear.
 ## Next steps
 
 You've got your own first javascript plugin running. You might want to start [listening to javascript events](reacting-to-javascript-events.md) now, or even [override other javascript plugins](override-existing-javascript.md) instead.
-

@@ -213,8 +213,8 @@ After the very first deployment with [Deployer](https://deployer.org/), you have
 
 Lets agree on the following two paths for the examples:
 
-1. You have copied your existing Shopware instance to `/var/www/shopware_backup`.   
-2. You have set the `deploy_path` in the [`deploy.php`](deployment-with-deployer.md#deploy-php) to `/var/www/shopware`.
+1. You have copied your existing Shopware instance to `/var/www/shopware_backup`.
+1. You have set the `deploy_path` in the [`deploy.php`](deployment-with-deployer.md#deploy-php) to `/var/www/shopware`.
 
 Now have a look at the `shared_files` and `shared_dirs` configuration in the [`deploy.php`](deployment-with-deployer.md#deploy-php). Simply copy all the paths into `/var/www/shopware/shared`. For the configuration of the [`deploy.php`](deployment-with-deployer.md#deploy-php) the commands would be the following:
 
@@ -422,4 +422,3 @@ task('deploy', [
 
 after('deploy:failed', 'deploy:unlock');
 ```
-

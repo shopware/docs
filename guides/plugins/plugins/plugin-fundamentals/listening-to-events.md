@@ -6,7 +6,6 @@ A way to listen to events in Symfony projects is via an [event subscriber,](http
 
 In order to build your own subscriber for your plugin, of course you first need a plugin as base. To create an own plugin, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
 
-
 <!-- markdown-link-check-disable-next-line -->
 {% hint style="info" %}
 Here's a live coding example on listening to events from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
@@ -29,6 +28,7 @@ To start creating a subscriber, we need to create a class first implementing Eve
 Therefore, this is how your subscriber could then look like:
 
 {% code title="<plugin root>/src/Subscriber/MySubscriber.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -55,6 +55,7 @@ class MySubscriber implements EventSubscriberInterface
     }
 }
 ```
+
 {% endcode %}
 
 In this example, the subscriber would be located in the `<plugin root>/src/Subscriber` directory.
@@ -66,6 +67,7 @@ The subscriber is now listening for the `product.loaded` event to trigger. Unfor
 Registering your subscriber to Shopware 6 is also as simple as it is in Symfony. You're simply registering your \(subscriber\) service by mentioning it in the `services.xml`. The only difference to a normal service is, that you need to add the `kernel.event_subscriber` tag to your subscriber for it to be recognized as such.
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
+
 ```php
 <?xml version="1.0" ?>
 
@@ -80,7 +82,7 @@ Registering your subscriber to Shopware 6 is also as simple as it is in Symfony.
     </services>
 </container>
 ```
+
 {% endcode %}
 
 That's it, your subscriber service is now automatically loaded at runtime and it should start listening to the mentioned events to be dispatched.
-

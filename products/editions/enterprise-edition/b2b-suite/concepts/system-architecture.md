@@ -24,29 +24,29 @@ The responsibilities from bottom to top:
 
 At the time of this writing there are 18 different components, all build with the same structure. We sorted these components into four different complexes:
 
-#### Common - The one Exception
+### Common - The one Exception
 
 There is a small library of shared functionality. It contains a few commonly used **technical** implementations that are shared between most components like exception classes, repository helpers, a dependency manager, or a REST-API router.
 
-#### User-Management
+### User-Management
 
 The user management is based on the `StoreFrontAuthentication` component and then provides `Contact` and `Debtor` entities which have `Address`es and `Role`s. These entities are mostly informational and CRUD based. Other parts of the system only depend on the `StoreFrontAuthentication` component but not the specific implementations as debtor or contact.
 
 ![image](../../../../../.gitbook/assets/b2b-architecture-users.png)
 
-#### ACL
+### ACL
 
 The `Acl` implementation is connected to most other entities provided by the B2B-Suite.
 
 ![image](../../../../../.gitbook/assets/b2b-architecture-acl.png)
 
-#### Order and Contingent Management
+### Order and Contingent Management
 
 `ContingentGroups`s are connected to `Debtor`s and can have `Acl` settings based on `Role`s or `Contact`s. `Order`s are personalized through the `StoreFrontAuthentication`.
 
 ![image](../../../../../.gitbook/assets/b2b-architecture-order.png)
 
-#### The whole picture
+### The whole picture
 
 Most dependencies are directly derived from requirements. So, the dependency flow of the components should follow the basic business needs. There are a few exception, mainly the M:N assignment components each representing a reset in complexity where a complex feature just resolves itself into a context object for another use case. You can think of it like that.
 

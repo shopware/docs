@@ -15,12 +15,14 @@ An EntityRepository is used to interact with the DAL. This is the recommended wa
 Before using the repositories, you'll need to get them from the DIC. This is done with [constructor injection](https://symfony.com/doc/current/service_container/injection_types.html#constructor-injection), so you'll need to extend your services constructor by expecting an EntityRepositoryInterface:
 
 {% code title="<plugin root>/src/Service/DalExampleService.php" %}
+
 ```php
 public function __construct (EntityRepositoryInterface $productRepository)
 {
     $this->productRepository = $productRepository;
 }
 ```
+
 {% endcode %}
 
 If you're using [service autowiring](https://symfony.com/doc/current/service_container/autowiring.html), and the type and argument variable names are correct, the repository will be injected automatically.
@@ -28,11 +30,13 @@ If you're using [service autowiring](https://symfony.com/doc/current/service_con
 Alternatively, configure the product.repository service to be injected explicitly:
 
 {% code title="<plugin root>src/Resources/config/service.xml" %}
+
 ```markup
 <service id="Swag\ExamplePlugin\Service\DalExampleService">
     <argument type="service" id="product.repository"/>
 </service>
 ```
+
 {% endcode %}
 
 You can read more about dependency injection and service registration in Shopware in the services guides:
@@ -45,9 +49,9 @@ The DAL was designed, among other things, to enable the special requirements of 
 
 1. current language: The first level is the current language that is set and displayed to the user.
 
-2. parent language: the second level is an optional parent language that can be configured. So it is possible to translate certain dialects faster.
+1. parent language: the second level is an optional parent language that can be configured. So it is possible to translate certain dialects faster.
 
-3. system language: The third and last level is the system language that is selected during the installation. Each entity in the system has a translation in this language. This serves as a final fallback to ensure only one label for the entity in the end.
+1. system language: The third and last level is the system language that is selected during the installation. Each entity in the system has a translation in this language. This serves as a final fallback to ensure only one label for the entity in the end.
 
 The translations for a record are stored in a separate table. The name of this table is always the same as the table for which the records are translated, with the additional suffix `_translation`.
 

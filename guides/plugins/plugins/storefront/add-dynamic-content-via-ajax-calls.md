@@ -18,6 +18,7 @@ Here's a video dealing with the creation of a controller that returns JSON data 
 As mentioned before this guide builds up upon the [adding a custom controller](add-custom-controller.md) guide. This means that this article will only cover the differences between returning a template and a `JSON` response and making it accessible to `XmlHttpRequests`.
 
 {% code title="<plugin base>/Storefront/Controller/ExampleController.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -42,6 +43,7 @@ class ExampleController extends StorefrontController
     }
 }
 ```
+
 {% endcode %}
 
 As you might have seen this controller isn't too different from the controller used in the article mentioned before. The route annotation has an added `defaults={"XmlHttpRequest"=true}` to allow XmlHttpRequest and it returns a `JsonResponse` instead of a normal `Response`. Using a `JsonResponse` instead of a normal `Response` causes the data structures passed to it to be automatically turned into a `JSON` string.
@@ -49,6 +51,7 @@ As you might have seen this controller isn't too different from the controller u
 The following `services.xml` and `routes.xml` are identical as in the before mentioned article, but here they are for reference anyways:
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
+
 ```markup
 <?xml version="1.0" ?>
 
@@ -65,9 +68,11 @@ The following `services.xml` and `routes.xml` are identical as in the before men
     </services>
 </container>
 ```
+
 {% endcode %}
-   
+
 {% code title="<plugin root>/src/Resources/config/routes.xml" %}
+
 ```markup
 <?xml version="1.0" encoding="UTF-8" ?>
 <routes xmlns="http://symfony.com/schema/routing"
@@ -78,6 +83,7 @@ The following `services.xml` and `routes.xml` are identical as in the before men
     <import resource="../../Storefront/Controller/**/*Controller.php" type="annotation" />
 </routes>
 ```
+
 {% endcode %}
 
 ## Preparing the Plugin
@@ -87,6 +93,7 @@ Now we have to add a `Storefront Javascript plugin` to display the timestamp we 
 Again this is built upon the [adding custom Javascript](add-custom-javascript.md) article, so if you don't already know what storefront `plugins` are, hold on and read it first.
 
 {% code title="<plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js" %}
+
 ```javascript
 import HttpClient from 'src/service/http-client.service';
 import Plugin from 'src/plugin-system/plugin.class';
@@ -120,6 +127,7 @@ export default class AjaxPlugin extends Plugin {
     }
 }
 ```
+
 {% endcode %}
 
 ## Adding the Template
@@ -128,6 +136,7 @@ The only thing that is now left, is to provide a template for the storefront plu
 
 {% code title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig" %}
 {% raw %}
+
 ```text
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
@@ -142,10 +151,10 @@ The only thing that is now left, is to provide a template for the storefront plu
     </div>
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
 ## Next steps
 
 The controller we used in this example doesn't do a lot, but this pattern of providing and using data is generally the same. Even if you use it to fetch data form the database, but in that case you probably want to learn more about the DAL [here](../../../../concepts/framework/data-abstraction-layer.md).
-

@@ -32,9 +32,11 @@ In order to add your own custom assets, you need to save your assets in the `Res
 Similar as in [using custom assets in Storefront](../storefront/add-custom-assets.md), you need to execute the following command:
 
 {% code title="" %}
+
 ```bash
 bin/console assets:install
 ```
+
 {% endcode %}
 
 This way, your plugin assets are copied to the `public/bundles` folder:
@@ -58,4 +60,3 @@ After adding your assets to the `public/bundles` folder, you can start using you
 ```
 
 You're able to use this line in your `twig`/`html` files as you please and that's basically it. You successfully added your own asset to the administration.
-

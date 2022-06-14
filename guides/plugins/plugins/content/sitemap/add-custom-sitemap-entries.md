@@ -18,10 +18,11 @@ So let's get started.
 Adding custom URLs to the sitemap is done by adding a so called "URL provider" to the system.
 
 This is done by adding a new class, which is extending from `Shopware\Core\Content\Sitemap\Provider\AbstractUrlProvider`.
-It then has to be registered to the [service container](../../plugin-fundamentals/dependency-injection.md) using the tag 
+It then has to be registered to the [service container](../../plugin-fundamentals/dependency-injection.md) using the tag
 `shopware.sitemap_url_provider`.
 
 It has to provide three methods:
+
 - `getDecorated`: Just throw an exception of type `DecorationPatternException` here. This is done for the sake of extending
 a class via decoration. Learn more about this [here](../../plugin-fundamentals/adjusting-service.md).
 - `getName`: A technical name for your custom URLs
@@ -32,6 +33,7 @@ Let's have a look at the example class:
 {% tabs %}
 {% tab title="CustomUrlProvider.php" %}
 {% code title="<plugin root>/src/Core/Content/Sitemap/Provider/CustomUrlProvider.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -138,11 +140,13 @@ class CustomUrlProvider extends AbstractUrlProvider
     }
 }
 ```
+
 {% endcode %}
 {% endtab %}
 
 {% tab title="services.xml" %}
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
+
 ```xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -160,6 +164,7 @@ class CustomUrlProvider extends AbstractUrlProvider
     </services>
 </container>
 ```
+
 {% endcode %}
 {% endtab %}
 {% endtabs %}
@@ -186,6 +191,7 @@ SEO URLs in the first place.
 We're then iterating over all of our fetched entities and we create an instance of `Shopware\Core\Content\Sitemap\Struct\Url`
 for each iteration.
 This struct requests each of the typical sitemap information:
+
 - `lastMod`: The last time this entry was modified. Just use the `updatedAt` value here, if available
 - `changeFreq`: How often will the entry most likely change?
 Possible values are `always`, `hourly`, `daily`, `weekly`, `monthly`, `yearly` and `never`

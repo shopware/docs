@@ -361,7 +361,7 @@ public function readData(Context $context): void
 
 In this example, you'd get a batch of 500 products with each iteration of the `while` loop. This way, `$result` will not cause a "memory exhausted" error and you can handle huge amounts of data this way.
 
-One small caveat to be aware of: When using the `RepositoryIterator`, make sure that the `Criteria` uses a sorting which is deterministic. 
+One small caveat to be aware of: When using the `RepositoryIterator`, make sure that the `Criteria` uses a sorting which is deterministic.
 
 Put differently, you must ensure that your sorting means that there's only one correct way to order your results, otherwise different batches might decide to sort the entities differently in the database. That would mean you risk getting the same entity in several batches (and having entities that won't be iterated at all).
 

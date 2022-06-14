@@ -11,6 +11,7 @@ You should be familiar with the concept of apps.
 To add new cookies to the cookie consent manager, you can add a `cookies` section to your `manifest.xml`. Inside this section, you can add new `cookie` elements, as shown in the following example. Note that you don't need a `setup` section in your `manifest.xml` since extending the Storefront doesn't need a registration nor an own server to run.
 
 {% code title="manifest.xml" %}
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
@@ -30,6 +31,7 @@ To add new cookies to the cookie consent manager, you can add a `cookies` sectio
     </cookies>
 </manifest>
 ```
+
 {% endcode %}
 
 Cookie elements can be configured by adding the following child elements:
@@ -49,6 +51,7 @@ When adding multiple cookies through your app it may become handy to group them.
 To add a cookie group, you can add a `groups` section within your `cookies` section in your `manifest.xml`. In the following example, we use the cookie that we created in the previous section but display it in a cookie group:
 
 {% code title="manifest.xml" %}
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
@@ -74,12 +77,13 @@ To add a cookie group, you can add a `groups` section within your `cookies` sect
     </cookies>
 </manifest>
 ```
+
 {% endcode %}
 
 A `group` element consists of three child elements to configure the cookie group. Here is a description of all of them:
 
 * `snippet-name` (required): A string that represents the label of the cookie group in the cookie consent manager. To provide translations this should be the key of a Storefront snippet.
-* `entries` (required): Contains the grouped cookies. It is a collection of `cookie` elements described in the previous section. 
+* `entries` (required): Contains the grouped cookies. It is a collection of `cookie` elements described in the previous section.
 * `snippet-description` (optional): A string that represents the description of the cookie group in the cookie consent manager. To provide translations this should be the key of a Storefront snippet.
 
 For a complete reference of the structure of the manifest file, take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference.md).

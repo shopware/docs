@@ -25,9 +25,11 @@ That's the file you need to change now, so that it loads your new module.
 For this, simply add the following line to your `main.js` file:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/main.js" %}
+
 ```javascript
 import './module/swag-example';
 ```
+
 {% endcode %}
 
 Now your module's `index.js` will be executed.
@@ -45,11 +47,13 @@ The `Module` object comes with a `register` helper method to easily register you
 The method needs two parameters to be set, the first one being the module's name, the second being a javascript object, which contains your module's configuration.
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
+
 ```javascript
 Shopware.Module.register('swag-example', {
     // configuration here
 });
 ```
+
 {% endcode %}
 
 ## Configuring the module
@@ -96,6 +100,7 @@ There's a few more things we need to change in the configurations though that yo
 For reference, see this example:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
+
 ```javascript
 Shopware.Module.register('swag-example', {
     type: 'plugin',
@@ -106,6 +111,7 @@ Shopware.Module.register('swag-example', {
     icon: 'default-shopping-paper-bag-product',
 ...
 ```
+
 {% endcode %}
 
 The `name` should be a technical unique one, the `type` would be 'plugin' here. When it comes to this `type`, there are basically two options in Shopware: `core` and `plugin`.
@@ -146,6 +152,7 @@ For this purpose, create a new directory `snippet` in your module's directory an
 Then, when each file contains your translations as an object, you only have to import them into your module again.
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
+
 ```javascript
 [...]
 
@@ -160,6 +167,7 @@ Shopware.Module.register('swag-example', {
     },
 });
 ```
+
 {% endcode %}
 
 Let's also create the first translation, which is for your menu's label.
@@ -186,22 +194,26 @@ This should be your snippet file now:
 ```
 
 ## Build the administration
-    
+
 As mentioned above, Shopware 6 is looking for a `main.js` file in your plugin.
 Its contents get minified into a new file named after your plugin and will be moved to the `public` directory of Shopware 6 root directory.
 Given this plugin would be named "AdministrationNewModule", the bundled and minified javascript code for this example would be located under `<plugin root>/src/Resources/public/administration/js/administration-new-module.js`, once you run the command following command in your shopware root directory:
 
 {% tabs %}
 {% tab title="Development template" %}
+
 ```bash
 ./psh.phar administration:build
 ```
+
 {% endtab %}
 
 {% tab title="Production template" %}
+
 ```bash
 ./bin/build-administration.sh
 ```
+
 {% endtab %}
 {% endtabs %}
 
@@ -222,6 +234,7 @@ If you think about creating a module concerning settings, you might want to link
 You can add the `settingsItem` option to the module configuration as seen below:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
+
 ```javascript
 import './page/swag-plugin-list';
 import './page/swag-plugin-detail';
@@ -235,6 +248,7 @@ Shopware.Module.register('swag-plugin', {
     }]
 });
 ```
+
 {% endcode %}
 
 The `group` property targets to the group section, the item will be displayed in 'shop', 'system' and 'plugins' sections.
@@ -262,6 +276,7 @@ settingsItem: [{ // this can be a single object if no collection is needed
 Here's your final module:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
+
 ```javascript
 import './page/swag-example-list';
 import './page/swag-example-detail';
@@ -312,6 +327,7 @@ Shopware.Module.register('swag-example', {
     }]
 });
 ```
+
 {% endcode %}
 
 ## Next steps

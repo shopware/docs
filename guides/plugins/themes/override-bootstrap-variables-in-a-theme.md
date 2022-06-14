@@ -23,6 +23,7 @@ To be able to override Bootstrap variables there is an additional SCSS entry poi
 This entry point is called `overrides.scss`:
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
+
 ```javascript
 {
   "name": "SwagBasicExampleTheme",
@@ -46,11 +47,13 @@ This entry point is called `overrides.scss`:
   ]
 }
 ```
+
 {% endcode %}
 
 In the `<plugin root>/src/Resources/app/storefront/src/scss/overrides.scss` you can now override default variables like `$border-radius` globally and set its value to `0` to reset it in this case:
 
 {% code title="<plugin root>/src/Resources/app/storefront/src/scss/overrides.scss" %}
+
 ```css
 /*
 Override variable defaults
@@ -70,6 +73,7 @@ $disabled-btn-bg: #f00;
 $disabled-btn-border-color: #fc8;
 $font-weight-semibold: 300;
 ```
+
 {% endcode %}
 
 After saving the `overrides.scss` file and running `bin/console theme:compile` go and check out the Storefront in the browser. The `border-radius` should be removed for every element.
@@ -86,7 +90,6 @@ When running `./psh.phar storefront:hot-proxy` in the development template or `.
 
 Now that you know how to override Boostrap variables, here is a list of related topics which might be interesting for you.
 
-* [Theme configuration](theme-configuration.md) 
-* [Add SCSS Styling and JavaScript to a theme](add-css-js-to-theme.md) 
+* [Theme configuration](theme-configuration.md)
+* [Add SCSS Styling and JavaScript to a theme](add-css-js-to-theme.md)
 * [Add assets to a theme](add-assets-to-theme.md)
-

@@ -28,6 +28,7 @@ To keep this example simple for now we just override the `base_main_inner` block
 
 {% code title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig" %}
 {% raw %}
+
 ```html
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
@@ -42,6 +43,7 @@ To keep this example simple for now we just override the `base_main_inner` block
     {{ parent() }}
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -50,6 +52,7 @@ We need to add the data-attribute `data-date-picker` to activate the datepicker 
 
 {% code title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig" %}
 {% raw %}
+
 ```html
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
@@ -65,6 +68,7 @@ We need to add the data-attribute `data-date-picker` to activate the datepicker 
     {{ parent() }}
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -80,6 +84,7 @@ Here you can see how this is done by setting up a local Twig variable `pickerOpt
 
 {% code title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig" %}
 {% raw %}
+
 ```html
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
@@ -102,6 +107,7 @@ Here you can see how this is done by setting up a local Twig variable `pickerOpt
     {{ parent() }}
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -115,6 +121,7 @@ To preselect the value of the datepicker we can simply set its value in the inpu
 
 {% code title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig" %}
 {% raw %}
+
 ```html
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
@@ -138,6 +145,7 @@ To preselect the value of the datepicker we can simply set its value in the inpu
     {{ parent() }}
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -148,6 +156,7 @@ Here is an example which shows all three selectors in action.
 
 {% code title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig" %}
 {% raw %}
+
 ```html
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
@@ -180,6 +189,7 @@ Here is an example which shows all three selectors in action.
     {{ parent() }}
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -190,11 +200,10 @@ Here is an example which shows all three selectors in action.
 | `dateFormat` | 'Y-m-dTH:i:S+00:00' | Pattern for the date string representation
 | `altInput` | true | Hides your original input and creates a new one.
 | `altFormat` | 'j. FY, H:i' | Alternative pattern for the date string representation if `altInput` is enabled. The value of the input field gets still formatted by `dateFormat`
-| `time_24hr` | true | 
+| `time_24hr` | true |
 | `enableTime` | true |
 | `noCalendar` |false |
 | `weekNumbers` | true |
 | `allowInput` | true |
 | `minDate` | null | Specifies the minimum/earliest date (inclusively) allowed for selection
 | `maxDate` | null | Specifies the maximum/latest date (inclusively) allowed for selection.
-

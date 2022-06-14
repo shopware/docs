@@ -43,6 +43,7 @@ storefront:
 Also set `SHOPWARE_HTTP_CACHE_ENABLED=1` in your `.env` file.
 
 #### Trusted proxies
+
 For the most part, using symfony and varnish doesn't cause any problems. But, when a request passes through a proxy, certain request information is sent using either the standard Forwarded header or X-Forwarded-* headers. For example, instead of reading the REMOTE_ADDR header (which will now be the IP address of your reverse proxy), the user's true IP will be stored in a standard Forwarded: for="..." header or a X-Forwarded-For header.
 
 If you don't configure Symfony to look for these headers, you'll get incorrect information about the client's IP address, whether or not the client is connecting via HTTPS, the client's port and the hostname being requested.
@@ -248,7 +249,8 @@ To verify if it works, you can look for a new response header `X-Cache` in the h
 The `X-Cache` and `X-Cache-Hits` headers are only meant to verify that Varnish is doing it's job. You typically don't want to have those headers enabled on a production environment.
 
 To disable these headers, comment out the lines by prefixing them with the `#` character. The lines in questions are:
-```
+
+```vcl
 # Set a cache header to allow us to inspect the response headers during testing
 if (obj.hits > 0) {
     unset resp.http.set-cookie;
@@ -261,7 +263,8 @@ set resp.http.X-Cache-Hits = obj.hits;
 ```
 
 Make it so that the lines look like the following:
-```
+
+```vcl
 # Set a cache header to allow us to inspect the response headers during testing
 if (obj.hits > 0) {
     unset resp.http.set-cookie;
@@ -298,7 +301,7 @@ Additionally we need to setup some VCL Snippets in the Fastly interface:
 
 **Subroutine:** vcl_recv
 
-```
+```vcl
 # Mitigate httpoxy application vulnerability, see: https://httpoxy.org/
 unset req.http.Proxy;
 
@@ -341,8 +344,7 @@ return (lookup);
 
 **Subroutine:** vcl_hash
 
-
-```
+```vcl
 # Consider Shopware http cache cookies
 if (req.http.cookie:sw-cache-hash) {
   set req.hash += req.http.cookie:sw-cache-hash;
@@ -351,12 +353,11 @@ if (req.http.cookie:sw-cache-hash) {
 }
 ```
 
-
 **Name:** Respect Shopware States to Pass the cache
 
 **Subroutine:** vcl_hit
 
-```
+```vcl
 if (req.http.cookie ~ "sw-states=") {
    set req.http.states = regsub(req.http.cookie, "^.*?sw-states=([^;]*);*.*$", "\1");
 
@@ -374,8 +375,7 @@ if (req.http.cookie ~ "sw-states=") {
 
 **Subroutine:** vcl_deliver
 
-
-```
+```vcl
 # Remove the exact PHP Version from the response for more security (e.g. 404 pages)
 unset resp.http.x-powered-by;
 

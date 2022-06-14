@@ -73,12 +73,12 @@ All fetched data will be deleted after finishing or aborting a migration run, bu
 The following bullet points will give you a general overview of what happens during a common migration.
 
 1. The user selects / creates a connection \(with a profile and gateway specified\)
-2. The user selects some of the available data \(`DataSelections`\)
-3. Premapping check / execution: The user maps data from the source system to the current system \(These decisions are stored with the connection.\)
-4. Fetch data for every `DataSet` in every selected `DataSelection` \(mapping is used to store / use the identifiers from the source system.\) 4.1 The corresponding `Reader` reads the data 4.2 The corresponding `Converter` converts the data
-5. Write data for every `DataSet` in every selected `DataSelection` 5.1 The corresponding `Writer` writes the data
-6. Process media, if necessary for example to download / copy images 6.1 Data in `swag_migration_media_file` table will be downloaded / copied 6.2 Files are assigned to media objects in Shopware 6
-7. Finish migration to cleanup
+1. The user selects some of the available data \(`DataSelections`\)
+1. Premapping check / execution: The user maps data from the source system to the current system \(These decisions are stored with the connection.\)
+1. Fetch data for every `DataSet` in every selected `DataSelection` \(mapping is used to store / use the identifiers from the source system.\) 4.1 The corresponding `Reader` reads the data 4.2 The corresponding `Converter` converts the data
+1. Write data for every `DataSet` in every selected `DataSelection` 5.1 The corresponding `Writer` writes the data
+1. Process media, if necessary for example to download / copy images 6.1 Data in `swag_migration_media_file` table will be downloaded / copied 6.2 Files are assigned to media objects in Shopware 6
+1. Finish migration to cleanup
 
 These steps can be done multiple times. Each migration is called a `Run` / `MigrationRun` and will be saved to let the users know about any errors that occurred \(in form of a detailed history\).
 
@@ -92,4 +92,3 @@ Take a look at the following HowTos for your scenario to get a step by step tuto
 * [Extending the Migration Connector](../guides/extending-the-migration-connector.md): Add API support for your migration
 * [Decorating a Shopware Migration Assistant converter](../guides/decorating-a-shopware-migration-assistant-converter.md): Implement a premapping and change the behavior of an existing converter
 * [Creating a new migration profile](../guides/creating-a-new-migration-profile.md): Create a new profile from scratch to support a third party source system \(other than Shopware\)
-

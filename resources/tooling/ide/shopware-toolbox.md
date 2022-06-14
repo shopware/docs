@@ -10,8 +10,8 @@ Shopware 6 Toolbox is a helper plugin and productivity tool for common tasks for
 
 ### Live Templates
 
-Multiple live templates for development. Use Cmd/Ctrl + J to see all live templates available 
-   
+Multiple live templates for development. Use Cmd/Ctrl + J to see all live templates available
+
 ### Generators
 
 * Vue.js Admin component
@@ -24,7 +24,6 @@ Multiple live templates for development. Use Cmd/Ctrl + J to see all live templa
 ### Static Code Check
 
 Inspection to show an error when abstract class is used incorrectly in the constructor (guideline check)
-
 
 ### Auto-completion
 

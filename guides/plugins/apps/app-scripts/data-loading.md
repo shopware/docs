@@ -11,7 +11,7 @@ Note that app scripts were introduced in Shopware 6.4.8.0, and are not supported
 The app script data loading, expands on the general [composite data loading concept](../../../../concepts/framework/architecture/storefront-concept.md#composite-data-handling) of the storefront.
 For each page that is rendered, a hook is triggered - giving access to the current `page` object. The `page` object gives access to all the available data, lets you add data to it and will be passed directly to the templates.
 
-For a list of all available script hooks, that can be used to load additional data, take a look at the [script hook reference](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#data-loading). 
+For a list of all available script hooks, that can be used to load additional data, take a look at the [script hook reference](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#data-loading).
 
 {% hint style="info" %}
 Note that all hooks that were triggered during a page rendering are also shown in the [Symfony toolbar](./README.md#developing--debugging-scripts).
@@ -22,6 +22,7 @@ For example, you would like to enrich a storefront detail page with some additio
 
 {% code title="Resources/scripts/product-page-loaded/my-example-script.twig" %}
 {% raw %}
+
 ```twig
 {% set page = hook.page %}
 {# @var page \Shopware\Storefront\Page\Product\ProductPage #}
@@ -36,6 +37,7 @@ For example, you would like to enrich a storefront detail page with some additio
 {# it also lets you add data to it, that you can later use in your storefront templates #}
 {% do page.addArrayExtension('swagMyAdditionalData', myAdditionalData) %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -43,6 +45,7 @@ In your storefront templates you can read the data again from the `page` object:
 
 {% code title="Resources/views/storefront/page/product-detail/index.html.twig" %}
 {% raw %}
+
 ```twig
 {% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
 
@@ -52,10 +55,11 @@ In your storefront templates you can read the data again from the `page` object:
     {{ parent() }}
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
-## Loading data 
+## Loading data
 
 To load data stored inside Shopware you can use the `read` features of the [Data Abstraction Layer](../../../../concepts/framework/data-abstraction-layer.md).
 Therefore, in every hook that may be used to load additional data the `repository` service is available.
@@ -69,9 +73,11 @@ The `repository` service provides methods to load exactly the data you need:
 All those methods can be used in the same way, first you pass the entity name the search should be performed on, next you pass the criteria that should be used.
 
 {% raw %}
+
 ```twig
 {% set mediaEntities = services.repository.search('media', criteria) %}
 ```
+
 {% endraw %}
 
 ### Search Criteria
@@ -85,6 +91,7 @@ So please refer to that documentation to get an overview of what features can be
 
 The criteria object can be assembled inside scripts as follows:
 {% raw %}
+
 ```twig
 {% set criteria = {
     'ids': [ 'id1', 'id2' ],
@@ -99,6 +106,7 @@ The criteria object can be assembled inside scripts as follows:
 
 {% set matchedProducts = services.repository.search('product', criteria) %}
 ```
+
 {% endraw %}
 
 ### `repository` and `store` services
@@ -136,6 +144,7 @@ If you want to add scalar values or want to add more than one struct in your ext
 In your **scripts** that would look something like this:
 
 {% raw %}
+
 ```twig
 {% set products = services.repository.search('product', criteria) %}
 
@@ -151,11 +160,13 @@ In your **scripts** that would look something like this:
 } %}
 {% do page.addArrayExtension('swagArrayExtension', arrayExtension) %}
 ```
+
 {% endraw %}
 
 You can access the extensions again in your **storefront templates** like this:
 
 {% raw %}
+
 ```twig
 {# via addExtension #}
 {% for product in page.getExtension('swagCollection') %}
@@ -173,6 +184,7 @@ You can access the extensions again in your **storefront templates** like this:
 
 <h1>{{ page.getExtension('swagArrayExtension').scalar }}</h1>
 ```
+
 {% endraw %}
 
 {% hint style="info" %}

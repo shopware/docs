@@ -85,6 +85,7 @@ Finally, create a new file e2e/cypress/support/index.js with the following line:
 // Require test suite commands
 require('@shopware-ag/e2e-testsuite-platform/cypress/support');
 ```
+
 {% endtab %}
 
 {% tab title="Platform: Developing with docker" %}
@@ -97,11 +98,13 @@ In case you're using Docker on Mac we have summarized the steps from the guide m
 **Install and configure XQuartz**  
 
 Install XQuartz via [Homebrew](https://docs.brew.sh/Installation) or alternatively [download](https://www.xquartz.org/) it from the official homepage:
+
 ```bash
 brew install --cask xquartz
 ```
 
 Run XQuartz via CLI or open it from your Desktop:
+
 ```bash
 open -a XQuartz
 ```
@@ -117,6 +120,7 @@ Restart your Mac before proceeding with the following steps.
 **Configure your environment**
 
 Grab your IP address and save it to the environment variable `IP`:
+
 ```bash
 IP=$(ipconfig getifaddr en0)
 ```
@@ -124,11 +128,13 @@ IP=$(ipconfig getifaddr en0)
 Depending on how you're connected you might have to use another interface instead of `en0`.
 
 Now set the `DISPLAY` environment variable:
+
 ```bash
 DISPLAY=$IP:0
 ```
 
 Add `$IP` to xhost's ACL:
+
 ```bash
 xhost + $IP
 ```
@@ -544,4 +550,3 @@ Below you will find some best practices and tricks we explored to help you with 
 * [Unit testing with PHPUnit](php-unit.md)
 * [Jest unit tests in Shopware's administration](jest-admin.md)
 * [Jest unit tests in Shopware's storefront](jest-storefront.md)
-

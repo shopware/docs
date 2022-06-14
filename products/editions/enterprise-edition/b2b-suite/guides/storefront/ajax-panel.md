@@ -17,8 +17,8 @@ You can download a plugin showcasing the topic [here](/products/editions/enterpr
 
 ## Description
 
-`AjaxPanel` is a is a mini-framework based on storefront plugins. It mimics `iFrame` behaviour by integrating content from 
-different controller actions through ajax into a single view and intercepting, 
+`AjaxPanel` is a is a mini-framework based on storefront plugins. It mimics `iFrame` behaviour by integrating content from
+different controller actions through ajax into a single view and intercepting,
 usually page changing, events and transforming them into XHR-Requests.
 
 The diagram below shows how this schematically behaves:
@@ -27,10 +27,11 @@ The diagram below shows how this schematically behaves:
 
 ## Basic usage
 
-The `AjaxPanel` plugin is part of the b2b frontend and will scan your page automatically for the trigger class `b2b--ajax-panel`. 
+The `AjaxPanel` plugin is part of the b2b frontend and will scan your page automatically for the trigger class `b2b--ajax-panel`.
 The most basic ajax panel looks like this:
 
 {% raw %}
+
 ```twig
 <div
     class="b2b--ajax-panel"
@@ -39,11 +40,12 @@ The most basic ajax panel looks like this:
     <!-- will load content here -->
 </div>
 ```
+
 {% endraw %}
 
-After the document is ready, the ajax panel will trigger a XHR GET-Request and replace it's inner html with the responses content. 
-Now all clicks on links and form submits inside the container will be changed to XHR-Requests. 
-A streamlined example of this behaviour can be found in the [B2BAjaxPanel Example Plugin](/products/editions/enterprise-edition/b2b-suite/example-plugins/B2bAjaxPanel.zip), 
+After the document is ready, the ajax panel will trigger a XHR GET-Request and replace it's inner html with the responses content.
+Now all clicks on links and form submits inside the container will be changed to XHR-Requests.
+A streamlined example of this behaviour can be found in the [B2BAjaxPanel Example Plugin](/products/editions/enterprise-edition/b2b-suite/example-plugins/B2bAjaxPanel.zip),
 but it is used across the B2B-Suite.
 
 ## Extended usage
@@ -53,14 +55,16 @@ but it is used across the B2B-Suite.
 Any HTML element can be used to trigger a location change in an ajax panel, just add a class and set a destination:
 
 {% raw %}
+
 ```twig
 <p class="ajax-panel-link" data-href="{{ path('frontend.b2b.b2bcontact.grid') }}">Click</p>
 ```
+
 {% endraw %}
 
 ### Ignore links
 
-It might be necessary that certain links in a panel really trigger the default behaviour, 
+It might be necessary that certain links in a panel really trigger the default behaviour,
 you just have to add a class to the link or form:
 
 ```html
@@ -86,7 +90,7 @@ The B2B-Suite comes with a whole library of simple helper plugins to add behavio
 
 ![image](/.gitbook/assets/ajax-panel-structure.svg)
 
-As you can see, there is the `AjaxPanelPluginLoader` responsible for initializing and reinitializing plugins inside b2b-panels. 
+As you can see, there is the `AjaxPanelPluginLoader` responsible for initializing and reinitializing plugins inside b2b-panels.
 Let's take our last example and extend it with a form plugin.
 
 ```html
@@ -101,7 +105,7 @@ Let's take our last example and extend it with a form plugin.
 
 This will disable all form elements inside the panel during panel reload.
 
-While few of them add very specific behaviour to the grid or tab's views. 
+While few of them add very specific behaviour to the grid or tab's views.
 There are also a few more commonly interesting plugins.
 
 ### Modal
@@ -122,8 +126,8 @@ This will open the content in a modal box.
 
 ### TriggerReload
 
-Sometimes change in one panel needs to trigger reload in another panel. 
-This might be the case if you are editing in a dialog and displaying a grid behind it. 
+Sometimes change in one panel needs to trigger reload in another panel.
+This might be the case if you are editing in a dialog and displaying a grid behind it.
 In this case you can just trigger reload on other panel id's, just like that:
 
 ```html
@@ -140,12 +144,12 @@ Now every change in the form view will trigger reload in the grid view.
 
 ### TreeSelect
 
-This `TreeSelect` plugin allows to display a tree view with enabled drag and drop. 
-In the view the `div` element needs the class `is--b2b-tree-select-container` and the data attribute `data-move-url="{{ path('frontend.b2b.b2brole.move') }}"`. 
+This `TreeSelect` plugin allows to display a tree view with enabled drag and drop.
+In the view the `div` element needs the class `is--b2b-tree-select-container` and the data attribute `data-move-url="{{ path('frontend.b2b.b2brole.move') }}"`.
 The controller have to implement a move action, which accepts the `roleId`, `relatedRoleId` and the `type`.
 
 Possible types:
 
-*   prev-sibling
-*   last-child
-*   next-sibling
+* prev-sibling
+* last-child
+* next-sibling

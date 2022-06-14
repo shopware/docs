@@ -2,14 +2,14 @@
 
 ## Table of contents
 
-*   [Shopware DIC](#shopware-dic)
-*   [Dependency Injection Extension B2B](#dependency-injection-extension-b2b)
-*   [Tags](#tags)
+* [Shopware DIC](#shopware-dic)
+* [Dependency Injection Extension B2B](#dependency-injection-extension-b2b)
+* [Tags](#tags)
 
 ## Shopware DIC
 
-The B2B-Suite registers with the [DI-container](../../../../../../guides/plugins/plugins/plugin-fundamentals/dependency-injection.md) from Symfony. 
-Be sure you are familiar with the basic usage patterns and practices. 
+The B2B-Suite registers with the [DI-container](../../../../../../guides/plugins/plugins/plugin-fundamentals/dependency-injection.md) from Symfony.
+Be sure you are familiar with the basic usage patterns and practices.
 Especially [service decoration](../../../../../../guides/plugins/plugins/plugin-fundamentals/adjusting-service.md) is an equally important extension point.
 
 ## Dependency Injection Extension B2B
@@ -42,7 +42,7 @@ abstract class DependencyInjectionConfiguration
 }
 ```
 
-Every macro layer of every component defines its own dependencies. 
+Every macro layer of every component defines its own dependencies.
 That way you can just require the up most components you want to use and every other dependency is injected automatically.
 
 For example this code will enable the contact component your own plugin.
@@ -72,8 +72,8 @@ class MyB2bPlugin extends Plugin
 
 ## Tags
 
-Additionally, the B2B-Suite makes heavy use of service tags as a more modern replacement for collect events. 
-They are used to helping you extend central B2B services with custom logic. 
+Additionally, the B2B-Suite makes heavy use of service tags as a more modern replacement for collect events.
+They are used to helping you extend central B2B services with custom logic.
 
-Please take a look at the example plugins and there usage of that extension mechanism. 
+Please take a look at the example plugins and there usage of that extension mechanism.
 Be sure you know [the basics](http://symfony.com/doc/current/service_container/tags.html).

@@ -64,6 +64,7 @@ $filter = new Filter(
 Inside the `ProductListingCollectFilterEvent`, you get the existing filters, can define your new custom filters and merge them into the existing ones. Here is a complete example implementation, adding a filter on the product information `isCloseout`. Please note the comments for explanation:
 
 {% code title="<plugin root>/src/Subscriber/ExampleListingSubscriber.php" %}
+
 ```php
 class ExampleListingSubscriber implements EventSubscriberInterface
 {
@@ -112,6 +113,7 @@ class ExampleListingSubscriber implements EventSubscriberInterface
     }
 }
 ```
+
 {% endcode %}
 
 ## Add your filter to the Storefront UI
@@ -130,6 +132,7 @@ Including our filter will be done as seen below, please take the comments into a
 
 {% code title="<plugin root>/src/Resources/views/storefront/component/listing/filter-panel.html.twig" %}
 {% raw %}
+
 ```text
 {% sw_extends '@Storefront/storefront/component/listing/filter-panel.html.twig' %}
 
@@ -143,6 +146,7 @@ Including our filter will be done as seen below, please take the comments into a
     } %}
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -162,6 +166,7 @@ If we instead want our filter to be placed before or after a specific filter in 
 
 {% code title="<plugin root>/src/Resources/views/storefront/component/listing/filter-panel.html.twig" %}
 {% raw %}
+
 ```text
 {% sw_extends '@Storefront/storefront/component/listing/filter-panel.html.twig' %}
 
@@ -175,6 +180,7 @@ If we instead want our filter to be placed before or after a specific filter in 
     } %}
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -183,4 +189,3 @@ If we instead want our filter to be placed before or after a specific filter in 
 Are you interested in adding custom sorting options to your listing in the storefront as well? Head over to the corresponding guide to learn more about that:
 
 {% page-ref page="add-custom-sorting-product-listing.md" %}
-

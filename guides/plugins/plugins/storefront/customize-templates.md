@@ -41,9 +41,11 @@ It's time to fill your custom `logo.html.twig` file. First of all you want to ex
 Put this line at the very beginning of your file:
 
 {% raw %}
+
 ```text
 {% sw_extends '@Storefront/storefront/layout/header/logo.html.twig' %}
 ```
+
 {% endraw %}
 
 This is simply extending the `logo.html.twig` file from the Storefront bundle. If you would leave the file like that, it wouldn't change anything, as you're currently just extending from the original file with no overrides.
@@ -53,6 +55,7 @@ You want to replace the logo with some custom text though, so let's have a look 
 To override it now, just add the very same block into your custom file and replace its contents:
 
 {% raw %}
+
 ```text
 {% sw_extends '@Storefront/storefront/layout/header/logo.html.twig' %}
 
@@ -60,6 +63,7 @@ To override it now, just add the very same block into your custom file and repla
     <h2>Hello world!</h2>
 {% endblock %}
 ```
+
 {% endraw %}
 
 If you wanted to append your text to the logo instead of replacing it, you could add a line like this to your override: `{{ parent() }}`
@@ -68,9 +72,11 @@ And that's it already, you're done. You might have to clear the cache and refres
 
 {% tabs %}
 {% tab title="Development template" %}
+
 ```bash
 ./psh.phar cache
 ```
+
 {% endtab %}
 
 {% hint style="info" %}
@@ -78,9 +84,11 @@ Also remember to not only activate your plugin but also to assign your theme to 
 {% endhint %}
 
 {% tab title="Production template" %}
+
 ```bash
 ./bin/console cache:clear
 ```
+
 {% endtab %}
 {% endtabs %}
 
@@ -108,4 +116,3 @@ You're able to customize templates now, which is a good start. However, there's 
 * [Adding translations](add-translations.md)
 * [Using icons](customize-templates.md)
 * [Using custom assets](add-custom-assets.md)
-

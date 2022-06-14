@@ -16,4 +16,3 @@
 * A route has to return a StoreApiResponse, to convert to JSON
 * A route response can only contain one object
 * The storefront controller should never work with repository again. It should be injected inside a route
-

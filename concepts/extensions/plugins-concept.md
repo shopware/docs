@@ -11,4 +11,3 @@ Plugins are not compatible with Shopware cloud! If you want to extend Shopware c
 Learn more about plugins in the Plugin Base Guide:
 
 {% page-ref page="../../guides/plugins/plugins/plugin-base-guide.md" %}
-

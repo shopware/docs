@@ -19,6 +19,7 @@ To define a controller route as cacheable, it must be annotated with `@HttpCache
 If the controller route is not to be cached for one or both of these states, the annotation can be defined as follows: `@HttpCache(states={"cart-filled", "logged-in"})`
 
 {% code title="<plugin root>/src/Storefront/Controller/ExampleController.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -49,11 +50,12 @@ class ExampleController extends StorefrontController
     }
 }
 ```
+
 {% endcode %}
 
 ## Cache invalidation
 
-As soon as a controller route has been defined as cacheable, and the corresponding response is written to the cache, it is tagged accordingly. For this purpose, the core uses all cache tags generated during the request or loaded from existing cache entries. The cache invalidation of the storefront controller routes is controlled by the cache invalidation of the store API routes. 
+As soon as a controller route has been defined as cacheable, and the corresponding response is written to the cache, it is tagged accordingly. For this purpose, the core uses all cache tags generated during the request or loaded from existing cache entries. The cache invalidation of the storefront controller routes is controlled by the cache invalidation of the store API routes.
 
 For more information about Store API cache invalidation, you can refer to the [Add Cache for Store Api Route Guide](../framework/store-api/add-caching-for-store-api-route.md).
 

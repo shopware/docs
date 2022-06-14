@@ -26,6 +26,7 @@ this class `DecoratedProductUrlProvider`:
 {% tabs %}
 {% tab title="DecoratedProductUrlProvider.php" %}
 {% code title="<plugin root>/src/Core/Content/Sitemap/Provider/DecoratedProductUrlProvider.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -62,11 +63,13 @@ class DecoratedProductUrlProvider extends AbstractUrlProvider
     }
 }
 ```
+
 {% endcode %}
 {% endtab %}
 
 {% tab title="services.xml" %}
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
+
 ```xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -80,10 +83,10 @@ class DecoratedProductUrlProvider extends AbstractUrlProvider
     </services>
 </container>
 ```
+
 {% endcode %}
 {% endtab %}
 {% endtabs %}
-
 
 Now let's get on to the two possible ways and its benefits.
 
@@ -94,6 +97,7 @@ is an instance of the `UrlResult`.
 On this instance, you can use the method `getUrls` to actually get the `Url` instances and make adjustments to them - or even remove them.
 
 {% code title="<plugin root>/src/Core/Content/Sitemap/Provider/DecoratedProductUrlProvider.php" %}
+
 ```php
 public function getUrls(SalesChannelContext $context, int $limit, ?int $offset = null): UrlResult
 {
@@ -105,6 +109,7 @@ public function getUrls(SalesChannelContext $context, int $limit, ?int $offset =
     return new UrlResult($urls, $urlResult->getNextOffset());
 }
 ```
+
 {% endcode %}
 
 You could iterate over the `$urls` array and modify each entry - or even create a new array with less entries,
@@ -126,6 +131,7 @@ For this you'll most likely want to copy the original method's code and paste it
 You can then add new lines to the SQL statement in order to do the necessary filtering or customising.
 
 {% code title="<plugin root>/src/Core/Content/Sitemap/Provider/DecoratedProductUrlProvider.php" %}
+
 ```php
 protected function getSeoUrls(array $ids, string $routeName, SalesChannelContext $context, Connection $connection): array
 {
@@ -152,6 +158,7 @@ protected function getSeoUrls(array $ids, string $routeName, SalesChannelContext
     );
 }
 ```
+
 {% endcode %}
 
 Now you could adjust the SQL statement to fit your needs, e.g. by adding a `JOIN` to the respective entities' table.

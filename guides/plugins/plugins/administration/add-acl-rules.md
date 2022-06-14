@@ -406,4 +406,3 @@ Module.register('your-plugin-module', {
     },
 });
 ```
-

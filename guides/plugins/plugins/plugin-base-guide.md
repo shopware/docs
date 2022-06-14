@@ -40,6 +40,7 @@ This new class `SwagBasicExample` has to extend from Shopware's abstract Plugin 
 Apart from this, only the namespace is missing. You can freely define it, but we'd recommend using a combination of your manufacturer prefix and the technical name, so in this `guide` this would be: `Swag\BasicExample`
 
 {% code title="<plugin root>/src/SwagBasicExample.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -51,6 +52,7 @@ class SwagBasicExample extends Plugin
 {
 }
 ```
+
 {% endcode %}
 
 Basically that's it for the PHP part, your basic plugin class is already done.
@@ -83,6 +85,7 @@ and the `require` field must include at least `shopware/core`, to check for comp
 Here's an example `composer.json` for this guide, which will do the trick:
 
 {% code title="<plugin root>/composer.json" %}
+
 ```javascript
 {
     "name": "swag/basic-example",
@@ -116,12 +119,13 @@ Here's an example `composer.json` for this guide, which will do the trick:
     }
 }
 ```
+
 {% endcode %}
 
 There's another two things that you need to know:
 
 1. The `shopware-plugin-class` information. This has to point to the plugin's base PHP class. The one, that you've previously created.
-2. The whole `autoload` part. This has to mention your [PSR-4](https://www.php-fig.org/psr/psr-4/) namespace. So if you'd like to have another namespace for your plugin, this is the place to go.
+1. The whole `autoload` part. This has to mention your [PSR-4](https://www.php-fig.org/psr/psr-4/) namespace. So if you'd like to have another namespace for your plugin, this is the place to go.
 
 {% hint style="warning" %}
 The path you've configured in the configuration `autoload.psr-4`, `src/` in this case, will be referred to as `<plugin root>/src` in almost all code examples. If you're using a custom path here, e.g. just a slash `/`, then the examples would be `<plugin root>/` here instead.
@@ -202,4 +206,3 @@ Furthermore, you should definitely have a look into these sections:
 {% page-ref page="framework/data-handling/" %}
 
 {% page-ref page="testing/" %}
-

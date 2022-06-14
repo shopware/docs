@@ -5,20 +5,20 @@ And you can download a plugin which exchange the login value [here](../example-p
 
 ## Table of contents
 
-*   [Description](#description)
-*   [Working with the Identity as a Context](#working-with-the-identity-as-a-context)
-*   [Working with the Identity as an Owner](#working-with-the-identity-as-an-owner)
-*   [Working with the Identity as a Provider](#working-with-the-identity-as-a-provider)
-*   [Sales Representative](#sales-representative)
+* [Description](#description)
+* [Working with the Identity as a Context](#working-with-the-identity-as-a-context)
+* [Working with the Identity as an Owner](#working-with-the-identity-as-an-owner)
+* [Working with the Identity as a Provider](#working-with-the-identity-as-a-provider)
+* [Sales Representative](#sales-representative)
 
 ## Description
 
-The Store front authentication component provides a common B2B interface for login, ownership and authentication processes. 
+The Store front authentication component provides a common B2B interface for login, ownership and authentication processes.
 It extends the Shopware default authentication component and provides several benefits for developers:
 
-*   Use multiple different source tables for authentication
-*   Provide a unified Identity interface
-*   Provide a context for ownership
+* Use multiple different source tables for authentication
+* Provide a unified Identity interface
+* Provide a context for ownership
 
 A schematic overview of the central usage of the Authentication component looks like this:
 
@@ -32,11 +32,12 @@ A schematic overview of the central usage of the Authentication component looks 
 
 ## Working with the Identity as a Context
 
-The `StoreFrontAuthentication` component provides an identity representing the currently logged-in user, 
+The `StoreFrontAuthentication` component provides an identity representing the currently logged-in user,
 that can easily be retrieved and inspected through `Shopware\B2B\StoreFrontAuthentication\Framework\AuthenticationService`.
 
-Typically, you want to use the identity as a global criteria to secure that data does not leak from one debtor to another. 
+Typically, you want to use the identity as a global criteria to secure that data does not leak from one debtor to another.
 Therefore, you should add a `context_owner_id` to your mysql table design.
+
 ```sql
 CREATE TABLE IF NOT EXISTS `b2b_my` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -52,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `b2b_my` (
 )
 ```
 
-This modifier column allows you to store the context owner independent of the actual source table of the context owner. 
+This modifier column allows you to store the context owner independent of the actual source table of the context owner.
 You can access the current context owner always through the Identity.
 
 ```php
@@ -75,6 +76,7 @@ echo 'The context owner id ' . $ownershipContext->contextOwnerId . '\n';
 ```
 
 You can even load the whole Identity through the `AuthenticationService`.
+
 ```php
 [...]
 
@@ -115,7 +117,7 @@ echo 'The common identity id ' . $ownershipContext->authId . '\n';
 [...]
 ```
 
-The B2B-Suite views the context owner as some kind of admin that - from the perspective 
+The B2B-Suite views the context owner as some kind of admin that - from the perspective
 of the authentication component - owns all individual users and their data _(Of course the ACL component may overwrite this.)_.
 
 Therefore, commonly used queries are:
@@ -155,7 +157,7 @@ $connection->fetchAll(
 
 ## Working with the Identity as a Provider
 
-If you need another type of user you can follow the `Contact` and `Debtor` implementations. 
+If you need another type of user you can follow the `Contact` and `Debtor` implementations.
 This guide will show you which classes need to be extended.
 
 ### Implement your own Identity
@@ -164,8 +166,8 @@ The B2B-Suites `Shopware\B2B\StoreFrontAuthentication\Framework\Identity` is an 
 
 The interface acts as a factory for different contexts that are used throughout the B2B-Suite. It contains:
 
-*   B2B-Suite ids and data (e.g. auth id, context owner)
-*   Shopware glue (e.g. customer group id, password hash)
+* B2B-Suite ids and data (e.g. auth id, context owner)
+* Shopware glue (e.g. customer group id, password hash)
 
 Therefore, it can be seen as a _man in the middle_ between Shopware and the B2B-Suite.
 
@@ -192,11 +194,11 @@ The CredentialsEntity represents the data which are used to log in with.
 
 ### Implement your own AuthenticationIdentityLoader
 
-Next you have to provide the means to register your identity on login this is done through 
+Next you have to provide the means to register your identity on login this is done through
 implementing `Shopware\B2B\StoreFrontAuthentication\Framework\AuthenticationIdentityLoaderInterface`.
 
-The LoginContextService is passed as an argument to help you to retrieve and creating the appropriate auth and 
-context owner ids. Notice that the interface is designed to be chained, 
+The LoginContextService is passed as an argument to help you to retrieve and creating the appropriate auth and
+context owner ids. Notice that the interface is designed to be chained,
 so dependant auth ids can be created on the fly.
 
 ```php
@@ -233,10 +235,10 @@ Finally, you register your authentication provider (in our case a repository) as
 
 ## Sales Representative
 
-Both sales representative identities extend the debtor identity. 
+Both sales representative identities extend the debtor identity.
 The sales representative identity is to log in as clients (debtors).
 
-After log in, the sales representative gets the sales representative debtor identity. 
+After log in, the sales representative gets the sales representative debtor identity.
 With this structure, the original sales representative identity can be identified, when logged in as a client.
 
 As a sales representative debtor, he is actually logged in as the client with additional possibilities.

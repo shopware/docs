@@ -78,7 +78,7 @@ Other examples of steps or workflow to cut off the actual tests are:
 This [scope practice](https://docs.cypress.io/guides/references/best-practices.html#Organizing-Tests-Logging-In-Controlling-State) is also mentioned in Cypress' best practices as well.
 {% endhint %}
 
-### Focus on stability first!
+### Focus on stability first
 
 {% hint style="danger" %}
 Design your tests dependent on each other, doing lots of write operations without removing corresponding data.
@@ -170,7 +170,7 @@ cy.get('.custom-checkbox label').click();
 cy.get('.checkout-confirm-tos-label').click();
 ```
 
-If there are no suitable selectors available, please add descriptive classes or IDs for your desired elements. 
+If there are no suitable selectors available, please add descriptive classes or IDs for your desired elements.
 
 ## Waiting in E2E tests
 
@@ -226,4 +226,3 @@ This won't happen with Vanilla JS though, it will be executed immediately. In th
 {% hint style="warning" %}
 Concerning Cypress' `then`: Even though Cypress' commands look like promises, they aren't completely the same! Head over to the [Cypress docs](https://docs.cypress.io/guides/core-concepts/introduction-to-cypress#Commands-Are-Not-Promises) for more information.
 {% endhint %}
-

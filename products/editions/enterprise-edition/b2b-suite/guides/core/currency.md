@@ -2,10 +2,10 @@
 
 ## Table of contents
 
-*   [Introduction](#introduction)
-*   [The Context](#the-context)
-*   [The Entity](#the-entity)
-*   [The Repository](#the-repository)
+* [Introduction](#introduction)
+* [The Context](#the-context)
+* [The Entity](#the-entity)
+* [The Repository](#the-repository)
 
 ## Introduction
 
@@ -15,7 +15,7 @@ The Currency component provides the means for currency calculation in the B2B-Su
 
 ## The Context
 
-The Currency component provides an additional Context object (`Shopware\B2B\Currency\Framework\CurrencyContext`) containing a currency factor. 
+The Currency component provides an additional Context object (`Shopware\B2B\Currency\Framework\CurrencyContext`) containing a currency factor.
 You can retrieve the default context which always contains the currently selected currency factor through the `Shopware\B2B\Currency\Framework\CurrencyService`.
 
 ```php
@@ -86,8 +86,8 @@ Which provides the means to access the currency data.
 
 ## The Repository
 
-The Repository has to guarantee that every entity retrieved from storage has valid and if necessary recalculated money values. 
-The Currency component provides `Shopware\B2B\Currency\Framework\CurrencyCalculator` to help with this promise. 
+The Repository has to guarantee that every entity retrieved from storage has valid and if necessary recalculated money values.
+The Currency component provides `Shopware\B2B\Currency\Framework\CurrencyCalculator` to help with this promise.
 So a typical repository looks like this:
 
 ```php
@@ -109,7 +109,7 @@ class Repository
 
 ### Calculating in PHP (preferred)
 
-To recalculate an entity amount the calculator provides two convenient functions. 
+To recalculate an entity amount the calculator provides two convenient functions.
 
 `recalculateAmount` for a single entity:
 
@@ -138,11 +138,10 @@ And `recalculateAmounts` to recalculate an array of entities:
     }
 ```
 
-
 ### Calculating in SQL
 
-Although calculation in PHP is the preferred way, it may sometimes be necessary to recalculate the amounts in SQL. 
-This is the case if you for example use a `GROUP BY` statement and try to create a sum. 
+Although calculation in PHP is the preferred way, it may sometimes be necessary to recalculate the amounts in SQL.
+This is the case if you for example use a `GROUP BY` statement and try to create a sum.
 For this case the Currency component creates a SQL calculation snippet.
 
 So if your original snippet looked like this:

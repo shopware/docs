@@ -21,6 +21,7 @@ You may choose between a synchronous and an asynchronous payment method. These t
 Below you can see three different definitions of payment methods.
 
 {% code title="manifest.xml" %}
+
 ```markup
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
@@ -81,6 +82,7 @@ Below you can see three different definitions of payment methods.
     </payments>
 </manifest>
 ```
+
 {% endcode %}
 
 ## Synchronous payments
@@ -374,4 +376,3 @@ private function sign(array $content, string $shopId): JsonResponse
 ## API docs
 
 {% page-ref page="../../../resources/references/app-reference/payment-reference.md" %}
-

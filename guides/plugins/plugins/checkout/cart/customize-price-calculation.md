@@ -21,6 +21,7 @@ So let's do that real quick. If you're looking for an in-depth explanation, head
 Here's an example decorated calculator:
 
 {% code title="<plugin root>/src/Service/CustomProductPriceCalculator.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -63,6 +64,7 @@ class CustomProductPriceCalculator extends AbstractProductPriceCalculator
     }
 }
 ```
+
 {% endcode %}
 
 So what is done here? The constructor gets passed the inner instance of `AbstractProductPriceCalculator`, most likely the `ProductPriceCalculator` itself. This will be used to call the original `calculate` method later on. You also have to return that instance in your `getDecorated` method.
@@ -76,6 +78,7 @@ Most likely you also want to narrow down which product's prices you want to edit
 Do not forget to actually register your decoration to the service container, otherwise it will not have any effect.
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
+
 ```markup
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -89,9 +92,9 @@ Do not forget to actually register your decoration to the service container, oth
     </services>
 </container>
 ```
+
 {% endcode %}
 
 ## Next steps
 
 Instead of manipulating a product's price, you can also try to add a discount or a surcharge to the cart. This is explained in our guide about [adding cart discounts](add-cart-discounts.md).
-

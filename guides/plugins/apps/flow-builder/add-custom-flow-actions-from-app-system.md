@@ -10,9 +10,9 @@ Besides the default actions, developers can add custom, predefined, and configur
 
 After reading, you will be able to
 
- * Create the basic setup of an app
- * Create custom actions for the flow builder
- * Use custom actions to interact with third-party services
+* Create the basic setup of an app
+* Create custom actions for the flow builder
+* Use custom actions to interact with third-party services
 
 ## Prerequisites
 
@@ -49,6 +49,7 @@ To get started with your app, create an `apps` folder inside the `custom` folder
 The manifest file is the central point of your app. It defines the interface between your app and the Shopware instance. It provides all the information concerning your app, as seen in the minimal version below:
 
 {% code title="manifest.xml" %}
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
@@ -66,6 +67,7 @@ The manifest file is the central point of your app. It defines the interface bet
     </meta>
 </manifest>
 ```
+
 {% endcode %}
 
 {% hint style="warning" %}
@@ -77,6 +79,7 @@ The name of your app that you provide in the manifest file needs to match the fo
 To create a flow action, you need to define a `<flow-action>` block within a file called `flow-action.xml`. Each `<flow-action>` represents one action and you can define an arbitrary number of actions.
 
 {% code title="Resources/flow-action.xml" %}
+
 ```xml
 <flow-actions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/FlowAction/Schema/flow-action-1.0.xsd">
     <flow-action>
@@ -91,6 +94,7 @@ To create a flow action, you need to define a `<flow-action>` block within a fil
     ...
 </flow-actions>
 ```
+
 {% endcode %}
 
 A single flow action would look like this:
@@ -132,7 +136,7 @@ Example: The `checkout.order.placed` has an `orderAware` requirements - indicati
 
 For each value when you define, it'll represent one of the `aware` interfaces from the `core`.
 
-To fulfill the requirements, refer to a subset of action triggers aware: 
+To fulfill the requirements, refer to a subset of action triggers aware:
 
 | Value | Interface |
 | :--- | :--- |
@@ -143,7 +147,6 @@ To fulfill the requirements, refer to a subset of action triggers aware:
 | orderAware | Shopware\Core\Framework\Event\OrderAware |
 | salesChannelAware | Shopware\Core\Framework\Event\SalesChannelAware |
 | userAware | Shopware\Core\Framework\Event\UserAware |
-
 
 ### Header parameters
 
@@ -277,5 +280,5 @@ bin/console app:install --activate FlowBuilderActionApp
 
 ## Further steps
 
- * [Flow action example configuration](../../../../resources/references/app-reference/flow-action-reference.md) page
- * [Schema definiton for flow actions (GitHub)](https://github.com/shopware/platform/blob/trunk/src/Core/Framework/App/FlowAction/Schema/flow-action-1.0.xsd)`
+* [Flow action example configuration](../../../../resources/references/app-reference/flow-action-reference.md) page
+* [Schema definiton for flow actions (GitHub)](https://github.com/shopware/platform/blob/trunk/src/Core/Framework/App/FlowAction/Schema/flow-action-1.0.xsd)`

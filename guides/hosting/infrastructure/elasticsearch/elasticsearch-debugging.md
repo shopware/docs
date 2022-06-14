@@ -2,7 +2,7 @@
 
 ## Overview
 
-This article shows you how to debug the status and indexing proccess of your Elasticsearch environment. Ensure that the [Debug-Mode]([/docs/guides/hosting/elasticsearch/elasticsearch#example-file-for-debug-configuration) is activated in your .env file. 
+This article shows you how to debug the status and indexing proccess of your Elasticsearch environment. Ensure that the [Debug-Mode]([/docs/guides/hosting/elasticsearch/elasticsearch#example-file-for-debug-configuration) is activated in your .env file.
 
 ## Shopware 6 CLI Commands
 

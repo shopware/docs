@@ -8,7 +8,7 @@ This guide will show you how to use Vuex as you normally would, through the inte
 
 ## Prerequisites
 
-All you need for this guide is a running Shopware 6 instance, the files and preferably a registered module. 
+All you need for this guide is a running Shopware 6 instance, the files and preferably a registered module.
 Of course you'll have to understand JavaScript and have a basic familiarity with [Vue](https://vuejs.org/) the framework used in the Administration and it's flux library [Vuex](https://vuex.vuejs.org/).
 
 ## Creating a store
@@ -19,6 +19,7 @@ The following code snippet is the `namespaced` store we will register later thro
 It is admittedly rather short and has only one variable called `content` and a setter for it, but again this all the same as in Vuex. Beware of the property `namespaced`, though.
 
 {% code title="<plugin-root>/src/Resources/app/administration/app/src/component/store-example/store.js" %}
+
 ```javascript
 export default {
     namespaced: true,
@@ -38,6 +39,7 @@ export default {
     }
 };
 ```
+
 {% endcode %}
 
 ## Registering the store
@@ -48,11 +50,13 @@ Both ways use the same functions from the [Shopware object](./the-shopware-objec
 Registering in a module scope is done by simply calling the function `Shopware.State.registerModule` in the `main.js` file.
 
 {% code title="<administration root>/src/main.js" %}
+
 ```javascript
 import swagBasicState from './store';
 
 Shopware.State.registerModule('swagBasicState', swagBasicState);
 ```
+
 {% endcode %}
 
 In the component scope `Namespaced` store modules can be registered in the `beforeCreate` [Vue lifecycle hook](https://vuejs.org/v2/guide/instance.html#Lifecycle-Diagram),
@@ -63,6 +67,7 @@ in order to not leave unused stores behind after a component has been destroyed.
 All of this can be seen in the following code sample:
 
 {% code title="<plugin-root>/src/Resources/app/administration/app/src/component/store-example/index.js" %}
+
 ```javascript
     beforeCreate() {
         // registering the store to vuex trough the Shopware objects helper function
@@ -75,6 +80,7 @@ All of this can be seen in the following code sample:
         Shopware.State.unregisterModule('swagBasicState');
     },
 ```
+
 {% endcode %}
 
 Both methods make the store on the given name everywhere available, regardless of where it has been registered.
@@ -85,6 +91,7 @@ The Shopware object also makes the native Vuex helper functions available, like 
 The `namespaced` store itself can be accessed through the `Shopware.State.get()` function.
 
 {% code title="<plugin-root>/src/Resources/app/administration/app/src/component/store-example/index.js" %}
+
 ```javascript
 // import the template
 import template from './store-example.html.twig';
@@ -115,6 +122,7 @@ Component.register('swag-basic-state', {
     }
 });
 ```
+
 {% endcode %}
 
 ## Adding a template
@@ -123,6 +131,7 @@ After we have registered our `namespaced` store, mapped state and mutations, we 
 The component below displays the previously mapped state `content` in a `div` and a `sw-text-field`, mutating the state on the `changed` event of the `sw-text-field`.
 
 {% code title="<plugin-root>/src/Resources/app/administration/app/src/component/store-example/store-example.html.twig" %}
+
 ```html
 <div>
     <h1>SW-6 State</h1>
@@ -133,6 +142,7 @@ The component below displays the previously mapped state `content` in a `div` an
     </div>
 </div>
 ```
+
 {% endcode %}
 
 ## More interesting topics

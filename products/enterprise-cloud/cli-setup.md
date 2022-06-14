@@ -6,15 +6,15 @@ The CLI is your tool to connect with your Enterprise Cloud environment, push cha
 
 In order to install Enterprise Cloud CLI, run the following command
 
-```bash
+```sh
 curl -sfS https://cli.shopware.com/installer | php
 ```
 
 ## Add SSH key
 
-For secure communication between your local machine and your Enterprise Cloud environment, create a SSH key and add it to your Account using 
+For secure communication between your local machine and your Enterprise Cloud environment, create a SSH key and add it to your Account using
 
-```
+```sh
 shopware ssh-key:add
 ```
 
@@ -32,6 +32,6 @@ If unsure, how to create SSH keys, please follow [this tutorial](https://docs.gi
 
 Next, you need to authenticate your CLI, which can be done through your browser. Just run the following command and follow the instructions:
 
-```bash
+```sh
 shopware
 ```

@@ -6,4 +6,3 @@ These additional features come as installable plugins which are only available i
 
 * Extended CMS
 * Custom Products
-
