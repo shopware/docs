@@ -36,7 +36,7 @@ class CustomCartCollector implements CartDataCollectorInterface
         // Do your stuff in order to collect data, this is just an example method call
         $newData = $this->collectData();
 
-        $data->set('uniqueKey', $data);
+        $data->set('uniqueKey', $newData);
     }
 }
 ```
