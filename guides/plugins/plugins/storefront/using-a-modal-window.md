@@ -14,9 +14,9 @@ While this is not mandatory, having read the guide about adding custom JavaScrip
 
 {% page-ref page="./add-custom-javascript.md" %}
 
-## Create a modal manually from the DOM using Boostrap
+## Create a modal manually from the DOM using Bootstrap
 
-The simples solution to create a modal is by using Boostrap. More info: [Modal Boostrap](https://getbootstrap.com/docs/4.0/components/modal/#live-demo)
+The simples solution to create a modal is by using Bootstrap. More info: [Modal Bootstrap](https://getbootstrap.com/docs/4.0/components/modal/#live-demo)
 Here is a basic implementation as an example. We override the `base_main_inner` from the `@Storefront/storefront/page/content/index.html.twig` template to insert the modal specific DOM elements.
 
 {% code title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig" %}
