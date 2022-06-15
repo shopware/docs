@@ -178,7 +178,7 @@ in its shops:
 {% endcode %}
 
 These two webhooks provide a way for shops to notify your app server about events that occurred.
-The `src/Controller/RegistrationController.php`  controller in the app template already provides the `deleted` webhook. It notifies the server that a shop has deleted the app.
+The `src/Controller/RegistrationController.php` controller in the app template already provides the `deleted` webhook. It notifies the server that a shop has deleted the app.
 
 The `product-update` webhook is the path on which your app server will be notified about any product updates in the stores, like changing the description.
 
@@ -193,7 +193,7 @@ To get started write a let's write a simple Symfony controller:
 ```php
 class ProductController extends AbstractController
 {
-    public function __construct( private ShopRepository $shopRepository )
+    public function __construct(private ShopRepository $shopRepository )
     {
     }
 }
@@ -233,7 +233,7 @@ A failed validation raises an exception, thus stopping unauthorized requests fro
 ```php
     public function productWritten(Request $request)
     {
-	$event = json_decode($request->getContent(), true);
+        $event = json_decode($request->getContent(), true);
         $shop = $this->shopRepository->getShopFromId($event['source']['shopId']);
 
         $this->verifier->authenticatePostRequest($request, $shop);
@@ -335,7 +335,7 @@ The request contains a criteria that fetches a the product for which we received
     public function productWritten(Request $request)
     {
         //...
-	    $product = json_decode($resp->getBody(), true)['data'][0];
+        $product = json_decode($resp->getBody(), true)['data'][0];
         $description = '';
         $name = '';
         foreach ($product['translations'] as $translation) {
@@ -363,7 +363,7 @@ We will get to the generation of the hash later but we need to check it first:
     public function productWritten(Request $request)
     {
         //...
-	    $lastHash = $product['customFields']['translator-last-translation-hash'] ?? '';
+        $lastHash = $product['customFields']['translator-last-translation-hash'] ?? '';
         if (md5($description) === $lastHash) {
             return new Response('', Response::HTTP_NO_CONTENT);
         }
@@ -382,7 +382,7 @@ Now that the app can be sure the description has not been translated before it c
     public function productWritten(Request $request)
     {
         //...
-	    $client->sendRequest(
+        $client->sendRequest(
             new \GuzzleHttp\Psr7\Request(
                 'PATCH',
                 'api/product/' . $id,
