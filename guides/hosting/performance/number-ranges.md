@@ -17,7 +17,7 @@ To use Redis, create a `config/packages/shopware.yml` file with the following co
 
 ```yaml
 shopware:
-  number_ranges:
+  number_range:
     increment_storage: "Redis"
     redis_url: 'redis://host:port/dbindex'
 ```
