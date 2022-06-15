@@ -21,6 +21,7 @@ To set up the inheritance we need to edit the theme configuration file called `t
 The content of the `theme.json` file looks like this:
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
+
 ```javascript
 {
   "name": "SwagBasicExampleThemeExtend",
@@ -45,6 +46,7 @@ The content of the `theme.json` file looks like this:
   ]
 }
 ```
+
 {% endcode %}
 
 As you can see each section `views`, `style`, `script` and `asset` contains the `@Storefront` placeholder. This means that inheritance is already taking place here. Every theme inherits the default theme of Shopware called `@Storefront`.
@@ -54,6 +56,7 @@ Now it is easy to see how we can inherit from our base theme `SwagBasicExampleTh
 Here is an example:
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
+
 ```javascript
 {
   "name": "SwagBasicExampleThemeExtend",
@@ -86,23 +89,29 @@ Here is an example:
 ]
 }
 ```
+
 {% endcode %}
 
 Let's walk over each section and have a closer look.
 
 ### `views` section
+
 In the `views` section we added the placeholder `@SwagBasicExampleTheme` right before our current theme. This means that when a view gets rendered, the storefront template is first used as the basis. The extensions of the installed plugins are applied to this. Next, the changes to the `@SwagBasicExampleTheme` theme are taken into account in the rendering process. Finally, the changes to our current theme are applied.
 
 ### `script` section
+
 The same applies to the JavaScript `script` section. The javascript of the storefront serves as the basis. On top of this come the extensions of the theme `@SwagBasicExampleTheme`. Finally, the JavaScript that we can implement in the current theme is applied.
 
 ### `style` section
+
 The `style` section behaves similarly to the others. The only difference here is the `override.css` can affect SCSS variables e.g. `$border-radius`. That's why it's at the top of the list. To find out more about overriding variables check out the [Override Bootstrap variables in a theme](override-bootstrap-variables-in-a-theme.md) guide.
 
 ### `asset` section
+
 If you want to use assets from the `@SwagBasicExampleTheme` you have add it to the list here as well.
 
 ### `configInheritance` section
+
 Finally, the `configInheritance` section will use the field configuration from the given themes and defines the last of the themes, that is different from the current theme, as the parent theme. The configuration values are inherited from the themes mentioned in `configInheritance`. The Storefront theme configuration will always be inherited, even if no `configInheritance` is given. See [Theme inheritance configuration](theme-inheritance-configuration.md) for a more detailed example.
 
 ## Next steps
@@ -111,4 +120,3 @@ Now that you know how the theme inheritance works you can start with own customi
 
 * [Add SCSS Styling and JavaScript to a theme](add-css-js-to-theme.md)
 * [Customize templates](../plugins/storefront/customize-templates.md)
-

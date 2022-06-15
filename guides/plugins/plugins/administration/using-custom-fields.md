@@ -21,6 +21,7 @@ In Shopware, we provide an own component called `sw-custom-field-set-renderer` f
 As a consequence, you're able to use this component to display your custom fields. See here:
 
 {% code title="<plugin-root>/src/Resources/app/administration/app/src/component/swag-basic-example/swag-basic-example.html.twig" %}
+
 ```markup
 <sw-card title="Custom fields">
     <sw-custom-field-set-renderer
@@ -30,6 +31,7 @@ As a consequence, you're able to use this component to display your custom field
     </sw-custom-field-set-renderer>
 </sw-card>
 ```
+
 {% endcode %}
 
 For further details on the `sw-custom-field-set-renderer` component, feel free to refer to its page in our component library:
@@ -39,6 +41,7 @@ For further details on the `sw-custom-field-set-renderer` component, feel free t
 The next step is loading your custom fields. First things first, create a variable for your custom fields in `data`:
 
 {% code title="<plugin-root>/src/Resources/app/administration/app/src/component/swag-basic-example/index.js" %}
+
 ```javascript
     data() {
         return {
@@ -47,11 +50,13 @@ The next step is loading your custom fields. First things first, create a variab
         };
     }
 ```
+
 {% endcode %}
 
 Afterwards, you can start to integrate the custom field data into your component. Therefore, you need to create a `customFieldSetRepository` first as `computed` property. In this context, it may come in handy to already set the `customFieldSetCriteria`. Both steps can be seen in the example below:
 
 {% code title="<plugin-root>/src/Resources/app/administration/app/src/component/swag-basic-example/index.js" %}
+
 ```javascript
 computed: {
     // Using the repository to work with customFields
@@ -75,6 +80,7 @@ computed: {
     }
 }
 ```
+
 {% endcode %}
 
 Now you can access your custom fields, e.g. within a `method`. In order to achieve that, you can use the `search` method as you're used to working with repositories:
@@ -86,4 +92,3 @@ Now you can access your custom fields, e.g. within a `method`. In order to achie
             this.currencyCustomFields = customFieldSets;
         });
 ```
-

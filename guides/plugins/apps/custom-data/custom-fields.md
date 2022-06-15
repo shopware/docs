@@ -4,6 +4,7 @@ You can add custom fields to Shopware and thus add your own fields to extending 
 To make use of the custom fields register your custom field sets in your manifest file:
 
 {% code title="manifest.xml" %}
+
 ```markup
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
@@ -28,6 +29,7 @@ To make use of the custom fields register your custom field sets in your manifes
     </custom-fields>
 </manifest>
 ```
+
 {% endcode %}
 
 For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../resources/references/app-reference/manifest-reference.md).
@@ -61,4 +63,3 @@ When defining custom fields in the `<fields>` element, you can configure additio
 Please refer to [Custom field](../plugins/framework/custom-field/) documentation for further details.
 
 {% page-ref page="../plugins/framework/custom-field/" %}
-

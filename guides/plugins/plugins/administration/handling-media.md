@@ -23,7 +23,7 @@ This is done through the `sw-media-upload-v2` component as seen below:
 ```
 
 As you can see in the code sample below, the `sw-media-upload-v2` is pretty configurable through properties.
-To get an overview of all the options, here is a list:   
+To get an overview of all the options, here is a list:
 
 | Property           | Function                                                                                                                        |
 |--------------------|---------------------------------------------------------------------------------------------------------------------------------|
@@ -66,7 +66,6 @@ Beyond the `media-upload-finish` event there are a few more events:
 | `media-upload-finish` | This event is triggered when an upload finishes    |
 | `media-upload-fail`   | This event is triggered on an upload failing       |
 | `media-upload-cancel` | This event is triggered when an upload is canceled |
-
 
 ## Previewing Media
 

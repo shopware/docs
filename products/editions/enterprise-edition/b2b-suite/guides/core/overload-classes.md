@@ -4,15 +4,15 @@ You can download a plugin showcasing the topic [here](../example-plugins/B2bServ
 
 ## Table of contents
 
-*   [Description](#description)
-*   [How does a services.xml look like](#how-does-a-services.xml-look-like)
-*   [How do I use it](#how-do-i-use-it)
-*   [What is the profit](#what-is-the-profit)
-*   [What are the problems with this approach](#what-are-the-problems-with-this-approach)
+* [Description](#description)
+* [How does a services.xml look like](#how-does-a-services.xml-look-like)
+* [How do I use it](#how-do-i-use-it)
+* [What is the profit](#what-is-the-profit)
+* [What are the problems with this approach](#what-are-the-problems-with-this-approach)
 
 ## Description
 
-To add new functionality or overload existing classes to change functionality, 
+To add new functionality or overload existing classes to change functionality,
 the B2B-Suite uses the [Dependency Injection](../../../../../../guides/plugins/plugins/plugin-fundamentals/dependency-injection.md) as an extension system instead of events and hooks, which shopware uses.
 
 ### How does a services.xml look like
@@ -99,7 +99,7 @@ Your service file could look like this:
 </container>
 ```
 
-Just define a class with the same service id as our normal class and add our abstract class as the parent. 
+Just define a class with the same service id as our normal class and add our abstract class as the parent.
 After that, add your own arguments or override ours.
 
 An example of your class could look like this:
@@ -133,10 +133,10 @@ You extend the B2B class and just change any action you need.
 
 ### What is the profit
 
-By building our extension system in this way, we can still add and delete constructor arguments without breaking your plugins. 
+By building our extension system in this way, we can still add and delete constructor arguments without breaking your plugins.
 Also, we don't have to add too many interfaces to the B2B-Suite.
 
 ### What are the problems with this approach
 
-Since we don't know which plugin is loaded first, we can't say which class overload another one. 
+Since we don't know which plugin is loaded first, we can't say which class overload another one.
 To prevent any random errors, you should only overload each class once.

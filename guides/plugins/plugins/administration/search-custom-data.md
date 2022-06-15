@@ -66,6 +66,7 @@ By default, the search bar does not know how to display the result items, so a c
 
 {% code title="<plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-bar-item/sw-search-bar-item.html.twig" %}
 {% raw %}
+
 ```text
 {% block sw_search_bar_item_cms_page %}
     {% parent %}
@@ -84,12 +85,14 @@ By default, the search bar does not know how to display the result items, so a c
     </router-link>
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
 Here you see the changes in the `index.js` file:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-bar-item/index.js" %}
+
 ```javascript
 import template from './sw-search-bar-item.html.twig';
 
@@ -97,6 +100,7 @@ Shopware.Component.override('sw-search-bar-item', {
     template
 })
 ```
+
 {% endcode %}
 
 The `sw_search_bar_item_cms_page` block is used as it is the last block, but it is not important which shopware type is extended as long as the vue else-if structure is kept working.
@@ -107,6 +111,7 @@ By default, the search bar tries to resolve to the registered listing route. If 
 
 {% code title="<plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-more-results/sw-search-more-results.html.twig" %}
 {% raw %}
+
 ```text
 {% block sw_search_more_results %}
     <template v-if="result.entity === 'foo_bar'">
@@ -123,12 +128,14 @@ By default, the search bar tries to resolve to the registered listing route. If 
     </template>
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
 See for the changes in the `index.js` file below:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-more-results/index.js" %}
+
 ```javascript
 import template from './sw-search-more-results.html.twig';
 
@@ -136,6 +143,7 @@ Shopware.Component.override('sw-search-more-results', {
     template
 })
 ```
+
 {% endcode %}
 
 ### Potential pitfalls
@@ -161,4 +169,3 @@ Shopware.Module.register('any-name', {
     entity: 'my_entity',
 })
 ```
-

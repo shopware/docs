@@ -7,12 +7,14 @@ Perform the following steps to activate Elasticsearch in your environment.
 Add (or uncomment) the elasticsearch service configuration.
 
 {% code title=".platform/services.yaml" %}
+
 ```yaml
 
 searchelastic:
     type: elasticsearch:7.9
     disk: 256
 ```
+
 {% endcode %}
 
 ## Add relationship
@@ -20,10 +22,12 @@ searchelastic:
 Add (or uncomment) the relationship for it the app configuration.
 
 {% code title=".platform.app.yaml" %}
+
 ```yaml
 relationships:
     essearch: "searchelastic:elasticsearch"
 ```
+
 {% endcode %}
 
 ## Configure instance
@@ -32,9 +36,9 @@ Please follow the setup and indexing steps to prepare your instance as described
 
 After that, the following environment variables are automatically set in the `platformsh-env.php` file:
 
- * `SHOPWARE_ES_HOSTS`
- * `SHOPWARE_ES_INDEXING_ENABLED`
- * `SHOPWARE_ES_INDEX_PREFIX`
+* `SHOPWARE_ES_HOSTS`
+* `SHOPWARE_ES_INDEXING_ENABLED`
+* `SHOPWARE_ES_INDEX_PREFIX`
 
 ## Enable Elasticsearch
 

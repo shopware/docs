@@ -20,10 +20,10 @@ This will trigger a new build with a subsequent deploy, consisting of the follow
 
 | Build | Deploy |
 | --- | --- |
-| Configuration validation | Hold app requests | 
-| Build container image | Unmount live containers | 
-| Installing dependecies | Mount file systems | 
-| Run [build hook](./setup-template.md#build-hook) | Run [deploy hook](./setup-template.md#deploy-hook) | 
+| Configuration validation | Hold app requests |
+| Build container image | Unmount live containers |
+| Installing dependecies | Mount file systems |
+| Run [build hook](./setup-template.md#build-hook) | Run [deploy hook](./setup-template.md#deploy-hook) |
 | Building app image | Serve requests |
 
 After both steps have been executed successfully (you will get extensive logging about the process), you will be able to see the deploymed store on a link presented at the end of the deployment.
@@ -45,4 +45,3 @@ The installer will create an administrator account with the default credentials
 | `admin` | `shopware` |
 
 Make sure to change this password immediately in your administration account settings. Not doing so is a security risk.
-

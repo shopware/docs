@@ -19,6 +19,7 @@ Your `main.js` file then needs to override the [Vue component](https://vuejs.org
 The first parameter matches the component to override, the second parameter has to be an object containing the actually overridden properties , e.g. the new twig template extension for this component.
 
 {% code title="<plugin root>/src/Resources/app/administration/src/main.js" %}
+
 ```javascript
 import template from './extension/sw-product-settings-form/sw-product-settings-form.html.twig';
 
@@ -26,6 +27,7 @@ Shopware.Component.override('sw-product-settings-form', {
     template
 });
 ```
+
 {% endcode %}
 
 In this case, the `sw-product-settings-form` component is overridden, which reflects the settings form on the product detail page. As mentioned above, the second parameter has to be an object, which includes the actual template extension.
@@ -46,6 +48,7 @@ The path starting from 'src' is fully customizable, yet we recommend choosing a 
 
 {% code title="<plugin root>/src/Resources/app/administration/src/extension/sw-product-settings-form/sw-product-settings-form.html.twig" %}
 {% raw %}
+
 ```markup
 {% block sw_product_settings_form_content %}
     {% parent %}
@@ -55,6 +58,7 @@ The path starting from 'src' is fully customizable, yet we recommend choosing a 
     </sw-container>
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -68,15 +72,19 @@ As mentioned above, Shopware 6 is looking for a `main.js` file in your plugin. I
 
 {% tabs %}
 {% tab title="Development template" %}
+
 ```bash
 ./psh.phar administration:build
 ```
+
 {% endtab %}
 
 {% tab title="Production template" %}
+
 ```bash
 ./bin/build-administration.sh
 ```
+
 {% endtab %}
 {% endtabs %}
 
@@ -87,4 +95,3 @@ Your plugin has to be activated for this to work.
 Make sure to also include that file when publishing your plugin! A copy of this file will then be put into the directory `<shopware root>/public/bundles/administration/newfield/administration/js/administration-new-field.js`.
 
 Your minified javascript file will now be loaded in production environments.
-

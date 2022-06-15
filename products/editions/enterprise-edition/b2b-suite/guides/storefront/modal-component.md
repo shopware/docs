@@ -31,6 +31,7 @@ The modal component comes with different states:
 
 {% code %}
 {% raw %}
+
 ```twig
 {% sw_extends '@SwagB2bPlatform/storefront/_partials/_b2bmodal/_modal.html.twig' %}
 
@@ -46,6 +47,7 @@ The modal component comes with different states:
     Modal Content
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -55,6 +57,7 @@ If you would like to have a navigation sidebar inside the modal window you can s
 
 {% code %}
 {% raw %}
+
 ```twig
 {% sw_extends '@SwagB2bPlatform/storefront/_partials/_b2bmodal/_modal.html.twig' %}
 
@@ -78,6 +81,7 @@ If you would like to have a navigation sidebar inside the modal window you can s
     Modal Content
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -85,6 +89,7 @@ If you would like to have a navigation sidebar inside the modal window you can s
 
 {% code %}
 {% raw %}
+
 ```twig
 {% sw_extends '@SwagB2bPlatform/storefront/_partials/_b2bmodal/_modal.html.twig' %}
 
@@ -108,6 +113,7 @@ If you would like to have a navigation sidebar inside the modal window you can s
     <div class="b2b--ajax-panel" data-id="example-panel" data-url="{url}"></div>
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -117,6 +123,7 @@ The modal content template has different options for fixed inner containers. The
 
 {% code %}
 {% raw %}
+
 ```twig
 {% sw_extends "@SwagB2bPlatform/storefront/_partials/_b2bmodal/_modal-content.html.twig" %}
 
@@ -144,5 +151,6 @@ The modal content template has different options for fixed inner containers. The
     Modal Bottom
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}

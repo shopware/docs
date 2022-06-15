@@ -105,15 +105,19 @@ To see your changes you have to build the storefront. Use the following command 
 
 {% tabs %}
 {% tab title="Development template" %}
+
 ```bash
 ./psh.phar storefront:build
 ```
+
 {% endtab %}
 
 {% tab title="Production template" %}
+
 ```bash
 ./bin/build-storefront.sh
 ```
+
 {% endtab %}
 {% endtabs %}
 
@@ -122,4 +126,3 @@ You should see the cookie notice at the bottom of the page. If you click the "Ac
 ## Next steps
 
 Sometimes you don't have to actually override a javascript plugin, since sometimes you can simply use an event instead. Learn how this is done in our guide about [listening to events](../plugin-fundamentals/listening-to-events.md).
-

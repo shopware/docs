@@ -24,6 +24,7 @@ Now that we know where to place our override, we need to decide what to override
 In this very simple example it suffices to create a twig file, declare a block with the name we previously found and to insert our new header into the block.
 
 {% raw %}
+
 ```text
 <!-- <plugin root>/src/Resources/app/administration/src/sw-dashboard-index-override/sw-dashboard-index.html.twig -->
 {% block sw_dashboard_index_content_intro_content_headline %}
@@ -32,6 +33,7 @@ In this very simple example it suffices to create a twig file, declare a block w
     </h1>
 {% endblock %}
 ```
+
 {% endraw %}
 
 This overrides the entire Twig block with our new markup.

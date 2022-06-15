@@ -1,12 +1,13 @@
 # Complex views
 
 ## Table of contents
-*   [Description](#description)
-*   [Controller structure](#controller-structure)
-*   [Root controller](#root-controller)
-*   [Sub controller](#sub-controller)
-*   [Tips for ajax panel views](#tips-for-ajax-panel-views)
-*   [Modal Component](#modal-component)
+
+* [Description](#description)
+* [Controller structure](#controller-structure)
+* [Root controller](#root-controller)
+* [Sub controller](#sub-controller)
+* [Tips for ajax panel views](#tips-for-ajax-panel-views)
+* [Modal Component](#modal-component)
 
 ## Description
 
@@ -118,7 +119,7 @@ class SubController
 }
 ```
 
-Since POST only actions never have views, these controllers only have one view: 
+Since POST only actions never have views, these controllers only have one view:
 
     ├── index.html.twig - contains entity listing
 

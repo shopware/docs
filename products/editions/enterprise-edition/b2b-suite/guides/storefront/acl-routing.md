@@ -54,16 +54,15 @@ The default privileges are:
 | assign         |                        changing the assignment of the entity                        |
 | free           |                                   no restrictions                                   |
 
-
 It is quite natural to map CRUD Actions like this. However, assignment is a little less intuitive. This should help:
 
-*   All assignment controllers belong to the resource of the right side of the assignment (e.g. `B2BContactRole` controller is part of the `role` resource).
-*   All assignment listings have the detail privilege (e.g. `B2BContactRole:indexAction` is part of the `detail` privilege).
-*   All actions writing the assignment are part of the assign privilege (e.g. `B2BContactRole:assignAction` is part of the `assign` privilege).
+* All assignment controllers belong to the resource of the right side of the assignment (e.g. `B2BContactRole` controller is part of the `role` resource).
+* All assignment listings have the detail privilege (e.g. `B2BContactRole:indexAction` is part of the `detail` privilege).
+* All actions writing the assignment are part of the assign privilege (e.g. `B2BContactRole:assignAction` is part of the `assign` privilege).
 
 ## Automatic generation
 
-You can autogenerate this format with the `RoutingIndexer`. This service expects a format that is automatically created by the IndexerService. 
+You can autogenerate this format with the `RoutingIndexer`. This service expects a format that is automatically created by the IndexerService.
 This could be a part of your deployment or testing workflow.
 
 ```php
@@ -73,6 +72,7 @@ $indexer->generate(\Shopware_Controllers_Frontend_B2bContact::class, __DIR__ . '
 ```
 
 The generated file looks like this:
+
 ```php
 'NOT_MAPPED' => //resource name
       array(
@@ -85,30 +85,34 @@ The generated file looks like this:
       ),
 ```
 
-If you spot a privilege or resource that is called `NOT_MAPPED`, 
+If you spot a privilege or resource that is called `NOT_MAPPED`,
 the action is new and you have to update the file to add the correct privilege name.
 
 ## Template extension
 
-The ACL implementation is safe at the php level. Any route you have no access to will automatically be blocked but 
+The ACL implementation is safe at the php level. Any route you have no access to will automatically be blocked but
 for a better user experience you should also extend the template to hide inaccessible actions.
 
 {% code %}
 {% raw %}
+
 ```twig
 <a href="{{ url("frontend.b2b." ~ page.route ~ ".assign") }}" class="{{ b2b_acl('b2broleaddress', 'assign') }}">
 ```
+
 {% endraw %}
 {% endcode %}
 
 This will add a few vital css classes:
 
 Allowed actions:
+
 ```html
 <a [...] class="is--b2b-acl is--b2b-acl-controller-b2broleaddress is--b2b-acl-action-assign is--b2b-acl-allowed"/>
 ```
 
 Denied actions:
+
 ```html
 <a [...] class="is--b2b-acl is--b2b-acl-controller-b2broleaddress is--b2b-acl-action-assign is--b2b-acl-forbidden"/>
 ```
@@ -117,9 +121,8 @@ The default behaviour is then just to hide the link by setting its display prope
 
 But there are certain specials to this:
 
-*   applied to a `form` tag it will remove the submit button and disable all form items.
-*   applied to a table row in the b2b default grid it will mute the applied ajax-panel action.
-
+* applied to a `form` tag it will remove the submit button and disable all form items.
+* applied to a table row in the b2b default grid it will mute the applied ajax-panel action.
 
 ## Download
 

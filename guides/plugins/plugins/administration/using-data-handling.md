@@ -694,4 +694,3 @@ Shopware.Component.register('swag-basic-example', {
 ## Next steps
 
 As this is very similar to the DAL it might be interesting to learn more about that. For this, head over to the section about the [data handling](../framework/data-handling/) in PHP.
-

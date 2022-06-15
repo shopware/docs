@@ -23,6 +23,7 @@ Note: Do not change an existing migration if your plugin is already in use by so
 {% endhint %}
 
 {% code title="<plugin root>/src/Migration/Migration1615470599ExampleSorting.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -85,6 +86,7 @@ class Migration1615470599ExampleSorting extends MigrationStep
     }
 }
 ```
+
 {% endcode %}
 
 ## Create individual sorting at runtime
@@ -98,6 +100,7 @@ While possible, it is not recommended adding an individual sorting at runtime. I
 Here's an example how your subscriber could look like:
 
 {% code title="<plugin root>/src/Subscriber/ExampleListingSubscriber.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -147,6 +150,7 @@ class ExampleListingSubscriber implements EventSubscriberInterface
     }
 }
 ```
+
 {% endcode %}
 
 ## Next steps
@@ -154,4 +158,3 @@ class ExampleListingSubscriber implements EventSubscriberInterface
 Are you interested to add a custom filter to your listing in the storefront, as well? Head over to the corresponding guide to learn more about that:
 
 {% page-ref page="add-listing-filters.md" %}
-

@@ -68,7 +68,7 @@ shopware project:set-remote 7xasjkyld189e # Replace with your project ID
 
 Now your repository is configured - you should have three remotes
 
-```
+```sh
 $ git remote -v
 
 origin	git@github.com:<project-repository>.git (fetch)
@@ -82,5 +82,5 @@ upstream	https://github.com/shopware/paas (push)
 | Remote | Function | Description |
 | --- | --- | --- |
 | `origin` | Project Code | This remote contains all your project specific source code |
-| `platform` | Enterprise Cloud Environment | Changes pushed to this remote will be synced with your Enterprise Cloud environment | 
+| `platform` | Enterprise Cloud Environment | Changes pushed to this remote will be synced with your Enterprise Cloud environment |
 | `upstream` | Official Template | Maintained by Showpare and used to pull latest changes |

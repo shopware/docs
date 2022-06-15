@@ -59,6 +59,7 @@ We designed the DAL (Data Abstraction Layer) to provide developers a flexible an
 [Read more](https://github.com/shopware/platform/blob/trunk/adr/2021-05-14-when-to-use-plain-sql-or-dal.md)
 
 ## Elasticsearch
+
 Elasticsearch is a great tool to reduce the load of the MySQL server. Especially for systems with large product assortments, this is a must-have since MySQL simply does not cope well above a certain assortment size.
 
 When using Elasticsearch, it is important to set the `SHOPWARE_ES_THROW_EXCEPTION=1` `.env` variable. This ensures that if an error occurs when querying the data via Elasticsearch, there is no fallback to the MySQL server. In large projects, failure of the Elasticsearch leads to the MySQL server being completely overloaded otherwise.
@@ -107,6 +108,7 @@ If you don't need such functionality, it is highly recommended to disable this b
 [Read more](../performance/increment.md)
 
 ## Lock storage
+
 Shopware uses [Symfony's Lock component](https://symfony.com/doc/5.4/lock.html) to implement locking functionality.
 By default, Symfony will use a local file-based lock store, which breaks in multi-machine (cluster) setups. This is avoided by using one of the [supported remote stores](https://symfony.com/doc/5.4/components/lock.html#available-stores).
 
@@ -118,6 +120,7 @@ framework:
 [Read more](../performance/lock-store.md)
 
 ## Number Ranges
+
 Number Ranges provide a consistent way to generate a consecutive number sequence that is used for order numbers, invoice numbers, etc.
 The generation of the number ranges is an **atomic** operation, this guarantees that the generated sequence is consecutive and no number is generated twice.
 
@@ -127,7 +130,7 @@ Redis offers better support for atomic increments than the database, therefore t
 
 ```yaml
 shopware:
-  number_ranges:
+  number_range:
     increment_storage: "Redis"
     redis_url: 'redis://host:port/dbindex'
 ```

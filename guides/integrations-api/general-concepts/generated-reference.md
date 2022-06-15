@@ -33,4 +33,3 @@ If you would like to access the schema definitions of all available entities ins
 ```text
 /(api|store-api)/_info/open-api-schema.json
 ```
-

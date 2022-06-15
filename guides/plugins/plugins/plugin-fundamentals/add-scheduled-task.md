@@ -15,7 +15,6 @@ Here's a video dealing with scheduled tasks from our free online training ["Back
 **[Adding scheduled tasks](https://www.youtube.com/watch?v=88S9P3x6wYE)**
 {% endhint %}
 
-
 ## Registering scheduled task in the DI container
 
 A `ScheduledTask` and its respective `ScheduledTaskHandler` are registered in a plugin's `services.xml`. For it to be found by Shopware 6 automatically, you need to place the `services.xml` file in a `Resources/config/` directory, relative to the location of your plugin's base class. The path could look like this: `<plugin root>/src/Resources/config/services.xml`.
@@ -23,6 +22,7 @@ A `ScheduledTask` and its respective `ScheduledTaskHandler` are registered in a 
 Here's an example `services.xml` containing a new `ScheduledTask` as well as a new `ScheduledTaskHandler`:
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
+
 ```markup
 <?xml version="1.0" ?>
 
@@ -42,6 +42,7 @@ Here's an example `services.xml` containing a new `ScheduledTask` as well as a n
     </services>
 </container>
 ```
+
 {% endcode %}
 
 Note the tags required for both the task and its respective handler, `shopware.scheduled.task` and `messenger.message_handler`. Your custom task will now be saved into the database once your plugin is activated.
@@ -53,6 +54,7 @@ As you might have noticed, the `services.xml` file tries to find both the task i
 Here's the an example `ScheduledTask`:
 
 {% code title="<plugin root>/src/Service/ScheduledTask/ExampleTask.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -73,6 +75,7 @@ class ExampleTask extends ScheduledTask
     }
 }
 ```
+
 {% endcode %}
 
 Your `ExampleTask` class has to extend from the `Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTask` class, which will force you to implement two methods:
@@ -85,6 +88,7 @@ And that's it for the `ExampleTask` class.
 Following will be the respective task handler:
 
 {% code title="<plugin root>/src/Service/ScheduledTask/ExampleTaskHandler.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -105,6 +109,7 @@ class ExampleTaskHandler extends ScheduledTaskHandler
     }
 }
 ```
+
 {% endcode %}
 
 The respective task handler, `ExampleTaskHandler` as defined previously in your `services.xml`, has to extend from the class `Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTaskHandler`. This also comes with two methods, that you need to implement first:
@@ -116,7 +121,7 @@ Now every five minutes, your task will be executed and it will print an output e
 
 ## Executing the scheduled task
 
-Usually scheduled tasks are registered when installing or updating your plugin. If you don't want to reinstall your plugin in order to register your scheduled task, you can also use the following command to achieve this:   
+Usually scheduled tasks are registered when installing or updating your plugin. If you don't want to reinstall your plugin in order to register your scheduled task, you can also use the following command to achieve this:
  `bin/console scheduled-task:register`
 
 In order to properly test your scheduled task, you first have to run the command `bin/console scheduled-task:run`. This will start the `ScheduledTaskRunner`, which takes care of your scheduled tasks and their respective timings. It will dispatch a message to the message bus once your scheduled task's interval is due.
@@ -126,4 +131,3 @@ Now you still need to run the command `bin/console messenger:consume` to actuall
 ## More interesting topics
 
 * [Adding a custom command](add-custom-commands.md)
-

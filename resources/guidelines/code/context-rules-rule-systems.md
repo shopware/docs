@@ -5,4 +5,3 @@
 * Rules may only access data provided in the appropriate scopes.
 
   ​
-

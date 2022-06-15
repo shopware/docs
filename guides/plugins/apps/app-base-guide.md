@@ -27,6 +27,7 @@ To get started with your app, create an `apps` folder inside the `custom` folder
 The manifest file is the central point of your app. It defines the interface between your app and the Shopware instance. It provides all the information concerning your app, as seen in the minimal version below:
 
 {% code title="manifest.xml" %}
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
@@ -44,6 +45,7 @@ The manifest file is the central point of your app. It defines the interface bet
     </meta>
 </manifest>
 ```
+
 {% endcode %}
 
 {% hint style="warning" %}
@@ -81,6 +83,7 @@ The setup workflow is shown in the following schema, each step will be explained
 The registration request is made as a GET request against a URL that you provide in the manifest file of your app.
 
 {% code title="manifest.xml" %}
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
@@ -92,6 +95,7 @@ The registration request is made as a GET request against a URL that you provide
     </setup>
 </manifest>
 ```
+
 {% endcode %}
 
 The following query parameters will be sent with the request:
@@ -123,7 +127,7 @@ You and the Shopware Account are the only parties that should know your `app-sec
 {% hint style="warning" %}
 For **local development** you can specify a `<secret>` in the manifest file, that is used for signing the registration request. However, if an app uses a hard-coded secret in the manifest it can not be uploaded to the store.
 
-If you're developing a **private app** - which is not published in the Shopware Store - you **must** also provide the `<secret>` if you have an external app server. 
+If you're developing a **private app** - which is not published in the Shopware Store - you **must** also provide the `<secret>` if you have an external app server.
 {% endhint %}
 
 To verify that the registration can only be triggered by authenticated Shopware shops you need to recalculate the signature and check that the signatures match, thus you've verified that the sender of the request possesses the `app secret`.
@@ -132,6 +136,7 @@ The following code snippet can be used to recalculate the signature:
 
 {% tabs %}
 {% tab title="PHP" %}
+
 ```php
 use Psr\Http\Message\RequestInterface;
 
@@ -139,12 +144,14 @@ use Psr\Http\Message\RequestInterface;
 $queryString = $request->getUri()->getQuery();
 $signature = hash_hmac('sha256', $queryString, $appSecret);
 ```
+
 {% endtab %}
 {% endtabs %}
 
 ### Registration Response
 
 There may be valid cases where the app installation fails, because the domain is blocked, or some other prerequisite in that shop is not met, in which case you can return the message error as follows
+
 ```json
 {
   "error": "The shop URL is invalid"
@@ -158,6 +165,7 @@ Following code snippet can be used to calculate the proof:
 
 {% tabs %}
 {% tab title="PHP" %}
+
 ```php
 use Psr\Http\Message\RequestInterface;
 
@@ -170,6 +178,7 @@ $proof = \hash_hmac(
     $appSecret
 );
 ```
+
 {% endtab %}
 {% endtabs %}
 
@@ -215,7 +224,7 @@ The payload of that request may look like this:
 }
 ```
 
-Make sure that you save the API credentials for that `shopId`. You can use the `apiKey` and 
+Make sure that you save the API credentials for that `shopId`. You can use the `apiKey` and
 the `secretKey` as `client_id` and `client_secret` respectively when you request an OAuth token
 from the Admin API.
 
@@ -236,12 +245,14 @@ You can use following code snippet to generate the signature:
 
 {% tabs %}
 {% tab title="PHP" %}
+
 ```php
 use Psr\Http\Message\RequestInterface;
 
 /** @var RequestInterface $request */
 $hmac = \hash_hmac('sha256', $request->getBody()->getContents(), $shopSecret);
 ```
+
 {% endtab %}
 {% endtabs %}
 
@@ -252,6 +263,7 @@ Shopware comes with the possibility to create fine grained [Access Control Lists
 Sample permissions to read, create and update products, as well as delete orders look like this:
 
 {% code title="manifest.xml" %}
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
@@ -267,6 +279,7 @@ Sample permissions to read, create and update products, as well as delete orders
     </permissions>
 </manifest>
 ```
+
 {% endcode %}
 
 The permissions you request need to be accepted by the user during the installation of your app. After that these permissions are granted for your app and your API access through the credentials from the [confirmation request](app-base-guide.md#confirmation-request) of the [setup workflow](app-base-guide.md#setup) are limited to those permissions.
@@ -282,6 +295,7 @@ With webhooks you are able to subscribe to events occurring in Shopware. Wheneve
 To use webhooks in your app, you need to implement a `<webhooks>` element in your manifest file, like this:
 
 {% code title="manifest.xml" %}
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
@@ -293,6 +307,7 @@ To use webhooks in your app, you need to implement a `<webhooks>` element in you
     </webhooks>
 </manifest>
 ```
+
 {% endcode %}
 
 This example illustrates you how to define a webhook with the name `product-changed` and the url `https://example.com/event/product-changed` which will be triggered if the event `product.written` is fired. So every time a product is changed, your custom logic will get executed. Further down you will find a list of the most important events you can hook into.
@@ -344,6 +359,7 @@ You can verify the authenticity of the incoming request by checking the `shopwar
 You can use a variety of events to react to changes in Shopware that way. See that table [Webhook-Events-Reference](../../../resources/references/app-reference/webhook-events-reference.md) for an overview.
 
 ### App Notification
+
 Starting from Shopware version 6.4.7.0, if you want to send notifications to the admin, to inform the user about some actions that happened on the app side, the app should send a POST request to the `api/notification` endpoint with a valid body and the header `Authorization` token.
 Your app can request 10 times before being delayed by the system.
 
@@ -355,6 +371,7 @@ After 24 hours without a failed request the limit is reset.
 Examples request body:
 You need to pass the `status` property, the content of the notification as `message` property and you can restrict users who can read the notification by passing `requiredPrivileges` property and `adminOnly` property inside the payload.
 When `adminOnly` is true, only admins can read this notification. If you don't send the `adminOnly` or `adminOnly` is false, you can pass the `requiredPrivileges` property so that users with specific permissions can read the notification. Otherwise, it will be displayed to every user.
+
 ```http request
 POST /api/notification
 
@@ -366,6 +383,7 @@ POST /api/notification
 }
 
 ```
+
 * `status`: Notification status, one of `success`, `error`, `info`, `warning`
 * `message`: The content of the notification
 * `adminOnly`: Only admins can read this notification if this value is true
@@ -459,7 +477,7 @@ The user can either run a strategy with the `bin/console app:url-change:resolve`
   Technically this is achieved by rerunning the registration process again for all apps. During the registration the same shopId is used like before, but now with a different shop-url and a different key pair used to communicate over the Shopware API. Also you **must** generate a new communication secret during this registration process, that is subsequently used for the communication between Shopware and the app backend.
   This way it is ensured that the apps are notified about the new URL and the integration with the old installation stops working (because a new communication secret is associated with the given shop id, that the old installation does not know).
 
-* **ReinstallApps**: This strategy makes sense to use in the case of the staging shop.     
+* **ReinstallApps**: This strategy makes sense to use in the case of the staging shop.
   By running this strategy all installed apps will be reinstalled, this means that this installation will get a new shopId, that is used during registration.
   Because the new installation will get a new shopId, the installed apps will continue working on the old installation as before, but as a consequence the data on the apps side that was associated with the old shopId can not be accessed on the new installation.
 
@@ -518,6 +536,7 @@ The unique identifier of the shop, where the app was installed
   "confirmation_url": "https://my.example.com/registration/confirm"
 }
 ```
+
 {% endapi-method-response-example %}
 {% endapi-method-response %}
 {% endapi-method-spec %}
@@ -578,6 +597,7 @@ ApiKey used to authenticate against the Shopware API
 ```text
 
 ```
+
 {% endapi-method-response-example %}
 {% endapi-method-response %}
 {% endapi-method-spec %}

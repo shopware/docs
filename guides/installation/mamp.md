@@ -138,7 +138,7 @@ Afterwards a file called `.psh.yaml.override` is created, which contains all tho
 ./psh.phar install
 ```
 
-After that the setup is done. You can now access your Shopware 6 installation using the following urls: 
+After that the setup is done. You can now access your Shopware 6 installation using the following urls:
 <!-- markdown-link-check-disable -->
 * Storefront: [http://shopware:8000](http://shopware:8000)
 * Admin: [http://shopware:8000/admin](http://shopware:8000/admin) \(User: admin, password: shopware\)
@@ -175,4 +175,3 @@ As you installed Shopware successfully, maybe you want to start writing your ver
 * [Docker](docker.md)
 * [Vagrant](vagrant.md)
 * [Dockware](dockware.md)
-

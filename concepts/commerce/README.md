@@ -11,4 +11,3 @@ The **Concepts** section does not contain code examples, instead we focus on con
 {% page-ref page="checkout-concept/" %}
 
 {% page-ref page="core/" %}
-

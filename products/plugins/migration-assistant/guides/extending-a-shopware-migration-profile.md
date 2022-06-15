@@ -488,4 +488,3 @@ And that's it, you're done and have already implemented your first plugin migrat
 ## Source
 
 There's a GitHub repository available, containing a full example source. Check it out [here](https://github.com/shopware/swag-docs-extending-shopware-migration-profile).
-

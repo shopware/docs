@@ -10,7 +10,6 @@ This guide is built upon the [plugin base guide](../../plugin-base-guide.md), bu
 
 In order to create data translations you need an existing entity, as this guide is based on the [Adding custom complex data](add-custom-complex-data.md) guide, you should have a look at it first.
 
-
 <!-- markdown-link-check-disable-next-line -->
 {% hint style="info" %}
 Here's a video dealing with data translations from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
@@ -42,6 +41,7 @@ The translation table's columns should be the following:
 This is how your migration could look like:
 
 {% code title="<plugin root>/src/Migration/Migration1612863838ExampleTranslation.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -84,6 +84,7 @@ SQL;
     }
 }
 ```
+
 {% endcode %}
 
 ## Creating the translation entity
@@ -95,6 +96,7 @@ The translation is an aggregation to the `ExampleEntity`. Therefore, you should 
 Now we can start creating our `ExampleTranslationDefinition` which extends from `Shopware\Core\Framework\DataAbstractionLayer\EntityTranslationDefinition`. Special for entity translation is, that we have to override a method called `getParentDefinitionClass` which returns the definition class of our entity we want to translate. In this case it's `ExampleDefinition`.
 
 {% code title="<plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationDefinition.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -128,6 +130,7 @@ class ExampleTranslationDefinition extends EntityTranslationDefinition
     }
 }
 ```
+
 {% endcode %}
 
 As you can see, we've implemented a `StringField` for the `name` column, the other fields like the `language_id` will be automatically added by the `EntityTranslationDefinition` since they are base fields of it.
@@ -137,6 +140,7 @@ All that's left to do now, is to introduce your `ExampleTranslationDefinition` t
 Here's the `services.xml` as it should look like:
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
+
 ```markup
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -154,6 +158,7 @@ Here's the `services.xml` as it should look like:
     </services>
 </container>
 ```
+
 {% endcode %}
 
 ### Entity class
@@ -163,6 +168,7 @@ So far we introduced our definition, we can create our `ExampleTranslationEntity
 Here's our `ExampleTranslationEntity`:
 
 {% code title="<plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationEntity.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -210,15 +216,12 @@ class ExampleTranslationEntity extends TranslationEntity
     }
 }
 ```
+
 {% endcode %}
 
 Now we need our translation definition to know its custom entity class. This is done by overriding the method `getEntityClass` in our `ExampleTranslationDefinition`.
 
 {% code title="<plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationDefinition.php" %}
-```
-
-```
-{% endcode %}
 
 ```php
 class ExampleTranslationDefinition extends EntityTranslationDefinition
@@ -232,6 +235,8 @@ class ExampleTranslationDefinition extends EntityTranslationDefinition
 }
 ```
 
+{% endcode %}
+
 ### EntityCollection
 
 As we already know, we should create an `EntityCollection` for our `Entity` too. For entity translations it is the same way as for normal entities.
@@ -239,6 +244,7 @@ As we already know, we should create an `EntityCollection` for our `Entity` too.
 Our collection class could then look like this:
 
 {% code title="<plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationCollection.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -263,15 +269,18 @@ class ExampleTranslationCollection extends EntityCollection
     }
 }
 ```
+
 {% endcode %}
 
 ### Main Entity Class
 
 The main entity class, that is the class with the field(s) we are going to translate, must define:
+
 * a `TranslatedField` for the “name” field
 * a `TranslationsAssociationField`, with a reference to the ExampleTranslationDefinition
 
 {% code title="<plugin root>/src/Core/Content/Example/ExampleDefinition.php" %}
+
 ```php
 <?php declare(strict_types=1);
 

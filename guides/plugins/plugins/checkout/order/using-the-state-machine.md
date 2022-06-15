@@ -207,4 +207,3 @@ $this->orderTransactionStateHandler->cancel('<your ID here>', $context);
 // $this->orderTransactionStateHandler->remind('<your ID here>', $context);
 // $this->orderTransactionStateHandler->reopen('<your ID here>', $context);
 ```
-

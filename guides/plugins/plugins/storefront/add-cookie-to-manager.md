@@ -17,6 +17,7 @@ Adding custom cookies basically requires you to decorate a service, the `CookieP
 Start with creating the `services.xml` entry and with decorating the `CookieProviderInterface`. The `CookieProvider` service was already built before we decided to use abstract classes for decorations, so don't be confused here.
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
+
 ```markup
 <?xml version="1.0" ?>
 
@@ -33,6 +34,7 @@ Start with creating the `services.xml` entry and with decorating the `CookieProv
     </services>
 </container>
 ```
+
 {% endcode %}
 
 In the next step we'll create the actual decorated class.
@@ -46,6 +48,7 @@ The interface mentioned above requires you to implement a method called `getCook
 Let's have a look at an example:
 
 {% code title="<plugin root>/src/Service/CustomCookieProvider.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -102,6 +105,7 @@ class CustomCookieProvider implements CookieProviderInterface {
     }
 }
 ```
+
 {% endcode %}
 
 As already mentioned, we're overwriting the method `getCookieGroups` and in there we're calling the original method first. We then proceed to merge our own custom group into it, as well as a custom cookie.
@@ -126,4 +130,3 @@ Here's a list of attributes, that you can apply to a cookie array:
 ## Next steps
 
 Those changes will mainly just show your new cookies in the cookie consent manager, but without much function. Head over to our guide about [Reacting to cookie consent changes](reacting-to-cookie-consent-changes.md) to see how you can implement your custom logic once your cookie got accepted or declined.
-

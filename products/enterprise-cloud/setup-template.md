@@ -4,7 +4,7 @@ The setup template is a derivation from the [shopware/production](https://github
 
 Below is a directory overview of the Enterprise Cloud setup template.
 
-```
+```text
 shopware/paas/
 ├─ .platform/
 │  ├─ routes.yaml
@@ -60,16 +60,16 @@ The environment will be cut off from web traffic during the execution of the dep
 
 This script is called during the deployment process. Theme configuration is copied, the install scripts are executed and secrets are generated
 
- * Copy theme configuration
- * Run database migrations
- * Clear cache
+* Copy theme configuration
+* Run database migrations
+* Clear cache
 
 If this is the first deployment, the following operations are performed
 
- * Setup script is executed
- * Theme is set
- * Secrets are generated
- * `installer/installed` file is created
+* Setup script is executed
+* Theme is set
+* Secrets are generated
+* `installer/installed` file is created
 
 You can also customize this script, however make sure to keep operations to a minimum, as your store will not be exposed to web traffic during the execution. Connections made during the meantime will be queued in a suspended state and not necessarily fail, but take longer than usual (i.e. until the deployment has finished).
 

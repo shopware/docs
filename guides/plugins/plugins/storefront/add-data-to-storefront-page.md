@@ -20,13 +20,12 @@ Also the following knowledge is necessary, even though some of them are covered 
 
 ## Adding data to the storefront
 
-The workflow you need here was already described in the overview: 
+The workflow you need here was already described in the overview:
 
-1. Figure out which page you want to change 
-2. Register to the event that this page is firing 
-3. Add data to the page via the event 
-4. Display this data in the storefront
-
+1. Figure out which page you want to change
+1. Register to the event that this page is firing
+1. Add data to the page via the event
+1. Display this data in the storefront
 
 ### Subscribe to an event
 
@@ -155,6 +154,7 @@ You can find detailed information on how to extend templates and override blocks
 For our case we extend the footer template and add a new column to the navigation block:
 
 {% raw %}
+
 ```text
 <!-- in Resources/views/storefront/layout/footer/footer.html.twig -->
 {% sw_extends '@Storefront/storefront/layout/footer/footer.html.twig' %}
@@ -169,6 +169,7 @@ For our case we extend the footer template and add a new column to the navigatio
     {% endif %}
 {% endblock %}
 ```
+
 {% endraw %}
 
 Note the usage of the variable here. You're accessing the footer object, in which you can now find the path `extensions.product_count.count`.

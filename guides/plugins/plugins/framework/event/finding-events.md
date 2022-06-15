@@ -14,7 +14,7 @@ They're fired whenever a [DAL entity](../data-handling/add-custom-complex-data.m
 
 There usually is no need to find them, since the pattern for them is always the same.
 You can use them by following this pattern: `entity_name.event`.
-For products, this could be e.g. `product.written` or `product.deleted`. For your custom entity, this then would be 
+For products, this could be e.g. `product.written` or `product.deleted`. For your custom entity, this then would be
 `custom_entity.written` or `custom_entity.deleted`.
 
 However, some default Shopware entities come with special "Event classes", which are basically a class, which contains all
@@ -25,6 +25,7 @@ This way you can also find out about all the possible DAL events available in Sh
 Finding those "event classes" can be done by searching for the term `@Event` in your project.
 
 You can use those events in a [subscriber](../../plugin-fundamentals/listening-to-events.md) like the following:
+
 ```php
 public static function getSubscribedEvents(): array
 {
@@ -54,6 +55,7 @@ If the [DAL events](#DAL events) didn't match your use case, there are a few mor
 These are not auto-generated events, but rather events we built in with purpose.
 
 There are multiple ways to find them:
+
 - By actually looking at the code, that you want to extend
 - By specifically searching for them
 - By having a look at the service definition of a given class
@@ -214,6 +216,7 @@ Business events are fired everytime an important business / eCommerce action occ
 
 Therefore, you can use them to react on those events, most times there even is an event fired **before** an action happened.
 Have a look at those two example events:
+
 - [CustomerBeforeLoginEvent](https://github.com/shopware/platform/blob/v6.4.0.0/src/Core/Checkout/Customer/SalesChannel/AccountService.php#L97-L98)
 - [CustomerLoginEvent](https://github.com/shopware/platform/blob/v6.4.0.0/src/Core/Checkout/Customer/SalesChannel/AccountService.php#L109-L110)
 
@@ -245,7 +248,8 @@ For this case, we're using the same plain method like before: Simply searching f
 
 ### Finding events in the code
 
-In the Storefront javascript plugins, you can notice custom events by the following pattern: 
+In the Storefront javascript plugins, you can notice custom events by the following pattern:
+
 ```javascript
 this.$emitter.publish('someEvent', additionalData);
 ```
@@ -271,6 +275,7 @@ This way, you'll find all occurrences of plugins actually firing a custom event.
 In the Administration, most events you can find and deal with are default vue events, which you can learn about [here](https://vuejs.org/v2/guide/events.html).
 
 However, for the sake of the two-way data-binding, we're sometimes firing events, which looks like this:
+
 ```javascript
 this.$emit('some-event', additionalData);
 ```

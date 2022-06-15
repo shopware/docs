@@ -47,6 +47,7 @@ Let's think about a simple example, displaying our image right in the base templ
 
 {% code title="<plugin root>/src/Resources/views/storefront/base.html.twig" %}
 {% raw %}
+
 ```text
 {% sw_extends '@Storefront/storefront/base.html.twig' %}
 
@@ -58,6 +59,7 @@ Let's think about a simple example, displaying our image right in the base templ
     {{ parent() }}
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -68,11 +70,13 @@ That's basically all you need to do to link your plugin's custom assets.
 There's one more interesting possibility though. If you want, you can use your custom asset in your CSS files. Look at the following example:
 
 {% code title="<plugin root>/src/Resources/app/storefront/src/scss/base.scss" %}
+
 ```css
 body {
     background-image: url("/bundles/swagbasicexample/image.png");
 }
 ```
+
 {% endcode %}
 
 You see, we can use our custom assets by using the asset path provided by the `bundle` directory.
@@ -86,4 +90,3 @@ Of course, you're able to use custom assets in themes as well. In this context t
 ## Next steps
 
 One of the said custom assets are medias. For those, we've got a separate [guide](use-media-thumbnails.md).
-

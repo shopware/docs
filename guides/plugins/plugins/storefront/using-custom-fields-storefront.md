@@ -34,6 +34,7 @@ Imagine you want to add a text field to the product description. If you want to 
 
 {% code title="<plugin root>/src/Resources/views/storefront/page/product-detail/description.html.twig" %}
 {% raw %}
+
 ```text
 {% sw_extends '@Storefront/storefront/page/product-detail/description.html.twig' %}
 
@@ -41,6 +42,7 @@ Imagine you want to add a text field to the product description. If you want to 
     {{ parent() }}
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -48,6 +50,7 @@ Now, we finally add our custom field as explained before:
 
 {% code title="<plugin root>/src/Resources/views/storefront/page/product-detail/description.html.twig" %}
 {% raw %}
+
 ```text
 {% sw_extends '@Storefront/storefront/page/product-detail/description.html.twig' %}
 
@@ -58,6 +61,6 @@ Now, we finally add our custom field as explained before:
     {{ "customFields.my_test_field"|trans|sw_sanitize }}: {{ page.product.translated.customFields.my_test_field }}
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
-

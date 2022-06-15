@@ -16,4 +16,3 @@ Furthermore, this section will cover the following questions:
 * What are the requirements for Shopware EE
 * How do I "set it up"?
 * How to think from the perspective of someone who only knew Shopware CE and plugins before
-

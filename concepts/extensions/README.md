@@ -19,14 +19,13 @@ Plugins are executed within the Shopware core process and can react to events, e
 {% hint style="warning" %}
 **Plugins & Shopware cloud**
 
-Due to their direct access to the Shopware process and the database, plugins are not supported by Shopware cloud. 
+Due to their direct access to the Shopware process and the database, plugins are not supported by Shopware cloud.
 {% endhint %}
 
 [Learn more about plugins](plugins-concept.md)
 
-# Start Coding
+## Start Coding
 
 Refer to our Guides section to learn how to use both extension systems, and also how they differ:
 
 {% page-ref page="../../guides/plugins/" %}
-

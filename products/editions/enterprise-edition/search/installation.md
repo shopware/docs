@@ -5,4 +5,3 @@ Similar to the Shopware Core production and development templates it is possible
 {% hint style="warning" %}
 In order to contribute, please contact the Shopware Sales department, so you will get access to the private repository.
 {% endhint %}
-

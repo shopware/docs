@@ -62,6 +62,7 @@ However, these are not all of your possibilities of configuration. As you see, y
 A simple but fully functional example could look like below:
 
 {% raw %}
+
 ```text
 {% sw_extends '@Storefront/storefront/base.html.twig' %}
 
@@ -78,6 +79,7 @@ A simple but fully functional example could look like below:
 
 {% endblock %}
 ```
+
 {% endraw %}
 
 {% hint style="danger" %}
@@ -85,4 +87,3 @@ Icons or other custom assets are not included in the theme inheritance.
 {% endhint %}
 
 Inside your theme, you cannot put an icon in a directory corresponding the core folder structure and expect the core one to be automatically overwritten by it, as you're used to with themes in general.
-

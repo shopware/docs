@@ -8,24 +8,24 @@ This guide shows, how you can add a custom API endpoint that delivers dynamic da
 
 After reading, you will be able to
 
- * Create the basic setup of an app
- * Execute app scripts and use them to model custom logic
- * Fetch, filter and aggregate data from Shopware
- * Consume HTTP parameters and create responses
+* Create the basic setup of an app
+* Execute app scripts and use them to model custom logic
+* Fetch, filter and aggregate data from Shopware
+* Consume HTTP parameters and create responses
 
 ## Prerequisites
 
- * A Shopware cloud store
- * Basic CLI usage (creating files, directories, running commands)
- * Installed and configured [shopware-cli](https://sw-cli.fos.gg/) tools
- * General knowledge of [Twig Syntax](https://twig.symfony.com/)
- * A text editor
+* A Shopware cloud store
+* Basic CLI usage (creating files, directories, running commands)
+* Installed and configured [shopware-cli](https://sw-cli.fos.gg/) tools
+* General knowledge of [Twig Syntax](https://twig.symfony.com/)
+* A text editor
 
 ## Create the App Wrapper
 
 We need to create the app "wrapper", the so-called app manifest within a new directory. Let's call that the project directory.
 
-```
+```text
 MyApiExtension/
 ├─ manifest.xml
 ```
@@ -37,6 +37,7 @@ When you are using a self-managed Shopware Version, you can also create the proj
 Next, we're gonna put our basic configuration into the file we just created.
 
 {% code title="manifest.xml" %}
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
@@ -57,6 +58,7 @@ Next, we're gonna put our basic configuration into the file we just created.
 </manifest>
 
 ```
+
 {% endcode %}
 
 Besides some metadata, like a name, description or a version, this file contains permissions that the app requires.
@@ -89,10 +91,10 @@ So let's use the following endpoint naming:
 `/store-api/script/swag/topseller`
 
 You see that we've added a custom subdirectory `swag` in the route.
-This is a good practice, because we can prevent naming collisions between different apps. 
+This is a good practice, because we can prevent naming collisions between different apps.
 Slashes (or subdirectories) in the endpoint path are represented by a hyphen in the name of the directory that contains the script.
 
-```
+```text
 MyApiExtension/
 ├─ Resources/
 │  ├─ scripts/
@@ -103,8 +105,8 @@ MyApiExtension/
 
 This directory naming causes Shopware to expose the script on two routes:
 
- * `/store-api/script/swag/topseller` and
- * `/store-api/script/swag-topseller`
+* `/store-api/script/swag/topseller` and
+* `/store-api/script/swag-topseller`
 
 ### Add custom logic and install
 
@@ -112,12 +114,14 @@ Let's start with a simple script to see it in action:
 
 {% code title="Resources/scripts/store-api-swag-topseller/topseller-script.twig" %}
 {% raw %}
+
 ```twig
 {% block response %}
     {% set response = services.response.json({ test: 'This is my API endpoint' }) %}
     {% do hook.setResponse(response) %}
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -165,6 +169,7 @@ For now, our script is not really doing anything. Let's change that.
 
 {% code title="Resources/scripts/store-api-swag-topseller/topseller-script.twig" %}
 {% raw %}
+
 ```twig
 {% block response %}
 
@@ -202,10 +207,11 @@ For now, our script is not really doing anything. Let's change that.
 
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
-What happened here? 
+What happened here?
 
 We wrap everything in a block named `response`. That way we will get access to useful objects and services, so we can build a response.
 
@@ -217,9 +223,9 @@ In the following lines, we define a search criteria.
 The criteria contains a description of the data we want to fetch:
 
  1. First, we filter out all products that are not inside the category that was requested using a filter aggregation.
- 2. The following lines contain two further nested aggregations:
+ 1. The following lines contain two further nested aggregations:
     1. The first one groups all products from all orders using their id.
-    2. The second one sums up the number of ordered items in each order.
+    1. The second one sums up the number of ordered items in each order.
 
 Ultimately, that will give us a result of all products that have been ordered along with how many were ordered in total.
 
@@ -232,9 +238,11 @@ To learn more about the structure of search criterias follow the link below:
 We now send a request to the database to retrieve the result using
 
 {% raw %}
+
 ```twig
 {% set orderAggregations = services.repository.aggregate('order', criteria) %}
 ```
+
 {% endraw %}
 
 ### Building the response
@@ -242,17 +250,21 @@ We now send a request to the database to retrieve the result using
 In the final step, we build the response. We use the `services.response.json()` method to convert the serialized json representation of our aggregation into a json response object named `response`.
 
 {% raw %}
+
 ```twig
 {% set response = services.response.json(orderAggregations.first.jsonSerialize) %}
 ```
+
 {% endraw %}
 
 Afterwards we just set the response of the hook to the result from above, and we're done:
 
 {% raw %}
+
 ```twig
 {% do hook.setResponse(response) %}
 ```
+
 {% endraw %}
 
 It is important to do all this within the `response` block of the twig script. Otherwise, you will get errors when calling the script.
@@ -271,6 +283,7 @@ Remember, if you made changes to the `manifest.xml` file in the meantime, also p
 ```shell
 shopware-cli project extension upload . --activate --increase-version
 ```
+
 {% endhint %}
 
 We can now call our endpoint again:
@@ -325,13 +338,13 @@ This tutorial covered the basics of app development using app scripts and some f
 
 In a proper app you should consider the following points
 
- * Input parameter validation
- * Format and limit the result
- * Define an API contract (endpoint structure) first and build after that
- * The search result does not show actual top sellers, but just the quantity of products ordered
+* Input parameter validation
+* Format and limit the result
+* Define an API contract (endpoint structure) first and build after that
+* The search result does not show actual top sellers, but just the quantity of products ordered
 
 ## Where to continue
 
- * More on adding [custom endpoints](../app-scripts/custom-endpoints.md)
- * See how you can use [Twig functions](../app-scripts/README.md#extended-syntax) in app scripts
- * Working with [DAL Aggregations](./../../../../resources/references/core-reference/dal-reference/aggregations-reference.md)
+* More on adding [custom endpoints](../app-scripts/custom-endpoints.md)
+* See how you can use [Twig functions](../app-scripts/README.md#extended-syntax) in app scripts
+* Working with [DAL Aggregations](./../../../../resources/references/core-reference/dal-reference/aggregations-reference.md)

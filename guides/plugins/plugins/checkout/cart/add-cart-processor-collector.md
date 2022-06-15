@@ -5,7 +5,7 @@
 In order to change the cart at runtime, you can use a custom [collector](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Checkout/Cart/CartDataCollectorInterface.php)
 or a custom [processor](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Checkout/Cart/CartProcessorInterface.php).
 
-Their main purpose is explained in their respective section. 
+Their main purpose is explained in their respective section.
 
 ## Collector class
 
@@ -36,12 +36,13 @@ class CustomCartCollector implements CartDataCollectorInterface
         // Do your stuff in order to collect data, this is just an example method call
         $newData = $this->collectData();
 
-        $data->set('uniqueKey', $data);
+        $data->set('uniqueKey', $newData);
     }
 }
 ```
 
 The `collect` method's parameters are the following:
+
 - `CartDataCollection`: Use this object to save your new cart data. You'll most likely use the `set` method here, which expects
 a unique key and its value. This object will be available in all processors.
 - `Cart`: The current cart and its line items.

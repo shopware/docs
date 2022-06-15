@@ -22,6 +22,7 @@ As already mentioned in the prerequisites, the check for properties in the black
 Therefore you'll have to make sure your modifications are done **before** the check happens.
 
 {% code title="<plugin-root>/src/Resources/app/administration/app/src/component/sw-product-stream-field-select/index.js" %}
+
 ```javascript
 const { Component } = Shopware;
 
@@ -34,6 +35,7 @@ Component.override('sw-product-stream-field-select', {
     }
 });
 ```
+
 {% endcode %}
 
 This example will simply add the property `deliveryTimeId` to the blacklist, so it's not configurable using the Administration anymore.
@@ -41,6 +43,7 @@ There are also nested properties, so called 'entity properties', which are selec
 Those entity properties can also be added to the blacklist by using the method `addToEntityBlacklist` instead:
 
 {% code title="<plugin-root>/src/Resources/app/administration/app/src/component/sw-product-stream-field-select/index.js" %}
+
 ```javascript
 const { Component } = Shopware;
 
@@ -53,6 +56,7 @@ Component.override('sw-product-stream-field-select', {
     }
 });
 ```
+
 {% endcode %}
 
 This example would forbid the usage of `breadcrumb` from the `category` entity.
@@ -61,10 +65,12 @@ This example would forbid the usage of `breadcrumb` from the `category` entity.
 
 Most likely you'd want to do the opposite and enable properties by removing entries from the blacklist.
 This can be done exactly like adding properties to the blacklist:
+
 * Remove a property from the "general blacklist", which is the first dropdown
 * Remove from the "entity blacklist" which contains the properties of the previously selected entity.
 
 {% code title="<plugin-root>/src/Resources/app/administration/app/src/component/sw-product-stream-field-select/index.js" %}
+
 ```javascript
 const { Component } = Shopware;
 
@@ -78,6 +84,7 @@ Component.override('sw-product-stream-field-select', {
     }
 });
 ```
+
 {% endcode %}
 
 This example enables both the general `createdAt` property, as well as the category property `path`.

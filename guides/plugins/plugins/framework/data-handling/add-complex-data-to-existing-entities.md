@@ -23,6 +23,7 @@ Now you add new fields by overriding the method `extendFields` and add your new 
 Here's an example class called `CustomExtension`:
 
 {% code title="<plugin root>/src/Extension/Content/Product/CustomExtension.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -47,6 +48,7 @@ class CustomExtension extends EntityExtension
     }
 }
 ```
+
 {% endcode %}
 
 Now we have to register our extension via the DI-container. If you don't know how that's done in general, head over to our guide about registering a custom service [Add a custom class / service](../../plugin-fundamentals/add-custom-service.md) or our guide about the [dependency injection](../../plugin-fundamentals/dependency-injection.md).
@@ -54,6 +56,7 @@ Now we have to register our extension via the DI-container. If you don't know ho
 Here's our `services.xml`:
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
+
 ```markup
 <?xml version="1.0" ?>
 
@@ -68,6 +71,7 @@ Here's our `services.xml`:
     </services>
 </container>
 ```
+
 {% endcode %}
 
 ### Adding a field with database
@@ -77,6 +81,7 @@ In this guide you're extending the product entity in order to add a new string f
 Let's start with the `CustomExtension` class by adding a new field in the `extendFields` method.
 
 {% code title="<plugin root>/src/Extension/Content/Product/CustomExtension.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -101,6 +106,7 @@ class CustomExtension extends EntityExtension
     }
 }
 ```
+
 {% endcode %}
 
 As you can see, we're adding a new `OneToOneAssociationField`. Its parameters are the following, in correct order:
@@ -112,7 +118,7 @@ As you can see, we're adding a new `OneToOneAssociationField`. Its parameters ar
   association, belongs into this parameter. In that case, it will be a column called `product_id`, which we will define in the `ExampleExtensionDefinition`.
 
 * `referenceClass`: The class name of the definition that we want to connect via the association.
-* `autoload`: As the name suggests, this parameter defines if this association should always be loaded by default when the product is loaded. In this case, 
+* `autoload`: As the name suggests, this parameter defines if this association should always be loaded by default when the product is loaded. In this case,
 
   we definitely want that.
 
@@ -125,6 +131,7 @@ Creating a new entity is not explained in this guide, so make sure you know [thi
 Our new entity will be located in the same directory as our extension. Let's first have a look at it before going into the explanation:
 
 {% code title="<plugin root>/src/Extension/Content/Product/ExampleExtensionDefinition.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -166,6 +173,7 @@ class ExampleExtensionDefinition extends EntityDefinition
     }
 }
 ```
+
 {% endcode %}
 
 We've created a new entity definition called `ExampleExtensionDefinition`, as mentioned in the `CustomExtension` class. Its table name will be `swag_example_extension` and it will have custom entity class called `ExampleExtensionEntity`, as you can see in the `getEntityClass` method. This will remain an example, creating the actual entity `ExampleExtensionEntity` is not part of this guide.
@@ -181,6 +189,7 @@ The fourth parameter is the class of the associated definition, the `ProductDefi
 Of course, this new definition also needs to be registered to the DI container:
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
+
 ```markup
 <?xml version="1.0" ?>
 
@@ -199,6 +208,7 @@ Of course, this new definition also needs to be registered to the DI container:
     </services>
 </container>
 ```
+
 {% endcode %}
 
 #### Adding the new database table
@@ -263,6 +273,7 @@ In this case you'd write "foo bar" to the product with your desired ID. Note the
 Adding a field without saving its value to the database is a lot less complicated. First of all, you'll have to let Shopware know that you're going to take care of this field yourself and it doesn't have to search for it in the database. This is done by using the `Runtime` flag on the new field.
 
 {% code title="<plugin root>/src/Extension/Content/Product/CustomExtension.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -289,6 +300,7 @@ class CustomExtension extends EntityExtension
     }
 }
 ```
+
 {% endcode %}
 
 In this case, you directly add the `StringField` to the extension class itself. Afterwards we're adding the `Runtime` flag to this field, so Shopware knows that it doesn't have to take care of this new field automatically. We're doing this ourselves now.
@@ -300,6 +312,7 @@ We can use the DAL event which gets fired every time the product entity is loade
 Below you can find an example implementation where we add our extension, when the product gets loaded.
 
 {% code title="<plugin root>/src/Subscriber/ProductSubscriber.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -329,6 +342,7 @@ class ProductSubscriber implements EventSubscriberInterface
     }
 }
 ```
+
 {% endcode %}
 
 We're registering to the `ProductEvents::PRODUCT_LOADED_EVENT` event, which is fired everytime one or multiple products are requested. In the event listener method `onProductsLoaded`, we're then adding our own data to the new field via the method `addExtension`.
@@ -338,6 +352,7 @@ Please note that its second parameter, the actual value, has to be a struct and 
 After we've created our subscriber, we have to adjust our `services.xml` to register it. Below you can find our `services.xml`.
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
+
 ```markup
 <?xml version="1.0" ?>
 
@@ -356,6 +371,7 @@ After we've created our subscriber, we have to adjust our `services.xml` to regi
     </services>
 </container>
 ```
+
 {% endcode %}
 
 ## Entity extension vs. Custom fields

@@ -27,6 +27,7 @@ public function searchMedia (array $ids, Context $context): MediaCollection {
 This `searchMedia` function reads out the corresponding media objects for the given IDs in order to continue working with them afterwards. Here is an example with a custom field \(`custom_sports_media_id`\) on the product detail page:
 
 {% raw %}
+
 ```text
 {% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
 
@@ -43,6 +44,7 @@ This `searchMedia` function reads out the corresponding media objects for the gi
     {{ dump (sportsMedia) }}
 {% endblock %}
 ```
+
 {% endraw %}
 
 {% hint style="danger" %}
@@ -52,6 +54,7 @@ Please note that this function performs a query against the database and should 
 The function is already structured in a way that several IDs can be passed. To read the media objects within the product listing we recommend the following procedure:
 
 {% raw %}
+
 ```text
 {% sw_extends '@Storefront/storefront/component/product/listing.html.twig' %}
 
@@ -81,6 +84,7 @@ The function is already structured in a way that several IDs can be passed. To r
     {% endfor %}
 {% endblock %}
 ```
+
 {% endraw %}
 
 ## Working with sw\_thumbnail
@@ -101,7 +105,7 @@ As you see, `sw_thumbnail` makes use of one required parameter: `media` is requi
 
 With the `sizes` parameter you can control the `sizes` attribute of the `img` and define which of the thumbnails should be used in a media query / viewport.
 
-You can find more information on those sizes here: 
+You can find more information on those sizes here:
 <!-- markdown-link-check-disable-next-line -->
 {% embed url="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img\#attr-srcset" caption="" %}
 
@@ -199,4 +203,3 @@ This will generate the output below:
 ## More interesting topics
 
 * [Use custom assets in general](add-custom-assets.md)
-

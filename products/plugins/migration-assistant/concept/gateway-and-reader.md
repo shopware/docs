@@ -252,4 +252,3 @@ class ShopwareLocalGateway implements ShopwareGatewayInterface
     }
 }
 ```
-

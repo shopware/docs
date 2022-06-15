@@ -5,22 +5,22 @@ You will learn how to read and write data to the Shopware Admin API using an exa
 
 ## Prerequisites
 
- * Basic CLI usage (creating files, directories, running commands)
- * Installed [shopware-cli](https://sw-cli.fos.gg/) tools
- * Installed [symfony-cli](https://symfony.com/download)
- * A running MariaDB or MySQL accessible to your development machine
+* Basic CLI usage (creating files, directories, running commands)
+* Installed [shopware-cli](https://sw-cli.fos.gg/) tools
+* Installed [symfony-cli](https://symfony.com/download)
+* A running MariaDB or MySQL accessible to your development machine
 
 ## Setting up the app template
 
 First, you need to clone the app template from GitHub into the directory that will contain the app server.
 
-``` bash
+```sh
 git clone git@github.com:shopware/AppTemplate.git translator-app
 ```
 
 Next you set your own git repo as a git remote:
 
-``` bash
+```sh
 git remote set-url origin <myrepo.git>
 ```
 
@@ -31,7 +31,8 @@ Modify the `APP_NAME` in the env to your app name`./.env` to ensure the app can 
 Also configure the `DATABASE_URL` to point to your database, and choose an `APP_SECRET`:
 
 {% code title=".env" %}
-```
+
+```sh
 ###> symfony/framework-bundle ###
 APP_NAME=product-translator
 APP_ENV=dev
@@ -46,6 +47,7 @@ APP_DEBUG=true
 DATABASE_URL=mysql://root:root@127.0.0.1:3306/product_translator?serverVersion=8.0
 ###< doctrine/doctrine-bundle ##
 ```
+
 {% endcode %}
 
 You can now start the application with `symfony server:start -v`.
@@ -56,7 +58,7 @@ For now, your app server is currently only available locally.
 When you are using a local Shopware environment, you can skip to the [next chapter](#creating-the-manifest)
 {% endhint %}
 
-We need to expose your local app server to the internet. The easiest way to achieve that is using a tunneling service like [ngrok](https://ngrok.com/). 
+We need to expose your local app server to the internet. The easiest way to achieve that is using a tunneling service like [ngrok](https://ngrok.com/).
 
 The setup is as simple as calling the following command (after installing ngrok)
 
@@ -73,7 +75,8 @@ It contains all the required information about your app.
 Let's start by filling in all the meta information:
 
 {% code title="release/manifest.xml" %}
-``` xml
+
+```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
@@ -87,6 +90,7 @@ Let's start by filling in all the meta information:
     </meta>
    </manifest>
 ```
+
 {% endcode %}
 
 {% hint style="warning" %}
@@ -98,7 +102,8 @@ Take care to use the same `<name>` as in the `.env` file, otherwise stores can't
 Next up we will define the `<setup>` part of the manifest. This part describes how the store will connect itself with the app server.
 
 {% code title="release/manifest.xml" %}
-``` xml
+
+```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
@@ -110,6 +115,7 @@ Next up we will define the `<setup>` part of the manifest. This part describes h
     </setup>
 </manifest>
 ```
+
 {% endcode %}
 
 The `<registraionUrl>` is already implementend by the app template, and is always `/register`, unless you modify `src/Controller/RegistrationController.php`.
@@ -120,7 +126,8 @@ The `<secret>` element is only present in development versions of the app. In pr
 Because this app will need to read product descriptions and translate them the it needs permissions to do so:
 
 {% code title="release/manifest.xml" %}
-``` xml
+
+```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
@@ -138,6 +145,7 @@ Because this app will need to read product descriptions and translate them the i
     </permissions>
 </manifest>
 ```
+
 {% endcode %}
 
 ### Webhooks
@@ -147,7 +155,8 @@ The app system provides webhooks to subscribe your app server to any changes in 
 in its shops:
 
 {% code title="release/manifest.xml" %}
-``` xml
+
+```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
@@ -165,10 +174,11 @@ in its shops:
     </webhooks>
 </manifest>
 ```
+
 {% endcode %}
 
 These two webhooks provide a way for shops to notify your app server about events that occurred.
-The `src/Controller/RegistrationController.php`  controller in the app template already provides the `deleted` webhook. It notifies the server that a shop has deleted the app.
+The `src/Controller/RegistrationController.php` controller in the app template already provides the `deleted` webhook. It notifies the server that a shop has deleted the app.
 
 The `product-update` webhook is the path on which your app server will be notified about any product updates in the stores, like changing the description.
 
@@ -178,16 +188,17 @@ This webhook needs a custom controller, which will be the next part of this guid
 
 To get started write a let's write a simple Symfony controller:
 
-
 {% code title="src/Controller/ProductController.php" %}
-``` php
+
+```php
 class ProductController extends AbstractController
 {
-    public function __construct( private ShopRepository $shopRepository )
+    public function __construct(private ShopRepository $shopRepository )
     {
     }
 }
 ```
+
 {% endcode %}
 
 For later use, it's already injected with the `ShopRepository` and the `RequestVerifier`; They will become useful soon.
@@ -195,7 +206,8 @@ For later use, it's already injected with the `ShopRepository` and the `RequestV
 Next implement a route for the aforementioned `product-update` webhook:
 
 {% code title="src/Controller/ProductController.php" %}
-``` php
+
+```php
 class ProductController extends AbstractController
 {
     /* ... missing constructor */
@@ -206,6 +218,7 @@ class ProductController extends AbstractController
     }
 }
 ```
+
 {% endcode %}
 
 Next, we will verify the request:
@@ -216,22 +229,25 @@ With that id, the shop is retrieved from the repository.
 The verifier then validates the request with the shop object.
 A failed validation raises an exception, thus stopping unauthorized requests from going through.
 {% code title="src/Controller/ProductController.php" %}
-``` php
+
+```php
     public function productWritten(Request $request)
     {
-	$event = json_decode($request->getContent(), true);
+        $event = json_decode($request->getContent(), true);
         $shop = $this->shopRepository->getShopFromId($event['source']['shopId']);
 
         $this->verifier->authenticatePostRequest($request, $shop);
     }
 ```
+
 {% endcode %}
 
 ### Creating a shop client
 
 Once the request has been verified you can use the `$shop` to create a api-client for that particular shop.
 {% code title="src/Controller/ProductController.php" %}
-``` php
+
+```php
     public function productWritten(Request $request)
     {
         /* ... missing request verification */
@@ -248,6 +264,7 @@ Once the request has been verified you can use the `$shop` to create a api-clien
         );
     }
 ```
+
 {% endcode %}
 
 The `ShopClient` receives a standard Guzzle HTTP client as well as the `$shop` we got from the database.
@@ -256,7 +273,8 @@ By setting the `base_uri` of the Guzzle client to the store-url, so we don't hav
 Now we can inspect the event payload:
 
 {% code title="src/Controller/ProductController.php" %}
-``` php
+
+```php
     public function productWritten(Request $request)
     {
         //...
@@ -267,6 +285,7 @@ Now we can inspect the event payload:
         }
     }
 ```
+
 {% endcode %}
 
 ### Fetching data from the shop
@@ -278,7 +297,8 @@ If the change did not affect the description, the controller returns a 204 respo
 Now that it's certain the description of the product was changed, we fetch the description through the API of the shop:
 
 {% code title="src/Controller/ProductController.php" %}
-``` php
+
+```php
     public function productWritten(Request $request)
     {
         //...
@@ -304,17 +324,18 @@ Now that it's certain the description of the product was changed, we fetch the d
         );
     }
 ```
+
 {% endcode %}
 
 The request contains a criteria that fetches a the product for which we received the event `'ids' => [$id]` and all translations and their associated languages `'associations' => 'language'`. Now we can retrieve the english description from the API response:
 
-
 {% code title="src/Controller/ProductController.php" %}
-``` php
+
+```php
     public function productWritten(Request $request)
     {
         //...
-	    $product = json_decode($resp->getBody(), true)['data'][0];
+        $product = json_decode($resp->getBody(), true)['data'][0];
         $description = '';
         $name = '';
         foreach ($product['translations'] as $translation) {
@@ -325,6 +346,7 @@ The request contains a criteria that fetches a the product for which we received
         }
     }
 ```
+
 {% endcode %}
 
 {% hint style="info" %}
@@ -336,16 +358,18 @@ To determine if the app has already written a translation once, it saves a hash 
 We will get to the generation of the hash later but we need to check it first:
 
 {% code title="src/Controller/ProductController.php" %}
-``` php
+
+```php
     public function productWritten(Request $request)
     {
         //...
-	    $lastHash = $product['customFields']['translator-last-translation-hash'] ?? '';
+        $lastHash = $product['customFields']['translator-last-translation-hash'] ?? '';
         if (md5($description) === $lastHash) {
             return new Response('', Response::HTTP_NO_CONTENT);
         }
     }
 ```
+
 {% endcode %}
 
 ### Writing a translated description
@@ -353,11 +377,12 @@ We will get to the generation of the hash later but we need to check it first:
 Now that the app can be sure the description has not been translated before it can write the new description like so:
 
 {% code title="src/Controller/ProductController.php" %}
-``` php
+
+```php
     public function productWritten(Request $request)
     {
         //...
-	    $client->sendRequest(
+        $client->sendRequest(
             new \GuzzleHttp\Psr7\Request(
                 'PATCH',
                 'api/product/' . $id,
@@ -376,9 +401,10 @@ Now that the app can be sure the description has not been translated before it c
         );
     }
 ```
+
 {% endcode %}
 
-Note the hash of the original description gets saved as a value in the 
+Note the hash of the original description gets saved as a value in the
 custom fields of the product entity. This is possible without any further config since all custom fields are schema-less.
 
 The implementation of the `translate` method is disregarded in this example, you might perform an additional lookup through a translation API service to implement it.
@@ -391,7 +417,7 @@ In this last step, we will install the app using the Shopware CLI tools.
 If this is your first time using the Shopware CLI, you have to [install](https://sw-cli.fos.gg/install/) it first. Next, configure it using the `shopware-cli project config init` command.
 {% endhint %}
 
-```bash
+```sh
 shopware-cli project extension upload ProductTranslator/release --activate --increase-version
 ```
 
@@ -404,7 +430,6 @@ And when you save a product, the description will automatically update.
 
 In this example, you've learned how to receive events and modify data through the app system. But that is just the tip of the iceberg:
 
- * Did you know you can add [new payments](../payment.md) as apps?
- * Write code that runs during checkout [app scripting](../app-scripts/cart-manipulation.md)
- * Add new endpoints to the API [custom endpoints](./add-api-endpoint.md)
-
+* Did you know you can add [new payments](../payment.md) as apps?
+* Write code that runs during checkout [app scripting](../app-scripts/cart-manipulation.md)
+* Add new endpoints to the API [custom endpoints](./add-api-endpoint.md)

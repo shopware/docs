@@ -50,5 +50,5 @@ The snippet key is a modified `translationMessage`.
 preg_replace('([^a-zA-Z0-9]+)', '', ucwords($exception->getTranslationMessage()))
 ```
 
-Variables in the message will be replaced by the `string_replace()` method. 
+Variables in the message will be replaced by the `string_replace()` method.
 The identifiers are the keys of the `translationParams` array.

@@ -11,4 +11,3 @@ Now that you know what you can do with themes, here are the next steps to learn 
 {% page-ref page="create-a-theme.md" %}
 
 {% page-ref page="differences-plugins-and-apps-vs-themes.md" %}
-

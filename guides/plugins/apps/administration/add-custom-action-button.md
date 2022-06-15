@@ -7,6 +7,7 @@ One extension possibility in the administration is the ability to add custom act
 To get those buttons, you start in the `admin` section of your manifest file. There you can define `<action-button>` elements in order to add your button, as seen as below:
 
 {% code title="manifest.xml" %}
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
@@ -26,6 +27,7 @@ To get those buttons, you start in the `admin` section of your manifest file. Th
     </admin>
 </manifest>
 ```
+
 {% endcode %}
 
 For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference.md).
@@ -77,6 +79,7 @@ This feature was added in Shopware 6.4.3.0, previous versions will ignore the re
 
 {% hint style="info" %}
 Starting from Shopware version 6.4.8.0, the requests of the [tab](#opening-a-new-tab-for-the-user) and [custom modal](#open-a-custom-modal) have the following additional query parameters:
+
 * `shop-id`
 * `shop-url`
 * `timestamp`
@@ -91,8 +94,10 @@ If you want to trigger an action inside the administration upon completing the a
 If you do not need to trigger any actions, a response with an empty body is also always valid.
 
 ### Opening a new tab for the user
+
 Examples response body:
 To open a new tab in the user browser you can use the `openNewTab` action type. You need to pass the url that should be opened as the `redirectUrl` property inside the payload.
+
 ```json
 {
   "actionType": "openNewTab",
@@ -104,7 +109,9 @@ To open a new tab in the user browser you can use the `openNewTab` action type. 
 ```
 
 ### Show a notification to the user
+
 To send a notification, you can use the `notification` action type. You need to pass the `status` property and the content of the notification as `message` property inside the payload.
+
 ```json
 {
   "actionType": "notification",
@@ -117,7 +124,9 @@ To send a notification, you can use the `notification` action type. You need to 
 ```
 
 ### Reload the current page
+
 To reload the data in the user's current page you can use the `reload` action type with an empty payload.
+
 ```json
 {
   "actionType": "reload",
@@ -127,7 +136,9 @@ To reload the data in the user's current page you can use the `reload` action ty
 ```
 
 ### Open a custom modal
+
 To open a modal with the embedded link in the iframe, you can use the `openModal` action type. You need to pass the url that should be opened as the `iframeUrl` property and the `size` property inside the payload.
+
 ```json
 {
   "actionType": "openModal",
@@ -138,7 +149,9 @@ To open a modal with the embedded link in the iframe, you can use the `openModal
   }
 }
 ```
+
 ### General structure
+
 * `actionType`: The type of action the app want to be triggered, including `notification`, `reload`, `openNewTab`, `openModal`
 * `payload`: The needed data to perform the action.
   * `redirectUrl`: The url to open new tab
@@ -159,6 +172,7 @@ This feature was added in Shopware 6.4.10.0, previous versions don't support rel
 To use custom endpoints as the target url for action buttons you can define the target url as a relative url in your apps manifest.xml:
 
 {% code title="manifest.xml" %}
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
@@ -172,12 +186,14 @@ To use custom endpoints as the target url for action buttons you can define the 
     </admin>
 </manifest>
 ```
+
 {% endcode %}
 
 And then add the corresponding app script that should be executed when the user clicks the action button.
 
 {% code title="Resources/scripts/api-action-button/action-button-script.twig" %}
 {% raw %}
+
 ```twig
 {% set ids = hook.request.ids %}
 
@@ -191,6 +207,7 @@ And then add the corresponding app script that should be executed when the user 
 
 {% do hook.setResponse(response) %}
 ```
+
 {% endraw %}
 {% endcode %}
 

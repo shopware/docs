@@ -39,4 +39,3 @@ This video is part of the online training ["Backend Development"](https://academ
 ## Contribution
 
 Shopware 6 is a **community driven platform** with a lot of contributions, and we really appreciate your support. Thank you very much for that! To ensure the quality of our code, our products and our documentation we have created a small guideline for contributing [code](../../resources/guidelines/code/contribution.md) and contributing to the [docs](../../resources/guidelines/documentation/) we all should endorse to. It helps you and us to collaborate with our software. Following these guidelines will help us to integrate your changes in our daily workflow.
-

@@ -1,6 +1,6 @@
 # Custom Endpoints with App Scripts
 
-If you want to execute some logic in Shopware and trigger the execution over a HTTP-Request or need some special data from Shopware over the API, 
+If you want to execute some logic in Shopware and trigger the execution over a HTTP-Request or need some special data from Shopware over the API,
 you can create custom API-endpoints in your app, that allow you to execute a script when a request to that endpoint is made.
 
 {% hint style="info" %}
@@ -13,7 +13,7 @@ There are specialized script-execution endpoints for the `api`, `store-api` and 
 Refer to the [API-docs](../../../integrations-api/README.md) for more information on the distinction of those APIs.
 Those endpoints allow you to trigger the execution of you scripts with an HTTP-Request against those endpoints.
 
-Custom endpoint scripts need to be located in a folder that is prefixed with the name of the api scope (one of `api-`, `store-api-` or `storefront`). 
+Custom endpoint scripts need to be located in a folder that is prefixed with the name of the api scope (one of `api-`, `store-api-` or `storefront`).
 The remaining part of the folder name is the hook-name.
 You can specify which script should be executed by using the correct hook-name in the URL of the HTTP-request.
 
@@ -33,10 +33,12 @@ To provide a custom response you can use the [`response`-service](../../../../re
 
 {% code title="Resources/scripts/api-custom-endpoint/my-example-script.twig" %}
 {% raw %}
+
 ```twig
 {% set response = services.response.json({ 'foo': 'bar' }) %}
 {% do hook.setResponse(response) %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -46,9 +48,11 @@ If you want to prevent the execution of further scripts you can do so by calling
 
 {% code title="Resources/scripts/api-custom-endpoint/my-example-script.twig" %}
 {% raw %}
+
 ```twig
 {% do hook.stopPropagation() %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -74,12 +78,14 @@ This Hook is an [Interface Hook](./README.md#interface-hooks), the execution of 
 
 {% code title="Resources/scripts/store-api-custom-endpoint/my-example-script.twig" %}
 {% raw %}
+
 ```twig
 {% block response %}
     {% set response = services.response.json({ 'foo': 'bar' }) %}
     {% do hook.setResponse(response) %}
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -89,6 +95,7 @@ A simple cache-key generation would be to generate a `md5`-hash of all the incom
 
 {% code title="Resources/scripts/store-api-custom-endpoint/my-example-script.twig" %}
 {% raw %}
+
 ```twig
 {% block cache_key %}
     {% set cachePayload = hook.query %}
@@ -97,6 +104,7 @@ A simple cache-key generation would be to generate a `md5`-hash of all the incom
     {% do hook.setCacheKey(cachePayload|md5) %}
 {% endblock %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -116,6 +124,7 @@ In addition to providing `JsonResponses` you can also render your own templates:
 
 {% code title="Resources/scripts/storefront-custom-endpoint/my-example-script.twig" %}
 {% raw %}
+
 ```twig
 {% set product = services.store.search('product', { 'ids': [productId]}).first %}
 
@@ -125,6 +134,7 @@ In addition to providing `JsonResponses` you can also render your own templates:
     services.response.render('@MyApp/storefront/page/custom-page/index.html.twig', { 'page': hook.page })
 ) %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -132,12 +142,14 @@ Additionally it is also possible to redirect to an existing route:
 
 {% code title="Resources/scripts/storefront-custom-endpoint/my-example-script.twig" %}
 {% raw %}
+
 ```twig
 {% set productId = hook.query['product-id'] %}
 
 {% set response = services.response.redirect('frontend.detail.page', { 'productId': productId }) %}
 {% do hook.setResponse(response) %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -145,7 +157,7 @@ For a complete overview of the available data and services refer to the [referen
 
 ## Caching
 
-To improve the end-user experience and provide a scalable system the customer-facing APIs (that is `store-api` and `storefront`) offer caching mechanism, 
+To improve the end-user experience and provide a scalable system the customer-facing APIs (that is `store-api` and `storefront`) offer caching mechanism,
 to cache the response to specific requests and return the response from the cache on further requests, instead of  computing it again and again on each request.
 
 By default, caching is enabled for custom endpoints, but for `store-api`-endpoints you have to generate the cache key in the script.
@@ -159,36 +171,42 @@ You can configure the caching behaviour for each response on the `response`-obje
 
 To allow fine grained [cache invalidation](#cache-invalidation) you can tag the response with custom tags and then invalidate certain tags in a `cache-invalidation` script.
 {% raw %}
+
 ```twig
 {% set response = services.response.json({ 'foo': 'bar' }) %}
 {% do response.cache.tag('my-custom-tag') %}
 
 {% do hook.setResponse(response) %}
 ```
+
 {% endraw %}
 
 #### Disable caching
 
 You can opt-out of the caching by calling `cache.disable()`, this means that the response won't be cached.
 {% raw %}
+
 ```twig
 {% set response = services.response.json({ 'foo': 'bar' }) %}
 {% do response.cache.disable() %}
 
 {% do hook.setResponse(response) %}
 ```
+
 {% endraw %}
 
 #### Set the max-age of the cache item
 
 You can specify for how long a response should be cached by calling the `cache.maxAge()` method and pass the number of the seconds after which the cache item should expire.
 {% raw %}
+
 ```twig
 {% set response = services.response.json({ 'foo': 'bar' }) %}
 {% do response.cache.maxAge(120) %}
 
 {% do hook.setResponse(response) %}
 ```
+
 {% endraw %}
 
 #### Invalidate cache items for specific states
@@ -196,12 +214,14 @@ You can specify for how long a response should be cached by calling the `cache.m
 You can specify that the cached response is not valid if one of the given states is present.
 For more detailed information on the invalidation states refer to the [HTTP-cache docs](../../../../concepts/framework/http_cache.md#sw-states).
 {% raw %}
+
 ```twig
 {% set response = services.response.json({ 'foo': 'bar' }) %}
 {% do response.cache.invalidationState('logged-in') %}
 
 {% do hook.setResponse(response) %}
 ```
+
 {% endraw %}
 
 ### Cache invalidation
@@ -213,6 +233,7 @@ In your `cache-invalidation` scripts you can get the `ids` of that were written 
 
 {% code title="Resources/scripts/cache-invalidation/my-invalidation-script.twig" %}
 {% raw %}
+
 ```twig
 {% set ids = hook.event.getIds('product_manufacturer') %}
 
@@ -220,6 +241,7 @@ In your `cache-invalidation` scripts you can get the `ids` of that were written 
     {% return %}
 {% endif %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -227,6 +249,7 @@ To allow even more fine grained invalidation you can filter down the list of wri
 
 {% code title="Resources/scripts/cache-invalidation/my-invalidation-script.twig" %}
 {% raw %}
+
 ```twig
 {% set ids = hook.event.getIds('product') %}
 
@@ -236,6 +259,7 @@ To allow even more fine grained invalidation you can filter down the list of wri
     {% return %}
 {% endif %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -243,6 +267,7 @@ Note that you can also chain the filter operations:
 
 {% code title="Resources/scripts/cache-invalidation/my-invalidation-script.twig" %}
 {% raw %}
+
 ```twig
 {% set ids = hook.event.getIds('product') %}
 
@@ -251,11 +276,13 @@ Note that you can also chain the filter operations:
     {% return %}
 {% endif %}
 ```
+
 {% endraw %}
 {% endcode %}
 
 You can then use the filtered down list of ids to invalidate entity specific tags:
 {% raw %}
+
 ```twig
 {% set tags = [] %}
 {% for id in ids %}
@@ -264,6 +291,7 @@ You can then use the filtered down list of ids to invalidate entity specific tag
 
 {% do services.cache.invalidate(tags) %}
 ```
+
 {% endraw %}
 {% endcode %}
 

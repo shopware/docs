@@ -70,12 +70,14 @@ Therefore, the two new lines are the following:
 CSRF protection can be configured via [Symfony configuration files](https://symfony.com/doc/current/configuration.html).
 
 {% code title="<platform root>/src/Storefront/Resources/config/packages/storefront.yaml" %}
+
 ```yaml
 storefront:
     csrf:
         enabled: true   // true/false to turn protection on/off
         mode: twig      // Valid modes are `twig` or `ajax`
 ```
+
 {% endcode %}
 
 ## Exclude controller action from CSRF checks
@@ -96,4 +98,3 @@ Be aware that this is not recommended and could create a security vulnerability!
 ## Caching and CSRF
 
 The default configuration for the `csrf` mode is `twig` and works fine with the shopware http cache. If an external cache \(e.g. varnish\) is used, the mode needs to be `ajax`. A valid CRSF token is then fetched before a `POST` request and appended.
-

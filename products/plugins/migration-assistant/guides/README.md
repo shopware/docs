@@ -7,6 +7,3 @@
 {% page-ref page="decorating-a-shopware-migration-assistant-converter.md" %}
 
 {% page-ref page="creating-a-new-migration-profile.md" %}
-
-
-

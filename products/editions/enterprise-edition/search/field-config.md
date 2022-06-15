@@ -32,7 +32,7 @@ When words are separated by one of these characters, the special character is re
 
    This n-gram filter uses the elastic search default [n-gram filter](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-ngram-tokenizer.html) with the parameters 3 for minimum and 27 for maximum value.
 
-2. **Shingle \(`ses_shingle`\)**
+1. **Shingle \(`ses_shingle`\)**
 
    This shingle filter uses the elastic search default [shingle](https://www.elastic.co/guide/en/elasticsearch/reference/7.10/analysis-shingle-tokenfilter.html)
 
@@ -42,7 +42,7 @@ When words are separated by one of these characters, the special character is re
    * Maximum shingle size -&gt; 3
    * Output Unigrams -&gt; false
 
-3. **Synonym \(`ses_synonym`\)**
+1. **Synonym \(`ses_synonym`\)**
 
    In the Enterprise Search you can define synonyms, these [synonyms](synonyms.md) were used by the search analyzer.
 
@@ -56,7 +56,7 @@ In addition to the Shopware Elasticsearch default analyzer, the Enterprise Searc
 
    Filters which were used: `sesCharFilter`, `sesNumericCharFilter`
 
-2. `sesNgramAnalyzer`
+1. `sesNgramAnalyzer`
 
    Each string field which is indexed has an internal mapping for an extra field with the suffix `.ngram`.
 
@@ -64,7 +64,7 @@ In addition to the Shopware Elasticsearch default analyzer, the Enterprise Searc
 
    Filters which were used: `ses_ngram`, `sesCharFilter`, `sesNumericCharFilter`
 
-3. `sesShingleAnalyzer`
+1. `sesShingleAnalyzer`
 
    Each string field which is indexed has an internal mapping for an extra field with the suffix `.ngram`.
 
@@ -72,9 +72,8 @@ In addition to the Shopware Elasticsearch default analyzer, the Enterprise Searc
 
    Filters which were used: `ses_shingle`, `sesCharFilter`, `sesNumericCharFilter`
 
-4. `sesSearchAnalyzer`
+1. `sesSearchAnalyzer`
 
    Is the default [search analyzer](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-analyzer.html) for the search words.
 
    Filters which were used: `synonym`
-

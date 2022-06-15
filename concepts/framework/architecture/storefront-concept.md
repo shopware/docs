@@ -101,4 +101,3 @@ Storefront snippets can be found in: `platform/src/Storefront/Resources/snippet`
 {% endhint %}
 
 Inside that directory you will find a specific sub-directory for each language like e.g. `de_DE` following the ISO standard. The localization is done via the exact ISO. In addition to the language, the country of destination is also supplied. By default, there are two Storefront translations provided: `de_DE` and `en_GB`. There are of course language plugins for other locales available. Inside these JSON files you will find simple translation, but also the possibility to work with variables and pluralization, which are wrapped with the `%` character. The reference of a translated value is used inside our Twig templates by calling the Twig function `trans` and working with interpolations \( e.g. `{{ "general.homeLink"|trans }}`\).
-

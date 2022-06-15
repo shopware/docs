@@ -20,6 +20,7 @@ for better integration later.
 You can refer to the [Flow reference](../../../../../resources/references/core-reference/flow-reference.md) to read triggers and actions detail.
 
 ## Event interfaces and classes
+
 Any event that implements one of these interfaces will be available in the trigger list of the Flow Builder module in administration. Besides, the event will have the ability to execute the action that belongs to the interface.
 
 - `MailAware`: This interface provides `MailRecipientStruct` and `salesChannelId`.
@@ -45,6 +46,7 @@ Currently, you will need to also implement `Shopware\Core\Framework\Event\Busine
 Below you can find an example implementation:
 
 {% code title="<plugin root>/src/Core/Checkout/Customer/Event/ExampleEvent.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -100,12 +102,15 @@ class ExampleEvent extends Event implements CustomerAware, BusinessEventInterfac
     }
 }
 ```
+
 {% endcode %}
+
 ### Add your new event to the flow trigger list
 
  At this step you need to add your new event to the flow trigger list, let see the code below:
 
 {% code title="<plugin root>/src/Core/Checkout/Customer/Subscriber/BusinessEventCollectorSubscriber.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -145,11 +150,13 @@ class BusinessEventCollectorSubscriber implements EventSubscriberInterface
     }
 }
 ```
+
 {% endcode %}
 
 Please note that your subscriber has to have a higher priority point to ensure your event is added before any subscriber `BusinessEventCollectorEvent` to prevent missing awareness or action. I set 1000 for `onAddExampleEvent` action:
 
 {% code title="<plugin root>/src/Core/Checkout/Customer/Subscriber/BusinessEventCollectorSubscriber.php" %}
+
 ```php
 public static function getSubscribedEvents()
 {
@@ -158,17 +165,20 @@ public static function getSubscribedEvents()
    ];
 }
 ```
+
 {% endcode %}
 
 And don't forget to register your subscriber to the container at `<plugin root>/src/Resources/config/services.xml`
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
+
 ```xml
 <service id="Swag\ExamplePlugin\Core\Checkout\Customer\Subscriber\BusinessEventCollectorSubscriber">
     <argument type="service" id="Shopware\Core\Framework\Event\BusinessEventCollector"/>
     <tag name="kernel.event_subscriber"/>
 </service>
 ```
+
 {% endcode %}
 
 Well done, you have successfully created your own flow trigger.
@@ -178,4 +188,3 @@ Well done, you have successfully created your own flow trigger.
 Go to administration page -> Settings -> Flow Builder, then click Add flow to create a new flow, search for Example Event. You could see your event is available and having actions related to the Customer likes to Add tag, Remove tag, etc...
 
 ![Flow Builder Action Example](../../../../../.gitbook/assets/flow-builder-action.png)
-

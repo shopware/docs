@@ -12,7 +12,7 @@ If you want to install the B2B-Suite for production environment your system must
 
 The B2B Suite is based on the minimum requirements of the Shopware core.
 
-These requirements apply from **B2B Suite 4.6.0 and above**: 
+These requirements apply from **B2B Suite 4.6.0 and above**:
 
 * Shopware 6.4
 * PHP 7.4.3
@@ -89,7 +89,7 @@ mac:
 
 For a better explanation, use the provided .psh.yaml.dist file as an example.
 
-#### Common
+### Common
 
 Once the environment has booted successfully, you can use the common scripts to setup shopware
 
