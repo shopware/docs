@@ -54,6 +54,6 @@ To start your first theme, follow our [Theme Base Guide](themes/theme-base-guide
 
 For the aspects listed under [Plugins](overview.md#plugins), it is not possible to operate those in cloud environments. Therefore, a different, less intrusive pattern has been introduced. Apps allow for event-based integrations which communicate with external services through a synchronous API.
 
-Most of the logic of the app resides within that third party service, so developers have to make sure to work our the details of the API and provide proper security, protection and reliability to their service. While it comes with those responsibilities, it gives you free choice of which operating environments, frameworks or programming languages to use, as long as our [guidelines for Shopware apps](apps/app-base-guide.md) are followed.
+Most of the logic of the app resides within that third party service, so developers have to make sure to work out the details of the API and provide proper security, protection and reliability to their service. While it comes with those responsibilities, it gives you free choice of which operating environments, frameworks or programming languages to use, as long as our [guidelines for Shopware apps](apps/app-base-guide.md) are followed.
 
 Apps also provide theme support, so all functionalities of [Themes](overview.md#themes) are available to apps as well. Payments are also supported by apps and the user can be forwarded to a payment provider.
