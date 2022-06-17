@@ -166,6 +166,8 @@ zend.detect_unicode=0
 realpath_cache_ttl=3600
 ```
 
+Also PHP PCRE Jit Target should be enabled, this can checked using `php -i | grep 'PCRE JIT Target'` or looking into the phpinfo page.
+
 For an additional 2-5% performance improvement, it is possible to provide a preload file to opcache. Preload also brings a lot of drawbacks:
 
 - Each cache clear requires a PHP-FPM restart
