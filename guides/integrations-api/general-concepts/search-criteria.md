@@ -336,6 +336,10 @@ The `sort` parameter allows to control the sorting of the result. Several sorts 
   
 For demonstration purposes see the following request payload that additionally includes a `count` aggregation.
 
+{% hint style="info" %}
+This `count` type was introduced with Shopware 6.4.12.0 and is not available in prior versions.
+{% endhint %}
+
 ```javascript
 {
   "limit": 3,
