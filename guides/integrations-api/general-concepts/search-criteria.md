@@ -318,13 +318,81 @@ The `sort` parameter allows to control the sorting of the result. Several sorts 
 * The `field` parameter defines which field is to be used for sorting.
 * The `order` parameter defines the sort direction.
 * The parameter `naturalSorting` allows to use a [Natural Sorting Algorithm](https://en.wikipedia.org/wiki/Natural_sort_order)
+* The parameter `type` allows to use divergent sorting behavior. Valid values are:
+  * `count`: Sort by the count of associations via the given field. SQL representation: `ORDER BY COUNT({field}) {order}`
 
 ```javascript
 {
     "limit": 5,
     "sort": [
         { "field": "name", "order": "ASC", "naturalSorting": true },
-        { "field": "active", "order": "DESC" }    
+        { "field": "active", "order": "DESC" },
+        { "field": "products.id", "order": "DESC", "type": "count" }
+  ]
+}
+```
+
+### `count` sorting behavior
+  
+For demonstration purposes see the following request payload that additionally includes a `count` aggregation.
+
+{% hint style="info" %}
+This `count` type was introduced with Shopware 6.4.12.0 and is not available in prior versions.
+{% endhint %}
+
+```javascript
+{
+  "limit": 3,
+  "includes": {
+    "product": ["id"]
+  },
+  "sort": [
+    { "field": "categories.id", "order": "DESC", "type": "count" }
+  ],
+  "aggregations": [
+    {  
+        "name": "product-id",
+        "type": "terms",
+        "field": "id",
+        "limit": 3,
+        "sort": { "field": "_count", "order": "DESC" },
+        "aggregation": {  
+            "name": "category-count",
+            "type": "count",
+            "field": "product.categories.id"
+        }
+    }
+  ]
+}
+```
+
+In the response the order of the `product` elements is now equal to the order of the aggregated buckets:
+
+```javascript
+{
+    "total": 3,
+    "aggregations": {
+        "product-id": {
+            "buckets": [
+                {
+                    "key": "f977f6a845a54b0381cbaf322f53b63e",
+                    "count": 5
+                },
+                {
+                    "key": "8d0ee52433df44b78a6f7827180049d9",
+                    "count": 4
+                },
+                {
+                    "key": "003a9df163474b28bc8a000243549547",
+                    "count": 3
+                }
+            ]
+        }
+    },
+    "elements": [
+        { "id": "f977f6a845a54b0381cbaf322f53b63e" },
+        { "id": "8d0ee52433df44b78a6f7827180049d9" },
+        { "id": "003a9df163474b28bc8a000243549547" }
     ]
 }
 ```
