@@ -366,7 +366,7 @@ This `count` type was introduced with Shopware 6.4.12.0 and is not available in 
 }
 ```
 
-In the response the order of the `product` elements is now equal to the order of the aggregated buckets: 
+In the response the order of the `product` elements is now equal to the order of the aggregated buckets:
 
 ```javascript
 {
