@@ -19,7 +19,7 @@ These requirements apply from **B2B Suite 4.6.0 and above**:
 * MySQL 5.7.21
 * MariaDB 10.3.22
 
-**Like in the Shopware 6 core MySQL 8.0.20, 8.0.21 and MariaDB 10.3.22 are not supported because of technical issues.**
+**Like in the Shopware 6 core MySQL 8.0.20 and MariaDB 10.3.29, 10.4.19, 10.5.10 are not supported because of technical issues.**
 
 ## Installation on a Linux based system
 
