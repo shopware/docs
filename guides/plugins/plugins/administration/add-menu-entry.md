@@ -66,7 +66,7 @@ Due to UX reasons, we're not supporting plugin modules to add new menu entries o
 
 ```javascript
 navigation: [{
-    id: 'swag-custommodule-list'
+    id: 'swag-custommodule-list',
     label: 'CustomModule',
     color: '#ff3d58',
     path: 'swag.custommodule.list',
