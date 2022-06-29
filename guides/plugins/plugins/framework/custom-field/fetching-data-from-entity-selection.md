@@ -46,7 +46,7 @@ class ProductSubscriber implements EventSubscriberInterface
 
 {% endcode %}
 
-For this subscriber to work we need to register it in the service container via the `service.xml` file:
+For this subscriber to work we need to register it in the service container via the `services.xml` file:
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
 
