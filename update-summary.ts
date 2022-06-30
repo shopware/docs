@@ -58,18 +58,19 @@ const filename = path.join(Deno.cwd(), "./SUMMARY.md");
 
 
 const summary = {
-	lines: [], 
+	lines: <string[]> [], 
 	encoder: new TextEncoder(),
 	addLine(line: string) { this.lines.push(line) },
-	writeTo(writer: Deno.Writer) { 
+	writeTo(writer: Deno.WriterSync) { 
 		for (let i = this.lines.length - 1; i > 0; i--) {
-			const line = this.lines.pop();
+			const line = <string> this.lines.pop();
 			if (line !== '') {
 				this.lines.push(line);
 				break;
 			}
 		}
 		writer.writeSync(this.encoder.encode(this.lines.join('\n')));
+		writer.writeSync(this.encoder.encode('\n'));
 	}
 };
 
