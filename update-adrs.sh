@@ -8,6 +8,7 @@ cp -r ./platform/adr ./
  rm -rf ./platform
 
 deno run --allow-read --allow-write ./update-summary.ts
+deno run --allow-read --allow-write ./format-adrs.ts
 
 mkdir -p ./.gitbook/assets/adr
 cp -r adr/assets/* .gitbook/assets/adr/ 

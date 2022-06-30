@@ -1,5 +1,10 @@
 # 2020-07-02 - Implement sales channel context token requirement for store-api and sales-channel-api
 
+{% hint style="info" %}
+This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
+You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/api/2020-07-02-implement-sales-channel-context-token-requirement.md)
+{% endhint %}
+
 ## Context
 Some routes for the sales-channel-api and the store-api depend on a sales-channel-context-token to identify the correct context.
 To ensure these routes cannot be called accidentally or intentionally without a token, a route parameter is in need to distinguish open routes and those that need a token.

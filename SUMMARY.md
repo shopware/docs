@@ -367,7 +367,6 @@
     * [Flow Reference](resources/references/core-reference/flow-reference.md)
     * [Rules Reference](resources/references/core-reference/rules-reference.md)
   * [Architecture Reference](adr/README.md)
-  * [Architecture Reference](adr/README.md)
     * [Admin](adr/admin/README.md)
       * [Unified notification titles](adr/admin/2020-07-20-unified-notification-titles.md)
       * [Introduce jest fail on console](adr/admin/2021-06-14-introduce-jest-fail-on-console.md)
@@ -377,6 +376,7 @@
       * [Import acl privileges from other roles](adr/admin/2020-08-28-import-acl-privileges-from-other-roles.md)
       * [Admin extension API standards](adr/admin/2021-12-07-admin-extension-api-standards.md)
       * [Extract data handling classes to extension sdk](adr/admin/2022-03-15-extract-data-handling-classes-to-extension-sdk.md)
+      * [Providing the admin extension sdk](adr/admin/2022-27-06-providing-the-admin-extension-sdk)
       * [Refactor admin build process to webpack multi compiler mode](adr/admin/2021-08-31-refactor-admin-build-process-to-webpack-multi-compiler-mode.md)
       * [Merge e2e projects into a single project](adr/admin/2021-11-22-merge-e2e-projects-into-a-single-project.md)
     * [Workflow](adr/workflow/README.md)
@@ -440,6 +440,7 @@
       * [Redis cart persister](adr/performance/2022-03-25-redis-cart-persister.md)
       * [Prevent mail updates](adr/performance/2022-03-25-prevent-mail-updates.md)
       * [Base context factory](adr/performance/2022-03-25-base-context-factory.md)
+
   * [App Reference](resources/references/app-reference/README.md)
     * [Manifest Reference](resources/references/app-reference/manifest-reference.md)
     * [Webhook Events Reference](resources/references/app-reference/webhook-events-reference.md)
@@ -486,8 +487,3 @@
 * [Tooling](resources/tooling/README.md)
   * [IDE](resources/tooling/ide/README.md)
     * [Shopware Toolbox](resources/tooling/ide/shopware-toolbox.md)
-
-
-
-
-

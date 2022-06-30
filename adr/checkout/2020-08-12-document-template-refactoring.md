@@ -1,5 +1,10 @@
 # 2020-08-12 - Document template refactoring
 
+{% hint style="info" %}
+This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
+You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/checkout/2020-08-12-document-template-refactoring.md)
+{% endhint %}
+
 ## Context
 Our document templates did not support nested line items. To make this possible, we had to split the document templates into smaller templates.
 This was necessary, because the logic of how the document is rendered has changed a lot. Previously it worked with a simple loop over the line items, now they are rendered recursively.
