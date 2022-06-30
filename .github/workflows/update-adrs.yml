@@ -1,0 +1,26 @@
+name: Update ADRs
+on: [workflow_dispatch]
+jobs:
+  Create-Pull-Request:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: "~1.23"
+
+      - run: ./update-adrs.sh
+
+      - uses: peter-evans/create-pull-request@v4
+        with:
+          add-paths: adr, SUMMARY.md
+          author: shopwareBot <example@example.com>
+          committer: shopwareBot <example@example.com>
+          assignees: elkmod, Christian-Rades
+          branch: adr-update
+          delete-branch: true
+          title: 'Update Architecture Decision Records'
+          body: 'Mirrored from: [shopware/platform](https://github.com/shopware/platform/tree/trunk/adr)'
+
+
