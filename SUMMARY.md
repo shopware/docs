@@ -487,3 +487,4 @@
 * [Tooling](resources/tooling/README.md)
   * [IDE](resources/tooling/ide/README.md)
     * [Shopware Toolbox](resources/tooling/ide/shopware-toolbox.md)
+

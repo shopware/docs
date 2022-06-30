@@ -13,4 +13,4 @@ jobs:
       with:
         config: 'markdown-style-config.yml'
         args: './'
-        ignore: './resources/references/*'
+        ignore: './resources/references/* ./adr/*'
