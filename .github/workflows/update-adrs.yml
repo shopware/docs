@@ -1,5 +1,5 @@
 name: Update ADRs
-on: [workflow_dispatch]
+on: [workflow_dispatch, push]
 jobs:
   create-pull-request:
     runs-on: ubuntu-latest
