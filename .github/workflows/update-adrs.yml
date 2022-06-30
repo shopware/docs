@@ -1,7 +1,7 @@
 name: Update ADRs
-on: [workflow_dispatch]
+on: [workflow_dispatch, push]
 jobs:
-  Create-Pull-Request:
+  create-pull-request:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -14,11 +14,14 @@ jobs:
 
       - uses: peter-evans/create-pull-request@v4
         with:
-          add-paths: adr, SUMMARY.md
+          add-paths: |
+            adr/**/*
+            SUMMARY.md
           author: shopwareBot <example@example.com>
           committer: shopwareBot <example@example.com>
           assignees: elkmod, Christian-Rades
           branch: adr-update
+          branch-suffix: timestamp
           delete-branch: true
           title: 'Update Architecture Decision Records'
           body: 'Mirrored from: [shopware/platform](https://github.com/shopware/platform/tree/trunk/adr)'
