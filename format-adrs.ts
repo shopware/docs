@@ -14,7 +14,6 @@ for await (const entry of walk("./adr")) {
 await Promise.allSettled(formattingPromises);
 
 async function formatADR(filePath: string): Promise<void> {
-	console.log('open:', filePath);
 	const adrFile = await Deno.open(filePath, {write: true, read: true});
 
 	let buffer = '';
@@ -36,7 +35,7 @@ async function formatADR(filePath: string): Promise<void> {
 	await adrFile.seek(0, Deno.SeekMode.Start);
 	await adrFile.write(encoder.encode(buffer));
 	adrFile.close();
-	console.log('close:', filePath);
+	console.log('[✔] ', filePath);
 }
 
 function adrPathToGithubLink(adrPath: string): string {
