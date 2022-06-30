@@ -10,6 +10,9 @@ rm -rf ./platform
 deno run --allow-read --allow-write ./update-summary.ts
 deno run --allow-read --allow-write ./format-adrs.ts
 
+ls -l .
+ls -la adr
+
 mkdir -p ./.gitbook/assets/adr
 cp -r adr/assets/* .gitbook/assets/adr/ 
 find adr -type f -name '*md' -not -name '_*' -exec sed -i 's#(\./assets#(../../.gitbook/assets/adr#' {} \;
