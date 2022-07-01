@@ -1,5 +1,9 @@
 name: Update ADRs
-on: [workflow_dispatch]
+on: 
+  workflow_dispatch:
+  schedule:
+    - cron: 0 */1 * * *
+
 jobs:
   create-pull-request:
     runs-on: ubuntu-latest
@@ -21,7 +25,6 @@ jobs:
           committer: shopwareBot <example@example.com>
           assignees: elkmod, Christian-Rades
           branch: adr-update
-          branch-suffix: timestamp
           delete-branch: true
           title: 'Update Architecture Decision Records'
           body: 'Mirrored from: [shopware/platform](https://github.com/shopware/platform/tree/trunk/adr)'
