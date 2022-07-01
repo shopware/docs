@@ -7,8 +7,8 @@ rm -r ./.gitbook/assets/adr
 cp -r ./platform/adr ./
 rm -rf ./platform
 
-deno run --allow-read --allow-write ./update-summary.ts
-deno run --allow-read --allow-write ./format-adrs.ts
+deno run --allow-read --allow-write ./.github/scripts/update-summary.ts
+deno run --allow-read --allow-write ./.github/scripts/format-adrs.ts
 
 ls -l .
 ls -la adr
