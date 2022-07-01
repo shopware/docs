@@ -1,5 +1,5 @@
 import { Buffer } from "https://deno.land/std@0.145.0/io/mod.ts";
-import { walk } from "https://deno.land/std@0.145.0/fs/mod.ts";
+import { walkSync } from "https://deno.land/std@0.145.0/fs/mod.ts";
 import * as path from "https://deno.land/std@0.145.0/path/mod.ts";
 
 
@@ -26,8 +26,7 @@ const adrTitle = (adr: ADREntry) => {
 };
 
 let ADRs = new Map<string,ADRTopic>();
-for await (const entry of walk("./adr")) {
-	if (entry.isDirectory) continue;
+for (const entry of walkSync("./adr", { includeDirs: false, includeFiles: true })) {
 	if (entry.path.startsWith('adr/assets')) continue;
 	if (path.basename(entry.path).startsWith('_')) continue;
 	if (path.basename(entry.path) === 'README.md') continue;
