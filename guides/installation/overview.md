@@ -54,7 +54,7 @@ Although Shopware 6 supports most UNIX like environments, we recommend using **U
 
 PHP
 
-* tested on 7.4.3, 8.0 and 8.1
+* Tested on 7.4.3, 8.0 and 8.1
 * `memory_limit` 512M minimum
 * `max_execution_time` 30 seconds minimum
 * Extensions:
