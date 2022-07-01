@@ -81,9 +81,9 @@ PHP
 
 SQL
 
-* tested on MySQL 5.7.21, and 8.0
+* Tested on MySQL 5.7.21, and 8.0
   * Only MySQL 8.0.20 in specific is not compatible
-* tested on MariaDB 10.3.22, 10.4 and 10.5
+* Tested on MariaDB 10.3.22, 10.4 and 10.5
   * MariaDB 10.3.29, 10.4.19, 10.5.10 are not compatible at the moment
 
 JavaScript
@@ -94,7 +94,7 @@ JavaScript
 Various
 
 * Apache 2.4 or higher with mod-rewrite enabled
-* tested on elasticsearch 7.8.0
+* Tested on elasticsearch 7.8.0
 * Bash
 * Git
 
