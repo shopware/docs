@@ -63,7 +63,7 @@ class ExampleFilesystemService
     }
 
     public function writePrivateFile(string $filename, string $content) {
-        $this->fileSystemPublic->write($filename, $content);
+        $this->fileSystemPrivate->write($filename, $content);
     }
 
     public function listPublicFiles(): array {
@@ -86,6 +86,11 @@ This service makes use of the private und public filesystem of the plugin. As yo
         <service id="Swag\BasicExample\Service\ExampleFilesystemService">
             <argument type="service" id="swag_basic_example.filesystem.public"/>
             <argument type="service" id="swag_basic_example.filesystem.private"/>
+            <!--
+            There are also predefined file system services
+            <argument type="service" id="shopware.filesystem.private"/>
+            <argument type="service" id="shopware.filesystem.public"/>
+            -->
         </service>
     </services>
 </container>
