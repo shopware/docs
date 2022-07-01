@@ -35,9 +35,10 @@ Let's have a look at an example, which will:
 
 namespace Swag\BasicExample\Migration;
 
+use DateTime;
 use Doctrine\DBAL\Connection;
-use Shopware\Core\Defaults;
 use Shopware\Core\Framework\Migration\MigrationStep;
+use Shopware\Core\Defaults;
 use Shopware\Core\Framework\Uuid\Uuid;
 
 class Migration1616418675AddMailTemplate extends MigrationStep
@@ -64,7 +65,7 @@ class Migration1616418675AddMailTemplate extends MigrationStep
             SELECT id
             FROM mail_template_type
             WHERE technical_name = "contact_form"
-SQL;
+        SQL;
 
         return Uuid::fromBytesToHex($connection->fetchOne($sql));
     }
@@ -72,19 +73,16 @@ SQL;
     private function getLanguageIdByLocale(Connection $connection, string $locale): ?string
     {
         $sql = <<<SQL
-SELECT `language`.`id`
-FROM `language`
-INNER JOIN `locale` ON `locale`.`id` = `language`.`locale_id`
-WHERE `locale`.`code` = :code
-SQL;
+        SELECT `language`.`id`
+        FROM `language`
+        INNER JOIN `locale` ON `locale`.`id` = `language`.`locale_id`
+        WHERE `locale`.`code` = :code
+        SQL;
 
-        $languageId = $connection->executeQuery($sql, ['code' => $locale])->fetchColumn();
-        if (!$languageId && $locale !== 'en-GB') {
+        $languageId = $connection->executeQuery($sql, ['code' => $locale])->fetchOne();
+
+        if (empty($languageId)) {
             return null;
-        }
-
-        if (!$languageId) {
-            return Uuid::fromHexToBytes(Defaults::LANGUAGE_SYSTEM);
         }
 
         return $languageId;
@@ -94,90 +92,93 @@ SQL;
     {
         $mailTemplateId = Uuid::randomHex();
 
-        $defaultLangId = $this->getLanguageIdByLocale($connection, 'en-GB');
-        $deLangId = $this->getLanguageIdByLocale($connection, 'de-DE');
+        $enGbLangId = $this->getLanguageIdByLocale($connection, 'en-GB');
+        $deDeLangId = $this->getLanguageIdByLocale($connection, 'de-DE');
 
-        $connection->insert('mail_template', [
+        $connection->executeStatement("
+        INSERT IGNORE INTO `mail_template`
+            (id, mail_template_type_id, system_default, created_at)
+        VALUES
+            (:id, :mailTemplateTypeId, :systemDefault, :createdAt)
+        ",[
             'id' => Uuid::fromHexToBytes($mailTemplateId),
-            'mail_template_type_id' => Uuid::fromHexToBytes($mailTemplateTypeId),
-            'system_default' => 0,
-            'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
+            'mailTemplateTypeId' => Uuid::fromHexToBytes($mailTemplateTypeId),
+            'systemDefault' => 0,
+            'createdAt' => (new DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
         ]);
 
-        if ($defaultLangId !== $deLangId) {
-            $connection->insert('mail_template_translation', [
-                'mail_template_id' => Uuid::fromHexToBytes($mailTemplateId),
-                'language_id' => $defaultLangId,
-                'sender_name' => '{{ salesChannel.name }}',
+        if (!empty($enGbLangId)) {
+            $connection->executeStatement("
+            INSERT IGNORE INTO `mail_template_translation`
+                (mail_template_id, language_id, sender_name, subject, description, content_html, content_plain, created_at)
+            VALUES
+                (:mailTemplateId, :languageId, :senderName, :subject, :description, :contentHtml, :contentPlain, :createdAt)
+            ",[
+                'mailTemplateId' => Uuid::fromHexToBytes($mailTemplateId),
+                'languageId' => $enGbLangId,
+                'senderName' => '{{ salesChannel.name }}',
                 'subject' => 'Example mail template subject',
                 'description' => 'Example mail template description',
-                'content_html' => $this->getContentHtmlEn(),
-                'content_plain' => $this->getContentPlainEn(),
-                'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
+                'contentHtml' => $this->getContentHtmlEn(),
+                'contentPlain' => $this->getContentPlainEn(),
+                'createdAt' => (new DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
             ]);
         }
 
-        if ($defaultLangId !== Uuid::fromHexToBytes(Defaults::LANGUAGE_SYSTEM)) {
-            $connection->insert('mail_template_translation', [
-                'mail_template_id' => Uuid::fromHexToBytes($mailTemplateId),
-                'language_id' => Uuid::fromHexToBytes(Defaults::LANGUAGE_SYSTEM),
-                'sender_name' => '{{ salesChannel.name }}',
-                'subject' => 'Example mail template subject',
-                'description' => 'Example mail template description',
-                'content_html' => $this->getContentHtmlEn(),
-                'content_plain' => $this->getContentPlainEn(),
-                'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
-            ]);
-        }
-
-        if ($deLangId) {
-            $connection->insert('mail_template_translation', [
-                'mail_template_id' => Uuid::fromHexToBytes($mailTemplateId),
-                'language_id' => $deLangId,
-                'sender_name' => '{{ salesChannel.name }}',
+        if (!empty($deDeLangId)) {            
+            $connection->executeStatement("
+            INSERT IGNORE INTO `mail_template_translation`
+                (mail_template_id, language_id, sender_name, subject, description, content_html, content_plain, created_at)
+            VALUES
+                (:mailTemplateId, :languageId, :senderName, :subject, :description, :contentHtml, :contentPlain, :createdAt)
+            ",[
+                'mailTemplateId' => Uuid::fromHexToBytes($mailTemplateId),
+                'languageId' => $deDeLangId,
+                'senderName' => '{{ salesChannel.name }}',
                 'subject' => 'Beispiel E-Mail Template Titel',
                 'description' => 'Beispiel E-Mail Template Beschreibung',
-                'content_html' => $this->getContentHtmlDe(),
-                'content_plain' => $this->getContentPlainDe(),
-                'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
+                'contentHtml' => $this->getContentHtmlDe(),
+                'contentPlain' => $this->getContentPlainDe(),
+                'createdAt' => (new DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
             ]);
         }
+
     }
 
     private function getContentHtmlEn(): string
     {
         return <<<MAIL
-<div style="font-family:arial; font-size:12px;">
-    <p>
-        Example HTML content!
-    </p>
-</div>
-MAIL;
+        <div style="font-family:arial; font-size:12px;">
+            <p>
+                Example HTML content!
+            </p>
+        </div>
+        MAIL;
     }
 
     private function getContentPlainEn(): string
     {
         return <<<MAIL
-Example plain content!
-MAIL;
+        Example plain content!
+        MAIL;
     }
 
     private function getContentHtmlDe(): string
     {
         return <<<MAIL
-<div style="font-family:arial; font-size:12px;">
-    <p>
-        Beispiel HTML Inhalt!
-    </p>
-</div>
-MAIL;
+        <div style="font-family:arial; font-size:12px;">
+            <p>
+                Beispiel HTML Inhalt!
+            </p>
+        </div>
+        MAIL;
     }
 
     private function getContentPlainDe(): string
     {
         return <<<MAIL
-Beispiel Plain Inhalt!
-MAIL;
+        Beispiel Plain Inhalt!
+        MAIL;
     }
 }
 ```
@@ -186,20 +187,20 @@ MAIL;
 
 First of all, let's have a look at the small `update` method. It's mainly just fetching the mail template type ID using a short SQL statement and afterwards it executes the method `createMailTemplate`, which will cover all the other steps.
 
-Now on to the `createMailTemplate` method, which looks big, but isn't that scary. First of all, we're fetching the language IDs for both `en_GB` and `de_DE`.
+Now on to the `createMailTemplate` method, which looks big, but isn't that scary. First of all, we're fetching the language IDs for both `en-GB` and `de-DE`.
 
 We then create the entry for the `mail_template` table. Make sure to set `system_default` to 0 here!
 
-Afterwards we're inserting the entries into the `mail_template_translation` table. Due to several possible Shopware configurations \(en\_GB is default, or de\_DE is default, or another language is set as default language\), we need to check when exactly to insert the English, and when to insert the German translation.
+Afterwards we're inserting the entries into the `mail_template_translation` table. For compatibility reasons we have to check whether the languages exist in the database so we can insert our translations for these languages. The same principle applies to other ISO languages.
 
-Note the variables for the English and the German subject and description, make sure to change those as well to your needs.
+The variables for the English and the German subject and description, may be changed to fit your needs.
 
 Each of those calls uses a little helper method `getContentHtml` or `getContentPlain` respectively, where you can use your template.
 
 And that's it, once your plugin is installed, the mail template will be added to Shopware.
 
 {% hint style="warning" %}
-Do not remove those templates in your plugin, e.g. when it is uninstalled. This may lead to data inconsistency, since those templates can be associated to other entities.
+Do not remove e-mail templates in your plugin, e.g. when it is uninstalled. This may lead to data inconsistency, since those templates can be associated to other entities. Beware to use `IGNORE` before `INTO` Statements so no exception will be thrown upon uninstallation and reinstallation of your plugin.
 {% endhint %}
 
 ### Creating a custom mail type
@@ -215,9 +216,10 @@ Let's have a look:
 
 namespace Swag\BasicExample\Migration;
 
+use DateTime;
 use Doctrine\DBAL\Connection;
-use Shopware\Core\Defaults;
 use Shopware\Core\Framework\Migration\MigrationStep;
+use Shopware\Core\Defaults;
 use Shopware\Core\Framework\Uuid\Uuid;
 
 class Migration1616418675AddMailTemplate extends MigrationStep
@@ -238,43 +240,49 @@ class Migration1616418675AddMailTemplate extends MigrationStep
     {
         $mailTemplateTypeId = Uuid::randomHex();
 
-        $defaultLangId = $this->getLanguageIdByLocale($connection, 'en-GB');
-        $deLangId = $this->getLanguageIdByLocale($connection, 'de-DE');
+        $enGbLangId = $this->getLanguageIdByLocale($connection, 'en-GB');
+        $deDeLangId = $this->getLanguageIdByLocale($connection, 'de-DE');
 
         $englishName = 'Example mail template type name';
         $germanName = 'Beispiel E-Mail Template Name';
 
-        $connection->insert('mail_template_type', [
+        $connection->executeStatement("
+            INSERT IGNORE INTO `mail_template_type`
+                (id, technical_name, available_entities, created_at)
+            VALUES
+                (:id, :technicalName, :availableEntities, :createdAt)
+        ",[
             'id' => Uuid::fromHexToBytes($mailTemplateTypeId),
-            'technical_name' => 'custom_mail_template_type',
-            'available_entities' => json_encode(['product' => 'product']),
-            'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
+            'technicalName' => 'custom_mail_template_type',
+            'availableEntities' => json_encode(['product' => 'product']),
+            'createdAt' => (new DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
         ]);
 
-        if ($defaultLangId !== $deLangId) {
-            $connection->insert('mail_template_type_translation', [
-                'mail_template_type_id' => Uuid::fromHexToBytes($mailTemplateTypeId),
-                'language_id' => $defaultLangId,
+        if (!empty($enGbLangId)) {
+            $connection->executeStatement("
+            INSERT IGNORE INTO `mail_template_type_translation`
+                (mail_template_type_id, language_id, name, created_at)
+            VALUES
+                (:mailTemplateTypeId, :languageId, :name, :createdAt)
+            ",[
+                'mailTemplateTypeId' => Uuid::fromHexToBytes($mailTemplateTypeId),
+                'languageId' => $enGbLangId,
                 'name' => $englishName,
-                'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
+                'createdAt' => (new DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
             ]);
         }
 
-        if ($defaultLangId !== Uuid::fromHexToBytes(Defaults::LANGUAGE_SYSTEM)) {
-            $connection->insert('mail_template_type_translation', [
-                'mail_template_type_id' => Uuid::fromHexToBytes($mailTemplateTypeId),
-                'language_id' => Uuid::fromHexToBytes(Defaults::LANGUAGE_SYSTEM),
-                'name' => $englishName,
-                'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
-            ]);
-        }
-
-        if ($deLangId) {
-            $connection->insert('mail_template_type_translation', [
-                'mail_template_type_id' => Uuid::fromHexToBytes($mailTemplateTypeId),
-                'language_id' => $deLangId,
+        if (!empty($deDeLangId)) {
+            $connection->executeStatement("
+            INSERT IGNORE INTO `mail_template_type_translation`
+                (mail_template_type_id, language_id, name, created_at)
+            VALUES
+                (:mailTemplateTypeId, :languageId, :name, :createdAt)
+            ",[
+                'mailTemplateTypeId' => Uuid::fromHexToBytes($mailTemplateTypeId),
+                'languageId' => $deDeLangId,
                 'name' => $germanName,
-                'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
+                'createdAt' => (new DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
             ]);
         }
 
@@ -291,7 +299,7 @@ First of all we changed the `getMailTemplateTypeId` method call to `createMailTe
 
 So having a look at the `createMailTemplateType` method, you will see some similarities:
 
-* First of all we're fetching the language IDs for `en_GB` and `de_DE`
+* First of all we're fetching the language IDs for `en-GB` and `de-DE`
 * Then we define the translated names for the mail template type
 * And then the respective `mail_template_type` entry, as well as the translated `mail_template_type_translation` entries are created
 
