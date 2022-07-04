@@ -12,9 +12,9 @@ When you are using a self-managed Shopware Version, make sure to set the feature
 
 In order to follow this guide, make sure you're familiar with and meet the following requirements:
 
- * Basic CLI usage (creating files, directories, running commands)
- * Installed [shopware-cli](https://sw-cli.fos.gg/) tools
- * We will use the following libraries / softwares
+* Basic CLI usage (creating files, directories, running commands)
+* Installed [shopware-cli](https://sw-cli.fos.gg/) tools
+* We will use the following libraries / softwares
     * npm
     * live-server (small local development live-reloading server)
 
@@ -26,7 +26,7 @@ First of all we need to create the app "wrapper", the so-called app manifest. It
 
 First of all, we create the manifest file in a new directory. We'll call that our "project directory".
 
-```
+```text
 SimpleNotification/
 ├─ manifest.xml
 ```
@@ -38,6 +38,7 @@ When you are using a self-managed Shopware Version, you can also create the proj
 Next, we're gonna put our basic configuration into the file we just created.
 
 {% code title="manifest.xml" %}
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
@@ -53,6 +54,7 @@ Next, we're gonna put our basic configuration into the file we just created.
 </manifest>
 
 ```
+
 {% endcode %}
 
 ## Set up communication between Shopware and the App
@@ -65,7 +67,7 @@ The file will be rendered as a hidden iFrame within your admin panel. Using `pos
 
 Let's create an `index.html` file in a directory called `src`.
 
-```
+```text
 SimpleNotification/
 ├─ src/
 │  ├─ index.html
@@ -74,6 +76,7 @@ SimpleNotification/
 ```
 
 {% code title="src/index.html" %}
+
 ```html
 <!doctype html>
 <html>
@@ -89,13 +92,14 @@ SimpleNotification/
 </html>
 
 ```
+
 {% endcode %}
 
 This file contains the basic setup for our app to display the notification:
 
- * The HTML is rendered in a hidden iFrame when the administration panel is loaded
- * The Admin Extension SDK script is loaded through a CDN and exposed as the `sw` object
- * We use the `notification.dispatch` SDK method to display a simple notification with a title and a message.
+* The HTML is rendered in a hidden iFrame when the administration panel is loaded
+* The Admin Extension SDK script is loaded through a CDN and exposed as the `sw` object
+* We use the `notification.dispatch` SDK method to display a simple notification with a title and a message.
 
 ### Start the local development server
 
@@ -115,6 +119,7 @@ The final step of the setup is to configure your app to use that file as an entr
 In order to do that, we have to add an `admin` section to our `manifest.xml` file and pass it into the `base-app-url` tag:
 
 {% code title="manifest.xml" %}
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
@@ -126,6 +131,7 @@ In order to do that, we have to add an `admin` section to our `manifest.xml` fil
     </admin>
 </manifest>
 ```
+
 {% endcode %}
 
 Since the URL to your entry point only available locally, you will only be able to see changes on your own machine. If you want to share it, for development purposes, you need to host the entry point file somewhere or use services to expose local files as public URLs, such as [ngrok](https://ngrok.com/).
@@ -152,6 +158,6 @@ When the app was successfully installed, you will see the notification pop up on
 
 This example showed end-to-end how to create a local dev environment and connect it with your Shopware Store. There's a lot more to learn and try out - so why not move on with one of those topics
 
- * Did you know, you can add [new sections](https://shopware.github.io/admin-extension-sdk/docs/guide/api-reference/ui/component-section) to the UI or even [entire modules](https://shopware.github.io/admin-extension-sdk/docs/guide/api-reference/ui/mainModule)?
- * The Admin Extension SDK also offers [TypeScript support](https://shopware.github.io/admin-extension-sdk/docs/guide/getting-started/installation#using-npm-require-bundling) (including autocompletion)
- * Don't want to extend the admin panel? Have a look at [App Scripts](https://developer.shopware.com/docs/guides/plugins/apps/app-scripts)
+* Did you know, you can add [new sections](https://shopware.github.io/admin-extension-sdk/docs/guide/api-reference/ui/component-section) to the UI or even [entire modules](https://shopware.github.io/admin-extension-sdk/docs/guide/api-reference/ui/mainModule)?
+* The Admin Extension SDK also offers [TypeScript support](https://shopware.github.io/admin-extension-sdk/docs/guide/getting-started/installation#using-npm-require-bundling) (including autocompletion)
+* Don't want to extend the admin panel? Have a look at [App Scripts](https://developer.shopware.com/docs/guides/plugins/apps/app-scripts)
