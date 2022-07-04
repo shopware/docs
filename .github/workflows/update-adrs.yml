@@ -19,7 +19,7 @@ jobs:
       - uses: peter-evans/create-pull-request@v4
         with:
           add-paths: |
-            adr/**/*
+            resources/references/adr/**/*
             SUMMARY.md
           author: shopwareBot <example@example.com>
           committer: shopwareBot <example@example.com>
