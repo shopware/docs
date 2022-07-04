@@ -3,9 +3,9 @@ import { walk } from "https://deno.land/std@0.145.0/fs/mod.ts";
 import * as path from "https://deno.land/std@0.145.0/path/mod.ts";
 
 const formattingPromises = [];
-for await (const entry of walk("./adr")) {
+for await (const entry of walk("./resources/references/adr")) {
 	if (entry.isDirectory) continue;
-	if (entry.path.startsWith('adr/assets')) continue;
+	if (entry.path.startsWith('resources/references/adr/assets')) continue;
 	if (path.basename(entry.path).startsWith('_')) continue;
 	if (path.basename(entry.path) === 'README.md') continue;
 	formattingPromises.push(formatADR(entry.path));

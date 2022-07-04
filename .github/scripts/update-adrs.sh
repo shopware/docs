@@ -2,19 +2,16 @@
 
 git clone --depth 1 https://github.com/shopware/platform.git
 
-rm -r ./adr
+rm -r ./resources/references/adr
 rm -r ./.gitbook/assets/adr
-cp -r ./platform/adr ./
+cp -r ./platform/adr ./resources/references
 rm -rf ./platform
 
 deno run --allow-read --allow-write ./.github/scripts/update-summary.ts
 deno run --allow-read --allow-write ./.github/scripts/format-adrs.ts
 
-ls -l .
-ls -la adr
-
 mkdir -p ./.gitbook/assets/adr
-cp -r adr/assets/* .gitbook/assets/adr/ 
-find adr -type f -name '*md' -not -name '_*' -exec sed -i 's#(\./assets#(../../.gitbook/assets/adr#' {} \;
+mv ./resources/references/adr/assets/* .gitbook/assets/adr/ 
+find resources/references/adr -type f -name '*md' -not -name '_*' -exec sed -i 's#(\./assets#(../../../../.gitbook/assets/adr#' {} \;
 
-find adr/ -type d -exec touch '{}'/README.md \;
+find resources/references/adr/ -type d -exec touch '{}'/README.md \;

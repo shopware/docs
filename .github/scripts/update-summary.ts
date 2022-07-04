@@ -1,4 +1,3 @@
-import { Buffer } from "https://deno.land/std@0.145.0/io/mod.ts";
 import { walkSync } from "https://deno.land/std@0.145.0/fs/mod.ts";
 import * as path from "https://deno.land/std@0.145.0/path/mod.ts";
 
@@ -14,7 +13,7 @@ const appRefHeading = /\[App Reference\]/;
 const firstToUpper = (s: string) => `${s[0].toUpperCase()}${s.slice(1)}`;
 const fixName = (s: string) => firstToUpper(s).replaceAll(/api/gi, 'API').replaceAll(/dal/gi, 'DAL');
 
-const topicName = (entry: ADREntry) => entry.path.split('/')[1];
+const topicName = (entry: ADREntry) => entry.path.split('/')[3];
 const summaryItem = (depth: number, name: string, path: string) => `${' '.repeat(depth * 2)}* [${fixName(name)}](${path})\n`;
 
 const adrTitle = (adr: ADREntry) => {
@@ -26,8 +25,8 @@ const adrTitle = (adr: ADREntry) => {
 };
 
 let ADRs = new Map<string,ADRTopic>();
-for (const entry of walkSync("./adr", { includeDirs: false, includeFiles: true })) {
-	if (entry.path.startsWith('adr/assets')) continue;
+for (const entry of walkSync("./resources/references/adr", { includeDirs: false, includeFiles: true })) {
+	if (entry.path.startsWith('resources/references/adr/assets')) continue;
 	if (path.basename(entry.path).startsWith('_')) continue;
 	if (path.basename(entry.path) === 'README.md') continue;
 
@@ -38,13 +37,13 @@ for (const entry of walkSync("./adr", { includeDirs: false, includeFiles: true }
 		continue
 	}
 	topic = {
-		path: `adr/${topicName(entry)}`,
+		path: `resources/references/adr/${topicName(entry)}`,
 		entries: [adr]
 	}
 	ADRs.set(topicName(adr), topic);
 }
 
-let adrSummary = summaryItem(1, 'Architecture Reference', 'adr/README.md');
+let adrSummary = summaryItem(1, 'Architecture Reference', 'resources/references/adr/README.md');
 
 ADRs.forEach((topic) => {
 	adrSummary += summaryItem(2, topicName(topic), path.join(topic.path, 'README.md'));
@@ -54,7 +53,6 @@ ADRs.forEach((topic) => {
 });
 
 const filename = path.join(Deno.cwd(), "./SUMMARY.md");
-
 
 const summary = {
 	lines: <string[]> [], 
