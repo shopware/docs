@@ -58,7 +58,7 @@ In a multi-app-server system, manage specific directories over a shared filesyst
 
 Besides the S3 bucket, it is also necessary to create certain directories for the app servers as shared filesystem.
 
-[Read more](./composer#storage-and-caches.md)
+[Read more](./composer.md#storage-and-caches)
 
 ## Shopware updates + security
 
