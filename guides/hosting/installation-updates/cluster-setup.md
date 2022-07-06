@@ -29,15 +29,14 @@ For requests, the entire handling of the app and plugin system, via the database
 
 ## Redis
 
-We recommend setting up at least four Redis servers for the following resources:
+We recommend setting up at least five Redis servers for the following resources:
 
-- Session + cart - [Read more](../performance/session.md)
-- cache.object - [Read more](../performance/caches.md#example-replace-some-cache-with-redis)
-- Lock + Increment storage - [Read more](../performance/increment.md)
-- Enqueue - [Read more](../infrastructure/message-queue.md#transport-redis-example)
-- Number Ranges - [Read more](../performance/number-ranges.md)
-
-Instead of setting up a Redis server for `enqueue`, you can also work directly with [RabbitMQ](../infrastructure/message-queue.md#transport-rabbitmq-example)
+1. Session ([Read more](../performance/session.md)) + cart ([Read more](../infrastructure/database-cluster.md#cart-in-redis))
+1. cache.object - [Read more](../performance/caches.md#example-replace-some-cache-with-redis)
+1. Lock ([Read more](../performance/lock-store.md)) + Increment storage ([Read more](../performance/increment.md))
+1. Number Ranges - [Read more](../performance/number-ranges.md)
+1. Enqueue - [Read more](../infrastructure/message-queue.md#transport-redis-example)  
+   Instead of setting up a Redis server for `enqueue`, you can also work directly with [RabbitMQ](../infrastructure/message-queue.md#transport-rabbitmq-example)
 
 The PHP Redis extension provides persistent Redis connections. Persistent connections can help in high load scenarios as each request doesn't have to open and close connections. Using non-persistent Redis connections can also hit the system's maximum of open sockets. Because of these limitations, the Redis extension is preferred over Predis.
 
