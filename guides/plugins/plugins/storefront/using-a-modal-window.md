@@ -60,7 +60,7 @@ Here is a basic implementation as an example. We override the `base_main_inner` 
 {% endraw %}
 {% endcode %}
 
-## Create a modal using AJAX Modal Utility
+## Create a modal using AjaxModalPlugin
 
 When setting a `data-url` in addition to `data-toggle="modal"` shopware automatically uses the `PseudoModalUtil` and the pseudo modal template from the `base.html.twig` to render a modal:
 
@@ -71,7 +71,7 @@ When setting a `data-url` in addition to `data-toggle="modal"` shopware automati
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
 {% block base_main_inner %}
-    <!-- This uses `AjaxModalExtensionUtil` -->
+    <!-- This uses `AjaxModalPlugin` -->
     <button class="btn"
             data-toggle="modal"
             data-url="https://example.org/ajax-url">
@@ -364,7 +364,7 @@ As you can see in the sample code, we are using the `js-pseudo-modal-template-ti
 It also tells the `PseudoModalUtil` class that the content of the `div` holds the title text.
 Furthermore there are two more css selectors `js-pseudo-modal-template` and `js-pseudo-modal-template-content-element` to define the structure of the template string.
 
-If want to customize your modal by using different style classes, you can do that by overriding the defaults while instantiating `PseudoModalUtil`.
+If you want to customize your modal by using different style classes, you can do that by overriding the defaults while instantiating `PseudoModalUtil`.
 
 Here is an example which shows how to override the CSS class names.
 
