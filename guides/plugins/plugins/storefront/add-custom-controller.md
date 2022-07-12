@@ -19,7 +19,7 @@ Here's a video explaining the basics about storefront controllers from our free 
 
 ### Storefront Controller class example
 
-First of all we have to create a new controller which extends from the `StorefrontController` class. A controller is also just a service which can be registered via the service container. Furthermore, we have to define our `RouteScope` via annotation, it is used to define which domain a route is part of and **needs to be set for every route**. In our case the scope is `storefront`.
+First of all we have to create a new controller which extends from the `StorefrontController` class. A controller is also just a service which can be registered via the service container. Furthermore, we have to define our `Route` with `defaults` with `_routeScope` via annotation, it is used to define which domain a route is part of and **needs to be set for every route**. In our case the scope is `storefront`.
 
 Go ahead and create a new file `ExampleController.php` in the directory `<plugin root>/src/Storefront/Controller/`.
 
@@ -30,7 +30,6 @@ Go ahead and create a new file `ExampleController.php` in the directory `<plugin
 
 namespace Swag\BasicExample\Storefront\Controller;
 
-use Shopware\Core\Framework\Routing\Annotation\RouteScope;
 use Shopware\Storefront\Controller\StorefrontController;
 
 /**
@@ -54,7 +53,6 @@ Below you can find an example implementation of a controller method including a 
 
 namespace Swag\BasicExample\Storefront\Controller;
 
-use Shopware\Core\Framework\Routing\Annotation\RouteScope;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Shopware\Storefront\Controller\StorefrontController;
 use Symfony\Component\HttpFoundation\Request;
@@ -82,7 +80,7 @@ class ExampleController extends StorefrontController
 
 The name of the method does not really matter, but it should somehow fit its purpose. More important is the `Route` annotation, that points to the route `/example`. Also note its name, which is also quite important. Make sure to use prefixes `frontend`, `api` or `store-api` here, depending on what your route does. Inside the method, we're using the method `renderStorefront` to render a twig template file in addition with the template variable `example`, which contains `Hello world`. This template variable will be usable in the rendered template file. The method `renderStorefront` then returns a `Response`, as every routed controller method has to.
 
-It is also possible to define the `RouteScope` per route.
+It is also possible to define the `_routeScope` per route.
 
 {% code title="<plugin root>/src/Storefront/Controller/ExampleController.php" %}
 
@@ -91,7 +89,6 @@ It is also possible to define the `RouteScope` per route.
 
 namespace Swag\BasicExample\Storefront\Controller;
 
-use Shopware\Core\Framework\Routing\Annotation\RouteScope;
 use Shopware\Storefront\Controller\StorefrontController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -102,8 +99,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ExampleController extends StorefrontController
 {
     /**
-    * @Route(defaults={"_routeScope"={"storefront"}})
-    * @Route("/example", name="frontend.example.example", methods={"GET"})
+    * @Route("/example", name="frontend.example.example", methods={"GET"}, defaults={"_routeScope"={"storefront"}})
     */
     public function showExample(): Response
     {
@@ -193,7 +189,6 @@ Here's an example:
 
 namespace Swag\BasicExample\Storefront\Controller;
 
-use Shopware\Core\Framework\Routing\Annotation\RouteScope;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Shopware\Storefront\Controller\StorefrontController;
 use Symfony\Component\HttpFoundation\Request;

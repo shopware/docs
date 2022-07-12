@@ -26,7 +26,6 @@ If the controller route is not to be cached for one or both of these states, the
 namespace Swag\BasicExample\Storefront\Controller;
 
 use Shopware\Storefront\Framework\Cache\Annotation\HttpCache;
-use Shopware\Core\Framework\Routing\Annotation\RouteScope;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Shopware\Storefront\Controller\StorefrontController;
 use Symfony\Component\HttpFoundation\Request;
