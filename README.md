@@ -12,7 +12,7 @@ Whereas **Concepts** convey the ideas, inner workings and architectural consider
 
 These two sections are complemented by the **References**, which contain structured code references, lists of flags, commands, endpoints which are useful for development.
 
-Visit the [academy](https://academy.shopware.com/collections?category=developer-sw6) for video content. If you have any questions left, you can always ask them on [StackOverflow](https://stackoverflow.com/search?q=shopware) or join our awesome community on [Slack](https://slack.shopware.com/).
+Visit the [academy](https://academy.shopware.com/collections?category=developer-sw6) for video content. If you have any questions left, you can always ask them on [StackOverflow](https://stackoverflow.com/questions/tagged/shopware6?tab=Newest) or join our awesome community on [Slack](https://slack.shopware.com/).
 
 ![](.gitbook/assets/image%20%289%29.png)
 
