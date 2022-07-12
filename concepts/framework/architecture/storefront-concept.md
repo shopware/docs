@@ -29,7 +29,7 @@ To achieve getting information from a specific resource, the Storefronts second 
 
 Contrary to the Core that can almost completely omit templating in favor JSON responses, the Storefront contains a rich set of Twig templates to display a fully functional shop. Having said that, another concern of the Storefront is to provide templating with Twig. The page object, which was enriched beforehand, will afterwards be passed to a specific Twig page template throughout a controller. A more detailed look into an example can be found in [Composite data handling](storefront-concept.md#composite-data-handling).
 
-Last, but not least, the Storefront not only contains static templates but also inhibits a theming engine to modify the rendered templates or change the default layout programmatically with your own [Themes](../../../guides/plugins/themes/) or [Plugins](storefront-concept.md).
+Last, but not least, the Storefront not only contains static templates but also includes a theming engine to modify the rendered templates or change the default layout programmatically with your own [Themes](../../../guides/plugins/themes/) or [Plugins](storefront-concept.md).
 
 ## Structure
 
