@@ -19,7 +19,7 @@ Here's a video explaining the basics about storefront controllers from our free 
 
 ### Storefront Controller class example
 
-First of all we have to create a new controller which extends from the `StorefrontController` class. A controller is also just a service which can be registered via the service container. Furthermore, we have to define our `Route` with `defaults` with `_routeScope` via annotation, it is used to define which domain a route is part of and **needs to be set for every route**. In our case the scope is `storefront`.
+First of all we have to create a new controller which extends from the `StorefrontController` class. A controller is also just a service which can be registered via the service container. Furthermore, we have to define our `Route` with `defaults` and `_routeScope` via annotation, it is used to define which domain a route is part of and **needs to be set for every route**. In our case the scope is `storefront`.
 
 Go ahead and create a new file `ExampleController.php` in the directory `<plugin root>/src/Storefront/Controller/`.
 
