@@ -52,11 +52,11 @@ Here's an example configuration for the development template:
         </testsuite>
     </testsuites>
 
-    <filter>
-        <whitelist>
+    <coverage>
+        <include>
             <directory suffix=".php">./</directory>
-        </whitelist>
-    </filter>
+        </include>
+    </coverage>
 </phpunit>
 ```
 
