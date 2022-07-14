@@ -82,6 +82,10 @@ The name of the method does not really matter, but it should somehow fit its pur
 
 It is also possible to define the `_routeScope` per route.
 
+{% hint style="info" %}
+Prior to Shopware 6.4.11.0 the `_routeScope` was configured by a dedicated annotation: `@RouteScope`. This way of defining the route-scope is deprecated for the 6.5 major version.
+{% endhint %}
+
 {% code title="<plugin root>/src/Storefront/Controller/ExampleController.php" %}
 
 ```php
