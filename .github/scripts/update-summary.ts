@@ -45,7 +45,11 @@ for (const entry of walkSync("./resources/references/adr", { includeDirs: false,
 
 let adrSummary = summaryItem(1, 'Architecture Reference', 'resources/references/adr/README.md');
 
-ADRs.forEach((topic) => {
+const names = Array.from(ADRs.keys());
+names.sort();
+
+names.forEach((name) => {
+	const topic = ADRs.get(name);
 	adrSummary += summaryItem(2, topicName(topic), path.join(topic.path, 'README.md'));
 	for (const adr of topic.entries) {
 		adrSummary += summaryItem(3, adrTitle(adr), adr.path);
