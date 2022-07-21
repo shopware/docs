@@ -24,7 +24,6 @@ As mentioned before this guide builds up upon the [adding a custom controller](a
 
 namespace SwagBasicExample\Storefront\Controller;
 
-use Shopware\Core\Framework\Routing\Annotation\RouteScope;
 use Shopware\Storefront\Controller\StorefrontController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
