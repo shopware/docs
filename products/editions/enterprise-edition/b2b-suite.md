@@ -29,6 +29,7 @@
       * [Company](b2b-suite/guides/storefront/company.md)
       * [Acl Routing](b2b-suite/guides/storefront/acl-routing.md)
       * [Extending the storefront](b2b-suite/guides/storefront/how-to-extend-the-storefront.md)
+      * [Overriding b2b typescript plugins](b2b-suite/guides/storefront/override-typescript-plugin-with-custom-theme.md)
     * [Administration](b2b-suite/guides/administration/README.md)
     * [Example Plugins](b2b-suite/guides/example-plugins/README.md)
 
