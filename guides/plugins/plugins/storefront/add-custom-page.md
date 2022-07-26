@@ -55,7 +55,8 @@ In there, we will proceed to create all page related classes, such as the page l
 
 Go ahead and create a new file called `ExamplePageLoader.php`. It's a new service, which doesn't have to extend from any other class. You might want to implement a `ExamplePageLoaderInterface` interface, which is not explained in this guide. You can do that in order to have a decoratable page loader class.
 
-The page loader is responsible for creating your page class instance \(`ExamplePage`, will be created in the next section\), filling it with data, e.g. from repositories, and firing a `PageLoaded` event, so others can react to your page being loaded.
+The page loader is responsible for creating your page class instance \(`ExamplePage`, will be created in the next section\), filling it with data, e.g. from store api, and firing a `PageLoaded` event, so others can react to your page being loaded.
+Do not use a repository directly in a page loader. Always get the data for your pages from a store api route instead.
 
 Let's have a look at a full example `ExamplePageLoader`:
 
@@ -88,7 +89,7 @@ class ExamplePageLoader
         $page = $this->genericPageLoader->load($request, $context);
         $page = ExamplePage::createFrom($page);
 
-        // Do additional stuff, e.g. load more data from repositories and add it to page
+        // Do additional stuff, e.g. load more data from store api and add it to page
          $page->setExampleData(...);
 
         $this->eventDispatcher->dispatch(

@@ -60,7 +60,7 @@ class ExamplePageletLoader
     {
         $pagelet = new ExamplePagelet();
 
-        // Do additional stuff, e.g. load more data from repositories and add it to page
+        // Do additional stuff, e.g. load more data from store-api and add it to page
         $pagelet->setExampleData(...);
 
         $this->eventDispatcher->dispatch(
@@ -160,7 +160,7 @@ public function load(Request $request, SalesChannelContext $context): ExamplePag
 
     $page->setExamplePagelet($this->examplePageletLoader->load($request, $context));
 
-    // Do additional stuff, e.g. load more data from repositories and add it to page
+    // Do additional stuff, e.g. load more data from store-api and add it to page
      $page->setExampleData(...);
 
     $this->eventDispatcher->dispatch(
