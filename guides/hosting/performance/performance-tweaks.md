@@ -209,3 +209,4 @@ monolog:
 ```
 
 The `business_event_handler_buffer` handler logs flows. Setting it to `error` will disable the logging of flow activities that succeed.
+
