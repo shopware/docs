@@ -82,9 +82,13 @@ class ExampleRouteDecorator extends AbstractExampleRoute
      */
     public function load(Criteria $criteria, SalesChannelContext $context): ExampleRouteResponse
     {
-        // do some custom stuff here
+        // We must call this function when using the decorator approach
+        $exampleResponse = $this->decorated->load();
+        
+        // do some custom stuff
+        $exampleResponse->headers->add([ 'cache-control' => "max-age=10000" ])
 
-        return new ExampleRouteResponse($this->exampleRepository->search($criteria, $context->getContext()));
+        return $exampleResponse;›
     }
 }
 ```
