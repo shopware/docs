@@ -319,6 +319,8 @@
     * [Content](guides/plugins/apps/content/README.md)
       * [CMS](guides/plugins/apps/content/cms/README.md)
         * [Add custom CMS blocks](guides/plugins/apps/content/cms/add-custom-cms-blocks.md)
+    * [Rule Builder](guides/plugins/apps/rule-builder/README.md)
+      * [Add custom rule conditions](guides/plugins/apps/rule-builder/add-custom-rule-conditions.md)
 * [Hosting](guides/hosting/README.md)
   * [Installation & Updates](guides/hosting/installation-updates/README.md)
     * [Deployments](guides/hosting/installation-updates/deployments/README.md)
