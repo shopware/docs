@@ -174,18 +174,6 @@ Let's have a look at an [example code](https://github.com/shopware/platform/blob
 /**
  * @Since("6.2.0.0")
  * @Entity("product")
- * @OA\Post(
- *      path="/product-listing/{categoryId}",
- *      summary="Loads products from listing",
- *      operationId="readProductListing",
- *      tags={"Store API","Product"},
- *      @OA\Parameter(name="categoryId", description="Category ID", @OA\Schema(type="string"), in="path", required=true),
- *      @OA\Response(
- *          response="200",
- *          description="Found products",
- *          @OA\JsonContent(ref="#/components/schemas/ProductListingResult")
- *     )
- * )
  * @Route("/store-api/product-listing/{categoryId}", name="store-api.product.listing", methods={"POST"})
  */
 public function load(string $categoryId, Request $request, SalesChannelContext $context, Criteria $criteria): ProductListingRouteResponse

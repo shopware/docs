@@ -50,34 +50,6 @@ class ExampleRouteDecorator extends AbstractExampleRoute
 
     /**
      * @Entity("swag_example")
-     * @OA\Post(
-     *      path="/example",
-     *      summary="This route can be used to load the swag_example by specific filters",
-     *      operationId="readExample",
-     *      tags={"Store API", "Example"},
-     *      @OA\Parameter(name="Api-Basic-Parameters"),
-     *      @OA\Response(
-     *          response="200",
-     *          description="",
-     *          @OA\JsonContent(type="object",
-     *              @OA\Property(
-     *                  property="total",
-     *                  type="integer",
-     *                  description="Total amount"
-     *              ),
-     *              @OA\Property(
-     *                  property="aggregations",
-     *                  type="object",
-     *                  description="aggregation result"
-     *              ),
-     *              @OA\Property(
-     *                  property="elements",
-     *                  type="array",
-     *                  @OA\Items(ref="#/components/schemas/swag_example_flat")
-     *              )
-     *          )
-     *     )
-     * )
      * @Route("/store-api/example", name="store-api.example.search", methods={"GET", "POST"})
      */
     public function load(Criteria $criteria, SalesChannelContext $context): ExampleRouteResponse
