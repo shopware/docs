@@ -15,7 +15,8 @@ To offer configuration possibilities to your users you can provide a `config.xml
       └── manifest.xml
 ```
 
-The configuration page will be displayed in the administration under the `Extension store`. For development purposes you can use the administration component to configure plugins to provide configuration for your app, therefore use the URL `{appUrl}/admin##/sw/plugin/settings/{appName}`.
+The configuration page will be displayed in the administration under `Extensions > My extensions`.
+For development purposes you can use the administration component to configure plugins to provide configuration for your app, therefore use the URL `{APP_URL}/admin#/sw/extension/config/{appName}`.
 
 ## Reading the configuration values
 
@@ -23,10 +24,10 @@ The configuration values are saved as part of the `SystemConfig` and you can use
 
 ### Reading the config over the API
 
-To access your apps configuration over the api make a GET request against the `/api/_action/system-config` route. You have to add the prefix for your configuration as the `domain` query parameter. Optionally you can provide a `SalesChannelId`, if you want to read the values for a specific SalesChannel, as the `salesChannelId` query param. The API call will return a JSON-Object containing all of your configuration values. A sample Request and Response may look like this.
+To access your apps configuration over the API make a GET request against the `/api/_action/system-config` route. You have to add the prefix for your configuration as the `domain` query parameter. Optionally you can provide a `SalesChannelId`, if you want to read the values for a specific SalesChannel, as the `salesChannelId` query param. The API call will return a JSON-Object containing all of your configuration values. A sample Request and Response may look like this.
 
-```javascript
-// GET /api/_action/system-config?domain=DemoApp.config&salesChannelId=98432def39fc4624b33213a56b8c944d
+```http request
+GET /api/_action/system-config?domain=DemoApp.config&salesChannelId=98432def39fc4624b33213a56b8c944d
 
 {
     "DemoApp.config.field1": true,
