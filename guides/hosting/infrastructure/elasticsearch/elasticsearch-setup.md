@@ -148,7 +148,7 @@ When you are indexing the data is written in bulks to the message queue and the 
 If a messenger process is active the entries of that table are processed one by one.
 In case a message runs into an error it is written into the `dead_messages` table and will be processed again after a specific timeframe.
 
-You can start multiple messange consumer processes by using the command `bin/console messenger:consume` and also add output to the processed messages by adding the parameter `bin/console messenger:consume -vv`.
+You can start multiple messenger consumer processes by using the command `bin/console messenger:consume` and also add output to the processed messages by adding the parameter `bin/console messenger:consume -vv`.
 In an productive environment you want to deactivate the admin messenger which is started automatically when opening a session in your administration view by following this [documentation](/docs/guides/plugins/plugins/framework/message-queue/add-message-handler#the-admin-worker).
 
 Our experience has shown that up to three worker processes are normal and useful for a production environment.
