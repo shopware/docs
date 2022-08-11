@@ -62,7 +62,7 @@ The manifest file is the central point of your app. It defines the interface bet
         <author>shopware AG</author>
         <copyright>(c) shopware AG</copyright>
         <version>4.14.0</version>
-        <icon>Resources/app.png</icon>
+        <icon>Resources/app-icon.png</icon>
         <license>MIT</license>
     </meta>
 </manifest>
