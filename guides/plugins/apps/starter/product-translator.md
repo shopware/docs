@@ -177,6 +177,10 @@ in its shops:
 
 {% endcode %}
 
+{% hint style="info" %}
+The timeout for the requests against app server is 5 seconds.
+{% endhint %}
+
 These two webhooks provide a way for shops to notify your app server about events that occurred.
 The `src/Controller/RegistrationController.php` controller in the app template already provides the `deleted` webhook. It notifies the server that a shop has deleted the app.
 
