@@ -10,7 +10,7 @@ In order to add your own custom translations for your plugin, you first need a p
 
 ## Snippet file structure
 
-Shopware 6 is able to load your snippet files automatically if you stick to a convention regarding file structure and naming. You have to store your snippet files in the `<plugin root>/src/Resources/snippet` directory of your plugin, but you can use further subdirectories if you want to. Use the naming pattern `<name>.<locale>`, where you can freely define the name part. The locale part must map to the ISO string of the supported locale in this snippet file. If you provide base translations, meaning that you ship translations for a whole new language, you indicate it with a `.base` suffix in your file name. Keep in mind that in this case you also have to use the name, so your complete filename may look like this: `<name>.<locale>.base.json`.
+Shopware 6 is able to load your snippet files automatically if you stick to a convention regarding file structure and naming. You have to store your snippet files in the `<plugin root>/src/Resources/snippet` directory of your plugin, but you can use further subdirectories if you want to. Use the naming pattern `<name>.<locale>`, where you can freely define the name part. The locale part must map to the ISO string of the supported locale in this snippet file. If you provide base translations, meaning that you ship translations for a whole new language, you indicate it with a `.base` suffix in your file name. Keep in mind that in this case you also have to use the name, so your complete filename may look like this: `messages.<locale>.base.json`.
 
 So your structure could then look like this:
 
@@ -20,20 +20,18 @@ So your structure could then look like this:
         └── src
             ├─ Resources
             │  └─ snippet
-            │     ├─ de_DE
-            │     │  └─ example.de-DE.json
-            │     └─ en_GB
-            │        └─ example.en-GB.json
+            │     ├─ messages.de-DE.json
+            │     └─ messages.en-GB.json
             └─ SwagBasicExample.php
 ```
 
 ## Creating the translation
 
-Now that we know how the structure of snippets should be, we can create a new snippet file. In this example we are creating a snippet file for British English called `example.en-GB.json`. If you are using nested objects, you can access the values with `exampleOne.exampleTwo.exampleThree`. We can also use template variables, which we can assign values later in the template. There is no explicit syntax for variables in the storefront. However, it is recommended to enclose them with `%` symbols to make their purpose clear.
+Now that we know how the structure of snippets should be, we can create a new snippet file. In this example we are creating a snippet file for British English called `messages.en-GB.json`. If you are using nested objects, you can access the values with `exampleOne.exampleTwo.exampleThree`. We can also use template variables, which we can assign values later in the template. There is no explicit syntax for variables in the storefront. However, it is recommended to enclose them with `%` symbols to make their purpose clear.
 
 Here's an example of an English translation file:
 
-{% code title="<plugin root>/src/Resources/snippet/en\_GB/example.en-GB.json" %}
+{% code title="<plugin root>/src/Resources/snippet/messages.en-GB.json" %}
 
 ```javascript
 {
