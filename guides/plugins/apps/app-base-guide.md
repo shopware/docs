@@ -78,6 +78,10 @@ The setup workflow is shown in the following schema, each step will be explained
 
 ![Setup request workflow](../../../.gitbook/assets/shop-app-communication-1-.svg)
 
+{% hint style="info" %}
+The timeout for the requests against app server is 5 seconds.
+{% endhint %}
+
 ### Registration Request
 
 The registration request is made as a GET request against a URL that you provide in the manifest file of your app.
