@@ -32,7 +32,7 @@ Now that you've found your name, it's time to actually create your plugin.
 
 Shopware provides a handy command that you can use to generate the plugin structure. Go to your shopware project's root directory and run the following command:  
 
-```
+```bash
 bin/console plugin:create SwagBasicExample
 ```
 
