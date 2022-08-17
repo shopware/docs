@@ -36,7 +36,7 @@ Shopware provides a handy command that you can use to generate the plugin struct
 bin/console plugin:create SwagBasicExample
 ```
 
-You can pass an addition flag `-c` or `--create-config` in the above command which would also create a demo configuration file in the `Resources` directory. The command will generate all the basic required files that are needed for an extension to be installed on a Shopware instance. Make sure to adjust the namespace in the files as per your need. 
+You can pass an addition flag `-c` or `--create-config` in the above command which would also create a demo configuration file in the `Resources` directory. The command will generate all the basic required files that are needed for an extension to be installed on a Shopware instance. Make sure to adjust the namespace in the files as per your need.
 
 If you want to create the structure manually please follow the instructions below:
 
