@@ -131,9 +131,6 @@ Before you're able to set up Shopware, you need to clone our Shopware repositori
 
 ### Starting Shopware installation
 
-To install all known dependencies of Shopware, and run the system config facilities offered by the shopware setup utility (see below), search for and run the `composer setup`.
-This should run a complete start-to-finish installation of the `shopware/platform` repository, complete with composer and npm modules installed, and a MySQL database configured.
-
 A simple cli installation wizard can be invoked by executing:
 
 ```bash
