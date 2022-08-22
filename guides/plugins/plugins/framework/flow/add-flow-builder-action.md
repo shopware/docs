@@ -225,23 +225,46 @@ export const ACTION = Object.freeze({
     CREATE_TAG: 'action.create.tag',
 });
 
+export const GROUP = 'customer'
+
 export default {
-    ACTION,
+    ACTION, GROUP
 };
 ```
 
 {% endcode %}
+
+**Grouping Actions**
+
+Using the `GROUP` constant, you can define a group that your action will show up in. The default group is `general`.
+
+| Group Name | Group Headline |
+| :--- | :--- |
+| general | General|
+| tag | Tag |
+| customer | Customer |
+| order | Order |
 
 Next, we override `sw-flow-sequence-action` component to show `CREATE_TAG` label in action list. For example, we override `getActionTitle` method to add icon, label for `CREATE_TAG` action.
 
 {% code title="<plugin root>/src/Resources/app/administration/src/extension/sw-flow-sequence-action/index.js" %}
 
 ```jsx
-import { ACTION } from '../../constant/swag-example-plugin.constant';
+import { ACTION, GROUP } from '../../constant/swag-example-plugin.constant';
 
 const { Component } = Shopware;
 
 Component.override('sw-flow-sequence-action', {
+    computed: {
+        // Not necessary if you use an existing group
+        // Push the `groups` method in computed if you are defining a new group
+        groups() {
+             this.actionGroups.unshift(GROUP);
+
+            return this.$super('groups');
+        },
+    },
+
     methods: {
         getActionTitle(actionName) {
             if (actionName === ACTION.CREATE_TAG) {
@@ -249,6 +272,7 @@ Component.override('sw-flow-sequence-action', {
                     value: actionName,
                     icon: 'default-badge-help',
                     label: this.$tc('swag-example-plugin.titleCreateTag'),
+                    group: GROUP,
                 }
             }
 
@@ -271,7 +295,7 @@ First, we customise `modalName` for the configuration modal, add an `actionDescr
 {% code title="<plugin root>/src/Resources/app/administration/src/extension/sw-flow-sequence-action/index.js" %}
 
 ```jsx
-import { ACTION } from '../../constant/swag-example-plugin.constant';
+import { ACTION, GROUP } from '../../constant/swag-example-plugin.constant';
 
 const { Component } = Shopware;
 
@@ -310,6 +334,7 @@ Component.override('sw-flow-sequence-action', {
                     value: actionName,
                     icon: 'default-badge-help',
                     label: this.$tc('swag-example-plugin.titleCreateTag'),
+                    group: GROUP,
                 }
             }
 
