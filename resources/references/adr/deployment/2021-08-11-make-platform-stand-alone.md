@@ -2,7 +2,7 @@
 
 {% hint style="info" %}
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/resources/references/adr/deployment/2021-08-11-make-platform-stand-alone.md)
+You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/deployment/2021-08-11-make-platform-stand-alone.md)
 {% endhint %}
 
 ## Context

@@ -418,6 +418,8 @@
       * [Decoration pattern](resources/references/adr/extension/2020-11-25-decoration-pattern.md)
       * [Custom field label loading in storefront](resources/references/adr/extension/2020-09-08-custom-field-label-loading-in-storefront.md)
       * [Creating events](resources/references/adr/extension/2020-11-06-creating-events.md)
+    * [General](resources/references/adr/README.md)
+      * [Domain exceptions](resources/references/adr/2022-02-24-domain-exceptions.md)
     * [Inventory](resources/references/adr/inventory/README.md)
       * [Implement individual sorting](resources/references/adr/inventory/2020-08-14-implement-individual-sorting.md)
       * [Available stock](resources/references/adr/inventory/2022-03-25-available-stock.md)
