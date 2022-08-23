@@ -20,6 +20,7 @@ jobs:
         with:
           add-paths: |
             resources/references/adr/**/*
+            resources/references/adr/*.md
             SUMMARY.md
           author: shopwareBot <example@example.com>
           committer: shopwareBot <example@example.com>
