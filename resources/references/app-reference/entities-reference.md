@@ -27,8 +27,8 @@
             <!-- you can also define relation between entities -->
             <many-to-many name="products" reference="product" store-api-aware="true" />
 
-            <!-- it is also possible to cascading relations between you own custom entities. In this case, we delete all custom_entity_blog_comment records, when the linked custom_entity_blog record deleted -->
-            <one-to-many name="comments" reference="custom_entity_blog_comment" store-api-aware="true" on-delete="cascade" reverse-required="true" />
+            <!-- it is also possible to cascading relations between you own custom entities. In this case, we delete all ce_blog_comment records, when the linked custom_entity_blog record deleted -->
+            <one-to-many name="comments" reference="ce_blog_comment" store-api-aware="true" on-delete="cascade" reverse-required="true" />
             
             <!-- There are many other cascade cases which we support -->
 
@@ -64,10 +64,11 @@
         </fields>
     </entity>
 
-    <entity name="custom_entity_blog_comment">
+    <!-- since shopware v6.5.15.0 you can use the `ce_` shorthand prefix, to make your entity names shorter -->
+    <entity name="ce_blog_comment">
         <fields>
             <string name="title" required="true" translatable="true" store-api-aware="true" />
-            <!-- <fk name="custom_entity_blog_comments_id" required="true"   <<< defined over the one-to-many association in the custom_entity_blog definition -->
+            <!-- <fk name="ce_blog_comments_id" required="true"   <<< defined over the one-to-many association in the custom_entity_blog definition -->
             <text name="content" allow-html="true" translatable="true" store-api-aware="true" />
             <email name="email"  store-api-aware="false" />
             <many-to-one name="recommendation" reference="product" store-api-aware="true" required="false" on-delete="set-null" />
