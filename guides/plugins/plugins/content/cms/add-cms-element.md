@@ -347,8 +347,10 @@ Shopware.Component.register('sw-cms-el-config-dailymotion', {
             this.initElementConfig('dailymotion');
         },
 
-        onElementUpdate(element) {
-            this.$emit('element-update', element);
+        onElementUpdate(value) {
+            this.element.config.varName.value = value;
+
+            this.$emit('element-update', this.element);
         }
     }
 });
@@ -370,7 +372,8 @@ Open the template `sw-cms-el-config-dailymotion.html.twig` instead. To be displa
           label="Dailymotion video link"
           placeholder="Enter dailymotion link..."
           v-model="dailyUrl"
-          @element-update="onElementUpdate">
+          @input="onElementUpdate"
+          @change="onElementUpdate">
     </sw-text-field>
 {% endblock %}
 ```
