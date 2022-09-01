@@ -348,7 +348,7 @@ Shopware.Component.register('sw-cms-el-config-dailymotion', {
         },
 
         onElementUpdate(value) {
-            this.element.config.varName.value = value;
+            this.element.config.dailyUrl.value = value;
 
             this.$emit('element-update', this.element);
         }
