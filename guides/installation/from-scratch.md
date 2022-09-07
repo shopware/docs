@@ -8,9 +8,9 @@ Be aware this will be a vastly more complex solution since additional system req
 
 ## Prerequisites
 
- - A Linux-based operating system (Windows installation is not covered here, but notes are provided about installing within a WSL instance)
- - An [Apache2 server installation](https://httpd.apache.org/docs/2.4/install.html) within the Linux-based operating system you have selected
- - Installation of all of the required packages mentioned in the [Installation overview](overview.md), there are two main goals you need to accomplish.
+- A Linux-based operating system (Windows installation is not covered here, but notes are provided about installing within a WSL instance)
+- An [Apache2 server installation](https://httpd.apache.org/docs/2.4/install.html) within the Linux-based operating system you have selected
+- Installation of all of the required packages mentioned in the [Installation overview](overview.md), there are two main goals you need to accomplish.
 
 Please note that this guide is rather based on plugin development and contribution. If you need a template for full composer-based shop projects, please refer to the [production template](https://github.com/shopware/production).
 
@@ -22,10 +22,10 @@ Firstly, we need to set up Apache to locate Shopware 6. If you wish you could co
 
 In order to do this, you should add a vhost definition to your Apache site configuration.
 
- 1) Create a file with the following pattern: `/etc/apache2/sites-available/*.conf`.
+1) Create a file with the following pattern: `/etc/apache2/sites-available/*.conf`.
 Here we will create a file called `/etc/apache2/sites-available/shopware-install.conf`
 
- 2) Within the created `shopware-install.conf` file place the following configuration:
+1) Within the created `shopware-install.conf` file place the following configuration:
 
 ```text
 <VirtualHost *:80>
@@ -46,12 +46,14 @@ Here we will create a file called `/etc/apache2/sites-available/shopware-install
 </VirtualHost>
 ```
 
-3) Symlink the `shopware-install.conf` file to the Apache2 `sites-enabled` directory:
+1) Symlink the `shopware-install.conf` file to the Apache2 `sites-enabled` directory:
+
 ```shell
 sudo ln -s /etc/apache2/sites-available/shopware-install.conf /etc/apache2/sites-enabled/shopware-install.conf
 ```
 
-4) Restart the Apache2 service in order to activate your new configuration:
+1) Restart the Apache2 service in order to activate your new configuration:
+
 ```shell
 # Your mileage with this command may vary depending upon your chosen Linux operating system
 sudo service apache2 restart
@@ -77,35 +79,34 @@ Once `localhostForwarding` is enabled, you should update you name your local dev
 ```text
 xxxxxx.dev.localhost
 ```
+
 ...where 'xxxxxx' should be replaced with a 'hyphen/underscore separated' string.
 
 {% hint style="info" %}
-Make sure the `APP_URL` variable defined within your `[PROJECT_ROOT]/.env` file matches the `ServerName` value within your Apache2 Vhost configuration 
+Make sure the `APP_URL` variable defined within your `[PROJECT_ROOT]/.env` file matches the `ServerName` value within your Apache2 Vhost configuration
 {% endhint %}
-
 
 ### Apache2 server configuration
 
 Make sure following Apache modules are enabled:
 
-* mod\_rewrite
-* mod\_headers
-* mod\_negotiation
+- mod\_rewrite
+- mod\_headers
+- mod\_negotiation
 
 {% hint style="info" %}
-Checking if these modules are installed on apache is possible with the command `apachectl -M | grep [module_name]`. When searching for a specific module with `grep` make sure to only use the name suffix, such as "rewrite" 
+Checking if these modules are installed on apache is possible with the command `apachectl -M | grep [module_name]`. When searching for a specific module with `grep` make sure to only use the name suffix, such as "rewrite"
 {% endhint %}
 
 After a quick restart of apache you are done here.
 
 {% hint style="info" %}
-For Mac (OSX) operating systems: 
+For Mac (OSX) operating systems:
 
-In your apache config, it is recommended to move the document root folder to the user's `$HOME` folder in order to avoid permission issues. This is the folder where Apache looks to serve file from. By default, the document root is configured as `/usr/local/var/www`. 
+In your apache config, it is recommended to move the document root folder to the user's `$HOME` folder in order to avoid permission issues. This is the folder where Apache looks to serve file from. By default, the document root is configured as `/usr/local/var/www`.
 
 As this is a development machine, let's assume we want to change the document root to point to a folder in our own home directory. Search for the term "DocumentRoot" in your `httpd.conf` apache configuration, and you should see the following line:
 {% endhint %}
-
 
 ```bash
 DocumentRoot "/usr/local/var/www"
