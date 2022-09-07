@@ -142,7 +142,7 @@ Finally, we have our retrieved entities, using an `@OA\Items` annotation which r
 
 ### Route response
 
-After we have created our route, we need to create the mentioned `ExampleRouteResponse`. This class should extend from `Shopware\Core\System\SalesChannel\StoreApiResponse`. In this class we have a property `$object` of type `Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult`. The class constructor has one argument `EntitySearchResult`, which was passed to it by our `ExampleRoute`. The constructor calls the parent constructor with the parameter `$object` which sets the value for our object property. Finally, we add a method `getExamples` in which we return our entity collection that we got from the object.
+After we have created our route, we need to create the mentioned `ExampleRouteResponse`. This class should extend from `Shopware\Core\System\SalesChannel\StoreApiResponse`, consequently inheriting a property `$object` of type `Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult`. The `StoreApiResponse` parent constructor takes accepts one argument `$object` in order to set the value for the `$object` property (currently we provide this parameter our `ExampleRoute`). Finally, we add a method `getExamples` in which we return our entity collection that we got from the object.
 
 {% code title="<plugin root>/src/Core/Content/Example/SalesChannel/ExampleRouteResponse.php" %}
 
@@ -155,15 +155,12 @@ use Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult;
 use Shopware\Core\System\SalesChannel\StoreApiResponse;
 use Swag\BasicExample\Core\Content\Example\ExampleCollection;
 
+/**
+ * Class ExampleRouteResponse
+ * @property EntitySearchResult $object
+ */
 class ExampleRouteResponse extends StoreApiResponse
 {
-    protected EntitySearchResult $object;
-
-    public function __construct(EntitySearchResult $object)
-    {
-        parent::__construct($object);
-    }
-
     public function getExamples(): ExampleCollection
     {
         /** @var ExampleCollection $collection */
