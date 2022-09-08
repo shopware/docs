@@ -26,4 +26,4 @@ module.exports = () => {
 
 {% endcode %}
 
-This way, the configuration is automatically loaded and then merged with the Shopware provided webpack configuration, including all other plugin webpack configurations. Merging is done with the [webpackMerge](https://github.com/survivejs/webpack-merge) library.
+This way, the configuration is automatically loaded and then merged with the Shopware provided webpack configuration. Configurations of plugins are **not** merged into each other. Merging is done with the [webpackMerge](https://github.com/survivejs/webpack-merge) library.
