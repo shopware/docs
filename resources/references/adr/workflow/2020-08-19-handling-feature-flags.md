@@ -1,10 +1,5 @@
 # 2020-08-12 - Handling feature flags
 
-{% hint style="info" %}
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/workflow/2020-08-19-handling-feature-flags.md)
-{% endhint %}
-
 ## Context
 
 We need a decent definition how we should capsulate feature changes with a feature flag. The Goal for this adr is to have a final definition for all common cases.

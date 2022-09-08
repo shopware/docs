@@ -1,10 +1,5 @@
 # 2020-08-10 - Feature flag system
 
-{% hint style="info" %}
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/workflow/2020-08-10-feature-flag-system.md)
-{% endhint %}
-
 ## Context
 To provide a way to toggle code from incomplete features, the feature flag system was implemented.
 Because of the high turnover on code for features in development, the system needs to be robust and easy to use.
