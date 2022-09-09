@@ -60,6 +60,8 @@ The method `registerCmsElement` takes a configuration object, containing the fol
 | configComponent | The Vue component defining the "configuration detail" page of your element. |
 | previewComponent | The Vue component to be used in the "list of available elements". Just shows a tiny preview of what your element would look like if it was used. |
 | defaultConfig | A default configuration to be applied to this element. Must be an object containing properties matching the used variable names, containing the default values. |
+| hidden (optional)| Hides the element in the replace element modal. |
+| removable (optional| Removes the replace element icon. |
 
 Go ahead and create this configuration object yourself. Here's what it should look like after having set all of those options:
 
