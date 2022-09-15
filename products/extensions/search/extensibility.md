@@ -1,7 +1,7 @@
 # Extensibility
 <!-- markdown-link-check-disable -->
 {% hint style="warning" %}
-This article use many Code-References to GitLab! Please contact the Shopware Sales department to get access to the private repository. Find more information in our [Enterprise Contribution Guidelines](https://github.com/shopware/docs/tree/4dd18decd18d812c20a9c2b9c224299c519af522/products/editions/enterprise-edition/contribution-guidelines.md) Without having access, you cannot access the repository and all corresponding links.
+This article use many Code-References to GitLab! Please contact the Shopware Sales department to get access to the private repository. Without having access, you cannot access the repository and all corresponding links.
 {% endhint %}
 
 To implement the full search experience for a own entity, you have to implement multiple interfaces.

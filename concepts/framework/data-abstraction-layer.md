@@ -67,7 +67,7 @@ Another reason why the DAL was designed is to meet the requirements of the produ
 
 ### Indexing
 
-The DAL was designed to be optimized for use in e-commerce. There is one principle that has proven to be very effective so far: "The more time you put into indexing data, the faster it is possible to read it". This is reflected in Shopware as follows:
+The DAL was designed to be optimized for use in ecommerce. There is one principle that has proven to be very effective so far: "The more time you put into indexing data, the faster it is possible to read it". This is reflected in Shopware as follows:
 
 * A product is written once every X minutes
 

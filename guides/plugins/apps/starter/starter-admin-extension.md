@@ -3,7 +3,7 @@
 In this guide, you will learn how to set up an extension for the administration UI.
 
 {% hint style="info" %}
-When you are using a self-managed Shopware Version, make sure to set the feature flag `FEATURE_NEXT_17950=1` to enable the Admin Extension API.
+When you are using a self-hosted Shopware Version, make sure to set the feature flag `FEATURE_NEXT_17950=1` to enable the Admin Extension API.
 {% endhint %}
 
 ![An admin notification](../../../../.gitbook/assets/extension-api-notification.png)
@@ -32,7 +32,7 @@ SimpleNotification/
 ```
 
 {% hint style="info" %}
-When you are using a self-managed Shopware Version, you can also create the project directory in the `custom/apps` directory of your Shopware installation. However, the descriptions in this guide apply to both Shopware cloud and self-managed stores.
+When you are using a self-hosted Shopware Version, you can also create the project directory in the `custom/apps` directory of your Shopware installation. However, the descriptions in this guide apply to both Shopware cloud and self-hosted stores.
 {% endhint %}
 
 Next, we're gonna put our basic configuration into the file we just created.

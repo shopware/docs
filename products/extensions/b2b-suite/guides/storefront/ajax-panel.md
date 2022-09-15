@@ -1,7 +1,5 @@
 # Ajax panel
 
-You can download a plugin showcasing the topic [here](/products/editions/enterprise-edition/b2b-suite/example-plugins/B2bAjaxPanel.zip).
-
 ## Table of contents
 
 * [Description](#description)
@@ -45,8 +43,6 @@ The most basic ajax panel looks like this:
 
 After the document is ready, the ajax panel will trigger a XHR GET-Request and replace it's inner html with the responses content.
 Now all clicks on links and form submits inside the container will be changed to XHR-Requests.
-A streamlined example of this behaviour can be found in the [B2BAjaxPanel Example Plugin](/products/editions/enterprise-edition/b2b-suite/example-plugins/B2bAjaxPanel.zip),
-but it is used across the B2B-Suite.
 
 ## Extended usage
 

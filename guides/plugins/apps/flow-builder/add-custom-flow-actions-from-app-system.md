@@ -16,7 +16,7 @@ After reading, you will be able to
 
 ## Prerequisites
 
-Please make sure you already have a working Shopware 6 store running (either cloud or self-managed). Prior knowledge about the Flow Builder feature of Shopware 6 is useful.
+Please make sure you already have a working Shopware 6 store running (either cloud or self-hosted). Prior knowledge about the Flow Builder feature of Shopware 6 is useful.
 
 Please see the [Flow Builder Concept](../../../../concepts/framework/flow-concept.md) for more information.
 
