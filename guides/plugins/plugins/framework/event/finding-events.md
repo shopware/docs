@@ -212,7 +212,7 @@ Those "criteria events" are not generated automatically and therefore it is not 
 
 #### Business events
 
-Business events are fired everytime an important business / eCommerce action occurred, such as "A customer registered" or "An order was placed".
+Business events are fired everytime an important business / ecommerce action occurred, such as "A customer registered" or "An order was placed".
 
 Therefore, you can use them to react on those events, most times there even is an event fired **before** an action happened.
 Have a look at those two example events:

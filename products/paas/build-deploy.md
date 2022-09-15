@@ -1,8 +1,8 @@
 # Build & Deploy
 
-Now that we've set up the repository, we're ready to push changes to your Enterprise Cloud environment.
+Now that we've set up the repository, we're ready to push changes to your PaaS environment.
 
-The key concept is, that your Enterprise Cloud project is a git repository. Every time you push to that repository, a new version of your store will be created from the source code and deployed. Different environments (e.g. dev-previews, staging and production) are mapped by corresponding branches.
+The key concept is, that your PaaS project is a git repository. Every time you push to that repository, a new version of your store will be created from the source code and deployed. Different environments (e.g. dev-previews, staging and production) are mapped by corresponding branches.
 
 ## Push main branch
 
@@ -14,7 +14,7 @@ git commit -m "Applied new configuration"
 git push -u platform main
 ```
 
-First, we stage all changes and then add them as a new commit. Afterwards we push them to our `platform` origin (remember, the one for our Enterprise Cloud environment) on the `main` branch.
+First, we stage all changes and then add them as a new commit. Afterwards we push them to our `platform` origin (remember, the one for our PaaS environment) on the `main` branch.
 
 This will trigger a new build with a subsequent deploy, consisting of the following (and more) steps.
 

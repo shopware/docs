@@ -3,7 +3,7 @@
 The source code of your project will reside in a git-based VCS repository. You can start with a plain project, however we suggest starting with a fork of the [shopware/paas](https://github.com/shopware/paas) setup template from GitHub. You will find out more about the setup template in the [Setup Template](setup-template.md) section.
 
 {% hint style="info" %}
-This guide explains the repository setup using **GitHub**. You can also integrate Bitbucket or GitLab based version control environments with Shopware Enterprise Cloud. More information in [Source Integrations](https://docs.platform.sh/integrations/source.html).
+This guide explains the repository setup using **GitHub**. You can also integrate Bitbucket or GitLab based version control environments with Shopware PaaS. More information in [Source Integrations](https://docs.platform.sh/integrations/source.html).
 {% endhint %}
 
 ## Fork and clone setup template
@@ -38,9 +38,9 @@ git merge upstream/main
 
 Be aware that you might have to resolve some conflicts if you made changes in your template.
 
-## Add Enterprise Cloud remote
+## Add PaaS remote
 
-Next, we need to add a third remote, which allows us to push code towards the Enterprise Cloud environment and trigger a deployment.
+Next, we need to add a third remote, which allows us to push code towards the PaaS environment and trigger a deployment.
 
 We first need the project ID, so we display all projects using
 
@@ -48,11 +48,11 @@ We first need the project ID, so we display all projects using
 $ shopware projects
 
 Your projects are:
-+---------------+-----------------------+------------------+--------------+
-| ID            | Title                 | Region           | Organization |
-+---------------+-----------------------+------------------+--------------+
-| 7xasjkyld189e | enterprise-cloud-env  | <region-domain>  | shopware     |
-+---------------+-----------------------+------------------+--------------+
++---------------+-----------+------------------+--------------+
+| ID            | Title     | Region           | Organization |
++---------------+-----------+------------------+--------------+
+| 7xasjkyld189e | paas-env  | <region-domain>  | shopware     |
++---------------+-----------+------------------+--------------+
 
 Get a project by running: platform get [id]
 List a projects environments by running: platform environments -p [id]
@@ -73,14 +73,14 @@ $ git remote -v
 
 origin	git@github.com:<project-repository>.git (fetch)
 origin	git@github.com:<project-repository>.git (push)
-platform	<enterprise-cloud-url>.git (fetch)
-platform	<enterprise-cloud-url>.git (push)
+platform	<paas-url>.git (fetch)
+platform	<paas-url>.git (push)
 upstream	https://github.com/shopware/paas (fetch)
 upstream	https://github.com/shopware/paas (push)
 ```
 
-| Remote | Function | Description |
-| --- | --- | --- |
-| `origin` | Project Code | This remote contains all your project specific source code |
-| `platform` | Enterprise Cloud Environment | Changes pushed to this remote will be synced with your Enterprise Cloud environment |
-| `upstream` | Official Template | Maintained by Showpare and used to pull latest changes |
+| Remote     | Function          | Description                                                             |
+|------------|-------------------|-------------------------------------------------------------------------|
+| `origin`   | Project Code      | This remote contains all your project specific source code              |
+| `platform` | PaaS Environment  | Changes pushed to this remote will be synced with your PaaS environment |
+| `upstream` | Official Template | Maintained by Showpare and used to pull latest changes                  |

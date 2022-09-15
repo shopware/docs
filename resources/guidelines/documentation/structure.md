@@ -27,9 +27,7 @@ This section contains articles which deal with the core concepts of Shopware and
 
 ## Products
 
-The _Products_ section deals with topics which are specific to a single product of Shopware. Since almost all of our products share at least some aspects, it also serves as an "entry point" to other sections and articles. For example, the "catalog" used within our Community Edition and Professional Edition is technically the same.
-
-However, every edition features some things that others don't - such as the B2B Suite within the enterprise edition. The corresponding documentation can then be found in "Products &gt; Enterprise Edition &gt; B2B Suite". At some point we might create dedicated spaces \(documentations\) for some of those entries. These spaces can then follow a similar structure to the entire documentation.
+The _Products_ section deals with topics which are specific to a single product of Shopware. Since almost all of our products share at least some aspects, it also serves as an "entry point" to other sections and articles. For example, the "catalog" used within our Community Edition and in all commercial plans is technically the same.
 
 ## Resources
 

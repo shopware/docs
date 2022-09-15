@@ -31,7 +31,7 @@ MyApiExtension/
 ```
 
 {% hint style="info" %}
-When you are using a self-managed Shopware Version, you can also create the project directory in the `custom/apps` directory of your Shopware installation. However, the descriptions in this guide apply to both Shopware cloud and self-managed stores.
+When you are using a self-hosted Shopware Version, you can also create the project directory in the `custom/apps` directory of your Shopware installation. However, the descriptions in this guide apply to both Shopware cloud and self-hosted stores.
 {% endhint %}
 
 Next, we're gonna put our basic configuration into the file we just created.

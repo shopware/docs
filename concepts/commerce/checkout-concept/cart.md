@@ -65,7 +65,7 @@ Shopware 6 manages the cart's state through different services. The diagram belo
 
 ## Calculation
 
-Calculating a cart is one of the more costly operations an eCommerce System must support. Therefore the cut of the interfaces and the design of the process follows the no waste philosophy of Shopware 6 very closely. Calculation is a multi-stage process that revolves around the mutation of the data structure of the cart struct shown in the diagram below.
+Calculating a cart is one of the more costly operations an ecommerce System must support. Therefore the cut of the interfaces and the design of the process follows the no waste philosophy of Shopware 6 very closely. Calculation is a multi-stage process that revolves around the mutation of the data structure of the cart struct shown in the diagram below.
 
 ![Cart calculation](../../../.gitbook/assets/cart-calculation-steps.png)
 

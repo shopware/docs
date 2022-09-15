@@ -1,7 +1,5 @@
 # How to extend the storefront (Shopware 6)
 
-You can download a plugin showcasing the topic [here](/products/editions/enterprise-edition/b2b-suite/example-plugins/B2bTemplateExtension.zip).
-
 ## Table of contents
 
 * [Description](#description)

@@ -65,7 +65,7 @@ The `src` directory of the SPA below is structured along the three different use
 
 ## Modules and their components
 
-One module represents a navigation entry in the Administrations main menu. Since the Administration is highly dependent on the Shopware eCommerce Core, the module names reappear in the Administration, albeit in a slightly different order. The main building block, which the Administration knows, is called `component`, adjacent to web components.
+One module represents a navigation entry in the Administrations main menu. Since the Administration is highly dependent on the Shopware ecommerce Core, the module names reappear in the Administration, albeit in a slightly different order. The main building block, which the Administration knows, is called `component`, adjacent to web components.
 
 A `component` is the combination of styling, markup and logic. What a component does will not surprise you, if you already are familiar with the [MVC pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller). The role of the model and controller collapses into a single class though. The components Twig.js template is generally being rendered by a JavaScript \(`index.js`\) file and includes styling from a SCSS file. A template file also notifies the JavaScript, which then reacts to specific \(user\) interactions. Furthermore, components can be and often are nested. Our [Component Library](https://component-library.shopware.com/) will also give you an overview about our default components.
 
