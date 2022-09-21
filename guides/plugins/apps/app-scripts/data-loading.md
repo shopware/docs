@@ -100,7 +100,7 @@ The criteria object can be assembled inside scripts as follows:
         'cover': {},
     },
     'filter': [
-        { 'type': 'equals', 'field': 'active', value': true },
+        { 'type': 'equals', 'field': 'active', 'value': true },
     ]
 } %}
 
