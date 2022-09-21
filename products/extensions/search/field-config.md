@@ -1,12 +1,12 @@
 # Field Configuration
 
-With the [relevance](relevance.md), the enterprise search offers the possibilities to customize the searched fields.
+With the [relevance](relevance.md), the Advanced Search offers the possibilities to customize the searched fields.
 
-Here, we want to give you brief information about the internal usage of the different Elasticsearch functionalities, which are used for the full text search of the enterprise search.
+Here, we want to give you brief information about the internal usage of the different Elasticsearch functionalities, which are used for the full text search of the Advanced Search.
 
 ## Filter
 
-The Enterprise Search adds some additional filters, which will be used by the [analyzer](field-config.md#analyzer).
+The Advanced Search adds some additional filters, which will be used by the [analyzer](field-config.md#analyzer).
 
 1. **Numeric-Char-Filter \(`sesNumericCharFilter`\)**
 
@@ -44,11 +44,11 @@ When words are separated by one of these characters, the special character is re
 
 1. **Synonym \(`ses_synonym`\)**
 
-   In the Enterprise Search you can define synonyms, these [synonyms](synonyms.md) were used by the search analyzer.
+   In the Advanced Search you can define synonyms, these [synonyms](synonyms.md) were used by the search analyzer.
 
 ## Analyzer
 
-In addition to the Shopware Elasticsearch default analyzer, the Enterprise Search adds some additional analyzer. Each analyzer uses a different set of filters. Here is a List of all used custom analyzers in the Enterprise Search:
+In addition to the Shopware Elasticsearch default analyzer, the Advanced Search adds some additional analyzer. Each analyzer uses a different set of filters. Here is a List of all used custom analyzers in the Advanced Search:
 
 1. `sesAnalyzer`
 

@@ -83,7 +83,7 @@
          * [Extending the storefront](products/extensions/b2b-suite/guides/storefront/how-to-extend-the-storefront.md)
        * [Administration](products/extensions/b2b-suite/guides/administration/README.md)
        * [Example Plugins](products/extensions/b2b-suite/guides/example-plugins/README.md)
-  * [Search](products/extensions/search/README.md)
+  * [Advanced Search](products/extensions/search/README.md)
     * [Installation](products/extensions/search/installation.md)
     * [Field Configuration](products/extensions/search/field-config.md)
     * [Extensibility](products/extensions/search/extensibility.md)

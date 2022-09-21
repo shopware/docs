@@ -157,4 +157,4 @@ If you want or need more than that a tool like [RabbitMq](/docs/guides/hosting/i
 ## Configuration
 
 Keep in mind that the search configuration of Shopware has no effect when you are using Elasticsearch.
-To be able to configure which fields and elements are searchable when using Elasticsearch, you will have to install the extension [Enterprise Search](https://docs.shopware.com/en/shopware-6-en/enterprise-extensions/enterprise-search).
+To be able to configure which fields and elements are searchable when using Elasticsearch, you will have to install the extension [Advanced Search](https://docs.shopware.com/en/shopware-6-en/enterprise-extensions/enterprise-search).

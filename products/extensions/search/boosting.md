@@ -2,7 +2,7 @@
 
 ## Overview
 
-With the Enterprise Search there are two types of boosting, the [Field Boosting](boosting.md#field-boosting) and the [Explicit Boosting](boosting.md#explicit-boosting). These configurations allow boosting of specific search results.
+With the Advanced Search there are two types of boosting, the [Field Boosting](boosting.md#field-boosting) and the [Explicit Boosting](boosting.md#explicit-boosting). These configurations allow boosting of specific search results.
 
 ## Field Boosting
 
