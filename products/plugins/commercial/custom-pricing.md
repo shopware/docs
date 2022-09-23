@@ -5,6 +5,7 @@ The Custom Pricing feature allows massive advances in the pricing model capabili
 The API interface exposed by this module allows the user to operate a set of commands which allow for the granular 'overriding' of prices via an external data repository or ERP system. This is achieved by defining a custom relationship between a existing price and one of the following entities:
 
 - Customer
+
 <!-- These price->entity relationships will come later
 - Customer Group 
 - Group Id
