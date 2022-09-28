@@ -126,7 +126,7 @@ Shopware.Component.register('sw-cms-el-preview-dailymotion', {
 
 Just like most components, it has a custom template and some styles. Focus on the template first, create a new file `sw-cms-el-preview-dailymotion.html.twig`.
 
-So, what do you want to show here? Maybe the default 'mountain' preview image, that's already being used for the image element. Let's just copy it from `<Shopware root>/public/bundles/administration/static/img/cms/preview_mountain_small.jpg` to our static folders as an example. Of course, don't hesitate to replace it with something of your own! On top of that, you could place our icon `multicolor-action-play`. Head over to your [icon library](https://component-library.shopware.com/icons/) to find this icon.
+So, for instance, if you want to show the default 'mountain' preview image as an example, then copy it from `<Shopware root>/public/bundles/administration/static/img/cms/preview_mountain_small.jpg` to your static folder. You can also replace it with something of your own. Additionally, you can place icons `multicolor-action-play`. Head over to [icon library](https://component-library.shopware.com/icons/) to access them.
 
 That means: You'll need a container to contain both the image and the icon. In there, you create an `img` tag and use the [sw-icon component](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/component/base/sw-icon/index.js) to display the icon.
 

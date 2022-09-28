@@ -317,12 +317,9 @@
     * [Content](guides/plugins/apps/content/README.md)
       * [CMS](guides/plugins/apps/content/cms/README.md)
         * [Add custom CMS blocks](guides/plugins/apps/content/cms/add-custom-cms-blocks.md)
-<<<<<<< HEAD
+        * [Add custom CMS elements via AdminSDK](guides/plugins/plugins/content/cms/add-cms-element-via-admin-sdk.md)
     * [Rule Builder](guides/plugins/apps/rule-builder/README.md)
       * [Add custom rule conditions](guides/plugins/apps/rule-builder/add-custom-rule-conditions.md)
-=======
-        * [Add custom CMS elements via AdminSDK](guides/plugins/plugins/content/cms/add-cms-element-via-admin-sdk.md)
->>>>>>> Update add-cms-element.md + Add Cms Element via AdminSDK article
 * [Hosting](guides/hosting/README.md)
   * [Installation & Updates](guides/hosting/installation-updates/README.md)
     * [Deployments](guides/hosting/installation-updates/deployments/README.md)
