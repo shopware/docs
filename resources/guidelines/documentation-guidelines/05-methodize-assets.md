@@ -15,25 +15,25 @@ It is essential to organize and keep all the assets (images, files, videos, etc)
 
     * <toc_topic_name>-<meaningful_image_name>.svg. For example,
 
-    ```markdown
+    ```text
         storefront-pages.svg 
     ```
 
-    * If sub-topic exists, <toc_topic_name>-<sub_topic_name>-<meaningful_image_name>.svg. For example, 
-    
-    ```markdown   
+    * If sub-topic exists, <toc_topic_name>-<sub_topic_name>-<meaningful_image_name>.svg. For example,
+
+    ```text
         storefront-dataHandling-pages.svg 
     ```
 
     * The image names can be serialized if multiple images are under the same topic. For example,
 
-    ```markdown
+    ```text
         storefront-dataHandling-pages_01.svg 
     ```
 
 * Use alt text and figure captions. This details what an image is trying to convey.
 
-* An introductory sentence should precede most images. 
+* An introductory sentence should precede most images.
 
 ## File
 
@@ -41,10 +41,10 @@ Every file added to a folder can have a naming convention as:
 
 <two_digit_number>-<meaningful_image_name>.md. For example,
 
-        ```markdown
+        ```text
         01-doc-process.md
         ```
-        
+
 ## Video
 
 * Provide captions and transcripts for video content
