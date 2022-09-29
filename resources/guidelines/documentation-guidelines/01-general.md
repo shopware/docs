@@ -1,6 +1,6 @@
 # Documentation Guidelines
 
-Your style, your words, and your tone define you. Correspondingly, this style guide lays out standard editorial instructions that define Shopware documentation. 
+Your style, your words, and your tone define you. Correspondingly, this style guide lays out standard editorial instructions that define Shopware documentation.
 
 It is recommended that every contributor follows the below writing standards to maintain uniformity of the documentation.
 
@@ -20,8 +20,6 @@ Use American English to cater to a global audience. You may refer to the [Cambri
 | Product owner/ manager | <ul><li>Responsibilities pertaining to the product life cycle</li></ul> |
 | Tech writers | <ul><li>Document all product details</li></ul> |
 
-
-
 ## List of docs maintained by us
 
 * [PWA](https://shopware-pwa-docs.vuestorefront.io/)
@@ -31,7 +29,6 @@ Use American English to cater to a global audience. You may refer to the [Cambri
 * [API Reference Guide](https://shopware.stoplight.io/)
 
 * [Admin Extension SDK](https://shopware.github.io/admin-extension-sdk/)
-
 
 ## Word list
 
@@ -43,14 +40,13 @@ Choose ecommerce and technical terms from the pre-defined list of terminologies:
 
 * [Shopware ecommerce terminologies](https://shopware.atlassian.net/wiki/spaces/pr/pages/19205063733/Shopware+ecommerce+terminology_)
 
-
 ## Use of third-party sources
 
 Third-party sources include websites, books, blogs, videos, images, and more. Ensure to reference these external sources in the documentation only if they are trustworthy. Avoid copying any content directly from other sources like websites, encyclopedias, and Wikipedia.
 
 ## Markdown rules
 
-Adhere to the [Markdown cheat sheet](https://www.markdownguide.org/cheat-sheet/) while creating the document. 
+Adhere to the [Markdown cheat sheet](https://www.markdownguide.org/cheat-sheet/) while creating the document.
 
 Symbols in Markdown sometimes serve multi-purpose. For example, `*` or `-` can be used to create bulleted lists. However, follow a single pattern to maintain uniformity throughout. The following sections describe the usage of these patterns and let us comply with them.
 
