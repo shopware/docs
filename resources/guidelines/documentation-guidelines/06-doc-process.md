@@ -28,7 +28,7 @@ After you have discussed the abstract and set the objectives, start writing.
 
 It is good to follow a 30/90 rule. This rule suggests creating the first draft when 30% done and considering taking first feedback at a high level. While 90% done, schedule a steady review for in-depth validation.
 
-In your first draft: 
+In your first draft:
 
 * Hold sections of the documentation that needs to be included and describe its purpose
 * Try to use non-Shopware-specific language when possible or provide a link to its description (e.g., "DAL")
