@@ -10,18 +10,17 @@ Well-defined writing leads to a more consistent, efficient learning experience f
 
 This section guides you on how to ink down your knowledge into documentation and fine-tune it for all audience types.
 
-
 ## Ideate
 
-When you prefer to contribute to an existing article or create a new one, consider yourself the "knowledge lead" for that particular topic while documenting. 
+When you prefer to contribute to an existing article or create a new one, consider yourself the "knowledge lead" for that particular topic while documenting.
 
 Do some research and prepare a rough outline addressing the following points and prompt other maintainers for feedback:
+
 * Who is the audience?
 * What are you going to write about?
 * What are the prerequisites for readers?
 * Which questions are you going to answer?
 * Which other topics might be relevant/interesting?
-
 
 ## Write
 
@@ -29,8 +28,8 @@ After you have discussed the abstract and set the objectives, start writing.
 
 It is good to follow a 30/90 rule. This rule suggests creating the first draft when 30% done and considering taking first feedback at a high level. While 90% done, schedule a steady review for in-depth validation.
 
-
 In your first draft: 
+
 * Hold sections of the documentation that needs to be included and describe its purpose
 * Try to use non-Shopware-specific language when possible or provide a link to its description (e.g., "DAL")
 * Expect your readers to understand less than half of what you understand
@@ -61,24 +60,10 @@ After reviewing the final draft, it will be published on notifying the administr
 
 All contents are based on Shopware Major versions, such as 6.3, 6.4, 6.5, etc. The current version is reflected by our GitHub repositories' `master` branch, whereas each older version has its respective separate branch.
 
-If a documented feature or functionality is introduced within major versions (and also in cases where you think it is applicable), please include a hint showing the version constraints:
+If a documented feature or functionality is introduced within major versions (and also in cases where you think it is applicable), please include a hint showing the version constraints as below:
 
 {% hint style="info" %}
 This functionality is available starting with Shopware 6.4.3.0.
 {% endhint %}
 
-The markup for this hint:
-
-{% raw %}
-
-```markdown
-{% hint style="info" %}
-This functionality is available starting with Shopware 6.4.3.0.
-{% endhint %}
-```
-
-{% endraw %}
-
-
-
-<center>Your Contribution, is our Pride!</center>
+Your Contribution, is our Pride!
