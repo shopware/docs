@@ -1,6 +1,7 @@
 # Fonts and Format for Text
 
 ## Text Format
+
 Follow the below textual formats for good content visualization. 
 
 {% hint style="info" %}
@@ -20,6 +21,7 @@ Use italics to draw attention to a specific word, phrase, parameter values, clas
 Use single asterisk *italic* in Markdown to signify italic format
 
 ### Underline
+
 Do not underline any content.
 
 ## List
@@ -28,7 +30,7 @@ Use sentence cases for items in all types of lists as below:
 
 * **Numbered list** - Use when you have a fixed number of entities or sequential steps to describe — for example, 3 varieties, 4 categories, 2 types, etc.
 
-```
+```markdown
 Here is a sequence of steps to follow :
 
 1. Create a docker-compose.yml file
@@ -39,7 +41,7 @@ Here is a sequence of steps to follow :
 
 * **Regular bulleted list** - Use this for general enlisting with an asterisk `*` in Markdown to signify bulleted lists.
 
-```
+```markdown
 You can install Shopware on Mac with the help of other tools:
 
 * Docker
@@ -49,15 +51,15 @@ You can install Shopware on Mac with the help of other tools:
 
 However, regular bulleted lists within tables can only be used using HTML tags.
 
-```
+```markdown
 | Who is the audience? | What are their roles? |
 | :--- | :--- |
 | Fullstack Developer | <ul><li>Plugin Development</li><li>Templates</li><li>Routes/ Controllers</li></ul>|
 ```
 
-* **Description list** - Use when you need to describe them along with their headings. In such a case, make the headings in bold followed by a hyphen or new line, followed by a detailed description. The description list can again be a numbered list or a bulleted list based on their sequence or fixed number of entities. For example, 
+* **Description list** - Use when you need to describe them along with their headings. In such a case, make the headings in bold followed by a hyphen or new line, followed by a detailed description. The description list can again be a numbered list or a bulleted list based on their sequence or fixed number of entities. For example,
 
-```markdown 
+```markdown
 The Administrations components implement a number of cross-cutting concerns. The most important are:
 
 * **Providing inheritance** - As Shopware 6 offers a flexible extension system to develop own Apps, Plugins or Themes.
@@ -75,13 +77,9 @@ In general, use the following guidelines to format expressions of date and time:
 
 * Avoid using time zones unless absolutely necessary. If using a specific time zone, spell out the region and include the *UTC or GMT* label
 
-* Spell out the names of the months and days of the week.
+* Spell out the names of the months and days of the week. For example, `January 19, 2017`
 
-```
-    January 19, 2017
-````
-
-* You can also use the numerical date format, `MM-DD-YYYY`, and separate the elements by hyphens. 
+* You can also use the numerical date format, `MM-DD-YYYY`, and separate the elements by hyphens.
 
 ## Numbers
 
@@ -93,12 +91,11 @@ Spell out all ordinal numbers in the text, such as first, fourth, twelfth, and t
 
 * Use table headings for the first column and the first row only
 
-* Use tables only when you have more than one row and column to represent 
+* Use tables only when you have more than one row and column to represent
 
 * Do not end sentences with punctuation, including a period, an ellipses, or a colon
 
 * Use sentence case for all the elements in a table - contents, headings, labels, and captions
-
 
 * Introduce a table using a complete sentence and try to refer to the table's position, using a phrase such as *the following table or the preceding table*
 
@@ -124,6 +121,4 @@ Spell out all ordinal numbers in the text, such as first, fourth, twelfth, and t
 
 * Follow camel case for all the `<H1>` heading types and sentence case for the rest of the sub-headings that follow
 
-
 This section covers fonts and formats for text while the following section covers fonts and formats for code.
-
