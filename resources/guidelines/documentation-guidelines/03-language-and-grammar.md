@@ -3,7 +3,8 @@
 Basic guidelines for the apt use of language and grammar in the documentation are discussed in this section. In order to create a consistent product solution, Shopware maintains consistent documentation not just in terms of content but also style. A distinctive editorial voice helps create high-quality, readable, and consistent documentation.
 
 ## Voice and Tone
-The Shopware voices a friendly and conversational tone. We are direct, clear, and more human at conveying information. 
+
+The Shopware voices a friendly and conversational tone. We are direct, clear, and more human at conveying information.
 
 ### Our Voice Principles
 
@@ -16,11 +17,14 @@ The Shopware voices a friendly and conversational tone. We are direct, clear, an
 ## Active Voice and Passive Voice
 
 In general, use the active voice (the subject is the person or thing performing the action) instead of the passive voice (the subject is the person or thing being acted upon). For example,
-```
-Active Voice - The user passes the access-key.
 
-Passive Voice - The access-key is passed by the user.
-```
+{% hint style="success" %}
+**Active Voice** - The user passes the access-key.
+{% endhint %}
+
+{% hint style="danger" %}
+**Passive Voice** - The access-key is passed by the user.
+{% endhint %}
 
 It is okay to use passive voice in below-mentioned cases:
 
@@ -36,11 +40,14 @@ It is okay to use passive voice in below-mentioned cases:
 
 * If you are guiding the reader to perform something, then use an imperative form with an implicit you. For example:
 
-```
-Recommended - Create a PDF file.
+  {% hint style="success" %}
+  **Recommended** - Create a PDF file.
+  {% endhint %}
 
-Not recommended - You need to create a PDF file.
-```
+  {% hint style="danger" %}
+  **Not recommended** - You need to create a PDF file.
+  {% endhint %}
+
 * Avoid the usage of *our* in sentences
 
 ## Gender-neutral reference
@@ -57,7 +64,7 @@ Abbreviations include acronyms, shortened words, and contractions. They are inte
 
 * An acronym is formed from the first letters of words in a phrase, for example, *API* for *Application Programming Interface*.
 
-* When an acronym is not familiar to the audience, spell out the term followed by the abbreviation in parentheses, for example, *JSON Web Token (JWT)*. For all subsequent mentions, use the abbreviation only. 
+* When an acronym is not familiar to the audience, spell out the term followed by the abbreviation in parentheses, for example, *JSON Web Token (JWT)*. For all subsequent mentions, use the abbreviation only.
 
 * Few abbreviations rarely need to be spelled out, for example, *API, File formats such as PDF, XML, PNG, or HTML*
 
@@ -65,17 +72,17 @@ Abbreviations include acronyms, shortened words, and contractions. They are inte
 
 * Acronyms in plural form end with “s”, for example, *APIs, SKEs, and IDEs*. However, if the acronym itself ends in s, sh, ch, or x, then add es, for example, *OSes, and SSHes*.
 
-* Do not define your own abbreviations. Use only recognized industry-standard acronyms. 
+* Do not define your own abbreviations. Use only recognized industry-standard acronyms.
 
 ### Shortened
 
-* A shortened word is just part of a word or phrase, for example, *etc* for et cetera, *app* for application, *sync* for synchronization. 
+* A shortened word is just part of a word or phrase, for example, *etc* for et cetera, *app* for application, *sync* for synchronization.
 
 * Use shortened or full form but not both in the same document.
 
 ### Contractions
 
-* Contractions are unique words by themselves that is formed as a combination of two or more other words with an apostrophe; for example, *it’s, you’re, you’ll, let’s, or we’re*. Such contractions add a more informal and friendly tone. So limit the usage of it. 
+* Contractions are unique words by themselves that is formed as a combination of two or more other words with an apostrophe; for example, *it’s, you’re, you’ll, let’s, or we’re*. Such contractions add a more informal and friendly tone. So limit the usage of it.
 
 * On the other hand, negation contractions, such as *isn't, don't, and can't* are recommended to use as it is sometimes easy for a reader to miss the word *not*, whereas it is harder to misread don't as *do*.
 
@@ -87,7 +94,7 @@ Abbreviations include acronyms, shortened words, and contractions. They are inte
 
 ## Articles
 
-* Indefinite articles, *A* and *An* represent a singular noun. 
+* Indefinite articles, *A* and *An* represent a singular noun.
 
 * While *The* is a definite article used before singular and plural nouns in particular.
 
@@ -101,10 +108,9 @@ Abbreviations include acronyms, shortened words, and contractions. They are inte
 
 * When a hyphenated word is the first word in a sentence, capitalize only the first element in the word unless a subsequent element is a proper noun or proper adjective.
 
-
 ## Spellings
 
-* Spellings are based on [Cambridge dictionary](https://dictionary.cambridge.org/dictionary/essential-american-english/) 
+* Spellings are based on [Cambridge dictionary](https://dictionary.cambridge.org/dictionary/essential-american-english/)
 
 * It is ideal to use filenames, URLs, and data parameters in words that are not spelled differently by different English dictionaries. For example, color and colour.
 
@@ -126,8 +132,6 @@ Abbreviations include acronyms, shortened words, and contractions. They are inte
 
 * Conjunction (and, but, or, nor, for, so, or yet) separates two independent clauses, insert a comma after the first clause (before the conjunction) unless both clauses are very short. For example, *The more time you put into indexing data, the faster it is possible to read it.*
 
-
-
 ### Dashes and Hyphens
 
 To indicate a break in the flow of a sentence,  use an em dash, (long dash).  For example, *Some programming languages — Pascal, COBOL, Ada are long gone*.
@@ -144,8 +148,6 @@ However, use a hyphen (small dash) in the following cases :
 
 * When the prefix ends in a vowel and the word it precedes starts with the same vowel — for example, *co-op, de-energize*.
 
-
-
 ### Period
 
 * End every sentence with a period
@@ -156,7 +158,6 @@ However, use a hyphen (small dash) in the following cases :
 
 * Don't end a URL with a period. Instead, place the URL in between the description, omitting the final period
 
-
 ### Slashes
 
 * Don't use date formats that rely on slashes
@@ -164,7 +165,6 @@ However, use a hyphen (small dash) in the following cases :
 * Don't use slashes with fractions because they can be ambiguous
 
 * Don't use slashes to separate alternatives — for example, *blue/red*
-
 
 ### Parenthesis
 
@@ -174,7 +174,7 @@ Don't add important information in parentheses to describe it in detail.
 
 * Do not use informal internet slang
 
-* Avoid usage of buzzwords and jargons 
+* Avoid usage of buzzwords and jargons
 
 * Avoid the usage of idioms and phrases
 
