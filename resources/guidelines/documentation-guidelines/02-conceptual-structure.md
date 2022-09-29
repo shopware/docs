@@ -1,6 +1,6 @@
 # Conceptual Outline
 
-Our documentation is categorized into the following sections - Concepts, Products, Guides, and Resources. This structure provides different levels of detail, abstraction, and focus. 
+Our documentation is categorized into the following sections - Concepts, Products, Guides, and Resources. This structure provides different levels of detail, abstraction, and focus.
 
 To give our readers a good experience, we have established writing guidelines for these sections.
 
@@ -13,12 +13,11 @@ This section articulates the core concepts of Shopware. It is an entry point to 
   * *What can it contain?*
   * *How does it relate to users and orders?*
 
-
-* **Description** - Give a short description of the concept within 2-3 sentences. For example,  *"The cart is a collection of items a user wants to buy within the shop. It might contain products, discounts, or virtual products like bundles or configurable products. Eventually, a cart gets converted into an order. This process is called checkout."* 
+* **Description** - Give a short description of the concept within 2-3 sentences. For example,  *"The cart is a collection of items a user wants to buy within the shop. It might contain products, discounts, or virtual products like bundles or configurable products. Eventually, a cart gets converted into an order. This process is called checkout."*
 
 Use cross-references to help users fully understand the text. For example, link to *configurable products* or *checkout*. Don't use terms like *"custom products"* as these are Shopware-specific and newcomers may find it difficult to understand.
 
-* **Comprehensive explanation** - Explain the concept in detail with examples, illustrations, tables, graphs, or sudo-code. 
+* **Comprehensive explanation** - Explain the concept in detail with examples, illustrations, tables, graphs, or sudo-code.
 
   Don't use any Shopware-specific source code. Using source code within a conceptual article has the following drawbacks:
   * It introduces another dependency that has to be maintained
@@ -32,10 +31,9 @@ This section deals with topics specific to a single product of Shopware. 	As all
 
 ## Guides
 
-The Guides section of the document is home to all the *how-to's*, *examples, cookbooks*, and *tutorials*. In contrast to articles within the *Concepts section*, *Guides* show code, give concrete examples, and provide step-by-step instructions. 
+The Guides section of the document is home to all the *how-to's*, *examples, cookbooks*, and *tutorials*. In contrast to articles within the *Concepts section*, *Guides* show code, give concrete examples, and provide step-by-step instructions.
 
 It is essential to refer back to the concepts section for related topics the in guide. For example, A Guide *"How to create a custom cart processor"* might contain terms and concepts explained within the "Concepts &gt; Commerce &gt; Checkout &gt; Cart" section and also relate to topics dealt with in the "Concepts &gt; Framework &gt; Rules" section. A clear structure allows you to create these cross-references and make the documentation more readable.
-
 
 ## Resources
 
