@@ -2,7 +2,7 @@
 
 ## Text Format
 
-Follow the below textual formats for good content visualization. 
+Follow the below textual formats for good content visualization.
 
 {% hint style="info" %}
 Do not override global styles.
@@ -30,7 +30,7 @@ Use sentence cases for items in all types of lists as below:
 
 * **Numbered list** - Use when you have a fixed number of entities or sequential steps to describe — for example, 3 varieties, 4 categories, 2 types, etc.
 
-```markdown
+```text
 Here is a sequence of steps to follow :
 
 1. Create a docker-compose.yml file
@@ -41,7 +41,7 @@ Here is a sequence of steps to follow :
 
 * **Regular bulleted list** - Use this for general enlisting with an asterisk `*` in Markdown to signify bulleted lists.
 
-```markdown
+```text
 You can install Shopware on Mac with the help of other tools:
 
 * Docker
@@ -51,7 +51,7 @@ You can install Shopware on Mac with the help of other tools:
 
 However, regular bulleted lists within tables can only be used using HTML tags.
 
-```markdown
+```text
 | Who is the audience? | What are their roles? |
 | :--- | :--- |
 | Fullstack Developer | <ul><li>Plugin Development</li><li>Templates</li><li>Routes/ Controllers</li></ul>|
@@ -59,7 +59,7 @@ However, regular bulleted lists within tables can only be used using HTML tags.
 
 * **Description list** - Use when you need to describe them along with their headings. In such a case, make the headings in bold followed by a hyphen or new line, followed by a detailed description. The description list can again be a numbered list or a bulleted list based on their sequence or fixed number of entities. For example,
 
-```markdown
+```text
 The Administrations components implement a number of cross-cutting concerns. The most important are:
 
 * **Providing inheritance** - As Shopware 6 offers a flexible extension system to develop own Apps, Plugins or Themes.
