@@ -11,7 +11,7 @@
     * Command Line (CLI) utility names
 
     * Class, methods and function names
-    
+
     * Enum names
 
     * Command output
@@ -38,7 +38,7 @@ The following list includes items that should not be in code font:
 
 * Domain names
 
-* URLs 
+* URLs
 
 * Names of products, services, and organizations
 
@@ -58,15 +58,15 @@ The following list includes items that should not be in code font:
 
 ## Command Prompt
 
-* If your CLI instructions show multiple lines of input, then start each line of input with the `$` prompt symbol.
+* If your CLI instructions show multiple lines of input, then start each line of input with the `$` prompt symbol
 
-* Don't show the current directory path before the prompt, even if part of the instruction includes changing directories. 
+* Don't show the current directory path before the prompt, even if part of the instruction includes changing directories
 
 ## Placeholders
 
 * In a code output, explain any placeholder that appear in the sample output the first time. Mention the placeholders in complete capital letters.
 
-```
+```markdown
 <code><var>PLACEHOLDER_NAME</var></code>
 ```
 
@@ -82,7 +82,7 @@ The following list includes items that should not be in code font:
 
 ## Classes and methods
 
-Describe the class briefly and state the intended function with information that can't be deduced from the class name and signature. 
+Describe the class briefly and state the intended function with information that can't be deduced from the class name and signature.
 
 Describe the method briefly about what action the method performs. In subsequent sentences, state any prerequisites that must be met before calling it, explain why and how to use the method, give details about exceptions that may occur, and specify any related APIs.
 
@@ -94,8 +94,8 @@ Capitalize the first word, and end the sentence or phrase with a period.
 
 When something is deprecated, tell the user what to use as a replacement. For example, If a method is deprecated, tell the reader what to do to make their code work. For example,
 
-```
-Deprecated - Access it using this getProd() method instead.
-```
+{% hint style="" %}
+**Deprecated** - Access it using this getProd() method instead.
+{% endhint %}
 
 The next section deals with asset management.
