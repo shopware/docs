@@ -7,7 +7,7 @@
 * In Markdown, use backticks (`) for single line code. The following list includes items that should be in code font:
 
     * Attribute names and values
-    
+
     * Command Line (CLI) utility names
 
     * Class, methods and function names
