@@ -127,6 +127,8 @@ To install Symfony Flex, you need to run the following command and allow both ne
 
 ```bash
 composer require symfony/flex:~2 symfony/runtime:~5.4
+
+composer recipe:install --force --reset
 ```
 
 ### 5. Review changes
