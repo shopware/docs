@@ -141,7 +141,7 @@ This template now has to define the basic structure of your custom block. In thi
 
 You've got a parent `div` containing the two required [slots](https://vuejs.org/v2/guide/components-slots.html). If you were to rename the first slot `left` to something else, you'd have to adjust this in your block's configuration as well.
 
-Those slots would be rendered from top to bottom now, instead of from left to right. That's why your block comes with a custom `.scss` file, create it now by adding the file `sw-cms-block-image-text-reversed.scss` to your `component` directory.
+Those slots would be rendered from top to bottom now, instead of from left to right. That's why your block comes with a custom `.scss` file, create it now by adding the file `sw-cms-my-block-image-text-reversed.scss` to your `component` directory.
 
 In there, use a grid to display your elements next to each other. You've set a CSS class for your block, which is the same as its name.
 
