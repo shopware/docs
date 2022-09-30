@@ -53,7 +53,8 @@ First of all, you need to adjust your root composer.json. You need to add the fo
     "symfony": {
         "allow-contrib": true,
         "endpoint": [
-            "https://api.github.com/repos/shopware/recipes/contents/index.json?ref=flex/main"
+            "https://api.github.com/repos/shopware/recipes/contents/index.json?ref=flex/main",
+            "flex://defaults"
         ]
     }
 }
