@@ -490,7 +490,7 @@
     * [Fonts & Formats](resources/guidelines/documentation-guidelines/04-fonts-and-formats/README.md)
       * [Text](resources/guidelines/documentation-guidelines/04-fonts-and-formats/01-text.md)
       * [Code](resources/guidelines/documentation-guidelines/04-fonts-and-formats/02-code.md)
-    * [Methodize Assets](resources/guidelines/documentation-guidelines/05-methodise-assets.md)
+    * [Methodize Assets](resources/guidelines/documentation-guidelines/05-methodize-assets.md)
     * [Doc Process](resources/guidelines/documentation-guidelines/06-doc-process.md)
   * [Testing](resources/guidelines/testing/README.md)
     * [Best practises on writing end-to-end tests](resources/guidelines/testing/e2e-best-practises.md)
