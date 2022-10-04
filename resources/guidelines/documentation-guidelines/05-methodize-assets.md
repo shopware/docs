@@ -41,7 +41,7 @@ It is essential to organize and keep all the assets (images, files, videos, etc)
 
 Every file added to a folder can have a naming convention as:
 
-<two_digit_number>-<meaningful_image_name>.md. For example,
+*<two_digit_number>-<meaningful_image_name>.md.* For example,
 
 ```text
 01-doc-process.md
