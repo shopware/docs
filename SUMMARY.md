@@ -483,7 +483,7 @@
     * [Session and State](resources/guidelines/code/session-and-state.md)
     * [Store API](resources/guidelines/code/store-api.md)
     * [Storefront Controller](resources/guidelines/code/storefront-controller.md)
-  * [Documentation](resources/guidelines/documentation/README.md)
+  * [Documentation](resources/guidelines/documentation-guidelines/README.md)
     * [General](resources/guidelines/documentation-guidelines/01-general.md)
     * [Conceptual Structure](resources/guidelines/documentation-guidelines/02-conceptual-structure.md)
     * [Language & Grammar](resources/guidelines/documentation-guidelines/03-language-and-grammar.md)
