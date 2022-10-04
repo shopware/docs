@@ -9,7 +9,7 @@ It is essential to organize and keep all the assets (images, files, videos, etc)
 
 * Screenshots can be taken using GIMP, Snipping tools, or any tool that you have already worked on
 
-* Prefer to add SVG over PNG images as SVGs stay sharp when you zoom in on the image. This applies for on craeted images. However, PNG images are also accepted 
+* Prefer to add SVG over PNG images as SVGs stay sharp when you zoom in on the image. This applies for on craeted images. However, PNG images are also accepted
 
 * Add all the images to the .gitbook/assets/ directory and give them a meaningful name
 
@@ -18,7 +18,7 @@ It is essential to organize and keep all the assets (images, files, videos, etc)
     * *<toc_topic_name>-<meaningful_image_name>.svg*. For example,
 
     ```text
-        storefront-pages.svg 
+        storefront-pages.svg
     ```
 
     * If sub-topic exists, *<toc_topic_name>-<sub_topic_name>-<meaningful_image_name>.svg*. For example,
@@ -30,12 +30,12 @@ It is essential to organize and keep all the assets (images, files, videos, etc)
     * The image names can be serialized if multiple images are under the same topic. For example,
 
     ```text
-        storefront-dataHandling-pages_01.svg 
+        storefront-dataHandling-pages_01.svg
     ```
 
-* Use alt text and figure captions. This details what an image is trying to convey.
+* Use alt text and figure captions. This details what an image is trying to convey
 
-* An introductory sentence should precede most images.
+* An introductory sentence should precede most images
 
 ## File
 
