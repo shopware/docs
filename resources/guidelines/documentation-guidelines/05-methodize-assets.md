@@ -9,17 +9,19 @@ It is essential to organize and keep all the assets (images, files, videos, etc)
 
 * Screenshots can be taken using GIMP, Snipping tools, or any tool that you have already worked on
 
-* Use SVG instead of PNG images as SVGs stay sharp when you zoom in on the image
+* Prefer to add SVG over PNG images as SVGs stay sharp when you zoom in on the image. This applies for on craeted images. However, PNG images are also accepted 
+
+* Add all the images to the .gitbook/assets/ directory and give them a meaningful name
 
 * Use the below-naming convention to save the image
 
-    * <toc_topic_name>-<meaningful_image_name>.svg. For example,
+    * *<toc_topic_name>-<meaningful_image_name>.svg*. For example,
 
     ```text
         storefront-pages.svg 
     ```
 
-    * If sub-topic exists, <toc_topic_name>-<sub_topic_name>-<meaningful_image_name>.svg. For example,
+    * If sub-topic exists, *<toc_topic_name>-<sub_topic_name>-<meaningful_image_name>.svg*. For example,
 
     ```text
         storefront-dataHandling-pages.svg 
@@ -41,9 +43,9 @@ Every file added to a folder can have a naming convention as:
 
 <two_digit_number>-<meaningful_image_name>.md. For example,
 
-        ```text
-        01-doc-process.md
-        ```
+```text
+01-doc-process.md
+```
 
 ## Video
 
