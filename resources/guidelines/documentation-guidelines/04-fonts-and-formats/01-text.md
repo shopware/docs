@@ -18,7 +18,7 @@ Use double asterisk **bold** in Markdown to signify bold format.
 
 Use italics to draw attention to a specific word, phrase, parameter values, classes, methods, product versions and, key terms like SQL Database.
 
-Use single asterisk *italic* in Markdown to signify italic format
+Use single asterisk *italic* in Markdown to signify italic format.
 
 ### Underline
 
@@ -28,10 +28,10 @@ Do not underline any content.
 
 Use sentence cases for items in all types of lists as below:
 
-* **Numbered list** - Use when you have a fixed number of entities or sequential steps to describe — for example, 3 varieties, 4 categories, 2 types, etc.
+* **Numbered list** - Use when you have a fixed number of entities — for example, 3 varieties, 4 categories, 2 types, etc, or sequential steps as shown below:
 
 ```text
-Here is a sequence of steps to follow :
+Follow the below steps to start your project:
 
 1. Create a docker-compose.yml file
 2. Start the Docker
@@ -57,7 +57,7 @@ However, regular bulleted lists within tables can only be used using HTML tags.
 | Fullstack Developer | <ul><li>Plugin Development</li><li>Templates</li><li>Routes/ Controllers</li></ul>|
 ```
 
-* **Description list** - Use when you need to describe them along with their headings. In such a case, make the headings in bold followed by a hyphen or new line, followed by a detailed description. The description list can again be a numbered list or a bulleted list based on their sequence or fixed number of entities. For example,
+* **Description list** - Use when you need to describe them along with their headings. In such a case, headings to be in bold followed by a hyphen or new line and a detailed description. For example,
 
 ```text
 The Administrations components implement a number of cross-cutting concerns. The most important are:
@@ -66,6 +66,8 @@ The Administrations components implement a number of cross-cutting concerns. The
 * **Data management** - The Administration displays entities of the Core component.
 * **State management** - Proper state management is key here.
 ```
+
+The description list can again be a numbered list or a bulleted list based on their sequence or fixed number of entities.
 
 ## Date and Time
 
@@ -79,7 +81,7 @@ In general, use the following guidelines to format expressions of date and time:
 
 * Spell out the names of the months and days of the week. For example, `January 19, 2017`
 
-* You can also use the numerical date format, `MM-DD-YYYY`, and separate the elements by hyphens.
+* You can also use the numerical date format, `MM-DD-YYYY`, and separate the elements by hyphens
 
 ## Numbers
 
@@ -117,8 +119,8 @@ Spell out all ordinal numbers in the text, such as first, fourth, twelfth, and t
 
 * Use `#` to set the levels of heading
 
-* Do not skip levels of the heading hierarchy. For example, an `<h3>` heading must fall under `<h2>`
+* Do not skip levels of the heading hierarchy. For example, an `<H3>` heading must fall under `<H2>`
 
-* Follow camel case for all the `<H1>` heading types and sentence case for the rest of the sub-headings that follow
+* Follow camel case for all the `<H1>` headings — for example, *Flow Sequence Evaluation* and sentence case for the rest of the sub-headings that follow - for example, *Flow sequence evaluation*
 
 This section covers fonts and formats for text while the following section covers fonts and formats for code.
