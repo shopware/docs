@@ -82,6 +82,7 @@ Your `<input-field>` can be of different types, this is managed via the `type` a
 | :--- | :--- | :--- |
 | text | [copyable](add-plugin-configuration.md#copyable), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text) | Text field |
 | textarea | [copyable](add-plugin-configuration.md#copyable), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text) | Text area |
+| text-editor | [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text) | HTML editor |
 | url | [copyable](add-plugin-configuration.md#copyable), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text) | URL field |
 | password | [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text) | Password field |
 | int |  | Integer field |
