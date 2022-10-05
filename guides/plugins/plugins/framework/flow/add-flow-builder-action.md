@@ -103,7 +103,7 @@ class CreateTagAction extends FlowAction
 
         $tags = $config['tags'];
 
-        // just a step to make sure you're dispatching the correct action
+        // just a step to make sure you are dispatching the correct action
         if (!$baseEvent instanceof TagAware || empty($tags)) {
             return;
         }
