@@ -149,8 +149,10 @@ Now your app server can communicate with the Shopware server and your app's data
 To easily access a terminal on your app server, you need to create this script `development/dev-ops/docker/actions/ssh-app-server.sh`.
 
 {% code title="development/dev-ops/docker/actions/ssh-app-server.sh" %}
-
-```text
+```shell script
+#!/usr/bin/env bash
+TTY: docker exec -i --env COLUMNS=`tput cols` --env LINES=`tput lines` -u __USERKEY__ -t __EXAMPLE_APP_SERVER_ID__ bash
+```
 {% endcode %}
 
 This script can be executed from your `development` folder with `./psh.phar docker:ssh-app-server`. Keep in mind that this is only possible when the app server has been started with `./psh.phar docker:start` from your development folder.  
