@@ -91,10 +91,10 @@ class CreateTagAction extends FlowAction
 
     public function handle(FlowEvent $event): void
     {
-        // config is the config data when created a flow sequence
+        // config is the "Configuration data" you get after you create a flow sequence
         $config = $event->getConfig();
 
-        // make sure your tags data is exist
+        // make sure your "tags" data exists
         if (!\array_key_exists('tags', $config)) {
             return;
         }
@@ -103,7 +103,7 @@ class CreateTagAction extends FlowAction
 
         $tags = $config['tags'];
 
-        // just a step to make sure you're dispatching correct action
+        // just a step to make sure you are dispatching the correct action
         if (!$baseEvent instanceof TagAware || empty($tags)) {
             return;
         }
