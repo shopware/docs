@@ -2,9 +2,11 @@
 
 ## Overview
 
-Imagine you want to call a PHP script from the Twig template during the theme development to retrieve data from the database or to check whether a category is within the current path. For these cases we can create our own twig functions.
+Imagine you want to call a PHP script from the Twig template during the theme development to create a MD5-Hash for example. For these cases we can create our own twig functions.
 
-In our example we will pass a category ID to the Twig Function and return the category object.
+In our example we will pass a string to the Twig Function and return a MD5-Hash.
+
+{% hint style="info" %}It is not recommended to use twig functions in order to retrieve data from the database. In these cases a DataResolver could come in handy.{% endhint %}
 
 ## Prerequisites
 
@@ -20,51 +22,34 @@ For the sake of clarity, we will create a folder named Twig within the src folde
 
 Let's have a look at the created file.
 
-{% code title="<plugin root>/src/Twig/getCategoryById.php" %}
+{% code title="<plugin root>/src/Twig/SwagCreateMd5Hash.php" %}
 ```php
 <?php declare(strict_types=1);
 
 namespace SwagBasicExample\Twig;
 
 use Shopware\Core\Framework\Context;
-use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
-use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-class SwagGetCategoryById extends AbstractExtension
+class SwagCreateMd5Hash extends AbstractExtension
 {
-
-    /**
-     * @var EntityRepositoryInterface
-     */
-    private $categoryRepository;
-
-    public function __construct(EntityRepositoryInterface $categoryRepository)
-    {
-        $this->categoryRepository = $categoryRepository;
-    }
-
-
-
     public function getFunctions()
     {
         return [
-            new TwigFunction('getCategoryById', [$this, 'getCategoryById']),
+            new TwigFunction('createMd5Hash', [$this, 'createMd5Hash']),
         ];
     }
 
-    public function getCategoryById(string $categoryId)
+    public function createMd5Hash(string $str)
     {
-        return $this->categoryRepository->search(new Criteria([$categoryId]), Context::createDefaultContext())->first();
+        return md5($str);
     }
 }
 ```
 {% endcode %}
 
-In case you are not familiar with the Data Abstraction Layer refer to its documentation.
-
-Of course you can do everything in the getCategoryById function that PHP can do.
+Of course you can do everything in the createMd5Hash function that PHP can do.
 
 What is still missing is the registration of the service in the DI container.
 
@@ -72,8 +57,7 @@ What is still missing is the registration of the service in the DI container.
 ```markup
 ...
     <services>
-        <service id="SwagBasicExample\Twig\SwagGetCategoryById" public="true">
-            <argument type="service" id="category.repository"/> <!--Optional-->
+        <service id="SwagBasicExample\Twig\SwagCreateMd5Hash" public="true">
             <tag name="twig.extension"/> <!--Required-->
         </service>
     </services>
@@ -82,3 +66,25 @@ What is still missing is the registration of the service in the DI container.
 {% endcode %}
 
 After all that is done, you can access this Twig function within your plugin.
+
+### Use the Twig function in your template
+
+The created function is now available in all your templates. You can call it like each other function.
+
+{% code %}
+{% raw %}
+
+```twig
+{% sw_extends '@Storefront/storefront/layout/header/header.html.twig' %}
+
+{% set md5Hash = createMd5Hash('Shopware is awesome') %}
+
+{% block layout_header_logo %}
+    {{ parent() }}
+
+    {{ md5Hash }}
+{% endblock %}
+```
+
+{% endraw %}
+{% endcode %}
