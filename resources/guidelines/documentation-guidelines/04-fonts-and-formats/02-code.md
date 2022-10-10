@@ -54,7 +54,7 @@ Below are a few more instances:
 
 ### Placeholders
 
-* In a code output, explain any placeholder that appears in the sample output the first time. 
+* In a code output, explain any placeholder that appears in the sample output the first time.
 
 * Mention the placeholders in complete capital and italicized code font.
 
