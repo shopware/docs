@@ -2,11 +2,11 @@
 
 Your style, your words, and your tone define you. Correspondingly, this style guide lays out standard editorial instructions that define Shopware documentation.
 
-It is recommended that every contributor follows the below writing standards to maintain uniformity of the documentation.
+We recommend that every contributor follows the defined writing standards to maintain uniformity of the documentation. Refer to different sections of this guide to know more.
 
 ## Audience
 
-Use American English to cater to a global audience. You may refer to the [Cambridge dictionary](https://dictionary.cambridge.org/dictionary/essential-american-english/) for American vocabulary, spell check, and alternate words.
+It is important to consider the background of the potential audience reading your writing. This helps you to adapt your writing to meet their needs and interests.
 
 | Who is the audience? | What are their roles? |
 | :--- | :--- |
@@ -48,8 +48,8 @@ Third-party sources include websites, books, blogs, videos, images, and more. En
 
 Adhere to the [Markdown cheat sheet](https://www.markdownguide.org/cheat-sheet/) while creating the document.
 
-Symbols in Markdown sometimes serve multi-purpose. For example, `*` or `-` can be used to create bulleted lists. However, follow a single pattern to maintain uniformity throughout. The following sections describe the usage of these patterns and let us comply with them.
+Symbols in Markdown sometimes serve multi-purpose. For example, `*` or `-` can be used to create bulleted lists. However, follow a single pattern to maintain uniformity throughout. Further sections describe the usage of these patterns and let us comply with them.
 
-Also, user-defined rules govern the content quality, such as removing trailing spaces, code fence style, and more. You may refer to these rules in the [Markdown style of Shopware docs](https://github.com/shopware/docs/blob/master/markdown-style-config.yml)
+Also, user-defined rules govern the content quality, such as removing trailing spaces, code fence style, and more. You may refer to these rules in the [Markdown style of Shopware docs](https://github.com/shopware/docs/blob/master/markdown-style-config.yml).
 
 The following section details the conceptual outline structure of our documentation.
