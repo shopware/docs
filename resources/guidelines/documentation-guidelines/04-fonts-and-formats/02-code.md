@@ -74,30 +74,49 @@ Below are a few more instances:
 
 * Mention language identifier to enable syntax highlighting in your fenced code block.
 
-{% hint style="" %}
-
-  ```markdown
-  ....
-  ....
-  ```
-
-{% endhint %}
-
-* To display triple backticks in a fenced code block, wrap them inside quadruple backticks.
-
  {% hint style="danger" %}
 
  ````markdown
 
   ```markdown
-  Look! You can see my backticks.
+  Language identifier is markdown here.  
   ```
 
  ````
 
  {% endhint %}
 
+* To display triple backticks in a fenced code block, wrap them inside quadruple backticks.
+
+ {% hint style="danger" %}
+ 
+ ````markdown
+
+ ````
+
+  ```markdown
+  Look! You can see my backticks.
+  ```
+
+ ````
+ 
+ ````
+
+ {% endhint %}
+
 * When using code blocks within lists, use correct indention to avoid breaking the list. For example,
+
+{% hint style="success" %}
+
+* Payment
+
+  ```jsx
+  const pay_type = <Payment type=COD />;
+  ```
+
+* Transaction
+
+{% endhint %}
 
 {% hint style="danger" %}
 
@@ -106,18 +125,6 @@ Below are a few more instances:
 ```jsx
 const pay_type = <Payment type=COD />;
 ```
-
-* Transaction
-
-{% endhint %}
-
-{% hint style="success" %}
-
-* Payment
-
- ```jsx
- const pay_type = <Payment type=COD />;
- ```
 
 * Transaction
 
@@ -147,7 +154,7 @@ The following list includes items that should not be in code font:
 
 * In detailed documentation, elaborate on how to use the API, including invoking or instantiating it, the key features, and best practices or pitfalls.
 
-* Capitalize the API method names such as `GET, PUT, PATCH,` etc.
+* Capitalize the API method names such as `GET`, `PUT`, `PATCH,` etc.
 
 ## Classes and methods
 
