@@ -44,7 +44,7 @@ Third-party sources include websites, books, blogs, videos, images, and more. En
 
 ## Markdown rules
 
-Adhere to the [Markdown cheat sheet](https://www.markdownguide.org/cheat-sheet/) while creating the document. 
+Adhere to the [Markdown cheat sheet](https://www.markdownguide.org/cheat-sheet/) while creating the document.
 
 Refer to [gitbook syntax](https://gitbook.gitbook.io/git-sync/) for features like hint block, emoji, API blocks, etc.
 
