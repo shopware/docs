@@ -38,15 +38,15 @@ Choose ecommerce and technical terms from the pre-defined list of terminologies:
 
 * [General terms and abbreviations](https://shopware.atlassian.net/wiki/spaces/BGE/pages/735426953/Our+corporate+communications)
 
-* [Shopware ecommerce terminologies](https://shopware.atlassian.net/wiki/spaces/pr/pages/19205063733/Shopware+ecommerce+terminology_)
-
 ## Use of third-party sources
 
 Third-party sources include websites, books, blogs, videos, images, and more. Ensure to reference these external sources in the documentation only if they are trustworthy. Avoid copying any content directly from other sources like websites, encyclopedias, and Wikipedia.
 
 ## Markdown rules
 
-Adhere to the [Markdown cheat sheet](https://www.markdownguide.org/cheat-sheet/) while creating the document.
+Adhere to the [Markdown cheat sheet](https://www.markdownguide.org/cheat-sheet/) while creating the document. 
+
+Refer to [gitbook syntax](https://gitbook.gitbook.io/git-sync/) for features like hint block, emoji, API blocks, etc.
 
 Symbols in Markdown sometimes serve multi-purpose. For example, `*` or `-` can be used to create bulleted lists. However, follow a single pattern to maintain uniformity throughout. Further sections describe the usage of these patterns and let us comply with them.
 
