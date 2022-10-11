@@ -1,5 +1,7 @@
 # Fonts and Format for Code
 
+Fonts and formats for inline code, code blocks, non-code items, API referece, classes and methods are detailed below:
+
 ## Inline code
 
 * Inline code is a short snippet of code. Use backticks (`) for single-line code/ inline code.
@@ -29,6 +31,8 @@
   * HTTP status codes
 
   * Alias names
+
+  * Parameter values
 
 Below are a few more instances:
 
@@ -74,8 +78,6 @@ Below are a few more instances:
 
 * Mention language identifier to enable syntax highlighting in your fenced code block.
 
- {% hint style="danger" %}
-
  ````markdown
 
   ```markdown
@@ -83,26 +85,6 @@ Below are a few more instances:
   ```
 
  ````
-
- {% endhint %}
-
-* To display triple backticks in a fenced code block, wrap them inside quadruple backticks.
-
- {% hint style="danger" %}
- 
- ````markdown
-
- ````
-
-  ```markdown
-  Look! You can see my backticks.
-  ```
-
- ````
- 
- ````
-
- {% endhint %}
 
 * When using code blocks within lists, use correct indention to avoid breaking the list. For example,
 
@@ -148,13 +130,22 @@ The following list includes items that should not be in code font:
 
 * Names of products, services, and organizations
 
-## API reference code
+## API reference
 
-* The API reference must describe every class, interface, struct, constant, field, enum, and method, with a description for each parameter and the status codes.
-
-* In detailed documentation, elaborate on how to use the API, including invoking or instantiating it, the key features, and best practices or pitfalls.
+* The API reference code must describe every class, interface, struct, constant, field, enum, and method, with a description for each parameter and the status codes.
 
 * Capitalize the API method names such as `GET`, `PUT`, `PATCH,` etc.
+
+* Provide meaningful information about the request parameters. Link them to other sections of the documentation for more explanations.
+
+* Include any valid and default value at the end of the parameter description. For example,
+
+ ```markdown
+ Valid values are `true` and `false`.
+ The default is `false`.
+ ```
+
+* In detailed documentation, elaborate on how to use the API, including invoking or instantiating it, the key features, and best practices or pitfalls.
 
 ## Classes and methods
 
@@ -166,10 +157,6 @@ The following list includes items that should not be in code font:
 
 * You may also cross-link parameters, classes, and methods.
 
-## Parameters
-
-Capitalize the first word, and end the sentence or phrase with a period.
-
 ## Deprecations
 
 When something is deprecated, tell the user what to use as a replacement or what to do to make their code work. For example,
@@ -180,4 +167,4 @@ When something is deprecated, tell the user what to use as a replacement or what
 
 {% endhint %}
 
-The following section deals with asset management.
+The following section deals with asset (files, images, and videos) management.
