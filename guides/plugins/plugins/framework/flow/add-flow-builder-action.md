@@ -586,9 +586,58 @@ Click on [Save action] and we will get the result as below screenshot.
 
 ![Flow Builder create tag result](../../../../../.gitbook/assets/flow-builder-tag-result.png)
 
+#### Custom configuration for action without the modal
+
+You don't need a modal for the configuration. It can be added automatically.
+
+Imagine, your action is already in the action list after [the first step](#step-1-show-action-label-in-action-list)
+
+![Choose a Flow Builder Action](../../../../../.gitbook/assets/flow-builder-trigger-action.png)
+
+First, override the `openDynamicModal` method in the plugin to check if the value matches the desired action. Then, call the `onSaveActionSuccess` directly with the configuration. After the check, call `return`.
+
+#### JavaScript
+
+{% code title="<plugin root>/src/Resources/app/administration/src/extension/sw-flow-sequence-action/index.js" %}
+
+```jsx
+import template from './sw-flow-sequence-action.html.twig';
+const { Component } = Shopware;
+
+Component.register('sw-flow-sequence-action', {
+    methods: {
+        openDynamicModal(value) {
+            if (!value) {
+                return;
+            }
+
+            if (value === ACTION.CREATE_TAG) {
+                this.selectedAction = ACTION.CREATE_TAG;
+                const config = {
+                    tags: 'VIP, New customer'
+                };
+
+                // Config can be a result from an API.
+
+                this.onSaveActionSuccess({ config });
+                return;
+            }
+
+            // handle for the rest of actions.
+        },
+    },
+});
+```
+
+{% endcode %}
+
+Now, after you click on the action, the new sequence will automatically be added to the action list like this:
+
+![Flow Builder create tag result](../../../../../.gitbook/assets/flow-builder-tag-result.png)
+
 ### Demo
 
-Now you can view the whole demo for this custom Flow builder trigger and action as below.
+You can view the whole demo for this custom Flow Builder trigger and action below:
 
 ![Flow Builder demo](../../../../../.gitbook/assets/flow-builder-demo.gif)
 
