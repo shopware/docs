@@ -138,12 +138,7 @@ The following list includes items that should not be in code font:
 
 * Provide meaningful information about the request parameters. Link them to other sections of the documentation for more explanations.
 
-* Include any valid and default value at the end of the parameter description. For example,
-
- ```markdown
- Valid values are `true` and `false`.
- The default is `false`.
- ```
+* Include any valid and default value at the end of the parameter description. For example, *Valid values are `true` and `false`. The default is `false`.*
 
 * In detailed documentation, elaborate on how to use the API, including invoking or instantiating it, the key features, and best practices or pitfalls.
 
