@@ -6,7 +6,7 @@ This guide will walk you through the process of combining Shopware and your app 
 
 ## File Structure
 
-At first, you need to clone the app template from [GitHub](https://github.com/shopwareLabs/AppTemplate) and create a `manifest.xml` for your app. Or take a glance at our fully working example based on this template: [appExample](https://github.com/shopwareLabs/AppExample).  
+At first, you need to clone the app template from [GitHub](https://github.com/shopware/AppTemplate) and create a `manifest.xml` for your app. Or take a glance at our fully working example based on this template: [appExample](https://github.com/shopwareLabs/AppExample).  
 For further information about the `manifest.xml` have a look at our \[PLACEHOLDER-LINK: manifest-documentation\].  
 The easiest way to create a `manifest.xml` is with our [create-manifest command](../platform-sh-template.md#create-the-manifestxml).
 
