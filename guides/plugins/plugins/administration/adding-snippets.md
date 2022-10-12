@@ -19,6 +19,7 @@ Each language then receives a nested object of translations, so let's have a loo
     "swag-example": {
         "nested": {
             "value": "example"
+            "examplePluralization": "1 Product | {n} Products"
         },
         "foo": "bar"
     }
@@ -59,7 +60,7 @@ The same `$tc` helper function can be used in the templates to access translatio
 
 {% raw %}
 
-```text
+```twig
 {% block my_custom_block %}
     <p>
        {{ $tc('swag-example.general.myCustomText') }}
@@ -68,6 +69,23 @@ The same `$tc` helper function can be used in the templates to access translatio
 ```
 
 {% endraw %}
+
+Another feature of `$tc` is pluralization. Use a `|` in snippets to provide translations dependending on the number. The first part shows singular expression, while the second takes care of plural cases.
+Let's have a look at this example of `"examplePluralization": "One Product | {n} Products"` with the following implementation:
+
+{% raw %}
+
+```twig
+{% block my_custom_block %}
+    <p>
+       {{ $tc('swag-example.nested.examplePluralization', products.length) }}
+    </p>
+{% endblock %}
+```
+
+{% endraw %}
+
+If you provide `1` as the second parameter to `$tc()`, the text `One Product` would be rendered. For any other value greater than 1, the number itself is shown — for example, `4 Products`.
 
 ## More interesting topics
 
