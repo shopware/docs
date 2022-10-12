@@ -10,7 +10,7 @@ To add your own custom translations for your plugin or app, you first need a bas
 
 ## Snippet file structure
 
-Shopware 6 automatically loads your snippet files when a standard file structure and a naming convention are followed. To do so, store your snippet files in the `<extension root>/src/Resources/snippet` directory of your extension. Also, you can further use subdirectories if you want to. Use `<name>.<locale>` as the naming pattern. The name can be freely defined, while the locale must map to the ISO string of the supported locale in this snippet file - for example `example.de-DE.json`.
+Shopware 6 automatically loads your snippet files when a standard file structure and a naming convention are followed. To do so, store your snippet files in the `<extension root>/src/Resources/snippet/<locale>/` directory of your extension. Also, you can further use subdirectories if you want to. Use `<name>.<locale>` as the naming pattern. The name can be freely defined, while the locale must map to the ISO string of the supported locale in this snippet file - for example `example.de-DE.json`.
 
 In case you want to provide base translations (ship translations for a whole new language), indicate it with the suffix `.base` in your file name. Now the filename convention to be followed looks like this `<name>.<locale>.base.json` - for example, `example.de-AT.base.json`.
 
