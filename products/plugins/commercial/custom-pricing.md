@@ -1,6 +1,6 @@
 # Custom Pricing
 
-The Custom Pricing feature allows massive advances in the pricing model capabilities in the shopware 6 ecosystem.
+The Custom Pricing feature allows massive advances in the pricing model capabilities in the Shopware 6 ecosystem.
 
 The API interface exposed by this module allows the user to operate a set of commands which allow for the granular 'overriding' of prices via an external data repository or ERP system. This is achieved by defining a custom relationship between a existing price and one of the following entities:
 
