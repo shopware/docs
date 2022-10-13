@@ -326,27 +326,30 @@ export default Vue.extend({
 
 ## Storefront implementation
 
-After everything for the admin is done, there is still the need for a Storefront representation of your blocks. This works similarly to typical plugin development, with an exception to the path. All storefront templates must match the following path pattern: `<app-name>/Resources/views/storefront/element/<elementname>.html.twig`
+After everything for the admin is done, there is still the need for a storefront representation of your blocks. This works similarly to typical plugin development, with an exception to the path. All storefront templates must match the following path pattern: `<app-name>/Resources/views/storefront/element/<elementname>.html.twig`
 
 Since everything is already described in [guide CMS element development for plugins](https://developer.shopware.com/docs/guides/plugins/plugins/content/cms/add-cms-element#storefront-implementation), the following example just shows how your storefront template (`swag-daiĺymotion/Resources/views/storefront/element/cms-element-swag-dailymotion.html.twig`) could look like:
 
-```html
-{% block element_swag_dailymotion %}
-    <div class="cms-element-swag-dailymotion" style="height: 100%; width: 100%">
+{% raw %}
 
-        {% block element_dailymotion_image_inner %}
-            <div class="cms-el-swag-dailymotion">
-                <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
-                    <iframe style="width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden"
-                            src="https://www.dailymotion.com/embed/video//{{ element.config.dailyUrl.value }}"
-                            frameborder="0"
-                            type="text/html"
-                            width="100%"
-                            height="100%">
-                    </iframe>
-                </div>
-            </div>
-        {% endblock %}
+```twig
+{% block element_swag_dailymotion %}
+<div class="cms-element-swag-dailymotion" style="height: 100%; width: 100%">
+    {% block element_dailymotion_image_inner %}
+    <div class="cms-el-swag-dailymotion">
+        <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
+            <iframe style="width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden"
+                    src="https://www.dailymotion.com/embed/video//{{ element.config.dailyUrl.value }}"
+                    frameborder="0"
+                    type="text/html"
+                    width="100%"
+                    height="100%">
+            </iframe>
+        </div>
     </div>
+    {% endblock %}
+</div>
 {% endblock %}
 ```
+
+{% endraw %}
