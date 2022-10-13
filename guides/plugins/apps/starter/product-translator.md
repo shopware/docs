@@ -331,7 +331,7 @@ Now that it's certain the description of the product was changed, we fetch the d
 
 {% endcode %}
 
-The request contains a criteria that fetches a the product for which we received the event `'ids' => [$id]` and all translations and their associated languages `'associations' => 'language'`. Now we can retrieve the english description from the API response:
+The request contains a criteria that fetches the product for which we received the event `'ids' => [$id]` and all translations and their associated languages `'associations' => 'language'`. Now we can retrieve the english description from the API response:
 
 {% code title="src/Controller/ProductController.php" %}
 
