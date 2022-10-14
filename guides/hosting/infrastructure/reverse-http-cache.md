@@ -502,7 +502,7 @@ sub vcl_recv {
     # Mitigate httpoxy application vulnerability, see: https://httpoxy.org/
     unset req.http.Proxy;
 
-    # Strip query strings only needed by browser javascript. Customize to used tags.
+    #  Ignore query strings that are only necessary for the js on the client.  Customize as needed.
     if (req.url ~ "(\?|&)(pk_campaign|piwik_campaign|pk_kwd|piwik_kwd|pk_keyword|pixelId|kwid|kw|adid|chl|dv|nk|pa|camid|adgid|cx|ie|cof|siteurl|utm_[a-z]+|_ga|gclid)=") {
         # see rfc3986#section-2.3 "Unreserved Characters" for regex
         set req.url = regsuball(req.url, "(pk_campaign|piwik_campaign|pk_kwd|piwik_kwd|pk_keyword|pixelId|kwid|kw|adid|chl|dv|nk|pa|camid|adgid|cx|ie|cof|siteurl|utm_[a-z]+|_ga|gclid)=[A-Za-z0-9\-\_\.\~]+&?", "");
