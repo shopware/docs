@@ -527,7 +527,7 @@ sub vcl_recv {
         if (req.http.xkey) {
             set req.http.n-gone = xkey.purge(req.http.xkey);
 
-            # Replace this line for
+            # To enable soft-purge replace this line with the line above
             #set req.http.n-gone = xkey.softpurge(req.http.xkey);
 
             return (synth(200, "Invalidated "+req.http.n-gone+" objects"));
