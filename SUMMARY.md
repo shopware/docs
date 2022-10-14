@@ -434,6 +434,7 @@
       * [Rule condition field abstraction](resources/references/adr/rule/2022-05-23-rule-condition-field-abstraction.md)
       * [Preparing data for rule evaluation](resources/references/adr/rule/2021-11-02-preparing-data-for-rule-evaluation.md)
     * [Storefront](resources/references/adr/storefront/README.md)
+      * [Add bootstrap util](resources/references/adr/storefront/2022-09-23-add-bootstrap-util.md)
       * [Refactor theme inheritance](resources/references/adr/storefront/2021-09-22-refactor-theme-inheritance.md)
       * [Move storefront scripts to head](resources/references/adr/storefront/2021-07-22-move-storefront-scripts-to-head.md)
       * [Storefront coding standards](resources/references/adr/storefront/2021-08-10-storefront-coding-standards.md)
