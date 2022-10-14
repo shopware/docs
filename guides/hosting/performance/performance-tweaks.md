@@ -16,7 +16,7 @@ When you have a lot of app servers, you should consider using a reverse proxy ca
 
 ### logged-in / cart-filled
 
-By default, Shopware can no longer deliver complete pages from a cache for a logged-in customer or if products are in the shopping cart. As soon as this happens, the user sessions differ, and the context rules could be different depending on the user. The result is different content for each customer; a good example is the [Dynamic Access](https://store.shopware.com/swag140583558965t/dynamic-access.html) plugin.
+By default, Shopware can no longer deliver complete pages from a cache for a logged-in customer or if products are in the shopping cart. As soon as this happens, the user sessions differ, and the context rules could be different depending on the user. The result is different content for each customer; a good example is the [Dynamic Access](https://docs.shopware.com/en/shopware-6-en/extensions/dynamiccontent) plugin.
 
 However, if the project does not require such functionality, pages can also be cached by the HTTP cache/reverse proxy. To disable Cache invalidation in these cases:
 
@@ -56,7 +56,7 @@ and then you can set `SQL_SET_DEFAULT_SESSION_VARIABLES=0` to your `.env` file
 
 We designed the DAL (Data Abstraction Layer) to provide developers a flexible and extensible data management. However, features in such a system come at the cost of performance. Therefore, using DBAL (plain SQL) is much faster than using the DAL in many scenarios, especially when it comes to internal processes, where often only one ID of an entity is needed.
 
-[Read more](https://github.com/shopware/platform/blob/trunk/adr/dal/2021-05-14-when-to-use-plain-sql-or-dal.md)
+[Read more](../../../../resources/references/adr/dal/2021-05-14-when-to-use-plain-sql-or-dal.md)
 
 ## Elasticsearch
 
@@ -82,7 +82,7 @@ shopware:
         update_mail_variables_on_send: false
 ```
 
-[Read more](https://github.com/shopware/platform/blob/trunk/adr/2022-03-25-prevent-mail-updates.md)
+[Read more](../../../../resources/references/adr/performance/2022-03-25-prevent-mail-updates.md)
 
 ## Increment storage
 
