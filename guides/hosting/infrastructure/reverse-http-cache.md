@@ -485,7 +485,7 @@ vcl 4.0;
 import std;
 import xkey;
 
-# You should specify here all your app nodes and use round robin to select a backend
+# Specify your app nodes here. Use round-robin balancing to add more than one.
 backend default {
     .host = "<app-host>";
     .port = "80";
