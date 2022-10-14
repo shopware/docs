@@ -10,52 +10,8 @@ This guide requires Shopware 6.4.4.0 or higher
 
 By default, Shopware builds the Administration without extensions if there is no database connection. To include the extensions without a database, you will need to use the `ComposerPluginLoader`. This determines the used plugins by looking up the installed project dependencies. To get this working the plugin needs to be required in the system using `composer req [package/name]`.
 
- To use the `ComposerPluginLoader` you have to create a file like `bin/ci` and set up the CLI application with the loader. There is an example:
-
-```php
-#!/usr/bin/env php
-<?php declare(strict_types=1);
-use Composer\InstalledVersions;
-use Shopware\Core\Framework\Plugin\KernelPluginLoader\ComposerPluginLoader;
-use Shopware\Production\HttpKernel;
-use Shopware\Production\Kernel;
-use Symfony\Bundle\FrameworkBundle\Console\Application;
-use Symfony\Component\Console\Input\ArgvInput;
-use Symfony\Component\Dotenv\Dotenv;
-use Symfony\Component\ErrorHandler\Debug;
-
-set_time_limit(0);
-
-$classLoader = require __DIR__ . '/../vendor/autoload.php';
-$envFile = __DIR__ . '/../.env';
-
-if (class_exists(Dotenv::class) && is_readable($envFile) && !is_dir($envFile)) {
-    (new Dotenv())->usePutenv()->load($envFile);
-}
-
-if (!isset($_SERVER['PROJECT_ROOT'])) {
-    $_SERVER['PROJECT_ROOT'] = dirname(__DIR__);
-}
-
-$input = new ArgvInput();
-$env = $input->getParameterOption(['--env', '-e'], $_SERVER['APP_ENV'] ?? 'prod', true);
-$debug = ($_SERVER['APP_DEBUG'] ?? ($env !== 'prod')) && !$input->hasParameterOption('--no-debug', true);
-
-if ($debug) {
-    umask(0000);
-    if (class_exists(Debug::class)) {
-        Debug::enable();
-    }
-}
-
-$pluginLoader = new ComposerPluginLoader($classLoader, null);
-$kernel = new HttpKernel($env, $debug, $classLoader);
-$kernel->setPluginLoader($pluginLoader);
-$application = new Application($kernel->getKernel());
-$application->run($input);
-```
-
-We can now dump the plugins for the Administration with the new file without a database with the command `bin/ci bundle:dump`. It is recommended to call `bin/ci` instead of `bin/console` in the `bin/*.js` scripts, which can be achieved by setting the environment variable `CI=1`.
+There is a file `bin/ci` which uses the `ComposerPluginLoader` and can be used instead of `bin/console`.
+Using this, we can dump the plugins for the Administration with the new file without a database with the command `bin/ci bundle:dump`. It is recommended to call `bin/ci` instead of `bin/console` in the `bin/*.js` scripts, which can be achieved by setting the environment variable `CI=1`.
 
 ## Compiling the Storefront without database
 
@@ -71,3 +27,7 @@ storefront:
  ```
 
  This will force the theme compiler to use the static dumped file instead of looking into the database.
+
+### Partially compiling the Storefront
+
+You can also build just the Javascript bundle using `CI=1 SHOPWARE_SKIP_THEME_COMPILE=true PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true bin/build-storefront.sh'` (without the need for the above loader) in your CI and later run `bin/console theme:dump` on your production system, when the database is available. This will happen anyways, if theme variables are changed via the admin panel.
