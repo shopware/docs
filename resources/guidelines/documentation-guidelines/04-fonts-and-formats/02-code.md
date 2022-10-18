@@ -156,7 +156,7 @@ The following list includes items that should not be in code font:
 
 When something is deprecated, tell the user what to use as a replacement or what to do to make their code work. For example,
 
-{% hint style="" %}
+{% hint style="warning" %}
 
 **Deprecated** - Access it using this getProd() method instead.
 
