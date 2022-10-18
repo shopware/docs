@@ -4,7 +4,7 @@ Fonts and formats for inline code, code blocks, non-code items, API referece, cl
 
 ## Inline code
 
-* Inline code is a short snippet of code. Use backticks (`) for single-line code/ inline code.
+* Inline code is a short snippet of code. Use ``backticks (`)`` for single-line code/ inline code.
 
 * The following are examples of inline code:
 
@@ -62,7 +62,7 @@ Below are a few more instances:
 
 * Mention the placeholders in complete capital and italicized code font.
 
-* In markdown, wrap inline placeholders in backticks (\`) and asterisk (*).
+* In markdown, wrap inline placeholders in ``backticks (`)`` and `asterisk (*)`.
 
  ```markdown
  (*`PLACEHOLDER_NAME`*)
@@ -74,7 +74,7 @@ Below are a few more instances:
 
 * Code blocks are used for code snippets longer than a single line or terminal commands containing sample output when executed.
 
-* In markdown, code blocks are represented using a code fence (```).
+* In markdown, code blocks are represented using a `code fence (```)`.
 
 * Mention language identifier to enable syntax highlighting in your fenced code block.
 
