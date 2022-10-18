@@ -4,31 +4,32 @@ The Custom Pricing feature allows massive advances in the pricing model capabili
 
 The API interface exposed by this module allows the user to operate a set of commands which will enable the granular 
 ''overriding'' of prices via an external data repository or ERP system. This is achieved by defining a custom 
-relationship between a current price and one of the following entities Customer.
+relationship between the current price and one of the following entities:
+- Customer
 
 ### Pre-requisites and setup
 
 As Custom Pricing is part of the Commercial plugin, it requires an existing Shopware 6 installation and the activated
 Shopware 6 Commercial plugin on top. This plugin Commercial plugin can be installed as per the familiar
-[install instructions](guides/plugins/plugins/plugin-base-guide#install-your-plugin). In addition, Custom Prices need 
-to be activated within your merchant's account.
+[install instructions](guides/plugins/plugins/plugin-base-guide#install-your-plugin). In addition, the `Custom Prices` feature needs 
+to be activated within the relevant merchant account.
 
 ## Working with the API route
 
-To create, alter and delete customer-specific prices, you can use the API endpoint `/api/_action/product-customer-price`. As like with any other admin request in Shopware, you first need to take care of authenticating yourself. Therefore, please head over to the 
+To create, alter and/or delete customer-specific prices, you can use the API endpoint `/api/_action/product-customer-price`. As like with any other admin request in Shopware, you first need to authenticate yourself. Therefore, please head over to the 
 [authentication guide](https://shopware.stoplight.io/docs/admin-api/ZG9jOjEwODA3NjQx-authentication) for details.
 
-Apart from that, the Custom Pricing API interface models itself upon the interface of the sync API, so you will 
+Otherwise, the Custom Pricing API interface models itself upon the interface of the sync API, so you will 
 be able to package your requests similarly, see our [API documentation](https://shopware.stoplight.io/docs/admin-api).
 
 {% hint style="info" %}
-You can use the route with single `upsert` and `delete` actions or even combine those in a single request. This way, you can pack several different commands inside one sync API request, and each of them would be executed independent and isolate
+You can use the route with single `upsert` and `delete` actions or even combine those in a single request: you can pack several different commands inside one sync API request, and each of them is executed in an independent and isolated way
 {% endhint %}
 
 So, it's not surprising that the request body looks like a familiar sync request. In the payload for the `upsert` action, you pass the following data:
 * `productId`: The product whose price should be overwritten
-* `customerId`: The customer for whom we'd like to have a custom price for
-* `price`: The new custom price you want to use. It's defined by how you're familiar when working with prices in Shopware.
+* `customerId`: The customer for whom we will assign a custom price
+* `price`: The new custom price you want to use.
 
 This way, we come to use a payload as seen in the example below:
 ```json
@@ -59,7 +60,7 @@ This way, we come to use a payload as seen in the example below:
 ]
 ```
 
-For the `delete` action, we need fewer data to send. For its payload, you only need to define the `productId`s of the product whose prices you want to remove.
+For the `delete` action, we will send a smaller dataset: you only need to define the `productId`s for the product whose prices you want to remove.
 
 ```json
 [
@@ -82,7 +83,7 @@ In case of an error occurs, the response will not return an error code - which i
 {% endhint %}
 
 {% hint style="warning" %}
-When working with this route, one difference sets it apart from familiar `sync` requests: You cannot specify headers to adapt the endpoint's behavior. 
+When working with this route, one difference sets it apart from the familiar `sync` requests: You cannot specify headers to adapt the endpoint's behavior. 
 {% endhint %}
 
 ## Known caveats or issues
