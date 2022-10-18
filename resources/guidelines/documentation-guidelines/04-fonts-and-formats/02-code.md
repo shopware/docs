@@ -116,7 +116,7 @@ const pay_type = <Payment type=COD />;
 
 * Use three dots (...) on a separate line to indicate that more lines of output are omitted from the sample output.
 
-* Refer to [Syntax & Guidelines](https://handbook.shopware.com/Product/Guides/Development/DeveloperDocumentation) for more examples.
+* Refer to [Syntax & Guidelines](https://handbook.shopware.com/Product/Guides/Development/DeveloperDocumentation#syntax--guidelines) for more examples.
 
 ## Items to put in ordinary (non-code) font
 
