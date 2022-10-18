@@ -62,4 +62,4 @@ If a documented feature or functionality is introduced within major versions (an
 This functionality is available starting with Shopware 6.4.3.0.
 {% endhint %}
 
-Your Contribution is our Pride!
+Your contribution is our pride!
