@@ -16,7 +16,7 @@ When you have a lot of app servers, you should consider using a reverse proxy ca
 
 ### logged-in / cart-filled
 
-By default, Shopware can no longer deliver complete pages from a cache for a logged-in customer or if products are in the shopping cart. As soon as this happens, the user sessions differ, and the context rules could be different depending on the user. The result is different content for each customer; a good example is the [Dynamic Access](https://docs.shopware.com/en/shopware-6-en/extensions/dynamiccontent) plugin.
+By default, Shopware can no longer deliver complete pages from a cache for a logged-in customer or if products are in the shopping cart. As soon as this happens, the user sessions differ, and the context rules could be different depending on the user. This results in different content for each customer; a good example is the [Dynamic Access](https://docs.shopware.com/en/shopware-6-en/extensions/dynamiccontent) plugin.
 
 However, if the project does not require such functionality, pages can also be cached by the HTTP cache/reverse proxy. To disable Cache invalidation in these cases:
 
