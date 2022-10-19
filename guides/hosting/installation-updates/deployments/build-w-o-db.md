@@ -11,7 +11,7 @@ This guide requires Shopware 6.4.4.0 or higher
 By default, Shopware builds the Administration without extensions if there is no database connection. To include the extensions without a database, you will need to use the `ComposerPluginLoader`. This determines the used plugins by looking up the installed project dependencies. To get this working the plugin needs to be required in the system using `composer req [package/name]`.
 
 There is a file `bin/ci` which uses the `ComposerPluginLoader` and can be used instead of `bin/console`.
-Using this, we can dump the plugins for the Administration with the new file without a database with the command `bin/ci bundle:dump`. It is recommended to call `bin/ci` instead of `bin/console` in the `bin/*.js` scripts, which can be achieved by setting the environment variable `CI=1`.
+Using this, we can dump the plugins for the Administration with the new file without a database using the command `bin/ci bundle:dump`. It is recommended to call `bin/ci` instead of `bin/console` in the `bin/*.js` scripts, which can be achieved by setting the environment variable `CI=1`.
 
 ## Compiling the Storefront without database
 
