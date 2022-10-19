@@ -38,6 +38,7 @@ for (const entry of walkSync("./resources/references/adr", { includeDirs: false,
 	let topic = ADRs.get(topicName(adr));
 	if (!!topic) {
 		topic.entries.push(adr);
+		topic.entries.sort((a, b) =>  a.path.localeCompare(b.path));
 		continue
 	}
 	const topicDir = topicName(entry) === generalTopic ? '' : '/' + topicName(entry);
