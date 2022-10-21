@@ -1,8 +1,8 @@
-# 2020-07-02 - Notification titles are pre-defined and make use of the global namespace
+# 2020-08-21 - Notification titles are pre-defined and make use of the global namespace
 
 {% hint style="info" %}
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/admin/2020-07-20-unified-notification-titles.md)
+You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/admin/2020-08-21-unified-notification-titles.md)
 {% endhint %}
 
 ## Context
