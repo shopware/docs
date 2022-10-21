@@ -4,8 +4,8 @@ As a Shopware developer, your main work will be to **develop extensions** that *
 
 Alternatively, if you want to dive straight in, take a look at our introduction guides:
 
-{% page-ref page="plugins/plugin-base-guide.md" %}
+<PageRef page="plugins/plugin-base-guide.md" title="Plugin Development" sub="Our base guide for plugin development" />
 
-{% page-ref page="apps/app-base-guide.md" %}
+<PageRef page="apps/app-base-guide.md" title="App Development" sub="Start writing your first app" />
 
-{% page-ref page="themes/theme-base-guide.md" %}
+<PageRef page="themes/theme-base-guide.md" title="Theme Development" sub="Learn how to create your own theme" />

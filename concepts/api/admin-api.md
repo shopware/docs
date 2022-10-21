@@ -4,4 +4,7 @@ The Admin API provides CRUD operations for every entity within Shopware and is u
 
 For more information, please head to the guides section
 
-{% page-ref page="../../guides/integrations-api" %}  
+<PageRef
+	page="../../guides/integrations-api"
+	title="Integrations"
+    />

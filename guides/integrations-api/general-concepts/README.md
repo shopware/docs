@@ -8,20 +8,20 @@ For the Admin API these apply to the `/search` endpoint, whilst for the Store AP
 
 It starts with a very simple underlying concept, which encapsulates your entire search description in one generic object, referred to as the **search criteria**.
 
-{% page-ref page="search-criteria.md" %}
+<PageRef page="search-criteria" title="Search Criteria" />
 
 There are some additional instructions that can be specified using **request headers**.
 
-{% page-ref page="request-headers.md" %}
+<PageRef page="request-headers" title="Request Headers" />
 
 ## Documentation
 
 Here you find a common approach regarding the way that Shopware provides endpoint references for its APIs:
 
-{% page-ref page="generated-reference.md" %}
+<PageRef page="generated-reference" title="Generated Reference" />
 
 ## API Versioning
 
 Starting with Shopware version 6.4.0.0, we decided to change our API versioning strategy. The following article will cover what has been done and changed, how it used to be and how the version strategy looks like now.
 
-{% page-ref page="api-versioning.md" %}
+<PageRef page="api-versioning" title="API Versioning" />
