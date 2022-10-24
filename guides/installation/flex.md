@@ -2,7 +2,7 @@
 
 Symfony Flex is a composer plugin which helps you to manage and stay up to date with your Shopware Configuration files.
 
-## Setup a new project
+## Set up a new project
 
 To create a new Shopware project just run the following command:
 
@@ -10,18 +10,18 @@ To create a new Shopware project just run the following command:
 composer create-project shopware/production:dev-flex <project-name>
 ```
 
-This will create a new project in the `<project-name>` directory. The `dev-flex` version constraint will install the latest version of the shopware. This constraint `dev-flex` will be removed when the template is generally available.
+This will create a new project in the `<project-name>` directory. The `dev-flex` version constraint will install the latest version of the Shopware. This constraint `dev-flex` will be removed when the template is generally available.
 
 The template contains all Shopware bundles like `shopware/administration`, `shopware/storefront`, `shopware/elasticsearch`. If you don't need one of them, you can just uninstall it with:
 `composer remove shopware/<bundle-name>`.
 
-As next you have to adjust the generated `.env` file and run following command:
+As next, you have to adjust the generated `.env` file and run following command:
 
 ```bash
 bin/console system:install --basic-setup
 ```
 
-This will install Shopware and create a default sales channel with an default admin user named `admin` with password `shopware`. Change these credentials after the installation.
+This will install Shopware and create a default sales channel with a default admin user named `admin` with password `shopware`. Change these credentials after the installation.
 
 ### Optional packages
 
@@ -42,11 +42,11 @@ composer req fastly
 
 ### 1. Backup
 
-Start with an clean git state or make an backup of your files
+Start with a clean git state or make a backup of your files
 
 ### 2. Adjusting root composer.json
 
-First of all, you need to adjust your root composer.json. You need to add the following lines to your composer.json:
+First, you need to adjust your root composer.json. You need to add the following lines to your composer.json:
 
 ```json
 "extra": {
@@ -145,4 +145,22 @@ composer req paas
 
 # Fastly
 composer req fastly
+```
+
+## Known issues
+
+### `APP_ENV=dev` web_profiler missing extension error
+
+Prior to Shopware 6.4.17.0 you have to install the Profiler bundle to get `APP_ENV=dev` working with:
+
+```bash
+composer req --dev profiler
+```
+
+### framework:demo-data is missing faker classes
+
+Prior to Shopware 6.4.17.0 you have to install some packages to get `framework:demo-data` command working:
+
+```bash
+composer req --dev mbezhanov/faker-provider-collection maltyxx/images-generator
 ```
