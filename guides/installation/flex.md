@@ -12,10 +12,10 @@ composer create-project shopware/production:dev-flex <project-name>
 
 This will create a new project in the `<project-name>` directory. The `dev-flex` version constraint will install the latest version of the shopware. This constraint `dev-flex` will be removed when the template is generally available.
 
-The template contains all Shopware bundles like `shopware/administration`, `shopware/storefront`, `shopware/elasticsearch`. If you don't need one of them, you can just uninstall it with: 
+The template contains all Shopware bundles like `shopware/administration`, `shopware/storefront`, `shopware/elasticsearch`. If you don't need one of them, you can just uninstall it with:
 `composer remove shopware/<bundle-name>`.
 
-As next you have to adjust the generated `.env` file and run following command: 
+As next you have to adjust the generated `.env` file and run following command:
 
 ```bash
 bin/console system:install --basic-setup
