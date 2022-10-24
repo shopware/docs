@@ -147,6 +147,13 @@ composer req paas
 composer req fastly
 ```
 
+## Updating Shopware
+
+To update Shopware run `bin/console system:update:prepare` to enable the maintenance mode and then update all composer packages using `composer update`.
+To disable the maintenance mode again run `bin/console system:update:finish`
+
+If you want to force update all config files you can run `composer recipe:update`
+
 ## Known issues
 
 ### `APP_ENV=dev` web_profiler missing extension error

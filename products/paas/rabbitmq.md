@@ -1,30 +1,30 @@
 # RabbitMQ
 
-Perform the following steps to activate RabbitMQ in your environment.
+RabbitMQ is enabled by default in the template. This service is optional and can be disabled to use the default queue from the Database.
 
-## Enable service
+## Disable service
 
-Add (or uncomment) the RabbitMQ service configuration.
+Comment out the RabbitMQ service configuration.
 
 {% code title=".platform/services.yaml" %}
 
 ```yaml
-rabbitmq:
-   type: rabbitmq:3.8
-   disk: 1024
+#rabbitmq:
+#   type: rabbitmq:3.8
+#   disk: 1024
 ```
 
 {% endcode %}
 
-## Add relationship
+## Remove relationship
 
-Add (or uncomment) the relationship for it the app configuration.
+Comment out the relationship for it the app configuration.
 
 {% code title=".platform.app.yaml" %}
 
 ```yaml
-relationships:
-#    rabbitmqqueue: "rabbitmq:rabbitmq"
+#relationships:
+#   rabbitmqqueue: "rabbitmq:rabbitmq"
 ```
 
 {% endcode %}
