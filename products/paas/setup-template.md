@@ -108,6 +108,5 @@ We suggest checking in your theme configuration to version control in this direc
 
 ## Updating Shopware / Updating config
 
-Shopware can be updated by running `composer update` and pushing the new lock file. 
+Shopware can be updated by running `composer update` and pushing the new lock file.
 The config files can be forced to be updated with `composer recipe:update`
-
