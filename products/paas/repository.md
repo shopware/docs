@@ -1,46 +1,22 @@
 # Repository
 
-The source code of your project will reside in a git-based VCS repository. You can start with a plain project, however we suggest starting with a fork of the [shopware/paas](https://github.com/shopware/paas) setup template from GitHub. You will find out more about the setup template in the [Setup Template](setup-template.md) section.
+The source code of your project will reside in a git-based VCS repository. You can start with a plain project, however we suggest starting with a new composer create-project. You will find out more about the setup template in the [Setup Template](setup-template.md) section.
 
 {% hint style="info" %}
 This guide explains the repository setup using **GitHub**. You can also integrate Bitbucket or GitLab based version control environments with Shopware PaaS. More information in [Source Integrations](https://docs.platform.sh/integrations/source.html).
 {% endhint %}
 
-## Fork and clone setup template
+## Create a Shopware project
 
-First of all create a new fork of the [shopware/paas](https://github.com/shopware/paas) setup template.
+First we create a new project with `composer create-project shopware/platform:dev-flex <folder-name>` using the [flex template](../../guides/installation/flex.md).
 
-![Screenshot of the fork button on GitHub](../../.gitbook/assets/fork-repository.png)
+This will create a brand new Shopware 6 project in the given folder. Now we have to change into our new created project and require the PaaS configuration with `composer req paas`.
 
-In the next step, clone it to your local machine (the following commands require [git command line tools](https://git-scm.com/book/en/v2/Getting-Started-The-Command-Line)):
-
-```bash
-git clone <path-to-your-fork> shopware-cloud-project
-```
-
-This will create a local copy of the forked repository in a directory named `shopware-cloud-project`.
-
-### Add an upstream remote
-
-Have a look at the remotes using `git remote -v`. By default, your repository is configured with a remote named `origin` which points to your forked repository. However, we also want to ensure you can receive updates whenever Shopware makes changes to the setup repository. Hence, we configure a so-called upstream remote:
-
-```bash
-git remote add upstream https://github.com/shopware/paas
-```
-
-If you run `git remote -v` again, you will see that there's a new remote named `upstream`. From now on, you can always pull the latest changes from the official template using
-
-```bash
-git fetch upstream
-git checkout main # Assuming your default branch is called "main"
-git merge upstream/main
-```
-
-Be aware that you might have to resolve some conflicts if you made changes in your template.
+Second we have to create a new Git repository and push it to your favorite Git hosting service.
 
 ## Add PaaS remote
 
-Next, we need to add a third remote, which allows us to push code towards the PaaS environment and trigger a deployment.
+Next, we need to add a second remote, which allows us to push code towards the PaaS environment and trigger a deployment.
 
 We first need the project ID, so we display all projects using
 
@@ -75,12 +51,9 @@ origin	git@github.com:<project-repository>.git (fetch)
 origin	git@github.com:<project-repository>.git (push)
 platform	<paas-url>.git (fetch)
 platform	<paas-url>.git (push)
-upstream	https://github.com/shopware/paas (fetch)
-upstream	https://github.com/shopware/paas (push)
 ```
 
 | Remote     | Function          | Description                                                             |
 |------------|-------------------|-------------------------------------------------------------------------|
 | `origin`   | Project Code      | This remote contains all your project specific source code              |
 | `platform` | PaaS Environment  | Changes pushed to this remote will be synced with your PaaS environment |
-| `upstream` | Official Template | Maintained by Showpare and used to pull latest changes                  |

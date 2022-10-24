@@ -93,27 +93,14 @@ The public root of your application `public/index.php` is configured, so the ser
 
 Workers are copies of your application instance after the [build hook](#build-hook) has been executed. The are usually configured with a start command. By default there are two configured workers - one for message queues and one for scheduled tasks.
 
-## [.platform / routes.yaml](https://github.com/shopware/paas/blob/main/.platform/routes.yaml)
+## [.platform / routes.yaml](https://github.com/shopware/recipes/blob/main/shopware/paas-meta/6.4/root/.platform/routes.yaml)
 
 This file configures, that incoming http requests are routed to the `app` instance.
 
-## [.platform / services.yaml](https://github.com/shopware/paas/blob/main/.platform/services.yaml)
+## [.platform / services.yaml](https://github.com/shopware/recipes/blob/main/shopware/paas-meta/6.4/root/.platform/services.yaml)
 
 This file contains services which are used by the `app` instances. Depending on your setup, uncomment or add services that you need and they will be created and scaled automatically.
 
-## [config /](https://github.com/shopware/paas/blob/main/config)
-
-The `config` directory contains all applications specific configuration. See more on configurations in our [Infrastructure](../../guides/hosting/infrastructure/) and [Performance](../../guides/hosting/performance/) sections.
-
-Some prominent configurations which have been altered:
-
-| Configuration | Value | Description |
-| --- | --- | --- |
-| `packages/framework.yaml` | `session` | Redis is configured as default for session |
-| `packages/framework.yaml` | `cache` | Redis adapter is set as a app cache |
-| `packages/shopware.yaml` | `admin_worker` | Disables the admin worker, because there are [dedicated workers](#workers) |
-| `packages/shopware.yaml` | `auto_updater` | Disables the auto updater |
-
-## [files / theme-config](https://github.com/shopware/paas/blob/main/files/theme-config)
+## [files / theme-config](https://github.com/shopware/recipes/tree/main/shopware/paas-meta/6.4/root/files/theme-config)
 
 We suggest checking in your theme configuration to version control in this directory. Read more on the concept of [builds without database](../../guides/hosting/installation-updates/deployments/build-w-o-db.md) as described in [Theme Build](./theme-build.md).

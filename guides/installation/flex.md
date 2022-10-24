@@ -46,7 +46,7 @@ Start with a clean git state or make a backup of your files
 
 ### 2. Adjusting root composer.json
 
-First, you need to adjust your root composer.json. You need to add the following lines to your composer.json:
+First, you need to adjust your root `composer.json`. You need to add the following lines to your `composer.json`:
 
 ```json
 "extra": {
@@ -133,11 +133,11 @@ composer recipe:install --force --reset
 
 ### 5. Review changes
 
-Review the changes and commit them to your git repository. All upcomming config changes can be applied with `composer recipe:update`
+Review the changes and commit them to your git repository. All upcoming config changes can be applied with `composer recipe:update`
 
-### 6. Optional: Install PaaS or Fastly
+### 6. Optional: Install PaaS or Fastly support
 
-If you want to use the PaaS or Fastly, you need to install the following composer packages:
+If you want to use the Shopware PaaS or Fastly, you need to install the following composer packages:
 
 ```bash
 # PaaS
