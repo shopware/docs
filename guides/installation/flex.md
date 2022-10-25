@@ -15,7 +15,9 @@ This will create a new project in the `<project-name>` directory. The `dev-flex`
 The template contains all Shopware bundles like `shopware/administration`, `shopware/storefront`, `shopware/elasticsearch`. If you don't need one of them, you can just uninstall it with:
 `composer remove shopware/<bundle-name>`.
 
-## Installation locally
+## Installation
+
+### Local installation
 
 You have to adjust the generated `.env` file and run following command:
 
@@ -25,7 +27,7 @@ bin/console system:install --basic-setup
 
 This will install Shopware and create a default sales channel with a default admin user named `admin` with password `shopware`. Change these credentials after the installation.
 
-## Installation with Docker and local PHP using Symfony CLI
+### Installation with Docker and local PHP using Symfony CLI
 
 The Symfony CLI is a developer tool to help you build, run, and manage your Symfony applications directly from your terminal. The services will run in Docker containers and the application runs locally.
 
@@ -115,7 +117,7 @@ composer req paas
 composer req fastly
 ```
 
-### Optional adding Shopware Packagist
+#### Adding Shopware Packagist
 
 Using Shopware Packagist you can manage all your Shopware Store plugins directly in the composer.json aswell. See this blog post for [more information](https://www.shopware.com/en/news/using-composer-for-plugin-installation-in-shopware/).
 
