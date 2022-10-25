@@ -57,7 +57,7 @@ Here's our `services.xml`:
 
 <CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
-```markup
+```xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -190,7 +190,7 @@ Of course, this new definition also needs to be registered to the DI container:
 
 <CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
-```markup
+```xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -353,7 +353,7 @@ After we've created our subscriber, we have to adjust our `services.xml` to regi
 
 <CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
-```markup
+```xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"

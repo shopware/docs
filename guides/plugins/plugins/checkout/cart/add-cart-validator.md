@@ -74,7 +74,7 @@ Your validator has to be registered using the tag `shopware.cart.validator`:
 
 <CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
-```markup
+```xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

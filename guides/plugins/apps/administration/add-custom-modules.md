@@ -17,7 +17,7 @@ Additionally you can define `label` elements inside of your `module` element, to
 
 <CodeBlock title="manifest.xml">
 
-```markup
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
@@ -77,7 +77,7 @@ The navigation id of your modules uses always pattern `app-<appName>-<moduleName
 
 <CodeBlock title="manifest.xml">
 
-```markup
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
@@ -120,7 +120,7 @@ To avoid mixing other modules with your main module, we decided to separate the 
 
 <CodeBlock title="manifest.xml">
 
-```markup
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>

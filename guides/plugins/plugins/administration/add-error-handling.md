@@ -56,7 +56,7 @@ computed: {
 
 Those computed properties can then be used in your templates the familiar way:
 
-```markup
+```xml
 <div>
     <sw-field ... :error="propertyError"></sw-field>
 </div>
@@ -95,7 +95,7 @@ Component.register('sw-product-basic-form', {
 
 Which then are bound to the inputs like this:
 
-```markup
+```xml
 <sw-field type="text" v-model="product.name" :error="productNameError">
 ```
 
@@ -142,7 +142,7 @@ Shopware.Component.register('sw-product-detail', {
 
 This makes it possible to indicate if one or more errors exists, in another view or a tab:
 
-```markup
+```xml
 <sw-tabs
     :hasError="swProductDetailBaseError">
 </sw-tabs>

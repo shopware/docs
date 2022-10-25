@@ -31,7 +31,7 @@ Alternatively, configure the product.repository service to be injected explicitl
 
 <CodeBlock title="<plugin root>src/Resources/config/service.xml">
 
-```markup
+```xml
 <service id="Swag\ExamplePlugin\Service\DalExampleService">
     <argument type="service" id="product.repository"/>
 </service>

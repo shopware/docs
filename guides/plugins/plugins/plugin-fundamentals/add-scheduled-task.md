@@ -23,7 +23,7 @@ Here's an example `services.xml` containing a new `ScheduledTask` as well as a n
 
 <CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
-```markup
+```xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"

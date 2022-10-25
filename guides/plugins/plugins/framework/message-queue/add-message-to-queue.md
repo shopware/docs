@@ -100,7 +100,7 @@ As the sent messages may travel through some 3rd party services you may want to 
 
 <CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
-```markup
+```xml
 <service id="Swag\BasicExample\Service\ExampleSender">
     <argument type="service" id="encrypted.messenger.bus.shopware"/>
 </service>

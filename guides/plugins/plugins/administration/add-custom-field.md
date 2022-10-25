@@ -49,7 +49,7 @@ The path starting from 'src' is fully customizable, yet we recommend choosing a 
 <CodeBlock title="<plugin root>/src/Resources/app/administration/src/extension/sw-product-settings-form/sw-product-settings-form.html.twig">
 
 
-```markup
+```xml
 {% block sw_product_settings_form_content %}
     {% parent %}
 
@@ -70,23 +70,23 @@ This block contains the whole settings form of the product detail page. In order
 
 As mentioned above, Shopware 6 is looking for a `main.js` file in your plugin. Its contents get minified into a new file named after your plugin and will be moved to the `public` directory of Shopware 6 root directory. Given this plugin would be named "AdministrationNewField", the minified javascript code for this example would be located under `<plugin root>/src/Resources/public/administration/js/administration-new-field.js`, once you run the command following command in your shopware root directory:
 
-{% tabs %}
-{% tab title="Development template" %}
+<Tabs>
+<Tab title="Development template">
 
 ```bash
 ./psh.phar administration:build
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Production template" %}
+<Tab title="Production template">
 
 ```bash
 ./bin/build-administration.sh
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ::: info
 Your plugin has to be activated for this to work.

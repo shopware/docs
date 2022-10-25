@@ -170,22 +170,22 @@ export default class ExamplePlugin extends Plugin {
 
 To see your changes you have to build the storefront. Use the following command to build your storefront and reload it afterwards:
 
-{% tabs %}
-{% tab title="Development template" %}
+<Tabs>
+<Tab title="Development template">
 
 ```bash
 ./psh.phar storefront:build
 ```
 
-{% endtab %}
-{% tab title="Production template" %}
+</Tab>
+<Tab title="Production template">
 
 ```bash
 ./bin/build-storefront.sh
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 You can now see a blank modal which contains `undefined`. This is because we have not added any content to show inside the modal.
 

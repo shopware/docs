@@ -44,7 +44,7 @@ It also provides many helper functions e.g. to get the screen dimensions. Althou
 
 The `v-responsive` directive can be used to dynamically apply classes based on an element's dimensions.
 
-```markup
+```xml
 <input v-responsive="{ 'is--compact': el => el.width <= 1620, timeout: 200 }">
 ```
 

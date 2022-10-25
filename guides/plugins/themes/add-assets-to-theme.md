@@ -59,7 +59,7 @@ This way of adding custom assets refers to the default way of dealing with asset
 
 You can link to the asset with the twig [asset](https://symfony.com/doc/current/templates.html#linking-to-css-javascript-and-image-assets) function:
 
-```markup
+```xml
 <img src="{{ asset('bundles/swagbasicexampletheme/your-image.png', 'asset') }}">
 ```
 

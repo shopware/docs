@@ -172,7 +172,7 @@ All that's left to do now, is to introduce your `ExampleDefinition` to Shopware 
 
 Here's the `services.xml` as it should look like:
 
-```markup
+```xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

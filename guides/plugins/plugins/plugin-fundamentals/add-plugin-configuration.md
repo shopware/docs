@@ -39,7 +39,7 @@ The `config.xml` follows a simple syntax. You can organize the content in `<card
 
 <CodeBlock title="<plugin root>/src/Resources/config/config.xml">
 
-```markup
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
@@ -61,7 +61,7 @@ Please make sure to specify the `xsi:noNamespaceSchemaLocation` as shown above a
 
 A `<card>` `<title>` is translatable, this is managed via the `lang` attribute. By default the `lang` attribute is set to `en-GB`, to change the locale of a `<title>` just add the attribute as follows:
 
-```markup
+```xml
     ...
     <card>
         <title>English Title</title>
@@ -110,7 +110,7 @@ Add the `defaultValue` setting to your `<input-field>` to define a default value
 
 Below you'll find an example how to use this setting.
 
-```markup
+```xml
 <input-field type="text">
     <name>textField</name>
     <label>Test field with default value</label>
@@ -124,7 +124,7 @@ You can add the `<disabled>` setting to any of your `<input-field>` elements to 
 
 Below you'll find an example how to use this setting.
 
-```markup
+```xml
 <input-field>
     <name>email</name>
     <disabled>true</disabled>
@@ -139,7 +139,7 @@ You can add the `<copyable>` setting to your `<input-field>` which are of type `
 
 Below you'll find an example how to use this setting.
 
-```markup
+```xml
 <input-field>
     <name>email</name>
     <copyable>true</copyable>
@@ -154,7 +154,7 @@ You can use `<options>` to add settings to a `<input-field>` of the types `singl
 
 Below you'll find an example.
 
-```markup
+```xml
 <input-field type="single-select">
     <name>mailMethod</name>
     <options>
@@ -182,7 +182,7 @@ Here are some examples:
 
 ### Entity single select for products
 
-```markup
+```xml
 <component name="sw-entity-single-select">
     <name>exampleProduct</name>
     <entity>product</entity>
@@ -194,7 +194,7 @@ Stores the ID of the selected product into the system config.
 
 ### Entity multi ID select for products
 
-```markup
+```xml
 <component name="sw-entity-multi-id-select">
     <name>exampleMultiProductIds</name>
     <entity>product</entity>
@@ -206,7 +206,7 @@ Stores an array with IDs of the selected products into the system config.
 
 ### Media selection
 
-```markup
+```xml
 <component name="sw-media-field">
     <name>pluginMedia</name>
     <label>Upload media or choose one from the media manager</label>
@@ -215,7 +215,7 @@ Stores an array with IDs of the selected products into the system config.
 
 ### Text editor
 
-```markup
+```xml
 <component name="sw-text-editor">
     <name>textEditor</name>
     <label>Write some nice text with WYSIWYG editor</label>
@@ -224,7 +224,7 @@ Stores an array with IDs of the selected products into the system config.
 
 ### Snippet field
 
-```markup
+```xml
 <component name="sw-snippet-field">
     <name>snippetField</name>
     <label>Description</label>
@@ -250,7 +250,7 @@ Now all that's left to do is to present you a working example `config.xml` and s
 
 <CodeBlock title="<plugin root>/src/Resources/config/config.xml">
 
-```markup
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/SystemConfig/Schema/config.xsd">

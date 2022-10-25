@@ -75,8 +75,8 @@ about it.
 What we'll be doing now, is to add a custom `TypeDetector` class which returns an `ImageType` if the extension of the file to be checked matches our type detector.
 Have a look at the following example:
 
-{% tabs %}
-{% tab title="CustomImageTypeDetector.php" %}
+<Tabs>
+<Tab title="CustomImageTypeDetector.php">
 <CodeBlock title="<plugin root>/src/Core/Content/Media/TypeDetector/CustomImageTypeDetector.php">
 
 ```php
@@ -114,9 +114,9 @@ class CustomImageTypeDetector implements TypeDetectorInterface
 ```
 
 </CodeBlock>
-{% endtab %}
+</Tab>
 
-{% tab title="services.xml" %}
+<Tab title="services.xml">
 <CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
 ```xml
@@ -133,8 +133,8 @@ class CustomImageTypeDetector implements TypeDetectorInterface
 </container>
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 You'll have to create a new class which implements from the interface `TypeDetectorInterface`.
 This will come with the requirement of having a `detect` method, which will return the respective media type.

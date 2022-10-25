@@ -54,7 +54,7 @@ To register our custom resolver to the service container we have to register it 
 
 <CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
-```markup
+```xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"

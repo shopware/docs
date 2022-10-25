@@ -18,7 +18,7 @@ Using base components in your own administration templates is rather simple. In 
 
 <CodeBlock title="<plugin-root>/src/Resources/app/administration/app/src/component/example-component/example.html.twig">
 
-```markup
+```xml
 <div>
     <sw-text-field />
 </div>

@@ -72,7 +72,7 @@ class OwnProfile implements ProfileInterface
 
 The profile itself does not contain any logic and is used to bundle the executing classes. To use this profile, you have to register and tag it in the `service.xml` with `shopware.migration.profile`:
 
-```markup
+```xml
 <service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\OwnProfile">
     <tag name="shopware.migration.profile"/>
 </service>
@@ -195,7 +195,7 @@ class OwnLocaleGateway implements GatewayInterface
 
 As you have seen above, the gateway uses the `ConnectionFactory` to test the connection to the source system. You can also implement your own way to check this, but to use this factory is the simplest way for a gateway to connect a local database. Like the profile you have to register the new gateway in the `service.xml` and tag it with `shopware.migration.gateway`:
 
-```markup
+```xml
 <service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\Gateway\OwnLocaleGateway">
     <argument type="service" id="SwagMigrationAssistant\Migration\Gateway\Reader\ReaderRegistry"/>
     <argument type="service" id="SwagMigrationAssistant\Profile\Shopware\Gateway\Connection\ConnectionFactory"/>
@@ -291,7 +291,7 @@ As you can see above, currently the template does not exists and you have to cre
 
 
 
-```markup
+```xml
 {% block own_profile_page_credentials %}
     <div class="swag-migration-wizard swag-migration-wizard-page-credentials"
          @keypress.enter="onKeyPressEnter">
@@ -474,7 +474,7 @@ The order in the `getDataSets` array is important, because this it determines th
 
 To see the created `ProductDataSelection` in the administration, you have to register it both in the `services.xml` and tag them with `shopware.migration.data_selection` and `shopware.migration.data_set`:
 
-```markup
+```xml
 <service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\DataSelection\ProductDataSelection">
     <tag name="shopware.migration.data_selection"/>
 </service>
@@ -567,7 +567,7 @@ class ProductReader extends AbstractReader
 
 Then you have to register this in `services.xml` and tag it with `shopware.migration.reader`:
 
-```markup
+```xml
 <service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\Gateway\Reader\ProductReader"
     parent="SwagMigrationAssistant\Profile\Shopware\Gateway\Local\Reader\AbstractReader">
     <argument type="service" id="SwagMigrationAssistant\Profile\Shopware\Gateway\Connection\ConnectionFactory"/>
@@ -837,7 +837,7 @@ If you don't know which properties or requirements your entity has in Shopware 6
 
 To use this converter, you must register it in the `services.xml`:
 
-```markup
+```xml
 <service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\Converter\ProductConverter">
     <argument type="service" id="SwagMigrationAssistant\Migration\Mapping\MappingService"/>
     <argument type="service" id="SwagMigrationAssistant\Migration\Logging\LoggingService"/>

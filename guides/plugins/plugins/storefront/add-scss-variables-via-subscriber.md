@@ -37,8 +37,8 @@ $sass-plugin-header-bg-color: #ffcc00 !default;
 
 You can add a new subscriber according to the [Listening to events](../plugin-fundamentals/listening-to-events.md) guide. In this example we name the subscriber `ThemeVariableSubscriber`. The subscriber listens to the `ThemeCompilerEnrichScssVariablesEvent`.
 
-{% tabs %}
-{% tab title="<plugin root>/src/Subscriber/ThemeVariableSubscriber.php" %}
+<Tabs>
+<Tab title="<plugin root>/src/Subscriber/ThemeVariableSubscriber.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -65,11 +65,11 @@ class ThemeVariableSubscriber implements EventSubscriberInterface
 }
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="<plugin root>/src/Resources/config/services.xml" %}
+<Tab title="<plugin root>/src/Resources/config/services.xml">
 
-```markup
+```xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -84,8 +84,8 @@ class ThemeVariableSubscriber implements EventSubscriberInterface
 </container>
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 The `ThemeCompilerEnrichScssVariablesEvent` provides the `addVariable()` method which takes the following parameters:
 
@@ -105,7 +105,7 @@ First, lets add a new plugin configuration field according to the [Plugin Config
 
 <CodeBlock title="<plugin root>/src/Resources/config/config.xml">
 
-```markup
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
@@ -126,7 +126,7 @@ As you can see in the example, we add an input field of the type colorpicker for
 
 <CodeBlock title="<plugin root>/src/Resources/config/config.xml">
 
-```markup
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
@@ -146,8 +146,8 @@ As you can see in the example, we add an input field of the type colorpicker for
 
 In order to be able to read this config, you have to inject the `SystemConfigService` to your subscriber:
 
-{% tabs %}
-{% tab title="<plugin root>/src/Subscriber/ThemeVariableSubscriber.php" %}
+<Tabs>
+<Tab title="<plugin root>/src/Subscriber/ThemeVariableSubscriber.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -188,11 +188,11 @@ class ThemeVariableSubscriber implements EventSubscriberInterface
 }
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="<plugin root>/src/Resources/config/services.xml" %}
+<Tab title="<plugin root>/src/Resources/config/services.xml">
 
-```markup
+```xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -209,8 +209,8 @@ class ThemeVariableSubscriber implements EventSubscriberInterface
 </container>
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 * The `SystemConfigService` provides a `get()` method where you can access the configuration structure in the first parameter with a dot notation syntax like `SwagBasicExample.config.fieldName`. The second parameter is the sales channel `id`. With this `id` the config fields can be accessed for each sales channel.
 * You can get the sales channel id through the getter `getSalesChannelId()` of the `ThemeCompilerEnrichScssVariablesEvent`.

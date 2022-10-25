@@ -30,8 +30,8 @@ a class via decoration. Learn more about this [here](../../plugin-fundamentals/a
 containing an array of all URLs to be added.
 
 Let's have a look at the example class:
-{% tabs %}
-{% tab title="CustomUrlProvider.php" %}
+<Tabs>
+<Tab title="CustomUrlProvider.php">
 <CodeBlock title="<plugin root>/src/Core/Content/Sitemap/Provider/CustomUrlProvider.php">
 
 ```php
@@ -142,9 +142,9 @@ class CustomUrlProvider extends AbstractUrlProvider
 ```
 
 </CodeBlock>
-{% endtab %}
+</Tab>
 
-{% tab title="services.xml" %}
+<Tab title="services.xml">
 <CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
 ```xml
@@ -166,8 +166,8 @@ class CustomUrlProvider extends AbstractUrlProvider
 ```
 
 </CodeBlock>
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 Let's go through this step by step.
 First of all we created a new class `CustomUrlProvider`, which is extending from the `AbstractUrlProvider`.

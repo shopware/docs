@@ -30,7 +30,7 @@ This template now has to define the basic structure of your component. In this s
 
 
 
-```markup
+```xml
 {% block example_block %}
     <div class="sw-hello-world">
         <p>Hello world!</p>

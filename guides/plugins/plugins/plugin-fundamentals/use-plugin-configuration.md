@@ -43,7 +43,7 @@ For this guide, a very small plugin configuration file is available as well:
 
 <CodeBlock title="<plugin root>/src/Resources/config/config.xml">
 
-```markup
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
@@ -69,7 +69,7 @@ Inject this service into your subscriber using the [DI container](https://symfon
 
 <CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
-```markup
+```xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"

@@ -51,7 +51,7 @@ The following `services.xml` and `routes.xml` are identical as in the before men
 
 <CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
-```markup
+```xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services" 
@@ -72,7 +72,7 @@ The following `services.xml` and `routes.xml` are identical as in the before men
 
 <CodeBlock title="<plugin root>/src/Resources/config/routes.xml">
 
-```markup
+```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <routes xmlns="http://symfony.com/schema/routing"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

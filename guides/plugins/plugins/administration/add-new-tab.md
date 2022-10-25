@@ -150,23 +150,23 @@ import './page/sw-product-detail';
 
 ::: info
 Don't forget to rebuild the administration after applying changes to your `main.js`.
-{% tabs %}
-{% tab title="Development template" %}
+<Tabs>
+<Tab title="Development template">
 
 ```bash
 ./psh.phar administration:build
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Production template" %}
+<Tab title="Production template">
 
 ```bash
 ./bin/build-administration.sh
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 :::
 
 ## Registering the tab's new route

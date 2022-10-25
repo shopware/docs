@@ -75,7 +75,7 @@ Last, we have to register the decorated route to the DI-container. The `ExampleR
 
 <CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
-```markup
+```xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"

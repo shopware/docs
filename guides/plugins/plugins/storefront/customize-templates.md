@@ -70,27 +70,27 @@ If you wanted to append your text to the logo instead of replacing it, you could
 
 And that's it already, you're done. You might have to clear the cache and refresh your storefront to see your changes in action. This can be done by using the command following command inside your command line:
 
-{% tabs %}
-{% tab title="Development template" %}
+<Tabs>
+<Tab title="Development template">
 
 ```bash
 ./psh.phar cache
 ```
 
-{% endtab %}
+</Tab>
 
 ::: info
 Also remember to not only activate your plugin but also to assign your theme to the correct sales channel by clicking on it in the sidebar, going to the tab Theme and selecting your theme.
 :::
 
-{% tab title="Production template" %}
+<Tab title="Production template">
 
 ```bash
 ./bin/console cache:clear
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ### Finding variables
 

@@ -177,8 +177,8 @@ For this scenario, you can make use of the Shopware built-in `SeoUrlRoute` class
 
 Let's first have a look at such an example class:
 
-{% tabs %}
-{% tab title="ExamplePageSeoUrlRoute.php" %}
+<Tabs>
+<Tab title="ExamplePageSeoUrlRoute.php">
 <CodeBlock title="<plugin root>/src/Storefront/Framework/Seo/SeoUrlRoute/ExamplePageSeoUrlRoute.php">
 
 ```php
@@ -241,12 +241,12 @@ class ExamplePageSeoUrlRoute implements SeoUrlRouteInterface
 ```
 
 </CodeBlock>
-{% endtab %}
+</Tab>
 
-{% tab title="services.xml" %}
+<Tab title="services.xml">
 <CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
-```markup
+```xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -263,8 +263,8 @@ class ExamplePageSeoUrlRoute implements SeoUrlRouteInterface
 ```
 
 </CodeBlock>
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 Okay, so let's look through this step by step.
 
@@ -300,8 +300,8 @@ Every time your entity is written now, you have to let Shopware know, that you w
 
 Once again, let's have a look at an example subscriber here:
 
-{% tabs %}
-{% tab title="DynamicSeoUrlPageSubscriber.php" %}
+<Tabs>
+<Tab title="DynamicSeoUrlPageSubscriber.php">
 <CodeBlock title="<plugin root>/src/Service/DynamicSeoUrlPageSubscriber.php">
 
 ```php
@@ -337,12 +337,12 @@ class DynamicSeoUrlPageSubscriber implements EventSubscriberInterface
 ```
 
 </CodeBlock>
-{% endtab %}
+</Tab>
 
-{% tab title="services.xml" %}
+<Tab title="services.xml">
 <CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
-```markup
+```xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -360,8 +360,8 @@ class DynamicSeoUrlPageSubscriber implements EventSubscriberInterface
 ```
 
 </CodeBlock>
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 As already said, we're using the `written` event of our custom entity by providing the entities' technical name with the `.written` suffix. Everytime it is executed, we're just using the said `update` method of the `SeoUrlUpdater`. Here you'll have to provide the technical route name and the IDs of the entities, that need to be updated. And that's it for the subscriber.
 

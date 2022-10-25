@@ -124,7 +124,7 @@ Next, we need to register our controller in the DI-container and make it public.
 
 <CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
-```markup
+```xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services" 
@@ -151,7 +151,7 @@ Once we‘ve registered our new controller, we have to tell Shopware how we want
 
 <CodeBlock title="<plugin root>/src/Resources/config/routes.xml">
 
-```markup
+```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <routes xmlns="http://symfony.com/schema/routing"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

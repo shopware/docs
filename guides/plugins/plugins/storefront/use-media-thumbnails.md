@@ -128,7 +128,7 @@ Let's think about the snippet below:
 
 This example will print out the following output:
 
-```markup
+```xml
 <img 
     src="http://shopware.local/media/06/f0/5c/1614258798/example-image.jpg" 
     srcset="http://shopware.local/media/06/f0/5c/1614258798/example-image.jpg 1921w, 
@@ -160,7 +160,7 @@ By giving the `default` size you can override the media queries and always refer
 
 This example will create the output below:
 
-```markup
+```xml
 <img 
     src="http://shopware.local/media/06/f0/5c/1614258798/example-image.jpg" 
     srcset="http://shopware.local/media/06/f0/5c/1614258798/example-image.jpg 1921w, 
@@ -191,7 +191,7 @@ With the `attributes` param, additional attributes can be applied. Imagine the f
 
 This will generate the output below:
 
-```markup
+```xml
 <img 
     src="..." 
     sizes="..." 

@@ -138,8 +138,8 @@ To verify that the registration can only be triggered by authenticated Shopware 
 
 The following code snippet can be used to recalculate the signature:
 
-{% tabs %}
-{% tab title="PHP" %}
+<Tabs>
+<Tab title="PHP">
 
 ```php
 use Psr\Http\Message\RequestInterface;
@@ -149,8 +149,8 @@ $queryString = $request->getUri()->getQuery();
 $signature = hash_hmac('sha256', $queryString, $appSecret);
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ### Registration Response
 
@@ -167,8 +167,8 @@ To verify that you are also in possession of the `app secret` you need to provid
 
 Following code snippet can be used to calculate the proof:
 
-{% tabs %}
-{% tab title="PHP" %}
+<Tabs>
+<Tab title="PHP">
 
 ```php
 use Psr\Http\Message\RequestInterface;
@@ -183,8 +183,8 @@ $proof = \hash_hmac(
 );
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 Besides the proof, your app needs to provide a randomly generated secret, that should be used to sign every further request from this shop. Make sure to save the `shopId`, `shopUrl` and generated secret, so you can associate and use this information later.
 
@@ -247,8 +247,8 @@ You need to recalculate that signature and check that it matches the provided on
 
 You can use following code snippet to generate the signature:
 
-{% tabs %}
-{% tab title="PHP" %}
+<Tabs>
+<Tab title="PHP">
 
 ```php
 use Psr\Http\Message\RequestInterface;
@@ -257,8 +257,8 @@ use Psr\Http\Message\RequestInterface;
 $hmac = \hash_hmac('sha256', $request->getBody()->getContents(), $shopSecret);
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Permissions
 

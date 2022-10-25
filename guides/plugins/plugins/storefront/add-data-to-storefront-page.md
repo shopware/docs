@@ -63,7 +63,7 @@ class AddDataToPage implements EventSubscriberInterface
 
 The next thing we need to do is register our subscriber in the DI-Container and tag it as an event subscriber:
 
-```markup
+```xml
 <!-- in Resources/config/services.xml -->
 <service id="Swag\BasicExample\Service\AddDataToPage" >
     <tag name="kernel.event_subscriber" />
@@ -201,7 +201,7 @@ This data will then be available via the name `product_count`, but we'll get to 
 
 Now you only have to adjust your service definition to inject the productCountRoute:
 
-```markup
+```xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

@@ -14,7 +14,7 @@ Knowing what exactly CSRF is and how the attack works may come in handy, so you 
 
 As already mentioned, this guide assumed you've already got a custom form running, which needs CSRF protection. The following will be the example form we're going to use:
 
-```markup
+```xml
 <form action="{{ path('some.action') }}"
     method="post"
     data-form-csrf-handler="true"
@@ -32,7 +32,7 @@ Every storefront `POST` request is checked for a valid CSRF token to prevent [Cr
 
 Protecting it now with the built-in tools requires you to add two new lines, but let's have a look at a secure example first:
 
-```markup
+```xml
 <form action="{{ path('some.action') }}"
     method="post"
     data-form-csrf-handler="true"

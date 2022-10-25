@@ -62,7 +62,7 @@ return [
 
 <CodeBlock title="services.xml">
 
-```markup
+```xml
 <parameters>
     <parameter key="swag_ses_synonym_dir">%kernel.project_dir%/MySynonyms.php</parameter>
 </parameter>

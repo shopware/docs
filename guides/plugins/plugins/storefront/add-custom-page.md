@@ -123,7 +123,7 @@ Remember to register your new page loader in the DI container:
 
 <CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
-```markup
+```xml
 <service id="Swag\BasicExample\Storefront\Page\Example\ExamplePageLoader" public="true">
     <argument type="service" id="Shopware\Storefront\Page\GenericPageLoader" />
     <argument type="service" id="event_dispatcher"/>

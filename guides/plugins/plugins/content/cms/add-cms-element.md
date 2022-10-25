@@ -133,7 +133,7 @@ That means: You'll need a container to contain both the image and the icon. In t
 <CodeBlock title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/preview/sw-cms-el-preview-dailymotion.html.twig">
 
 
-```markup
+```xml
 {% block sw_cms_element_dailymotion_preview %}
     <div class="sw-cms-el-preview-dailymotion">
         <img class="sw-cms-el-preview-dailymotion-img"
@@ -206,7 +206,7 @@ The template doesn't have to include a lot. Having a look at how Dailymotion vid
 <CodeBlock title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/component/sw-cms-el-dailymotion.html.twig">
 
 
-```markup
+```xml
 {% block sw_cms_element_dailymotion %}
     <div class="sw-cms-el-dailymotion">
         <div class="sw-cms-el-dailymotion-iframe-wrapper">
@@ -373,7 +373,7 @@ Open the template `sw-cms-el-config-dailymotion.html.twig` instead. To be displa
 <CodeBlock title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/config/sw-cms-el-config-dailymotion.html.twig">
 
 
-```markup
+```xml
 {% block sw_cms_element_dailymotion_config %}
     <sw-text-field
           v-model="dailyUrl"
@@ -407,23 +407,23 @@ Shopware.Service('cmsService').registerCmsElement({
 
 That's it! You could now go ahead and fully test your new element! Install this plugin via `bin/console plugin:install --activate SwagBasicExample`, rebuild the administration using the following command and then start using your new element in the administration.
 
-{% tabs %}
-{% tab title="Development template" %}
+<Tabs>
+<Tab title="Development template">
 
 ```bash
 ./psh.phar administration:build
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Production template" %}
+<Tab title="Production template">
 
 ```bash
 ./bin/build-administration.sh
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 Of course, the Storefront implementation is still missing, so your element wouldn't be rendered in the Storefront yet.
 
@@ -440,7 +440,7 @@ The template for this is super easy though, just like it's been in your main com
 <CodeBlock title="platform/src/Storefront/Resources/views/storefront/element/cms-element-dailymotion.html.twig">
 
 
-```markup
+```xml
 {% block element_dailymotion %}
     <div class="cms-element-dailymotion" style="height: 100%; width: 100%">
 

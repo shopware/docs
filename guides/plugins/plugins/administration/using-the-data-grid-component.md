@@ -14,7 +14,7 @@ Let's create the simplest template we need in order to use the [`sw-data-grid`](
 
 <CodeBlock title="<plugin-root>/src/Resources/app/administration/app/src/component/swag-example/swag-example.html.twig">
 
-```markup
+```xml
 <div>
     <sw-data-grid :dataSource="dataSource" :columns="columns">
     </sw-data-grid>

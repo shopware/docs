@@ -17,7 +17,7 @@ An example for the `manifest.xml` would be:
 
 <CodeBlock title="manifest.xml">
 
-```markup
+```xml
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/app-system/0.1.0/src/Core/Content/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
         <name>myAppName</name>
@@ -144,7 +144,7 @@ The `app.installed` event gets triggered each time the app gets installed. This 
 
 <CodeBlock title="manifest.xml">
 
-```markup
+```xml
 <webhook name="appLifecycleInstalled" url="https://your-shop-url/applifecycle/installed" event="app.installed"/>
 ```
 
@@ -155,7 +155,7 @@ The webhook could look like this:
 
 <CodeBlock title="manifest.xml">
 
-```markup
+```xml
 <webhook name="appLifecycleUpdated" url="https://your-shop-url/applifecycle/updated" event="app.updated"/>
 ```
 
@@ -166,7 +166,7 @@ The webhook could look like this:
 
 <CodeBlock title="manifest.xml">
 
-```markup
+```xml
 <webhook name="appLifecycleDeleted" url="https://your-shop-url/applifecycle/deleted" event="app.deleted"/>
 ```
 
@@ -177,7 +177,7 @@ The webhook could look like this:
 
 <CodeBlock title="manifest.xml">
 
-```markup
+```xml
 <webhook name="appLifecycleActivated" url="https://your-shop-url/applifecycle/activated" event="app.activated"/>
 ```
 
@@ -188,7 +188,7 @@ The webhook could look like this:
 
 <CodeBlock title="manifest.xml">
 
-```markup
+```xml
 <webhook name="appLifecycleDeactivated" url="https://your-shop-url/applifecycle/deactivated" event="app.deactivated"/>
 ```
 

@@ -40,8 +40,8 @@ When you use our [Development template](https://github.com/shopware/development)
 
 The`./psh.phar` commands to run our E2E tests in CLI or in Cypress' test runner are explained in the paragraph [Executing e2e tests](end-to-end-testing.md#Executing%20E2E%20tests).
 
-{% tabs %}
-{% tab title="Plugin setup" %}
+<Tabs>
+<Tab title="Plugin setup">
 Depending on your environment \(administration or storefront\) please create the following folder structure:
 
 ```text
@@ -86,9 +86,9 @@ Finally, create a new file e2e/cypress/support/index.js with the following line:
 require('@shopware-ag/e2e-testsuite-platform/cypress/support');
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Platform: Developing with docker" %}
+<Tab title="Platform: Developing with docker">
 If you are using docker, you don't need to install a thing: We use the [Cypress/Included image](https://github.com/cypress-io/cypress-docker-images/tree/master/included) to use Cypress in Docker completely.
 
 However, as we're using this image for running the test runner as well, you may need to do some configuration first. Based on this [guide](https://www.cypress.io/blog/2019/05/02/run-cypress-with-a-single-docker-command) you need to forward the XVFB messages from Cypress out of the Docker container into an X11 server running on the host machine. The guide shows an example for Mac; other operating systems might require different commands.
@@ -145,17 +145,17 @@ It is **crucial** to set these environment variables in the **same terminal sess
 Make sure that the `DISPLAY` environment variable on your Mac is properly set **before** you start the containers as it will be **passed** to the Cypress container when the container is **created**.
 Updating the variable on your host won't update it in the container until it is re-created!
 :::
-{% endtab %}
+</Tab>
 
-{% tab title="Platform: Local environment" %}
+<Tab title="Platform: Local environment">
 To use E2E tests locally, you need to set the variable `CYPRESS_LOCAL` in your `.psh.yaml.override` to `true`. This way, Cypress will recognise your environment as local, without the use of docker. Afterwards, you are able to use the same `./psh.phar` commands as you would do using docker-based development environment.
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Executing E2E tests
 
-{% tabs %}
-{% tab title="Plugin setup" %}
+<Tabs>
+<Tab title="Plugin setup">
 If you want to run E2E tests in your plugin, just switch to the folder `Resources/app/<enviroment>/test/e2e` and execute the following command:
 
 ```bash
@@ -169,9 +169,9 @@ It opens up the Cypress test runner which allows you to run and debug your tests
 ::: danger
 Don't forget that you might need to adjust test cleanup and other environment-related things according to your plugin's setup.
 :::
-{% endtab %}
+</Tab>
 
-{% tab title="Execution in platform project" %}
+<Tab title="Execution in platform project">
 If you use Docker for your development environment, you are able to start right away.
 
 To prepare your shopware installation, your environment and install dependencies, please run the following command as first step, **outside** of your docker container:
@@ -205,8 +205,8 @@ Please keep in mind that we use `Administration` as default app environment. If 
 ```
 
 To see a complete overview on all psh scripts for e2e tests, feel free to refer to our [e2e psh command reference](../../../../resources/references/testing-reference/e2e-psh-commands.md).
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Writing your first test
 

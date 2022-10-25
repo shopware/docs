@@ -136,7 +136,7 @@ The last thing we need to do now is to tell Shopware how to look for new routes 
 
 <CodeBlock title="<plugin root>/src/Resources/config/routes.xml">
 
-```markup
+```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <routes xmlns="http://symfony.com/schema/routing"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -287,7 +287,7 @@ We need to tell Shopware that there is a new API-route for the `storefront` scop
 
 <CodeBlock title="<plugin root>/src/Resources/config/routes.xml">
 
-```markup
+```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <routes xmlns="http://symfony.com/schema/routing"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

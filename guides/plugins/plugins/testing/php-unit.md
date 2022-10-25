@@ -24,7 +24,7 @@ Here's an example configuration for the development template:
 
 <CodeBlock title="<plugin root>/phpunit.xml.dist">
 
-```markup
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -233,7 +233,7 @@ Therefore, this is how your configuration could then look like:
 
 <CodeBlock title="<plugin root>/phpunit.xml.dist">
 
-```markup
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

@@ -28,7 +28,7 @@ App Rule Conditions are defined in the `manifest.xml` file of your app:
 
 <CodeBlock title="manifest.xml">
 
-```markup
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
@@ -146,7 +146,7 @@ We then use the variables `operator` and `firstName`, provided by the constraint
 
 <CodeBlock title="manifest.xml">
 
-```markup
+```xml
 <!-- ... -->
 <rule-condition>
     <identifier>line_item_condition</identifier>
@@ -208,7 +208,7 @@ In this example we first check if the current scope is `LineItemScope` and refer
 
 <CodeBlock title="manifest.xml">
 
-```markup
+```xml
 <!-- ... -->
 <rule-condition>
     <identifier>date_condition</identifier>

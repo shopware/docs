@@ -100,7 +100,7 @@ You need to create a new class which implements the interface `\Shopware\Core\Ch
 
 <CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
-```markup
+```xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -210,7 +210,7 @@ Now register this processor in your `services.xml` like this:
 
 <CodeBlock title="<plugin root>/Resources/config/services.xml">
 
-```markup
+```xml
 ...
 <services>
     ...

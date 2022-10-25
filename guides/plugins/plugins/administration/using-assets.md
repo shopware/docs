@@ -55,7 +55,7 @@ This way, your plugin assets are copied to the `public/bundles` folder:
 
 After adding your assets to the `public/bundles` folder, you can start using your assets in the administration. Basically, you just need to use the Vue [filter](https://vuejs.org/v2/guide/filters.html) `asset`.
 
-```markup
+```xml
 <img :src="'/<plugin root>/static/your-image.png' | asset">
 ```
 

@@ -23,8 +23,8 @@ the respective `UrlProvider`, e.g. the `Shopware\Core\Content\Sitemap\Provider\P
 Hence, let's start with creating the basic decorated class for the `ProductUrlProvider`. We'll call
 this class `DecoratedProductUrlProvider`:
 
-{% tabs %}
-{% tab title="DecoratedProductUrlProvider.php" %}
+<Tabs>
+<Tab title="DecoratedProductUrlProvider.php">
 <CodeBlock title="<plugin root>/src/Core/Content/Sitemap/Provider/DecoratedProductUrlProvider.php">
 
 ```php
@@ -65,9 +65,9 @@ class DecoratedProductUrlProvider extends AbstractUrlProvider
 ```
 
 </CodeBlock>
-{% endtab %}
+</Tab>
 
-{% tab title="services.xml" %}
+<Tab title="services.xml">
 <CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
 ```xml
@@ -85,8 +85,8 @@ class DecoratedProductUrlProvider extends AbstractUrlProvider
 ```
 
 </CodeBlock>
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 Now let's get on to the two possible ways and its benefits.
 

@@ -254,23 +254,23 @@ Make sure to ship the compiled file with your plugin as well.
 
 To see your changes you have to build the storefront. Use the following command and reload your storefront:
 
-{% tabs %}
-{% tab title="Development template" %}
+<Tabs>
+<Tab title="Development template">
 
 ```bash
 ./psh.phar storefront:build
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Production template" %}
+<Tab title="Production template">
 
 ```bash
 ./bin/build-storefront.sh
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 If you now scroll to the bottom of your page an alert should appear.
 

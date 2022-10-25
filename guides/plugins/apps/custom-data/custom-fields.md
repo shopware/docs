@@ -5,7 +5,7 @@ To make use of the custom fields register your custom field sets in your manifes
 
 <CodeBlock title="manifest.xml">
 
-```markup
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
@@ -47,7 +47,7 @@ The names of the custom fields are global and therefore should always contain a 
 
 When defining custom fields in the `<fields>` element, you can configure additional properties of the fields. For example a `placeholder`, `min`, `max` and `step` size of a float field:
 
-```markup
+```xml
 <float name="swag_test_float_field">
     <label>Test float field</label>
     <label lang="de-DE">Test-Kommazahlenfeld</label>

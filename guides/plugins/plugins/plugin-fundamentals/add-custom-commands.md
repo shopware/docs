@@ -25,7 +25,7 @@ Here's a video on creating custom commands from our free online training ["Backe
 
 From here on, everything works exactly like in Symfony itself. Commands are recognised by Shopware, once they're tagged with the `console.command` tag in the [dependency injection](dependency-injection.md) container. So to register a new command, just add it to your plugin's `services.xml` and specify the `console.command` tag:
 
-```markup
+```xml
 <services>
    <!-- ... -->
 
@@ -40,7 +40,7 @@ Here's a full example `services.xml` which registers your custom command:
 
 <CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
-```markup
+```xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"

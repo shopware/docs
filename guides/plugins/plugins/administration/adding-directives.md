@@ -62,7 +62,7 @@ As mentioned before, directives can be used as in any other Vue application, aft
 
 <CodeBlock title="<plugin-root>/src/Resources/app/administration/app/src/component/swag-basic-example/swag-basic-example.html.twig">
 
-```markup
+```xml
 <input type="text" v-focus="">
 ```
 

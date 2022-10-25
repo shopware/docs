@@ -22,7 +22,7 @@ Or use the existing class:
 
 E.g., for your definition it means the following:
 
-```markup
+```xml
 <service id="YourStuff" class="Swag\EnterpriseSearch\Suggest\SuggestGateway">
   <argument type="service" id="definition.repository"/>
   <argument type="service" id="Swag\EnterpriseSearch\Suggest\SuggestCriteriaBuilder"/>
@@ -104,7 +104,7 @@ For adding a new configuration while creating a SalesChannel, you have to create
 
 For adding auto-completion of your definition, you have to add a [CompletionEsDefinitionDecorator](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Completion/CompletionEsDefinitionDecorator.php) to it. See this example:
 
-```markup
+```xml
  <service id="swag_completion.manufacturer_es_definition"
           class="Swag\EnterpriseSearch\Completion\CompletionEsDefinitionDecorator"
           decorates="Swag\EnterpriseSearch\Manufacturer\ManufacturerEsDefinition">
