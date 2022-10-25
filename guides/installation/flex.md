@@ -134,7 +134,7 @@ First, you need to adjust your root `composer.json`. You need to add the followi
     "symfony": {
         "allow-contrib": true,
         "endpoint": [
-            "https://api.github.com/repos/shopware/recipes/contents/index.json?ref=flex/main",
+            "https://raw.githubusercontent.com/shopware/recipes/flex/main/index.json",
             "flex://defaults"
         ]
     }
