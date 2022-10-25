@@ -131,7 +131,7 @@ The block `component_filter_panel_items` is available from Shopware Version 6.4.
 Including our filter will be done as seen below, please take the comments into account:
 
 <CodeBlock title="<plugin root>/src/Resources/views/storefront/component/listing/filter-panel.html.twig">
-{% raw %}
+
 
 ```text
 {% sw_extends '@Storefront/storefront/component/listing/filter-panel.html.twig' %}
@@ -147,7 +147,7 @@ Including our filter will be done as seen below, please take the comments into a
 {% endblock %}
 ```
 
-{% endraw %}
+
 </CodeBlock>
 
 As we want to filter a boolean value, we choose the `filter-boolean` component here. Sure, there are some more you can use - dependent on your filter's values:
@@ -165,7 +165,7 @@ Extending  `component_filter_panel_items` as shown above puts our filter *after*
 If we instead want our filter to be placed before or after a specific filter in the middle of the list, we can instead extend the block for that filter. For example, if we want our filter to be displayed after the price filter, we would extend the block `component_filter_panel_item_price`:
 
 <CodeBlock title="<plugin root>/src/Resources/views/storefront/component/listing/filter-panel.html.twig">
-{% raw %}
+
 
 ```text
 {% sw_extends '@Storefront/storefront/component/listing/filter-panel.html.twig' %}
@@ -181,7 +181,7 @@ If we instead want our filter to be placed before or after a specific filter in 
 {% endblock %}
 ```
 
-{% endraw %}
+
 </CodeBlock>
 
 ## Next steps

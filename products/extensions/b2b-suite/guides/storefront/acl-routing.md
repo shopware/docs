@@ -94,13 +94,13 @@ The ACL implementation is safe at the php level. Any route you have no access to
 for a better user experience you should also extend the template to hide inaccessible actions.
 
 <CodeBlock>
-{% raw %}
+
 
 ```twig
 <a href="{{ url("frontend.b2b." ~ page.route ~ ".assign") }}" class="{{ b2b_acl('b2broleaddress', 'assign') }}">
 ```
 
-{% endraw %}
+
 </CodeBlock>
 
 This will add a few vital css classes:

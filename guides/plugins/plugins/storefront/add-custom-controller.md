@@ -171,7 +171,7 @@ Now we registered our controller and Shopware indexes the route, but the templat
 As previously mentioned, the code will try to render an `index.html.twig` file. Thus we have to create an `index.html.twig` in the `<plugin root>/src/Resources/views/storefront/page/example` directory, as defined in our controller. Below you can find an example, where we extend from the template `base.html.twig` and override the block `base_content`. In our [Customize templates guide](customize-templates.md), you can learn more about customizing templates.
 
 <CodeBlock title="<plugin root>/src/Resources/views/storefront/page/example.html.twig">
-{% raw %}
+
 
 ```text
 {% sw_extends '@Storefront/storefront/base.html.twig' %}
@@ -181,7 +181,7 @@ As previously mentioned, the code will try to render an `index.html.twig` file. 
 {% endblock %}
 ```
 
-{% endraw %}
+
 </CodeBlock>
 
 ### Request and Context

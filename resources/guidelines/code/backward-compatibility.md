@@ -274,7 +274,7 @@ abstract class AbstractProductRoute
 
 **Storefront**: Use the `deprecated` tag from TWIG including a comment with the normal annotation.
 
-{% raw %}
+
 
 ```HTML
 {% block the_block_name %}
@@ -283,11 +283,11 @@ abstract class AbstractProductRoute
 {% endblock %}
 ```
 
-{% endraw %}
+
 
 **Administration**: Use normal TWIG comments for the annotation, as the other syntax is not supported.
 
-{% raw %}
+
 
 ```HTML
 {% block the_block_name %}
@@ -296,11 +296,11 @@ abstract class AbstractProductRoute
 {% endblock %}
 ```
 
-{% endraw %}
+
 
 #### Rename TWIG block
 
-{% raw %}
+
 
 ```HTML
 {% block new_block_name %}
@@ -311,7 +311,7 @@ abstract class AbstractProductRoute
 {% endblock %}
 ```
 
-{% endraw %}
+
 
 #### Deprecate CSS selectors
 

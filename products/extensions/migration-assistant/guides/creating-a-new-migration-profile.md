@@ -289,7 +289,7 @@ Component.register('swag-migration-profile-ownProfile-local-credential-form', {
 
 As you can see above, currently the template does not exists and you have to create this file: `swag-migration-profile-ownProfile-local-credential-form.html.twig`
 
-{% raw %}
+
 
 ```markup
 {% block own_profile_page_credentials %}
@@ -360,7 +360,7 @@ As you can see above, currently the template does not exists and you have to cre
 {% endblock %}
 ```
 
-{% endraw %}
+
 
 A few things to notice: The component name isn't random, it has to consist of:
 

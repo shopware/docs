@@ -223,7 +223,7 @@ You can find detailed information on how to extend templates and override blocks
 
 For our case we extend the footer template and add a new column to the navigation block:
 
-{% raw %}
+
 
 ```text
 <!-- in Resources/views/storefront/layout/footer/footer.html.twig -->
@@ -240,7 +240,7 @@ For our case we extend the footer template and add a new column to the navigatio
 {% endblock %}
 ```
 
-{% endraw %}
+
 
 Note the usage of the variable here. You're accessing the footer object, in which you can now find the path `extensions.product_count.count`.
 

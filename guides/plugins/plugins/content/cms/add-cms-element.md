@@ -131,7 +131,7 @@ So, for instance, if you want to show the default 'mountain' preview image as an
 That means: You'll need a container to contain both the image and the icon. In there, you create an `img` tag and use the [sw-icon component](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/component/base/sw-icon/index.js) to display the icon.
 
 <CodeBlock title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/preview/sw-cms-el-preview-dailymotion.html.twig">
-{% raw %}
+
 
 ```markup
 {% block sw_cms_element_dailymotion_preview %}
@@ -145,7 +145,7 @@ That means: You'll need a container to contain both the image and the icon. In t
 {% endblock %}
 ```
 
-{% endraw %}
+
 </CodeBlock>
 
 The icon would now be displayed beneath the image, so let's add some styles for this by creating the file `sw-cms-el-preview-dailymotion.scss`.
@@ -204,7 +204,7 @@ In addition, create the template file `sw-cms-el-dailymotion.html.twig` and the 
 The template doesn't have to include a lot. Having a look at how Dailymotion video embedding works, you just have to add an `iframe` with a src attribute pointing to the video.
 
 <CodeBlock title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/component/sw-cms-el-dailymotion.html.twig">
-{% raw %}
+
 
 ```markup
 {% block sw_cms_element_dailymotion %}
@@ -221,7 +221,7 @@ The template doesn't have to include a lot. Having a look at how Dailymotion vid
 {% endblock %}
 ```
 
-{% endraw %}
+
 </CodeBlock>
 
 You can't just use a static `src` here, since the shop manager wants to configure the video he wants to show. Thus, we're fetching that link via VueJS now.
@@ -371,7 +371,7 @@ Just like always, it comes with a template, no styles necessary here though. Cre
 Open the template `sw-cms-el-config-dailymotion.html.twig` instead. To be displayed in the config, we just need a text element, so the shop manager can apply a Dailymotion video ID.
 
 <CodeBlock title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/config/sw-cms-el-config-dailymotion.html.twig">
-{% raw %}
+
 
 ```markup
 {% block sw_cms_element_dailymotion_config %}
@@ -386,7 +386,7 @@ Open the template `sw-cms-el-config-dailymotion.html.twig` instead. To be displa
 {% endblock %}
 ```
 
-{% endraw %}
+
 </CodeBlock>
 
 The `v-model` takes care of binding the field's values to the values from the config. Don't forget to include your config in your `index.js`:
@@ -438,7 +438,7 @@ In there create a new twig template named after your element, so `cms-element-da
 The template for this is super easy though, just like it's been in your main component for the administration. Just add an iFrame again. Simply apply the same styles like in the administration, 100% to both height and width that is.
 
 <CodeBlock title="platform/src/Storefront/Resources/views/storefront/element/cms-element-dailymotion.html.twig">
-{% raw %}
+
 
 ```markup
 {% block element_dailymotion %}
@@ -461,7 +461,7 @@ The template for this is super easy though, just like it's been in your main com
 {% endblock %}
 ```
 
-{% endraw %}
+
 </CodeBlock>
 
 The URL is parsed here using the twig variable element, which is automatically available in your element's template.

@@ -61,7 +61,7 @@ However, these are not all of your possibilities of configuration. As you see, y
 
 A simple but fully functional example could look like below:
 
-{% raw %}
+
 
 ```text
 {% sw_extends '@Storefront/storefront/base.html.twig' %}
@@ -80,7 +80,7 @@ A simple but fully functional example could look like below:
 {% endblock %}
 ```
 
-{% endraw %}
+
 
 ::: danger
 Icons or other custom assets are not included in the theme inheritance.

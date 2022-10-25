@@ -170,8 +170,8 @@ All this comes at a price: The admin preview of your content is only as represen
 
 ## Further reading
 
-<PageRef page="../../../guides/plugins/plugins/content/cms/add-cms-block.md" title="<<<title-missing>>>" />
+<PageRef page="../../../guides/plugins/plugins/content/cms/add-cms-block.md" title="Add CMS Block (Plugin)" sub="Learn how to add a CMS block using the plugin system" />
 
-<PageRef page="../../../guides/plugins/apps/content/cms/add-custom-cms-blocks.md" title="<<<title-missing>>>" />
+<PageRef page="../../../guides/plugins/apps/content/cms/add-custom-cms-blocks.md" title="Add CMS Block (App)" sub="Learn how to add a CMS block using the app system" />
 
-<PageRef page="../../../guides/plugins/plugins/content/cms/add-cms-element.md" title="<<<title-missing>>>" />
+<PageRef page="../../../guides/plugins/plugins/content/cms/add-cms-element.md" title="Add CMS element" sub="Learn how to add a CMS element using the plugin system" />

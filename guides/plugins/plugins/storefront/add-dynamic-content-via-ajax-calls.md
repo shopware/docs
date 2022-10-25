@@ -134,7 +134,7 @@ export default class AjaxPlugin extends Plugin {
 The only thing that is now left, is to provide a template for the storefront plugin to hook into:
 
 <CodeBlock title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig">
-{% raw %}
+
 
 ```text
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
@@ -151,7 +151,7 @@ The only thing that is now left, is to provide a template for the storefront plu
 {% endblock %}
 ```
 
-{% endraw %}
+
 </CodeBlock>
 
 ## Next steps

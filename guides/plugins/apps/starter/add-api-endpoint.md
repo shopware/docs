@@ -113,7 +113,7 @@ This directory naming causes Shopware to expose the script on two routes:
 Let's start with a simple script to see it in action:
 
 <CodeBlock title="Resources/scripts/store-api-swag-topseller/topseller-script.twig">
-{% raw %}
+
 
 ```twig
 {% block response %}
@@ -122,7 +122,7 @@ Let's start with a simple script to see it in action:
 {% endblock %}
 ```
 
-{% endraw %}
+
 </CodeBlock>
 
 Next we will install the App using the Shopware CLI.
@@ -168,7 +168,7 @@ However, instead of using curl we recommend using visual clients to test the API
 For now, our script is not really doing anything. Let's change that.
 
 <CodeBlock title="Resources/scripts/store-api-swag-topseller/topseller-script.twig">
-{% raw %}
+
 
 ```twig
 {% block response %}
@@ -208,7 +208,7 @@ For now, our script is not really doing anything. Let's change that.
 {% endblock %}
 ```
 
-{% endraw %}
+
 </CodeBlock>
 
 What happened here?
@@ -237,35 +237,35 @@ To learn more about the structure of search criterias follow the link below:
 
 We now send a request to the database to retrieve the result using
 
-{% raw %}
+
 
 ```twig
 {% set orderAggregations = services.repository.aggregate('order', criteria) %}
 ```
 
-{% endraw %}
+
 
 ### Building the response
 
 In the final step, we build the response. We use the `services.response.json()` method to convert the serialized json representation of our aggregation into a json response object named `response`.
 
-{% raw %}
+
 
 ```twig
 {% set response = services.response.json(orderAggregations.first.jsonSerialize) %}
 ```
 
-{% endraw %}
+
 
 Afterwards we just set the response of the hook to the result from above, and we're done:
 
-{% raw %}
+
 
 ```twig
 {% do hook.setResponse(response) %}
 ```
 
-{% endraw %}
+
 
 It is important to do all this within the `response` block of the twig script. Otherwise, you will get errors when calling the script.
 

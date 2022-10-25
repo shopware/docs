@@ -65,7 +65,7 @@ Let's take a closer look on how this decorator is used:
 By default, the search bar does not know how to display the result items, so a current search request will not show any result. In order to declare a search result view the `sw-search-bar-item` template has to be altered as seen below, starting with the template:
 
 <CodeBlock title="<plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-bar-item/sw-search-bar-item.html.twig">
-{% raw %}
+
 
 ```text
 {% block sw_search_bar_item_cms_page %}
@@ -86,7 +86,7 @@ By default, the search bar does not know how to display the result items, so a c
 {% endblock %}
 ```
 
-{% endraw %}
+
 </CodeBlock>
 
 Here you see the changes in the `index.js` file:
@@ -110,7 +110,7 @@ The `sw_search_bar_item_cms_page` block is used as it is the last block, but it 
 By default, the search bar tries to resolve to the registered listing route. If your entity can be searched externally you can edit the `sw-search-more-results` or `sw-search` components as well:
 
 <CodeBlock title="<plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-more-results/sw-search-more-results.html.twig">
-{% raw %}
+
 
 ```text
 {% block sw_search_more_results %}
@@ -129,7 +129,7 @@ By default, the search bar tries to resolve to the registered listing route. If 
 {% endblock %}
 ```
 
-{% endraw %}
+
 </CodeBlock>
 
 See for the changes in the `index.js` file below:

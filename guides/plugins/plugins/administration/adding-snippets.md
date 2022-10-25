@@ -58,7 +58,7 @@ Component.register('my-custom-page', {
 
 The same `$tc` helper function can be used in the templates to access translations.
 
-{% raw %}
+
 
 ```twig
 {% block my_custom_block %}
@@ -68,12 +68,12 @@ The same `$tc` helper function can be used in the templates to access translatio
 {% endblock %}
 ```
 
-{% endraw %}
+
 
 Another feature of `$tc` is pluralization. Use a `|` in snippets to provide translations dependending on the number. The first part shows singular expression, while the second takes care of plural cases.
 Let's have a look at this example of `"examplePluralization": "One Product | {n} Products"` with the following implementation:
 
-{% raw %}
+
 
 ```twig
 {% block my_custom_block %}
@@ -83,7 +83,7 @@ Let's have a look at this example of `"examplePluralization": "One Product | {n}
 {% endblock %}
 ```
 
-{% endraw %}
+
 
 If you provide `1` as the second parameter to `$tc()`, the text `One Product` would be rendered. For any other value greater than 1, the number itself is shown — for example, `4 Products`.
 

@@ -28,7 +28,7 @@ If we want to use our filter in Twig templates, we can easily use it by using a 
 
 Below you can see two example implementations, how it could be done with single argument filters.
 
-{% raw %}
+
 
 ```text
 {% block my_custom_block %}
@@ -38,7 +38,7 @@ Below you can see two example implementations, how it could be done with single 
 {% endblock %}
 ```
 
-{% endraw %}
+
 
 ```text
 <example-component :name="$tc('swag-example.general.myCustomText')|example"></example-component>
@@ -46,7 +46,7 @@ Below you can see two example implementations, how it could be done with single 
 
 When using multiple arguments, we can pass them as shown below.
 
-{% raw %}
+
 
 ```text
 {% block my_custom_block %}
@@ -56,7 +56,7 @@ When using multiple arguments, we can pass them as shown below.
 {% endblock %}
 ```
 
-{% endraw %}
+
 
 ```text
 <example-component :title="$tc('swag-example.general.myCustomText')|example('secondArgument', 'thirdArgument')"></example-component>

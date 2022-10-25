@@ -32,11 +32,11 @@ You can also provide "solid" icons or any other custom pack names which can be c
 By default, Shopware looks inside the "default" folder.
 
 ```text
-{% raw %}
+
 {% sw_icon 'done-outline-24px' style {
     'namespace': 'TestPlugin'
 } %}
-{% endraw %}
+
 ```
 
 ::: info
@@ -64,7 +64,7 @@ However, these are not all of your possibilities of configuration. As you see, y
 A simple but fully functional example could look like below:
 
 ```text
-{% raw %}
+
 {% sw_extends '@Storefront/storefront/base.html.twig' %}
 
 {% block base_body %}
@@ -79,7 +79,7 @@ A simple but fully functional example could look like below:
     {{ parent() }}
 
 {% endblock %}
-{% endraw %}
+
 ```
 
 ::: danger
@@ -105,11 +105,11 @@ You can define the name of the icon pack and the path to those icons under the `
 You can use your custom icons by specifying your icon pack:
 
 ```text
-{% raw %}
+
 {% sw_icon 'done-outline-24px' style {
     'pack': 'custom-icons'
 } %}
-{% endraw %}
+
 ```
 
 ::: warning

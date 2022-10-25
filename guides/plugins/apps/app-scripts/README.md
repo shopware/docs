@@ -59,7 +59,7 @@ Note that app scripts can use the `return` keyword to return values to the calle
 A basic example may look like this:
 
 <CodeBlock title="Resources/scripts/include/media-repository.twig">
-{% raw %}
+
 
 ```twig
 {% macro getById(mediaId) %}
@@ -71,11 +71,11 @@ A basic example may look like this:
 {% endmacro %}
 ```
 
-{% endraw %}
+
 </CodeBlock>
 
 <CodeBlock title="Resources/scripts/cart/first-cart-script.twig">
-{% raw %}
+
 
 ```twig
 {% import "include/media-repository.twig" as mediaRepository %}
@@ -83,7 +83,7 @@ A basic example may look like this:
 {% set mediaEntity = mediaRepository.getById(myMediaId) %}
 ```
 
-{% endraw %}
+
 </CodeBlock>
 
 ### Interface Hooks
@@ -92,7 +92,7 @@ Some "Hooks" describe interfaces this means that your scripts for that hook need
 E.g. the `store-api-hook` defines a `cache_key` and a `response` function. Those functions are closely related, but are executed separately.
 To implement the different functions, you use different twig blocks with the name of the function:
 
-{% raw %}
+
 
 ```twig
 {% block cache_key %}
@@ -104,7 +104,7 @@ To implement the different functions, you use different twig blocks with the nam
 {% endblock %}
 ```
 
-{% endraw %}
+
 
 Some functions are optional whereas others are required, in the above example the `cache_key` function is optional.
 That means you can omit that block in your script without an error (but caching for the endpoint won't work in that case).
@@ -117,7 +117,7 @@ The available data and services are described for each hook (or each function in
 
 Inside the app script you have access to the [storefront translation mechanism](../../plugins/storefront/add-translations.md), by using the `|trans`-filter.
 
-{% raw %}
+
 
 ```twig
 {% set translated = 'my.snippet.key'|trans %}
@@ -125,7 +125,7 @@ Inside the app script you have access to the [storefront translation mechanism](
 {% do call.something('my.snippet.key'|trans) %}
 ```
 
-{% endraw %}
+
 
 ### Extended syntax
 
@@ -135,7 +135,7 @@ In addition to the default twig syntax, app scripts can also use a more PHP-flav
 
 Instead of using the rather verbose `{% if var is same as(1) %}` you can use the more dense `===` equality checks.
 
-{% raw %}
+
 
 ```twig
 {% if var === 1 %}
@@ -143,11 +143,11 @@ Instead of using the rather verbose `{% if var is same as(1) %}` you can use the
 {% endif %}
 ```
 
-{% endraw %}
+
 
 Additionally, you can also use the `!==` not equals operator as well.
 
-{% raw %}
+
 
 ```twig
 {% if var !== 1 %}
@@ -155,13 +155,13 @@ Additionally, you can also use the `!==` not equals operator as well.
 {% endif %}
 ```
 
-{% endraw %}
+
 
 #### Loops with `foreach`
 
 Instead of the `for...in` syntax for loops you can also use a `foreach` tag.
 
-{% raw %}
+
 
 ```twig
 {% foreach list as entry %}
@@ -170,13 +170,13 @@ Instead of the `for...in` syntax for loops you can also use a `foreach` tag.
 {% endforeach %}
 ```
 
-{% endraw %}
+
 
 #### Instance of checks with `is`
 
 You can use a `is` check to check the type of a variable.
 
-{% raw %}
+
 
 ```twig
 {% if var is string %}
@@ -184,7 +184,7 @@ You can use a `is` check to check the type of a variable.
 {% endif %}
 ```
 
-{% endraw %}
+
 
 The following types are supported:
 
@@ -203,7 +203,7 @@ The following types are supported:
 
 You can cast variables into different types with the `intval` filter.
 
-{% raw %}
+
 
 ```twig
 {% if '5'|intval === 5 %}
@@ -211,7 +211,7 @@ You can cast variables into different types with the `intval` filter.
 {% endif %}
 ```
 
-{% endraw %}
+
 
 The following type casts are supported:
 
@@ -224,7 +224,7 @@ The following type casts are supported:
 
 Instead of using `AND` or `OR` in if-conditions, you can use the `&&` or `||` shorthands.
 
-{% raw %}
+
 
 ```twig
 {% if condition === true && condition2 === true %}
@@ -232,13 +232,13 @@ Instead of using `AND` or `OR` in if-conditions, you can use the `&&` or `||` sh
 {% endif %}
 ```
 
-{% endraw %}
+
 
 #### `return` tag
 
 You can use the `return` tag to return values from inside macros.
 
-{% raw %}
+
 
 ```twig
 {% macro foo() %} 
@@ -246,7 +246,7 @@ You can use the `return` tag to return values from inside macros.
 {% endmacro %}
 ```
 
-{% endraw %}
+
 
 ## Available services
 
@@ -255,7 +255,7 @@ Take a look at the [hook reference](../../../../resources/references/app-referen
 
 Additionally, we added a `ServiceStubs`-class, that can be used as typehint in your script, so you get auto-completion features of your IDE.
 
-{% raw %}
+
 
 ```twig
 {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
@@ -263,7 +263,7 @@ Additionally, we added a `ServiceStubs`-class, that can be used as typehint in y
 {% set configValue = services.config.app('my-app-config') %}
 ```
 
-{% endraw %}
+
 
 ::: info
 The stub class contains all services, but depending on the hook not all of them are available.
@@ -278,7 +278,7 @@ When you want to display the file of the media entity in the [storefront](../sto
 For this case you can add an app script on the `product-page-loaded`-hook, that loads the media entity by id and adds it to the page object, so the data is available in templates.
 
 <CodeBlock title="Resources/scripts/product-page-loaded/add-custom-media.twig">
-{% raw %}
+
 
 ```twig
 {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
@@ -299,7 +299,7 @@ For this case you can add an app script on the `product-page-loaded`-hook, that 
 {% do page.addExtension('swagMyCustomMediaField', media) %}
 ```
 
-{% endraw %}
+
 </CodeBlock>
 
 For a more detailed example on how to load additional data, please refer to the [data loading guide](./data-loading.md).
@@ -324,13 +324,13 @@ That will open the Symfony profiler in the script detail view, where you can see
 
 Additionally, you can use the `debug.dump()` function inside your scripts to dump data to the debug view.
 A script like this:
-{% raw %}
+
 
 ```twig
 {% do debug.dump(hook.page) %}
 ```
 
-{% endraw %}
+
 Will dump the page object to the debug view.
 
 ![Output of debug.dump()](../../../../.gitbook/assets/script-debug-dump.png)

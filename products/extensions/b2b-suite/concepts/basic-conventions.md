@@ -17,7 +17,7 @@ This is the list of easy - mostly naming - conventions that the B2B-Suite compli
 | Templates                                                                                          | All new layout modules are wrapped in `b2b--*` class containers                     |
 | Modules reuse the template style of shopware                                                       |                                                                                     |
 | CSS Selectors                                                                                      | 3 levels of selector depth as max                                                   |
-| Twig Blocks                                                                                        | {% raw %}`{% block b2b_* %}{% endblock %}`{% endraw %} empty blocks are in one line |                                                                                     |
+| Twig Blocks                                                                                        | `{% block b2b_* %}{% endblock %}` empty blocks are in one line |                                                                                     |
 | JavaScript                                                                                         | The B2B Suite is written in TypeScript                                              |
 | Storefront Plugins                                                                                 | File names end with *.plugin.ts                                                     |
 | Interfaces                                                                                         | File names start with `I`, e.g. `IAjaxPanelEvent.ts`                                |

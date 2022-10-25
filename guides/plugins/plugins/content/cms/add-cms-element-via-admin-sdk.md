@@ -330,7 +330,7 @@ After everything for the admin is done, there is still the need for a storefront
 
 Since everything is already described in [guide CMS element development for plugins](https://developer.shopware.com/docs/guides/plugins/plugins/content/cms/add-cms-element#storefront-implementation), the following example just shows how your storefront template (`swag-daiĺymotion/Resources/views/storefront/element/cms-element-swag-dailymotion.html.twig`) could look like:
 
-{% raw %}
+
 
 ```twig
 {% block element_swag_dailymotion %}
@@ -352,4 +352,4 @@ Since everything is already described in [guide CMS element development for plug
 {% endblock %}
 ```
 
-{% endraw %}
+

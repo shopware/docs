@@ -23,7 +23,7 @@ suggests that we only need to override the Twig block with the name `sw_dashboar
 Now that we know where to place our override, we need to decide what to override it with.
 In this very simple example it suffices to create a twig file, declare a block with the name we previously found and to insert our new header into the block.
 
-{% raw %}
+
 
 ```text
 <!-- <plugin root>/src/Resources/app/administration/src/sw-dashboard-index-override/sw-dashboard-index.html.twig -->
@@ -34,10 +34,10 @@ In this very simple example it suffices to create a twig file, declare a block w
 {% endblock %}
 ```
 
-{% endraw %}
+
 
 This overrides the entire Twig block with our new markup.
-However, if we want to retain the original content of the Twig block and just add our markup to the existing one, we can do that by including a {% raw %}`{% parent %}`{% endraw %} somewhere in the Twig block.
+However, if we want to retain the original content of the Twig block and just add our markup to the existing one, we can do that by including a `{% parent %}` somewhere in the Twig block.
 Learn more about the capabilities of twig.js [here](https://github.com/twigjs/twig.js/wiki).
 
 As you might have noticed the heading we just replaced had a `{ $tc() }` [string interpolation](https://vuejs.org/v2/guide/syntax.html#Text) which is used to make it multilingual.

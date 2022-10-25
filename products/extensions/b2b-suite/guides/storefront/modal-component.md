@@ -30,7 +30,7 @@ The modal component comes with different states:
 ## Modal with simple content
 
 <CodeBlock>
-{% raw %}
+
 
 ```twig
 {% sw_extends '@SwagB2bPlatform/storefront/_partials/_b2bmodal/_modal.html.twig' %}
@@ -48,7 +48,7 @@ The modal component comes with different states:
 {% endblock %}
 ```
 
-{% endraw %}
+
 </CodeBlock>
 
 ## Modal with Navigation
@@ -56,7 +56,7 @@ The modal component comes with different states:
 If you would like to have a navigation sidebar inside the modal window you can set the navigation variable to `true`.
 
 <CodeBlock>
-{% raw %}
+
 
 ```twig
 {% sw_extends '@SwagB2bPlatform/storefront/_partials/_b2bmodal/_modal.html.twig' %}
@@ -82,13 +82,13 @@ If you would like to have a navigation sidebar inside the modal window you can s
 {% endblock %}
 ```
 
-{% endraw %}
+
 </CodeBlock>
 
 ## Modal with Navigation and Ajax Panel Content
 
 <CodeBlock>
-{% raw %}
+
 
 ```twig
 {% sw_extends '@SwagB2bPlatform/storefront/_partials/_b2bmodal/_modal.html.twig' %}
@@ -114,7 +114,7 @@ If you would like to have a navigation sidebar inside the modal window you can s
 {% endblock %}
 ```
 
-{% endraw %}
+
 </CodeBlock>
 
 ### Ajax Panel template for modal content
@@ -122,7 +122,7 @@ If you would like to have a navigation sidebar inside the modal window you can s
 The modal content template has different options for fixed inner containers. The top and bottom bar can be enabled or disabled. The correct styling for each combination of settings will be applied automatically so u dont have to take care of styling. We use the topbar always for action buttons like "Create element". The bottom bar could be used for pagination for example.
 
 <CodeBlock>
-{% raw %}
+
 
 ```twig
 {% sw_extends "@SwagB2bPlatform/storefront/_partials/_b2bmodal/_modal-content.html.twig" %}
@@ -152,5 +152,5 @@ The modal content template has different options for fixed inner containers. The
 {% endblock %}
 ```
 
-{% endraw %}
+
 </CodeBlock>

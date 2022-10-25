@@ -125,7 +125,7 @@ If either one or both of `value` and `comparable` are an array, then only `=` an
 ### Example
 
 <CodeBlock title="Resources/scripts/rule-conditions/custom-condition.twig">
-{% raw %}
+
 
 ```twig
 {% if scope.salesChannelContext.customer is not defined %}
@@ -135,7 +135,7 @@ If either one or both of `value` and `comparable` are an array, then only `=` an
 {% return compare(operator, scope.salesChannelContext.customer.firstName, firstName) %}
 ```
 
-{% endraw %}
+
 </CodeBlock>
 
 In the example above, we first check whether we can retrieve the current customer from the instance of `RuleScope` and return `false` otherwise.
@@ -179,7 +179,7 @@ We then use the variables `operator` and `firstName`, provided by the constraint
 </CodeBlock>
 
 <CodeBlock title="Resources/scripts/rule-conditions/line-item-condition.twig">
-{% raw %}
+
 
 ```twig
 {% if scope.lineItem is defined %}
@@ -199,7 +199,7 @@ We then use the variables `operator` and `firstName`, provided by the constraint
 {% return false %}
 ```
 
-{% endraw %}
+
 </CodeBlock>
 
 In this example we first check if the current scope is `LineItemScope` and refers to a specific line item. If so we compare that specific line item. Otherwise we check if the scope has a cart and return false if it doesn't. We have a multi select for product selection in the administration which provides an array of product IDs in the script. We iterate the current cart's line items to check if the product is included and return `true` if that is the case.
@@ -222,13 +222,13 @@ In this example we first check if the current scope is `LineItemScope` and refer
 </CodeBlock>
 
 <CodeBlock title="Resources/scripts/rule-conditions/date-condition.twig">
-{% raw %}
+
 
 ```twig
 {% return compare('=', scope.getCurrentTime()|date_modify('first day of this month')|date_modify('second wednesday of this month')|date('Y-m-d'), scope.getCurrentTime()|date('Y-m-d')) %}
 ```
 
-{% endraw %}
+
 </CodeBlock>
 
 For this example we don't have to define constraints. We retrieve the current date from the scope, calling `getCurrentTime`. We modify the date to set it to the first day of the month, then modify it again to set it to the second wednesday from that point in time. We then compare that date against the current date for a condition that matches only on the second wednesday of each month.

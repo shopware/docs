@@ -47,7 +47,7 @@ The path starting from 'src' is fully customizable, yet we recommend choosing a 
 :::
 
 <CodeBlock title="<plugin root>/src/Resources/app/administration/src/extension/sw-product-settings-form/sw-product-settings-form.html.twig">
-{% raw %}
+
 
 ```markup
 {% block sw_product_settings_form_content %}
@@ -59,7 +59,7 @@ The path starting from 'src' is fully customizable, yet we recommend choosing a 
 {% endblock %}
 ```
 
-{% endraw %}
+
 </CodeBlock>
 
 Basically the twig block `sw_product_settings_form_content` is overridden here. Make sure to have a look at the [Twig documentation about the template inheritance](https://twig.symfony.com/doc/2.x/templates.html#template-inheritance), to understand how blocks in Twig work.

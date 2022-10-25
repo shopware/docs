@@ -192,7 +192,7 @@ To use custom endpoints as the target url for action buttons you can define the 
 And then add the corresponding app script that should be executed when the user clicks the action button.
 
 <CodeBlock title="Resources/scripts/api-action-button/action-button-script.twig">
-{% raw %}
+
 
 ```twig
 {% set ids = hook.request.ids %}
@@ -208,7 +208,7 @@ And then add the corresponding app script that should be executed when the user 
 {% do hook.setResponse(response) %}
 ```
 
-{% endraw %}
+
 </CodeBlock>
 
 As you can see it is possible to provide a [`JsonResponse`](../../../../resources/references/app-reference/script-reference/custom-endpoint-script-services-reference.md#json) to give [feedback to the user in the administration](#providing-feedback-in-the-administration).

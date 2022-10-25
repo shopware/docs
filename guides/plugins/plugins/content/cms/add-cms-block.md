@@ -135,7 +135,7 @@ Just like most components, it has a custom template and also some styles. Focus 
 This template now has to define the basic structure of your custom block. In this simple case, you only need a parent container and two sub-elements, whatever those are. That's also were the slots come into play: You've used two slots in your block's configuration, `left` and `right`. Make sure to create those slots in the template as well now.
 
 <CodeBlock title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/component/sw-cms-block-my-image-text-reversed.html.twig">
-{% raw %}
+
 
 ```text
 {% block sw_cms_block_my_image_text_reversed %}
@@ -146,7 +146,7 @@ This template now has to define the basic structure of your custom block. In thi
 {% endblock %}
 ```
 
-{% endraw %}
+
 </CodeBlock>
 
 You've got a parent `div` containing the two required [slots](https://vuejs.org/v2/guide/components-slots.html). If you were to rename the first slot `left` to something else, you'd have to adjust this in your block's configuration as well.
@@ -203,7 +203,7 @@ Shopware.Component.register('sw-cms-preview-my-image-text-reversed', {
 The preview element doesn't have to deal with mobile viewports or anything alike, it's just a simplified preview of your block. Thus, create a template containing a text and an image and use the styles to place them next to each other. Create a `sw-cms-preview-my-image-text-reversed.html.twig` file in your `preview` directory with the following content.
 
 <CodeBlock title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/preview/sw-cms-preview-my-image-text-reversed.html.twig">
-{% raw %}
+
 
 ```text
 {% block sw_cms_block_my_image_text_reversed_preview %}
@@ -217,7 +217,7 @@ The preview element doesn't have to deal with mobile viewports or anything alike
 {% endblock %}
 ```
 
-{% endraw %}
+
 </CodeBlock>
 
 Just a div containing some text and an example image next to that. For the styles, you can simply use the grid property of CSS again. Since you don't have to care about mobile viewports, this is even easier this time.
@@ -304,13 +304,13 @@ In there create a new twig template named after your block, so `cms-block-my-ima
 Since the [original 'image\_text' file](https://github.com/shopware/platform/blob/v6.3.4.1/src/Storefront/Resources/views/storefront/block/cms-block-image-text.html.twig) is already perfectly fine, you can go ahead and extend from it in your storefront template.
 
 <CodeBlock title="<plugin root>/src/Resources/views/storefront/block/cms-block-my-image-text-reversed.html.twig">
-{% raw %}
+
 
 ```text
 {% sw_extends '@Storefront/storefront/block/cms-block-image-text.html.twig' %}
 ```
 
-{% endraw %}
+
 </CodeBlock>
 
 And that's it for the Storefront as well in this example! Make sure to have a look at the other original templates to get and understand how the templating for blocks works.
