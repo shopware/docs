@@ -238,7 +238,7 @@ Custom field sets are deletable by the shop administrator, so you cannot rely on
 
 While theoretically your custom field is now properly defined for the administration, you'll still have to do some work in your custom entities' administration module. Head over to this guide to learn how to add your field to the administration:
 
-{% page-ref page="../../administration/using-custom-fields.md" %}
+<PageRef page="../../administration/using-custom-fields.md" title="<<<title-missing>>>" />
 
 ## Next steps
 

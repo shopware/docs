@@ -9,4 +9,4 @@ It comes with the full flexibility and code ownership of a self-hosted Shopware 
 
 Get started by installing the PaaS CLI on your local development machine.
 
-{% page-ref page="cli-setup.md" %}
+<PageRef page="cli-setup.md" title="<<<title-missing>>>" />

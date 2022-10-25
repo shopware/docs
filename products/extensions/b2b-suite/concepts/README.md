@@ -2,8 +2,8 @@
 
 In this section, we'll go through the structure of the B2B-Suite.
 
-{% page-ref page="basic-conventions.md" %}
+<PageRef page="basic-conventions.md" title="<<<title-missing>>>" />
 
-{% page-ref page="method-structure.md" %}
+<PageRef page="method-structure.md" title="<<<title-missing>>>" />
 
-{% page-ref page="system-architecture.md" %}
+<PageRef page="system-architecture.md" title="<<<title-missing>>>" />

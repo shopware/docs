@@ -8,7 +8,7 @@ All components contain own templates and some style. Of course, you may want to 
 
 However, this guide does not explain how to create a custom component, so head over to the official guide about creating a custom component to learn this first.
 
-{% page-ref page="add-custom-component.md" %}
+<PageRef page="add-custom-component.md" title="<<<title-missing>>>" />
 
 In addition, you need to have a basic knowledge of CSS and SCSS in order to use custom styles. This is though considered a basic requirement and won't be taught in this guide.
 

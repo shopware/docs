@@ -9,7 +9,7 @@ The app system is designed to be decoupled from Shopware itself. This has two gr
 
 The central interface between your app and Shopware is defined by a dedicated manifest file. The manifest is what glues Shopware and your app together. It defines what features your app uses and how Shopware can connect to your app. You can find more information about how to use the manifest file in the App Base Guide.
 
-{% page-ref page="../../guides/plugins/apps/app-base-guide.md" %}
+<PageRef page="../../guides/plugins/apps/app-base-guide.md" title="<<<title-missing>>>" />
 
 ## Communication between Shopware and your app
 
@@ -27,7 +27,7 @@ Notice that this is optional in the case that Shopware and your app don't need t
 
 Your app can modify the appearance of the storefront, by shipping your storefront assets \(template files, javascript sources, SCSS sources, snippet files\) alongside your manifest file. You don't need to serve those assets from your external server, as Shopware will build the storefront anew on installation of your app and will consider your modifications in that process. Find out more about modifying the appearance of the storefront in the App Storefront Guide.
 
-{% page-ref page="../../guides/plugins/apps/storefront/README.md" %}
+<PageRef page="../../guides/plugins/apps/storefront/README.md" title="<<<title-missing>>>" />
 
 ## Integrate payment providers
 
@@ -45,7 +45,7 @@ This functionality is available starting with Shopware 6.4.8.0.
 
 App Scripts allow your app to execute custom business logic inside the Shopware execution stack. This allows for new use cases, e.g. if you need to load additional data that should be rendered in the storefront or need to manipulate the cart.
 
-{% page-ref page="../../guides/plugins/apps/app-scripts/README.md" %}
+<PageRef page="../../guides/plugins/apps/app-scripts/README.md" title="<<<title-missing>>>" />
 
 ## Add conditions to the Rule Builder
 
@@ -55,4 +55,4 @@ This functionality is available starting with Shopware 6.4.12.0.
 
 Your app may introduce custom conditions for use in the [Rule Builder](../framework/rules.md).
 
-{% page-ref page="../../guides/plugins/apps/rule-builder/add-custom-rule-conditions.md" %}
+<PageRef page="../../guides/plugins/apps/rule-builder/add-custom-rule-conditions.md" title="<<<title-missing>>>" />

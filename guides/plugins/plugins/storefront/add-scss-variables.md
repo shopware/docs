@@ -14,7 +14,7 @@ We recommend to use the declaration of SCSS variables via the `config.xml` but y
 
 You won't learn how to create a plugin in this guide, head over to our Plugin base guide to create your first plugin:
 
-{% page-ref page="../plugin-base-guide.md" %}
+<PageRef page="../plugin-base-guide.md" title="<<<title-missing>>>" />
 
 ## Setup a default value for a custom SCSS variable
 

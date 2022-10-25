@@ -12,25 +12,25 @@ Users of the plugin can create connections to different source systems. A connec
 
 For more details have a look at [Profile and Connection](profile-and-connection.md).
 
-{% page-ref page="profile-and-connection.md" %}
+<PageRef page="profile-and-connection.md" title="<<<title-missing>>>" />
 
 ## DataSelection and DataSet
 
 These are the fundamental data structures for define what to migrate. Each `DataSet` represents an entity, for example a database table. Each `DataSelection` represents an orderly group of `DataSets`. For more Information take a look at the articles on dataSelection and dataSet:
 
-{% page-ref page="dataselection-and-dataset.md" %}
+<PageRef page="dataselection-and-dataset.md" title="<<<title-missing>>>" />
 
 ## Migration context
 
 This data structure provides all necessary data of the migration. For more details have a look at the migration context.
 
-{% page-ref page="migration-context.md" %}
+<PageRef page="migration-context.md" title="<<<title-missing>>>" />
 
 ## Premapping
 
 Because the structure of the source system does not always match the structure of the target system, the user may need to map the old structure to the new one. For example, in Shopware 5 we have default salutations like `mr`, but the user can also create custom ones. In Shopware 6 there are also default salutations like `mr` and the user can also create custom ones. So the salutation `mr` from Shopware 5 must be mapped to Shopware 6 `mr`. In this default case the mapping can be achieved automatically, but customized salutations will most likely have to be mapped manually. The premapping will be written into the mapping table to associate the old identifier with the new one.
 
-{% page-ref page="premapping.md" %}
+<PageRef page="premapping.md" title="<<<title-missing>>>" />
 
 ## Gateway and Reader
 
@@ -38,31 +38,31 @@ Users will have to specify a gateway for the connection. The gateway defines the
 
 If you want to use the `ShopwareApiGateway` you have to download the [Shopware Connector](https://github.com/shopware/SwagMigrationConnector) plugin for your Shopware 5. For more details have a look at the [Gateway and reader](gateway-and-reader.md).
 
-{% page-ref page="premapping.md" %}
+<PageRef page="premapping.md" title="<<<title-missing>>>" />
 
 ## Converter, Mapping and Deltas
 
 Data gathered by `Reader` objects is transferred to `Converter` objects that put the data in a format Shopware 6 is able to work with. Simultaneously entries in the underlying mapping table are inserted to map the old identifiers to the new ones for future migrations \(Have a look at the `MappingService` for that\). The mapping is saved for the current connection. Converted data will be removed after the migration, the mapping will stay persistent. Also a checksum is saved to the mapping to identify and skip the same source data \(data has not been changed since last migration\). You can find out more about them here:
 
-{% page-ref page="convert-and-mapping.md" %}
+<PageRef page="convert-and-mapping.md" title="<<<title-missing>>>" />
 
 ## Logging
 
 During any migration, especially during the data conversion, there will possibly be errors that should be logged. The users can see these errors and these should be as helpful as possible. For more information have a look at the logging section.
 
-{% page-ref page="logging.md" %}
+<PageRef page="logging.md" title="<<<title-missing>>>" />
 
 ## Writer
 
 The `Writer` objects will receive the converted data and write it to Shopware 6. There is no special magic here and you don't need to worry about error handling because the migration assistant takes care of it. To learn more about them take a look at writers.
 
-{% page-ref page="writer.md" %}
+<PageRef page="writer.md" title="<<<title-missing>>>" />
 
 ## Media processing
 
 During a typical migration we download the media files from the source system to Shopware 6. This is the last processing step in the migration and may be done differently for other gateways. For example the `local` gateway will copy and rename the files directly in the local filesystem. For more Details you can look at [Media processing](media-processing.md).
 
-{% page-ref page="premapping.md" %}
+<PageRef page="premapping.md" title="<<<title-missing>>>" />
 
 ## After migration
 

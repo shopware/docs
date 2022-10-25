@@ -2,14 +2,14 @@
 
 Following is a list of important Storefront topics, that you might want to have a look at.
 
-{% page-ref page="add-custom-controller.md" %}
+<PageRef page="add-custom-controller.md" title="<<<title-missing>>>" />
 
-{% page-ref page="customize-templates.md" %}
+<PageRef page="customize-templates.md" title="<<<title-missing>>>" />
 
-{% page-ref page="add-custom-javascript.md" %}
+<PageRef page="add-custom-javascript.md" title="<<<title-missing>>>" />
 
-{% page-ref page="reacting-to-javascript-events.md" %}
+<PageRef page="reacting-to-javascript-events.md" title="<<<title-missing>>>" />
 
-{% page-ref page="add-cookie-to-manager.md" %}
+<PageRef page="add-cookie-to-manager.md" title="<<<title-missing>>>" />
 
-{% page-ref page="use-csrf-protection.md" %}
+<PageRef page="use-csrf-protection.md" title="<<<title-missing>>>" />

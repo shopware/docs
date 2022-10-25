@@ -1,9 +1,9 @@
 # Guides
 
-{% page-ref page="extending-a-shopware-migration-profile.md" %}
+<PageRef page="extending-a-shopware-migration-profile.md" title="<<<title-missing>>>" />
 
-{% page-ref page="extending-the-migration-connector.md" %}
+<PageRef page="extending-the-migration-connector.md" title="<<<title-missing>>>" />
 
-{% page-ref page="decorating-a-shopware-migration-assistant-converter.md" %}
+<PageRef page="decorating-a-shopware-migration-assistant-converter.md" title="<<<title-missing>>>" />
 
-{% page-ref page="creating-a-new-migration-profile.md" %}
+<PageRef page="creating-a-new-migration-profile.md" title="<<<title-missing>>>" />

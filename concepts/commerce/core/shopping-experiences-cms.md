@@ -170,8 +170,8 @@ All this comes at a price: The admin preview of your content is only as represen
 
 ## Further reading
 
-{% page-ref page="../../../guides/plugins/plugins/content/cms/add-cms-block.md" %}
+<PageRef page="../../../guides/plugins/plugins/content/cms/add-cms-block.md" title="<<<title-missing>>>" />
 
-{% page-ref page="../../../guides/plugins/apps/content/cms/add-custom-cms-blocks.md" %}
+<PageRef page="../../../guides/plugins/apps/content/cms/add-custom-cms-blocks.md" title="<<<title-missing>>>" />
 
-{% page-ref page="../../../guides/plugins/plugins/content/cms/add-cms-element.md" %}
+<PageRef page="../../../guides/plugins/plugins/content/cms/add-cms-element.md" title="<<<title-missing>>>" />

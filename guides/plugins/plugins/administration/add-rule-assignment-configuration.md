@@ -15,7 +15,7 @@ You want to create a custom card in the rule assignment, where you can add or de
 This guide **does not** explain how to create a new plugin for Shopware 6.
 Head over to our Plugin base guide to learn how to create a plugin at first:
 
-{% page-ref page="../plugin-base-guide.md" %}
+<PageRef page="../plugin-base-guide.md" title="<<<title-missing>>>" />
 
 ## Creating the index.js file
 
@@ -282,4 +282,4 @@ Beside the properties of a `one-to-many` type you have to define the `associatio
 
 ## Further reading
 
-{% page-ref page="../framework/rule/add-custom-rules.md" %}
+<PageRef page="../framework/rule/add-custom-rules.md" title="<<<title-missing>>>" />

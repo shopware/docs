@@ -8,11 +8,11 @@ In Shopware's Storefront, you can assign media objects to the different entities
 
 In order to use your own media files or thumbnails of your plugin in the storefront, of course you first need a plugin as base. To create an own plugin, you can refer to the Plugin Base Guide:
 
-{% page-ref page="../plugin-base-guide.md" %}
+<PageRef page="../plugin-base-guide.md" title="<<<title-missing>>>" />
 
 Displaying custom images is often done by using custom fields. To take full advantage of this guide, you might want to read the corresponding guide on using custom fields:
 
-{% page-ref page="../administration/add-custom-field.md" %}
+<PageRef page="../administration/add-custom-field.md" title="<<<title-missing>>>" />
 
 ## Using searchMedia function
 

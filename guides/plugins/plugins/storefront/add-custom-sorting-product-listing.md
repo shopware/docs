@@ -157,4 +157,4 @@ class ExampleListingSubscriber implements EventSubscriberInterface
 
 Are you interested to add a custom filter to your listing in the storefront, as well? Head over to the corresponding guide to learn more about that:
 
-{% page-ref page="add-listing-filters.md" %}
+<PageRef page="add-listing-filters.md" title="<<<title-missing>>>" />

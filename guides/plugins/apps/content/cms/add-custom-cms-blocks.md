@@ -8,7 +8,7 @@ You can [add custom CMS blocks](../../../plugins/content/cms/add-cms-block.md) u
 
 Didn't get in touch with Shopware's Shopping Experiences \(CMS\) yet? Check out the concept behind it first:
 
-{% page-ref page="../../../../../concepts/commerce/core/shopping-experiences-cms.md" %}
+<PageRef page="../../../../../concepts/commerce/core/shopping-experiences-cms.md" title="<<<title-missing>>>" />
 
 ## Prerequisites
 
@@ -121,7 +121,7 @@ Let's have a look at how to configure a CMS block from your app's `cms.xml`:
 
 The full CMS reference is available here:
 
-{% page-ref page="../../../../../resources/references/app-reference/cms-reference.md" %}
+<PageRef page="../../../../../resources/references/app-reference/cms-reference.md" title="<<<title-missing>>>" />
 
 ### Block preview
 
@@ -236,4 +236,4 @@ Styling of your blocks in the Storefront can then be done in `Resources/app/stor
 
 ## Further reading
 
-{% page-ref page="../../../../../resources/references/app-reference/cms-reference.md" %}
+<PageRef page="../../../../../resources/references/app-reference/cms-reference.md" title="<<<title-missing>>>" />

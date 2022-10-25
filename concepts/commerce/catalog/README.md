@@ -4,4 +4,4 @@ In this section, we'll go through the structure that organises products, prices 
 
 First of all, we'll look into categories to find out what they're used for and how they work.
 
-{% page-ref page="categories.md" %}
+<PageRef page="categories.md" title="<<<title-missing>>>" />

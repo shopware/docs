@@ -8,11 +8,11 @@ This guide explains how you can use a modal window in your plugin in different s
 
 This guide requires you to already have a basic plugin running. This guide **does not** explain how to create a new plugin for Shopware 6. Head over to our Plugin base guide to learn how to create a plugin at first:
 
-{% page-ref page="./../plugin-base-guide.md" %}
+<PageRef page="./../plugin-base-guide.md" title="<<<title-missing>>>" />
 
 While this is not mandatory, having read the guide about adding custom JavaScript plugins beforehand might help you understand this guide a bit further:
 
-{% page-ref page="./add-custom-javascript.md" %}
+<PageRef page="./add-custom-javascript.md" title="<<<title-missing>>>" />
 
 ## Create a modal manually from the DOM using Bootstrap
 

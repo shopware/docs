@@ -87,7 +87,7 @@ The criteria object that is used inside the app scripts behaves and looks the sa
 
 So please refer to that documentation to get an overview of what features can be used inside a criteria object.
 
-{% page-ref page="../../../integrations-api/general-concepts/search-criteria.md" %}
+<PageRef page="../../../integrations-api/general-concepts/search-criteria.md" title="<<<title-missing>>>" />
 
 The criteria object can be assembled inside scripts as follows:
 {% raw %}

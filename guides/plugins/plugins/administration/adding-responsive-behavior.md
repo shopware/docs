@@ -4,7 +4,7 @@
 
 The Shopware 6 Administration provides two ways of adding classes to elements based on their size, the device helper and the `v-responsive` directive. Alternatively you can use `css` media queries to make your plugin responsive. Learn how to use `css` here:
 
-{% page-ref page="add-custom-styles.md" %}
+<PageRef page="add-custom-styles.md" title="<<<title-missing>>>" />
 
 ## DeviceHelper
 

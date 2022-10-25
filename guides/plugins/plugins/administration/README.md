@@ -2,8 +2,8 @@
 
 Following are important topics that you might want to have a look at when working with the administration.
 
-{% page-ref page="add-custom-module.md" %}
+<PageRef page="add-custom-module.md" title="<<<title-missing>>>" />
 
-{% page-ref page="using-data-handling.md" %}
+<PageRef page="using-data-handling.md" title="<<<title-missing>>>" />
 
-{% page-ref page="the-shopware-object.md" %}
+<PageRef page="the-shopware-object.md" title="<<<title-missing>>>" />

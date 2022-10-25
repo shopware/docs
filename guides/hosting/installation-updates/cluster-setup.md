@@ -46,7 +46,7 @@ When a Redis cluster is in usage, the `php.ini` setting `redis.clusters.cache_sl
 
 We have compiled some best practices and configurations that will allow you to operate Shopware in a clustered database environment. Please refer to the guide below.
 
-{% page-ref page="../infrastructure/database-cluster.md" %}
+<PageRef page="../infrastructure/database-cluster.md" title="<<<title-missing>>>" />
 
 ## Filesystem
 

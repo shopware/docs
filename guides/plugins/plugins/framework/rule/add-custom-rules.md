@@ -213,4 +213,4 @@ As you can see, our `sw-single-select` uses the previously created computed prop
 
 ## Further reading
 
-{% page-ref page="../../administration/add-rule-assignment-configuration.md" %}
+<PageRef page="../../administration/add-rule-assignment-configuration.md" title="<<<title-missing>>>" />

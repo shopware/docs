@@ -8,7 +8,7 @@ This guide will walk you through the process of adding your own app to Shopware 
 
 If you're not familiar with the app system, please take a look at the concept first.
 
-{% page-ref page="../../../concepts/extensions/apps-concept.md" %}
+<PageRef page="../../../concepts/extensions/apps-concept.md" title="<<<title-missing>>>" />
 
 ## File structure
 

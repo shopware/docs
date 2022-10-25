@@ -10,7 +10,7 @@ This guide however will cover the question on how you can define your own SEO UR
 
 As every almost every guide in the plugins section, this guide as well is built upon the plugin base guide.
 
-{% page-ref page="../../plugin-base-guide.md" %}
+<PageRef page="../../plugin-base-guide.md" title="<<<title-missing>>>" />
 
 Furthermore, we're going to use a [custom storefront controller](../../storefront/add-custom-controller.md) for the static SEO URL example, as well as [custom entities](../../framework/data-handling/add-custom-complex-data.md) for the dynamic SEO URLs. Make sure you know and understand those two as well before diving deeper into this guide. Those come with two different solutions:
 

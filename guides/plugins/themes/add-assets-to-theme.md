@@ -8,7 +8,7 @@ Your theme can include custom assets like images. This short guide will show you
 
 This guide is built upon the guide on creating a first theme:
 
-{% page-ref page="create-a-theme.md" %}
+<PageRef page="create-a-theme.md" title="<<<title-missing>>>" />
 
 ## Using custom assets
 
@@ -53,7 +53,7 @@ Next, please run the bin/console assets:install command. This will copy your plu
 
 This way of adding custom assets refers to the default way of dealing with assets. For more details, please check out the article that specifically addresses this topic:
 
-{% page-ref page="../plugins/storefront/add-custom-assets.md" %}
+<PageRef page="../plugins/storefront/add-custom-assets.md" title="<<<title-missing>>>" />
 
 ## Linking to assets
 

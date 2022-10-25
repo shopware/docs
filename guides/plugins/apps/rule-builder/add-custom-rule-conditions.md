@@ -12,15 +12,15 @@ Note that app rule conditions were introduced in Shopware 6.4.12.0, and are not 
 
 If you're not familiar with the app system, please take a look at the concept first.
 
-{% page-ref page="../../../../concepts/extensions/apps-concept.md" %}
+<PageRef page="../../../../concepts/extensions/apps-concept.md" title="<<<title-missing>>>" />
 
 You should also be familiar with the general concept of the Rule Builder.
 
-{% page-ref page="../../../../concepts/framework/rules.md" %}
+<PageRef page="../../../../concepts/framework/rules.md" title="<<<title-missing>>>" />
 
 For the attached logic of your custom conditions you'll use [twig files](https://twig.symfony.com/). Please refer to the App Scripts guide for a general introduction.
 
-{% page-ref page="../app-scripts/README.md" %}
+<PageRef page="../app-scripts/README.md" title="<<<title-missing>>>" />
 
 ## Definition
 

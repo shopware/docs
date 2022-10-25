@@ -1,5 +1,5 @@
 # Migration Assistant
 
-{% page-ref page="concept/" %}
+<PageRef page="concept/" title="<<<title-missing>>>" />
 
-{% page-ref page="guides/" %}
+<PageRef page="guides/" title="<<<title-missing>>>" />

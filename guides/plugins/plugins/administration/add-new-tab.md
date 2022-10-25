@@ -8,15 +8,15 @@ You want to create a new tab in the administration? This guide gets you covered 
 
 This guide requires you to already have a basic plugin running. If you don't know how to do this in the first place, have a look at our plugin base guide:
 
-{% page-ref page="../plugin-base-guide.md" %}
+<PageRef page="../plugin-base-guide.md" title="<<<title-missing>>>" />
 
 In the course of this guide, you need to create a custom route. If you want to learn on how to create a custom component, please refer to the guide on it:
 
-{% page-ref page="add-custom-route.md" %}
+<PageRef page="add-custom-route.md" title="<<<title-missing>>>" />
 
 Also, we will use a small, custom component to fill our custom tab. In order to get used to that, it might come in handy to read the corresponding guide first:
 
-{% page-ref page="add-custom-component.md" %}
+<PageRef page="add-custom-component.md" title="<<<title-missing>>>" />
 
 ::: info
 

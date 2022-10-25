@@ -4,7 +4,7 @@
 
 You should be familiar with the concept of apps.
 
-{% page-ref page="../app-base-guide.md" %}
+<PageRef page="../app-base-guide.md" title="<<<title-missing>>>" />
 
 ## Create a single cookie
 
@@ -94,10 +94,10 @@ As already mentioned in the previous sections, both the `cookie` and the `group`
 
 If you are not familiar with setting up Storefront snippets, please refer to our snippet guide.
 
-{% page-ref page="../../plugins/storefront/add-translations.md" %}
+<PageRef page="../../plugins/storefront/add-translations.md" title="<<<title-missing>>>" />
 
 ## Reacting to cookie consent changes
 
 As described in the previous section, `cookie` elements without a `value` element will not be set automatically. Instead, you have to react to cookie consent changes within your JavaScript. Find out how to respond to cookie consent changes in the following article:
 
-{% page-ref page="../../../plugins/plugins/storefront/reacting-to-cookie-consent-changes.md" %}
+<PageRef page="../../../plugins/plugins/storefront/reacting-to-cookie-consent-changes.md" title="<<<title-missing>>>" />

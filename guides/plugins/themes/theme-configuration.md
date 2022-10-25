@@ -12,7 +12,7 @@ This guide shows you how the theme configuration works and explains the possibil
 
 This guide is built upon the guide on creating a first theme:
 
-{% page-ref page="create-a-theme.md" %}
+<PageRef page="create-a-theme.md" title="<<<title-missing>>>" />
 
 ## Structure of theme configuration
 

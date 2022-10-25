@@ -8,7 +8,7 @@ Inside the `module` directory lies the list of several modules, each having thei
 This guide **does not** explain how to create a new plugin for Shopware 6.
 Head over to our Plugin base guide to learn how to create a plugin at first:
 
-{% page-ref page="../plugin-base-guide.md" %}
+<PageRef page="../plugin-base-guide.md" title="<<<title-missing>>>" />
 
 ## Creating the index.js file
 
@@ -86,11 +86,11 @@ Those routes are configured as an object in a property named `routes`. We will c
 
 The next steps are covered in their own guides. The first one would be adding a menu entry, so please take a look at the guide regarding:
 
-{% page-ref page="add-menu-entry.md" %}
+<PageRef page="add-menu-entry.md" title="<<<title-missing>>>" />
 
 The second one refers to setting up custom routes, its guide can be found in the guide on adding custom routes:
 
-{% page-ref page="add-custom-route.md" %}
+<PageRef page="add-custom-route.md" title="<<<title-missing>>>" />
 
 ## Set up additional meta info
 

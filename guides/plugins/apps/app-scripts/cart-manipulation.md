@@ -386,4 +386,4 @@ Inside your cart script you can check if the rule matches, by checking if the co
 
 ## Further information
 
-{% page-ref page="../../../../resources/references/app-reference/script-reference/cart-manipulation-script-services-reference.md" %}
+<PageRef page="../../../../resources/references/app-reference/script-reference/cart-manipulation-script-services-reference.md" title="<<<title-missing>>>" />
