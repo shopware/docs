@@ -94,7 +94,6 @@ To install now Shopware run
 symfony console system:install --basic-setup
 ```
 
-
 {% hint style="info" %}
 [Symfony CLI overrides environment variable](https://symfony.com/doc/current/setup/symfony_server.html#docker-integration) `DATABASE_URL` and `MAILER_URL` automatically. So prefix all your commands with `symfony console` for the `bin/console` or `symfony run` for any other executable.
 {% endhint %}
