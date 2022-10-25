@@ -93,7 +93,7 @@ the action is new and you have to update the file to add the correct privilege n
 The ACL implementation is safe at the php level. Any route you have no access to will automatically be blocked but
 for a better user experience you should also extend the template to hide inaccessible actions.
 
-{% code %}
+<CodeBlock>
 {% raw %}
 
 ```twig
@@ -101,7 +101,7 @@ for a better user experience you should also extend the template to hide inacces
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 This will add a few vital css classes:
 

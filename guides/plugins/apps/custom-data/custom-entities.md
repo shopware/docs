@@ -4,7 +4,7 @@ In addition to [Custom fields](custom-fields.md), you can create completely own 
 Unlike [Custom fields](custom-fields.md), you can generate completely custom data structures with custom relations, which can then be maintained by the admin.
 To make use of the custom entities register your entities in your `entities.xml` file, which is located in the `Resources` directory of your app.
 
-{% code title="<app root>/Resources/entities.xml" %}
+<CodeBlock title="<app root>/Resources/entities.xml">
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -19,7 +19,7 @@ To make use of the custom entities register your entities in your `entities.xml`
 </entities>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 For a complete reference of the structure of the entities file take a look at the [Custom entity xml reference](../../../../resources/references/app-reference/entities-reference.md).
 

@@ -31,13 +31,13 @@ In order to add your own custom assets, you need to save your assets in the `Res
 
 Similar as in [using custom assets in Storefront](../storefront/add-custom-assets.md), you need to execute the following command:
 
-{% code title="" %}
+<CodeBlock title="">
 
 ```bash
 bin/console assets:install
 ```
 
-{% endcode %}
+</CodeBlock>
 
 This way, your plugin assets are copied to the `public/bundles` folder:
 

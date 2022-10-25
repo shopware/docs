@@ -20,7 +20,7 @@ You should also know how to listen to events:
 
 Before you start adding your subscriber, you should provide a fallback value for your custom SCSS variable in your plugin `base.scss`:
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/scss/base.scss" %}
+<CodeBlock title="<plugin root>/src/Resources/app/storefront/src/scss/base.scss">
 
 ```css
 // The value will be overwritten by the subscriber when the plugin is installed and activated
@@ -31,7 +31,7 @@ $sass-plugin-header-bg-color: #ffcc00 !default;
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Theme variables subscriber
 
@@ -103,7 +103,7 @@ Inside your `ThemeVariableSubscriber` you can also read values from the plugin c
 
 First, lets add a new plugin configuration field according to the [Plugin Configurations](../plugin-fundamentals/add-plugin-configuration.md):
 
-{% code title="<plugin root>/src/Resources/config/config.xml" %}
+<CodeBlock title="<plugin root>/src/Resources/config/config.xml">
 
 ```markup
 <?xml version="1.0" encoding="UTF-8"?>
@@ -120,11 +120,11 @@ First, lets add a new plugin configuration field according to the [Plugin Config
 </config>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 As you can see in the example, we add an input field of the type colorpicker for our plugin. In the administration, the component 'sw-colorpicker' will later be displayed for the selection of the value. You also can set a `defaultValue` which will be pre-selected like the following:
 
-{% code title="<plugin root>/src/Resources/config/config.xml" %}
+<CodeBlock title="<plugin root>/src/Resources/config/config.xml">
 
 ```markup
 <?xml version="1.0" encoding="UTF-8"?>
@@ -142,7 +142,7 @@ As you can see in the example, we add an input field of the type colorpicker for
 </config>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 In order to be able to read this config, you have to inject the `SystemConfigService` to your subscriber:
 
@@ -220,7 +220,7 @@ class ThemeVariableSubscriber implements EventSubscriberInterface
 
 Adding config fields via `$event->addVariable()` for every field individually may be a bit cumbersome in some cases. You could also loop over all config fields and call `addVariable()` for each one. However, this depends on your use case.
 
-{% code title="<plugin root>/src/Subscriber/ThemeVariableSubscriber.php" %}
+<CodeBlock title="<plugin root>/src/Subscriber/ThemeVariableSubscriber.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -248,6 +248,6 @@ class ThemeVariableSubscriber implements EventSubscriberInterface
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 To avoid camelCase variable names when reading from the `config.xml`, we recommend using the `CamelCaseToSnakeCaseNameConverter` to format the variable before adding it.

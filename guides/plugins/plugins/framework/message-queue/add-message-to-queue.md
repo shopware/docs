@@ -20,7 +20,7 @@ First, we have to create a new message class in the directory `<plugin root>/Mes
 
 Here's an example:
 
-{% code title="<plugin root>/src/MessageQueue/Message/SmsNotification.php" %}
+<CodeBlock title="<plugin root>/src/MessageQueue/Message/SmsNotification.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -43,13 +43,13 @@ class SmsNotification
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Send a message
 
 After we've created our notification, we will create a service that will send our `SmsNotification`. We will name this service `ExampleSender`. In this service we need to inject the `Symfony\Component\Messenger\MessageBusInterface`, that is needed to send the message through the desired bus, which is called `messenger.bus.shopware`.
 
-{% code title="<plugin root>/src/Service/ExampleSender.php" %}
+<CodeBlock title="<plugin root>/src/Service/ExampleSender.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -75,11 +75,11 @@ class ExampleSender
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 If we want to add metadata to our message, we can dispatch an `Symfony\Component\Messenger\Envelope` in our service instead with the necessary [stamps](https://symfony.com/doc/current/components/messenger.html#adding-metadata-to-messages-envelopes). In this example below, we use the `Symfony\Component\Messenger\Stamp\DelayStamp`, which tells the queue to process the message later.
 
-{% code title="<plugin root>/src/Service/ExampleSender.php" %}
+<CodeBlock title="<plugin root>/src/Service/ExampleSender.php">
 
 ```php
 public function sendMessage(string $message): void
@@ -92,13 +92,13 @@ public function sendMessage(string $message): void
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Encrypted messages
 
 As the sent messages may travel through some 3rd party services you may want to encrypt messages containing sensible information. To send encrypted messages simply use the `encrypted.messenger.bus.shopware` rather than the `messenger.bus.shopware` message bus. The encrypted bus will handle encryption and decryption for you.
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
 ```markup
 <service id="Swag\BasicExample\Service\ExampleSender">
@@ -106,7 +106,7 @@ As the sent messages may travel through some 3rd party services you may want to 
 </service>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Next steps
 

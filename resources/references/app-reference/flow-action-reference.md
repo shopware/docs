@@ -1,6 +1,6 @@
 # Flow Action Reference
 
-{% code title="flow-action.xml" %}
+<CodeBlock title="flow-action.xml">
 ```xml
 <flow-actions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/FlowAction/Schema/flow-action-1.0.xsd">
     <flow-action>
@@ -90,7 +90,7 @@
     </flow-action>
 </flow-actions>
 ```
-{% endcode %}
+</CodeBlock>
 
 ## Variables
 

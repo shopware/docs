@@ -20,7 +20,7 @@ So let's add an example product to the cart using code. For that case, you'll ne
 
 Let's have a look at an example.
 
-{% code title="<plugin root>/src/Service/ExampleController.php" %}
+<CodeBlock title="<plugin root>/src/Service/ExampleController.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -71,7 +71,7 @@ class ExampleController extends StorefrontController
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 As mentioned earlier, you can just apply the `Cart` argument to your method and it will be automatically filled.
 
@@ -98,7 +98,7 @@ Sometimes you really want to have a custom line item handler, e.g. for your own 
 
 You need to create a new class which implements the interface `\Shopware\Core\Checkout\Cart\LineItemFactoryHandler\LineItemFactoryInterface` and it needs to be registered in the DI container with the tag `shopware.cart.line_item.factory`.
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
 ```markup
 <?xml version="1.0" ?>
@@ -114,11 +114,11 @@ You need to create a new class which implements the interface `\Shopware\Core\Ch
 </container>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Let's first have a look at an example handler:
 
-{% code title="<plugin root>/src/Service/ExampleHandler.php" %}
+<CodeBlock title="<plugin root>/src/Service/ExampleHandler.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -152,7 +152,7 @@ class ExampleHandler implements LineItemFactoryInterface
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Implementing the `LineItemFactoryInterface` will force you to also implement three new methods:
 
@@ -172,7 +172,7 @@ Implementing the `LineItemFactoryInterface` will force you to also implement thr
 
 Now you'll need to add a processor for your type. Otherwise your item won't be persisted in the cart. A simple processor for our ExampleHandler could look like this:
 
-{% code title="<plugin root>/Core/Checkout/Cart/ExampleProcessor.php" %}
+<CodeBlock title="<plugin root>/Core/Checkout/Cart/ExampleProcessor.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -200,7 +200,7 @@ class ExampleProcessor implements CartProcessorInterface
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 As you can see, this processor takes an "original cart" as an input and adds all instances of our example type to a second cart, which will actually be persisted.
 
@@ -208,7 +208,7 @@ Of course you can use processors to do much more than this. Have a look at [addi
 
 Now register this processor in your `services.xml` like this:
 
-{% code title="<plugin root>/Resources/config/services.xml" %}
+<CodeBlock title="<plugin root>/Resources/config/services.xml">
 
 ```markup
 ...
@@ -220,6 +220,6 @@ Now register this processor in your `services.xml` like this:
 </services>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 And that's it. You should now be able to create line items of type `example`.

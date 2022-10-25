@@ -51,7 +51,7 @@ This way your commands will be executed every time it deploys a new build _(e.g.
 
 Your file could than look like this _(with the default [AppTemplate](https://github.com/shopware/AppTemplate))_:
 
-{% code title=".platform.app.yaml" %}
+<CodeBlock title=".platform.app.yaml">
 
 ```yaml
 hooks:
@@ -64,7 +64,7 @@ hooks:
         php bin/console doctrine:migrations:migrate --no-interaction
 ```
 
-{% endcode %}
+</CodeBlock>
 
 By default, PHP images already run a `composer install` command, so we don't need that in our hooks.
 Learn more about that [here](https://docs.platform.sh/languages/php.html#build-flavor).

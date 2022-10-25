@@ -24,7 +24,7 @@ The `vendor` directory, where the composer saves the dependencies, has to be inc
 
 The `composer require` command created the `autoload.php` that we now need to require in our plugin.
 
-{% code title="<plugin root>/src/SwagBasicExample.php" %}
+<CodeBlock title="<plugin root>/src/SwagBasicExample.php">
 
 ```php
 if (file_exists(dirname(__DIR__) . '/vendor/autoload.php')) {
@@ -32,7 +32,7 @@ if (file_exists(dirname(__DIR__) . '/vendor/autoload.php')) {
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Using the composer plugin
 
@@ -40,7 +40,7 @@ PHP doesn't require a build system, which means that we can just add `use` state
 
 The following code sample imports `SebastianBergmann\Exporter\Exporter` and logs `hello, world!` to the Symfony profiler logs whenever the `NavigationPageLoadedEvent` is fired. Learn how to register this listener [here](listening-to-events.md).
 
-{% code title="<plugin root>/src/SwagBasicExample.php" %}
+<CodeBlock title="<plugin root>/src/SwagBasicExample.php">
 
 ```php
 <?php
@@ -79,7 +79,7 @@ class MySubscriber implements EventSubscriberInterface
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Adding private composer dependencies
 

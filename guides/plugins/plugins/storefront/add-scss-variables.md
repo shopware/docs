@@ -20,7 +20,7 @@ You won't learn how to create a plugin in this guide, head over to our Plugin ba
 
 Before you start adding your config fields as SCSS variables, you should provide a fallback value for your custom SCSS variable in your plugin `base.scss`:
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/scss/base.scss" %}
+<CodeBlock title="<plugin root>/src/Resources/app/storefront/src/scss/base.scss">
 
 ```css
 // The value will be overwritten when the plugin is installed and activated
@@ -31,7 +31,7 @@ $sass-plugin-header-bg-color: #ffcc00 !default;
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Plugin config values as SCSS variables
 

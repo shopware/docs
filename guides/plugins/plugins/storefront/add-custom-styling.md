@@ -18,7 +18,7 @@ So just try it out, create a `base.scss` file in the directory mentioned above.
 
 Inside of the `.scss` file, we add some basic styles to see if it's actually working. In this example, the background of the `body` will be changed.
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/scss/base.scss" %}
+<CodeBlock title="<plugin root>/src/Resources/app/storefront/src/scss/base.scss">
 
 ```css
 body {
@@ -26,7 +26,7 @@ body {
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ### Adding variables
 
@@ -34,18 +34,18 @@ In case you want to use the same color in several places, but want to define it 
 
 Create a `abstract/variables.scss` file inside your `<plugin root>/src/Resources/app/storefront/src/scss` directory and define your background color variable.
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/scss/abstract/variables.scss" %}
+<CodeBlock title="<plugin root>/src/Resources/app/storefront/src/scss/abstract/variables.scss">
 
 ```css
 // in variables.scss
 $sw-storefront-assets-color-background: blue;
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Inside your `base.scss` file you can now import your previously defined variables and use them:
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/scss/base.scss" %}
+<CodeBlock title="<plugin root>/src/Resources/app/storefront/src/scss/base.scss">
 
 ```css
 @import 'abstract/variables.scss';
@@ -55,7 +55,7 @@ body {
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 This comes with the advantage that when you want to change this color for all occurrences, you only have to change this variable once and the hard coded values are not cluttered all over the codebase.
 

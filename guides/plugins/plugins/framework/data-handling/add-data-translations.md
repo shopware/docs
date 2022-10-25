@@ -40,7 +40,7 @@ The translation table's columns should be the following:
 
 This is how your migration could look like:
 
-{% code title="<plugin root>/src/Migration/Migration1612863838ExampleTranslation.php" %}
+<CodeBlock title="<plugin root>/src/Migration/Migration1612863838ExampleTranslation.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -85,7 +85,7 @@ SQL;
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Creating the translation entity
 
@@ -95,7 +95,7 @@ The translation is an aggregation to the `ExampleEntity`. Therefore, you should 
 
 Now we can start creating our `ExampleTranslationDefinition` which extends from `Shopware\Core\Framework\DataAbstractionLayer\EntityTranslationDefinition`. Special for entity translation is, that we have to override a method called `getParentDefinitionClass` which returns the definition class of our entity we want to translate. In this case it's `ExampleDefinition`.
 
-{% code title="<plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationDefinition.php" %}
+<CodeBlock title="<plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationDefinition.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -131,7 +131,7 @@ class ExampleTranslationDefinition extends EntityTranslationDefinition
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 As you can see, we've implemented a `StringField` for the `name` column, the other fields like the `language_id` will be automatically added by the `EntityTranslationDefinition` since they are base fields of it.
 
@@ -139,7 +139,7 @@ All that's left to do now, is to introduce your `ExampleTranslationDefinition` t
 
 Here's the `services.xml` as it should look like:
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
 ```markup
 <?xml version="1.0" ?>
@@ -159,7 +159,7 @@ Here's the `services.xml` as it should look like:
 </container>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ### Entity class
 
@@ -167,7 +167,7 @@ So far we introduced our definition, we can create our `ExampleTranslationEntity
 
 Here's our `ExampleTranslationEntity`:
 
-{% code title="<plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationEntity.php" %}
+<CodeBlock title="<plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationEntity.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -217,11 +217,11 @@ class ExampleTranslationEntity extends TranslationEntity
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Now we need our translation definition to know its custom entity class. This is done by overriding the method `getEntityClass` in our `ExampleTranslationDefinition`.
 
-{% code title="<plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationDefinition.php" %}
+<CodeBlock title="<plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationDefinition.php">
 
 ```php
 class ExampleTranslationDefinition extends EntityTranslationDefinition
@@ -235,7 +235,7 @@ class ExampleTranslationDefinition extends EntityTranslationDefinition
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ### EntityCollection
 
@@ -243,7 +243,7 @@ As we already know, we should create an `EntityCollection` for our `Entity` too.
 
 Our collection class could then look like this:
 
-{% code title="<plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationCollection.php" %}
+<CodeBlock title="<plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationCollection.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -270,7 +270,7 @@ class ExampleTranslationCollection extends EntityCollection
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ### Main Entity Class
 
@@ -279,7 +279,7 @@ The main entity class, that is the class with the field(s) we are going to trans
 * a `TranslatedField` for the “name” field
 * a `TranslationsAssociationField`, with a reference to the ExampleTranslationDefinition
 
-{% code title="<plugin root>/src/Core/Content/Example/ExampleDefinition.php" %}
+<CodeBlock title="<plugin root>/src/Core/Content/Example/ExampleDefinition.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -313,4 +313,4 @@ class ExampleDefinition extends EntityDefinition
     }
 }
 
-{% endcode %}
+</CodeBlock>

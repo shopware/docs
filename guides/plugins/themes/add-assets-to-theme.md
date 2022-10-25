@@ -18,7 +18,7 @@ There are basically two ways of adding custom assets to your theme. The first on
 
 While working with your own theme, you might have already come across the [theme configuration](theme-configuration.md). In there, you have the possibility to configure your paths to your custom assets like images, fonts, etc. This way, please configure your asset path accordingly.
 
-{% code title="<plugin root>/src/Resources/theme.json" %}
+<CodeBlock title="<plugin root>/src/Resources/theme.json">
 
 ```javascript
 # src/Resources/theme.json
@@ -31,11 +31,11 @@ While working with your own theme, you might have already come across the [theme
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Next, please run the bin/console assets:install command. This will copy your plugin assets over to the public/bundles folder:
 
-{% code title="<shopware root>/public/bundles" %}
+<CodeBlock title="<shopware root>/public/bundles">
 
 ```text
 # 
@@ -47,7 +47,7 @@ Next, please run the bin/console assets:install command. This will copy your plu
     └── your-image.png <-- Your asset is copied here
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ### Adding assets the plugin way
 

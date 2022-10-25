@@ -6,17 +6,17 @@ After you have added a custom field of type media, with the administration or vi
 
 In the product detail page template, the key `page.product.translated.customFields.xxx` with the `xxx`, which is replaced with the corresponding custom field, contains the UUID of the media. Now the ID has just to be resolved with the function [searchMedia](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Framework/Adapter/Twig/Extension/MediaExtension.php#L31-L45):
 
-{% code title="platform/src/Core/Framework/Adapter/Twig/Extension/MediaExtension.php" %}
+<CodeBlock title="platform/src/Core/Framework/Adapter/Twig/Extension/MediaExtension.php">
 
 ```php
 public function searchMedia(array $ids, Context $context): MediaCollection { ... }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 This function resolves out the corresponding media objects for the given IDs in order to continue working with them afterwards. Here is an example with a custom field \(`custom_sports_media_id`\) on the product detail page:
 
-{% code title="<plugin root>/src/Resources/views/storefront/page/content/product-detail.html.twig" %}
+<CodeBlock title="<plugin root>/src/Resources/views/storefront/page/content/product-detail.html.twig">
 {% raw %}
 
 ```text
@@ -37,7 +37,7 @@ This function resolves out the corresponding media objects for the given IDs in 
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 ## Avoid loops
 
@@ -45,7 +45,7 @@ This function performs a query against the database on every invocation and shou
 
 To read the media objects within the product listing we recommend the following procedure:
 
-{% code title="<plugin root>/src/Resources/views/storefront/component/product/listing.html.twig" %}
+<CodeBlock title="<plugin root>/src/Resources/views/storefront/component/product/listing.html.twig">
 {% raw %}
 
 ```text
@@ -79,4 +79,4 @@ To read the media objects within the product listing we recommend the following 
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>

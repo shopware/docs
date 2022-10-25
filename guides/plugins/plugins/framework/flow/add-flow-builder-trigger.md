@@ -45,7 +45,7 @@ Currently, you will need to also implement `Shopware\Core\Framework\Event\Busine
 
 Below you can find an example implementation:
 
-{% code title="<plugin root>/src/Core/Checkout/Customer/Event/ExampleEvent.php" %}
+<CodeBlock title="<plugin root>/src/Core/Checkout/Customer/Event/ExampleEvent.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -103,13 +103,13 @@ class ExampleEvent extends Event implements CustomerAware, BusinessEventInterfac
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ### Add your new event to the flow trigger list
 
  At this step you need to add your new event to the flow trigger list, let see the code below:
 
-{% code title="<plugin root>/src/Core/Checkout/Customer/Subscriber/BusinessEventCollectorSubscriber.php" %}
+<CodeBlock title="<plugin root>/src/Core/Checkout/Customer/Subscriber/BusinessEventCollectorSubscriber.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -151,11 +151,11 @@ class BusinessEventCollectorSubscriber implements EventSubscriberInterface
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Please note that your subscriber has to have a higher priority point to ensure your event is added before any subscriber `BusinessEventCollectorEvent` to prevent missing awareness or action. I set 1000 for `onAddExampleEvent` action:
 
-{% code title="<plugin root>/src/Core/Checkout/Customer/Subscriber/BusinessEventCollectorSubscriber.php" %}
+<CodeBlock title="<plugin root>/src/Core/Checkout/Customer/Subscriber/BusinessEventCollectorSubscriber.php">
 
 ```php
 public static function getSubscribedEvents()
@@ -166,11 +166,11 @@ public static function getSubscribedEvents()
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 And don't forget to register your subscriber to the container at `<plugin root>/src/Resources/config/services.xml`
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
 ```xml
 <service id="Swag\ExamplePlugin\Core\Checkout\Customer\Subscriber\BusinessEventCollectorSubscriber">
@@ -179,7 +179,7 @@ And don't forget to register your subscriber to the container at `<plugin root>/
 </service>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Well done, you have successfully created your own flow trigger.
 

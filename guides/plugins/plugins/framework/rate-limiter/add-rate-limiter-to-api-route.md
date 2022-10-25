@@ -27,7 +27,7 @@ Each rate limit configuration needs the following keys:
 If you plan to configure the `time_backoff` policy, head over to [rate limiter](../../../../hosting/infrastructure/rate-limiter.md#configuring-time-backoff-policy) guide.
 Otherwise, check the [Symfony documentation](https://symfony.com/doc/current/rate_limiter.html#configuration) for the other keys you need for each policy.
 
-{% code title="<plugin root>/src/Resources/config/rate_limiter.yaml" %}
+<CodeBlock title="<plugin root>/src/Resources/config/rate_limiter.yaml">
 
 ```yaml
 example_route:
@@ -35,7 +35,7 @@ example_route:
     policy: 'time_backoff'
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ### Extending rate limit configuration in the DI-container
 
@@ -44,7 +44,7 @@ head over to the [Symfony documentation](https://symfony.com/doc/current/service
 
 ### Creating compiler pass
 
-{% code title="<plugin root>/src/CompilerPass/RateLimiterCompilerPass.php" %}
+<CodeBlock title="<plugin root>/src/CompilerPass/RateLimiterCompilerPass.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -70,7 +70,7 @@ class RateLimiterCompilerPass implements CompilerPassInterface
 
 ```
 
-{% endcode %}
+</CodeBlock>
 
 As you can see, we're getting the current configuration of the rate limit from the DI-container and extend it by our `rate_limiter.yaml`
 and reassign it with the merged configuration.
@@ -81,7 +81,7 @@ Now, we have to add our compiler pass to the container. This will be done by ove
 our `SwagBasicExample` plugin class. Important here is to use `Symfony\Component\DependencyInjection\Compiler\PassConfig::TYPE_BEFORE_OPTIMIZATION`
 with a higher priority, otherwise it will be built too late.
 
-{% code title="<plugin root>/src/SwagBasicExample.php" %}
+<CodeBlock title="<plugin root>/src/SwagBasicExample.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -105,7 +105,7 @@ class SwagBasicExample extends Plugin
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Implementing rate limit in API route
 
@@ -114,7 +114,7 @@ class SwagBasicExample extends Plugin
 After we've configured our rate limit, we want to use it in our API route.
 For this we need to inject the `Shopware\Core\Framework\RateLimiter\RateLimiter` service.
 
-{% code title="<plugin root>/src/Core/Content/Example/SalesChannel/ExampleRoute.php" %}
+<CodeBlock title="<plugin root>/src/Core/Content/Example/SalesChannel/ExampleRoute.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -140,7 +140,7 @@ class ExampleRoute extends AbstractExampleRoute
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ### Call the rate limiter
 
@@ -154,7 +154,7 @@ To do this, we call the method `ensureAccepted` of the rate limiter which accept
 When calling the `ensureAccepted` method it counts the request for the key in the defined cache.
 If the limit has been exceeded, it throws `Shopware\Core\Framework\RateLimiter\Exception\RateLimitExceededException`.
 
-{% code title="<plugin root>/src/Core/Content/Example/SalesChannel/ExampleRoute.php" %}
+<CodeBlock title="<plugin root>/src/Core/Content/Example/SalesChannel/ExampleRoute.php">
 
 ```php
 /**
@@ -169,14 +169,14 @@ public function load(Request $request, SalesChannelContext $context): ExampleRou
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ### Reset the rate limit
 
 Once we've made a successful request, we want to reset the rate limit for the client.
 We just have to call the `reset` method as you can see below.
 
-{% code title="<plugin root>/src/Core/Content/Example/SalesChannel/ExampleRoute.php" %}
+<CodeBlock title="<plugin root>/src/Core/Content/Example/SalesChannel/ExampleRoute.php">
 
 ```php
 /**
@@ -196,4 +196,4 @@ public function load(Request $request, SalesChannelContext $context): ExampleRou
 }
 ```
 
-{% endcode %}
+</CodeBlock>

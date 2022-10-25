@@ -71,7 +71,7 @@ Therefore, the two new lines are the following:
 
 CSRF protection can be configured via [Symfony configuration files](https://symfony.com/doc/current/configuration.html).
 
-{% code title="<platform root>/src/Storefront/Resources/config/packages/storefront.yaml" %}
+<CodeBlock title="<platform root>/src/Storefront/Resources/config/packages/storefront.yaml">
 
 ```yaml
 storefront:
@@ -80,7 +80,7 @@ storefront:
         mode: twig      // Valid modes are `twig` or `ajax`
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Exclude controller action from CSRF checks
 

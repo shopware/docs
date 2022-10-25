@@ -55,7 +55,7 @@ The Storefront representations of your blocks reside in `Resources/views/storefr
 As already mentioned above and similar to an app's `manifest.xml`, CMS blocks also require some definition done in the `cms.xml`.
 In this example we will define a custom CMS block that will extend the default block `image-text` and reverse its elements:
 
-{% code title="<app root>/Resources/cms.xml" %}
+<CodeBlock title="<app root>/Resources/cms.xml">
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -105,7 +105,7 @@ In this example we will define a custom CMS block that will extend the default b
 </cms>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Let's have a look at how to configure a CMS block from your app's `cms.xml`:
 
@@ -127,7 +127,7 @@ The full CMS reference is available here:
 
 The preview template for `swag-image-text-reversed` looks like this:
 
-{% code title="<app root>/Resources/cms/blocks/swag-image-text-reversed/preview.html" %}
+<CodeBlock title="<app root>/Resources/cms/blocks/swag-image-text-reversed/preview.html">
 
 ```html
 <div class="sw-cms-preview-swag-image-text-reversed">
@@ -141,7 +141,7 @@ The preview template for `swag-image-text-reversed` looks like this:
 </div>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ::: info
 For security reasons you can only use pure HTML in the preview template.
@@ -149,7 +149,7 @@ The template will be sanitized from possibly malicious tags like `<script>` or a
 :::
 
 The styling of the preview looks as follows:
-{% code title="<app root>/Resources/cms/blocks/swag-image-text-reversed/styles.css" %}
+<CodeBlock title="<app root>/Resources/cms/blocks/swag-image-text-reversed/styles.css">
 
 ```css
 /* 
@@ -189,10 +189,10 @@ The styling of the preview looks as follows:
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 The DOM structure of the block in the CMS editor will look like this:
-{% code %}
+<CodeBlock>
 
 ```html
 <div class="sw-cms-block-swag-image-text-reversed-component">
@@ -201,7 +201,7 @@ The DOM structure of the block in the CMS editor will look like this:
 </div>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Defining slots
 
@@ -222,15 +222,13 @@ Providing the Storefront representation of your blocks works very similarly as i
 In `Resources/views/storefront/block/` a Twig template matching the pattern `cms-block-${block.name}-component.html.twig` is expected.
 
 So in this example, it's sufficient to simply extend the existing `image-text` element:
-{% code title="<app root>/Resources/views/storefront/block/cms-block-swag-image-text-reversed-component.html.twig" %}
-{% raw %}
+<CodeBlock title="<app root>/Resources/views/storefront/block/cms-block-swag-image-text-reversed-component.html.twig">
 
 ```text
 {% sw_extends '@Storefront/storefront/block/cms-block-image-text.html.twig' %}
 ```
 
-{% endraw %}
-{% endcode %}
+</CodeBlock>
 
 Styling of your blocks in the Storefront can then be done in `Resources/app/storefront/src/scss/base.scss`.
 

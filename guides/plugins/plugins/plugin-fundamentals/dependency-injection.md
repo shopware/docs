@@ -23,7 +23,7 @@ Let's get started with an example how to inject a service. This example will be 
 
 Here's our example `services.xml`:
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
 ```markup
 <?xml version="1.0" ?>
@@ -40,13 +40,13 @@ xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/sc
 </container>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Now we have to add the injected service as argument to our service constructor.
 
 In the following you can find our `ExampleService` where we injected the `SystemConfigService` with an example function `getShopname()` where we use it.
 
-{% code title="<plugin root>/src/Service/ExampleService.php" %}
+<CodeBlock title="<plugin root>/src/Service/ExampleService.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -72,4 +72,4 @@ class ExampleService
 }
 ```
 
-{% endcode %}
+</CodeBlock>

@@ -48,7 +48,7 @@ To get started with your app, create an `apps` folder inside the `custom` folder
 
 The manifest file is the central point of your app. It defines the interface between your app and the Shopware instance. It provides all the information concerning your app, as seen in the minimal version below:
 
-{% code title="manifest.xml" %}
+<CodeBlock title="manifest.xml">
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -68,7 +68,7 @@ The manifest file is the central point of your app. It defines the interface bet
 </manifest>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ::: warning
 The name of your app that you provide in the manifest file needs to match the folder name of your app.
@@ -78,7 +78,7 @@ The name of your app that you provide in the manifest file needs to match the fo
 
 To create a flow action, you need to define a `<flow-action>` block within a file called `flow-action.xml`. Each `<flow-action>` represents one action and you can define an arbitrary number of actions.
 
-{% code title="Resources/flow-action.xml" %}
+<CodeBlock title="Resources/flow-action.xml">
 
 ```xml
 <flow-actions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/FlowAction/Schema/flow-action-1.0.xsd">
@@ -95,7 +95,7 @@ To create a flow action, you need to define a `<flow-action>` block within a fil
 </flow-actions>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 A single flow action would look like this:
 

@@ -22,7 +22,7 @@ First, we create an abstract class called `CachedExampleRoute` which extends the
 
 {% tabs %}
 {% tab title="CachedExampleRoute" %}
-{% code title="<plugin root>/src/Core/Content/Example/SalesChannel/CachedExampleRoute.php" %}
+<CodeBlock title="<plugin root>/src/Core/Content/Example/SalesChannel/CachedExampleRoute.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -149,11 +149,11 @@ class CachedExampleRoute extends AbstractExampleRoute
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 {% endtab %}
 
 {% tab title="services.xml" %}
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
 ```xml
 
@@ -176,7 +176,7 @@ class CachedExampleRoute extends AbstractExampleRoute
 
 ```
 
-{% endcode %}
+</CodeBlock>
 {% endtab %}
 {% endtabs %}
 
@@ -197,7 +197,7 @@ Cache invalidation is much harder to implement than the actual caching. Finding 
 {% tabs %}
 {% tab title="CacheInvalidationSubscriber.php" %}
 
-{% code title="<plugin root>/src/Core/Content/Example/SalesChannel/CacheInvalidationSubscriber.php" %}
+<CodeBlock title="<plugin root>/src/Core/Content/Example/SalesChannel/CacheInvalidationSubscriber.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -245,11 +245,11 @@ class CacheInvalidationSubscriber implements EventSubscriberInterface
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 {% endtab %}
 
 {% tab title="services.xml" %}
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
 ```xml
 
@@ -268,6 +268,6 @@ class CacheInvalidationSubscriber implements EventSubscriberInterface
 
 ```
 
-{% endcode %}
+</CodeBlock>
 {% endtab %}
 {% endtabs %}

@@ -22,7 +22,7 @@ All fields that should be available through the API require the flag `ApiAware` 
 
 First of all, we create an abstract class called `AbstractExampleRoute`. This class has to contain a method `getDecorated` and a method `load` with a `Criteria` and `SalesChannelContext` as parameter. The `load` method has to return an instance of `ExampleRouteResponse`, which we will create later on.
 
-{% code title="<plugin root>/src/Core/Content/Example/SalesChannel/AbstractExampleRoute.php" %}
+<CodeBlock title="<plugin root>/src/Core/Content/Example/SalesChannel/AbstractExampleRoute.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -40,13 +40,13 @@ abstract class AbstractExampleRoute
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ### Create route class
 
 Now we can create a new class `ExampleRoute` which uses our previously created `AbstractExampleRoute`.
 
-{% code title="<plugin root>/src/Core/Content/Example/SalesChannel/ExampleRoute.php" %}
+<CodeBlock title="<plugin root>/src/Core/Content/Example/SalesChannel/ExampleRoute.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -89,7 +89,7 @@ class ExampleRoute extends AbstractExampleRoute
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 As you can see, our class is annotated with `@Route` and the defined _routeScope `store-api`.
 
@@ -101,7 +101,7 @@ The `@Entity` annotation just marks the entity that the api will return.
 
 After we have created our route, we need to create the mentioned `ExampleRouteResponse`. This class should extend from `Shopware\Core\System\SalesChannel\StoreApiResponse`, consequently inheriting a property `$object` of type `Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult`. The `StoreApiResponse` parent constructor takes accepts one argument `$object` in order to set the value for the `$object` property (currently we provide this parameter our `ExampleRoute`). Finally, we add a method `getExamples` in which we return our entity collection that we got from the object.
 
-{% code title="<plugin root>/src/Core/Content/Example/SalesChannel/ExampleRouteResponse.php" %}
+<CodeBlock title="<plugin root>/src/Core/Content/Example/SalesChannel/ExampleRouteResponse.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -128,13 +128,13 @@ class ExampleRouteResponse extends StoreApiResponse
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Register route
 
 The last thing we need to do now is to tell Shopware how to look for new routes in our plugin. This is done with a `routes.xml` file at `<plugin root>/src/Resources/config/` location. Have a look at the official [Symfony documentation](https://symfony.com/doc/current/routing.html) about routes and how they are registered.
 
-{% code title="<plugin root>/src/Resources/config/routes.xml" %}
+<CodeBlock title="<plugin root>/src/Resources/config/routes.xml">
 
 ```markup
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -147,19 +147,19 @@ The last thing we need to do now is to tell Shopware how to look for new routes 
 </routes>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Check route via Symfony debugger
 
 To check, if your route was registered correctly, you can use the [Symfony route debugger](https://symfony.com/doc/current/routing.html#debugging-routes).
 
-{% code title="" %}
+<CodeBlock title="">
 
 ```bash
 $ ./bin/console debug:router store-api.example.search
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Check route in Swagger
 
@@ -242,7 +242,7 @@ Your generated request and response could look like this:
 
 If you want to access the functionality of your route also from the storefront you need to make it available there by adding a custom [storefront controller](../../storefront/add-custom-controller.md) that will wrap your just created route.
 
-{% code title="<plugin root>/src/Storefront/Controller/ExampleController.php" %}
+<CodeBlock title="<plugin root>/src/Storefront/Controller/ExampleController.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -285,7 +285,7 @@ Additionally, we also use the `defaults={"XmlHttpRequest"=true}` config option o
 
 We need to tell Shopware that there is a new API-route for the `storefront` scope by extending the `routes.xml` to also include all storefront controllers.
 
-{% code title="<plugin root>/src/Resources/config/routes.xml" %}
+<CodeBlock title="<plugin root>/src/Resources/config/routes.xml">
 
 ```markup
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -299,7 +299,7 @@ We need to tell Shopware that there is a new API-route for the `storefront` scop
 </routes>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ### Requesting your route from the storefront
 
@@ -308,7 +308,7 @@ We expect that you have followed that guide and know how to register your custom
 
 When you want to request your custom route you can use the existing `http-client` service for that.
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js" %}
+<CodeBlock title="<plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js">
 
 ```javascript
 import Plugin from 'src/plugin-system/plugin.class';
@@ -327,4 +327,4 @@ export default class ExamplePlugin extends Plugin {
 }
 ```
 
-{% endcode %}
+</CodeBlock>

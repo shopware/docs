@@ -34,7 +34,7 @@ Now that we know how the structure of snippets should be, we can create a new sn
 
 Here's an example of an English translation file:
 
-{% code title="<extension root>/src/Resources/snippet/en\_GB/example.en-GB.json" %}
+<CodeBlock title="<extension root>/src/Resources/snippet/en\_GB/example.en-GB.json">
 
 ```javascript
 {
@@ -45,7 +45,7 @@ Here's an example of an English translation file:
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Using the translation in templates
 

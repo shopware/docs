@@ -70,7 +70,7 @@ _Note: If you create a new migration yourself, the timestamp will vary._
 
 If you take a look at your created migration it should look similar to this:
 
-{% code title="<plugin root>/src/Migration/Migration1611740369ExampleDescription.php" %}
+<CodeBlock title="<plugin root>/src/Migration/Migration1611740369ExampleDescription.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -99,7 +99,7 @@ class Migration1611740369ExampleDescription extends MigrationStep
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 As you can see your migration contains 3 methods:
 
@@ -111,7 +111,7 @@ There is no need to change `getCreationTimestamp()`, it returns the timestamp th
 
 Here's an example of a non-destructive migration, creating a new table:
 
-{% code title="<plugin root>/src/Migration/Migration1611740369ExampleDescription.php" %}
+<CodeBlock title="<plugin root>/src/Migration/Migration1611740369ExampleDescription.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -150,7 +150,7 @@ SQL;
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## SQL schema
 

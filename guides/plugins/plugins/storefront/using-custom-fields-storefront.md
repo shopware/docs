@@ -32,7 +32,7 @@ Did you notice the Twig function `sw_sanitize`? It's a Twig function we wrote, c
 
 Imagine you want to add a text field to the product description. If you want to use the snippet in the storefront, you have to extend a template file first. Let's say we want to add our custom field to the product description's text. The block of this element is `page_product_detail_description_content_text`, so we'll use it in our example. As we want to add our custom field in there, we use `parent` Twig function to keep the original template:
 
-{% code title="<plugin root>/src/Resources/views/storefront/page/product-detail/description.html.twig" %}
+<CodeBlock title="<plugin root>/src/Resources/views/storefront/page/product-detail/description.html.twig">
 {% raw %}
 
 ```text
@@ -44,11 +44,11 @@ Imagine you want to add a text field to the product description. If you want to 
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 Now, we finally add our custom field as explained before:
 
-{% code title="<plugin root>/src/Resources/views/storefront/page/product-detail/description.html.twig" %}
+<CodeBlock title="<plugin root>/src/Resources/views/storefront/page/product-detail/description.html.twig">
 {% raw %}
 
 ```text
@@ -63,4 +63,4 @@ Now, we finally add our custom field as explained before:
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>

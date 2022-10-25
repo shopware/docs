@@ -6,8 +6,8 @@ At core, Shopware is an **ecommerce platform**. If you want to understand the co
 The **Concepts** section does not contain code examples, instead we focus on conveying the concepts and ideas behind the software. If you want more guided, step-by-step tutorials, please head to the [**Guides**](../../guides/installation/) section.
 :::
 
-<PageRef page="catalog/" title="<<<title-missing>>>" />
+<PageRef page="catalog/" title="Catalog Concept" />
 
-<PageRef page="checkout-concept/" title="<<<title-missing>>>" />
+<PageRef page="checkout-concept/" title="Checkout Concept" />
 
-<PageRef page="core/" title="<<<title-missing>>>" />
+<PageRef page="core/" title="Core Concept" />

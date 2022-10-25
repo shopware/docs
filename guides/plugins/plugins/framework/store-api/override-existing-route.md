@@ -14,7 +14,7 @@ Furthermore you should have a look at our guide about [Adding a Store API route]
 
 First, we have to create a new class which extends `AbstractExampleRoute`. In this example we will name it `ExampleRouteDecorator`.
 
-{% code title="<plugin root>/src/Core/Content/Example/SalesChannel/ExampleRouteDecorator.php" %}
+<CodeBlock title="<plugin root>/src/Core/Content/Example/SalesChannel/ExampleRouteDecorator.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -65,7 +65,7 @@ class ExampleRouteDecorator extends AbstractExampleRoute
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 As you can see, our decorated route has to extend from the `AbstractExampleRoute` and the constructor has to accept an instance of `AbstractExampleRoute`. Furthermore, the `getDecorated()` function has to return the decorated route passed into the constructor. Now we can add some additional data in the `load` method, which we can retrieve with the criteria.
 
@@ -73,7 +73,7 @@ As you can see, our decorated route has to extend from the `AbstractExampleRoute
 
 Last, we have to register the decorated route to the DI-container. The `ExampleRouteDecorator` has to be registered after the `ExampleRoute` with the attribute `decorated` which points to the `ExampleRoute`. For the second argument we have to use the `ExampleRouteDecorator.inner`.
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
 ```markup
 <?xml version="1.0" ?>
@@ -93,4 +93,4 @@ Last, we have to register the decorated route to the DI-container. The `ExampleR
 </container>
 ```
 
-{% endcode %}
+</CodeBlock>

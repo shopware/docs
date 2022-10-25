@@ -16,7 +16,7 @@ Let's start with adding your custom document type to the database, so it's actua
 
 Let's have a look at an example migration:
 
-{% code title="<plugin root>/src/Migration/Migration1616677952AddDocumentType.php" %}
+<CodeBlock title="<plugin root>/src/Migration/Migration1616677952AddDocumentType.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -81,7 +81,7 @@ class Migration1616677952AddDocumentType extends MigrationStep
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 So first of all we're creating the new document type with the `technical_name` "example". Make sure to save the ID here, since you're going to need it for the following translations.
 
@@ -115,7 +115,7 @@ Furthermore your generator has to be registered to the [service container](../..
 
 Let's have a look at an example generator:
 
-{% code title="<plugin root>/src/Core/Checkout/Document/DocumentGenerator/ExampleDocumentGenerator.php" %}
+<CodeBlock title="<plugin root>/src/Core/Checkout/Document/DocumentGenerator/ExampleDocumentGenerator.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -172,7 +172,7 @@ class ExampleDocumentGenerator implements DocumentGeneratorInterface
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 First of all we're injecting the `rootDir` of the Shopware installation into our generator, since we'll need that for rendering our template, and the `DocumentTemplateRenderer`, which will do the template rendering.
 
@@ -190,15 +190,13 @@ Let's have a quick look at an example document type template. Go ahead and creat
 
 In there you should extend from the default document base template:
 
-{% code title="<plugin root>/src/Resources/views/documents/example\_document.html.twig" %}
-{% raw %}
+<CodeBlock title="<plugin root>/src/Resources/views/documents/example\_document.html.twig">
 
 ```php
 {% sw_extends '@Framework/documents/base.html.twig' %}
 ```
 
-{% endraw %}
-{% endcode %}
+</CodeBlock>
 
 This could be it already. The [base.html.twig](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Framework/Resources/views/documents/base.html.twig) template comes with a lot of default templating, which you can now override by using blocks. If you don't know how that's done, have a look at our guide regarding [customizing templates](../../storefront/customize-templates.md).
 
@@ -217,7 +215,7 @@ For this we need a few more things:
 
 Sounds like a lot, but having a look at an example migration, you will notice that it's not too much of a hassle.
 
-{% code title="<plugin root>/src/Migration/Migration1616974646AddDocumentNumberRange.php" %}
+<CodeBlock title="<plugin root>/src/Migration/Migration1616974646AddDocumentNumberRange.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -343,7 +341,7 @@ SQL;
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 As already said, we're first creating the entries in the tables `number_range`, `number_range_type` and `number_range_sales_channel`. For the latter, we're assigning a Storefront sales channel, if any available. Make sure to check here, since in theory there could be no storefront sales channel.
 

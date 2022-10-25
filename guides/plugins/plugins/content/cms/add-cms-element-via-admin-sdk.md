@@ -27,7 +27,7 @@ You can decide what approach to use when creating apps since everything here is 
 
 When our extension is finished, you will get the following file structure:
 
-{% code title="<plugin root>/src/Resources/app/administration/src" %}
+<CodeBlock title="<plugin root>/src/Resources/app/administration/src">
 
 ```bash
 ├── base
@@ -41,7 +41,7 @@ When our extension is finished, you will get the following file structure:
         └── swag-dailymotion-preview.ts
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Initial loading of components
 
@@ -162,7 +162,7 @@ That is all about what is required to register your CMS element. As a best pract
 
 The last files are the components inside our `views` folder. Just like you know it from typical CMS element loading, we will create a folder with the full component name, containing 3 files as shown below:
 
-{% code title="<plugin root>/src/Resources/app/administration/src" %}
+<CodeBlock title="<plugin root>/src/Resources/app/administration/src">
 
 ```bash
 views
@@ -172,7 +172,7 @@ views
     └── swag-dailymotion-preview.ts
 ```
 
-{% endcode %}
+</CodeBlock>
 
 You can vary the structure of `swag-dailymotion`'s contents and create folders for each of the three. However, let us keep it simple with single file components.
 

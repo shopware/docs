@@ -29,7 +29,7 @@ The modal component comes with different states:
 
 ## Modal with simple content
 
-{% code %}
+<CodeBlock>
 {% raw %}
 
 ```twig
@@ -49,13 +49,13 @@ The modal component comes with different states:
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 ## Modal with Navigation
 
 If you would like to have a navigation sidebar inside the modal window you can set the navigation variable to `true`.
 
-{% code %}
+<CodeBlock>
 {% raw %}
 
 ```twig
@@ -83,11 +83,11 @@ If you would like to have a navigation sidebar inside the modal window you can s
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 ## Modal with Navigation and Ajax Panel Content
 
-{% code %}
+<CodeBlock>
 {% raw %}
 
 ```twig
@@ -115,13 +115,13 @@ If you would like to have a navigation sidebar inside the modal window you can s
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 ### Ajax Panel template for modal content
 
 The modal content template has different options for fixed inner containers. The top and bottom bar can be enabled or disabled. The correct styling for each combination of settings will be applied automatically so u dont have to take care of styling. We use the topbar always for action buttons like "Create element". The bottom bar could be used for pagination for example.
 
-{% code %}
+<CodeBlock>
 {% raw %}
 
 ```twig
@@ -153,4 +153,4 @@ The modal content template has different options for fixed inner containers. The
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>

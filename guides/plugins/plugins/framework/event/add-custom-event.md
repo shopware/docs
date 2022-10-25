@@ -32,7 +32,7 @@ First, we create a new class for our event, which we name `ExampleEvent`. In thi
 
 Therefore, this is how your event class could look like:
 
-{% code title="<plugin root>/src/Core/Content/Example/Event/ExampleEvent.php" %}
+<CodeBlock title="<plugin root>/src/Core/Content/Example/Event/ExampleEvent.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -73,13 +73,13 @@ class ExampleEvent implements ShopwareSalesChannelEvent
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Fire the event
 
 After we've created our entity class, we need to fire our new event. For this we need the service `event_dispatcher` which provides a method called `dispatch`. In this example we created a service `ExampleEventService` which fires our event. Below you can find the example implementation.
 
-{% code title="<plugin root>/src/Service/ExampleEventService.php" %}
+<CodeBlock title="<plugin root>/src/Service/ExampleEventService.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -107,7 +107,7 @@ class ExampleEventService
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Next steps
 

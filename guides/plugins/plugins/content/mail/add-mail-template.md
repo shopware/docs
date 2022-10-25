@@ -28,7 +28,7 @@ Let's have a look at an example, which will:
 * Add a mail template entry
 * Add a mail template translation for en\_GB and de\_DE
 
-{% code title="<plugin root>/src/Migration/Migration1616418675AddMailTemplate.php" %}
+<CodeBlock title="<plugin root>/src/Migration/Migration1616418675AddMailTemplate.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -183,7 +183,7 @@ class Migration1616418675AddMailTemplate extends MigrationStep
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 First of all, let's have a look at the small `update` method. It's mainly just fetching the mail template type ID using a short SQL statement and afterwards it executes the method `createMailTemplate`, which will cover all the other steps.
 
@@ -209,7 +209,7 @@ In order to not only use an existing mail template type, but to create a custom 
 
 Let's have a look:
 
-{% code title="<plugin root>/src/Migration/Migration1616418675AddMailTemplate.php" %}
+<CodeBlock title="<plugin root>/src/Migration/Migration1616418675AddMailTemplate.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -293,7 +293,7 @@ class Migration1616418675AddMailTemplate extends MigrationStep
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 First of all we changed the `getMailTemplateTypeId` method call to `createMailTemplateType`, a new method which we will create afterwards. Again, this method then has to return the ID of the newly created mail template ID.
 

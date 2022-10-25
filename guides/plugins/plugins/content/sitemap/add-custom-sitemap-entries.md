@@ -32,7 +32,7 @@ containing an array of all URLs to be added.
 Let's have a look at the example class:
 {% tabs %}
 {% tab title="CustomUrlProvider.php" %}
-{% code title="<plugin root>/src/Core/Content/Sitemap/Provider/CustomUrlProvider.php" %}
+<CodeBlock title="<plugin root>/src/Core/Content/Sitemap/Provider/CustomUrlProvider.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -141,11 +141,11 @@ class CustomUrlProvider extends AbstractUrlProvider
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 {% endtab %}
 
 {% tab title="services.xml" %}
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
 ```xml
 <?xml version="1.0" ?>
@@ -165,7 +165,7 @@ class CustomUrlProvider extends AbstractUrlProvider
 </container>
 ```
 
-{% endcode %}
+</CodeBlock>
 {% endtab %}
 {% endtabs %}
 

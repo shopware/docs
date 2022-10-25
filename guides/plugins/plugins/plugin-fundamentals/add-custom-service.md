@@ -14,7 +14,7 @@ Adding a custom service requires to load a `services.xml` file with your plugin.
 
 Here's our example `services.xml`:
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
 ```markup
 <?xml version="1.0" ?>
@@ -29,11 +29,11 @@ xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/sc
 </container>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Therefore, this is how your service could then look like:
 
-{% code title="<plugin root>/src/Service/ExampleService.php" %}
+<CodeBlock title="<plugin root>/src/Service/ExampleService.php">
 
 ```php
 // SwagBasicExample/src/Service/ExampleService.php
@@ -51,7 +51,7 @@ class ExampleService
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Note: By default, all services in Shopware 6 are marked as _private_. Read more about private and public services [here](https://symfony.com/doc/current/service_container.html#public-versus-private-services).
 

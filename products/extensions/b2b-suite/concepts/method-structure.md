@@ -12,7 +12,7 @@ Protected functions with an `@internal` comment are **not** guaranteed to be com
 
 Example:
 
-{% code title="<b2b root>/components/Common/Controller/GridHelper.php" %}
+<CodeBlock title="<b2b root>/components/Common/Controller/GridHelper.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -38,7 +38,7 @@ class GridHelper
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ### Public functions in framework
 
@@ -51,7 +51,7 @@ Furthermore, the same deprecation rules that you already know from other parts o
 
 Example:
 
-{% code %}
+<CodeBlock>
 
 ```typescript
 export default class {
@@ -61,4 +61,4 @@ export default class {
 }
 ```
 
-{% endcode %}
+</CodeBlock>

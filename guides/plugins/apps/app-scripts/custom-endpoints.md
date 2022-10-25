@@ -31,7 +31,7 @@ For a complete overview of the available data and service refer to the [hook ref
 By default, a `204 No Content` response will be sent after your script was executed.
 To provide a custom response you can use the [`response`-service](../../../../resources/references/app-reference/script-reference/custom-endpoint-script-services-reference.md#scriptresponsefactoryfacade) to create a response and set it as the `response` of the hook:
 
-{% code title="Resources/scripts/api-custom-endpoint/my-example-script.twig" %}
+<CodeBlock title="Resources/scripts/api-custom-endpoint/my-example-script.twig">
 {% raw %}
 
 ```twig
@@ -40,13 +40,13 @@ To provide a custom response you can use the [`response`-service](../../../../re
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 You can execute multiple scripts for the same HTTP-request by storing multiple scripts in the same order.
 Those scripts will be executed in alphabetically order. Keep in mind that later scripts may override the response set by prior scripts.
 If you want to prevent the execution of further scripts you can do so by calling `hook.stopPropagation`:
 
-{% code title="Resources/scripts/api-custom-endpoint/my-example-script.twig" %}
+<CodeBlock title="Resources/scripts/api-custom-endpoint/my-example-script.twig">
 {% raw %}
 
 ```twig
@@ -54,7 +54,7 @@ If you want to prevent the execution of further scripts you can do so by calling
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 ### Admin-API endpoints
 
@@ -76,7 +76,7 @@ This endpoint allows POST- and GET-requests.
 
 This Hook is an [Interface Hook](./README.md#interface-hooks), the execution of your logic should be implemented in the `response`-block of your script.
 
-{% code title="Resources/scripts/store-api-custom-endpoint/my-example-script.twig" %}
+<CodeBlock title="Resources/scripts/store-api-custom-endpoint/my-example-script.twig">
 {% raw %}
 
 ```twig
@@ -87,13 +87,13 @@ This Hook is an [Interface Hook](./README.md#interface-hooks), the execution of 
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 Caching of responses to GET-request is supported, but you need to implement the `cache_key`-function in your script to provide a cache-key for each response.
 The cache-key you generate should take every permutation of the request, that would lead to a different response, into account and should return a unique key for each permutation.
 A simple cache-key generation would be to generate a `md5`-hash of all the incoming request parameters, as well as your hook's name:
 
-{% code title="Resources/scripts/store-api-custom-endpoint/my-example-script.twig" %}
+<CodeBlock title="Resources/scripts/store-api-custom-endpoint/my-example-script.twig">
 {% raw %}
 
 ```twig
@@ -106,7 +106,7 @@ A simple cache-key generation would be to generate a `md5`-hash of all the incom
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 For a complete overview of the available data and services refer to the [reference documentation](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#store-api-hook).
 
@@ -122,7 +122,7 @@ Caching is supported and enabled by default for GET-requests.
 
 In addition to providing `JsonResponses` you can also render your own templates:
 
-{% code title="Resources/scripts/storefront-custom-endpoint/my-example-script.twig" %}
+<CodeBlock title="Resources/scripts/storefront-custom-endpoint/my-example-script.twig">
 {% raw %}
 
 ```twig
@@ -136,11 +136,11 @@ In addition to providing `JsonResponses` you can also render your own templates:
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 Additionally it is also possible to redirect to an existing route:
 
-{% code title="Resources/scripts/storefront-custom-endpoint/my-example-script.twig" %}
+<CodeBlock title="Resources/scripts/storefront-custom-endpoint/my-example-script.twig">
 {% raw %}
 
 ```twig
@@ -151,7 +151,7 @@ Additionally it is also possible to redirect to an existing route:
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 For a complete overview of the available data and services refer to the [reference documentation](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#storefront-hook).
 
@@ -231,7 +231,7 @@ Therefore, you can add `cache-invalidation` scripts, where you can inspect each 
 
 In your `cache-invalidation` scripts you can get the `ids` of that were written for a specific entity, e.g. `product_manufacturer`.
 
-{% code title="Resources/scripts/cache-invalidation/my-invalidation-script.twig" %}
+<CodeBlock title="Resources/scripts/cache-invalidation/my-invalidation-script.twig">
 {% raw %}
 
 ```twig
@@ -243,11 +243,11 @@ In your `cache-invalidation` scripts you can get the `ids` of that were written 
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 To allow even more fine grained invalidation you can filter down the list of written entities by filtering for specific actions that were performed on that entity (e.g. `insert`, `update`, `delete`) and filter by which properties were changed.
 
-{% code title="Resources/scripts/cache-invalidation/my-invalidation-script.twig" %}
+<CodeBlock title="Resources/scripts/cache-invalidation/my-invalidation-script.twig">
 {% raw %}
 
 ```twig
@@ -261,11 +261,11 @@ To allow even more fine grained invalidation you can filter down the list of wri
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 Note that you can also chain the filter operations:
 
-{% code title="Resources/scripts/cache-invalidation/my-invalidation-script.twig" %}
+<CodeBlock title="Resources/scripts/cache-invalidation/my-invalidation-script.twig">
 {% raw %}
 
 ```twig
@@ -278,7 +278,7 @@ Note that you can also chain the filter operations:
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 You can then use the filtered down list of ids to invalidate entity specific tags:
 {% raw %}
@@ -293,6 +293,6 @@ You can then use the filtered down list of ids to invalidate entity specific tag
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 For a complete overview of what data and services are available refer to the [cache-invalidation hook reference documentation](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#cache-invalidation).

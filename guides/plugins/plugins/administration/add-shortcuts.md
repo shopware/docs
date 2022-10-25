@@ -13,7 +13,7 @@ Of course you'll have to understand JavaScript, but that's a prerequisite for Sh
 
 The following code sample will show you how to register shortcuts in your components with help of the `shortcuts` attribute.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
+<CodeBlock title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js">
 
 ```javascript
 const { Component } = Shopware;
@@ -42,7 +42,7 @@ Component.register('swag-basic-example', {
 });
 ```
 
-{% endcode %}
+</CodeBlock>
 
 The first keyboard shortcut reacts to the key combination of `SYSTEMKEY+S`, only if the user has the privilege `product.editor`, with the invocation of the component method with the name `myEditProductFunction`.
 The second keyboard shortcut defines that, upon the `ESCAPE` key being pressed, the function with the name `myCancelEditProductFunction` should be invoked.

@@ -35,7 +35,7 @@ Let's now have a look at the example classes. The pagelet is going to be called 
 
 ### The ExamplePageletLoader
 
-{% code title="<plugin root>/src/Storefront/Pagelet/Example/ExamplePageletLoader.php" %}
+<CodeBlock title="<plugin root>/src/Storefront/Pagelet/Example/ExamplePageletLoader.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -72,13 +72,13 @@ class ExamplePageletLoader
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Note the instance creation without the `::createFrom()` call. The rest is quite equal, you can load your data, set it to the pagelet struct, you fire an event and you return the pagelet.
 
 ### The ExamplePagelet struct
 
-{% code title="<plugin root>/src/Storefront/Pagelet/Example/ExamplePagelet.php" %}
+<CodeBlock title="<plugin root>/src/Storefront/Pagelet/Example/ExamplePagelet.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -104,13 +104,13 @@ class ExamplePagelet extends Pagelet
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Just like the page struct, this is basically just a class holding data. Note the different `extend` though, you're not extending from `Shopware\Storefront\Page\Page` here. It only contained helper method for the header & footer pagelets.
 
 ### The ExamplePageletLoadedEvent
 
-{% code title="<plugin root>/src/Storefront/Pagelet/Example/ExamplePageletLoadedEvent.php" %}
+<CodeBlock title="<plugin root>/src/Storefront/Pagelet/Example/ExamplePageletLoadedEvent.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -138,7 +138,7 @@ class ExamplePageletLoadedEvent extends PageletLoadedEvent
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Note the different `extends`, which uses the `PageletLoadedEvent` class instead. Also, the getter method is no longer `getPage`, but `getPagelet` instead.
 
@@ -150,7 +150,7 @@ Most times you want to load your pagelet as part of another page. This is simply
 
 Using the example from our [adding a custom page guide](add-custom-page.md), this is what the `load` method could look like:
 
-{% code title="<plugin root>/src/Storefront/Page/Example/ExamplePageLoader.php" %}
+<CodeBlock title="<plugin root>/src/Storefront/Page/Example/ExamplePageLoader.php">
 
 ```php
 public function load(Request $request, SalesChannelContext $context): ExamplePage
@@ -171,7 +171,7 @@ public function load(Request $request, SalesChannelContext $context): ExamplePag
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Of course, in this example your `ExamplePage` struct needs a method `setExamplePagelet`, as well as the respective getter method `getExamplePagelet`. And then that's it, you've loaded your pagelet as part of another page.
 

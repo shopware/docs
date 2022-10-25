@@ -10,7 +10,7 @@ In order to add a plugin configuration, you sure need to provide your plugin fir
 
 The plugin in this example already knows a subscriber, which listens to the `product.loaded` event and therefore will be called every time a product is loaded.
 
-{% code title="<plugin root>/src/Subscriber/MySubscriber.php" %}
+<CodeBlock title="<plugin root>/src/Subscriber/MySubscriber.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -37,11 +37,11 @@ class MySubscriber implements EventSubscriberInterface
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 For this guide, a very small plugin configuration file is available as well:
 
-{% code title="<plugin root>/src/Resources/config/config.xml" %}
+<CodeBlock title="<plugin root>/src/Resources/config/config.xml">
 
 ```markup
 <?xml version="1.0" encoding="UTF-8"?>
@@ -57,7 +57,7 @@ For this guide, a very small plugin configuration file is available as well:
 </config>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Just a simple input field with the technical name `example`. This will be necessary in the next step.
 
@@ -67,7 +67,7 @@ Let's get to the important part. Reading the plugin configuration is based on th
 
 Inject this service into your subscriber using the [DI container](https://symfony.com/doc/current/service_container.html).
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
 ```markup
 <?xml version="1.0" ?>
@@ -85,11 +85,11 @@ Inject this service into your subscriber using the [DI container](https://symfon
 </container>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Note the new `argument` being provided to your subscriber. Now create a new field in your subscriber and pass in the `SystemConfigService`:
 
-{% code title="<plugin root>/src/Subscriber/MySubscriber.php" %}
+<CodeBlock title="<plugin root>/src/Subscriber/MySubscriber.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -116,7 +116,7 @@ class MySubscriber implements EventSubscriberInterface
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 So far, so good. The `SystemConfigService` is now available in your subscriber.
 
@@ -126,7 +126,7 @@ But what would happen, if there were more plugins providing the same technical n
 
 That's why the plugin configurations are always prefixed. By default, the pattern is the following: `<BundleName>.config.<configName>` Thus, it would be `SwagBasicExample.config.example` here.
 
-{% code title="<plugin root>/src/Subscriber/MySubscriber.php" %}
+<CodeBlock title="<plugin root>/src/Subscriber/MySubscriber.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -145,4 +145,4 @@ class MySubscriber implements EventSubscriberInterface
 }
 ```
 
-{% endcode %}
+</CodeBlock>

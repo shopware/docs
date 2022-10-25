@@ -58,7 +58,7 @@ Note that app scripts can use the `return` keyword to return values to the calle
 
 A basic example may look like this:
 
-{% code title="Resources/scripts/include/media-repository.twig" %}
+<CodeBlock title="Resources/scripts/include/media-repository.twig">
 {% raw %}
 
 ```twig
@@ -72,9 +72,9 @@ A basic example may look like this:
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
-{% code title="Resources/scripts/cart/first-cart-script.twig" %}
+<CodeBlock title="Resources/scripts/cart/first-cart-script.twig">
 {% raw %}
 
 ```twig
@@ -84,7 +84,7 @@ A basic example may look like this:
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 ### Interface Hooks
 
@@ -277,7 +277,7 @@ When you want to display the file of the media entity in the [storefront](../sto
 
 For this case you can add an app script on the `product-page-loaded`-hook, that loads the media entity by id and adds it to the page object, so the data is available in templates.
 
-{% code title="Resources/scripts/product-page-loaded/add-custom-media.twig" %}
+<CodeBlock title="Resources/scripts/product-page-loaded/add-custom-media.twig">
 {% raw %}
 
 ```twig
@@ -300,7 +300,7 @@ For this case you can add an app script on the `product-page-loaded`-hook, that 
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 For a more detailed example on how to load additional data, please refer to the [data loading guide](./data-loading.md).
 

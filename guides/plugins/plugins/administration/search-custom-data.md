@@ -64,7 +64,7 @@ Let's take a closer look on how this decorator is used:
 
 By default, the search bar does not know how to display the result items, so a current search request will not show any result. In order to declare a search result view the `sw-search-bar-item` template has to be altered as seen below, starting with the template:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-bar-item/sw-search-bar-item.html.twig" %}
+<CodeBlock title="<plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-bar-item/sw-search-bar-item.html.twig">
 {% raw %}
 
 ```text
@@ -87,11 +87,11 @@ By default, the search bar does not know how to display the result items, so a c
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 Here you see the changes in the `index.js` file:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-bar-item/index.js" %}
+<CodeBlock title="<plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-bar-item/index.js">
 
 ```javascript
 import template from './sw-search-bar-item.html.twig';
@@ -101,7 +101,7 @@ Shopware.Component.override('sw-search-bar-item', {
 })
 ```
 
-{% endcode %}
+</CodeBlock>
 
 The `sw_search_bar_item_cms_page` block is used as it is the last block, but it is not important which shopware type is extended as long as the vue else-if structure is kept working.
 
@@ -109,7 +109,7 @@ The `sw_search_bar_item_cms_page` block is used as it is the last block, but it 
 
 By default, the search bar tries to resolve to the registered listing route. If your entity can be searched externally you can edit the `sw-search-more-results` or `sw-search` components as well:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-more-results/sw-search-more-results.html.twig" %}
+<CodeBlock title="<plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-more-results/sw-search-more-results.html.twig">
 {% raw %}
 
 ```text
@@ -130,11 +130,11 @@ By default, the search bar tries to resolve to the registered listing route. If 
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 See for the changes in the `index.js` file below:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-more-results/index.js" %}
+<CodeBlock title="<plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-more-results/index.js">
 
 ```javascript
 import template from './sw-search-more-results.html.twig';
@@ -144,7 +144,7 @@ Shopware.Component.override('sw-search-more-results', {
 })
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ### Potential pitfalls
 

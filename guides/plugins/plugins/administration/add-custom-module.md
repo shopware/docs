@@ -24,13 +24,13 @@ The entry point of your plugin is the `main.js` file.
 That's the file you need to change now, so that it loads your new module.
 For this, simply add the following line to your `main.js` file:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/main.js" %}
+<CodeBlock title="<plugin root>/src/Resources/app/administration/src/main.js">
 
 ```javascript
 import './module/swag-example';
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Now your module's `index.js` will be executed.
 
@@ -46,7 +46,7 @@ It is mainly the bridge between the Shopware Administration and our plugin.
 The `Module` object comes with a `register` helper method to easily register your module.
 The method needs two parameters to be set, the first one being the module's name, the second being a javascript object, which contains your module's configuration.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
+<CodeBlock title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js">
 
 ```javascript
 Shopware.Module.register('swag-example', {
@@ -54,7 +54,7 @@ Shopware.Module.register('swag-example', {
 });
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Configuring the module
 
@@ -99,7 +99,7 @@ The related routes are also set up already and linked to components, which will 
 There's a few more things we need to change in the configurations though that you should add to your module, such as a unique `name` and a `type`.
 For reference, see this example:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
+<CodeBlock title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js">
 
 ```javascript
 Shopware.Module.register('swag-example', {
@@ -112,7 +112,7 @@ Shopware.Module.register('swag-example', {
 ...
 ```
 
-{% endcode %}
+</CodeBlock>
 
 The `name` should be a technical unique one, the `type` would be 'plugin' here. When it comes to this `type`, there are basically two options in Shopware: `core` and `plugin`.
 So every third-party module should use `plugin`.
@@ -151,7 +151,7 @@ For this purpose, create a new directory `snippet` in your module's directory an
 
 Then, when each file contains your translations as an object, you only have to import them into your module again.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
+<CodeBlock title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js">
 
 ```javascript
 [...]
@@ -168,7 +168,7 @@ Shopware.Module.register('swag-example', {
 });
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Let's also create the first translation, which is for your menu's label.
 It's key should be something like this: `swag-example.general.mainMenuItemGeneral`
@@ -233,7 +233,7 @@ Your minified javascript file will now be loaded in production environments.
 If you think about creating a module concerning settings, you might want to link your module in the `settings` section of the administration.
 You can add the `settingsItem` option to the module configuration as seen below:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
+<CodeBlock title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js">
 
 ```javascript
 import './page/swag-plugin-list';
@@ -249,7 +249,7 @@ Shopware.Module.register('swag-plugin', {
 });
 ```
 
-{% endcode %}
+</CodeBlock>
 
 The `group` property targets to the group section, the item will be displayed in 'shop', 'system' and 'plugins' sections.
 The `to` gets the link path of the route. The `icon` contains the icon name which will be display.
@@ -275,7 +275,7 @@ settingsItem: [{ // this can be a single object if no collection is needed
 
 Here's your final module:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
+<CodeBlock title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js">
 
 ```javascript
 import './page/swag-example-list';
@@ -328,7 +328,7 @@ Shopware.Module.register('swag-example', {
 });
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Next steps
 

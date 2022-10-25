@@ -21,7 +21,7 @@ First of all we have to create a new service for this example which gets decorat
 
 Here's our example `services.xml`:
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
 ```markup
 <?xml version="1.0" ?>
@@ -40,7 +40,7 @@ xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/sc
 </container>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Now we have to define an abstract class because it's more beautiful and not so strict like interfaces. With an abstract class we can add new functions easier, you can read more about this at the end of this article. The abstract class has to include an abstract function called `getDecorated()` which has the return type of our instance.
 
@@ -50,7 +50,7 @@ To avoid misunderstandings: The abstract service class and the implementation of
 
 Therefore, this is how your abstract class could then look like:
 
-{% code title="<plugin root>/src/Service/AbstractExampleService.php" %}
+<CodeBlock title="<plugin root>/src/Service/AbstractExampleService.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -65,13 +65,13 @@ abstract class AbstractExampleService
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Now we have our abstract class, but no service which uses it. So we create our `ExampleService` which extends from our `AbstractExampleService`. In our service the `getDecorated()` function has to throw an `DecorationPatternException` because it has no decoration yet.
 
 Therefore, your service could then look like this:
 
-{% code title="<plugin root>/src/Service/ExampleService.php" %}
+<CodeBlock title="<plugin root>/src/Service/ExampleService.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -94,13 +94,13 @@ class ExampleService extends AbstractExampleService
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 The last step is creating our decorated service called `ExampleServiceDecorator` in this example. Our decorated service has to extend from the `AbstractExampleService` and the constructor has to accept an instance of `AbstractExampleService`. Furthermore, the `getDecorated()` function has to return the decorated service passed into the constructor.
 
 Your service could then look like below:
 
-{% code title="<plugin root>/src/Service/ExampleServiceDecorator.php" %}
+<CodeBlock title="<plugin root>/src/Service/ExampleServiceDecorator.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -130,7 +130,7 @@ class ExampleServiceDecorator extends AbstractExampleService
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Adding new functions to an existing service
 
@@ -138,7 +138,7 @@ If you plan to add new functions to your service, it is recommended to add them 
 
 Here's our example abstract class:
 
-{% code title="<plugin root>/src/Service/AbstractExampleService.php" %}
+<CodeBlock title="<plugin root>/src/Service/AbstractExampleService.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -158,11 +158,11 @@ abstract class AbstractExampleService
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 After we have implemented our new function in the abstract class, we implement it in our service too.
 
-{% code title="<plugin root>/src/Service/ExampleService.php" %}
+<CodeBlock title="<plugin root>/src/Service/ExampleService.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -190,4 +190,4 @@ class ExampleService extends AbstractExampleService
 }
 ```
 
-{% endcode %}
+</CodeBlock>

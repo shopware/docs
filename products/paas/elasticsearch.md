@@ -6,7 +6,7 @@ Perform the following steps to activate Elasticsearch in your environment.
 
 Add (or uncomment) the elasticsearch service configuration.
 
-{% code title=".platform/services.yaml" %}
+<CodeBlock title=".platform/services.yaml">
 
 ```yaml
 
@@ -15,20 +15,20 @@ searchelastic:
     disk: 256
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Add relationship
 
 Add (or uncomment) the relationship for it the app configuration.
 
-{% code title=".platform.app.yaml" %}
+<CodeBlock title=".platform.app.yaml">
 
 ```yaml
 relationships:
     essearch: "searchelastic:elasticsearch"
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Configure instance
 

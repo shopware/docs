@@ -6,7 +6,7 @@ One extension possibility in the administration is the ability to add custom act
 
 To get those buttons, you start in the `admin` section of your manifest file. There you can define `<action-button>` elements in order to add your button, as seen as below:
 
-{% code title="manifest.xml" %}
+<CodeBlock title="manifest.xml">
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -28,7 +28,7 @@ To get those buttons, you start in the `admin` section of your manifest file. Th
 </manifest>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference.md).
 
@@ -171,7 +171,7 @@ This feature was added in Shopware 6.4.10.0, previous versions don't support rel
 
 To use custom endpoints as the target url for action buttons you can define the target url as a relative url in your apps manifest.xml:
 
-{% code title="manifest.xml" %}
+<CodeBlock title="manifest.xml">
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -187,11 +187,11 @@ To use custom endpoints as the target url for action buttons you can define the 
 </manifest>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 And then add the corresponding app script that should be executed when the user clicks the action button.
 
-{% code title="Resources/scripts/api-action-button/action-button-script.twig" %}
+<CodeBlock title="Resources/scripts/api-action-button/action-button-script.twig">
 {% raw %}
 
 ```twig
@@ -209,6 +209,6 @@ And then add the corresponding app script that should be executed when the user 
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 As you can see it is possible to provide a [`JsonResponse`](../../../../resources/references/app-reference/script-reference/custom-endpoint-script-services-reference.md#json) to give [feedback to the user in the administration](#providing-feedback-in-the-administration).

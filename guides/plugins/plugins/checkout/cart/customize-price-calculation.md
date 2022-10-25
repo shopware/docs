@@ -20,7 +20,7 @@ So let's do that real quick. If you're looking for an in-depth explanation, head
 
 Here's an example decorated calculator:
 
-{% code title="<plugin root>/src/Service/CustomProductPriceCalculator.php" %}
+<CodeBlock title="<plugin root>/src/Service/CustomProductPriceCalculator.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -65,7 +65,7 @@ class CustomProductPriceCalculator extends AbstractProductPriceCalculator
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 So what is done here? The constructor gets passed the inner instance of `AbstractProductPriceCalculator`, most likely the `ProductPriceCalculator` itself. This will be used to call the original `calculate` method later on. You also have to return that instance in your `getDecorated` method.
 
@@ -77,7 +77,7 @@ Most likely you also want to narrow down which product's prices you want to edit
 
 Do not forget to actually register your decoration to the service container, otherwise it will not have any effect.
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
 ```markup
 <?xml version="1.0" ?>
@@ -93,7 +93,7 @@ Do not forget to actually register your decoration to the service container, oth
 </container>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Next steps
 

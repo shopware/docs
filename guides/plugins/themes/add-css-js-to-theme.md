@@ -14,7 +14,7 @@ When it comes to CSS and SCSS, they are processed by a PHP SASS compiler.
 
 The main entry point to deploy your SCSS code is defined in the `theme.json` file. By default it is the `<plugin root>/app/storefront/src/scss/base.scss` file.
 
-{% code title="<plugin root>/src/Resources/theme.json" %}
+<CodeBlock title="<plugin root>/src/Resources/theme.json">
 
 ```javascript
  {
@@ -28,7 +28,7 @@ The main entry point to deploy your SCSS code is defined in the `theme.json` fil
  }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 When the storefront gets compiled the PHP SASS compiler will look up the files declared in the `style` section of the theme configuration. You can define the SCSS entry-points individually if you want to.
 
@@ -49,7 +49,7 @@ In order to add some custom SCSS in your theme, you just need to edit the `base.
 
 To apply your styles and test them, please use some test code:
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/scss/base.scss" %}
+<CodeBlock title="<plugin root>/src/Resources/app/storefront/src/scss/base.scss">
 
 ```css
 body {
@@ -57,7 +57,7 @@ body {
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Afterwards, you need to compile your theme by running the `bin/console theme:compile` command in terminal.
 
@@ -85,13 +85,13 @@ Since Shopware knows where your style files are located, they are automatically 
 
 Add some test code in order to see if it works out:
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/js/main.js" %}
+<CodeBlock title="<plugin root>/src/Resources/app/storefront/src/js/main.js">
 
 ```javascript
 console.log('SwagBasicExampleTheme JS loaded');
 ```
 
-{% endcode %}
+</CodeBlock>
 
 In the end, by running the command `bin/console theme:compile` your custom JS plugin is loaded. By default, the compiled JavaScript file is saved as `<plugin root>/src/resources/app/storefront/dist/storefront/js/swag-basic-example-theme.js`. It is detected by Shopware automatically and included in the Storefront. So you do not need to embed the JavaScript file yourself.
 

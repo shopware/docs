@@ -27,13 +27,13 @@ The entry point of your plugin is the `main.js` file.
 That's the file you need to change now, so that it loads your extended component.
 For this, simply add the following line to your `main.js` file:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/main.js" %}
+<CodeBlock title="<plugin root>/src/Resources/app/administration/src/main.js">
 
 ```javascript
 import './module/sw-settings-rule/extension/sw-settings-rule-detail-assignments';
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Now your module's `index.js` will be executed.
 
@@ -43,7 +43,7 @@ Your `index.js` is still empty now, so let's override the `sw-settings-rule-deta
 This is technically done by calling the method `override` method of our [ComponentFactory](https://github.com/shopware/platform/blob/trunk/src/Administration/Resources/app/administration/src/core/factory/component.factory.ts), which is available through our third party wrapper.
 This method expects a name, and a configuration for the component you want to override.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-settings-rule/extension/sw-settings-rule-detail-assignments/index.js" %}
+<CodeBlock title="<plugin root>/src/Resources/app/administration/src/module/sw-settings-rule/extension/sw-settings-rule-detail-assignments/index.js">
 
 ```javascript
 Component.override('sw-settings-rule-detail-assignments', {
@@ -51,7 +51,7 @@ Component.override('sw-settings-rule-detail-assignments', {
 });
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Overriding the computed
 
@@ -59,7 +59,7 @@ Now your plugin is overriding the `sw-settings-rule-detail-assignments` componen
 In the `associationEntitiesConfig` computed property the configuration of the rule assignment is built and returned to the method which initiates the component.
 Because of this, you have to override this computed property, get the computed property of the original component, add your own configuration of the rule assignment and return the whole configuration array.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-settings-rule/extension/sw-settings-rule-detail-assignments/index.js" %}
+<CodeBlock title="<plugin root>/src/Resources/app/administration/src/module/sw-settings-rule/extension/sw-settings-rule-detail-assignments/index.js">
 
 ```javascript
 Component.override('sw-settings-rule-detail-assignments', {
@@ -73,14 +73,14 @@ Component.override('sw-settings-rule-detail-assignments', {
 });
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Adding the configuration
 
 The configuration of the rule assignment is passed as an object and offers a wide range of options.
 Just have a look onto one example configuration item of the `Dynamic Access` plugin:
 
-{% code title="Example of a configuration item" %}
+<CodeBlock title="Example of a configuration item">
 
 ```javascript
 getRuleAssignmentConfig()
@@ -152,7 +152,7 @@ getRuleAssignmentConfig()
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Let's go through the most important entries, how to configure your rule assignment:
 
@@ -167,7 +167,7 @@ Let's go through the most important entries, how to configure your rule assignme
 If you want to provide to delete an assignment, you have to define the `deleteContext`. There are two types of the `deleteContext`.
 The first one is the `one-to-many` type, which link to a column of the assignment entity like this:
 
-{% code title="Example of a one-to-many deleteContext" %}
+<CodeBlock title="Example of a one-to-many deleteContext">
 
 ```js
 deleteContext: {
@@ -177,11 +177,11 @@ deleteContext: {
 },
 ```
 
-{% endcode %}
+</CodeBlock>
 
 The other type is `many-to-many`, which has to link to the `ManyToManyAssociationField` of the extension like this:
 
-{% code title="Example of a many-to-many deleteContext" %}
+<CodeBlock title="Example of a many-to-many deleteContext">
 
 ```js
 deleteContext: {
@@ -191,14 +191,14 @@ deleteContext: {
 },
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ### Provide to add an assignment
 
 If you want to provide to add an assignment, you have to define the `addContext`. This context has the same two types as the `deleteContext` (see above),
 but the `addContext` has more options to fill out, because an add assignment modal has to be configured:
 
-{% code title="Example of a one-to-many addContext" %}
+<CodeBlock title="Example of a one-to-many addContext">
 
 ```js
 addContext: {
@@ -248,14 +248,14 @@ addContext: {
 },
 ```
 
-{% endcode %}
+</CodeBlock>
 
 The `addContext` needs a definition of the `gridColumns`, the `entity` and the `criteria`, like in the general configuration.
 Also, the context needs the `column` of the assignment and the `searchColumn` of the assigned entity.
 
 A context of the `many-to-many` type would look like this:
 
-{% code title="Example of a many-to-many addContext" %}
+<CodeBlock title="Example of a many-to-many addContext">
 
 ```js
 addContext: {
@@ -276,7 +276,7 @@ addContext: {
 },
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Beside the properties of a `one-to-many` type you have to define the `association` with the name of the `ManyToManyAssociationField`.
 

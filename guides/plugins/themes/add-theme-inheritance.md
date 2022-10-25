@@ -20,7 +20,7 @@ To set up the inheritance we need to edit the theme configuration file called `t
 
 The content of the `theme.json` file looks like this:
 
-{% code title="<plugin root>/src/Resources/theme.json" %}
+<CodeBlock title="<plugin root>/src/Resources/theme.json">
 
 ```javascript
 {
@@ -47,7 +47,7 @@ The content of the `theme.json` file looks like this:
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 As you can see each section `views`, `style`, `script` and `asset` contains the `@Storefront` placeholder. This means that inheritance is already taking place here. Every theme inherits the default theme of Shopware called `@Storefront`.
 
@@ -55,7 +55,7 @@ Now it is easy to see how we can inherit from our base theme `SwagBasicExampleTh
 
 Here is an example:
 
-{% code title="<plugin root>/src/Resources/theme.json" %}
+<CodeBlock title="<plugin root>/src/Resources/theme.json">
 
 ```javascript
 {
@@ -90,7 +90,7 @@ Here is an example:
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Let's walk over each section and have a closer look.
 

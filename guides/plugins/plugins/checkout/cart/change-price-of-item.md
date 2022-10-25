@@ -32,7 +32,7 @@ Your collector class has to implement the interface `Shopware\Core\Checkout\Cart
 
 Let's have a look at an example:
 
-{% code title="<plugin root>/src/Core/Checkout/Cart/OverwritePriceCollector.php" %}
+<CodeBlock title="<plugin root>/src/Core/Checkout/Cart/OverwritePriceCollector.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -97,7 +97,7 @@ class OverwritePriceCollector implements CartDataCollectorInterface
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 So the example class is called `OverwritePriceCollector` here and it implements the method `collect`. This method's parameters are the following:
 
@@ -133,7 +133,7 @@ Your processor has to implement the interface `Shopware\Core\Checkout\Cart\CartP
 
 But once, again, let's have a look at the example:
 
-{% code title="<plugin root>/src/Core/Checkout/Cart/OverwritePriceCollector.php" %}
+<CodeBlock title="<plugin root>/src/Core/Checkout/Cart/OverwritePriceCollector.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -238,7 +238,7 @@ class OverwritePriceCollector implements CartDataCollectorInterface, CartProcess
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 First of all, note the second interface we implemented, next to the `CartDataCollectorInterface`. We also added a constructor in order to inject the `QuantityPriceCalculator`.
 
@@ -262,7 +262,7 @@ One last thing, we need to register our processor and collector to the DI contai
 
 Let's have a look at it:
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
 ```markup
 <?xml version="1.0" ?>
@@ -282,6 +282,6 @@ Let's have a look at it:
 </container>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 And that's it. Your processor / collector should now be working.

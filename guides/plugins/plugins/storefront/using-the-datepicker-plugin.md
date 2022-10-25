@@ -26,7 +26,7 @@ You should also know how to customize templates:
 To apply the datepicker functionality we have to add a DOM element in a template, e.g. an input field.
 To keep this example simple for now we just override the `base_main_inner` block of the `storefront/page/content/index.html.twig` template.
 
-{% code title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig" %}
+<CodeBlock title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig">
 {% raw %}
 
 ```html
@@ -45,12 +45,12 @@ To keep this example simple for now we just override the `base_main_inner` block
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 Now you should see an empty input field if you open the storefront in your browser.
 We need to add the data-attribute `data-date-picker` to activate the datepicker plugin on our input field.
 
-{% code title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig" %}
+<CodeBlock title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig">
 {% raw %}
 
 ```html
@@ -70,7 +70,7 @@ We need to add the data-attribute `data-date-picker` to activate the datepicker 
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 If we check the change in the browser again, thus after reloading the page, we can see that the datepicker plugin is now active on this element.
 
@@ -82,7 +82,7 @@ We can change this behaviour by passing more options to the datepicker plugin.
 
 Here you can see how this is done by setting up a local Twig variable `pickerOptions`. We can assign a JSON formatted object to the variable and pass the value to the datepicker plugin through the `data-date-picker-options` attribute.
 
-{% code title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig" %}
+<CodeBlock title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig">
 {% raw %}
 
 ```html
@@ -109,7 +109,7 @@ Here you can see how this is done by setting up a local Twig variable `pickerOpt
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 As you can see, we also pass in the `locale` option which gets its value from `app.request.locale`. As a result,
 the datepicker plugin now uses the same locale as the current storefront and the date formatting matches active
@@ -119,7 +119,7 @@ languages accordingly.
 
 To preselect the value of the datepicker we can simply set its value in the input field which gets picked up by the datepicker plugin.
 
-{% code title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig" %}
+<CodeBlock title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig">
 {% raw %}
 
 ```html
@@ -147,14 +147,14 @@ To preselect the value of the datepicker we can simply set its value in the inpu
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 ## Controlling the datepicker via buttons
 
 To open or close the datepicker by trigger buttons you can pass in DOM selectors. You can also setup a selector to reset the currently selected value.
 Here is an example which shows all three selectors in action.
 
-{% code title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig" %}
+<CodeBlock title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig">
 {% raw %}
 
 ```html
@@ -191,7 +191,7 @@ Here is an example which shows all three selectors in action.
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 ## More options
 

@@ -3,7 +3,7 @@
 You can add custom fields to Shopware and thus add your own fields to extending data records. The user is able to modify this fields from within the Shopware Administration.  
 To make use of the custom fields register your custom field sets in your manifest file:
 
-{% code title="manifest.xml" %}
+<CodeBlock title="manifest.xml">
 
 ```markup
 <?xml version="1.0" encoding="UTF-8"?>
@@ -30,7 +30,7 @@ To make use of the custom fields register your custom field sets in your manifes
 </manifest>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference.md).
 

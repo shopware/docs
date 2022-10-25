@@ -26,7 +26,7 @@ For the attached logic of your custom conditions you'll use [twig files](https:/
 
 App Rule Conditions are defined in the `manifest.xml` file of your app:
 
-{% code title="manifest.xml" %}
+<CodeBlock title="manifest.xml">
 
 ```markup
 <?xml version="1.0" encoding="UTF-8"?>
@@ -68,7 +68,7 @@ App Rule Conditions are defined in the `manifest.xml` file of your app:
 </manifest>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference.md).
 
@@ -124,7 +124,7 @@ If either one or both of `value` and `comparable` are an array, then only `=` an
 
 ### Example
 
-{% code title="Resources/scripts/rule-conditions/custom-condition.twig" %}
+<CodeBlock title="Resources/scripts/rule-conditions/custom-condition.twig">
 {% raw %}
 
 ```twig
@@ -136,7 +136,7 @@ If either one or both of `value` and `comparable` are an array, then only `=` an
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 In the example above, we first check whether we can retrieve the current customer from the instance of `RuleScope` and return `false` otherwise.
 
@@ -144,7 +144,7 @@ We then use the variables `operator` and `firstName`, provided by the constraint
 
 ### Line item condition example
 
-{% code title="manifest.xml" %}
+<CodeBlock title="manifest.xml">
 
 ```markup
 <!-- ... -->
@@ -176,9 +176,9 @@ We then use the variables `operator` and `firstName`, provided by the constraint
 <!-- ... -->
 ```
 
-{% endcode %}
+</CodeBlock>
 
-{% code title="Resources/scripts/rule-conditions/line-item-condition.twig" %}
+<CodeBlock title="Resources/scripts/rule-conditions/line-item-condition.twig">
 {% raw %}
 
 ```twig
@@ -200,13 +200,13 @@ We then use the variables `operator` and `firstName`, provided by the constraint
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 In this example we first check if the current scope is `LineItemScope` and refers to a specific line item. If so we compare that specific line item. Otherwise we check if the scope has a cart and return false if it doesn't. We have a multi select for product selection in the administration which provides an array of product IDs in the script. We iterate the current cart's line items to check if the product is included and return `true` if that is the case.
 
 ### Date condition example
 
-{% code title="manifest.xml" %}
+<CodeBlock title="manifest.xml">
 
 ```markup
 <!-- ... -->
@@ -219,9 +219,9 @@ In this example we first check if the current scope is `LineItemScope` and refer
 <!-- ... -->
 ```
 
-{% endcode %}
+</CodeBlock>
 
-{% code title="Resources/scripts/rule-conditions/date-condition.twig" %}
+<CodeBlock title="Resources/scripts/rule-conditions/date-condition.twig">
 {% raw %}
 
 ```twig
@@ -229,6 +229,6 @@ In this example we first check if the current scope is `LineItemScope` and refer
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 For this example we don't have to define constraints. We retrieve the current date from the scope, calling `getCurrentTime`. We modify the date to set it to the first day of the month, then modify it again to set it to the second wednesday from that point in time. We then compare that date against the current date for a condition that matches only on the second wednesday of each month.

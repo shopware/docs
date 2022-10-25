@@ -20,7 +20,7 @@ You may choose between a synchronous and an asynchronous payment method. These t
 
 Below you can see three different definitions of payment methods.
 
-{% code title="manifest.xml" %}
+<CodeBlock title="manifest.xml">
 
 ```markup
 <?xml version="1.0" encoding="UTF-8"?>
@@ -83,7 +83,7 @@ Below you can see three different definitions of payment methods.
 </manifest>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Synchronous payments
 

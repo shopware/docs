@@ -14,7 +14,7 @@ While this is not mandatory, having read the guide about [adding custom javascri
 
 At first, we need to import the `HttpClient` to use it in our JavaScript plugin. We also create a new instance of the `HttpClient` and assigned it to a variable in our `ExamplePlugin`.
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js" %}
+<CodeBlock title="<plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js">
 
 ```javascript
 import Plugin from 'src/plugin-system/plugin.class';
@@ -27,11 +27,11 @@ export default class ExamplePlugin extends Plugin {
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 To fetch data from the API, we now can use the `get` method of the `HttpClient` to invoke a get request.
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js" %}
+<CodeBlock title="<plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js">
 
 ```javascript
 import Plugin from 'src/plugin-system/plugin.class';
@@ -56,7 +56,7 @@ export default class ExamplePlugin extends Plugin {
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 The `get` method takes three arguments. The first one is the `url` which we want to call. In the example we are going to fetch a widget which contains some HTML. The second parameter is a `callback` function. It will be invoked when the API call was done. In the example below we pass in the `handleData` method of our plugin. The callback function then receives the `response` of the API call. We can now use this in our plugin to display the widget in the DOM, for example.
 

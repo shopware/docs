@@ -15,7 +15,7 @@ To configure your module you can set it up with with some additional attributes.
 
 Additionally you can define `label` elements inside of your `module` element, to set up how your module will be displayed in the admin menu.
 
-{% code title="manifest.xml" %}
+<CodeBlock title="manifest.xml">
 
 ```markup
 <?xml version="1.0" encoding="UTF-8"?>
@@ -36,7 +36,7 @@ Additionally you can define `label` elements inside of your `module` element, to
 </manifest>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 For a complete reference of the structure of the manifest file, take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference.md).
 
@@ -75,7 +75,7 @@ When you define a module, it gets automatically loaded by the administration. Ad
 
 The navigation id of your modules uses always pattern `app-<appName>-<moduleName>`. So, within your manifest you can add a reference to modules that you just created:
 
-{% code title="manifest.xml" %}
+<CodeBlock title="manifest.xml">
 
 ```markup
 <?xml version="1.0" encoding="UTF-8"?>
@@ -106,7 +106,7 @@ The navigation id of your modules uses always pattern `app-<appName>-<moduleName
 </manifest>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Modules that are used as a parent for other modules do not need the `source` attribute to be set, although they can.
 
@@ -118,7 +118,7 @@ Your main module can be defined by adding a `main-module` element within your `a
 
 To avoid mixing other modules with your main module, we decided to separate the main module from modules with navigation entries. You can still use the same URL on both, a module that is available through the menu and your main module.
 
-{% code title="manifest.xml" %}
+<CodeBlock title="manifest.xml">
 
 ```markup
 <?xml version="1.0" encoding="UTF-8"?>
@@ -143,7 +143,7 @@ To avoid mixing other modules with your main module, we decided to separate the 
 </manifest>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 This feature is not compatible with themes as they will always open the theme config by default.
 

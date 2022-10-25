@@ -22,7 +22,7 @@ Create a new Migration in your plugin:
 Note: Do not change an existing migration if your plugin is already in use by someone. In that case, create a new Migration instead! This also means, that you have to re-install or update your plugin if you adjust the migration.
 :::
 
-{% code title="<plugin root>/src/Migration/Migration1615470599ExampleSorting.php" %}
+<CodeBlock title="<plugin root>/src/Migration/Migration1615470599ExampleSorting.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -87,7 +87,7 @@ class Migration1615470599ExampleSorting extends MigrationStep
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Create individual sorting at runtime
 
@@ -99,7 +99,7 @@ While possible, it is not recommended adding an individual sorting at runtime. I
 
 Here's an example how your subscriber could look like:
 
-{% code title="<plugin root>/src/Subscriber/ExampleListingSubscriber.php" %}
+<CodeBlock title="<plugin root>/src/Subscriber/ExampleListingSubscriber.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -151,7 +151,7 @@ class ExampleListingSubscriber implements EventSubscriberInterface
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Next steps
 

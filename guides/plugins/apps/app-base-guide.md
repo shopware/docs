@@ -26,7 +26,7 @@ To get started with your app, create an `apps` folder inside the `custom` folder
 
 The manifest file is the central point of your app. It defines the interface between your app and the Shopware instance. It provides all the information concerning your app, as seen in the minimal version below:
 
-{% code title="manifest.xml" %}
+<CodeBlock title="manifest.xml">
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -46,7 +46,7 @@ The manifest file is the central point of your app. It defines the interface bet
 </manifest>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ::: warning
 The name of your app, that you provide in the manifest file, needs to match the folder name of your app.
@@ -86,7 +86,7 @@ The timeout for the requests against app server is 5 seconds.
 
 The registration request is made as a GET request against a URL that you provide in the manifest file of your app.
 
-{% code title="manifest.xml" %}
+<CodeBlock title="manifest.xml">
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -100,7 +100,7 @@ The registration request is made as a GET request against a URL that you provide
 </manifest>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 The following query parameters will be sent with the request:
 
@@ -267,7 +267,7 @@ Since version 6.4.12.0 your app can also request additional non-CRUD privileges 
 
 Sample permissions to read, create and update products, delete orders, as well as reading the cache configuration looks like this:
 
-{% code title="manifest.xml" %}
+<CodeBlock title="manifest.xml">
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -288,7 +288,7 @@ Sample permissions to read, create and update products, delete orders, as well a
 </manifest>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 The permissions you request need to be accepted by the user during the installation of your app. After that these permissions are granted for your app and your API access through the credentials from the [confirmation request](app-base-guide.md#confirmation-request) of the [setup workflow](app-base-guide.md#setup) are limited to those permissions.
 
@@ -302,7 +302,7 @@ With webhooks you are able to subscribe to events occurring in Shopware. Wheneve
 
 To use webhooks in your app, you need to implement a `<webhooks>` element in your manifest file, like this:
 
-{% code title="manifest.xml" %}
+<CodeBlock title="manifest.xml">
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -316,7 +316,7 @@ To use webhooks in your app, you need to implement a `<webhooks>` element in you
 </manifest>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 This example illustrates you how to define a webhook with the name `product-changed` and the url `https://example.com/event/product-changed` which will be triggered if the event `product.written` is fired. So every time a product is changed, your custom logic will get executed. Further down you will find a list of the most important events you can hook into.
 

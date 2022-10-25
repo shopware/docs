@@ -12,7 +12,7 @@ The default Advanced Search does not support compound completions from multiple 
 
 To support compound completions, it's necessary to decorate the appropriate Elasticsearch Definition. And add the [Tag](https://symfony.com/doc/current/service_container/tags.html) `swag_ses.completion_definition` to the service, like to Advanced Search default services. Make sure, that the new created decorator runs after the Advanced Search decorator, otherwise it will override your values.
 
-{% code title="MyProductDefinitionDecorator.php" %}
+<CodeBlock title="MyProductDefinitionDecorator.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -73,4 +73,4 @@ class MyProductDefinitionDecorator extends AbstractElasticsearchDefinition
 }
 ```
 
-{% endcode %}
+</CodeBlock>

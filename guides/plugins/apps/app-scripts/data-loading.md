@@ -20,7 +20,7 @@ This may come in handy if you are searching for the right hook for your script.
 
 For example, you would like to enrich a storefront detail page with some additional data, you just set it within a custom app script and attach it to the `page` object.
 
-{% code title="Resources/scripts/product-page-loaded/my-example-script.twig" %}
+<CodeBlock title="Resources/scripts/product-page-loaded/my-example-script.twig">
 {% raw %}
 
 ```twig
@@ -39,11 +39,11 @@ For example, you would like to enrich a storefront detail page with some additio
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 In your storefront templates you can read the data again from the `page` object:
 
-{% code title="Resources/views/storefront/page/product-detail/index.html.twig" %}
+<CodeBlock title="Resources/views/storefront/page/product-detail/index.html.twig">
 {% raw %}
 
 ```twig
@@ -57,7 +57,7 @@ In your storefront templates you can read the data again from the `page` object:
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 ## Loading data
 

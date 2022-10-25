@@ -18,7 +18,7 @@ Throughout all of the lifecycle methods, you have access to the [service contain
 
 The install method of a plugin is executed when the plugin is installed. You can use this method to install all the necessary requirements for your plugin, e.g. a new payment method.
 
-{% code title="<plugin root>/src/SwagBasicExample" %}
+<CodeBlock title="<plugin root>/src/SwagBasicExample">
 
 ```php
 public function install(InstallContext $context): void
@@ -27,7 +27,7 @@ public function install(InstallContext $context): void
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 In your install method, you have access to the `InstallContext`, which provides information such as:
 
@@ -49,7 +49,7 @@ The opposite of the `install` method. It gets executed once the plugin is uninst
 You can't simply remove everything that your plugin created previously. Think about a new payment method, that your plugin created and which was then used for actual orders. If you were to remove this payment method when uninstalling the plugin, all the orders that used this payment method would be broken, since the system wouldn't find the used payment method anymore. In this case, you most likely just want to deactive the respective entity, if possible. Be careful here!
 :::
 
-{% code title="<plugin root>/src/SwagBasicExample" %}
+<CodeBlock title="<plugin root>/src/SwagBasicExample">
 
 ```php
 public function uninstall(UninstallContext $context): void
@@ -58,7 +58,7 @@ public function uninstall(UninstallContext $context): void
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 The `uninstall` method comes with the `UninstallContext`, which offers the same information as the `install` method. There's one more very important information available with the `UninstallContext`, which is the method `keepUserData`.
 
@@ -66,7 +66,7 @@ The `uninstall` method comes with the `UninstallContext`, which offers the same 
 
 When uninstalling a plugin, the user is asked if he really wants to delete all the plugin data. The method `keepUserData` of the `UninstallContext` will provide the users decision. If `keepUserData` returns `true`, you should **not** remove important data of your plugin, the user wants to keep them.
 
-{% code title="<plugin root>/src/SwagBasicExample" %}
+<CodeBlock title="<plugin root>/src/SwagBasicExample">
 
 ```php
 public function uninstall(UninstallContext $context): void
@@ -81,7 +81,7 @@ public function uninstall(UninstallContext $context): void
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ::: info
 Here's a video dealing with plugin uninstall routines from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
@@ -96,7 +96,7 @@ The `activate` method is executed once the plugin gets actually activated. You m
 * Activate entities that you created in the install method, e.g. such as a payment method
 * Create new entities or data, that you couldn't create in the install method
 
-{% code title="<plugin root>/src/SwagBasicExample" %}
+<CodeBlock title="<plugin root>/src/SwagBasicExample">
 
 ```php
 public function activate(ActivateContext $context): void
@@ -106,7 +106,7 @@ public function activate(ActivateContext $context): void
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 The `ActivateContext` provides the same information as the `InstallContext`.
 
@@ -119,7 +119,7 @@ The opposite of the `activate` method. Its triggered once the plugin deactivates
 
   is inactive
 
-{% code title="<plugin root>/src/SwagBasicExample" %}
+<CodeBlock title="<plugin root>/src/SwagBasicExample">
 
 ```php
 public function deactivate(DeactivateContext $context): void
@@ -129,7 +129,7 @@ public function deactivate(DeactivateContext $context): void
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 The `DeactivateContext` provides the same information as the `InstallContext`.
 
@@ -139,7 +139,7 @@ The `update` method is executed once your plugin gets updated to a new version. 
 
 However, of course you can still do that if necessary. Also, non-database updates can be done here.
 
-{% code title="<plugin root>/src/SwagBasicExample" %}
+<CodeBlock title="<plugin root>/src/SwagBasicExample">
 
 ```php
 public function update(UpdateContext $context): void
@@ -148,7 +148,7 @@ public function update(UpdateContext $context): void
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 The `UpdateContext` provides the same information as the `InstallContext`, but comes with one more method. In order to get the new plugin version, you can use the method `getUpdatePluginVersion` in contrast to the `getCurrentPluginVersion`, which will return the currently installed plugin version.
 
@@ -156,7 +156,7 @@ The `UpdateContext` provides the same information as the `InstallContext`, but c
 
 There are two more lifecycle methods, that are worth mentioning: `PostUpdate` and `PostInstall`, which are executed **after** the respective process of installing or updating your plugin is fully and successfully done.
 
-{% code title="<plugin root>/src/SwagBasicExample" %}
+<CodeBlock title="<plugin root>/src/SwagBasicExample">
 
 ```php
 public function postInstall(InstallContext $installContext): void
@@ -168,4 +168,4 @@ public function postUpdate(UpdateContext $updateContext): void
 }
 ```
 
-{% endcode %}
+</CodeBlock>

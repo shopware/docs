@@ -10,7 +10,7 @@ The path parameter is afterwards passed to the `Swag\EnterpriseSearch\Relevance\
 
 ## Example
 
-{% code title="Synonyms.php" %}
+<CodeBlock title="Synonyms.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -25,11 +25,11 @@ return [
 ];
 ```
 
-{% endcode %}
+</CodeBlock>
 
 The `SynonymProvider` supports multi languages and a default fallback! For a specific language the language code can be added as an array key, like the following.
 
-{% code title="Synonyms.php with multi language support" %}
+<CodeBlock title="Synonyms.php with multi language support">
 
 ```php
 <?php declare(strict_types=1);
@@ -48,7 +48,7 @@ return [
 ];
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## How to override
 
@@ -60,7 +60,7 @@ return [
    1. Create a file with your synonyms, see [Example](synonyms.md#example)
    1. [Add a parameter](https://symfony.com/doc/2.0/cookbook/bundles/override.html#services-configuration) to the Dependency Injection File.
 
-{% code title="services.xml" %}
+<CodeBlock title="services.xml">
 
 ```markup
 <parameters>
@@ -68,7 +68,7 @@ return [
 </parameter>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ::: warning
 Make sure that the paths matches!

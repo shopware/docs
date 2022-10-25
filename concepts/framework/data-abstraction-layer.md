@@ -14,7 +14,7 @@ An EntityRepository is used to interact with the DAL. This is the recommended wa
 
 Before using the repositories, you'll need to get them from the DIC. This is done with [constructor injection](https://symfony.com/doc/current/service_container/injection_types.html#constructor-injection), so you'll need    to extend your services constructor by expecting an EntityRepositoryInterface:
 
-{% code title="<plugin root>/src/Service/DalExampleService.php" %}
+<CodeBlock title="<plugin root>/src/Service/DalExampleService.php">
 
 ```php
 public function __construct (EntityRepositoryInterface $productRepository)
@@ -23,13 +23,13 @@ public function __construct (EntityRepositoryInterface $productRepository)
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 If you're using [service autowiring](https://symfony.com/doc/current/service_container/autowiring.html), and the type and argument variable names are correct, the repository will be injected automatically.
 
 Alternatively, configure the product.repository service to be injected explicitly:
 
-{% code title="<plugin root>src/Resources/config/service.xml" %}
+<CodeBlock title="<plugin root>src/Resources/config/service.xml">
 
 ```markup
 <service id="Swag\ExamplePlugin\Service\DalExampleService">
@@ -37,7 +37,7 @@ Alternatively, configure the product.repository service to be injected explicitl
 </service>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 You can read more about dependency injection and service registration in Shopware in the services guides:
 

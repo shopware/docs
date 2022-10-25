@@ -22,7 +22,7 @@ First of all we have to configure PHPUnit a bit. Therefore we have to create a f
 
 Here's an example configuration for the development template:
 
-{% code title="<plugin root>/phpunit.xml.dist" %}
+<CodeBlock title="<plugin root>/phpunit.xml.dist">
 
 ```markup
 <?xml version="1.0" encoding="UTF-8"?>
@@ -60,7 +60,7 @@ Here's an example configuration for the development template:
 </phpunit>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Example Tests
 
@@ -70,7 +70,7 @@ After we've configured PHPUnit, we can start writing our first test. In this exa
 
 Therefore, this is how your service could then look like:
 
-{% code title="<plugin root>/src/Test/UsedClassesAvailableTest.php" %}
+<CodeBlock title="<plugin root>/src/Test/UsedClassesAvailableTest.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -111,7 +111,7 @@ class UsedClassesAvailableTest extends TestCase
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ### Migration test
 
@@ -119,7 +119,7 @@ In order to test our example migration `Migration1611740369ExampleDescription`, 
 
 Here's an example for a migration test:
 
-{% code title="<plugin root>/src/Migration/Test/Migration1611740369ExampleDescriptionTest.php" %}
+<CodeBlock title="<plugin root>/src/Migration/Test/Migration1611740369ExampleDescriptionTest.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -166,7 +166,7 @@ class Migration1611740369ExampleDescriptionTest extends TestCase
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Database setup
 
@@ -188,7 +188,7 @@ All commands in this section will be executed in the root directory of our plugi
 
 For easier usage, you could create a batch file called `phpunit.sh` into a `/bin` directory of your plugin. Its only purpose then would be executing the PHPUnit testsuite. Make sure the path in the following file actually fits.
 
-{% code title="<plugin root>/bin/phpunit.sh" %}
+<CodeBlock title="<plugin root>/bin/phpunit.sh">
 
 ```bash
 #!/usr/bin/env bash
@@ -197,7 +197,7 @@ cd ./../../../
 ./vendor/bin/phpunit --configuration="$dir" "$@"
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ### Executing all tests in the plugin
 
@@ -231,7 +231,7 @@ We also need to change the `KERNEL_CLASS` from `Shopware\Development\Kernel` to 
 
 Therefore, this is how your configuration could then look like:
 
-{% code title="<plugin root>/phpunit.xml.dist" %}
+<CodeBlock title="<plugin root>/phpunit.xml.dist">
 
 ```markup
 <?xml version="1.0" encoding="UTF-8"?>
@@ -268,7 +268,7 @@ Therefore, this is how your configuration could then look like:
 </phpunit>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Next steps
 

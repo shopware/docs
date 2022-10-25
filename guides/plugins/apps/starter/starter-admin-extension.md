@@ -37,7 +37,7 @@ When you are using a self-hosted Shopware Version, you can also create the proje
 
 Next, we're gonna put our basic configuration into the file we just created.
 
-{% code title="manifest.xml" %}
+<CodeBlock title="manifest.xml">
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -55,7 +55,7 @@ Next, we're gonna put our basic configuration into the file we just created.
 
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Set up communication between Shopware and the App
 
@@ -75,7 +75,7 @@ SimpleNotification/
 
 ```
 
-{% code title="src/index.html" %}
+<CodeBlock title="src/index.html">
 
 ```html
 <!doctype html>
@@ -93,7 +93,7 @@ SimpleNotification/
 
 ```
 
-{% endcode %}
+</CodeBlock>
 
 This file contains the basic setup for our app to display the notification:
 
@@ -118,7 +118,7 @@ The final step of the setup is to configure your app to use that file as an entr
 
 In order to do that, we have to add an `admin` section to our `manifest.xml` file and pass it into the `base-app-url` tag:
 
-{% code title="manifest.xml" %}
+<CodeBlock title="manifest.xml">
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -132,7 +132,7 @@ In order to do that, we have to add an `admin` section to our `manifest.xml` fil
 </manifest>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Since the URL to your entry point only available locally, you will only be able to see changes on your own machine. If you want to share it, for development purposes, you need to host the entry point file somewhere or use services to expose local files as public URLs, such as [ngrok](https://ngrok.com/).
 

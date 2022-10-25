@@ -49,7 +49,7 @@ This new class `SwagBasicExample` has to extend from Shopware's abstract Plugin 
 
 Apart from this, only the namespace is missing. You can freely define it, but we'd recommend using a combination of your manufacturer prefix and the technical name, so in this `guide` this would be: `Swag\BasicExample`
 
-<!-- {% code title="<plugin root>/src/SwagBasicExample.php" %} -->
+<!-- <CodeBlock title="<plugin root>/src/SwagBasicExample.php"> -->
 
 ```php
 <?php declare(strict_types=1);
@@ -63,7 +63,7 @@ class SwagBasicExample extends Plugin
 }
 ```
 
-<!-- {% endcode %} -->
+<!-- </CodeBlock> -->
 
 Basically that's it for the PHP part, your basic plugin class is already done.
 
@@ -94,7 +94,7 @@ and the `require` field must include at least `shopware/core`, to check for comp
 
 Here's an example `composer.json` for this guide, which will do the trick:
 
-<!-- {% code title="<plugin root>/composer.json" %} -->
+<!-- <CodeBlock title="<plugin root>/composer.json"> -->
 
 ```javascript
 {
@@ -130,7 +130,7 @@ Here's an example `composer.json` for this guide, which will do the trick:
 }
 ```
 
-<!-- {% endcode %} -->
+<!-- </CodeBlock> -->
 
 There's another two things that you need to know:
 

@@ -36,7 +36,7 @@ When you are using a self-hosted Shopware Version, you can also create the proje
 
 Next, we're gonna put our basic configuration into the file we just created.
 
-{% code title="manifest.xml" %}
+<CodeBlock title="manifest.xml">
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -59,7 +59,7 @@ Next, we're gonna put our basic configuration into the file we just created.
 
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Besides some metadata, like a name, description or a version, this file contains permissions that the app requires.
 We will need them later on when performing searches.
@@ -112,7 +112,7 @@ This directory naming causes Shopware to expose the script on two routes:
 
 Let's start with a simple script to see it in action:
 
-{% code title="Resources/scripts/store-api-swag-topseller/topseller-script.twig" %}
+<CodeBlock title="Resources/scripts/store-api-swag-topseller/topseller-script.twig">
 {% raw %}
 
 ```twig
@@ -123,7 +123,7 @@ Let's start with a simple script to see it in action:
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 Next we will install the App using the Shopware CLI.
 
@@ -167,7 +167,7 @@ However, instead of using curl we recommend using visual clients to test the API
 
 For now, our script is not really doing anything. Let's change that.
 
-{% code title="Resources/scripts/store-api-swag-topseller/topseller-script.twig" %}
+<CodeBlock title="Resources/scripts/store-api-swag-topseller/topseller-script.twig">
 {% raw %}
 
 ```twig
@@ -209,7 +209,7 @@ For now, our script is not really doing anything. Let's change that.
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 What happened here?
 

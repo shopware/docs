@@ -37,7 +37,7 @@ As we now know how to create your configuration, we can start to fill it with li
 
 The `config.xml` follows a simple syntax. You can organize the content in `<card>` elements. Every `config.xml` must contain a minimum of one `<card>` element and each `<card>` must contain one `<title>` and at least one `<input-field>`. See the minimum `config.xml` below:
 
-{% code title="<plugin root>/src/Resources/config/config.xml" %}
+<CodeBlock title="<plugin root>/src/Resources/config/config.xml">
 
 ```markup
 <?xml version="1.0" encoding="UTF-8"?>
@@ -53,7 +53,7 @@ The `config.xml` follows a simple syntax. You can organize the content in `<card
 </config>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Please make sure to specify the `xsi:noNamespaceSchemaLocation` as shown above and fetch the external resource into your IDE if possible. This enables auto-completion and suggestions for this XML file and will therefore help you to prevent issues and bugs.
 
@@ -248,7 +248,7 @@ Please Note: It is impossible to allow every component to the config.xml, due to
 
 Now all that's left to do is to present you a working example `config.xml` and show you the result.
 
-{% code title="<plugin root>/src/Resources/config/config.xml" %}
+<CodeBlock title="<plugin root>/src/Resources/config/config.xml">
 
 ```markup
 <?xml version="1.0" encoding="UTF-8"?>
@@ -305,7 +305,7 @@ Now all that's left to do is to present you a working example `config.xml` and s
 </config>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ## Next steps
 

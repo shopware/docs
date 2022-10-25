@@ -33,7 +33,7 @@ For this example, the controller from the [Add custom controller guide](../../st
 
 Let's now have a look at our example controller:
 
-{% code title="<plugin root>/src/Storefront/Controller/ExampleController.php" %}
+<CodeBlock title="<plugin root>/src/Storefront/Controller/ExampleController.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -63,7 +63,7 @@ class ExampleController extends StorefrontController
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 The important information you'll need here is the route name, `frontend.example.example`, as well as the route itself: `/example`. Make sure to remember those for the next step.
 
@@ -77,7 +77,7 @@ Don't be confused here, we'll just treat the `seo_url` table like a translation 
 
 Let's have a look at an example:
 
-{% code title="<plugin root>/src/Migration/Migration1619094740AddStaticSeoUrl.php" %}
+<CodeBlock title="<plugin root>/src/Migration/Migration1619094740AddStaticSeoUrl.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -149,7 +149,7 @@ SQL;
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 You might want to have a look at the `getSeoMetaArray` method, that we implemented here. Most important for you are the columns `route_name` and `path_info` here, which represent the values you've defined in your controller's route annotation.
 
@@ -179,7 +179,7 @@ Let's first have a look at such an example class:
 
 {% tabs %}
 {% tab title="ExamplePageSeoUrlRoute.php" %}
-{% code title="<plugin root>/src/Storefront/Framework/Seo/SeoUrlRoute/ExamplePageSeoUrlRoute.php" %}
+<CodeBlock title="<plugin root>/src/Storefront/Framework/Seo/SeoUrlRoute/ExamplePageSeoUrlRoute.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -240,11 +240,11 @@ class ExamplePageSeoUrlRoute implements SeoUrlRouteInterface
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 {% endtab %}
 
 {% tab title="services.xml" %}
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
 ```markup
 <?xml version="1.0" ?>
@@ -262,7 +262,7 @@ class ExamplePageSeoUrlRoute implements SeoUrlRouteInterface
 </container>
 ```
 
-{% endcode %}
+</CodeBlock>
 {% endtab %}
 {% endtabs %}
 
@@ -302,7 +302,7 @@ Once again, let's have a look at an example subscriber here:
 
 {% tabs %}
 {% tab title="DynamicSeoUrlPageSubscriber.php" %}
-{% code title="<plugin root>/src/Service/DynamicSeoUrlPageSubscriber.php" %}
+<CodeBlock title="<plugin root>/src/Service/DynamicSeoUrlPageSubscriber.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -336,11 +336,11 @@ class DynamicSeoUrlPageSubscriber implements EventSubscriberInterface
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 {% endtab %}
 
 {% tab title="services.xml" %}
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
 ```markup
 <?xml version="1.0" ?>
@@ -359,7 +359,7 @@ class DynamicSeoUrlPageSubscriber implements EventSubscriberInterface
 </container>
 ```
 
-{% endcode %}
+</CodeBlock>
 {% endtab %}
 {% endtabs %}
 
@@ -379,7 +379,7 @@ The most important values you'll have to set in the migration are:
 
 Now here is the said example migration:
 
-{% code title="<plugin root>/src/Migration/Migration1619514731AddExampleSeoUrlTemplate.php" %}
+<CodeBlock title="<plugin root>/src/Migration/Migration1619514731AddExampleSeoUrlTemplate.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -417,7 +417,7 @@ class Migration1619514731AddExampleSeoUrlTemplate extends MigrationStep
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 And that's it! Every time your entity is written now, you'll automatically generate a SEO URL for it.
 
@@ -431,7 +431,7 @@ If your entity is deleted, you want the SEO URL to be updated as well. In detail
 
 This can be achieved by using the DAL event `.deleted` and then executing the `update` method again.
 
-{% code title="<plugin root>/src/Service/DynamicSeoUrlPageSubscriber.php" %}
+<CodeBlock title="<plugin root>/src/Service/DynamicSeoUrlPageSubscriber.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -465,7 +465,7 @@ class DynamicSeoUrlPageSubscriber implements EventSubscriberInterface
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 #### Dynamic SEO URLs for custom content
 
@@ -481,7 +481,7 @@ This method will then use the `SeoUrlPersister` and its method `updateSeoUrls` i
 
 Here's an example of such a class:
 
-{% code title="<plugin root>/src/Service/DynamicSeoUrlsService.php" %}
+<CodeBlock title="<plugin root>/src/Service/DynamicSeoUrlsService.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -563,7 +563,7 @@ class DynamicSeoUrlsService
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 The method `writeSeoEntries` will look for a Storefront sales channel and return its ID. It's then iterating over each provided entry, which in this example will need a method called `getId` and method called `getName`. Using this data, an array of URLs to be written is created. Make sure to change the values of the following keys:
 

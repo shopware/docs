@@ -82,7 +82,7 @@ All of stock entities come with their own event class. To keep the example of th
 
 The example below shows you how to use the constants in your event subscriber:
 
-{% code title="<plugin root>/src/Subscriber/ProductSubscriber.php" %}
+<CodeBlock title="<plugin root>/src/Subscriber/ProductSubscriber.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -115,13 +115,13 @@ class ProductSubscriber implements EventSubscriberInterface
     }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 After creating the event subscriber, you have to register it. If you don't know how that's done, head over to our guide about [Listening to events](../../plugin-fundamentals/listening-to-events.md).
 
 Here's our `services.xml`:
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
 ```markup
 <?xml version="1.0" ?>
@@ -138,4 +138,4 @@ Here's our `services.xml`:
 </container>
 ```
 
-{% endcode %}
+</CodeBlock>

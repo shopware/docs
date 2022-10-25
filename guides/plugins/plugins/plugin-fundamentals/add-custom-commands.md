@@ -38,7 +38,7 @@ From here on, everything works exactly like in Symfony itself. Commands are reco
 
 Here's a full example `services.xml` which registers your custom command:
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
 ```markup
 <?xml version="1.0" ?>
@@ -55,11 +55,11 @@ Here's a full example `services.xml` which registers your custom command:
 </container>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Your command's class should extend from the `Symfony\Component\Console\Command\Command` class, here's an example:
 
-{% code title="<plugin root>/src/Command/ExampleCommand.php" %}
+<CodeBlock title="<plugin root>/src/Command/ExampleCommand.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -92,7 +92,7 @@ class ExampleCommand extends Command
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 This command is of course only a basic example, so feel free to experiment. As stated above, you now have access to all the functionality offered by Symfony and Shopware.
 

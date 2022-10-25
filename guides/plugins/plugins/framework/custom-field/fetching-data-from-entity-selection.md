@@ -18,7 +18,7 @@ To resolve the `id` and getting access to the product we have linked here, we ca
 
 Lets create a `ProductSubscriber` first which will listen to the `ProductEvents::PRODUCT_LOADED_EVENT`.
 
-{% code title="<plugin root>/src/Subscriber/ProductSubscriber.php" %}
+<CodeBlock title="<plugin root>/src/Subscriber/ProductSubscriber.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -44,11 +44,11 @@ class ProductSubscriber implements EventSubscriberInterface
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 For this subscriber to work we need to register it in the service container via the `services.xml` file:
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
 ```markup
 <?xml version="1.0" ?>
@@ -65,11 +65,11 @@ For this subscriber to work we need to register it in the service container via 
 </container>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Now our `ProductSubscriber` should be called every time a product is loaded, so we can resolve the custom field `custom_linked_product`.
 
-{% code title="<plugin root>/src/Subscriber/ProductSubscriber.php" %}
+<CodeBlock title="<plugin root>/src/Subscriber/ProductSubscriber.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -112,7 +112,7 @@ class ProductSubscriber implements EventSubscriberInterface
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Inside the `onProductLoaded` method we can get access to the loaded product entities by calling `$event->getEntities()`. Now for every product we look for our `custom_linked_product` custom field.
 
@@ -120,7 +120,7 @@ But, how we can load the linked product by its `id` if the custom field was set?
 
 First we update the `services.xml` and inject the product repository.
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<CodeBlock title="<plugin root>/src/Resources/config/services.xml">
 
 ```markup
 <?xml version="1.0" ?>
@@ -138,11 +138,11 @@ First we update the `services.xml` and inject the product repository.
 </container>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Now we can use the product repository in our subscriber.
 
-{% code title="<plugin root>/src/Subscriber/ProductSubscriber.php" %}
+<CodeBlock title="<plugin root>/src/Subscriber/ProductSubscriber.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -170,13 +170,13 @@ class ProductSubscriber implements EventSubscriberInterface
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 As you can see, the product repository was injected and is now available to the `ProductRepository`. The last step is to resolve the `custom_linked_product` value inside the `onProductLoaded` method.
 
 Let's have a look at the final implementation of the subscriber.
 
-{% code title="<plugin root>/src/Subscriber/ProductSubscriber.php" %}
+<CodeBlock title="<plugin root>/src/Subscriber/ProductSubscriber.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -239,4 +239,4 @@ class ProductSubscriber implements EventSubscriberInterface
 }
 ```
 
-{% endcode %}
+</CodeBlock>

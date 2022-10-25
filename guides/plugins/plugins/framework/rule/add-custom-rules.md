@@ -22,7 +22,7 @@ To create a custom rule, we have to implement both backend \(PHP\) code and a us
 
 First of all we need a new Rule class, in this example we will name it `LunarEclipseRule`. It will be placed in the directory `<plugin root>/src/Core/Rule`. Our new class has to extend from the abstract class `Shopware\Core\Framework\Rule\Rule`. Below you can find an example implementation.
 
-{% code title="<plugin root>/src/Core/Rule/LunarEclipseRule.php" %}
+<CodeBlock title="<plugin root>/src/Core/Rule/LunarEclipseRule.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -74,7 +74,7 @@ class LunarEclipseRule extends Rule
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 As you can see, several methods are already implemented:
 
@@ -104,7 +104,7 @@ Now we want to implement our new rule in the administration so that we can manag
 
 Create a new directory called `<plugin root>/src/Resources/app/administration/src/decorator`. In this directory we create a new file called `rule-condition-service-decoration.js`.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/decorator/rule-condition-service-decoration.js" %}
+<CodeBlock title="<plugin root>/src/Resources/app/administration/src/decorator/rule-condition-service-decoration.js">
 
 ```javascript
 import '../core/component/swag-lunar-eclipse';
@@ -120,19 +120,19 @@ Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderServi
 });
 ```
 
-{% endcode %}
+</CodeBlock>
 
 As you can see, this is decorating the `RuleConditionService` by using its name `ruleConditionDataProviderService`. The decoration adds a new condition called `lunar_eclipse`. Make sure to match the name we've used in the `getName` method in PHP. Next, we define the component, in our case `swag-lunar-eclipse`, which is responsible for rendering the rule inside the administration. We will create this component in the next step. Furthermore we defined a label, which will be displayed in the rule builder selection. The last option is the scope, which in our case is `global`, as we have not specified a specific one in our core class.
 
 We also have to create a `main.js` file in our administration sources directory and import the decorator file we've created above. The `main.js` file is used as an entry point to load administration modules from Shopware plugins:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/main.js" %}
+<CodeBlock title="<plugin root>/src/Resources/app/administration/src/main.js">
 
 ```javascript
 import './decorator/rule-condition-service-decoration';
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ### Custom rule component
 
@@ -140,7 +140,7 @@ Since we've registered our rule to the administration now, we're still lacking t
 
 Here's an example of what this component could look like:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/core/component/swag-lunar-eclipse/index.js" %}
+<CodeBlock title="<plugin root>/src/Resources/app/administration/src/core/component/swag-lunar-eclipse/index.js">
 
 ```javascript
 import template from './swag-lunar-eclipse.html.twig';
@@ -181,7 +181,7 @@ Shopware.Component.extend('swag-lunar-eclipse', 'sw-condition-base', {
 });
 ```
 
-{% endcode %}
+</CodeBlock>
 
 As you can see, our `swag-lunar-eclipse` has to extend from the `sw-condition-base` component and has to bring a custom template, which will be explained in the next step. Let's have a look at each property and method. The first computed property is `selectValues`, which returns an array containing the values "true" and "false". Those will be used in the template later on, as they will be the selectable options for the shop administrator. Do not get confused by the call this.$tc\('global.sw-condition.condition.yes'\), it's just loading a translation by its name, in this case "Yes" and "No". Note: When dealing with boolean values, make sure to always return strings here!
 
@@ -191,7 +191,7 @@ The second and last computed property is `isLunarEclipse`, which uses a getter a
 
 The last step is, creating a template for our condition. We will create a new file called `swag-lunar-eclipse.html.twig` in the same directory as the component. In our template, we have to overwrite the block `sw_condition_value_content`. In this example we define a `sw-single-select` in this block.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/core/component/swag-lunar-eclipse/swag-lunar-eclipse.html.twig" %}
+<CodeBlock title="<plugin root>/src/Resources/app/administration/src/core/component/swag-lunar-eclipse/swag-lunar-eclipse.html.twig">
 {% raw %}
 
 ```text
@@ -207,7 +207,7 @@ The last step is, creating a template for our condition. We will create a new fi
 ```
 
 {% endraw %}
-{% endcode %}
+</CodeBlock>
 
 As you can see, our `sw-single-select` uses the previously created computed property `selectValues` as the `options` prop, and the value is saved into the variable `isLunarEclipse`. That's it, your rule is now fully integrated.
 

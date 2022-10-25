@@ -20,7 +20,7 @@ At some point you need to add or change the routes of a module. For example when
 
 This is done by creating a new module and implementing a `routeMiddleware`. You can add those changes to your `main.js` file, which could then look like this:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/main.js" %}
+<CodeBlock title="<plugin root>/src/Resources/app/administration/src/main.js">
 
 ```javascript
 Shopware.Module.register('my-new-custom-route', {
@@ -40,7 +40,7 @@ Shopware.Module.register('my-new-custom-route', {
 });
 ```
 
-{% endcode %}
+</CodeBlock>
 
 In this example we register a new module which uses the `routeMiddleWare` to scan the routes while the `Vue router` is being set up. If we find the route `sw.product.detail` we just add another child route by pushing it to the `currentRoute.children`.
 

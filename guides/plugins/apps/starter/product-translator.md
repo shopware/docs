@@ -30,7 +30,7 @@ Call `composer install` to fetch all required dependencies.
 Modify the `APP_NAME` in the env to your app name`./.env` to ensure the app can be installed to a store later.
 Also configure the `DATABASE_URL` to point to your database, and choose an `APP_SECRET`:
 
-{% code title=".env" %}
+<CodeBlock title=".env">
 
 ```sh
 ###> symfony/framework-bundle ###
@@ -48,7 +48,7 @@ DATABASE_URL=mysql://root:root@127.0.0.1:3306/product_translator?serverVersion=8
 ###< doctrine/doctrine-bundle ##
 ```
 
-{% endcode %}
+</CodeBlock>
 
 You can now start the application with `symfony server:start -v`.
 
@@ -74,7 +74,7 @@ The `manifest.xml` is the main interface definition between stores and your app 
 It contains all the required information about your app.
 Let's start by filling in all the meta information:
 
-{% code title="release/manifest.xml" %}
+<CodeBlock title="release/manifest.xml">
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -91,7 +91,7 @@ Let's start by filling in all the meta information:
    </manifest>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ::: warning
 Take care to use the same `<name>` as in the `.env` file, otherwise stores can't install the app!
@@ -101,7 +101,7 @@ Take care to use the same `<name>` as in the `.env` file, otherwise stores can't
 
 Next up we will define the `<setup>` part of the manifest. This part describes how the store will connect itself with the app server.
 
-{% code title="release/manifest.xml" %}
+<CodeBlock title="release/manifest.xml">
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -116,7 +116,7 @@ Next up we will define the `<setup>` part of the manifest. This part describes h
 </manifest>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 The `<registraionUrl>` is already implementend by the app template, and is always `/register`, unless you modify `src/Controller/RegistrationController.php`.
 The `<secret>` element is only present in development versions of the app. In production, the extension store will provide the secret to authenticate your app buyers.
@@ -125,7 +125,7 @@ The `<secret>` element is only present in development versions of the app. In pr
 
 Because this app will need to read product descriptions and translate them the it needs permissions to do so:
 
-{% code title="release/manifest.xml" %}
+<CodeBlock title="release/manifest.xml">
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -146,7 +146,7 @@ Because this app will need to read product descriptions and translate them the i
 </manifest>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ### Webhooks
 
@@ -154,7 +154,7 @@ Finally, your app needs to be notified every time a product description is modif
 The app system provides webhooks to subscribe your app server to any changes in the data
 in its shops:
 
-{% code title="release/manifest.xml" %}
+<CodeBlock title="release/manifest.xml">
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -175,7 +175,7 @@ in its shops:
 </manifest>
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ::: info
 The timeout for the requests against app server is 5 seconds.
@@ -192,7 +192,7 @@ This webhook needs a custom controller, which will be the next part of this guid
 
 To get started write a let's write a simple Symfony controller:
 
-{% code title="src/Controller/ProductController.php" %}
+<CodeBlock title="src/Controller/ProductController.php">
 
 ```php
 class ProductController extends AbstractController
@@ -203,13 +203,13 @@ class ProductController extends AbstractController
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 For later use, it's already injected with the `ShopRepository` and the `RequestVerifier`; They will become useful soon.
 
 Next implement a route for the aforementioned `product-update` webhook:
 
-{% code title="src/Controller/ProductController.php" %}
+<CodeBlock title="src/Controller/ProductController.php">
 
 ```php
 class ProductController extends AbstractController
@@ -223,7 +223,7 @@ class ProductController extends AbstractController
 }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Next, we will verify the request:
 For that, we need to fetch the shop data from the database.
@@ -232,7 +232,7 @@ The source part of the request contains the shopId.
 With that id, the shop is retrieved from the repository.
 The verifier then validates the request with the shop object.
 A failed validation raises an exception, thus stopping unauthorized requests from going through.
-{% code title="src/Controller/ProductController.php" %}
+<CodeBlock title="src/Controller/ProductController.php">
 
 ```php
     public function productWritten(Request $request)
@@ -244,12 +244,12 @@ A failed validation raises an exception, thus stopping unauthorized requests fro
     }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ### Creating a shop client
 
 Once the request has been verified you can use the `$shop` to create a api-client for that particular shop.
-{% code title="src/Controller/ProductController.php" %}
+<CodeBlock title="src/Controller/ProductController.php">
 
 ```php
     public function productWritten(Request $request)
@@ -269,14 +269,14 @@ Once the request has been verified you can use the `$shop` to create a api-clien
     }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 The `ShopClient` receives a standard Guzzle HTTP client as well as the `$shop` we got from the database.
 By setting the `base_uri` of the Guzzle client to the store-url, so we don't have to set it repeatedly.
 
 Now we can inspect the event payload:
 
-{% code title="src/Controller/ProductController.php" %}
+<CodeBlock title="src/Controller/ProductController.php">
 
 ```php
     public function productWritten(Request $request)
@@ -290,7 +290,7 @@ Now we can inspect the event payload:
     }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ### Fetching data from the shop
 
@@ -300,7 +300,7 @@ If the change did not affect the description, the controller returns a 204 respo
 
 Now that it's certain the description of the product was changed, we fetch the description through the API of the shop:
 
-{% code title="src/Controller/ProductController.php" %}
+<CodeBlock title="src/Controller/ProductController.php">
 
 ```php
     public function productWritten(Request $request)
@@ -329,11 +329,11 @@ Now that it's certain the description of the product was changed, we fetch the d
     }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 The request contains a criteria that fetches the product for which we received the event `'ids' => [$id]` and all translations and their associated languages `'associations' => 'language'`. Now we can retrieve the english description from the API response:
 
-{% code title="src/Controller/ProductController.php" %}
+<CodeBlock title="src/Controller/ProductController.php">
 
 ```php
     public function productWritten(Request $request)
@@ -351,7 +351,7 @@ The request contains a criteria that fetches the product for which we received t
     }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ::: info
 A common gotcha with `entity.written` webhooks is that they trigger themselves when you're performing write operations. Updating the description, triggers another `entity.written` event which again calls the webhook which updates the description and so on.
@@ -361,7 +361,7 @@ Because our goal is to write a french translation of the product, the app needs 
 To determine if the app has already written a translation once, it saves a hash of the original description.
 We will get to the generation of the hash later but we need to check it first:
 
-{% code title="src/Controller/ProductController.php" %}
+<CodeBlock title="src/Controller/ProductController.php">
 
 ```php
     public function productWritten(Request $request)
@@ -374,13 +374,13 @@ We will get to the generation of the hash later but we need to check it first:
     }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 ### Writing a translated description
 
 Now that the app can be sure the description has not been translated before it can write the new description like so:
 
-{% code title="src/Controller/ProductController.php" %}
+<CodeBlock title="src/Controller/ProductController.php">
 
 ```php
     public function productWritten(Request $request)
@@ -406,7 +406,7 @@ Now that the app can be sure the description has not been translated before it c
     }
 ```
 
-{% endcode %}
+</CodeBlock>
 
 Note the hash of the original description gets saved as a value in the
 custom fields of the product entity. This is possible without any further config since all custom fields are schema-less.
