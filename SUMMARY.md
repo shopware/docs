@@ -108,6 +108,7 @@
 
 * [Installation](guides/installation/README.md)
   * [Installation overview](guides/installation/overview.md)
+  * [Symfony Flex](guides/installation/flex.md)
   * [Dockware](guides/installation/dockware.md)
   * [Docker](guides/installation/docker.md)
   * [Installation from scratch](guides/installation/from-scratch.md)
