@@ -16,9 +16,9 @@ Now we can simply install `exporter` by running `composer require sebastian/expo
 
 After that we have to add our dependency to shopware back in.
 
-{% hint style="warning" %}
+::: warning
 The `vendor` directory, where the composer saves the dependencies, has to be included in the plugin bundle. The plugin bundle size is not allowed to exceed 5 MB.
-{% endhint %}
+:::
 
 ## Loading the `autoload.php`
 

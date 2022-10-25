@@ -22,11 +22,11 @@ and go through the steps provided. When you run the CLI for the first time, it w
 
 You can also generate a SSH key manually and add it in the **My profile > SSH Keys** section of your [PaaS Console](https://console.shopware.com/).
 
-{% hint style="info" %}
+::: info
 **Set up SSH keys**
 
 If unsure, how to create SSH keys, please follow [this tutorial](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) provided by GitHub.
-{% endhint %}
+:::
 
 ## Authenticate
 

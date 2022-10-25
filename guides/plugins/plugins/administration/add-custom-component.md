@@ -34,9 +34,9 @@ Usually there's one question you have to ask yourself first: Will your new compo
 
 Otherwise, if it's going to be a general component to be used by other components, the following will be the proper path. For this example, this component scenario is used. `<plugin-root>/src/Resources/app/administration/app/src/component/<name of your plugin>/<name of your component>`
 
-{% hint style="info" %}
+::: info
 Using this path is **not** a hard requirement, but rather a recommendation. This way, third party developers having a glance at your code will get used to it real quick, because you stuck to Shopware 6's core conventions.
-{% endhint %}
+:::
 
 Since the latter example is being used, this is the path being created in the plugin now: `<plugin-root>/src/Resources/app/administration/app/src/component/custom-component/hello-world`
 

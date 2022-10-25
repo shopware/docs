@@ -2,9 +2,9 @@
 
 The Synonyms are defined in the `%PLUGIN_DIR%/Resources/config/Synonyms.php`. The path to this file is saved in the `swag_ses_synonym_dir` parameter of the container and can be overridden with the default [Dependency Injection](../../../../guides/plugins/plugins/plugin-fundamentals/add-plugin-dependencies.md). See [How to override](synonyms.md#how-to-override) for more information.
 
-{% hint style="info" %}
+::: info
 The syntax in the association may look a bit strange, it's the [Solr syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-synonym-tokenfilter.html#_solr_synonyms).
-{% endhint %}
+:::
 
 The path parameter is afterwards passed to the `Swag\EnterpriseSearch\Relevance\SynonymProvider` class.
 
@@ -70,6 +70,6 @@ return [
 
 {% endcode %}
 
-{% hint style="warning" %}
+::: warning
 Make sure that the paths matches!
-{% endhint %}
+:::

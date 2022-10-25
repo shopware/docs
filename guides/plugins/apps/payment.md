@@ -127,9 +127,9 @@ $response = [
 ];
 ```
 
-{% hint style="warning" %}
+::: warning
 Keep in mind that just by providing a `message`, the payment will default to status `fail`.
-{% endhint %}
+:::
 
 ## Asynchronous payments
 
@@ -216,9 +216,9 @@ $response = [
 ];
 ```
 
-{% hint style="warning" %}
+::: warning
 Keep in mind that just by providing a `message` in either request response, the payment will default to status `fail`, except if you also provide the status `cancel` in the `finalize` request.
-{% endhint %}
+:::
 
 ## Prepared payments
 
@@ -284,9 +284,9 @@ public function capturePreparedPayment(Request $request): JsonResponse
 }
 ```
 
-{% hint style="warning" %}
+::: warning
 Keep in mind that if the integration into the checkout process does not work as expected, your customer might not be able to use the prepared payment. This is especially valid for after order payments, since there the order already exists. For these cases, you should still offer a traditional synchronous / asynchronous payment flow. Don't worry, if you have set the transaction state in your capture call to anything but open, the asynchronous payment process will not be started immediately after the prepared payment flow.
-{% endhint %}
+:::
 
 ## Refund
 

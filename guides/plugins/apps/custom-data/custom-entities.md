@@ -84,6 +84,6 @@ If you use the shorthand in the entity definition, you also need to use it if yo
 POST /api/search/ce_blog
 ```
 
-{% hint style="warning" %}
+::: warning
 Note that you can't rename existing custom entities as that would lead to the deletion of all existing data.
-{% endhint %}
+:::

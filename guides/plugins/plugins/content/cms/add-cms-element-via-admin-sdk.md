@@ -10,9 +10,9 @@ This article will teach you how to create a new CMS element via the Admin Extens
 * Knowledge on the creation of [custom admin components](https://developer.shopware.com/docs/guides/plugins/plugins/administration/add-custom-component#creating-a-custom-component)
 * Understanding the [Admin Extension SDK](https://shopware.github.io/admin-extension-sdk/docs/guide/getting-started/installation)
 
-{% hint style="info" %}
+::: info
 This example uses TypeScript, which is recommended, but not required for developing Shopware.
-{% endhint %}
+:::
 
 ## Creating your custom element
 

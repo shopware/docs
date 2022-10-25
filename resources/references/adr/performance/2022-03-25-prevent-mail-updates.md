@@ -1,9 +1,9 @@
 # 2022-03-25 - Prevent mail updates 
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/performance/2022-03-25-prevent-mail-updates.md)
-{% endhint %}
+:::
 
 In order to guarantee an autocompletion for the different mail templates in the administration UI, we currently have a mechanism, which writes the current mail into the database when sending a mail:
 

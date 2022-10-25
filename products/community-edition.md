@@ -32,9 +32,9 @@ Shopware 6 consists of multiple repositories bundled inside a [mono repository](
 <!-- markdown-link-check-disable-next-line -->
 {% embed url="https://www.youtube.com/watch?v=oPf4-8eU8jQ" caption="" %}
 
-{% hint style="info" %}
+::: info
 This video is part of the online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma) available on Shopware Academy for **free**.
-{% endhint %}
+:::
 
 ## Contribution
 

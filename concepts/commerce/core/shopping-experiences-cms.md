@@ -164,9 +164,9 @@ The CMS is designed in a way that doesn't fix it to a single presentation channe
 
 By default, Shopware provides the server-side rendered Storefront as a default presentation channel, but [Shopware PWA](../../../products/pwa.md) also support CMS pages. Using the CMS through the API you'll have full flexibility of how to display your content.
 
-{% hint style="info" %}
+::: info
 All this comes at a price: The admin preview of your content is only as representative of your content presentation as your presentation channel resembles it. **A major implication for headless frontends.** For that reason, Shopware PWA has a functionality built into the plugin, which allows you to preview content pages right in the PWA.
-{% endhint %}
+:::
 
 ## Further reading
 

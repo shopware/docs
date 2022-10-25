@@ -4,9 +4,9 @@
 
 In this guide you'll learn how to make your app introduce custom conditions for use in the [Rule Builder](../../../../concepts/framework/rules.md). Custom conditions can be defined with fields to be rendered in the administration and with their own logic, using the same approach as [App Scripts](../app-scripts/README.md).
 
-{% hint style="info" %}
+::: info
 Note that app rule conditions were introduced in Shopware 6.4.12.0, and are not supported in previous versions.
-{% endhint %}
+:::
 
 ## Prerequisites
 

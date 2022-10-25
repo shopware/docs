@@ -48,9 +48,9 @@ The manifest file is the central point of your app. It defines the interface bet
 
 {% endcode %}
 
-{% hint style="warning" %}
+::: warning
 The name of your app, that you provide in the manifest file, needs to match the folder name of your app.
-{% endhint %}
+:::
 
 The app can now be installed by running the following command:
 
@@ -60,9 +60,9 @@ bin/console app:install --activate MyExampleApp
 
 By default, your app files will be [validated](app-base-guide.md#validation) before installation, to skip the validation you may use the `--no-validate` flag.
 
-{% hint style="info" %}
+::: info
 Apps get installed as inactive. You can activate them by passing the `--activate` flag to the `app:install` command or by executing the `app:activate` command after installation.
-{% endhint %}
+:::
 
 For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../resources/references/app-reference/manifest-reference.md).
 
@@ -78,9 +78,9 @@ The setup workflow is shown in the following schema, each step will be explained
 
 ![Setup request workflow](../../../.gitbook/assets/shop-app-communication-1-.svg)
 
-{% hint style="info" %}
+::: info
 The timeout for the requests against app server is 5 seconds.
-{% endhint %}
+:::
 
 ### Registration Request
 
@@ -124,15 +124,15 @@ sw-version: 6.4.5.0
 Additionally, the `shopware-app-signature` header will be provided, which contains a cryptographic signature of the query string.  
 The secret used to generate this signature is the `app secret`, that is unique per app and will be provided by the Shopware Account if you upload your app to the store. This secret won't leave the Shopware Account, so it won't be even leaked to the shops installing your app.
 
-{% hint style="danger" %}
+::: danger
 You and the Shopware Account are the only parties that should know your `app-secret`, therefore make sure you never accidentally publish your `app-secret`.
-{% endhint %}
+:::
 
-{% hint style="warning" %}
+::: warning
 For **local development** you can specify a `<secret>` in the manifest file, that is used for signing the registration request. However, if an app uses a hard-coded secret in the manifest it can not be uploaded to the store.
 
 If you're developing a **private app** - which is not published in the Shopware Store - you **must** also provide the `<secret>` if you have an external app server.
-{% endhint %}
+:::
 
 To verify that the registration can only be triggered by authenticated Shopware shops you need to recalculate the signature and check that the signatures match, thus you've verified that the sender of the request possesses the `app secret`.
 
@@ -188,9 +188,9 @@ $proof = \hash_hmac(
 
 Besides the proof, your app needs to provide a randomly generated secret, that should be used to sign every further request from this shop. Make sure to save the `shopId`, `shopUrl` and generated secret, so you can associate and use this information later.
 
-{% hint style="info" %}
+::: info
 This secret will be called `shop-secret` to distinguish it from the `app-secret`. The `app-secret` is unique for your app and is used to sign the registration request of every shop that installs your app. The `shop-secret` will be provided by your app during the registration and should be unique for every shop
-{% endhint %}
+:::
 
 The last thing needed in the registration response is a URL, to which the confirmation request will be sent.
 
@@ -237,10 +237,10 @@ You can find out more about how to use these credentials in our Admin API authen
 <!-- markdown-link-check-disable-next-line -->
 {% embed url="https://shopware.stoplight.io/docs/admin-api/ZG9jOjEwODA3NjQx-authentication-and-authorisation#integration-client-credentials-grant-type" caption="Admin API Authentication & Authorisation" %}
 
-{% hint style="info" %}
+::: info
 Starting from Shopware version 6.4.1.0, the current Shopware version will be sent as a `sw-version` header.
 Starting from Shopware version 6.4.5.0, the current language id of the Shopware context will be sent as a  `sw-context-language` header , and the locale of the user or locale of the context language is available under the `sw-user-language` header.
-{% endhint %}
+:::
 
 The request is signed with the `shop-secret`, that your app provided in the [registration response](app-base-guide.md#registration-response) and the signature can be found in the `shopware-shop-signature` header.  
 You need to recalculate that signature and check that it matches the provided one, to make sure that the request is really send from shop with that shopId.
@@ -292,9 +292,9 @@ Sample permissions to read, create and update products, delete orders, as well a
 
 The permissions you request need to be accepted by the user during the installation of your app. After that these permissions are granted for your app and your API access through the credentials from the [confirmation request](app-base-guide.md#confirmation-request) of the [setup workflow](app-base-guide.md#setup) are limited to those permissions.
 
-{% hint style="warning" %}
+::: warning
 Keep in mind that read permissions also extend to the data contained in the requests so that your app needs read permissions for the entities contained in the subscribed [webhooks](app-base-guide.md#webhooks).
-{% endhint %}
+:::
 
 ## Webhooks
 
@@ -357,10 +357,10 @@ The next property `data` contains the name of the event so that a single endpoin
 
 The next property `timestamp` is the time which the webhook was handled. This can be used to prevent replay attacks, as an attacker cannot change the timestamp without making the signature invalid. If the timestamp is too old, your app should reject the request. This property is only available from 6.4.1.0 onwards
 
-{% hint style="info" %}
+::: info
 Starting from Shopware version 6.4.1.0, the current Shopware version will be sent as a `sw-version` header.
 Starting from Shopware version 6.4.5.0, the current language id of the shopware context will be sent as a  `sw-context-language` header , and the locale of the user or locale of the context language is available under the `sw-user-language` header.
-{% endhint %}
+:::
 
 You can verify the authenticity of the incoming request by checking the `shopware-shop-signature` every request should have a sha256 hmac of the request body, that is signed with the secret your app assigned the shop during the [registration](app-base-guide.md#setup). The mechanism to verify the request is exactly the same as the one used for the [confirmation request](app-base-guide.md#confirmation-request).
 

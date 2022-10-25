@@ -18,9 +18,9 @@ In order to make your sorting manageable in the administration by the user, you 
 
 Create a new Migration in your plugin:
 
-{% hint style="info" %}
+::: info
 Note: Do not change an existing migration if your plugin is already in use by someone. In that case, create a new Migration instead! This also means, that you have to re-install or update your plugin if you adjust the migration.
-{% endhint %}
+:::
 
 {% code title="<plugin root>/src/Migration/Migration1615470599ExampleSorting.php" %}
 
@@ -93,9 +93,9 @@ class Migration1615470599ExampleSorting extends MigrationStep
 
 You can subscribe to the `ProductListingCriteriaEvent` to add a `ProductSortingEntity` as available sorting on the fly. If you don't know how to do this, head over to our [Listening to events](../plugin-fundamentals/listening-to-events.md) guide.
 
-{% hint style="info" %}
+::: info
 While possible, it is not recommended adding an individual sorting at runtime. If you just wish for your individual sorting to be not editable by users in the administration, create a migration and set the parameter `locked` to be `true`.
-{% endhint %}
+:::
 
 Here's an example how your subscriber could look like:
 

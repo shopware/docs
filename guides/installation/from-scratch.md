@@ -2,9 +2,9 @@
 
 If it's *impossible* to get docker up and running on your development environment you can install Shopware 6 locally.
 
-{% hint style="info" %}
+::: info
 Be aware this will be a vastly more complex solution since additional system requirements then need to be managed by you, however you may experience better control over your local setup configuration
-{% endhint %}
+:::
 
 ## Prerequisites
 
@@ -70,9 +70,9 @@ localhostForwarding=true # set this setting to true to be forwarded to WSL
 processors=4
 ```
 
-{% hint style="info" %}
+::: info
 If your WSL instance is already running after making changes to your .wslconfig file, you will need to restart your WSL service with `wsl --shutdown`, then `wsl` in order for the config settings to take effect
-{% endhint %}
+:::
 
 Once `localhostForwarding` is enabled, you should update you name your local development domain in you Apache2 `sites-available` config file as follows:
 
@@ -82,9 +82,9 @@ xxxxxx.dev.localhost
 
 ...where 'xxxxxx' should be replaced with a 'hyphen/underscore separated' string.
 
-{% hint style="info" %}
+::: info
 Make sure the `APP_URL` variable defined within your `[PROJECT_ROOT]/.env` file matches the `ServerName` value within your Apache2 Vhost configuration
-{% endhint %}
+:::
 
 ### Apache2 server configuration
 
@@ -94,19 +94,19 @@ Make sure following Apache modules are enabled:
 - mod\_headers
 - mod\_negotiation
 
-{% hint style="info" %}
+::: info
 Checking if these modules are installed on apache is possible with the command `apachectl -M | grep [module_name]`. When searching for a specific module with `grep` make sure to only use the name suffix, such as "rewrite"
-{% endhint %}
+:::
 
 After a quick restart of apache you are done here.
 
-{% hint style="info" %}
+::: info
 For Mac (OSX) operating systems:
 
 In your apache config, it is recommended to move the document root folder to the user's `$HOME` folder in order to avoid permission issues. This is the folder where Apache looks to serve file from. By default, the document root is configured as `/usr/local/var/www`.
 
 As this is a development machine, let's assume we want to change the document root to point to a folder in our own home directory. Search for the term "DocumentRoot" in your `httpd.conf` apache configuration, and you should see the following line:
-{% endhint %}
+:::
 
 ```bash
 DocumentRoot "/usr/local/var/www"
@@ -144,9 +144,9 @@ Voila, Shopware 6 is installed. To be sure the installation succeeded, just open
 
 It is important to keep the `platform` and the `development` repository in sync.
 
-{% hint style="danger" %}
+::: danger
 We highly discourage to update each without the other!
-{% endhint %}
+:::
 
 The following steps should always yield a positive result:
 

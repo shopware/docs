@@ -2,9 +2,9 @@
 
 The source code of your project will reside in a git-based VCS repository. You can start with a plain project, however we suggest starting with a fork of the [shopware/paas](https://github.com/shopware/paas) setup template from GitHub. You will find out more about the setup template in the [Setup Template](setup-template.md) section.
 
-{% hint style="info" %}
+::: info
 This guide explains the repository setup using **GitHub**. You can also integrate Bitbucket or GitLab based version control environments with Shopware PaaS. More information in [Source Integrations](https://docs.platform.sh/integrations/source.html).
-{% endhint %}
+:::
 
 ## Fork and clone setup template
 

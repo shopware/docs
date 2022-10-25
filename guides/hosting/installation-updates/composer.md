@@ -10,9 +10,9 @@ The Shopware 6 production template enables you to build, package and deploy Shop
 
 The template is optimized for production usage and contains basic development tooling. It's intended as a basis for project customizations, which are usually done by agencies.
 
-{% hint style="info" %}
+::: info
 If you want to contribute to the [Shopware Platform](https://github.com/shopware/platform) or develop store plugins, you should use the [development template](https://github.com/shopware/development).
-{% endhint %}
+:::
 
 ### Branches and stability
 
@@ -114,9 +114,9 @@ The following commands and scripts are available
 
 **Build**
 
-{% hint style="info" %}
+::: info
 Bash is required for the shell scripts.
-{% endhint %}
+:::
 
 | Command | Description |
 | :--- | :--- |
@@ -130,9 +130,9 @@ Bash is required for the shell scripts.
 
 Run `bin/build-js.sh` once to install the npm dependencies.
 
-{% hint style="info" %}
+::: info
 Bash is required for the shell scripts.
-{% endhint %}
+:::
 
 | Command | Description |
 | :--- | :--- |

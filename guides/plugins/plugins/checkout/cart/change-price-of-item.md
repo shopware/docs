@@ -4,9 +4,9 @@
 
 This guide will tackle the issue of changing the price of a line item in the cart dynamically. The following example is **not** recommended if you want to add a discount / surcharge to your products. Make sure to check out the guide about [adding a discount into the cart](add-cart-discounts.md).
 
-{% hint style="warning" %}
+::: warning
 Changing the price like it's done in the following example should rarely be done and only with great caution. A live-shopping plugin would be a good example about when to actually change an item's price instead of adding a discount / surcharge.
-{% endhint %}
+:::
 
 ## Prerequisites
 
@@ -252,9 +252,9 @@ If there's no price to be processed saved in the `CartDataCollector`, there's no
 
 Only thing left to do now, is to save the newly calculated price to the line item - and that's it!
 
-{% hint style="warning" %}
+::: warning
 Do not query the database in the `process` method. Make sure to always use a collector for that.
-{% endhint %}
+:::
 
 ### Registering to DI container
 

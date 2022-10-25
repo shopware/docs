@@ -37,17 +37,17 @@ In your install method, you have access to the `InstallContext`, which provides 
 * A collection of the [plugin migrations](database-migrations.md)
 * If the migrations should be executed \(`isAutoMigrate` or `setAutoMigrate` to prevent the execution\)
 
-{% hint style="info" %}
+::: info
 You maybe don't want to create new data necessary for your plugin in the `install` method, even though it seems to be the perfect place. That's because an installed plugin is not automatically active yet - hence some data changes would have an impact on the system before the plugin is even active and therefore functioning. A good rule of thumb is: Only install new data or entities, that can be activated or deactivated themselves, such as a payment method. This way you can create a new payment method in the `install` method, but keep it inactive for now.
-{% endhint %}
+:::
 
 ### Uninstall
 
 The opposite of the `install` method. It gets executed once the plugin is uninstalled. You might want to remove the data, that your plugin created upon installation.
 
-{% hint style="warning" %}
+::: warning
 You can't simply remove everything that your plugin created previously. Think about a new payment method, that your plugin created and which was then used for actual orders. If you were to remove this payment method when uninstalling the plugin, all the orders that used this payment method would be broken, since the system wouldn't find the used payment method anymore. In this case, you most likely just want to deactive the respective entity, if possible. Be careful here!
-{% endhint %}
+:::
 
 {% code title="<plugin root>/src/SwagBasicExample" %}
 
@@ -83,11 +83,11 @@ public function uninstall(UninstallContext $context): void
 
 {% endcode %}
 
-{% hint style="info" %}
+::: info
 Here's a video dealing with plugin uninstall routines from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 
 **[Uninstalling a plugin](https://www.youtube.com/watch?v=v9OXrUJzC1I)**
-{% endhint %}
+:::
 
 ### Activate
 

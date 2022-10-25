@@ -65,19 +65,19 @@ A sample payload may look like the following:
 }
 ```
 
-{% hint style="info" %}
+::: info
 Starting from Shopware version 6.4.1.0, the current shopware version will be sent as a `sw-version` header.
-{% endhint %}
+:::
 
 Again you can verify the authenticity of the incoming request, like with [webhooks](../app-base-guide.md#webhooks), by checking the `shopware-shop-signature` it too contains the sha256 hmac of the request body, that is signed with the secret your app assigned the shop during the [registration](../app-base-guide.md#setup).
 
 ## Providing feedback in the Administration
 
-{% hint style="info" %}
+::: info
 This feature was added in Shopware 6.4.3.0, previous versions will ignore the response content.
-{% endhint %}
+:::
 
-{% hint style="info" %}
+::: info
 Starting from Shopware version 6.4.8.0, the requests of the [tab](#opening-a-new-tab-for-the-user) and [custom modal](#open-a-custom-modal) have the following additional query parameters:
 
 * `shop-id`
@@ -88,7 +88,7 @@ Starting from Shopware version 6.4.8.0, the requests of the [tab](#opening-a-new
 * `shopware-shop-signature`
 
 You **must** make sure to verify the authenticity of the incoming request by checking the `shopware-shop-signature`, which is a hash of the request's query part, signed with the shop's secret key.
-{% endhint %}
+:::
 
 If you want to trigger an action inside the administration upon completing the action, the app should return a response with a valid body and the header `shopware-app-signature` containing the sha256 hmac of the whole response body signed with the app secret.
 If you do not need to trigger any actions, a response with an empty body is also always valid.
@@ -165,9 +165,9 @@ To open a modal with the embedded link in the iframe, you can use the `openModal
 
 It is also possible to use [custom endpoints](../app-scripts/custom-endpoints.md) as target for action buttons.
 
-{% hint style="info" %}
+::: info
 This feature was added in Shopware 6.4.10.0, previous versions don't support relative target urls for action buttons.
-{% endhint %}
+:::
 
 To use custom endpoints as the target url for action buttons you can define the target url as a relative url in your apps manifest.xml:
 

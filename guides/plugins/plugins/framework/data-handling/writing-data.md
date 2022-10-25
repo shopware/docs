@@ -11,11 +11,11 @@ This guide is built upon the [plugin base guide](../../plugin-base-guide.md), so
 You also might want to have a look at the concept behind the [Data abstraction layer](../../../../../concepts/framework/data-abstraction-layer.md) first to get a better grasp of how it works.
 
 <!-- markdown-link-check-disable-next-line -->
-{% hint style="info" %}
+::: info
 Here's a video covering the basics of repositories from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 
 **[Using repositories](https://www.youtube.com/watch?v=b3wOs_OWvP0)**
-{% endhint %}
+:::
 
 ## Writing data
 

@@ -1,8 +1,8 @@
 # Database Cluster
 
-{% hint style="info" %}
+::: info
 This functionality is available starting with Shopware 6.4.12.0.
-{% endhint %}
+:::
 
 To scale Shopware even further, we recommend to use a database cluster. A database cluster consists of multiple read-only servers that are managed by a single primary instance.
 

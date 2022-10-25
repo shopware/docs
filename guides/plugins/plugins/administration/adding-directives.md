@@ -68,6 +68,6 @@ As mentioned before, directives can be used as in any other Vue application, aft
 
 {% endcode %}
 
-{% hint style="warning" %}
+::: warning
 Make sure the directive you are trying to access is actually in your components scope, either by registering the directive globally or locally to a component.
-{% endhint %}
+:::

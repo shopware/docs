@@ -93,9 +93,9 @@ The `ThemeCompilerEnrichScssVariablesEvent` provides the `addVariable()` method 
 * `$value:` \(string\): The value which should be assigned to the SCSS variable.
 * `$sanitize` \(bool - optional\): Optional parameter to remove special characters from the variables value. The parameter will also add quotes around the variables value. In most cases quotes are not needed e.g. for color hex values. However, there may be situations where you want to pass individual strings to your SCSS variable.
 
-{% hint style="warning" %}
+::: warning
 Please note that plugins are not sales channel specific. Your SCSS variables are directly added in the SCSS compilation process and will be globally available throughout all themes and storefront sales channels. If you want to change a variables value for each sales channel you should use plugin config fields and follow the next example.
-{% endhint %}
+:::
 
 ## Plugin config values as SCSS variables
 

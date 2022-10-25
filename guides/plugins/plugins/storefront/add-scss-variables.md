@@ -1,8 +1,8 @@
 # Add SCSS variables
 
-{% hint style="info" %}
+::: info
 The configuration flag `css` is available from Shopware Version 6.4.12.0
-{% endhint %}
+:::
 
 ## Overview
 

@@ -36,15 +36,15 @@ In this case, the `sw-product-settings-form` component is overridden, which refl
 
 Time to create the referenced twig template for your plugin now.
 
-{% hint style="info" %}
+::: info
 We're dealing with a [TwigJS](https://github.com/twigjs/twig.js/wiki) template here.
-{% endhint %}
+:::
 
 Create a file called `sw-product-settings-form.html.twig` in the following directory: `<plugin root>/src/Resources/app/administration/src/extension/sw-product-settings-form`
 
-{% hint style="info" %}
+::: info
 The path starting from 'src' is fully customizable, yet we recommend choosing a pattern like this one.
-{% endhint %}
+:::
 
 {% code title="<plugin root>/src/Resources/app/administration/src/extension/sw-product-settings-form/sw-product-settings-form.html.twig" %}
 {% raw %}
@@ -88,9 +88,9 @@ As mentioned above, Shopware 6 is looking for a `main.js` file in your plugin. I
 {% endtab %}
 {% endtabs %}
 
-{% hint style="info" %}
+::: info
 Your plugin has to be activated for this to work.
-{% endhint %}
+:::
 
 Make sure to also include that file when publishing your plugin! A copy of this file will then be put into the directory `<shopware root>/public/bundles/administration/newfield/administration/js/administration-new-field.js`.
 

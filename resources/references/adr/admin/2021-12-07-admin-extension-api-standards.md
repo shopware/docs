@@ -1,9 +1,9 @@
 # 2021-12-07 - Admin-Extension-API standards
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/admin/2021-12-07-admin-extension-api-standards.md)
-{% endhint %}
+:::
 
 ## Context
 We need to provide ways for extension developers to add custom components and views to different places in the administration. Multiple solutions where discussed and tested, this ADR contains a summary of the final solution.

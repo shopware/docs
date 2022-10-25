@@ -1,8 +1,8 @@
 # Add custom flow actions
 
-{% hint style="info" %}
+::: info
 Custom flow actions in Shopware Apps are available starting with Shopware 6.4.10.0 and are not supported in previous versions.
-{% endhint %}
+:::
 
 Besides the default actions, developers can add custom, predefined, and configurable web hook actions to the flow builder.
 
@@ -70,9 +70,9 @@ The manifest file is the central point of your app. It defines the interface bet
 
 {% endcode %}
 
-{% hint style="warning" %}
+::: warning
 The name of your app that you provide in the manifest file needs to match the folder name of your app.
-{% endhint %}
+:::
 
 ## Define the flow action
 
@@ -248,9 +248,9 @@ Available input field field attributes:
 
 You assemble your configuration from a variety of input fields.
 
-{% hint type="info" %}
+::: info
 To get more information on how to create configuration forms, see [Plugin Configurations](../../plugins/plugin-fundamentals/add-plugin-configuration.md#the-different-types-of-input-field).
-{% endhint %}
+:::
 
 | Type | Shopware component |
 | :--- | :--- |

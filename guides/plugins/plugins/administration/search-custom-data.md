@@ -11,9 +11,9 @@ There are two different ways how the global search works:
 
 They only differ in the API they use and get displayed in a slightly different way.
 
-{% hint style="warning" %}
+::: warning
 Think twice about adding this shortcut because if every plugin adds their own search tag it gets cluttered.
-{% endhint %}
+:::
 
 ## Prerequisites
 

@@ -22,9 +22,9 @@ For one example, we use a Javascript plugin. In oder to follow this example, you
 
 ## Test structure
 
-{% hint style="warning" %}
+::: warning
 When it comes to the path to the test folder, you are quite free to use your own requirements. You could even build up a separate test suite if you need. There's one limitation though: Please take care you place your tests according your `package.json` file!
-{% endhint %}
+:::
 
 The following configuration matches our core configuration in order to give you a starting point. In Shopware's platform repository, you will find the storefront unit tests in the following directory: `platform/src/Storefront/Resources/app/storefront/test` It may be a good convention to resemble this directory structure, but it's no fixed requirement.
 
@@ -158,17 +158,17 @@ In order to run jest unit tests of the storefront, you can use the psh commands 
 > ./psh.phar storefront:unit
 ```
 
-{% hint style="info" %}
+::: info
 This only applies to the Shopware provided Storefront! If you use unit tests in your Plugin, you might need to write your own scripts for that.
-{% endhint %}
+:::
 
 ## Mocking JavaScript plugins
 
 Now, let's have a look at a intermediate example: As you're writing JavaScript plugins, you may want to test those. As you need to mock some things in this case, this kind of test might be a bit more complex.
 
-{% hint style="info" %}
+::: info
 The folder structure, and the corresponding file locations of the following example will resemble the one used in `platform` repository.
-{% endhint %}
+:::
 
 Let's start with the plugin we want to test later. For the sake of simplicity, we will use a plugin which returns "Hello world":
 
@@ -327,9 +327,9 @@ describe('HelloWorldPlugin tests', () => {
 
 {% endcode %}
 
-{% hint style="warning" %}
+::: warning
 Don't forget the cleanup after each test! You need to set your plugin to `null` in your `afterEach` hook to ensure an isolated test.
-{% endhint %}
+:::
 
 Finally, we're ready to write our actual test. Write your assertions as you're used to. In this example, we first want to test if our plugin can be instantiated:
 

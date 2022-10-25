@@ -3,9 +3,9 @@
 If you want to execute some logic in Shopware and trigger the execution over a HTTP-Request or need some special data from Shopware over the API,
 you can create custom API-endpoints in your app, that allow you to execute a script when a request to that endpoint is made.
 
-{% hint style="info" %}
+::: info
 Note that custom endpoints with app scripts were introduced in Shopware 6.4.9.0, and are not supported in previous versions.
-{% endhint %}
+:::
 
 ## Custom Endpoints
 
@@ -20,10 +20,10 @@ You can specify which script should be executed by using the correct hook-name i
 This means to execute the scripts under `Resources/scripts/api-test-script` you need to call the `/api/script/test-script` endpoint.
 Note that all further slashes (`/`) in the route will be replaced by dashes (`-`). This means to execute the `Resources/scripts/api-test-script` scripts you could also call the `/api/script/test/script` endpoint.
 
-{% hint style="warning" %}
+::: warning
 To prevent name collisions with other apps you should always include your vendor prefix or app-name as part of the hook name.
 The best practice is to add your app-name after the api scope prefix and then use it as a REST-style resource identifier e.g. `/api/script/swagMyApp/test-script`.
-{% endhint %}
+:::
 
 In your custom endpoint scripts you get access to the JSON-payload of the request (and the query parameters for GET-requests) and have access to the read & write functionality of the [Data Abstraction Layer](../../../../concepts/framework/data-abstraction-layer.md).
 For a complete overview of the available data and service refer to the [hook reference documentation](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#api-hook).

@@ -41,9 +41,9 @@ For the data needed, please refer to the custom fields in general: At first, you
 * `related-entities`: With this element set the entities the custom field set is used in
 * `fields`: Finally, the fields are configured in this section.
 
-{% hint style="warning" %}
+::: warning
 The names of the custom fields are global and therefore should always contain a vendor prefix, like "swag" for "shopware ag", to keep them unique. This holds true for the name of the custom field set, as well as each name of the fields itself.
-{% endhint %}
+:::
 
 When defining custom fields in the `<fields>` element, you can configure additional properties of the fields. For example a `placeholder`, `min`, `max` and `step` size of a float field:
 

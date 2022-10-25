@@ -194,9 +194,9 @@ Of course, the code above is just one example excerpt and there are many more of
 
 Finding those events can be done by searching for the term `CriteriaEvent`.
 
-{% hint style="info" %}
+::: info
 Those "criteria events" are not generated automatically and therefore it is not guaranteed to exist for a given entity.
-{% endhint %}
+:::
 
 #### Business events
 

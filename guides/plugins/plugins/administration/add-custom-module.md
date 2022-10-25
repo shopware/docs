@@ -15,9 +15,9 @@ Head over to our Plugin base guide to learn how to create a plugin at first:
 The first step is creating a new directory `<plugin root>/src/Resources/app/administration/src/module/swag-example`, so you can store your own modules files in there.
 Right afterwards, create a new file called `index.js` in there. Consider it to be the main file for your custom module.
 
-{% hint style="warning" %}
+::: warning
 This is necessary, because Shopware 6 is automatically requiring an `index.js` file for each module.
-{% endhint %}
+:::
 
 Your custom module directory isn't known to Shopware 6 yet.
 The entry point of your plugin is the `main.js` file.
@@ -66,10 +66,10 @@ In this example `#ff3d58` is used as a color, which is a soft red.
 Also, each module has their own icon. You can see here [here](https://component-library.shopware.com/icons/) which icons are available in Shopware 6 by default.
 In our case here, let's say we use the icon `default-shopping-paper-bag-product`, which will also be used for the module.
 
-{% hint style="danger" %}
+::: danger
 This is not the icon being used for a menu entry! The icon for that needs to be configured separately.
 Please refer to the [Add a menu entry](add-menu-entry.md) guide for more information on this topic.
-{% endhint %}
+:::
 
 In addition, you're able to configure a title here, which will be used for the actual browser title.
 Just add a string for the key `title`.
@@ -217,9 +217,9 @@ Given this plugin would be named "AdministrationNewModule", the bundled and mini
 {% endtab %}
 {% endtabs %}
 
-{% hint style="info" %}
+::: info
 Your plugin has to be activated for this to work.
-{% endhint %}
+:::
 
 Make sure to also include that file when publishing your plugin!
 A copy of this file will then be put into the directory `<shopware root>/public/bundles/administration/administrationnewmodule/administration/js/administration-new-module.js`.

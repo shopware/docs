@@ -14,9 +14,9 @@ You also should have a look at our [Adding custom complex data](../data-handling
 
 As you may already know from the [adjusting service](../../plugin-fundamentals/adjusting-service.md) guide, we use abstract classes to make our routes more decoratable.
 
-{% hint style="warning" %}
+::: warning
 All fields that should be available through the API require the flag `ApiAware` in the definition.
-{% endhint %}
+:::
 
 ### Create abstract route class
 

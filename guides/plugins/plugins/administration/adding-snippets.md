@@ -8,9 +8,9 @@ By default Shopware 6 uses the [Vue I18n](https://kazupon.github.io/vue-i18n/sta
 
 Normally you use snippets in your custom module. To keep things organized, create a new directory named `snippet` inside module directory `<plugin root>/src/Resources/app/administration/src/module/<your-module>/snippet`. For each language you want to support, you need a JSON file inside it, e.g., `de-DE.json`, `en-GB.json`.
 
-{% hint style="info" %}
+::: info
 Providing snippets for apps works the same as in plugins but it has a more simplistic file structure. Also, unlike plugins, App-Snippets **are not allowed** to override existing snippet keys. So, use the following path for vendor-prefixed app snippet files: `<app root>/Resources/app/administration/snippet`
-{% endhint %}
+:::
 
 Each language then receives a nested object of translations, so let's have a look at an example `snippet/en-GB.json`:
 
@@ -30,9 +30,9 @@ In this example you would have access the two translations by the following path
 
 By default, Shopware 6 will collect those files automatically when your plugin is activated.
 
-{% hint style="info" %}
+::: info
 When you do not build a module and therefore do not fit into the suggested directory structure, you can still place the translation files anywhere in `<plugin root>/src/Resources/app/administration/`.
-{% endhint %}
+:::
 
 ## Using the snippets in JavaScript
 

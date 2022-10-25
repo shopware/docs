@@ -90,6 +90,6 @@ export default class ExamplePlugin extends Plugin {
 }
 ```
 
-{% hint style="info" %}
+::: info
 To see a list of available endpoints in our Store API, head to the [Store API Endpoint Reference](https://shopware.stoplight.io/docs/store-api).
-{% endhint %}
+:::

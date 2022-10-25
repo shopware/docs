@@ -9,11 +9,11 @@ In this guide you'll learn how to create a custom storefront controller.
 In order to add your own controller for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
 
 <!-- markdown-link-check-disable-next-line -->
-{% hint style="info" %}
+::: info
 Here's a video explaining the basics about storefront controllers from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 
 **[Common Storefront controller tasks](https://www.youtube.com/watch?v=5eXXNh4cQG0)**
-{% endhint %}
+:::
 
 ## Adding custom storefront controller
 
@@ -21,9 +21,9 @@ Here's a video explaining the basics about storefront controllers from our free 
 
 First of all we have to create a new controller which extends from the `StorefrontController` class. A controller is also just a service which can be registered via the service container. Furthermore, we have to define our `Route` with `defaults` and `_routeScope` via annotation, it is used to define which domain a route is part of and **needs to be set for every route**. In our case the scope is `storefront`.
 
-{% hint style="info" %}
+::: info
 Prior to Shopware 6.4.11.0 the `_routeScope` was configured by a dedicated annotation: `@RouteScope`. This way of defining the route scope is deprecated for the 6.5 major version.
-{% endhint %}
+:::
 
 Go ahead and create a new file `ExampleController.php` in the directory `<plugin root>/src/Storefront/Controller/`.
 
@@ -86,9 +86,9 @@ The name of the method does not really matter, but it should somehow fit its pur
 
 It is also possible to define the `_routeScope` per route.
 
-{% hint style="info" %}
+::: info
 Prior to Shopware 6.4.11.0 the `_routeScope` was configured by a dedicated annotation: `@RouteScope`. This way of defining the route-scope is deprecated for the 6.5 major version.
-{% endhint %}
+:::
 
 {% code title="<plugin root>/src/Storefront/Controller/ExampleController.php" %}
 

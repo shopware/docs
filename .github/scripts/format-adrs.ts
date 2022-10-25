@@ -24,10 +24,10 @@ async function formatADR(filePath: string): Promise<void> {
 		lineNumber++;
 		buffer += line + '\n';
 		if (lineNumber === 2) {
-			buffer += '{% hint style="info" %}\n';
+			buffer += '::: info\n';
 			buffer += 'This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.\n';
 			buffer += `You can find the original version [here](${adrPathToGithubLink(filePath)})\n`;
-			buffer += '{% endhint %}\n';
+			buffer += ':::\n';
 			buffer += '\n';
 		}
 	}

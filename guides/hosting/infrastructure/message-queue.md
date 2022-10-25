@@ -12,9 +12,9 @@ Alternatively you can configure a cron job that runs the command periodically. P
 
 Find here the docs of Symfony: <https://symfony.com/doc/current/messenger.html#deploying-to-production>  
 
-{% hint style="info" %}
+::: info
 It is recommended to use a third party message queue to support multiple consumers and / or a greater amount of data to index.
-{% endhint %}
+:::
 
 ### Consuming Messages
 
@@ -126,9 +126,9 @@ framework:
                 dsn: "amqp://localhost:5672/%2f/messages"
 ```
 
-{% hint style="info" %}
+::: info
 The system needs the AMQP php extension
-{% endhint %}
+:::
 
 ### Transport: Redis example
 
@@ -146,6 +146,6 @@ framework:
         dsn: "redis://redis:port/messages/symfony/%env(MESSENGER_CONSUMER_NAME)%?delete_after_ack=true&delete_after_reject=true&dbindex=0"
 ```
 
-{% hint style="info" %}
+::: info
 As Shopware handles failed messages on it's own, we can enable deleting of failed or acknowledged messages. When running more than one consumer, env MESSENGER_CONSUMER_NAME needs to be set. F.e. in Supervisor with `environment=MESSENGER_CONSUMER_NAME=%(program_name)s_%(process_num)02d`.
-{% endhint %}
+:::

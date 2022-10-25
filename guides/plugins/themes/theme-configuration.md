@@ -1,8 +1,8 @@
 # Theme configuration
 
-{% hint style="info" %}
+::: info
 The `configInheritance` is available from Shopware Version 6.4.8.0
-{% endhint %}
+:::
 
 ## Overview
 
@@ -51,9 +51,9 @@ The theme configuration for a theme is located in the `theme.json` file `<plugin
 
 {% endcode %}
 
-{% hint style="info" %}
+::: info
 If you make changes or additions to the `theme.json` file, you must then execute the `theme:refresh` command to put them into effect. Run `bin/console theme:refresh` in order to update your theme.
-{% endhint %}
+:::
 
 Let's have a closer look at each section.
 
@@ -172,9 +172,9 @@ One of the benefits of creating a theme is that you can overwrite the theme conf
 
 In the example above, we change the primary color to green. You always inherit from the storefront config and both configurations are merged. This also means that you only have to provide the values you actually want to change. You can find a more detailed explanation of the configuration inheritance in the section [Theme inheritance](add-theme-inheritance.md).
 
-{% hint style="warning" %}
+::: warning
 If you overwrite variables of another theme from a third party provider and these are renamed or removed at a later time, this can lead to issues and the theme can no longer be compiled. So be aware of it.
-{% endhint %}
+:::
 
 The `theme.json` contains a `config` property which contains a list of tabs, blocks, sections and fields.
 

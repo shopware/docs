@@ -9,11 +9,11 @@ In this guide you'll learn how to adjust a service. You can read more about serv
 In order to add your own custom service for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
 
 <!-- markdown-link-check-disable-next-line -->
-{% hint style="info" %}
+::: info
 Here's a video explaining service decorations with an easy example from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 
 **[Decorating services](https://www.youtube.com/watch?v=Rgf4c9rd1kw)**
-{% endhint %}
+:::
 
 ## Decorating the service
 
@@ -44,9 +44,9 @@ xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/sc
 
 Now we have to define an abstract class because it's more beautiful and not so strict like interfaces. With an abstract class we can add new functions easier, you can read more about this at the end of this article. The abstract class has to include an abstract function called `getDecorated()` which has the return type of our instance.
 
-{% hint style="info" %}
+::: info
 To avoid misunderstandings: The abstract service class and the implementation of it is not part of the decoration process itself and most of the times comes either from the Shopware core or from a plugin you want to extend. They are added here to have an example to decorate.
-{% endhint %}
+:::
 
 Therefore, this is how your abstract class could then look like:
 

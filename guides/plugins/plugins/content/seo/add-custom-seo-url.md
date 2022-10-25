@@ -157,9 +157,9 @@ By using the default PHP method `array_merge`, we're then also adding our transl
 
 And that's it! After installing our plugin, you should now be able to access your controller's route with the given SEO URLs.
 
-{% hint style="info" %}
+::: info
 You can only access the German SEO URL if you've configured a German domain in your respective sales channel first.
-{% endhint %}
+:::
 
 ### Dynamic SEO URLs
 
@@ -421,9 +421,9 @@ class Migration1619514731AddExampleSeoUrlTemplate extends MigrationStep
 
 And that's it! Every time your entity is written now, you'll automatically generate a SEO URL for it.
 
-{% hint style="info" %}
+::: info
 This guide will not cover creating an actual controller with the used example route. Learn how that is done in our guide about [creating a storefront controller](../../storefront/add-custom-controller.md).
-{% endhint %}
+:::
 
 **Reacting to entity deletion**
 
@@ -571,9 +571,9 @@ The method `writeSeoEntries` will look for a Storefront sales channel and return
 * `pathInfo`: The technical, non-SEO, path of your route, also configured in your controller
 * `seoPathInfo`: The actual SEO path you want to use - in this case the name of the said content
 
-{% hint style="info" %}
+::: info
 This guide will not cover creating an actual controller with the used example route. Learn how that is done in our guide about [creating a storefront controller](../../storefront/add-custom-controller.md).
-{% endhint %}
+:::
 
 It will then use the built array and all of the other information like the context, the route name and an array of foreign keys for the method `updateSeoUrls` of the `SeoUrlPersister`. And that's it for your dynamic content.
 

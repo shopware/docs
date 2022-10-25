@@ -1,9 +1,9 @@
 # 2021-09-22 - Refactor theme inheritance
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/storefront/2021-09-22-refactor-theme-inheritance.md)
-{% endhint %}
+:::
 
 ## Context
 Currently the themes can only inherit config fields from the default Storefront theme.

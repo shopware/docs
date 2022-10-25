@@ -113,9 +113,9 @@ Got to `XQuartz > Preferences` (`⌘ + ,`) and enable `Allow connections from ne
 
 ![XQuartz Preferences](../../../../.gitbook/assets/xquartz-allow-connections-from-network-clients.png)
 
-{% hint style="warning" %}
+::: warning
 Restart your Mac before proceeding with the following steps.
-{% endhint %}
+:::
 
 **Configure your environment**
 
@@ -139,12 +139,12 @@ Add `$IP` to xhost's ACL:
 xhost + $IP
 ```
 
-{% hint style="danger" %}
+::: danger
 It is **crucial** to set these environment variables in the **same terminal session** from where you will later run `psh e2e:open`!
 
 Make sure that the `DISPLAY` environment variable on your Mac is properly set **before** you start the containers as it will be **passed** to the Cypress container when the container is **created**.
 Updating the variable on your host won't update it in the container until it is re-created!
-{% endhint %}
+:::
 {% endtab %}
 
 {% tab title="Platform: Local environment" %}
@@ -166,9 +166,9 @@ CYPRESS_baseUrl=<your-url> npm run open
 
 It opens up the Cypress test runner which allows you to run and debug your tests, similar to the `e2e:open` command.
 
-{% hint style="danger" %}
+::: danger
 Don't forget that you might need to adjust test cleanup and other environment-related things according to your plugin's setup.
-{% endhint %}
+:::
 {% endtab %}
 
 {% tab title="Execution in platform project" %}
@@ -273,9 +273,9 @@ If you want to contribute to Shopware platform's tests, please ensure to place y
   `-- settings
 ```
 
-{% hint style="warning" %}
+::: warning
 This is important because otherwise your test is not considered by our CI.
-{% endhint %}
+:::
 
 ### Test layout and syntax
 
@@ -401,15 +401,15 @@ In the example file below, this file is used in order to define and create a cus
 }
 ```
 
-{% hint style="warning" %}
+::: warning
 Use only fields, which you can access in the UI / Storefront. Keep in mind that all tests in the file may use the fixture. So keep an eye on compatibility.
-{% endhint %}
+:::
 
 A small note on ID usage: Using ids may be easier for finding elements, but it isn't a proper way for testing in every case - It depends on your application. You need to be 100% sure that the id is persistent and won't change between builds. Never use ids here if you cannot be 100% sure they will not change at all, e.g. in another build.
 
-{% hint style="info" %}
+::: info
 At our case at Shopware, Ids on UUID basis tend to change from one installation to the next, so they are not always suitable to be used as selector in your test.
-{% endhint %}
+:::
 
 ### API implementation
 
@@ -417,9 +417,9 @@ Analogue to the administration itself, the api access of the e2e test is based o
 
 Just like the administration, we use services to access Shopware's REST API. Therefore, we use the ApiService to provide the basic methods for accessing the api. Located in `e2e/cypress/support/service/api.service.js`, ApiService is shared between all repositories and acts as a basis for all your next steps of creating fixtures. That implies that the axios implementation of all important api methods can be found there. This service acts as an interface: Next to the basic functions like get, post etc the request method is specified here as well as some Shopware-related methods which have to be available in all repositories.
 
-{% hint style="info" %}
+::: info
 Cypress provides an own axios-based way to handle requests in its command `cy.request`. However, Cypress commands are not real promises, see [Commands are not Promises](https://docs.cypress.io/guides/core-concepts/introduction-to-cypress.html#Commands-Are-Not-Promises). As we aim to parallelize the promises to fetch test data, we use our own implementation instead.
-{% endhint %}
+:::
 
 ### Services and commands
 

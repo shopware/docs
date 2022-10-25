@@ -1,9 +1,9 @@
 # 2022-02-09 - Move controller level annotation into Symfony route annotation
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/api/2022-02-09-controller-configuration-route-defaults.md)
-{% endhint %}
+:::
 
 ## Context
 

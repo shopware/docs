@@ -102,9 +102,9 @@ Before you are using the commands make sure that you installed all dependencies 
 
 In order to run jest unit tests of the administration, you can use the psh commands provided by our development template.
 
-{% hint style="info" %}
+::: info
 This only applies to the Shopware provided Administration! If you use unit tests in your plugin, you might need to write your own scripts for that.
-{% endhint %}
+:::
 
 This command executes all unit tests and shows you the complete code coverage.  
 `./psh.phar administration:unit`
@@ -362,9 +362,9 @@ Components in Shopware might also depend on other dependencies like `$tc`, direc
 
 To improve the test writing experience we included many mocks, helper methods and even more by default. This will help you to reduce the overhead of setting up a single test with all mocks.
 
-{% hint style="info" %}
+::: info
 Everything can be overwritten in the `mount` or `shallowMount` method if you need to have custom implementation.
-{% endhint %}
+:::
 
 ## Using preconfigured mocks
 

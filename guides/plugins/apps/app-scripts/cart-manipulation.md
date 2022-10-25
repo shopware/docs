@@ -2,9 +2,9 @@
 
 If your app needs to manipulate the cart, you can do so by using the [`cart`](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#cart) script hook.
 
-{% hint style="info" %}
+::: info
 Note that app scripts were introduced in Shopware 6.4.8.0, and are not supported in previous versions.
-{% endhint %}
+:::
 
 ## Overview
 
@@ -39,10 +39,10 @@ But if your script depends on updated and recalculated prices, you can recalcula
 
 The `calculate()` call will recalculate the whole cart and update the total prices, etc. For this the complete [`process`-step](../../../../concepts/commerce/checkout-concept/cart.md#calculation) is executed again.
 
-{% hint style="warning" %}
+::: warning
 Note that by executing the `process`-step all properties of the cart (e.g. `products()`, `items()`, `price()`) are recreated and thus will return new instances.
 This means if your script still holds references to those properties inside variables from before the recalculation, those are outdated after the recalculation.
-{% endhint %}
+:::
 
 ### Multiple calculations
 
@@ -91,9 +91,9 @@ This way you can only perform the action, if your custom state is not present an
 {% endraw %}
 {% endcode %}
 
-{% hint style="information" %}
+::: info
 Note that the state name should be unique, this means you should always use your vendor prefix in the state name.
-{% endhint %}
+:::
 
 ## Price definitions
 

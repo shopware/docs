@@ -1,8 +1,8 @@
 # Apache
 
-{% hint style="info" %}
+::: info
 The document root must always point to the public folder, to ensure all functionality works.
-{% endhint %}
+:::
 
 ```text
 <VirtualHost *:80>

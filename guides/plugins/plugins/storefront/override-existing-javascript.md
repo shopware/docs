@@ -12,9 +12,9 @@ While this is not mandatory, having read the guide about [adding custom javascri
 
 As JavaScript storefront plugins are vanilla JavaScript classes, you can simply extend them.
 
-{% hint style="info" %}
+::: info
 Each JavaScript plugin can only be overridden once. If two Shopware plugins try to override the same plugin, only the last one of them will actually work.
-{% endhint %}
+:::
 
 So let's start with creating the proper directory structure. This example will be called `my-cookie-permission`, as it's extending the default `cookie-permission` plugin.
 

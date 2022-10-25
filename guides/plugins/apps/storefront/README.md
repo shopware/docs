@@ -23,9 +23,9 @@ As the Shopware server will build the Storefront, you don't have to set up any e
 
 ## Custom Assets in Apps
 
-{% hint style="info" %}
+::: info
 Note that this feature was introduced in Shopware 6.4.8.0, and is not supported in previous versions.
-{% endhint %}
+:::
 
 You may want to include custom assets inside your app, like custom fonts, etc.
 Therefore, place the assets you need in the `/Resources/public` folder. All files inside this folder are available over the [asset-system](../../plugins/storefront/add-custom-assets.md#adding-custom-assets-to-your-plugin).

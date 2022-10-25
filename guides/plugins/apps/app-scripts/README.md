@@ -2,9 +2,9 @@
 
 App Scripts allow your app to include logic that is executed inside the Shopware execution stack. It allows you to build richer extensions that integrate more deeply with Shopware.
 
-{% hint style="info" %}
+::: info
 Note that app scripts were introduced in Shopware 6.4.8.0, and are not supported in previous versions.
-{% endhint %}
+:::
 
 ## Script Hooks
 
@@ -265,9 +265,9 @@ Additionally, we added a `ServiceStubs`-class, that can be used as typehint in y
 
 {% endraw %}
 
-{% hint style="info" %}
+::: info
 The stub class contains all services, but depending on the hook not all of them are available.
-{% endhint %}
+:::
 
 ## Example Script - loading media entities
 
@@ -310,9 +310,9 @@ Alternatively take a look at the [cart manipulation guide](./cart-manipulation.m
 
 You can get information about what scripts were triggered on a specific storefront page inside the [Symfony debug toolbar](https://symfony.com/doc/current/the-fast-track/en/5-debug.html#discovering-the-symfony-debugging-tools).
 
-{% hint style="info" %}
+::: info
 The debug toolbar is only visible if your Shopware installation is in `APP_ENV = dev`, please ensure you set the correct env - e.g. in your `.env` file - when developing app scripts .
-{% endhint %}
+:::
 
 You can find all hooks that are triggered and the scripts that are executed for each by clicking on the `script` icon.
 

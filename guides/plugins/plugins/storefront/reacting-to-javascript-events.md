@@ -62,9 +62,9 @@ Rather, you have to fetch the respective plugin instance using the `PluginManage
 
 And this is done here. We're fetching the instance of the `CookiePermission` plugin by its [selector](https://github.com/shopware/platform/blob/v6.3.4.1/src/Storefront/Resources/app/storefront/src/main.js#L103) via the `PluginManager` and using that instance to register to the event. Once the event is then fired, our own method `onHideCookieBar` is executed and the `alert` will be shown.
 
-{% hint style="warning" %}
+::: warning
 This does **not** prevent the execution of the original method. Consider those events to be "notifications".
-{% endhint %}
+:::
 
 ## Next steps
 

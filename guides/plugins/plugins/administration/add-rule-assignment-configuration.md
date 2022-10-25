@@ -1,8 +1,8 @@
 # Add rule assignment configuration
 
-{% hint style="info" %}
+::: info
 The rule assignment configuration is available from Shopware Version 6.4.8.0
-{% endhint %}
+:::
 
 ## Overview
 

@@ -2,9 +2,9 @@
 
 In this guide, you will learn how to set up an extension for the administration UI.
 
-{% hint style="info" %}
+::: info
 When you are using a self-hosted Shopware Version, make sure to set the feature flag `FEATURE_NEXT_17950=1` to enable the Admin Extension API.
-{% endhint %}
+:::
 
 ![An admin notification](../../../../.gitbook/assets/extension-api-notification.png)
 
@@ -31,9 +31,9 @@ SimpleNotification/
 ├─ manifest.xml
 ```
 
-{% hint style="info" %}
+::: info
 When you are using a self-hosted Shopware Version, you can also create the project directory in the `custom/apps` directory of your Shopware installation. However, the descriptions in this guide apply to both Shopware cloud and self-hosted stores.
-{% endhint %}
+:::
 
 Next, we're gonna put our basic configuration into the file we just created.
 
@@ -142,9 +142,9 @@ For production usage you should host the entry point file on a public CDN or a s
 
 In this last step, we're going to install the app using the Shopware CLI tools.
 
-{% hint style="info" %}
+::: info
 If this is your first time using the Shopware CLI, you have to [install](https://sw-cli.fos.gg/install/) it first. Next, configure it using the `shopware-cli project config init` command.
-{% endhint %}
+:::
 
 ```bash
 shopware-cli project extension upload SimpleNotification --activate --increase-version

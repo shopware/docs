@@ -78,13 +78,13 @@ $font-weight-semibold: 300;
 
 After saving the `overrides.scss` file and running `bin/console theme:compile` go and check out the Storefront in the browser. The `border-radius` should be removed for every element.
 
-{% hint style="warning" %}
+::: warning
 Please only add variable overrides in this file. You should not write CSS code like `.container { background: #f00 }` in this file.
-{% endhint %}
+:::
 
-{% hint style="info" %}
+::: info
 When running `./psh.phar storefront:hot-proxy` in the development template or `./bin/watch-storefront.sh` in the production template, SCSS variables will be injected dynamically by webpack. When writing selectors and properties in the `overrides.scss` the code can appear multiple times in your built CSS.
-{% endhint %}
+:::
 
 ## Next steps
 

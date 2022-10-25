@@ -19,9 +19,9 @@ Shopware communicates with your app only exclusively HTTP-Requests, therefore yo
 
 To secure this communication a registration handshake is performed during the installation of your app. During this registration it is verified that Shopware talks to the right app backend server and your app get's credentials used to authenticate against the API. You can read more on the registration workflow in the [App Base Guide](../../guides/plugins/apps/app-base-guide.md).
 
-{% hint style="info" %}
+::: info
 Notice that this is optional in the case that Shopware and your app don't need to communicate, e.g. because your app provides a [Theme](apps-concept.md).
-{% endhint %}
+:::
 
 ## Modify the appearance of the storefront
 
@@ -31,17 +31,17 @@ Your app can modify the appearance of the storefront, by shipping your storefron
 
 ## Integrate payment providers
 
-{% hint style="info" %}
+::: info
 This functionality is available starting with Shopware 6.4.1.0.
-{% endhint %}
+:::
 
 Shopware provides functionality for your app to be able to integrate payment providers. If you would like to provide payment with a provider that does not require any user interaction, you can choose a simple request for approval in the background, also called a synchronous payment. If you would like to redirect a user to a payment provider, you can use an asynchronous payment. Your app therefore provides a URL for redirection. After the user has returned to the shop, Shopware will verify the status of the payment with your app. Find out more about providing payment endpoints in the [App Payment Guide](../../guides/plugins/apps/payment.md).
 
 ## Execute business logic inside Shopware with App Scripts
 
-{% hint style="info" %}
+::: info
 This functionality is available starting with Shopware 6.4.8.0.
-{% endhint %}
+:::
 
 App Scripts allow your app to execute custom business logic inside the Shopware execution stack. This allows for new use cases, e.g. if you need to load additional data that should be rendered in the storefront or need to manipulate the cart.
 
@@ -49,9 +49,9 @@ App Scripts allow your app to execute custom business logic inside the Shopware 
 
 ## Add conditions to the Rule Builder
 
-{% hint style="info" %}
+::: info
 This functionality is available starting with Shopware 6.4.12.0.
-{% endhint %}
+:::
 
 Your app may introduce custom conditions for use in the [Rule Builder](../framework/rules.md).
 

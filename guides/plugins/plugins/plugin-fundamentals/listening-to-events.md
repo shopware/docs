@@ -7,11 +7,11 @@ A way to listen to events in Symfony projects is via an [event subscriber,](http
 In order to build your own subscriber for your plugin, of course you first need a plugin as base. To create an own plugin, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
 
 <!-- markdown-link-check-disable-next-line -->
-{% hint style="info" %}
+::: info
 Here's a live coding example on listening to events from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 
 **[Live coding example with product.loaded event](https://www.youtube.com/watch?v=cJDaiuyjKJk)**
-{% endhint %}
+:::
 
 ## Creating your own subscriber
 

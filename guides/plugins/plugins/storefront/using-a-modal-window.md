@@ -83,9 +83,9 @@ When setting a `data-url` in addition to `data-toggle="modal"` shopware automati
 {% endraw %}
 {% endcode %}
 
-{% hint style="warning" %}
+::: warning
 This does not work when the trigger selector is being changed via JavaScript, e.g. because of an AJAX call which replaces the content.
-{% endhint %}
+:::
 
 ## Advanced / manual using Pseudo Modal Utility
 

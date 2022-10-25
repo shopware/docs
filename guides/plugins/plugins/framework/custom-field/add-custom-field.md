@@ -232,9 +232,9 @@ This will now create a custom field set with the name `swag_example_set` and the
 
 Also we've taken care of adding translated labels to both the field and the set, which are going to be displayed in the administration. If you have several custom fields and want to order them within a specific order, you can do so with the `customFieldPosition` property.
 
-{% hint style="warning" %}
+::: warning
 Custom field sets are deletable by the shop administrator, so you cannot rely on their existence.
-{% endhint %}
+:::
 
 While theoretically your custom field is now properly defined for the administration, you'll still have to do some work in your custom entities' administration module. Head over to this guide to learn how to add your field to the administration:
 

@@ -15,11 +15,11 @@ This guide **does not** explain how to create a new plugin for Shopware 6. Head 
 The main requirement here is to have a `services.xml` file loaded in your plugin. This can be achieved by placing the file into a `Resources/config` directory relative to your plugin's base class location.
 
 <!-- markdown-link-check-disable-next-line -->
-{% hint style="info" %}
+::: info
 Here's a video on creating custom commands from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 
 **[Creating a CLI command](https://www.youtube.com/watch?v=OL_qNVLLyaI)**
-{% endhint %}
+:::
 
 ## Registering your command
 
@@ -96,9 +96,9 @@ class ExampleCommand extends Command
 
 This command is of course only a basic example, so feel free to experiment. As stated above, you now have access to all the functionality offered by Symfony and Shopware.
 
-{% hint style="info" %}
+::: info
 For inspiration, maybe have a look at the Symfony documentation - you may for example use [tables](https://symfony.com/doc/current/components/console/helpers/table.html), [progress bars](https://symfony.com/doc/current/components/console/helpers/progressbar.html), or [custom formats](https://symfony.com/doc/current/components/console/helpers/formatterhelper.html).
-{% endhint %}
+:::
 
 ### Running commands
 

@@ -47,9 +47,9 @@ This `searchMedia` function reads out the corresponding media objects for the gi
 
 {% endraw %}
 
-{% hint style="danger" %}
+::: danger
 Please note that this function performs a query against the database and should therefore not be used within a loop.
-{% endhint %}
+:::
 
 The function is already structured in a way that several IDs can be passed. To read the media objects within the product listing we recommend the following procedure:
 
@@ -170,9 +170,9 @@ This example will create the output below:
     sizes="100px">
 ```
 
-{% hint style="danger" %}
+::: danger
 Please note that those sizes only work with bootstrap viewports, like xs, sm, md, lg and xl. Custom media queries will not work.
-{% endhint %}
+:::
 
 ### Additional attributes
 

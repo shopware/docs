@@ -199,9 +199,9 @@ Each of those calls uses a little helper method `getContentHtml` or `getContentP
 
 And that's it, once your plugin is installed, the mail template will be added to Shopware.
 
-{% hint style="warning" %}
+::: warning
 Do not remove e-mail templates in your plugin, e.g. when it is uninstalled. This may lead to data inconsistency, since those templates can be associated to other entities. Beware to use `IGNORE` before `INTO` Statements so no exception will be thrown upon uninstallation and reinstallation of your plugin.
-{% endhint %}
+:::
 
 ### Creating a custom mail type
 

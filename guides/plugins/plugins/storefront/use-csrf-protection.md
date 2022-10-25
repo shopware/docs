@@ -93,9 +93,9 @@ As previously said, each Storefront route is looking for a CSRF token by default
 public function exampleAction() {}
 ```
 
-{% hint style="danger" %}
+::: danger
 Be aware that this is not recommended and could create a security vulnerability!
-{% endhint %}
+:::
 
 ## Caching and CSRF
 

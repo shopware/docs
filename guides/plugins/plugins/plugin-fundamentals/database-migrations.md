@@ -9,11 +9,11 @@ In this guide, you'll learn what migrations are and how to use them. Migrations 
 In order to add your own database migrations for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
 
 <!-- markdown-link-check-disable-next-line -->
-{% hint style="info" %}
+::: info
 Here's a video explaining database migrations from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 
 **[Database migrations](https://www.youtube.com/watch?v=__pWwaK6lxw)**
-{% endhint %}
+:::
 
 ## File structure
 
@@ -166,9 +166,9 @@ _Note: Your plugin has to be activated, otherwise your custom entity definition 
 
 When you install your plugin, the migration directory is added to a MigrationCollection and all migrations are executed. Also, when you update a plugin via the Plugin Manager, all **new** migrations are executed. If you want to perform a migration manually as part of your development process, simply create it after installing your plugin. This way, your plugin migration directory will already be registered during the installation process and you can run any newly created migration by hand using one of the following commands.
 
-{% hint style="warning" %}
+::: warning
 When updating a plugin, do not change a migration that was already executed, since every migration is only run once.
-{% endhint %}
+:::
 
 | Command | Arguments | Usage |
 | :--- | :--- | :--- |

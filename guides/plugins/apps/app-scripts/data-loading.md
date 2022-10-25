@@ -2,9 +2,9 @@
 
 If your app needs additional data in your [customized storefront templates](../../../plugins/plugins/storefront/customize-templates.md), you can load that data with app scripts and make it available to your template.
 
-{% hint style="info" %}
+::: info
 Note that app scripts were introduced in Shopware 6.4.8.0, and are not supported in previous versions.
-{% endhint %}
+:::
 
 ## Overview
 
@@ -13,10 +13,10 @@ For each page that is rendered, a hook is triggered - giving access to the curre
 
 For a list of all available script hooks, that can be used to load additional data, take a look at the [script hook reference](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#data-loading).
 
-{% hint style="info" %}
+::: info
 Note that all hooks that were triggered during a page rendering are also shown in the [Symfony toolbar](./README.md#developing--debugging-scripts).
 This may come in handy if you are searching for the right hook for your script.
-{% endhint %}
+:::
 
 For example, you would like to enrich a storefront detail page with some additional data, you just set it within a custom app script and attach it to the `page` object.
 
@@ -117,9 +117,9 @@ The `store` service is available for all "public" entities (e.g. `product` and `
 This means that for example SEO related data is resolved for `products` and `categories`, loaded over the `store` service, but not over the `repository` service.
 Additionally, product prices are only calculated when using the `store` service.
 
-{% hint style="info" %}
+::: info
 The `store` service only loads "public" entities, this means that the entities only include ones that are active and visible for the current sales-channel.
-{% endhint %}
+:::
 
 One major difference is that when using the `repository` service your app needs `read` permissions for every entity it reads, whereas you don't need additional permissions for using the `store` service (as that service only searches for "public" data).
 
@@ -134,9 +134,9 @@ For a full description of the `repository` and `store` service take a look at th
 There are two ways to add data to the page object, either with the `addExtension()` or the `addArrayExtension()` methods.
 Both methods expect the name under which the extension should be added as the first parameter. Under that name you can access the extension later on in your storefront template with the `page.getExtension('extensionName')` call.
 
-{% hint style="warning" %}
+::: warning
 Note that the extension names need to be unique, therefore always use your vendor prefix as a prefix for the extension name.
-{% endhint %}
+:::
 
 The second argument for both methods is the data you want to add as an extension. In the case of the `addExtension` method in needs to be a `Struct`, meaning you can only add PHP objects (e.g. the collection or entities returned by the `repository` service) directly as extensions.
 If you want to add scalar values or want to add more than one struct in your extension you can wrap your data in an JSON-like twig object and use the `addArrayExtension` method.
@@ -187,6 +187,6 @@ You can access the extensions again in your **storefront templates** like this:
 
 {% endraw %}
 
-{% hint style="info" %}
+::: info
 Note that you can not only add extensions to the page object, but to every struct, therefore you can also add an extension e.g. to every product inside the page.
-{% endhint %}
+:::

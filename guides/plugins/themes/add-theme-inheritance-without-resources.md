@@ -23,13 +23,13 @@ If you want to build your theme only upon the Bootstrap SCSS you can use the `@S
 
 {% endcode %}
 
-{% hint style="info" %}
+::: info
 
 * This option can only be used in the `style` section of the `theme.json`. You must not use it in `views` or `script`.
 * All theme variables like `$sw-color-brand-primary` are also available when using the Bootstrap option.
 * You can only use either `@StorefrontBootstrap` or `@Storefront`. They should not be used at the same time. The `@Storefront` bundle **includes** the Bootstrap SCSS already.
 * `@StorefrontBootstrap` does not include `@Plugins`, you have to add it yourself.
-{% endhint %}
+:::
 
 ## Next steps
 

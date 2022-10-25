@@ -18,12 +18,12 @@ Also, we will use a small, custom component to fill our custom tab. In order to 
 
 {% page-ref page="add-custom-component.md" %}
 
-{% hint style="info" %}
+::: info
 
 ### Please remember
 
 The main entry point to customize the administration via plugin is the `main.js` file. It has to be placed into a `<plugin root>/src/Resources/app/administration/src` directory in order to be found by Shopware 6. So please use the file accordingly and refer to the [plugin base guide](../plugin-base-guide.md) for more details.
-{% endhint %}
+:::
 
 ## Creating a custom tab
 
@@ -74,9 +74,9 @@ Unfortunately, you cannot use the block mentioned above, because then your new t
 
 Knowing the block you have to override in your plugin, you can now start doing exactly this: Add your custom tab by overriding this block called `sw_product_detail_content_tabs_reviews`.
 
-{% hint style="danger" %}
+::: danger
 However, please keep in mind that "overriding" doesn't mean we want to replace the block completely with our new one. We want to add our tab, thus only extending the template. This will have some implications on our implementation.
-{% endhint %}
+:::
 
 First, please re-create the directory structure from the core code in your plugin. In this case, you'll have to create a directory structure like the following: `<plugin root>/src/Resources/app/administration/src/page/sw-product-detail`
 
@@ -112,9 +112,9 @@ All this file is doing is to basically override the `sw-product-detail` componen
 {% endraw %}
 {% endcode %}
 
-{% hint style="warning" %}
+::: warning
 The block gets overridden and immediately the parent block is called, since you do not want to replace the 'Review' tab, you want to add a new tab instead.
-{% endhint %}
+:::
 
 After that, we'll create the actual `sw-tabs-item` element, which, as the name suggests, represents a new tab item. We want this tab to have a custom route, so we're also adding this route directly. Don't worry, we'll explain this custom route in a bit. The product detail page's route contain the product's ID, which you also want to have in your custom tab: So make sure to also pass the ID in, like shown in the example above.
 
@@ -148,7 +148,7 @@ This is an example of what your `main.js` should look like in order to load your
 import './page/sw-product-detail';
 ```
 
-{% hint style="info" %}
+::: info
 Don't forget to rebuild the administration after applying changes to your `main.js`.
 {% tabs %}
 {% tab title="Development template" %}
@@ -167,7 +167,7 @@ Don't forget to rebuild the administration after applying changes to your `main.
 
 {% endtab %}
 {% endtabs %}
-{% endhint %}
+:::
 
 ## Registering the tab's new route
 
@@ -205,9 +205,9 @@ Shopware.Module.register('sw-new-tab-custom', {
 
 As already mentioned, you need to create a dummy module in order to override the `routeMiddleware` method. In there, you're listening for the current route, that got called. If the current route matches `sw.product.detail`, you want to add your new child route to it, and that's what's done here.
 
-{% hint style="warning" %}
+::: warning
 Your child route defines the routes name, so make sure to use the name you're already defined earlier!
-{% endhint %}
+:::
 
 The path should be identical to the default ones, which look like this: `/sw/product/detail/:id/base` Just replace the `base` here with `custom` or anything you like.
 

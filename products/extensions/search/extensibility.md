@@ -1,8 +1,8 @@
 # Extensibility
 <!-- markdown-link-check-disable -->
-{% hint style="warning" %}
+::: warning
 This article use many Code-References to GitLab! Please contact the Shopware Sales department to get access to the private repository. Without having access, you cannot access the repository and all corresponding links.
-{% endhint %}
+:::
 
 To implement the full search experience for a own entity, you have to implement multiple interfaces.
 

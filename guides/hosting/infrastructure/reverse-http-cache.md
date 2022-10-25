@@ -7,15 +7,15 @@ A reverse http cache is a cache server placed before the web shop. If you are no
 * Able to differentiate the request with multiple cookies
 * Allow clearing the cache using a web request for a specific site or with `/` for all pages
 
-{% hint style="info" %}
+::: info
 In this guide, we will use Varnish as example for an http cache.
-{% endhint %}
+:::
 
 ### The example Setup with Varnish
 
-{% hint style="warning" %}
+::: warning
 This setup is compatible from Shopware version 6.4.
-{% endhint %}
+:::
 
 ![](../../../.gitbook/assets/reverse_proxy_setup.svg)
 
@@ -462,9 +462,9 @@ Varnish XKey is a cache key module that allows you to use Varnish with surrogate
 
 The module is available for download on [GitHub](https://github.com/varnish/varnish-modules/blob/master/src/vmod_xkey.vcc)
 
-{% hint style="warning" %}
+::: warning
 This feature has been introduced with Shopware version 6.4.17.0
-{% endhint %}
+:::
 
 And also needs to be enabled in the `config/packages/shopware.yml` file:
 
@@ -736,9 +736,9 @@ storefront:
 
 ### Fastly soft-purge
 
-{% hint style="warning" %}
+::: warning
 This feature has been introduced with Shopware version 6.4.15.0
-{% endhint %}
+:::
 
 By default, the cache will be immediately purged and the next requesting user will get a slow response, as the cache has been deleted. On soft purge, the user still gets the cached response after purge, but in the configured time interval the cache will be refreshed. This makes sure, that the client gets the fastest response possible.
 

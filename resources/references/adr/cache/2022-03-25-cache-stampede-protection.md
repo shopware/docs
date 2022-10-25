@@ -1,9 +1,9 @@
 # 2022-03-25 - Cache stampede protection
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/cache/2022-03-25-cache-stampede-protection.md)
-{% endhint %}
+:::
 
 The Cache Stampede protection is a mechanism to prevent several users try to update this cache entry at the same time if a cache entry is no longer hot. This mechanism is very useful if there is a lot of load on the store and a cache entry is expired or invalidated. If there is no cache stampede protection on the system, and several users call a category listing at the same time, which is no longer in the cache, then all users would be let through to the database and the server could collapse under the load.
 

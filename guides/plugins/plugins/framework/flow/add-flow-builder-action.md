@@ -1,8 +1,8 @@
 # Add custom flow Action
 
-{% hint style="info" %}
+::: info
   This functionality is available starting with Shopware 6.4.6.0
-{% endhint %}
+:::
 
 ## Overview
 
@@ -55,15 +55,15 @@ interface TagAware extends FlowEventAware
 
 ### Create new action
 
-{% hint style="warning" %}
+::: warning
 Starting with the next major version (6.5.0.0), we are introducing changes in how to create new flow actions, please follow the instructions corresponding to your current version.
-{% endhint %}
+:::
 
 In this example, we will name it `CreateTagAction`. It will be placed in the directory `<plugin root>/src/Core/Content/Flow/Dispatching/Action`. Below you can find an example implementation:
 
-{% hint style="info" %}
+::: info
   Available starting with Shopware 6.4.6.0
-{% endhint %}
+:::
 
 Our new class has to extend from the abstract class `Shopware\Core\Framework\Event\FLowEvent`.
 
@@ -150,9 +150,9 @@ As you can see, several methods are already implemented:
 - `requirements`: This defines which interfaces that the action belongs to.
 - `handle`: Use this method to handle your action stuff.
 
-{% hint style="info" %}
+::: info
   Available starting with Shopware 6.5.0.0
-{% endhint %}
+:::
 
 {% code title="<plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php" %}
 
@@ -238,9 +238,9 @@ As you can see, several methods are already implemented:
 
 And we also need to register this action in the container as a service, make sure you have defined a tag `<tag name="flow.action" priority="600">` at `<plugin root>/src/Resources/config/services.xml`, that your action would be added to response of *`/api/_info/flow-actions.json`* API and `priority` will decide the order of action of API response:
 
-{% hint style="info" %}
+::: info
   Available starting with Shopware 6.4.6.0
-{% endhint %}
+:::
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
 
@@ -252,9 +252,9 @@ And we also need to register this action in the container as a service, make sur
 </service>
 ```
 
-{% hint style="info" %}
+::: info
   Available starting with Shopware 6.5.0.0
-{% endhint %}
+:::
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
 
@@ -320,9 +320,9 @@ And don't forget to register your subscriber to the container at `<plugin root>/
 
 Well done, you are successfully created your custom action in Backend in PHP.
 
-{% hint style="info" %}
+::: info
   This functionality is available starting with Shopware 6.4.6.0
-{% endhint %}
+:::
 
 ## Add custom action in Administration
 

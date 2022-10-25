@@ -9,11 +9,11 @@ Quite often one might want to run any type of code on a regular basis, e.g. to c
 This guide is built upon our [plugin base guide](../plugin-base-guide.md), but that one is not mandatory. Knowing how the `services.xml` file in a plugin works is also helpful, which will be taught in our guides about [Dependency Injection](dependency-injection.md) and [Creating a service](add-custom-service.md). It is shortly explained here as well though, so no worries!
 
 <!-- markdown-link-check-disable-next-line -->
-{% hint style="info" %}
+::: info
 Here's a video dealing with scheduled tasks from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 
 **[Adding scheduled tasks](https://www.youtube.com/watch?v=88S9P3x6wYE)**
-{% endhint %}
+:::
 
 ## Registering scheduled task in the DI container
 

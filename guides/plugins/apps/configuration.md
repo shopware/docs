@@ -1,8 +1,8 @@
 # Configuration
 
-{% hint style="info" %}
+::: info
 Configurations for apps adhere to the same schema as [Plugin Configurations](../plugins/plugin-fundamentals/add-plugin-configuration.md).
-{% endhint %}
+:::
 
 To offer configuration possibilities to your users you can provide a `config.xml` file that describes your configuration options. You can find detailed information about the possibilities and the structure of the `config.xml` in the according documentation page. To include a `config.xml` file in your app put it into the `Resources/config` folder:
 
@@ -35,9 +35,9 @@ GET /api/_action/system-config?domain=DemoApp.config&salesChannelId=98432def39fc
 }
 ```
 
-{% hint style="warning" %}
+::: warning
 Keep in mind that your app needs the `system_config:read` permission to access this API.
-{% endhint %}
+:::
 
 ### Reading the config in templates
 
@@ -55,9 +55,9 @@ Inside twig templates you can use the twig function `config` (see [Shopware Twig
 
 In app scripts you have access to the [`config` service](../../../../resources/references/app-reference/script-reference/miscellaneous-script-services-reference.md#SystemConfigFacade), that can be used to access config values.
 
-{% hint style="info" %}
+::: info
 Note that app scripts were introduced in Shopware 6.4.8.0, and are not supported in previous versions.
-{% endhint %}
+:::
 
 The `config` service provides an `app()` method, that can be used to access your app's configuration. When using this method you don't need to provide the `{appName}.config` prefix and your app does not need any additional permissions.
 {% raw %}
@@ -70,9 +70,9 @@ The `config` service provides an `app()` method, that can be used to access your
 
 Additionally, you can use the `get()` method, to access any configuration value and not just the ones of your app.
 
-{% hint style="warning" %}
+::: warning
 Keep in mind that your app needs the `system_config:read` permission to use the `config.get()` method.
-{% endhint %}
+:::
 
 {% raw %}
 

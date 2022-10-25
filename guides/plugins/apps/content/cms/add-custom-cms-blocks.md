@@ -1,10 +1,10 @@
 # Add custom CMS blocks
 
-{% hint style="info" %}
+::: info
 This functionality is available starting with Shopware 6.4.4.0.
 
 You can [add custom CMS blocks](../../../plugins/content/cms/add-cms-block.md) using the plugin system, however these will not be available in Shopware cloud stores.
-{% endhint %}
+:::
 
 Didn't get in touch with Shopware's Shopping Experiences \(CMS\) yet? Check out the concept behind it first:
 
@@ -44,9 +44,9 @@ Each CMS block defined within your `cms.xml` must have a directory matching the 
 In those directories you shape your blocks for the CMS module in the Administration by supplying a `preview.html` containing the template used for displaying a preview.
 Styling the preview in the sidebar and the component in the CMS editor is possible from the `styles.css`.
 
-{% hint type=info %}
+::: info
 Due to technical limitations it's not possible to use templating engines \(like Twig\) or preprocessors \(like Sass\) for rendering and styling the preview.
-{% endhint %}
+:::
 
 The Storefront representations of your blocks reside in `Resources/views/storefront/block/`.
 
@@ -143,10 +143,10 @@ The preview template for `swag-image-text-reversed` looks like this:
 
 {% endcode %}
 
-{% hint style="info" %}
+::: info
 For security reasons you can only use pure HTML in the preview template.
 The template will be sanitized from possibly malicious tags like `<script>` or attributes like `:src="'/administration/static/img/cms/preview_mountain_small.jpg' | asset"`.
-{% endhint %}
+:::
 
 The styling of the preview looks as follows:
 {% code title="<app root>/Resources/cms/blocks/swag-image-text-reversed/styles.css" %}

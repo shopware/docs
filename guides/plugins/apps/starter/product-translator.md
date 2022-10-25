@@ -54,9 +54,9 @@ You can now start the application with `symfony server:start -v`.
 
 For now, your app server is currently only available locally.
 
-{% hint style="info" %}
+::: info
 When you are using a local Shopware environment, you can skip to the [next chapter](#creating-the-manifest)
-{% endhint %}
+:::
 
 We need to expose your local app server to the internet. The easiest way to achieve that is using a tunneling service like [ngrok](https://ngrok.com/).
 
@@ -93,9 +93,9 @@ Let's start by filling in all the meta information:
 
 {% endcode %}
 
-{% hint style="warning" %}
+::: warning
 Take care to use the same `<name>` as in the `.env` file, otherwise stores can't install the app!
-{% endhint %}
+:::
 
 ### Setup hook
 
@@ -177,9 +177,9 @@ in its shops:
 
 {% endcode %}
 
-{% hint style="info" %}
+::: info
 The timeout for the requests against app server is 5 seconds.
-{% endhint %}
+:::
 
 These two webhooks provide a way for shops to notify your app server about events that occurred.
 The `src/Controller/RegistrationController.php` controller in the app template already provides the `deleted` webhook. It notifies the server that a shop has deleted the app.
@@ -353,9 +353,9 @@ The request contains a criteria that fetches the product for which we received t
 
 {% endcode %}
 
-{% hint style="info" %}
+::: info
 A common gotcha with `entity.written` webhooks is that they trigger themselves when you're performing write operations. Updating the description, triggers another `entity.written` event which again calls the webhook which updates the description and so on.
-{% endhint %}
+:::
 
 Because our goal is to write a french translation of the product, the app needs to take care to avoid endless loops.
 To determine if the app has already written a translation once, it saves a hash of the original description.
@@ -417,9 +417,9 @@ The implementation of the `translate` method is disregarded in this example, you
 
 In this last step, we will install the app using the Shopware CLI tools.
 
-{% hint style="info" %}
+::: info
 If this is your first time using the Shopware CLI, you have to [install](https://sw-cli.fos.gg/install/) it first. Next, configure it using the `shopware-cli project config init` command.
-{% endhint %}
+:::
 
 ```sh
 shopware-cli project extension upload ProductTranslator/release --activate --increase-version
