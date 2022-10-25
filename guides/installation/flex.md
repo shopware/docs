@@ -66,13 +66,13 @@ brew install php@8.1
 
 {% endtab %}
 
-{% tab title="Nix" %}
+{% tab title="Nix / NixOs" %}
 
 ```bash
 # Nix
 nix-env -iA nixpkgs.php81
 
-# Nixos
+# NixOs
 nix-env -iA nixos.php81
 ```
 
