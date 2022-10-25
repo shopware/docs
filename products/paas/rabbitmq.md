@@ -1,6 +1,7 @@
 # RabbitMQ
 
-RabbitMQ is enabled by default in the template. This service is optional and can be disabled to use the default queue from the Database.
+RabbitMQ is enabled by default in the template. This service is optional 
+ but recommended. It can be disabled and replaced by an SQL-backed queue.
 
 ## Disable service
 
