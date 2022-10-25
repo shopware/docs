@@ -12,13 +12,13 @@ This "certain infrastructure" will be called "target server" in the following.
 
 ## Video
 <!-- markdown-link-check-disable-next-line -->
-{% embed url="https://www.youtube.com/watch?v=Oo-KvyxJvpo" caption="" %}
+<PageRef page="https://www.youtube.com/watch?v=Oo-KvyxJvpo" title="" />
 
 ## Prerequisites
 
 Please make sure you already have a working Shopware 6 instance running, and your repository is based on the Shopware production template, because this article relies on some scripts to exist in your repository.
 <!-- markdown-link-check-disable-next-line -->
-{% embed url="https://github.com/shopware/production" caption="" %}
+<PageRef page="https://github.com/shopware/production" title="" />
 
 ### Preparations before the first deployment
 

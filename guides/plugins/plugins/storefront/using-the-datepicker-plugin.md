@@ -8,7 +8,7 @@ The datepicker plugin uses the `flatpickr` implementation under the hood. So, ch
 if you need more information about the date picker configuration itself.
 
 <!-- markdown-link-check-disable-next-line -->
-{% embed url="https://flatpickr.js.org" caption="" %}
+<PageRef page="https://flatpickr.js.org" title="" />
 
 ## Prerequisites
 

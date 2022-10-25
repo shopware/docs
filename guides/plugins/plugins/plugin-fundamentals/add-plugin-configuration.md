@@ -8,7 +8,7 @@ To build your own configuration page for your plugin, you first need a plugin as
 
 ## Create your plugin configuration
 
-{% embed url="https://www.youtube.com/watch?v=XXcmgKBRh-s" caption="" %}
+<PageRef page="https://www.youtube.com/watch?v=XXcmgKBRh-s" title="" />
 
 ::: info
 This video is part of the online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma) available on Shopware Academy for **free**.

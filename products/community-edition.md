@@ -30,7 +30,7 @@ Last but not least, there is the most important technical feature, which gives y
 
 Shopware 6 consists of multiple repositories bundled inside a [mono repository](https://www.atlassian.com/git/tutorials/monorepos) called `shopware/platform`\([GitHub](https://github.com/shopware/platform)\). This is where the Shopware core is developed. You need it as dependency in your projects and this is where you can participate in the development of Shopware through pull requests. It's split into multiple repositories for production setups, all of them are read-only and include the Core, [Storefront](../guides/plugins/plugins/storefront/) , [Administration](../concepts/framework/architecture/administration-concept.md) and Elasticsearch. Beside that, there is also a `Recovery` directory, which provides the opportunity to interactively update, install and maintain Shopware throughout the browser. If you want to start developing with Shopware 6, there are two setup templates and preparatory/installation steps explained [here](../guides/installation/overview.md#setup-templates).
 <!-- markdown-link-check-disable-next-line -->
-{% embed url="https://www.youtube.com/watch?v=oPf4-8eU8jQ" caption="" %}
+<PageRef page="https://www.youtube.com/watch?v=oPf4-8eU8jQ" title="" />
 
 ::: info
 This video is part of the online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma) available on Shopware Academy for **free**.

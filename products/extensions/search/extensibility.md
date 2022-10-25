@@ -49,13 +49,13 @@ For showing the results in the search overview, you have to extend the `search/i
 
 You can take a look for an example here:
 
-{% embed url="https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/tree/release/src/Resources/views/storefront/page/search/index.html.twig" caption="" %}
+<PageRef page="https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/tree/release/src/Resources/views/storefront/page/search/index.html.twig" title="" />
 
 ## The suggest gateway
 
 For showing the results in the suggest dropdown, you have to extend `Storefront/storefront/layout/header/search-suggest.html.twig` like the Advanced Search does:
 
-{% embed url="https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Resources/views/storefront/layout/header/search-suggest.html.twig" caption="" %}
+<PageRef page="https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Resources/views/storefront/layout/header/search-suggest.html.twig" title="" />
 
 ## Admin Boosting detail
 
@@ -63,7 +63,7 @@ For creating boostings based on your definition, you have to add the name to the
 
 Currently, the values are hardcoded. See here for reference:
 
-{% embed url="https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Resources/app/administration/src/module/swag-enterprise-search/components/swag-enterprise-search-boosting-detail-modal/swag-enterprise-search-boosting-detail-modal.html.twig\#L48" caption="" %}
+<PageRef page="https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Resources/app/administration/src/module/swag-enterprise-search/components/swag-enterprise-search-boosting-detail-modal/swag-enterprise-search-boosting-detail-modal.html.twig\#L48" title="" />
 
 ## Configuration Initial Value
 
@@ -94,7 +94,7 @@ For a first search, you also need a first pair of configuration entries. Therefo
 
 This can be found in the `Swag\EnterpriseSearch\Migration\Migration1584020367CreateNewGatewayConfiguration` file:
 
-{% embed url="https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Migration/Migration1584020367CreateNewGatewayConfiguration.php" caption="" %}
+<PageRef page="https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Migration/Migration1584020367CreateNewGatewayConfiguration.php" title="" />
 
 ## Configuration Entity
 
@@ -119,6 +119,6 @@ You can also change the `extendEntities()` here to apply "multi words auto sugge
 ## Additional Filtering
 
 You may want to filter your definition. This can be done by extending the CriteriaBuilder. An example can be found in `Swag\EnterpriseSearch\Category\SalesChannelCategorySearchCriteriaBuilder`:
-{% embed url="https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Category/SalesChannelCategorySearchCriteriaBuilder.php" caption="" %}
+<PageRef page="https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Category/SalesChannelCategorySearchCriteriaBuilder.php" title="" />
 
 <!-- markdown-link-check-enable -->

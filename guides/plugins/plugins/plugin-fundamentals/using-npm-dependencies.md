@@ -10,7 +10,7 @@ All you need for this guide is a running Shopware 6 instance and full access to 
 
 This guide is also available as a video:
 <!-- markdown-link-check-disable-next-line -->
-{% embed url="https://www.youtube.com/watch?v=wfBuWdff35c" caption="" %}
+<PageRef page="https://www.youtube.com/watch?v=wfBuWdff35c" title="" />
 
 ## Adding a npm package to the Administration or the Storefront
 
