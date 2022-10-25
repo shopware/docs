@@ -33,7 +33,7 @@ relationships:
 
 Please follow the setup and indexing steps to prepare your instance as described in [Set up Elasticsearch](../../guides/hosting/infrastructure/elasticsearch/elasticsearch-setup.md#prepare-shopware-for-elasticsearch).
 
-After that, the following environment variables are automatically using the composer package `shopware/paas-meta:
+After that, the following environment variables are provided by the composer package `shopware/paas-meta:
 
 * `SHOPWARE_ES_HOSTS`
 
