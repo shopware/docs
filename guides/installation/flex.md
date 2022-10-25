@@ -15,11 +15,89 @@ This will create a new project in the `<project-name>` directory. The `dev-flex`
 The template contains all Shopware bundles like `shopware/administration`, `shopware/storefront`, `shopware/elasticsearch`. If you don't need one of them, you can just uninstall it with:
 `composer remove shopware/<bundle-name>`.
 
-As next, you have to adjust the generated `.env` file and run following command:
+## Installation locally
+
+You have to adjust the generated `.env` file and run following command:
 
 ```bash
 bin/console system:install --basic-setup
 ```
+
+This will install Shopware and create a default sales channel with a default admin user named `admin` with password `shopware`. Change these credentials after the installation.
+
+## Installation with Docker and local PHP using Symfony CLI
+
+The Symfony CLI is a developer tool to help you build, run, and manage your Symfony applications directly from your terminal. The services will run in Docker containers and the application runs locally.
+
+If you don't have Symfony CLI installed [use this guide](https://symfony.com/download)
+
+As Symfony CLI will use your local PHP, make sure you have PHP installed.
+
+{% tabs %}
+{% tab title="Ubuntu based Linux" %}
+
+We need to add a new Software Repository to your system to have the latest PHP version
+
+```bash
+sudo add-apt-repository ppa:ondrej/php
+
+sudo apt-get install -y php8.1-fpm php8.1-mysql php8.1-curl php8.1-gd php8.1-xml php8.1-zip php8.1-opcache php8.1-mbstring php8.1-intl php8.1-cli
+```
+
+{% endtab %}
+
+{% tab title="Debian based Linux" %}
+
+We need to add a new Software Repository to your system to have the latest PHP version
+
+```bash
+curl https://packages.sury.org/php/README.txt | bash
+
+sudo apt-get install -y php8.1-fpm php8.1-mysql php8.1-curl php8.1-gd php8.1-xml php8.1-zip php8.1-opcache php8.1-mbstring php8.1-intl php8.1-cli
+```
+
+{% endtab %}
+
+{% tab title="macOS Homebrew" %}
+
+```bash
+brew install php@8.1
+```
+
+{% endtab %}
+
+{% tab title="Nix" %}
+
+```bash
+# Nix
+nix-env -iA nixpkgs.php81
+
+# Nixos
+nix-env -iA nixos.php81
+```
+
+{% endtab %}
+
+{% endtabs %}
+
+As next, we have to start our docker containers with following command:
+
+```bash
+docker compose up -d
+```
+
+and start our Web server with `symfony server:up -d`
+
+To install now Shopware run
+
+```bash
+symfony console system:install --basic-setup
+```
+
+
+{% hint style="info" %}
+[Symfony CLI overrides environment variable](https://symfony.com/doc/current/setup/symfony_server.html#docker-integration) `DATABASE_URL` and `MAILER_URL` automatically. So prefix all your commands with `symfony console` for the `bin/console` or `symfony run` for any other executable.
+{% endhint %}
 
 This will install Shopware and create a default sales channel with a default admin user named `admin` with password `shopware`. Change these credentials after the installation.
 
