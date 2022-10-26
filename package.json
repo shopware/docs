@@ -1,0 +1,27 @@
+{
+  "name": "shopware-documentation",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Shopware Developers",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vitepress",
+    "build": "vitepress build",
+    "serve": "vitepress serve"
+  },
+  "dependencies": {
+    "vitepress-shopware-docs": "^0.1.4",
+    "vitepress": "^1.0.0-alpha.25",
+    "vue": "^3.2.41"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@algolia/client-search",
+        "react",
+        "react-dom",
+        "@types/react"
+      ]
+    }
+  }
+}
