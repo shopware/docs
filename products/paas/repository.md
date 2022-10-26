@@ -1,22 +1,22 @@
 # Repository
 
-The source code of your project will reside in a git-based VCS repository. You can start with a plain project, however we suggest starting with a new composer create-project. You will find out more about the setup template in the [Setup Template](setup-template.md) section.
+The source code of your project will reside in a git-based VCS repository. You can start with a plain project. However, we suggest starting with a new composer create-project. You will learn more about the setup template in the [Setup Template](setup-template.md) section.
 
 {% hint style="info" %}
-This guide explains the repository setup using **GitHub**. You can also integrate Bitbucket or GitLab based version control environments with Shopware PaaS. More information in [Source Integrations](https://docs.platform.sh/integrations/source.html).
+This guide explains the repository setup using **GitHub**. You can also integrate Bitbucket or GitLab-based version control environments with Shopware PaaS. Refer to [Source Integrations](https://docs.platform.sh/integrations/source.html) for more information.
 {% endhint %}
 
 ## Create a Shopware project
 
-First we create a new project with `composer create-project shopware/platform:dev-flex <folder-name>` using the [flex template](../../guides/installation/flex.md).
+Firstly,  create a new project with `composer create-project shopware/platform:dev-flex <folder-name>` using the [flex template](../../guides/installation/flex.md).
 
-This will create a brand new Shopware 6 project in the given folder. Now we have to change into our new created project and require the PaaS configuration with `composer req paas`.
+This will create a brand new Shopware 6 project in the given folder. Now, change it into the newly created project and require the PaaS configuration with `composer req paas`.
 
-Second we have to create a new Git repository and push it to your favorite Git hosting service.
+Secondly, create a new Git repository and push it to your favorite Git hosting service.
 
 ## Add PaaS remote
 
-Next, we need to add a second remote, which allows us to push code towards the PaaS environment and trigger a deployment.
+Lastly, add a second remote, which allows us to push code towards the PaaS environment and trigger a deployment.
 
 We first need the project ID, so we display all projects using
 

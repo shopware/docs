@@ -1,110 +1,55 @@
 # Symfony Flex
 
-Symfony Flex is a composer plugin which helps you to manage and stay up to date with your Shopware Configuration files.
+Symfony Flex is a composer plugin that helps to manage and stay up to date with your Shopware Configuration files.
 
 ## Set up a new project
 
-To create a new Shopware project just run the following command:
+To create a new Shopware project, run the following command:
 
 ```bash
 composer create-project shopware/production:dev-flex <project-name>
 ```
 
-This will create a new project in the `<project-name>` directory. The `dev-flex` version constraint will install the latest version of the Shopware. This constraint `dev-flex` will be removed when the template is generally available.
+This creates a new project in the `<project-name>` directory. The `dev-flex` version constraint installs the latest version of the Shopware. This constraint `dev-flex` is removed when the template is generally available.
 
-The template contains all Shopware bundles like `shopware/administration`, `shopware/storefront`, `shopware/elasticsearch`. If you don't need one of them, you can just uninstall it with:
+The template contains all Shopware bundles like `shopware/administration`, `shopware/storefront`, `shopware/elasticsearch`. If you don't need one of them, you can uninstall it with:
 `composer remove shopware/<bundle-name>`.
 
 ## Installation
 
 ### Local installation
 
-You have to adjust the generated `.env` file and run following command:
+You have to adjust the generated `.env` file and run the following command:
 
 ```bash
 bin/console system:install --basic-setup
 ```
 
-This will install Shopware and create a default sales channel with a default admin user named `admin` with password `shopware`. Change these credentials after the installation.
+This installs Shopware and creates a default sales channel with default admin credentials (user name, `admin` and password, `shopware`). Change these credentials after the installation.
 
 ### Installation with Docker and local PHP using Symfony CLI
 
-The Symfony CLI is a developer tool to help you build, run, and manage your Symfony applications directly from your terminal. The services will run in Docker containers and the application runs locally.
+The Symfony CLI is a developer tool that helps to build, run, and manage your Symfony applications directly from the terminal. The services will run in Docker containers and the application will run locally.
 
-If you don't have Symfony CLI installed [use this guide](https://symfony.com/download)
+* Requisites: 
 
-As Symfony CLI will use your local PHP, make sure you have PHP installed.
+1. Install [Symfony CLI](https://symfony.com/download), if you don't have one. 
+
+2. As Symfony CLI uses local PHP, ensure to have PHP installed. Below are the commands to install it:
 
 {% tabs %}
 {% tab title="Ubuntu based Linux" %}
 
-We need to add a new Software Repository to your system to have the latest PHP version
+You need to add a new Software Repository to your system to have the latest PHP version.
 
 ```bash
 sudo add-apt-repository ppa:ondrej/php
 
 sudo apt-get install -y php8.1-fpm php8.1-mysql php8.1-curl php8.1-gd php8.1-xml php8.1-zip php8.1-opcache php8.1-mbstring php8.1-intl php8.1-cli
-```
-
-{% endtab %}
-
-{% tab title="Debian based Linux" %}
-
-We need to add a new Software Repository to your system to have the latest PHP version
-
-```bash
-curl https://packages.sury.org/php/README.txt | bash
-
-sudo apt-get install -y php8.1-fpm php8.1-mysql php8.1-curl php8.1-gd php8.1-xml php8.1-zip php8.1-opcache php8.1-mbstring php8.1-intl php8.1-cli
-```
-
-{% endtab %}
-
-{% tab title="macOS Homebrew" %}
-
-```bash
-brew install php@8.1
-```
-
-{% endtab %}
-
-{% tab title="Nix / NixOs" %}
-
-```bash
-# Nix
-nix-env -iA nixpkgs.php81
-
-# NixOs
-nix-env -iA nixos.php81
-```
-
-{% endtab %}
-
-{% endtabs %}
-
-As next, we have to start our docker containers with following command:
-
-```bash
-docker compose up -d
-```
-
-and start our Web server with `symfony server:up -d`
-
-To install now Shopware run
-
-```bash
-symfony console system:install --basic-setup
-```
-
-{% hint style="info" %}
-[Symfony CLI overrides environment variable](https://symfony.com/doc/current/setup/symfony_server.html#docker-integration) `DATABASE_URL` and `MAILER_URL` automatically. So prefix all your commands with `symfony console` for the `bin/console` or `symfony run` for any other executable.
-{% endhint %}
-
-This will install Shopware and create a default sales channel with a default admin user named `admin` with password `shopware`. Change these credentials after the installation.
 
 ### Optional packages
 
-The template is very small and does not contain any dev-tooling or integrations like PaaS or Fastly. You can easily add them to your project with the following commands:
+The template is small and does not contain any dev-tooling or integrations like PaaS or Fastly. You can easily add them to your project with the following commands:
 
 ```bash
 # Install Symfony Default Profiler
@@ -125,11 +70,11 @@ Using Shopware Packagist you can manage all your Shopware Store plugins directly
 
 ### 1. Backup
 
-Start with a clean git state or make a backup of your files
+Start with a clean git state or make a backup of your files.
 
-### 2. Adjusting root composer.json
+### 2. Adjust root composer.json
 
-First, you need to adjust your root `composer.json`. You need to add the following lines to your `composer.json`:
+* Firstly, adjust your root `composer.json`. Add the following lines to your `composer.json`:
 
 ```json
 "extra": {
@@ -143,7 +88,7 @@ First, you need to adjust your root `composer.json`. You need to add the followi
 }
 ```
 
-and replace all existing scripts with following
+* Next, replace all the existing scripts with the following:
 
 ```json
 "scripts": {
@@ -157,7 +102,7 @@ and replace all existing scripts with following
 }
 ```
 
-and remove the fixed platform as it will be now determined by the required packages
+* Finally, remove the fixed platform as it will now be determined by the required packages.
 
 ```diff
 "config": {
@@ -174,7 +119,7 @@ and remove the fixed platform as it will be now determined by the required packa
 
 ### 3. Cleanup the template
 
-After the installation of the new composer packages, you can cleanup the template. You can remove the following files:
+After the installation of the new composer packages, you can clean up the template by removing the following files:
 
 ```bash
 rm -r .dockerignore \
@@ -206,7 +151,7 @@ rm -r .dockerignore \
 
 To install Symfony Flex, you need to have composer installed. If you don't have composer installed, please follow the [official documentation](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos).
 
-To install Symfony Flex, you need to run the following command and allow both new composer plugins:
+To install Symfony Flex, you need to run the following commands and allow both new composer plugins.
 
 ```bash
 composer require symfony/flex:~2 symfony/runtime:~5.4
@@ -216,7 +161,7 @@ composer recipe:install --force --reset
 
 ### 5. Review changes
 
-Review the changes and commit them to your git repository. All upcoming config changes can be applied with `composer recipe:update`
+Review the changes and commit them to your git repository. All upcoming config changes can be applied with `composer recipe:update`.
 
 ### 6. Optional: Install PaaS or Fastly support
 
@@ -230,12 +175,13 @@ composer req paas
 composer req fastly
 ```
 
-## Updating Shopware
+## Update Shopware
 
-To update Shopware run `bin/console system:update:prepare` to enable the maintenance mode and then update all composer packages using `composer update`.
-To disable the maintenance mode again run `bin/console system:update:finish`
+Below are the two ways to update Shopware:
 
-If you want to force update all config files you can run `composer recipe:update`
+* Initially run `bin/console system:update:prepare` to enable the maintenance mode and then update all composer packages using `composer update`.  However, to disable the maintenance mode, run `bin/console system:update:finish`.
+
+* To force update all config files, run `composer recipe:update`.
 
 ## Known issues
 

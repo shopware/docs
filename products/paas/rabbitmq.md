@@ -1,7 +1,6 @@
 # RabbitMQ
 
-RabbitMQ is enabled by default in the template. This service is optional
- but recommended. It can be disabled and replaced by an SQL-backed queue.
+RabbitMQ is enabled by default in the template. This service is optional but recommended. It can be disabled and replaced by an SQL-backed queue.
 
 ## Disable service
 
@@ -19,7 +18,7 @@ Comment out the RabbitMQ service configuration.
 
 ## Remove relationship
 
-Comment out the relationship for it the app configuration.
+Comment out the relationship for the app configuration.
 
 {% code title=".platform.app.yaml" %}
 

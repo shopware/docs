@@ -31,7 +31,7 @@ relationships:
 
 ## Configure instance
 
-Please follow the setup and indexing steps to prepare your instance as described in [Set up Elasticsearch](../../guides/hosting/infrastructure/elasticsearch/elasticsearch-setup.md#prepare-shopware-for-elasticsearch).
+Follow the setup and indexing steps to prepare your instance as described in the [Set up Elasticsearch](../../guides/hosting/infrastructure/elasticsearch/elasticsearch-setup.md#prepare-shopware-for-elasticsearch).
 
 After that, the following environment variables are provided by the composer package `shopware/paas-meta:
 
@@ -39,4 +39,4 @@ After that, the following environment variables are provided by the composer pac
 
 ## Enable Elasticsearch
 
-Ultimately, activate Elasticsearch, by setting the environment variable `SHOPWARE_ES_ENABLED` to `1`. You can enable this by adding it to your `.platform.app.yaml` file.
+Ultimately, activate Elasticsearch by setting the environment variable `SHOPWARE_ES_ENABLED` to `1`. You can enable this by adding it to your `.platform.app.yaml` file.

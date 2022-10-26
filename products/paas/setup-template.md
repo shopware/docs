@@ -106,7 +106,6 @@ This file contains services which are used by the `app` instances. Depending on 
 
 We suggest checking in your theme configuration to version control in this directory. Read more on the concept of [builds without database](../../guides/hosting/installation-updates/deployments/build-w-o-db.md) as described in [Theme Build](./theme-build.md).
 
-## Updating Shopware / Updating config
+## Update Shopware/ Update config
 
-Shopware can be updated by running `composer update` and pushing the new lock file.
-The config files can be forced to be updated with `composer recipe:update`
+Shopware can be updated by running `composer update` and pushing the new lock file. The config files can also be forced to update with `composer recipe:update`
