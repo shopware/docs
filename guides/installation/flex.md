@@ -31,11 +31,11 @@ This installs Shopware and creates a default sales channel with default admin cr
 
 The Symfony CLI is a developer tool that helps to build, run, and manage your Symfony applications directly from the terminal. The services will run in Docker containers and the application will run locally.
 
-* Requisites: 
+* Requisites:
 
-1. Install [Symfony CLI](https://symfony.com/download), if you don't have one. 
+1. Install [Symfony CLI](https://symfony.com/download), if you don't have one.
 
-2. As Symfony CLI uses local PHP, ensure to have PHP installed. Below are the commands to install it:
+1. As Symfony CLI uses local PHP, ensure to have PHP installed. Below are the commands to install it:
 
 {% tabs %}
 {% tab title="Ubuntu based Linux" %}
