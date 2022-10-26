@@ -108,11 +108,13 @@
 
 * [Installation](guides/installation/README.md)
   * [Installation overview](guides/installation/overview.md)
+  * [Symfony Flex](guides/installation/flex.md)
   * [Dockware](guides/installation/dockware.md)
   * [Docker](guides/installation/docker.md)
   * [Installation from scratch](guides/installation/from-scratch.md)
   * [Valet+](guides/installation/valet.md)
   * [MAMP](guides/installation/mamp.md)
+  * [Symfony Flex](guides/installation/flex.md)
 * [Extensions](guides/plugins/README.md)
   * [Overview](guides/plugins/overview.md)
   * [Plugins](guides/plugins/plugins/README.md)
