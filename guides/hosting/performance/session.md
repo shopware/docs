@@ -31,9 +31,9 @@ framework:
 
 Symfony also provides PHP implementations of some adapters:
 
-- [PdoSessionHandler](https://github.com/symfony/symfony/blob/6.0/src/Symfony/Component/HttpFoundation/Session/Storage/Handler/PdoSessionHandler.php)
-- [MemcachedSessionHandler](https://github.com/symfony/symfony/blob/6.0/src/Symfony/Component/HttpFoundation/Session/Storage/Handler/MemcachedSessionHandler.php)
-- [MongoDbSessionHandler](https://github.com/symfony/symfony/blob/6.0/src/Symfony/Component/HttpFoundation/Session/Storage/Handler/MongoDbSessionHandler.php)
+- [PdoSessionHandler](https://github.com/symfony/symfony/blob/5.4/src/Symfony/Component/HttpFoundation/Session/Storage/Handler/PdoSessionHandler.php)
+- [MemcachedSessionHandler](https://github.com/symfony/symfony/blob/5.4/src/Symfony/Component/HttpFoundation/Session/Storage/Handler/MemcachedSessionHandler.php)
+- [MongoDbSessionHandler](https://github.com/symfony/symfony/blob/5.4/src/Symfony/Component/HttpFoundation/Session/Storage/Handler/MongoDbSessionHandler.php)
 
 To use one of these handlers, you need to create a new service in the dependency injection and set the `handler_id` to the service id.
 
