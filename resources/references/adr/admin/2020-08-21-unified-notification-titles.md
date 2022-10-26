@@ -1,4 +1,4 @@
-# 2020-07-02 - Notification titles are pre-defined and make use of the global namespace
+# 2020-08-21 - Notification titles are pre-defined and make use of the global namespace
 
 ::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.

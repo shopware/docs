@@ -1,10 +1,9 @@
-# 2020-12-03 - The best-practice to always re-fetch the data after saving
+# 2020-09-17 - The best-practice to always re-fetch the data after saving
 
 ::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/admin/2020-12-03-the-best-practice-to-always-re-fetch-the-data-after-saving.md)
 :::
-
 ## Context
 
 We should always re-fetch the entity data after saving within admin pages.
