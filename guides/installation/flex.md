@@ -62,9 +62,9 @@ composer req paas
 composer req fastly
 ```
 
-#### Adding Shopware Packagist
+#### Add Shopware Packagist
 
-Using Shopware Packagist you can manage all your Shopware Store plugins directly in the composer.json aswell. See this blog post for [more information](https://www.shopware.com/en/news/using-composer-for-plugin-installation-in-shopware/).
+Using Shopware Packagist you can manage all your Shopware Store plugins directly in the composer.json. Refer to ["Using composer for plugin installation in Shopware"](https://www.shopware.com/en/news/using-composer-for-plugin-installation-in-shopware/) blog post for detailed information.
 
 ## How to migrate to Symfony Flex?
 
