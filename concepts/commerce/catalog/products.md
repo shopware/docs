@@ -4,7 +4,7 @@ Products are sellable items within your shop. Depending on your setup, Shopware 
 
 Let's start with the product data model
 
-![Condensed overview of the product data model](../../../.gitbook/assets/image%20%288%29.png)
+![Condensed overview of the product data model](../../../.gitbook/assets/concept-catalog-products-datamodel.png)
 
 You can see, that besides their relation to categories, products can also link to a set of _property group options_.
 
@@ -18,7 +18,7 @@ Exemplary property groups \(e.g. for garments\) are _Size_, _Color_ or _Material
 
 Different variations of a product can be modeled using _product variants_. Products are a self-referencing entity, which is interpreted as a parent-child relationship. This mechanism is also used to model variants. Nicely this also provides inheritance between field values from parent products to child products.
 
-![Variant model](../../../.gitbook/assets/image%20%2810%29.png)
+![Variant model](../../../.gitbook/assets/concept-catalog-products-variantModel.png)
 
 However, next to the field inheritance, it is also useful to attach some additional properties to be able to differ product variants. For that reason, it is critical to understand the difference between _properties_ and _options_:
 
