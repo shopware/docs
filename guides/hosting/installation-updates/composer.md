@@ -48,7 +48,7 @@ If you are using a separate build server, consider having NPM and Node as build-
 
 To set up the environment and install with a basic setup run the following commands:
 
-```bash
+```sh
 # clone newest 6.4 patch version from github 
 git clone --branch=6.4 https://github.com/shopware/production shopware
 cd shopware
@@ -73,7 +73,7 @@ bin/console system:install --create-database --basic-setup
 
 To update Shopware 6 just run this:
 
-```bash
+```sh
 # pull newest changes from origin
 git pull origin
 
@@ -214,7 +214,7 @@ If you have project specific plugins, place them under `custom/static-plugins/{Y
 
 Note: The plugins needs a \(stable\) version to work with the default stability `stable`.
 
-```bash
+```sh
 composer require "exampleorg/myplugin"
 ```
 
@@ -226,7 +226,7 @@ External plugins in private repositories can also be required by adding the repo
 
 Run the following command, to update all shopware dependencies:
 
-```bash
+```sh
 composer update "shopware/*"
 ```
 

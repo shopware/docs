@@ -47,7 +47,7 @@ Having said, that the main Vue.js application is wrapped inside a Symfony bundle
 
 The `src` directory of the SPA below is structured along the three different use cases the Administration faces: Provide common functionality, an application skeleton and modules.
 
-```bash
+```sh
 <platform/src/Administration/Resources/app/administration/src/>
 |- app
 |- core
@@ -75,7 +75,7 @@ A `page` represents the entry point or the page that needs to be rendered and en
 
 At least one `page` is mandatory in each module. Though views and components can be present in the module a vast default component library is present to help with default cases.
 
-```bash
+```sh
 |- page1
   |- view1
     |- component1
@@ -91,7 +91,7 @@ At least one `page` is mandatory in each module. Though views and components can
 
 Having a look at a more practical example, one can look closer at the order module. Typically, you'll find this structure alongside other modules. Especially, when it comes to creating pages or views for creating/editing, listing or viewing a specific entity. Please head to the [Add custom module](../../../guides/plugins/plugins/administration/add-custom-module.md) article if you want to learn more about adding your custom module with a Shopware plugin.
 
-```bash
+```sh
 <platform/src/Administration/Resources/app/administration/src/module/sw-order/>
 |- acl
 |- component

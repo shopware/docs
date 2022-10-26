@@ -108,13 +108,13 @@ In your apache config, it is recommended to move the document root folder to the
 As this is a development machine, let's assume we want to change the document root to point to a folder in our own home directory. Search for the term "DocumentRoot" in your `httpd.conf` apache configuration, and you should see the following line:
 :::
 
-```bash
+```sh
 DocumentRoot "/usr/local/var/www"
 ```
 
 Change this to point to your user directory where your\_user is the name of your user account:
 
-```bash
+```sh
 DocumentRoot /Users/your_user/Sites/sw6/public
 ```
 
@@ -134,7 +134,7 @@ Before you're able to set up Shopware, you need to clone our Shopware repositori
 
 A simple cli installation wizard can be invoked by executing:
 
-```bash
+```sh
 bin/setup
 ```
 
@@ -150,7 +150,7 @@ We highly discourage to update each without the other!
 
 The following steps should always yield a positive result:
 
-```bash
+```sh
 git pull
 cd platform
 git pull

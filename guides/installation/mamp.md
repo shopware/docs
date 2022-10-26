@@ -38,7 +38,7 @@ Finish this step by clicking _GO_.
 
 Next up, we need to make sure MAMP php binary is used globally on your CLI. Therefore we execute the following commands:
 
-```bash
+```sh
 which php
 # /Applications/MAMP/bin/php/php7.2.14/bin/php &lt; should be displayed
 # IF NOT
@@ -54,7 +54,7 @@ The folder used in `PATH` \(`PATH=/Applications/MAMP/bin/php/php7.2.14/bin:$PATH
 
 Then you need to make sure MAMP mysql binary is used globally on your CLI:
 
-```bash
+```sh
 which mysql
 # /Applications/MAMP/Library/bin/mysql &lt; should be displayed
 # IF NOT
@@ -68,7 +68,7 @@ source ~/.bash_profile
 
 It's handy to use brew as a package manager. So we recommend you to install brew. Please open the terminal application again and run the command stated below:
 
-```bash
+```sh
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
@@ -76,7 +76,7 @@ It's handy to use brew as a package manager. So we recommend you to install brew
 
 Next step is installing NodeJS and NPM. Therefore you need to leave the terminal application open and use brew to install node:
 
-```bash
+```sh
 brew install node@12
 ```
 
@@ -84,7 +84,7 @@ brew install node@12
 
 In order to install composer, please open the terminal application. Afterwards, execute the following command:
 
-```bash
+```sh
 brew install composer
 ```
 
@@ -92,7 +92,7 @@ brew install composer
 
 Before you're able to set up Shopware, you need to checkout Shopware's repositories. This is explained in the "Preparatory steps" paragraph of the [Installation overview guide](overview.md). Nevertheless, below you see a brief summary on this process:
 
-```bash
+```sh
 # Choose your own directory
 cd ~/PhpstormProjects/
 mkdir shopware
@@ -114,7 +114,7 @@ First, add a new host in MAMP:
 
 As a next step, change the installation settings
 
-```bash
+```sh
 # Inside the shopware installation directory (e.g.  /PhpstormProjects/shopware/development)
 bin/setup
 ```
@@ -133,7 +133,7 @@ Afterwards a file called `.psh.yaml.override` is created, which contains all tho
 
 ### Start Shopware 6 setup
 
-```bash
+```sh
 # Inside the shopware installation directory (e.g. /PhpstormProjects/shopware/development) 
 ./psh.phar install
 ```

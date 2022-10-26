@@ -49,7 +49,7 @@ There is a console command to start a worker that will receive incoming messages
 
 <CodeBlock title="">
 
-```bash
+```sh
 bin/console messenger:consume default
 ```
 
@@ -89,7 +89,7 @@ The recommended way to consume messages is through the cli command. You can conf
 
 <CodeBlock title="">
 
-```bash
+```sh
 bin/console messenger:consume default --time-limit=60
 ```
 
@@ -97,7 +97,7 @@ bin/console messenger:consume default --time-limit=60
 
 <CodeBlock title="">
 
-```bash
+```sh
 bin/console messenger:consume default --memory-limit=128M
 ```
 
@@ -107,7 +107,7 @@ For more information about the command and its configuration use the `-h` option
 
 <CodeBlock title="">
 
-```bash
+```sh
 bin/console messenger:consume -h
 ```
 

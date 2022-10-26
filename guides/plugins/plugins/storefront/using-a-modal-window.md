@@ -173,14 +173,14 @@ To see your changes you have to build the storefront. Use the following command 
 <Tabs>
 <Tab title="Development template">
 
-```bash
+```sh
 ./psh.phar storefront:build
 ```
 
 </Tab>
 <Tab title="Production template">
 
-```bash
+```sh
 ./bin/build-storefront.sh
 ```
 

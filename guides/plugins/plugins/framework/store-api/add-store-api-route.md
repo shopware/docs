@@ -155,7 +155,7 @@ To check, if your route was registered correctly, you can use the [Symfony route
 
 <CodeBlock title="">
 
-```bash
+```sh
 $ ./bin/console debug:router store-api.example.search
 ```
 

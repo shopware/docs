@@ -35,7 +35,7 @@ Last, but not least, the Storefront not only contains static templates but also 
 
 Let's have a look at the Storefront's general component structure. When opening this directory you will find several sub-directories & a vast part of the functionality of the Storefront component includes templates \(`./Resources`\). But beside that, there are other directories worth having a look at.
 
-```bash
+```sh
 <Storefront>
 |- Controller
 |- DependencyInjection

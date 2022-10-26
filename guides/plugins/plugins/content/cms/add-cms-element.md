@@ -410,7 +410,7 @@ That's it! You could now go ahead and fully test your new element! Install this 
 <Tabs>
 <Tab title="Development template">
 
-```bash
+```sh
 ./psh.phar administration:build
 ```
 
@@ -418,7 +418,7 @@ That's it! You could now go ahead and fully test your new element! Install this 
 
 <Tab title="Production template">
 
-```bash
+```sh
 ./bin/build-administration.sh
 ```
 

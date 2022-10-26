@@ -29,7 +29,7 @@ When our extension is finished, you will get the following file structure:
 
 <CodeBlock title="<plugin root>/src/Resources/app/administration/src">
 
-```bash
+```sh
 ├── base
 │   └── mainCommands.ts
 ├── main.ts
@@ -164,7 +164,7 @@ The last files are the components inside our `views` folder. Just like you know 
 
 <CodeBlock title="<plugin root>/src/Resources/app/administration/src">
 
-```bash
+```sh
 views
 └── swag-dailymotion
     ├── swag-dailymotion-config.ts

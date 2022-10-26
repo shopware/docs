@@ -10,19 +10,19 @@ At least on Linux operating systems, docker installation is the easiest way to g
 
 1. Build and start the containers:
 
-```bash
+```sh
 ./psh.phar docker:start
 ```
 
 1. Access the application container:
 
-```bash
+```sh
 ./psh.phar docker:ssh
 ```
 
 1. Execute the installer inside the docker container:
 
-```bash
+```sh
 ./psh.phar install
 ```
 
@@ -34,13 +34,13 @@ After exploring Shopware 6 you can terminate it with these two commands:
 
 1. Leave the shell:
 
-```bash
+```sh
 exit
 ```
 
 1. Stop the containers:
 
-```bash
+```sh
 ./psh.phar docker:stop
 ```
 
@@ -73,7 +73,7 @@ That's it. Continue to install Shopware 6 as usual:
 
 1. Build and start the containers:
 
-```bash
+```sh
 ./psh.phar docker:start
 ```
 
@@ -81,13 +81,13 @@ This command creates and starts the containers, watchers, and the sync itself. R
 
 1. Access the application container:
 
-```bash
+```sh
 ./psh.phar docker:ssh
 ```
 
 1. Execute the installer inside the Docker container:
 
-```bash
+```sh
 ./psh.phar install
 ```
 

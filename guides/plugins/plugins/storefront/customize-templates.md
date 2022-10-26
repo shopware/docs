@@ -73,7 +73,7 @@ And that's it already, you're done. You might have to clear the cache and refres
 <Tabs>
 <Tab title="Development template">
 
-```bash
+```sh
 ./psh.phar cache
 ```
 
@@ -85,7 +85,7 @@ Also remember to not only activate your plugin but also to assign your theme to 
 
 <Tab title="Production template">
 
-```bash
+```sh
 ./bin/console cache:clear
 ```
 

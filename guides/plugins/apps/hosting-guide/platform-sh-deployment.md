@@ -75,7 +75,7 @@ In order to use the following commands you need to have the [Platform.sh CLI](ht
 
 ### List all Platform.sh CLI commands
 
-```bash
+```sh
 platform list
 ```
 
@@ -85,7 +85,7 @@ This step is needed if you want to get more information about the project using 
 
 **Documentation:** <https://docs.platform.sh/gettingstarted/introduction/own-code/create-project.html>
 
-```bash
+```sh
 platform project:set-remote <Project ID>
 ```
 
@@ -93,7 +93,7 @@ platform project:set-remote <Project ID>
 
 **Documentation:** <https://docs.platform.sh/gettingstarted/developing/dev-environments/create-environment.html>
 
-```bash
+```sh
 # Push to Platform.sh
 git push -u platform <Branch Name>
 
@@ -105,7 +105,7 @@ platform environment:activate <Branch Name>
 
 **Documentation:** <https://docs.platform.sh/development/access-site.html#visiting-the-site-on-the-web>
 
-```bash
+```sh
 platform url 
 ```
 
@@ -113,7 +113,7 @@ platform url
 
 **Documentation:** <https://docs.platform.sh/development/ssh.html>
 
-```bash
+```sh
 platform ssh
 ```
 
@@ -121,7 +121,7 @@ platform ssh
 
 **Documentation:** <https://docs.platform.sh/development/local/tethered.html#ssh-tunneling>
 
-```bash
+```sh
 # List all possible commands
 platform tunnel:list
 
@@ -136,6 +136,6 @@ mysql --host=127.0.0.1 --port=30001 --user='user' --password='' --database='main
 
 **Documentation:** <https://docs.platform.sh/development/logs.html>
 
-```bash
+```sh
 platform log --help
 ```

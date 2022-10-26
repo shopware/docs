@@ -105,7 +105,7 @@ This file contains the basic setup for our app to display the notification:
 
 Next, we need to start the live server so you don't always have to reload the page manually.
 
-```bash
+```sh
 npm install -g live-server
 live-server src
 ```
@@ -146,7 +146,7 @@ In this last step, we're going to install the app using the Shopware CLI tools.
 If this is your first time using the Shopware CLI, you have to [install](https://sw-cli.fos.gg/install/) it first. Next, configure it using the `shopware-cli project config init` command.
 :::
 
-```bash
+```sh
 shopware-cli project extension upload SimpleNotification --activate --increase-version
 ```
 

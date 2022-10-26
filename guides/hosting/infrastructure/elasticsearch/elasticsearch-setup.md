@@ -75,7 +75,7 @@ Normally a shard in Elasticsearch can hold at least tens of gigabytes so you mig
 
 ### Example file for productive environments
 
-```bash
+```sh
 APP_ENV=prod
 APP_SECRET=1
 INSTANCE_ID=1
@@ -93,7 +93,7 @@ SHOPWARE_ES_THROW_EXCEPTION=1
 
 ### Example file for debug configuration
 
-```bash
+```sh
 APP_ENV=dev
 APP_SECRET=1
 INSTANCE_ID=1
@@ -117,7 +117,7 @@ Shopware will use in default 3 shards and 3 replicas for the created index. This
 This configuration is available since Shopware version 6.4.12.0
 :::
 
-```yml
+```yaml
 elasticsearch:
   index_settings:
     number_of_shards: 1

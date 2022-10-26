@@ -99,13 +99,13 @@ In case you're using Docker on Mac we have summarized the steps from the guide m
 
 Install XQuartz via [Homebrew](https://docs.brew.sh/Installation) or alternatively [download](https://www.xquartz.org/) it from the official homepage:
 
-```bash
+```sh
 brew install --cask xquartz
 ```
 
 Run XQuartz via CLI or open it from your Desktop:
 
-```bash
+```sh
 open -a XQuartz
 ```
 
@@ -121,7 +121,7 @@ Restart your Mac before proceeding with the following steps.
 
 Grab your IP address and save it to the environment variable `IP`:
 
-```bash
+```sh
 IP=$(ipconfig getifaddr en0)
 ```
 
@@ -129,13 +129,13 @@ Depending on how you're connected you might have to use another interface instea
 
 Now set the `DISPLAY` environment variable:
 
-```bash
+```sh
 DISPLAY=$IP:0
 ```
 
 Add `$IP` to xhost's ACL:
 
-```bash
+```sh
 xhost + $IP
 ```
 
@@ -158,7 +158,7 @@ To use E2E tests locally, you need to set the variable `CYPRESS_LOCAL` in your `
 <Tab title="Plugin setup">
 If you want to run E2E tests in your plugin, just switch to the folder `Resources/app/<enviroment>/test/e2e` and execute the following command:
 
-```bash
+```sh
 CYPRESS_baseUrl=<your-url> npm run open
 ```
 
@@ -176,31 +176,31 @@ If you use Docker for your development environment, you are able to start right 
 
 To prepare your shopware installation, your environment and install dependencies, please run the following command as first step, **outside** of your docker container:
 
-```bash
+```sh
  ./psh.phar e2e:init
 ```
 
 In our tests, we assume a clean shopware installation, so we strongly recommend to use `e2e:init`. However, if your shopware installation is already clean and prepared, you can skip the preparation of your shopware installation by using the following command **inside** your docker container:
 
-```bash
+```sh
  ./psh.phar e2e:prepare-environment
 ```
 
 Afterwards, just use the following command outside of your container to run the Cypress Test Runner:
 
-```bash
+```sh
 ./psh.phar e2e:open
 ```
 
 If you want to run the tests in CLI, please use the following command outside your container:
 
-```bash
+```sh
 ./psh.phar e2e:run
 ```
 
 Please keep in mind that we use `Administration` as default app environment. If you want to use `Storefront` environment, add the following parameter:
 
-```bash
+```sh
 ./psh.phar e2e:open --CYPRESS_ENV=Storefront
 ```
 
@@ -214,7 +214,7 @@ To see a complete overview on all psh scripts for e2e tests, feel free to refer 
 
 In Shopware platform, you can find the tests in `src/Administration/Resources/app/administration/test/e2e`. There you can find the following folder structure, depending on your environment being Administration or Storefront:
 
-```bash
+```sh
 `-- e2e
   `-- cypress
     |-- fixtures
@@ -427,7 +427,7 @@ In order to get all test fixture data applied to our Shopware installation, we u
 
 All fixture services can be found in `cypress/support/service/`:
 
-```bash
+```sh
 service
   |-- administration // this folder stores the administration channel API services
     `-- <environment>

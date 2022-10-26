@@ -8,7 +8,7 @@ The key concept is, that your PaaS project is a git repository. Every time you p
 
 To push your latest changes, run the following commands from your terminal:
 
-```bash{3}
+```sh{3}
 git add .
 git commit -m "Applied new configuration"
 git push -u platform main

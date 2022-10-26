@@ -54,7 +54,7 @@ The name of your app, that you provide in the manifest file, needs to match the 
 
 The app can now be installed by running the following command:
 
-```bash
+```sh
 bin/console app:install --activate MyExampleApp
 ```
 
@@ -115,7 +115,7 @@ Additionally, the request has the following headers:
 
 An example request may look like this:
 
-```http request
+```
 GET https://my.example.com/registration?shop-id=KIPf0Fz6BUkN&shop-url=http%3A%2F%2Fmy.shop.com&timestamp=159239728
 shopware-app-signature: a8830aface4ac4a21be94844426e62c77078ca9a10f694737b75ca156b950a2d
 sw-version: 6.4.5.0
@@ -380,8 +380,8 @@ Examples request body:
 You need to pass the `status` property, the content of the notification as `message` property and you can restrict users who can read the notification by passing `requiredPrivileges` property and `adminOnly` property inside the payload.
 When `adminOnly` is true, only admins can read this notification. If you don't send the `adminOnly` or `adminOnly` is false, you can pass the `requiredPrivileges` property so that users with specific permissions can read the notification. Otherwise, it will be displayed to every user.
 
-```http request
-POST /api/notification
+```json
+// POST /api/notification
 
 {
     "status": "success",
@@ -448,13 +448,13 @@ You can run the `app:validate` command to validate the configuration of your app
 
 To validate all apps in your `custom/apps` folder run:
 
-```bash
+```sh
 bin/console app:validate
 ```
 
 Additionally, you can specify which app should be validated by providing the app name as an argument;
 
-```bash
+```sh
 bin/console app:validate MyExampleApp
 ```
 
@@ -493,7 +493,7 @@ The user can either run a strategy with the `bin/console app:url-change:resolve`
 
 ## API Docs
 <!-- markdown-link-check-disable-next-line -->
-{% api-method method="get" host="https://my.example.com" path="" %}
+<!-- {% api-method method="get" host="https://my.example.com" path="" %}
 {% api-method-summary %}
 registration
 {% endapi-method-summary %}
@@ -548,10 +548,10 @@ The unique identifier of the shop, where the app was installed
 {% endapi-method-response-example %}
 {% endapi-method-response %}
 {% endapi-method-spec %}
-{% endapi-method %}
+{% endapi-method %} -->
 
 <!-- markdown-link-check-disable-next-line -->
-{% api-method method="post" host="https://my.example.com" path="" %}
+<!-- {% api-method method="post" host="https://my.example.com" path="" %}
 {% api-method-summary %}
 confirmation
 {% endapi-method-summary %}
@@ -609,4 +609,4 @@ ApiKey used to authenticate against the Shopware API
 {% endapi-method-response-example %}
 {% endapi-method-response %}
 {% endapi-method-spec %}
-{% endapi-method %}
+{% endapi-method %} -->

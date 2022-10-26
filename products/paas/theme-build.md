@@ -6,7 +6,7 @@ The entire build process is performed without an active database connection. How
 
 First of all, we need to dump the theme configuration
 
-```bash
+```sh
 shopware ssh -A app 'bin/console theme:dump'
 ```
 
@@ -16,7 +16,7 @@ This will connect to the application through an SSH tunnel and run a command whi
 
 Because we want to check the theme configuration into our VCS repository, we have to download it first.
 
-```bash
+```sh
 shopware mount:download --mount 'files' --target 'files' -A app
 ```
 
@@ -26,7 +26,7 @@ This will download the remote directory `files` into our local directory `files`
 
 Eventually, we add the downloaded configuration and add it to our repository
 
-```bash
+```sh
 git add files/theme-config
 git commit -m 'Update theme configuration'
 git push # platform main

@@ -16,7 +16,7 @@ Needless to say, you should have your image or another asset at hand to work wit
 
 In order to add your own custom assets, you need to save your assets in the `Resources/app/administration/static` folder.
 
-```bash
+```sh
 # PluginRoot
 .
 ├── composer.json
@@ -33,7 +33,7 @@ Similar as in [using custom assets in Storefront](../storefront/add-custom-asset
 
 <CodeBlock title="">
 
-```bash
+```sh
 bin/console assets:install
 ```
 
@@ -41,7 +41,7 @@ bin/console assets:install
 
 This way, your plugin assets are copied to the `public/bundles` folder:
 
-```bash
+```sh
 # shopware-root/public/bundles
 .
 ├── administration

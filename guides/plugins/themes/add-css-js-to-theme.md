@@ -34,7 +34,7 @@ When the storefront gets compiled the PHP SASS compiler will look up the files d
 
 In order to add some custom SCSS in your theme, you just need to edit the `base.scss` file which in located in `<plugin root>/src/Resources/app/storefront/src/scss` directory.
 
-```bash
+```sh
 .
 ├── composer.json
 └── src
@@ -71,7 +71,7 @@ By default your plugin is using Shopware's default webpack configuration, as you
 
 Since Shopware knows where your style files are located, they are automatically compiled, compressed and loaded into the Storefront. In the case of JavaScript, you have your `main.js` as entry point which has to be located the `src/Resources/app/storefront/src/` directory:
 
-```bash
+```sh
 .
 ├── composer.json
 └── src
@@ -104,7 +104,7 @@ To activate the hot-proxy, run the following command `./psh.phar storefront:hot-
 <Tabs>
 <Tab title="Development template">
 
-```bash
+```sh
 ./psh.phar storefront:hot-proxy
 ```
 
@@ -112,7 +112,7 @@ To activate the hot-proxy, run the following command `./psh.phar storefront:hot-
 
 <Tab title="Production template">
 
-```bash
+```sh
 ./bin/watch-storefront.sh
 ```
 

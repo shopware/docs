@@ -274,7 +274,7 @@ In order to test your changes now, you should rebuild your administration. This 
 <Tabs>
 <Tab title="Development template">
 
-```bash
+```sh
 ./psh.phar administration:build
 ```
 
@@ -282,7 +282,7 @@ In order to test your changes now, you should rebuild your administration. This 
 
 <Tab title="Production template">
 
-```bash
+```sh
 ./bin/build-administration.sh
 ```
 

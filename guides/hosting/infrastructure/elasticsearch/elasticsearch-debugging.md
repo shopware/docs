@@ -10,13 +10,13 @@ This article shows you how to debug the status and indexing proccess of your Ela
 
 `cache:clear` clears the cache
 
-```bash
+```sh
 bin/console cache:clear
 ```
 
 **> Output:**
 
-```bash
+```
 // Clearing the cache for the dev environment with debug
 // true
 ​[OK] Cache for the "dev" environment (debug=true) was successfully cleared.
@@ -26,7 +26,7 @@ bin/console cache:clear
 
 `es:index` creates only the index for ES
 
-```bash
+```sh
 bin/console es:index // Creates only the index for ES
 ```
 
@@ -36,7 +36,7 @@ bin/console es:index // Creates only the index for ES
 
 `es:create:alias`  will create an alias linking to the index after `es:index` is done. Normally this is done automatically, in older version this has to be done.
 
-```bash
+```sh
 bin/console es:create:alias 
 ```
 
@@ -46,13 +46,13 @@ bin/console es:create:alias
 
 `dal:refresh:index --use-queue` creates a complete reindex from the Shopware DAL (ES/SEO/Media/Sitemap...) **ALWAYS** "`--use-queue`" since big request can outperform the server!
 
-```bash​
+```sh
 bin/console dal:refresh:index --use-queue
 ```
 
 **> Output:**
 
-```bash
+```
 [landing_page.indexer]
 1/1 [============================] 100% < 1 sec/< 1 sec 38.5 MiB
 ​
@@ -68,20 +68,19 @@ bin/console dal:refresh:index --use-queue
 [category.indexer]
 9/9 [============================] 100% < 1 sec/< 1 sec 40.5 MiB
 ​
-[...]
 ```
 
 ### Messenger Consume
 
 `messenger:consume -vv` starts a message consumer working on all tasks. This could be startet *X* times. When using more then 3 message consumer, you will need something like RabbitMq to handle the data
 
-```bash​
+```sh
 bin/console messenger:consume -vv
 ```
 
 **> Output:**
 
-```bash
+```
 [OK] Consuming messages from transports "default".
 ​​
 // The worker will automatically exit once it has received a stop signal via the messenger:stop-workers command.
@@ -97,19 +96,19 @@ bin/console messenger:consume -vv
 
 `es:index:cleanup` to remove unused indices, because each indexing will generate a new Elasticsearch index.
 
-```bash​
+```sh
 bin/console es:index:cleanup
 ```
 
 ## Helpful Elasticsearch REST APIs
 
-```bash
+```sh
 curl -XGET 'http://elasticsearch:9200/?pretty'
 ```
 
 **> Output:**
 
-```bash
+```json
 {
   "name" : "TZzynG6",
   "cluster_name" : "docker-cluster",
@@ -133,13 +132,13 @@ curl -XGET 'http://elasticsearch:9200/?pretty'
 
 Returns the health status of a cluster.
 
-```bash
+```sh
 curl -XGET 'http://elasticsearch:9200/_cluster/health?pretty'
 ```
 
 **> Output:**
 
-```bash
+```json
 {
   "cluster_name" : "docker-cluster",
   "status" : "yellow",
@@ -163,13 +162,13 @@ curl -XGET 'http://elasticsearch:9200/_cluster/health?pretty'
 
 Returns high-level information about indices in a cluster, including backing indices for data streams.​
 
-```bash
+```sh
 curl -XGET 'http://elasticsearch:9200/_cat/indices/?pretty'
 ```
 
 **> Output:**
 
-```bash
+```
 yellow open sw1_manufacturer_20210906113224 AYKMT4NJS7eZgU29ww7z6Q 5 1  3 0  33.2kb  33.2kb
 yellow open sw1_emotion_20210903165112      he19OP_UR3mMIAKI7ry2mg 5 1  1 0  11.6kb  11.6kb
 yellow open sw1_emotion_20210903171353      jBzApKujRPu73CkKA79F7w 5 1  1 0  11.6kb  11.6kb
@@ -183,13 +182,13 @@ yellow open sw1_synonym_20210903170128      NRjlZZ3AQ0Wat1ILB_9L8Q 5 1  0 0   1.
 
 With `_all` it will delete all indices.
 
-```bash
+```sh
 curl -X DELETE 'elasticsearch:9200/_all'
 ```
 
 **> Output:**
 
-```bash
+```json
 {"acknowledged":true}
 ```
 
@@ -230,7 +229,7 @@ update scheduled_task set status = 'scheduled' where status = 'queued';
 
 Now delete the old Elasticsearch index, clear your cache, reindex and ensure that the indexing process is finished:
 
-```bash
+```sh
 curl -X DELETE 'elasticsearch:9200/_all'
 bin/console cache:clear
 bin/console es:index
@@ -239,7 +238,7 @@ bin/console messenger:consume -vv
 
 After the last message has been processed your index should be found in your storefront, if not execute:
 
-```bash
+```sh
 bin/console es:create:alias
 ```
 

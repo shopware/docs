@@ -36,7 +36,7 @@ All registered entities will get an automatically registered repository. It is a
 
 Additionally, to the repository you can also access your custom entities via [Admin api](../../../../concepts/api/admin-api.md).
 
-```bash
+```sh
 POST /api/search/custom-entity-blog
 ```
 
@@ -80,7 +80,7 @@ If you use the shorthand in the entity definition, you also need to use it if yo
 {% set blogs = services.repository.search('ce_blog', criteria) %}
 ```
 
-```bash
+```sh
 POST /api/search/ce_blog
 ```
 

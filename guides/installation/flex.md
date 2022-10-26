@@ -6,7 +6,7 @@ Symfony Flex is a composer plugin that helps to manage and stay up to date with 
 
 To create a new Shopware project, run the following command:
 
-```bash
+```sh
 composer create-project shopware/production:dev-flex <project-name>
 ```
 
@@ -21,7 +21,7 @@ The template contains all Shopware bundles like `shopware/administration`, `shop
 
 You have to adjust the generated `.env` file and run the following command:
 
-```bash
+```sh
 bin/console system:install --basic-setup
 ```
 
@@ -37,12 +37,9 @@ The Symfony CLI is a developer tool that helps to build, run, and manage your Sy
 
 1. As Symfony CLI uses local PHP, ensure to have PHP installed. Below are the commands to install it:
 
-{% tabs %}
-{% tab title="Ubuntu based Linux" %}
-
 You need to add a new Software Repository to your system to have the latest PHP version.
 
-```bash
+```sh
 sudo add-apt-repository ppa:ondrej/php
 
 sudo apt-get install -y php8.1-fpm php8.1-mysql php8.1-curl php8.1-gd php8.1-xml php8.1-zip php8.1-opcache php8.1-mbstring php8.1-intl php8.1-cli
@@ -52,7 +49,7 @@ sudo apt-get install -y php8.1-fpm php8.1-mysql php8.1-curl php8.1-gd php8.1-xml
 
 The template is small and does not contain any dev-tooling or integrations like PaaS or Fastly. You can easily add them to your project with the following commands:
 
-```bash
+```sh
 # Install Symfony Default Profiler
 composer req --dev profiler
 
@@ -122,7 +119,7 @@ Start with a clean git state or make a backup of your files.
 
 After the installation of the new composer packages, you can clean up the template by removing the following files:
 
-```bash
+```sh
 rm -r .dockerignore \
     .editorconfig \
     .env.dist \
@@ -154,7 +151,7 @@ To install Symfony Flex, you need to have composer installed. If you don't have 
 
 To install Symfony Flex, you need to run the following commands and allow both new composer plugins.
 
-```bash
+```sh
 composer require symfony/flex:~2 symfony/runtime:~5.4
 
 composer recipe:install --force --reset
@@ -168,7 +165,7 @@ Review the changes and commit them to your git repository. All upcoming config c
 
 If you want to use the Shopware PaaS or Fastly, you need to install the following composer packages:
 
-```bash
+```sh
 # PaaS
 composer req paas
 
@@ -190,7 +187,7 @@ Below are the two ways to update Shopware:
 
 Prior to Shopware 6.4.17.0 you have to install the Profiler bundle to get `APP_ENV=dev` working with:
 
-```bash
+```sh
 composer req --dev profiler
 ```
 
@@ -198,6 +195,6 @@ composer req --dev profiler
 
 Prior to Shopware 6.4.17.0 you have to install some packages to get `framework:demo-data` command working:
 
-```bash
+```sh
 composer req --dev mbezhanov/faker-provider-collection maltyxx/images-generator
 ```

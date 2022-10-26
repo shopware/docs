@@ -54,11 +54,11 @@ This is due to `valet fix` uninstalling `valet-php@7.4` for some reason. You can
 
 ### Missing Elasticsearch stub fix
 
-```bash
+```sh
 sudo cp ~/.composer/vendor/weprovide/valet-plus/cli/stubs/elasticsearch.conf /usr/local/etc/nginx/valet/elasticsearch.conf
 ```
 
-```bash
+```sh
 valet domain test
 ```
 

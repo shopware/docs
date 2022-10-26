@@ -53,7 +53,7 @@ Since the path is read from the namespace, your Migration directory would have t
 
 To create a new migration, you have to open your Shopware root directory in your terminal and execute the command `database:create-migration`. Below you can see the command used in this example to create the migration seen above in the file structure.
 
-```bash
+```sh
 $ ./bin/console database:create-migration -p SwagBasicExample --name ExampleDescription
 ```
 
@@ -156,7 +156,7 @@ SQL;
 
 If you want to create a migration for your new custom entity, you could execute the following command. This command selects all active entities and saves it into `platform/src/schema`.
 
-```bash
+```sh
 $ ./bin/console dal:create:schema
 ```
 
@@ -177,7 +177,7 @@ When updating a plugin, do not change a migration that was already executed, sin
 
 The identifier argument is used to decide which migrations should be executed. Per default, the identifier is set to run Shopware Core migrations. To run your plugin migrations, set the identifier argument to your plugin's bundle name, in this example `SwagBasicExample`.
 
-```bash
+```sh
 $ ./bin/console database:migrate SwagBasicExample --all
 ```
 

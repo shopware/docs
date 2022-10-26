@@ -218,7 +218,7 @@ Lets agree on the following two paths for the examples:
 
 Now have a look at the `shared_files` and `shared_dirs` configuration in the [`deploy.php`](deployment-with-deployer.md#deploy-php). Simply copy all the paths into `/var/www/shopware/shared`. For the configuration of the [`deploy.php`](deployment-with-deployer.md#deploy-php) the commands would be the following:
 
-```bash
+```sh
 cp /var/www/shopware_backup/.env /var/www/shopware/shared/
 cp -R /var/www/shopware_backup/custom/plugins /var/www/shopware/shared/custom
 cp -R /var/www/shopware_backup/config/jwt /var/www/shopware/shared/config

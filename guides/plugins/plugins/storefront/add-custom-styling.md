@@ -66,7 +66,7 @@ Now you want to test if your custom styles actually apply to the Storefront. For
 <Tabs>
 <Tab title="Development template">
 
-```bash
+```sh
 ./psh.phar storefront:build
 ```
 
@@ -74,7 +74,7 @@ Now you want to test if your custom styles actually apply to the Storefront. For
 
 <Tab title="Production template">
 
-```bash
+```sh
 ./bin/build-storefront.sh
 ```
 
@@ -86,7 +86,7 @@ If you want to see all style changes made by you live, you can also use our Stor
 <Tabs>
 <Tab title="Development template">
 
-```bash
+```sh
 ./psh.phar storefront:hot-proxy
 ```
 
@@ -94,7 +94,7 @@ If you want to see all style changes made by you live, you can also use our Stor
 
 <Tab title="Production template">
 
-```bash
+```sh
 ./bin/watch-storefront.sh
 ```
 

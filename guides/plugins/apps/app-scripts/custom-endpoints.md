@@ -282,6 +282,8 @@ Note that you can also chain the filter operations:
 
 You can then use the filtered down list of ids to invalidate entity specific tags:
 
+<CodeBlock title="Resources/scripts/cache-invalidation/my-invalidation-script.twig">
+
 
 ```twig
 {% set tags = [] %}

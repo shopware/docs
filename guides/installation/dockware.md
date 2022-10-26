@@ -36,7 +36,7 @@ First things first, please install Docker on your local maschine.
 
 Afterwards, you are almost ready to start. You just need to use the following command on your host system to get it going:
 
-```bash
+```sh
 # quick run with latest PHP and Shopware
 $ docker run --rm -p 80:80 dockware/dev:latest
 ```
@@ -47,7 +47,7 @@ Beware that this is meant for quickstart. The parameter `--rm` will throw everyt
 
 This command will install Dockware \#dev version, which is based on `Production` template. If you want to use `development` template, you need to use \#contribute version. As soon as the docker image is downloaded and dockware is ready, you will see this text:
 
-```bash
+```sh
 SUCCESS - Shopware is now ready!
 -----------------------------------------------------
 SHOP URL: http://localhost
@@ -60,7 +60,7 @@ MAILCATCHER URL: http://localhost/mailcatcher
 
 You can start the dockware image with different shopware versions:
 
-```bash
+```sh
 docker run --rm -p 80:80 --env PHP_VERSION=7.2 dockware/dev:latest
 ```
 
@@ -115,7 +115,7 @@ networks:
 
 Open the folder with your compose file in your terminal and execute this command to start your container:
 
-```bash
+```sh
 docker-compose up -d
 ```
 
@@ -125,7 +125,7 @@ Now download the current version of Shopware to your host into a "src" directory
 
 This is required to have code completion and IntelliSense right in your IDE.
 
-```bash
+```sh
 mkdir -p ./src
 docker cp shopware:/var/www/html/. ./src
 ```

@@ -26,7 +26,7 @@ In addition, you need a running Shopware 6 installation. Your repository used fo
 
 The test folder structure should match the source folder structure. You add a test for a file in the same path as the source path. You see: When creating the file, the name should also be the same as the component has with an additional .spec before the file extension `.js`. The `.spec` suffix is a well-known naming convention of frontend testing files.
 
-```bash
+```sh
 Resources
   `-- app
     `-- <environment>

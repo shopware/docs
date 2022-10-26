@@ -16,7 +16,7 @@ Needless to say, you should have your image or another asset at hand to work wit
 
 In order to add custom assets to your theme, you need to create a new folder called public inside the `src/Resources` directory of your plugin. Here you're able to store your assets files, so please feel free to save your image there - we'll do the same thing in our example plugin.
 
-```bash
+```sh
 # PluginRoot
 .
 ├── composer.json

@@ -32,7 +32,7 @@ Now that you've found your name, it's time to actually create your plugin.
 
 Shopware provides a handy command that you can use to generate the plugin structure. Go to your shopware project's root directory and run the following command:  
 
-```bash
+```sh
 bin/console plugin:create SwagBasicExample
 ```
 
@@ -157,14 +157,14 @@ Open up your command line terminal and navigate to your Shopware 6 directory, th
 
 Once inside there, you need to refresh the list of plugins, that Shopware knows yet. This is done with the following command:
 
-```bash
+```sh
 php bin/console plugin:refresh
 ```
 
 There might be a warning appearing regarding the `version` of the `composer.json` file, but you can safely ignore that.  
 You should end up with a list like the following:
 
-```bash
+```sh
 Shopware Plugin Service
 =======================
 
@@ -177,13 +177,13 @@ Shopware Plugin Service
 
 This output is a **good sign**, because this means Shopware recognized your plugin successfully. But it's not installed yet, so let's do that.
 
-```bash
+```sh
 php bin/console plugin:install --activate SwagBasicExample
 ```
 
 This should print the following output:
 
-```bash
+```sh
 Shopware Plugin Lifecycle Service
 =================================
 

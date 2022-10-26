@@ -27,7 +27,7 @@ This file contains Shopware PaaS specific configuration and can be customized as
 
 Is the name of your app. It's used in commands like
 
-```bash
+```sh
 shopware ssh -A app 'bin/console theme:dump'
 ```
 

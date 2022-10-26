@@ -172,7 +172,7 @@ class Migration1611740369ExampleDescriptionTest extends TestCase
 
 Once we've created our tests, we have to initialize the test databases for our migration test. This can be done with the following command:
 
-```bash
+```sh
 $ ./psh.phar init-test-databases
 ```
 
@@ -190,7 +190,7 @@ For easier usage, you could create a batch file called `phpunit.sh` into a `/bin
 
 <CodeBlock title="<plugin root>/bin/phpunit.sh">
 
-```bash
+```sh
 #!/usr/bin/env bash
 dir=`pwd`
 cd ./../../../

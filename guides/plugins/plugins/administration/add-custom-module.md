@@ -202,7 +202,7 @@ Given this plugin would be named "AdministrationNewModule", the bundled and mini
 <Tabs>
 <Tab title="Development template">
 
-```bash
+```sh
 ./psh.phar administration:build
 ```
 
@@ -210,7 +210,7 @@ Given this plugin would be named "AdministrationNewModule", the bundled and mini
 
 <Tab title="Production template">
 
-```bash
+```sh
 ./bin/build-administration.sh
 ```
 

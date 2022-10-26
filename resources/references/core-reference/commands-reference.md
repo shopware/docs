@@ -2,7 +2,7 @@
 
 These commands can be executed using the Shopware command line interface \(CLI\), located within your Shopware project
 
-```bash
+```sh
 $ bin/console [command] [parameters]
 ```
 

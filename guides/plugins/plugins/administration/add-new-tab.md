@@ -153,7 +153,7 @@ Don't forget to rebuild the administration after applying changes to your `main.
 <Tabs>
 <Tab title="Development template">
 
-```bash
+```sh
 ./psh.phar administration:build
 ```
 
@@ -161,7 +161,7 @@ Don't forget to rebuild the administration after applying changes to your `main.
 
 <Tab title="Production template">
 
-```bash
+```sh
 ./bin/build-administration.sh
 ```
 

@@ -24,13 +24,13 @@ The recommended method for consuming messages is using the cli worker.
 
 You can configure the command just to run a certain amount of time and to stop if it exceeds a certain memory limit like:
 
-```bash
+```sh
 bin/console messenger:consume default --time-limit=60 --memory-limit=128M
 ```
 
 For more information about the command and its configuration use the -h option:
 
-```bash
+```sh
 bin/console messenger:consume -h
 ```
 
@@ -62,7 +62,7 @@ We assume the services to be called `shopware_consumer`.
 
 Create a new file `/etc/systemd/system/shopware_consumer@.service`
 
-```bash
+```sh
 [Unit]
 Description=Shopware Message Queue Consumer, instance %i
 PartOf=shopware_consumer.target
@@ -81,7 +81,7 @@ WantedBy=shopware_consumer.target
 
 Create a new file `/etc/systemd/system/shopware_consumer.target`
 
-```bash
+```sh
 [Install]
 WantedBy=multi-user.target
 

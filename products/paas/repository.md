@@ -20,7 +20,7 @@ Lastly, add a second remote, which allows us to push code towards the PaaS envir
 
 We first need the project ID, so we display all projects using
 
-```bash{7}
+```sh{7}
 $ shopware projects
 
 Your projects are:
@@ -36,7 +36,7 @@ List a projects environments by running: platform environments -p [id]
 
 To add the project remote to your local repository, just run
 
-```bash
+```sh
 shopware project:set-remote 7xasjkyld189e # Replace with your project ID
 ```
 

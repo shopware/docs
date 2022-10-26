@@ -274,7 +274,7 @@ To get more information on how to create configuration forms, see [Plugin Config
 
 The app can now be installed by running the following command:
 
-```bash
+```sh
 bin/console app:install --activate FlowBuilderActionApp
 ```
 

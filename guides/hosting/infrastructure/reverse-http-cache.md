@@ -479,7 +479,7 @@ storefront:
 
 Varnish Config:
 
-```vcl
+```text
 vcl 4.0;
 
 import std;
@@ -691,7 +691,7 @@ The `X-Cache` and `X-Cache-Hits` headers are only meant to verify that Varnish i
 
 To disable these headers, comment out the lines by prefixing them with the `#` character. The lines in questions are:
 
-```vcl
+```text
 # Set a cache header to allow us to inspect the response headers during testing
 if (obj.hits > 0) {
     unset resp.http.set-cookie;
@@ -705,7 +705,7 @@ set resp.http.X-Cache-Hits = obj.hits;
 
 Make it so that the lines look like the following:
 
-```vcl
+```text
 # Set a cache header to allow us to inspect the response headers during testing
 if (obj.hits > 0) {
     unset resp.http.set-cookie;

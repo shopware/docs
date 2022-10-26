@@ -73,7 +73,7 @@ As mentioned above, Shopware 6 is looking for a `main.js` file in your plugin. I
 <Tabs>
 <Tab title="Development template">
 
-```bash
+```sh
 ./psh.phar administration:build
 ```
 
@@ -81,7 +81,7 @@ As mentioned above, Shopware 6 is looking for a `main.js` file in your plugin. I
 
 <Tab title="Production template">
 
-```bash
+```sh
 ./bin/build-administration.sh
 ```
 

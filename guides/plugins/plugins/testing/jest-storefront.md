@@ -32,7 +32,7 @@ Inside the test directory, you add a test for a file in the same path as the sou
 
 The exact test folder structure looks like seen below, starting in `Storefront` bundle:
 
-```bash
+```sh
 Resources
   `-- app
     `-- <environment>
@@ -148,13 +148,13 @@ That's basically it! We wrote our first jest unit test in the Storefront.
 
 Before you are using the commands make sure that you installed all dependencies for your storefront. If you haven't done this already, then you can do it running the following PSH command:
 
-```bash
+```sh
 > ./psh.phar storefront:install-dependencies
 ```
 
 In order to run jest unit tests of the storefront, you can use the psh commands provided by our development template. This command executes all unit tests and shows you the complete code coverage.
 
-```bash
+```sh
 > ./psh.phar storefront:unit
 ```
 
@@ -264,7 +264,7 @@ describe('HelloWorldPlugin tests', () => {
 
 If you execute your test now, you'll run into an error:
 
-```bash
+```sh
       HelloWorldPlugin tests
         ✕ custom plugin exists (32ms)
 

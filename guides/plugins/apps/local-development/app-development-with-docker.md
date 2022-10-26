@@ -164,7 +164,7 @@ Your `development/.psh.yaml.override` should look like this:
 
 <CodeBlock title="development/.psh.yaml.override">
 
-```Yaml
+```yaml
 # ...
 dynamic:
  #  ...

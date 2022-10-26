@@ -151,13 +151,13 @@ Either installation method requires you to check out the sources first. Shopware
 
 Let's start by cloning the development template:
 
-```bash
+```sh
 git clone https://github.com/shopware/development.git
 ```
 
 You now have the application template for Shopware 6 in the directory `development`, we now navigate into it:
 
-```bash
+```sh
 cd development
 ```
 
@@ -165,7 +165,7 @@ By default, the development template has `shopware/platform` in the version `dev
 
 Only if you want to work with the Shopware platform code itself, e.g. in order to create a pull request for it, you should clone the `platform` code manually. Before doing so, remove the existing platform directory.
 
-```bash
+```sh
 rm -rf platform
 git clone https://github.com/shopware/platform.git
 ```

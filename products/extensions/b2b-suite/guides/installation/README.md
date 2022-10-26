@@ -27,7 +27,7 @@ These requirements apply from **B2B Suite 4.6.0 and above**:
 
 As minimum requirement, we need a docker runtime with version 1.12.* or higher. [psh.phar](https://github.com/shopwareLabs/psh) provides the following available docker commands:
 
-```bash
+```sh
 ./psh.phar docker:start     # start & build containers
 ./psh.phar docker:ssh       # ssh access web server
 ./psh.phar docker:ssh-mysql # ssh access mysql
@@ -38,19 +38,19 @@ As minimum requirement, we need a docker runtime with version 1.12.* or higher. 
 
 To start the docker environment just type
 
-```bash
+```sh
 ./psh.phar docker:start
 ```
 
 on your command line. The several containers are booted and afterwards you can login into your web container with
 
-```bash
+```sh
 ./psh.phar docker:ssh
 ```
 
 After that, you can start the initialization process by typing
 
-```bash
+```sh
 ./psh.phar init
 ```
 
@@ -58,7 +58,7 @@ After a few minutes, our test environment should be available under the address 
 
 To get a full list of available commands, you can use
 
-```bash
+```sh
 ./psh.phar
 ```
 
@@ -67,7 +67,7 @@ To get a full list of available commands, you can use
 The following commands are available to create a mac setup. Apache, MySQL and ant are
 required. You can use brew package manager to install them.
 
-```bash
+```sh
 ./psh.phar mac:init         # build installation
 ./psh.phar mac:start        # start apache, mysql 
 ./psh.phar mac:stop         # stop apache, mysql
@@ -93,7 +93,7 @@ For a better explanation, use the provided .psh.yaml.dist file as an example.
 
 Once the environment has booted successfully, you can use the common scripts to setup shopware
 
-```bash
+```sh
 ./psh.phar clear # remove vendor components and previously set state
 ./psh.phar init # init composer, install plugins
 ./psh.phar unit # execute test suite
