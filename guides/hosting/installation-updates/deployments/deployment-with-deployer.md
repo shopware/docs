@@ -12,13 +12,13 @@ This "certain infrastructure" will be called "target server" in the following.
 
 ## Video
 <!-- markdown-link-check-disable-next-line -->
-<PageRef page="https://www.youtube.com/watch?v=Oo-KvyxJvpo" title="" />
+<PageRef page="https://www.youtube.com/watch?v=Oo-KvyxJvpo" title="Continuous Deployment: Automating Shopware 6 deployments" target="_blank" video />
 
 ## Prerequisites
 
 Please make sure you already have a working Shopware 6 instance running, and your repository is based on the Shopware production template, because this article relies on some scripts to exist in your repository.
 <!-- markdown-link-check-disable-next-line -->
-<PageRef page="https://github.com/shopware/production" title="" />
+<PageRef page="https://github.com/shopware/production" title="shopware/production" />
 
 ### Preparations before the first deployment
 

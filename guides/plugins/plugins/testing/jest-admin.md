@@ -12,7 +12,7 @@ We are using [Jest](https://jestjs.io) as our testing framework. It's a solid fo
 
 Did you know that there's a video available to this topic? Please take a look:
 <!-- markdown-link-check-disable-next-line -->
-<PageRef page="https://www.youtube.com/watch?v=nWUBK3fjwVg" title="" />
+<PageRef page="https://www.youtube.com/watch?v=nWUBK3fjwVg" title="Writing Unit tests with Jest" target="_blank" video />
 
 ## Prerequisites
 

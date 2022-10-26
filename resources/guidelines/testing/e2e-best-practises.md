@@ -6,7 +6,7 @@ A typical E2E test can be complex, with many steps that take a lot of time to co
 
 Cypress got you covered with their best practices as well: So please also look at their best practices to get to know their patterns:
 <!-- markdown-link-check-disable-next-line -->
-<PageRef page="https://docs.cypress.io/guides/references/best-practices.html" title="" />
+<PageRef page="https://docs.cypress.io/guides/references/best-practices.html" title="Cypress Best Practices" />
 
 ::: warning
 We strongly recommend following Cypress' own best practices as well.
@@ -20,7 +20,7 @@ When it comes to dividing test types, selecting and prioritizing test cases, and
 
 At [Shopware Community Day](https://scd.shopware.com/en/) 2020, we gave a talk on how we approach automated testing in Shopware, how far we have come on this journey, and what we have gained so far:
 <!-- markdown-link-check-disable-next-line -->
-<PageRef page="https://www.youtube.com/watch?v=sxvQoWF4KS0" title="" />
+<PageRef page="https://www.youtube.com/watch?v=sxvQoWF4KS0" title="SCD20 - A matter of trust – test" target="_blank" video />
 
 To sum it up briefly for your End-to-End testing context, End-To-End tests are the one tests being slow and thus expensive to maintain. That's why we need a way to prioritize our test cases.
 
@@ -30,7 +30,7 @@ To sum it up briefly for your End-to-End testing context, End-To-End tests are t
 Cover every possible workflow with E2E tests.
 :::
 
-::: success
+::: tip
 Use proper prioritisation to choose test cases covered by E2E tests.
 :::
 
@@ -47,7 +47,7 @@ You see, due to running times it is not advisable to cover every single workflow
 Write E2E test as you would write unit tests.
 :::
 
-::: success
+::: tip
 Write E2E tests in a "workflow-based" manner, that means writing the test describing a real user's workflow - just like a real user would use your application.
 :::
 
@@ -61,7 +61,7 @@ A test should be written "workflow-based" - We like to use this word very much, 
 Write long E2E tests, covering lots of workflows and use cases.
 :::
 
-::: success
+::: tip
 Keep tests as simple as possible! Only test the workflow you explicitly want to test - ideally use **one test for one workflow**.
 :::
 
@@ -84,7 +84,7 @@ This [scope practice](https://docs.cypress.io/guides/references/best-practices.h
 Design your tests dependent on each other, doing lots of write operations without removing corresponding data.
 :::
 
-::: success
+::: tip
 Keep tests isolated, enable them to run independently and restore a clean installation between tests
 :::
 
@@ -104,7 +104,7 @@ When planning your test cases and structure, always keep your tests isolated fro
 Choose fuzzy selectors which are prone to change, e.g. xpath.
 :::
 
-::: success
+::: tip
 Use selectors which won't change often.
 :::
 
@@ -116,7 +116,7 @@ XPath selectors are quite fuzzy and rely a lot on the texts, which can change qu
 Choose framework specific syntax as a selector which is prone to change, e.g. `.btn-primary`.
 :::
 
-::: success
+::: tip
 Use individual selectors which won't change often, e.g. `.btn-buy`.
 :::
 
@@ -178,7 +178,7 @@ If there are no suitable selectors available, please add descriptive classes or 
 Waiting for arbitrary time periods, e.g. using `cy.wait(500)`
 :::
 
-::: success
+::: tip
 Use route aliases or assertions to guard Cypress from proceeding until an explicit condition is met.
 :::
 
@@ -215,7 +215,7 @@ This [best practice](https://docs.cypress.io/guides/references/best-practices#Un
 Using vanilla JavaScript logic alongside cypress commands without further caution
 :::
 
-::: success
+::: tip
 If you need vanilla Javascript in your test, wrap it in a Cypress' `then` or build a custom command in order to get it queued.
 :::
 

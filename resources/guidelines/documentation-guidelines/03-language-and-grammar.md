@@ -20,7 +20,7 @@ Shopware voices a friendly and conversational tone. We are direct, clear, and mo
 
 In general, use the active voice (the subject is the person or thing performing the action) instead of the passive voice (the subject is the person or thing being acted upon). For example,
 
-::: success
+::: tip
 **Active Voice** - The user passes the access-key.
 :::
 
@@ -42,7 +42,7 @@ It is okay to use passive voice in the following cases:
 
 * If you are guiding the reader to perform something, use an imperative form with an implicit you. For example:
 
-  ::: success
+  ::: tip
   **Recommended** - Create a PDF file.
   :::
 

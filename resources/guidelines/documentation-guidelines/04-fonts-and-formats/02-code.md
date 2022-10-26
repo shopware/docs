@@ -88,7 +88,7 @@ Below are a few more instances:
 
 * When using code blocks within lists, use correct indention to avoid breaking the list. For example,
 
-::: success
+::: tip
 
 * Payment
 
