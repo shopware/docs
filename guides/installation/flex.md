@@ -42,11 +42,11 @@ The Symfony CLI is a developer tool that helps to build, run, and manage your Sy
 
 You need to add a new Software Repository to your system to have the latest PHP version.
 
+
 ```bash
 sudo add-apt-repository ppa:ondrej/php
 
 sudo apt-get install -y php8.1-fpm php8.1-mysql php8.1-curl php8.1-gd php8.1-xml php8.1-zip php8.1-opcache php8.1-mbstring php8.1-intl php8.1-cli
-
 ### Optional packages
 
 The template is small and does not contain any dev-tooling or integrations like PaaS or Fastly. You can easily add them to your project with the following commands:
