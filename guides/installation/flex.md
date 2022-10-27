@@ -53,7 +53,7 @@ sudo apt-get install -y php8.1-fpm php8.1-mysql php8.1-curl php8.1-gd php8.1-xml
 
 {% tab title="Debian based Linux" %}
 
-We need to add a new Software Repository to your system to have the latest PHP version
+Add a new Software Repository to your system to have the latest PHP version
 
 ```bash
 curl https://packages.sury.org/php/README.txt | bash
@@ -203,7 +203,7 @@ composer recipe:install --force --reset
 
 Review the changes and commit them to your git repository. All upcoming config changes can be applied with `composer recipe:update`.
 
-You may need to adjust also some environment variables as the names changed:
+You may need to adjust some environment variables as the names are changed:
 
 | **Old name**      | **New name**   |
 |-------------------|----------------|
