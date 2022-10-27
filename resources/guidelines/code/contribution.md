@@ -11,8 +11,8 @@ To ensure the quality of our code and our products we have created a small guide
 To avoid that your pull request gets rejected, you should always check that you provided all necessary information, so that we can integrate your changes in our internal workflow very easily. Here is a check-list with some requirements you should always consider when committing new changes.
 
 * A pull request to the Shopware core always has to be made to the [platform](https://github.com/shopware/platform) repository.
-* Did you fill out the [pull request info template](https://github.com/shopware/platform/blob/master/.github/PULL_REQUEST_TEMPLATE.md) as detailed as possible?
-* Did you create a changelog file with documentation of your changes? You can find detailed information about writing changelog [here](https://github.com/shopware/platform/blob/master/adr/workflow/2020-08-03-implement-New-Changelog.md)!
+* Did you fill out the [pull request info template](https://github.com/shopware/platform/blob/master/.github/PULL_REQUEST_TEMPLATE) as detailed as possible?
+* Did you create a changelog file with documentation of your changes? You can find detailed information about writing changelog [here](https://github.com/shopware/platform/blob/master/adr/workflow/2020-08-03-implement-New-Changelog)!
 * Does your pull request address the correct shopware version? Breaks and features cannot be merged in a patch release.
 * Is your implementation missing some important parts? For example translations, downward compatibility, compatibility to important plugins, etc.
 * Did you provide the necessary tests for your implementation?
@@ -36,7 +36,7 @@ When you create a new pull request on GitHub, it will normally get a first sight
 | ![GitHub label accepted](../../../.gitbook/assets/github-label-accepted.png) | Your changes are finally accepted. The pull request passed our internal workflow. Your changes will be released with one of the next releases. |
 | ![GitHub label feature request](../../../.gitbook/assets/github-label-feature.png) | Your pull request includes a new feature which needs an internal discussion by our developers. We have to decide if the new feature provides a good benefit for the product and at which point on the roadmap it should be scheduled. |
 | ![GitHub label refactoring](../../../.gitbook/assets/github-label-refactoring.png) | Your pull request includes a larger refactoring which needs an internal discussion by our developers. This label will mainly be set, when larger chunks of code have been re-written, renamed or moved to different directories. |
-| ![GitHub label missing tests](../../../.gitbook/assets/github-label-missing-tests.png) | Your pull request is lacking necessary tests for your changes. E.g. [Jest](../../../guides/plugins/plugins/testing/jest-admin.md) or [Cypress](../../../guides/plugins/plugins/testing/end-to-end-testing.md) tests for frontend changes or [PHPUnit](../../../guides/plugins/plugins/testing/php-unit.md) tests for backend changes. |
+| ![GitHub label missing tests](../../../.gitbook/assets/github-label-missing-tests.png) | Your pull request is lacking necessary tests for your changes. E.g. [Jest](../../../guides/plugins/plugins/testing/jest-admin) or [Cypress](../../../guides/plugins/plugins/testing/end-to-end-testing) tests for frontend changes or [PHPUnit](../../../guides/plugins/plugins/testing/php-unit) tests for backend changes. |
 
 ## Why a pull request gets declined
 

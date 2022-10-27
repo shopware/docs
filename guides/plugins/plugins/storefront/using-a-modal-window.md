@@ -8,11 +8,11 @@ This guide explains how you can use a modal window in your plugin in different s
 
 This guide requires you to already have a basic plugin running. This guide **does not** explain how to create a new plugin for Shopware 6. Head over to our Plugin base guide to learn how to create a plugin at first:
 
-<PageRef page="./../plugin-base-guide.md" title="<<<title-missing>>>" />
+<PageRef page="./../plugin-base-guide" title="<<<title-missing>>>" />
 
 While this is not mandatory, having read the guide about adding custom JavaScript plugins beforehand might help you understand this guide a bit further:
 
-<PageRef page="./add-custom-javascript.md" title="<<<title-missing>>>" />
+<PageRef page="./add-custom-javascript" title="<<<title-missing>>>" />
 
 ## Create a modal manually from the DOM using Bootstrap
 
@@ -91,7 +91,7 @@ This does not work when the trigger selector is being changed via JavaScript, e.
 
 To create a modal window you can use the `PseudoModalUtil` in your plugin.
 
-As explained in the guide on [adding custom javascript](./add-custom-javascript.md) we load our JavaScript plugin by creating `index.html.twig` template in the `<plugin root>/src/Resources/views/storefront/page/content/` folder.
+As explained in the guide on [adding custom javascript](./add-custom-javascript) we load our JavaScript plugin by creating `index.html.twig` template in the `<plugin root>/src/Resources/views/storefront/page/content/` folder.
 Inside this template, extend from the `@Storefront/storefront/page/content/index.html.twig` and overwrite the `base_main_inner` block. After the parent content of the blog, add a template tag with the `data-example-plugin` attribute.
 
 <CodeBlock title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig">

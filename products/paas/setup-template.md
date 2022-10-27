@@ -104,4 +104,4 @@ This file contains services which are used by the `app` instances. Depending on 
 
 ## [files / theme-config](https://github.com/shopware/recipes/tree/main/shopware/paas-meta/6.4/root/files/theme-config)
 
-We suggest checking in your theme configuration to version control in this directory. Read more on the concept of [builds without database](../../guides/hosting/installation-updates/deployments/build-w-o-db.md) as described in [Theme Build](./theme-build.md).
+We suggest checking in your theme configuration to version control in this directory. Read more on the concept of [builds without database](../../guides/hosting/installation-updates/deployments/build-w-o-db) as described in [Theme Build](./theme-build).

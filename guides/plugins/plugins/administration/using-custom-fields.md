@@ -4,15 +4,15 @@
 
 All you need for this guide is a running Shopware 6 instance, the files and preferably a registered module in your own plugin. Don't know how to create an own plugin yet? Head over to the following guide:
 
-<PageRef page="../plugin-base-guide.md" title="<<<title-missing>>>" />
+<PageRef page="../plugin-base-guide" title="<<<title-missing>>>" />
 
 In order to craft your module, you will need to create lots on own components. If you're not sure about how to do that, take a look at the corresponding guide:
 
-<PageRef page="add-custom-component.md" title="<<<title-missing>>>" />
+<PageRef page="add-custom-component" title="<<<title-missing>>>" />
 
 In addition, of course you need an entity with custom fields to be able to add those custom fields to your module to begin with. Here you can learn how to add your custom fields:
 
-<PageRef page="../framework/custom-field/add-custom-field.md" title="<<<title-missing>>>" />
+<PageRef page="../framework/custom-field/add-custom-field" title="<<<title-missing>>>" />
 
 ## Using custom fields in your module
 

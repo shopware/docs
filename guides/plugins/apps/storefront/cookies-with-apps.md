@@ -4,7 +4,7 @@
 
 You should be familiar with the concept of apps.
 
-<PageRef page="../app-base-guide.md" title="<<<title-missing>>>" />
+<PageRef page="../app-base-guide" title="<<<title-missing>>>" />
 
 ## Create a single cookie
 
@@ -42,7 +42,7 @@ Cookie elements can be configured by adding the following child elements:
 * `expiration` (optional): Cookie lifetime in days. **If unset, the cookie expires with the session.**
 * `snippet-description` (optional): A string that represents the description of the cookie in the cookie consent manager. To provide translations, this should be the key of a Storefront snippet.
 
-For a complete reference of the structure of the manifest file, take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference.md).
+For a complete reference of the structure of the manifest file, take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference).
 
 ## Create a cookie group
 
@@ -86,7 +86,7 @@ A `group` element consists of three child elements to configure the cookie group
 * `entries` (required): Contains the grouped cookies. It is a collection of `cookie` elements described in the previous section.
 * `snippet-description` (optional): A string that represents the description of the cookie group in the cookie consent manager. To provide translations this should be the key of a Storefront snippet.
 
-For a complete reference of the structure of the manifest file, take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference.md).
+For a complete reference of the structure of the manifest file, take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference).
 
 ## Snippet handling
 
@@ -94,10 +94,10 @@ As already mentioned in the previous sections, both the `cookie` and the `group`
 
 If you are not familiar with setting up Storefront snippets, please refer to our snippet guide.
 
-<PageRef page="../../plugins/storefront/add-translations.md" title="<<<title-missing>>>" />
+<PageRef page="../../plugins/storefront/add-translations" title="<<<title-missing>>>" />
 
 ## Reacting to cookie consent changes
 
 As described in the previous section, `cookie` elements without a `value` element will not be set automatically. Instead, you have to react to cookie consent changes within your JavaScript. Find out how to respond to cookie consent changes in the following article:
 
-<PageRef page="../../../plugins/plugins/storefront/reacting-to-cookie-consent-changes.md" title="<<<title-missing>>>" />
+<PageRef page="../../../plugins/plugins/storefront/reacting-to-cookie-consent-changes" title="<<<title-missing>>>" />

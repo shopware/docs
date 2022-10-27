@@ -1,6 +1,6 @@
 # Field Configuration
 
-With the [relevance](relevance.md), the Advanced Search offers the possibilities to customize the searched fields.
+With the [relevance](relevance), the Advanced Search offers the possibilities to customize the searched fields.
 
 Here, we want to give you brief information about the internal usage of the different Elasticsearch functionalities, which are used for the full text search of the Advanced Search.
 
@@ -44,7 +44,7 @@ When words are separated by one of these characters, the special character is re
 
 1. **Synonym \(`ses_synonym`\)**
 
-   In the Advanced Search you can define synonyms, these [synonyms](synonyms.md) were used by the search analyzer.
+   In the Advanced Search you can define synonyms, these [synonyms](synonyms) were used by the search analyzer.
 
 ## Analyzer
 

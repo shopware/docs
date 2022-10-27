@@ -8,13 +8,13 @@ All components contain own templates and some style. Of course, you may want to 
 
 However, this guide does not explain how to create a custom component, so head over to the official guide about creating a custom component to learn this first.
 
-<PageRef page="add-custom-component.md" title="<<<title-missing>>>" />
+<PageRef page="add-custom-component" title="<<<title-missing>>>" />
 
 In addition, you need to have a basic knowledge of CSS and SCSS in order to use custom styles. This is though considered a basic requirement and won't be taught in this guide.
 
 ### Example: Custom cms block
 
-We will base our guide on an example: Let's use a custom component printing out "Hello world!". So first of all, create a new directory for your`sw-hello-world`. As said before, more information about that topic, such as where to create this directory, can be found in [Add a custom component](add-custom-component.md).
+We will base our guide on an example: Let's use a custom component printing out "Hello world!". So first of all, create a new directory for your`sw-hello-world`. As said before, more information about that topic, such as where to create this directory, can be found in [Add a custom component](add-custom-component).
 
 In your component's directory, create a new `index.js` file and register your custom component `sw-hello-world`:
 
@@ -92,5 +92,5 @@ Because of [Sass](https://sass-lang.com/) usage, you are able to import external
 
 ## More interesting topics
 
-* [Writing templates](writing-templates.md)
-* [Add shortcuts](https://github.com/shopware/docs/tree/575c2fa12ef272dc25744975e2f1e4d44721f0f1/guides/plugins/plugins/administration/add-shortcuts.md)
+* [Writing templates](writing-templates)
+* [Add shortcuts](https://github.com/shopware/docs/tree/575c2fa12ef272dc25744975e2f1e4d44721f0f1/guides/plugins/plugins/administration/add-shortcuts)

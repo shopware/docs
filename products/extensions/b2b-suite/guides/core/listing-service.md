@@ -49,7 +49,7 @@ class SearchStruct
 }
 ```
 
-A more special `SearchStruct` is the `CompanyFilterStruct` (see [company](./company.md)).
+A more special `SearchStruct` is the `CompanyFilterStruct` (see [company](./company)).
 
 ## The Repository
 

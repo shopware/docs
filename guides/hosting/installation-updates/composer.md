@@ -38,7 +38,7 @@ See also:
 
 To get an overview of the requirements see the following guide of your documentation first:
 
-<PageRef page="../../installation/overview.md" title="<<<title-missing>>>" />
+<PageRef page="../../installation/overview" title="<<<title-missing>>>" />
 
 NPM and Node are only required during the build process and for development. If you don't have javascript customizations, it's not required at all. Because the storefront and admin are pre-build.
 

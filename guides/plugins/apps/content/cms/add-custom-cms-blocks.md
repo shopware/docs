@@ -3,20 +3,20 @@
 ::: info
 This functionality is available starting with Shopware 6.4.4.0.
 
-You can [add custom CMS blocks](../../../plugins/content/cms/add-cms-block.md) using the plugin system, however these will not be available in Shopware cloud stores.
+You can [add custom CMS blocks](../../../plugins/content/cms/add-cms-block) using the plugin system, however these will not be available in Shopware cloud stores.
 :::
 
 Didn't get in touch with Shopware's Shopping Experiences \(CMS\) yet? Check out the concept behind it first:
 
-<PageRef page="../../../../../concepts/commerce/core/shopping-experiences-cms.md" title="<<<title-missing>>>" />
+<PageRef page="../../../../../concepts/commerce/core/shopping-experiences-cms" title="<<<title-missing>>>" />
 
 ## Prerequisites
 
-This guide is based on our [App Base Guide](../../app-base-guide.md) and assumes you have already set up an app.
+This guide is based on our [App Base Guide](../../app-base-guide) and assumes you have already set up an app.
 
 ## Overview
 
-Adding custom CMS blocks from an app works a bit differently than [adding them from a plugin](../../../plugins/content/cms/add-cms-block.md).
+Adding custom CMS blocks from an app works a bit differently than [adding them from a plugin](../../../plugins/content/cms/add-cms-block).
 Custom CMS blocks are added by providing a `cms.xml` in the `Resources/` directory of your app.
 The basic directory structure looks as follows:
 
@@ -121,7 +121,7 @@ Let's have a look at how to configure a CMS block from your app's `cms.xml`:
 
 The full CMS reference is available here:
 
-<PageRef page="../../../../../resources/references/app-reference/cms-reference.md" title="<<<title-missing>>>" />
+<PageRef page="../../../../../resources/references/app-reference/cms-reference" title="<<<title-missing>>>" />
 
 ### Block preview
 
@@ -234,4 +234,4 @@ Styling of your blocks in the Storefront can then be done in `Resources/app/stor
 
 ## Further reading
 
-<PageRef page="../../../../../resources/references/app-reference/cms-reference.md" title="<<<title-missing>>>" />
+<PageRef page="../../../../../resources/references/app-reference/cms-reference" title="<<<title-missing>>>" />

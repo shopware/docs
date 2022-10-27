@@ -1,7 +1,7 @@
 # Starter Guide - Add an API endpoint
 
 ::: info
-Note that this guide relies on [app scripts](../app-scripts/README.md), which were introduced in Shopware 6.4.8.0, and are not supported in previous versions.
+Note that this guide relies on [app scripts](../app-scripts), which were introduced in Shopware 6.4.8.0, and are not supported in previous versions.
 :::
 
 This guide shows, how you can add a custom API endpoint that delivers dynamic data starting from zero.
@@ -80,7 +80,7 @@ The prefix for our API endpoint is one of the following and cannot be changed:
 You might wonder why the storefront shows up in that table. In storefront endpoints you can not only render JSON, but also twig templates.
 But use them with care - whenever you create a Storefront endpoint, your app will not be compatible with headless consumers.
 
-Learn more about the different endpoints in [custom endpoints](../app-scripts/custom-endpoints.md)
+Learn more about the different endpoints in [custom endpoints](../app-scripts/custom-endpoints)
 :::
 
 ### Directory structure
@@ -232,7 +232,7 @@ Ultimately, that will give us a result of all products that have been ordered al
 ::: info
 To learn more about the structure of search criterias follow the link below:
 
-[Search Criteria](./../../../integrations-api/general-concepts/search-criteria.md)
+[Search Criteria](./../../../integrations-api/general-concepts/search-criteria)
 :::
 
 We now send a request to the database to retrieve the result using
@@ -345,6 +345,6 @@ In a proper app you should consider the following points
 
 ## Where to continue
 
-* More on adding [custom endpoints](../app-scripts/custom-endpoints.md)
-* See how you can use [Twig functions](../app-scripts/README.md#extended-syntax) in app scripts
-* Working with [DAL Aggregations](./../../../../resources/references/core-reference/dal-reference/aggregations-reference.md)
+* More on adding [custom endpoints](../app-scripts/custom-endpoints)
+* See how you can use [Twig functions](../app-scripts/#extended-syntax) in app scripts
+* Working with [DAL Aggregations](./../../../../resources/references/core-reference/dal-reference/aggregations-reference)

@@ -18,13 +18,13 @@ So let's get started.
 Adding custom URLs to the sitemap is done by adding a so called "URL provider" to the system.
 
 This is done by adding a new class, which is extending from `Shopware\Core\Content\Sitemap\Provider\AbstractUrlProvider`.
-It then has to be registered to the [service container](../../plugin-fundamentals/dependency-injection.md) using the tag
+It then has to be registered to the [service container](../../plugin-fundamentals/dependency-injection) using the tag
 `shopware.sitemap_url_provider`.
 
 It has to provide three methods:
 
 - `getDecorated`: Just throw an exception of type `DecorationPatternException` here. This is done for the sake of extending
-a class via decoration. Learn more about this [here](../../plugin-fundamentals/adjusting-service.md).
+a class via decoration. Learn more about this [here](../../plugin-fundamentals/adjusting-service).
 - `getName`: A technical name for your custom URLs
 - `getUrls`: The main method to take care of. It has to return an instance of `Shopware\Core\Content\Sitemap\Struct\UrlResult`,
 containing an array of all URLs to be added.
@@ -174,7 +174,7 @@ First of all we created a new class `CustomUrlProvider`, which is extending from
 Following are the constants `CHANGE_FREQ` and `priority` - you don't have to add those values as constants of course.
 They're going to be used later in the generation of the sitemap URLs.
 
-Passed into the constructor are the repository for our [custom entity](../../framework/data-handling/add-custom-complex-data.md),
+Passed into the constructor are the repository for our [custom entity](../../framework/data-handling/add-custom-complex-data),
 the DBAL connection used for actually fetching SEO URLs from the database, and the Symfony router in order to generate SEO URLs
 that have not yet been written to the database.
 

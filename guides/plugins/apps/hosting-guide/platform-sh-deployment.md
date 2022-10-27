@@ -7,7 +7,7 @@
 Keep in mind though, that this is **not** the only way to go for Apps! You can of course use different services, providers or host everything on a dedicated machine.
 In this guide, we'd like to let you know what we'd do to get started hosting an App on Platform.sh.
 
-Read more about why this kind of hosting could be useful [here](README.md) or in there [official documentation](https://docs.platform.sh/).
+Read more about why this kind of hosting could be useful [here](README) or in there [official documentation](https://docs.platform.sh/).
 
 ## Getting started
 

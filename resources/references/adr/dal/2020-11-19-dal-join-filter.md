@@ -2,7 +2,7 @@
 
 ::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/dal/2020-11-19-dal-join-filter.md)
+You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/dal/2020-11-19-dal-join-filter)
 :::
 
 ## Context

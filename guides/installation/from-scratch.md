@@ -10,7 +10,7 @@ Be aware this will be a vastly more complex solution since additional system req
 
 - A Linux-based operating system (Windows installation is not covered here, but notes are provided about installing within a WSL instance)
 - An [Apache2 server installation](https://httpd.apache.org/docs/2.4/install.html) within the Linux-based operating system you have selected
-- Installation of all of the required packages mentioned in the [Installation overview](overview.md), there are two main goals you need to accomplish.
+- Installation of all of the required packages mentioned in the [Installation overview](overview), there are two main goals you need to accomplish.
 
 Please note that this guide is rather based on plugin development and contribution. If you need a template for full composer-based shop projects, please refer to the [production template](https://github.com/shopware/production).
 
@@ -128,7 +128,7 @@ Within your Apache configuration you must set your `DocumentRoot` and `Directory
 
 ## Setting up Shopware
 
-Before you're able to set up Shopware, you need to clone our Shopware repositories from version control. This is explained in the "Preparatory steps" paragraph of the [Installation overview](overview.md).
+Before you're able to set up Shopware, you need to clone our Shopware repositories from version control. This is explained in the "Preparatory steps" paragraph of the [Installation overview](overview).
 
 ### Starting Shopware installation
 
@@ -164,4 +164,4 @@ Please note that this will reset your database.
 
 ## Next steps
 
-You're all set now! Now that you got a running Shopware installation, why not start with your first very own plugin? Please refer to the [Plugin base guide](../plugins/plugins/plugin-base-guide.md) for a nice starting point.
+You're all set now! Now that you got a running Shopware installation, why not start with your first very own plugin? Please refer to the [Plugin base guide](../plugins/plugins/plugin-base-guide) for a nice starting point.

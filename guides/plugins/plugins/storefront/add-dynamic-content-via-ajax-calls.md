@@ -2,7 +2,7 @@
 
 ## Overview
 
-This guide will show you how to add dynamic content to your storefront. It combines and builds upon the the guides about [adding custom Javascript](add-custom-javascript.md) and [adding a custom controller](add-custom-controller.md), so you should probably read them first.
+This guide will show you how to add dynamic content to your storefront. It combines and builds upon the the guides about [adding custom Javascript](add-custom-javascript) and [adding a custom controller](add-custom-controller), so you should probably read them first.
 
 ## Setting up the Controller
 
@@ -15,7 +15,7 @@ Here's a video dealing with the creation of a controller that returns JSON data 
 **[Creating a JSON controller](https://www.youtube.com/watch?v=VzREUDdpZ3E)**
 :::
 
-As mentioned before this guide builds up upon the [adding a custom controller](add-custom-controller.md) guide. This means that this article will only cover the differences between returning a template and a `JSON` response and making it accessible to `XmlHttpRequests`.
+As mentioned before this guide builds up upon the [adding a custom controller](add-custom-controller) guide. This means that this article will only cover the differences between returning a template and a `JSON` response and making it accessible to `XmlHttpRequests`.
 
 <CodeBlock title="<plugin base>/Storefront/Controller/ExampleController.php">
 
@@ -89,7 +89,7 @@ The following `services.xml` and `routes.xml` are identical as in the before men
 
 Now we have to add a `Storefront Javascript plugin` to display the timestamp we get from our controller.
 
-Again this is built upon the [adding custom Javascript](add-custom-javascript.md) article, so if you don't already know what storefront `plugins` are, hold on and read it first.
+Again this is built upon the [adding custom Javascript](add-custom-javascript) article, so if you don't already know what storefront `plugins` are, hold on and read it first.
 
 <CodeBlock title="<plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js">
 
@@ -156,4 +156,4 @@ The only thing that is now left, is to provide a template for the storefront plu
 
 ## Next steps
 
-The controller we used in this example doesn't do a lot, but this pattern of providing and using data is generally the same. Even if you use it to fetch data form the database, but in that case you probably want to learn more about the DAL [here](../../../../concepts/framework/data-abstraction-layer.md).
+The controller we used in this example doesn't do a lot, but this pattern of providing and using data is generally the same. Even if you use it to fetch data form the database, but in that case you probably want to learn more about the DAL [here](../../../../concepts/framework/data-abstraction-layer).

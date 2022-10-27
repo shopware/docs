@@ -31,10 +31,10 @@ For requests, the entire handling of the app and plugin system, via the database
 
 We recommend setting up at least five Redis servers for the following resources:
 
-1. Session ([Read more](../performance/session.md)) + cart ([Read more](../infrastructure/database-cluster.md#cart-in-redis))
+1. Session ([Read more](../performance/session)) + cart ([Read more](../infrastructure/database-cluster.md#cart-in-redis))
 1. cache.object - [Read more](../performance/caches.md#example-replace-some-cache-with-redis)
-1. Lock ([Read more](../performance/lock-store.md)) + Increment storage ([Read more](../performance/increment.md))
-1. Number Ranges - [Read more](../performance/number-ranges.md)
+1. Lock ([Read more](../performance/lock-store)) + Increment storage ([Read more](../performance/increment))
+1. Number Ranges - [Read more](../performance/number-ranges)
 1. Enqueue - [Read more](../infrastructure/message-queue.md#transport-redis-example)  
    Instead of setting up a Redis server for `enqueue`, you can also work directly with [RabbitMQ](../infrastructure/message-queue.md#transport-rabbitmq-example)
 
@@ -46,13 +46,13 @@ When a Redis cluster is in usage, the `php.ini` setting `redis.clusters.cache_sl
 
 We have compiled some best practices and configurations that will allow you to operate Shopware in a clustered database environment. Please refer to the guide below.
 
-<PageRef page="../infrastructure/database-cluster.md" title="<<<title-missing>>>" />
+<PageRef page="../infrastructure/database-cluster" title="<<<title-missing>>>" />
 
 ## Filesystem
 
 In a multi-app-server system, manage specific directories over a shared filesystem. This includes assets as well as theme files and private and public filesystems. The recommendation is to use a S3 compatible bucket.
 
-[Read more](../infrastructure/filesystem.md)
+[Read more](../infrastructure/filesystem)
 
 ### Shared directories
 
@@ -85,7 +85,7 @@ On a productive system, the message queue should be processed via CLI processes 
 
 It's recommended to run multiple `messenger:consume`-workers. To automatically start the processes again after they stopped because of exceeding the given limits you can use a process control system like [systemd](https://www.freedesktop.org/wiki/Software/systemd/) or [supervisor](http://supervisord.org/running.html).
 
-[Read more](../infrastructure/message-queue.md)
+[Read more](../infrastructure/message-queue)
 
 ### Own queue
 
@@ -118,4 +118,4 @@ For the server setup, pay special attention to the speed of the CPU. This applie
 
 When setting up big scale projects, there are some settings and conditions that should be taken into account with regard to performance
 
-[Read more](../performance/performance-tweaks.md)
+[Read more](../performance/performance-tweaks)

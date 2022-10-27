@@ -6,7 +6,7 @@ Starting with version 6.4.1.0, Shopware also provides functionality for your app
 
 You should be familiar with the concept of Apps and their registration.
 
-<PageRef page="app-base-guide.md" title="<<<title-missing>>>" />
+<PageRef page="app-base-guide" title="<<<title-missing>>>" />
 
 To reproduce this example, you should also be aware of how to set up an app on your development platform.
 
@@ -325,7 +325,7 @@ public function refundPayment(Request $request): JsonResponse
 
 All of the payment requests you receive from Shopware should be checked for a correct signature and the responses should be signed as well. You should be familiar with the Setup process from the [App base guide](app-base-guide.md#setup), as this validation is very similar.
 
-<PageRef page="app-base-guide.md" title="<<<title-missing>>>" />
+<PageRef page="app-base-guide" title="<<<title-missing>>>" />
 
 When receiving a payment `pay` or `finalize` request, you need to first validation the signature of the request. This signature is provided in the `shopware-shop-signature` header, which contains a cryptographic signature of the query string. Therefore you need to calculate the `sha256 hmac` based on the encoded JSON and the secret you have saved during the app registration.
 
@@ -375,4 +375,4 @@ private function sign(array $content, string $shopId): JsonResponse
 
 ## API docs
 
-<PageRef page="../../../resources/references/app-reference/payment-reference.md" title="<<<title-missing>>>" />
+<PageRef page="../../../resources/references/app-reference/payment-reference" title="<<<title-missing>>>" />

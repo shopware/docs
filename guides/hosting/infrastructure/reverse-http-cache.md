@@ -2,7 +2,7 @@
 
 ## Overview
 
-A reverse http cache is a cache server placed before the web shop. If you are not familiar with http caching, please see our [http cache concept](../../../concepts/framework/http_cache.md). The reverse http cache needs the following capabilities to fully function with Shopware:
+A reverse http cache is a cache server placed before the web shop. If you are not familiar with http caching, please see our [http cache concept](../../../concepts/framework/http_cache). The reverse http cache needs the following capabilities to fully function with Shopware:
 
 * Able to differentiate the request with multiple cookies
 * Allow clearing the cache using a web request for a specific site or with `/` for all pages

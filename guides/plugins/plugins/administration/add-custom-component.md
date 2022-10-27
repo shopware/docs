@@ -10,15 +10,15 @@ In this example, you will create a component, that will print a 'Hello world!' e
 
 This guide **does not** explain how to create a new plugin for Shopware 6. Head over to our Plugin base guide to learn how to create a plugin at first:
 
-<PageRef page="../plugin-base-guide.md" title="<<<title-missing>>>" />
+<PageRef page="../plugin-base-guide" title="<<<title-missing>>>" />
 
 If you want to work with entities in your custom component or page, it might be useful to take a look at how to create custom entity guide first:
 
-<PageRef page="../framework/data-handling/add-custom-complex-data.md" title="<<<title-missing>>>" />
+<PageRef page="../framework/data-handling/add-custom-complex-data" title="<<<title-missing>>>" />
 
 Especially if you want to add a new page for an own module, you should consider to look at the process on how to add a custom module first.
 
-<PageRef page="add-custom-module.md" title="<<<title-missing>>>" />
+<PageRef page="add-custom-module" title="<<<title-missing>>>" />
 
 This way, you're able to start building your own module in the right order.
 
@@ -120,8 +120,8 @@ This is a [shorthand](https://alligator.io/js/object-property-shorthand-es6/), w
 
 You've now added a custom component, including a little template. However, there's more discover here.
 
-* [More about templates](writing-templates.md)
-* [Add some styling to your component](add-custom-styles.md)
-* [Use shortcuts for your component](add-shortcuts.md)
+* [More about templates](writing-templates)
+* [Add some styling to your component](add-custom-styles)
+* [Use shortcuts for your component](add-shortcuts)
 
-Furthermore, what about [customizing other components](customizing-components.md), instead of creating new ones.
+Furthermore, what about [customizing other components](customizing-components), instead of creating new ones.

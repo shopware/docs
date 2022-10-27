@@ -8,7 +8,7 @@ This guide will walk you through the process of adding your own app to Shopware 
 
 If you're not familiar with the app system, please take a look at the concept first.
 
-<PageRef page="../../../concepts/extensions/apps-concept.md" title="<<<title-missing>>>" />
+<PageRef page="../../../concepts/extensions/apps-concept" title="<<<title-missing>>>" />
 
 ## File structure
 
@@ -64,7 +64,7 @@ By default, your app files will be [validated](app-base-guide.md#validation) bef
 Apps get installed as inactive. You can activate them by passing the `--activate` flag to the `app:install` command or by executing the `app:activate` command after installation.
 :::
 
-For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../resources/references/app-reference/manifest-reference.md).
+For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../resources/references/app-reference/manifest-reference).
 
 ## Setup
 
@@ -262,7 +262,7 @@ $hmac = \hash_hmac('sha256', $request->getBody()->getContents(), $shopSecret);
 
 ## Permissions
 
-Shopware comes with the possibility to create fine grained [Access Control Lists](../plugins/administration/add-acl-rules.md) \(ACLs\). That means that that you need to request permissions if your app needs to read or write data over the API or wants to receive webhooks. The permissions your app needs are defined in the manifest file and are composed of the privilege \(`read`, `create`, `update`, `delete`\) and the entity.
+Shopware comes with the possibility to create fine grained [Access Control Lists](../plugins/administration/add-acl-rules) \(ACLs\). That means that that you need to request permissions if your app needs to read or write data over the API or wants to receive webhooks. The permissions your app needs are defined in the manifest file and are composed of the privilege \(`read`, `create`, `update`, `delete`\) and the entity.
 Since version 6.4.12.0 your app can also request additional non-CRUD privileges with the `<permission>` element.
 
 Sample permissions to read, create and update products, delete orders, as well as reading the cache configuration looks like this:
@@ -364,7 +364,7 @@ Starting from Shopware version 6.4.5.0, the current language id of the shopware 
 
 You can verify the authenticity of the incoming request by checking the `shopware-shop-signature` every request should have a sha256 hmac of the request body, that is signed with the secret your app assigned the shop during the [registration](app-base-guide.md#setup). The mechanism to verify the request is exactly the same as the one used for the [confirmation request](app-base-guide.md#confirmation-request).
 
-You can use a variety of events to react to changes in Shopware that way. See that table [Webhook-Events-Reference](../../../resources/references/app-reference/webhook-events-reference.md) for an overview.
+You can use a variety of events to react to changes in Shopware that way. See that table [Webhook-Events-Reference](../../../resources/references/app-reference/webhook-events-reference) for an overview.
 
 ### App Notification
 
@@ -431,7 +431,7 @@ Example request body:
 
 #### App lifecycle events for app scripts
 
-Since Shopware 6.4.9.0 it is also possible to create [app scripts](./app-scripts/README.md), that are executed during the lifecycle of your app.
+Since Shopware 6.4.9.0 it is also possible to create [app scripts](./app-scripts), that are executed during the lifecycle of your app.
 You get access to the Database and can change or create some data e.g. when your app is activated, without the need of an external server.
 
 For a full list of the available hook points and the available services refer to the [reference documentation](../../../resources/references/app-reference/script-reference/script-hooks-reference.md#app-lifecycle).

@@ -19,11 +19,11 @@ Think twice about adding this shortcut because if every plugin adds their own se
 
 For this guide, it's necessary to have a running Shopware 6 instance and full access to both the files and a running plugin. See our plugin page guide to learn how to create your own plugins.
 
-<PageRef page="../plugin-base-guide.md" title="<<<title-missing>>>" />
+<PageRef page="../plugin-base-guide" title="<<<title-missing>>>" />
 
 In addition, you need a custom entity to add to the search to begin with. Head over to the following guide to learn how to achieve that:
 
-<PageRef page="../plugin-base-guide.md" title="<<<title-missing>>>" />
+<PageRef page="../plugin-base-guide" title="<<<title-missing>>>" />
 
 ## Support custom entity via search API
 

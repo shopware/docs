@@ -8,13 +8,13 @@ The configuration flag `css` is available from Shopware Version 6.4.12.0
 
 In order to add SCSS variables to your plugin, you can configure fields in your `config.xml` to be exposed as scss variables.
 
-We recommend to use the declaration of SCSS variables via the `config.xml` but you can still use a subscriber if you need to be more flexible as described [here](./add-scss-variables-via-subscriber.md).
+We recommend to use the declaration of SCSS variables via the `config.xml` but you can still use a subscriber if you need to be more flexible as described [here](./add-scss-variables-via-subscriber).
 
 ## Prerequisites
 
 You won't learn how to create a plugin in this guide, head over to our Plugin base guide to create your first plugin:
 
-<PageRef page="../plugin-base-guide.md" title="<<<title-missing>>>" />
+<PageRef page="../plugin-base-guide" title="<<<title-missing>>>" />
 
 ## Setup a default value for a custom SCSS variable
 

@@ -10,7 +10,7 @@ Note that custom endpoints with app scripts were introduced in Shopware 6.4.9.0,
 ## Custom Endpoints
 
 There are specialized script-execution endpoints for the `api`, `store-api` and `storefront` scopes.
-Refer to the [API-docs](../../../integrations-api/README.md) for more information on the distinction of those APIs.
+Refer to the [API-docs](../../../integrations-api) for more information on the distinction of those APIs.
 Those endpoints allow you to trigger the execution of you scripts with an HTTP-Request against those endpoints.
 
 Custom endpoint scripts need to be located in a folder that is prefixed with the name of the api scope (one of `api-`, `store-api-` or `storefront`).
@@ -25,7 +25,7 @@ To prevent name collisions with other apps you should always include your vendor
 The best practice is to add your app-name after the api scope prefix and then use it as a REST-style resource identifier e.g. `/api/script/swagMyApp/test-script`.
 :::
 
-In your custom endpoint scripts you get access to the JSON-payload of the request (and the query parameters for GET-requests) and have access to the read & write functionality of the [Data Abstraction Layer](../../../../concepts/framework/data-abstraction-layer.md).
+In your custom endpoint scripts you get access to the JSON-payload of the request (and the query parameters for GET-requests) and have access to the read & write functionality of the [Data Abstraction Layer](../../../../concepts/framework/data-abstraction-layer).
 For a complete overview of the available data and service refer to the [hook reference documentation](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#api-hook).
 
 By default, a `204 No Content` response will be sent after your script was executed.
@@ -74,7 +74,7 @@ The execution of those scripts is possible over the `/store-api/script/{hook-nam
 
 This endpoint allows POST- and GET-requests.
 
-This Hook is an [Interface Hook](./README.md#interface-hooks), the execution of your logic should be implemented in the `response`-block of your script.
+This Hook is an [Interface Hook](./#interface-hooks), the execution of your logic should be implemented in the `response`-block of your script.
 
 <CodeBlock title="Resources/scripts/store-api-custom-endpoint/my-example-script.twig">
 
@@ -161,7 +161,7 @@ To improve the end-user experience and provide a scalable system the customer-fa
 to cache the response to specific requests and return the response from the cache on further requests, instead of  computing it again and again on each request.
 
 By default, caching is enabled for custom endpoints, but for `store-api`-endpoints you have to generate the cache key in the script.
-For `storefront` requests however shopware takes care of that, so that responses get automatically cached (if the [HTTP-Cache](../../../../concepts/framework/http_cache.md) is enabled).
+For `storefront` requests however shopware takes care of that, so that responses get automatically cached (if the [HTTP-Cache](../../../../concepts/framework/http_cache) is enabled).
 
 ### Cache Config
 

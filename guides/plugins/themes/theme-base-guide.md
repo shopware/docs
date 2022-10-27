@@ -8,6 +8,6 @@ Another handy capability is the theme configuration: As a theme developer you ca
 
 Now that you know what you can do with themes, here are the next steps to learn how to create themes and what the differences are to plugins and apps.
 
-<PageRef page="create-a-theme.md" title="Create a theme" sub="Learn how to create a theme" />
+<PageRef page="create-a-theme" title="Create a theme" sub="Learn how to create a theme" />
 
-<PageRef page="differences-plugins-and-apps-vs-themes.md" title="Differences between plugins, apps and themes" sub="Learn about the differences between plugins, apps and themes" />
+<PageRef page="differences-plugins-and-apps-vs-themes" title="Differences between plugins, apps and themes" sub="Learn about the differences between plugins, apps and themes" />

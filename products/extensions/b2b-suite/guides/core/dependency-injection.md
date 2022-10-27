@@ -8,9 +8,9 @@
 
 ## Shopware DIC
 
-The B2B-Suite registers with the [DI-container](../../../../../../guides/plugins/plugins/plugin-fundamentals/dependency-injection.md) from Symfony.
+The B2B-Suite registers with the [DI-container](../../../../../../guides/plugins/plugins/plugin-fundamentals/dependency-injection) from Symfony.
 Be sure you are familiar with the basic usage patterns and practices.
-Especially [service decoration](../../../../../../guides/plugins/plugins/plugin-fundamentals/adjusting-service.md) is an equally important extension point.
+Especially [service decoration](../../../../../../guides/plugins/plugins/plugin-fundamentals/adjusting-service) is an equally important extension point.
 
 ## Dependency Injection Extension B2B
 

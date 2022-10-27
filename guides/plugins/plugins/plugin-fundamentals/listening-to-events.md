@@ -4,7 +4,7 @@ A way to listen to events in Symfony projects is via an [event subscriber,](http
 
 ## Prerequisites
 
-In order to build your own subscriber for your plugin, of course you first need a plugin as base. To create an own plugin, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
+In order to build your own subscriber for your plugin, of course you first need a plugin as base. To create an own plugin, you can refer to the [Plugin Base Guide](../plugin-base-guide).
 
 <!-- markdown-link-check-disable-next-line -->
 ::: info

@@ -1,6 +1,6 @@
 # Repository
 
-The source code of your project will reside in a git-based VCS repository. You can start with a plain project. However, we suggest starting with a new composer create-project. You will learn more about the setup template in the [Setup Template](setup-template.md) section.
+The source code of your project will reside in a git-based VCS repository. You can start with a plain project. However, we suggest starting with a new composer create-project. You will learn more about the setup template in the [Setup Template](setup-template) section.
 
 ::: info
 This guide explains the repository setup using **GitHub**. You can also integrate Bitbucket or GitLab based version control environments with Shopware PaaS. More information in [Source Integrations](https://docs.platform.sh/integrations/source.html).
@@ -8,7 +8,7 @@ This guide explains the repository setup using **GitHub**. You can also integrat
 
 ## Create a Shopware project
 
-Firstly,  create a new project with `composer create-project shopware/platform:dev-flex <folder-name>` using the [flex template](../../guides/installation/flex.md).
+Firstly,  create a new project with `composer create-project shopware/platform:dev-flex <folder-name>` using the [flex template](../../guides/installation/flex).
 
 This will create a brand new Shopware 6 project in the given folder. Now, change it into the newly created project and require the PaaS configuration with `composer req paas`.
 

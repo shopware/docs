@@ -6,9 +6,9 @@ This short guide will come with some examples on how to delete associated data o
 
 ## Prerequisites
 
-This example will be built upon the [plugin base guide](../../plugin-base-guide.md), so having a look at it will come in handy.
+This example will be built upon the [plugin base guide](../../plugin-base-guide), so having a look at it will come in handy.
 
-Also, the same subject was already mentioned in our guide about [Replacing associated data](replacing-associated-data.md).
+Also, the same subject was already mentioned in our guide about [Replacing associated data](replacing-associated-data).
 
 ## Deleting associated data
 
@@ -72,7 +72,7 @@ They are sometimes used to create a `ManyToMany` association but with extra data
 
 You need to figure out which kind of `OneToMany` association you're facing here: A normal `OneToMany` association or a hidden `ManyToMany` association?
 
-Let's start with the normal one. Usually, a `OneToMany` association is just the other side of a `ManyToOne` association, whose deletion was already explained in the section about [deleting associated data](deleting-associated-data.md).
+Let's start with the normal one. Usually, a `OneToMany` association is just the other side of a `ManyToOne` association, whose deletion was already explained in the section about [deleting associated data](deleting-associated-data).
 
 Assume you're looking into the [ProductManufacturerDefinition](https://github.com/shopware/platform/blob/trunk/src/Core/Content/Product/Aggregate/ProductManufacturer/ProductManufacturerDefinition.php), which has a `OneToMany` association to the products.
 Deleting this kind of association was already explained in the section about `ToOne` associations.
@@ -131,4 +131,4 @@ Note: This will **not** delete the media entity itself, just the association bet
 
 ## More interesting topics
 
-* [Replacing associated data](replacing-associated-data.md)
+* [Replacing associated data](replacing-associated-data)

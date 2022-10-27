@@ -8,7 +8,7 @@ A [handler](https://symfony.com/doc/current/messenger.html#creating-a-message-ha
 
 ## Prerequisites
 
-As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide.md), but you don't necessarily need that. It will use an example message, so if you don't know how to add a custom message yet, have a look at our guide about [Adding a message to queue](add-message-to-queue.md). Furthermore, registering classes or services to the DI container is also not explained here, but it's covered in our guide about [Dependency injection](../../plugin-fundamentals/dependency-injection.md), so having this open in another tab won't hurt.
+As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide), but you don't necessarily need that. It will use an example message, so if you don't know how to add a custom message yet, have a look at our guide about [Adding a message to queue](add-message-to-queue). Furthermore, registering classes or services to the DI container is also not explained here, but it's covered in our guide about [Dependency injection](../../plugin-fundamentals/dependency-injection), so having this open in another tab won't hurt.
 
 ## Handling messages
 
@@ -185,7 +185,7 @@ enqueue:
 
 Notice that for different schemas \(e.g. `file://`, `amqp://)` different enqueue transports are required. Shopware just ships with the `Filesystem` transport, so you need to require the transport you want to use.
 
-For more information on this check the [enqueue docs](https://github.com/php-enqueue/enqueue-dev/blob/master/docs/bundle/config_reference.md).
+For more information on this check the [enqueue docs](https://github.com/php-enqueue/enqueue-dev/blob/master/docs/bundle/config_reference).
 
 To tell Symfony to use your transports from your `enqueue.yaml` simply use:
 
@@ -243,4 +243,4 @@ shopware:
 
 Now that you know how to add a message handler and configure a bus for it, you may want to add a custom middleware for your bus. To do this, head over to our "Add middleware" guide:
 
-<PageRef page="add-middleware.md" title="<<<title-missing>>>" />
+<PageRef page="add-middleware" title="<<<title-missing>>>" />

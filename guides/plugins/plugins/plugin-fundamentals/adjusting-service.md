@@ -6,7 +6,7 @@ In this guide you'll learn how to adjust a service. You can read more about serv
 
 ## Prerequisites
 
-In order to add your own custom service for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
+In order to add your own custom service for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide).
 
 <!-- markdown-link-check-disable-next-line -->
 ::: info

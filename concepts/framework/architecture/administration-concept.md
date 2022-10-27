@@ -13,11 +13,11 @@ In this article, we'll get to know our Administration component and learn a lot 
 
 ## Introduction
 
-The Administration component is a Symfony bundle which contains a Single Page Application \(SPA\) written in JavaScript. It conceptually sits on top of our Core - similar to the [Storefront](storefront-concept.md) component. The SPA itself provides a rich user interface on top of a REST-API based communication. It communicates with the Core component through the Admin API & is an Interaction Oriented System following the example of the web components patterns - albeit through [Vue.js](https://vuejs.org/). Similar to the frameworks being used in the Storefront component, the Administration component uses SASS for styling purposes and [Twig.js](https://github.com/twigjs/twig.js/wiki) to offer templating functionalities. By default, Shopware 6 uses the [Vue I18n plugin](https://kazupon.github.io/vue-i18n/) in the Administration to deal with translation. Furthermore, [Webpack](https://webpack.js.org/) is being used to bundle and compile the SPA.
+The Administration component is a Symfony bundle which contains a Single Page Application \(SPA\) written in JavaScript. It conceptually sits on top of our Core - similar to the [Storefront](storefront-concept) component. The SPA itself provides a rich user interface on top of a REST-API based communication. It communicates with the Core component through the Admin API & is an Interaction Oriented System following the example of the web components patterns - albeit through [Vue.js](https://vuejs.org/). Similar to the frameworks being used in the Storefront component, the Administration component uses SASS for styling purposes and [Twig.js](https://github.com/twigjs/twig.js/wiki) to offer templating functionalities. By default, Shopware 6 uses the [Vue I18n plugin](https://kazupon.github.io/vue-i18n/) in the Administration to deal with translation. Furthermore, [Webpack](https://webpack.js.org/) is being used to bundle and compile the SPA.
 
 ## Main concerns
 
-As mentioned preliminary, the Administration component provides a SPA which communicates with the Core through the [Admin API](../../../concepts/api/admin-api.md). To summarize, its main concern is to provide a UI for all administrative tasks for a shop owner in Shopware. And to be more precise: It does not contain any business logic. Therefore, there is no functional layering, but a flat list of modules structured along the Core component and containing Vue.js web components. Every single communication with the Core can e.g. be inspected throughout the network activities of your browsers developer tools.
+As mentioned preliminary, the Administration component provides a SPA which communicates with the Core through the [Admin API](../../../concepts/api/admin-api). To summarize, its main concern is to provide a UI for all administrative tasks for a shop owner in Shopware. And to be more precise: It does not contain any business logic. Therefore, there is no functional layering, but a flat list of modules structured along the Core component and containing Vue.js web components. Every single communication with the Core can e.g. be inspected throughout the network activities of your browsers developer tools.
 
 Apart from the - arguably most central - responsibility of creating the UI itself, which can be reached through `/admin` , the Administrations components implement a number of cross-cutting concerns. The most important are:
 
@@ -89,7 +89,7 @@ At least one `page` is mandatory in each module. Though views and components can
 
 ### Order module
 
-Having a look at a more practical example, one can look closer at the order module. Typically, you'll find this structure alongside other modules. Especially, when it comes to creating pages or views for creating/editing, listing or viewing a specific entity. Please head to the [Add custom module](../../../guides/plugins/plugins/administration/add-custom-module.md) article if you want to learn more about adding your custom module with a Shopware plugin.
+Having a look at a more practical example, one can look closer at the order module. Typically, you'll find this structure alongside other modules. Especially, when it comes to creating pages or views for creating/editing, listing or viewing a specific entity. Please head to the [Add custom module](../../../guides/plugins/plugins/administration/add-custom-module) article if you want to learn more about adding your custom module with a Shopware plugin.
 
 ```sh
 <platform/src/Administration/Resources/app/administration/src/module/sw-order/>
@@ -122,10 +122,10 @@ Within plugins, you do have the following options, when it comes to adjusting ex
 
 You will find more information about customizing components of the administration in our guided articles:
 
-<PageRef page="../../../guides/plugins/plugins/administration/customizing-components.md" title="<<<title-missing>>>" />
+<PageRef page="../../../guides/plugins/plugins/administration/customizing-components" title="<<<title-missing>>>" />
 
 ## ACL in the Administration
 
 The Access Control List or ACL in Shopware ensures that by default data can only be created, read, updated or deleted \( CRUD\), once the user has specific privileges for a module. Additionally, one can set up custom roles in the Administrations UI or develop individual privileges with plugins. These roles do have finely granular rights, which every shop operator can set up himself and can be assigned to users. By default, a module of the Administration has a directory called `acl` included. In this directory one will find specific mappings of privileges \(permissions for roles; additional permissions\) for the default roles: `viewer`, `editor`, `creator`, `deleter`. A more guided article about ACL can be found here:
 
-<PageRef page="../../../guides/plugins/plugins/administration/add-acl-rules.md" title="<<<title-missing>>>" />
+<PageRef page="../../../guides/plugins/plugins/administration/add-acl-rules" title="<<<title-missing>>>" />

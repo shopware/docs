@@ -1,6 +1,6 @@
 # Creating a new migration profile
 
-If you want to migrate your data from a different source system than Shopware, create a new migration profile for the Migration Assistant. But if you want to convert your plugin data from a Shopware system to Shopware 6, please have a look at this HowTo: [extend a shopware migration profile](extending-a-shopware-migration-profile.md).
+If you want to migrate your data from a different source system than Shopware, create a new migration profile for the Migration Assistant. But if you want to convert your plugin data from a Shopware system to Shopware 6, please have a look at this HowTo: [extend a shopware migration profile](extending-a-shopware-migration-profile).
 
 ## Setup
 

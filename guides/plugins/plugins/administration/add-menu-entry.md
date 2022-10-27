@@ -8,11 +8,11 @@ When it comes to the module configuration, the menu entry is one of the most imp
 
 This guide **does not** explain how to create a new plugin for Shopware 6. Head over to our Plugin base guide to learn how to create a plugin at first:
 
-<PageRef page="../plugin-base-guide.md" title="<<<title-missing>>>" />
+<PageRef page="../plugin-base-guide" title="<<<title-missing>>>" />
 
 Especially if you want to add a new page for an own module, you should consider to look at the process on how to add a custom module first.
 
-<PageRef page="add-custom-module.md" title="<<<title-missing>>>" />
+<PageRef page="add-custom-module" title="<<<title-missing>>>" />
 
 ## Creating a simple menu entry
 

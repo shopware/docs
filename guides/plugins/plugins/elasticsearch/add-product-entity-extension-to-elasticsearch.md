@@ -8,7 +8,7 @@ In this example we'll assume an extension of the `ProductDefinition` with a stri
 
 ## Prerequisites
 
-This guide is built upon the [Plugin Base Guide](../plugin-base-guide.md), and the entity extension described in [Adding Complex data to existing entities](../framework/data-handling/add-complex-data-to-existing-entities.md#adding-a-field-without-database).
+This guide is built upon the [Plugin Base Guide](../plugin-base-guide), and the entity extension described in [Adding Complex data to existing entities](../framework/data-handling/add-complex-data-to-existing-entities.md#adding-a-field-without-database).
 We will extend the product extension with an `OneToOneAssociationField` and `OneToManyAssociationField`.
 
 ## Decorate the ElasticsearchProductDefinition

@@ -4,7 +4,7 @@
 
 In your app, you are able to add your own modules to the administration. Your custom modules are loaded as iframes which are embedded in the Shopware administration and within this iframe, your website will be loaded and shown.
 
-Creating custom modules takes place at the `<admin>` section of your `manifest.xml`. Take a look at the [Manifest Reference](../../../../resources/references/app-reference/manifest-reference.md) You can add any amount of custom modules by adding new `<module>` elements to your manifest.
+Creating custom modules takes place at the `<admin>` section of your `manifest.xml`. Take a look at the [Manifest Reference](../../../../resources/references/app-reference/manifest-reference) You can add any amount of custom modules by adding new `<module>` elements to your manifest.
 
 To configure your module you can set it up with with some additional attributes.
 
@@ -38,7 +38,7 @@ Additionally you can define `label` elements inside of your `module` element, to
 
 </CodeBlock>
 
-For a complete reference of the structure of the manifest file, take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference.md).
+For a complete reference of the structure of the manifest file, take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference).
 
 If the user opens the module in the administration your app will receive a request to the URL defined in the `source` attribute of your `module` element. Your app can determine the shop that has opened the module through query parameters added to the url:
 

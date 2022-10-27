@@ -4,17 +4,17 @@
 
 In order to add SCSS variables to your plugin, you can configure fields in your `config.xml` to be exposed as scss variables.
 
-We recommend to use the declaration of SCSS variables via the `config.xml` as described [here](./add-scss-variables.md) but you can still use a subscriber if you need to be more flexible as described below.
+We recommend to use the declaration of SCSS variables via the `config.xml` as described [here](./add-scss-variables) but you can still use a subscriber if you need to be more flexible as described below.
 
 ## Prerequisites
 
 You won't learn how to create a plugin in this guide, head over to our Plugin base guide to create your first plugin:
 
-<PageRef page="../plugin-base-guide.md" title="<<<title-missing>>>" />
+<PageRef page="../plugin-base-guide" title="<<<title-missing>>>" />
 
 You should also know how to listen to events:
 
-<PageRef page="../plugin-fundamentals/listening-to-events.md" title="<<<title-missing>>>" />
+<PageRef page="../plugin-fundamentals/listening-to-events" title="<<<title-missing>>>" />
 
 ## Setup a default value for a custom SCSS variable
 
@@ -35,7 +35,7 @@ $sass-plugin-header-bg-color: #ffcc00 !default;
 
 ## Theme variables subscriber
 
-You can add a new subscriber according to the [Listening to events](../plugin-fundamentals/listening-to-events.md) guide. In this example we name the subscriber `ThemeVariableSubscriber`. The subscriber listens to the `ThemeCompilerEnrichScssVariablesEvent`.
+You can add a new subscriber according to the [Listening to events](../plugin-fundamentals/listening-to-events) guide. In this example we name the subscriber `ThemeVariableSubscriber`. The subscriber listens to the `ThemeCompilerEnrichScssVariablesEvent`.
 
 <Tabs>
 <Tab title="<plugin root>/src/Subscriber/ThemeVariableSubscriber.php">
@@ -101,7 +101,7 @@ Please note that plugins are not sales channel specific. Your SCSS variables are
 
 Inside your `ThemeVariableSubscriber` you can also read values from the plugin configuration and assign those to a SCSS variable. This makes it also possible to have different values for each sales channel. Depending on the selected sales channel inside the plugin configuration in the administration.
 
-First, lets add a new plugin configuration field according to the [Plugin Configurations](../plugin-fundamentals/add-plugin-configuration.md):
+First, lets add a new plugin configuration field according to the [Plugin Configurations](../plugin-fundamentals/add-plugin-configuration):
 
 <CodeBlock title="<plugin root>/src/Resources/config/config.xml">
 

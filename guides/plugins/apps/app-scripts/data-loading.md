@@ -1,6 +1,6 @@
 # Load additional data for the storefront with App Scripts
 
-If your app needs additional data in your [customized storefront templates](../../../plugins/plugins/storefront/customize-templates.md), you can load that data with app scripts and make it available to your template.
+If your app needs additional data in your [customized storefront templates](../../../plugins/plugins/storefront/customize-templates), you can load that data with app scripts and make it available to your template.
 
 ::: info
 Note that app scripts were introduced in Shopware 6.4.8.0, and are not supported in previous versions.
@@ -14,7 +14,7 @@ For each page that is rendered, a hook is triggered - giving access to the curre
 For a list of all available script hooks, that can be used to load additional data, take a look at the [script hook reference](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#data-loading).
 
 ::: info
-Note that all hooks that were triggered during a page rendering are also shown in the [Symfony toolbar](./README.md#developing--debugging-scripts).
+Note that all hooks that were triggered during a page rendering are also shown in the [Symfony toolbar](./#developing--debugging-scripts).
 This may come in handy if you are searching for the right hook for your script.
 :::
 
@@ -61,7 +61,7 @@ In your storefront templates you can read the data again from the `page` object:
 
 ## Loading data
 
-To load data stored inside Shopware you can use the `read` features of the [Data Abstraction Layer](../../../../concepts/framework/data-abstraction-layer.md).
+To load data stored inside Shopware you can use the `read` features of the [Data Abstraction Layer](../../../../concepts/framework/data-abstraction-layer).
 Therefore, in every hook that may be used to load additional data the `repository` service is available.
 
 The `repository` service provides methods to load exactly the data you need:
@@ -83,11 +83,11 @@ All those methods can be used in the same way, first you pass the entity name th
 ### Search Criteria
 
 The search criteria defines how the search is performed and what data is included.
-The criteria object that is used inside the app scripts behaves and looks the same as the [JSON criteria used for the API](../../../integrations-api/general-concepts/search-criteria.md).
+The criteria object that is used inside the app scripts behaves and looks the same as the [JSON criteria used for the API](../../../integrations-api/general-concepts/search-criteria).
 
 So please refer to that documentation to get an overview of what features can be used inside a criteria object.
 
-<PageRef page="../../../integrations-api/general-concepts/search-criteria.md" title="<<<title-missing>>>" />
+<PageRef page="../../../integrations-api/general-concepts/search-criteria" title="<<<title-missing>>>" />
 
 The criteria object can be assembled inside scripts as follows:
 
@@ -125,9 +125,9 @@ One major difference is that when using the `repository` service your app needs 
 
 Refer to the [App Base Guide](../app-base-guide.md#permissions) for more information on how permissions work for apps.
 
-The `repository` service exposes the same data as the CRUD-operations of the [Admin API](../../../integrations-api/README.md#backend-facing-integrations---admin-api), whereas the `store` service gives access to the same data as the [Store API](../../../integrations-api/README.md#customer-facing-interactions---store-api).
+The `repository` service exposes the same data as the CRUD-operations of the [Admin API](../../../integrations-api/#backend-facing-integrations---admin-api), whereas the `store` service gives access to the same data as the [Store API](../../../integrations-api/#customer-facing-interactions---store-api).
 
-For a full description of the `repository` and `store` service take a look at the [services reference](../../../../resources/references/app-reference/script-reference/data-loading-script-services-reference.md).
+For a full description of the `repository` and `store` service take a look at the [services reference](../../../../resources/references/app-reference/script-reference/data-loading-script-services-reference).
 
 ## Adding data to the page object
 

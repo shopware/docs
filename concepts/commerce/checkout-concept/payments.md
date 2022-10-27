@@ -3,7 +3,7 @@
 Shopware 6's payment system is an integral part of the checkout process. A payment is applied to a transaction of an order. As with any order change this is done through the state machine. At its core the payment system is composed from payment handlers, these extend Shopware to support multiple different payment types. A list of all payment handlers is stored in the database.
 
 ::: info
-If you want to skip to the implementation details go straight to our guide on [implementing a payment plugin](../../../guides/plugins/plugins/checkout/payment/add-payment-plugin.md).
+If you want to skip to the implementation details go straight to our guide on [implementing a payment plugin](../../../guides/plugins/plugins/checkout/payment/add-payment-plugin).
 :::
 
 ## Payment Flow
@@ -14,7 +14,7 @@ The payment and checkout flow consists of two essential steps. Placing the order
 
 The diagram above shows the payment flow for headless environments, however for the single-stack scenario (i.e. when our default storefront is used) the differences are minor and described in the section below.
 
-If you want to see a specific example of a headless payment using the Store API, head to our [API documentation](https://shopware.stoplight.io/docs/store-api/docs/guides/quick-start/handling-the-payment.md).
+If you want to see a specific example of a headless payment using the Store API, head to our [API documentation](https://shopware.stoplight.io/docs/store-api/docs/guides/quick-start/handling-the-payment).
 
 ### 1. Select Payment Method
 
@@ -73,4 +73,4 @@ The actual implementation of payment integrations differ between providers. For 
 
 ## Next steps
 
-<PageRef page="../../../guides/plugins/plugins/checkout/payment/add-payment-plugin.md" title="Implementing a payment plugin" />
+<PageRef page="../../../guides/plugins/plugins/checkout/payment/add-payment-plugin" title="Implementing a payment plugin" />

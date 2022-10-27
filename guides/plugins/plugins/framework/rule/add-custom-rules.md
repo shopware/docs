@@ -8,11 +8,11 @@ This example will introduce a new rule, which checks if there's currently a luna
 
 ## Prerequisites
 
-In order to add your own custom rules for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md).
+In order to add your own custom rules for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide).
 
-You also should be familiar with the [Dependency Injection container](../../plugin-fundamentals/dependency-injection.md) as this is used to register your custom rule.
+You also should be familiar with the [Dependency Injection container](../../plugin-fundamentals/dependency-injection) as this is used to register your custom rule.
 
-It might be helpful to gather some general understanding about the [concept of rules](../../../../../concepts/framework/rules.md) as well.
+It might be helpful to gather some general understanding about the [concept of rules](../../../../../concepts/framework/rules) as well.
 
 ## Create custom rule
 
@@ -136,7 +136,7 @@ import './decorator/rule-condition-service-decoration';
 
 ### Custom rule component
 
-Since we've registered our rule to the administration now, we're still lacking the actual component `swag-lunar-eclipse`. As previously mentioned, we've already defined a path for it in our service decoration. So create the following directory: `<plugin root>/src/Resources/app/administration/src/core/component/swag-lunar-eclipse`. If you are not familiar with creating components in Shopware, take a look at our [Add your own component](../../administration/add-custom-component.md) guide.
+Since we've registered our rule to the administration now, we're still lacking the actual component `swag-lunar-eclipse`. As previously mentioned, we've already defined a path for it in our service decoration. So create the following directory: `<plugin root>/src/Resources/app/administration/src/core/component/swag-lunar-eclipse`. If you are not familiar with creating components in Shopware, take a look at our [Add your own component](../../administration/add-custom-component) guide.
 
 Here's an example of what this component could look like:
 
@@ -213,4 +213,4 @@ As you can see, our `sw-single-select` uses the previously created computed prop
 
 ## Further reading
 
-<PageRef page="../../administration/add-rule-assignment-configuration.md" title="<<<title-missing>>>" />
+<PageRef page="../../administration/add-rule-assignment-configuration" title="<<<title-missing>>>" />

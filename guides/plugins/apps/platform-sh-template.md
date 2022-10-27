@@ -196,7 +196,7 @@ The webhook could look like this:
 
 ## Deployment on Platform.sh
 
-To deploy your app on [Platform.sh](https://platform.sh) you might check out the [Platform.sh Deployment](hosting-guide/platform-sh-deployment.md) part of our documentation.
+To deploy your app on [Platform.sh](https://platform.sh) you might check out the [Platform.sh Deployment](hosting-guide/platform-sh-deployment) part of our documentation.
 
 ## Infrastructure
 

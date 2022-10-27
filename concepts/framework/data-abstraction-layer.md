@@ -41,7 +41,7 @@ Alternatively, configure the product.repository service to be injected explicitl
 
 You can read more about dependency injection and service registration in Shopware in the services guides:
 
-<PageRef page="../../guides/plugins/plugins/plugin-fundamentals/add-custom-service.md" title="<<<title-missing>>>" />
+<PageRef page="../../guides/plugins/plugins/plugin-fundamentals/add-custom-service" title="<<<title-missing>>>" />
 
 ### Translations
 

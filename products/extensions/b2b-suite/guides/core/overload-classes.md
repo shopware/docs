@@ -13,7 +13,7 @@ You can download a plugin showcasing the topic [here](../example-plugins/B2bServ
 ## Description
 
 To add new functionality or overload existing classes to change functionality,
-the B2B-Suite uses the [Dependency Injection](../../../../../../guides/plugins/plugins/plugin-fundamentals/dependency-injection.md) as an extension system instead of events and hooks, which shopware uses.
+the B2B-Suite uses the [Dependency Injection](../../../../../../guides/plugins/plugins/plugin-fundamentals/dependency-injection) as an extension system instead of events and hooks, which shopware uses.
 
 ### How does a services.xml look like
 

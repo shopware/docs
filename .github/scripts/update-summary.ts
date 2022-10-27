@@ -32,7 +32,7 @@ let ADRs = new Map<string,ADRTopic>();
 for (const entry of walkSync("./resources/references/adr", { includeDirs: false, includeFiles: true })) {
 	if (entry.path.startsWith('resources/references/adr/assets')) continue;
 	if (path.basename(entry.path).startsWith('_')) continue;
-	if (path.basename(entry.path) === 'README.md') continue;
+	if (path.basename(entry.path) === 'index.md') continue;
 
 	const adr: ADREntry = { path: entry.path };
 	let topic = ADRs.get(topicName(adr));
@@ -49,20 +49,20 @@ for (const entry of walkSync("./resources/references/adr", { includeDirs: false,
 	ADRs.set(topicName(adr), topic);
 }
 
-let adrSummary = summaryItem(1, 'Architecture Reference', 'resources/references/adr/README.md');
+let adrSummary = summaryItem(1, 'Architecture Reference', 'resources/references/adr/index.md');
 
 const names = Array.from(ADRs.keys());
 names.sort();
 
 names.forEach((name) => {
 	const topic = ADRs.get(name);
-	adrSummary += summaryItem(2, topicName(topic), path.join(topic.path, 'README.md'));
+	adrSummary += summaryItem(2, topicName(topic), path.join(topic.path, 'index.md'));
 	for (const adr of topic.entries) {
 		adrSummary += summaryItem(3, adrTitle(adr), adr.path);
 	}
 });
 
-const filename = path.join(Deno.cwd(), "./SUMMARY.md");
+const filename = path.join(Deno.cwd(), "./SUMMARY");
 
 const summary = {
 	lines: <string[]> [], 

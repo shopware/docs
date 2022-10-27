@@ -8,11 +8,11 @@ When you develop your own plugin, you might want to exclude Javascript plugins a
 
 While this is not mandatory, having read the guide about adding custom javascript plugins beforehand might help you understand this guide a bit further:
 
-<PageRef page="add-custom-javascript.md" title="<<<title-missing>>>" />
+<PageRef page="add-custom-javascript" title="<<<title-missing>>>" />
 
 Other than that, this guide just requires you to have a running plugin installed, e.g. our plugin from the plugin base guide:
 
-<PageRef page="../plugin-base-guide.md" title="<<<title-missing>>>" />
+<PageRef page="../plugin-base-guide" title="<<<title-missing>>>" />
 
 ## Unregistering Javascript Plugin
 
@@ -34,5 +34,5 @@ In our case, we shouldn't find `OffCanvasCart` in the listed plugins anymore.
 
 Did you already take a look at our other storefront guides? They can give you some neat starting points on how to extend and customize Shopware's storefront.
 
-* [Override existing Javascript in your plugin](override-existing-javascript.md)
-* [Reacting to Javascript events](reacting-to-javascript-events.md)
+* [Override existing Javascript in your plugin](override-existing-javascript)
+* [Reacting to Javascript events](reacting-to-javascript-events)

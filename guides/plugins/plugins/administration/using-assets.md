@@ -8,7 +8,7 @@ When working with an own plugin, the usage of own custom images or other assets 
 
 In order to be able to start with this guide, you need to have an own plugin running. As to most guides, this guide is also built upon the Plugin base guide:
 
-<PageRef page="../plugin-base-guide.md" title="<<<title-missing>>>" />
+<PageRef page="../plugin-base-guide" title="<<<title-missing>>>" />
 
 Needless to say, you should have your image or another asset at hand to work with.
 
@@ -29,7 +29,7 @@ In order to add your own custom assets, you need to save your assets in the `Res
     └── SwagBasicExample.php
 ```
 
-Similar as in [using custom assets in Storefront](../storefront/add-custom-assets.md), you need to execute the following command:
+Similar as in [using custom assets in Storefront](../storefront/add-custom-assets), you need to execute the following command:
 
 <CodeBlock title="">
 

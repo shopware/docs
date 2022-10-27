@@ -1,6 +1,6 @@
 # Rules
 
-The rule system pervades Shopware 6. It solves the problem of calculating the cart differently based on the context \([`SalesChannel`](../commerce/catalog/sales-channels.md), `CustomerGroup`, ...\) and the current state \([`LineItems`](../commerce/checkout-concept/cart.md#line-items), `Amount`, ...\), but user controlled and decoupled from the [cart](../commerce/checkout-concept/cart.md) itself. In theory [every part of Shopware 6](../../resources/references/core-reference/rules-reference.md) can contribute to the set of available rules.
+The rule system pervades Shopware 6. It solves the problem of calculating the cart differently based on the context \([`SalesChannel`](../commerce/catalog/sales-channels), `CustomerGroup`, ...\) and the current state \([`LineItems`](../commerce/checkout-concept/cart.md#line-items), `Amount`, ...\), but user controlled and decoupled from the [cart](../commerce/checkout-concept/cart) itself. In theory [every part of Shopware 6](../../resources/references/core-reference/rules-reference) can contribute to the set of available rules.
 
 ## Scenario
 
@@ -50,4 +50,4 @@ Following Shopware 6s data driven approach the rule objects are stored to the da
 
 For more insights on the rule validation take a look at the cart documentation:
 
-<PageRef page="../commerce/checkout-concept/cart.md" title="<<<title-missing>>>" />
+<PageRef page="../commerce/checkout-concept/cart" title="<<<title-missing>>>" />

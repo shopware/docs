@@ -10,14 +10,14 @@ In this guide, you'll learn how to create a custom flow trigger in Shopware. Tri
 
 ## Prerequisites
 
-In order to add your own custom flow trigger for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md).
+In order to add your own custom flow trigger for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide).
 
-You also should be familiar with [Add custom event](../event/add-custom-event.md) to know how to create an event. Please refer to the [Flow Builder concept](../../../../../concepts/framework/flow-concept.md)
+You also should be familiar with [Add custom event](../event/add-custom-event) to know how to create an event. Please refer to the [Flow Builder concept](../../../../../concepts/framework/flow-concept)
 for better integration later.
 
 ## Existing triggers and actions
 
-You can refer to the [Flow reference](../../../../../resources/references/core-reference/flow-reference.md) to read triggers and actions detail.
+You can refer to the [Flow reference](../../../../../resources/references/core-reference/flow-reference) to read triggers and actions detail.
 
 ## Event interfaces and classes
 
@@ -35,7 +35,7 @@ Any event that implements one of these interfaces will be available in the trigg
 
 ## Create custom flow trigger
 
-To create a custom flow trigger, firstly you have to create a plugin and install it, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md) to do it. I will create a plugin named `ExamplePlugin`. There will be an example to actually show your new trigger in the administration.
+To create a custom flow trigger, firstly you have to create a plugin and install it, you can refer to the [Plugin Base Guide](../../plugin-base-guide) to do it. I will create a plugin named `ExamplePlugin`. There will be an example to actually show your new trigger in the administration.
 
 ### Create a new trigger (event)
 

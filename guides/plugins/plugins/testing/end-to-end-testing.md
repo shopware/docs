@@ -20,7 +20,7 @@ This guide also won't teach you how to write Cypress tests in general. Please ta
 
 ### Using our testsuite
 
-The [E2E platform testsuite package](https://github.com/shopware/e2e-testsuite-platform) contains commands and helpers supporting you while building E2E tests for Shopware 6. On top of that, test data management and custom commands are included as well. More on that here: [Command reference](../../../../resources/references/core-reference/commands-reference.md).
+The [E2E platform testsuite package](https://github.com/shopware/e2e-testsuite-platform) contains commands and helpers supporting you while building E2E tests for Shopware 6. On top of that, test data management and custom commands are included as well. More on that here: [Command reference](../../../../resources/references/core-reference/commands-reference).
 
 This test suite is built on top of [Cypress](https://www.cypress.io/) as well as the following Cypress plugins:
 
@@ -204,7 +204,7 @@ Please keep in mind that we use `Administration` as default app environment. If 
 ./psh.phar e2e:open --CYPRESS_ENV=Storefront
 ```
 
-To see a complete overview on all psh scripts for e2e tests, feel free to refer to our [e2e psh command reference](../../../../resources/references/testing-reference/e2e-psh-commands.md).
+To see a complete overview on all psh scripts for e2e tests, feel free to refer to our [e2e psh command reference](../../../../resources/references/testing-reference/e2e-psh-commands).
 </Tab>
 </Tabs>
 
@@ -320,7 +320,7 @@ it('test something', () => {
 
 You can chain commands by passing its return value to the next one. These commands may contain extra steps to take, e.g. a `click` or `type` operation.
 
-Cypress provides a lot of commands to represent a variety of steps a user could do. On top of that, our E2E testsuite contains a couple of [custom commands](../../../../resources/references/testing-reference/e2e-custom-commands.md) specially for Shopware.
+Cypress provides a lot of commands to represent a variety of steps a user could do. On top of that, our E2E testsuite contains a couple of [custom commands](../../../../resources/references/testing-reference/e2e-custom-commands) specially for Shopware.
 
 ### Assertions
 
@@ -547,6 +547,6 @@ Below you will find some best practices and tricks we explored to help you with 
 
 ## More interesting topics
 
-* [Unit testing with PHPUnit](php-unit.md)
-* [Jest unit tests in Shopware's administration](jest-admin.md)
-* [Jest unit tests in Shopware's storefront](jest-storefront.md)
+* [Unit testing with PHPUnit](php-unit)
+* [Jest unit tests in Shopware's administration](jest-admin)
+* [Jest unit tests in Shopware's storefront](jest-storefront)

@@ -12,7 +12,7 @@ To enable this set `SHOPWARE_HTTP_CACHE_ENABLED=1` in the `.env`
 
 When you have a lot of app servers, you should consider using a reverse proxy cache like Varnish. Shopware offers default configuration for Varnish out of the box.
 
-[Read more](../infrastructure/reverse-http-cache.md)
+[Read more](../infrastructure/reverse-http-cache)
 
 ### logged-in / cart-filled
 
@@ -56,7 +56,7 @@ and then you can set `SQL_SET_DEFAULT_SESSION_VARIABLES=0` to your `.env` file
 
 We designed the DAL (Data Abstraction Layer) to provide developers a flexible and extensible data management. However, features in such a system come at the cost of performance. Therefore, using DBAL (plain SQL) is much faster than using the DAL in many scenarios, especially when it comes to internal processes, where often only one ID of an entity is needed.
 
-[Read more](../../../../resources/references/adr/dal/2021-05-14-when-to-use-plain-sql-or-dal.md)
+[Read more](../../../../resources/references/adr/dal/2021-05-14-when-to-use-plain-sql-or-dal)
 
 ## Elasticsearch
 
@@ -64,7 +64,7 @@ Elasticsearch is a great tool to reduce the load of the MySQL server. Especially
 
 When using Elasticsearch, it is important to set the `SHOPWARE_ES_THROW_EXCEPTION=1` `.env` variable. This ensures that if an error occurs when querying the data via Elasticsearch, there is no fallback to the MySQL server. In large projects, failure of the Elasticsearch leads to the MySQL server being completely overloaded otherwise.
 
-[Read more](../infrastructure/elasticsearch/elasticsearch-setup.md)
+[Read more](../infrastructure/elasticsearch/elasticsearch-setup)
 
 ## Prevent mail data updates
 
@@ -82,7 +82,7 @@ shopware:
         update_mail_variables_on_send: false
 ```
 
-[Read more](../../../../resources/references/adr/performance/2022-03-25-prevent-mail-updates.md)
+[Read more](../../../../resources/references/adr/performance/2022-03-25-prevent-mail-updates)
 
 ## Increment storage
 
@@ -105,7 +105,7 @@ shopware:
 
 If you don't need such functionality, it is highly recommended to disable this behavior by using `array` as type.
 
-[Read more](../performance/increment.md)
+[Read more](../performance/increment)
 
 ## Lock storage
 
@@ -117,7 +117,7 @@ framework:
     lock: 'redis://host:port'
 ```
 
-[Read more](../performance/lock-store.md)
+[Read more](../performance/lock-store)
 
 ## Number Ranges
 
@@ -135,7 +135,7 @@ shopware:
     redis_url: 'redis://host:port/dbindex'
 ```
 
-[Read more](../performance/number-ranges.md)
+[Read more](../performance/number-ranges)
 
 ## Sending mails with the Queue
 

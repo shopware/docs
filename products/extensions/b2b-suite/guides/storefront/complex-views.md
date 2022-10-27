@@ -125,4 +125,4 @@ Since POST only actions never have views, these controllers only have one view:
 
 ## Modal Component
 
-You can find more information about our modal component in this article: [B2B-Suite Modal Component](modal-component.md)
+You can find more information about our modal component in this article: [B2B-Suite Modal Component](modal-component)

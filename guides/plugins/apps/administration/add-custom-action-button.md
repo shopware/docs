@@ -30,7 +30,7 @@ To get those buttons, you start in the `admin` section of your manifest file. Th
 
 </CodeBlock>
 
-For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference.md).
+For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference).
 
 An action button must have the following attributes:
 
@@ -163,7 +163,7 @@ To open a modal with the embedded link in the iframe, you can use the `openModal
 
 ## Using Custom Endpoints as target
 
-It is also possible to use [custom endpoints](../app-scripts/custom-endpoints.md) as target for action buttons.
+It is also possible to use [custom endpoints](../app-scripts/custom-endpoints) as target for action buttons.
 
 ::: info
 This feature was added in Shopware 6.4.10.0, previous versions don't support relative target urls for action buttons.

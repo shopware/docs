@@ -10,7 +10,7 @@ Creating a command for Shopware 6 via a plugin works exactly like you would add 
 
 This guide **does not** explain how to create a new plugin for Shopware 6. Head over to our plugin base guide to learn how to create a plugin at first:
 
-<PageRef page="../plugin-base-guide.md" title="<<<title-missing>>>" />
+<PageRef page="../plugin-base-guide" title="<<<title-missing>>>" />
 
 The main requirement here is to have a `services.xml` file loaded in your plugin. This can be achieved by placing the file into a `Resources/config` directory relative to your plugin's base class location.
 
@@ -23,7 +23,7 @@ Here's a video on creating custom commands from our free online training ["Backe
 
 ## Registering your command
 
-From here on, everything works exactly like in Symfony itself. Commands are recognised by Shopware, once they're tagged with the `console.command` tag in the [dependency injection](dependency-injection.md) container. So to register a new command, just add it to your plugin's `services.xml` and specify the `console.command` tag:
+From here on, everything works exactly like in Symfony itself. Commands are recognised by Shopware, once they're tagged with the `console.command` tag in the [dependency injection](dependency-injection) container. So to register a new command, just add it to your plugin's `services.xml` and specify the `console.command` tag:
 
 ```xml
 <services>
@@ -146,4 +146,4 @@ Each command usually has a namespace like `cache`, so to clear the cache you wou
 
 ## More interesting topics
 
-* [Adding a scheduled task](add-scheduled-task.md)
+* [Adding a scheduled task](add-scheduled-task)
