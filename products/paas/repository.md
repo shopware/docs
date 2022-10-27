@@ -69,7 +69,7 @@ Following tasks has to be done additionally to the flex migration:
     * `queuerabbit` to `rabbitmq`
     * `searchelastic` to `opensearch`
 
-As the services has been renamed a complete new service will be created. Here are three possible options available:
+As the services are renamed, a completely new service will be created. Here are three possible options available:
 
 * Rename the services back again
 * Start with a new service and re-index Elasticsearch
