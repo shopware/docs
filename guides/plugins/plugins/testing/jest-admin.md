@@ -22,22 +22,10 @@ This tutorial will have a strong focus on how unit tests should be written when 
 
 In addition, you need a running Shopware 6 installation. Your repository used for that should be based on development template, as we need to use some scripts provided by it.
 
-## Folder structure
+## Test file location
 
-The test folder structure should match the source folder structure. You add a test for a file in the same path as the source path. You see: When creating the file, the name should also be the same as the component has with an additional .spec before the file extension `.js`. The `.spec` suffix is a well-known naming convention of frontend testing files.
-
-```bash
-Resources
-  `-- app
-    `-- <environment>
-      `-- test
-        `-- app
-          `-- component
-            `-- base
-              `-- sw-alert.spec.js
-```
-
-Please note that in this example, `<environment>` is a placeholder for the environment you are working in. In your context, that should be `administration`.
+The test files are placed in the same directory as the file which should be tested.
+The file name is the same with the suffix `.spec.js` or `spec.ts`.
 
 ## Testing services and ES modules
 
@@ -96,9 +84,17 @@ However, there are some important differences. We can't test components that eas
 
 We are using a global object as an interface for the whole administration. Every component gets registered to this object, e.g. `Shopware.Component.register()`. Therefore, we have access to Component with the `Shopware.Component.build()` method. This creates a native Vue component with a working template. Every override and extension from another components are resolved in the built component.
 
+## Setup tests with create test command
+
+In order to make writing administration jest tests for you easier you can just use the create test command.
+You encountered an untested component or service? Copy the path in your IDE and go to your terminal.
+In the Shopware root directory run `composer run admin:create:test`. Once prompted paste the path you copied and hit enter.
+
+If everything is correct you should now have a spec file with our newest recommended boilerplate code.
+
 ### Executing tests
 
-Before you are using the commands make sure that you installed all dependencies for your administration. If you haven't done this already, then you can do it running the following PSH command: `./psh.phar administration:install-dependencies`
+Before you are using the commands make sure that you installed all dependencies for your administration. If you haven't done this already, then you can do it running the following PSH command: `composer run init:js`
 
 In order to run jest unit tests of the administration, you can use the psh commands provided by our development template.
 
@@ -107,10 +103,75 @@ This only applies to the Shopware provided Administration! If you use unit tests
 {% endhint %}
 
 This command executes all unit tests and shows you the complete code coverage.  
-`./psh.phar administration:unit`
+`composer run admin:unit`
 
 This command executes only unit tests of changed files. It automatically restarts if a file gets saved. This should be used during the development of unit tests.  
-`./psh.phar administration:unit-watch`
+`composer run admin:unit:watch`
+
+### Example test structure
+
+```typescript
+import {shallowMount, createLocalVue, Wrapper} from '@vue/test-utils';
+import flushPromises from 'flush-promises';
+
+// add additional parameters to change options for the test
+async function createWrapper(/* options = {} */): Wrapper {
+    // add localVue only if needed
+    const localVue = createLocalVue();
+
+    // prefer shallowMount over normal mount
+    return shallowMount(await Shopware.Component.build('sw-your-component-for-test'), {
+        // localVue only if needed
+        localVue,
+        // add stubs for missing component
+        stubs: {
+            'sw-missing-component-one': Shopware.Component.build('sw-missing-component-one'),
+            'sw-missing-component-two': Shopware.Component.build('sw-missing-component-two'),
+        },
+        mocks: {
+            // add mocks if needed
+        },
+        // needed if you interact with elements
+        attachTo: document.body,
+
+        // ...options,
+    });
+}
+
+describe('the/path/to/the/component', () => {
+    let wrapper: Wrapper;
+
+    beforeAll(async () => {
+        // generate all needed mocks, etc.
+    })
+
+    beforeEach(async () => {
+        // reset all mocks and state changes to default
+        wrapper = await createWrapper();
+        
+        // wait for created hook etc.
+        await flushPromises();
+    })
+
+    afterEach(async () => {
+        // cleanup everything
+
+        // destroy the existing wrapper
+        if (wrapper) {
+            await wrapper.destroy();
+        }
+
+        // wait until all promises are finished
+        await flushPromises();
+    })
+
+    it('should be a Vue.js component', () => {
+        expect(wrapper.vm).toBeTruthy();
+    });
+
+    // Add more component tests
+})
+```
 
 ## First example: Testing sw-multi-select component
 
@@ -194,7 +255,7 @@ This contains our component. In our first test we only check if the wrapper is a
 
 ### Running the test
 
-Now lets start the watcher to see if the test works. You can do this with our PSH command `./psh.phar administration:unit-watch`. You should see a result like this: `Test Suites: 1 passed, 1 total`. You should also see several warnings like this:
+Now lets start the watcher to see if the test works. You can do this with our PSH command `composer run admin:unit:watch`. You should see a result like this: `Test Suites: 1 passed, 1 total`. You should also see several warnings like this:
 
 * `[Vue warn]: Missing required prop: "options"`
 * `[Vue warn]: Missing required prop: "value"`
