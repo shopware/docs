@@ -101,4 +101,3 @@ Would you like to explore alternative ways to install Shopware? You can install 
 
 * [Dockware](dockware.md)
 * [Vagrant](vagrant.md)
-* [MAMP](mamp.md)
