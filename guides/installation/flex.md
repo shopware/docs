@@ -210,7 +210,6 @@ You may need to adjust also some environment variables as the names changed:
 | MAILER_URL        | MAILER_DSN     |
 | SHOPWARE_ES_HOSTS | OPENSEARCH_URL |
 
-
 ### 6. Optional: Install PaaS or Fastly support
 
 If you want to use the Shopware PaaS or Fastly, you need to install the following composer packages:
