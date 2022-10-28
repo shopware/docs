@@ -38,6 +38,7 @@ The Symfony CLI is a developer tool that helps to build, run, and manage your Sy
 1. As Symfony CLI uses local PHP, ensure to have PHP installed. Below are the commands to install it:
 
 {% tabs %}
+
 {% tab title="Ubuntu based Linux" %}
 
 You need to add a new Software Repository to your system to have the latest PHP version.
@@ -47,6 +48,42 @@ sudo add-apt-repository ppa:ondrej/php
 
 sudo apt-get install -y php8.1-fpm php8.1-mysql php8.1-curl php8.1-gd php8.1-xml php8.1-zip php8.1-opcache php8.1-mbstring php8.1-intl php8.1-cli
 ```
+
+{% endtab %}
+
+{% tab title="Debian based Linux" %}
+
+Add a new Software Repository to your system to have the latest PHP version
+
+```bash
+curl https://packages.sury.org/php/README.txt | bash
+
+sudo apt-get install -y php8.1-fpm php8.1-mysql php8.1-curl php8.1-gd php8.1-xml php8.1-zip php8.1-opcache php8.1-mbstring php8.1-intl php8.1-cli
+```
+
+{% endtab %}
+
+{% tab title="macOS Homebrew" %}
+
+```bash
+brew install php@8.1
+```
+
+{% endtab %}
+
+{% tab title="Nix / NixOs" %}
+
+```bash
+# Nix
+nix-env -iA nixpkgs.php81 nixpkgs.symfony-cli
+
+# NixOs
+nix-env -iA nixos.php81 nixpkgs.symfony-cli
+```
+
+{% endtab %}
+
+{% endtabs %}
 
 ### Optional packages
 
@@ -63,11 +100,11 @@ composer req paas
 composer req fastly
 ```
 
-#### Add Shopware Packagist
+### Add Shopware Packagist
 
 Using Shopware Packagist you can manage all your Shopware Store plugins directly in the composer.json. Refer to ["Using composer for plugin installation in Shopware"](https://www.shopware.com/en/news/using-composer-for-plugin-installation-in-shopware/) blog post for detailed information.
 
-## How to migrate to Symfony Flex?
+## How to migrate from Production Template to Symfony Flex?
 
 ### 1. Backup
 
@@ -146,6 +183,8 @@ rm -r .dockerignore \
     phpstan.neon \
     phpunit.xml.dist \
     psalm.xml
+
+touch .env
 ```
 
 ### 4. Install required composer packages
@@ -163,6 +202,13 @@ composer recipe:install --force --reset
 ### 5. Review changes
 
 Review the changes and commit them to your git repository. All upcoming config changes can be applied with `composer recipe:update`.
+
+You may need to adjust some environment variables as the names are changed:
+
+| **Old name**      | **New name**   |
+|-------------------|----------------|
+| MAILER_URL        | MAILER_DSN     |
+| SHOPWARE_ES_HOSTS | OPENSEARCH_URL |
 
 ### 6. Optional: Install PaaS or Fastly support
 

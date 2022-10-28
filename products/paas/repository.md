@@ -57,3 +57,20 @@ platform	<paas-url>.git (push)
 |------------|-------------------|-------------------------------------------------------------------------|
 | `origin`   | Project Code      | This remote contains all your project specific source code              |
 | `platform` | PaaS Environment  | Changes pushed to this remote will be synced with your PaaS environment |
+
+## Migrating from old template to the new template
+
+If you have already used the [Shopware PaaS old template](https://github.com/shopware/paas), please follow the guide to [migrate it to the new structure](../../guides/installation/flex.md#how-to-migrate-from-production-template-to-symfony-flex).
+
+Following tasks has to be done additionally to the flex migration:
+
+* The root `.platform.app.yml` has been moved to `.platform/applications.yaml`
+* The following services has been renamed:
+    * `queuerabbit` to `rabbitmq`
+    * `searchelastic` to `opensearch`
+
+As the services are renamed, a completely new service will be created. Here are three possible options available:
+
+* Rename the services back again
+* Start with a new service and re-index Elasticsearch
+* [Perform the transitional upgrade of two services in parallel for some time](https://docs.platform.sh/add-services/opensearch.html#upgrading)
