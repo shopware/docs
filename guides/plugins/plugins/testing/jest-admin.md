@@ -86,11 +86,11 @@ We are using a global object as an interface for the whole administration. Every
 
 ## Setup tests with create test command
 
-In order to make writing administration jest tests for you easier you can just use the create test command.
+You can generate a test boilerplate using the create test command.
 You encountered an untested component or service? Copy the path in your IDE and go to your terminal.
 In the Shopware root directory run `composer run admin:create:test`. Once prompted paste the path you copied and hit enter.
 
-If everything is correct you should now have a spec file with our newest recommended boilerplate code.
+If everything is correct you should now have a `.spec` file with our newest recommended boilerplate code.
 
 ### Executing tests
 
@@ -255,7 +255,7 @@ This contains our component. In our first test we only check if the wrapper is a
 
 ### Running the test
 
-Now lets start the watcher to see if the test works. You can do this with our PSH command `composer run admin:unit:watch`. You should see a result like this: `Test Suites: 1 passed, 1 total`. You should also see several warnings like this:
+Now let's start the watcher to see if the test works. You can do this using our PSH command `composer run admin:unit:watch`. You should see a result like this: `Test Suites: 1 passed, 1 total`. You should also see several warnings like this:
 
 * `[Vue warn]: Missing required prop: "options"`
 * `[Vue warn]: Missing required prop: "value"`
