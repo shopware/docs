@@ -114,7 +114,6 @@
   * [Installation from scratch](guides/installation/from-scratch)
   * [Valet+](guides/installation/valet)
   * [MAMP](guides/installation/mamp)
-  * [Symfony Flex](guides/installation/flex)
 * [Extensions](guides/plugins)
   * [Overview](guides/plugins/overview)
   * [Plugins](guides/plugins/plugins)
