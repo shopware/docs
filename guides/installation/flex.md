@@ -37,9 +37,9 @@ The Symfony CLI is a developer tool that helps to build, run, and manage your Sy
 
 1. As Symfony CLI uses local PHP, ensure to have PHP installed. Below are the commands to install it:
 
-{% tabs %}
+<Tabs>
 
-{% tab title="Ubuntu based Linux" %}
+<Tab title="Ubuntu based Linux">
 
 You need to add a new Software Repository to your system to have the latest PHP version.
 
@@ -49,9 +49,9 @@ sudo add-apt-repository ppa:ondrej/php
 sudo apt-get install -y php8.1-fpm php8.1-mysql php8.1-curl php8.1-gd php8.1-xml php8.1-zip php8.1-opcache php8.1-mbstring php8.1-intl php8.1-cli
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Debian based Linux" %}
+<Tab title="Debian based Linux">
 
 Add a new Software Repository to your system to have the latest PHP version
 
@@ -61,17 +61,17 @@ curl https://packages.sury.org/php/README.txt | bash
 sudo apt-get install -y php8.1-fpm php8.1-mysql php8.1-curl php8.1-gd php8.1-xml php8.1-zip php8.1-opcache php8.1-mbstring php8.1-intl php8.1-cli
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="macOS Homebrew" %}
+<Tab title="macOS Homebrew">
 
 ```bash
 brew install php@8.1
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Nix / NixOs" %}
+<Tab title="Nix / NixOs">
 
 ```bash
 # Nix
@@ -81,9 +81,9 @@ nix-env -iA nixpkgs.php81 nixpkgs.symfony-cli
 nix-env -iA nixos.php81 nixpkgs.symfony-cli
 ```
 
-{% endtab %}
+</Tab>
 
-{% endtabs %}
+</Tabs>
 
 ### Optional packages
 
