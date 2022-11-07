@@ -1,4 +1,4 @@
-#  Storefront Guidelines
+# Storefront Guidelines
 
 Below are the pointers that describe the best practices to test and quality check templates, themes, frontend apps, backend apps, payment apps, etc, at the storefront before releasing it.
 
