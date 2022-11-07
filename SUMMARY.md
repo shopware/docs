@@ -444,6 +444,8 @@
       * [Add feature flag support for storefront scss](resources/references/adr/storefront/2022-01-05-add-feature-flag-support-for-storefront-scss.md)
       * [Add typescript support for storefront js](resources/references/adr/storefront/2022-06-24-add-typescript-support-for-storefront-js.md)
       * [Add bootstrap util](resources/references/adr/storefront/2022-09-23-add-bootstrap-util.md)
+    * [Testing](resources/references/adr/testing/README.md)
+      * [Deprecation handling during phpunit test execution](resources/references/adr/testing/2022-10-20-deprecation-handling-during-phpunit-test-execution.md)
     * [Workflow](resources/references/adr/workflow/README.md)
       * [Implement architecture decision records](resources/references/adr/workflow/2020-06-25-implement-architecture-decision-records.md)
       * [Implement New Changelog](resources/references/adr/workflow/2020-08-03-implement-New-Changelog.md)
