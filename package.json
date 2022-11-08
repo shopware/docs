@@ -10,8 +10,9 @@
     "serve": "vitepress serve"
   },
   "dependencies": {
-    "vitepress-shopware-docs": "^0.1.4",
+    "vite": "^3.2.3",
     "vitepress": "^1.0.0-alpha.25",
+    "vitepress-shopware-docs": "^0.1.9",
     "vue": "^3.2.41"
   },
   "pnpm": {
@@ -20,7 +21,9 @@
         "@algolia/client-search",
         "react",
         "react-dom",
-        "@types/react"
+        "@types/react",
+        "@stoplight/mosaic-code-viewer",
+        "mkdirp"
       ]
     }
   }

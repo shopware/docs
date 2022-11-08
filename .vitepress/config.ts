@@ -2,49 +2,6 @@ import { defineConfigWithTheme } from "vitepress";
 import type { Config as ThemeConfig } from "vitepress-shopware-docs";
 import baseConfig from "vitepress-shopware-docs/config";
 
-const nav = [
-  {
-    text: "Guide",
-    activeMatch: `^/(guide|cookbook|examples)/`,
-    items: [
-      { text: "Guide", link: "/guide/introduction" },
-      { text: "Examples", link: "/examples/" },
-    ],
-  },
-  {
-    text: "API",
-    activeMatch: `^/api/`,
-    link: "/api/",
-  },
-];
-
-export const sidebar = {
-  "/guide/": [
-    {
-      text: "Getting Started",
-      items: [
-        { text: "Introduction", link: "/guide/introduction" },
-        {
-          text: "Quick Start",
-          link: "/guide/quick-start",
-        },
-      ],
-    },
-  ],
-  "/api/": [
-    {
-      text: "Global API",
-      items: [
-        { text: "Application", link: "/api/application" },
-        {
-          text: "General",
-          link: "/api/general",
-        },
-      ],
-    },
-  ],
-};
-
 export default defineConfigWithTheme<ThemeConfig>({
   extends: baseConfig,
 
@@ -58,9 +15,6 @@ export default defineConfigWithTheme<ThemeConfig>({
   head: [],
 
   themeConfig: {
-    nav,
-    sidebar,
-
     algolia: {
       indexName: "",
       appId: "",
