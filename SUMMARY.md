@@ -444,6 +444,8 @@
       * [Add feature flag support for storefront scss](resources/references/adr/storefront/2022-01-05-add-feature-flag-support-for-storefront-scss)
       * [Add typescript support for storefront js](resources/references/adr/storefront/2022-06-24-add-typescript-support-for-storefront-js)
       * [Add bootstrap util](resources/references/adr/storefront/2022-09-23-add-bootstrap-util)
+    * [Testing](resources/references/adr/testing/README.md)
+      * [Deprecation handling during phpunit test execution](resources/references/adr/testing/2022-10-20-deprecation-handling-during-phpunit-test-execution.md)
     * [Workflow](resources/references/adr/workflow)
       * [Implement architecture decision records](resources/references/adr/workflow/2020-06-25-implement-architecture-decision-records)
       * [Implement New Changelog](resources/references/adr/workflow/2020-08-03-implement-New-Changelog)
@@ -453,7 +455,6 @@
       * [Adjust ADR approval rules](resources/references/adr/workflow/2021-11-05-adjust-ADR-approval-rules)
       * [Consistent deprecation notices in core](resources/references/adr/workflow/2022-02-28-consistent-deprecation-notices-in-core)
       * [Remove static analysis with psalm](resources/references/adr/workflow/2022-05-12-remove-static-analysis-with-psalm)
-
   * [App Reference](resources/references/app-reference)
     * [Manifest Reference](resources/references/app-reference/manifest-reference)
     * [Webhook Events Reference](resources/references/app-reference/webhook-events-reference)
