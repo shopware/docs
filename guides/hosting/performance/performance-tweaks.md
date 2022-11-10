@@ -22,9 +22,9 @@ However, if the project does not require such functionality, pages can also be c
 
 ```yaml
 shopware:
-    cache:
-        invalidation:
-            http_cache: []
+  cache:
+    invalidation:
+      http_cache: []
 ```
 
 ### Delayed invalidation
@@ -33,10 +33,10 @@ A delay for the cache invalidation can be activated for systems with a high upda
 
 ```yaml
 shopware:
-    cache:
-        invalidation:
-            delay: 0
-            count: 150
+  cache:
+    invalidation:
+      delay: 0
+      count: 150
 ```
 
 ## MySQL instead of MariaDB
@@ -56,7 +56,7 @@ and then you can set `SQL_SET_DEFAULT_SESSION_VARIABLES=0` to your `.env` file
 
 We designed the DAL (Data Abstraction Layer) to provide developers a flexible and extensible data management. However, features in such a system come at the cost of performance. Therefore, using DBAL (plain SQL) is much faster than using the DAL in many scenarios, especially when it comes to internal processes, where often only one ID of an entity is needed.
 
-[Read more](../../../../resources/references/adr/dal/2021-05-14-when-to-use-plain-sql-or-dal)
+[Read more](../../../resources/references/adr/dal/2021-05-14-when-to-use-plain-sql-or-dal)
 
 ## Elasticsearch
 
@@ -78,11 +78,11 @@ With the `shopware.mail.update_mail_variables_on_send` configuration, you can di
 
 ```yaml
 shopware:
-    mail:
-        update_mail_variables_on_send: false
+  mail:
+    update_mail_variables_on_send: false
 ```
 
-[Read more](../../../../resources/references/adr/performance/2022-03-25-prevent-mail-updates)
+[Read more](../../../resources/references/adr/performance/2022-03-25-prevent-mail-updates)
 
 ## Increment storage
 
@@ -91,16 +91,16 @@ This storage increments or decrements a given key in a transaction-safe way, whi
 
 ```yaml
 shopware:
-    increment:
-        user_activity:
-          type: 'redis'
-          config:
-            url: 'redis://host:port/dbindex'
+  increment:
+    user_activity:
+      type: "redis"
+      config:
+        url: "redis://host:port/dbindex"
 
-        message_queue:
-          type: 'redis'
-          config:
-            url: 'redis://host:port/dbindex'
+    message_queue:
+      type: "redis"
+      config:
+        url: "redis://host:port/dbindex"
 ```
 
 If you don't need such functionality, it is highly recommended to disable this behavior by using `array` as type.
@@ -114,7 +114,7 @@ By default, Symfony will use a local file-based lock store, which breaks in mult
 
 ```yaml
 framework:
-    lock: 'redis://host:port'
+  lock: "redis://host:port"
 ```
 
 [Read more](../performance/lock-store)
@@ -132,7 +132,7 @@ Redis offers better support for atomic increments than the database, therefore t
 shopware:
   number_range:
     increment_storage: "Redis"
-    redis_url: 'redis://host:port/dbindex'
+    redis_url: "redis://host:port/dbindex"
 ```
 
 [Read more](../performance/number-ranges)
@@ -143,8 +143,8 @@ Shopware sends the mails by default synchronously. This process can take a while
 
 ```yaml
 framework:
-    mailer:
-        message_bus: 'messenger.default_bus'
+  mailer:
+    message_bus: "messenger.default_bus"
 ```
 
 ## PHP Config tweaks
@@ -187,7 +187,7 @@ The Shopware cache has a global cache id to clear the cache faster and work in a
 
 ## .env.local.php
 
-[Symfony recommends](https://symfony.com/doc/current/configuration.html#configuring-environment-variables-in-production) that a `.env.local.php` file is used in Production instead of a `.env` file, to skip parsing of the  .env file on every request.
+[Symfony recommends](https://symfony.com/doc/current/configuration.html#configuring-environment-variables-in-production) that a `.env.local.php` file is used in Production instead of a `.env` file, to skip parsing of the .env file on every request.
 If you are using a containerized environment, all those variables can also be set directly in the environment variables, instead of dumping then to a file.
 
 Since shopware 6.4.15.0 you can dump the content of the .env file to a `.env.local.php` file by running `bin/console system:setup --dump-env` or `bin/console dotenv:dump {APP_ENV}`.
@@ -203,12 +203,12 @@ Set the log level of monolog to `error` to reduce the amount of logged events. A
 
 ```yaml
 monolog:
-    handlers:
-        main:
-            level: error  
-            buffer_size: 30
-        business_event_handler_buffer:
-            level: error
+  handlers:
+    main:
+      level: error
+      buffer_size: 30
+    business_event_handler_buffer:
+      level: error
 ```
 
 The `business_event_handler_buffer` handler logs flows. Setting it to `error` will disable the logging of flow activities that succeed.

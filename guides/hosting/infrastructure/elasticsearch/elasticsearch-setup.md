@@ -6,8 +6,8 @@ As soon as several thousand data sets are used in a project, it makes sense to d
 
 ## Requirements
 
-* Opensearch >= 1.0 or Elasticsearch >= 7.8
-* [Running message queue workers in background](message-queue)
+- Opensearch >= 1.0 or Elasticsearch >= 7.8
+- [Running message queue workers in background](../message-queue)
 
 ## Server basics
 
@@ -64,14 +64,14 @@ Normally a shard in Elasticsearch can hold at least tens of gigabytes so you mig
 
 ### Variables in your .env
 
-| Variable | Possible values | Description |
-| ---------|-----------------|-------------|
-| `APP_ENV`| `prod` / `dev` | This variable is important if you want to activate the debug mode and see possible errors of Elasticsearch. You have to set the variable to dev for debug mode and prod if you want to use elasticsaerch in a productive system.|
-| `SHOPWARE_ES_HOSTS`| `localhost:9200` | A comma separated list of Elasticsearch hosts. You can find the possible formats [here](https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/host-config.html#inline-host-config)|
-| `SHOPWARE_ES_INDEXING_ENABLED`| `0` / `1` |  This variable activates the indexing to Elasticsearch|
-| `SHOPWARE_ES_ENABLED`| `0` / `1` | This variable activates the usage of Elasticsearch for your shop|
-| `SHOPWARE_ES_INDEX_PREFIX`| `sw_myshop` | This variable defines the prefix for the Elasticsearch indices|
-| `SHOPWARE_ES_THROW_EXCEPTION`| `0` / `1` | This variable activates the debug mode for Elasticsearch, without this variable as = 1 you will get a fallback to mysql without any error message if Elasticsearch is not working|
+| Variable                       | Possible values  | Description                                                                                                                                                                                                                      |
+| ------------------------------ | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `APP_ENV`                      | `prod` / `dev`   | This variable is important if you want to activate the debug mode and see possible errors of Elasticsearch. You have to set the variable to dev for debug mode and prod if you want to use elasticsaerch in a productive system. |
+| `SHOPWARE_ES_HOSTS`            | `localhost:9200` | A comma separated list of Elasticsearch hosts. You can find the possible formats [here](https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/host-config.html#inline-host-config)                                |
+| `SHOPWARE_ES_INDEXING_ENABLED` | `0` / `1`        | This variable activates the indexing to Elasticsearch                                                                                                                                                                            |
+| `SHOPWARE_ES_ENABLED`          | `0` / `1`        | This variable activates the usage of Elasticsearch for your shop                                                                                                                                                                 |
+| `SHOPWARE_ES_INDEX_PREFIX`     | `sw_myshop`      | This variable defines the prefix for the Elasticsearch indices                                                                                                                                                                   |
+| `SHOPWARE_ES_THROW_EXCEPTION`  | `0` / `1`        | This variable activates the debug mode for Elasticsearch, without this variable as = 1 you will get a fallback to mysql without any error message if Elasticsearch is not working                                                |
 
 ### Example file for productive environments
 
@@ -135,7 +135,7 @@ Normally you can index by executing the command `bin/console es:index`.
 ### Indexing the whole shop
 
 Sometimes you want to reindex your whole shop including Elasticsearch, seo-urls, product index and more.
-For a reindex of the whole shop, you can use the command `bin/console dal:refresh:index --use-queue`. Please mind using the `--use-queue` option because you will have too many products to index without the [message queue](/docs/guides/hosting/infrastructure/message-queue) involved.
+For a reindex of the whole shop, you can use the command `bin/console dal:refresh:index --use-queue`. Please mind using the `--use-queue` option because you will have too many products to index without the [message queue](../message-queue) involved.
 
 ### Alias creation
 
@@ -149,10 +149,10 @@ If a messenger process is active the entries of that table are processed one by 
 In case a message runs into an error it is written into the `dead_messages` table and will be processed again after a specific timeframe.
 
 You can start multiple messenger consumer processes by using the command `bin/console messenger:consume` and also add output to the processed messages by adding the parameter `bin/console messenger:consume -vv`.
-In an productive environment you want to deactivate the admin messenger which is started automatically when opening a session in your administration view by following this [documentation](/docs/guides/plugins/plugins/framework/message-queue/add-message-handler#the-admin-worker).
+In an productive environment you want to deactivate the admin messenger which is started automatically when opening a session in your administration view by following this [documentation](../../../plugins/plugins/framework/message-queue/add-message-handler#the-admin-worker).
 
 Our experience has shown that up to three worker processes are normal and useful for a production environment.
-If you want or need more than that a tool like [RabbitMq](/docs/guides/hosting/infrastructure/message-queue#transport-rabbitmq-example) to handle the queue is needed so your database will not become a bottleneck.
+If you want or need more than that a tool like [RabbitMq](../message-queue#transport-rabbitmq-example) to handle the queue is needed so your database will not become a bottleneck.
 
 ## Configuration
 

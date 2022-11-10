@@ -8,29 +8,29 @@ Dockware is maintained by _dasistweb GmbH_. They provide a detailed [documentati
 
 Dockware images come in several version so you can choose the one which fits your needs best. You can find a brief overview below, but as always, please refer to [their website](https://dockware.io/) for a detailed comparison.
 
-| Image | Description | Basis |
-| :--- | :--- | :--- |
-| dockware \#play | Launch Shopware in just a couple of seconds locally on your system. Test every functionality and play around while verifying your requirements. | `Production` |
-| dockware \#dev | This is the solution for instant coding. Run Shopware 6, prepare your IDE and immediately start with your own customizations and plugins. Provides Xdebug, watchers or more. | `Production` |
-| dockware \#contribute | This image supports Shopware 6 modification, basically to contribute to the official Shopware 6 Github platform. Contains all dev tools and the already installed demo data. | `developement` |
-| dockware \#essentials | This is a plain dockware environment without Shopware. | --- |
-| dockware \#flex | This one provides a flexible Apache and PHP container for all kinds of Symfony and Shopware projects. It's an image meant for for individualization, e.g. you can manage the Shopware version on your own. | --- |
+| Image                 | Description                                                                                                                                                                                                | Basis          |
+| :-------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------- |
+| dockware \#play       | Launch Shopware in just a couple of seconds locally on your system. Test every functionality and play around while verifying your requirements.                                                            | `Production`   |
+| dockware \#dev        | This is the solution for instant coding. Run Shopware 6, prepare your IDE and immediately start with your own customizations and plugins. Provides Xdebug, watchers or more.                               | `Production`   |
+| dockware \#contribute | This image supports Shopware 6 modification, basically to contribute to the official Shopware 6 Github platform. Contains all dev tools and the already installed demo data.                               | `developement` |
+| dockware \#essentials | This is a plain dockware environment without Shopware.                                                                                                                                                     | ---            |
+| dockware \#flex       | This one provides a flexible Apache and PHP container for all kinds of Symfony and Shopware projects. It's an image meant for for individualization, e.g. you can manage the Shopware version on your own. | ---            |
 
 ## Quickstart
 
 First things first, please install Docker on your local maschine.
 
-* If using Linux, you need to start by downloading the latest version of Docker and install it on your system. To
+- If using Linux, you need to start by downloading the latest version of Docker and install it on your system. To
 
   name a few examples, you can find the matching docker versions for your distribution here:
 
-  * [Docker for Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
-  * [Docker for Debian](https://docs.docker.com/install/linux/docker-ce/debian/)
-  * [Docker for CentOS](https://docs.docker.com/install/linux/docker-ce/centos/)
-  * [Docker for Fedora](https://docs.docker.com/install/linux/docker-ce/fedora/)
+  - [Docker for Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+  - [Docker for Debian](https://docs.docker.com/install/linux/docker-ce/debian/)
+  - [Docker for CentOS](https://docs.docker.com/install/linux/docker-ce/centos/)
+  - [Docker for Fedora](https://docs.docker.com/install/linux/docker-ce/fedora/)
 
-* For Windows operating system. please download the latest version of [Docker desktop for Windows](https://hub.docker.com/editions/community/docker-ce-desktop-windows/).
-* If using Mac, please start by downloading the latest version of
+- For Windows operating system. please download the latest version of [Docker desktop for Windows](https://hub.docker.com/editions/community/docker-ce-desktop-windows/).
+- If using Mac, please start by downloading the latest version of
 
   [Docker Desktop](https://hub.docker.com/editions/community/docker-ce-desktop-mac/) for Mac and install it.
 
@@ -78,27 +78,26 @@ Here's an overview about what versions are available: [https://hub.docker.com/r/
 version: "3"
 
 services:
-
-    shopware:
-      # use either tag "latest" or any other version like "6.1.5", ...
-      image: dockware/dev:latest
-      container_name: shopware
-      ports:
-         - "80:80"
-         - "3306:3306"
-         - "22:22"
-         - "8888:8888"
-         - "9999:9999"
-      volumes:
-         - "db_volume:/var/lib/mysql"
-         - "shop_volume:/var/www/html"
-      networks:
-         - web
-      environment:
-         # default = 0, recommended to be OFF for frontend devs
-         - XDEBUG_ENABLED=1
-         # default = latest PHP, optional = specific version
-         - PHP_VERSION=7.4
+  shopware:
+    # use either tag "latest" or any other version like "6.1.5", ...
+    image: dockware/dev:latest
+    container_name: shopware
+    ports:
+      - "80:80"
+      - "3306:3306"
+      - "22:22"
+      - "8888:8888"
+      - "9999:9999"
+    volumes:
+      - "db_volume:/var/lib/mysql"
+      - "shop_volume:/var/www/html"
+    networks:
+      - web
+    environment:
+      # default = 0, recommended to be OFF for frontend devs
+      - XDEBUG_ENABLED=1
+      # default = latest PHP, optional = specific version
+      - PHP_VERSION=7.4
 
 volumes:
   db_volume:
@@ -144,9 +143,9 @@ Default credentials for dockware can be found at [https://docs.dockware.io/use-d
 
 Would you like to explore alternative ways to install Shopware? You can install Shopware on Mac with the help of other tools:
 
-* [Docker](docker)
-* [Vagrant](vagrant)
-* [MAMP](mamp)
+- [Docker](docker)
+- [Vagrant](vagrant)
+- [MAMP](mamp)
 
 Otherwise, you might want to start writing your very own plugin. Head over to [Plugin base guide](../plugins/plugins/plugin-base-guide) to get a grip on that topic.
 

@@ -8,6 +8,6 @@ In this section, you can find the following B2B-Suite guides:
 
 [Administration](/administration)
 
-[Storefront](/storefront)
+[Storefront](/storefront/)
 
 [Example Plugins](/example-plugins)

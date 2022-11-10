@@ -10,7 +10,7 @@ To offer configuration possibilities to your users you can provide a `config.xml
 ...
 └── DemoApp
       └── Resources
-            └── config  
+            └── config
                   └── config.xml
       └── manifest.xml
 ```
@@ -30,8 +30,8 @@ To access your apps configuration over the API make a GET request against the `/
 // GET /api/_action/system-config?domain=DemoApp.config&salesChannelId=98432def39fc4624b33213a56b8c944d
 
 {
-    "DemoApp.config.field1": true,
-    "DemoApp.config.field2": "successfully configured"
+  "DemoApp.config.field1": true,
+  "DemoApp.config.field2": "successfully configured"
 }
 ```
 
@@ -43,17 +43,13 @@ Keep in mind that your app needs the `system_config:read` permission to access t
 
 Inside twig templates you can use the twig function `config` (see [Shopware Twig functions](../../../resources/references/storefront-reference/twig-function-reference)). An example twig template could look like this:
 
-
-
 ```twig
 {{ config('DemoApp.config.field1') }}
 ```
 
-
-
 ### Reading the config in app scripts
 
-In app scripts you have access to the [`config` service](../../../../resources/references/app-reference/script-reference/miscellaneous-script-services-reference.md#SystemConfigFacade), that can be used to access config values.
+In app scripts you have access to the [`config` service](../../../resources/references/app-reference/script-reference/miscellaneous-script-services-reference.md#SystemConfigFacade), that can be used to access config values.
 
 ::: info
 Note that app scripts were introduced in Shopware 6.4.8.0, and are not supported in previous versions.
@@ -61,12 +57,9 @@ Note that app scripts were introduced in Shopware 6.4.8.0, and are not supported
 
 The `config` service provides an `app()` method, that can be used to access your app's configuration. When using this method you don't need to provide the `{appName}.config` prefix and your app does not need any additional permissions.
 
-
 ```twig
 {% set configValue = services.config.app('field1') %}
 ```
-
-
 
 Additionally, you can use the `get()` method, to access any configuration value and not just the ones of your app.
 
@@ -74,14 +67,10 @@ Additionally, you can use the `get()` method, to access any configuration value 
 Keep in mind that your app needs the `system_config:read` permission to use the `config.get()` method.
 :::
 
-
-
 ```twig
 {% set configValue = services.config.get('core.listing.productsPerPage') %}
 ```
 
-
-
-For a detailed description about app scripts refer to this [guide](./app-scripts).
+For a detailed description about app scripts refer to this [guide](./app-scripts/).
 
 For a full description of the `config` service take a look at the [service's reference](../../../resources/references/app-reference/script-reference/miscellaneous-script-services-reference.md#servicesconfig-shopwarecoresystemsystemconfigfacadesystemconfigfacade).

@@ -2,7 +2,7 @@
 
 ## Overview
 
-This article shows you how to debug the status and indexing proccess of your Elasticsearch environment. Ensure that the [Debug-Mode]([/docs/guides/hosting/elasticsearch/elasticsearch#example-file-for-debug-configuration) is activated in your .env file.
+This article shows you how to debug the status and indexing proccess of your Elasticsearch environment. Ensure that the [Debug-Mode](../index#example-file-for-debug-configuration) is activated in your .env file.
 
 ## Shopware 6 CLI Commands
 
@@ -34,10 +34,10 @@ bin/console es:index // Creates only the index for ES
 
 ### ES Create Alias
 
-`es:create:alias`  will create an alias linking to the index after `es:index` is done. Normally this is done automatically, in older version this has to be done.
+`es:create:alias` will create an alias linking to the index after `es:index` is done. Normally this is done automatically, in older version this has to be done.
 
 ```sh
-bin/console es:create:alias 
+bin/console es:create:alias
 ```
 
 **> No Output**
@@ -72,7 +72,7 @@ bin/console dal:refresh:index --use-queue
 
 ### Messenger Consume
 
-`messenger:consume -vv` starts a message consumer working on all tasks. This could be startet *X* times. When using more then 3 message consumer, you will need something like RabbitMq to handle the data
+`messenger:consume -vv` starts a message consumer working on all tasks. This could be startet _X_ times. When using more then 3 message consumer, you will need something like RabbitMq to handle the data
 
 ```sh
 bin/console messenger:consume -vv
@@ -110,21 +110,21 @@ curl -XGET 'http://elasticsearch:9200/?pretty'
 
 ```json
 {
-  "name" : "TZzynG6",
-  "cluster_name" : "docker-cluster",
-  "cluster_uuid" : "tHklOFWPSwm-j8Yn-8PRoQ",
-  "version" : {
-    "number" : "6.8.1",
-    "build_flavor" : "default",
-    "build_type" : "docker",
-    "build_hash" : "1fad4e1",
-    "build_date" : "2019-06-18T13:16:52.517138Z",
-    "build_snapshot" : false,
-    "lucene_version" : "7.7.0",
-    "minimum_wire_compatibility_version" : "5.6.0",
-    "minimum_index_compatibility_version" : "5.0.0"
+  "name": "TZzynG6",
+  "cluster_name": "docker-cluster",
+  "cluster_uuid": "tHklOFWPSwm-j8Yn-8PRoQ",
+  "version": {
+    "number": "6.8.1",
+    "build_flavor": "default",
+    "build_type": "docker",
+    "build_hash": "1fad4e1",
+    "build_date": "2019-06-18T13:16:52.517138Z",
+    "build_snapshot": false,
+    "lucene_version": "7.7.0",
+    "minimum_wire_compatibility_version": "5.6.0",
+    "minimum_index_compatibility_version": "5.0.0"
   },
-  "tagline" : "You Know, for Search"
+  "tagline": "You Know, for Search"
 }
 ```
 
@@ -140,21 +140,21 @@ curl -XGET 'http://elasticsearch:9200/_cluster/health?pretty'
 
 ```json
 {
-  "cluster_name" : "docker-cluster",
-  "status" : "yellow",
-  "timed_out" : false,
-  "number_of_nodes" : 1,
-  "number_of_data_nodes" : 1,
-  "active_primary_shards" : 1210,
-  "active_shards" : 1210,
-  "relocating_shards" : 0,
-  "initializing_shards" : 0,
-  "unassigned_shards" : 1210,
-  "delayed_unassigned_shards" : 0,
-  "number_of_pending_tasks" : 0,
-  "number_of_in_flight_fetch" : 0,
-  "task_max_waiting_in_queue_millis" : 0,
-  "active_shards_percent_as_number" : 50.0
+  "cluster_name": "docker-cluster",
+  "status": "yellow",
+  "timed_out": false,
+  "number_of_nodes": 1,
+  "number_of_data_nodes": 1,
+  "active_primary_shards": 1210,
+  "active_shards": 1210,
+  "relocating_shards": 0,
+  "initializing_shards": 0,
+  "unassigned_shards": 1210,
+  "delayed_unassigned_shards": 0,
+  "number_of_pending_tasks": 0,
+  "number_of_in_flight_fetch": 0,
+  "task_max_waiting_in_queue_millis": 0,
+  "active_shards_percent_as_number": 50.0
 }
 ```
 
@@ -189,7 +189,7 @@ curl -X DELETE 'elasticsearch:9200/_all'
 **> Output:**
 
 ```json
-{"acknowledged":true}
+{ "acknowledged": true }
 ```
 
 ## Show the indexing status in the database
@@ -198,9 +198,9 @@ Returns the status of your indexing. The number of entries in the enqueue should
 As long as there are entries in your `enqueue`, the indexing is in process and your message consumer has to work those messages.
 
 ```sql
-select * from message_queue_stats mqs ; 
-select count(*) from enqueue e ; 
-select count(*) from dead_message dm ; 
+select * from message_queue_stats mqs ;
+select count(*) from enqueue e ;
+select count(*) from dead_message dm ;
 ```
 
 ## Reset the indexing in the database
@@ -209,7 +209,7 @@ Sometimes your indexing is stuck or run into an error and you want to reset the 
 If the database queue is used - Third party services will differ - you can do so with the following queries.
 
 ```sql
-truncate enqueue ; 
+truncate enqueue ;
 truncate dead_message ;
 truncate message_queue_stats ;
 update scheduled_task set status = 'scheduled' where status = 'queued';
@@ -221,7 +221,7 @@ This is mainly for debugging purposes and only meant for test and staging enviro
 First execute the database reset (Only working for database queue):
 
 ```sql
-truncate enqueue ; 
+truncate enqueue ;
 truncate dead_message ;
 truncate message_queue_stats ;
 update scheduled_task set status = 'scheduled' where status = 'queued';

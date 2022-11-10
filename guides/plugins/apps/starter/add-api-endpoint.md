@@ -1,25 +1,25 @@
 # Starter Guide - Add an API endpoint
 
 ::: info
-Note that this guide relies on [app scripts](../app-scripts), which were introduced in Shopware 6.4.8.0, and are not supported in previous versions.
+Note that this guide relies on [app scripts](../app-scripts/), which were introduced in Shopware 6.4.8.0, and are not supported in previous versions.
 :::
 
 This guide shows, how you can add a custom API endpoint that delivers dynamic data starting from zero.
 
 After reading, you will be able to
 
-* Create the basic setup of an app
-* Execute app scripts and use them to model custom logic
-* Fetch, filter and aggregate data from Shopware
-* Consume HTTP parameters and create responses
+- Create the basic setup of an app
+- Execute app scripts and use them to model custom logic
+- Fetch, filter and aggregate data from Shopware
+- Consume HTTP parameters and create responses
 
 ## Prerequisites
 
-* A Shopware cloud store
-* Basic CLI usage (creating files, directories, running commands)
-* Installed and configured [shopware-cli](https://sw-cli.fos.gg/) tools
-* General knowledge of [Twig Syntax](https://twig.symfony.com/)
-* A text editor
+- A Shopware cloud store
+- Basic CLI usage (creating files, directories, running commands)
+- Installed and configured [shopware-cli](https://sw-cli.fos.gg/) tools
+- General knowledge of [Twig Syntax](https://twig.symfony.com/)
+- A text editor
 
 ## Create the App Wrapper
 
@@ -71,7 +71,7 @@ There are specific directory conventions that we have to follow in order to regi
 The prefix for our API endpoint is one of the following and cannot be changed:
 
 | API        | API consumers / callers      | Prefix                |
-|------------|------------------------------|-----------------------|
+| ---------- | ---------------------------- | --------------------- |
 | Store API  | Customer-facing integrations | `/store-api/script/`  |
 | Admin API  | Backend integrations         | `/api/script/`        |
 | Storefront | Default Storefront           | `/storefront/script/` |
@@ -105,8 +105,8 @@ MyApiExtension/
 
 This directory naming causes Shopware to expose the script on two routes:
 
-* `/store-api/script/swag/topseller` and
-* `/store-api/script/swag-topseller`
+- `/store-api/script/swag/topseller` and
+- `/store-api/script/swag-topseller`
 
 ### Add custom logic and install
 
@@ -114,14 +114,12 @@ Let's start with a simple script to see it in action:
 
 <CodeBlock title="Resources/scripts/store-api-swag-topseller/topseller-script.twig">
 
-
 ```twig
 {% block response %}
     {% set response = services.response.json({ test: 'This is my API endpoint' }) %}
     {% do hook.setResponse(response) %}
 {% endblock %}
 ```
-
 
 </CodeBlock>
 
@@ -158,7 +156,10 @@ curl --request GET \
 which should return something like:
 
 ```json
-{"apiAlias":"store_api_swag_topseller_response","test":"This is my API endpoint"}
+{
+  "apiAlias": "store_api_swag_topseller_response",
+  "test": "This is my API endpoint"
+}
 ```
 
 However, instead of using curl we recommend using visual clients to test the API - such as [Postman](https://www.postman.com/downloads/) or [Insomnia](https://insomnia.rest/download).
@@ -168,7 +169,6 @@ However, instead of using curl we recommend using visual clients to test the API
 For now, our script is not really doing anything. Let's change that.
 
 <CodeBlock title="Resources/scripts/store-api-swag-topseller/topseller-script.twig">
-
 
 ```twig
 {% block response %}
@@ -208,7 +208,6 @@ For now, our script is not really doing anything. Let's change that.
 {% endblock %}
 ```
 
-
 </CodeBlock>
 
 What happened here?
@@ -222,8 +221,8 @@ We start by reading the requested category id using `hook.request.categoryId`. I
 In the following lines, we define a search criteria.
 The criteria contains a description of the data we want to fetch:
 
- 1. First, we filter out all products that are not inside the category that was requested using a filter aggregation.
- 1. The following lines contain two further nested aggregations:
+1.  First, we filter out all products that are not inside the category that was requested using a filter aggregation.
+1.  The following lines contain two further nested aggregations:
     1. The first one groups all products from all orders using their id.
     1. The second one sums up the number of ordered items in each order.
 
@@ -237,35 +236,23 @@ To learn more about the structure of search criterias follow the link below:
 
 We now send a request to the database to retrieve the result using
 
-
-
 ```twig
 {% set orderAggregations = services.repository.aggregate('order', criteria) %}
 ```
-
-
 
 ### Building the response
 
 In the final step, we build the response. We use the `services.response.json()` method to convert the serialized json representation of our aggregation into a json response object named `response`.
 
-
-
 ```twig
 {% set response = services.response.json(orderAggregations.first.jsonSerialize) %}
 ```
 
-
-
 Afterwards we just set the response of the hook to the result from above, and we're done:
-
-
 
 ```twig
 {% do hook.setResponse(response) %}
 ```
-
-
 
 It is important to do all this within the `response` block of the twig script. Otherwise, you will get errors when calling the script.
 
@@ -338,13 +325,13 @@ This tutorial covered the basics of app development using app scripts and some f
 
 In a proper app you should consider the following points
 
-* Input parameter validation
-* Format and limit the result
-* Define an API contract (endpoint structure) first and build after that
-* The search result does not show actual top sellers, but just the quantity of products ordered
+- Input parameter validation
+- Format and limit the result
+- Define an API contract (endpoint structure) first and build after that
+- The search result does not show actual top sellers, but just the quantity of products ordered
 
 ## Where to continue
 
-* More on adding [custom endpoints](../app-scripts/custom-endpoints)
-* See how you can use [Twig functions](../app-scripts/#extended-syntax) in app scripts
-* Working with [DAL Aggregations](./../../../../resources/references/core-reference/dal-reference/aggregations-reference)
+- More on adding [custom endpoints](../app-scripts/custom-endpoints)
+- See how you can use [Twig functions](../app-scripts/#extended-syntax) in app scripts
+- Working with [DAL Aggregations](./../../../../resources/references/core-reference/dal-reference/aggregations-reference)

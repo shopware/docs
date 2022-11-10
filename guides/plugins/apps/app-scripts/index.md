@@ -9,7 +9,7 @@ Note that app scripts were introduced in Shopware 6.4.8.0, and are not supported
 ## Script Hooks
 
 The entry point for each script are the so-called "Hooks". You can register one or more scripts inside your app, that should be executed whenever a specific hook is triggered.
-Through the hook your script gets access to the data of the current execution context and can react to or manipulate the data in some way.  
+Through the hook your script gets access to the data of the current execution context and can react to or manipulate the data in some way.
 
 See the [Hooks reference](../../../../resources/references/app-reference/script-reference/script-hooks-reference) for a complete list of all available.
 
@@ -45,8 +45,8 @@ In order to do that you can compose your reusable scripts into [twig macros](htt
 ```text
 └── DemoApp
     ├── Resources
-    │   └── scripts                         
-    │       ├── include    
+    │   └── scripts
+    │       ├── include
     │       │   └── media-repository.twig         // this script may be included into the other scripts
     │       ├── cart
     │       │   ├── first-cart-script.twig
@@ -60,29 +60,25 @@ A basic example may look like this:
 
 <CodeBlock title="Resources/scripts/include/media-repository.twig">
 
-
 ```twig
 {% macro getById(mediaId) %}
     {% set criteria = {
         'ids': [ mediaId ]
     } %}
-    
+
      {% return services.repository.search('media', criteria).first %}
 {% endmacro %}
 ```
 
-
 </CodeBlock>
 
 <CodeBlock title="Resources/scripts/cart/first-cart-script.twig">
-
 
 ```twig
 {% import "include/media-repository.twig" as mediaRepository %}
 
 {% set mediaEntity = mediaRepository.getById(myMediaId) %}
 ```
-
 
 </CodeBlock>
 
@@ -91,8 +87,6 @@ A basic example may look like this:
 Some "Hooks" describe interfaces this means that your scripts for that hook need to implement one or more functions.
 E.g. the `store-api-hook` defines a `cache_key` and a `response` function. Those functions are closely related, but are executed separately.
 To implement the different functions, you use different twig blocks with the name of the function:
-
-
 
 ```twig
 {% block cache_key %}
@@ -103,8 +97,6 @@ To implement the different functions, you use different twig blocks with the nam
     // produce the response for the request
 {% endblock %}
 ```
-
-
 
 Some functions are optional whereas others are required, in the above example the `cache_key` function is optional.
 That means you can omit that block in your script without an error (but caching for the endpoint won't work in that case).
@@ -117,15 +109,11 @@ The available data and services are described for each hook (or each function in
 
 Inside the app script you have access to the [storefront translation mechanism](../../plugins/storefront/add-translations), by using the `|trans`-filter.
 
-
-
 ```twig
 {% set translated = 'my.snippet.key'|trans %}
 
 {% do call.something('my.snippet.key'|trans) %}
 ```
-
-
 
 ### Extended syntax
 
@@ -135,19 +123,13 @@ In addition to the default twig syntax, app scripts can also use a more PHP-flav
 
 Instead of using the rather verbose `{% if var is same as(1) %}` you can use the more dense `===` equality checks.
 
-
-
 ```twig
 {% if var === 1 %}
     ...
 {% endif %}
 ```
 
-
-
 Additionally, you can also use the `!==` not equals operator as well.
-
-
 
 ```twig
 {% if var !== 1 %}
@@ -155,13 +137,9 @@ Additionally, you can also use the `!==` not equals operator as well.
 {% endif %}
 ```
 
-
-
 #### Loops with `foreach`
 
 Instead of the `for...in` syntax for loops you can also use a `foreach` tag.
-
-
 
 ```twig
 {% foreach list as entry %}
@@ -170,13 +148,9 @@ Instead of the `for...in` syntax for loops you can also use a `foreach` tag.
 {% endforeach %}
 ```
 
-
-
 #### Instance of checks with `is`
 
 You can use a `is` check to check the type of a variable.
-
-
 
 ```twig
 {% if var is string %}
@@ -184,26 +158,22 @@ You can use a `is` check to check the type of a variable.
 {% endif %}
 ```
 
-
-
 The following types are supported:
 
-* `true`
-* `false`
-* `boolean` / `bool`
-* `string`
-* `scalar`
-* `object`
-* `integer` / `int`
-* `float`
-* `callable`
-* `array`
+- `true`
+- `false`
+- `boolean` / `bool`
+- `string`
+- `scalar`
+- `object`
+- `integer` / `int`
+- `float`
+- `callable`
+- `array`
 
 #### Type casts with `intval`
 
 You can cast variables into different types with the `intval` filter.
-
-
 
 ```twig
 {% if '5'|intval === 5 %}
@@ -211,20 +181,16 @@ You can cast variables into different types with the `intval` filter.
 {% endif %}
 ```
 
-
-
 The following type casts are supported:
 
-* `intval`
-* `strval`
-* `boolval`
-* `floatval`
+- `intval`
+- `strval`
+- `boolval`
+- `floatval`
 
 #### conditions with `&&` and `||`
 
 Instead of using `AND` or `OR` in if-conditions, you can use the `&&` or `||` shorthands.
-
-
 
 ```twig
 {% if condition === true && condition2 === true %}
@@ -232,21 +198,15 @@ Instead of using `AND` or `OR` in if-conditions, you can use the `&&` or `||` sh
 {% endif %}
 ```
 
-
-
 #### `return` tag
 
 You can use the `return` tag to return values from inside macros.
 
-
-
 ```twig
-{% macro foo() %} 
+{% macro foo() %}
      {% return 'bar' %}
 {% endmacro %}
 ```
-
-
 
 ## Available services
 
@@ -255,15 +215,11 @@ Take a look at the [hook reference](../../../../resources/references/app-referen
 
 Additionally, we added a `ServiceStubs`-class, that can be used as typehint in your script, so you get auto-completion features of your IDE.
 
-
-
 ```twig
 {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
 
 {% set configValue = services.config.app('my-app-config') %}
 ```
-
-
 
 ::: info
 The stub class contains all services, but depending on the hook not all of them are available.
@@ -273,12 +229,11 @@ The stub class contains all services, but depending on the hook not all of them 
 
 Assuming your app adds a [custom field set](../custom-data/custom-fields) for the product entity with a custom media entity select field.
 
-When you want to display the file of the media entity in the [storefront](../storefront), it is not easily possible, because in the template's data you only get the id of the media entity, but not the url of the media file itself.
+When you want to display the file of the media entity in the [storefront](../storefront/), it is not easily possible, because in the template's data you only get the id of the media entity, but not the url of the media file itself.
 
 For this case you can add an app script on the `product-page-loaded`-hook, that loads the media entity by id and adds it to the page object, so the data is available in templates.
 
 <CodeBlock title="Resources/scripts/product-page-loaded/add-custom-media.twig">
-
 
 ```twig
 {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
@@ -298,7 +253,6 @@ For this case you can add an app script on the `product-page-loaded`-hook, that 
 
 {% do page.addExtension('swagMyCustomMediaField', media) %}
 ```
-
 
 </CodeBlock>
 
@@ -325,11 +279,9 @@ That will open the Symfony profiler in the script detail view, where you can see
 Additionally, you can use the `debug.dump()` function inside your scripts to dump data to the debug view.
 A script like this:
 
-
 ```twig
 {% do debug.dump(hook.page) %}
 ```
-
 
 Will dump the page object to the debug view.
 

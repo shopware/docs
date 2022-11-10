@@ -2,7 +2,7 @@
 
 ## Overview
 
-In this guide you'll learn how to make your app introduce custom conditions for use in the [Rule Builder](../../../../concepts/framework/rules). Custom conditions can be defined with fields to be rendered in the administration and with their own logic, using the same approach as [App Scripts](../app-scripts).
+In this guide you'll learn how to make your app introduce custom conditions for use in the [Rule Builder](../../../../concepts/framework/rules). Custom conditions can be defined with fields to be rendered in the administration and with their own logic, using the same approach as [App Scripts](../app-scripts/).
 
 ::: info
 Note that app rule conditions were introduced in Shopware 6.4.12.0, and are not supported in previous versions.
@@ -74,15 +74,15 @@ For a complete reference of the structure of the manifest file take a look at th
 
 Following fields are required:
 
-* `identifier`: A technical name for the condition that should be unique within the scope of the app. The name is being used to identifiy existing conditions when updating the app, so it should not be changed.
-* `name`: A descriptive and translatable name for the condition. The name will be shown within the Rule Builder's selection of conditions in the administration.
-* `script`: The file name and extension of the file that contains the script for the condition. All scripts for rule conditions must be placed inside `Resources/scripts/rule-conditions` within the root directory of the app.
+- `identifier`: A technical name for the condition that should be unique within the scope of the app. The name is being used to identifiy existing conditions when updating the app, so it should not be changed.
+- `name`: A descriptive and translatable name for the condition. The name will be shown within the Rule Builder's selection of conditions in the administration.
+- `script`: The file name and extension of the file that contains the script for the condition. All scripts for rule conditions must be placed inside `Resources/scripts/rule-conditions` within the root directory of the app.
 
 ### Constraints
 
 Constraints are optional and may be used to define fields, whose purpose is to provide data for use within the condition's script.
 
-Constraints are a collection of [custom fields](../custom-data), which allows you to provide a variety of different fields for setting parameters within the administration. Fields may be marked as `required`. The `name` attribute of the field is also the variable the field's value will be exposed as within the condition's script. So it is advisable to use a variable-friendly name and to use unique names within the confines of a single condition.
+Constraints are a collection of [custom fields](../custom-data/), which allows you to provide a variety of different fields for setting parameters within the administration. Fields may be marked as `required`. The `name` attribute of the field is also the variable the field's value will be exposed as within the condition's script. So it is advisable to use a variable-friendly name and to use unique names within the confines of a single condition.
 
 The above example will add the condition shown below for selection in the administration:
 
@@ -102,7 +102,7 @@ The corresponding scripts to the defined conditions within `manifest.xml` need t
     └── manifest.xml
 ```
 
-Scripts for rule conditions are [twig files](https://twig.symfony.com/) that are executed in a sandboxed environment. They offer the same extended syntax and debugging options as [App Scripts](../app-scripts).
+Scripts for rule conditions are [twig files](https://twig.symfony.com/) that are executed in a sandboxed environment. They offer the same extended syntax and debugging options as [App Scripts](../app-scripts/).
 
 Within the script you will have access to the `scope` variable which is an instance of `RuleScope` as described in the [Rule Builder concept](../../../../concepts/framework/rules). The scope instance provides you with the current `SalesChannelContext` and, given the right scope, the current cart. Further available variables depend on the existence of constraints within the definition of your conditions.
 
@@ -126,7 +126,6 @@ If either one or both of `value` and `comparable` are an array, then only `=` an
 
 <CodeBlock title="Resources/scripts/rule-conditions/custom-condition.twig">
 
-
 ```twig
 {% if scope.salesChannelContext.customer is not defined %}
     {% return false %}
@@ -134,7 +133,6 @@ If either one or both of `value` and `comparable` are an array, then only `=` an
 
 {% return compare(operator, scope.salesChannelContext.customer.firstName, firstName) %}
 ```
-
 
 </CodeBlock>
 
@@ -180,7 +178,6 @@ We then use the variables `operator` and `firstName`, provided by the constraint
 
 <CodeBlock title="Resources/scripts/rule-conditions/line-item-condition.twig">
 
-
 ```twig
 {% if scope.lineItem is defined %}
     {% return compare(operator, lineItem.referenceId, productIds) %}
@@ -198,7 +195,6 @@ We then use the variables `operator` and `firstName`, provided by the constraint
 
 {% return false %}
 ```
-
 
 </CodeBlock>
 
@@ -223,11 +219,9 @@ In this example we first check if the current scope is `LineItemScope` and refer
 
 <CodeBlock title="Resources/scripts/rule-conditions/date-condition.twig">
 
-
 ```twig
 {% return compare('=', scope.getCurrentTime()|date_modify('first day of this month')|date_modify('second wednesday of this month')|date('Y-m-d'), scope.getCurrentTime()|date('Y-m-d')) %}
 ```
-
 
 </CodeBlock>
 

@@ -12,11 +12,11 @@ When you are using a self-hosted Shopware Version, make sure to set the feature 
 
 In order to follow this guide, make sure you're familiar with and meet the following requirements:
 
-* Basic CLI usage (creating files, directories, running commands)
-* Installed [shopware-cli](https://sw-cli.fos.gg/) tools
-* We will use the following libraries / softwares
-    * npm
-    * live-server (small local development live-reloading server)
+- Basic CLI usage (creating files, directories, running commands)
+- Installed [shopware-cli](https://sw-cli.fos.gg/) tools
+- We will use the following libraries / softwares
+  - npm
+  - live-server (small local development live-reloading server)
 
 ## Create the App Wrapper
 
@@ -78,28 +78,27 @@ SimpleNotification/
 <CodeBlock title="src/index.html">
 
 ```html
-<!doctype html>
+<!DOCTYPE html>
 <html>
-    <head>
-        <script src="https://unpkg.com/@shopware-ag/admin-extension-sdk@0.0.52/cdn"></script>
-    </head>
-    <script>
-        sw.notification.dispatch({
-            title: 'Hi there',
-            message: 'Looks like someone sent you a message'
-        });
-    </script>
+  <head>
+    <script src="https://unpkg.com/@shopware-ag/admin-extension-sdk@0.0.52/cdn"></script>
+  </head>
+  <script>
+    sw.notification.dispatch({
+      title: "Hi there",
+      message: "Looks like someone sent you a message",
+    });
+  </script>
 </html>
-
 ```
 
 </CodeBlock>
 
 This file contains the basic setup for our app to display the notification:
 
-* The HTML is rendered in a hidden iFrame when the administration panel is loaded
-* The Admin Extension SDK script is loaded through a CDN and exposed as the `sw` object
-* We use the `notification.dispatch` SDK method to display a simple notification with a title and a message.
+- The HTML is rendered in a hidden iFrame when the administration panel is loaded
+- The Admin Extension SDK script is loaded through a CDN and exposed as the `sw` object
+- We use the `notification.dispatch` SDK method to display a simple notification with a title and a message.
 
 ### Start the local development server
 
@@ -158,6 +157,6 @@ When the app was successfully installed, you will see the notification pop up on
 
 This example showed end-to-end how to create a local dev environment and connect it with your Shopware Store. There's a lot more to learn and try out - so why not move on with one of those topics
 
-* Did you know, you can add [new sections](https://shopware.github.io/admin-extension-sdk/docs/guide/api-reference/ui/component-section) to the UI or even [entire modules](https://shopware.github.io/admin-extension-sdk/docs/guide/api-reference/ui/mainModule)?
-* The Admin Extension SDK also offers [TypeScript support](https://shopware.github.io/admin-extension-sdk/docs/guide/getting-started/installation#using-npm-require-bundling) (including autocompletion)
-* Don't want to extend the admin panel? Have a look at [App Scripts](https://developer.shopware.com/docs/guides/plugins/apps/app-scripts)
+- Did you know, you can add [new sections](https://shopware.github.io/admin-extension-sdk/docs/guide/api-reference/ui/component-section) to the UI or even [entire modules](https://shopware.github.io/admin-extension-sdk/docs/guide/api-reference/ui/mainModule)?
+- The Admin Extension SDK also offers [TypeScript support](https://shopware.github.io/admin-extension-sdk/docs/guide/getting-started/installation#using-npm-require-bundling) (including autocompletion)
+- Don't want to extend the admin panel? Have a look at [App Scripts](https://developer.shopware.com/docs/guides/plugins/apps/app-scripts/)

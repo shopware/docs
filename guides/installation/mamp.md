@@ -106,9 +106,9 @@ git clone https://github.com/shopware/platform.git
 
 First, add a new host in MAMP:
 
-* Hostname = shopware
-* Port = 8000
-* Document Root = Browse for the public directory inside the new directory that you used before \(e.g. /PhpstormProjects/shopware/development/public\)
+- Hostname = shopware
+- Port = 8000
+- Document Root = Browse for the public directory inside the new directory that you used before \(e.g. /PhpstormProjects/shopware/development/public\)
 
 ![hosts](../../.gitbook/assets/10-mac-os-x-net.png)
 
@@ -121,34 +121,36 @@ bin/setup
 
 You will be prompted to enter specific information. In short:
 
-* Application environment: Just hit enter to apply the default `dev`
-* URL to your /public folder: `http://shopware:8000`
-* Database host: Just hit enter to apply the default `localhost`
-* Database port: Just hit enter to apply the default `3306`
-* Database name: Enter the name of your database that you created earlier, `shopware` was suggested
-* Database user: Enter the name of your MySQL user, that you created previously
-* Database password: Enter the password of the new MySQL user
+- Application environment: Just hit enter to apply the default `dev`
+- URL to your /public folder: `http://shopware:8000`
+- Database host: Just hit enter to apply the default `localhost`
+- Database port: Just hit enter to apply the default `3306`
+- Database name: Enter the name of your database that you created earlier, `shopware` was suggested
+- Database user: Enter the name of your MySQL user, that you created previously
+- Database password: Enter the password of the new MySQL user
 
 Afterwards a file called `.psh.yaml.override` is created, which contains all those information you just entered.
 
 ### Start Shopware 6 setup
 
 ```sh
-# Inside the shopware installation directory (e.g. /PhpstormProjects/shopware/development) 
+# Inside the shopware installation directory (e.g. /PhpstormProjects/shopware/development)
 ./psh.phar install
 ```
 
 After that the setup is done. You can now access your Shopware 6 installation using the following urls:
+
 <!-- markdown-link-check-disable -->
-* Storefront: [http://shopware:8000](http://shopware:8000)
-* Admin: [http://shopware:8000/admin](http://shopware:8000/admin) \(User: admin, password: shopware\)
+
+- Storefront: [http://shopware:8000](http://shopware:8000)
+- Admin: [http://shopware:8000/admin](http://shopware:8000/admin) \(User: admin, password: shopware\)
 <!-- markdown-link-check-enable -->
 
 ## Troubleshooting
 
 There are cases when the administration is not build correctly and having error messages similar to these:
 
-> ERROR in foobar/vendor/shopware/storefront/Resources/app/administration/src/main.js Module Error \(from ./node\_modules/eslint-loader/index.js\):
+> ERROR in foobar/vendor/shopware/storefront/Resources/app/administration/src/main.js Module Error \(from ./node_modules/eslint-loader/index.js\):
 >
 > ✘ [https://google.com/\#q=import%2Fno-unresolved](https://google.com/#q=import%2Fno-unresolved) Casing of ./modules/sw-theme-manager does not match the underlying filesystem  
 > foobar/vendor/shopware/storefront/Resources/app/administration/src/main.js:1:8
@@ -172,6 +174,6 @@ The underlying problem is that Mac supports case-insensitive paths but not the t
 
 As you installed Shopware successfully, maybe you want to start writing your very own plugin. Head over to [Plugin base guide](../plugins/plugins/plugin-base-guide) to get a grip on that topic. Did you know you can install Shopware on Mac with the help of other tools? See the guides below:
 
-* [Docker](docker)
-* [Vagrant](vagrant)
-* [Dockware](dockware)
+- [Docker](docker)
+- [Vagrant](vagrant)
+- [Dockware](dockware)

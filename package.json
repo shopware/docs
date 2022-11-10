@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "vite": "^3.2.3",
-    "vitepress": "^1.0.0-alpha.25",
+    "vitepress": "^1.0.0-alpha.28",
     "vitepress-shopware-docs": "^0.1.9",
-    "vue": "^3.2.41"
+    "vue": "^3.2.44"
   },
   "pnpm": {
     "peerDependencyRules": {

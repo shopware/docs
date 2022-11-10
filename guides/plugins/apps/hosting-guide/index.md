@@ -16,10 +16,10 @@ functionalities that it uses.
   - [Payment Processing](../payment)
 - **Features that work without a server**
   - [Themes](../storefront/apps-as-themes)
-  - [Template changes](../storefront)
+  - [Template changes](../storefront/)
   - [CMS Blocks](../content/cms/add-custom-cms-blocks)
   - [App configuration](../configuration)
-  
+
 ## Hosting Options
 
 Modern server providers offer several ways to host web based applications.

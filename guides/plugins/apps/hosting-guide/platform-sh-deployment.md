@@ -7,15 +7,15 @@
 Keep in mind though, that this is **not** the only way to go for Apps! You can of course use different services, providers or host everything on a dedicated machine.
 In this guide, we'd like to let you know what we'd do to get started hosting an App on Platform.sh.
 
-Read more about why this kind of hosting could be useful [here](README) or in there [official documentation](https://docs.platform.sh/).
+Read more about why this kind of hosting could be useful [here](index) or in there [official documentation](https://docs.platform.sh/).
 
 ## Getting started
 
 To deploy your app on [Platform.sh](https://platform.sh), just follow those instructions:
 
-* [Source Integrations](https://docs.platform.sh/integrations/source.html)
-* [Private Git repository](https://docs.platform.sh/development/private-repository.html)
-* [Using the Platform.sh CLI](https://docs.platform.sh/development/cli.html)
+- [Source Integrations](https://docs.platform.sh/integrations/source.html)
+- [Private Git repository](https://docs.platform.sh/development/private-repository.html)
+- [Using the Platform.sh CLI](https://docs.platform.sh/development/cli.html)
 
 ## Most important steps
 
@@ -23,9 +23,9 @@ To deploy your app on [Platform.sh](https://platform.sh), just follow those inst
 1. Install the [Platform.sh CLI](https://docs.platform.sh/development/cli.html)
 1. [Authenticate](https://docs.platform.sh/development/cli.html#authentication) using your Platform.sh account
 1. Create required config files. Also, if you create a new project, Platform.sh shows you a checklist where you can generate the code for these files
-    * [routes.yaml](https://docs.platform.sh/configuration/routes.html)
-    * [services.yaml](https://docs.platform.sh/configuration/services.html)
-    * [.platform.app.yaml](https://docs.platform.sh/configuration/app.html)
+   - [routes.yaml](https://docs.platform.sh/configuration/routes.html)
+   - [services.yaml](https://docs.platform.sh/configuration/services.html)
+   - [.platform.app.yaml](https://docs.platform.sh/configuration/app.html)
 1. Push your changes to your Git Repo
 1. After it's been deployed, migrate the database by connecting via [SSH to your project](#ssh-into-your-project) and running the command `vendor/bin/doctrine-migrations migrations:migrate`
 1. That's it!
@@ -55,13 +55,13 @@ Your file could than look like this _(with the default [AppTemplate](https://git
 
 ```yaml
 hooks:
-    build: |
-        set -e
-        php bin/console assets:install --no-debug
-    deploy: |
-        set -e
-        php bin/console cache:clear
-        php bin/console doctrine:migrations:migrate --no-interaction
+  build: |
+    set -e
+    php bin/console assets:install --no-debug
+  deploy: |
+    set -e
+    php bin/console cache:clear
+    php bin/console doctrine:migrations:migrate --no-interaction
 ```
 
 </CodeBlock>
@@ -106,7 +106,7 @@ platform environment:activate <Branch Name>
 **Documentation:** <https://docs.platform.sh/development/access-site.html#visiting-the-site-on-the-web>
 
 ```sh
-platform url 
+platform url
 ```
 
 ### SSH into your project

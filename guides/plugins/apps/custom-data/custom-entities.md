@@ -25,14 +25,11 @@ For a complete reference of the structure of the entities file take a look at th
 
 ## Functionality
 
-All registered entities will get an automatically registered repository. It is also available in the [App scripts](../app-scripts) section, in case you are allowed to access the repository service inside the hook.
-
+All registered entities will get an automatically registered repository. It is also available in the [App scripts](../app-scripts/) section, in case you are allowed to access the repository service inside the hook.
 
 ```twig
 {% set blogs = services.repository.search('custom_entity_blog', criteria) %}
 ```
-
-
 
 Additionally, to the repository you can also access your custom entities via [Admin api](../../../../concepts/api/admin-api).
 

@@ -27,8 +27,10 @@ At least on Linux operating systems, docker installation is the easiest way to g
 ```
 
 This may take a while since many caches need to be generated on first execution, but only on first execution.
+
 <!-- markdown-link-check-disable-next-line -->
-To be sure the installation succeeded, just open the following url in your favorite browser: [http://localhost:8000/](http://localhost:8000/)
+
+To be sure the installation succeeded, just open the following url in your favorite browser: `http://localhost:8000/`
 
 After exploring Shopware 6 you can terminate it with these two commands:
 
@@ -54,10 +56,10 @@ If you are working with Mac/OSX and are facing performance issues, you should us
 
 Download & install `docker-sync` from [http://docker-sync.io/](http://docker-sync.io/), which supports OSX, Windows, Linux and FreeBSD. `docker-sync` uses Ruby, which is pre-installed on OSX. On other operating systems, you might have to [install Ruby](https://www.ruby-lang.org/en/) separately.
 
-* For OSX, see [OSX](https://docker-sync.readthedocs.io/en/latest/getting-started/installation.html#installation-osx).
-* For Windows, see [Windows](https://docker-sync.readthedocs.io/en/latest/getting-started/installation.html#installation-windows).
-* For Linux, see [Linux](https://docker-sync.readthedocs.io/en/latest/getting-started/installation.html#installation-linux).
-* See the list of alternatives [here](https://docker-sync.readthedocs.io/en/latest/miscellaneous/alternatives.html)
+- For OSX, see [OSX](https://docker-sync.readthedocs.io/en/latest/getting-started/installation.html#installation-osx).
+- For Windows, see [Windows](https://docker-sync.readthedocs.io/en/latest/getting-started/installation.html#installation-windows).
+- For Linux, see [Linux](https://docker-sync.readthedocs.io/en/latest/getting-started/installation.html#installation-linux).
+- See the list of alternatives [here](https://docker-sync.readthedocs.io/en/latest/miscellaneous/alternatives.html)
 
 ### Enable the use of docker-sync in PSH Console
 
@@ -97,6 +99,6 @@ For more information about Shopware Installation, take a look at the [Installati
 
 As next step, you might want to start writing your very own plugin. Head over to [Plugin base guide](../plugins/plugins/plugin-base-guide) to learn about that topic. Would you like to explore alternative ways to install Shopware? You can install Shopware on Mac with the help of other tools:
 
-* [Dockware](dockware)
-* [Vagrant](vagrant)
-* [MAMP](mamp)
+- [Dockware](dockware)
+- [Vagrant](vagrant)
+- [MAMP](mamp)
