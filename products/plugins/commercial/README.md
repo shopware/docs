@@ -11,6 +11,7 @@ The commercial plugin is structured as a group of nested [sub-bundles](concepts/
 Installation of the commercial plugin does not require special installation guidance, the installation steps are simply as detailed in our [plugin base guide](guides/plugins/plugins/plugin-base-guide#install-your-plugin).
 
 This plugin contains various feature, which are already covered in our docs as well. You can find the following guides on them:
+
 * [Custom Pricing](guides/plugins/plugins/api/custom-pricing)
 
 {% hint style="warning" %}
