@@ -2,11 +2,11 @@
 
 ## Overview
 
-As soon as several thousand data sets are used in a project, it makes sense to deal with Elasticsearch. Elasticsearch 7.8 or newer is required. The Elasticsearch integration for Shopware is in the [shopware/elasticsearch](https://github.com/shopware/elasticsearch) bundle. If this is not available in your project you can simply add it via `composer require shopware/elasticsearch`. In this documentation we will provide you a short overview about the functionalities of Elasticsearch on your server and the configuration, activation and indexing process in Shopware for live and test environments.
+As soon as several thousand data sets are used in a project, it makes sense to deal with Elasticsearch. The Elasticsearch integration for Shopware is in the [shopware/elasticsearch](https://github.com/shopware/elasticsearch) bundle. If this is not available in your project you can simply add it via `composer require shopware/elasticsearch`. In this documentation we will provide you a short overview about the functionalities of Elasticsearch on your server and the configuration, activation and indexing process in Shopware for live and test environments.
 
 ## Requirements
 
-* Elasticsearch 7.8 or newer
+* Opensearch >= 1.0 or Elasticsearch >= 7.8
 * [Running message queue workers in background](message-queue.md)
 
 ## Server basics
@@ -157,4 +157,4 @@ If you want or need more than that a tool like [RabbitMq](/docs/guides/hosting/i
 ## Configuration
 
 Keep in mind that the search configuration of Shopware has no effect when you are using Elasticsearch.
-To be able to configure which fields and elements are searchable when using Elasticsearch, you will have to install the enterprise accellerator extension [Enterprise Search](https://docs.shopware.com/en/shopware-6-en/enterprise-extensions/enterprise-search).
+To be able to configure which fields and elements are searchable when using Elasticsearch, you will have to install the extension [Advanced Search](https://docs.shopware.com/en/shopware-6-en/enterprise-extensions/enterprise-search).

@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Shopware is a standard eCommerce solution which is used by many customers around the world and is the technical foundation of their online business. As developers of Shopware it is our highest goal to guarantee the reliability of the software for our customers. Always keep in mind that every change you make can have a big impact on the life of our customers, either in a good way, but also in a bad way.
+Shopware is a standard ecommerce solution which is used by many customers around the world and is the technical foundation of their online business. As developers of Shopware it is our highest goal to guarantee the reliability of the software for our customers. Always keep in mind that every change you make can have a big impact on the life of our customers, either in a good way, but also in a bad way.
 
 For the release strategy Shopware uses a semantic [versioning](https://www.shopware.com/en/news/shopware-6-versioning-strategy/) and therefore has to be always backward compatible for minor and patch updates. This brings additional challenges, when changing the code of Shopware. The following guide aims to provide you with the necessary workflows and techniques to do your changes in a backward compatible way and what to do, if it is not possible.
 

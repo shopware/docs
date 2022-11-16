@@ -60,6 +60,8 @@ The method `registerCmsElement` takes a configuration object, containing the fol
 | configComponent | The Vue component defining the "configuration detail" page of your element. |
 | previewComponent | The Vue component to be used in the "list of available elements". Just shows a tiny preview of what your element would look like if it was used. |
 | defaultConfig | A default configuration to be applied to this element. Must be an object containing properties matching the used variable names, containing the default values. |
+| hidden (optional) | Hides the element in the replace element modal. |
+| removable (optional) | Removes the replace element icon. |
 
 Go ahead and create this configuration object yourself. Here's what it should look like after having set all of those options:
 
@@ -124,7 +126,7 @@ Shopware.Component.register('sw-cms-el-preview-dailymotion', {
 
 Just like most components, it has a custom template and some styles. Focus on the template first, create a new file `sw-cms-el-preview-dailymotion.html.twig`.
 
-So, what do you want to show here? Maybe the default 'mountain' preview image, that's already being used for the image element. On top of that, you could place our icon `multicolor-action-play`. Head over to your [icon library](https://component-library.shopware.com/icons/) to find this icon.
+So, for instance, if you want to show the default 'mountain' preview image as an example, then copy it from `<Shopware root>/public/bundles/administration/static/img/cms/preview_mountain_small.jpg` to your static folder. You can also replace it with something of your own. Additionally, you can place icons `multicolor-action-play`. Head over to [icon library](https://component-library.shopware.com/icons/) to access them.
 
 That means: You'll need a container to contain both the image and the icon. In there, you create an `img` tag and use the [sw-icon component](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/component/base/sw-icon/index.js) to display the icon.
 
@@ -137,8 +139,8 @@ That means: You'll need a container to contain both the image and the icon. In t
         <img class="sw-cms-el-preview-dailymotion-img"
              :src="'customcmselement/static/img/background_dailymotion_preview.jpg' | asset">
 
-        <img class="sw-cms-el-preview-dailymotion-icon"
-             :src="'customcmselement/static/img/dailymotion.svg' | asset">
+        <sw-icon class="sw-cms-el-preview-dailymotion-icon"
+                 name="multicolor-action-play"></sw-icon>
     </div>
 {% endblock %}
 ```
@@ -333,8 +335,14 @@ Shopware.Component.register('sw-cms-el-config-dailymotion', {
     ],
 
     computed: {
-        dailyUrl() {
-            return this.element.config.dailyUrl.value;
+        dailyUrl: {
+            get() {
+                return this.element.config.dailyUrl.value;
+            },
+
+            set(value) {
+                this.element.config.dailyUrl.value = value;
+            }
         }
     },
 
@@ -347,8 +355,10 @@ Shopware.Component.register('sw-cms-el-config-dailymotion', {
             this.initElementConfig('dailymotion');
         },
 
-        onElementUpdate(element) {
-            this.$emit('element-update', element);
+        onElementUpdate(value) {
+            this.element.config.dailyUrl.value = value;
+
+            this.$emit('element-update', this.element);
         }
     }
 });
@@ -364,13 +374,14 @@ Open the template `sw-cms-el-config-dailymotion.html.twig` instead. To be displa
 {% raw %}
 
 ```markup
-    {% block sw_cms_element_dailymotion_config %}
+{% block sw_cms_element_dailymotion_config %}
     <sw-text-field
+          v-model="dailyUrl"
           class="swag-dailymotion-field"
           label="Dailymotion video link"
           placeholder="Enter dailymotion link..."
-          v-model="dailyUrl"
-          @element-update="onElementUpdate">
+          @input="onElementUpdate"
+          @change="onElementUpdate">
     </sw-text-field>
 {% endblock %}
 ```

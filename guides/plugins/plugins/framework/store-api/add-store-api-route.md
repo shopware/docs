@@ -80,34 +80,6 @@ class ExampleRoute extends AbstractExampleRoute
 
     /**
      * @Entity("swag_example")
-     * @OA\Post(
-     *      path="/example",
-     *      summary="This route can be used to load the swag_example by specific filters",
-     *      operationId="readExample",
-     *      tags={"Store API", "Example"},
-     *      @OA\Parameter(name="Api-Basic-Parameters"),
-     *      @OA\Response(
-     *          response="200",
-     *          description="",
-     *          @OA\JsonContent(type="object",
-     *              @OA\Property(
-     *                  property="total",
-     *                  type="integer",
-     *                  description="Total amount"
-     *              ),
-     *              @OA\Property(
-     *                  property="aggregations",
-     *                  type="object",
-     *                  description="aggregation result"
-     *              ),
-     *              @OA\Property(
-     *                  property="elements",
-     *                  type="array",
-     *                  @OA\Items(ref="#/components/schemas/swag_example_flat")
-     *              )
-     *          )
-     *     )
-     * )
      * @Route("/store-api/example", name="store-api.example.search", methods={"GET", "POST"})
      */
     public function load(Criteria $criteria, SalesChannelContext $context): ExampleRouteResponse
@@ -123,26 +95,11 @@ As you can see, our class is annotated with `@Route` and the defined _routeScope
 
 In our class constructor we've injected our `swag_example.repository`. The method `getDecorated()` must throw a `DecorationPatternException` because it has no decoration yet and the method `load`, which fetches the data, returns a new `ExampleRouteResponse` with the respective repository search result as argument.
 
-Now let's take a look at the annotation of our `load` method which is required for the automatic OpenAPI generation using [Swagger UI](https://zircote.github.io/swagger-php/).
-
-* `@Entity`: The entity we are representing.
-* `@OA\Post`:
-  * `path`: The route, where we can access this action.
-  * `summary`: A description for this route.
-  * `operationId`: An **unique** name for this action.
-  * `tags`: First argument is the API we're using e.g. 'Store API' or 'API', the second is the name of the group where this action is grouped.
-* `@OA\Parameter`: Parameter for our route. 'Api-Basic-Parameters' is used for the abstraction of a criteria which adds parameters like sort, post-filters, ...
-* `@OA\Response`:
-  * `response`: HTTP status code of the response.
-  * `description`: A description for the response, e.g. Successfully saved.
-
-The last part of our response is the content, using an `@OA\JsonContent` annotation with type `Object`, since we are returning a JSON object. Within the JSON content, we have three properties annotated with `@OA\Property`. The first property is the amount of entities we retrieved. The next property contains the aggregations of our criteria.
-
-Finally, we have our retrieved entities, using an `@OA\Items` annotation which references to `#/components/schemas/` and the technical name of our entity, so in our case `#/components/schemas/swag_example`. This is used to generate the schema according to our definition.
+The `@Entity` annotation just marks the entity that the api will return.
 
 ### Route response
 
-After we have created our route, we need to create the mentioned `ExampleRouteResponse`. This class should extend from `Shopware\Core\System\SalesChannel\StoreApiResponse`. In this class we have a property `$object` of type `Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult`. The class constructor has one argument `EntitySearchResult`, which was passed to it by our `ExampleRoute`. The constructor calls the parent constructor with the parameter `$object` which sets the value for our object property. Finally, we add a method `getExamples` in which we return our entity collection that we got from the object.
+After we have created our route, we need to create the mentioned `ExampleRouteResponse`. This class should extend from `Shopware\Core\System\SalesChannel\StoreApiResponse`, consequently inheriting a property `$object` of type `Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult`. The `StoreApiResponse` parent constructor takes accepts one argument `$object` in order to set the value for the `$object` property (currently we provide this parameter our `ExampleRoute`). Finally, we add a method `getExamples` in which we return our entity collection that we got from the object.
 
 {% code title="<plugin root>/src/Core/Content/Example/SalesChannel/ExampleRouteResponse.php" %}
 
@@ -155,15 +112,12 @@ use Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult;
 use Shopware\Core\System\SalesChannel\StoreApiResponse;
 use Swag\BasicExample\Core\Content\Example\ExampleCollection;
 
+/**
+ * Class ExampleRouteResponse
+ * @property EntitySearchResult $object
+ */
 class ExampleRouteResponse extends StoreApiResponse
 {
-    protected EntitySearchResult $object;
-
-    public function __construct(EntitySearchResult $object)
-    {
-        parent::__construct($object);
-    }
-
     public function getExamples(): ExampleCollection
     {
         /** @var ExampleCollection $collection */

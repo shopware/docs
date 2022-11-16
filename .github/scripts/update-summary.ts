@@ -8,12 +8,16 @@ interface ADRTopic extends ADREntry { entries: ADREntry[] }
 const dateRegex = /[0-9]{4}-[0-9]{2}-[0-9]{2}/;
 const adrHeading = /\[Architecture Reference\]/;
 const appRefHeading = /\[App Reference\]/;
+const generalTopic = 'general';
 
 
 const firstToUpper = (s: string) => `${s[0].toUpperCase()}${s.slice(1)}`;
 const fixName = (s: string) => firstToUpper(s).replaceAll(/api/gi, 'API').replaceAll(/dal/gi, 'DAL');
 
-const topicName = (entry: ADREntry) => entry.path.split('/')[3];
+const topicName = (entry: ADREntry) => {
+	const name = entry.path.split('/')[3] ?? generalTopic;
+	return name.endsWith('.md') ? generalTopic : name;
+}
 const summaryItem = (depth: number, name: string, path: string) => `${' '.repeat(depth * 2)}* [${fixName(name)}](${path})\n`;
 
 const adrTitle = (adr: ADREntry) => {
@@ -34,10 +38,12 @@ for (const entry of walkSync("./resources/references/adr", { includeDirs: false,
 	let topic = ADRs.get(topicName(adr));
 	if (!!topic) {
 		topic.entries.push(adr);
+		topic.entries.sort((a, b) =>  a.path.localeCompare(b.path));
 		continue
 	}
+	const topicDir = topicName(entry) === generalTopic ? '' : '/' + topicName(entry);
 	topic = {
-		path: `resources/references/adr/${topicName(entry)}`,
+		path: `resources/references/adr${topicDir}`,
 		entries: [adr]
 	}
 	ADRs.set(topicName(adr), topic);

@@ -39,6 +39,15 @@ use Shopware\Core\Framework\Event\FlowEventAware;
 
 interface TagAware extends FlowEventAware
 {
+    ...
+
+    public const TAG = 'tag';
+
+    public const TAG_ID = 'tagId';
+
+    public function getTag();
+
+    ...
 }
 ```
 
@@ -46,7 +55,17 @@ interface TagAware extends FlowEventAware
 
 ### Create new action
 
-In this example, we will name it `CreateTagAction`. It will be placed in the directory `<plugin root>/src/Core/Content/Flow/Dispatching/Action`. Our new class has to extend from the abstract class `Shopware\Core\Framework\Event\FLowEvent`. Below you can find an example implementation:
+{% hint style="warning" %}
+Starting with the next major version (6.5.0.0), we are introducing changes in how to create new flow actions, please follow the instructions corresponding to your current version.
+{% endhint %}
+
+In this example, we will name it `CreateTagAction`. It will be placed in the directory `<plugin root>/src/Core/Content/Flow/Dispatching/Action`. Below you can find an example implementation:
+
+{% hint style="info" %}
+  Available starting with Shopware 6.4.6.0
+{% endhint %}
+
+Our new class has to extend from the abstract class `Shopware\Core\Framework\Event\FLowEvent`.
 
 {% code title="<plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php" %}
 
@@ -91,10 +110,10 @@ class CreateTagAction extends FlowAction
 
     public function handle(FlowEvent $event): void
     {
-        // config is the config data when created a flow sequence
+        // config is the "Configuration data" you get after you create a flow sequence
         $config = $event->getConfig();
 
-        // make sure your tags data is exist
+        // make sure your "tags" data exists
         if (!\array_key_exists('tags', $config)) {
             return;
         }
@@ -103,7 +122,7 @@ class CreateTagAction extends FlowAction
 
         $tags = $config['tags'];
 
-        // just a step to make sure you're dispatching correct action
+        // just a step to make sure you are dispatching the correct action
         if (!$baseEvent instanceof TagAware || empty($tags)) {
             return;
         }
@@ -131,7 +150,97 @@ As you can see, several methods are already implemented:
 - `requirements`: This defines which interfaces that the action belongs to.
 - `handle`: Use this method to handle your action stuff.
 
+{% hint style="info" %}
+  Available starting with Shopware 6.5.0.0
+{% endhint %}
+
+{% code title="<plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php" %}
+
+```php
+<?php declare(strict_types=1);
+
+namespace Swag\ExamplePlugin\Core\Content\Flow\Dispatching\Action;
+
+use Shopware\Core\Content\Flow\Dispatching\Action\FlowAction;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
+use Shopware\Core\Framework\Uuid\Uuid;
+use Swag\ExamplePlugin\Core\Framework\Event\TagAware;
+use Shopware\Core\Content\Flow\Dispatching\StorableFlow;
+
+class CreateTagAction extends FlowAction
+{
+    private EntityRepositoryInterface $tagRepository;
+
+    public function __construct(EntityRepositoryInterface $tagRepository)
+    {
+        // you would need this repository to create a tag
+        $this->tagRepository = $tagRepository;
+    }
+
+    public static function getName(): string
+    {
+        // your own action name
+        return 'action.create.tag';
+    }
+
+    public function requirements(): array
+    {
+        return [TagAware::class];
+    }
+
+    public function handleFlow(StorableFlow $flow): void
+    {
+        // config is the config data when created a flow sequence
+        $config = $flow->getConfig();
+
+        // make sure your tags data is exist
+        if (!\array_key_exists('tags', $config)) {
+            return;
+        }
+
+        $tags = $config['tags'];
+
+        // just a step to make sure you're dispatching correct action
+        if (!$flow->hasStore(TagAware::TAG_ID) || empty($tags)) {
+            return;
+        }
+
+        // get tag id
+        $tagId = $flow->getStore(TagAware::TAG_ID);
+
+        // get tag
+        $tag = $flow->getData(TagAware::TAG);
+
+        $tagData = [];
+        foreach ($tags as $tag) {
+            $tagData[] = [
+                'id' => Uuid::randomHex(),
+                'name' => $tag,
+            ];
+        }
+
+        // simply create tags
+        $this->tagRepository->create($tagData, $baseEvent->getContext());
+    }
+}
+```
+
+{% endcode %}
+
+As you can see, several methods are already implemented:
+
+- `__constructor`: This only defines the default expected value. This is overwritten at runtime with the actual value, that the shop owner set in the Administration.
+- `getName`: Returns a unique technical name for your action.
+- `requirements`: This defines which interfaces the action belongs to.
+- `handleFlow`: Use this method to handle your action stuff.
+    - Use `$flow->getStore($key)` if you want to get the data from aware interfaces. E.g: `tag_id` in `TagAware`, `customer_id` from `CustomerAware` and so on.
+    - Use `$flow->getData($key)` if you want to get the data from original events or additional data. E.g: `tag`, `customer`, `contactFormData` and so on.
+
 And we also need to register this action in the container as a service, make sure you have defined a tag `<tag name="flow.action" priority="600">` at `<plugin root>/src/Resources/config/services.xml`, that your action would be added to response of *`/api/_info/flow-actions.json`* API and `priority` will decide the order of action of API response:
+
+{% hint style="info" %}
+  Available starting with Shopware 6.4.6.0
+{% endhint %}
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
 
@@ -140,6 +249,20 @@ And we also need to register this action in the container as a service, make sur
     <argument type="service" id="tag.repository" />
     <tag name="kernel.event_subscriber"/>
     <tag name="flow.action" priority="600"/>
+</service>
+```
+
+{% hint style="info" %}
+  Available starting with Shopware 6.5.0.0
+{% endhint %}
+
+{% code title="<plugin root>/src/Resources/config/services.xml" %}
+
+```xml
+<service id="Swag\ExamplePlugin\Core\Content\Flow\Dispatching\Action\CreateTagAction">
+    <argument type="service" id="tag.repository" />
+    <tag name="kernel.event_subscriber"/>
+    <tag name="flow.action" priority="600" key="action.create.tag"/>
 </service>
 ```
 
@@ -174,7 +297,8 @@ class BusinessEventCollectorSubscriber implements EventSubscriberInterface
     public function addTagAware(BusinessEventCollectorEvent $event): void
     {
         foreach ($event->getCollection()->getElements() as $definition) {
-            $definition->addAware(TagAware::class);
+            $className = \explode('\\', TagAware::class);
+            $definition->addAware(\lcfirst(\end($className)));
         }
     }
 }
@@ -225,23 +349,46 @@ export const ACTION = Object.freeze({
     CREATE_TAG: 'action.create.tag',
 });
 
+export const GROUP = 'customer'
+
 export default {
-    ACTION,
+    ACTION, GROUP
 };
 ```
 
 {% endcode %}
+
+**Grouping Actions**
+
+Using the `GROUP` constant, you can define a group that your action will show up in. The default group is `general`.
+
+| Group Name | Group Headline |
+| :--- | :--- |
+| general | General|
+| tag | Tag |
+| customer | Customer |
+| order | Order |
 
 Next, we override `sw-flow-sequence-action` component to show `CREATE_TAG` label in action list. For example, we override `getActionTitle` method to add icon, label for `CREATE_TAG` action.
 
 {% code title="<plugin root>/src/Resources/app/administration/src/extension/sw-flow-sequence-action/index.js" %}
 
 ```jsx
-import { ACTION } from '../../constant/swag-example-plugin.constant';
+import { ACTION, GROUP } from '../../constant/swag-example-plugin.constant';
 
 const { Component } = Shopware;
 
 Component.override('sw-flow-sequence-action', {
+    computed: {
+        // Not necessary if you use an existing group
+        // Push the `groups` method in computed if you are defining a new group
+        groups() {
+             this.actionGroups.unshift(GROUP);
+
+            return this.$super('groups');
+        },
+    },
+
     methods: {
         getActionTitle(actionName) {
             if (actionName === ACTION.CREATE_TAG) {
@@ -249,6 +396,7 @@ Component.override('sw-flow-sequence-action', {
                     value: actionName,
                     icon: 'default-badge-help',
                     label: this.$tc('swag-example-plugin.titleCreateTag'),
+                    group: GROUP,
                 }
             }
 
@@ -271,7 +419,7 @@ First, we customise `modalName` for the configuration modal, add an `actionDescr
 {% code title="<plugin root>/src/Resources/app/administration/src/extension/sw-flow-sequence-action/index.js" %}
 
 ```jsx
-import { ACTION } from '../../constant/swag-example-plugin.constant';
+import { ACTION, GROUP } from '../../constant/swag-example-plugin.constant';
 
 const { Component } = Shopware;
 
@@ -310,6 +458,7 @@ Component.override('sw-flow-sequence-action', {
                     value: actionName,
                     icon: 'default-badge-help',
                     label: this.$tc('swag-example-plugin.titleCreateTag'),
+                    group: GROUP,
                 }
             }
 
@@ -437,9 +586,58 @@ Click on [Save action] and we will get the result as below screenshot.
 
 ![Flow Builder create tag result](../../../../../.gitbook/assets/flow-builder-tag-result.png)
 
+#### Custom configuration for action without the modal
+
+You don't need a modal for the configuration. It can be added automatically.
+
+Imagine, your action is already in the action list after [the first step](#step-1-show-action-label-in-action-list)
+
+![Choose a Flow Builder Action](../../../../../.gitbook/assets/flow-builder-trigger-action.png)
+
+First, override the `openDynamicModal` method in the plugin to check if the value matches the desired action. Then, call the `onSaveActionSuccess` directly with the configuration. After the check, call `return`.
+
+#### JavaScript
+
+{% code title="<plugin root>/src/Resources/app/administration/src/extension/sw-flow-sequence-action/index.js" %}
+
+```jsx
+import template from './sw-flow-sequence-action.html.twig';
+const { Component } = Shopware;
+
+Component.register('sw-flow-sequence-action', {
+    methods: {
+        openDynamicModal(value) {
+            if (!value) {
+                return;
+            }
+
+            if (value === ACTION.CREATE_TAG) {
+                this.selectedAction = ACTION.CREATE_TAG;
+                const config = {
+                    tags: 'VIP, New customer'
+                };
+
+                // Config can be a result from an API.
+
+                this.onSaveActionSuccess({ config });
+                return;
+            }
+
+            // handle for the rest of actions.
+        },
+    },
+});
+```
+
+{% endcode %}
+
+Now, after you click on the action, the new sequence will automatically be added to the action list like this:
+
+![Flow Builder create tag result](../../../../../.gitbook/assets/flow-builder-tag-result.png)
+
 ### Demo
 
-Now you can view the whole demo for this custom Flow builder trigger and action as below.
+You can view the whole demo for this custom Flow Builder trigger and action below:
 
 ![Flow Builder demo](../../../../../.gitbook/assets/flow-builder-demo.gif)
 

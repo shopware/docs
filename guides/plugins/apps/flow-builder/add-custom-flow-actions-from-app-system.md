@@ -16,7 +16,7 @@ After reading, you will be able to
 
 ## Prerequisites
 
-Please make sure you already have a working Shopware 6 store running (either cloud or self-managed). Prior knowledge about the Flow Builder feature of Shopware 6 is useful.
+Please make sure you already have a working Shopware 6 store running (either cloud or self-hosted). Prior knowledge about the Flow Builder feature of Shopware 6 is useful.
 
 Please see the [Flow Builder Concept](../../../../concepts/framework/flow-concept.md) for more information.
 
@@ -62,7 +62,7 @@ The manifest file is the central point of your app. It defines the interface bet
         <author>shopware AG</author>
         <copyright>(c) shopware AG</copyright>
         <version>4.14.0</version>
-        <icon>Resources/app.png</icon>
+        <icon>Resources/app-icon.png</icon>
         <license>MIT</license>
     </meta>
 </manifest>

@@ -6,7 +6,11 @@ By default Shopware 6 uses the [Vue I18n](https://kazupon.github.io/vue-i18n/sta
 
 ## Creating snippet files
 
-Normally you want to use snippets in you custom module. To keep things organized, create a new directory named `snippet` inside your module directory `<plugin root>/src/Resources/app/administration/src/module/<your-module>/snippet`. For each language you want to support, you need a JSON file inside here, e.g. `de-DE.json` and of course `en-GB.json`.
+Normally you use snippets in your custom module. To keep things organized, create a new directory named `snippet` inside module directory `<plugin root>/src/Resources/app/administration/src/module/<your-module>/snippet`. For each language you want to support, you need a JSON file inside it, e.g., `de-DE.json`, `en-GB.json`.
+
+{% hint style="info" %}
+Providing snippets for apps works the same as in plugins but it has a more simplistic file structure. Also, unlike plugins, App-Snippets **are not allowed** to override existing snippet keys. So, use the following path for vendor-prefixed app snippet files: `<app root>/Resources/app/administration/snippet`
+{% endhint %}
 
 Each language then receives a nested object of translations, so let's have a look at an example `snippet/en-GB.json`:
 
@@ -15,6 +19,7 @@ Each language then receives a nested object of translations, so let's have a loo
     "swag-example": {
         "nested": {
             "value": "example"
+            "examplePluralization": "1 Product | {n} Products"
         },
         "foo": "bar"
     }
@@ -55,7 +60,7 @@ The same `$tc` helper function can be used in the templates to access translatio
 
 {% raw %}
 
-```text
+```twig
 {% block my_custom_block %}
     <p>
        {{ $tc('swag-example.general.myCustomText') }}
@@ -64,6 +69,23 @@ The same `$tc` helper function can be used in the templates to access translatio
 ```
 
 {% endraw %}
+
+Another feature of `$tc` is pluralization. Use a `|` in snippets to provide translations dependending on the number. The first part shows singular expression, while the second takes care of plural cases.
+Let's have a look at this example of `"examplePluralization": "One Product | {n} Products"` with the following implementation:
+
+{% raw %}
+
+```twig
+{% block my_custom_block %}
+    <p>
+       {{ $tc('swag-example.nested.examplePluralization', products.length) }}
+    </p>
+{% endblock %}
+```
+
+{% endraw %}
+
+If you provide `1` as the second parameter to `$tc()`, the text `One Product` would be rendered. For any other value greater than 1, the number itself is shown — for example, `4 Products`.
 
 ## More interesting topics
 

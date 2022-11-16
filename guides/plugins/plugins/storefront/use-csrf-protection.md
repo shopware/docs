@@ -17,6 +17,7 @@ As already mentioned, this guide assumed you've already got a custom form runnin
 ```markup
 <form action="{{ path('some.action') }}"
     method="post"
+    data-form-csrf-handler="true"
     class="some-form-class">
     <div class="some-container-class">
         <button type="submit" class="btn btn-primary btn-block">Some button</button>
@@ -34,6 +35,7 @@ Protecting it now with the built-in tools requires you to add two new lines, but
 ```markup
 <form action="{{ path('some.action') }}"
     method="post"
+    data-form-csrf-handler="true"
     class="some-form-class">
     <div class="some-container-class">
         <button type="submit" class="btn btn-primary btn-block">Some button</button>

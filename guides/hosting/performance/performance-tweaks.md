@@ -16,7 +16,7 @@ When you have a lot of app servers, you should consider using a reverse proxy ca
 
 ### logged-in / cart-filled
 
-By default, Shopware can no longer deliver complete pages from a cache for a logged-in customer or if products are in the shopping cart. As soon as this happens, the user sessions differ, and the context rules could be different depending on the user. The result is different content for each customer; a good example is the [Dynamic Access](https://store.shopware.com/swag140583558965t/dynamic-access.html) plugin.
+By default, Shopware can no longer deliver complete pages from a cache for a logged-in customer or if products are in the shopping cart. As soon as this happens, the user sessions differ, and the context rules could be different depending on the user. This results in different content for each customer; a good example is the [Dynamic Access](https://docs.shopware.com/en/shopware-6-en/extensions/dynamiccontent) plugin.
 
 However, if the project does not require such functionality, pages can also be cached by the HTTP cache/reverse proxy. To disable Cache invalidation in these cases:
 
@@ -41,6 +41,10 @@ shopware:
 
 ## MySQL instead of MariaDB
 
+{% hint style="info" %}
+If you use Elasticsearch/Opensearch as a search engine, you can ignore this section. All filtering, sorting and aggregations is done in Elasticsearch/Opensearch.
+{% endhint %}
+
 In some places in the code, we use JSON fields. As soon as it comes to filtering, sorting, or aggregating JSON fields, MySQL is ahead of the MariaDB fork. Therefore, we strongly recommend the use of MySQL.
 
 ## MySQL configuration
@@ -56,11 +60,11 @@ and then you can set `SQL_SET_DEFAULT_SESSION_VARIABLES=0` to your `.env` file
 
 We designed the DAL (Data Abstraction Layer) to provide developers a flexible and extensible data management. However, features in such a system come at the cost of performance. Therefore, using DBAL (plain SQL) is much faster than using the DAL in many scenarios, especially when it comes to internal processes, where often only one ID of an entity is needed.
 
-[Read more](https://github.com/shopware/platform/blob/trunk/adr/dal/2021-05-14-when-to-use-plain-sql-or-dal.md)
+[Read more](../../../../resources/references/adr/dal/2021-05-14-when-to-use-plain-sql-or-dal.md)
 
-## Elasticsearch
+## Elasticsearch/Opensearch
 
-Elasticsearch is a great tool to reduce the load of the MySQL server. Especially for systems with large product assortments, this is a must-have since MySQL simply does not cope well above a certain assortment size.
+Elasticsearch/Opensearch is a great tool to reduce the load of the MySQL server. Especially for systems with large product assortments, this is a must-have since MySQL simply does not cope well above a certain assortment size.
 
 When using Elasticsearch, it is important to set the `SHOPWARE_ES_THROW_EXCEPTION=1` `.env` variable. This ensures that if an error occurs when querying the data via Elasticsearch, there is no fallback to the MySQL server. In large projects, failure of the Elasticsearch leads to the MySQL server being completely overloaded otherwise.
 
@@ -82,7 +86,7 @@ shopware:
         update_mail_variables_on_send: false
 ```
 
-[Read more](https://github.com/shopware/platform/blob/trunk/adr/2022-03-25-prevent-mail-updates.md)
+[Read more](../../../../resources/references/adr/performance/2022-03-25-prevent-mail-updates.md)
 
 ## Increment storage
 
@@ -187,7 +191,10 @@ The Shopware cache has a global cache id to clear the cache faster and work in a
 
 ## .env.local.php
 
-Symfony recommended that a `.env.local.php` file is used in Production instead of a `.env` file not to parse an env file on any request. If you are using a containerized environment, all those variables can also be set directly in the environment variables
+[Symfony recommends](https://symfony.com/doc/current/configuration.html#configuring-environment-variables-in-production) that a `.env.local.php` file is used in Production instead of a `.env` file, to skip parsing of the  .env file on every request.
+If you are using a containerized environment, all those variables can also be set directly in the environment variables, instead of dumping then to a file.
+
+Since shopware 6.4.15.0 you can dump the content of the .env file to a `.env.local.php` file by running `bin/console system:setup --dump-env` or `bin/console dotenv:dump {APP_ENV}`.
 
 ## Benchmarks
 

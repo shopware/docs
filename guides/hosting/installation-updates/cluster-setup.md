@@ -1,8 +1,8 @@
 # Cluster setup
 
-The setup of enterprise systems differs from a normal installation of Shopware. Most enterprise systems are a completely customized stores with individual templates and extensions.
+The setup of high-scaling systems differs from a normal installation of Shopware. They are completely customized stores with individual templates and extensions.
 
-This guide is meant to serve as a guide for all those who start with such a project.
+This guide contains information for everyone who intends to start with such a project.
 
 ## Production template
 
@@ -21,7 +21,7 @@ The following folders are available in the production template:
 
 ## Third party sources
 
-Most enterprise projects have a development team assigned. It's responsible for the stability and performance of the system. The integration of external sources via apps or plugins can be usefull, but should always be viewed with a critical eye. By including those sources, the development team relinquishes control over parts of the system. We recommend including necessary plugins as composer packages, instead of user managed plugins.
+Most big-scale projects have a development team assigned. It's responsible for the stability and performance of the system. The integration of external sources via apps or plugins can be usefull, but should always be viewed with a critical eye. By including those sources, the development team relinquishes control over parts of the system. We recommend including necessary plugins as composer packages, instead of user managed plugins.
 
 ### Disable extensions
 
@@ -62,7 +62,7 @@ Besides the S3 bucket, it is also necessary to create certain directories for th
 
 ## Shopware updates + security
 
-To update an enterprise project, we always recommend using a staging environment. However, updates for a project should only be obtained if there are critical problems with the system or if essential features have been provided by Shopware.
+To update your project, we always recommend using a staging environment. However, updates for a project should only be obtained if there are critical problems with the system or if essential features have been provided by Shopware.
 Updates of such systems requires a certain amount of effort, as issues often arise during deployments to production systems.
 
 ### Security plugin
@@ -116,6 +116,6 @@ For the server setup, pay special attention to the speed of the CPU. This applie
 
 ## Performance Tweaks
 
-When setting up enterprise projects, there are some settings and conditions that should be taken into account with regard to performance
+When setting up big scale projects, there are some settings and conditions that should be taken into account with regard to performance
 
 [Read more](../performance/performance-tweaks.md)

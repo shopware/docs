@@ -6,25 +6,26 @@ In this guide you'll learn how to add translations to the storefront and how to 
 
 ## Prerequisites
 
-In order to add your own custom translations for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
+To add your own custom translations for your plugin or app, you first need a base. Refer to either the [Plugin Base Guide](../plugin-base-guide.md) or the [App Base Guide](../../apps/app-base-guide.md) to create one.
 
 ## Snippet file structure
 
-Shopware 6 is able to load your snippet files automatically if you stick to a convention regarding file structure and naming. You have to store your snippet files in the `<plugin root>/src/Resources/snippet` directory of your plugin, but you can use further subdirectories if you want to. Use the naming pattern `<name>.<locale>`, where you can freely define the name part. The locale part must map to the ISO string of the supported locale in this snippet file. If you provide base translations, meaning that you ship translations for a whole new language, you indicate it with a `.base` suffix in your file name. Keep in mind that in this case you also have to use the name, so your complete filename may look like this: `<name>.<locale>.base.json`.
+Shopware 6 automatically loads your snippet files when a standard file structure and a naming convention are followed. To do so, store your snippet files in the `<extension root>/src/Resources/snippet/<locale>/` directory of your extension. Also, you can further use subdirectories if you want to. Use `<name>.<locale>` as the naming pattern. The name can be freely defined, while the locale must map to the ISO string of the supported locale in this snippet file - for example `example.de-DE.json`.
+
+In case you want to provide base translations (ship translations for a whole new language), indicate it with the suffix `.base` in your file name. Now the filename convention to be followed looks like this `<name>.<locale>.base.json` - for example, `example.de-AT.base.json`.
 
 So your structure could then look like this:
 
 ```text
-└── plugins
-    └── SwagBasicExample
-        └── src
-            ├─ Resources
-            │  └─ snippet
-            │     ├─ de_DE
-            │     │  └─ example.de-DE.json
-            │     └─ en_GB
-            │        └─ example.en-GB.json
-            └─ SwagBasicExample.php
+└── SwagBasicExample
+    └── src
+        ├─ Resources
+        │  └─ snippet
+        │     ├─ de_DE
+        │     │  └─ example.de-DE.json
+        │     └─ en_GB
+        │        └─ example.en-GB.json
+        └─ SwagBasicExample.php
 ```
 
 ## Creating the translation
@@ -33,7 +34,7 @@ Now that we know how the structure of snippets should be, we can create a new sn
 
 Here's an example of an English translation file:
 
-{% code title="<plugin root>/src/Resources/snippet/en\_GB/example.en-GB.json" %}
+{% code title="<extension root>/src/Resources/snippet/en\_GB/example.en-GB.json" %}
 
 ```javascript
 {
