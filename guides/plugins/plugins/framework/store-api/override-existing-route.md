@@ -22,7 +22,7 @@ First, we have to create a new class which extends `AbstractExampleRoute`. In th
 namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
 
 use OpenApi\Annotations as OA;
-use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\Routing\Annotation\Entity;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
@@ -33,11 +33,11 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ExampleRouteDecorator extends AbstractExampleRoute
 {
-    protected EntityRepositoryInterface $exampleRepository;
+    protected EntityRepository $exampleRepository;
 
     private AbstractExampleRoute $decorated;
 
-    public function __construct(EntityRepositoryInterface $exampleRepository, AbstractExampleRoute $exampleRoute)
+    public function __construct(EntityRepository $exampleRepository, AbstractExampleRoute $exampleRoute)
     {
         $this->exampleRepository = $exampleRepository;
         $this->decorated = $exampleRoute;

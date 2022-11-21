@@ -44,7 +44,7 @@ use Shopware\Core\Content\Sitemap\Provider\AbstractUrlProvider;
 use Shopware\Core\Content\Sitemap\Struct\Url;
 use Shopware\Core\Content\Sitemap\Struct\UrlResult;
 use Shopware\Core\Framework\DataAbstractionLayer\Doctrine\FetchModeHelper;
-use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\Plugin\Exception\DecorationPatternException;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
@@ -57,23 +57,14 @@ class CustomUrlProvider extends AbstractUrlProvider
     public const CHANGE_FREQ = 'daily';
     public const PRIORITY = 1.0;
 
-    /**
-     * @var EntityRepositoryInterface
-     */
-    private EntityRepositoryInterface $exampleRepository;
+    private EntityRepository $exampleRepository;
 
-    /**
-     * @var Connection
-     */
     private Connection $connection;
 
-    /**
-     * @var RouterInterface
-     */
     private RouterInterface $router;
 
     public function __construct(
-        EntityRepositoryInterface $exampleRepository,
+        EntityRepository $exampleRepository,
         Connection $connection,
         RouterInterface $router
     ) {

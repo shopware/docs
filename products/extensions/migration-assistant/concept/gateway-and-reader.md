@@ -107,7 +107,7 @@ namespace SwagMigrationAssistant\Profile\Shopware\Gateway\Local;
 
 use Shopware\Core\Defaults;
 use Shopware\Core\Framework\Context;
-use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\System\Currency\CurrencyEntity;
 use SwagMigrationAssistant\Migration\EnvironmentInformation;
@@ -133,14 +133,14 @@ class ShopwareLocalGateway implements ShopwareGatewayInterface
 
     private ConnectionFactoryInterface $connectionFactory;
 
-    private EntityRepositoryInterface $currencyRepository;
+    private EntityRepository $currencyRepository;
 
     public function __construct(
         ReaderRegistry $readerRegistry,
         EnvironmentReaderInterface $localEnvironmentReader,
         TableReaderInterface $localTableReader,
         ConnectionFactoryInterface $connectionFactory,
-        EntityRepositoryInterface $currencyRepository
+        EntityRepository $currencyRepository
     ) {
         $this->readerRegistry = $readerRegistry;
         $this->localEnvironmentReader = $localEnvironmentReader;

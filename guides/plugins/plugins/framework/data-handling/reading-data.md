@@ -43,13 +43,13 @@ And here's the respective class including its constructor:
 
 namespace Swag\BasicExample\Service;
 
-use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 
 class ReadingData
 {
-    private EntityRepositoryInterface $productRepository;
+    private EntityRepository $productRepository;
 
-    public function __construct(EntityRepositoryInterface $productRepository)
+    public function __construct(EntityRepository $productRepository)
     {
         $this->productRepository = $productRepository;
     }
