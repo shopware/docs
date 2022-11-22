@@ -1,6 +1,7 @@
 # Manifest Reference
 
 <CodeBlock title="manifest.xml">
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
@@ -55,7 +56,7 @@
         <!-- Since version 6.4.12.0 your app can request additional non-CRUD privileges-->
         <permission>user_change_me</permission>
     </permissions>
-    <!-- Optional, Since version 6.4.12.0 a list of all external endpoints your app communicates with -->
+    <!-- Optional, a list of all external endpoints your app communicates with (since 6.4.12.0) -->
     <allowed-hosts>
         <host>example.com</host>
     </allowed-hosts>
@@ -66,6 +67,8 @@
     </webhooks>
     <!-- Optional, can be omitted if the administration should not be extended -->
     <admin>
+        <!-- Optional, entry point for the Admin Extension API (since 6.4.12.0) -->
+        <base-app-url>https://app.example.com</base-app-url>
         <!-- Register a custom module that is used as a parent menu entry for other modules -->
         <module name="myAdminModules"
                 parent="sw-marketing"
@@ -228,4 +231,5 @@
     </rule-conditions>
 </manifest>
 ```
+
 </CodeBlock>

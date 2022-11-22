@@ -104,7 +104,7 @@ Now we want to implement our new rule in the administration so that we can manag
 
 Create a new directory called `<plugin root>/src/Resources/app/administration/src/decorator`. In this directory we create a new file called `rule-condition-service-decoration.js`.
 
-<CodeBlock title="<plugin root>/src/Resources/app/administration/src/decorator/rule-condition-service-decoration.js">
+<CodeBlock title="<plugin root>src/Resources/app/administration/src/app/decorator/condition-type-data-provider.decorator.js">
 
 ```javascript
 import '../core/component/swag-lunar-eclipse';
@@ -118,6 +118,7 @@ Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderServi
 
     return ruleConditionService;
 });
+
 ```
 
 </CodeBlock>
@@ -134,9 +135,13 @@ import './decorator/rule-condition-service-decoration';
 
 </CodeBlock>
 
+{% hint style="info" %}
+It may be possible that rules, with your newly created condition, aren't selectable in some places inside the Administration — for example, inside the promotion module. That is because rules are "context-aware". To learn more about that feature [click here](#context-awareness)
+{% endhint %}
+
 ### Custom rule component
 
-Since we've registered our rule to the administration now, we're still lacking the actual component `swag-lunar-eclipse`. As previously mentioned, we've already defined a path for it in our service decoration. So create the following directory: `<plugin root>/src/Resources/app/administration/src/core/component/swag-lunar-eclipse`. If you are not familiar with creating components in Shopware, take a look at our [Add your own component](../../administration/add-custom-component) guide.
+Now that you have registered your rule to the administration, you would still be lacking the actual component `swag-lunar-eclipse`. As you have already defined a path for it in your service decoration, create the following directory: `<plugin root>/src/Resources/app/administration/src/core/component/swag-lunar-eclipse`. If you are unfamiliar with creating components in Shopware, refer to the [add your own component](../../administration/add-custom-component.md) section.
 
 Here's an example of what this component could look like:
 
@@ -210,6 +215,88 @@ The last step is, creating a template for our condition. We will create a new fi
 </CodeBlock>
 
 As you can see, our `sw-single-select` uses the previously created computed property `selectValues` as the `options` prop, and the value is saved into the variable `isLunarEclipse`. That's it, your rule is now fully integrated.
+
+## Context awareness
+
+{% hint style="info" %}
+This feature is available in version 6.5.0.0 or above.
+{% endhint %}
+
+Rules in the Shopware administration are aware of where users assign them. That means that a user can't add a rule to a promotion when the rule contains the condition "Cart amount". That also works the other way around. If the rule is assigned to a promotion, the user can't use the "Cart amount" condition.
+
+![Select component with disabled rules](../../../../../.gitbook/assets/rule-restrictions-rule-builder.png)
+
+It is possible to define where rules can be assigned inside the administration. Let us see about it.
+
+### Defining restrictions
+
+You have previously added the condition inside `ruleConditionDataProviderService`. This is the place where you define restrictions for the rule. The goal of this example is to restrict the user from adding a rule to advanced prices if the rules contain a specific condition.
+
+First, get the existing definition for the rule relation as below:
+
+{% code title="<plugin root>src/Resources/app/administration/src/app/decorator/condition-type-data-provider.decorator.js" %}
+
+```javascript
+// Inside the addServiceProviderDecorator method
+const restrictions = ruleConditionService.getAwarenessConfigurationByAssignmentName('productPrices');
+```
+
+{% endcode %}
+
+{% hint style="info" %}
+You can find all possible relations in `Shopware\Core\Content\Rule\RuleDefinition`;
+{% endhint %}
+
+Now, add your configuration by importing the `merge` function from `Shopware.Utils.object`. Then call the `addAwarenessConfiguration` method.
+
+{% code title="<plugin root>src/Resources/app/administration/src/app/decorator/condition-type-data-provider.decorator.js" %}
+
+```javascript
+Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderService', (ruleConditionService) => {
+    // Your newly added conditions is here
+
+    const restrictions = ruleConditionService.getAwarenessConfigurationByAssignmentName('productPrices');
+
+    ruleConditionService
+        .addAwarenessConfiguration('productPrices', merge(restrictions, {
+            notEquals: [
+                'lunar_eclipse',
+            ],
+            equalsAny: [], // ignore property if not needed
+        }));
+});
+```
+
+{% endcode %}
+
+What do `notEquals` and `equalsAny` actually mean?
+With these two properties, you can define the rules you want to assign to a specific relation, i.e., `productPrices` need to have at least one condition inside `equalsAny` or should not have any condition inside of `notEquals`.
+
+Finally, you just need a new snippet. With that said, you successfully defined restrictions for your custom condition. If you now try to assign a rule with your condition to advanced prices, you should see that it is not possible, and the rule is disabled.
+
+### Restricting rule assignments
+
+When you add a new rule-select component to assign rules somewhere in Shopware, you should use the `sw-select-rule-create` component. With that, you can ensure that the rules you don't want to be selectable aren't selectable.
+		
+For that, we need to write some twig code. The important property here is the `rule-aware-group-key` property which should match the assignment name of the rule-aware group we just extended.
+
+{% hint style="info" %}
+Refer to [customize administration components](../../administration/customizing-components.md) to know more about it.
+{% endhint %}
+
+{% code %}
+
+```text
+{% block example_twig_blog %}
+    <sw-select-rule-create
+        rule-aware-group-key="productPrices"
+        @save-rule="[YOUR SAVE METHOD]">
+{% endblock %}
+```
+
+{% endcode %}
+
+That's it! The component automatically fetches rules and marks them as disabled.
 
 ## Further reading
 
