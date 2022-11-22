@@ -1,5 +1,6 @@
 redirects:
     developers-guide/plugin-guidelines/: https://developers.shopware.com/developers-guide/plugin-guidelines/
+    guides/plugins/apps/platform-sh-template: guides/plugins/apps/app-base-guide
     guides/integrations-api/store-api-guide: guides/integrations-api/README.md
     guides/integrations-api/store-api-guide/register-a-customer: guides/integrations-api/README.md
     guides/integrations-api/store-api-guide/search-for-products: guides/integrations-api/README.md
