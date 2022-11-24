@@ -1,6 +1,6 @@
-# Custom Pricing
+# Customer-specific Pricing
 
-The Custom Pricing feature allows massive advances in the pricing model capabilities in the Shopware 6 ecosystem.
+The Customer-specific Pricing feature allows massive advances in the pricing model capabilities in the Shopware 6 ecosystem.
 
 The API interface exposed by this module allows the user to operate a set of commands which will enable the granular
 ''overriding'' of prices via an external data repository or ERP system. This is achieved by defining a custom
@@ -10,7 +10,7 @@ relationship between the current price and one of the following entities:
 
 ## Pre-requisites and setup
 
-As Custom Pricing is part of the Commercial plugin, it requires an existing Shopware 6 installation and the activated
+As Customer-specific Pricing is part of the Commercial plugin, it requires an existing Shopware 6 installation and the activated
 Shopware 6 Commercial plugin on top. This plugin Commercial plugin can be installed as per the familiar
 [install instructions](guides/plugins/plugins/plugin-base-guide#install-your-plugin). In addition, the `Custom Prices` feature needs
 to be activated within the relevant merchant account.
@@ -20,7 +20,7 @@ to be activated within the relevant merchant account.
 To create, alter and/or delete customer-specific prices, you can use the API endpoint `/api/_action/product-customer-price`. As like with any other admin request in Shopware, you first need to authenticate yourself. Therefore, please head over to the
 [authentication guide](https://shopware.stoplight.io/docs/admin-api/ZG9jOjEwODA3NjQx-authentication) for details.
 
-Otherwise, the Custom Pricing API interface models itself upon the interface of the sync API, so you will
+Otherwise, the Customer-specific Pricing API interface models itself upon the interface of the sync API, so you will
 be able to package your requests similarly, see our [API documentation](https://shopware.stoplight.io/docs/admin-api).
 
 {% hint style="info" %}
@@ -94,9 +94,9 @@ When working with this route, one difference sets it apart from the familiar `sy
 When working with custom prices, there are currently some caveats or issues to keep in mind:
 
 - Price filtering (within the product listing page) will _currently_ not support the overridden prices.
-- ElasticSearch product mapping does not currently support the Custom Pricing data
+- ElasticSearch product mapping does not currently support the Customer-specific Pricing data
 - Optional header flags within the core `sync` API are not supported within the provided endpoint
 (`indexing-behavior, single-operation`). Indexing of any relevant database (product) data is handled on a per-request basis, without the need to specify indexing handling.
-- The `customerGroupId` parameter within a Custom Pricing API request body is a stub implementation to avoid breaking
+- The `customerGroupId` parameter within a Customer-specific Pricing API request body is a stub implementation to avoid breaking
 
 changes in future versions and is not currently functional. Any data provided for this parameter will not affect the storefront.
