@@ -12,8 +12,7 @@ relationship between the current price and one of the following entities:
 
 As Customer-specific Pricing is part of the Commercial plugin, it requires an existing Shopware 6 installation and the activated
 Shopware 6 Commercial plugin on top. This plugin Commercial plugin can be installed as per the familiar
-[install instructions](guides/plugins/plugins/plugin-base-guide#install-your-plugin). In addition, the `Custom Prices` feature needs
-to be activated within the relevant merchant account.
+[install instructions](/guides/plugins/plugins/plugin-base-guide.md#install-your-plugin).
 
 ## Working with the API route
 
@@ -63,7 +62,7 @@ This way, we come to use a payload as seen in the example below:
 ]
 ```
 
-For the `delete` action, we will send a smaller dataset: you only need to define the `productId`s for the product whose prices you want to remove.
+For the `delete` action, the workflow is that the operation accepts 3 different arrays of ids: `customerIds`, `productIds` or `customerGroupIds`. Here you can specify any combination of these id arrays, with an exception that the API route must have _at least one UUID_ supplied in _one of the id arrays_ (`customerIds`, `productIds` or `customerGroupIds`)
 
 ```json
 [
@@ -74,7 +73,11 @@ For the `delete` action, we will send a smaller dataset: you only need to define
         "productIds": [
           "0001e32041ac451386bf9b7351c540f3",
           "363a6985f6434a7493b1ef3dabeed40f"
-        ]
+        ],
+        "customerIds": [
+          "53fc38877a510a47b0e0c44f1615f0c5"
+        ],
+        "customerGroupIds": []
       }
     ]
   }
