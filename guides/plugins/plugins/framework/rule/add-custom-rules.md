@@ -130,7 +130,7 @@ We also have to create a `main.js` file in our administration sources directory 
 {% code title="<plugin root>/src/Resources/app/administration/src/main.js" %}
 
 ```javascript
-import './decorator/rule-condition-service-decoration';
+import './decorator/condition-type-data-provider.decorator';
 ```
 
 {% endcode %}
