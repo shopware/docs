@@ -768,11 +768,10 @@ Response
 
 ## Range aggregations
 
-Allow to aggregate data on predefined ranges values for more flexibility in the DAL.
-It could allow to provide faceted filters by predefined range for example.
+Allows to aggregate data on predefined range of values for more flexibility in the DAL - for example, it provides faceted filters on predefined range.
 
 Bound are computed in SQL as in the elasticsearch native range aggregation:
-* `from` will be compared with greater than or equal
+* `from` will be compared with greater than or equal to
 * `to` will be compared with lower than
 
 {% tabs %}
