@@ -386,6 +386,7 @@
       * [Providing the admin extension sdk](resources/references/adr/admin/2022-06-27-providing-the-admin-extension-sdk.md)
       * [Test structure](resources/references/adr/admin/2022-10-20-test-structure.md)
       * [Replace drop shadow with box shadow](resources/references/adr/admin/2022-21-11-replace-drop-shadow-with-box-shadow.md)
+      * [Run lighthouse test ine2e env](resources/references/adr/admin/2022-25-11-run-lighthouse-test-ine2e-env.md)
       * [Vue 2.7 update](resources/references/adr/admin/2022-27-09-vue-2.7-update.md)
       * [Adding the StorableFlow to implement DelayAction in Flow Builder](resources/references/adr/admin/flow-builder/2022-07-21-adding-the-StorableFlow-to-implement-DelayAction-in-Flow-Builder.md)
     * [API](resources/references/adr/api/README.md)

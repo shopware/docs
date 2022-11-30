@@ -26,7 +26,7 @@ The areas are:
 - sales-channel
 - content
 - business-ops
-- merchant-service
+- merchant-services
 - customer-order
 - system-settings
 
