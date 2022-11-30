@@ -19,6 +19,7 @@ The DAL knows two types of aggregations:
 | filter | bucket | Allows to filter the aggregation result |
 | terms | bucket | Groups the result for each value of the provided field and fetches the count of affected documents |
 | histogram | bucket | Groups the result for each value of the provided field and fetches the count of affected documents. Although allows to provide date interval \(day, month, ...\) |
+| range | bucket | Groups the result for each defined set of ranges into each bucket - bucket of numerical data and a count of items/documents for each bucket |
 
 ## Avg aggregation
 
@@ -46,7 +47,7 @@ $aggregation->getAvg();
 {% tab title="API Criteria" %}
 Request
 
-```javascript
+```json
 {
     "limit": 1,
     "includes": {
@@ -64,7 +65,7 @@ Request
 
 Response
 
-```javascript
+```json
 {
     "total": 1,
     "data": [
@@ -111,7 +112,7 @@ $aggregation->getCount();
 {% tab title="API Criteria" %}
 Request
 
-```javascript
+```json
 {
     "limit": 1,
     "includes": {
@@ -129,7 +130,7 @@ Request
 
 Response
 
-```javascript
+```json
 {
     "total": 1,
     "data": [
@@ -176,7 +177,7 @@ $aggregation->getMax();
 {% tab title="API Criteria" %}
 Request
 
-```javascript
+```json
 {
     "limit": 1,
     "includes": {
@@ -194,7 +195,7 @@ Request
 
 Response
 
-```javascript
+```json
 {
     "total": 1,
     "data": [
@@ -241,7 +242,7 @@ $aggregation->getMin();
 {% tab title="API Criteria" %}
 Request
 
-```javascript
+```json
 {
     "limit": 1,
     "includes": {
@@ -259,7 +260,7 @@ Request
 
 Response
 
-```javascript
+```json
 {
     "total": 1,
     "data": [
@@ -306,7 +307,7 @@ $aggregation->getSum();
 {% tab title="API Criteria" %}
 Request
 
-```javascript
+```json
 {
     "limit": 1,
     "includes": {
@@ -324,7 +325,7 @@ Request
 
 Response
 
-```javascript
+```json
 {
     "total": 1,
     "data": [
@@ -374,7 +375,7 @@ $aggregation->getMin();
 {% tab title="API Criteria" %}
 Request
 
-```javascript
+```json
 {
     "limit": 1,
     "includes": {
@@ -392,7 +393,7 @@ Request
 
 Response
 
-```javascript
+```json
 {
     "total": 1,
     "data": [
@@ -456,7 +457,7 @@ foreach ($aggregation->getBuckets() as $bucket) {
 {% tab title="API Criteria" %}
 Request
 
-```javascript
+```json
 {
     "limit": 1,
     "includes": {
@@ -476,7 +477,7 @@ Request
 
 Response
 
-```javascript
+```json
 {
     "total": 1,
     "data": [
@@ -545,7 +546,7 @@ $aggregation->getAvg();
 {% tab title="API Criteria" %}
 Request
 
-```javascript
+```json
 {
     "limit": 1,
     "includes": {
@@ -574,7 +575,7 @@ Request
 
 Response
 
-```javascript
+```json
 {
     "total": 1,
     "data": [
@@ -624,7 +625,7 @@ foreach ($aggregation->getEntities() as $entity) {
 {% tab title="API Criteria" %}
 Request
 
-```javascript
+```json
 {
     "limit": 1,
     "includes": {
@@ -644,7 +645,7 @@ Request
 
 Response
 
-```javascript
+```json
 {
     "total": 1,
     "data": [
@@ -709,7 +710,7 @@ foreach ($aggregation->getBuckets() as $bucket) {
 {% tab title="API Criteria" %}
 Request
 
-```javascript
+```json
 {
     "limit": 1,
     "includes": {
@@ -728,7 +729,7 @@ Request
 
 Response
 
-```javascript
+```json
 {
     "total": 1,
     "data": [
@@ -758,6 +759,95 @@ Response
                 }
             ],
             "apiAlias": "release-dates_aggregation"
+        }
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+## Range aggregations
+
+Allow to aggregate data on predefined ranges values for more flexibility in the DAL.
+It could allow to provide faceted filters by predefined range for example.
+
+Bound are computed in SQL as in the elasticsearch native range aggregation:
+* `from` will be compared with greater than or equal
+* `to` will be compared with lower than
+
+{% tabs %}
+{% tab title="PHP Criteria" %}
+```php
+$criteria = new Criteria();
+$criteria->addAggregation(
+    new RangeAggregation(
+        'price_ranges', 
+        'products.price',
+        [
+            ['to' => 100],
+            ['from' => 100, 'to' => 200],
+            ['from' => 200]
+        ]
+    )
+);
+
+$result = $repository->search($criteria, $context);
+
+/** @var RangeResult $aggregation */
+$aggregation = $result->getAggregations()->get('price_ranges');
+
+foreach ($aggregation->getRanges() as $key => $docCount) {
+    // ...
+}
+```
+{% endtab %}
+
+{% tab title="API Criteria" %}
+Request
+
+```json
+{
+    ...
+    "aggregations": {
+        "price_ranges": {
+            "range": {
+                "field": "products.price",
+                    "ranges": [
+                    { "to": 100.0 },
+                    { "from": 100.0, "to": 200.0 },
+                    { "from": 200.0 }
+                ]
+            }
+        }
+    }
+}
+```
+
+Response
+
+```json
+{
+    ...
+    "aggregations": {
+        "price_ranges": {
+            "buckets": [
+                {
+                    "key": "*-100.0",
+                    "to": 100.0,
+                    "doc_count": 2
+                },
+                {
+                    "key": "100.0-200.0",
+                    "from": 100.0,
+                    "to": 200.0,
+                    "doc_count": 2
+                },
+                {
+                    "key": "200.0-*",
+                    "from": 200.0,
+                    "doc_count": 3
+                }
+            ]
         }
     }
 }
@@ -817,7 +907,7 @@ foreach ($aggregation->getBuckets() as $bucket) {
 {% tab title="API Criteria" %}
 Request
 
-```javascript
+```json
 {
     "limit": 1,
     "includes": {
@@ -853,7 +943,7 @@ Request
 
 Response
 
-```javascript
+```json
 {
     "total": 1,
     "data": [
