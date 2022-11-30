@@ -62,7 +62,7 @@ This way, we come to use a payload as seen in the example below:
 ]
 ```
 
-For the `delete` action, the workflow is that the operation accepts 3 different arrays of ids: `customerIds`, `productIds` or `customerGroupIds`. Here you can specify any combination of these id arrays, with an exception that the API route must have _at least one UUID_ supplied in _one of the id arrays_ (`customerIds`, `productIds` or `customerGroupIds`)
+For the `delete` action, the workflow operation accepts 3 different array of ids: `customerIds`, `productIds` or `customerGroupIds`. Here, you can specify any combination of these id arrays, with an exception that the API route must have at least one UUID supplied in one of the id arrays (`customerIds`, `productIds` or `customerGroupIds`)
 
 ```json
 [
