@@ -276,7 +276,7 @@
       * [Jest unit tests in Shopware's storefront](guides/plugins/plugins/testing/jest-storefront.md)
       * [PHP unit testing](guides/plugins/plugins/testing/php-unit.md)
   * [API](guides/plugins/plugins/api/README.md)
-    * [Custom Pricing](guides/plugins/plugins/api/Customer-specific-pricing.md)
+    * [Custom Pricing](guides/plugins/plugins/api/customer-specific-pricing.md)
   * [Themes](guides/plugins/themes/README.md)
     * [Theme base guide](guides/plugins/themes/theme-base-guide.md)
     * [Create a first theme](guides/plugins/themes/create-a-theme.md)
