@@ -2,7 +2,7 @@
 
 ## Overview
 
-All of the endpoints that make use of these `POST` method and receive the criteria as a JSON object. Generally, we refer to this object as the **search criteria** - as it takes the same arguments as a [DAL criteria](../../plugins/plugins/framework/data-handling/reading-data.md#filtering). Some endpoints expect more parameters than specified here - however, these differ from one endpoint to another, so we don't specify them here.
+Generally, we refer to the endpoints that use `POST` method and receive the criteria as a JSON object as **search criteria**. It takes the same arguments as a [DAL criteria](../../plugins/plugins/framework/data-handling/reading-data.md#filtering). Some endpoints expect more parameters than specified here. However, these differ from one endpoint to another, so we don't specify them here.
 
 A typical **search criteria** looks like this:
 
@@ -48,7 +48,7 @@ A typical **search criteria** looks like this:
 }
 ```
 
-In the following we'll go through the different parameters, a criteria can be assembled from:
+In the following, we will go through different parameters that criteria can be assembled from.
 
 | Parameter | Usage |
 | :--- | :--- |
@@ -59,7 +59,7 @@ In the following we'll go through the different parameters, a criteria can be as
 | `page` | Defines at which page the search result should start |
 | `limit` | Defines the number of entries to be determined |
 | `filter` | Allows you to filter the result and aggregations |
-| `post-filter` | Allows you to filter the result, but not the aggregations |
+| `post-filter` | Allows you to filter the result but not the aggregations |
 | `query` | Enables you to determine a ranking for the search result |
 | `term` | Enables you to determine a ranking for the search result |
 | `sort` | Defines the sorting of the search result |
@@ -70,7 +70,7 @@ In the following we'll go through the different parameters, a criteria can be as
 
 ### `associations`
 
-The `associations` parameter allows you to load additional data to the minimal data set of an entity without sending an extra request - similar to a SQL Join. The key of the parameter is the property name of the association in the entity. You can pass a nested criteria just for that association - e.g. to perform a sort to or apply filters within the association.
+The `associations` parameter allows you to load additional data to the minimal data set of an entity without sending an extra request similar to a SQL Join. The parameter's key is the association's property name in the entity. You can pass nested criteria just for that association, e.g., to perform a sort to or apply filters within the association.
 
 ```javascript
 {
@@ -92,9 +92,9 @@ The `associations` parameter allows you to load additional data to the minimal d
 
 The `includes` parameter allows you to restrict the returned fields.
 
-* Transfer only what you need - reduces response payload
-* Easier to consume for client applications
-* When debugging, the response is smaller and you can concentrate on the essential fields
+* Transfer only what you need reduces response payload.
+* Easier to consume for client applications.
+* When debugging, the response is smaller, and you can concentrate on the essential fields.
 
 ```javascript
 {
@@ -122,7 +122,7 @@ The `includes` parameter allows you to restrict the returned fields.
 ```
 
 {% hint style="info" %}
-All response types come with a `apiAlias` field which you can use to identify the type in your includes field. If you only want a categories id, add: `"category": ["id"]`. For entities, this is the entity name: `product`, `product_manufacturer`, `order_line_item`, ... For other non-entity-types like a listing result or a line item, check the full response. This pattern applies not only to simple fields but also to associations.
+All response types come with a `apiAlias` field which you can use to identify the type in your includes field. If you only want a categories id, add: `"category": ["id"]`. For entities, this is the entity name: `product`, `product_manufacturer`, `order_line_item`, ... For other non-entity types like a listing result or a line item, check the full response. This pattern applies not only to simple fields but also to associations.
 {% endhint %}
 
 ### `ids`
@@ -143,15 +143,15 @@ If you want to perform a simple lookup using just the ids of records, you can pa
 
 The `total-count-mode` parameter can be used to define whether the total for the total number of hits should be determined for the search query. This parameter supports the following values:
 
-* `0 [default]` - No total is determined
-  * Purpose: This is the most performing mode because MySQL Server does not need to run the `SQL_CALC_FOUND_ROWS` in the background.
-  * Purpose: Should be used if pagination is not required
+* `0 [default]` - No total is determined.
+  * Advantage: This is the most performing mode because MySQL Server does not need to run the `SQL_CALC_FOUND_ROWS` in the background.
+  * Purpose: Should be used if pagination is not required.
 * `1` - An exact total is determined.
-  * Purpose: Should be used if a pagination with exact page number has to be displayed
-  * Disadvantage: Performance intensive. Here you have to work with `SQL_CALC_FOUND_ROWS`
-* `2` - It is determined whether there is a next page
+  * Purpose: Should be used if a pagination with the exact page number has to be displayed.
+  * Disadvantage: Performance intensive. Here you have to work with `SQL_CALC_FOUND_ROWS`.
+* `2` - It is determined whether there is a next page.
   * Advantage: Good performance, same as `0`.
-  * Purpose: Can be used well for infinite scrolling, because with infinite scrolling the information is enough to know if there is a next page to load
+  * Purpose: Can be used well for infinite scrolling because, with infinite scrolling, the information is enough to know if there is a next page to load.
 
 ```javascript
 {
@@ -172,12 +172,12 @@ The `page` and `limit` parameters can be used to control pagination. The `page` 
 
 ### `filter`
 
-The `filter` parameter allows you to filter the result and aggregations using a multitude of filters and parameters. The filter types are equivalent to the filters available for the DAL.
+The `filter` parameter allows you to filter the result and aggregations using many filters and parameters. The filter types are equivalent to the filters available for the DAL.
 
 {% page-ref page="../../../resources/references/core-reference/dal-reference/filters-reference.md" %}
 
 {% hint style="info" %}
-When you are filtering for nested values - for example you're filtering orders by their transaction state \(`order.transactions.stateMachineState`\) - make sure to fetch those in your `associations` field before.
+When you are filtering for nested values - for example, you are filtering orders by their transaction state \(`order.transactions.stateMachineState`\) - make sure to fetch those in your `associations` field before.
 {% endhint %}
 
 ```javascript
@@ -223,7 +223,7 @@ When you are filtering for nested values - for example you're filtering orders b
 
 ### `post-filter`
 
-Work the same as `filter` however, they don't apply to aggregations. This is great, when you want to work with aggregations to display facets for a filter navigation, but already filter results based on filters without making an additional request.
+Work the same as `filter`; however, they don't apply to aggregations. This is great when you want to work with aggregations to display facets for filter navigation but already filter results based on filters without making an additional request.
 
 ### `query`
 
@@ -313,12 +313,12 @@ The results are formatted the same as for the `query` parameter above.
 
 ## `sort`
 
-The `sort` parameter allows to control the sorting of the result. Several sorts can be transferred at the same time.
+The `sort` parameter allows controlling the sorting of the result. Several sorts can be transferred at the same time.
 
-* The `field` parameter defines which field is to be used for sorting.
+* The `field` parameter defines the field to be used for sorting.
 * The `order` parameter defines the sort direction.
-* The parameter `naturalSorting` allows to use a [Natural Sorting Algorithm](https://en.wikipedia.org/wiki/Natural_sort_order)
-* The parameter `type` allows to use divergent sorting behavior. Valid values are:
+* The parameter `naturalSorting` allows using a [Natural Sorting Algorithm](https://en.wikipedia.org/wiki/Natural_sort_order)
+* The parameter `type` allows using divergent sorting behavior. Valid values are:
   * `count`: Sort by the count of associations via the given field. SQL representation: `ORDER BY COUNT({field}) {order}`
 
 ```javascript
@@ -334,7 +334,7 @@ The `sort` parameter allows to control the sorting of the result. Several sorts 
 
 ### `count` sorting behavior
   
-For demonstration purposes see the following request payload that additionally includes a `count` aggregation.
+For demonstration purposes, see the following request payload that additionally includes a `count` aggregation.
 
 {% hint style="info" %}
 This `count` type was introduced with Shopware 6.4.12.0 and is not available in prior versions.
@@ -366,7 +366,7 @@ This `count` type was introduced with Shopware 6.4.12.0 and is not available in 
 }
 ```
 
-In the response the order of the `product` elements is now equal to the order of the aggregated buckets:
+In response, the order of the `product` elements is now equal to the order of the aggregated buckets:
 
 ```javascript
 {
@@ -399,10 +399,10 @@ In the response the order of the `product` elements is now equal to the order of
 
 ## `aggregations`
 
-With the `aggregations` parameter, meta data can be determined for a search query. There are different types of aggregations which are listed in the reference documentation. A simple example is the determination of the average price from a product search query.
+The `aggregations` parameter can determine metadata for a search query. There are different types of aggregations that are listed in the reference documentation. A simple example is the determination of the average price from a product search query.
 
-* Purpose: Calculation of statistics and metrics
-* Purpose: Determination of possible filters
+* Purpose: Calculation of statistics and metrics.
+* Purpose: Determination of possible filters.
 
 The aggregation types are equivalent to the aggregations available in the DAL:
 
@@ -426,10 +426,10 @@ The aggregation types are equivalent to the aggregations available in the DAL:
 
 ## `grouping`
 
-The `grouping` parameter allows you to group the result over fields. It can be used to realise queries such as:
+The `grouping` parameter allows you to group the result over fields. It can be used to realize queries such as:
 
-* Fetch one product for each manufacturer
-* Fetch one order per day and customer
+* Fetch one product for each manufacturer.
+* Fetch one order per day and customer.
 
 ```javascript
 {
