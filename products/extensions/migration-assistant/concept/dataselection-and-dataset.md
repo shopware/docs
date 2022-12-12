@@ -1,6 +1,6 @@
 # DataSelection and DataSet
 
-These are the fundamental data structures for define what to migrate. Each `DataSelection` consists of one or more `DataSets`:
+These are the fundamental data structures for defining what to migrate. Each `DataSelection` consists of one or more `DataSets`:
 
 * ProductDataSelection \(position: 100\)
   * MediaFolderDataSet

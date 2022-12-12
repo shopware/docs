@@ -1,6 +1,6 @@
 # Premapping
 
-The premapping will use the normal [Mapping](convert-and-mapping.md) to store the old identifier with the equivalent new one. All premapping readers provide the information for the mapping choices and are registered like this:
+The premapping will use the normal [mapping](convert-and-mapping.md) to store the old identifier with the equivalent new one. All premapping readers provide the information for the mapping choices and are registered like this:
 
 ```markup
 <service id="SwagMigrationAssistant\Profile\Shopware\Premapping\SalutationReader">
@@ -12,9 +12,9 @@ The premapping will use the normal [Mapping](convert-and-mapping.md) to store th
 
 The service will return a `PremappingStruct`, which consists of:
 
-1. entity of the premapping
-1. choices, representing Shopware 6 equivalents
-1. mapping, representing the source system's structure including a destination / choice
+1. Entity of the premapping
+2. Choices, representing Shopware 6 equivalents
+3. Mapping, representing the source system's structure, including a destination/choice
 
 Here is an example of how the final `PremappingStruct` looks like in the `generate-premapping` json response:
 
@@ -65,7 +65,7 @@ Here is an example of how the final `PremappingStruct` looks like in the `genera
 }
 ```
 
-The `destinationUuid` in the `mapping` array sets the destination for that entity. It will be saved along with the [Connection](profile-and-connection.md), so the user does not have to make these decisions over and over again. For more details of how the mapping process works and even more information on automatic assignment, look up more on the `SalutationReader` class.
+The `destinationUuid` in the `mapping` array sets the destination for that entity. It will be saved along with the [connection](profile-and-connection.md), so the user does not have to make these decisions repeatedly. For more details on how the mapping process works and even more information on automatic assignment, look up more in the `SalutationReader` class.
 
 To get the associated new identifier, you can make use of the `MappingService` similar to the `CustomerConverter`:
 
@@ -102,4 +102,4 @@ protected function getSalutation(string $salutation): ?string
 /* ... */
 ```
 
-The `getMapping` method used in the mapping service looks up the `swag_migration_mapping` table for the combination of old identifier and entity name stored in the current connection. Then it returns the mapping object, which contains the new Shopware 6 identifier. With this identifier it is possible to map your converted entity to your premapping choice. If `getMapping` returns null, then no valid mapping is available and you have to log this with [LoggingService](logging.md). The mapping object has two keys: `id` and `entityUuid`. The `id` key is the identifier of the `swag_migration_mapping` entry and have to be inserted in the `mappingIds`, if the mapping should be preloaded. The `entityUuid` key is the UUID of the mapped entity.
+The `getMapping` method used in the mapping service looks up the `swag_migration_mapping` table for the combination of the old identifier and entity name stored in the current connection. Then it returns the mapping object containing the new Shopware 6 identifier. This identifier makes it possible to map your converted entity to your premapping choice. If `getMapping` returns null, then no valid mapping is available, and you have to log this with [LoggingService](logging.md). The mapping object has two keys: `id` and `entityUuid`. The `id` key is the identifier of the `swag_migration_mapping` entry and has to be inserted in the `mappingIds`, if the mapping should be preloaded. The `entityUuid` key is the UUID of the mapped entity.

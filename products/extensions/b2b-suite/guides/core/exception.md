@@ -1,6 +1,6 @@
 # Exception
 
-## Translatable Exception
+## Translatable exception
 
 To show the customer a translated exception message in the shopware error controller, the exception must implement the `B2BTranslatableException` Interface.
 

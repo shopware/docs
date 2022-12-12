@@ -1,23 +1,14 @@
-# Overloading classes
+# Overloading Classes
 
-You can download a plugin showcasing the topic [here](../example-plugins/B2bServiceExtension.zip).
-
-## Table of contents
-
-* [Description](#description)
-* [How does a services.xml look like](#how-does-a-services.xml-look-like)
-* [How do I use it](#how-do-i-use-it)
-* [What is the profit](#what-is-the-profit)
-* [What are the problems with this approach](#what-are-the-problems-with-this-approach)
+You can download a plugin showcasing the topic [here](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bServiceExtension.zip).
 
 ## Description
 
-To add new functionality or overload existing classes to change functionality,
-the B2B-Suite uses the [Dependency Injection](../../../../../../guides/plugins/plugins/plugin-fundamentals/dependency-injection.md) as an extension system instead of events and hooks, which shopware uses.
+To add new functionality or overload existing classes to change functionality, the B2B-Suite uses the [Dependency Injection](../../../../../../guides/plugins/plugins/plugin-fundamentals/dependency-injection.md) as an extension system instead of events and hooks, which shopware uses.
 
 ### How does a services.xml look like
 
-In the release package, our service.xml looks like this
+In the release package, our service.xml looks like this:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -41,7 +32,7 @@ In the release package, our service.xml looks like this
 </container>
 ```
 
-For development (GitHub) it looks like this
+For development (GitHub), it looks like this:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -133,7 +124,7 @@ You extend the B2B class and just change any action you need.
 
 ### What is the profit
 
-By building our extension system in this way, we can still add and delete constructor arguments without breaking your plugins.
+By building our extension system this way, we can still add and delete constructor arguments without breaking your plugins.
 Also, we don't have to add too many interfaces to the B2B-Suite.
 
 ### What are the problems with this approach

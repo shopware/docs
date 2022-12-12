@@ -1,22 +1,15 @@
 # REST API
 
-You can download a plugin showcasing the topic [here](../example-plugins/B2bRestApi.zip).
+You can download a plugin showcasing the topic [here](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bRestApi.zip).
 
 We use swagger.io for the documentation of our B2B-Suite endpoints. The created [swagger.json](https://gitlab.com/shopware/shopware/enterprise/b2b/-/blob/minor/swagger.json) file can be displayed with [swagger ui](http://swagger.io/swagger-ui/).
 
-## Table of contents
-
-* [Description](#description)
-* [A Simple Example](#a-simple-example)
-* [Adding the route](#adding-the-route)
-* [Complex routes](#complex-routes)
-
 ## Description
 
-The B2B-Suite comes with its own extension to the REST-API. Contrary to Shopware own implementation that makes heavy use
+The B2B-Suite comes with its extension to the REST-API. Contrary to Shopware own implementation that makes heavy use
 of the Doctrine ORM the B2B-Suite reuses the same services defined for the Storefront.
 
-## A Simple Example
+## A simple example
 
 A REST-API Controller is just a plain old PHP-Class, registered to the DIC.
 An action is a public method suffixed with `Action`.
@@ -40,10 +33,10 @@ class MyApiController
 
 ## Adding the route
 
-Contrary to the default Shopware API, the B2B API provides deeply nested routes. All routes can be found in `http://my-shop.de/api/b2b`.
-If you want to register your own routes you have to add a `RouteProvider` to the routing service.
+Contrary to the default Shopware API, the B2B API provides deeply nested routes. All routes can be found at `http://my-shop.de/api/b2b`.
+To register your own routes, you must add a `RouteProvider` to the routing service.
 
-First we create the routing provider containing all routing information. Routes themselves are defined as simple arrays, just like this:
+First, we create the routing provider containing all routing information. Routes themselves are defined as simple arrays, just like this:
 
 ```php
 <?php declare(strict_types=1);
@@ -78,12 +71,11 @@ Now the route provider and the controller are registered to the DIC.
 </service>
 ```
 
-Notice that the route provider is tagged as a `b2b_common.rest_route_provider`, this tag triggers that the route is registered.
+Notice that the route provider is tagged as a `b2b_common.rest_route_provider`. This tag triggers when the route is registered.
 
 ## Complex routes
 
-The used route parser is [FastRoute](https://github.com/nikic/FastRoute#defining-routes) which supports more powerful features that can also be used by the B2B API.
-Please take a look at the linked documentation to learn more about placeholders and placeholder parsing.
+The used route parser is [FastRoute](https://github.com/nikic/FastRoute#defining-routes), which supports more powerful features that can also be used by the B2B API. Refer to this linked documentation to learn more about placeholders and placeholder parsing.
 
 If you want to use parameters, you have to define an order in which the parameters should be passed to the action:
 
@@ -93,11 +85,11 @@ If you want to use parameters, you have to define an order in which the paramete
     '/my/hello/{name}', // the sub-route will be concatenated to http://my-shop.de/api/b2b/my/hello/world
     'my.api_controller', // DIC controller id
     'hello' // action method name,
-    ['name'] // define name as first argument
+    ['name'] // define name as the first argument
 ]
 ```
 
-And now you can use the placeholders value as a parameter:
+And now, you can use the placeholders value as a parameter:
 
 ```php
 <?php declare(strict_types=1);

@@ -1,8 +1,6 @@
 # Product Search
 
-## Description
-
-Our product search is a small Storefront Plugin which allows you to create input fields with autocompletion for products.
+Our product search is a small Storefront Plugin that allows you to create input fields with autocompletion for products.
 A small example is shown below. The plugin deactivates the default autocompletion for this field from your browser.
 
 {% raw %}
@@ -15,8 +13,8 @@ A small example is shown below. The plugin deactivates the default autocompletio
 
 {% endraw %}
 
-### Elasticsearch
+## Elasticsearch
 
-While using Elasticsearch you have to enable the variants filter in the filter menu of the basic settings to show all variants in the product search.
+While using Elasticsearch, you have to enable the variants filter in the filter menu of the basic settings to show all variants in the product search.
 
 ![ProductSearchOptions](/.gitbook/assets/product-search-options.png)

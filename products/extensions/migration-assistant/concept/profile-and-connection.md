@@ -2,7 +2,7 @@
 
 ## Overview
 
-Users of the plugin can create connections to different source systems. A connection is used to allow multiple migrations from the same source and update the right data \(mapping\). Connections require a specific profile, indicating the type of source system. Users can, for example, create a connection to a Shopware shop using the Shopware 5.5 profile. Developers are able to create their own profiles from scratch and connect to different source systems or just build up on and extend existing ones.
+Users of the plugin can create connections to different source systems. A connection is used to allow multiple migrations from the same source and update the right data \(mapping\). Connections require a specific profile indicating the type of source system. Users can, for example, create a connection to a Shopware shop using the Shopware 5.5 profile. Developers can create their own profiles from scratch, connect to different source systems, or just build and extend existing ones.
 
 ## Profile
 
@@ -65,7 +65,7 @@ class Shopware55Profile implements ShopwareProfileInterface
 
 ## Connection
 
-To connect Shopware 6 to your source system \(e.g. Shopware 5\), you will need a connection entity. The connection includes all important information for your migration run. It contains the credentials for the API or database access, the actual [premapping](premapping.md) and the profile, [gateway](gateway-and-reader.md) combination which is used for your migration:
+To connect Shopware 6 to your source system \(e.g., Shopware 5\), you will need a connection entity. The connection includes all the important information for your migration run. It contains the credentials for the API or database access, the actual [premapping](premapping.md) and the profile, [gateway](gateway-and-reader.md) combination which is used for your migration:
 
 ```php
 <?php declare(strict_types=1);

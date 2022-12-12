@@ -1,23 +1,6 @@
 # Ajax panel
 
-## Table of contents
-
-* [Description](#description)
-* [Basic usage](#basic-usage)
-* [Extended usage](#extended-usage)
-  * [Make links clickable](#make-links-clickable)
-  * [Ignore links](#ignore-links)
-  * [Link to a different panel](#link-to-a-different-panel)
-* [Ajax Panel Plugins](#ajax-panel-plugins)
-  * [Modal](#modal)
-  * [TriggerReload](#triggerreload)
-  * [TreeSelect](#treeselect)
-
-## Description
-
-`AjaxPanel` is a is a mini-framework based on storefront plugins. It mimics `iFrame` behaviour by integrating content from
-different controller actions through ajax into a single view and intercepting,
-usually page changing, events and transforming them into XHR-Requests.
+`AjaxPanel` is a mini-framework based on storefront plugins. It mimics `iFrame` behavior by integrating content from different controller actions through ajax into a single view and intercepting, usually page changing events and transforming them into XHR-Requests.
 
 The diagram below shows how this schematically behaves:
 
@@ -41,8 +24,8 @@ The most basic ajax panel looks like this:
 
 {% endraw %}
 
-After the document is ready, the ajax panel will trigger a XHR GET-Request and replace it's inner html with the responses content.
-Now all clicks on links and form submits inside the container will be changed to XHR-Requests.
+After the document is ready, the ajax panel will trigger an XHR GET-Request and replace its inner HTML with the responses content.
+Now, all clicks on links and forms submitted inside the container will be changed to XHR-Requests.
 
 ## Extended usage
 
@@ -60,8 +43,7 @@ Any HTML element can be used to trigger a location change in an ajax panel, just
 
 ### Ignore links
 
-It might be necessary that certain links in a panel really trigger the default behaviour,
-you just have to add a class to the link or form:
+It might be necessary that certain links in a panel really trigger the default behavior. You just have to add a class to the link or form:
 
 ```html
 <a href="http://www.shopware.com" class="ignore--b2b-ajax-panel">Go to Shopware Home</a>
@@ -80,14 +62,14 @@ One panel can influence another one by defining and linking to an id.
  <a [...] data-target="foreign">Open in another component</a>
 ```
 
-## Ajax Panel Plugins
+## Ajax panel plugins
 
-The B2B-Suite comes with a whole library of simple helper plugins to add behaviour the ajax panels.
+The B2B-Suite comes with a library of simple helper plugins to add behavior to the ajax panels.
 
 ![image](/.gitbook/assets/ajax-panel-structure.svg)
 
 As you can see, there is the `AjaxPanelPluginLoader` responsible for initializing and reinitializing plugins inside b2b-panels.
-Let's take our last example and extend it with a form plugin.
+Let's take our last example and extend it with a form plugin:
 
 ```html
 <div
@@ -101,8 +83,7 @@ Let's take our last example and extend it with a form plugin.
 
 This will disable all form elements inside the panel during panel reload.
 
-While few of them add very specific behaviour to the grid or tab's views.
-There are also a few more commonly interesting plugins.
+While few of them add very specific behavior to the grid or tab's views, there are also a few more commonly interesting plugins.
 
 ### Modal
 
@@ -122,9 +103,9 @@ This will open the content in a modal box.
 
 ### TriggerReload
 
-Sometimes change in one panel needs to trigger reload in another panel.
+Sometimes a change in one panel needs to trigger reload in another panel.
 This might be the case if you are editing in a dialog and displaying a grid behind it.
-In this case you can just trigger reload on other panel id's, just like that:
+In this case, you can just trigger reload on other panel id's, just like that:
 
 ```html
 <div class="b2b--ajax-panel" data-url="{{ path('frontend.b2b.b2bcontact.grid') }}" data-id="grid">
@@ -142,7 +123,7 @@ Now every change in the form view will trigger reload in the grid view.
 
 This `TreeSelect` plugin allows to display a tree view with enabled drag and drop.
 In the view the `div` element needs the class `is--b2b-tree-select-container` and the data attribute `data-move-url="{{ path('frontend.b2b.b2brole.move') }}"`.
-The controller have to implement a move action, which accepts the `roleId`, `relatedRoleId` and the `type`.
+The controller has to implement a move action, which accepts the `roleId`, `relatedRoleId`, and the `type`.
 
 Possible types:
 

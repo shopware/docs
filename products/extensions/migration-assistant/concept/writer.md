@@ -1,6 +1,6 @@
 # Writer
 
-The `Writer` objects will get the converted data from the `swag_migration_data` table and write it to the right Shopware 6 table. Each `Writer` supports only one entity, that is most likely the target table.
+The `Writer` objects will get the converted data from the `swag_migration_data` table and write it to the right Shopware 6 table. Each `Writer` supports only one entity, which is most likely the target table.
 
 When creating a writer, register it in a manner resembling the following:
 
@@ -13,7 +13,7 @@ When creating a writer, register it in a manner resembling the following:
 </service>
 ```
 
-In most cases you should extend by the `AbstractWriter` which does most things for you \(you only need to specify the `supports` method\).
+In most cases, you should extend by the `AbstractWriter`, which does most things. You only need to specify the `supports` method.
 
 ```php
 <?php declare(strict_types=1);
@@ -31,4 +31,4 @@ class ProductWriter extends AbstractWriter
 }
 ```
 
-In case you need more control over the writing, you can implement the `WriterInterface` by yourself and the class will receive the data in the `writeData` method. Received data is an array of converted values. The amount depends on the limit of the request. Error handling is already done in the overlying `MigrationDataWriter` class. If writing the entries fails with a `WriteException` from the DAL, it will try to exclude the reported failures and try again. If any other exception occurs, it will retry them one by one to minimize data loss.
+If you need more control over the writing, you can implement the `WriterInterface` by yourself and the class will receive the data in the `writeData` method. Received data is an array of converted values. The amount depends on the limit of the request. Error handling is already done in the overlying `MigrationDataWriter` class. If writing the entries fails with a `WriteException` from the DAL, it will try to exclude the reported failures and try again. If any other exception occurs, it will retry them one by one to minimize data loss.

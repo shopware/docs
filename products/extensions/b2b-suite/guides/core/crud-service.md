@@ -1,29 +1,21 @@
-# CRUD service
+# CRUD Service
 
-You can download a plugin showcasing the topic [here](../example-plugins/B2bAcl.zip).
+You can download a plugin showcasing the topic [here](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bAcl.zip).
 
-## Table of contents
+## Pattern
 
-* [The Pattern](#the-pattern)
-* [The Entity](#the-entity)
-* [The Repository](#the-repository)
-* [The Validation Service](#the-validation-service)
-* [The CRUD Service](#the-crud-service)
+A repeating pattern used throughout the B2B-Suite is the CRUD service.
+The B2B-Suite ships with its own entities and therefore provides the means to create, update and delete them.
+Although these entities may have special requirements, an exclusively used naming convention and pattern are used to implement all CRUD operations.
 
-## The Pattern
-
-A repeating pattern used throughout the B2B-Suite are CRUD services.
-The B2B-Suite ships with its own entities, and therefore provides the means to **cr**eate **u**pdate and **d**elete them.
-Although these entities may have special requirements, there is an exclusively used naming convention and pattern used to implement all CRUD operations.
-
-The Diagram below shows the usually implemented objects with their outside dependencies.
+The diagram below shows the usually implemented objects with their outside dependencies:
 
 ![image](../../../../../../.gitbook/assets/crud-service.svg)
 
-## The Entity
+## Entity
 
 There always is an entity representing the data that has to be written.
-Entities are uniquely identifiable storage objects, with public properties and only a few convenience functions.
+Entities are uniquely identifiable storage objects with public properties and only a few convenience functions.
 An example entity looks like this:
 
 ```php
@@ -119,13 +111,12 @@ class RoleEntity implements CrudEntity
 ```
 
 The convenience interface `Shopware\B2B\Common\CrudEntity` is not required to assign context to the object.
-Furthermore, the definition whether an entity can be stored or retrieved from storage can only securely be determined
-if corresponding repository methods exist.
+Furthermore, the definition of whether an entity can be stored or retrieved from storage can only securely be determined if corresponding repository methods exist.
 
-## The Repository
+## Repository
 
-There always is a repository, that handles all storage and retrieval functionality.
-Contrary to Shopware default repositories they do not use the ORM and do not expose queries.
+There always is a repository that handles all storage and retrieval functionality.
+Contrary to Shopware default repositories, they do not use the ORM and do not expose queries.
 A sample repository might look like this:
 
 ```php
@@ -184,11 +175,10 @@ class RoleRepository
 }
 ```
 
-Since it seems to be a sufficient workload for a single object to just interact with the storage layer,
-here is no additional validation of any sort. Everything that is solvable in PHP only is not part of this object.
+Since it seems to be a sufficient workload for a single object to interact with the storage layer, there is no additional validation. Everything that is solvable in PHP only is not part of this object.
 Notice that the exceptions are all typed and can be caught easily by the implementation code.
 
-## The Validation Service
+## Validation service
 
 Every entity has a corresponding `ValidationService`
 
@@ -232,15 +222,15 @@ class RoleValidationService
 
 It provides assertions that can be evaluated by a controller and printed to the user.
 
-## The CRUD Service
+##  CRUD service
 
-Services are the real entry point to an entity. They are reusable and not dependant of any specific I/O mechanism.
+Services are the real entry point to an entity. They are reusable and not dependent on any specific I/O mechanism.
 
 They are not allowed to depend on HTTP implementations directly,
 and therefore provide their own request classes that contain the source independent required raw data.
 Notice that they are also used to initially filter a possibly larger request,
 and they allow just the right data points to enter the service,
-although the contents is validated by the `ValidationService`.
+although the contents are validated by the `ValidationService`.
 
 ```php
 <?php declare(strict_types=1);
@@ -283,8 +273,7 @@ class RoleCrudService extends AbstractCrudService
 ```
 
 With a filled `CrudServiceRequest` you then call the actual action you want the service to perform.
-Keep in mind that there may be other parameters required. For example an `Identity` determining if the currently
-logged-in user may even access the requested data.
+Keep in mind that there may be other parameters required. For example, an `Identity` determines if the currently logged-in user may access the requested data.
 
 ```php
 <?php declare(strict_types=1);

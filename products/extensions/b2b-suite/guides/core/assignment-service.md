@@ -1,26 +1,20 @@
 # Assignment service
 
-## Table of contents
+## The pattern
 
-* [The Pattern](#the-pattern)
-* [The Repository](#the-repository)
-* [The Service](#the-service)
+A repeating pattern used throughout the B2B-Suite is the Assignment service.
+The B2B-Suite ships with many new entities and therefore provides the means to connect them to each other.
+This is done through M:N assignments for that purpose alone created components.//todo
 
-## The Pattern
-
-A repeating pattern used throughout the B2B-Suite are Assignment Services.
-The B2B-Suite ships with many new entities, and therefore provides the means to connect them to each other.
-This is done through M:N assignments in for that purpose alone created components.
-
-The Diagram below shows the usually implemented objects with their outside dependencies.
+The diagram below shows the usually implemented objects with their outside dependencies.
 
 ![image](../../../../../../.gitbook/assets/assignment-service.svg)
 
-## The Repository
+## The repository
 
 Again the repository is the exclusive access layer to the storage engine.
-Contrary to CRUD operations there is no object, but just plain integers (The primary keys).
-The default repository will have these three methods relevant for assignment:
+Contrary to CRUD operations, there is no object but just plain integers (the primary keys).
+The default repository will have these three methods relevant for the assignment:
 
 ```php
 <?php declare(strict_types=1);
@@ -48,10 +42,10 @@ class RoleContactRepository
     }
 ```
 
-## The Service
+## The service
 
 Services are even smaller. They contain the two relevant methods for assignment.
-Internally they will check if the assignment is even allowed, and throw exceptions if not.
+Internally they will check if the assignment is even allowed and throw exceptions if not.
 
 ```php
 <?php declare(strict_types=1);

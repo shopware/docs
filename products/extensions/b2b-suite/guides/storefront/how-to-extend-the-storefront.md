@@ -1,14 +1,6 @@
 # How to extend the storefront (Shopware 6)
 
-## Table of contents
-
-* [Description](#description)
-* [Registering a TemplateNamespaceHierarchyBuilder](#registering-a-templatenamespacehierarchybuilder)
-* [The TemplateNamespaceHierarchyBuilder service](#the-templatenamespacehierarchybuilder-service)
-
-## Description
-
-In order to be able to extend the templates of the B2B Suite with another plugin, you have to make sure to register a `TemplateNamespaceHierarchyBuilder` in your plugin.
+In order to be able to extend the templates of the B2B-Suite with another plugin, you have to make sure to register a `TemplateNamespaceHierarchyBuilder` in your plugin.
 
 ## Registering a TemplateNamespaceHierarchyBuilder
 

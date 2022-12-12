@@ -2,11 +2,11 @@
 
 ## Overview
 
-Users will have to specify a gateway for the connection. The gateway defines the way of communicating with the source system. Behind the user interface we use `Reader` objects to read the data from the source system. For the `shopware55` profile we have the `api` gateway, which communicates via http/s with the source system, and the `local` gateway, which communicates directly with the source system's database. Thus both systems must be on the same server for successfully using the `local` gateway.
+Users will have to specify a gateway for the connection. The gateway defines the way of communicating with the source system. Behind the user interface, we use `Reader` objects to read the data from the source system. For the `shopware55` profile, we have the `api` gateway, which communicates via http/s with the source system, and the `local` gateway, which communicates directly with the source system's database. Thus both systems must be on the same server to successfully use the `local` gateway.
 
 ## Gateway
 
-The gateway defines how to communicate from Shopware 6 with your source system like Shopware 5. Every profile needs to have at least one gateway. Gateways need to be defined in the corresponding service xml using the `shopware.migration.gateway` tag:
+The gateway defines how to communicate from Shopware 6 with your source system, like Shopware 5. Every profile needs to have at least one gateway. Gateways need to be defined in the corresponding service xml using the `shopware.migration.gateway` tag:
 
 ```markup
 <!-- Shopware Profile Gateways -->
@@ -29,9 +29,9 @@ The gateway defines how to communicate from Shopware 6 with your source system l
 </service>
 ```
 
-If you want to use the `ShopwareApiGateway`, you will have to download the corresponding Shopware 5 plugin [Shopware Migration Connector](https://github.com/shopware/SwagMigrationConnector), first.
+To use the `ShopwareApiGateway`, you must download the corresponding Shopware 5 plugin [Shopware Migration Connector](https://github.com/shopware/SwagMigrationConnector) first.
 
-This tag is used by `GatwayRegistry`. This registry loads all tagged gateways and chooses a suitable gateway based on the migration's context and a unique identifier, composed by a combination of profile and gateway name:
+This tag is used by `GatwayRegistry`. This registry loads all tagged gateways and chooses a suitable gateway based on the migration's context and a unique identifier composed of a combination of profile and gateway name:
 
 ```php
 <?php declare(strict_types=1);
@@ -98,7 +98,7 @@ class GatewayRegistry implements GatewayRegistryInterface
 }
 ```
 
-The gateway class has to implement the `GatewayInterface` to support all required methods. As you can see below, the gateway uses the right readers which internally open a connection to the source system to receive the entity data:
+The gateway class has to implement the `GatewayInterface` to support all required methods. As you can see below, the gateway uses the right readers, which internally open a connection to the source system to receive the entity data:
 
 ```php
 <?php declare(strict_types=1);
