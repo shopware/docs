@@ -1,9 +1,5 @@
 # Checkout
 
-The checkout in Shopware deals with the entire process of turning a cart into an order and initiating all associated processes like payment, shipping etc.
+The checkout holds a series of steps to purchase items in your store. The checkout in Shopware deals with the entire process of turning a cart into an order and initiating all associated processes like payment, shipping, etc.
 
-{% page-ref page="cart.md" %}
-
-{% page-ref page="payments.md" %}
-
-{% page-ref page="orders.md" %}
+This section further focuses on carts, payment, and orders.
