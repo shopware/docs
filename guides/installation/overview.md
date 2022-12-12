@@ -4,6 +4,7 @@
 
 There are a couple of ways to get Shopware running on your system. Depending on what best suits your development environment, you have the following choices:
 
+* [Flex](flex.md): Installation using Symfony Flex template
 * [Docker](docker.md): The docker installation is the easiest way to get a running Shopware 6.
 * [MAMP](mamp.md): For quick and easy installation you can also use MAMP tool on mac.
 * [Valet+](valet.md): You can install Shopware with the epl of Valet+, which is a fork of laravel/valet.

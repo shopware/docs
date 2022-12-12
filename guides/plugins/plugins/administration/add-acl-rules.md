@@ -406,3 +406,35 @@ Module.register('your-plugin-module', {
     },
 });
 ```
+
+## Add your custom privileges
+
+To make sure your custom privileges are additionally added to existing roles, override the `enrichPrivileges` method and return a list of your custom privileges.
+This method should return an array with the technichal role name as key, while the privileges should be the array value.
+An event subscriber will add the plugins custom privileges at runtime.
+
+```php
+<?php declare(strict_types=1);
+
+namespace SwagTestPluginAcl;
+
+use Shopware\Core\Framework\Plugin;
+
+class SwagTestPluginAcl extends Plugin
+{
+    public function enrichPrivileges(): array
+    {
+        return [
+            'product.viewer' => [
+                'my_custom_privilege:read',
+                'my_custom_privilege:write',
+                'my_other_custom_privilege:read',
+                // ...
+            ],
+            'product.editor' => [
+                // ...
+            ],
+        ];
+    }
+}
+```
