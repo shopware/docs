@@ -38,7 +38,7 @@ This will result in the following call order:
 
 ![](../../.gitbook/assets/rule-sequence.png)
 
-As you can see, a single rule can either contain user defined values or other user defined rules. These are Container rules. The rule system here bears some resemblance to the [SearchCriteria](../../guides/plugins/plugins/framework/data-handling/reading-data.md#Filtering), although independent. Criteria are the representation of a query that gets translated and executed through the storage engine. The rule matches in-memory in PHP.
+As you can see, a single rule can either contain user defined values or other user defined rules. These are Container rules. The rule system here bears some resemblance to the [SearchCriteria](../../guides/plugins/plugins/framework/data-handling/reading-data.md#Filtering), although independent. A Search Criteria is the representation of a query that gets translated and executed through the storage engine. The rule matches in-memory in PHP and does not access the underlying storage.
 
 The last building block is the **Rule Scope**. The Scope contains the current runtime state of the application and is necessary to match the data. The whole picture is visualized in the next diagram:
 
