@@ -11,7 +11,11 @@ Let us start understanding about product more in detail:
 * **Product variant**: A sellable good. Product Variants are generally mapped to products. Inventory is modeled per variant.
 * **Category**: Products in Shopware are organised in categories. It is a grouping of products based on characteristics, marketing or search concerns. Categories are represented as a hierarchical tree to form a navigation menu. A product can be contained in multiple categories.
 
-Have look at the below ![Condensed overview of the product data model](../../../.gitbook/assets/concept-catalog-products-datamodel.png). You can see that besides their relation to categories, products can also link to a set of *property group options*.
+Look at the below condensed overview of the product data model:
+
+![Condensed overview of the product data model](../../../.gitbook/assets/concept-catalog-products-datamodel.png)
+
+Besides their relation to categories, products can also link to a set of *property group options*.
 
 ## Property groups and options
 
@@ -23,7 +27,7 @@ Examples of property group garments are *Size*, *Color* or *Material*. The corre
 
 Different variations of a product can be modeled using *product variants*. Products are a self-referencing entity, which is interpreted as a parent-child relationship. This mechanism is also used to model variants. This also provides inheritance between field values from parent products to child products.
 
-![Variant model](../../../.gitbook/assets/image%20%2810%29.png)
+![Variant model](../../../.gitbook/assets/concept-catalog-products-variantModel.png)
 
 However, it is also useful to attach some additional properties to differentiate product variants next to the field inheritance. For that reason, it is critical to understand the difference between *properties* and *options*:
 

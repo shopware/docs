@@ -13,7 +13,7 @@
     * [Cart](concepts/commerce/checkout-concept/cart.md)
     * [Orders](concepts/commerce/checkout-concept/orders.md)
     * [Payments](concepts/commerce/checkout-concept/payments.md)
-  * [Content](concepts/commerce/core/README.md)
+  * [Content](concepts/commerce/content/README.md)
     * [Shopping Experiences \(CMS\)](concepts/commerce/core/shopping-experiences-cms.md)
 * [Framework](concepts/framework/README.md)
   * [Architecture](concepts/framework/architecture/README.md)
