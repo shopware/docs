@@ -8,7 +8,7 @@ In the following concept we'll take a look at the following aspects:
 * Hydration of dynamic content
 * Separation of content and presentation
 
-We'll start by taking a rather abstract approach to content organisation and later translate that into more specific applications.
+We'll start by taking a rather abstract approach to content organization and later translate that into more specific applications.
 
 ## Structure
 
