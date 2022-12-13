@@ -5,7 +5,7 @@ Plugins in Shopware are essentially an extension of [Symfony bundles](https://sy
 Plugins are deeply integrated into Shopware. You can do nearly everything with plugins, like "new User Provider" or "custom Search Engine".
 
 {% hint style="warning" %}
-Plugins are not compatible with Shopware cloud. To extend Shopware cloud, you need an [App](apps-concept.md).
+Plugins are not compatible with Shopware cloud stores. To extend Shopware cloud stores, you need an [App](apps-concept.md).
 {% endhint %}
 
 Learn more about plugins from the [Plugin base guide](../../guides/plugins/plugins/plugin-base-guide.md)
