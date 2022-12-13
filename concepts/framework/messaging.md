@@ -6,27 +6,27 @@ Shopware integrates with the [Symfony Messenger](https://symfony.com/doc/current
 
 ### Message Bus
 
-The [message bus](https://symfony.com/doc/current/components/messenger.html#bus) is used to dispatch your messages to your registered handlers. While dispatching your message it loops through the configured middleware for that bus. The message bus used inside Shopware can be found under the service tag `messenger.bus.shopware`. It is mandatory to use this message bus if your messages should be handled inside Shopware. However, if you want to send messages to external systems, you can define your custom message bus for that.
+The [Message bus](https://symfony.com/doc/current/components/messenger.html#bus) is used to dispatch your messages to your registered handlers. While dispatching your message it loops through the configured middleware for that bus. The message bus used inside Shopware can be found under the service tag `messenger.bus.shopware`. It is mandatory to use this message bus if your messages should be handled inside Shopware. However, if you want to send messages to external systems, you can define your custom message bus for that.
 
 ### Middleware
 
-A [middleware](https://symfony.com/doc/current/messenger.html#middleware) is called when the message bus dispatches messages. It defines what happens when you dispatch a message. For example, the `send\_message` middleware is responsible for sending your message to the configured [Transport](messaging.md#transport), and the `handle_message` middleware will actually call your handlers for the given message. You can add your own middleware by implementing the `MiddlewareInterface` and adding that middleware to the message bus through configuration.
+A [Middleware](https://symfony.com/doc/current/messenger.html#middleware) is called when the message bus dispatches messages. It defines what happens when you dispatch a message. For example, the `send\_message` middleware is responsible for sending your message to the configured [Transport](messaging.md#transport), and the `handle_message` middleware will actually call your handlers for the given message. You can add your own middleware by implementing the `MiddlewareInterface` and adding that middleware to the message bus through configuration.
 
 ### Handler
 
-A [handler](https://symfony.com/doc/current/messenger.html#registering-handlers) gets called once the message is dispatched by the `handle_messages` middleware. Handlers do the actual processing of the message. Therefore they must extend the `AbstractMessageHandler`class and implement the `handle()` method. To register a handler, you have to tag it with the `messenger.message_handler` tag. To specify which methods should be handled by a given handler, implement the static `getHandledMessages()` method and return the *MessageClasses* which that handler should handle. You can also define multiple handlers for the same message.
+A [Handler](https://symfony.com/doc/current/messenger.html#registering-handlers) gets called once the message is dispatched by the `handle_messages` middleware. Handlers do the actual processing of the message. Therefore they must extend the `AbstractMessageHandler`class and implement the `handle()` method. To register a handler, you have to tag it with the `messenger.message_handler` tag. To specify which methods should be handled by a given handler, implement the static `getHandledMessages()` method and return the *MessageClasses* which that handler should handle. You can also define multiple handlers for the same message.
 
 ### Message
 
-A [message](https://symfony.com/doc/current/messenger.html#message) is a simple PHP class you want to dispatch over the MessageQueue. It must be serializable and should contain all the necessary information that a [handler](messaging.md#handler) needs to process the message.
+A [Message](https://symfony.com/doc/current/messenger.html#message) is a simple PHP class you want to dispatch over the MessageQueue. It must be serializable and should contain all the necessary information that a [handler](messaging.md#handler) needs to process the message.
 
 ### Envelope
 
-A message will be wrapped in an [envelope](https://symfony.com/doc/current/components/messenger.html#adding-metadata-to-messages-envelopes) by the message bus that dispatches the message.
+A message will be wrapped in an [Envelope](https://symfony.com/doc/current/components/messenger.html#adding-metadata-to-messages-envelopes) by the message bus that dispatches the message.
 
 ### Stamps
 
-While the message bus is processing the message through its middleware, it adds [stamps](https://symfony.com/doc/current/components/messenger.html#adding-metadata-to-messages-envelopes) to the envelope that contain metadata about the message. If you need to add metadata or configuration to your message, you can either wrap your message in an envelope and add the necessary stamps before dispatching your message or create your own custom middleware.
+While the message bus is processing the message through its middleware, it adds [Stamps](https://symfony.com/doc/current/components/messenger.html#adding-metadata-to-messages-envelopes) to the envelope that contain metadata about the message. If you need to add metadata or configuration to your message, you can either wrap your message in an envelope and add the necessary stamps before dispatching your message or create your own custom middleware.
 
 ### Transport
 
@@ -38,4 +38,4 @@ To send messages, the Shopware messenger bus is used, which can be injected thro
 
 ### Consuming Messages
 
-Consuming messages can be done via both a [console command](../../guides/hosting/infrastructure/message-queue.md#cli-worker) and via an API endpoint. The console command starts a worker that will receive incoming messages from your Transport and dispatch them. The API can be communicated via a POST, which will consume messages for 2 seconds, and then you get the count of the handled messages in the response.
+Consuming messages can be done via both a [Console command](../../guides/hosting/infrastructure/message-queue.md#cli-worker) and via an API endpoint. The console command starts a worker that will receive incoming messages from your Transport and dispatch them. The API can be communicated via a POST, which will consume messages for 2 seconds, and then you get the count of the handled messages in the response.

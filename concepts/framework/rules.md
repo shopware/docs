@@ -24,7 +24,7 @@ In this example, the rule system sits right in the middle of the scenario, provi
 
 ## Rule Design
 
-The center of the rule system is the `Rule`. It is realized as a variant of the [specification pattern](https://en.wikipedia.org/wiki/Specification_pattern) but omits the name due to a few key differences.
+The center of the rule system is the `Rule`. It is realized as a variant of the [Specification pattern](https://en.wikipedia.org/wiki/Specification_pattern) but omits the name due to a few key differences.
 
 * Storable, retrievable and identifiable through the [Data Abstraction Layer](../../guides/plugins/plugins/framework/data-handling/).
 * A `RuleScope` parameter instead of any arbitrary object
@@ -48,4 +48,4 @@ The last building block is the **Rule Scope**. The Scope contains the current ru
 
 Following Shopware 6s data-driven approach, the rule objects are stored in the database and used to trigger behavior in the cart through the associations present.
 
-For more insights on the rule validation, take a look at the [cart documentation](../commerce/checkout-concept/cart.md)
+For more insights on the rule validation, take a look at the [Cart documentation](../commerce/checkout-concept/cart.md)

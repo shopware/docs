@@ -12,7 +12,7 @@ An EntityRepository is used to interact with the DAL. This is the recommended wa
 
 ### Provisioning code to use the repositories
 
-Before using the repositories, you will need to get them from the [Dependency Injection Container (DIC)](../../guides/plugins/plugins/plugin-fundamentals/dependency-injection.md). This is done with [constructor injection](https://symfony.com/doc/current/service_container/injection_types.html#constructor-injection), so you will need to extend your services constructor by expecting an EntityRepositoryInterface:
+Before using the repositories, you will need to get them from the [Dependency Injection Container (DIC)](../../guides/plugins/plugins/plugin-fundamentals/dependency-injection.md). This is done with [Constructor injection](https://symfony.com/doc/current/service_container/injection_types.html#constructor-injection), so you will need to extend your services constructor by expecting an EntityRepositoryInterface:
 
 {% code title="<plugin root>/src/Service/DalExampleService.php" %}
 
@@ -25,7 +25,7 @@ public function __construct (EntityRepositoryInterface $productRepository)
 
 {% endcode %}
 
-If you are using [service autowiring](https://symfony.com/doc/current/service_container/autowiring.html) with the correct type and argument variable names, the repository will be injected automatically.
+If you are using [Service autowiring](https://symfony.com/doc/current/service_container/autowiring.html) with the correct type and argument variable names, the repository will be injected automatically.
 
 Alternatively, configure the `product.repository` service to be injected explicitly:
 

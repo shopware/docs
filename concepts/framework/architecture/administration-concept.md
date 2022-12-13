@@ -21,9 +21,9 @@ As mentioned previously, the Administration component provides a SPA that commun
 
 Apart from the arguably most central responsibility of creating the UI itself, which can be reached through `/admin`. The Administration components implement a number of cross-cutting concerns. The most important are:
 
-* **Providing inheritance**: As Shopware 6 offers a flexible extension system to develop own Apps, Plugins, or Themes,  one can override or extend the Administration to fit needs. More information can be found in the [inheritance](administration-concept.md#inheritance) chapter of this article.
+* **Providing inheritance**: As Shopware 6 offers a flexible extension system to develop own apps, plugins, or themes,  one can override or extend the Administration to fit needs. More information can be found in the [inheritance](administration-concept.md#inheritance) chapter of this article.
 
-* **Data management**: The Administration displays entities of the Core component and handles the management of this data. So, of course, REST-API access is an important concern of [pages and views](administration-concept.md#modules-and-their-components) where necessary. You will find many components working with in-memory representations of API-Data.
+* **Data management**: The Administration displays entities of the Core component and handles the management of this data. So, of course, REST-API access is an important concern of [Pages and views](administration-concept.md#modules-and-their-components) where necessary. You will find many components working with in-memory representations of API-Data.
 
 * **State management**: In contrast to the Core \(Backend\), the Administration is a long-running process contained in the browser. Proper state management is key here. There is a router present handling the current page selection. View and component rendering is done locally in relation to their parents. Therefore, each component manages the state of its subcomponents.
 
@@ -48,7 +48,7 @@ The `src` directory of the SPA below is structured along the three different use
 
 One module represents a navigation entry in the Administrations main menu. Since the Administration is highly dependent on the Shopware ecommerce Core, the module names reappear in the Administration, though in a slightly different order. The main building block, which the Administration knows, is called `component`, adjacent to web components.
 
-A `component` is the combination of styling, markup, and logic. What a component does will not surprise you if you are already familiar with the [MVC pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller). The role of the model and controller collapses into a single class. The components Twig.js template is generally rendered by a JavaScript \(`index.js`\) file and includes styling from an SCSS file. A template file also notifies the JavaScript, which then reacts to specific \(user\) interactions. Furthermore, components can be and often are nested. Our [Component Library](https://component-library.shopware.com/) will also give you an overview of our default components.
+A `component` is the combination of styling, markup, and logic. What a component does will not surprise you if you are already familiar with the [MVC pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller). The role of the model and controller collapses into a single class. The components Twig.js template is generally rendered by a JavaScript \(`index.js`\) file and includes styling from an SCSS file. A template file also notifies the JavaScript, which then reacts to specific \(user\) interactions. Furthermore, components can be and often are nested. Our [Component library](https://component-library.shopware.com/) will also give you an overview of our default components.
 
 ### General module structure
 
@@ -70,7 +70,7 @@ At least one `page` is mandatory in each module. Though views and components can
 
 ### Order module
 
-Having a look at a more practical example, one can look closer at the order module. Typically, you will find this structure alongside other modules, especially when creating pages or views for creating/editing, listing, or viewing a specific entity. Refer to the [add custom module](../../../guides/plugins/plugins/administration/add-custom-module.md) article if you want to learn more about adding your custom module with a Shopware plugin.
+Having a look at a more practical example, one can look closer at the order module. Typically, you will find this structure alongside other modules, especially when creating pages or views for creating/editing, listing, or viewing a specific entity. Refer to the [Add custom module](../../../guides/plugins/plugins/administration/add-custom-module.md) article if you want to learn more about adding your custom module with a Shopware plugin.
 
 ```bash
 <platform/src/Administration/Resources/app/administration/src/module/sw-order/>
