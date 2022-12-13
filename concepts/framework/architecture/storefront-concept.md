@@ -67,6 +67,7 @@ Composite data loading describes the process of preparing and fetching data for 
 The pages in the Storefront component can roughly be categorized into Pages and Pagelets. Although functionally identical, they represent different usages of Page's data. A Page is generally rendered into a full template, whereas a Pagelet is either a part of a Page or accessible through an XHR route, sometimes even both.
 
 A single Page is always a three class namespace:
+
 * The Page-Struct \(`GenericPage`\) - represents the data
 * The PageLoader \(`PageLoaderInterface`\) - handles the creation of page structs
 * The PageEvent \(`NestedEvent`\) - addS a clean extension point to the pages

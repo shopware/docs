@@ -48,9 +48,7 @@ You can read more about dependency injection and service registration in Shopwar
 The DAL was designed, among other things, to enable the special requirements of Shopware's translation system. When a record is read or searched, three language levels are searched.
 
 1. **Current language**: The first level is the current language that is set and displayed to the user.
-
 2. **Parent language**: the second level is an optional parent language that can be configured. So it is possible to translate certain dialects faster.
-
 3. **System language**: The third and last level is the system language that is selected during the installation. Each entity in the system has a translation in this language. This serves as a final fallback to ensure only one label for the entity in the end.
 
 The translations for a record are stored in a separate table. The name of this table is always the same as the table for which the records are translated, with the additional suffix `_translation`.

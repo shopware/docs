@@ -33,7 +33,7 @@ This highly mutable data structure is acted upon from requests and calculated an
 A line item represents an order position.
 
 * It may be a  shippable good, a download article, or even a bundle of many products.
-* Line items contain properties that tell the cart how to handle changes in line items. E.g., *stackable8 - quantity can be changed, *removable* - removable through the API, and so on.
+* Line items contain properties that tell the cart how to handle changes in line items. E.g., *stackable* - quantity can be changed, *removable* - removable through the API, and so on.
 * A line item is the main extension point for the cart process. Therefore a promotion, a discount, or a surcharge is also a line item.
 * A line item can even contain other line items. So a single order position can be the composition of multiple single line items.
 
@@ -123,7 +123,7 @@ As you can see in the diagram above, the cart is modified during the enrichment 
 
 ## Cart storage
 
-Contrary to other entities in the system, the cart is not managed through the [Data Abstraction Layer\(DAL)\](https://developer.shopware.com/docs/concepts/framework/data-abstraction-layer). The cart can only be written and retrieved as a whole. As discussed in the sections, the workload of Shopware 6 can only be performed on the whole object in memory.
+Contrary to other entities in the system, the cart is not managed through the [Data Abstraction Layer](https://developer.shopware.com/docs/concepts/framework/data-abstraction-layer)\(DAL)\. The cart can only be written and retrieved as a whole. As discussed in the sections, the workload of Shopware 6 can only be performed on the whole object in memory.
 
 ## Cart control
 

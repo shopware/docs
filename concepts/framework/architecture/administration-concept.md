@@ -40,7 +40,7 @@ The `src` directory of the SPA below is structured along the three different use
 |- module
 ```
 
-* `app`: Contains the application basis for the Administration. Generally, you will find framework dependant computational components here. 
+* `app`: Contains the application basis for the Administration. Generally, you will find framework dependant computational components here.
 * `core`: Contains the binding to the Admin API and services.
 * `module`: UI and state management of specific view pages, structured along the Core modules. More information on this is detailed below.
 
@@ -92,8 +92,7 @@ Having a look at a more practical example, one can look closer at the order modu
 
 ## Inheritance
 
-To add new functionality or change the behavior of an existing component through plugins, you can either override or extend a component. The difference between the two methods is: 
-* `Component.extend()` method creates a new component *`Component.override()` method overwrites the previous behavior of the component
+To add new functionality or change the behavior of an existing component through plugins, you can either override or extend a component. The difference between the two methods is `Component.extend()` method creates a new component and `Component.override()` method overwrites the previous behavior of the component.
 
 Within plugins, you do have the following options when it comes to adjusting existing components:
 
