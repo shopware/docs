@@ -11,7 +11,7 @@ These stores can have different configurations based on:
 * Currencies
 * Domains
 * Prices
-* [Products](01-products.md) and [Categories](02-categories.md)
+* [Products](products.md) and [Categories](02-categories.md)
 
 ## Store separation
 
