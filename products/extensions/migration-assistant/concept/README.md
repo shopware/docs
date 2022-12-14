@@ -54,7 +54,7 @@ To learn more about them, take a look at [Writer](writer.md) section.
 
 ## Media processing
 
-During a typical migration, we download the media files from the source system to Shopware 6. This is the last processing step in the migration and may be done differently for other gateways. For example, the `local` gateway will copy and rename the files directly in the local filesystem. 
+During a typical migration, we download the media files from the source system to Shopware 6. This is the last processing step in the migration and may be done differently for other gateways. For example, the `local` gateway will copy and rename the files directly in the local filesystem.
 
 You can look at [Media processing](media-processing.md) article for more details.
 
@@ -67,17 +67,17 @@ All fetched data will be deleted after finishing or aborting a migration run, bu
 The following bullet points will give you a general overview of what happens during a common migration.
 
 1. The user selects/creates a connection \(with a profile and gateway specified\).
-2. The user selects some of the available data \(`DataSelections`\).
-3. Premapping check/execution: The user maps data from the source system to the current system \(these decisions are stored with the connection\).
-4. Fetch data for every `DataSet` in every selected `DataSelection` \(mapping is used to store/use the identifiers from the source system\). 
+1. The user selects some of the available data \(`DataSelections`\).
+1. Premapping check/execution: The user maps data from the source system to the current system \(these decisions are stored with the connection\).
+1. Fetch data for every `DataSet` in every selected `DataSelection` \(mapping is used to store/use the identifiers from the source system\).
   4.1 The corresponding `Reader` reads the data.
   4.2 The corresponding `Converter` converts the data.
-5. Write data for every `DataSet` in every selected `DataSelection` .
+1. Write data for every `DataSet` in every selected `DataSelection` .
   5.1 The corresponding `Writer` writes the data.
-6. Process media, if necessary, for example, to download/copy images .
+1. Process media, if necessary, for example, to download/copy images .
   6.1 Data in the `swag_migration_media_file` table will be downloaded/copied.
   6.2 Files are assigned to media objects in Shopware 6.
-7. Finish migration to clean up.
+1. Finish migration to clean up.
 
 These steps can be done multiple times. Each migration is called a `Run`/`MigrationRun` and will be saved to inform the users about any errors that occurred \(in the form of a detailed history\).
 

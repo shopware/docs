@@ -40,8 +40,8 @@ In addition to the Shopware Elasticsearch default analyzer, the *advanced search
 
 1. `sesAnalyzer` -   It is the default [analyzer](https://www.elastic.co/guide/en/elasticsearch/reference/current/analyzer.html) for the content. Filters used are: `sesCharFilter`, `sesNumericCharFilter`
 
-2. `sesNgramAnalyzer` -  Each string field that is indexed has an internal mapping for an extra field with the suffix `.ngram`. You can configure which field should be used in the [Administration module](https://docs.shopware.com/en/shopware-6-en/enterprise-extensions/enterprise-search?category=shopware-6-en/enterprise-extensions#Configuration). Filters used are: `ses_ngram`, `sesCharFilter`, `sesNumericCharFilter`
+1. `sesNgramAnalyzer` -  Each string field that is indexed has an internal mapping for an extra field with the suffix `.ngram`. You can configure which field should be used in the [Administration module](https://docs.shopware.com/en/shopware-6-en/enterprise-extensions/enterprise-search?category=shopware-6-en/enterprise-extensions#Configuration). Filters used are: `ses_ngram`, `sesCharFilter`, `sesNumericCharFilter`
 
-3. `sesShingleAnalyzer` -  Each string field that is indexed has an internal mapping for an extra field with the suffix `.ngram`. You can configure which field should be used in the [Administration module](https://docs.shopware.com/en/shopware-6-en/enterprise-extensions/enterprise-search?category=shopware-6-en/enterprise-extensions#Configuration). Filters used are: `ses_shingle`, `sesCharFilter`, `sesNumericCharFilter`
+1. `sesShingleAnalyzer` -  Each string field that is indexed has an internal mapping for an extra field with the suffix `.ngram`. You can configure which field should be used in the [Administration module](https://docs.shopware.com/en/shopware-6-en/enterprise-extensions/enterprise-search?category=shopware-6-en/enterprise-extensions#Configuration). Filters used are: `ses_shingle`, `sesCharFilter`, `sesNumericCharFilter`
 
-4. `sesSearchAnalyzer` -  It is the default [search analyzer](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-analyzer.html) for the search words. Filters used are: `synonym`
+1. `sesSearchAnalyzer` -  It is the default [search analyzer](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-analyzer.html) for the search words. Filters used are: `synonym`

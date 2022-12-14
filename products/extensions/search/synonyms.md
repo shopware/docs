@@ -54,12 +54,12 @@ return [
 
 1. Shopware configuration
    1. Shopware is based on Symfony, so it is possible to [override](https://symfony.com/doc/2.0/cookbook/bundles/override.html#services-configuration) the Service parameters in Symfony style.
-   2. Parametername `swag_ses_synonym_dir`
-2. Own plugin
+   1. Parametername `swag_ses_synonym_dir`
+1. Own plugin
    1. [Create a plugin](../../../../guides/plugins/plugins/plugin-base-guide.md)
-   2. Add a [Dependency Injection](../../../../guides/plugins/plugins/plugin-fundamentals/dependency-injection.md#injecting-another-service) file
-   3. Create a file with your synonyms, see [example](synonyms.md#example)
-   4. [Add a parameter](https://symfony.com/doc/2.0/cookbook/bundles/override.html#services-configuration) to the Dependency Injection File.
+   1. Add a [Dependency Injection](../../../../guides/plugins/plugins/plugin-fundamentals/dependency-injection.md#injecting-another-service) file
+   1. Create a file with your synonyms, see [example](synonyms.md#example)
+   1. [Add a parameter](https://symfony.com/doc/2.0/cookbook/bundles/override.html#services-configuration) to the Dependency Injection File.
 
 {% code title="services.xml" %}
 

@@ -365,9 +365,9 @@ As you can see above, currently, the template does not exist and you have to cre
 Note that the component name isn't random and consists of:
 
 1. The prefix: `swag-migration-profile-`
-2. The name of the profile
-3. The name of the gateway
-4. The suffix: `-credential-form`
+1. The name of the profile
+1. The name of the gateway
+1. The suffix: `-credential-form`
 
 To see your credentials page, you have to register this component in your `main.js`:
 
