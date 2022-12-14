@@ -48,23 +48,17 @@ The tagged services are used in the following files:
 
 To show the results in the search overview, you have to extend the `search/index.html.twig` and then apply the results in your desired styling.
 
-You can take a look at an example here:
-
-{% embed url="https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/tree/release/src/Resources/views/storefront/page/search/index.html.twig" caption="Search template" %}
+You can take a look at an example of [Search Template](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/tree/release/src/Resources/views/storefront/page/search/index.html.twig).
 
 ## The suggest gateway
 
-To show the results in the suggest dropdown, you have to extend `Storefront/storefront/layout/header/search-suggest.html.twig` like the *advanced search* does:
-
-{% embed url="https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Resources/views/storefront/layout/header/search-suggest.html.twig" caption="search suggest" %}
+To show the results in the suggest dropdown, you have to extend [`Storefront/storefront/layout/header/search-suggest.html.twig`](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Resources/views/storefront/layout/header/search-suggest.html.twig) like the *advanced search* does.
 
 ## Admin boosting detail
 
 For creating boosting based on your definition, you have to add the name to the following file.
 
-Currently, the values are hardcoded. See here for reference:
-
-{% embed url="https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Resources/app/administration/src/module/swag-enterprise-search/components/swag-enterprise-search-boosting-detail-modal/swag-enterprise-search-boosting-detail-modal.html.twig\#L48" caption="Boosting detail modal" %}
+Currently, the values are hardcoded. See here for reference of [Boosting detail modal](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Resources/app/administration/src/module/swag-enterprise-search/components/swag-enterprise-search-boosting-detail-modal/swag-enterprise-search-boosting-detail-modal.html.twig#L48).
 
 ## Configuration initial value
 
@@ -93,9 +87,7 @@ You need a first pair of configuration entries for a first search. Therefore you
         }
 ```
 
-This can be found in the `Swag\EnterpriseSearch\Migration\Migration1584020367CreateNewGatewayConfiguration` file:
-
-{% embed url="https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Migration/Migration1584020367CreateNewGatewayConfiguration.php" caption="Create New Gateway Configuration" %}
+This can be found in the [`Swag\EnterpriseSearch\Migration\Migration1584020367CreateNewGatewayConfiguration`](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Migration/Migration1584020367CreateNewGatewayConfiguration.php) file.
 
 ## Configuration entity
 
@@ -119,7 +111,6 @@ You can also change the `extendEntities()` here to apply multi-word auto-suggest
 
 ## Additional filtering
 
-You may want to filter your definition. This can be done by extending the CriteriaBuilder. An example can be found in `Swag\EnterpriseSearch\Category\SalesChannelCategorySearchCriteriaBuilder`:
-{% embed url="https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Category/SalesChannelCategorySearchCriteriaBuilder.php" caption="Criteria Builder" %}
+You may want to filter your definition. This can be done by extending the CriteriaBuilder. An example can be found in [`Swag\EnterpriseSearch\Category\SalesChannelCategorySearchCriteriaBuilder`](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Category/SalesChannelCategorySearchCriteriaBuilder.php).
 
 <!-- markdown-link-check-enable -->

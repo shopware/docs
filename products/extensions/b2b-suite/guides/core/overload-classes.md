@@ -1,6 +1,6 @@
 # Overloading Classes
 
-You can download a plugin showcasing the topic [here](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bServiceExtension.zip).
+[Download](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bServiceExtension.zip) a plugin showcasing the topic.
 
 ## Description
 

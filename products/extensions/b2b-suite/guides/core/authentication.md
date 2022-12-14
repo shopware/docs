@@ -1,6 +1,6 @@
 # Storefront Authentication
 
-[Download]](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bAuth.zip) a plugin showcasing how to add a provider. You can [Download](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bLogin.zip) a plugin that exchange the login value.
+[Download]](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bAuth.zip) a plugin showcasing how to add a provider. You can [download](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bLogin.zip) a plugin that exchange the login value.
 
 ## Description
 
