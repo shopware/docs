@@ -18,7 +18,7 @@ With the help of this filter, a partial hit can be better found. For example:
 
 It uses the regex `(\d*)([^\d]*)` and replaces it with `$1 $2`
 
-2. **Character Filter \(`sesCharFilter`\)** - The *char filter* separates strings from special characters \(supported special chars: `-,.\®"/`\).
+1. **Character Filter \(`sesCharFilter`\)** - The *char filter* separates strings from special characters \(supported special chars: `-,.\®"/`\).
 
 When words are separated by one of these characters, the special character is removed and replaced by whitespace.
 
