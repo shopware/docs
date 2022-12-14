@@ -1,4 +1,4 @@
-# Example plugins
+# Example Plugins
 
 ## General
 

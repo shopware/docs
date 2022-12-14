@@ -1,6 +1,6 @@
-# Assignment service
+# Assignment Service
 
-## The pattern
+## Pattern
 
 A repeating pattern used throughout the B2B-Suite is the Assignment service.
 The B2B-Suite ships with many new entities and therefore provides the means to connect them to each other.
@@ -10,7 +10,7 @@ The diagram below shows the usually implemented objects with their outside depen
 
 ![image](../../../../../../.gitbook/assets/assignment-service.svg)
 
-## The repository
+## Repository
 
 Again the repository is the exclusive access layer to the storage engine.
 Contrary to CRUD operations, there is no object but just plain integers (the primary keys).
@@ -42,7 +42,7 @@ class RoleContactRepository
     }
 ```
 
-## The service
+## Service
 
 Services are even smaller. They contain the two relevant methods for assignment.
 Internally they will check if the assignment is even allowed and throw exceptions if not.

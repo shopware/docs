@@ -1,4 +1,4 @@
-# Dependency injection
+# Dependency Injection
 
 ## Shopware DIC
 
@@ -39,7 +39,7 @@ abstract class DependencyInjectionConfiguration
 Every macro layer of every component defines its own dependencies.
 That way, you require the utmost components you want to use, and every other dependency is injected automatically.
 
-For example, this code will enable the contact component of your Plugin.
+For example, this code will enable the contact component of your plugin.
 
 ```php
 <?php declare(strict_types=1);

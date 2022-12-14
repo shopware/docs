@@ -10,4 +10,4 @@ In this section, you can find the following B2B-Suite guides:
 
 [Storefront](/storefront/README.md)
 
-[Example Plugins](/example-plugins/README.md)
+[Example plugins](/example-plugins/README.md)

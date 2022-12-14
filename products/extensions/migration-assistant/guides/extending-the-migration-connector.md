@@ -1,10 +1,10 @@
 # Extending the Migration Connector
 
-In this guide, you will see an example of how you can extend the [Migration Connector](https://github.com/shopware/SwagMigrationConnector) plugin to migrate the Shopware 5 [SwagAdvDevBundle](https://github.com/shopwareLabs/SwagAdvDevBundle) to a Shopware 6 plugin via API.
+In this guide, you will see an example of how you can extend the [Migration connector](https://github.com/shopware/SwagMigrationConnector) plugin to migrate the Shopware 5 [SwagAdvDevBundle](https://github.com/shopwareLabs/SwagAdvDevBundle) to a Shopware 6 plugin via API.
 
 ## Setup
 
-It is required to have a basic Shopware 5 plugin running. You must have installed the [SwagAdvDevBundle](https://github.com/shopwareLabs/SwagAdvDevBundle), the [Migration Connector](https://github.com/shopware/SwagMigrationConnector) plugin in Shopware 5, and an own Shopware 6 [plugin](../../../../guides/plugins/plugins/plugin-base-guide.md), the [Migration Assistant](https://github.com/shopware/SwagMigrationAssistant) and the [SwagMigrationBundleExample](extending-a-shopware-migration-profile.md) plugin in Shopware 6. If you want to know how all plugins work together, please look at the [Extending a Shopware migration profile](extending-a-shopware-migration-profile.md) guide.
+It is required to have a basic Shopware 5 plugin running. You must have installed the [SwagAdvDevBundle](https://github.com/shopwareLabs/SwagAdvDevBundle), the [Migration connector](https://github.com/shopware/SwagMigrationConnector) plugin in Shopware 5, and an own Shopware 6 [plugin](../../../../guides/plugins/plugins/plugin-base-guide.md), the [Migration assistant](https://github.com/shopware/SwagMigrationAssistant) and the [SwagMigrationBundleExample](extending-a-shopware-migration-profile.md) plugin in Shopware 6. If you want to know how all plugins work together, please look at the [Extending a Shopware migration profile](extending-a-shopware-migration-profile.md) guide.
 
 With this setup, you have the bundle plugin in Shopware 5 and also the bundle plugin in Shopware 6. So you can migrate your Shopware 5 shop to Shopware 6 via local and API gateway, but your bundle data only via a local gateway.
 

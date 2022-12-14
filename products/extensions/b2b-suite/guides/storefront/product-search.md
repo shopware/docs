@@ -1,6 +1,6 @@
 # Product Search
 
-Our product search is a small Storefront Plugin that allows you to create input fields with autocompletion for products.
+Our product search is a small Storefront plugin that allows you to create input fields with autocompletion for products.
 A small example is shown below. The plugin deactivates the default autocompletion for this field from your browser.
 
 {% raw %}

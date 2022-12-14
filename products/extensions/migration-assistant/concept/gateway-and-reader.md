@@ -29,7 +29,7 @@ The gateway defines how to communicate from Shopware 6 with your source system, 
 </service>
 ```
 
-To use the `ShopwareApiGateway`, you must download the corresponding Shopware 5 plugin [Shopware Migration Connector](https://github.com/shopware/SwagMigrationConnector) first.
+To use the `ShopwareApiGateway`, you must download the corresponding Shopware 5 plugin [Shopware migration connector](https://github.com/shopware/SwagMigrationConnector) first.
 
 This tag is used by `GatwayRegistry`. This registry loads all tagged gateways and chooses a suitable gateway based on the migration's context and a unique identifier composed of a combination of profile and gateway name:
 

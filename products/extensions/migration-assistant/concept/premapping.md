@@ -1,6 +1,6 @@
 # Premapping
 
-The premapping will use the normal [mapping](convert-and-mapping.md) to store the old identifier with the equivalent new one. All premapping readers provide the information for the mapping choices and are registered like this:
+The premapping will use the normal [Mapping](convert-and-mapping.md) to store the old identifier with the equivalent new one. All premapping readers provide the information for the mapping choices and are registered like this:
 
 ```markup
 <service id="SwagMigrationAssistant\Profile\Shopware\Premapping\SalutationReader">

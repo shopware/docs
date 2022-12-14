@@ -1,4 +1,4 @@
-# Basic conventions
+# Basic Conventions
 
 This is the list of naming conventions the B2B-Suite complies to:
 
@@ -19,6 +19,6 @@ This is the list of naming conventions the B2B-Suite complies to:
 | CSS Selectors                                                                                      | Three levels of selector depth as max                                                   |
 | Twig Blocks                                                                                        | {% raw %}`{% block b2b_* %}{% endblock %}`{% endraw %} empty blocks are in one line |                                                                                     |
 | JavaScript                                                                                         | The B2B Suite is written in TypeScript                                              |
-| Storefront Plugins                                                                                 | File names end with *.plugin.ts                                                     |
+| Storefront plugins                                                                                 | File names end with *.plugin.ts                                                     |
 | Interfaces                                                                                         | File names start with `I`, e.g., `IAjaxPanelEvent.ts`                                |
 | Snippets                                                                                           | The root snippet key is `b2b`                                                       |

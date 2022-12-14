@@ -90,7 +90,7 @@ For a better explanation, use the provided *.psh.yaml.dist* file as an example.
 
 ### Common
 
-Once the environment has been booted successfully, you can use the common scripts to setup shopware.
+Once the environment has been booted successfully, you can use the common scripts to setup Shopware.
 
 ```bash
 ./psh.phar clear # remove vendor components and previously set state

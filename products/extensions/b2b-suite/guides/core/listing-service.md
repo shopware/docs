@@ -2,7 +2,7 @@
 
 You can download a plugin showcasing the topic [here](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bAcl.zip).
 
-## The pattern
+## Pattern
 
 A repeating pattern used throughout the B2B-Suite is listing service.
 The B2B-Suite ships without an ORM but still has use for semi-automated basic listing and filtering capabilities.
@@ -12,7 +12,7 @@ The diagram below shows the usually implemented objects with their outside depen
 
 ![image](../../../../../../.gitbook/assets/listing-service.svg)
 
-## Search Struct
+## Search struct
 
 The globally used `SearchStruct` is a data container moving the requested filter, sorting, and pagination data from the HTTP request to the repository/query.
 
@@ -44,7 +44,7 @@ class SearchStruct
 
 A more special `SearchStruct` is the `CompanyFilterStruct` (see [company](./company.md)).
 
-## The Repository
+## Repository
 
 The repository has to implement `Shopware\B2B\Common\Controller\GridRepository` and therefore have these three methods:
 
@@ -94,7 +94,7 @@ class Repository
 
 Since this task is completely storage engine related, there is no further service abstraction, and every user of this functionality accesses the repository directly.
 
-## Grid Helper
+## Grid helper
 
 The GridHelper binds the HTTP request data to the `SearchStruct` and provides the canonical build grid state array to be consumed by the frontend.
 

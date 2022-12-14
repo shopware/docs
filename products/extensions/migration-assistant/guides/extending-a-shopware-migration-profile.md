@@ -1,4 +1,4 @@
-# Extending a Shopware migration profile
+# Extending a Shopware Migration Profile
 
 ## Overview
 
@@ -10,9 +10,9 @@ It is required to have a basic plugin running. You must have installed the [Swag
 
 ## Enrich existing plugin with migration features
 
-Instead of creating a new plugin for the migration, you might want to add migration features to your existing plugin. Of course, your plugin should then also be installable without the Migration Assistant plugin. So we have an optional requirement. Have a look at this [guide](../../../../guides/plugins/plugins/plugin-fundamentals/database-migrations.md) on how to inject the needed migration services only if the Migration Assistant plugin is available. You could also have a look at the example plugin to see how the conditional loading is managed in the plugin base class.
+Instead of creating a new plugin for the migration, you might want to add migration features to your existing plugin. Of course, your plugin should then also be installable without the Migration Assistant plugin. So we have an optional requirement. Have a look at this [Guide](../../../../guides/plugins/plugins/plugin-fundamentals/database-migrations.md) on how to inject the needed migration services only if the Migration Assistant plugin is available. You could also have a look at the example plugin to see how the conditional loading is managed in the plugin base class.
 
-## Creating a new DataSet
+## Creating a new dataSet
 
 First of all, you need to create a new `DataSet` for your bundle entity:
 
@@ -122,7 +122,7 @@ All `DataSets` have to be tagged with `shopware.migration.data_set`. The `DataSe
 
 ## Adding entity count snippets
 
-If you check your current progress in the data selection table of Shopware Migration Assistant in the administration, you can see that the bundle entities are automatically counted, but the description of the entity count is currently not loaded. To get a correct description of the new entity count, you have to add new snippets for this.
+If you check your current progress in the data selection table of Shopware Migration Assistant in the Administration, you can see that the bundle entities are automatically counted, but the description of the entity count is currently not loaded. To get a correct description of the new entity count, you have to add new snippets for this.
 
 First of all, you create a new snippet file, e.g., `en-GB.json`:
 

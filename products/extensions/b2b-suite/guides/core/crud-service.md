@@ -222,7 +222,7 @@ class RoleValidationService
 
 It provides assertions that can be evaluated by a controller and printed to the user.
 
-##  CRUD service
+## CRUD service
 
 Services are the real entry point to an entity. They are reusable and not dependent on any specific I/O mechanism.
 

@@ -1,4 +1,4 @@
-# Creating a new migration profile
+# Creating a New Migration Profile
 
 If you want to migrate your data from a different source system than Shopware, create a new migration profile for the Migration Assistant. But if you want to convert your plugin data from a Shopware system to Shopware 6, look at this [HowTo extend a shopware migration profile](extending-a-shopware-migration-profile.md) guide.
 
@@ -375,7 +375,7 @@ To see your credentials page, you have to register this component in your `main.
 import './own-profile/profile';
 ```
 
-## Creating a DataSet and DataSelection
+## Creating a dataSet and dataSelection
 
 Now the credentials page is loaded in the Administration and the connection check will succeed. But there is no data selection if you open the data selection table. To add an entry to this table, you have to create a `ProductDataSet` first:
 

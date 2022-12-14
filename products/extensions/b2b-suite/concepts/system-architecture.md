@@ -1,4 +1,4 @@
-# System architecture
+# System Architecture
 
 The B2B-Suite is a collection of loosely coupled, mostly uniform components packaged with a small example plugin and a common library.
 
@@ -12,11 +12,11 @@ The responsibilities from bottom to top:
 
 | Layer       | Description                                                                                                                                                                                                      |
 |-------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Shop-Bridge | Bridges the broad Shopware interfaces to the specific framework requirements <ul><li>Implements interfaces provided by the framework</li><li>Subscribes to shopware events and calls framework services</li></ul> |
+| Shop-Bridge | Bridges the broad Shopware interfaces to the specific framework requirements <ul><li>Implements interfaces provided by the framework</li><li>Subscribes to Shopware events and calls framework services</li></ul> |
 | Framework   | Contains the B2B specific Domain Requirements <ul><li>CRUD and assignment service logic</li><li>The specific use cases of the component</li></ul>                                                                  |
 | REST-API    | REST access to the services                                                                                                                                                                                      |
 | Frontend    | Controller as a service for frontend access                                                                                                                                                                      |
-| B2B-Plugin  | Storefront access to the services                                                                                                                                                                               |
+| B2B plugin  | Storefront access to the services                                                                                                                                                                               |
 
 > Please notice: Apart from the framework, all other layers and dependencies are optional.
 
@@ -24,7 +24,7 @@ The responsibilities from bottom to top:
 
 At the time of this writing, there were 18//todo different components, all built with the same structure. We sorted these components into four different complexes:
 
-### Common - The one Exception
+### Common - The one exception
 
 There is a small library of shared functionality. It contains a few commonly used technical implementations shared between most components like exception classes, repository helpers, a dependency manager, or a REST-API router.
 

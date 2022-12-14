@@ -1,4 +1,4 @@
-# Store Front Authentication
+# Storefront Authentication
 
 You can download a plugin showcasing how to add a provider [here](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bAuth.zip).
 And you can download a plugin that exchange the login value [here](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bLogin.zip).

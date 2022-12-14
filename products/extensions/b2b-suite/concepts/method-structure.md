@@ -1,4 +1,4 @@
-# Method structure
+# Method Structure
 
 ## Replaceable functions
 
