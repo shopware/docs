@@ -80,7 +80,7 @@ Analogous to the two preceding hooks, the post_deploy hook provides an entry poi
 
 ### relationships
 
-This section defines the mapping between services created in the [services.yaml](#.platform-services.yml) and the application itself.
+This section defines the mapping between services created in the [services.yaml](https://github.com/shopware/recipes/blob/main/shopware/paas-meta/6.4/.platform/services.yaml) and the application itself.
 
 ### mounts
 

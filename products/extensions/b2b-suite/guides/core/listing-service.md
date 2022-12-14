@@ -1,6 +1,6 @@
 # Listing Service
 
-You can download a plugin showcasing the topic [here](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bAcl.zip).
+[Download](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bAcl.zip) a plugin showcasing the topic.
 
 ## Pattern
 
@@ -42,7 +42,7 @@ class SearchStruct
 }
 ```
 
-A more special `SearchStruct` is the `CompanyFilterStruct` (see [company](./company.md)).
+A more special `SearchStruct` is the `CompanyFilterStruct`. See the [Company](../../../../../../docs/products/extensions/b2b-suite/guides/storefront/company.md) module for more details.
 
 ## Repository
 

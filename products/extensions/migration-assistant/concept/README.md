@@ -14,11 +14,11 @@ For more details, look at [Profile and Connection](profile-and-connection.md).
 
 ## DataSelection and dataSet
 
-These are the fundamental data structures for defining what to migrate. Each `DataSet` represents an entity, for example, a database table. Each `DataSelection` represents an orderly group of `DataSets`. For more information, refer to the articles on [dataSelection and dataSet](dataselection-and-dataset.md).
+These are the fundamental data structures for defining what to migrate. Each `DataSet` represents an entity, for example, a database table. Each `DataSelection` represents an orderly group of `DataSets`. For more information, refer to the articles on [DataSelection and DataSet](dataselection-and-dataset.md).
 
 ## Migration context
 
-This data structure provides all the necessary data for the migration. For more details, refer to the [Migration context](migration-context.md).
+This data structure provides all the necessary data for the migration. For more details, refer to the [Migration Context](migration-context.md).
 
 ## Premapping
 
@@ -30,15 +30,15 @@ You can look at [Premapping](premapping.md) section for more details.
 
 Users will have to specify a gateway for the connection. The gateway defines the way of communicating with the source system. Behind the user interface, we use `Reader` objects to read the data from the source system. For the `shopware55` profile, we have the `api` gateway, which communicates via http/s with the source system, and the `local` gateway, which communicates directly with the source system's database. Thus both systems must be on the same server to successfully use the `local` gateway.
 
-To use the `ShopwareApiGateway`, you must download the [Shopware connector](https://github.com/shopware/SwagMigrationConnector) plugin for your Shopware 5.
+To use the `ShopwareApiGateway`, you must download the [Shopware Connector](https://github.com/shopware/SwagMigrationConnector) plugin for your Shopware 5.
 
-For more details, look at the [Gateway and reader](gateway-and-reader.md) article.
+For more details, look at the [Gateway and Reader](gateway-and-reader.md) article.
 
 ## Converter, mapping, and deltas
 
 Data gathered by `Reader` objects is transferred to `Converter` objects that put the data in a format Shopware 6 is able to work with. Simultaneously entries in the underlying mapping table are inserted to map the old identifiers to the new ones for future migrations \(Have a look at the `MappingService` for that\). The mapping is saved for the current connection. Converted data will be removed after the migration, and the mapping will stay persistent. Also, a checksum is saved to the mapping to identify and skip the same source data \(data has not been changed since the last migration\).
 
-You can find out more about them in the [Convert and mapping](convert-and-mapping.md) section of this guide.
+You can find out more about them in the [Convert and Mapping](convert-and-mapping.md) section of this guide.
 
 ## Logging
 
@@ -56,7 +56,7 @@ To learn more about them, take a look at [Writer](writer.md) section.
 
 During a typical migration, we download the media files from the source system to Shopware 6. This is the last processing step in the migration and may be done differently for other gateways. For example, the `local` gateway will copy and rename the files directly in the local filesystem.
 
-You can look at [Media processing](media-processing.md) article for more details.
+You can look at [Media Processing](media-processing.md) article for more details.
 
 ## After migration
 
@@ -87,7 +87,7 @@ The recommended way to migrate plugin data from a source system is to extend tha
 
 Take a look at the following HowTos for your scenario to get a step-by-step tutorial:
 
-* [Extending a Shopware migration profile](../guides/extending-a-shopware-migration-profile.md): Migrating your first basic plugin data \(via local gateway\).
-* [Extending the migration connector](../guides/extending-the-migration-connector.md): Add API support for your migration.
-* [Decorating a Shopware Migration Assistant converter](../guides/decorating-a-shopware-migration-assistant-converter.md): Implement a premapping and change the behavior of an existing converter.
-* [Creating a new migration profile](../guides/creating-a-new-migration-profile.md): Create a new profile from scratch to support a third-party source system \(other than Shopware\).
+* [Extending a Shopware Migration Profile](../guides/extending-a-shopware-migration-profile.md): Migrating your first basic plugin data \(via local gateway\).
+* [Extending the Migration Connector](../guides/extending-the-migration-connector.md): Add API support for your migration.
+* [Decorating a Shopware Migration Assistant Converter](../guides/decorating-a-shopware-migration-assistant-converter.md): Implement a premapping and change the behavior of an existing converter.
+* [Creating a New Migration Profile](../guides/creating-a-new-migration-profile.md): Create a new profile from scratch to support a third-party source system \(other than Shopware\).

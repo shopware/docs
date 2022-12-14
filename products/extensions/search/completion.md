@@ -10,7 +10,7 @@ The `FullText` Boosted field is used to generate a list of completions. Each wor
 The default *advanced search* does not support compound completions from multiple words.
 {% endhint %}
 
-To support compound completions, it is necessary to decorate the appropriate Elasticsearch definition. And add the [Tag](https://symfony.com/doc/current/service_container/tags.html) `swag_ses.completion_definition` to the service, like to *advanced search* default services. Make sure that the newly created decorator runs after the *advanced search* decorator; otherwise, it will override your values.
+To support compound completions, it is necessary to decorate the appropriate Elasticsearch definition. And add the [Service Tag](https://symfony.com/doc/current/service_container/tags.html) `swag_ses.completion_definition` to the service, like to *advanced search* default services. Make sure that the newly created decorator runs after the *advanced search* decorator; otherwise, it will override your values.
 
 {% code title="MyProductDefinitionDecorator.php" %}
 

@@ -6,7 +6,7 @@ The company component acts as a container for role related entities by providing
 
 ## Context
 
-A shared context for entity creation and update is provided via the `AclGrantContext` concept. Therefore the components do not have to depend on roles directly but rather on the company context. (see [acl](/b2b-suite/technical/acl/))
+A shared context for entity creation and update is provided via the `AclGrantContext` concept. Therefore the components do not have to depend on roles directly but rather on the company context.
 
 ## Create entity
 

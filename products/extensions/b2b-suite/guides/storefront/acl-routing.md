@@ -114,4 +114,4 @@ But there are certain specials to this:
 
 ## Download
 
-A simple example plugin can be found [here](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bAcl.zip).
+Refer here for [simple example plugin](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bAcl.zip).

@@ -2,9 +2,9 @@
 
 ## Shopware DIC
 
-The B2B-Suite registers with the [DIC](../../../../../../guides/plugins/plugins/plugin-fundamentals/dependency-injection.md) from Symfony.
+The B2B-Suite registers with the [DIC](../../../../../guides/plugins/plugins/plugin-fundamentals/dependency-injection.md) from Symfony.
 Be sure you are familiar with the basic usage patterns and practices.
-Especially [service decoration](../../../../../../guides/plugins/plugins/plugin-fundamentals/adjusting-service.md) is an equally important extension point.
+Especially [Service Decoration](../../../../../guides/plugins/plugins/plugin-fundamentals/adjusting-service.md#decorating-the-service) is an equally important extension point.
 
 ## Dependency Injection Extension B2B
 
@@ -66,8 +66,5 @@ class MyB2bPlugin extends Plugin
 
 ## Tags
 
-Additionally, the B2B-Suite heavily uses service tags as a more modern replacement for collect events.
-They are used to help you extend central B2B services with custom logic.
-
-Take a look at the example plugins and their usage of that extension mechanism.
-Be sure you know [the basics](http://symfony.com/doc/current/service_container/tags.html).
+Additionally, the B2B-Suite heavily uses [Service Tags](http://symfony.com/doc/current/service_container/tags.html) as a more modern replacement for collect events.
+They are used to help you extend central B2B services with custom logic. Take a look at the example plugins and their usage of that extension mechanism.

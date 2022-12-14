@@ -38,6 +38,6 @@ This basic pattern revolves against other data structures in the component as we
 
 As you can see, the specific data is abstracted away through the order context object.
 An object that can either be generated during the Shopware checkout process or be created dynamically through the API.
-The rule applies: //todo *The B2B-Suite may store or provide ID's, without having an actual concept of what they refer to*.
+The rule applies: *The B2B-Suite may store or provide ID's, without having an actual concept of what they refer to*.
 
 These central data containers help provide a forward compatible structure for many B2B components.

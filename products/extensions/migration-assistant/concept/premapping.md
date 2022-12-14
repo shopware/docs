@@ -1,6 +1,6 @@
 # Premapping
 
-The premapping will use the normal [Mapping](convert-and-mapping.md) to store the old identifier with the equivalent new one. All premapping readers provide the information for the mapping choices and are registered like this:
+The premapping will use the normal [Mapping](convert-and-mapping.md#mapping) to store the old identifier with the equivalent new one. All premapping readers provide the information for the mapping choices and are registered like this:
 
 ```markup
 <service id="SwagMigrationAssistant\Profile\Shopware\Premapping\SalutationReader">
@@ -65,7 +65,7 @@ Here is an example of how the final `PremappingStruct` looks like in the `genera
 }
 ```
 
-The `destinationUuid` in the `mapping` array sets the destination for that entity. It will be saved along with the [connection](profile-and-connection.md), so the user does not have to make these decisions repeatedly. For more details on how the mapping process works and even more information on automatic assignment, look up more in the `SalutationReader` class.
+The `destinationUuid` in the `mapping` array sets the destination for that entity. It will be saved along with the [Connection](profile-and-connection.md#connection), so the user does not have to make these decisions repeatedly. For more details on how the mapping process works and even more information on automatic assignment, look up more in the `SalutationReader` class.
 
 To get the associated new identifier, you can make use of the `MappingService` similar to the `CustomerConverter`:
 

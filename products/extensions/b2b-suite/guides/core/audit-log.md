@@ -1,6 +1,6 @@
 # Audit Log
 
-You can download a plugin showcasing the topic [here](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bAcl.zip).
+[Download](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bAcl.zip) a plugin showcasing the topic.
 
 ## Description
 

@@ -6,7 +6,7 @@ Here, we want to give you brief information about the internal usage of the diff
 
 ## Filter
 
-The *advanced search* adds some additional filters, which will be used by the [analyzer](field-config.md#analyzer).
+The *advanced search* adds some additional filters, which will be used by the [Analyzer](field-config.md#analyzer).
 
 1. **Numeric-Char-Filter \(`sesNumericCharFilter`\)** - The *numeric char filter* separates strings and numbers, and it normalizes the different spelling issues mostly found in shops.
 
@@ -38,10 +38,10 @@ When words are separated by one of these characters, the special character is re
 
 In addition to the Shopware Elasticsearch default analyzer, the *advanced search* adds some additional analyzer. Each analyzer uses a different set of filters. Here is a list of all used custom analyzers in the *advanced search*:
 
-1. `sesAnalyzer` -   It is the default [analyzer](https://www.elastic.co/guide/en/elasticsearch/reference/current/analyzer.html) for the content. Filters used are: `sesCharFilter`, `sesNumericCharFilter`
+1. `sesAnalyzer` -   It is the default [Analyzer](https://www.elastic.co/guide/en/elasticsearch/reference/current/analyzer.html) for the content. Filters used are: `sesCharFilter`, `sesNumericCharFilter`.
 
-1. `sesNgramAnalyzer` -  Each string field that is indexed has an internal mapping for an extra field with the suffix `.ngram`. You can configure which field should be used in the [Administration module](https://docs.shopware.com/en/shopware-6-en/enterprise-extensions/enterprise-search?category=shopware-6-en/enterprise-extensions#Configuration). Filters used are: `ses_ngram`, `sesCharFilter`, `sesNumericCharFilter`
+1. `sesNgramAnalyzer` -  Each string field that is indexed has an internal mapping for an extra field with the suffix `.ngram`. You can configure which field should be used in the [Administration module](https://docs.shopware.com/en/shopware-6-en/enterprise-extensions/enterprise-search?category=shopware-6-en/enterprise-extensions#Configuration). Filters used are: `ses_ngram`, `sesCharFilter`, `sesNumericCharFilter`.
 
-1. `sesShingleAnalyzer` -  Each string field that is indexed has an internal mapping for an extra field with the suffix `.ngram`. You can configure which field should be used in the [Administration module](https://docs.shopware.com/en/shopware-6-en/enterprise-extensions/enterprise-search?category=shopware-6-en/enterprise-extensions#Configuration). Filters used are: `ses_shingle`, `sesCharFilter`, `sesNumericCharFilter`
+1. `sesShingleAnalyzer` -  Each string field that is indexed has an internal mapping for an extra field with the suffix `.ngram`. You can configure which field should be used in the [Administration module](https://docs.shopware.com/en/shopware-6-en/enterprise-extensions/enterprise-search?category=shopware-6-en/enterprise-extensions#Configuration). Filters used are: `ses_shingle`, `sesCharFilter`, `sesNumericCharFilter`.
 
-1. `sesSearchAnalyzer` -  It is the default [search analyzer](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-analyzer.html) for the search words. Filters used are: `synonym`
+1. `sesSearchAnalyzer` -  It is the default [Search analyzer](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-analyzer.html) for the search words. Filters used are: `synonym`.
