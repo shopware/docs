@@ -1,31 +1,31 @@
-# Installation from scratch
+# Installation from Scratch
 
-If it's *impossible* to get docker up and running on your development environment you can install Shopware 6 locally.
+If it is *impossible* to get Docker up and running on your development environment, you can install Shopware 6 locally.
 
 {% hint style="info" %}
-Be aware this will be a vastly more complex solution since additional system requirements then need to be managed by you, however you may experience better control over your local setup configuration
+Be aware that this will be a vastly more complex solution since additional system requirements then need to be managed by you. However, you may experience better control over your local setup configuration.
 {% endhint %}
 
 ## Prerequisites
 
-- A Linux-based operating system (Windows installation is not covered here, but notes are provided about installing within a WSL instance)
-- An [Apache2 server installation](https://httpd.apache.org/docs/2.4/install.html) within the Linux-based operating system you have selected
-- Installation of all of the required packages mentioned in the [Installation overview](overview.md), there are two main goals you need to accomplish.
+- A Linux-based operating system (Windows installation is not covered here, but notes are provided about installing within a WSL instance).
+- An [Apache2 server installation](https://httpd.apache.org/docs/2.4/install.html) within the Linux-based operating system you have selected.
+- Installation of all the required packages mentioned in the [Installation overview](overview.md). There are two main goals you need to accomplish.
 
-Please note that this guide is rather based on plugin development and contribution. If you need a template for full composer-based shop projects, please refer to the [production template](https://github.com/shopware/production).
+Please note that this guide is based on plugin development and contribution. If you need a template for full composer-based shop projects, refer to the [production template](https://github.com/shopware/production).
 
-## Setting up your webserver
+## Setting up your web server
 
-Firstly, we need to set up Apache to locate Shopware 6. If you wish you could configure Nginx to serve your shopware installation, but in this guide we will explain an Apache2 installation.
+Firstly, we need to set up Apache to locate Shopware 6. If you wish, you could configure Nginx to serve your shopware installation, but this guide explains to you about Apache2 installation.
 
 ### VHost configuration
 
-In order to do this, you should add a vhost definition to your Apache site configuration.
+Firstly, you must add a vhost definition to your Apache site configuration.
 
 1) Create a file with the following pattern: `/etc/apache2/sites-available/*.conf`.
 Here we will create a file called `/etc/apache2/sites-available/shopware-install.conf`
 
-1) Within the created `shopware-install.conf` file place the following configuration:
+2) Within the created `shopware-install.conf` file, place the following configuration:
 
 ```text
 <VirtualHost *:80>
@@ -46,22 +46,22 @@ Here we will create a file called `/etc/apache2/sites-available/shopware-install
 </VirtualHost>
 ```
 
-1) Symlink the `shopware-install.conf` file to the Apache2 `sites-enabled` directory:
+3) Symlink the `shopware-install.conf` file to the Apache2 `sites-enabled` directory:
 
 ```shell
 sudo ln -s /etc/apache2/sites-available/shopware-install.conf /etc/apache2/sites-enabled/shopware-install.conf
 ```
 
-1) Restart the Apache2 service in order to activate your new configuration:
+4) Restart the Apache2 service to activate your new configuration:
 
 ```shell
-# Your mileage with this command may vary depending upon your chosen Linux operating system
+# Your mileage with this command may vary depending on your chosen Linux operating system
 sudo service apache2 restart
 ```
 
 ### Domain URL naming
 
-When making an instance within an integration like [WSL](https://docs.microsoft.com/en-us/windows/wsl/about), special attention needs to be given to how you name the URL you use for local development. In the case of shopware setup it is advised to enable 'localhostForwarding' (allow requests to localhost to be forwarded tp open ports within your active WSL instance). An example configuration in your [.wslconfig](https://docs.microsoft.com/en-us/windows/wsl/wsl-config#wslconfig) file could be:
+When making an instance within an integration like [WSL](https://docs.microsoft.com/en-us/windows/wsl/about), special attention needs to be given to how you name the URL you use for local development. In the case of Shopware setup, it is advised to enable 'localhostForwarding' (allow requests to localhost to be forwarded to open ports within your active WSL instance). An example configuration in your [.wslconfig](https://docs.microsoft.com/en-us/windows/wsl/wsl-config#wslconfig) file could be:
 
 ```text
 [wsl2]
@@ -71,10 +71,10 @@ processors=4
 ```
 
 {% hint style="info" %}
-If your WSL instance is already running after making changes to your .wslconfig file, you will need to restart your WSL service with `wsl --shutdown`, then `wsl` in order for the config settings to take effect
+If your WSL instance is already running after making changes to your *.wslconfig* file, you will need to restart your WSL service with `wsl --shutdown`, then `wsl` for the config settings to take effect.
 {% endhint %}
 
-Once `localhostForwarding` is enabled, you should update you name your local development domain in you Apache2 `sites-available` config file as follows:
+Once `localhostForwarding` is enabled, you should update your local development domain name in you Apache2 `sites-available` config file as follows:
 
 ```text
 xxxxxx.dev.localhost
@@ -88,24 +88,24 @@ Make sure the `APP_URL` variable defined within your `[PROJECT_ROOT]/.env` file 
 
 ### Apache2 server configuration
 
-Make sure following Apache modules are enabled:
+Make sure the following Apache modules are enabled:
 
 - mod\_rewrite
 - mod\_headers
 - mod\_negotiation
 
 {% hint style="info" %}
-Checking if these modules are installed on apache is possible with the command `apachectl -M | grep [module_name]`. When searching for a specific module with `grep` make sure to only use the name suffix, such as "rewrite"
+Checking if these modules are installed on Apache is possible with the command `apachectl -M | grep [module_name]`. When searching for a specific module with `grep` make sure only to use the name suffix, such as "rewrite"
 {% endhint %}
 
-After a quick restart of apache you are done here.
+After a quick restart of Apache, you are done.
 
 {% hint style="info" %}
 For Mac (OSX) operating systems:
 
-In your apache config, it is recommended to move the document root folder to the user's `$HOME` folder in order to avoid permission issues. This is the folder where Apache looks to serve file from. By default, the document root is configured as `/usr/local/var/www`.
+In your Apache config, it is recommended to move the document root folder to the user's `$HOME` folder to avoid permission issues. This is the folder which Apache looks to serve a file from. By default, the document root is configured as `/usr/local/var/www`.
 
-As this is a development machine, let's assume we want to change the document root to point to a folder in our own home directory. Search for the term "DocumentRoot" in your `httpd.conf` apache configuration, and you should see the following line:
+As this is a development machine, let's assume you want to change the document root to point to a folder in your home directory. Search for the term "DocumentRoot" in your `httpd.conf` apache configuration, and you should see the following line:
 {% endhint %}
 
 ```bash
@@ -118,35 +118,31 @@ Change this to point to your user directory where your\_user is the name of your
 DocumentRoot /Users/your_user/Sites/sw6/public
 ```
 
-You also need to change the tag reference right below the DocumentRoot line. This should also be changed to point to your new document root also:
+You also need to change the tag reference right below the "DocumentRoot" line. This should also be changed to point to your new document root:
 
 ```text
 <Directory "/Users/your_user/Sites/sw6/public">
 ```
 
-Within your Apache configuration you must set your `DocumentRoot` and `Directory` directive to the **public/** folder of your sw6 installation root, otherwise apache2 **will not** successfully find your `index.php` file and serve the site.
+Within your Apache configuration, you must set your `DocumentRoot` and `Directory` directive to the **public/** folder of your sw6 installation root. Otherwise, apache2 **will not** successfully find your `index.php` file and serve the site.
 
 ## Setting up Shopware
 
-Before you're able to set up Shopware, you need to clone our Shopware repositories from version control. This is explained in the "Preparatory steps" paragraph of the [Installation overview](overview.md).
+Before you set up Shopware, you need to clone our Shopware repositories from version control. This is explained in the "Preparatory steps" paragraph of the [Installation overview](overview.md).
 
 ### Starting Shopware installation
 
-A simple cli installation wizard can be invoked by executing:
+A simple CLI installation wizard can be invoked by executing the following:
 
 ```bash
 bin/setup
 ```
 
-Voila, Shopware 6 is installed. To be sure the installation succeeded, just open the configured host url in your favorite browser.
+Now, Shopware 6 is installed. To be sure the installation succeeded, just open the configured host URL in your favorite browser.
 
 ## Updating the repositories
 
 It is important to keep the `platform` and the `development` repository in sync.
-
-{% hint style="danger" %}
-We highly discourage to update each without the other!
-{% endhint %}
 
 The following steps should always yield a positive result:
 
@@ -160,8 +156,10 @@ rm -R var/cache/*
 ./psh.phar install
 ```
 
-Please note that this will reset your database.
+{% hint style="warning" %}
+Note that this will reset your database.
+{% endhint %}
 
 ## Next steps
 
-You're all set now! Now that you got a running Shopware installation, why not start with your first very own plugin? Please refer to the [Plugin base guide](../plugins/plugins/plugin-base-guide.md) for a nice starting point.
+Now that you got a running Shopware installation, why not start with your first very own plugin? Refer to the [Plugin base guide](../plugins/plugins/plugin-base-guide.md) for a good starting point.
