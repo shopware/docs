@@ -3,8 +3,7 @@
 ## Pattern
 
 A repeating pattern used throughout the B2B Suite is the Assignment service.
-The B2B Suite ships with many new entities and therefore provides the means to connect them to each other.
-This is done through M:N assignments for that purpose alone created components.//todo
+The B2B Suite ships with many new entities and therefore provides the means to connect them to each other. This is done through M:N assignments.
 
 The diagram below shows the usually implemented objects with their outside dependencies.
 

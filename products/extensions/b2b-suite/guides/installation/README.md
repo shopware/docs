@@ -64,7 +64,7 @@ To get a complete list of available commands, you can use:
 
 ## Installation on an OS X based system
 
-The following commands are available to create a MAC setup. Apache webserver, MySQL, and ANT //todo are required. You can use the brew package manager to install them.
+The following commands are available to create a MAC setup. Apache webserver, MySQL, and Ant are required. You can use the brew package manager to install them.
 
 ```bash
 ./psh.phar mac:init         # build installation

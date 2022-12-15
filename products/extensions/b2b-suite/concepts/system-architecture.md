@@ -22,7 +22,7 @@ The responsibilities from bottom to top:
 
 ## Component dependencies
 
-At the time of this writing, there were 18//todo different components, all built with the same structure. We sorted these components into four different complexes:
+At the time of this writing, there were 39 different components, all built with the same structure. We sorted these components into four different complexes:
 
 ### Common - The one exception
 
