@@ -4,8 +4,8 @@
 
 ## Pattern
 
-A repeating pattern used throughout the B2B-Suite is the CRUD service.
-The B2B-Suite ships with its own entities and therefore provides the means to create, update and delete them.
+A repeating pattern used throughout the B2B Suite is the CRUD service.
+The B2B Suite ships with its own entities and therefore provides the means to create, update and delete them.
 Although these entities may have special requirements, an exclusively used naming convention and pattern are used to implement all CRUD operations.
 
 The diagram below shows the usually implemented objects with their outside dependencies:

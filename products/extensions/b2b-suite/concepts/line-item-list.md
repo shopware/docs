@@ -2,14 +2,14 @@
 
 ## Description
 
-The LineItemList component is the central representation of product lists in the B2B-Suite. The main design choices are:
+The LineItemList component is the central representation of product lists in the B2B Suite. The main design choices are:
 
 * Central abstraction of product lists
 * Minimal knowledge and inheritance of Shopware core services and data structures
 * Persistable lists of products
 * Guaranteed audit logging
 
-The component is used across multiple different child components throughout the B2B-Suite.
+The component is used across multiple different child components throughout the B2B Suite.
 
 ![image](../../../../../.gitbook/assets/line-item-list-outer-dependencies.svg)
 

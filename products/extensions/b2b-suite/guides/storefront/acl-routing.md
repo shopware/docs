@@ -4,7 +4,7 @@ The ACL Routing component allows you to block Controller Actions for B2B users. 
 
 ## Registering routes
 
-All routes that need access rights need to be stored in the database. The B2B-Suite provides a service to simplify this process. For it to work correctly, you need an array in a specific format structured like this:
+All routes that need access rights need to be stored in the database. The B2B Suite provides a service to simplify this process. For it to work correctly, you need an array in a specific format structured like this:
 
 ```php
 $myAclConfig =  [
@@ -34,14 +34,14 @@ This way, you can easily create and store the resources. Of course, to show a ni
 The default privileges are:
 
 | Privilege name |                                    What it means                                    |
-|----------------|:-----------------------------------------------------------------------------------:|
-| List           |                  Entity listing (e.g. indexActions, gridActions)                   |
-| Detail         | Disabled forms, lists of assignments, but only the inspection, not the modification |
-| Create         |                              Creation of new entities                               |
-| Delete         |                           Removal of existing entities                             |
-| Update         |                         Updating/changing existing entities                         |
-| Assign         |                        Changing the assignment of the entity                        |
-| Free           |                                   No restrictions                                   |
+|:----------------:|:-----------------------------------------------------------------------------------:|
+| `list`           |                  Entity listing (e.g. indexActions, gridActions)                   |
+| `detail`         | Disabled forms, lists of assignments, but only the inspection, not the modification |
+| `create`         |                              Creation of new entities                               |
+| `delete`         |                           Removal of existing entities                             |
+| `update`         |                         Updating/changing existing entities                         |
+| `assign`         |                        Changing the assignment of the entity                        |
+| `free`           |                                   No restrictions                                   |
 
 It is quite natural to map CRUD actions like this. However, the assignment is a little less intuitive. This should help:
 

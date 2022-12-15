@@ -2,7 +2,7 @@
 
 ## Overview
 
-With the *advanced search* there are two types of boosting:
+With the Advanced Search there are two types of boosting:
 
 * [Field Boosting](boosting.md#field-boosting)
 * [Explicit Boosting](boosting.md#explicit-boosting)

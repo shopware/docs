@@ -2,7 +2,7 @@
 
 ## General
 
-Our documentation provides several example plugins on how to extend the B2B-Suite. In the following, you can find a list with further descriptions:
+Our documentation provides several example plugins on how to extend the B2B Suite. In the following, you can find a list with further descriptions:
 
 | Plugin                                 | Description                                                                                            |
 |----------------------------------------|--------------------------------------------------------------------------------------------------------|

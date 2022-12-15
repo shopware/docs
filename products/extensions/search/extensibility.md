@@ -11,7 +11,7 @@ To implement the full search experience for your own entity, you have to impleme
 
 You can create your own `SuggestGatewayInterface`/`SearchGatewayInterface` or use the existing SearchGateway.
 
-The *advanced search* offers two ways to extend the search/suggest results. You can implement the following Interfaces within your services:
+The Advanced Search offers two ways to extend the search/suggest results. You can implement the following Interfaces within your services:
 
 * [Swag\EnterpriseSearch\Suggest\SuggestGatewayInterface](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Suggest/SuggestGatewayInterface.php)
 * [Swag\EnterpriseSearch\Search\SearchGatewayInterface](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Search/SearchGatewayInterface.php)
@@ -52,7 +52,7 @@ You can take a look at an example of [Search Template](https://gitlab.com/shopwa
 
 ## The suggest gateway
 
-To show the results in the suggest dropdown, you have to extend [`Storefront/storefront/layout/header/search-suggest.html.twig`](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Resources/views/storefront/layout/header/search-suggest.html.twig) like the *advanced search* does.
+To show the results in the suggest dropdown, you have to extend [`Storefront/storefront/layout/header/search-suggest.html.twig`](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Resources/views/storefront/layout/header/search-suggest.html.twig) like the Advanced Search does.
 
 ## Admin boosting detail
 

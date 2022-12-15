@@ -64,7 +64,7 @@ One panel can influence another one by defining and linking to an id.
 
 ## Ajax panel plugins
 
-The B2B-Suite comes with a library of simple helper plugins to add behavior to the ajax panels.
+The B2B Suite comes with a library of simple helper plugins to add behavior to the ajax panels.
 
 ![image](/.gitbook/assets/ajax-panel-structure.svg)
 

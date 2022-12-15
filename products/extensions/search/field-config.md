@@ -1,12 +1,12 @@
 # Field Configuration
 
-With the [relevance](relevance.md), the *advanced search* offers the possibility to customize the searched fields.
+With the [relevance](relevance.md), the Advanced Search offers the possibility to customize the searched fields.
 
-Here, we want to give you brief information about the internal usage of the different Elasticsearch functionalities used for the full text search of the *advanced search*.
+Here, we want to give you brief information about the internal usage of the different Elasticsearch functionalities used for the full text search of the Advanced Search.
 
 ## Filter
 
-The *advanced search* adds some additional filters, which will be used by the [Analyzer](field-config.md#analyzer).
+The Advanced Search adds some additional filters, which will be used by the [Analyzer](field-config.md#analyzer).
 
 1. **Numeric-Char-Filter \(`sesNumericCharFilter`\)** - The *numeric char filter* separates strings and numbers, and it normalizes the different spelling issues mostly found in shops.
 
@@ -32,11 +32,11 @@ When words are separated by one of these characters, the special character is re
        * Maximum shingle size -&gt; 3
        * Output Unigrams -&gt; false
 
-    3. **Synonym \(`ses_synonym`\)** - In the *advanced search* you can define synonyms. These [synonyms](synonyms.md) are used by the search analyzer.
+    3. **Synonym \(`ses_synonym`\)** - In the Advanced Search you can define synonyms. These [synonyms](synonyms.md) are used by the search analyzer.
 
 ## Analyzer
 
-In addition to the Shopware Elasticsearch default analyzer, the *advanced search* adds some additional analyzer. Each analyzer uses a different set of filters. Here is a list of all used custom analyzers in the *advanced search*:
+In addition to the Shopware Elasticsearch default analyzer, the Advanced Search adds some additional analyzer. Each analyzer uses a different set of filters. Here is a list of all used custom analyzers in the Advanced Search:
 
 1. `sesAnalyzer` -   It is the default [Analyzer](https://www.elastic.co/guide/en/elasticsearch/reference/current/analyzer.html) for the content. Filters used are: `sesCharFilter`, `sesNumericCharFilter`.
 

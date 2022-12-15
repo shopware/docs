@@ -4,8 +4,8 @@
 
 ## Pattern
 
-A repeating pattern used throughout the B2B-Suite is listing service.
-The B2B-Suite ships without an ORM but still has use for semi-automated basic listing and filtering capabilities.
+A repeating pattern used throughout the B2B Suite is listing service.
+The B2B Suite ships without an ORM but still has use for semi-automated basic listing and filtering capabilities.
 To reduce the necessary duplications, there are common implementations for this.
 
 The diagram below shows the usually implemented objects with their outside dependencies.

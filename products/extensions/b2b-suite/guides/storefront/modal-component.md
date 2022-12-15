@@ -2,7 +2,7 @@
 
 This article explains the B2B modal component. We are using the modal view for an entity detail information window which holds additional content for the selected grid item. We use two different templates for this approach. The base modal template `(components/SwagB2bPlatform/Resources/views/storefront/_partials/_b2bmodal/_modal.html.twig)` is responsible for the base structure of the modal box. In this template, you can find multiple twig blocks, which are for the navigation inside the modal and the content area.
 
-In the B2B-Suite, the content block will be extended with the second modal template (`components/SwagB2bPlatform/Resources/views/storefront/_partials/_b2bmodal/_modal-content.html.twig`). The content template can be configured with different variables to improve the user experience with a fixed top and bottom bar. We are using these bars for filtering, sorting, and pagination.
+In the B2B Suite, the content block will be extended with the second modal template (`components/SwagB2bPlatform/Resources/views/storefront/_partials/_b2bmodal/_modal-content.html.twig`). The content template can be configured with different variables to improve the user experience with a fixed top and bottom bar. We are using these bars for filtering, sorting, and pagination.
 
 There are many advantages to extending this template instead of building your own modal view.
 

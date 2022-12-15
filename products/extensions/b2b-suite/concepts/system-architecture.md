@@ -1,6 +1,6 @@
 # System Architecture
 
-The B2B-Suite is a collection of loosely coupled, mostly uniform components packaged with a small example plugin and a common library.
+The B2B Suite is a collection of loosely coupled, mostly uniform components packaged with a small example plugin and a common library.
 
 ## Component layering
 
@@ -36,7 +36,7 @@ The user management is based on the `StoreFrontAuthentication` component and the
 
 ### ACL
 
-The `acl` implementation is connected to most other entities provided by the B2B-Suite.
+The `acl` implementation is connected to most other entities provided by the B2B Suite.
 
 ![image](../../../../../.gitbook/assets/b2b-architecture-acl.png)
 

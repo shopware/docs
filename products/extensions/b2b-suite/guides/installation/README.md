@@ -6,11 +6,11 @@ We provide two kinds of virtualization, a Vagrant and a Docker based solution. O
 These containers are also used in our continuous integration process. The supported functions are for both systems equal if the host system is based on Linux.
 Instead of testing windows in combination with Docker, we evaluated the Vagrant setup.
 
-If you want to install the B2B-Suite for the production environment, your system must fit the defined [system requirements](https://developers.shopware.com/sysadmins-guide/system-requirements/) for the Shopware Core.
+If you want to install the B2B Suite for the production environment, your system must fit the defined [system requirements](https://developers.shopware.com/sysadmins-guide/system-requirements/) for the Shopware Core.
 
 ### Minimum requirements
 
-The B2B-Suite is based on the minimum requirements of the Shopware Core.
+The B2B Suite is based on the minimum requirements of the Shopware Core.
 
 These requirements apply from **B2B Suite 4.6.0 and above**:
 
@@ -39,13 +39,13 @@ As a minimum requirement, we need a docker runtime with version 1.12.* or higher
 To start the Docker environment, just type in your command line.
 
 ```bash
-./psh.phar Docker:start
+./psh.phar docker:start
 ```
 
 Several containers are booted. Later you can login into your web container with:
 
 ```bash
-./psh.phar Docker:ssh
+./psh.phar docker:ssh
 ```
 
 After that, you can start the initialization process by typing:

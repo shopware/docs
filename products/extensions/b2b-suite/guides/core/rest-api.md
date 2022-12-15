@@ -2,12 +2,12 @@
 
 [Download](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bRestApi.zip) a plugin showcasing the topic.
 
-We use swagger.io for the documentation of our B2B-Suite endpoints. The created [swagger.json](https://gitlab.com/shopware/shopware/enterprise/b2b/-/blob/minor/swagger.json) file can be displayed with [Swagger UI](http://swagger.io/swagger-ui/).
+We use swagger.io for the documentation of our B2B Suite endpoints. The created [swagger.json](https://gitlab.com/shopware/shopware/enterprise/b2b/-/blob/minor/swagger.json) file can be displayed with [Swagger UI](http://swagger.io/swagger-ui/).
 
 ## Description
 
-The B2B-Suite comes with its extension to the REST-API. Contrary to Shopware own implementation that makes heavy use
-of the Doctrine ORM the B2B-Suite reuses the same services defined for the Storefront.
+The B2B Suite comes with its extension to the REST-API. Contrary to Shopware own implementation that makes heavy use
+of the Doctrine ORM the B2B Suite reuses the same services defined for the Storefront.
 
 ## A simple example
 

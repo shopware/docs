@@ -2,7 +2,7 @@
 
 ## Replaceable functions
 
-Almost every function in the B2B-Suite is replaceable, but not all are guaranteed to be compatible with every version change.
+Almost every function in the B2B Suite is replaceable, but not all are guaranteed to be compatible with every version change.
 Only the framework domain has guaranteed rules to limit the changes of each method per release version.
 The methods in other domains have dependencies on the Shopware core and have to be adjusted if changes are made.
 

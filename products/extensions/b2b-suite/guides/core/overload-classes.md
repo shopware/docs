@@ -4,7 +4,7 @@
 
 ## Description
 
-To add new functionality or overload existing classes to change functionality, the B2B-Suite uses the [Dependency Injection](../../../../../guides/plugins/plugins/plugin-fundamentals/dependency-injection.md) as an extension system instead of events and hooks, which Shopware uses.
+To add new functionality or overload existing classes to change functionality, the B2B Suite uses the [Dependency Injection](../../../../../guides/plugins/plugins/plugin-fundamentals/dependency-injection.md) as an extension system instead of events and hooks, which Shopware uses.
 
 ### How does a services.xml look like
 
@@ -125,7 +125,7 @@ You extend the B2B class and just change any action you need.
 ### What is the profit
 
 By building our extension system this way, we can still add and delete constructor arguments without breaking your plugins.
-Also, we don't have to add too many interfaces to the B2B-Suite.
+Also, we don't have to add too many interfaces to the B2B Suite.
 
 ### What are the problems with this approach
 

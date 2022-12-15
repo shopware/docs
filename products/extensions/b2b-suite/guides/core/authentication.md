@@ -108,7 +108,7 @@ echo 'The common identity id ' . $ownershipContext->authId . '\n';
 [...]
 ```
 
-The B2B-Suite views the context owner as some kind of admin that, from the perspective of the authentication component, it owns all individual users and their data *(Of course the ACL component may overwrite this)*.
+The B2B Suite views the context owner as some kind of admin that, from the perspective of the authentication component, it owns all individual users and their data *(Of course the ACL component may overwrite this)*.
 
 Therefore, commonly used queries are:
 
@@ -152,20 +152,20 @@ This guide will show you which classes need to be extended.
 
 ### Implement your own identity
 
-The B2B-Suites `Shopware\B2B\StoreFrontAuthentication\Framework\Identity` is an interface which means that every user has to re-implement it.
+The B2B Suites `Shopware\B2B\StoreFrontAuthentication\Framework\Identity` is an interface which means that every user has to re-implement it.
 
-The interface acts as a factory for different contexts that are used throughout the B2B-Suite. It contains:
+The interface acts as a factory for different contexts that are used throughout the B2B Suite. It contains:
 
-* B2B-Suite ids and data (e.g., auth id, context owner)
+* B2B Suite ids and data (e.g., auth id, context owner)
 * Shopware glue (e.g., customer group id, password hash)
 
-Therefore, it can be seen as a man in the middle between Shopware and the B2B-Suite.
+Therefore, it can be seen as a man in the middle between Shopware and the B2B Suite.
 
 Example implementations are either: `Shopware\B2B\Debtor\Framework\DebtorIdentity` or `Shopware\B2B\Contact\Framework\ContactIdentity`.
 
 ### Implement your own CredentialsBuilder
 
-In the *CredentialsBuilder*, you create the *CredentialsEntity*, which is used for logging in the B2B-Suite.
+In the *CredentialsBuilder*, you create the *CredentialsEntity*, which is used for logging in the B2B Suite.
 
 ```php
     public function createCredentials(array $parameters): AbstractCredentialsEntity

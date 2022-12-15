@@ -2,7 +2,7 @@
 
 ## Introduction
 
-One of the core concepts of the B2B-Suite is that all entities can be restricted through ACL settings.
+One of the core concepts of the B2B Suite is that all entities can be restricted through ACL settings.
 Therefore, the package contains a component named ACL which provides a common base implementation for access restriction.
 
 To guarantee a high level of flexibility, the ACL component has no dependencies on other parts of the framework.
@@ -324,8 +324,8 @@ See further down below for additional information on this interface.
 
 An identical class exists for the `role<->address` relation.
 
-Now we need to tell the B2B-Suite to create the necessary tables. In Shopware, this must be done during the plugin installation process.
-Because the container is not yet set up with the B2B-Suite services, we use a static factory method in the following code:
+Now we need to tell the B2B Suite to create the necessary tables. In Shopware, this must be done during the plugin installation process.
+Because the container is not yet set up with the B2B Suite services, we use a static factory method in the following code:
 
 ```php
 use Shopware\B2B\Acl\Framework\AclDdlService;
@@ -356,7 +356,7 @@ There we are; the addresses are ACL-ified entities.
 
 ### Add a new context
 
-Since the ACL is so loosely coupled with the B2B-Suite, it is possible to create your own complete subset of restrictions based on
+Since the ACL is so loosely coupled with the B2B Suite, it is possible to create your own complete subset of restrictions based on
 other contexts than *contact* and *role*. For this, you have to create a different `Shopware\B2B\Acl\Framework\AclContextResolver`.
 An `AclContextResolver` is responsible for extracting the primary key out of a given context object and produces a query that joins the main ACL table.
 This is done by implementing `getQuery`, `isMainContext`, and `extractId`.

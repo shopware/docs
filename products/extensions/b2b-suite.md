@@ -1,6 +1,6 @@
-# B2B-Suite
+# B2B Suite
 
-* [B2B-Suite](b2b-suite.md)
+* [B2B Suite](b2b-suite.md)
   * [Concepts](b2b-suite/concepts/README.md)  
     * [System architecture](b2b-suite/concepts/system-architecture.md)
     * [Basic conventions](b2b-suite/concepts/basic-conventions.md)
@@ -32,4 +32,4 @@
     * [Administration](b2b-suite/guides/administration/README.md)
     * [Example Plugins](b2b-suite/guides/example-plugins/README.md)
 
-This covers Shopware 6 related information on our B2B-Suite. However, for information on Shopware 5, go through [B2B-Suite Shopware 5 documentation](https://developers.shopware.com/shopware-enterprise/b2b-suite/)
+This covers Shopware 6 related information on our B2B Suite. However, for information on Shopware 5, go through [B2B Suite Shopware 5 documentation](https://developers.shopware.com/shopware-enterprise/b2b-suite/).

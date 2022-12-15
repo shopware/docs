@@ -1,6 +1,6 @@
 # Basic Conventions
 
-This is the list of naming conventions the B2B-Suite complies to:
+This is the list of naming conventions the B2B Suite complies to:
 
 | Group                                                                                              | Practice                                                                            |
 |----------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|

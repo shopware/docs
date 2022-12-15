@@ -1,6 +1,6 @@
 # Complex Views
 
-The B2B-Suite comes with a whole UI providing Administration like features in the frontend. The structure is reflected in the naming of the several controller classes. Each controller then uses a canonical naming scheme. The example below shows the *ContactController* with all its assignment controllers.
+The B2B Suite comes with a whole UI providing Administration like features in the frontend. The structure is reflected in the naming of the several controller classes. Each controller then uses a canonical naming scheme. The example below shows the *ContactController* with all its assignment controllers.
 
 ![image](/.gitbook/assets/contact-controller-complex-example.svg)
 
@@ -114,4 +114,4 @@ Since `POST` only actions never have views, these controllers only have one view
 
 ## Modal component
 
-You can find more information about the modal component in this article: [B2B-Suite Modal Component](modal-component.md)
+You can find more information about the modal component in this article: [B2B Suite Modal Component](modal-component.md)
