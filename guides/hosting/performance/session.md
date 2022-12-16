@@ -1,13 +1,12 @@
 # Shopware Session
 
-Shopware, by default, uses the session storage configured in PHP. On most installations, this is the file system. So, in smaller setups, you will not need to take care of sessions.
-For larger setups with a lot of traffic, or that are using clustering however, you will most probably want to configure alternative session storage such as Redis, in order to reduce the load on the database.
+Shopware, by default, uses the session storage configured in PHP. On most installations, this is the file system. In smaller setups, you will not need to take care of sessions. However, for larger setups using clustering or with a lot of traffic, you will probably configure alternative session storage, such as Redis, to reduce the load on the database.
 
-## Session Adapters
+## Session adapters
 
 ### Configure Redis using PHP.ini
 
-As Shopware by default uses the settings configured in PHP, you can reconfigure the Session config directly in your `php.ini`. Here is an example to configure it directly in PHP.
+By default, Shopware uses the settings configured in PHP. You can reconfigure the Session config directly in your `php.ini`. Here is an example of configuring it directly in PHP.
 
 ```ini
 session.save_handler = redis
@@ -18,7 +17,7 @@ Please refer to the official [PhpRedis documentation](https://github.com/phpredi
 
 ### Configure Redis using Shopware configuration
 
-If you don't have access to the php.ini configuration, you can configure it directly in Shopware itself. For this create a `config/packages/redis.yml` file with the following content
+If you don't have access to the php.ini configuration, you can configure it directly in Shopware itself. For this, create a `config/packages/redis.yml` file with the following content:
 
 ```yaml
 # config/packages/redis.yml
@@ -35,7 +34,7 @@ Symfony also provides PHP implementations of some adapters:
 - [MemcachedSessionHandler](https://github.com/symfony/symfony/blob/5.4/src/Symfony/Component/HttpFoundation/Session/Storage/Handler/MemcachedSessionHandler.php)
 - [MongoDbSessionHandler](https://github.com/symfony/symfony/blob/5.4/src/Symfony/Component/HttpFoundation/Session/Storage/Handler/MongoDbSessionHandler.php)
 
-To use one of these handlers, you need to create a new service in the dependency injection and set the `handler_id` to the service id.
+To use one of these handlers, you must create a new service in the dependency injection and set the `handler_id` to the service id.
 
 Example service definition:
 

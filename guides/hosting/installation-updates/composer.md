@@ -1,6 +1,6 @@
-# Versioning & Dependencies
+# Versioning and Dependencies
 
-## Versioning & Dependencies
+## Overview
 
 ### Shopware 6 production template
 
@@ -8,20 +8,20 @@ The Shopware 6 production template enables you to build, package and deploy Shop
 <!-- markdown-link-check-disable-next-line -->
 {% embed url="https://github.com/shopware/production" caption="" %}
 
-The template is optimized for production usage and contains basic development tooling. It's intended as a basis for project customizations, which are usually done by agencies.
+The template is optimized for production usage and contains basic development tooling. It is intended as a basis for project customizations, which are usually done by agencies.
 
 {% hint style="info" %}
-If you want to contribute to the [Shopware Platform](https://github.com/shopware/platform) or develop store plugins, you should use the [development template](https://github.com/shopware/development).
+If you want to contribute to the [Shopware Platform](https://github.com/shopware/platform) or develop store plugins, you should use the [Development template](https://github.com/shopware/development).
 {% endhint %}
 
 ### Branches and stability
 
-In each commit a `composer.lock` is contained to ensure that the version being deployed is the version that was tested in our CI. We currently provide the following branches:
+In each commit, a `composer.lock` is contained to ensure that the version being deployed is the version that was tested in our CI. We currently provide the following branches:
 
 * `6.3`: stable minor and patch releases \(`v6.3.0.0-rc2`, `v6.3.0.1`, `v6.3.1.0`, `v6.1.*`, but not `v6.4.0.0`\)
-* `trunk`: stable major, minor and patch releases \(`v6.3.0.0`, `v6.3.1.0`, `v6.4.0.0`, `v6.5.0.0`...\)
+* `trunk`: stable major, minor, and patch releases \(`v6.3.0.0`, `v6.3.1.0`, `v6.4.0.0`, `v6.5.0.0`...\)
 
-The `6.3` branch contains all the 6.3 releases. It's stable now and only gets non-breaking changes. \(security issues are an exception\).
+The `6.3` branch contains all the 6.3 releases. It is stable now and only gets non-breaking changes. \(security issues are an exception\).
 
 The `trunk` branch contains the newest stable release, including major releases. That may result in plugins being incompatible, so be careful.
 
@@ -36,17 +36,17 @@ See also:
 
 ### Requirements
 
-To get an overview of the requirements see the following guide of your documentation first:
+To get an overview of the requirements, see the following guide:
 
 {% page-ref page="../../installation/overview.md" %}
 
-NPM and Node are only required during the build process and for development. If you don't have javascript customizations, it's not required at all. Because the storefront and admin are pre-build.
+NPM and Node are only required during the build process and for development. If you don't have javascript customizations, it is not required at all because the Storefront and Admin are pre-build.
 
 If you are using a separate build server, consider having NPM and Node as build-only requirements. Your operating application server doesn't require any of these to run Shopware 6.
 
 ### Setup and install
 
-To set up the environment and install with a basic setup run the following commands:
+To set up the environment and install it with a basic setup, run the following commands:
 
 ```bash
 # clone newest 6.4 patch version from github 
@@ -71,7 +71,7 @@ bin/console system:install --create-database --basic-setup
 
 ### Update
 
-To update Shopware 6 just run this:
+To update Shopware 6, just run this:
 
 ```bash
 # pull newest changes from origin
@@ -83,7 +83,7 @@ composer install
 
 ## Customization
 
-This project is called production template because it can be used to create project specific configurations. The template provides a basic setup that is equivalent to the official distribution. If you need customization, the workflow could look like this:
+This project//todoh6 is called production template because it can be used to create project specific configurations. The template provides a basic setup that is equivalent to the official distribution. If you need customization, the workflow could look like this:
 
 * Fork template
 * Make customization
@@ -98,7 +98,7 @@ This project is called production template because it can be used to create proj
 
 #### Command overview
 
-The following commands and scripts are available
+The following commands and scripts are available:
 
 **Setup/Install/Deployment**
 
@@ -122,9 +122,9 @@ Bash is required for the shell scripts.
 | :--- | :--- |
 | `bin/console theme:compile` | Compile all assigned themes |
 | `bin/build.sh` | Complete build including composer install |
-| `bin/build-js.sh` | Build administration and storefront, including all plugins in `var/plugins.json`. |
+| `bin/build-js.sh` | Build administration and Storefront, including all plugins in `var/plugins.json`. |
 | `bin/build-administration.sh` | Just build the administration. |
-| `bin/build-storefront.sh` | Just build the storefront. You need to have built the administration once. |
+| `bin/build-storefront.sh` | Just build the Storefront. You need to have built the administration once. |
 
 **Dev**
 
@@ -142,18 +142,18 @@ Bash is required for the shell scripts.
 
 ### Configuration
 
-See also the `README.md` in the `config` folder of the production template.
+See the `README.md` in the `config` folder of the production template.
 
 #### Template overview
 
 This directory tree should give an overview of the template structure.
 
 ```text
-├── bin/                  # binaries to setup, build and run symfony console commands 
+├── bin/                  # binaries to setup, build and run Symfony console commands 
 ├── composer.json         # defines dependencies and setups autoloading
 ├── composer.lock         # pins all dependencies to allow for reproducible installs
 ├── config                # contains application configuration
-│   ├── bundles.php       # defines static symfony bundles - use plugins for dynamic bundles
+│   ├── bundles.php       # defines static Symfony bundles - use plugins for dynamic bundles
 │   ├── etc/              # contains the configuration of the docker image
 │   ├── jwt/              # secrets for generating jwt tokens - DO NOT COMMIT these secrets
 │   ├── packages/         # configure packages - see: config/README.md
@@ -168,7 +168,7 @@ This directory tree should give an overview of the template structure.
 ├── Dockerfile            # minimal docker image
 ├── phpunit.xml.dist      # phpunit config
 ├── public                # should be the web root
-│   ├── index.php         # main entrypoint for the web application
+│   ├── index.php         # main entry point for the web application
 ├── README.md             # this file
 ├── src
 │   ├── Command/*
@@ -176,7 +176,7 @@ This directory tree should give an overview of the template structure.
 │   └── TestBootstrap.php # required to run unit tests
 └── var
     ├── log/              # log dir
-    |── cache/            # cache directory for symfony
+    |── cache/            # cache directory for Symfony
     └── plugins.json      # javascript build configuration
 ```
 
@@ -212,7 +212,9 @@ You only need to require the things you want. If you only want to run shopware 6
 
 If you have project specific plugins, place them under `custom/static-plugins/{YourPlugin}` and require them in your `composer.json`.
 
-Note: The plugins needs a \(stable\) version to work with the default stability `stable`.
+{% hint style="info" %}
+The plugins needs a \(stable\) version to work with the default stability `stable`.
+{% endhint %}
 
 ```bash
 composer require "exampleorg/myplugin"
@@ -222,9 +224,9 @@ External plugins in private repositories can also be required by adding the repo
 <!-- markdown-link-check-disable-next-line -->
 {% embed url="https://getcomposer.org/doc/05-repositories.md\#using-private-repositories" caption="" %}
 
-#### Update shopware packages
+#### Update Shopware packages
 
-Run the following command, to update all shopware dependencies:
+Run the following command to update all shopware dependencies:
 
 ```bash
 composer update "shopware/*"
@@ -260,4 +262,4 @@ rw shared - read and write access, it should be shared across the app servers
 rw local - locale read and write access
 ```
 
-Some of these directories like `public` can also be changed to different flysystem to host the files on s3 for example.
+Some of these directories, like `public`, can also be changed to a different [Flysystem](../infrastructure/filesystem.md#flysystem-overview) to host the files on S3.

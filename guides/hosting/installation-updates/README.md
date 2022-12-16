@@ -1,1 +1,1 @@
-# Installation & Updates
+# Installation and Updates
