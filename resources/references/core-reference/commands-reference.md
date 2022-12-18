@@ -1,12 +1,10 @@
-# Commands Reference
+# Commands Reference//todor2
 
 These commands can be executed using the Shopware command line interface \(CLI\), located within your Shopware project
 
 ```bash
 $ bin/console [command] [parameters]
 ```
-
-
 
 ## Commands
 
@@ -312,4 +310,3 @@ $ bin/console [command] [parameters]
 | :--- | :--- |
 | `user:change-password` |  |
 | `user:create` |  |
-
