@@ -1,14 +1,14 @@
-# Manipulate the cart with App Scripts
+# Manipulate the cart with App Scripts //todop1
 
 If your app needs to manipulate the cart, you can do so by using the [`cart`](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#cart) script hook.
 
 {% hint style="info" %}
-Note that app scripts were introduced in Shopware 6.4.8.0, and are not supported in previous versions.
+Note that app scripts were introduced in Shopware 6.4.8.0 and are not supported in previous versions.
 {% endhint %}
 
 ## Overview
 
-The cart manipulation in App Scripts expands on the general [cart concept](../../../../concepts/commerce/checkout-concept/cart.md). In that concept your cart scripts act as another [cart processor](../../../../concepts/commerce/checkout-concept/cart.md#cart-processors---price-calculation-and-validation).
+The cart manipulation in app scripts expands on the general [cart concept](../../../../concepts/commerce/checkout-concept/cart.md). In that concept, your cart scripts act as another [cart processor](../../../../concepts/commerce/checkout-concept/cart.md#cart-processors---price-calculation-and-validation).
 
 Your `cart` scripts run whenever the cart is calculated, this means that the script will be executed when an item is added to the cart, when the selected shipping and payment methods change, etc.
 You have access to a `cart`-service that provides a [fluent API](https://www.martinfowler.com/bliki/FluentInterface.html) to get data from the cart or to manipulate the cart. For an overview of all data and services that are available, please refer to the [cart hook reference](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#cart).
@@ -20,8 +20,8 @@ We will expand on that concept and refer to ideas defined there in this guide.
 
 ## Calculating the cart
 
-If you add line-items (products, discounts, etc.) in your `cart`-script it may be necessary to manually recalculate the cart.
-After changing the price definitions in the cart, the total prices of the cart are not recalculated automatically, the recalculation will only happen automatically after your whole script was executed.
+If you add line items (products, discounts, etc.) in your `cart`-script it may be necessary to manually recalculate the cart.
+After changing the price definitions in the cart, the total prices of the cart are not recalculated automatically. The recalculation will only happen automatically after your whole script is executed.
 
 But if your script depends on updated and recalculated prices, you can recalculate the entire cart manually.
 
@@ -40,17 +40,17 @@ But if your script depends on updated and recalculated prices, you can recalcula
 The `calculate()` call will recalculate the whole cart and update the total prices, etc. For this the complete [`process`-step](../../../../concepts/commerce/checkout-concept/cart.md#calculation) is executed again.
 
 {% hint style="warning" %}
-Note that by executing the `process`-step all properties of the cart (e.g. `products()`, `items()`, `price()`) are recreated and thus will return new instances.
+Note that by executing the `process` step, all properties of the cart (e.g. `products()`, `items()`, `price()`) are recreated and thus will return new instances.
 This means if your script still holds references to those properties inside variables from before the recalculation, those are outdated after the recalculation.
 {% endhint %}
 
 ### Multiple calculations
 
-Your `cart`-script will probably run multiple times per cart, whenever the cart is recalculated, e.g. whenever a new product is added to the cart.
-This means that you have to check, that your script works when it is executed multiple times.
+Your `cart`-script will probably run multiple times per cart whenever the cart is recalculated, e.g., whenever a new product is added to the cart.
+This means that you have to check that your script works when it is executed multiple times.
 
-The safest way to ensure is, that you check the cart if the action of your script was already take and only execute it if not.
-For example, you could only add a discount to the cart, if it not already exists.
+The safest way to ensure is to check the cart to see if your script's action was already taken and only execute it if not.
+For example, you could only add a discount to the cart if it doesn't already exist.
 
 {% code title="Resources/scripts/cart/my-cart-script.twig" %}
 {% raw %}
@@ -65,7 +65,7 @@ For example, you could only add a discount to the cart, if it not already exists
 {% endcode %}
 
 An alternative solution would be to mark that you already did perform an action by adding a custom state to the cart.
-This way you can only perform the action, if your custom state is not present and additionally, you can remove the state again when you revert your action.
+This way, you can only perform the action if your custom state is not present and additionally, you can remove the state again when you revert your action.
 
 {% code title="Resources/scripts/cart/my-cart-script.twig" %}
 {% raw %}
@@ -97,7 +97,7 @@ Note that the state name should be unique, this means you should always use your
 
 ## Price definitions
 
-In general, Shopware prices consist of gross and net prices and are currency dependent.  If you need price definitions in your app scripts (e.g. to add a absolute discount with a specific price) there are multiple ways to do so.
+In general, Shopware prices consist of gross and net prices and are currency dependent. If you need price definitions in your app scripts (e.g., to add an absolute discount with a specific price), there are multiple ways to do so.
 
 ### Price fields inside custom fields
 
@@ -149,7 +149,7 @@ You can define price fields for [app configuration](../configuration.md).
 
 ### Manual price definition
 
-The simplest way is to define the price manually and hard coded into your app scripts. We provide a factory method that you can use to create price definitions.
+The simplest way is to define the price manually and hard code into your app scripts. We provide a factory method that you can use to create price definitions.
 You can specify the `gross` and `net` prices for each currency.
 
 {% code title="Resources/scripts/cart/my-cart-script.twig" %}
@@ -168,7 +168,7 @@ You can specify the `gross` and `net` prices for each currency.
 
 ### Prices inside the app config
 
-As described above, it is also possible to use price fields inside the [app configuration](../configuration.md). In your cart scripts you can access those config values over the [`config` service](../../../../resources/references/app-reference/script-reference/miscellaneous-script-services-reference.md#SystemConfigFacade) and pass them to the same price factory as the manual definitions.
+As described above, it is also possible to use price fields inside the [app configuration](../configuration.md). In your cart scripts, you can access those config values over the [`config` service](../../../../resources/references/app-reference/script-reference/miscellaneous-script-services-reference.md#SystemConfigFacade) and pass them to the same price factory as the manual definitions.
 
 {% code title="Resources/scripts/cart/my-cart-script.twig" %}
 {% raw %}
@@ -182,16 +182,16 @@ As described above, it is also possible to use price fields inside the [app conf
 {% endraw %}
 {% endcode %}
 
-Note, that if you don't provide a default value for your configuration, you should add a null-check, to verify that the config value you want to use was actually configured by the merchant.
+Note that if you don't provide a default value for your configuration, you should add a null-check, to verify that the config value you want to use was actually configured by the merchant.
 
 ## Line-items
 
-Inside your cart scripts you can modify the line-items inside the current cart.
+Inside your cart scripts, you can modify the line items inside the current cart.
 
 ### Add product a line-item
 
-You can add a new product line-item simply by providing the product `id` of the product that should be added.
-Additionally, you may provide a quantity as second parameter if the product should be added with a quantity higher than 1.
+You can add a new product line item simply by providing the product `id` of the product that should be added.
+Additionally, you may provide a quantity as a second parameter if the product should be added with a quantity higher than 1.
 
 {% code title="Resources/scripts/cart/my-cart-script.twig" %}
 {% raw %}
@@ -207,9 +207,9 @@ Additionally, you may provide a quantity as second parameter if the product shou
 
 ### Add an absolute discount
 
-To add an absolute discount you can use the `discount()` function, but you have to define a [price definition](#price-definitions) beforehand.
-The first argument is the `id` of the line-item you can use that `id`, e.g. to check if the discount was already added to cart.
-The fourth parameter is the label of the discount, you can either use a hard coded string label, or use the `|trans` filter to use a storefront snippet as the label.
+To add an absolute discount, you can use the `discount()` function, but you have to define a [price definition](#price-definitions) beforehand.
+The first argument is the `id` of the line item. You can use that `id`, e.g., to check if the discount was already added to the cart.
+The fourth parameter is the label of the discount. You can either use a hard-coded string label or use the `|trans` filter to use a storefront snippet as the label.
 
 Note that you should check if your discount was already added, as your script may run multiple times.
 
@@ -232,7 +232,7 @@ Note that you should check if your discount was already added, as your script ma
 
 ### Add a relative discount
 
-Adding a relative discount is very similiar to adding an absolute discount. Instead of providing a price definition, you can provide a percentage value that should be discounted and the absolute value will be calculated automatically based on the current total price of the cart.
+Adding a relative discount is very similar to adding an absolute discount. Instead of providing a price definition, you can provide a percentage value that should be discounted, and the absolute value will be calculated automatically based on the current total price of the cart.
 
 {% code title="Resources/scripts/cart/my-cart-script.twig" %}
 {% raw %}
@@ -246,7 +246,7 @@ Adding a relative discount is very similiar to adding an absolute discount. Inst
 
 ### Remove a line item
 
-You can remove line items by providing the `id` of the line-item that should be removed.
+You can remove line items by providing the `id` of the line item that should be removed.
 
 {% code title="Resources/scripts/cart/my-cart-script.twig" %}
 {% raw %}
@@ -266,14 +266,13 @@ You can remove line items by providing the `id` of the line-item that should be 
 {% endraw %}
 {% endcode %}
 
-## Split line-items
+## Split line items
 
-It is also possible to split one line-item with a quantity of 2 or more.
-You can use the `take()`-method on the line-item that should be split and provide the quantity that should be split from the original line-item.
-Optionally you can provide the new `id` of the new line-item as a second parameter.
+It is also possible to split one line item with a quantity of 2 or more.
+You can use the `take()` method on the line item that should be split and provide the quantity that should be split from the original line item.
+Optionally you can provide the new `id` of the new line item as a second parameter.
 
-Note that the `take()` method won't automatically add the new line-item to the cart, but instead it returns the split line-item,
-so you have to add it to the corresponding line-item collection manually in your script.
+Note that the `take()` method won't automatically add the new line item to the cart, but instead, it returns the split line item, so you have to add it to the corresponding line item collection manually in your script.
 
 {% code title="Resources/scripts/cart/my-cart-script.twig" %}
 {% raw %}
@@ -292,7 +291,7 @@ so you have to add it to the corresponding line-item collection manually in your
 
 ## Add custom data to line-items
 
-You can add custom (meta-) data to line-items in the cart by manipulating the payload of the cart items.
+You can add custom (meta-) data to line items in the cart by manipulating the payload of the cart items.
 
 {% code title="Resources/scripts/cart/my-cart-script.twig" %}
 {% raw %}
@@ -310,10 +309,10 @@ You can add custom (meta-) data to line-items in the cart by manipulating the pa
 
 ## Add errors and notifications to the cart
 
-Your app script can block the checkout of the cart by raising an error.
+Your app script can block the cart's checkout by raising an error.
 As the first parameter you have to provide the [snippet key](../../plugins/storefront/add-translations.md) of the error message that should be displayed to the user.
-As the second optional parameter you can specify a `id` for the error, so you can reference the error later on in your script.
-Lastly you can provide an array of parameters as the optional third parameter, in case that you need to pass parameters to the snippet.
+As the second optional parameter, you can specify a `id` for the error, so you can reference the error later on in your script.
+Lastly, you can provide an array of parameters as the optional third parameter if you need to pass parameters to the snippet.
 
 {% code title="Resources/scripts/cart/my-cart-script.twig" %}
 {% raw %}
@@ -330,7 +329,7 @@ Lastly you can provide an array of parameters as the optional third parameter, i
 {% endraw %}
 {% endcode %}
 
-If you only want to display some information to the user, during the checkout process you can also add messages using `warning` and `notice`. Those will be displayed during the checkout process, but won't prevent the customer from completing the checkout.
+If you only want to display some information to the user during the checkout process, you can also add messages using `warning` and `notice`. Those will be displayed during the checkout process but won't prevent the customer from completing the checkout.
 
 The API is basically the same as for adding errors.
 
@@ -347,7 +346,7 @@ The API is basically the same as for adding errors.
 ## Rule based cart scripts
 
 The cart scripts automatically integrate with the [Rule Builder](../../../../concepts/framework/rules.md) and you can use the full power of the rule builder to only do your cart manipulations if a given rule matches.
-For example, you can add an entity-single-select field to your [apps config](../configuration.md) to allow the merchant to choose a rule that needs to match for your app script taking affect.
+For example, you can add an entity-single-select field to your [app's config](../configuration.md) to allow the merchant to choose a rule that needs to match your app script taking effect.
 
 {% code title="Resources/config/config.xml" %}
 
@@ -366,7 +365,7 @@ For example, you can add an entity-single-select field to your [apps config](../
 
 {% endcode %}
 
-Inside your cart script you can check if the rule matches, by checking if the configures rule id exists in the list of matched rule ids of the context:
+Inside your cart script, you can check if the rule matches by checking if the configured rule id exists in the list of matched rule ids of the context:
 
 {% code title="Resources/scripts/cart/my-cart-script.twig" %}
 {% raw %}
