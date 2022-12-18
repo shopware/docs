@@ -15,7 +15,7 @@ This adr should be used as a reference to implement a feature and get sure a MR 
 * Code, which is changed or introduced by the new feature, should **not** be executed.
 * Everything that is not possible to hide (new constants, new classes) needs to be annotated
 
-## Detailed cases
+## Detailed cases //todor10
 ### New Entity Definitions
 New Entity Definitions have to be hidden behind the flag in the container. [how to](./../../60-references-internals/10-core/20-feature-flag-handling.md#using-flags-for-services)
 ### New Services and other classes (subscriber, event, resolver)

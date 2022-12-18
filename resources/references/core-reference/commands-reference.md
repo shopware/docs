@@ -33,13 +33,13 @@ $ bin/console [command] [parameters]
 
 | Command | Description |
 | :--- | :--- |
-| `assets:install` |  |
+| `assets:install` | //todor8 |
 
 ### Bundle
 
 | Command | Description |  |
 | :--- | :--- | :--- |
-| `bundle:dump` | \[administration:dump:plugins | administration:dump:bundles\] Creates a json file with the configuration for each active Shopware bundle. |
+| `bundle:dump` | \[administration:dump:bundles\] Creates a json file with the configuration for each active Shopware bundle. |
 
 ### Cache
 
