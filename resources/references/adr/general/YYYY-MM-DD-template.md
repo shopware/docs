@@ -1,4 +1,4 @@
-# [YYYY-MM-DD] - [Title] //todor7
+# [YYYY-MM-DD] - [Title]
 
 {% hint style="info" %}
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.

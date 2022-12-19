@@ -33,7 +33,7 @@ $ bin/console [command] [parameters]
 
 | Command | Description |
 | :--- | :--- |
-| `assets:install` | //todor8 |
+| `assets:install` |  |
 
 ### Bundle
 
