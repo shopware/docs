@@ -1,4 +1,4 @@
-# Commands Reference//todor2
+# Commands Reference
 
 These commands can be executed using the Shopware command line interface \(CLI\), located within your Shopware project
 
