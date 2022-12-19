@@ -1,20 +1,14 @@
-# Dependency injection
-
-## Table of contents
-
-* [Shopware DIC](#shopware-dic)
-* [Dependency Injection Extension B2B](#dependency-injection-extension-b2b)
-* [Tags](#tags)
+# Dependency Injection
 
 ## Shopware DIC
 
-The B2B-Suite registers with the [DI-container](../../../../../../guides/plugins/plugins/plugin-fundamentals/dependency-injection.md) from Symfony.
+The B2B Suite registers with the [DIC](../../../../../guides/plugins/plugins/plugin-fundamentals/dependency-injection.md) from Symfony.
 Be sure you are familiar with the basic usage patterns and practices.
-Especially [service decoration](../../../../../../guides/plugins/plugins/plugin-fundamentals/adjusting-service.md) is an equally important extension point.
+Especially [Service Decoration](../../../../../guides/plugins/plugins/plugin-fundamentals/adjusting-service.md#decorating-the-service) is an equally important extension point.
 
 ## Dependency Injection Extension B2B
 
-The B2B-Suite provides an abstract `DependencyInjectionConfiguration` class, that is used throughout the Suite as an initializer of DI-Contents across all components.
+The B2B Suite provides an abstract `DependencyInjectionConfiguration` class that is used throughout the Suite as an initializer of DI-Contents across all components.
 
 ```php
 <?php declare(strict_types=1);
@@ -43,9 +37,9 @@ abstract class DependencyInjectionConfiguration
 ```
 
 Every macro layer of every component defines its own dependencies.
-That way you can just require the up most components you want to use and every other dependency is injected automatically.
+That way, you require the utmost components you want to use, and every other dependency is injected automatically.
 
-For example this code will enable the contact component your own plugin.
+For example, this code will enable the contact component of your plugin.
 
 ```php
 <?php declare(strict_types=1);
@@ -72,8 +66,5 @@ class MyB2bPlugin extends Plugin
 
 ## Tags
 
-Additionally, the B2B-Suite makes heavy use of service tags as a more modern replacement for collect events.
-They are used to helping you extend central B2B services with custom logic.
-
-Please take a look at the example plugins and there usage of that extension mechanism.
-Be sure you know [the basics](http://symfony.com/doc/current/service_container/tags.html).
+Additionally, the B2B Suite heavily uses [Service Tags](http://symfony.com/doc/current/service_container/tags.html) as a more modern replacement for collect events.
+They are used to help you extend central B2B services with custom logic. Take a look at the example plugins and their usage of that extension mechanism.
