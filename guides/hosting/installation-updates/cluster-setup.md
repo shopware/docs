@@ -25,7 +25,7 @@ Most big-scale projects have a development team assigned. It is responsible for 
 
 ### Disable extensions
 
-For requests, the entire handling of the app and plugin system via the database should be deactivated via the configuration `DISABLE_EXTENSIONS` for request handling PHP processes like php-fpm. If this environment variable is activated, the plugin list is acquired from the required composer dependencies. This hands over the control over the active plugin list to be regulated via the project deployment. Third-party sources can rely on [plugin lifecycle events](https://developer.shopware.com/docs/guides/plugins/plugins/plugin-fundamentals/plugin-lifecycle), so running commands like `bin/console plugin:install --activate SwagExample` or `bin/console plugin:update SwagExample` needs to be integrated into the deployment without the `DISABLE_EXTENSIONS` flag. In the future, it will no longer be possible to obtain plug-ins//todoh2 via the built-in Extension Store or//todoh3 to deactivate or uninstall them via a UI or database.
+For requests, the entire handling of the app and plugin system via the database should be deactivated via the configuration `DISABLE_EXTENSIONS` for request handling PHP processes like php-fpm. If this environment variable is activated, the plugin list is acquired from the required composer dependencies. This hands over the control over the active plugin list to be regulated via the project deployment. Third-party sources can rely on [plugin lifecycle events](https://developer.shopware.com/docs/guides/plugins/plugins/plugin-fundamentals/plugin-lifecycle), so running commands like `bin/console plugin:install --activate SwagExample` or `bin/console plugin:update SwagExample` needs to be integrated into the deployment without the `DISABLE_EXTENSIONS` flag.
 
 ## Redis
 
@@ -38,7 +38,7 @@ We recommend setting up at least five Redis servers for the following resources:
 1. [Enqueue](../infrastructure/message-queue.md#transport-redis-example)  
    Instead of setting up a Redis server for `enqueue`, you can also work directly with [RabbitMQ](../infrastructure/message-queue.md#transport-rabbitmq-example)
 
-The PHP Redis extension provides persistent Redis connections. Persistent connections can help in high load scenarios as each request doesn't have to open and close connections. Using non-persistent Redis connections can also hit the system's maximum open sockets. Because of these limitations, the Redis extension is preferred over Predis.//todoh4
+The PHP Redis extension provides persistent Redis connections. Persistent connections can help in high load scenarios as each request doesn't have to open and close connections. Using non-persistent Redis connections can also hit the system's maximum open sockets. Because of these limitations, the Redis extension is preferred over Predis.
 
 When a Redis cluster is in usage, the `php.ini` setting `redis.clusters.cache_slots=1` should be set to skip the cluster node lookup on each connection.
 
@@ -83,7 +83,7 @@ shopware:
 
 On a productive system, the [message queue](../infrastructure/message-queue.md) should be processed via CLI processes instead of the [Admin worker](../infrastructure/message-queue.md#admin-worker). This way, messages are completed regardless of logged-in Administration users and CPU load, as messages can be regulated through the amount of worker processes. Furthermore, you can change the transport to another system like [RabbitMQ](https://www.rabbitmq.com/).
 
-It is recommended to run multiple `messenger:consume` workers. To automatically start the processes again after they stopped because of exceeding the given limits you can use a process control system like [systemd](https://www.freedesktop.org/wiki/Software/systemd/) or [supervisor](http://supervisord.org/running.html).//todoh5
+It is recommended to run multiple `messenger:consume` workers. To automatically start the processes again after they stopped because of exceeding the given limits you can use a process control system like [systemd](https://www.freedesktop.org/wiki/Software/systemd/) or [supervisor](http://supervisord.org/running.html).
 
 ### Own queue
 

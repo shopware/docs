@@ -7,7 +7,7 @@ Shopware uses the Symfony Messenger component and Enqueue to handle asynchronous
 ## Message queue on production systems
 
 On a production system, the message queue should be processed via the CLI instead of the browser in the Administration ([Admin worker](#admin-worker)). This way, tasks are also completed when no one is logged into the Administration and high CPU load due to multiple users in the admin is also avoided. Furthermore, you can change the transport to another system like [RabbitMQ](https://www.rabbitmq.com/). This would, relieve the database and, on the other hand, use a much more specialized service for handling message queues. The following are examples of the steps needed.  
-It is recommended to run one or more `messenger:consume`workers. To automatically start the processes again after they stopped because of exceeding the given limits you can use a process control system like [systemd](https://www.freedesktop.org/wiki/Software/systemd/) or [supervisor](http://supervisord.org/running.html). //todoh8
+It is recommended to run one or more `messenger:consume`workers. To automatically start the processes again after they stopped because of exceeding the given limits you can use a process control system like [systemd](https://www.freedesktop.org/wiki/Software/systemd/) or [supervisor](http://supervisord.org/running.html).
 Alternatively, you can configure a cron job that runs the command periodically.
 
 {% hint style="info" %}
@@ -40,7 +40,7 @@ bin/console messenger:consume -h
 
 #### Admin worker
 
-If you have configured the cli-worker, you should turn off the admin worker in the shopware configuration file//todoh9. Therefore, create or edit the configuration `shopware.yaml`.
+If you have configured the cli-worker, you should turn off the admin worker in the Shopware configuration file. Therefore, create or edit the configuration `shopware.yaml`.
 
 ```yaml
 # config/packages/shopware.yaml

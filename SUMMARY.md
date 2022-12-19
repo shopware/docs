@@ -320,8 +320,8 @@
         * [Add custom CMS blocks](guides/plugins/apps/content/cms/add-custom-cms-blocks.md)
     * [Rule Builder](guides/plugins/apps/rule-builder/README.md)
       * [Add custom rule conditions](guides/plugins/apps/rule-builder/add-custom-rule-conditions.md)
-  * [API](guides/plugins/plugins/api/README.md)//todop11
-    * [Custom Pricing](guides/plugins/plugins/api/custom-pricing.md)//todop12
+  * [API](guides/plugins/plugins/api/README.md)
+    * [Custom Pricing](guides/plugins/plugins/api/custom-pricing.md)
 * [Hosting](guides/hosting/README.md)
   * [Installation & Updates](guides/hosting/installation-updates/README.md)
     * [Deployments](guides/hosting/installation-updates/deployments/README.md)

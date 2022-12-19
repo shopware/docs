@@ -153,7 +153,7 @@ If a messenger process is active, the entries of that table are processed one by
 In case a message runs into an error, it is written into the `dead_messages` table and will be processed again after a specific timeframe.
 
 You can start multiple messenger consumer processes by using the command `bin/console messenger:consume` and also add output to the processed messages by adding the parameter `bin/console messenger:consume -vv`.
-In a productive//todoh10 environment, you want to deactivate the admin messenger which is started automatically when opening a session in your Administration view by following this [documentation](/docs/guides/plugins/plugins/framework/message-queue/add-message-handler#the-admin-worker).
+In a production environment, you want to deactivate the admin messenger which is started automatically when opening a session in your Administration view by following this [documentation](/docs/guides/plugins/plugins/framework/message-queue/add-message-handler#the-admin-worker).
 
 Our experience has shown that up to 3 worker processes are normal and useful for a production environment.
 If you want more than that, a tool like [RabbitMq](/docs/guides/hosting/infrastructure/message-queue#transport-rabbitmq-example) to handle the queue is needed so your database will not become a bottleneck.

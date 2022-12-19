@@ -83,7 +83,7 @@ composer install
 
 ## Customization
 
-This project//todoh6 is called production template because it can be used to create project specific configurations. The template provides a basic setup that is equivalent to the official distribution. If you need customization, the workflow could look like this:
+This project is called [production template](https://github.com/shopware/production) because it can be used to create project specific configurations. The template provides a basic setup that is equivalent to the official distribution. If you need customization, the workflow could look like this:
 
 * Fork template
 * Make customization

@@ -1,4 +1,4 @@
-# Manipulate the cart with App Scripts //todop1
+# Manipulate the Cart with App Scripts
 
 If your app needs to manipulate the cart, you can do so by using the [`cart`](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#cart) script hook.
 

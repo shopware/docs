@@ -6,10 +6,6 @@ Automized deployments shouldn't be a pain and have several advantages, like lowe
 
 This article explains the fundamental steps to deploy Shopware 6 to a certain infrastructure, focussing on continuous deployment using [GitLab CI](https://docs.gitlab.com/ee/ci/) and [Deployer](https://deployer.org/) (a deployment tool written in PHP).
 
-{% hint style="info" %}
-This "certain infrastructure" will be called "target server" in the following.//todoh1
-{% endhint %}
-
 ## Video
 <!-- markdown-link-check-disable-next-line -->
 {% embed url="https://www.youtube.com/watch?v=Oo-KvyxJvpo" caption="" %}
