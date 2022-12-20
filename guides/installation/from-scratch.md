@@ -22,10 +22,10 @@ Firstly, we need to set up Apache to locate Shopware 6. If you wish, you could c
 
 Firstly, you must add a vhost definition to your Apache site configuration.
 
-1) Create a file with the following pattern: `/etc/apache2/sites-available/*.conf`.
+- Create a file with the following pattern: `/etc/apache2/sites-available/*.conf`.
 Here we will create a file called `/etc/apache2/sites-available/shopware-install.conf`
 
-2) Within the created `shopware-install.conf` file, place the following configuration:
+- Within the created `shopware-install.conf` file, place the following configuration:
 
 ```text
 <VirtualHost *:80>
@@ -46,13 +46,13 @@ Here we will create a file called `/etc/apache2/sites-available/shopware-install
 </VirtualHost>
 ```
 
-3) Symlink the `shopware-install.conf` file to the Apache2 `sites-enabled` directory:
+- Symlink the `shopware-install.conf` file to the Apache2 `sites-enabled` directory:
 
 ```shell
 sudo ln -s /etc/apache2/sites-available/shopware-install.conf /etc/apache2/sites-enabled/shopware-install.conf
 ```
 
-4) Restart the Apache2 service to activate your new configuration:
+- Restart the Apache2 service to activate your new configuration:
 
 ```shell
 # Your mileage with this command may vary depending on your chosen Linux operating system

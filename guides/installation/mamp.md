@@ -24,15 +24,15 @@ Next, start the mysql webserver-service with the toggle buttons on the left side
 
 ### Prepare MySQL user and database
 
-1. Open the **MySQL Tab** on the left side and click on the *PhpMyAdmin* icon. In case the icon is grayed out, check if the mysql and webserver services are running.
+- Open the **MySQL Tab** on the left side and click on the *PhpMyAdmin* icon. In case the icon is grayed out, check if the mysql and webserver services are running.
 
 ![Mysql settings](../../.gitbook/assets/10-mac-os-x-mysql.png)
 
-2. Inside PhpMyAdmin, switch to the user account management on the top menu and click *add new user*.
+- Inside PhpMyAdmin, switch to the user account management on the top menu and click *add new user*.
 
-3. Choose a username \(e.g., shopware\) and a password and set the option *Create database with same name and grant all privileges*. Set the option *Check all* in the **Global privileges** card. Also, all checkboxes in this card should be checked.
+- Choose a username \(e.g., shopware\) and a password and set the option *Create database with same name and grant all privileges*. Set the option *Check all* in the **Global privileges** card. Also, all checkboxes in this card should be checked.
 
-4. Finish this step by clicking *GO*.
+- Finish this step by clicking *GO*.
 
 ### Global usage
 
@@ -174,6 +174,6 @@ As you successfully installed Shopware, you may want to start writing your own p
 
 Did you know you can install Shopware on Mac with the help of other tools? See the guides below:
 
-* [Docker](docker.md)
-* [Vagrant](vagrant.md)
-* [Dockware](dockware.md)
+- [Docker](docker.md)
+- [Vagrant](vagrant.md)
+- [Dockware](dockware.md)

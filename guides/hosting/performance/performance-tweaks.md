@@ -163,9 +163,9 @@ Also, PHP PCRE Jit Target should be enabled. This can be checked using `php -i |
 
 For an additional 2-5% performance improvement, it is possible to provide a preload file to opcache. Preload also brings a lot of drawbacks:
 
-* Each cache clear requires a PHP-FPM restart
-* Each file change requires a PHP-FPM restart
-* Extension Manager does not work
+- Each cache clear requires a PHP-FPM restart
+- Each file change requires a PHP-FPM restart
+- Extension Manager does not work
 
 The PHP configuration would look like:
 

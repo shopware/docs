@@ -14,13 +14,13 @@ On Linux OS, Docker installation is the easiest way to get a running Shopware 6.
 ./psh.phar docker:start
 ```
 
-2. Access the application container:
+1. Access the application container:
 
 ```bash
 ./psh.phar docker:ssh
 ```
 
-3. Execute the installer inside the docker container:
+1. Execute the installer inside the docker container:
 
 ```bash
 ./psh.phar install
@@ -38,7 +38,7 @@ After exploring Shopware 6, you can terminate it with these two commands:
 exit
 ```
 
-2. Stop the containers:
+1. Stop the containers:
 
 ```bash
 ./psh.phar docker:stop
@@ -79,13 +79,13 @@ That's it. Now, continue to install Shopware 6 as usual:
 
 This command creates and starts the containers, watchers, and the sync itself. Running *start* for the first time takes several minutes to complete. Subsequent starts are a lot faster since the images and volumes are reused.
 
-2. **Access the application container:**
+1. **Access the application container:**
 
 ```bash
 ./psh.phar docker:ssh
 ```
 
-3. **Execute the installer inside the Docker container:**
+1. **Execute the installer inside the Docker container:**
 
 ```bash
 ./psh.phar install
@@ -95,7 +95,7 @@ For more information, look at Shopware [Installation Overview](overview.md).
 
 ## Next steps
 
-As the next step, you might want to start writing your very own plugin. Refer to [Plugin base guide](../plugins/plugins/plugin-base-guide.md) to learn about that topic. 
+As the next step, you might want to start writing your very own plugin. Refer to [Plugin base guide](../plugins/plugins/plugin-base-guide.md) to learn about that topic.
 
 Would you like to explore alternative ways to install Shopware? You can install Shopware on Mac with the help of other tools:
 

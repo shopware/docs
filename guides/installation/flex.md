@@ -35,7 +35,7 @@ The Symfony CLI is a developer tool that helps to build, run, and manage your Sy
 
 1. Install [Symfony CLI](https://symfony.com/download), if you don't have one.
 
-2. As Symfony CLI uses local PHP, ensure to have PHP installed. Below are the commands to install it:
+1. As Symfony CLI uses local PHP, ensure to have PHP installed. Below are the commands to install it:
 
 {% tabs %}
 
