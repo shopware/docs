@@ -1,4 +1,4 @@
-# Add cart discounts
+# Add Cart Discounts
 
 ## Overview
 

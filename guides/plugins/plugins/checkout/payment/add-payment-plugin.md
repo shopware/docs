@@ -1,4 +1,4 @@
-# Add payment plugin
+# Add Payment Plugin
 
 ## Overview
 
@@ -14,7 +14,7 @@ If you want to understand the payment process in detail, head to our [Payment Co
 {% hint style="info" %}
 Here's a video on payment extensions and payment handlers from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 
-**[Introduction to payment handlers](https://www.youtube.com/watch?v=K58--Pxvudk)**
+Also, take a look at **[Introduction to payment handlers](https://www.youtube.com/watch?v=K58--Pxvudk)** video.
 {% endhint %}
 
 ## Creating a custom payment handler
@@ -494,4 +494,4 @@ The `activate` method and `deactivate` method just do that, activating and deact
 
 ### Identify your payment
 
-You can identify your payment by the entity property `formattedHandlerIdentifier`. It shortens the original handler identifier \(php class reference\): `Custom/Payment/SEPAPayment` to `handler_custom_sepapayment` The syntax for the shortening can be looked up in [Shopware\Core\Checkout\Payment\DataAbstractionLayer\PaymentHandlerIdentifierSubscriber](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Checkout/Payment/DataAbstractionLayer/PaymentHandlerIdentifierSubscriber.php).
+You can identify your payment by the entity property `formattedHandlerIdentifier`. It shortens the original handler identifier \(php class reference\): `Custom/Payment/SEPAPayment` to `handler_custom_sepapayment`. The syntax for the shortening can be looked up in [Shopware\Core\Checkout\Payment\DataAbstractionLayer\PaymentHandlerIdentifierSubscriber](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Checkout/Payment/DataAbstractionLayer/PaymentHandlerIdentifierSubscriber.php).

@@ -1,4 +1,4 @@
-# Using a modal window
+# Using a Modal Window
 
 ## Overview
 

@@ -1,4 +1,4 @@
-# Add scheduled task
+# Add Scheduled Task
 
 ## Overview
 
@@ -12,7 +12,7 @@ This guide is built upon our [plugin base guide](../plugin-base-guide.md), but t
 {% hint style="info" %}
 Here's a video dealing with scheduled tasks from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 
-**[Adding scheduled tasks](https://www.youtube.com/watch?v=88S9P3x6wYE)**
+Also, refer to video on **[Adding scheduled tasks](https://www.youtube.com/watch?v=88S9P3x6wYE)**
 {% endhint %}
 
 ## Registering scheduled task in the DI container

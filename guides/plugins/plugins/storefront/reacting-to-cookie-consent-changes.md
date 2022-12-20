@@ -1,4 +1,4 @@
-# Reacting to cookie consent changes
+# Reacting to Cookie Consent Changes
 
 ## Overview
 
@@ -6,7 +6,7 @@ This small guide will bring a short example on how to react on changes for the c
 
 ## Prerequisites
 
-This guide was built upon both the [plugin base guide](../plugin-base-guide.md) as well as the [Adding a cookie to the consent manager guide](add-cookie-to-manager.md), so make sure to know those beforehand. Also nice to know is the guide about [Reacting to javascript events](reacting-to-javascript-events.md), since this will be done here, same as how to create and load a JavaScript file in the first place, which can be found [here](add-custom-javascript.md).
+This guide was built upon both the [Plugin base guide](../plugin-base-guide.md) as well as the [Adding a cookie to the consent manager](add-cookie-to-manager.md) guide, so make sure to know those beforehand. Also nice to know is the guide about [Reacting to javascript events](reacting-to-javascript-events.md), since this will be done here, same as how to [create and load a JavaScript](add-custom-javascript.md) file in the first place, which can be found.
 
 ## Reacting to cookie configuration changes via JavaScript
 
@@ -55,5 +55,3 @@ if (module.hot) {
 ```
 
 {% endcode %}
-
-And that's it for this guide!

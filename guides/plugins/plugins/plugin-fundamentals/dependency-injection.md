@@ -1,4 +1,4 @@
-# Dependency injection
+# Dependency Injection
 
 ## Overview
 
@@ -14,7 +14,7 @@ Furthermore, you need a working service. Therefore, you can refer to [Adding a c
 {% hint style="info" %}
 Here's a video explaining DI based on the example of a custom CLI command from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 
-**[Injecting services into a command](https://www.youtube.com/watch?v=Z4kyx9J1xaQ)**
+Also refer to this video : **[Injecting services into a command](https://www.youtube.com/watch?v=Z4kyx9J1xaQ)**
 {% endhint %}
 
 ## Injecting another service

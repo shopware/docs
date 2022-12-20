@@ -2,7 +2,7 @@
 
 ## Overview
 
-In this guide you'll learn how to add a cache layer to your custom Store API route. In this example, we will add a cache layer for the `ExampleRoute`, which is created in the [Add Store API route](./add-store-api-route.md) guide. For the cache invalidation we will write a invalidation subscriber.
+In this guide you will learn how to add a cache layer to your custom Store API route. In this example, we will add a cache layer for the `ExampleRoute`, which is created in the [Add Store API route](./add-store-api-route.md) guide. For the cache invalidation we will write a invalidation subscriber.
 
 ## Prerequisites
 

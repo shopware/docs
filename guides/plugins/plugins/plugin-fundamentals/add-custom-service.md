@@ -1,4 +1,4 @@
-# Add custom service
+# Add Custom Service
 
 ## Overview
 
@@ -53,10 +53,12 @@ class ExampleService
 
 {% endcode %}
 
-Note: By default, all services in Shopware 6 are marked as _private_. Read more about private and public services [here](https://symfony.com/doc/current/service_container.html#public-versus-private-services).
+{% hint style="info" %}
+By default, all services in Shopware 6 are marked as _private_. Read more about [private and public services](https://symfony.com/doc/current/service_container.html#public-versus-private-services).
+{% endhint %}
 
 ## Next steps
 
-You've now created your own custom service. In the same manner, you can create other important plugin classes, such as [commands](add-custom-commands.md), [scheduled tasks](add-scheduled-task.md) or a [subscriber to listen to events](listening-to-events.md).
+You have now created your own custom service. In the same manner, you can create other important plugin classes, such as [commands](add-custom-commands.md), [scheduled tasks](add-scheduled-task.md) or a [subscriber to listen to events](listening-to-events.md).
 
 Furthermore, we also have a guide explaining how to [customize an existing service](adjusting-service.md) instead.

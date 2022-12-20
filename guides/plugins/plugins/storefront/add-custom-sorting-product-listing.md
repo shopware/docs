@@ -1,4 +1,4 @@
-# Add custom sorting for product listing
+# Add Custom Sorting for Product Listing
 
 ## Overview
 

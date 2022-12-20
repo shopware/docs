@@ -1,4 +1,4 @@
-# Database migrations
+# Database Migrations
 
 ## Overview
 
@@ -12,7 +12,7 @@ In order to add your own database migrations for your plugin, you first need a p
 {% hint style="info" %}
 Here's a video explaining database migrations from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 
-**[Database migrations](https://www.youtube.com/watch?v=__pWwaK6lxw)**
+Also refer this video : **[Database migrations](https://www.youtube.com/watch?v=__pWwaK6lxw)**
 {% endhint %}
 
 ## File structure

@@ -1,4 +1,4 @@
-# Add cart collector / processor
+# Add Cart Collector/Processor
 
 ## Overview
 

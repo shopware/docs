@@ -1,4 +1,4 @@
-# Adjusting a service
+# Adjusting a Service
 
 ## Overview
 
@@ -12,7 +12,7 @@ In order to add your own custom service for your plugin, you first need a plugin
 {% hint style="info" %}
 Here's a video explaining service decorations with an easy example from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 
-**[Decorating services](https://www.youtube.com/watch?v=Rgf4c9rd1kw)**
+Also, refer to this video on **[Decorating services](https://www.youtube.com/watch?v=Rgf4c9rd1kw)**
 {% endhint %}
 
 ## Decorating the service

@@ -1,4 +1,4 @@
-# Fetching data with Javascript
+# Fetching Data with Javascript
 
 ## Overview
 

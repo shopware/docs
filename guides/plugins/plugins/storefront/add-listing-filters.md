@@ -1,4 +1,4 @@
-# Add custom listing filters
+# Add Custom Listing Filters
 
 ## Overview
 
@@ -12,11 +12,11 @@ Before you start reading this guide, make sure you got an own plugin installed t
 
 ## Create new Filter
 
-At first, you need to create a subscriber - in this example we'll call it `ExampleListingSubscriber`. If you're not sure on working with subscribers, please refer to the guide on working with events in Shopware:
+At first, you need to create a subscriber. In this example, we will call it `ExampleListingSubscriber`. If you are not sure on working with subscribers, please refer to the guide on working with events in Shopware:
 
 {% page-ref page="../plugin-fundamentals/listening-to-events.md" %}
 
-As usual, we'll start by creating this new class in the same path as you're seeing in Shopware's core - `/src/Subscriber/ExampleListingSubscriber.php`.
+As usual, we will start by creating this new class in the same path as you're seeing in Shopware's core - `/src/Subscriber/ExampleListingSubscriber.php`.
 
 New listing filters, e.g. for your product listing, can be registered via the event `\Shopware\Core\Content\Product\Events\ProductListingCollectFilterEvent` This event was introduced to enable every developer to specify the metadata for a filter. The handling, meaning if and how a filter is added, is done by Shopware's core:
 

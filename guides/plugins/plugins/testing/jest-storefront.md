@@ -1,4 +1,4 @@
-# Jest unit tests in Shopware's storefront
+# Jest Unit Tests in Shopware's Storefront
 
 ## Overview
 
@@ -438,6 +438,5 @@ describe('HelloWorldPlugin tests', () => {
 
 ## More interesting topics
 
-* [Jest tests for the storefront](jest-storefront.md)
 * [PHPUnit tests](php-unit.md)
 * [End-to-end tests](end-to-end-testing.md)

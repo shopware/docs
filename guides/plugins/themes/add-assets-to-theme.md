@@ -1,4 +1,4 @@
-# Add assets to a Theme
+# Add Assets to a Theme
 
 ## Overview
 
@@ -16,7 +16,7 @@ There are basically two ways of adding custom assets to your theme. The first on
 
 ### Adding assets in theme.json file
 
-While working with your own theme, you might have already come across the [theme configuration](theme-configuration.md). In there, you have the possibility to configure your paths to your custom assets like images, fonts, etc. This way, please configure your asset path accordingly.
+While working with your own theme, you might have already come across the [Theme configuration](theme-configuration.md). In there, you have the possibility to configure your paths to your custom assets like images, fonts, etc. This way, please configure your asset path accordingly.
 
 {% code title="<plugin root>/src/Resources/theme.json" %}
 

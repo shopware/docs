@@ -1,4 +1,4 @@
-# Add custom CLI commands
+# Add Custom CLI Commands
 
 To ease development tasks, Shopware contains the Symfony commands functionality. This allows \(plugin-\) developers to define new commands executable via the Symfony console at `bin/console`. The best thing about commands is, that they're more than just simple standalone PHP scripts - they integrate into Symfony and Shopware, so you've got access to all the functionality offered by both of them.
 
@@ -18,7 +18,7 @@ The main requirement here is to have a `services.xml` file loaded in your plugin
 {% hint style="info" %}
 Here's a video on creating custom commands from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 
-**[Creating a CLI command](https://www.youtube.com/watch?v=OL_qNVLLyaI)**
+Also, refer to this video on **[Creating a CLI command](https://www.youtube.com/watch?v=OL_qNVLLyaI)**
 {% endhint %}
 
 ## Registering your command
@@ -142,7 +142,7 @@ Available commands:
  [...]
 ```
 
-Each command usually has a namespace like `cache`, so to clear the cache you would execute `php bin/console cache:clear`. If you'd like to learn more about commands in general, have a look at [this article](https://symfony.com/doc/current/console.html) in the Symfony documentation.
+Each command usually has a namespace like `cache`, so to clear the cache you would execute `php bin/console cache:clear`. If you would like to learn more about commands in general, have a look at [this article](https://symfony.com/doc/current/console.html) in the Symfony documentation.
 
 ## More interesting topics
 

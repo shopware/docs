@@ -1,4 +1,4 @@
-# Plugin lifecycle methods
+# Plugin Lifecycle Methods
 
 ## Overview
 

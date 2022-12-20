@@ -1,12 +1,12 @@
-# Removing associated data
+# Removing Associated Data
 
 ## Overview
 
-This short guide will come with some examples on how to delete associated data or most likely how to delete the association to another entity.
+This guide explains with some examples on how to delete associated data or most likely how to delete the association to another entity.
 
 ## Prerequisites
 
-This example will be built upon the [plugin base guide](../../plugin-base-guide.md), so having a look at it will come in handy.
+This example will be built upon the [Plugin base guide](../../plugin-base-guide.md), so having a look at it will come in handy.
 
 Also, the same subject was already mentioned in our guide about [Replacing associated data](replacing-associated-data.md).
 
@@ -72,7 +72,7 @@ They are sometimes used to create a `ManyToMany` association but with extra data
 
 You need to figure out which kind of `OneToMany` association you're facing here: A normal `OneToMany` association or a hidden `ManyToMany` association?
 
-Let's start with the normal one. Usually, a `OneToMany` association is just the other side of a `ManyToOne` association, whose deletion was already explained in the section about [deleting associated data](deleting-associated-data.md).
+Let's start with the normal one. Usually, a `OneToMany` association is just the other side of a `ManyToOne` association, whose deletion was already explained in the section about deleting associated data.
 
 Assume you're looking into the [ProductManufacturerDefinition](https://github.com/shopware/platform/blob/trunk/src/Core/Content/Product/Aggregate/ProductManufacturer/ProductManufacturerDefinition.php), which has a `OneToMany` association to the products.
 Deleting this kind of association was already explained in the section about `ToOne` associations.
@@ -95,7 +95,7 @@ It's the very same code example again.
 
 Unfortunately, it's not always that simple.
 As explained above, sometimes `OneToMany` associations are hidden `ManyToMany` associations.
-To understand what we mean, have a look at the `media` field in the [product definition](https://github.com/shopware/platform/blob/v6.3.4.0/src/Core/Content/Product/ProductDefinition.php#L210-L211).
+To understand what we mean, have a look at the `media` field in the [Product definition](https://github.com/shopware/platform/blob/v6.3.4.0/src/Core/Content/Product/ProductDefinition.php#L210-L211).
 Technically a product can have multiple medias, and a media can be assigned to multiple products, so this should have been a `ManyToMany` association, right?
 Yet, looking at the `media` field in the `ProductDefinition`, you can see that it's a `OneToMany` association.
 The second case, that we described earlier in this section, fits here: Technically a `ManyToMany` association, hidden by a `OneToMany` association for the reason mentioned above: There's more data needed for the mapping entity.

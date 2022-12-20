@@ -1,4 +1,4 @@
-# Adding complex data to existing entities
+# Adding Complex Data to Existing Entities
 
 ## Overview
 
@@ -213,7 +213,7 @@ Of course, this new definition also needs to be registered to the DI container:
 
 #### Adding the new database table
 
-Of course you have to add the new database table via a [database migration](../../plugin-fundamentals/database-migrations.md). Have a look into the guide linked above to see how exactly this is done. Here's the example migration and how it could look like:
+Of course you have to add the new database table via a [Database migration](../../plugin-fundamentals/database-migrations.md). Have a look into the guide linked above to see how exactly this is done. Here's the example migration and how it could look like:
 
 ```php
 <?php declare(strict_types=1);

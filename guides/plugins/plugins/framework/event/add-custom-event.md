@@ -1,8 +1,8 @@
-# Add custom event
+# Add Custom Event
 
 ## Overview
 
-In this guide you'll learn how to create your own event. You can read more about events in the [Symfony documentation](https://symfony.com/doc/current/event_dispatcher.html).
+In this guide you will learn how to create your own event. You can read more about events in the [Symfony documentation](https://symfony.com/doc/current/event_dispatcher.html).
 
 ## Prerequisites
 
@@ -12,7 +12,7 @@ In order to create your own event for your plugin, you first need a plugin as ba
 {% hint style="info" %}
 Here's a live coding example on custom events from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 
-**[Event dispatching and handling](https://www.youtube.com/watch?v=JBpa5nBoC78)**
+Also, refer to this video on **[Event dispatching and handling](https://www.youtube.com/watch?v=JBpa5nBoC78)**
 {% endhint %}
 
 ## Event interfaces and classes
