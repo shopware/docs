@@ -26,7 +26,7 @@ Run `composer remove laravel/valet`.
 - If needed, install composer via `brew install composer`.
 - Install Valet+ via `composer global require weprovide/valet-plus`.
 - Make sure `~/.composer/vendor/bin` is in your path by adding `export PATH="$PATH:$HOME/.composer/vendor/bin"` to your `bash_profile` or `.zshrc`.
-- Check for the following common problem with `valet fix`. 
+- Check for the following common problem with `valet fix`.
 {% hint style="warning" %}
 The above instruction will uninstall all other PHP installations.
 {% endhint %}
