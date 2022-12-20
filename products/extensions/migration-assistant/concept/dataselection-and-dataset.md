@@ -1,6 +1,6 @@
 # DataSelection and DataSet
 
-These are the fundamental data structures for define what to migrate. Each `DataSelection` consists of one or more `DataSets`:
+These are the fundamental data structures for defining what to migrate. Each `DataSelection` consists of one or more `DataSets`:
 
 * ProductDataSelection \(position: 100\)
   * MediaFolderDataSet
@@ -17,7 +17,7 @@ These are the fundamental data structures for define what to migrate. Each `Data
   * MediaFolderDataSet
   * MediaDataSet
 
-The order of the `DataSets` in the `DataSelection` class is important and specifies the processing order. `DataSelection` also holds a position specifying the order applied when migrating \(lower numbers are migrated earlier\). The `getDataSetsRequiredForCount` method returns an array of all DataSets. Its count should be displayed in the administration.
+The order of the `DataSets` in the `DataSelection` class is important and specifies the processing order. `DataSelection` also holds a position specifying the order applied when migrating \(lower numbers are migrated earlier\). The `getDataSetsRequiredForCount` method returns an array of all DataSets. Its count should be displayed in the Administration.
 
 Please take a look at the `DataSelection` example:
 

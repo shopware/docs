@@ -1,7 +1,5 @@
 # Catalog
 
-In this section, we'll go through the structure that organises products, prices and everything related to maintaining a **product catalog** within the store.
+In this section, we will go through the structure that organizes products, prices and everything related to maintaining a **product catalog** within the store.
 
-First of all, we'll look into categories to find out what they're used for and how they work.
-
-{% page-ref page="categories.md" %}
+First, let us understand about products and how they are defined.

@@ -2,15 +2,15 @@
 
 ## General
 
-We provide two kinds of virtualization, a vagrant and a docker based solution. Our developers use the docker containers mainly.
-These containers are also used in our continuous integration process. The supported functions are for both systems equal if the host systems is based on Linux.
-Instead of testing windows in combination with docker we evaluated the vagrant setup.
+We provide two kinds of virtualization, a Vagrant and a Docker based solution. Our developers use the Docker containers mainly.
+These containers are also used in our continuous integration process. The supported functions are for both systems equal if the host system is based on Linux.
+Instead of testing windows in combination with Docker, we evaluated the Vagrant setup.
 
-If you want to install the B2B-Suite for production environment your system must fit with the defined requirements from the [Shopware core](https://developers.shopware.com/sysadmins-guide/system-requirements/).
+If you want to install the B2B Suite for the production environment, your system must fit the defined [system requirements](https://developers.shopware.com/sysadmins-guide/system-requirements/) for the Shopware Core.
 
-### Minimum Requirements
+### Minimum requirements
 
-The B2B Suite is based on the minimum requirements of the Shopware core.
+The B2B Suite is based on the minimum requirements of the Shopware Core.
 
 These requirements apply from **B2B Suite 4.6.0 and above**:
 
@@ -25,7 +25,7 @@ These requirements apply from **B2B Suite 4.6.0 and above**:
 
 ### Docker (recommended)
 
-As minimum requirement, we need a docker runtime with version 1.12.* or higher. [psh.phar](https://github.com/shopwareLabs/psh) provides the following available docker commands:
+As a minimum requirement, we need a docker runtime with version 1.12.* or higher. [psh.phar](https://github.com/shopwareLabs/psh) provides the following available Docker commands:
 
 ```bash
 ./psh.phar docker:start     # start & build containers
@@ -36,19 +36,19 @@ As minimum requirement, we need a docker runtime with version 1.12.* or higher. 
 ./psh.phar docker:destroy   # clear the whole docker cache
 ```
 
-To start the docker environment just type
+To start the Docker environment, just type in your command line.
 
 ```bash
 ./psh.phar docker:start
 ```
 
-on your command line. The several containers are booted and afterwards you can login into your web container with
+Several containers are booted. Later you can login into your web container with:
 
 ```bash
 ./psh.phar docker:ssh
 ```
 
-After that, you can start the initialization process by typing
+After that, you can start the initialization process by typing:
 
 ```bash
 ./psh.phar init
@@ -56,16 +56,15 @@ After that, you can start the initialization process by typing
 
 After a few minutes, our test environment should be available under the address [10.100.200.46](http://10.100.200.46).
 
-To get a full list of available commands, you can use
+To get a complete list of available commands, you can use:
 
 ```bash
 ./psh.phar
 ```
 
-## Installation on a OS X based system
+## Installation on an OS X based system
 
-The following commands are available to create a mac setup. Apache, MySQL and ant are
-required. You can use brew package manager to install them.
+The following commands are available to create a MAC setup. Apache webserver, MySQL, and Ant are required. You can use the brew package manager to install them.
 
 ```bash
 ./psh.phar mac:init         # build installation
@@ -74,7 +73,7 @@ required. You can use brew package manager to install them.
 ./psh.phar mac:restart      # restart apache, mysql
 ```
 
-You can change the database configuration in your own .psh.yaml file.
+You can change the database configuration in your own *.psh.yaml* file.
 
 ```yaml
 mac:
@@ -87,11 +86,11 @@ mac:
       SW_HOST: "SWHost"
 ```
 
-For a better explanation, use the provided .psh.yaml.dist file as an example.
+For a better explanation, use the provided *.psh.yaml.dist* file as an example.
 
 ### Common
 
-Once the environment has booted successfully, you can use the common scripts to setup shopware
+Once the environment has been booted successfully, you can use the common scripts to setup Shopware.
 
 ```bash
 ./psh.phar clear # remove vendor components and previously set state

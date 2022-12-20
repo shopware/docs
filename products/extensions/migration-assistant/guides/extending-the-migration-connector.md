@@ -1,16 +1,16 @@
 # Extending the Migration Connector
 
-In this guide you will see an example on how you can extend the [Migration Connector](https://github.com/shopware/SwagMigrationConnector) plugin to migrate the Shopware 5 [SwagAdvDevBundle](https://github.com/shopwareLabs/SwagAdvDevBundle) to a Shopware 6 plugin via API.
+In this guide, you will see an example of how you can extend the [Migration connector](https://github.com/shopware/SwagMigrationConnector) plugin to migrate the Shopware 5 [SwagAdvDevBundle](https://github.com/shopwareLabs/SwagAdvDevBundle) to a Shopware 6 plugin via API.
 
 ## Setup
 
-It is required that you already have a basic Shopware 5 plugin running and to have installed the [SwagAdvDevBundle](https://github.com/shopwareLabs/SwagAdvDevBundle), the [Migration Connector](https://github.com/shopware/SwagMigrationConnector) plugin in Shopware 5 and an own Shopware 6 [plugin](../../../../guides/plugins/plugins/plugin-base-guide.md), [Migration Assistant](https://github.com/shopware/SwagMigrationAssistant) and [SwagMigrationBundleExample](extending-a-shopware-migration-profile.md) plugin in Shopware 6. If you want to know, how all plugins working together, please have a look on the [Extending a Shopware migration profile](extending-a-shopware-migration-profile.md) guide.
+It is required to have a basic Shopware 5 plugin running. You must have installed the [SwagAdvDevBundle](https://github.com/shopwareLabs/SwagAdvDevBundle), the [Migration connector](https://github.com/shopware/SwagMigrationConnector) plugin in Shopware 5, and an own Shopware 6 [Plugin](../../../../guides/plugins/plugins/plugin-base-guide.md#create-your-first-plugin), the [Migration Assistant](https://github.com/shopware/SwagMigrationAssistant) and the [SwagMigrationBundleExample](extending-a-shopware-migration-profile.md) plugin in Shopware 6. If you want to know how all plugins work together, please look at the [Extending a Shopware Migration Profile](extending-a-shopware-migration-profile.md) guide.
 
-With this setup you have the bundle plugin in Shopware 5 and also the bundle plugin in Shopware 6. So you can migrate your Shopware 5 shop to Shopware 6 via local and API gateway, but your bundle data only via local gateway.
+With this setup, you have the bundle plugin in Shopware 5 and also the bundle plugin in Shopware 6. So you can migrate your Shopware 5 shop to Shopware 6 via local and API gateway, but your bundle data only via a local gateway.
 
 ## Creating bundle repository
 
-To fetch your data via the Shopware 5 API you have to create a bundle repository first:
+To fetch your data via the Shopware 5 API, you have to create a bundle repository first:
 
 ```php
 <?php
@@ -69,9 +69,9 @@ class BundleRepository extends AbstractRepository
 }
 ```
 
-The repository has to inherit from the `AbstractRepository` of the Migration Connector. This provides you with helper functions like `addTableSelection`, which sets a prefix to all table columns and add these to the query builder.
+The repository has to inherit from the `AbstractRepository` of the Migration Connector. This provides helper functions like `addTableSelection`, which sets a prefix to all table columns and adds these to the query builder.
 
-You have to register the repository in your`service.xml` with the parent property like this:
+You have to register the repository in your `service.xml` with the parent property like this:
 
 ```markup
 <service id="swag_migration_bundle_api_example.bundle_repository"
@@ -82,14 +82,14 @@ You have to register the repository in your`service.xml` with the parent propert
 
 ## Creating bundle service
 
-In the next step you create a new `BundleService`, which uses your new `BundleRepository` to fetch all bundles and products to map them to one result array:
+In the next step, you create a new `BundleService`, which uses your new `BundleRepository` to fetch all bundles and products to map them to one result array:
 
 ```php
 <?php
 /**
  * (c) shopware AG <info@shopware.com>
  * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * File that was distributed with this source code.
  */
 
 namespace SwagMigrationBundleApiExample\Service;
@@ -146,14 +146,14 @@ You have to register the `BundleService` in your `service.xml`:
 
 ## Create a new API controller
 
-At last you have to create a new API controller, which uses the `BundleService` to get your bundle data:
+At last, you have to create a new API controller, which uses the `BundleService` to get your bundle data:
 
 ```php
 <?php
 /**
  * (c) shopware AG <info@shopware.com>
  * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * File that was distributed with this source code
  */
 
 use SwagMigrationBundleApiExample\Service\BundleService;
@@ -215,8 +215,8 @@ After this, you have to register the reader in the Symfony container:
 </service>
 ```
 
-And that's it, you're done and have already implemented your first plugin migration via API.
+With that, you have implemented your first plugin migration via API.
 
 ## Source
 
-There's a GitHub repository available, containing a full example source. Check it out [here](https://github.com/shopware/swag-docs-extending-shopware-migration-connector).
+Check out this [GitHub repository](https://github.com/shopware/swag-docs-extending-shopware-migration-connector) containing a full example source.

@@ -1,20 +1,20 @@
-# Decorating a Shopware Migration Assistant converter
+# Decorating a Shopware Migration Assistant Converter
 
 ## Overview
 
-In this guide, you will learn how you can decorate a Shopware migration converter of the [Migration Connector](https://github.com/shopware/SwagMigrationConnector) plugin. Here, the decorated converter will modify the converted products and get data out of a `premapping field`.
+In this guide, you will learn how to decorate a Shopware migration converter of the [Migration Connector](https://github.com/shopware/SwagMigrationConnector) plugin. Here, the decorated converter will modify the converted products and get data out of a `premapping field`.
 
 ## Setup
 
-It is required that you already have installed the [Migration Assistant](https://github.com/shopware/SwagMigrationAssistant) plugin in Shopware 6 and have a running Shopware 5 system running to connect the Migration Assistant via API or local gateway.
+It is required to have installed the [Migration Assistant](https://github.com/shopware/SwagMigrationAssistant) plugin in Shopware 6 and have a running Shopware 5 system running to connect the Migration Assistant via API or local gateway.
 
 ## Enrich existing plugin with migration features
 
-Instead of creating a new plugin for the migration, you might want to add migration features to your existing plugin. Of course, your plugin should then also be installable without the Migration Assistant plugin. So we have an optional requirement. Have a look at this \[PLACEHOLDER-LINK: Optional requirements of a plugin\] on how to inject the needed migration services only if the Migration Assistant plugin is available. You could also have a look at the example plugin, to see how the conditional loading is managed in the plugin base class.
+Instead of creating a new plugin for the migration, you might want to add migration features to your existing plugin. Of course, your plugin should then also be installable without the Migration Assistant plugin. So we have an optional requirement. Have a look at this \[PLACEHOLDER-LINK: Optional requirements of a plugin\] on how to inject the needed migration services only if the Migration Assistant plugin is available. You could also have a look at the example plugin to see how the conditional loading is managed in the plugin base class.
 
 ## Creating a premapping reader
 
-In this example, the user should be able to map the manufacturer, while no new manufacturer will be created. You have to create a new premapping reader to achieve this:
+In this example, the user should be able to map the manufacturer while no new manufacturer will be created. You have to create a new premapping reader to achieve this:
 
 ```php
 <?php declare(strict_types=1);
@@ -169,7 +169,7 @@ class ManufacturerReader extends AbstractPremappingReader
 }
 ```
 
-The created premapping reader fetches all manufacturers of the source system, gets all manufacturer choices out of the Shopware 6 database and does a simple preselection via the manufacturer name. The `getPremapping` function returns the whole premapping structure. With this structure, the administration creates a new premapping card and creates for each source system manufacturer a selectbox with all Shopware 6 manufacturers as choices. For more details have a look at the [premapping concept](../concept/premapping.md).
+The created premapping reader fetches all manufacturers of the source system, gets all manufacturer choices out of the Shopware 6 database, and does a simple preselection via the manufacturer name. The `getPremapping` function returns the whole premapping structure. With this structure, the Administration creates a new premapping card and creates for each source system manufacturer a selectbox with all Shopware 6 manufacturers as choices. For more details, have a look at the [Premapping concept](../concept/premapping.md).
 
 ## Adding snippets to premapping card
 
@@ -189,7 +189,7 @@ Currently, the premapping card has no snippets at all, so you have to create a n
  }
 ```
 
-This file has to be located in `Resources\administration\snippet` and registered in `Resources\administration\main.js` of the plugin, like this:
+This file has to be located in `Resources\administration\snippet` and registered in `Resources\administration\main.js` of the plugin like this:
 
 ```javascript
 import enGBSnippets from './snippet/en-GB.json';
@@ -207,7 +207,7 @@ Now your new premapping card has a correct title.
 
 ## Decorate the product migration converter
 
-After creating your premapping reader, you have a new premapping card, but this premapping is currently not in use. To map the product manufacturers of the source system to your premapping values, you have to decorate one of the Shopware product migration converters. In this example only the `Shopware55ProductConverter` is decorated, but if you want to decorate all Shopware migration converters, you have to do the same:
+After creating your premapping reader, you have a new premapping card, but this premapping is currently not in use. To map the product manufacturers of the source system to your premapping values, you have to decorate one of the Shopware product migration converters. In this example, only the `Shopware55ProductConverter` is decorated, but if you want to decorate all Shopware migration converters, you have to do the same:
 
 ```php
  <?php declare(strict_types=1);
@@ -292,9 +292,9 @@ After creating your premapping reader, you have a new premapping card, but this 
  }
 ```
 
-Your new decorated product migration converter checks, if a manufacturer is set and searches for the premapping via the `MappingService`. If a premapping is found, the migration converter uses the converted value of the original converter, adds the manufacturer uuid and returns the new `ConvertStruct`.
+Your new decorated product migration converter checks if a manufacturer is set and searches for the premapping via the `MappingService`. If a premapping is found, the migration converter uses the converted value of the original converter, adds the manufacturer uuid, and returns the new `ConvertStruct`.
 
-In the end you have to register your decorated converter in your `services.xml`:
+In the end, you have to register your decorated converter in your `services.xml`:
 
 ```markup
 <service id="SwagMigrationExtendConverterExample\Profile\Shopware\Converter\Shopware55DecoratedProductConverter"
@@ -306,8 +306,8 @@ In the end you have to register your decorated converter in your `services.xml`:
 </service>
 ```
 
-Now you're done. You have already decorated your first Shopware migration converter.
+With this, you have decorated your first Shopware migration converter.
 
 ## Source
 
-There's a GitHub repository available, containing a full example source. Check it out [here](https://github.com/shopware/swag-docs-decorate-shopware-migration-converter).
+Check out this [GitHub repository](https://github.com/shopware/swag-docs-decorate-shopware-migration-converter) containing a full example source.
