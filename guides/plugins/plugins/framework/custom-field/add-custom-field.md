@@ -63,8 +63,7 @@ class ExampleEntity extends Entity
 
 ### Add custom field to entity definition
 
-Now follows the important parts. For this to work at all, you have to add the
-Data Abstraction Layer \(DAL\) field `CustomFields` to your entity definition.
+Now follows the important part. For this to work, you have to add the Data Abstraction Layer \(DAL\) field `CustomFields` to your entity definition.
 
 {% code title="<plugin root>/src/Core/Content/Example/ExampleDefinition.php" %}
 
