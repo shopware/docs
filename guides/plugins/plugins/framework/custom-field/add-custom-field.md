@@ -21,11 +21,11 @@ Also, adding translatable custom fields is covered here in short as well, for wh
 
 This short section will cover how to add a custom field support for your custom entity. As previously mentioned, the example from our [Add custom complex data](../data-handling/add-custom-complex-data.md) guide is used and extended here.
 
-In order to support custom fields with your custom entity, there are three steps necessary:
+In order to support custom fields with your custom entity, there are three necessary steps :
 
-* Add `EntityCustomFieldsTrait` trait to your `Entity`
-* Add a `CustomFields` field to your `EntityDefinition`
-* Add a column `custom_fields` to your entities' database table via migration
+* Add `EntityCustomFieldsTrait` trait to your `Entity`.
+* Add a `CustomFields` field to your `EntityDefinition`.
+* Add a column `custom_fields` to your entities' database table via migration.
 
 Also, you may want to add translatable custom fields, which is also covered in very short here.
 
