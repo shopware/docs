@@ -35,10 +35,7 @@ Also, you may want to add translatable custom fields, which is also covered in v
   Available starting with Shopware 6.4.1.0.
 {% endhint %}
 
-Let's assume you already got a working and running entity definition.
-If you want to support custom fields with your custom entity,
-you may add the `EntityCustomFieldsTrait` to your entity class, so the methods
-`getCustomFields()` and `setCustomFields()` can be used.
+Let's assume you already got a working and running entity definition. If you want to support custom fields with your custom entity, you may add the `EntityCustomFieldsTrait` to your entity class, so the methods `getCustomFields()` and `setCustomFields()` can be used.
 
 {% code title="<plugin root>/src/Core/Content/Example/ExampleEntity.php" %}
 
