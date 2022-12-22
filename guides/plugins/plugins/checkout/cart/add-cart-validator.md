@@ -111,9 +111,9 @@ It has to extend from the abstract class `Shopware\Core\Checkout\Cart\Error\Erro
 * `blockOrder`: Return a boolean on whether this exception should block the possibility to actually finish the checkout.
 
   In this case it will be `true`, hence the error level defined earlier. It wouldn't make sense to block the checkout, but only display a notice.
-
+* `blockResubmit`: Optional, return a boolean on whether this exception should block the user from retrying to finish the checkout.
 * `getParameters`: You can add custom payload here. Technically any plugin or code could read the errors of the cart and act accordingly.
-
+   
   If you need extra payload to your error class, this is the place to go.
 
 So now let's have a look at the example error class:
