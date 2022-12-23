@@ -6,35 +6,77 @@ In this guide you'll learn how to add Composer dependencies to your project.
 
 All you need for this guide is a running Shopware 6 instance and full access to both the files and a running plugin. Of course you'll have to understand PHP, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation. Further a basic understanding Node and NPM is required.
 
-## Adding a composer plugin to the `composer.json` file
+## Adding a composer package to the `composer.json` file
 
 In this guide we will install [`exporter`](https://github.com/sebastianbergmann/exporter), which provides the functionality to export PHP variables for visualization.
 
-We have to manually remove all of the references to Shopware itself from the `composer.json` file, that was created in the [Plugin base guide](../plugin-base-guide.md), before we add our own dependencies to it. This is done to prevent `composer` from downloading Shopware into the `vendor` folder.
+Now we can simply install the `exporter` package by adding `"sebastian/exporter": "*"` to the list in `require` section of the `composer.json` of our plugin.
 
-Now we can simply install `exporter` by running `composer require sebastian/exporter` in your plugin directory.
+```javascript
+{
+    "name": "swag/basic-example",
+    "description": "Description for the plugin SwagBasicExample",
+    "version": "1.0.0",
+    "type": "shopware-platform-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Shopware"
+        }
+    ],
+    "require": {
+        "shopware/core": "6.5.*", 
+        "sebastian/exporter": "*" // <--- the package we want to install
+    },
+    "extra": {
+        "shopware-plugin-class": "Swag\\BasicExample\\SwagBasicExample",
+        "label": {
+            "de-DE": "Der angezeigte lesbare Name für das Plugin",
+            "en-GB": "The displayed readable name for the plugin"
+        },
+        "description": {
+            "de-DE": "Beschreibung in der Administration für das Plugin",
+            "en-GB": "Description in the administration for this plugin"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Swag\\BasicExample\\": "src/"
+        }
+    }
+}
+```
 
-After that we have to add our dependency to shopware back in.
+## Executing composer commands during plugin installation
 
-{% hint style="warning" %}
-The `vendor` directory, where the composer saves the dependencies, has to be included in the plugin bundle. The plugin bundle size is not allowed to exceed 5 MB.
-{% endhint %}
-
-## Loading the `autoload.php`
-
-The `composer require` command created the `autoload.php` that we now need to require in our plugin.
+In order that the additional package our plugin requires are installed as well when our plugin is installed, shopware need to execute composer commands to do so.
+Therefore, we need to overwrite the `executeComposerCommands` method in our plugin base class and return true.
 
 {% code title="<plugin root>/src/SwagBasicExample.php" %}
 
 ```php
-if (file_exists(dirname(__DIR__) . '/vendor/autoload.php')) {
-    require_once dirname(__DIR__) . '/vendor/autoload.php';
+<?php declare(strict_types=1);
+
+namespace Swag\BasicExample;
+
+use Shopware\Core\Framework\Plugin;
+
+class SwagBasicExample extends Plugin
+{
+    public function executeComposerCommands(): bool
+    {
+        return true;
+    }
+
 }
 ```
 
 {% endcode %}
 
-## Using the composer plugin
+This will lead to the execution of a `composer require swag/basic-example` on plugin installation and update and `composer remove swag/basic-example` upon plugin uninstall.
+Thus, we don't have to ship the dependencies with our plugin anymore and composer will pick the correct version of our dependencies even if some other plugin may also require the same package (as long as the requirements are generally compatible).
+
+## Using the composer package
 
 PHP doesn't require a build system, which means that we can just add `use` statements and then use the composer dependency directly.
 
