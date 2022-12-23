@@ -108,7 +108,7 @@ Using Shopware Packagist you can manage all your Shopware Store plugins directly
 
 ### 1. Backup
 
-Start with a clean git state or make a backup of your files.
+Start with a clean git state, stash everything or make a backup of your files.
 
 ### 2. Adjust root composer.json
 
