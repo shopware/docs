@@ -79,7 +79,7 @@ shopware:
 
 For the usage of Minio, consider setting `use_path_style_endpoint` to `true`.
 
-### Google cloud platform
+### Google Cloud Platform
 
 The bucket needs to use the "Fine-grained" [ACL mode](https://cloud.google.com/storage/docs/access-control#choose_between_uniform_and_fine-grained_access). This is required so that Shopware can manage the ACL of the objects.
 
