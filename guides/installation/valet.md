@@ -27,10 +27,7 @@ Run `composer remove laravel/valet`.
 * Install Valet+ via `composer global require weprovide/valet-plus`.
 * Make sure `~/.composer/vendor/bin` is in your path by adding `export PATH="$PATH:$HOME/.composer/vendor/bin"` to your `bash_profile` or `.zshrc`.
 * Check for the following common problem with `valet fix`.
-{% hint style="warning" %}
-The above instruction will uninstall all other PHP installations.
-{% endhint %}
-* Run the `valet install` command. Optionally add `--with-mariadb` to use MariaDB instead of MySQL. This will configure and install Valet+ and DnsMasq.
+* The above instruction will uninstall all other PHP installations. Now, run the `valet install` command. Optionally add `--with-mariadb` to use MariaDB instead of MySQL. This will configure and install Valet+ and DnsMasq.
 
 Additionally, it registers Valet's daemon to launch when your system starts.
 
@@ -40,10 +37,7 @@ Additionally, it registers Valet's daemon to launch when your system starts.
 * Clone the development template like you normally would \(dev + platform\) into this folder.
 * Adjust params installation editing `.psh.yaml.dist`.
 * Run `./psh.phar install`.
-* Move to `~/sites` and run `valet park` to register Valet for this directory. Shopware should now be accessible via the `folder-name.test`.
-{% hint style="warning" %}
-Note: "folder-name" is the name of the Shopware development template in `~/sites`.
-{% endhint %}
+* Move to `~/sites` and run `valet park` to register Valet for this directory. Shopware should now be accessible via the `folder-name.test`. This "folder-name" is the name of the Shopware development template in `~/sites`.
 * Optional: Disable SSL via `valet unsecure` because this might cause problems with the watcher.
 
 ## Troubleshooting
