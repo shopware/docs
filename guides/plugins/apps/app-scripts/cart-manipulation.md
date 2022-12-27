@@ -184,7 +184,7 @@ As described above, it is also possible to use price fields inside the [app conf
 
 Note that if you don't provide a default value for your configuration, you should add a null-check, to verify that the config value you want to use was actually configured by the merchant.
 
-## Line-items
+## Line items
 
 Inside your cart scripts, you can modify the line items inside the current cart.
 
