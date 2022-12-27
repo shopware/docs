@@ -62,7 +62,7 @@ GET /api/test
 sw-expect-packages: shopware/core:~6.4,swag/paypal:*
 ```
 
-This would expect that the Shopware version is atleast 6.4 and PayPal is installed in any version.
+This would expect that the Shopware version is at least 6.4 and PayPal is installed in any version.
 
 If the conditions are not met, the backend will answer with a *417 http error*.
 
