@@ -18,5 +18,5 @@ The deprecated fields and routes are shown in the OpenAPI scheme as well as the 
 
 ## Consequences
 
-All route URLs are changed from `/api/v{VERSION}/product` to `/api/product`. 
+All route URLs are changed from `/api/v{VERSION}/product` to `/api/product`.
 Beginning with 6.3.5.0 both route URLs are accessible via `/api/v{VERSION}/product` and `/api/product` before and until the release of 6.4.0.0 in order to enable preparation of connections well in advance.

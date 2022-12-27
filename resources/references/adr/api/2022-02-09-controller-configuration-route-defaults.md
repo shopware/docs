@@ -7,15 +7,12 @@ You can find the original version [here](https://github.com/shopware/platform/bl
 
 ## Context
 
-Annotations are used to configure controllers in the core currently. 
+Annotations are used to configure controllers in the core currently.
 The configuration can contain following as example:
 
-- @LoginRequired
-    - Customer needs to be loggedin
-- @Acl
-    - Protects the controller with special acl privileges
-- @RouteScope
-    - Defines the scope of the route
+- @LoginRequired - Customer needs to be loggedin
+- @Acl - Protects the controller with special acl privileges
+- @RouteScope - Defines the scope of the route
 - and many more
 
 As Annotations are bound to the implementing class, all decorators have to copy and be update to date with the target class
@@ -44,11 +41,11 @@ public function myAction()
 Symfony passes then the defaults to the attribute bag of the Request object and we can check the attributes in the request cycle of the http kernel.
 
 Following annotations will be replaced:
+
 - `@Captcha` -> `_captcha`
 - `@LoginRequired` -> `_loginRequired`
 - `@Acl` -> `_acl`
 - `@ContextTokenRequired` -> `_contextTokenRequired`
 - `@RouteScope` -> `_routeScope`
-
 
 Extensions can still decorate the controller if it has an abstract class or use events like `KernelEvents::REQUEST` or `KernelEvents::RESPONSE` to execute code before or after the actual controller.

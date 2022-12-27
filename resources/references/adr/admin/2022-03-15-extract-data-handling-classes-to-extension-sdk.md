@@ -2,22 +2,25 @@
 
 {% hint style="info" %}
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/admin/2022-03-15-extract-data-handling-classes-to-extension-sdk.md)
+Here you can find the [original version](https://github.com/shopware/platform/blob/trunk/adr/admin/2022-03-15-extract-data-handling-classes-to-extension-sdk.md)
 {% endhint %}
 
 ## Context
-* The package `@shopware-ag/admin-extension-sdk` will be referred to as sdk
-* The ts/js implementation of the Administration is referred to as administration
+
+* The package `@shopware-ag/admin-extension-sdk` will be referred to as sdk.
+* The ts/js implementation of the Administration is referred to as administration.
 
 Previously the administration held the implementation of the classes `Entity`, `EntityCollection` and `Criteria`.
 This led to the problem, that the sdk was unable to identify instances of this classes easily.
 Since the administration is not a standalone package which could be imported in the sdk.
-Also, the sdk would need to copy the implementation since we want to copy the administration datahandling in the sdk.
+Also, the sdk would need to copy the implementation since we want to copy the administration data handling in the sdk.
 
 ## Decision
+
 Move the implementation of `Entity`, `EntityCollection` and `Criteria` to the sdk.
 The corresponding files in the administration simply forward the default export of the sdk.
 
 ## Consequences
-This will result in the same behaviour for current implementations.
+
+This will result in the same behavior for current implementations.
 On the other hand it provides the benefit of having these basic classes in an external package anybody can use.
