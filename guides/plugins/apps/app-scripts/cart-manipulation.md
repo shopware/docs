@@ -188,7 +188,7 @@ Note that if you don't provide a default value for your configuration, you shoul
 
 Inside your cart scripts, you can modify the line items inside the current cart.
 
-### Add product a line-item
+### Add product a line item
 
 You can add a new product line item simply by providing the product `id` of the product that should be added.
 Additionally, you may provide a quantity as a second parameter if the product should be added with a quantity higher than 1.
