@@ -149,7 +149,7 @@ You can define price fields for [app configuration](../configuration.md).
 
 ### Manual price definition
 
-The simplest way is to define the price manually and hard code into your app scripts. We provide a factory method that you can use to create price definitions.
+The simplest way is to define the price manually and hard code it into your app scripts. We provide a factory method that you can use to create price definitions.
 You can specify the `gross` and `net` prices for each currency.
 
 {% code title="Resources/scripts/cart/my-cart-script.twig" %}
