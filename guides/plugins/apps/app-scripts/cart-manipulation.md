@@ -289,7 +289,7 @@ Note that the `take()` method won't automatically add the new line item to the c
 {% endraw %}
 {% endcode %}
 
-## Add custom data to line-items
+## Add custom data to line items
 
 You can add custom (meta-) data to line items in the cart by manipulating the payload of the cart items.
 
