@@ -462,6 +462,7 @@
       * [Handling feature flags](resources/references/adr/workflow/2020-08-19-handling-feature-flags.md)
       * [Deprecation strategy](resources/references/adr/workflow/2021-01-21-deprecation-strategy.md)
       * [Adjust ADR approval rules](resources/references/adr/workflow/2021-11-05-adjust-ADR-approval-rules.md)
+      * [Feature flags for major versions](resources/references/adr/workflow/2022-01-20-feature-flags-for-major-versions.md)
       * [Consistent deprecation notices in core](resources/references/adr/workflow/2022-02-28-consistent-deprecation-notices-in-core.md)
       * [Remove static analysis with psalm](resources/references/adr/workflow/2022-05-12-remove-static-analysis-with-psalm.md)
       * [Mapping of product area](resources/references/adr/workflow/2022-09-28-mapping-of-product-area.md)

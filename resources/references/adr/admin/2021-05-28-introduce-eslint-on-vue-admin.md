@@ -52,7 +52,6 @@ Besides the _twig-to-html-comment_ tradeoff, these exceptions are also made:
 To accomplish the twig syntax being able to be linted, we needed to create a custom [`eslint-twig-vue-plugin`](../src/Administration/Resources/app/administration/twigVuePlugin/lib/processors/twig-vue-processor.js) and to accept the following changes in template writing:
 
 _before_
-
 ``` html
     …
     <div>
@@ -63,7 +62,6 @@ _before_
 ```
 
 _now_
-
 ``` html
     …
     <div>
@@ -77,7 +75,6 @@ To be able to lint the twig templates, we replace the twig syntax with HTML comm
 ### self-closing components
 
 _before_
-
 ``` html
 …
     <sw-language-switcher></sw-language-switcher>
@@ -96,7 +93,6 @@ _now_
 As soon as more than 1 attribute exists, every attribute gets its own line:
 
 _before_
-
 ``` html
     …
     <div v-for="strategy in strategies" class="sw-app-app-url-changed-modal__content-choices">
@@ -106,7 +102,6 @@ _before_
 ```
 
 _now_
-
 ``` html
     …
     <div
@@ -122,12 +117,11 @@ _now_
     …
 ```
 
-## Linting pitfalls
+## Linting Pitfalls
 
 ### invalid-x-end-tag
 
 If you stumble upon a _very_ red marked file from your linter, please check first that your twig syntax follows this pattern:
-
 ``` twig
   {% block block_name %} ✔ <!-- whitespace after and before twig syntax `{% ` and ` %}`. -->
   {% block block_name%} ✘ <!-- missing whitespace after or before twig syntax `{%` or `%}` -->
@@ -136,13 +130,11 @@ If you stumble upon a _very_ red marked file from your linter, please check firs
 ### disabling eslint rules in templates
 
 It is possible to disable a specific linting rule in the template by using this syntax:
-
 ``` html
     <!-- eslint-disable vue/eslint-rule-to-be-disabled -->
     <div>
     …
 ```
-
 Please follow the _know the rules, break the rules_ approach and not the _dont bug me linter_ approach.
 
 ## ESLint IDE setup
@@ -151,7 +143,7 @@ The `*.js` linting should run out of the box with PHPStorm or VSCode. For `*.htm
 
 ESLint is part of the CI pipeline, so a running ESLint environment is mandatory.
 
-### Twig linting setup
+### Twig Linting Setup
 
 #### VSCode
 

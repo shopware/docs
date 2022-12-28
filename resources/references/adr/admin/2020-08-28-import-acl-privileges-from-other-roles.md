@@ -2,11 +2,10 @@
 
 {% hint style="info" %}
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-Here you can find the [original version](https://github.com/shopware/platform/blob/trunk/adr/admin/2020-08-28-import-acl-privileges-from-other-roles.md)
+You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/admin/2020-08-28-import-acl-privileges-from-other-roles.md)
 {% endhint %}
 
 ## Context
-
 Some modules have components which require many acl privileges. Examples
 are the rule builder or the media manager. Therefore, you need all privileges
 in each module which have these components. Also you do not want to add the
@@ -14,7 +13,6 @@ module to the dependency section because then the user has full access to module
 in the administration.
 
 ## Decision
-
 To avoid duplication of these privileges we use a helper function. These
 function returns all privileges from the other module dynamically. You can
 use it directly in the privileges:
@@ -44,7 +42,6 @@ Shopware.Service('privileges')
 ```
 
 ## Consequences
-
 Each module contains only the relevant privileges for his module. All needed
 privileges which are not directly mapped to the module can be imported. This
 has the big benefit if someone changes something in the imported module all
