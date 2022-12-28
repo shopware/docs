@@ -10,9 +10,7 @@ In order to add your own database migrations for your plugin, you first need a p
 
 <!-- markdown-link-check-disable-next-line -->
 {% hint style="info" %}
-Here's a video explaining database migrations from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
-
-Also refer this video : **[Database migrations](https://www.youtube.com/watch?v=__pWwaK6lxw)**
+Refer to this video on **[Database migrations](https://www.youtube.com/watch?v=__pWwaK6lxw)**. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 {% endhint %}
 
 ## File structure

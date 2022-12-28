@@ -12,9 +12,7 @@ You also might want to have a look at the concept behind the [Data abstraction l
 
 <!-- markdown-link-check-disable-next-line -->
 {% hint style="info" %}
-Here's a video covering the basics of repositories from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
-
-Also, refer to this video on **[Using repositories](https://www.youtube.com/watch?v=b3wOs_OWvP0)**
+Refer to this video on **[Using repositories](https://www.youtube.com/watch?v=b3wOs_OWvP0)** that covers the basics of repositories. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 {% endhint %}
 
 ## Writing data

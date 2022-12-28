@@ -16,9 +16,7 @@ The main requirement here is to have a `services.xml` file loaded in your plugin
 
 <!-- markdown-link-check-disable-next-line -->
 {% hint style="info" %}
-Here's a video on creating custom commands from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
-
-Also, refer to this video on **[Creating a CLI command](https://www.youtube.com/watch?v=OL_qNVLLyaI)**
+Refer to this video on custom **[Creating a CLI command](https://www.youtube.com/watch?v=OL_qNVLLyaI)**. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 {% endhint %}
 
 ## Registering your command

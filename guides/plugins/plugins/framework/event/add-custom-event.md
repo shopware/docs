@@ -10,9 +10,7 @@ In order to create your own event for your plugin, you first need a plugin as ba
 
 <!-- markdown-link-check-disable-next-line -->
 {% hint style="info" %}
-Here's a live coding example on custom events from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
-
-Also, refer to this video on **[Event dispatching and handling](https://www.youtube.com/watch?v=JBpa5nBoC78)**
+Refer to this video on **[Event dispatching and handling](https://www.youtube.com/watch?v=JBpa5nBoC78)** which is a live coding example on custom events. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 {% endhint %}
 
 ## Event interfaces and classes

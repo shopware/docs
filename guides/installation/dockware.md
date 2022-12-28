@@ -149,8 +149,5 @@ You can install Shopware on Mac with the help of other tools:
 Otherwise, you might want to start writing your very own plugin. Head over to ["Plugin base guide"](../plugins/plugins/plugin-base-guide.md) to get a grip on that topic.
 
 {% hint style="info" %}
-
-* Here is a video explaining the basics of Dockware from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
-
-* **[Using Dockware](https://www.youtube.com/watch?v=b9wVfUOKqmI)**
+Refer to this video on **[Using Dockware](https://www.youtube.com/watch?v=b9wVfUOKqmI)** that explains the basics of Dockware. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 {% endhint %}

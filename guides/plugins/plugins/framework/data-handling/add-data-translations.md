@@ -12,9 +12,7 @@ In order to create data translations you need an existing entity, as this guide 
 
 <!-- markdown-link-check-disable-next-line -->
 {% hint style="info" %}
-Here's a video dealing with data translations from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
-
-Also, refer to this video on **[Translating your entity](https://www.youtube.com/watch?v=FfqxfQl3I4w)**
+Refer to this video on **[Translating your entity](https://www.youtube.com/watch?v=FfqxfQl3I4w)** that deals with data translations. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 {% endhint %}
 
 ## Creating the migration

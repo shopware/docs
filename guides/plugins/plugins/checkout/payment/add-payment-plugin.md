@@ -12,9 +12,7 @@ If you want to understand the payment process in detail, head to our [Payment Co
 
 <!-- markdown-link-check-disable-next-line -->
 {% hint style="info" %}
-Here's a video on payment extensions and payment handlers from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
-
-Also, take a look at **[Introduction to payment handlers](https://www.youtube.com/watch?v=K58--Pxvudk)** video.
+Refer to this video on **[Introduction to payment handlers](https://www.youtube.com/watch?v=K58--Pxvudk)** that details you about payment extensions and payment handlers. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 {% endhint %}
 
 ## Creating a custom payment handler

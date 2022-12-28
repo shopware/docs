@@ -10,9 +10,7 @@ This guide is built upon the [Plugin base guide](../../plugin-base-guide.md), bu
 
 <!-- markdown-link-check-disable-next-line -->
 {% hint style="info" %}
-Here's a video on creating custom entities from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
-
-Also, refer to this video on **[Creating a custom entity](https://www.youtube.com/watch?v=mTHTyof4gPk)**
+Refer to this video on **[Creating a custom entity](https://www.youtube.com/watch?v=mTHTyof4gPk)**. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 {% endhint %}
 
 ## Creating the database table
