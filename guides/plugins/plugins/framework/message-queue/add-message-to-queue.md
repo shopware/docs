@@ -16,7 +16,7 @@ As most guides, this guide is also built upon the [Plugin base guide](../../plug
 
 ## Create a message
 
-First, we have to create a new message class in the directory `<plugin root>/MessageQueue/Message`. In this example, we create a `SmsNotification` that contains a string with content.
+First, we have to create a new message class in the directory `<plugin root>/MessageQueue/Message`. In this example, we create a `SmsNotification` that contains a string with content. By default, all messages are handled synchronously, to change the behavior to asynchronously we have to implement the `AsyncMessageInterface` interface.  
 
 Here's an example:
 
@@ -27,7 +27,9 @@ Here's an example:
 
 namespace Swag\BasicExample\MessageQueue\Message;
 
-class SmsNotification
+use Shopware\Core\Framework\MessageQueue\AsyncMessageInterface;
+
+class SmsNotification implements AsyncMessageInterface
 {
     private string $content;
 

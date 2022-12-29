@@ -12,33 +12,26 @@ As most guides, this guide is also built upon the [Plugin base guide](../../plug
 
 ## Handling messages
 
-First, we have to create a new class which we will name `SmsHandler` in this example. Our handler has to extend the `Shopware\Core\Framework\MessageQueue\Handler\AbstractMessageHandler` class and implement the method `handle`. To specify which methods should be handled by a given handler we implement the static method `getHandledMessages` and return a reference to the MessageClasses our handler should handle. We can also define multiple handlers for the same message. To register a handler, we have to tag it with the `messenger.message_handler` tag.
+First, we have to create a new class which we will name `SmsHandler` in this example. To mark the class as message handler, we use the php attribute `#[AsMessageHandler]` and implement the method `__invoke`. We can also define multiple handlers for the same message. To register a handler, we have to tag it with the `messenger.message_handler` tag.
 
 {% code title="<plugin root>/src/MessageQueue/Handler/SmsHandler.php" %}
-
 ```php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\MessageQueue\Handler;
 
-use Shopware\Core\Framework\MessageQueue\Handler\AbstractMessageHandler;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Swag\BasicExample\MessageQueue\Message\SmsNotification;
 
-class SmsHandler extends AbstractMessageHandler
+#[AsMessageHandler]
+class SmsHandler
 {
-    /**
-    * @param SmsNotification $message
-    */
-    public function handle($message): void
+    public function __invoke(SmsNotification $message)
     {
-        // send our sms here
-    }
-
-    public static function getHandledMessages(): iterable
-    {
-        return [SmsNotification::class];
+        // ... do some work - like sending an SMS message!
     }
 }
+
 ```
 
 {% endcode %}
@@ -50,18 +43,18 @@ There is a console command to start a worker that will receive incoming messages
 {% code title="" %}
 
 ```bash
-bin/console messenger:consume default
+bin/console messenger:consume async
 ```
 
 {% endcode %}
 
-Where `default` is the transport you want to consume message from. There is also an API-Route that lets you consume messages for a given transport. Just post to the route `/api/_action/message-queue/consume` and define the transport from which you want to consume:
+Where `async` is the transport you want to consume message from. There is also an API-Route that lets you consume messages for a given transport. Just post to the route `/api/_action/message-queue/consume` and define the transport from which you want to consume:
 
 {% code title="" %}
 
 ```javascript
 {
-  "receiver": "default"
+  "receiver": "async"
 }
 ```
 
@@ -90,7 +83,7 @@ The recommended way to consume messages is through the cli command. You can conf
 {% code title="" %}
 
 ```bash
-bin/console messenger:consume default --time-limit=60
+bin/console messenger:consume async --time-limit=60
 ```
 
 {% endcode %}
@@ -98,7 +91,7 @@ bin/console messenger:consume default --time-limit=60
 {% code title="" %}
 
 ```bash
-bin/console messenger:consume default --memory-limit=128M
+bin/console messenger:consume async --memory-limit=128M
 ```
 
 {% endcode %}
@@ -153,19 +146,21 @@ For more information on this check the [Symfony docs](https://symfony.com/doc/cu
 
 ### Transport
 
-A [transport](https://symfony.com/doc/current/messenger.html#transports-async-queued-messages) is responsible for communicating with your 3rd party message broker. You can configure multiple transports and route messages to multiple or different transports. Supported are all transports that are either supported by [Symfony](https://symfony.com/doc/current/messenger.html#transport-configuration) itself, or by [Enqueue](https://github.com/php-enqueue/enqueue-dev/tree/master/docs/transport). If you don't configure a transport, messages will be processed synchronously like in the Symfony event system.
+A [transport](https://symfony.com/doc/current/messenger.html#transports-async-queued-messages) is responsible for communicating with your 3rd party message broker. You can configure multiple transports and route messages to multiple or different transports. Supported are all transports that are either supported by [Symfony](https://symfony.com/doc/current/messenger.html#transport-configuration) itself. If you don't configure a transport, messages will be processed synchronously like in the Symfony event system.
 
-You can configure an amqp transport directly in your `framework.yaml`, but since Shopware is integrated with Enqueue, it is best practice to configure your transport in your `enqueue.yaml` and simply tell Symfony to use your enqueue transports.
+You can configure an amqp transport directly in your `framework.yaml` and simply tell Symfony to use your  transports.
 
-In your `enqueue.yaml` you simply configure your transports as follows:
+In your `framework.yaml` you simply configure your transports as follows:
 
 {% code title="<platform root>/src/Core/Framework/Resources/config/packages/enqueue.yaml" %}
 
 ```yaml
-enqueue:
-  default: # the name of your transport
-    transport: ~ # the transport configuration
-    client: ~ # the client configuration
+framework:
+  messenger:
+    transports:
+      default: # the name of your transport
+        dsn: # the dsn configuration
+        serializer: # the serializer configuration
 ```
 
 {% endcode %}
@@ -175,31 +170,18 @@ In a simple setup you only need to set the transport to a valid DSN like:
 {% code title="<platform root>/src/Core/Framework/Resources/config/packages/enqueue.yaml" %}
 
 ```yaml
-enqueue:
-  default:
-    transport: "file://path/to/my/file"
-    client: ~
-```
-
-{% endcode %}
-
-Notice that for different schemas \(e.g. `file://`, `amqp://)` different enqueue transports are required. Shopware just ships with the `Filesystem` transport, so you need to require the transport you want to use.
-
-For more information on this check the [enqueue docs](https://github.com/php-enqueue/enqueue-dev/blob/master/docs/bundle/config_reference.md).
-
-To tell Symfony to use your transports from your `enqueue.yaml` simply use:
-
-{% code title="<platform root>/src/Core/Framework/Resources/config/packages/enqueue.yaml" %}
-
-```yaml
 framework:
-    messenger:
-        transports:
-          default: # the name for the transport used by symfony
-            enqueue: //default # 'enqueue://' followed by the name of your transport used in 'enqueue.yaml'
+  messenger:
+    transports:
+      my_transport:
+        dsn: "%env(MESSENGER_TRANSPORT_DSN)%"
+        options:
+          auto_setup: false
 ```
 
 {% endcode %}
+
+For more information on this check the [symfony docs](https://symfony.com/doc/current/messenger.html#transport-configuration).
 
 ### Routing
 
@@ -210,13 +192,13 @@ You can route messages to different transports. For that, just configure your ro
 ```yaml
 framework:
     messenger:
-        transports:
-          default: enqueue://default
-          another_transport: enqueue://another_transport
-        routing: 
-          'Swag\BasicExample\MessageQueue\Message\SmsNotification': another_transport
-          'Swag\BasicExample\MessageQueue\Message\AnotherExampleNotification': [default, another_transport]
-          '*': default
+      transports:
+        async: "%env(MESSENGER_TRANSPORT_DSN)%"
+        another_transport: "%env(MESSENGER_TRANSPORT_ANOTHER_DSN)%"
+      routing: 
+        'Swag\BasicExample\MessageQueue\Message\SmsNotification': another_transport
+        'Swag\BasicExample\MessageQueue\Message\AnotherExampleNotification': [async, another_transport]
+        '*': async
 ```
 
 {% endcode %}

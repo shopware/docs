@@ -29,7 +29,7 @@ The recommended method for consuming messages is using the CLI worker.
 You can configure the command just to run a certain amount of time and to stop if it exceeds a certain memory limit like:
 
 ```bash
-bin/console messenger:consume default --time-limit=60 --memory-limit=128M
+bin/console messenger:consume async --time-limit=60 --memory-limit=128M
 ```
 
 For more information about the command and its configuration, use the -h option:
