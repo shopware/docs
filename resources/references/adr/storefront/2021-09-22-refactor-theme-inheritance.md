@@ -161,7 +161,7 @@ To take this points into account we have decided to add a new inheritance key fo
 
 ## Consequences
 The Consequences for the two approaches are described below:
-### New config inheritance:
+### 1. New config inheritance:
 * The inheritance **can still cause incompatibility errors** because of missing subsets of a dependend theme.
 * The current themes will work as always but one can also add an inheritance for the config fields.
 * The inhertiance will no longer be a snapshot, but a dynamic copy of the inherited themes (The changes of child themes will be considered by the new theme automaticaly)

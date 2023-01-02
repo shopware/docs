@@ -2,7 +2,7 @@
 
 {% hint style="info" %}
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-Here you can find the [original version](https://github.com/shopware/platform/blob/trunk/adr/admin/2021-11-22-merge-e2e-projects-into-a-single-project.md)
+You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/admin/2021-11-22-merge-e2e-projects-into-a-single-project.md)
 {% endhint %}
 
 ## Context
@@ -13,9 +13,9 @@ There are currently three E2E projects that are maintained separately. There are
 
 ## Decision
 
-We will merge all cypress e2e projects of platform into a single project.
+We'll merge all cypress e2e projects of platform into a single project.
 
-The projects will be merged by:
+The projects will be merged by
 
 - creating new project `E2E` in `tests/E2E`
 - moving storefront tests to `tests/E2E/cypress/integration/storefront`
