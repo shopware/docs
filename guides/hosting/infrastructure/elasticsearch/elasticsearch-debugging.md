@@ -2,11 +2,11 @@
 
 ## Overview
 
-This article shows you how to debug the status and indexing proccess of your Elasticsearch environment. Ensure that the [Debug-Mode]([/docs/guides/hosting/elasticsearch/elasticsearch#example-file-for-debug-configuration) is activated in your .env file.
+This article shows you how to debug the status and indexing process of your Elasticsearch environment. Ensure that the [Debug-Mode]([/docs/guides/hosting/elasticsearch/elasticsearch#example-file-for-debug-configuration) is activated in your *.env* file.
 
-## Shopware 6 CLI Commands
+## Shopware 6 CLI commands
 
-### Cache Clear
+### Cache clear
 
 `cache:clear` clears the cache
 
@@ -22,7 +22,7 @@ bin/console cache:clear
 ​[OK] Cache for the "dev" environment (debug=true) was successfully cleared.
 ```
 
-### ES Index
+### ES index
 
 `es:index` creates only the index for ES
 
@@ -32,9 +32,9 @@ bin/console es:index // Creates only the index for ES
 
 **> No Output**
 
-### ES Create Alias
+### ES create alias
 
-`es:create:alias`  will create an alias linking to the index after `es:index` is done. Normally this is done automatically, in older version this has to be done.
+`es:create:alias`  will create an alias linking to the index after `es:index` is done. Normally this is done automatically. In the older version, this has to be done.
 
 ```bash
 bin/console es:create:alias 
@@ -42,7 +42,7 @@ bin/console es:create:alias
 
 **> No Output**
 
-### DAL Refresh Index
+### DAL refresh index
 
 `dal:refresh:index --use-queue` creates a complete reindex from the Shopware DAL (ES/SEO/Media/Sitemap...) **ALWAYS** "`--use-queue`" since big request can outperform the server!
 
@@ -71,9 +71,9 @@ bin/console dal:refresh:index --use-queue
 [...]
 ```
 
-### Messenger Consume
+### Messenger consume
 
-`messenger:consume -vv` starts a message consumer working on all tasks. This could be startet *X* times. When using more then 3 message consumer, you will need something like RabbitMq to handle the data
+`messenger:consume -vv` starts a message consumer working on all tasks. This could be startet *X* times. When using more than 3 message consumers, you will need something like RabbitMq to handle the data.
 
 ```bash​
 bin/console messenger:consume -vv
@@ -129,9 +129,9 @@ curl -XGET 'http://elasticsearch:9200/?pretty'
 }
 ```
 
-### API for Cluster health
+### API for cluster health
 
-Returns the health status of a cluster.
+Returns the health status of a cluster:
 
 ```bash
 curl -XGET 'http://elasticsearch:9200/_cluster/health?pretty'
@@ -161,7 +161,7 @@ curl -XGET 'http://elasticsearch:9200/_cluster/health?pretty'
 
 ### API for cat indices
 
-Returns high-level information about indices in a cluster, including backing indices for data streams.​
+Returns high-level information about indices in a cluster, including backing indices for data streams:​
 
 ```bash
 curl -XGET 'http://elasticsearch:9200/_cat/indices/?pretty'
@@ -179,7 +179,7 @@ yellow open sw1_synonym_20210903170128      NRjlZZ3AQ0Wat1ILB_9L8Q 5 1  0 0   1.
 [...]
 ```
 
-### API to Delete the index
+### API to delete the index
 
 With `_all` it will delete all indices.
 
@@ -195,8 +195,7 @@ curl -X DELETE 'elasticsearch:9200/_all'
 
 ## Show the indexing status in the database
 
-Returns the status of your indexing. The number of entries in the enqueue should match the sum of the size values in the `message_queue_stats`.
-As long as there are entries in your `enqueue`, the indexing is in process and your message consumer has to work those messages.
+Returns the status of your indexing:
 
 ```sql
 select * from message_queue_stats mqs ; 
@@ -204,10 +203,12 @@ select count(*) from enqueue e ;
 select count(*) from dead_message dm ; 
 ```
 
+The number of entries in the enqueue should match the sum of the size values in the `message_queue_stats`. As long as there are entries in your `enqueue`, the indexing is in process and your message consumer has to work those messages.
+
 ## Reset the indexing in the database
 
-Sometimes your indexing is stuck or run into an error and you want to reset the indexing in your database.
-If the database queue is used - Third party services will differ - you can do so with the following queries.
+Sometimes you want to reset the indexing in your database because your indexing is stuck or you run into an error.
+If the database queue is used, third-party services will differ. You can do so with the following queries.
 
 ```sql
 truncate enqueue ; 
@@ -218,8 +219,8 @@ update scheduled_task set status = 'scheduled' where status = 'queued';
 
 ## Completely reset your Elasticsearch and reindex
 
-This is mainly for debugging purposes and only meant for test and staging environments.
-First execute the database reset (Only working for database queue):
+This is mainly for debugging purposes and is only meant for testing and staging environments.
+First, execute the database reset (only working for the database queue):
 
 ```sql
 truncate enqueue ; 
@@ -237,7 +238,7 @@ bin/console es:index
 bin/console messenger:consume -vv
 ```
 
-After the last message has been processed your index should be found in your storefront, if not execute:
+After the last message has been processed, your index should be found in your storefront else execute:
 
 ```bash
 bin/console es:create:alias
@@ -245,5 +246,5 @@ bin/console es:create:alias
 
 ## Logfiles and tipps
 
-You normally can find the Elasticsearch logfiles at [`/var/log/elasticsearch`](https://www.elastic.co/guide/en/elasticsearch/reference/master/settings.html#_config_file_format) to check for any issues when indexing.
-Also tools like [Kibana](https://www.elastic.co/what-is/kibana) or [Cerebro](https://wissen.profihost.com/wissen/artikel/cerebro/) can help you better understand what is happening in your Elasticsearch.
+You can usually find the Elasticsearch logfiles at [`/var/log/elasticsearch`](https://www.elastic.co/guide/en/elasticsearch/reference/master/settings.html#_config_file_format) to check for any issues when indexing.
+Also, tools like [Kibana](https://www.elastic.co/what-is/kibana) or [Cerebro](https://wissen.profihost.com/wissen/artikel/cerebro/) can help you better understand what is happening in your Elasticsearch.

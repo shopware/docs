@@ -1,4 +1,4 @@
-# Override Bootstrap variables in a Theme
+# Override Bootstrap Variables in a Theme
 
 ## Overview
 

@@ -1,4 +1,4 @@
-# Add mail templates
+# Add Mail Templates
 
 ## Overview
 
@@ -8,9 +8,9 @@ This guide will cover how to add a custom mail template with your plugin.
 
 ## Prerequisites
 
-The namespaces used in the examples of this guide are the same as the namespace from our [plugin base guide](../../plugin-base-guide.md), so you might want to have a look at it first.
+The namespaces used in the examples of this guide are the same as the namespace from our [Plugin base guide](../../plugin-base-guide.md), so you might want to have a look at it first.
 
-Furthermore, this guide will use [database migrations](../../plugin-fundamentals/database-migrations.md) in order to add a custom mail template, which is not explained in depth here. Make sure to understand those first!
+Furthermore, this guide will use [Database migrations](../../plugin-fundamentals/database-migrations.md) in order to add a custom mail template, which is not explained in depth here. Make sure to understand those first!
 
 ## Adding a mail template via migration
 

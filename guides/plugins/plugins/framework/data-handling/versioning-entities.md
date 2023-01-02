@@ -1,8 +1,8 @@
-# Versioning entities
+# Versioning Entities
 
 ## Overview
 
-In this guide you'll learn how to version your entities. The entity versioning system in Shopware gives you the opportunity to create multiple versions of an entity, which could be used to save drafts for example.
+In this guide you will learn how to version your entities. The entity versioning system in Shopware gives you the opportunity to create multiple versions of an entity, which could be used to save drafts for example.
 
 ## Prerequisites
 

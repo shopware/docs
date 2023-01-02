@@ -1,10 +1,10 @@
-# Add custom rules
+# Add Custom Rules
 
 ## Overview
 
-In this guide you'll learn how to create rules in Shopware. Rules are used by the rule builder.
+In this guide you will learn how to create rules in Shopware. Rules are used by the rule builder.
 
-This example will introduce a new rule, which checks if there's currently a lunar eclipse or not. The shop owner is then able to react on a lunar eclipse with special prices or dispatch methods.
+This example will introduce a new rule, which checks if there is currently a lunar eclipse or not. The shop owner is then able to react on a lunar eclipse with special prices or dispatch methods.
 
 ## Prerequisites
 
@@ -12,7 +12,7 @@ In order to add your own custom rules for your plugin, you first need a plugin a
 
 You also should be familiar with the [Dependency Injection container](../../plugin-fundamentals/dependency-injection.md) as this is used to register your custom rule.
 
-It might be helpful to gather some general understanding about the [concept of rules](../../../../../concepts/framework/rules.md) as well.
+It might be helpful to gather some general understanding about the concept of [Rules](../../../../../concepts/framework/rules.md) as well.
 
 ## Create custom rule
 
@@ -277,7 +277,6 @@ Finally, you just need a new snippet. With that said, you successfully defined r
 ### Restricting rule assignments
 
 When you add a new rule-select component to assign rules somewhere in Shopware, you should use the `sw-select-rule-create` component. With that, you can ensure that the rules you don't want to be selectable aren't selectable.
-		
 For that, we need to write some twig code. The important property here is the `rule-aware-group-key` property which should match the assignment name of the rule-aware group we just extended.
 
 {% hint style="info" %}

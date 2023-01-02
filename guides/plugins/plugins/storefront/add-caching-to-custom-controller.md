@@ -1,8 +1,8 @@
-# Add caching to custom controller
+# Add Caching to Custom Controller
 
 ## Overview
 
-In this guide you'll learn how to define a controller route as cacheable for the http cache.
+In this guide you will learn how to define a controller route as cacheable for the http cache.
 
 ## Prerequisites
 

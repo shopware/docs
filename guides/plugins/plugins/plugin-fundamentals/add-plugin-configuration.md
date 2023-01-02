@@ -1,4 +1,4 @@
-# Add plugin configuration
+# Add Plugin Configuration
 
 The `Shopware plugin system` provides you with the option to create a configuration page for your plugin without any knowledge of templating or the `Shopware Administration`.
 

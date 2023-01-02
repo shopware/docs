@@ -1,4 +1,4 @@
-# Finding events
+# Finding Events
 
 ## Overview
 
@@ -9,7 +9,7 @@ This guide will cover how you can find those events in the first place, in order
 
 ## DAL Events
 
-At first we'll start with the [Data Abstraction Layer events](../data-handling/using-database-events.md).
+At first we will start with the [Data Abstraction Layer events](../data-handling/using-database-events.md).
 They're fired whenever a [DAL entity](../data-handling/add-custom-complex-data.md) is read, written, created, or deleted.
 
 There usually is no need to find them, since the pattern for them is always the same.
@@ -99,7 +99,7 @@ The [next section](#Specifically searching for events) will cover how to find th
 
 If you're really looking for a fitting event for your purpose, you might want to directly search for them.
 This can be done by searching through the `<shopware root>/platform/src` or the `<shopware root>/vendor/shopware/platform/src` directory,
-depending on whether you're using the [development](https://github.com/shopware/development) or the [production template](https://github.com/shopware/production).
+depending on whether you are using the [development](https://github.com/shopware/development) or the [production template](https://github.com/shopware/production).
 Use one of the following search terms:
 
 - `extends NestedEvent`: This way you will find the events themselves.
@@ -110,7 +110,7 @@ Use one of the following search terms:
 
 Every service, that wants to fire an event sooner or later, needs access to the `event_dispatcher` in order to do so.
 
-Hence, you can have a look at all the service definitions for the [dependency injection container](../../plugin-fundamentals/dependency-injection.md)
+Hence, you can have a look at all the service definitions for the [Dependency injection container](../../plugin-fundamentals/dependency-injection.md)
 and therefore quickly figure out, which services and classes are having access to the said `event_dispatcher`:
 
 ```xml
@@ -152,7 +152,7 @@ There's a few more event "types" or classes that you may stumble upon, which are
 
 #### Page Loaded Events
 
-Usually when a [storefront page](../../storefront/add-custom-page.md) is being loaded, a respective "page is being loaded" event is fired
+Usually when a [Storefront page](../../storefront/add-custom-page.md) is being loaded, a respective "page is being loaded" event is fired
 as well.
 
 You can find an example in the [GenericPageLoader](https://github.com/shopware/platform/blob/v6.4.0.0/src/Storefront/Page/GenericPageLoader.php), which is kinda a "default page" to be used pretty often.

@@ -5,7 +5,7 @@
 Plugins in Shopware are essentially an extension of [Symfony bundles](plugins-for-symfony-developers.md). Such bundles and plugins can provide their own resources like assets, controllers, services or tests, which you'll learn in the next guides.  
 A plugin is the main way to extend your Shopware 6 instance programmatically.
 
-This guide will teach you the basics of creating your very first plugin from scratch, which then can be installed to your Shopware 6 instance. A guide to install Shopware 6 in the first place can be found [here](../../installation/overview.md).
+This guide will teach you the basics of creating your very first plugin from scratch, which then can be installed to your Shopware 6 instance. Refer to the guide section to know how to [Install Shopware 6](../../installation/overview.md).
 
 ## Prerequisites
 
@@ -68,9 +68,7 @@ class SwagBasicExample extends Plugin
 Basically that's it for the PHP part, your basic plugin class is already done.
 
 {% hint style="info" %}
-Here's a video showing how to bootstrap a plugin from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
-
-**[Creating a plugin](https://www.youtube.com/watch?v=_Tkoq5W7woI)**
+Refer to this video on **[Creating a plugin](https://www.youtube.com/watch?v=_Tkoq5W7woI)** that shows how to bootstrap a plugin. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 {% endhint %}
 
 #### The composer.json file
@@ -144,9 +142,7 @@ The path you've configured in the configuration `autoload.psr-4`, `src/` in this
 And that's it. The basic structure and all necessary files for your plugin to be installable are done.
 
 {% hint style="info" %}
-Here's a video explaining the basic structure of the `composer.json` plugin file from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
-
-**[The composer.json plugin file](https://www.youtube.com/watch?v=CY3SlfwkTm8)**
+Refer to this video on **[The composer.json plugin file](https://www.youtube.com/watch?v=CY3SlfwkTm8)** that explains the basic structure of the `composer.json` plugin file. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 {% endhint %}
 
 ## Install your plugin

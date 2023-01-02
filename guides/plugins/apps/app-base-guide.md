@@ -2,13 +2,11 @@
 
 ## Overview
 
-This guide will walk you through the process of adding your own app to Shopware and configuring it, so it is able to communicate to your external backend server.
+This guide will walk you through the process of adding your own app to Shopware and configuring it to be able to communicate with your external backend server.
 
 ## Prerequisites
 
-If you're not familiar with the app system, please take a look at the concept first.
-
-{% page-ref page="../../../concepts/extensions/apps-concept.md" %}
+If you are not familiar with the app system, take a look at the [App concept](../../../concepts/extensions/apps-concept.md) first.
 
 ## File structure
 
@@ -22,7 +20,7 @@ To get started with your app, create an `apps` folder inside the `custom` folder
     └── plugins
 ```
 
-## Manifest File
+## Manifest file
 
 The manifest file is the central point of your app. It defines the interface between your app and the Shopware instance. It provides all the information concerning your app, as seen in the minimal version below:
 
@@ -49,7 +47,7 @@ The manifest file is the central point of your app. It defines the interface bet
 {% endcode %}
 
 {% hint style="warning" %}
-The name of your app, that you provide in the manifest file, needs to match the folder name of your app.
+The name of your app that you provide in the manifest file needs to match the folder name of your app.
 {% endhint %}
 
 The app can now be installed by running the following command:
@@ -58,33 +56,32 @@ The app can now be installed by running the following command:
 bin/console app:install --activate MyExampleApp
 ```
 
-By default, your app files will be [validated](app-base-guide.md#validation) before installation, to skip the validation you may use the `--no-validate` flag.
+By default, your app files will be [validated](app-base-guide.md#validation) before installation. To skip the validation, you may use the `--no-validate` flag.
 
 {% hint style="info" %}
 Apps get installed as inactive. You can activate them by passing the `--activate` flag to the `app:install` command or by executing the `app:activate` command after installation.
 {% endhint %}
 
-For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../resources/references/app-reference/manifest-reference.md).
+For a complete reference of the structure of the manifest file, take a look at the [Manifest reference](../../../resources/references/app-reference/manifest-reference.md).
 
 ## Setup
 
-If your app backend server and Shopware need to communicate, it is necessary that a registration is performed during the installation of your app.
-This process is called setup.  
-During the setup it is verified, that Shopware connects to the right backend server and keys are exchanged to secure all further communications.
-During the setup process your app backend will obtain credentials that can be used to authenticate against the Shopware API.
+If your app backend server and Shopware need to communicate, it is necessary that registration is performed during the installation of your app. This process is called setup.  
+During the setup, it is verified that Shopware connects to the right backend server and keys are exchanged to secure all further communications.
+During the setup process, your app backend will obtain credentials that can be used to authenticate against the Shopware API.
 Additionally, your app will provide a secret that Shopware will use to sign all further requests it makes to your app backend, allowing you to verify that the incoming requests originate from authenticated Shopware installations.
 
-The setup workflow is shown in the following schema, each step will be explained in detail.
+The setup workflow is shown in the following schema. Each step will be explained in detail.
 
 ![Setup request workflow](../../../.gitbook/assets/shop-app-communication-1-.svg)
 
 {% hint style="info" %}
-The timeout for the requests against app server is 5 seconds.
+The timeout for the requests against the app server is 5 seconds.
 {% endhint %}
 
-### Registration Request
+### Registration request
 
-The registration request is made as a GET request against a URL that you provide in the manifest file of your app.
+The registration request is made as a `GET` request against a URL you provide in your app's manifest file.
 
 {% code title="manifest.xml" %}
 
@@ -104,9 +101,9 @@ The registration request is made as a GET request against a URL that you provide
 
 The following query parameters will be sent with the request:
 
-* `shop-id`: The unique identifier of the shop the app was installed |
-* `shop-url`: The URL of the shop, this can later be used to access the Shopware API |
-* `timestamp`: The Unix timestamp when the request was created |
+* `shop-id`: The unique identifier of the shop the app was installed.
+* `shop-url`: The URL of the shop, this can later be used to access the Shopware API.
+* `timestamp`: The Unix timestamp when the request was created.
 
 Additionally, the request has the following headers:
 
@@ -122,19 +119,19 @@ sw-version: 6.4.5.0
 ```
 
 Additionally, the `shopware-app-signature` header will be provided, which contains a cryptographic signature of the query string.  
-The secret used to generate this signature is the `app secret`, that is unique per app and will be provided by the Shopware Account if you upload your app to the store. This secret won't leave the Shopware Account, so it won't be even leaked to the shops installing your app.
+The secret used to generate this signature is the `app secret`, which is unique per app and will be provided by the Shopware Account if you upload your app to the store. This secret won't leave the Shopware Account, so it won't even be leaked to the shops installing your app.
 
 {% hint style="danger" %}
-You and the Shopware Account are the only parties that should know your `app-secret`, therefore make sure you never accidentally publish your `app-secret`.
+You and the Shopware Account are the only parties that should know your `app-secret`. Therefore, make sure you never accidentally publish your `app-secret`.
 {% endhint %}
 
 {% hint style="warning" %}
-For **local development** you can specify a `<secret>` in the manifest file, that is used for signing the registration request. However, if an app uses a hard-coded secret in the manifest it can not be uploaded to the store.
+For **local development**, you can specify a `<secret>` in the manifest file that is used for signing the registration request. However, if an app uses a hard-coded secret in the manifest, it can't be uploaded to the store.
 
-If you're developing a **private app** - which is not published in the Shopware Store - you **must** also provide the `<secret>` if you have an external app server.
+If you are developing a **private app** not published in the Shopware Store, you **must** provide the `<secret>` in case of an external app server.
 {% endhint %}
 
-To verify that the registration can only be triggered by authenticated Shopware shops you need to recalculate the signature and check that the signatures match, thus you've verified that the sender of the request possesses the `app secret`.
+To verify that the registration can only be triggered by authenticated Shopware shops, you need to recalculate the signature and check that the signatures match. Thus you have verified that the sender of the request possesses the `app secret`.
 
 The following code snippet can be used to recalculate the signature:
 
@@ -152,9 +149,9 @@ $signature = hash_hmac('sha256', $queryString, $appSecret);
 {% endtab %}
 {% endtabs %}
 
-### Registration Response
+### Registration response
 
-There may be valid cases where the app installation fails, because the domain is blocked, or some other prerequisite in that shop is not met, in which case you can return the message error as follows
+There may be valid cases where the app installation fails because the domain is blocked or some other prerequisite in that shop is not met, in which case you can return the message error as follows:
 
 ```json
 {
@@ -163,9 +160,9 @@ There may be valid cases where the app installation fails, because the domain is
 ```
 
 When the registration is successful.
-To verify that you are also in possession of the `app secret` you need to provide a proof that is signed with the `app secret` too. The proof consist of the sha256 hmac of the concatenated `shopId`, `shopUrl` and your app's name.
+To verify that you are also in possession of the `app secret`, you need to provide proof that it is signed with the `app secret` too. The proof consists of the sha256 hmac of the concatenated `shopId`, `shopUrl`, and your app's name.
 
-Following code snippet can be used to calculate the proof:
+The following code snippet can be used to calculate the proof:
 
 {% tabs %}
 {% tab title="PHP" %}
@@ -186,13 +183,13 @@ $proof = \hash_hmac(
 {% endtab %}
 {% endtabs %}
 
-Besides the proof, your app needs to provide a randomly generated secret, that should be used to sign every further request from this shop. Make sure to save the `shopId`, `shopUrl` and generated secret, so you can associate and use this information later.
+Besides the proof, your app needs to provide a randomly generated secret that should be used to sign every further request from this shop. Make sure to save the `shopId`, `shopUrl`, and generated secret so that you can associate and use this information later.
 
 {% hint style="info" %}
-This secret will be called `shop-secret` to distinguish it from the `app-secret`. The `app-secret` is unique for your app and is used to sign the registration request of every shop that installs your app. The `shop-secret` will be provided by your app during the registration and should be unique for every shop
+This secret will be called `shop-secret` to distinguish it from the `app-secret`. The `app-secret` is unique to your app and is used to sign the registration request of every shop that installs your app. The `shop-secret` will be provided by your app during the registration and should be unique for every shop
 {% endhint %}
 
-The last thing needed in the registration response is a URL, to which the confirmation request will be sent.
+The last thing needed in the registration response is a URL to which the confirmation request will be sent.
 
 A sample registration response may look like this:
 
@@ -204,9 +201,9 @@ A sample registration response may look like this:
 }
 ```
 
-### Confirmation Request
+### Confirmation request
 
-If the proof you provided in the [registration response](app-base-guide.md#registration-response) matched the one generated on the shop side the registration is completed. As a result your app will receive a POST request against the URL specified as the `confirmation_url` of the registration with the following parameters send in the request body:
+If the proof you provided in the [registration response](app-base-guide.md#registration-response) matches the one generated on the shop side, the registration is completed. As a result, your app will receive a `POST` request against the URL specified as the `confirmation_url` of the registration with the following parameters send in the request body:
 
 * `apiKey`: The API key used to authenticate against the Shopware Admin API
 * `secretKey`: The secret key used to authenticate against the Shopware Admin API
@@ -228,8 +225,7 @@ The payload of that request may look like this:
 }
 ```
 
-Make sure that you save the API credentials for that `shopId`. You can use the `apiKey` and
-the `secretKey` as `client_id` and `client_secret` respectively when you request an OAuth token
+Make sure that you save the API credentials for that `shopId`. You can use the `apiKey` and the `secretKey` as `client_id` and `client_secret`, respectively, when you request an OAuth token
 from the Admin API.
 
 You can find out more about how to use these credentials in our Admin API authentication guide:
@@ -239,13 +235,13 @@ You can find out more about how to use these credentials in our Admin API authen
 
 {% hint style="info" %}
 Starting from Shopware version 6.4.1.0, the current Shopware version will be sent as a `sw-version` header.
-Starting from Shopware version 6.4.5.0, the current language id of the Shopware context will be sent as a  `sw-context-language` header , and the locale of the user or locale of the context language is available under the `sw-user-language` header.
+Starting from Shopware version 6.4.5.0, the current language id of the Shopware context will be sent as a  `sw-context-language` header, and the locale of the user or locale of the context language is available under the `sw-user-language` header.
 {% endhint %}
 
-The request is signed with the `shop-secret`, that your app provided in the [registration response](app-base-guide.md#registration-response) and the signature can be found in the `shopware-shop-signature` header.  
-You need to recalculate that signature and check that it matches the provided one, to make sure that the request is really send from shop with that shopId.
+The request is signed with the `shop-secret` that your app provided in the [registration response](app-base-guide.md#registration-response) and the signature can be found in the `shopware-shop-signature` header.  
+You need to recalculate that signature and check that it matches the provided one to make sure that the request is really sent from the shop with that shopId.
 
-You can use following code snippet to generate the signature:
+You can use the following code snippet to generate the signature:
 
 {% tabs %}
 {% tab title="PHP" %}
@@ -262,10 +258,10 @@ $hmac = \hash_hmac('sha256', $request->getBody()->getContents(), $shopSecret);
 
 ## Permissions
 
-Shopware comes with the possibility to create fine grained [Access Control Lists](../plugins/administration/add-acl-rules.md) \(ACLs\). That means that that you need to request permissions if your app needs to read or write data over the API or wants to receive webhooks. The permissions your app needs are defined in the manifest file and are composed of the privilege \(`read`, `create`, `update`, `delete`\) and the entity.
-Since version 6.4.12.0 your app can also request additional non-CRUD privileges with the `<permission>` element.
+Shopware comes with the possibility to create fine-grained [Access Control Lists](../plugins/administration/add-acl-rules.md) \(ACLs\). It means you need to request permissions if your app needs to read or write data over the API or wants to receive webhooks. The permissions your app needs are defined in the manifest file and are composed of the privilege \(`read`, `create`, `update`, `delete`\) and the entity.
+Since version 6.4.12.0, your app can also request additional non-CRUD privileges with the `<permission>` element.
 
-Sample permissions to read, create and update products, delete orders, as well as reading the cache configuration looks like this:
+Sample permissions to read, create and update products, delete orders, as well as reading the cache configuration look like this:
 
 {% code title="manifest.xml" %}
 
@@ -290,17 +286,17 @@ Sample permissions to read, create and update products, delete orders, as well a
 
 {% endcode %}
 
-The permissions you request need to be accepted by the user during the installation of your app. After that these permissions are granted for your app and your API access through the credentials from the [confirmation request](app-base-guide.md#confirmation-request) of the [setup workflow](app-base-guide.md#setup) are limited to those permissions.
+The permissions you request need to be accepted by the user during the installation of your app. After that, these permissions are granted for your app and your API access through the credentials from the [confirmation request](app-base-guide.md#confirmation-request) of the [setup workflow](app-base-guide.md#setup) are limited to those permissions.
 
 {% hint style="warning" %}
-Keep in mind that read permissions also extend to the data contained in the requests so that your app needs read permissions for the entities contained in the subscribed [webhooks](app-base-guide.md#webhooks).
+Keep in mind that read permissions also extend to the data contained in the requests, so your app needs read permissions for the entities contained in the subscribed [webhooks](app-base-guide.md#webhooks).
 {% endhint %}
 
 ## Webhooks
 
-With webhooks you are able to subscribe to events occurring in Shopware. Whenever such an event occurs a POST request will be send to the specified URL.
+With webhooks, you are able to subscribe to events occurring in Shopware. Whenever such an event occurs, a `POST` request will be sent to the specified URL.
 
-To use webhooks in your app, you need to implement a `<webhooks>` element in your manifest file, like this:
+To use webhooks in your app, you need to implement a `<webhooks>` element in your manifest file like this:
 
 {% code title="manifest.xml" %}
 
@@ -318,7 +314,7 @@ To use webhooks in your app, you need to implement a `<webhooks>` element in you
 
 {% endcode %}
 
-This example illustrates you how to define a webhook with the name `product-changed` and the url `https://example.com/event/product-changed` which will be triggered if the event `product.written` is fired. So every time a product is changed, your custom logic will get executed. Further down you will find a list of the most important events you can hook into.
+This example illustrates to you how to define a webhook with the name `product-changed` and the URL `https://example.com/event/product-changed`, which will be triggered if the event `product.written` is fired. So every time a product is changed, your custom logic will get executed. Further down, you will find a list of the most important events you can hook into.
 
 An event contains as much data as is needed to react to that event. The data is json contained in the request body. For example:
 
@@ -346,35 +342,35 @@ An event contains as much data as is needed to react to that event. The data is 
 }
 ```
 
-Where the `source` property contains all necessary information about the Shopware instance that send the request:
+Where the `source` property contains all necessary information about the Shopware instance that sends the request:
 
-* `url` is the url under which your app can reach the Shopware instance and its api
-* `appVersion` is the version of the app that is installed
-* `shopId` is the id by which you can identify the Shopware instance
-* `eventId` is a unique identifier of the event, this id will not change if sending of the webhook is retried, etc. **Since 6.4.11.0**.
+* `url` is the URL under which your app can reach the Shopware instance and its API.
+* `appVersion` is the version of the app that is installed.
+* `shopId` is the id by which you can identify the Shopware instance.
+* `eventId` is a unique identifier of the event. This id will not change if sending of the webhook is retried, etc. **Since 6.4.11.0**.
 
-The next property `data` contains the name of the event so that a single endpoint can handle several different events, should you desire. `data` also contains the event data in the `payload` property, due to the asynchronous nature of theses webhooks the `payload` for `entity.written` events does not contain complete entities as these might become outdated. Instead the entity in the payload is characterized by its id, stored under `primaryKey`, so that the app can fetch additional data through the shops API. This also has the advantage of giving the app explicit control over the associations that get fetched instead of relying on the associations determined by the event. Other events in contrast contain the entity data that defines the event, but keep in mind that event might not contain all associations.
+The next property, `data` contains the name of the event so that a single endpoint can handle several different events. `data` also contains the event data in the `payload` property. Due to the asynchronous nature of these webhooks, the `payload` for `entity.written` events does not contain complete entities as these might become outdated. Instead, the entity in the payload is characterized by its id, stored under `primaryKey`, so the app can fetch additional data through the shop API. This also has the advantage of giving the app explicit control over the associations that get fetched instead of relying on the associations determined by the event. Other events, in contrast, contain the entity data that defines the event but keep in mind that the event might not contain all associations.
 
-The next property `timestamp` is the time which the webhook was handled. This can be used to prevent replay attacks, as an attacker cannot change the timestamp without making the signature invalid. If the timestamp is too old, your app should reject the request. This property is only available from 6.4.1.0 onwards
+The next property, `timestamp` is the time at which the webhook was handled. This can be used to prevent replay attacks, as an attacker cannot change the timestamp without making the signature invalid. If the timestamp is too old, your app should reject the request. This property is only available from 6.4.1.0 onwards
 
 {% hint style="info" %}
 Starting from Shopware version 6.4.1.0, the current Shopware version will be sent as a `sw-version` header.
-Starting from Shopware version 6.4.5.0, the current language id of the shopware context will be sent as a  `sw-context-language` header , and the locale of the user or locale of the context language is available under the `sw-user-language` header.
+Starting from Shopware version 6.4.5.0, the current language id of the shopware context will be sent as a  `sw-context-language` header, and the locale of the user or locale of the context language is available under the `sw-user-language` header.
 {% endhint %}
 
-You can verify the authenticity of the incoming request by checking the `shopware-shop-signature` every request should have a sha256 hmac of the request body, that is signed with the secret your app assigned the shop during the [registration](app-base-guide.md#setup). The mechanism to verify the request is exactly the same as the one used for the [confirmation request](app-base-guide.md#confirmation-request).
+You can verify the authenticity of the incoming request by checking the `shopware-shop-signature` every request should have a sha256 hmac of the request body that is signed with the secret your app assigned the shop during the [registration](app-base-guide.md#setup). The mechanism to verify the request is exactly the same as the one used for the [confirmation request](app-base-guide.md#confirmation-request).
 
 You can use a variety of events to react to changes in Shopware that way. See that table [Webhook-Events-Reference](../../../resources/references/app-reference/webhook-events-reference.md) for an overview.
 
-### App Notification
+### App notification
 
-Starting from Shopware version 6.4.7.0, if you want to send notifications to the admin, to inform the user about some actions that happened on the app side, the app should send a POST request to the `api/notification` endpoint with a valid body and the header `Authorization` token.
+Starting from Shopware version 6.4.7.0, if you want to send notifications to the admin to inform the user about some actions that happened on the app side, the app should send a POST request to the `api/notification` endpoint with a valid body and the header `Authorization` token.
 Your app can request 10 times before being delayed by the system.
 
-After 10 attempts you need to wait 10 seconds before trying to make requests again.
+After 10 attempts, you need to wait 10 seconds before trying to make requests again.
 After 15 attempts it's 30 seconds.
 After 20 attempts it's 60 seconds.
-After 24 hours without a failed request the limit is reset.
+After 24 hours without a failed request, the limit is reset.
 
 Examples request body:
 You need to pass the `status` property, the content of the notification as `message` property and you can restrict users who can read the notification by passing `requiredPrivileges` property and `adminOnly` property inside the payload.
@@ -392,16 +388,16 @@ POST /api/notification
 
 ```
 
-* `status`: Notification status, one of `success`, `error`, `info`, `warning`
-* `message`: The content of the notification
-* `adminOnly`: Only admins can read this notification if this value is true
-* `requiredPrivileges`: The required privileges that users need to have to read the notification
+* `status`: Notification status, one of `success`, `error`, `info`, `warning`.
+* `message`: The content of the notification.
+* `adminOnly`: Only admins can read this notification if this value is true.
+* `requiredPrivileges`: The required privileges that users need to have to read the notification.
 
-Keep in mind that your app needs the `notification:create` permission to access this api.
+Remember that your app needs the `notification:create` permission to access this API.
 
-### **App lifecycle events**
+### App lifecycle events
 
-Apps can also register to lifecycle events of its own lifecycle, namely its installation, updates and deletion. For example they maybe used to delete user relevant data from your data stores once somebody removes your app from their shop.
+Apps can also register to lifecycle events of their own lifecycle, namely their installation, updates, and deletion. For example, they may be used to delete user relevant data from your data stores once somebody removes your app from their shop.
 
 | Event             | Description                              |
 |:------------------|:-----------------------------------------|
@@ -431,8 +427,8 @@ Example request body:
 
 #### App lifecycle events for app scripts
 
-Since Shopware 6.4.9.0 it is also possible to create [app scripts](./app-scripts/README.md), that are executed during the lifecycle of your app.
-You get access to the Database and can change or create some data e.g. when your app is activated, without the need of an external server.
+Since Shopware 6.4.9.0, it is also possible to create [App scripts](./app-scripts/README.md) that are executed during the lifecycle of your app.
+You get access to the database and can change or create some data, e.g., when your app is activated, without needing an external server.
 
 For a full list of the available hook points and the available services refer to the [reference documentation](../../../resources/references/app-reference/script-reference/script-hooks-reference.md#app-lifecycle).
 
@@ -460,34 +456,37 @@ bin/console app:validate MyExampleApp
 
 ## Handling the migration of shops
 
-In the real world it may happen that shops are migrated to new servers and are available under a new URL. In the same regard it is possible that a running production shop is duplicated and treated as a staging environment.
-These cases are challenging for app developers.
-In the first case you may have to make a request against the shop, but the URL you saved during the registration process may not be valid anymore and the shop cannot be reached over this URL.
-In the second case you may receive webhooks from both shops (prod & staging), that look like they came from the same shop (as the whole database was duplicated), thus it may corrupt the data associated with the original production shop.
-The main reason that this is problematic is that two Shopware installations in two different locations (on two different URLs) are associated to the same shopId, because the whole database was replicated.
+In the real world, it may happen that shops are migrated to new servers and are available under a new URL. In the same regard, it is possible that a running production shop is duplicated and treated as a staging environment.
+These cases are challenging for app developers. In the first case, you may have to make a request against the shop, but the URL you saved during the registration process may not be valid anymore, and the shop cannot be reached over this URL.
+In the second case, you may receive webhooks from both shops (prod & staging) that look like they came from the same shop (as the whole database was duplicated). Thus it may corrupt the data associated with the original production shop.
+The main reason that this is problematic is that two Shopware installations in two different locations (on two different URLs) are associated with the same shopId, because the whole database was replicated.
 
-That's why we implemented a safe-guard mechanism that detects such situations, stops the communication to the apps to prevent data corruption and then ultimately let's the user decide how to solve the situation.
-**Notice: This mechanism relies on the fact that the `APP_URL` environment variable will be set to the correct URL to the shop. Especially it is assumed that the environment variable will be changed, when a shop is migrated to a new domain, or a staging shop is created as a duplicate of a production shop.**
+That is why we implemented a safeguard mechanism that detects such situations, stops communication with the apps to prevent data corruption, and then ultimately lets the user decide how to solve the situation.
 
-Keep in mind that this is only relevant for apps that have their own backends and where communication between app backends and shopware is necessary. That's why simple themes are not affected by shop migrations, they will continue to work.
+{% hint style="info" %}
+This mechanism relies on the fact that the `APP_URL` environment variable will be set to the correct URL for the shop. It is especially assumed that the environment variable will be changed when a shop is migrated to a new domain or a staging shop is created as a duplicate of a production shop.
+{% endhint %}
+
+Remember that this is only relevant for apps that have their own backends and where communication between app backends and shopware is necessary. That is why simple themes are not affected by shop migrations, and they will continue to work.
 
 ### Detecting APP_URL changes
 
-Everytime a request should be made against an app backend, Shopware will check whether the current APP_URL differs from the one used when Shopware generated an ID for this shop.
-If the APP_URL differs Shopware will stop sending any requests to the installed apps to prevent data corruption on the side of the apps.
-Now the user has the possibility to resolve the solution, by using one of the following strategies.
-The user can either run a strategy with the `bin/console app:url-change:resolve` command, or with a modal that pops up when the administration is opened.
+Every time a request should be made against an app backend, Shopware will check whether the current APP_URL differs from the one used when Shopware generated an ID for this shop.
+If the APP_URL differs, Shopware will stop sending any requests to the installed apps to prevent data corruption on the side of the apps.
+Now the user has the possibility to resolve the solution by using one of the following strategies.
+The user can either run a strategy with the `bin/console app:url-change:resolve` command, or with a modal that pops up when the Administration is opened.
 
 ### APP_URL change resolver
 
-* **MoveShopPermanently**: This strategy should be used if the live production shop is migrated from one URL to another one.
-  This strategy will ultimately notify all apps about the change of the APP_URL and the apps continue working like before, including all the data the apps may already have associated with the given shop. It is important to notice that in this case the apps in the old installation on the old URL (if it is still running) will stop working!
-  Technically this is achieved by rerunning the registration process again for all apps. During the registration the same shopId is used like before, but now with a different shop-url and a different key pair used to communicate over the Shopware API. Also you **must** generate a new communication secret during this registration process, that is subsequently used for the communication between Shopware and the app backend.
-  This way it is ensured that the apps are notified about the new URL and the integration with the old installation stops working (because a new communication secret is associated with the given shop id, that the old installation does not know).
+* **MoveShopPermanently**: This strategy should be used if the live production shop is migrated from one URL to another one. This strategy will ultimately notify all apps about the change of the APP_URL and the apps will continue working like before, including all the data the apps may already have associated with the given shop. It is important to notice that in this case, the apps in the old installation on the old URL (if it is still running) will stop working.
 
-* **ReinstallApps**: This strategy makes sense to use in the case of the staging shop.
-  By running this strategy all installed apps will be reinstalled, this means that this installation will get a new shopId, that is used during registration.
-  Because the new installation will get a new shopId, the installed apps will continue working on the old installation as before, but as a consequence the data on the apps side that was associated with the old shopId can not be accessed on the new installation.
+Technically this is achieved by rerunning the registration process again for all apps. During the registration, the same shopId is used as before, but now with a different shop-url and a different key pair used to communicate over the Shopware API. Also, you must generate a new communication secret during this registration process that is subsequently used for the communication between Shopware and the app backend.
+
+This way, it is ensured that the apps are notified about the new URL and the integration with the old installation stops working (because a new communication secret is associated with the given shop id that the old installation does not know).
+
+* **ReinstallApps**: This strategy makes sense to use in the case of the staging shop. By running this strategy, all installed apps will be reinstalled. This means that this installation will get a new shopId, that is used during registration.
+
+As the new installation will get a new shopId, the installed apps will continue working on the old installation as before, but as a consequence, the data on the apps side that was associated with the old shopId can not be accessed on the new installation.
 
 * **UninstallApps**: This strategy will simply uninstall all apps on the new installation, thus keeping the old installation working like before.
 
@@ -516,7 +515,7 @@ The current Unix timestamp when the request was created
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="shop-url" type="string" required=true %}
-The URL of the shop, where the app was installed, can be used to access to the Shopware API
+The URL of the shop where the app was installed can be used to access to the Shopware API
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="shop-id" type="string" required=true %}

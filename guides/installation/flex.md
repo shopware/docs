@@ -31,7 +31,7 @@ This installs Shopware and creates a default sales channel with default admin cr
 
 The Symfony CLI is a developer tool that helps to build, run, and manage your Symfony applications directly from the terminal. The services will run in Docker containers and the application will run locally.
 
-* Requisites:
+* **Requisites**:
 
 1. Install [Symfony CLI](https://symfony.com/download), if you don't have one.
 
@@ -41,7 +41,7 @@ The Symfony CLI is a developer tool that helps to build, run, and manage your Sy
 
 {% tab title="Ubuntu based Linux" %}
 
-You need to add a new Software Repository to your system to have the latest PHP version.
+You need to add a new software repository to your system to have the latest PHP version.
 
 ```bash
 sudo add-apt-repository ppa:ondrej/php
@@ -53,7 +53,7 @@ sudo apt-get install -y php8.1-fpm php8.1-mysql php8.1-curl php8.1-gd php8.1-xml
 
 {% tab title="Debian based Linux" %}
 
-Add a new Software Repository to your system to have the latest PHP version
+Add a new software repository to your system to have the latest PHP version:
 
 ```bash
 curl https://packages.sury.org/php/README.txt | bash
@@ -100,9 +100,9 @@ composer req paas
 composer req fastly
 ```
 
-### Add Shopware Packagist
+### Add Shopware packagist
 
-Using Shopware Packagist you can manage all your Shopware Store plugins directly in the composer.json. Refer to ["Using composer for plugin installation in Shopware"](https://www.shopware.com/en/news/using-composer-for-plugin-installation-in-shopware/) blog post for detailed information.
+Using Shopware Packagist, you can manage all your Shopware Store plugins directly in the composer.json. Refer to ["Using composer for plugin installation in Shopware"](https://www.shopware.com/en/news/using-composer-for-plugin-installation-in-shopware/) blog post for detailed information.
 
 ## How to migrate from Production Template to Symfony Flex?
 
@@ -212,7 +212,7 @@ You may need to adjust some environment variables as the names are changed:
 
 ### 6. Optional: Install PaaS or Fastly support
 
-If you want to use the Shopware PaaS or Fastly, you need to install the following composer packages:
+If you want to use Shopware PaaS or Fastly, you need to install the following composer packages:
 
 ```bash
 # PaaS
@@ -226,7 +226,7 @@ composer req fastly
 
 Below are the two ways to update Shopware:
 
-* Initially run `bin/console system:update:prepare` to enable the maintenance mode and then update all composer packages using `composer update`.  However, to disable the maintenance mode, run `bin/console system:update:finish`.
+* Initially run `bin/console system:update:prepare` to enable the maintenance mode and then update all composer packages using `composer update`. However, to disable the maintenance mode, run `bin/console system:update:finish`.
 
 * To force update all config files, run `composer recipe:update`.
 
@@ -234,7 +234,7 @@ Below are the two ways to update Shopware:
 
 ### `APP_ENV=dev` web_profiler missing extension error
 
-Prior to Shopware 6.4.17.0 you have to install the Profiler bundle to get `APP_ENV=dev` working with:
+Prior to Shopware 6.4.17.0, you have to install the Profiler bundle to get `APP_ENV=dev` working with:
 
 ```bash
 composer req --dev profiler
@@ -242,7 +242,7 @@ composer req --dev profiler
 
 ### framework:demo-data is missing faker classes
 
-Prior to Shopware 6.4.17.0 you have to install some packages to get `framework:demo-data` command working:
+Prior to Shopware 6.4.17.0, you have to install some packages to get `framework:demo-data` command working:
 
 ```bash
 composer req --dev mbezhanov/faker-provider-collection maltyxx/images-generator

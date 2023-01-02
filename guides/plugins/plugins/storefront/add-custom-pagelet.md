@@ -1,14 +1,14 @@
-# Add custom pagelet
+# Add Custom Pagelet
 
 ## Overview
 
-In this guide you'll learn how to create custom pagelets for your Storefront pages.
+In this guide you will learn how to create custom pagelets for your Storefront pages.
 
 In short: Pages are exactly that, a fully functioning page of your store with a template loaded by a route. A pagelet is an important and reusable fraction of several pages, such as a footer or the navigation.
 
 ## Prerequisites
 
-In order to add your own custom pagelet for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md). Since a pagelet is just part of another page, we're going to use the page created in our guide about [adding a custom page](add-custom-page.md).
+In order to add your own custom pagelet for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md). Since a pagelet is just part of another page, we are going to use the page created in our guide about [adding a custom page](add-custom-page.md).
 
 ## Adding custom pagelet
 
@@ -148,7 +148,7 @@ Note the different `extends`, which uses the `PageletLoadedEvent` class instead.
 
 Most times you want to load your pagelet as part of another page. This is simply done by calling the `load` method of your pagelet in another page's `load` method.
 
-Using the example from our [adding a custom page guide](add-custom-page.md), this is what the `load` method could look like:
+Using the example from our [adding a custom page](add-custom-page.md) guide, this is what the `load` method could look like:
 
 {% code title="<plugin root>/src/Storefront/Page/Example/ExamplePageLoader.php" %}
 

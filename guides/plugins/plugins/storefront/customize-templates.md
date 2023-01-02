@@ -1,4 +1,4 @@
-# Customize templates
+# Customize Templates
 
 ## Overview
 
@@ -6,7 +6,7 @@ This guide will cover customizing Storefront templates with a plugin.
 
 ## Prerequisites
 
-As most guides, this guide is built upon the [plugin base guide](../plugin-base-guide.md), so you might want to have a look at it. Other than that, knowing [Twig](https://twig.symfony.com/) is a big advantage for this guide, but that's not necessary.
+As most guides, this guide is built upon the [Plugin base guide](../plugin-base-guide.md), so you might want to have a look at it. Other than that, knowing [Twig](https://twig.symfony.com/) is a big advantage for this guide, but that's not necessary.
 
 ## Getting started
 
@@ -110,9 +110,9 @@ Once again, the plugin called [FroshDevelopmentHelper](https://github.com/Friend
 
 ## Next steps
 
-You're able to customize templates now, which is a good start. However, there's a few more things you should definitely learn here:
+You are able to customize templates now, which is a good start. However, there are a few more things you should definitely learn here:
 
 * [Adding styles](add-custom-styling.md)
 * [Adding translations](add-translations.md)
-* [Using icons](customize-templates.md)
+* [Using icons](add-icons.md)
 * [Using custom assets](add-custom-assets.md)

@@ -12,7 +12,8 @@ relationship between the current price and one of the following entities:
 
 As Customer-specific Pricing is part of the Commercial plugin, it requires an existing Shopware 6 installation and the activated
 Shopware 6 Commercial plugin on top. This plugin Commercial plugin can be installed as per the familiar
-[install instructions](/guides/plugins/plugins/plugin-base-guide.md#install-your-plugin).
+[install instructions](../../../../guides/plugins/plugins/plugin-base-guide#install-your-plugin). In addition, the `Custom Prices` feature needs
+to be activated within the relevant merchant account.
 
 ## Working with the API route
 

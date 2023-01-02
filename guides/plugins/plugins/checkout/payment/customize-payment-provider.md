@@ -1,4 +1,4 @@
-# Customize payment provider
+# Customize Payment Provider
 
 ## Overview
 

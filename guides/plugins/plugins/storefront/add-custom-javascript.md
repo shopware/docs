@@ -1,4 +1,4 @@
-# Add custom Javascript
+# Add Custom Javascript
 
 ## Overview
 
@@ -10,7 +10,7 @@ You need for this guide a running plugin and therefore a running Shopware 6 inst
 
 ## Writing a JavaScript plugin
 
-Storefront JavaScript plugins are vanilla JavaScript ES6 classes that extend from our Plugin base class. For more background information on JavaScript classes, take a look [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes).
+Storefront JavaScript plugins are vanilla JavaScript ES6 classes that extend from our Plugin base class. For more information, refer to [JavaScript classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) section.
 
 The directory to create custom javascript plugins should be the following, which represents the same structure like the core: `<plugin root>/src/Resources/app/storefront/src/`
 

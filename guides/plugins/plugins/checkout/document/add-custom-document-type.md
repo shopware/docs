@@ -1,4 +1,4 @@
-# Add custom document type
+# Add Custom Document Type
 
 ## Overview
 

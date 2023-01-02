@@ -1,4 +1,4 @@
-# PHP unit testing
+# PHP Unit Testing
 
 ## Overview
 
@@ -14,7 +14,7 @@ Throughout this guide, you will find the `$` symbol representing your command li
 
 In order to create tests for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
 
-Furthermore, you should have a look at our [Execute database queries / migrations](../plugin-fundamentals/database-migrations.md) guide since this guide will show you how to create a migration test for these example.
+Furthermore, you should have a look at our [Execute database queries/migrations](../plugin-fundamentals/database-migrations.md) guide since this guide will show you how to create a migration test for these example.
 
 ## PHPUnit configuration
 

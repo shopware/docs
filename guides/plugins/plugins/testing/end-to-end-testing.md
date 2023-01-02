@@ -1,4 +1,4 @@
-# End-to-end testing
+# End-to-End Testing
 
 ## Overview
 
@@ -38,7 +38,7 @@ Please have a look on our [cypress.json](https://github.com/shopware/e2e-testsui
 
 When you use our [Development template](https://github.com/shopware/development), we provide you some tooling scripts located in `dev-ops/e2e/actions`, to use E2E tests more comfortably.
 
-The`./psh.phar` commands to run our E2E tests in CLI or in Cypress' test runner are explained in the paragraph [Executing e2e tests](end-to-end-testing.md#Executing%20E2E%20tests).
+The`./psh.phar` commands to run our E2E tests in CLI or in Cypress' test runner are explained in the paragraph [Executing e2e tests](end-to-end-testing.md#executing-e2e-tests).
 
 {% tabs %}
 {% tab title="Plugin setup" %}
@@ -57,7 +57,7 @@ Resources
             `-- support
 ```
 
-We will cover the use of every folder in detail in our guide [Writing E2E tests](end-to-end-testing.md#Writing-End-to-End-Tests).
+We will cover the use of every folder in detail.
 
 Within the folder `Resources/app/<environment>/test/e2e`, please run `npm init -y` to generate a `package.json` file. It is very convenient to place a script inside the newly created `package.json` to run the tests locally. Please add the following section to do so:
 
@@ -257,7 +257,7 @@ These two configuration files are important to mention as well:
 
   [Cypress configuration docs](https://docs.cypress.io/guides/references/configuration.html).
 
-If you need to use this structure in a plugin, it is just the path to the `e2e` folder, which is slightly different. You can find the folder structure in the paragraph [Setup](end-to-end-testing.md#Plugin%20setup).
+If you need to use this structure in a plugin, it is just the path to the `e2e` folder, which is slightly different. You can find the folder structure in the paragraph [Setup](end-to-end-testing.md#setup-steps).
 
 If you want to contribute to Shopware platform's tests, please ensure to place your test in one of those folders:
 

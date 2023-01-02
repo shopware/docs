@@ -1,1 +1,1 @@
-# Plugin fundamentals
+# Plugin Fundamentals

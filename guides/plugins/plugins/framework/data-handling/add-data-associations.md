@@ -1,8 +1,8 @@
-# Adding data associations
+# Adding Data Associations
 
 ## Overview
 
-In this guide you'll learn how to add associations to your entities. Every possible kind of association will be covered here, so "One to One", "Many to One" or "One to Many" respectively, and "Many to many" associations.
+In this guide you will learn how to add associations to your entities. Every possible kind of association will be covered here, so "One to One", "Many to One" or "One to Many" respectively, and "Many to many" associations.
 
 In every example we'll be working with two example entities, that we want to connect with an association: `FooEntity` and `BarEntity`.
 

@@ -1,4 +1,4 @@
-# Theme inheritance configuration
+# Theme Inheritance Configuration
 
 {% hint style="info" %}
 The `configInheritance` is available from Shopware Version 6.4.8.0
