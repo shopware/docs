@@ -159,6 +159,10 @@ zend.detect_unicode=0
 realpath_cache_ttl=3600
 ```
 
+{% hint style="info" %}
+The web updater is not compatible with opcache, as updates require an opcache clear.
+{% endhint %}
+
 Also, PHP PCRE Jit Target should be enabled. This can be checked using `php -i | grep 'PCRE JIT Target'` or looking into the *phpinfo* page.
 
 For an additional 2-5% performance improvement, it is possible to provide a preload file to opcache. Preload also brings a lot of drawbacks:
