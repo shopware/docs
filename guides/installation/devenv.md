@@ -220,6 +220,19 @@ direnv allow
 <!-- markdown-link-check-disable-next-line -->
 {% embed url="https://devenv.sh/automatic-shell-activation/" caption="Automatic Shell Activation - devenv.sh" %}
 
+## Default services
+
+Here's an overview of services Shopware provides by default and how you can access them:
+
+| Service          | Access                                         |
+|------------------|------------------------------------------------|
+| MySQL            | `mysql://shopware:shopware@127.0.0.1:3306`     |
+| Caddy            | [http://localhost:8000](http://localhost:8000) |
+| Adminer          | [http://localhost:9080](http://localhost:9080) |
+| Mailhog (SMTP)   | `smtp://127.0.0.1:1025`                        |
+| Mailhog (Web UI) | [http://localhost:8025](http://localhost:8025) |
+
+
 ## Customize your setup
 
 To customize the predefined services to match your needs, e.g. changing the virtual host, database name or environment variables, you can create `devenv.local.nix` to override the service definitions.
@@ -285,6 +298,7 @@ Refer to the official devenv documentation to get a complete list of all availab
     extensions = { all, enabled }: with all; enabled ++ [ amqp redis blackfire grpc xdebug ];
     extraConfig = ''
       # Copy the config from devenv.nix and append the XDebug config
+      # [...]
       xdebug.mode=debug
       xdebug.discover_client_host=1
       xdebug.client_host=127.0.0.1
@@ -312,3 +326,19 @@ This is a known issue and the devenv developers are working on a solution.
 
 <!-- markdown-link-check-disable-next-line -->
 {% embed url="https://github.com/cachix/devenv/issues/257" caption="Devenv slows down with big code repositories #257" %}
+
+## FAQ
+
+### How do I clean up devenv?
+
+Periodically run `devenv gc` to remove orphaned services and free up disk space.
+
+### How do I access the database?
+
+The MySQL service is exposed under its default port `3306`, see [Default services](#default-services).
+
+Be aware that you cannot connect using the `localhost` socket, you must use `127.0.0.1` instead.
+
+### Where do I find available packages?
+
+The [NixOS package search](https://search.nixos.org/packages) is a good starting point.
