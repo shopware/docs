@@ -4,12 +4,14 @@ Imagine [devenv](https://devenv.sh) to function as a dependency manager for the 
 
 Similar to other package managers, devenv lets you describe what your environment should look like and locks dependencies to a specific version to help you compose a reproducible setup.
 
-devenv not only lets you choose from and install different versions of binaries (e.g. PHP, Node, npm), it also allows you to configure and run services (like MySQL, Redis, OpenSearch).
+Devenv not only lets you choose from and install different versions of binaries (e.g. PHP, Node, npm), it also allows you to configure and run services (like MySQL, Redis, OpenSearch).
 The binaries and states of the services are stored on a per-project level.
 
 The main difference to other tools like Docker or a VM is that it is neither using a containerization nor virtualization technique - the services are running natively on your machine.
 
 ## Installation
+
+### Nix
 
 As devenv is built on top of Nix, you need to install it first:
 
@@ -39,15 +41,22 @@ docker run -it nixos/nix
 {% endtab %}
 {% endtabs %}
 
+### Cachix
+
 Next, install [Cachix](https://www.cachix.org/) to speed up the installation:
 
 ```shell
 nix-env -iA cachix -f https://cachix.org/api/v1/install
+```
+
+Before installing devenv, instruct Cachix to use the devenv cache:
+
+```shell
 cachix use devenv
 ```
 
 {% hint style="info" %}
-When running `cachix use` for the first time, you will see a warning that your user is not in trusted-users.
+When running `cachix use ...` for the first time, you will see a warning that your user is not in trusted-users.
 
 ```bash
 This user doesn't have permissions to configure binary caches.
@@ -61,6 +70,8 @@ When faced with this message, you can run
 echo "trusted-users = root ${USER}" | sudo tee -a /etc/nix/nix.conf && sudo pkill nix-daemon
 ```
 {% endhint %}
+
+### Devenv
 
 Finally, install devenv:
 
@@ -104,9 +115,6 @@ It also allows you to add and configure additional services you might require fo
 { pkgs, config, lib, ... }:
 
 {
-  # Install XDebug
-  # TODO @Soner :-D
-
   # Disable a service
   services.adminer.enable = lib.mkForce false;
   
@@ -136,7 +144,7 @@ Refer to the offical devenv documentation to get a complete list of all availabl
 {% code title="<PROJECT_ROOT>/devenv.local.nix" %}
 
 ```nix
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 
 {
   services.blackfire.enable = true;
@@ -149,6 +157,8 @@ Refer to the offical devenv documentation to get a complete list of all availabl
 
 {% endcode %}
 
+### Enable XDebug
+
 ## Automatic Shell Activation
 
 If you wish to seamlessly switch between multiple development environments which use devenv we recommend to install [direnv](https://direnv.net/).
@@ -159,7 +169,6 @@ This means that you can use the binaries and services without having to run `dev
 First, install direnv:
 
 {% tabs %}
-
 {% tab title="macOS" %}
 The preferred way to install direnv on macOS is using Homebrew:
 
@@ -180,7 +189,6 @@ The installation guides for other operating systems are available in the officia
 <!-- markdown-link-check-disable-next-line -->
 {% embed url="https://direnv.net/docs/installation.html" caption="Installation - direnv.net" %}
 {% endtab %}
-
 {% endtabs %}
 
 Afterwards, add the following hook to your shell:
@@ -188,7 +196,6 @@ Afterwards, add the following hook to your shell:
 {% tabs %}
 
 {% tab title="Bash" %}
-
 {% code title="~/.bashrc" %}
 
 ```bash
@@ -196,6 +203,7 @@ eval "$(direnv hook bash)"
 ```
 
 {% endcode %}
+{% endtab %}
 
 {% tab title="Zsh" %}
 {% code title="~/.zshrc" %}
