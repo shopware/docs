@@ -129,10 +129,7 @@ apt install direnv
 {% endtab %}
 
 {% tab title="Other" %}
-The installation guides for other operating systems are available in the official documentation of `direnv`:
-
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://direnv.net/docs/installation.html" caption="Installation - direnv.net" %}
+The installation instructions for other OS are available on direnv's [official documentation](https://direnv.net/docs/hook.html).
 {% endtab %}
 {% endtabs %}
 
