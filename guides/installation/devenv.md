@@ -300,3 +300,21 @@ It will generate a basic `devenv.nix` to work with Shopware.
 ### Contribution
 
 In Platform repository the [`devenv.nix`](https://gitlab.shopware.com/shopware/6/product/platform/-/blob/trunk/devenv.nix) file is responsible for devenv support
+
+## Known issues
+
+### Manually reloading direnv
+
+If you decided against using direnv, keep in mind that on every change to the `*.nix` files you need to manually reload the environment:
+
+```shell
+direnv reload
+```
+
+### Direnv slow in big projects
+
+The bigger your project directory is getting over time (e.g. cache files piling up), the slower direnv will be.
+This is a known issue and the direnv developers are working on a solution.
+
+<!-- markdown-link-check-disable-next-line -->
+{% embed url="https://github.com/cachix/devenv/issues/257" caption="Devenv slows down with big code repositories #257" %}
