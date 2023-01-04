@@ -95,16 +95,32 @@ echo '{ allowUnfree = true; }' > ~/.config/nixpkgs/config.nix
 
 You can find the whole installation guide for devenv in their official documentation:
 
-<!-- markdown-link-check-disable-next-line -->
+<!-- markdown-link-check-disable-next-line -->w
 {% embed url="https://devenv.sh/getting-started/" caption="Getting started - devenv.sh" %}
 
 ### Shopware
 
-Now, clone [shopware/platform](https://github.com/shopware/platform) and change into the project directory:
+Depending on whether you want to set up a fresh Shopware project or contribute to the Shopware core, choose 
+
+{% tabs %}
+{% tab title="Symfony Flex" %}
+If you are already using Symfony Flex, you can require a Composer package to get a basic devenv configuration:
+
+```bash
+composer require devenv
+```
+
+This will create a basic `devenv.nix` file to enable devenv support for Shopware.
+{% endtab %}
+
+{% tab title="shopware/platform (Contribute)" %}
+Clone [shopware/platform](https://github.com/shopware/platform) and change into the project directory:
 
 ```shell
 git clone git@github.com:shopware/platform.git
 ```
+{% endtab %}
+{% endtabs %}
 
 Since the environment is described via a `devenv.nix` file committed to version control, you can now boot up the environment: 
 
@@ -216,7 +232,7 @@ It also allows you to add and configure additional services you might require fo
 
 {
   # Disable a service
-  services.adminer.enable = lib.mkForce false;
+  services.adminer.enable = false;
   
   # Use a custom virtual host
   services.caddy.virtualHosts."http://shopware.swag" = {
@@ -228,7 +244,7 @@ It also allows you to add and configure additional services you might require fo
   };
   
   # Override an environment variable
-  env.APP_URL = lib.mkForce "http://shopware.swag";
+  env.APP_URL = "http://shopware.swag";
 }
 ```
 
@@ -276,7 +292,15 @@ Adjust your local devenv file as follows:
 { pkgs, config, lib, ... }:
 
 {
-  // TODO How to enable XDebug?
+  languages.php.package = pkgs.php.buildEnv {
+    extensions = { all, enabled }: with all; enabled ++ [ amqp redis blackfire grpc xdebug ];
+    extraConfig = ''
+      # Copy the config from devenv.nix and append the XDebug config
+      xdebug.mode=debug
+      xdebug.discover_client_host=1
+      xdebug.client_host=127.0.0.1
+    '';
+  };
 }
 ```
 
@@ -288,18 +312,6 @@ devenv up
 ```
 
 {% endcode %}
-
-## Template
-
-### Shopware Project
-
-If you are already using Symfony Flex, you can require a basic devenv configuration with `composer require devenv`.
-
-It will generate a basic `devenv.nix` to work with Shopware.
-
-### Contribution
-
-In Platform repository the [`devenv.nix`](https://gitlab.shopware.com/shopware/6/product/platform/-/blob/trunk/devenv.nix) file is responsible for devenv support
 
 ## Known issues
 
@@ -314,7 +326,7 @@ direnv reload
 ### Direnv slow in big projects
 
 The bigger your project directory is getting over time (e.g. cache files piling up), the slower direnv will be.
-This is a known issue and the direnv developers are working on a solution.
+This is a known issue and the devenv developers are working on a solution.
 
 <!-- markdown-link-check-disable-next-line -->
 {% embed url="https://github.com/cachix/devenv/issues/257" caption="Devenv slows down with big code repositories #257" %}
