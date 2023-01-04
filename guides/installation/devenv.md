@@ -93,16 +93,34 @@ mkdir -p ~/.config/nixpkgs
 echo '{ allowUnfree = true; }' > ~/.config/nixpkgs/config.nix
 ```
 
-Now, clone [shopware/platform](https://github.com/shopware/platform) and change into the project directory to start up your environment:
+You can find the whole installation guide for devenv in their official documentation:
+
+<!-- markdown-link-check-disable-next-line -->
+{% embed url="https://devenv.sh/getting-started/" caption="Getting started - devenv.sh" %}
+
+### Shopware
+
+Now, clone [shopware/platform](https://github.com/shopware/platform) and change into the project directory:
+
+```shell
+git clone git@github.com:shopware/platform.git
+```
+
+Since the environment is described via a `devenv.nix` file committed to version control, you can now boot up the environment: 
 
 ```shell
 devenv up
 ```
 
-You can find the installation guide for devenv in their official documentation:
+{% hint style="info" %}
+Make sure that the ports required for the services are not already in use or the command will fail. 
+{% endhint %}
 
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://devenv.sh/getting-started/" caption="Getting started - devenv.sh" %}
+Still inside the project directory, run the following command to initialize Shopware:
+
+```shell
+composer setup
+```
 
 ### Direnv
 
