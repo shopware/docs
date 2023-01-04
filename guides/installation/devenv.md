@@ -75,7 +75,7 @@ You can either:
 
 When faced with this message, you can run
 
-```
+```shell
 echo "trusted-users = root ${USER}" | sudo tee -a /etc/nix/nix.conf && sudo pkill nix-daemon
 ```
 
@@ -91,7 +91,7 @@ nix-env -if https://github.com/cachix/devenv/tarball/v0.5
 
 Before booting up your development environment, configure Cachix to use Shopware's cache:
 
-```
+```shell
 cachix use shopware
 ```
 
@@ -110,7 +110,7 @@ You can find the whole installation guide for devenv in their official documenta
 
 ### Shopware
 
-Depending on whether you want to set up a fresh Shopware project or contribute to the Shopware core, choose between: 
+Depending on whether you want to set up a fresh Shopware project or contribute to the Shopware core, choose between:
 
 {% tabs %}
 {% tab title="Symfony Flex" %}
@@ -129,17 +129,18 @@ Clone [shopware/platform](https://github.com/shopware/platform) and change into 
 ```shell
 git clone git@github.com:shopware/platform.git
 ```
+
 {% endtab %}
 {% endtabs %}
 
-Since the environment is described via a `devenv.nix` file committed to version control, you can now boot up the environment: 
+Since the environment is described via a `devenv.nix` file committed to version control, you can now boot up the environment:
 
 ```shell
 devenv up
 ```
 
 {% hint style="info" %}
-Make sure that the ports for the services are not already in use or the command will fail. 
+Make sure that the ports for the services are not already in use or the command will fail.
 {% endhint %}
 
 Ensure to change your `.env` file to have the database connect using localhost's IP address instead of the default MySQL socket:
@@ -250,7 +251,6 @@ Here's an overview of services Shopware provides by default and how you can acce
 | Adminer          | [http://localhost:9080](http://localhost:9080) |
 | Mailhog (SMTP)   | `smtp://127.0.0.1:1025`                        |
 | Mailhog (Web UI) | [http://localhost:8025](http://localhost:8025) |
-
 
 ## Customize your setup
 
@@ -368,6 +368,6 @@ The [NixOS package search](https://search.nixos.org/packages) is a good starting
 
 ### Where do I find the binaries?
 
-The binaries can be found in the `<PROJECT_ROOT>/.devenv/bin` directory.
+The binaries can be found in the `<PROJECT_ROOT>/.devenv/profile/bin` directory.
 
 This comes in handy if you want to configure interpreters in your IDE.
