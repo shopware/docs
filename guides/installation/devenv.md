@@ -104,62 +104,7 @@ You can find the installation guide for devenv in their official documentation:
 <!-- markdown-link-check-disable-next-line -->
 {% embed url="https://devenv.sh/getting-started/" caption="Getting started - devenv.sh" %}
 
-## Customize your setup
-
-To customize the predefined services to match your needs, e.g. changing the virtual host, database name or environment variables, you can create `devenv.local.nix` to override the service definitions.
-It also allows you to add and configure additional services you might require for your local development.
-
-{% code title="<PROJECT_ROOT>/devenv.local.nix" %}
-
-```nix
-{ pkgs, config, lib, ... }:
-
-{
-  # Disable a service
-  services.adminer.enable = lib.mkForce false;
-  
-  # Use a custom virtual host
-  services.caddy.virtualHosts."http://shopware.swag" = {
-    extraConfig = ''
-      root * public
-      php_fastcgi unix/${config.languages.php.fpm.pools.web.socket}
-      file_server
-    '';
-  };
-  
-  # Override an environment variable
-  env.APP_URL = lib.mkForce "http://shopware.swag";
-}
-```
-
-{% endcode %}
-
-Refer to the offical devenv documentation to get a complete list of all available services and their configuration possibilites:
-
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://devenv.sh/reference/options/" caption="devenv.nix Reference - devenv.sh" %}
-
-### Enable Blackfire
-
-{% code title="<PROJECT_ROOT>/devenv.local.nix" %}
-
-```nix
-{ pkgs, config, lib, ... }:
-
-{
-  services.blackfire.enable = true;
-  services.blackfire.server-id = "<SERVER_ID>";
-  services.blackfire.server-token = "<SERVER_TOKEN>";
-  services.blackfire.client-id = "<CLIENT_ID>";
-  services.blackfire.client-token = "<CLIENT_TOKEN>";
-}
-```
-
-{% endcode %}
-
-### Enable XDebug
-
-## Automatic Shell Activation
+### Direnv
 
 If you wish to seamlessly switch between multiple development environments which use devenv we recommend to install [direnv](https://direnv.net/).
 
@@ -222,14 +167,80 @@ eval "$(direnv hook zsh)"
 {% endtab %}
 
 {% tab title="Other" %}
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://direnv.net/docs/hook.html" caption="Setup - direnv.net" %}
+TODO: https://direnv.net/docs/hook.html
 {% endtab %}
 
 {% endtabs %}
 
 <!-- markdown-link-check-disable-next-line -->
 {% embed url="https://devenv.sh/automatic-shell-activation/" caption="Automatic Shell Activation - devenv.sh" %}
+
+## Customize your setup
+
+To customize the predefined services to match your needs, e.g. changing the virtual host, database name or environment variables, you can create `devenv.local.nix` to override the service definitions.
+It also allows you to add and configure additional services you might require for your local development.
+
+{% code title="<PROJECT_ROOT>/devenv.local.nix" %}
+
+```nix
+{ pkgs, config, lib, ... }:
+
+{
+  # Disable a service
+  services.adminer.enable = lib.mkForce false;
+  
+  # Use a custom virtual host
+  services.caddy.virtualHosts."http://shopware.swag" = {
+    extraConfig = ''
+      root * public
+      php_fastcgi unix/${config.languages.php.fpm.pools.web.socket}
+      file_server
+    '';
+  };
+  
+  # Override an environment variable
+  env.APP_URL = lib.mkForce "http://shopware.swag";
+}
+```
+
+{% endcode %}
+
+Refer to the offical devenv documentation to get a complete list of all available services and their configuration possibilites:
+
+<!-- markdown-link-check-disable-next-line -->
+{% embed url="https://devenv.sh/reference/options/" caption="devenv.nix Reference - devenv.sh" %}
+
+### Enable Blackfire
+
+{% code title="<PROJECT_ROOT>/devenv.local.nix" %}
+
+```nix
+{ pkgs, config, lib, ... }:
+
+{
+  services.blackfire.enable = true;
+  services.blackfire.server-id = "<SERVER_ID>";
+  services.blackfire.server-token = "<SERVER_TOKEN>";
+  services.blackfire.client-id = "<CLIENT_ID>";
+  services.blackfire.client-token = "<CLIENT_TOKEN>";
+}
+```
+
+{% endcode %}
+
+### Enable XDebug
+
+{% code title="<PROJECT_ROOT>/devenv.local.nix" %}
+
+```nix
+{ pkgs, config, lib, ... }:
+
+{
+  // TODO How to enable XDebug?
+}
+```
+
+{% endcode %}
 
 ## Template
 
