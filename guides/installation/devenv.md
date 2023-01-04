@@ -163,30 +163,24 @@ First, install direnv:
 {% tabs %}
 
 {% tab title="macOS" %}
-
 The preferred way to install direnv on macOS is using Homebrew:
 
 ```bash
 brew install direnv
 ```
-
 {% endtab %}
 
 {% tab title="Ubuntu" %}
-
 ```bash
 apt install direnv
 ```
-
 {% endtab %}
 
 {% tab title="Other" %}
-
 The installation guides for other operating systems are available in the official documentation of `direnv`:
 
 <!-- markdown-link-check-disable-next-line -->
 {% embed url="https://direnv.net/docs/installation.html" caption="Installation - direnv.net" %}
-
 {% endtab %}
 
 {% endtabs %}
@@ -206,34 +200,24 @@ eval "$(direnv hook bash)"
 {% endcode %}
 
 {% tab title="Zsh" %}
-
 {% code title="~/.zshrc" %}
-
 ```bash
 eval "$(direnv hook zsh)"
 ```
-
 {% endcode %}
-
 {% endtab %}
 
 {% tab title="Fish" %}
-
 {% code title="~/.config/fish/config.fish" %}
-
 ```bash
 >direnv hook fish | source
 ```
-
 {% endcode %}
-
 {% endtab %}
 
 {% tab title="Other" %}
-
 <!-- markdown-link-check-disable-next-line -->
 {% embed url="https://direnv.net/docs/hook.html" caption="Setup - direnv.net" %}
-
 {% endtab %}
 
 {% endtabs %}
