@@ -85,6 +85,9 @@ Refer to the offical devenv documentation to get a complete list of all availabl
 
 If you wish to seamlessly switch between multiple development environments which use devenv we recommend to install [direnv](https://direnv.net/).
 
+When you enter a project directory using devenv, direnv will automatically activate the environment for you.
+This means that you can use the binaries and services without having to run `devenv up` manually.
+
 First, install direnv:
 
 {% tabs %}
