@@ -36,6 +36,13 @@ echo "trusted-users = root ${USER}" | sudo tee -a /etc/nix/nix.conf && sudo pkil
 
 {% endinfo %}
 
+Platform uses unfree software by default like Blackfire. To able to use unfree software, you have to allow that.
+
+```bash
+mkdir -p ~/.config/nixpkgs
+echo '{ allowUnfree = true; }' > ~/.config/nixpkgs/config.nix
+```
+
 ## Customize your setup
 
 To customize the predefined services to match your needs, e.g. changing the virtual host, database name or environment variables, you can create `devenv.local.nix` to override the service definitions. It also allows you to add and configure further services you might require for your local development.
