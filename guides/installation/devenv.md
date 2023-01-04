@@ -1,4 +1,4 @@
-## What is devenv?
+# What is devenv?
 
 Imagine [devenv](https://devenv.sh) to function as a dependency manager for the services and packages that you need to run your application for local development or even in a CI/CD context.
 
@@ -14,7 +14,6 @@ The main difference to other tools like Docker or a VM is that it is neither usi
 As devenv is built on top of Nix, you need to install it first:
 
 {% tabs %}
-
 {% tab title="macOS" %}
 ```shell
 sh <(curl -L https://nixos.org/nix/install)
@@ -38,7 +37,6 @@ sh <(curl -L https://nixos.org/nix/install) --no-daemon
 docker run -it nixos/nix
 ```
 {% endtab %}
-
 {% endtabs %}
 
 Next, install [Cachix](https://www.cachix.org/) to speed up the installation:
@@ -48,7 +46,7 @@ nix-env -iA cachix -f https://cachix.org/api/v1/install
 cachix use devenv
 ```
 
-{% info %}
+{% hint style="info" %}
 When running `cachix use` for the first time, you will see a warning that your user is not in trusted-users.
 
 ```bash
@@ -62,7 +60,7 @@ When faced with this message, you can run
 ```
 echo "trusted-users = root ${USER}" | sudo tee -a /etc/nix/nix.conf && sudo pkill nix-daemon
 ```
-{% endinfo %}
+{% endhint %}
 
 Finally, install devenv:
 
