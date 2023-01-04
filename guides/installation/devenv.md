@@ -1,6 +1,4 @@
-# devenv
-
-## What is devenv? (Freddy's apprach)
+## What is devenv?
 
 Imagine [devenv](https://devenv.sh) to function as a dependency manager for the services and packages that you need to run your application for local development or even in a CI/CD context.
 
@@ -9,13 +7,6 @@ Similar to other package managers, devenv lets you describe what your environmen
 devenv not only let's you choose from and install different versions of binaries (e.g. PHP, Node, npm), it also allows you to configure and run services (like MySQL, Redis, OpenSearch). The binaries and states of the services are stored on a per-project level.
 
 The main difference to other tools like Docker or a VM is that it is neither using a containerization or virtualization technique - the services are running natively on your machine.
-
-## What is devenv?
-
-[devenv](https://devenv.sh) allows you to describe in the Nix language how your project setup must be configured like in Unix-based systems (WSL2, Mac, Linux) for amd64/arm64 architectures. As you may know, no project has the same dependencies, for instance: one needs NodeJS 16, and the other NodeJS 18.
-
-For the reasons stated above, there are already solutions like NVM (node version manager) where you can pin a desired node version using a `.nvmrc` file. This works, of course, only for Node but there are similar tools for any language. `devenv`, however, allows you to pin any package and also provides support for services.
-
 
 ## Installation
 
