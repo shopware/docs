@@ -17,27 +17,35 @@ As devenv is built on top of Nix, you need to install it first:
 
 {% tabs %}
 {% tab title="macOS" %}
+
 ```shell
 sh <(curl -L https://nixos.org/nix/install)
 ```
+
 {% endtab %}
 
 {% tab title="Linux" %}
+
 ```shell
 sh <(curl -L https://nixos.org/nix/install) --daemon
 ```
+
 {% endtab %}
 
 {% tab title="Windows (WSL2)" %}
+
 ```shell
 sh <(curl -L https://nixos.org/nix/install) --no-daemon
 ```
+
 {% endtab %}
 
 {% tab title="Docker" %}
+
 ```shell
 docker run -it nixos/nix
 ```
+
 {% endtab %}
 {% endtabs %}
 
@@ -66,9 +74,11 @@ You can either:
 ```
 
 When faced with this message, you can run
+
 ```
 echo "trusted-users = root ${USER}" | sudo tee -a /etc/nix/nix.conf && sudo pkill nix-daemon
 ```
+
 {% endhint %}
 
 ### Devenv
@@ -95,7 +105,7 @@ echo '{ allowUnfree = true; }' > ~/.config/nixpkgs/config.nix
 
 You can find the whole installation guide for devenv in their official documentation:
 
-<!-- markdown-link-check-disable-next-line -->w
+<!-- markdown-link-check-disable-next-line -->
 {% embed url="https://devenv.sh/getting-started/" caption="Getting started - devenv.sh" %}
 
 ### Shopware
@@ -135,9 +145,11 @@ Make sure that the ports for the services are not already in use or the command 
 Ensure to change your `.env` file to have the database connect using localhost's IP address instead of the default MySQL socket:
 
 {% code title="<PROJECT_ROOT>/.env" %}
+
 ```dotenv
 DATABASE_URL="mysql://shopware:shopware@127.0.0.1:3306/shopware?sslmode=disable&charset=utf8mb4"
 ```
+
 {% endcode %}
 
 Still inside the project directory, run the following command to initialize Shopware:
@@ -162,12 +174,15 @@ The preferred way to install direnv on macOS is using Homebrew:
 ```bash
 brew install direnv
 ```
+
 {% endtab %}
 
 {% tab title="Ubuntu" %}
+
 ```bash
 apt install direnv
 ```
+
 {% endtab %}
 
 {% tab title="Other" %}
@@ -191,17 +206,21 @@ eval "$(direnv hook bash)"
 
 {% tab title="Zsh" %}
 {% code title="~/.zshrc" %}
+
 ```bash
 eval "$(direnv hook zsh)"
 ```
+
 {% endcode %}
 {% endtab %}
 
 {% tab title="Fish" %}
 {% code title="~/.config/fish/config.fish" %}
+
 ```bash
 >direnv hook fish | source
 ```
+
 {% endcode %}
 {% endtab %}
 
