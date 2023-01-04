@@ -100,7 +100,7 @@ You can find the whole installation guide for devenv in their official documenta
 
 ### Shopware
 
-Depending on whether you want to set up a fresh Shopware project or contribute to the Shopware core, choose 
+Depending on whether you want to set up a fresh Shopware project or contribute to the Shopware core, choose between: 
 
 {% tabs %}
 {% tab title="Symfony Flex" %}
@@ -134,7 +134,7 @@ Make sure that the ports for the services are not already in use or the command 
 
 Ensure to change your `.env` file to have the database connect using localhost's IP address instead of the default MySQL socket:
 
-{% code title=".env" %}
+{% code title="<PROJECT_ROOT>/.env" %}
 ```dotenv
 DATABASE_URL="mysql://shopware:shopware@127.0.0.1:3306/shopware?sslmode=disable&charset=utf8mb4"
 ```
@@ -257,8 +257,6 @@ Refer to the official devenv documentation to get a complete list of all availab
 
 ### Enable Blackfire
 
-Adjust your local devenv file as follows:
-
 {% code title="<PROJECT_ROOT>/devenv.local.nix" %}
 
 ```nix
@@ -273,18 +271,9 @@ Adjust your local devenv file as follows:
 }
 ```
 
-To activate the changes, run:
-
-```shell
-direnv reload
-devenv up
-```
-
 {% endcode %}
 
 ### Enable XDebug
-
-Adjust your local devenv file as follows:
 
 {% code title="<PROJECT_ROOT>/devenv.local.nix" %}
 
@@ -302,13 +291,6 @@ Adjust your local devenv file as follows:
     '';
   };
 }
-```
-
-To activate the changes, run:
-
-```shell
-direnv reload
-devenv up
 ```
 
 {% endcode %}
