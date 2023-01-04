@@ -167,7 +167,7 @@ eval "$(direnv hook zsh)"
 {% endtab %}
 
 {% tab title="Other" %}
-TODO: https://direnv.net/docs/hook.html
+The installation instructions for other OS are available on direnv's [official documentation](https://direnv.net/docs/hook.html).
 {% endtab %}
 
 {% endtabs %}
@@ -205,7 +205,7 @@ It also allows you to add and configure additional services you might require fo
 
 {% endcode %}
 
-Refer to the offical devenv documentation to get a complete list of all available services and their configuration possibilites:
+Refer to the official devenv documentation to get a complete list of all available services and their configuration possibilities:
 
 <!-- markdown-link-check-disable-next-line -->
 {% embed url="https://devenv.sh/reference/options/" caption="devenv.nix Reference - devenv.sh" %}
