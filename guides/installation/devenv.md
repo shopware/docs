@@ -113,7 +113,7 @@ devenv up
 ```
 
 {% hint style="info" %}
-Make sure that the ports required for the services are not already in use or the command will fail. 
+Make sure that the ports for the services are not already in use or the command will fail. 
 {% endhint %}
 
 Still inside the project directory, run the following command to initialize Shopware:
@@ -187,6 +187,12 @@ The installation instructions for other OS are available on direnv's [official d
 
 {% endtabs %}
 
+After you change into a project directory using devenv for the first time, you need to allow direnv to load the environment:
+
+```bash
+direnv allow
+```
+
 <!-- markdown-link-check-disable-next-line -->
 {% embed url="https://devenv.sh/automatic-shell-activation/" caption="Automatic Shell Activation - devenv.sh" %}
 
@@ -227,6 +233,8 @@ Refer to the official devenv documentation to get a complete list of all availab
 
 ### Enable Blackfire
 
+Adjust your local devenv file as follows:
+
 {% code title="<PROJECT_ROOT>/devenv.local.nix" %}
 
 ```nix
@@ -241,9 +249,18 @@ Refer to the official devenv documentation to get a complete list of all availab
 }
 ```
 
+To activate the changes, run:
+
+```shell
+direnv reload
+devenv up
+```
+
 {% endcode %}
 
 ### Enable XDebug
+
+Adjust your local devenv file as follows:
 
 {% code title="<PROJECT_ROOT>/devenv.local.nix" %}
 
@@ -253,6 +270,13 @@ Refer to the official devenv documentation to get a complete list of all availab
 {
   // TODO How to enable XDebug?
 }
+```
+
+To activate the changes, run:
+
+```shell
+direnv reload
+devenv up
 ```
 
 {% endcode %}
