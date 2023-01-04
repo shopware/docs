@@ -331,7 +331,7 @@ This is a known issue and the devenv developers are working on a solution.
 
 ### How do I clean up devenv?
 
-Periodically run `devenv gc` to remove orphaned services and free up disk space.
+Periodically run `devenv gc` to remove orphaned services, packages and processes and free up disk space.
 
 ### How do I access the database?
 
@@ -339,6 +339,16 @@ The MySQL service is exposed under its default port `3306`, see [Default service
 
 Be aware that you cannot connect using the `localhost` socket, you must use `127.0.0.1` instead.
 
+### Where is the database stored?
+
+The database is stored in the `<PROJECT_ROOT>/.devenv/state/mysql` directory.
+
 ### Where do I find available packages?
 
 The [NixOS package search](https://search.nixos.org/packages) is a good starting point.
+
+### Where do I find the binaries?
+
+The binaries can be found in the `<PROJECT_ROOT>/.devenv/bin` directory.
+
+This comes in handy if you want to configure interpreters in your IDE.
