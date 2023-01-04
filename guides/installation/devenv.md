@@ -11,17 +11,45 @@ The main difference to other tools like Docker or a VM is that it is neither usi
 
 ## Installation
 
-You can follow the installation instructions on the [Devenv website](https://devenv.sh/getting-started/).
-It is highly recommended to use [`Cachix`](https://docs.cachix.org/installation) and [`direnv`](https://direnv.net/).
+As devenv is built on top of Nix, you need to install it first:
 
-For Shopware there is a "Cachix cache", which can be applied using:
+{% tabs %}
+
+{% tab title="macOS" %}
+```shell
+sh <(curl -L https://nixos.org/nix/install)
+```
+{% endtab %}
+
+{% tab title="Linux" %}
+```shell
+sh <(curl -L https://nixos.org/nix/install) --daemon
+```
+{% endtab %}
+
+{% tab title="Windows (WSL2)" %}
+```shell
+sh <(curl -L https://nixos.org/nix/install) --no-daemon
+```
+{% endtab %}
+
+{% tab title="Docker" %}
+```shell
+docker run -it nixos/nix
+```
+{% endtab %}
+
+{% endtabs %}
+
+Next, install [Cachix](https://www.cachix.org/) to speed up the installation:
 
 ```shell
-cachix use shopware
+nix-env -iA cachix -f https://cachix.org/api/v1/install
+cachix use devenv
 ```
 
 {% info %}
-When running `cachix use` for the first time, you will see a warning that your user is not in trusted-users. 
+When running `cachix use` for the first time, you will see a warning that your user is not in trusted-users.
 
 ```bash
 This user doesn't have permissions to configure binary caches.
@@ -30,24 +58,47 @@ You can either:
 ...
 ```
 
-When faced with this message, you can run 
+When faced with this message, you can run
 ```
 echo "trusted-users = root ${USER}" | sudo tee -a /etc/nix/nix.conf && sudo pkill nix-daemon
 ```
-
 {% endinfo %}
 
-Platform uses unfree software by default like Blackfire. To be able to use unfree software, you have to allow that.
+Finally, install devenv:
+
+```shell
+nix-env -if https://github.com/cachix/devenv/tarball/v0.5
+```
+
+Before booting up your development environment, configure Cachix to use Shopware's cache:
+
+```
+cachix use shopware
+```
+
+By default, `shopware/platform` uses unfree software like Blackfire.
+To be able to use unfree software, you have to allow that:
 
 ```bash
 mkdir -p ~/.config/nixpkgs
 echo '{ allowUnfree = true; }' > ~/.config/nixpkgs/config.nix
 ```
 
+Now, clone [shopware/platform](https://github.com/shopware/platform) and change into the project directory to start up your environment:
+
+```shell
+devenv up
+```
+
+You can find the installation guide for devenv in their official documentation:
+
+<!-- markdown-link-check-disable-next-line -->
+{% embed url="https://devenv.sh/getting-started/" caption="Getting started - devenv.sh" %}
+
 ## Customize your setup
 
 To customize the predefined services to match your needs, e.g. changing the virtual host, database name or environment variables, you can create `devenv.local.nix` to override the service definitions.
-It also allows you to add and configure further services you might require for your local development.
+It also allows you to add and configure additional services you might require for your local development.
 
 {% code title="<PROJECT_ROOT>/devenv.local.nix" %}
 
