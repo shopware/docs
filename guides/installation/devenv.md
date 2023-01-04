@@ -4,9 +4,10 @@ Imagine [devenv](https://devenv.sh) to function as a dependency manager for the 
 
 Similar to other package managers, devenv lets you describe what your environment should look like and locks dependencies to a specific version to help you compose a reproducible setup.
 
-devenv not only let's you choose from and install different versions of binaries (e.g. PHP, Node, npm), it also allows you to configure and run services (like MySQL, Redis, OpenSearch). The binaries and states of the services are stored on a per-project level.
+devenv not only lets you choose from and install different versions of binaries (e.g. PHP, Node, npm), it also allows you to configure and run services (like MySQL, Redis, OpenSearch).
+The binaries and states of the services are stored on a per-project level.
 
-The main difference to other tools like Docker or a VM is that it is neither using a containerization or virtualization technique - the services are running natively on your machine.
+The main difference to other tools like Docker or a VM is that it is neither using a containerization nor virtualization technique - the services are running natively on your machine.
 
 ## Installation
 
@@ -36,7 +37,7 @@ echo "trusted-users = root ${USER}" | sudo tee -a /etc/nix/nix.conf && sudo pkil
 
 {% endinfo %}
 
-Platform uses unfree software by default like Blackfire. To able to use unfree software, you have to allow that.
+Platform uses unfree software by default like Blackfire. To be able to use unfree software, you have to allow that.
 
 ```bash
 mkdir -p ~/.config/nixpkgs
@@ -45,7 +46,8 @@ echo '{ allowUnfree = true; }' > ~/.config/nixpkgs/config.nix
 
 ## Customize your setup
 
-To customize the predefined services to match your needs, e.g. changing the virtual host, database name or environment variables, you can create `devenv.local.nix` to override the service definitions. It also allows you to add and configure further services you might require for your local development.
+To customize the predefined services to match your needs, e.g. changing the virtual host, database name or environment variables, you can create `devenv.local.nix` to override the service definitions.
+It also allows you to add and configure further services you might require for your local development.
 
 {% code title="<PROJECT_ROOT>/devenv.local.nix" %}
 
@@ -80,6 +82,23 @@ Refer to the offical devenv documentation to get a complete list of all availabl
 <!-- markdown-link-check-disable-next-line -->
 {% embed url="https://devenv.sh/reference/options/" caption="devenv.nix Reference - devenv.sh" %}
 
+### Enable Blackfire
+
+{% code title="<PROJECT_ROOT>/devenv.local.nix" %}
+
+```nix
+{ pkgs, config, ... }:
+
+{
+  services.blackfire.enable = true;
+  services.blackfire.server-id = "<SERVER_ID>";
+  services.blackfire.server-token = "<SERVER_TOKEN>";
+  services.blackfire.client-id = "<CLIENT_ID>";
+  services.blackfire.client-token = "<CLIENT_TOKEN>";
+}
+```
+
+{% endcode %}
 
 ## Automatic Shell Activation
 
