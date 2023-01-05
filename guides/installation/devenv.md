@@ -73,7 +73,7 @@ You can either:
 ...
 ```
 
-When you encounter the above message, run :
+When you encounter the above message, run:
 
 ```shell
 echo "trusted-users = root ${USER}" | sudo tee -a /etc/nix/nix.conf && sudo pkill nix-daemon
