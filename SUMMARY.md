@@ -115,6 +115,7 @@
   * [Installation from scratch](guides/installation/from-scratch.md)
   * [Valet+](guides/installation/valet.md)
   * [MAMP](guides/installation/mamp.md)
+  * [Devenv](guides/installation/devenv.md)
 * [Extensions](guides/plugins/README.md)
   * [Overview](guides/plugins/overview.md)
   * [Plugins](guides/plugins/plugins/README.md)
