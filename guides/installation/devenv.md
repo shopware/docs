@@ -4,16 +4,15 @@ Imagine [devenv](https://devenv.sh) to function as a dependency manager for the 
 
 Similar to other package managers, devenv lets you describe what your environment should look like and locks dependencies to a specific version to help you compose a reproducible setup.
 
-Devenv not only lets you choose from and install different versions of binaries (e.g. PHP, Node, npm), it also allows you to configure and run services (like MySQL, Redis, OpenSearch).
-The binaries and states of the services are stored on a per-project level.
+Devenv not only lets you choose from and install different versions of binaries (e.g., PHP, Node, npm), but it also allows you to configure and run services (like MySQL, Redis, OpenSearch). The binaries and states of the services are stored on a per-project level.
 
-The main difference to other tools like Docker or a VM is that it is neither using a containerization nor virtualization technique - the services are running natively on your machine.
+The main difference to other tools like Docker or a VM is that it neither uses containerization nor virtualization techniques where the services run natively on your machine.
 
 ## Installation
 
 ### Nix
 
-As devenv is built on top of Nix, you need to install it first:
+As devenv is built on top of Nix, first install Nix with the following command based on your OS:
 
 {% tabs %}
 {% tab title="macOS" %}
@@ -64,16 +63,17 @@ cachix use devenv
 ```
 
 {% hint style="info" %}
-When running `cachix use ...` for the first time, you will see a warning that your user is not in trusted-users.
+When running `cachix use ...` for the first time, you will see a warning that you are not a trusted user.
 
 ```bash
 This user doesn't have permissions to configure binary caches.
 
 You can either:
 ...
+...
 ```
 
-When faced with this message, you can run
+When you encounter the above message, run :
 
 ```shell
 echo "trusted-users = root ${USER}" | sudo tee -a /etc/nix/nix.conf && sudo pkill nix-daemon
@@ -95,8 +95,7 @@ Before booting up your development environment, configure Cachix to use Shopware
 cachix use shopware
 ```
 
-By default, `shopware/platform` uses unfree software like Blackfire.
-To be able to use unfree software, you have to allow that:
+By default, `shopware/platform` uses unfree software like Blackfire. To be able to use unfree software, you have to *allow* it:
 
 ```bash
 mkdir -p ~/.config/nixpkgs
@@ -114,7 +113,7 @@ Depending on whether you want to set up a fresh Shopware project or contribute t
 
 {% tabs %}
 {% tab title="Symfony Flex" %}
-If you are already using Symfony Flex, you can require a Composer package to get a basic devenv configuration:
+If you are already using Symfony Flex, you require a composer package to get a basic devenv configuration:
 
 ```bash
 composer require devenv
@@ -139,8 +138,8 @@ Since the environment is described via a `devenv.nix` file committed to version 
 devenv up
 ```
 
-{% hint style="info" %}
-Make sure that the ports for the services are not already in use or the command will fail.
+{% hint style="warning" %}
+Make sure that the ports for the services are not already in use, or else the command will fail.
 {% endhint %}
 
 Ensure to change your `.env` file to have the database connect using localhost's IP address instead of the default MySQL socket:
@@ -153,7 +152,7 @@ DATABASE_URL="mysql://shopware:shopware@127.0.0.1:3306/shopware?sslmode=disable&
 
 {% endcode %}
 
-Still inside the project directory, run the following command to initialize Shopware:
+Inside the project directory, run the following command to initialize Shopware:
 
 ```shell
 composer setup
@@ -161,7 +160,7 @@ composer setup
 
 ### Direnv
 
-If you wish to seamlessly switch between multiple development environments which use devenv we recommend to install [direnv](https://direnv.net/).
+If you wish to switch between multiple development environments which use devenv seamlessly, we recommend installing [direnv](https://direnv.net/).
 
 When you enter a project directory using devenv, direnv will automatically activate the environment for you.
 This means that you can use the binaries and services without having to run `devenv up` manually.
@@ -242,7 +241,7 @@ direnv allow
 
 ## Default services
 
-Here's an overview of services Shopware provides by default and how you can access them:
+Here is an overview of services Shopware provides by default and how you can access them:
 
 | Service          | Access                                         |
 |------------------|------------------------------------------------|
@@ -254,7 +253,7 @@ Here's an overview of services Shopware provides by default and how you can acce
 
 ## Customize your setup
 
-To customize the predefined services to match your needs, e.g. changing the virtual host, database name or environment variables, you can create `devenv.local.nix` to override the service definitions.
+To customize the predefined services to match your needs, e.g., changing the virtual host, database name, or environment variables, you can create `devenv.local.nix` to override the service definitions.
 It also allows you to add and configure additional services you might require for your local development.
 
 {% code title="<PROJECT_ROOT>/devenv.local.nix" %}
@@ -356,7 +355,7 @@ Periodically run `devenv gc` to remove orphaned services, packages and processes
 
 The MySQL service is exposed under its default port `3306`, see [Default services](#default-services).
 
-Be aware that you cannot connect using the `localhost` socket, you must use `127.0.0.1` instead.
+Be aware that you cannot connect using the `localhost` socket. Instead, you must use `127.0.0.1`.
 
 ### Where is the database stored?
 
