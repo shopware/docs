@@ -6,7 +6,7 @@ Similar to other package managers, devenv lets you describe what your environmen
 
 Devenv not only lets you choose from and install different versions of binaries (e.g., PHP, Node, npm), but it also allows you to configure and run services (like MySQL, Redis, OpenSearch). The binaries and states of the services are stored on a per-project level.
 
-The main difference to other tools like Docker or a VM is that it neither uses containerization nor virtualization techniques where the services run natively on your machine.
+The main difference to other tools like Docker or a VM is that it neither uses containerization nor virtualization techniques. Instead, the services run natively on your machine.
 
 ## Installation
 
