@@ -218,7 +218,7 @@ eval "$(direnv hook zsh)"
 {% code title="~/.config/fish/config.fish" %}
 
 ```bash
->direnv hook fish | source
+direnv hook fish | source
 ```
 
 {% endcode %}
