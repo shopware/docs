@@ -1,4 +1,4 @@
-# Quality Guidelines for Apps based on our extension system in the Shopware Store
+# Quality Guidelines for Apps based on plugin system in Shopware Store
 
 > **Changelog**
 >> 11/07/22: [Added a list of all Blockers - Changes to the autom. coderview 1.st Oct. 2022](https://docs.shopware.com/en/account-en/manufacturer-area/quality-guidelines-for-extensions-in-the-shopware-store-based-on-our-extension-system#sonarcube-rules-status-blocker)  
@@ -11,19 +11,19 @@
 >> 12/05/20: Add app [Checklist](https://docs.shopware.com/en/plugin-standard-for-community-store#checklist-for-plugin-testing) for your Quality assurance.  
 >> 22/04/20: SW6: [Menu entries in the main menu of the administration are not allowed anymore](https://docs.shopware.com/en/account-en/manufacturer-area/quality-guidelines-for-extensions-in-the-community-store#menu-entries-in-the-main-menu-not-allowed) because of the look and feel.
 
-## Checklist for app-testing
+## Checklist for app testing
 
 Be sure to use the most recent testing checklist from Shopware and not from any other provider. Please pay attention to every single point in this guide, as this will be reviewed by us in order to release your app.
 
-### The way we test apps based on the app system
+### The way we test apps based on the plugin system
 
 It is always a good idea to review the process of how we conduct tests prior to submitting your app for review. This ensures the quickest way for your app to be published.
 
-We perform the *first test*, and if successful, we do the *follow-up test* again with the most current Shopware version. 
+We perform the *first test*, and if successful, we do the *follow-up test* again with the most current Shopware version.
 
-The Shopware installation is located in a subfolder. It has a language sub-shop/sales channel with a virtual URL as well as an independent sub-shop/sales channel with its own URL, also located in a subfolder. E.g. myshop.com/subfolder/backend or myshop.com/pulic/admin. The app must not produce any error messages either in the backend or in the frontend.
+The Shopware installation is located in a subfolder. It has a language sub-shop/sales channel with a virtual URL as well as an independent sub-shop/sales channel with its own URL, also located in a subfolder. E.g. `myshop.com/subfolder/backend` or `myshop.com/public/admin`. The app must neither produce any error messages in the backend nor in the frontend.
 
-The app is tested with the latest official Shopware 6 CE Version. Our testing environment is built with the following components: Nginx Webserver, PHP 7.4 as FPM, MariaDB latest, Shopware installed in subfolder /shop/public, default Shopware language Netherland.
+The app is tested with the latest official Shopware 6 CE Version. Our testing environment is built with the following components: Nginx Webserver, PHP 7.4 as FPM, MariaDB latest, Shopware installed in subfolder `/shop/public`, default Shopware language Netherland.
 The environment is built using Docker and is published on Docker Hub. You can use the following command to run it on your system:
 
 ```markdown
@@ -43,9 +43,7 @@ We always test with the [actual SW6 version](https://www.shopware.com/de/downloa
 
 **Progressive Web App: ** If your app is PWA compatible and you would like the PWA flag, please contact us at [alliances@shopware.com](mailto:alliances@shopware.com).
 
-**SW5:** The app is tested with PHP 7.2, Shopware 5.6.2 CE Version (including the activated and current versions of the [Cookie Consent Tool for Shopware > 5.2.11](https://store.shopware.com/en/swag183769231668f/cookie-consent-tool.html)), the [Shopware security app](https://store.shopware.com/swag575294366635f/shopware-sicherheits-plugin.html) and with the current Shopware version without the security app.
-
-### Every extension
+### Every app based on the plugin system
 
 1. If using external fonts (e.g., from Google fonts) or external services, the app store description must contain this information. Please be aware that you might have to edit your *data protection information*. This info could be otherwise placed as a tooltip near the font settings of the app configuration.
 
@@ -53,24 +51,23 @@ We always test with the [actual SW6 version](https://www.shopware.com/de/downloa
 
     * The mandatory number of characters is set in short and long descriptions. No blank spaces as fillers are allowed (EN/DE).
     * Check if the description makes sense and if it includes step-by-step instructions on how to use and test your app.
-    * Check if you have included enough screenshots showing the app in action in the storefront and administration (please add a screenshot of the app in the extension manager settings).
+    * Check if you have included enough screenshots showing the app in action in the Storefront and Administration (please add a screenshot of the app in the extension manager settings).
 
 3. We pay attention to the automatic code review and look for security issues.
 
 4. **Cookie check in the browser console**: If the app sets cookies in any way in the checkout, these cookies must be registered to the cookie configuration box in the frontend.
 
-5. Every external link in the administration or storefront must be marked as rel="no opener" AND target="_blank".
+5. Every external link in the administration or storefront must be marked as *rel="no opener" AND target="_blank"*.
 
 6. We check for styling errors on every viewport.
 
-7. We check the complete functionality of the app (including the uninstallation & reinstallation procedure).
+7. We check the complete functionality of the app (including the uninstallation and reinstallation procedure).
 
-8. We want to improve the quality of the Shopware Community Store and offer as many different apps as possible. Hence, we check for a functional comparison with other apps already present in the Shopware Community Store. If there is an app with the same function, it can be rejected as it doesn't provide any added value. For further information, write an email to alliances@shopware.com.
+8. We want to improve the quality of the Shopware Community Store and offer as many different apps as possible. Hence, we check for a functional comparison with other apps already present in the Shopware Community Store. If there is an app with the same function, it can be rejected as it doesn't provide any added value. For further information, write an email to [alliances@shopware.com](mailto:alliances@shopware.com).
 
 {% hint style="information" %}
 **Safe your app idea and get a preview in the store** - If you already have an idea and don't want it to be snatched away, then make sure you get it by creating a preview in your account. You can apply for this if you already have maintained images, description, and release months without uploading anything.
 {% endhint %}
-
 
 ### App descriptions in your Shopware account
 
@@ -84,11 +81,11 @@ We always test with the [actual SW6 version](https://www.shopware.com/de/downloa
     <a> <p> <br> <b> <strong> <i> <ul> <ol> <li> <h2> <h3> <h4> <h5>
     ```
 
-    * **Tips:** 
+    * **Tips:**
 
         * When it comes to increasing your app sales, it is important that potential customers feel completely informed about your products and services. To this end, you should provide a description that is meaningful, detailed, and easy to understand, even for people with very little technical knowledge. Explain step-by-step how your app works and how to use it to achieve the desired result. Of course, your app description should be accompanied by clean HTML source code.
 
-        * Video content increases awareness, trust and has proven to convert potential customers better than other content types. Help your customers better understand your app or service with explainer videos, product demos, tutorials, etc. You can embed max. 2 YouTube videos in your app description.
+        * Video content increases awareness, trust and has proven to convert potential customers better than other content types. Help your customers better understand your app or service with explainer videos, product demos, tutorials, etc. You can embed maximum 2 YouTube videos in your app description.
 
     {% hint style="information" %}
     You can no longer advertise your Shopware certificates within the app description, in your app images, or in your manufacturer profile. The manufacturer/partner certificates are dynamically loaded at the end of each app description and published by us.
@@ -109,9 +106,8 @@ We always test with the [actual SW6 version](https://www.shopware.com/de/downloa
 * The content of the images/screenshots must be in English.
 
 {% hint style="information" %}
-iframes, external scripts, or tracking pixels are not allowed in the source code of the descriptions, profiles, and instructions. Custom styles may not overwrite the original Shopware styles. External sources must be included via https.
+Iframes, external scripts, or tracking pixels are not allowed in the descriptions, profiles, and instructions of the source code. Custom styles may not overwrite the original Shopware styles. External sources must be included via https.
 {% endhint %}
-
 
 ### Template tests
 
@@ -119,15 +115,13 @@ iframes, external scripts, or tracking pixels are not allowed in the source code
     * [Schema Markup Validator of schema.org](https://validator.schema.org/)
     * [Google Lighthouse](https://developers.google.com/web/tools/lighthouse)
 
-* Test categories and product pages (available products, unavailable products, available products plus reviews, and products to be released in the future) with Scheme.org's Structured Data Testing Tool.
-
-## Theme apps
+### Theme apps
 
 1. There must be a preview image available in the *Theme Manager*.
 
 2. Links must include a "title-tag" and images must have an "alt-tag".
 
-3. Use *Google's Structured Data Testing Tool* to check the homepage, categories, and various product detail pages (incl. products with no review, 1 review, 9 reviews with various ratings, out of stock products, or any other kind of product configuration). Also, check for any new bugs.
+3. Use *Scheme.org's Structured Data Testing Tool* to check the homepage, categories, and various product detail pages (incl. available products, unavailable products, products with no review, single review, many reviews with various ratings, out of stock products, products to be released in the future or any other kind of product configuration). Also, check for any new bugs.
 
 4. Do a *Lighthouse Audit* to check the performance and quality of your frontend app. There should not be any drastic change in performance or accessibility values when activating the app.
 
@@ -139,7 +133,7 @@ iframes, external scripts, or tracking pixels are not allowed in the source code
 
 2. Test the frontend and the checkout with the Debug Console – also pay attention to new JavaScript errors.
 
-3. Use *Google's Structured Data Testing Tool* to check the homepage, categories, and various product detail pages (incl. products with no review, 1 review, 9 reviews with various ratings, out of stock products, or any other kind of product configuration). Also, check for any new bugs.
+3. Use *Scheme.org's Structured Data Testing Tool* to check the homepage, categories, and various product detail pages (incl. available products, unavailable products, products with no review, single review, many reviews with various ratings, out of stock products, products to be released in the future or any other kind of product configuration). Also, check for any new bugs.
 
 4. Do a *Lighthouse Audit* to check the performance and quality of your frontend app. There should not be any drastic change in performance or accessibility values when activating the app.
 
@@ -149,7 +143,7 @@ iframes, external scripts, or tracking pixels are not allowed in the source code
 
 2. If you create custom controller URLs in the sales channel, please note that we check for SEO and a valid canonical-tag.
 
-3. Use *Google's Structured Data Testing Tool* to check the homepage, categories, and various product detail pages (incl. products with no review, 1 review, 9 reviews with various ratings, out of stock products, or any other kind of product configuration). Also, check for any new bugs.
+3. Use *Scheme.org's Structured Data Testing Tool* to check the homepage, categories, and various product detail pages (incl. available products, unavailable products, products with no review, single review, many reviews with various ratings, out of stock products, products to be released in the future or any other kind of product configuration). Also, check for any new bugs.
 
 4. We check for new errors throughout the entire storefront using the Browser Debug Console. We also pay attention to new JavaScript errors.
 
@@ -157,9 +151,9 @@ iframes, external scripts, or tracking pixels are not allowed in the source code
 
 ### Backend apps
 
-1. We check the complete functionality of the app and test wherever the administration is impacted by the app.
+We check the complete functionality of the app and test wherever the administration is impacted by the app.
 
-### API/Payment apps
+### API or Payment apps
 
 1. We check for an API test button. Apart from that, you can validate the required credentials while saving them in the app settings. In this case, a status message must be displayed in the backend and Shopware log.
 
@@ -177,8 +171,7 @@ The chosen license can't be changed after adding your app to your account. If yo
 
 ### Fallback language
 
-The installation is not always in English or German. So make sure that your app works in other languages as well.
-For example, if the customer has his installation in Spanish and your app is not yet available in this language, you should use the English translation as a fallback. Our test environment includes Netherland as the standard language.
+The installation is not always in English or German. So make sure that your app works in other languages as well. For example, if the customer has his installation in Spanish and your app is not yet available in this language, you should use the English translation as a fallback. Our test environment includes Netherland as the standard language.
 
 ### Translations
 
@@ -186,11 +179,11 @@ If your app is available in more than one language (e.g., English and German), t
 
 ### Valid app favicon for the Shopware Administration
 
-You must upload a valid favicon named plugin.png (png / 40 x 40 px) for the app. This favicon will make it easier to identify your app in the *Extension Manager* module in the backend. The favicon has to be stored under src/Resources/config/.
+You must upload a valid favicon named plugin.png (png / 40 x 40 px) for the app. This favicon will make it easier to identify your app in the *Extension Manager* module in the backend. The favicon has to be stored under `src/Resources/config/`.
 
 ### Error messages must be entered in the event log
 
-Error/informational messages can only be recorded in the event log of Shopware's log folder ( /var/log/ ). You have to develop your own log service. Never write app exceptions into the Shopware-Default-log or outside the Shopware system log folder. This ensures that the log file can never be accessed via the URL.
+Error or informational messages can only be recorded in the event log of Shopware's log folder (/var/log/). You have to develop your own log service. Never write app exceptions into the Shopware default log or outside the Shopware system log folder. This ensures that the log file can never be accessed via the URL.
 
 {% hint style="danger" %}
 Avoid 400/500 errors at any time unless the 400 errors are related to an API call.
@@ -198,24 +191,23 @@ Avoid 400/500 errors at any time unless the 400 errors are related to an API cal
 
 ### Untrusted content should not be included
 
-See [untrusted content should not be included in SonarQube rules](https://rules.sonarsource.com/javascript/RSPEC-2611).
+See [Untrusted content should not be included in SonarQube rules](https://rules.sonarsource.com/javascript/RSPEC-2611).
 
-###  Own media folder
+### Own media folder
 
-If it is possible for the customer to upload images, own media folders should be created, or existing ones should be used.
+Customers must create own media folders or use existing ones to upload images.
 
 ### With "Install/Uninstall" the user must decide whether the data/tables are to be deleted or not
 
 When clicking on the "Install / Uninstall" option in the Extension Manager, the user must be presented with the options "completely delete" or "keep the app data, text snippets, and table adjustments".
 
-### It is not allowed to extend the Extension Manager
+### Not allowed to extend the Extension Manager
 
 The *Extension Manager* must not be extended or overwritten.
 
 ### Extension manager
 
-The Debug Console controls the app's reinstallation, uninstallation, installation, and deletion. No 400 errors or exceptions are allowed to appear.
-If the app requires special PHP options, these must be queried during installation. If the query is negative, a growl message must appear in the backend.
+The Debug Console controls the app's installation, uninstallation, reinstallation, and deletion. No 400 errors or exceptions are allowed to appear. If the app requires special PHP options, it must be queried during installation. If the query is negative, a growl message must appear in the backend.
 
 ### Reloading of files not allowed
 
@@ -227,11 +219,11 @@ If the app creates its own pages that are set to "index, follow" and the URLs ar
 
 ### Register a cookie to the Cookie Consent Manager
 
-We expect that every cookie set from the store URL is [registered in our Cookie Consent Manager](https://developer.shopware.com/docs/guides/plugins/plugins/storefront/add-cookie-to-manager). We differentiate between "Technically required", "Comfort functions" and "Statistics & Tracking". All cookies have to appear in the cookie configuration box in the frontend.
+We expect that every cookie set from the store URL is [registered in our Cookie Consent Manager](https://developer.shopware.com/docs/guides/plugins/plugins/storefront/add-cookie-to-manager). We differentiate between "Technically required", "Comfort functions" and "Statistics and Tracking". All cookies have to appear in the cookie configuration box in the frontend.
 
 ### Shopping worlds/shopping experiences
 
-Shopping worlds elements must include an element icon. If the app is deleted, *Shopping Worlds* should continue to work flawlessly in the frontend.
+[Shopping worlds elements](#shopping-worldsstorytelling-elements) must include an element icon. If the app is deleted, *Shopping Worlds* should continue to work flawlessly in the frontend.
 
 ### Payment apps
 
@@ -239,9 +231,7 @@ We check if the "pluginlogger" service is used for the debug/error.log and that 
 
 ### Every app accessing external API services
 
-A test button for optional API access data must be available. If the API data is incorrect, an entry must appear in the event log file in the Shopware folder /var/log/ respectively in the database.
-
-Apart from that, you can validate the required credentials while saving them in the app settings. In this case, a status message must be displayed in the backend and Shopware log.
+A test button for optional API access data must be available. If the API data is incorrect, an entry must appear in the event log file in the Shopware folder `/var/log/` respectively in the database. Apart from that, you can validate the required credentials while saving them in the app settings. In this case, a status message must be displayed in the backend and in the Shopware log.
 
 [Example for implementing an API Test Button into the System Config form](https://github.com/shyim/ShyimApiTest)
 
@@ -253,7 +243,7 @@ Menu entries in the main menu of the administration are not allowed because of t
 
 Our most current code review configurations that we use when uploading apps via the Shopware Account can be found on GitHub.
 
-*   [Code reviews for Shopware 6 on GitHub](https://github.com/shopwareLabs/store-plugin-codereview)
+* [Code reviews for Shopware 6 on GitHub](https://github.com/shopwareLabs/store-plugin-codereview)
 
 ### Automated code tests with Cypress
 
@@ -267,305 +257,36 @@ There are Cypress tests for Shopware 6 on GitHub. The project is driven by the *
 * [FroshPluginUploader](https://github.com/FriendsOfShopware/FroshPluginUploader): Tool for validating and uploading new SW6 app releases to the Community Store (GitHub Project from "Friends of Shopware")]
 * [Shopware CLI tools](https://github.com/shopwareLabs/sw-cli-tools): When you think about performance, these are various useful console helpers for generating data.
 
-### App descriptions in your Shopware account
+### Descriptions in your Shopware account
 
-* **Short description:** (Min. 150 - max. 185 characters) - The app's short description must have at least 150 characters long and unique. Use the short description wisely, as the text will be used to tease your app in the overview along with the "Customers also bought" and "Customers also viewed" recommendations. The short description is also published as a meta-description.
-
-* **Description:** (Min. 200 characters) - The app description must contain at least 200 characters and should clearly represent the app functions in detail.
-
-    * Inline styles will be stripped. The following HTML tags are allowed:
-
-    ```markdown
-    <a> <p> <br> <b> <strong> <i> <ul> <ol> <li> <h2> <h3> <h4> <h5>
-    ```
-
-    * **Tips:** 
-
-        * When it comes to increasing your app sales, it is important that potential customers feel completely informed about your products and services. To this end, you should provide a description that is meaningful, detailed, and easy to understand, even for people with very little technical knowledge. Explain step-by-step how your app works and how to use it to achieve the desired result. Of course, your app description should be accompanied by clean HTML source code.
-
-        * Video content increases awareness, trust and has proven to convert potential customers better than other content types. Help your customers better understand your app or service with explainer videos, product demos, tutorials, etc. You can embed max. 2 YouTube videos in your app description.
-
-    {% hint style="information" %}
-    You can no longer advertise your Shopware certificates within the app description, in your app images, or in your manufacturer profile. The manufacturer/partner certificates are dynamically loaded at the end of each app description and published by us.
-    {% endhint %}
-
-* Include several screenshots and descriptive images from the storefront and backend that represent the app functionality. They must show the app "in action", its configuration options, and how to use it.
-
-* Be sure that the app is assigned to the appropriate categories.
-
-* The link must be valid if you provide a demo shop (the URL cannot contain http: or https:).
-
-* The description must be a 1:1 translation. As an app is to be released in both stores (German and International), the content must be accurately translated 1:1 from/to German/English.​​​
-
-* If necessary, personal data protection information has to be set. If personal data of the customers (store operator and/or his customers) are processed with this extension according to Art. 28 DSGVO, the following information of the data processing company must be stored in the field "Subprocessor". If other companies are involved in the data processing of personal data, the same information must be stored accordingly for them in the field "Further subprocessors".
-
-* Your manufacturer profile must mandatorily contain accurate English and German descriptions and a manufacturer logo. You can find the manufacturer profile in your account under Shopware Account > Extension Administration > Manufacturer profile.
-
-* The content of the images/screenshots must be in English.
-
-{% hint style="information" %}
-iframes, external scripts, or tracking pixels are not allowed in the source code of the descriptions, profiles, and instructions. Custom styles may not overwrite the original Shopware styles. External sources must be included via https.
-{% endhint %}
-
-## Quality Guidelines for Shopware 5 Apps
-
-### Extension master data/license
-
-Please enter the valid license you set in your Shopware account. You have to identify this license in the manifest.xml as well.
-
-{% hint style="information" %}
-The chosen license can't be changed after adding your app to your account. If you want to change the license later, you must add a new app based on the app system with a new technical name and upload the extension again.
-{% endhint %}
-
-### plugin.xml - App metadata
-
-All apps must contain the following metadata:
-
-```xml
-
-<pre><? xml version="1.0" encoding="utf-8"?>
-
-<plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../engine/Shopware/Components/Plugin/schema/plugin.xsd">
-
-<label>My app name</label>
-
-<label lang="de">Name of the app (German translation)</label>
-
-<version>1.0.0</version>
-
-<copyright>app supplier</copyright>
-
-<license>license set in the account. e.g. MIT, proprietary, etc.</license>
-
-<link>optional</link>
-
-<author>Author of the app</author>
-
-<compatibility minVersion="5.2.0" />
-
-<changelog version="1.0.0">
-
-   <changes>
-
-        <![CDATA[
-
-        First release Shopware Community Store
-
-        ]]>
-
-   </changes>
-
-   <changes lang="de">
-
-        <![CDATA[
-
-        Erstveröffentlichung Shopware Community Store
-
-        ]]>
-
-   </changes>
-
-</changelog>
-
-<description>
-
-   <![CDATA[
-
-   <b>My app</b>
-
-   <p>CSS,INLINE-Styles,BASE64-IMAGES OR SCRIPTS NOT ALLOWED! Describes app and contains a Link to manual/Description in the community-store.</p>
-
-   ]]>
-
-</description>
-
-<description lang="de">
-
-   <![CDATA[
-
-   <b>Meine Erweiterung</b>
-
-   <p>CSS,INLINE-Styles,BASE64-IMAGES NICHT ERLAUBT! Beschreibt Erweiterung und enthält einen Link zur Anleitung/Beschreibung im Community Store und Erweiterung Anleitung.</p>
-
-   ]]>
-
-</description>
-
-</plugin>
-
-</pre>
-```
-
-{% hint style="warning" %}The changelog must contain a minimum of 20 characters. Please note that the **minVersion** must be the same version you have stored for the app in your account.
-{% endhint %}
-
-### plugin.xml - App dependencies
-
-If your app requires other apps to run properly, you must check that these apps are installed. For example, if your app only works with an activated base app, you have to check the installation of the base app in the plugin.xml:
-
-```xml
-
-<pre>    <requiredPlugin>
-
-        <requiredPlugin pluginName="BasePlugin" minVersion="1.0.0" />
-
-    </requiredPlugin> 
-</pre>
-```
-
-### Fallback language
-
-The installation is not always in English or German. So make sure that your app works in other languages as well.
-For example, if the customer has his installation in Spanish and your app is not yet available in this language, you should use the English translation as a fallback. Our test environment includes Netherland as the standard language.
-
-### Translations
-
-If your app is available in more than one language (e.g. English and German), these can be defined using the option "Translations into the following languages are available" (located in the “Description & images” section of your *Extension Management*). The translations/text snippets must be maintained in the respective XML and TPL files.
-
-### Valid app favicon for the Shopware backend
-
-You must upload a valid favicon (16 x 16 px) for the app. This favicon will make it easier to identify your app in the *Extension Manager* module in the backend.
-
-### Error messages must be entered in the app log
-
-Error/informational messages can only be recorded in the app log of Shopware's log folder ( /var/log/ ). The service "pluginlogger" from the DI container has to be used for this. As of Shopware 5.6, you can also create your own app-specific logger. Never write app exceptions into the Shopware core.log or outside the Shopware system log folder. This ensures that the log file can never be accessed via URL.  
-![Error messages had to be written into the original plugin.log of shopware.](../../../../../.gitbook/assets/guidelines-test-store-plugin.png)
-
-{% hint style="danger" %}
-Avoid 400/500 errors at any time unless the 400 errors are related to an API call.
-{% endhint %}
-
-### Changes to the database and data records must not be removed with "reinstall"
-
-If a user clicks on "Reinstall", be sure that any stored data remains intact.
-
-### With "Install/Uninstall" , the user must decide whether the data/tables are to be deleted or not
-
-When clicking on the "Install / Uninstall" option in the Extension Manager, the user must be presented with the options "completely delete" or "keep the app data, text snippets, and table adjustments".
-
-### Standard prefix for your own database tables
-
-The prefix for your unique database table is s_plugin_. If you use your own tables, the structure should be as follows: s_plugin_my_plugin_name
-
-### Untrusted content should not be included
-
-See [untrusted content should not be included in SonarQube rules](https://rules.sonarsource.com/javascript/RSPEC-2611).
-
-### Email templates
-
-App email templates must be stored in the folder "User emails". All email templates must be deleted after the app is uninstalled.
-
-### Using attributes
-
-Attributes created by the app may not be deleted via the free text administration in the backend.
-
-### It is not allowed to extend the Extension Manager
-
-The *Extension Manager* must not be extended or overwritten.
-
-### Extension manager
-
-The Debug Console controls the app's reinstallation, uninstallation, installation, and deletion. No 400 errors or exceptions are allowed to appear. 
-If the app requires special PHP options, these must be queried during installation. If the query is negative, a growl message must appear in the backend.
-
-### Reloading of files not allowed
-
-Apps may not load other files during and after the installation in the *Extension Manager*.
-
-### App pages with their own URL must appear in the sitemap.xml
-
-If the app creates its own pages that are set to "index, follow" and the URLs are accessible via the frontend, then these "app URLs" must also appear in the sitemap.xml. In addition, these pages must include their own "meta description" and "title-tag", which can be entered individually via the backend or as a text snippet.
-
-**Info:**[Extend the sitemap.xml with Shopware 5 apps.](https://developers.shopware.com/developers-guide/plugin-guidelines/)
-
-### Register a cookie to the Cookie Consent Manager
-
-We expect that every cookie set from the store-URL is registered in our Cookie Consent Manager. We differentiate between "Technically required", "Comfort functions" and "Statistics & Tracking". All cookies have to appear in cookie configuration box in the frontend.
-
-**Info:**[Registering cookies in the Cookie Consent Manager](https://developers.shopware.com/developers-guide/cookie-consent-manager/)
-
-### Clear only the necessary caches when installing or uninstalling an app.
-
-Do not empty the template-/http-Cache or recompile the theme when installing the app. Also, please consider which caches actually need to be cleared for your app to work since regenerating caches may cause a high load on the server. Clear only the necessary caches when the activate method is called.
-
-For more information, refer to [Shopware app guidelines](https://developers.shopware.com/developers-guide/plugin-guidelines/#plugin-installation-routine)
-
-### Shopping worlds/shopping experiences
-
-Shopping worlds elements must include an element icon. If the app is deleted, *Shopping Worlds* should continue to work flawlessly in the frontend.
-
-### Payment apps
-
-We check if the "pluginlogger" service is used for the debug/error.log and that logs are written in the directory /var/log/. Log files must use this folder in every circumstance. Another solution is to store them in the database.
-
-### Every app accessing external API services
-
-A test button for optional API access data must be available. If the API data is incorrect, an entry must appear in the event log file in the Shopware folder /var/log/ respectively in the database.
-
-Apart from that, you can validate the required credentials while saving them in the app settings. In this case, a status message must be displayed in the backend and Shopware log.
-
-[Example for implementing an API Test Button into the System Config form](https://github.com/shyim/ShyimApiTest)
-
-### Automatic code reviews with PhpStan and SonarQube
-
-Our most current code review configurations that we use when uploading apps via the Shopware Account can be found on GitHub.
-
-Refer to [code reviews for Shopware 5 on GitHub](https://github.com/shopwareLabs/store-plugin-codereview)
-
-### Automated code tests with Cypress
-
-There are Cypress tests for Shopware 5 and 6 on GitHub. The project is driven by the Friends of Shopware group. You can contribute at any time:
-
-*   [Cypress Tests for Shopware 5](https://github.com/FriendsOfShopware/FroshCypress)
-
-### Helpful tools for app developers
-
-* [FroshPluginUploader](https://github.com/FriendsOfShopware/FroshPluginUploader): Tool for validating and uploading new SW6 app releases to the Community Store (GitHub Project from "Friends of Shopware")]
-* [Shopware CLI tools](https://github.com/shopwareLabs/sw-cli-tools): When you think about performance, these are various useful console helpers for generating data.
-
-### Shopware 5.0 SDK License
-
-The Shopware 5 backend is completely based on the Ext JS framework by Sencha ([www.sencha.com](http://www.sencha.com/)). Suppose you are developing Shopware 5 apps that are built upon or alter the Shopware/ExtJS layer and wish to offer them with a proprietary license (apps that are not licensed under the GNU Affero General Public License version 3 or a compatible license); you require a Shopware SDK license.
-
-Thanks to an OEM agreement with Sencha, Shopware is able to offer this license on a per developer basis, allowing the license holder to use this framework for their own apps.
-
-**When will I not need a SW5 SDK-License?**
-
-1. When app will be sold and uses no extJS
-
-2. When app is for free and uses extJS
-
-3. When app is for free and uses no extJS
-
-If you need a license, please write an email to [alliances@shopware.com](mailto:alliances@shopware.com?subject=extJS-SDK%20needed).
+Check [App descriptions in your Shopware account](#app-descriptions-in-your-shopware-account).
 
 ## Automatic code review - Errors
 
-### The required composer.json file was not found."
+### The required composer.json file was not found
 
 **Cause:** Error in composer.json  
 
-One possible cause is that the technical app name from the Community Store or account does not match the technical name entered in composer.json, or the app is incorrectly zipped.  
-The technical app name had to be stored in the last part of the composer.json: composore.json > extra > shopware-plugin-class. So take a look at the bootstrap class. Most of the error were caused by the wrong technical name. For example, "Swag\\MyPlugin\\SwagMyPluginSW6" instead of "Swag\\MyPlugin\\SwagMyPlugin".
+One possible cause is that the technical app name from the Community Store or Account does not match the technical name entered in composer.json, or the app is incorrectly zipped. The technical app name has to be stored in the last part of the composer.json located at composore.json > extra > shopware-plugin-class. So take a look at the bootstrap class. Most of the errors is caused by the wrong technical name. For example, "Swag\\MyPlugin\\SwagMyPluginSW6" instead of "Swag\\MyPlugin\\SwagMyPlugin".
 
 [Here is an example](https://github.com/FriendsOfShopware/FroshPlatformPerformance/blob/master/composer.json#L20) of a valid composer.json.  
-See "[Plugin-Base Class](https://developers.shopware.com/designers-guide/javascript-statemanager-and-pluginbase/#plugin-base-class)" for more information. 
+See "[Plugin-Base Class](https://developers.shopware.com/designers-guide/javascript-statemanager-and-pluginbase/#plugin-base-class)" for more information.
 
 ### Ensure cross-domain messages are sent to the intended domain
 
 See ["Cross-document messaging domains should be carefully restricted"](https://rules.sonarsource.com/javascript/RSPEC-2819) for more information.
 
-### No bootstrapping file found. Expecting bootstrapping in
+### No bootstrapping file found. Expecting bootstrapping in...
 
-The bootstrap cannot be found. Either the folder structure in the ZIP file is incorrect, or there is a typo/case-sensitive error in the app source (e.g., in the technical name).
+The bootstrap cannot be found. The reasons could be that the folder structure in the ZIP file is incorrect, there could be a typo, or a case-sensitive error in the app source (e.g., in the technical name).
 
-### Warning: ExtJS was detected in your app.
+### Warning: ExtJS was detected in your app
 
 *SW5 related only*
 The app manufacturer needs an SDK license for a commercial app that uses ExtJS. For more information, please write an email to [alliances@shopware.com](mailto:alliances@shopware.com?subject=extJS-SDK%20needed).  
 See [Shopware 5 SDK License](https://docs.shopware.com/en/plugin-standard-for-community-store#shopware-5-0-sdk-license) for more information.
 
-### Class Shopware\Storefront\* not found.
+### Class Shopware\Storefront\* not found
 
 Missing requirements in the composer.json (e.g. "require": {"shopware/frontend": "*"},)  
 See "[Shopware App Development: App Meta Information - Explanation of the properties](https://docs.shopware.com/en/shopware-platform-dev-en/internals/plugins/plugin-information#explanation-of-the-properties)" for more information.
@@ -578,14 +299,13 @@ Be sure you set cookies as secure. Remember to register your cookie to the *Cook
 
 Shopware always uses json_Encode exclusively - there is no other fallback.
 
-### The lock file is not up to date with the latest changes in composer.json. You may be getting outdated dependencies. Run an update to update them.
+### The lock file is not up to date with the latest changes in composer.json. You may be getting outdated dependencies. Run an update to update them
 
-The composer.lock in the app archive has to be deleted.
+The `composer.lock` in the app archive has to be deleted.
 
-### Class Shopware\Core\System\Snippet\Files\SnippetFileInterface not found and could not be autoloaded.
+### Class Shopware\Core\System\Snippet\Files\SnippetFileInterface not found and could not be autoloaded
 
-In the Shopware 6 Early Access version, the mentioned class did not exist. Therefore, the code review failed.  
-The reason for the problem is the following specification in the composer.json:
+In the Shopware 6 Early Access (EA) version, the mentioned class did not exist. Therefore, the code review failed. The reason for the problem is the following specification in the composer.json:
 
 ```xml
 
@@ -598,8 +318,7 @@ The reason for the problem is the following specification in the composer.json:
 },</pre>
 ```
 
-The composer resolves this to "Whatever is the latest from these repositories" and then installs the Early Access version instead of the current Release Candidate. This happens because an EA is not known by the composer as a stability level (like stable or RC) and is, therefore, ultimately considered "stable".  
-The solution is to amend the requirement as follows:
+The composer resolves this to "Whatever is the latest from these repositories" and then installs the Early Access version instead of the current Release Candidate. This happens because an EA is not known by the composer as a stability level (like stable or RC) and is, therefore, ultimately considered "stable". The solution is to amend the requirement as follows:
 
 ```xml
 <pre>"require": {
@@ -641,4 +360,4 @@ You have now read the complete list of requirements for developing and releasing
 
 If your app is a software app/interface with downstream costs, transaction fees, or service fees for the customer, we need to complete a technology partner agreement in order to activate your apps.
 
-If you have any questions regarding the technology partner agreement, please contact our sales team by writing an email to alliances@shopware.com or calling +44 (0) 203 095 2445 (UK) / 00 800 746 7626 0 (worldwide) / +49 (0) 25 55 / 928 85-0 (Germany).
+If you have any questions regarding the technology partner agreement, please contact our sales team by writing an email to [alliances@shopware.com](mailto:alliances@shopware.com) or calling **+44 (0) 203 095 2445 (UK) / 00 800 746 7626 0 (worldwide) / +49 (0) 25 55 / 928 85-0 (Germany)**.

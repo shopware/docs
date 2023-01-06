@@ -1,6 +1,6 @@
-# Testing Guidelines for Shopware Apps and Plugins
+# Testing Guidelines for Shopware Extensions
 
-This section guides you with the criteria used to test your extension. Detailed information is available on [quality guidelines for apps](../store/quality-guidelines-apps/README.md) and [plugins](../store/quality-guidelines-plugins/README.md)
+This section guides you with the criteria used to test your extension. Detailed information is available on [quality guidelines for apps](../store/quality-guidelines-apps/README.md) and [quality guidelines for plugins](../store/quality-guidelines-plugins/README.md).
 
 Check out the points that affect your extension and go through them before submitting it for testing.
 
@@ -18,6 +18,8 @@ Failed: This point was tested, and errors were found
 Not necessary: This point does not need to be tested
 {% endhint %}
 
+## Test criteria
+
 Here is what the test criteria include:
 
 * **[Function availability](../store/quality-guidelines-apps/README.md#every-extension)** - Here, we proceed like a user and check the complete functionality of the app, as well as the logical structure and usability. For instance,
@@ -26,7 +28,10 @@ Here is what the test criteria include:
     * Do the buttons, export, rules, etc., work?
     * Are errors displayed in the console?
 
-* **[Lighthouse audit home/listing/detail](../store/quality-guidelines-apps/README.md#frontend-apps)** - We check if your extension affects the storefront or not so that the search engines have no problems with it. All buttons, labels, etc., must be named correctly.
+* **[Lighthouse audit home/listing/detail](../store/quality-guidelines-apps/README.md#frontend-apps)** - We check:
+
+    * If your extension affects the storefront or not?  (so that the search engines have no problems with it).
+    * If all buttons, labels, etc., are named correctly?
 
 We pay attention to all five audits. The app must not limit these. Like most search engines, we also pay attention to mobile-first.
 
