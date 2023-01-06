@@ -62,15 +62,18 @@ Before installing devenv, instruct Cachix to use the devenv cache:
 cachix use devenv
 ```
 
-{% hint style="info" %}
-When running `cachix use ...` for the first time, you will see a warning that you are not a trusted user.
+{% hint style="info %}
+The first time you run `cachix use`, you will be prompted a warning that you are not a trusted user.
+{% endhint %}
 
-```bash
+```shell
 This user doesn't have permissions to configure binary caches.
 
 You can either:
-...
-...
+
+a) ...
+
+b) ...
 ```
 
 When you encounter the above message, run:
@@ -78,8 +81,6 @@ When you encounter the above message, run:
 ```shell
 echo "trusted-users = root ${USER}" | sudo tee -a /etc/nix/nix.conf && sudo pkill nix-daemon
 ```
-
-{% endhint %}
 
 ### Devenv
 
