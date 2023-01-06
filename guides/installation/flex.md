@@ -1,6 +1,6 @@
 # Symfony Flex
 
-Symfony Flex is a composer plugin that helps to manage and stay up to date with your Shopware Configuration files.
+Symfony Flex is a Composer plugin that helps you to manage and keep your Shopware configuration files up-to-date.
 
 ## Set up a new project
 
@@ -10,38 +10,47 @@ To create a new Shopware project, run the following command:
 composer create-project shopware/production:dev-flex <project-name>
 ```
 
-This creates a new project in the `<project-name>` directory. The `dev-flex` version constraint installs the latest version of the Shopware. This constraint `dev-flex` is removed when the template is generally available.
+This creates a new project in the `<project-name>` directory. The `dev-flex` version constraint installs the latest version of Shopware. The constraint `dev-flex` will be removed once the template is generally available.
 
-The template contains all Shopware bundles like `shopware/administration`, `shopware/storefront`, `shopware/elasticsearch`. If you don't need one of them, you can uninstall it with:
-`composer remove shopware/<bundle-name>`.
+The template contains all Shopware bundles like `shopware/administration`, `shopware/storefront` and `shopware/elasticsearch`. If you don't need any of them, you can uninstall it with:
+
+```shell
+composer remove shopware/<bundle-name>
+```
 
 ## Installation
 
 ### Local installation
 
-You have to adjust the generated `.env` file and run the following command:
+After you have created the project via Composer, you have to adjust the generated `.env` file and run the following command:
 
 ```bash
 bin/console system:install --basic-setup
 ```
 
-This installs Shopware and creates a default sales channel with default admin credentials (user name, `admin` and password, `shopware`). Change these credentials after the installation.
+This installs Shopware and creates a default [sales channel](../../concepts/commerce/catalog/sales-channels.md) with Shopware's default Administration credentials:
+
+| Username | Password   |
+|:---------|:-----------|
+| `admin`  | `shopware` |
+
+Change these credentials after finishing the installation.
 
 ### Installation with Docker and local PHP using Symfony CLI
 
-The Symfony CLI is a developer tool that helps to build, run, and manage your Symfony applications directly from the terminal. The services will run in Docker containers and the application will run locally.
+The Symfony CLI is a developer tool that helps to build, run, and manage your Symfony applications directly from the terminal. The services will run in Docker containers, while the application will run locally.
 
-* **Requisites**:
+**Prerequisites**:
 
-1. Install [Symfony CLI](https://symfony.com/download), if you don't have one.
+1. Install [Symfony CLI](https://symfony.com/download), if you don't have it yet.
 
 1. As Symfony CLI uses local PHP, ensure to have PHP installed. Below are the commands to install it:
 
 {% tabs %}
 
-{% tab title="Ubuntu based Linux" %}
+{% tab title="Ubuntu" %}
 
-You need to add a new software repository to your system to have the latest PHP version.
+Add a new software repository to your system to have the latest PHP version.
 
 ```bash
 sudo add-apt-repository ppa:ondrej/php
@@ -51,7 +60,7 @@ sudo apt-get install -y php8.1-fpm php8.1-mysql php8.1-curl php8.1-gd php8.1-xml
 
 {% endtab %}
 
-{% tab title="Debian based Linux" %}
+{% tab title="Debian" %}
 
 Add a new software repository to your system to have the latest PHP version:
 
@@ -63,7 +72,9 @@ sudo apt-get install -y php8.1-fpm php8.1-mysql php8.1-curl php8.1-gd php8.1-xml
 
 {% endtab %}
 
-{% tab title="macOS Homebrew" %}
+{% tab title="macOS" %}
+
+The easiest way is to use [Homebrew](https://brew.sh/):
 
 ```bash
 brew install php@8.1
@@ -71,13 +82,13 @@ brew install php@8.1
 
 {% endtab %}
 
-{% tab title="Nix / NixOs" %}
+{% tab title="Nix / NixOS" %}
 
 ```bash
 # Nix
 nix-env -iA nixpkgs.php81 nixpkgs.symfony-cli
 
-# NixOs
+# NixOS
 nix-env -iA nixos.php81 nixpkgs.symfony-cli
 ```
 
@@ -90,7 +101,7 @@ nix-env -iA nixos.php81 nixpkgs.symfony-cli
 The template is small and does not contain any dev-tooling or integrations like PaaS or Fastly. You can easily add them to your project with the following commands:
 
 ```bash
-# Install Symfony Default Profiler
+# Install Symfony default profiler
 composer req --dev profiler
 
 # Install PaaS integration
@@ -102,9 +113,9 @@ composer req fastly
 
 ### Add Shopware packagist
 
-Using Shopware Packagist, you can manage all your Shopware Store plugins directly in the composer.json. Refer to ["Using composer for plugin installation in Shopware"](https://www.shopware.com/en/news/using-composer-for-plugin-installation-in-shopware/) blog post for detailed information.
+Using Shopware Packagist, you can manage all your Shopware Store plugins directly in the `composer.json`. Refer to ["Using composer for plugin installation in Shopware"](https://www.shopware.com/en/news/using-composer-for-plugin-installation-in-shopware/) blog post for detailed information.
 
-## How to migrate from Production Template to Symfony Flex?
+## How do I migrate from Production Template to Symfony Flex?
 
 ### 1. Backup
 
@@ -112,7 +123,7 @@ Start with a clean git state, stash everything or make a backup of your files.
 
 ### 2. Adjust root composer.json
 
-* Firstly, adjust your root `composer.json`. Add the following lines to your `composer.json`:
+First, adjust your root `composer.json`. Add the following lines to your `composer.json`:
 
 ```json
 "extra": {
@@ -126,7 +137,7 @@ Start with a clean git state, stash everything or make a backup of your files.
 }
 ```
 
-* Next, replace all the existing scripts with the following:
+Next, replace all the existing scripts with the following:
 
 ```json
 "scripts": {
@@ -140,7 +151,7 @@ Start with a clean git state, stash everything or make a backup of your files.
 }
 ```
 
-* Finally, remove the fixed platform as it will now be determined by the required packages.
+Finally, remove the fixed platform as it will now be determined by the required packages.
 
 ```diff
 "config": {
@@ -157,7 +168,7 @@ Start with a clean git state, stash everything or make a backup of your files.
 
 ### 3. Cleanup the template
 
-After the installation of the new composer packages, you can clean up the template by removing the following files:
+After having installed the new Composer packages, you can clean up the template by removing the following files:
 
 ```bash
 rm -r .dockerignore \
@@ -187,11 +198,11 @@ rm -r .dockerignore \
 touch .env
 ```
 
-### 4. Install required composer packages
+### 4. Install required Composer packages
 
-To install Symfony Flex, you need to have composer installed. If you don't have composer installed, please follow the [official documentation](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos).
+To install Symfony Flex, you need to have Composer installed. If you don't have Composer installed, please follow the [official documentation](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos).
 
-To install Symfony Flex, you need to run the following commands and allow both new composer plugins.
+To install Symfony Flex, you need to run the following commands and allow both new Composer plugins.
 
 ```bash
 composer require symfony/flex:~2 symfony/runtime:~5.4
@@ -201,9 +212,9 @@ composer recipe:install --force --reset
 
 ### 5. Review changes
 
-Review the changes and commit them to your git repository. All upcoming config changes can be applied with `composer recipe:update`.
+Review the changes and commit them to your Git repository. All upcoming config changes can be applied with `composer recipes:update`.
 
-You may need to adjust some environment variables as the names are changed:
+You may need to adjust some environment variables as the names have changed:
 
 | **Old name**      | **New name**   |
 |-------------------|----------------|
@@ -212,7 +223,7 @@ You may need to adjust some environment variables as the names are changed:
 
 ### 6. Optional: Install PaaS or Fastly support
 
-If you want to use Shopware PaaS or Fastly, you need to install the following composer packages:
+If you want to use Shopware PaaS or Fastly, you need to install the following Composer packages:
 
 ```bash
 # PaaS
@@ -224,11 +235,11 @@ composer req fastly
 
 ## Update Shopware
 
-Below are the two ways to update Shopware:
+There are two ways to update Shopware:
 
-* Initially run `bin/console system:update:prepare` to enable the maintenance mode and then update all composer packages using `composer update`. However, to disable the maintenance mode, run `bin/console system:update:finish`.
+* Initially run `bin/console system:update:prepare` to enable the maintenance mode and then update all Composer packages using `composer update`. However, to disable the maintenance mode, run `bin/console system:update:finish`.
 
-* To force update all config files, run `composer recipe:update`.
+* To force-update all config files, run `composer recipes:update`.
 
 ## Known issues
 
