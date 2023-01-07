@@ -1,4 +1,4 @@
-# Create a first theme
+# Create a First Theme
 
 ## Overview
 

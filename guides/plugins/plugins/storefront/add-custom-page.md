@@ -1,8 +1,8 @@
-# Add custom page
+# Add Custom Page
 
 ## Overview
 
-In this guide you'll learn how to create custom page for your Storefront. A page in general consists of a controller, a page loader, a "page loaded" event and a page class, which is like a struct and contains most necessary data for the page.
+In this guide you will learn how to create custom page for your Storefront. A page in general consists of a controller, a page loader, a "page loaded" event and a page class, which is like a struct and contains most necessary data for the page.
 
 ## Prerequisites
 
@@ -259,4 +259,4 @@ Your example page should now be fully functioning.
 
 You've now successfully created a whole new page, including a custom controller, a custom template, and the necessary classes to create a new page, a loader, the page struct and the page loaded event.
 
-In your `load` method, you've used the `GenericPageLoader`, which takes care of such a thing as the footer or the header. Those two are so called "pagelets", basically reusable fractions of a page. Learn how to create a custom pagelet yourself [here](add-custom-pagelet.md).
+In your `load` method, you've used the `GenericPageLoader`, which takes care of such a thing as the footer or the header. Those two are so called "pagelets", basically reusable fractions of a page. Learn how to [create a custom pagelet](add-custom-pagelet.md).

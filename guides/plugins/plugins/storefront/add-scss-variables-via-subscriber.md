@@ -1,10 +1,10 @@
-# Add SCSS variables
+# Add SCSS Variables
 
 ## Overview
 
 In order to add SCSS variables to your plugin, you can configure fields in your `config.xml` to be exposed as scss variables.
 
-We recommend to use the declaration of SCSS variables via the `config.xml` as described [here](./add-scss-variables.md) but you can still use a subscriber if you need to be more flexible as described below.
+We recommend to use the declaration of [SCSS variables](./add-scss-variables.md) via the `config.xml` but you can still use a subscriber if you need to be more flexible as described below.
 
 ## Prerequisites
 

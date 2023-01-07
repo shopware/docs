@@ -1,4 +1,4 @@
-# Remove Javascript plugin
+# Remove Javascript Plugin
 
 ## Overview
 

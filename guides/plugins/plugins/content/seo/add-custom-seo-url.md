@@ -12,7 +12,7 @@ As every almost every guide in the plugins section, this guide as well is built 
 
 {% page-ref page="../../plugin-base-guide.md" %}
 
-Furthermore, we're going to use a [custom storefront controller](../../storefront/add-custom-controller.md) for the static SEO URL example, as well as [custom entities](../../framework/data-handling/add-custom-complex-data.md) for the dynamic SEO URLs. Make sure you know and understand those two as well before diving deeper into this guide. Those come with two different solutions:
+Furthermore, we're going to use a [Custom storefront controller](../../storefront/add-custom-controller.md) for the static SEO URL example, as well as [Custom entities](../../framework/data-handling/add-custom-complex-data.md) for the dynamic SEO URLs. Make sure you know and understand those two as well before diving deeper into this guide. Those come with two different solutions:
 
 * Using [plugin migrations](../../plugin-fundamentals/database-migrations.md) for static SEO URLs
 * Using [DAL events](../../framework/data-handling/using-database-events.md) to react on entity changes and therefore generating a dynamic SEO URL

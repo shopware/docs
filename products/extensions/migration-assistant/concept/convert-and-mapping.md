@@ -2,7 +2,7 @@
 
 ## Overview
 
-Data gathered by `Reader` objects is transferred to `Converter` objects that put the data in a format Shopware 6 is able to work with. Simultaneously entries in the underlying mapping table are inserted to map the old identifiers to the new ones for future migrations. The mapping is saved for the current connection. Converted data will be removed after the migration, the mapping will stay persistent.
+Data gathered by `Reader` objects is transferred to `Converter` objects that put the data in a format Shopware 6 is able to work with. Simultaneously entries in the underlying mapping table are inserted to map the old identifiers to the new ones for future migrations. The mapping is saved for the current connection. After the migration, the converted data will be removed, and the mapping will stay persistent.
 
 ## Converter
 
@@ -15,7 +15,7 @@ All converters are registered in service container like this:
 </service>
 ```
 
-The converters have to extend the `ShopwareConverter` class and implement the `convert` method. This method will receive one data entry at a time. It will have to return it in the right format in order to be usable for the `writer`.
+The converters have to extend the `ShopwareConverter` class and implement the `convert` method. This method will receive one data entry at a time. It will have to be returned in the right format to be usable for the `writer`.
 
 ```php
 <?php declare(strict_types=1);
@@ -108,15 +108,15 @@ abstract class ProductConverter extends ShopwareConverter
 }
 ```
 
-As you see above the `convert` method gets the source system data, checks with `checkForEmptyRequiredDataFields` if the necessary data fields are filled and returns a `ConvertStruct`. The `ConvertStruct` contains the converted value in the structure of Shopware 6 and all source system data which could not be mapped to the Shopware 6 structure. If the required fields are not filled, the convert method returns a `ConvertStruct` without a `converted` value and all of the given source system data as the `unmapped` value.
+As you see above, the `convert` method gets the source system data, checks with `checkForEmptyRequiredDataFields` if the necessary data fields are filled, and returns a `ConvertStruct`. The `ConvertStruct` contains the converted value in the structure of Shopware 6 and all source system data which could not be mapped to the Shopware 6 structure. If the required fields are not filled, the convert method returns a `ConvertStruct` without a `converted` value and all of the given source system data as the `unmapped` value.
 
-Also every `Converter` needs to implement the `getSourceIdentifier` method like below:
+Also, every `Converter` needs to implement the `getSourceIdentifier` method like the below:
 
 ```php
 /* SwagMigrationAssistant/Profile/Shopware/Converter/ProductConverter.php */
 
 /**
- * Get the identifier of the source data which is only known to converter
+ * Get the identifier of the source data, which is only known to the converter
  */
 public function getSourceIdentifier(array $data): string
 {
@@ -124,11 +124,11 @@ public function getSourceIdentifier(array $data): string
 }
 ```
 
-This is the main identifier of the incoming data and it will be used to look for already migrated data \(which will be covered later in this chapter by the Deltas concept\).
+This is the main identifier of the incoming data, and it will be used to look for already migrated data \(which will be covered later in this chapter by the Deltas concept\).
 
 ## Mapping
 
-Many entities rely on other entities, so that they have to be converted in a specific order. Because of this and the Shopware Migration Assistant's ability to perform multiple migrations without resetting Shopware 6 itself, source system identifiers have to be mapped to their new counterparts. Find a mapping example in the following code snippet:
+Many entities rely on other entities, so they have to be converted in a specific order. Because of this and the Shopware Migration Assistant's ability to perform multiple migrations without resetting Shopware 6, source system identifiers must be mapped to their new counterparts. Find a mapping example in the following code snippet:
 
 ```php
 /* SwagMigrationAssistant/Profile/Shopware/Converter/ProductConverter.php */
@@ -161,7 +161,7 @@ private function getUuidForProduct(array &$data): array
 }
 ```
 
-The following function employs the `getOrCreateMapping` function, that is part of the mapping service to acquire a unique identifier for the product that is about to get mapped to the source system's identifier and at the same time creating a new mapping entry in the `swag_migration_mapping` table. If there already is a unique identifier for the product, the `getOrCreateMapping` method instead of creating a duplicate entry, returns the existing identifier:
+The following function employs the `getOrCreateMapping` function, which is part of the mapping service to acquire a unique identifier for the product that is about to get mapped to the source system's identifier and, at the same time, creating a new mapping entry in the `swag_migration_mapping` table. If there already is a unique identifier for the product, the `getOrCreateMapping` method, instead of creating a duplicate entry, returns the existing identifier:
 
 ```php
 /* SwagMigrationAssistant/Migration/Mapping/MappingService.php */
@@ -192,7 +192,7 @@ public function getOrCreateMapping(
 }
 ```
 
-Sometimes it is not necessary to create a new identifier, and it may be enough to only get the mapping identifier. In the following example there is an entity with a premapping and the converter simply uses the mapping service's `getMapping` method:
+Sometimes it is not necessary to create a new identifier, and it may be enough to only get the mapping identifier. In the following example, there is an entity with a premapping and the converter simply uses the mapping service's `getMapping` method:
 
 ```php
 /* SwagMigrationAssistant/Profile/Shopware/Converter/CustomerConverter.php */
@@ -272,7 +272,7 @@ public function getMapping(
 
 One of the parameters for the `getOrCreateMapping` Method is the `checksum`. It is used to identify unchanged data \(source system data that has not been changed since the last migration\). This will greatly improve the performance of future migrations.
 
-To get this checksum you can use the `generateChecksum` Method of the base `Converter` class:
+To get this checksum, you can use the `generateChecksum` method of the base `Converter` class:
 
 ```php
 /* SwagMigrationAssistant/Migration/Converter/Converter.php */
@@ -320,11 +320,11 @@ public function convert(
 }
 ```
 
-For the checksum to be saved to the right mapping, make sure that you set the `mainMapping` attribute of the base `Converter` class. Internally the checksum of the main mapping of an entity will be compared to the incoming data checksum and if it is the same it will be skipped by the converter and also by the writer \(you will not receive the data with the same checksum in your converter\), which increases performance of repeated migrations massively. For more information take a look at the corresponding `filterDeltas` method in the `MigrationDataConverter` class. Important for the delta concept is to return the `mainMapping` with the `ConvertStruct`, this is necessary to map the converted data to the main mapping entry.
+For the checksum to be saved to the right mapping, make sure that you set the `mainMapping` attribute of the base `Converter` class. Internally the checksum of the main mapping of an entity will be compared to the incoming data checksum and if it is the same, it will be skipped by the converter and also by the writer \(you will not receive the data with the same checksum in your converter\), which increases the performance of repeated migrations massively. For more information, look at the corresponding `filterDeltas` method in the `MigrationDataConverter` class. Important for the delta concept is to return the `mainMapping` with the `ConvertStruct`. This is necessary to map the converted data to the main mapping entry.
 
 ## Additional performance tips
 
-The `Converter` base class also contains an array named `mappingIds`. This can be filled with all mapping IDs that relate to the current data. Internally the related mappings will be fetched all at once in future migrations, which reduces the performance impact of `getMapping` calls \(because not every call needs to query data from the database\). So it is advised to add related mapping IDs in the following manner:
+The `Converter` base class also contains an array named `mappingIds`. This can be filled with all mapping IDs related to the current data. Internally the related mappings will be fetched all at once in future migrations, which reduces the performance impact of `getMapping` calls \(because not every call needs to query data from the database\). So it is advised to add related mapping IDs in the following manner:
 
 ```php
 /* SwagMigrationAssistant/Profile/Shopware/Converter/ProductConverter.php */

@@ -74,4 +74,3 @@ List of all rule classes across Shopware 6.
 | Class | Description |
 | :--- | :--- |
 | [Shopware\Core\System\Currency\Rule\CurrencyRule](https://github.com/shopware/platform/blob/trunk/src/Core/System/Currency/Rule/CurrencyRule.php) | Match a specific currency to the current context. |
-

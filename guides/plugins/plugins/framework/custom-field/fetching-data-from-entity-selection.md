@@ -1,4 +1,4 @@
-# Fetching data from "entity selection" custom field
+# Fetching Data from "Entity Selection" Custom Field
 
 ## Overview
 

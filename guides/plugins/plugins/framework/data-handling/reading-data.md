@@ -1,12 +1,12 @@
-# Reading data
+# Reading Data
 
 ## Overview
 
-In this guide you'll learn how to properly fetch data from the database in your plugin or for core contributions. This will also cover how to add filters to only find specific data, and how to aggregate your desired data. Unlike most other Symfony applications, Shopware 6 uses no ORM but rather a thin Data Abstraction Layer. It's worth getting used to the "DAL", as you might stumble upon this term every now and then in the Shopware universe.
+In this guide you will learn how to properly fetch data from the database in your plugin or for core contributions. This will also cover how to add filters to only find specific data, and how to aggregate your desired data. Unlike most other Symfony applications, Shopware 6 uses no ORM but rather a thin Data Abstraction Layer. It's worth getting used to the "DAL", as you might stumble upon this term every now and then in the Shopware universe.
 
 ## Prerequisites
 
-Since this guide is built upon the plugin base guide [plugin base guide](../../plugin-base-guide.md), you might want to have a look at it. Furthermore, the guide about [Dependency injection](../../plugin-fundamentals/dependency-injection.md) will come in handy, since you need to know how to inject a service using the DI container.  
+Since this guide is built upon the plugin base guide [Plugin base guide](../../plugin-base-guide.md), you might want to have a look at it. Furthermore, the guide about [Dependency injection](../../plugin-fundamentals/dependency-injection.md) will come in handy, since you need to know how to inject a service using the DI container.  
 You also might want to have a look at the concept behind the [Data abstraction layer concept](../../../../../concepts/framework/data-abstraction-layer.md) first to get a better grasp of how it works.
 
 ## Reading data
@@ -168,11 +168,11 @@ This example does not contain any aggregation, since they're only explained late
 
 **Other filters**
 
-There's more than just an `EqualsFilter`, which is the SQL equivalent of `WHERE fieldX = valueX`. You can find all other filters either on [GitHub](https://github.com/shopware/platform/tree/trunk/src/Core/Framework/DataAbstractionLayer/Search/Filter) or with an explanation in our [filters reference](../../../../../resources/references/core-reference/dal-reference/filters-reference.md).
+There is more than just an `EqualsFilter`, which is the SQL equivalent of `WHERE fieldX = valueX`. You can find all other filters either on [GitHub](https://github.com/shopware/platform/tree/trunk/src/Core/Framework/DataAbstractionLayer/Search/Filter) or in our [filters reference](../../../../../resources/references/core-reference/dal-reference/filters-reference.md) with explanation.
 
 #### Associations
 
-Of course associations to other entities are also possible in Shopware 6. If you, for example, want to load all product-reviews, which is an entity itself, related to the product you've found, you can do so by adding associations to the criteria object.
+Of course associations to other entities are also possible in Shopware 6. If you, for example, want to load all product-reviews, which is an entity itself, related to the product you have found, you can do so by adding associations to the criteria object.
 
 ```php
 public function readData(Context $context): void
@@ -335,7 +335,7 @@ Now you've added an ascending sort by the `createdAt` field, so the result becom
 
 ### Using the RepositoryIterator
 
-Another special way to read data in Shopware is by using the [RepositoryInterator](https://github.com/shopware/platform/blob/trunk/src/Core/Framework/DataAbstractionLayer/Dbal/Common/RepositoryIterator.php).
+Another special way to read data in Shopware is by using the [RepositoryIterator](https://github.com/shopware/platform/blob/trunk/src/Core/Framework/DataAbstractionLayer/Dbal/Common/RepositoryIterator.php).
 
 But what does it do? Basically it's a little helper class that helps you deal with big data sets by being iterable and returning a batch of data with each iteration, but never all data at once.
 
@@ -380,4 +380,4 @@ And that's basically it for this guide!
 
 ## Next steps
 
-Now that you know how to read data from the database using the Data Abstraction Layer, you can head over to our guide on [writing data](writing-data.md).
+Now that you know how to read data from the database using the Data Abstraction Layer, you can head over to our guide on [Writing data](writing-data.md).

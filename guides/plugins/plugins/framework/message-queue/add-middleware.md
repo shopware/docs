@@ -1,10 +1,10 @@
-# Add middleware
+# Add Mddleware
 
 ## Overview
 
-In this guide you'll learn how to add a custom middleware.
+In this guide you will learn how to add a custom middleware.
 
-A [middleware](https://symfony.com/doc/current/messenger.html#middleware) is called when the message bus dispatches messages. The middleware defines what happens when you dispatch a message. For example the `send_message` middleware is responsible for sending your message to the configured transport and the `handle_message` middleware will actually call your handlers for the given message.
+A [Middleware](https://symfony.com/doc/current/messenger.html#middleware) is called when the message bus dispatches messages. The middleware defines what happens when you dispatch a message. For example the `send_message` middleware is responsible for sending your message to the configured transport and the `handle_message` middleware will actually call your handlers for the given message.
 
 ## Prerequisites
 

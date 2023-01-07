@@ -4,8 +4,7 @@
 
 [Platform.sh](https://platform.sh) is a powerful hosting provider for your infrastructure that's quite easy to use.
 
-Keep in mind though, that this is **not** the only way to go for Apps! You can of course use different services, providers or host everything on a dedicated machine.
-In this guide, we'd like to let you know what we'd do to get started hosting an App on Platform.sh.
+Keep in mind, though, that this is **not** the only way to go for apps. You can, of course, use different services, providers or host everything on a dedicated machine. This guide explains to you how to get started for hosting an app on Platform.sh.
 
 Read more about why this kind of hosting could be useful [here](README.md) or in there [official documentation](https://docs.platform.sh/).
 
@@ -38,11 +37,11 @@ Your project should now be running at [https://console.platform.sh](https://cons
 
 [Platform.sh](https://platform.sh) automatically creates a URL and TLS certificate using [Let's Encrypt](https://letsencrypt.org/) based on your [routes.yaml](https://docs.platform.sh/configuration/routes.html) file for every active environment.
 
-You should be aware though that the URL will be built in a specific way. If your branch name gets too long, [Let's Encrypt](https://letsencrypt.org/) won't be able to generate a certificate.
+You should be aware that the URL will be built in a specific way. If your branch name gets too long, [Let's Encrypt](https://letsencrypt.org/) won't be able to generate a certificate.
 
-To avoid this you should configure your [Source Integrations](https://docs.platform.sh/integrations/source.html) to use the name of your **Pull Request** instead of the **Branch Name**.
+To avoid this, you should configure your [Source Integrations](https://docs.platform.sh/integrations/source.html) to use the name of your **Pull Request** instead of the **Branch Name**.
 
-**Read more about this topic here:** <https://docs.platform.sh/configuration/routes/https.html#lets-encrypt-limits-errors-and-branch-names>.
+**Read more about this topic from  [doc.platform.sh](https://docs.platform.sh/configuration/routes/https.html#lets-encrypt-limits-errors-and-branch-names).**
 
 ### Hook commands
 
@@ -83,7 +82,7 @@ platform list
 
 This step is needed if you want to get more information about the project using the [Platform.sh CLI](https://docs.platform.sh/development/cli.html).
 
-**Documentation:** <https://docs.platform.sh/gettingstarted/introduction/own-code/create-project.html>
+Refer to this documentation on [Create environment](https://docs.platform.sh/gettingstarted/introduction/own-code/create-project.html)
 
 ```bash
 platform project:set-remote <Project ID>
@@ -91,7 +90,7 @@ platform project:set-remote <Project ID>
 
 ### Push single branch to Platform.sh and activate it
 
-**Documentation:** <https://docs.platform.sh/gettingstarted/developing/dev-environments/create-environment.html>
+Refer to this documentation on [Create environment](https://docs.platform.sh/gettingstarted/developing/dev-environments/create-environment.html)
 
 ```bash
 # Push to Platform.sh
@@ -103,7 +102,7 @@ platform environment:activate <Branch Name>
 
 ### Get available URLs for the current project
 
-**Documentation:** <https://docs.platform.sh/development/access-site.html#visiting-the-site-on-the-web>
+Refer to this [Documentation](https://docs.platform.sh/development/access-site.html#visiting-the-site-on-the-web)
 
 ```bash
 platform url 
@@ -111,7 +110,7 @@ platform url
 
 ### SSH into your project
 
-**Documentation:** <https://docs.platform.sh/development/ssh.html>
+Refer to this documentation on [SSH](https://docs.platform.sh/development/ssh.html)
 
 ```bash
 platform ssh
@@ -119,7 +118,7 @@ platform ssh
 
 ### Connect to the database using SSH tunneling
 
-**Documentation:** <https://docs.platform.sh/development/local/tethered.html#ssh-tunneling>
+Refer to this documentation on [SSH Tunneling](https://docs.platform.sh/development/local/tethered.html#ssh-tunneling)
 
 ```bash
 # List all possible commands
@@ -134,7 +133,7 @@ mysql --host=127.0.0.1 --port=30001 --user='user' --password='' --database='main
 
 ### Accessing log files
 
-**Documentation:** <https://docs.platform.sh/development/logs.html>
+Refer to this documentation on [logs](https://docs.platform.sh/development/logs.html)
 
 ```bash
 platform log --help

@@ -1,6 +1,6 @@
 # Overview
 
-The variety of Shopware's extension interfaces can be overwhelming, so let's start with a simple overview comparing the three approaches **Plugins**, **Themes** and **Apps**.
+The variety of Shopware's extension interfaces can be overwhelming, so let us start with a simple overview comparing the three approaches **Plugins**, **Themes**, and **Apps**.
 
 | Task | Plugin | Theme | App | Remarks |
 | :--- | :--- | :--- | :--- | :--- |
@@ -13,12 +13,12 @@ The variety of Shopware's extension interfaces can be overwhelming, so let's sta
 | Publish in the Shopware Store | ✅ | ✅ | ✅ |  |
 | Install in Shopware 6 Cloud Shops | ❌ | ❌ | ✅ |  |
 | Install in Shopware 6 self-hosted Shops | ✅ | ✅ | ✅ | Apps can be installed and used since Shopware 6.4.0.0 |
-| Add custom logic/routes/commands | ✅ | ❌ | ✅ | Apps extract functionalities/logic into separate services, so technically they can add custom logic |
+| Add custom logic/routes/commands | ✅ | ❌ | ✅ | Apps extract functionalities/logic into separate services, so technically, they can add custom logic |
 | Control order of style/template inheritance | ❌ | ✅ | ✅ |  |
 
 ## Plugins
 
-Plugins are the most powerful extension mechanism as they can be used to extend, overwrite and modify almost any part of the software. At the same time, obviously, they can also be the most harmful for the same reasons. If you make profound changes or complex functionalities such as e.g
+Plugins are the most powerful extension mechanism, as they can be used to extend, overwrite and modify almost any part of the software. At the same time, they can also be the most harmful for the same reasons. You will probably need to write a plugin, if you make profound changes or complex functionalities such as:
 
 * Custom price calculation
 * Product imports
@@ -27,10 +27,10 @@ Plugins are the most powerful extension mechanism as they can be used to extend,
 * Dynamic validations
 * Customer tracking
 
-You will probably need to write a plugin for that. Follow our [Plugin Base Guide](plugins/plugin-base-guide.md) to learn how to develop a plugin. See the [Plugin Fundamentals](plugins/plugin-fundamentals/) section below for more examples.
+Follow our [Plugin Base Guide](plugins/plugin-base-guide.md) to learn how to develop a plugin. See the [Plugin Fundamentals](plugins/plugin-fundamentals/) section below for more examples.
 
 {% hint style="info" %}
-If your extensions do not require any of the above, but rather design changes, a template tweak might ideally be appropriate.
+If your extensions do not require any of the above but rather design changes, a template tweak might ideally be appropriate.
 {% endhint %}
 
 ## Themes
@@ -54,6 +54,6 @@ To get started with your first theme, follow our [Theme Base Guide](themes/theme
 
 Operation in cloud environments is not possible due to the aspects listed under [Plugins](overview.md#plugins). Therefore, a different, less intrusive pattern was introduced. Apps enable event-based integrations that communicate with external services via a synchronous API.
 
-Most of the app's logic resides in this third-party service, so developers must ensure that they handle the details of the API and provide their service with appropriate security, protection, and reliability. While it comes with these responsibilities, you are free to choose which operating environment, framework or programming language you wish to use as long as our [guidelines for Shopware apps](apps/app-base-guide.md) are followed.
+Most of the app's logic resides in this third-party service, so developers must ensure that they handle the details of the API and provide their service with appropriate security, protection, and reliability. While it comes with these responsibilities, you are free to choose which operating environment, framework, or programming language you wish to use as long as our [guidelines for Shopware apps](apps/app-base-guide.md) are followed.
 
 Apps also provide theme support, so all the features of [Themes](overview.md#themes) are also available for apps. Payments are also supported by apps and the user can be forwarded to a payment provider.

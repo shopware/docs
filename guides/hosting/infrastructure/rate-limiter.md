@@ -15,9 +15,9 @@ The configuration for the rate limiter of Shopware 6 resides in the general bund
       └── shopware.yml
 ```
 
-To configure the default rate limiters for your shop you need to add the `shopware.api.rate_limiter` map to the `shopware.yml`. Under this key you can separately define the rate limiters.
+To configure the default rate limiters for your shop, you need to add the `shopware.api.rate_limiter` map to the `shopware.yml`. Under this key, you can separately define the rate limiters.
 
-In the following you can find a list of the default limiters:
+In the following, you can find a list of the default limiters:
 
 - `login`: Storefront / Store-API customer authentication.
 - `guest_login`: Storefront / Store-API after order guest authentication.

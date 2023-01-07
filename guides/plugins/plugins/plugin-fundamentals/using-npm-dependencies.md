@@ -1,4 +1,4 @@
-# Adding NPM dependencies
+# Adding NPM Dependencies
 
 In this guide you'll learn how add NPM dependencies to your project.
 

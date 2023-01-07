@@ -1,4 +1,4 @@
-# Theme with Bootstrap styling
+# Theme with Bootstrap Styling
 
 ## Overview
 

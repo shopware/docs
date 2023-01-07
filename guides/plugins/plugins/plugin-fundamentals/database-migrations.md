@@ -1,4 +1,4 @@
-# Database migrations
+# Database Migrations
 
 ## Overview
 
@@ -10,9 +10,7 @@ In order to add your own database migrations for your plugin, you first need a p
 
 <!-- markdown-link-check-disable-next-line -->
 {% hint style="info" %}
-Here's a video explaining database migrations from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
-
-**[Database migrations](https://www.youtube.com/watch?v=__pWwaK6lxw)**
+Refer to this video on **[Database migrations](https://www.youtube.com/watch?v=__pWwaK6lxw)**. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 {% endhint %}
 
 ## File structure
@@ -107,7 +105,11 @@ As you can see your migration contains 3 methods:
 * update\(\)
 * updateDestructive\(\)
 
-There is no need to change `getCreationTimestamp()`, it returns the timestamp that's also part of the file name. In the `update()` method you implement non-destructive changes which should always be **reversible**. The `updateDestructive()` method is the counterpart to `update()` and used for **destructive none reversible changes**, like dropping columns or tables.
+There is no need to change `getCreationTimestamp()`, it returns the timestamp that's also part of the file name. In the `update()` method you implement non-destructive changes which should always be **reversible**. The `updateDestructive()` method is the follow up step, that is run after `update()` and used for **destructive none reversible changes**, like dropping columns or tables. Destructive migrations are only executed explicitly.
+
+{% hint style="info" %}
+You do not add instructions to revert your migrations within the migration class itself. `updateDestructive` is not meant to revert instructions in `update`. Reverting changes in the database is done explicitly in plugin lifecycle method `uninstall`. Read more about [it here](./plugin-lifecycle.md#uninstall).
+{% endhint %}
 
 Here's an example of a non-destructive migration, creating a new table:
 

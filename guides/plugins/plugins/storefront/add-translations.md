@@ -1,4 +1,4 @@
-# Add translations
+# Add Translations
 
 ## Overview
 

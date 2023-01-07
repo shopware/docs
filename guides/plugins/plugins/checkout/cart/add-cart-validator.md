@@ -1,4 +1,4 @@
-# Add cart validator
+# Add Cart Validator
 
 ## Overview
 
@@ -8,7 +8,7 @@ This guide will cover the subject on how to add your own custom cart validator.
 
 ## Prerequisites
 
-For this guide, you'll need a working plugin, which you learn to create [here](../../plugin-base-guide.md). Also, you'll have to know the [Dependency Injection container](../../plugin-fundamentals/dependency-injection.md), since that's going to be used in order to register your custom validator.
+For this guide, you will need a working plugin, which you learn to create [here](../../plugin-base-guide.md). Also, you will have to know the [Dependency Injection container](../../plugin-fundamentals/dependency-injection.md), since that's going to be used in order to register your custom validator.
 
 ## Adding a custom cart validator
 

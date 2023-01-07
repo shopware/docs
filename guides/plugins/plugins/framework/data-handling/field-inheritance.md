@@ -1,4 +1,4 @@
-# Field inheritance
+# Field Inheritance
 
 ## Overview
 
@@ -22,7 +22,7 @@ To start using inheritance, we have to update our definition and database.
 
 ### Make fields nullable
 
-The first thing we need to do is to make all our fields that we want to make inheritable nullable in our migration. If you lack knowledge about migrations, have a look at our [database migrations](../../plugin-fundamentals/database-migrations.md) guide. We also need a 'parent_id' field for the parent reference.
+The first thing we need to do is to make all our fields that we want to make inheritable nullable in our migration. If you lack knowledge about migrations, have a look at our [Database migrations](../../plugin-fundamentals/database-migrations.md) guide. We also need a 'parent_id' field for the parent reference.
 
 ```sql
 ALTER TABLE `swag_example` ADD `parent_id` BINARY(16) NULL;

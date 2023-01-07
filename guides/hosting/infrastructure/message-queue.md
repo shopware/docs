@@ -1,24 +1,28 @@
 # Message Queue
 
-## What is the Message Queue
+## Overview
 
-Shopware uses the Symfony Messenger component and Enqueue to handle asynchronous messages. This allows tasks to be processed in the background. Thus, tasks can be processed independently of timeouts or system crashes. By default, tasks in Shopware are stored in the database and processed via the browser, as long as you are logged into the administration. This is a simple and fast method for the development process, but not recommended for production systems. With multiple users logged into the administration, this can lead to high CPU load and interfere with the smooth execution of PHP FPM.
+Shopware uses the Symfony Messenger component and Enqueue to handle asynchronous messages. This allows tasks to be processed in the background. Thus, tasks can be processed independently of timeouts or system crashes. By default, tasks in Shopware are stored in the database and processed via the browser as long as you are logged into the Administration. This is a simple and fast method for the development process, but not recommended for production systems. With multiple users logged into the Administration, this can lead to a high CPU load and interfere with the smooth execution of PHP FPM.
 
-## Message Queue on production systems
+## Message queue on production systems
 
-On a productive system, the message queue should be processed via the CLI instead of the browser in the administration ([Admin worker](#admin-worker)). This way, tasks are also completed when no one is logged into the administration and high CPU load due to multiple users in the admin is also avoided. Furthermore you can change the transport to another system like [RabbitMQ](https://www.rabbitmq.com/) for example. This would on the one hand relieve the database and on the other hand use a much more specialized service for handling message queues. The following are examples of the steps needed.  
-It's recommended to run one or more `messenger:consume`-workers. To automatically start the processes again after they stopped because of exceeding the given limits you can use a process control system like [systemd](https://www.freedesktop.org/wiki/Software/systemd/) or [supervisor](http://supervisord.org/running.html).  
-Alternatively you can configure a cron job that runs the command periodically. Please note: Using cron jobs won't take care of maximum running worker, like supervisor can do. They don't wait for another worker to stop. So there is a risk starting an unwanted amount of workers when you have messages running longer than the set time-limit. If the time-limit has been exceeded worker will wait for the current message being finished.
+On a production system, the message queue should be processed via the CLI instead of the browser in the Administration ([Admin worker](#admin-worker)). This way, tasks are also completed when no one is logged into the Administration and high CPU load due to multiple users in the admin is also avoided. Furthermore, you can change the transport to another system like [RabbitMQ](https://www.rabbitmq.com/). This would, relieve the database and, on the other hand, use a much more specialized service for handling message queues. The following are examples of the steps needed.  
+It is recommended to run one or more `messenger:consume`workers. To automatically start the processes again after they stopped because of exceeding the given limits you can use a process control system like [systemd](https://www.freedesktop.org/wiki/Software/systemd/) or [supervisor](http://supervisord.org/running.html).
+Alternatively, you can configure a cron job that runs the command periodically.
+
+{% hint style="info" %}
+Using cron jobs won't take care of maximum running worker, like supervisor can do. They don't wait for another worker to stop. So there is a risk of starting an unwanted amount of workers when you have messages running longer than the set time limit. If the time limit has been exceeded worker will wait for the current message to be finished.
+{% endhint %}
 
 Find here the docs of Symfony: <https://symfony.com/doc/current/messenger.html#deploying-to-production>  
 
 {% hint style="info" %}
-It is recommended to use a third party message queue to support multiple consumers and / or a greater amount of data to index.
+It is recommended to use a third-party message queue to support multiple consumers and/or a greater amount of data to index.
 {% endhint %}
 
 ### Consuming Messages
 
-The recommended method for consuming messages is using the cli worker.
+The recommended method for consuming messages is using the CLI worker.
 
 #### Cli worker
 
@@ -28,7 +32,7 @@ You can configure the command just to run a certain amount of time and to stop i
 bin/console messenger:consume default --time-limit=60 --memory-limit=128M
 ```
 
-For more information about the command and its configuration use the -h option:
+For more information about the command and its configuration, use the -h option:
 
 ```bash
 bin/console messenger:consume -h
@@ -36,7 +40,7 @@ bin/console messenger:consume -h
 
 #### Admin worker
 
-If you have configured the cli-worker, you should turn off the admin worker in the shopware configuration file, therefore create or edit the configuration `shopware.yaml`.
+If you have configured the cli-worker, you should turn off the admin worker in the Shopware configuration file. Therefore, create or edit the configuration `shopware.yaml`.
 
 ```yaml
 # config/packages/shopware.yaml
@@ -45,7 +49,7 @@ shopware:
         enable_admin_worker: false
 ```
 
-The admin-worker, if used, can be configured in the general `shopware.yml` configuration. If you want to use the admin worker you have to specify each transport, that previously was configured. The poll interval is the time in seconds that the admin-worker polls messages from the queue. After the poll-interval is over the request terminates and the administration initiates a new request.
+The admin worker, if used, can be configured in the general `shopware.yml` configuration. If you want to use the admin worker, you have to specify each transport that was previously configured. The poll interval is the time in seconds that the admin worker polls messages from the queue. After the poll interval is over, the request terminates, and the Administration initiates a new request.
 
 ```yaml
 # config/packages/shopware.yaml
@@ -69,7 +73,7 @@ PartOf=shopware_consumer.target
 
 [Service]
 Type=simple
-User=www-data # Change this to webservers user name
+User=www-data # Change this to webserver's user name
 Restart=always
 # Change the path to your shop path
 WorkingDirectory=/var/www/html
@@ -102,9 +106,9 @@ At the end start the services:
 
 Please refer to the [Symfony documentation](https://symfony.com/doc/current/messenger.html#supervisor-configuration) for the setup.
 
-### Sending Mails over the Message Queue
+### Sending mails over the message queue
 
-By default Shopware sends the mails synchronously. Since this can affect the page speed, you can switch it to use the Message Queue with a small configuration change.
+By default, Shopware sends the mails synchronously. Since this can affect the page speed, you can switch it to use the Message Queue with a small configuration change.
 
 ```yaml
 # config/packages/framework.yaml
@@ -115,7 +119,7 @@ framework:
 
 ### Transport: RabbitMQ example
 
-In this example we replace the standard transport, which stores the messages in the database, with RabbitMQ. Of course, other transports can be used as well. A detailed documentation of the parameters and possibilities can be found in the [symfony documentation](https://symfony.com/doc/5.4/messenger.html#amqp-transport). In the following I assume that RabbitMQ is installed and started. Furthermore, a queue, here called `messages`, should be created inside RabbitMQ. The only thing left is to tell Shopware about the new transport. Therefore we edit/create the configuration file `framework.yaml` with the following content:
+In this example, we replace the standard transport, which stores the messages in the database, with RabbitMQ. Of course, other transport can be used as well. Detailed documentation of the parameters and possibilities can be found in the [Symfony documentation](https://symfony.com/doc/5.4/messenger.html#amqp-transport). In the following, I assume that RabbitMQ is installed and started. Furthermore, a queue, here called `messages`, should be created inside RabbitMQ. The only thing left is to tell Shopware about the new transport. Therefore we edit/create the configuration file `framework.yaml` with the following content:
 
 ```yaml
 # config/packages/framework.yaml
@@ -132,7 +136,7 @@ The system needs the AMQP php extension
 
 ### Transport: Redis example
 
-In the following I assume that Redis is installed and started. To use the [Symfony Messenger Redis Transport](https://symfony.com/doc/current/messenger.html#redis-transport) configure like below:
+In the following, I assume that Redis is installed and started. To use the [Symfony Messenger Redis Transport](https://symfony.com/doc/current/messenger.html#redis-transport) configure as below:
 
 ```yaml
 # config/packages/framework.yaml
@@ -147,5 +151,5 @@ framework:
 ```
 
 {% hint style="info" %}
-As Shopware handles failed messages on it's own, we can enable deleting of failed or acknowledged messages. When running more than one consumer, env MESSENGER_CONSUMER_NAME needs to be set. F.e. in Supervisor with `environment=MESSENGER_CONSUMER_NAME=%(program_name)s_%(process_num)02d`.
+As Shopware handles failed messages on its own. We can enable the deletion of failed or acknowledged messages. When running more than one consumer, `MESSENGER_CONSUMER_NAME` needs to be set. For example, in supervisor with `environment=MESSENGER_CONSUMER_NAME=%(program_name)s_%(process_num)02d`.
 {% endhint %}

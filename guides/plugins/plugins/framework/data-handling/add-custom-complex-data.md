@@ -1,4 +1,4 @@
-# Adding custom complex data
+# Adding Custom Complex Data
 
 ## Overview
 
@@ -6,13 +6,11 @@ Quite often, your plugin has to save data into a custom database table. Shopware
 
 ## Prerequisites
 
-This guide is built upon the [plugin base guide](../../plugin-base-guide.md), but any plugin will work here. Just note that all examples are using the plugin mentioned above. In order to create a database table, you need to understand plugin migrations [Plugin migrations](../../plugin-fundamentals/database-migrations.md). Also, you'll have to understand how the [dependency injection](../../plugin-fundamentals/dependency-injection.md) works as well.
+This guide is built upon the [Plugin base guide](../../plugin-base-guide.md), but any plugin will work here. Just note that all examples are using the plugin mentioned above. In order to create a database table, you need to understand plugin migrations [Plugin migrations](../../plugin-fundamentals/database-migrations.md). Also, you'll have to understand how the [Dependency injection](../../plugin-fundamentals/dependency-injection.md) works as well.
 
 <!-- markdown-link-check-disable-next-line -->
 {% hint style="info" %}
-Here's a video on creating custom entities from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
-
-**[Creating a custom entity](https://www.youtube.com/watch?v=mTHTyof4gPk)**
+Refer to this video on **[Creating a custom entity](https://www.youtube.com/watch?v=mTHTyof4gPk)**. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 {% endhint %}
 
 ## Creating the database table
@@ -334,6 +332,6 @@ That's it, your definition is now completely registered to Shopware 6! From here
 
 You've now got a simple entity about a single database table. However, your entity will most likely be even more complex.
 
-For example we also have a guide about [associations](add-data-associations.md), since you most likely will have multiple tables that have a relation to each other. Furthermore, the fields in this example are already using flags, which are explained [here](using-flags.md). When dealing with products, you're also dealing with [inheritance](field-inheritance.md), which we also got covered.
+For example we also have a guide about [Associations](add-data-associations.md), since you most likely will have multiple tables that have a relation to each other. Furthermore, the fields in this example are already [Using flags](using-flags.md). When dealing with products, you are also dealing with [Inheritance](field-inheritance.md), which we also got covered.
 
 One more thing: Maybe you want to connect your database table to an already existing database table, hence an already existing entity. This is done by [extending the said existing entity](add-complex-data-to-existing-entities.md).

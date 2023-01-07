@@ -1,4 +1,4 @@
-# Adding product entity extension to elasticsearch
+# Adding Product Entity Extension to Elasticsearch
 
 ## Overview
 

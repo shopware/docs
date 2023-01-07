@@ -1,8 +1,8 @@
-# Override existing route
+# Override Existing Route
 
 ## Overview
 
-In this guide you'll learn how to override existing Store API routes to add additional data to it.
+In this guide you will learn how to override existing Store API routes to add additional data to it.
 
 ## Prerequisites
 
