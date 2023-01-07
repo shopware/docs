@@ -22,7 +22,7 @@ Not necessary: This point does not need to be tested
 
 Here is what the test criteria include:
 
-* **[Function availability](../store/quality-guidelines-apps/README.md#every-extension)** - Here, we proceed like a user and check the complete functionality of the app, as well as the logical structure and usability. For instance,
+* **[Function availability](../store/quality-guidelines-apps/README.md#every-app-based-on-the-app-system)** - Here, we proceed like a user and check the complete functionality of the app, as well as the logical structure and usability. For instance,
 
     * Is a general function as described in your extension available?
     * Do the buttons, export, rules, etc., work?
@@ -42,7 +42,12 @@ We pay attention to all five audits. The app must not limit these. Like most sea
 
 Rich snippets have no influence on the ranking of a website. Thus, they do not count among the ranking factors. Nevertheless, search hits enriched with additional information have various SEO advantages: higher attention, higher click-through rate, and greater relevance.
 
-* **[No errors in the storefront and 503/404 errors](../store/quality-guidelines-apps/README.md#error-messages-must-be-entered-in-the-event-log)** - If the app is active in the storefront, we also check this point. It involves display errors and errors of any kind. The end customer should not receive any misleading error messages. It does not matter whether a function causes the error or the customer does not use the function correctly. For example, the customer can upload a picture using a function, but if the customer tries to upload a video, a clear message should be displayed here.
+* **[No errors in the storefront and 503/404 errors](../store/quality-guidelines-apps/README.md#error-messages-must-be-entered-in-the-event-log)** - We check:
+
+    * If the app is active in the storefront?
+    * If it involves display errors and errors of any kind?
+
+The end customer should not receive any misleading error messages. It does not matter whether a function causes the error or the customer does not use the function correctly. For example, the customer can upload a picture using a function, but if the customer tries to upload a video, a clear message should be displayed here.
 
 * **[Cookie check storefront/checkout](../store/quality-guidelines-apps/README.md#register-a-cookie-to-the-cookie-consent-manager)** - Since the GDPR/DSGVO, the classification of cookies is particularly important. We distinguish between three types of cookies.
 
@@ -54,7 +59,7 @@ Rich snippets have no influence on the ranking of a website. Thus, they do not c
 
 * **[Store description German/English](../store/quality-guidelines-apps/README.md#app-descriptions-in-your-shopware-account)** - The app store description includes several points if the app can be used only in a specific country, so leave this clearly in the description. The German description is only mandatory if the app is to be offered in the German market. Furthermore, there must always be at least two images of the app in English, e.g., of the storefront and the admin.
 
-* **[Translations managed admin](../store/quality-guidelines-apps/README.md#fallback-language)** - The app must be available in all languages specified in your account. However, it is important that English is fallback if the app does not support any other language.
+* **[Translations managed admin](../store/quality-guidelines-apps/README.md#fallback-language)** - We check if the app is available in all languages specified in your account. However, it is important that English is fallback if the app does not support any other language.
 
 * **[API validation](../store/quality-guidelines-apps/README.md#api-or-payment-apps)** - If access data is required for the app - for example, an API key; a button must be implemented with which the customer can check the data if this is technically possible.
 

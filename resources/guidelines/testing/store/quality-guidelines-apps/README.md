@@ -10,11 +10,7 @@
 >> 12/05/20: Add app Checklist for your Quality assurance.
 >> 22/04/20: Menu entries in the main menu of the Administration are not allowed anymore because of look & feel.
 
-## Checklist for app testing
-
-Be sure to use the most recent testing checklist from Shopware and not from any other provider. Please pay attention to every single point in this guide, as this will be reviewed by us in order to release your app.
-
-### The way we test apps based on the app system
+## The way we test apps based on the app system
 
 It is always a good idea to review the process of how we conduct tests prior to submitting your app for review. This ensures the quickest way for your app to be published.
 
@@ -30,7 +26,7 @@ docker run --rm -p 80:80 -e VIRTUAL_HOST=localhost ghcr.io/shopwarelabs/testenv:
 ```
 
 {% hint style="information" %}
-The shop will be accessible at http://localhost/shop/public  
+The shop will be accessible at `http://localhost/shop/public`  
 Admin-User and Admin-Password: demo
 {% endhint %}
 
@@ -38,36 +34,40 @@ Admin-User and Admin-Password: demo
 We always test with the [actual SW6 version](https://www.shopware.com/de/download/#shopware-6). So set it to the actual SW6 version e.g., `shopware/testenv:6.4.3`. Always test with the app`s highest supported Shopware version.
 {% endhint %}
 
-**Progressive Web App: ** If your app is PWA compatible and you would like the PWA flag, please contact us at [alliances@shopware.com](mailto:alliances@shopware.com).
+**Progressive Web App:** If your app is PWA compatible and you would like the PWA flag, please contact us at [alliances@shopware.com](mailto:alliances@shopware.com).
 
 ### Useful links and tutorials for creating an app
 
-* Sample app development template: https://github.com/shopwareLabs/AppExample
-* App base guide: https://developer.shopware.com/docs/guides/plugins/apps/app-base-guide
-* Storefront: https://developer.shopware.com/docs/guides/plugins/apps/storefront
-* Admin: https://developer.shopware.com/docs/guides/plugins/apps/administration
+* [Sample app development template](https://github.com/shopwareLabs/AppExample)
+* [App base guide](https://developer.shopware.com/docs/guides/plugins/apps/app-base-guide)
+* [Storefront](https://developer.shopware.com/docs/guides/plugins/apps/storefront)
+* [Admin](https://developer.shopware.com/docs/guides/plugins/apps/administration)
+
+## Checklist for app testing
+
+Be sure to use the most recent testing checklist from Shopware and not from any other provider. Please pay attention to every single point in this guide, as this will be reviewed by us in order to release your app.
 
 ### Every app based on the app system
 
-1. If using external fonts (e.g., from Google fonts) or external services, the app store description must contain this information. Please be aware that you might have to edit your *data protection information*. This info could be otherwise placed as a tooltip near the font settings of the app configuration.
+* If you are using external fonts (e.g., from Google fonts) or external services, the app store description must contain this information. Please be aware that you might have to edit your *data protection information*. This info could be otherwise placed as a tooltip near the font settings of the app configuration.
 
-2. **App store description**:
+* **App store description**:
 
     * The mandatory number of characters is set in short and long descriptions. No blank spaces as fillers are allowed (EN/DE).
     * Check if the description makes sense and if it includes step-by-step instructions on how to use and test your app.
     * Check if you have included enough screenshots showing the app in action in the Storefront and Administration (please add a screenshot of the app in the extension manager settings).
 
-3. We pay attention to the automatic code review and look for security issues.
+* We pay attention to the automatic code review and look for security issues.
 
-4. **Cookie check in the browser console**: If the app sets cookies in any way in the checkout, these cookies must be registered to the cookie configuration box in the frontend.
+* **Cookie check in the browser console**: If the app sets cookies in any way in the checkout, these cookies must be registered to the cookie configuration box in the frontend.
 
-5. Every external link in the administration or storefront must be marked as *rel="no opener" AND target="_blank"*.
+* Every external link in the administration or storefront must be marked as *rel="no opener" AND target="_blank"*.
 
-6. We check for styling errors on every viewport.
+* We check for styling errors on every viewport.
 
-7. We check the complete functionality of the app (including the uninstallation and reinstallation procedure).
+* We check the complete functionality of the app (including the uninstallation and reinstallation procedure).
 
-8. We want to improve the quality of the Shopware Community Store and offer as many different apps as possible. Hence, we check for a functional comparison with other apps already present in the Shopware Community Store. If there is an app with the same function, it can be rejected as it doesn't provide any added value. For further information, write an email to [alliances@shopware.com](mailto:alliances@shopware.com).
+* We want to improve the quality of the Shopware Community Store and offer as many different apps as possible. Hence, we check for a functional comparison with other apps already present in the Shopware Community Store. If there is an app with the same function, it can be rejected as it doesn't provide any added value. For further information, write an email to [alliances@shopware.com](mailto:alliances@shopware.com).
 
 {% hint style="information" %}
 **Safe your app idea and get a preview in the store** - If you already have an idea and don't want it to be snatched away, then make sure you get it by creating a preview in your account. You can apply for this if you already have maintained images, description, and release months without uploading anything.
@@ -121,37 +121,37 @@ Iframes, external scripts, or tracking pixels are not allowed in the description
 
 ### Theme apps
 
-1. There must be a preview image available in the *Theme Manager*.
+* There must be a preview image available in the *Theme Manager*.
 
-2. Links must include a "title-tag" and images must have an "alt-tag".
+* Links must include a "title-tag" and images must have an "alt-tag".
 
-3. Use *Scheme.org's Structured Data Testing Tool* to check the homepage, categories, and various product detail pages (incl. available products, unavailable products, products with no review, single review, many reviews with various ratings, out of stock products, products to be released in the future or any other kind of product configuration). Also, check for any new bugs.
+* Use *Scheme.org's Structured Data Testing Tool* to check the homepage, categories, and various product detail pages (incl. available products, unavailable products, products with no review, single review, many reviews with various ratings, out of stock products, products to be released in the future or any other kind of product configuration). Also, check for any new bugs.
 
-4. Do a *Lighthouse Audit* to check the performance and quality of your frontend app. There should not be any drastic change in performance or accessibility values when activating the app.
+* Do a *Lighthouse Audit* to check the performance and quality of your frontend app. There should not be any drastic change in performance or accessibility values when activating the app.
 
-5. The price and shopping cart button may not be covered by customizations - for example, "badges". Furthermore, the shopping cart button must always be clickable.
+* The price and shopping cart button may not be covered by customizations - for example, "badges". Furthermore, the shopping cart button must always be clickable.
 
 ### Shopping worlds/storytelling elements
 
-1. Links must include a "title-tag" and images must have an "alt-tag".
+* Links must include a "title-tag" and images must have an "alt-tag".
 
-2. Test the frontend and the checkout with the Debug Console – also pay attention to new JavaScript errors.
+* Test the frontend and the checkout with the Debug Console – also pay attention to new JavaScript errors.
 
-3. Use *Scheme.org's Structured Data Testing Tool* to check the homepage, categories, and various product detail pages (incl. available products, unavailable products, products with no review, single review, many reviews with various ratings, out of stock products, products to be released in the future or any other kind of product configuration). Also, check for any new bugs.
+* Use *Scheme.org's Structured Data Testing Tool* to check the homepage, categories, and various product detail pages (incl. available products, unavailable products, products with no review, single review, many reviews with various ratings, out of stock products, products to be released in the future or any other kind of product configuration). Also, check for any new bugs.
 
-4. Do a *Lighthouse Audit* to check the performance and quality of your frontend app. There should not be any drastic change in performance or accessibility values when activating the app.
+* Do a *Lighthouse Audit* to check the performance and quality of your frontend app. There should not be any drastic change in performance or accessibility values when activating the app.
 
 ### Frontend apps
 
-1. Links must include a "title-tag" and images must have an "alt-tag".
+* Links must include a "title-tag" and images must have an "alt-tag".
 
-2. If you create custom controller URLs in the sales channel, please note that we check for SEO and a valid canonical-tag.
+* If you create custom controller URLs in the sales channel, please note that we check for SEO and a valid canonical-tag.
 
-3. Use *Scheme.org's Structured Data Testing Tool* to check the homepage, categories, and various product detail pages (incl. available products, unavailable products, products with no review, single review, many reviews with various ratings, out of stock products, products to be released in the future or any other kind of product configuration). Also, check for any new bugs.
+* Use *Scheme.org's Structured Data Testing Tool* to check the homepage, categories, and various product detail pages (incl. available products, unavailable products, products with no review, single review, many reviews with various ratings, out of stock products, products to be released in the future or any other kind of product configuration). Also, check for any new bugs.
 
-4. We check for new errors throughout the entire storefront using the Browser Debug Console. We also pay attention to new JavaScript errors.
+* We check for new errors throughout the entire storefront using the Browser Debug Console. We also pay attention to new JavaScript errors.
 
-5. We do a *Lighthouse Audit* to check the performance and quality of your frontend app. There should not be any drastic change in performance or accessibility values when activating the app.
+* We do a *Lighthouse Audit* to check the performance and quality of your frontend app. There should not be any drastic change in performance or accessibility values when activating the app.
 
 ### Admin apps
 
@@ -159,9 +159,9 @@ We check the complete functionality of the app and test wherever the administrat
 
 ### API or payment apps
 
-1. The functionality of an app will be tested together with the app developer in a live session.
+* The functionality of an app will be tested together with the app developer in a live session.
 
-2. Define in the description which currencies/countries are compatible with the payment method.
+* Define in the description which currencies/countries are compatible with the payment method.
 
 ## Quality guidelines for Shopware 6 apps based on the app system
 
@@ -215,7 +215,7 @@ We expect that every cookie set from the store URL is [registered in our Cookie 
 
 ### Shopping worlds/shopping experiences
 
-*Shopping worlds* element must include an element icon. If the app is deleted, *Shopping worlds* should continue to work flawlessly in the frontend.
+[Shopping worlds elements](#shopping-worldsstorytelling-elements) element must include an element icon. If the app is deleted, *Shopping worlds* should continue to work flawlessly in the frontend.
 
 ### Menu entries in the main menu not allowed
 
@@ -233,13 +233,17 @@ There are Cypress tests for Shopware 6 on GitHub. The project is driven by the *
 * [FroshPluginUploader](https://github.com/FriendsOfShopware/FroshPluginUploader): Tool for validating and uploading new SW6 app releases to the Community Store (GitHub Project from "Friends of Shopware")]
 * [Shopware CLI tools](https://github.com/shopwareLabs/sw-cli-tools): When you think about performance, these are various useful console helpers for generating data.
 
+### Descriptions in your Shopware account
+
+[App descriptions in your Shopware account](#app-descriptions-in-your-shopware-account) must follow the checklist criterion.
+
 ## Automatic code review - Errors
 
 ### Ensure cross-domain messages are sent to the intended domain
 
 See ["Cross-document messaging domains should be carefully restricted"](https://rules.sonarsource.com/javascript/RSPEC-2819) for more information.
 
-### No bootstrapping file found. Expecting bootstrapping in...
+### No bootstrapping file found. Expecting bootstrapping in
 
 The bootstrap cannot be found. The reasons could be that the folder structure in the ZIP file is incorrect, there could be a typo, or a case-sensitive error in the app source (e.g., in the technical name).
 
