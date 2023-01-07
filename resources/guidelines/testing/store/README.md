@@ -52,9 +52,9 @@ The end customer should not receive any misleading error messages. It does not m
 * **[Cookie check storefront/checkout](../store/quality-guidelines-apps/README.md#register-a-cookie-to-the-cookie-consent-manager)** - Since the GDPR/DSGVO, the classification of cookies is particularly important. We distinguish between three types of cookies.
 
     * **Technically required**: Only cookies that are really important for the store without which no purchase would be possible.
-    
+
     * **Comfort functions**: Cookies to display personalized ads as banners, newsletter pop-ups, and content from video and social media platforms.
-    
+
     * **Statistics and Tracking**: Statistics and everything that has to do with data collection and tracking.
 
 * **[Store description German/English](../store/quality-guidelines-apps/README.md#app-descriptions-in-your-shopware-account)** - The app store description includes several points if the app can be used only in a specific country, so leave this clearly in the description. The German description is only mandatory if the app is to be offered in the German market. Furthermore, there must always be at least two images of the app in English, e.g., of the storefront and the admin.
