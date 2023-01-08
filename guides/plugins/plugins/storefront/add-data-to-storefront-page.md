@@ -1,4 +1,4 @@
-# Add data to storefront page
+# Add Data to Storefront Page
 
 ## Overview
 
@@ -78,7 +78,7 @@ Because we are in an event of a Pagelet we should not directly call the DAL to f
 If we just wanted to add specific products data we could use the ProductListRoute. But we want to fetch data that is currently not returned in a performant way with the store-api.
 The ProductListRoute could return the data but it would return way to much data for our purpose. Because of that we will add a new store-api route for our data.
 
-First you should read our guide for [adding store-api routes](../framework/store-api/add-store-api-route)
+First you should read our guide for [adding store-api routes](../framework/store-api/add-store-api-route).
 
 Our new Route should look like this:
 
@@ -150,7 +150,7 @@ class ProductCountRoute extends AbstractProductCountRoute
 }
 ```
 
-So you should know and understand the first few lines if you've read our guide about [reading data](../framework/data-handling/reading-data.md) first.
+So you should know and understand the first few lines if you have read our guide about [Reading data](../framework/data-handling/reading-data.md) first.
 Make sure to also understand the usage of aggregations, since this is what is done here.
 The only main difference you might notice is, that we're using the `aggregate()` method instead of the `search()` method.
 This will not actually search for any products and return the whole products dataset, but rather just the aggregated data, nothing else.
@@ -219,7 +219,7 @@ Now you only have to adjust your service definition to inject the productCountRo
 ### Displaying the data in the storefront
 
 To display the additional data we need to override the footer template and render the data.
-You can find detailed information on how to extend templates and override blocks [here](customize-templates.md).
+Refer to the respective section of this guide for detailed information on how to [extend templates and override blocks](customize-templates.md).
 
 For our case we extend the footer template and add a new column to the navigation block:
 

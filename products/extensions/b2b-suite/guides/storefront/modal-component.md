@@ -1,24 +1,14 @@
 # Modal Component
 
-## Table of contents
+This article explains the B2B modal component. We are using the modal view for an entity detail information window which holds additional content for the selected grid item. We use two different templates for this approach. The base modal template `(components/SwagB2bPlatform/Resources/views/storefront/_partials/_b2bmodal/_modal.html.twig)` is responsible for the base structure of the modal box. In this template, you can find multiple twig blocks, which are for the navigation inside the modal and the content area.
 
-* [Description](#description)
-* [Modal with simple content](#modal-with-simple-content)
-* [Modal with Navigation](#modal-with-navigation)
-* [Modal with Navigation and Ajax Panel Content](#modal-with-navigation-and-ajax-panel-content)
-  * [Ajax Panel template for modal content](#ajax-panel-template-for-modal-content)
+In the B2B Suite, the content block will be extended with the second modal template (`components/SwagB2bPlatform/Resources/views/storefront/_partials/_b2bmodal/_modal-content.html.twig`). The content template can be configured with different variables to improve the user experience with a fixed top and bottom bar. We are using these bars for filtering, sorting, and pagination.
 
-## Description
+There are many advantages to extending this template instead of building your own modal view.
 
-In this article we explain the B2B modal component. We are using the modal view for an entity detail information window which holds additional content for the selected grid item. We use two different templates for this approach. The base modal template `(components/SwagB2bPlatform/Resources/views/storefront/_partials/_b2bmodal/_modal.html.twig)` is responsible for the base structure of the modal box. In this template you can find multiple twig blocks which are for the navigation inside the modal and the content area.
-
-In the B2B-Suite the content block will be extended with the second modal template (`components/SwagB2bPlatform/Resources/views/storefront/_partials/_b2bmodal/_modal-content.html.twig`). The content template can be configured with different variables to improve the user experience with a fixed top and bottom bar. We are using this bars for filtering, sorting and pagination.
-
-There are many advantages to extend this template instead of building your own modal view.
-
-* Same experience for every view
-* No additional CSS classes required
-* Easy modal modifications because every view using the same classes
+* Same experience for every view.
+* No additional CSS classes are required.
+* Easy modal modifications because every view uses the same classes.
 
 The modal component comes with different states:
 
@@ -51,9 +41,9 @@ The modal component comes with different states:
 {% endraw %}
 {% endcode %}
 
-## Modal with Navigation
+## Modal with navigation
 
-If you would like to have a navigation sidebar inside the modal window you can set the navigation variable to `true`.
+If you would like to have a navigation sidebar inside the modal window, you can set the navigation variable to `true`.
 
 {% code %}
 {% raw %}
@@ -85,7 +75,7 @@ If you would like to have a navigation sidebar inside the modal window you can s
 {% endraw %}
 {% endcode %}
 
-## Modal with Navigation and Ajax Panel Content
+## Modal with navigation and ajax panel content
 
 {% code %}
 {% raw %}
@@ -117,9 +107,9 @@ If you would like to have a navigation sidebar inside the modal window you can s
 {% endraw %}
 {% endcode %}
 
-### Ajax Panel template for modal content
+### Ajax panel template for modal content
 
-The modal content template has different options for fixed inner containers. The top and bottom bar can be enabled or disabled. The correct styling for each combination of settings will be applied automatically so u dont have to take care of styling. We use the topbar always for action buttons like "Create element". The bottom bar could be used for pagination for example.
+The modal content template has different options for fixed inner containers. The top and bottom bars can be enabled or disabled. The correct styling for each combination of settings will be applied automatically, so you don't have to take care of the styling. We use the top bar always for action buttons like "create element" and the bottom bar could be used for "pagination" for instance.
 
 {% code %}
 {% raw %}

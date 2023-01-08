@@ -1,4 +1,4 @@
-# Add dynamic content via AJAX calls
+# Add Dynamic Content via AJAX Calls
 
 ## Overview
 
@@ -10,9 +10,7 @@ For this guide we will use a very simple controller that returns a timestamp wra
 
 <!-- markdown-link-check-disable-next-line -->
 {% hint style="info" %}
-Here's a video dealing with the creation of a controller that returns JSON data from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
-
-**[Creating a JSON controller](https://www.youtube.com/watch?v=VzREUDdpZ3E)**
+Refer to this video on **[Creating a JSON controller](https://www.youtube.com/watch?v=VzREUDdpZ3E)** dealing with the creation of a controller that returns JSON data. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 {% endhint %}
 
 As mentioned before this guide builds up upon the [adding a custom controller](add-custom-controller.md) guide. This means that this article will only cover the differences between returning a template and a `JSON` response and making it accessible to `XmlHttpRequests`.
@@ -156,4 +154,4 @@ The only thing that is now left, is to provide a template for the storefront plu
 
 ## Next steps
 
-The controller we used in this example doesn't do a lot, but this pattern of providing and using data is generally the same. Even if you use it to fetch data form the database, but in that case you probably want to learn more about the DAL [here](../../../../concepts/framework/data-abstraction-layer.md).
+The controller we used in this example doesn't do a lot, but this pattern of providing and using data is generally the same. Even if you use it to fetch data form the database, but in that case you probably want to learn more about the [DAL](../../../../concepts/framework/data-abstraction-layer.md).

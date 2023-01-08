@@ -1,4 +1,4 @@
-# Using the datepicker plugin
+# Using the Datepicker Plugin
 
 ## Overview
 

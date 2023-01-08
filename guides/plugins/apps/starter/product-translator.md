@@ -1,4 +1,4 @@
-# App-Starter - Read and write data
+# App-Starter - Read and Write Data
 
 This guide will show you how to set up an app server with our [app template](https://github.com/shopware/AppTemplate).
 You will learn how to read and write data to the Shopware Admin API using an example of fetching dynamic translations for products when they are updated.
@@ -18,7 +18,7 @@ First, you need to clone the app template from GitHub into the directory that wi
 git clone git@github.com:shopware/AppTemplate.git translator-app
 ```
 
-Next you set your own git repo as a git remote:
+Next, you set your own git repo as a git remote:
 
 ```sh
 git remote set-url origin <myrepo.git>
@@ -27,8 +27,8 @@ git remote set-url origin <myrepo.git>
 The app template contains a basic Symfony application to get started with app development.
 Call `composer install` to fetch all required dependencies.
 
-Modify the `APP_NAME` in the env to your app name`./.env` to ensure the app can be installed to a store later.
-Also configure the `DATABASE_URL` to point to your database, and choose an `APP_SECRET`:
+Modify the `APP_NAME` in the env to your app name`./.env` to ensure the app can be installed in a store later.
+Also, configure the `DATABASE_URL` to point to your database, and choose an `APP_SECRET`:
 
 {% code title=".env" %}
 
@@ -94,12 +94,12 @@ Let's start by filling in all the meta information:
 {% endcode %}
 
 {% hint style="warning" %}
-Take care to use the same `<name>` as in the `.env` file, otherwise stores can't install the app!
+Take care to use the same `<name>` as in the `.env` file. Otherwise, stores can't install the app.
 {% endhint %}
 
 ### Setup hook
 
-Next up we will define the `<setup>` part of the manifest. This part describes how the store will connect itself with the app server.
+Next, we will define the `<setup>` part of the manifest. This part describes how the store will connect itself with the app server.
 
 {% code title="release/manifest.xml" %}
 
@@ -118,12 +118,12 @@ Next up we will define the `<setup>` part of the manifest. This part describes h
 
 {% endcode %}
 
-The `<registraionUrl>` is already implementend by the app template, and is always `/register`, unless you modify `src/Controller/RegistrationController.php`.
+The `<registraionUrl>` is already implemented by the app template and is always `/register`, unless you modify `src/Controller/RegistrationController.php`.
 The `<secret>` element is only present in development versions of the app. In production, the extension store will provide the secret to authenticate your app buyers.
 
 ### Permissions
 
-Because this app will need to read product descriptions and translate them the it needs permissions to do so:
+Permissions are needed as this app will need to read product descriptions and translate them:
 
 {% code title="release/manifest.xml" %}
 
@@ -178,7 +178,7 @@ in its shops:
 {% endcode %}
 
 {% hint style="info" %}
-The timeout for the requests against app server is 5 seconds.
+The timeout for the requests against the app server is 5 seconds.
 {% endhint %}
 
 These two webhooks provide a way for shops to notify your app server about events that occurred.
@@ -190,7 +190,7 @@ This webhook needs a custom controller, which will be the next part of this guid
 
 ## Handling shop events
 
-To get started write a let's write a simple Symfony controller:
+To get started, let's write a simple Symfony controller:
 
 {% code title="src/Controller/ProductController.php" %}
 
@@ -205,9 +205,9 @@ class ProductController extends AbstractController
 
 {% endcode %}
 
-For later use, it's already injected with the `ShopRepository` and the `RequestVerifier`; They will become useful soon.
+For later use, it is already injected with the `ShopRepository` and the `RequestVerifier`; They will become useful soon.
 
-Next implement a route for the aforementioned `product-update` webhook:
+Next, implement a route for the aforementioned `product-update` webhook:
 
 {% code title="src/Controller/ProductController.php" %}
 
@@ -225,13 +225,8 @@ class ProductController extends AbstractController
 
 {% endcode %}
 
-Next, we will verify the request:
-For that, we need to fetch the shop data from the database.
-The shopRepository provides the getShopFromId method for that.
-The source part of the request contains the shopId.
-With that id, the shop is retrieved from the repository.
-The verifier then validates the request with the shop object.
-A failed validation raises an exception, thus stopping unauthorized requests from going through.
+Next, we will verify the request. For that, we need to fetch the shop data from the database. The shopRepository provides the getShopFromId method for that. The source part of the request contains the shopId.
+With that id, the shop is retrieved from the repository. The verifier then validates the request with the shop object. A failed validation raises an exception, thus stopping unauthorized requests from going through.
 {% code title="src/Controller/ProductController.php" %}
 
 ```php
@@ -248,7 +243,7 @@ A failed validation raises an exception, thus stopping unauthorized requests fro
 
 ### Creating a shop client
 
-Once the request has been verified you can use the `$shop` to create a api-client for that particular shop.
+Once the request has been verified, you can use the `$shop` to create an api-client for that particular shop.
 {% code title="src/Controller/ProductController.php" %}
 
 ```php
@@ -272,7 +267,7 @@ Once the request has been verified you can use the `$shop` to create a api-clien
 {% endcode %}
 
 The `ShopClient` receives a standard Guzzle HTTP client as well as the `$shop` we got from the database.
-By setting the `base_uri` of the Guzzle client to the store-url, so we don't have to set it repeatedly.
+By setting the `base_uri` of the Guzzle client to the store-url, we don't have to set it repeatedly.
 
 Now we can inspect the event payload:
 
@@ -296,9 +291,9 @@ Now we can inspect the event payload:
 
 All `$entity.written` events contain a list of fields that a write event has changed.
 The code above uses this information to determine if the description of a product was changed.
-If the change did not affect the description, the controller returns a 204 response because there is nothing else to do for this event.
+If the change did not affect the description, the controller returns a `204` response because there is nothing else to do for this event.
 
-Now that it's certain the description of the product was changed, we fetch the description through the API of the shop:
+Now that it is certain that the description of the product was changed, we fetch the description through the API of the shop:
 
 {% code title="src/Controller/ProductController.php" %}
 
@@ -331,7 +326,7 @@ Now that it's certain the description of the product was changed, we fetch the d
 
 {% endcode %}
 
-The request contains a criteria that fetches the product for which we received the event `'ids' => [$id]` and all translations and their associated languages `'associations' => 'language'`. Now we can retrieve the english description from the API response:
+The request contains a criteria that fetches the product for which we received the event `'ids' => [$id]` and all translations and their associated languages `'associations' => 'language'`. Now we can retrieve the English description from the API response:
 
 {% code title="src/Controller/ProductController.php" %}
 
@@ -354,12 +349,12 @@ The request contains a criteria that fetches the product for which we received t
 {% endcode %}
 
 {% hint style="info" %}
-A common gotcha with `entity.written` webhooks is that they trigger themselves when you're performing write operations. Updating the description, triggers another `entity.written` event which again calls the webhook which updates the description and so on.
+A common gotcha with `entity.written` webhooks is that they trigger themselves when you're performing write operations. Updating the description triggers another `entity.written` event. This again calls the webhook, which updates the description, and so on.
 {% endhint %}
 
 Because our goal is to write a french translation of the product, the app needs to take care to avoid endless loops.
 To determine if the app has already written a translation once, it saves a hash of the original description.
-We will get to the generation of the hash later but we need to check it first:
+We will get to the generation of the hash later, but we need to check it first:
 
 {% code title="src/Controller/ProductController.php" %}
 
@@ -408,12 +403,12 @@ Now that the app can be sure the description has not been translated before it c
 
 {% endcode %}
 
-Note the hash of the original description gets saved as a value in the
+Note that the hash of the original description gets saved as a value in the
 custom fields of the product entity. This is possible without any further config since all custom fields are schema-less.
 
-The implementation of the `translate` method is disregarded in this example, you might perform an additional lookup through a translation API service to implement it.
+The implementation of the `translate` method is disregarded in this example. You might perform an additional lookup through a translation API service to implement it.
 
-## Install the App
+## Install the app
 
 In this last step, we will install the app using the Shopware CLI tools.
 
@@ -426,14 +421,14 @@ shopware-cli project extension upload ProductTranslator/release --activate --inc
 ```
 
 This command will create a zip file from the specified extension directory and upload it to your configured store.
-The `--increase-version` parameter increases the version specified in the `manifest.xml` file. This flag is required, so Shopware picks up changes made to the `manifest.xml` since the last installation.
+The `--increase-version` parameter increases the version specified in the `manifest.xml` file. This flag is required so Shopware picks up changes made to the `manifest.xml` since the last installation.
 Once successfully installed, you will see the app in the extension manager.
 And when you save a product, the description will automatically update.
 
 ## Where to continue
 
-In this example, you've learned how to receive events and modify data through the app system. But that is just the tip of the iceberg:
+In this example, you have learned how to receive events and modify data through the app system. You can also:
 
-* Did you know you can add [new payments](../payment.md) as apps?
+* Add [new payments](../payment.md) as apps
 * Write code that runs during checkout [app scripting](../app-scripts/cart-manipulation.md)
 * Add new endpoints to the API [custom endpoints](./add-api-endpoint.md)

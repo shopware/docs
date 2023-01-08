@@ -4,7 +4,7 @@
 
 In this guide you'll learn how to secure API routes with a rate limit to reduce the risk against bruteforce attacks.
 If you want to learn more about the configuration of the rate limiter in Shopware,
-have a look at the [rate limiter](../../../../hosting/infrastructure/rate-limiter.md) guide.
+have a look at the [Rate limiter](../../../../hosting/infrastructure/rate-limiter.md) guide.
 
 ## Prerequisites
 

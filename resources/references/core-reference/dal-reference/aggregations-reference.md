@@ -19,6 +19,7 @@ The DAL knows two types of aggregations:
 | filter | bucket | Allows to filter the aggregation result |
 | terms | bucket | Groups the result for each value of the provided field and fetches the count of affected documents |
 | histogram | bucket | Groups the result for each value of the provided field and fetches the count of affected documents. Although allows to provide date interval \(day, month, ...\) |
+| range | bucket | Groups the result for each defined set of ranges into each bucket - bucket of numerical data and a count of items/documents for each bucket |
 
 ## Avg aggregation
 
@@ -26,6 +27,7 @@ The `Avg` aggregation makes it possible to calculate the average value for a fie
 
 {% tabs %}
 {% tab title="PHP Criteria" %}
+
 ```php
 $criteria = new Criteria();
 $criteria->setLimit(1);
@@ -41,12 +43,13 @@ $aggregation = $result->getAggregations()->get('avg-price');
 
 $aggregation->getAvg();
 ```
+
 {% endtab %}
 
 {% tab title="API Criteria" %}
 Request
 
-```javascript
+```json
 {
     "limit": 1,
     "includes": {
@@ -64,7 +67,7 @@ Request
 
 Response
 
-```javascript
+```json
 {
     "total": 1,
     "data": [
@@ -82,6 +85,7 @@ Response
     }
 }
 ```
+
 {% endtab %}
 {% endtabs %}
 
@@ -91,6 +95,7 @@ The `count` aggregation makes it possible to determine the number of entries for
 
 {% tabs %}
 {% tab title="PHP Criteria" %}
+
 ```php
 $criteria = new Criteria();
 $criteria->setLimit(1);
@@ -106,12 +111,13 @@ $aggregation = $result->getAggregations()->get('count-manufacturers');
 
 $aggregation->getCount();
 ```
+
 {% endtab %}
 
 {% tab title="API Criteria" %}
 Request
 
-```javascript
+```json
 {
     "limit": 1,
     "includes": {
@@ -129,7 +135,7 @@ Request
 
 Response
 
-```javascript
+```json
 {
     "total": 1,
     "data": [
@@ -147,6 +153,7 @@ Response
     }
 }
 ```
+
 {% endtab %}
 {% endtabs %}
 
@@ -156,6 +163,7 @@ The `max` aggregation allows you to determine the maximum value of a field. The 
 
 {% tabs %}
 {% tab title="PHP Criteria" %}
+
 ```php
 $criteria = new Criteria();
 $criteria->setLimit(1);
@@ -171,12 +179,13 @@ $aggregation = $result->getAggregations()->get('max-price');
 
 $aggregation->getMax();
 ```
+
 {% endtab %}
 
 {% tab title="API Criteria" %}
 Request
 
-```javascript
+```json
 {
     "limit": 1,
     "includes": {
@@ -194,7 +203,7 @@ Request
 
 Response
 
-```javascript
+```json
 {
     "total": 1,
     "data": [
@@ -212,6 +221,7 @@ Response
     }
 }
 ```
+
 {% endtab %}
 {% endtabs %}
 
@@ -221,6 +231,7 @@ The `min` aggregation makes it possible to determine the minimum value of a fiel
 
 {% tabs %}
 {% tab title="PHP Criteria" %}
+
 ```php
 $criteria = new Criteria();
 $criteria->setLimit(1);
@@ -236,12 +247,13 @@ $aggregation = $result->getAggregations()->get('min-price');
 
 $aggregation->getMin();
 ```
+
 {% endtab %}
 
 {% tab title="API Criteria" %}
 Request
 
-```javascript
+```json
 {
     "limit": 1,
     "includes": {
@@ -259,7 +271,7 @@ Request
 
 Response
 
-```javascript
+```json
 {
     "total": 1,
     "data": [
@@ -277,6 +289,7 @@ Response
     }
 }
 ```
+
 {% endtab %}
 {% endtabs %}
 
@@ -286,6 +299,7 @@ The `sum` aggregation makes it possible to determine the total of a field. The f
 
 {% tabs %}
 {% tab title="PHP Criteria" %}
+
 ```php
 $criteria = new Criteria();
 $criteria->setLimit(1);
@@ -301,12 +315,13 @@ $aggregation = $result->getAggregations()->get('sum-price');
 
 $aggregation->getSum();
 ```
+
 {% endtab %}
 
 {% tab title="API Criteria" %}
 Request
 
-```javascript
+```json
 {
     "limit": 1,
     "includes": {
@@ -324,7 +339,7 @@ Request
 
 Response
 
-```javascript
+```json
 {
     "total": 1,
     "data": [
@@ -342,6 +357,7 @@ Response
     }
 }
 ```
+
 {% endtab %}
 {% endtabs %}
 
@@ -351,6 +367,7 @@ The `stats` aggregation makes it possible to calculate several values at once fo
 
 {% tabs %}
 {% tab title="PHP Criteria" %}
+
 ```php
 $criteria = new Criteria();
 $criteria->setLimit(1);
@@ -369,12 +386,13 @@ $aggregation->getMax();
 $aggregation->getAvg();
 $aggregation->getMin();
 ```
+
 {% endtab %}
 
 {% tab title="API Criteria" %}
 Request
 
-```javascript
+```json
 {
     "limit": 1,
     "includes": {
@@ -392,7 +410,7 @@ Request
 
 Response
 
-```javascript
+```json
 {
     "total": 1,
     "data": [
@@ -413,6 +431,7 @@ Response
     }
 }
 ```
+
 {% endtab %}
 {% endtabs %}
 
@@ -421,13 +440,14 @@ Response
 The `terms` aggregation belongs to the bucket aggregations. This allows you to determine the values of a field. The result contains each value once and how often this value occurs in the result. The `terms` aggregation also supports the following parameters:
 
 * `limit` - Defines a maximum number of entries to be returned \(default: zero\)
-* `sort` - Defines the order of the entries. By default the following is not sorted
+* `sort` - Defines the order of the entries. By default, the following is not sorted
 * `aggregation` - Enables you to calculate further aggregations for each key
 
 The following SQL statement is executed in the background: `SELECT DISTINCT(manufacturerId) as key, COUNT(manufacturerId) as count`
 
 {% tabs %}
 {% tab title="PHP Criteria" %}
+
 ```php
 $criteria = new Criteria();
 $criteria->setLimit(1);
@@ -451,12 +471,13 @@ foreach ($aggregation->getBuckets() as $bucket) {
     $bucket->getCount();
 }
 ```
+
 {% endtab %}
 
 {% tab title="API Criteria" %}
 Request
 
-```javascript
+```json
 {
     "limit": 1,
     "includes": {
@@ -476,7 +497,7 @@ Request
 
 Response
 
-```javascript
+```json
 {
     "total": 1,
     "data": [
@@ -510,15 +531,17 @@ Response
     }
 }
 ```
+
 {% endtab %}
 {% endtabs %}
 
 ## Filter aggregation
 
-The `filter` aggregation belongs to the bucket aggregations. Unlike all other aggregations, this aggregation does not determine any result, it cannot be used alone. It is only used to further restrict the result of an aggregation in a criterion. Filters which defined inside the `filter` property of this aggregation type, are only used when calculating this aggregation. The filters have no effect on other aggregations or on the result of the search.
+The `filter` aggregation belongs to the bucket aggregations. Unlike all other aggregations, this aggregation does not determine any result. It can't be used alone. It is only used to further restrict the result of an aggregation in a criterion. Filters defined inside the `filter` property of this aggregation type are only used when calculating this aggregation. The filters have no effect on other aggregations or on the result of the search.
 
 {% tabs %}
 {% tab title="PHP Criteria" %}
+
 ```php
 $criteria = new Criteria();
 $criteria->setLimit(1);
@@ -540,12 +563,13 @@ $aggregation = $result->getAggregations()->get('avg-price');
 
 $aggregation->getAvg();
 ```
+
 {% endtab %}
 
 {% tab title="API Criteria" %}
 Request
 
-```javascript
+```json
 {
     "limit": 1,
     "includes": {
@@ -574,7 +598,7 @@ Request
 
 Response
 
-```javascript
+```json
 {
     "total": 1,
     "data": [
@@ -592,15 +616,17 @@ Response
     }
 }
 ```
+
 {% endtab %}
 {% endtabs %}
 
 ## Entity aggregation
 
-The `entity` aggregation is similar to the `terms` aggregation, it belongs to the bucket aggregations. As with `terms` aggregation, all unique values are determined for a field. The aggregation then uses the determined keys to load the defined entity. The keys are used here as ids.
+The `entity` aggregation is similar to the `terms` aggregation. It belongs to the bucket aggregations. As with `terms` aggregation, all unique values are determined for a field. The aggregation then uses the determined keys to load the defined entity. The keys are used here as ids.
 
 {% tabs %}
 {% tab title="PHP Criteria" %}
+
 ```php
 $criteria = new Criteria();
 $criteria->setLimit(1);
@@ -619,12 +645,13 @@ foreach ($aggregation->getEntities() as $entity) {
     $entity->getName();
 }
 ```
+
 {% endtab %}
 
 {% tab title="API Criteria" %}
 Request
 
-```javascript
+```json
 {
     "limit": 1,
     "includes": {
@@ -644,7 +671,7 @@ Request
 
 Response
 
-```javascript
+```json
 {
     "total": 1,
     "data": [
@@ -673,15 +700,17 @@ Response
     }
 }
 ```
+
 {% endtab %}
 {% endtabs %}
 
 ## Histogram aggregation
 
-The histogram aggregation is used as soon as the data to be determined refers to a date field. With the histogram aggregation one of the following date intervals can be given: `minute`, `hour`, `day`, `week`, `month`, `quarter`, `year`, `day`. This interval groups the result and calculates the corresponding count of hits.
+The histogram aggregation is used as soon as the data to be determined refers to a date field. With the histogram aggregation, one of the following date intervals can be given: `minute`, `hour`, `day`, `week`, `month`, `quarter`, `year`, `day`. This interval groups the result and calculates the corresponding count of hits.
 
 {% tabs %}
 {% tab title="PHP Criteria" %}
+
 ```php
 $criteria = new Criteria();
 $criteria->setLimit(1);
@@ -704,12 +733,13 @@ foreach ($aggregation->getBuckets() as $bucket) {
     $bucket->getCount();
 }
 ```
+
 {% endtab %}
 
 {% tab title="API Criteria" %}
 Request
 
-```javascript
+```json
 {
     "limit": 1,
     "includes": {
@@ -728,7 +758,7 @@ Request
 
 Response
 
-```javascript
+```json
 {
     "total": 1,
     "data": [
@@ -762,17 +792,110 @@ Response
     }
 }
 ```
+
+{% endtab %}
+{% endtabs %}
+
+## Range aggregations
+
+Allows to aggregate data on a predefined range of values for more flexibility in the DAL - for example, it provides faceted filters on a predefined range.
+
+Bound are computed in SQL as in the Elasticsearch native range aggregation:
+* `from` will be compared with greater than or equal to
+* `to` will be compared with lower than
+
+{% tabs %}
+{% tab title="PHP Criteria" %}
+
+```php
+$criteria = new Criteria();
+$criteria->addAggregation(
+    new RangeAggregation(
+        'price_ranges', 
+        'products.price',
+        [
+            ['to' => 100],
+            ['from' => 100, 'to' => 200],
+            ['from' => 200]
+        ]
+    )
+);
+
+$result = $repository->search($criteria, $context);
+
+/** @var RangeResult $aggregation */
+$aggregation = $result->getAggregations()->get('price_ranges');
+
+foreach ($aggregation->getRanges() as $key => $docCount) {
+    // ...
+}
+```
+
+{% endtab %}
+
+{% tab title="API Criteria" %}
+Request
+
+```json
+{
+    ...
+    "aggregations": {
+        "price_ranges": {
+            "range": {
+                "field": "products.price",
+                    "ranges": [
+                    { "to": 100.0 },
+                    { "from": 100.0, "to": 200.0 },
+                    { "from": 200.0 }
+                ]
+            }
+        }
+    }
+}
+```
+
+Response
+
+```json
+{
+    ...
+    "aggregations": {
+        "price_ranges": {
+            "buckets": [
+                {
+                    "key": "*-100.0",
+                    "to": 100.0,
+                    "doc_count": 2
+                },
+                {
+                    "key": "100.0-200.0",
+                    "from": 100.0,
+                    "to": 200.0,
+                    "doc_count": 2
+                },
+                {
+                    "key": "200.0-*",
+                    "from": 200.0,
+                    "doc_count": 3
+                }
+            ]
+        }
+    }
+}
+```
+
 {% endtab %}
 {% endtabs %}
 
 ## Nesting aggregations
 
-A metric aggregation calculates the value for a specific field. This can be a total or, for example, a minimum or maximum value of the field. Bucket aggregations are different. This determines how often a value occurs in a search result and returns it together with the count. The special thing about bucket aggregation is that it can contain further aggregations. This allows the API to perform complex queries like for example:
+A metric aggregation calculates the value for a specific field. This can be a total or, for example, a minimum or maximum value of the field. Bucket aggregations are different. This determines how often a value occurs in a search result and returns it together with the count. The special thing about bucket aggregation is that it can contain further aggregations. This allows the API to perform complex queries like, for example:
 
 * Calculate the number of manufacturers per category that have a price over 500 Euro. \*
 
 {% tabs %}
 {% tab title="PHP Criteria" %}
+
 ```php
 $criteria = new Criteria();
 $criteria->setLimit(1);
@@ -812,12 +935,13 @@ foreach ($aggregation->getBuckets() as $bucket) {
     }
 }
 ```
+
 {% endtab %}
 
 {% tab title="API Criteria" %}
 Request
 
-```javascript
+```json
 {
     "limit": 1,
     "includes": {
@@ -853,7 +977,7 @@ Request
 
 Response
 
-```javascript
+```json
 {
     "total": 1,
     "data": [
@@ -907,6 +1031,6 @@ Response
     }
 }
 ```
+
 {% endtab %}
 {% endtabs %}
-

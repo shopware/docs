@@ -1,26 +1,26 @@
 # App-Starter - Create an Admin Extension
 
-In this guide, you will learn how to set up an extension for the administration UI.
+In this guide, you will learn how to set up an extension for the Administration UI.
 
 {% hint style="info" %}
-When you are using a self-hosted Shopware Version, make sure to set the feature flag `FEATURE_NEXT_17950=1` to enable the Admin Extension API.
+When you are using a self-hosted Shopware version, make sure to set the feature flag `FEATURE_NEXT_17950=1` to enable the Admin Extension API.
 {% endhint %}
 
 ![An admin notification](../../../../.gitbook/assets/extension-api-notification.png)
 
 ## Prerequisites
 
-In order to follow this guide, make sure you're familiar with and meet the following requirements:
+In order to follow this guide, make sure you are familiar with and meet the following requirements:
 
 * Basic CLI usage (creating files, directories, running commands)
 * Installed [shopware-cli](https://sw-cli.fos.gg/) tools
-* We will use the following libraries / softwares
+* We will use the following libraries/software
     * npm
     * live-server (small local development live-reloading server)
 
-## Create the App Wrapper
+## Create the app wrapper
 
-First of all we need to create the app "wrapper", the so-called app manifest. It is just a single XML file with some basic configuration.
+First of all, we need to create the app "wrapper", the so-called app manifest. It is just a single XML file with some basic configuration.
 
 ### Create manifest file
 
@@ -32,10 +32,10 @@ SimpleNotification/
 ```
 
 {% hint style="info" %}
-When you are using a self-hosted Shopware Version, you can also create the project directory in the `custom/apps` directory of your Shopware installation. However, the descriptions in this guide apply to both Shopware cloud and self-hosted stores.
+When you are using a self-hosted Shopware version, you can also create the project directory in the `custom/apps` directory of your Shopware installation. However, the descriptions in this guide apply to both Shopware cloud and self-hosted stores.
 {% endhint %}
 
-Next, we're gonna put our basic configuration into the file we just created.
+Next, we will put our basic configuration into the file we just created.
 
 {% code title="manifest.xml" %}
 
@@ -57,7 +57,7 @@ Next, we're gonna put our basic configuration into the file we just created.
 
 {% endcode %}
 
-## Set up communication between Shopware and the App
+## Set up communication between Shopware and the app
 
 Next, we need to set up an entry point, so Shopware and your app can communicate. The entry point is a static `.html` file, which includes the Extension SDK script and defines our extension.
 
@@ -97,13 +97,13 @@ SimpleNotification/
 
 This file contains the basic setup for our app to display the notification:
 
-* The HTML is rendered in a hidden iFrame when the administration panel is loaded
-* The Admin Extension SDK script is loaded through a CDN and exposed as the `sw` object
+* The HTML is rendered in a hidden iFrame when the Administration panel is loaded.
+* The Admin Extension SDK script is loaded through a CDN and exposed as the `sw` object.
 * We use the `notification.dispatch` SDK method to display a simple notification with a title and a message.
 
 ### Start the local development server
 
-Next, we need to start the live server so you don't always have to reload the page manually.
+Next, we need to start the live server, so you don't always have to reload the page manually.
 
 ```bash
 npm install -g live-server
@@ -134,13 +134,13 @@ In order to do that, we have to add an `admin` section to our `manifest.xml` fil
 
 {% endcode %}
 
-Since the URL to your entry point only available locally, you will only be able to see changes on your own machine. If you want to share it, for development purposes, you need to host the entry point file somewhere or use services to expose local files as public URLs, such as [ngrok](https://ngrok.com/).
+Since the URL to your entry point is only available locally, you will only be able to see changes on your own machine. If you want to share it, for development purposes, you need to host the entry point file somewhere or use services to expose local files as public URLs, such as [ngrok](https://ngrok.com/).
 
-For production usage you should host the entry point file on a public CDN or a static site hosting.
+For production usage, you should host the entry point file on a public CDN or a static site hosting.
 
-## Install the App
+## Install the app
 
-In this last step, we're going to install the app using the Shopware CLI tools.
+In this last step, we will install the app using the Shopware CLI tools.
 
 {% hint style="info" %}
 If this is your first time using the Shopware CLI, you have to [install](https://sw-cli.fos.gg/install/) it first. Next, configure it using the `shopware-cli project config init` command.
@@ -151,12 +151,12 @@ shopware-cli project extension upload SimpleNotification --activate --increase-v
 ```
 
 This command will create a zip file from the specified extension directory and upload it to your configured store.
-The `--increase-version` parameter increases the version specified in the `manifest.xml` file. This flag is required, so Shopware picks up changes made to the `manifest.xml` since the last installation.
-When the app was successfully installed, you will see the notification pop up once you open the Shopware admin panel - congratulations!
+The `--increase-version` parameter increases the version specified in the `manifest.xml` file. This flag is required so Shopware picks up changes made to the `manifest.xml` since the last installation.
+When the app is successfully installed, you will see the notification pop up once you open the Shopware admin panel - congratulations!
 
 ## Where to continue
 
-This example showed end-to-end how to create a local dev environment and connect it with your Shopware Store. There's a lot more to learn and try out - so why not move on with one of those topics
+This example showed end-to-end how to create a local dev environment and connect it with your Shopware Store. There is a lot more to learn and try out, so why not move on with one of those topics:
 
 * Did you know, you can add [new sections](https://shopware.github.io/admin-extension-sdk/docs/guide/api-reference/ui/component-section) to the UI or even [entire modules](https://shopware.github.io/admin-extension-sdk/docs/guide/api-reference/ui/mainModule)?
 * The Admin Extension SDK also offers [TypeScript support](https://shopware.github.io/admin-extension-sdk/docs/guide/getting-started/installation#using-npm-require-bundling) (including autocompletion)

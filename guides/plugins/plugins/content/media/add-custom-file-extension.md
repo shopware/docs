@@ -1,4 +1,4 @@
-# Add custom media file extension
+# Add Custom Media File Extension
 
 ## Overview
 
@@ -9,9 +9,9 @@ It will provide an explanation on how you can add new allowed file extensions to
 
 ## Prerequisites
 
-As most of our plugin guides, this guide was also built upon our [plugin base guide](../../plugin-base-guide.md).
-Furthermore, you'll have to know about adding classes to the [dependency injection](../../plugin-fundamentals/dependency-injection.md) container
-and about using a subscriber in order to [listen to events](../../plugin-fundamentals/listening-to-events.md).
+As most of our plugin guides, this guide was also built upon our [Plugin base guide](../../plugin-base-guide.md).
+Furthermore, you'll have to know about adding classes to the [Dependency injection](../../plugin-fundamentals/dependency-injection.md) container
+and about using a subscriber in order to [Listen to events](../../plugin-fundamentals/listening-to-events.md).
 
 ## Adding a custom extension
 
@@ -136,7 +136,7 @@ class CustomImageTypeDetector implements TypeDetectorInterface
 {% endtab %}
 {% endtabs %}
 
-You'll have to create a new class which implements from the interface `TypeDetectorInterface`.
+You will have to create a new class which implements from the interface `TypeDetectorInterface`.
 This will come with the requirement of having a `detect` method, which will return the respective media type.
 
 Inside of the `detect` method, we're first checking if the file extension matches our allowed extensions, in this case only
@@ -150,7 +150,7 @@ Make sure to add flags to your media type, e.g. the `transparent` flag, or if it
 You can find all available flags in their respective media type classes,
 e.g. [here](https://github.com/shopware/platform/blob/v6.4.0.0/src/Core/Content/Media/MediaType/ImageType.php#L7-L10) for the image media type.
 
-Make sure to register your new type detector to the [dependency injection container](../../plugin-fundamentals/dependency-injection.md)
+Make sure to register your new type detector to the [Dependency injection container](../../plugin-fundamentals/dependency-injection.md)
 by using the tag `shopware.media_type.detector`.
 
 Shopware will now recognise your new image extension and handle your new file like an image.

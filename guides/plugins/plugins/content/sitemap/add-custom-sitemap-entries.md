@@ -1,4 +1,4 @@
-# Add custom sitemap entries
+# Add Custom Sitemap Entries
 
 ## Overview
 

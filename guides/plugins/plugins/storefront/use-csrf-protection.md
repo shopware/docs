@@ -1,8 +1,8 @@
-# Use CSRF protection
+# Use CSRF Protection
 
 ## Overview
 
-One of the common security risks of your application could be a [CSRF](https://owasp.org/www-community/attacks/csrf) attack, which is the shorthand for Cross Site Request Forgery. This short guide will teach you how to properly secure your forms in the Storefront by using Shopware's built-in tools.
+One of the common security risks of your application could be a [Cross Site Request Forgery](https://owasp.org/www-community/attacks/csrf) (CSRF) attack, which is the shorthand for Cross Site Request Forgery. This short guide will teach you how to properly secure your forms in the Storefront by using Shopware's built-in tools.
 
 ## Prerequisites
 
@@ -28,7 +28,7 @@ As already mentioned, this guide assumed you've already got a custom form runnin
 
 Just a basic form with a submit button and a hidden input, that must not be manipulated.
 
-Every storefront `POST` request is checked for a valid CSRF token to prevent [Cross Site Request Forgery attacks](https://owasp.org/www-community/attacks/csrf), since by default every Storefront route is automatically looking for a CSRF token. This also means, that the simple example form mentioned above will not work, since it's missing a CSRF token. You can make the form work, by [disabling the CSRF protection](use-csrf-protection.md#Exclude%20controller%20action%20from%20CSRF%20checks) on your route.
+Every storefront `POST` request is checked for a valid CSRF token to prevent [Cross Site Request Forgery attacks](https://owasp.org/www-community/attacks/csrf), since by default every Storefront route is automatically looking for a CSRF token. This also means, that the simple example form mentioned above will not work, since it's missing a CSRF token. You can make the form work, by disabling the CSRF protection on your route.
 
 Protecting it now with the built-in tools requires you to add two new lines, but let's have a look at a secure example first:
 

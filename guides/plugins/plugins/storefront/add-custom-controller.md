@@ -1,8 +1,8 @@
-# Add custom controller
+# Add Custom Controller
 
 ## Overview
 
-In this guide you'll learn how to create a custom storefront controller.
+In this guide you will learn how to create a custom storefront controller.
 
 ## Prerequisites
 
@@ -10,9 +10,7 @@ In order to add your own controller for your plugin, you first need a plugin as 
 
 <!-- markdown-link-check-disable-next-line -->
 {% hint style="info" %}
-Here's a video explaining the basics about storefront controllers from our free online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
-
-**[Common Storefront controller tasks](https://www.youtube.com/watch?v=5eXXNh4cQG0)**
+Refer to this video on **[Common Storefront controller tasks](https://www.youtube.com/watch?v=5eXXNh4cQG0)** explaining the basics about storefront controllers. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 {% endhint %}
 
 ## Adding custom storefront controller
@@ -168,7 +166,7 @@ Once we‘ve registered our new controller, we have to tell Shopware how we want
 
 Now we registered our controller and Shopware indexes the route, but the template file, that is supposed to be rendered, is still missing. Let's change that now.
 
-As previously mentioned, the code will try to render an `index.html.twig` file. Thus we have to create an `index.html.twig` in the `<plugin root>/src/Resources/views/storefront/page/example` directory, as defined in our controller. Below you can find an example, where we extend from the template `base.html.twig` and override the block `base_content`. In our [Customize templates guide](customize-templates.md), you can learn more about customizing templates.
+As previously mentioned, the code will try to render an `index.html.twig` file. Thus we have to create an `index.html.twig` in the `<plugin root>/src/Resources/views/storefront/page/example` directory, as defined in our controller. Below you can find an example, where we extend from the template `base.html.twig` and override the block `base_content`. In our [Customize templates](customize-templates.md) guide, you can learn more about customizing templates.
 
 {% code title="<plugin root>/src/Resources/views/storefront/page/example.html.twig" %}
 {% raw %}

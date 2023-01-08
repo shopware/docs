@@ -1,4 +1,4 @@
-# Replacing associated data
+# Replacing Associated Data
 
 ## Overview
 
@@ -6,13 +6,13 @@ This short guide will give you an example on how to replace associated `ToMany` 
 
 ## Prerequisites
 
-Having read our guide about [writing data](writing-data.md) is mandatory to understand the next few steps here. Other than that, the default prerequisites apply here as well: A running Shopware 6 instance and full access to the files.
+Having read our guide about [Writing data](writing-data.md) is mandatory to understand the next few steps here. Other than that, the default prerequisites apply here as well: A running Shopware 6 instance and full access to the files.
 
-The examples mentioned here are built upon the [plugin base guide](https://app.gitbook.com/@shopware/s/shopware/guides/plugins/plugins/plugin-base-guide). If you don't know how to create a plugin or how to use the code examples here in the first place, the plugin base guide is a good way to start.
+The examples mentioned here are built upon the [Plugin base guide](../../plugin-base-guide.md). If you don't know how to create a plugin or how to use the code examples here in the first place, the plugin base guide is a good way to start.
 
 ## Replacing data
 
-So let's start with the main issue going on here. Let's imagine you've created a product using our previously mentioned guide about [writing data](writing-data.md) and you've assigned a category to it. Unfortunately you made a mistake, since this was the wrong category to be assigned and you want another category to be assigned instead.
+So let's start with the main issue going on here. Let's imagine you've created a product using our previously mentioned guide about [Writing data](writing-data.md) and you have assigned a category to it. Unfortunately you made a mistake, since this was the wrong category to be assigned and you want another category to be assigned instead.
 
 ### A wrong example
 
@@ -64,7 +64,7 @@ So let's inject this repository into our class called `ReplacingData`:
 </container>
 ```
 
-Afterwards, you can just use the `delete` method on the repository, just like you did before in the [writing data guide](writing-data.md).
+Afterwards, you can just use the `delete` method on the repository, just like you did before in the [Writing data](writing-data.md) guide.
 
 ```php
 public function replaceData(Context $context): void

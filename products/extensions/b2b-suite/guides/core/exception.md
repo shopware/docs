@@ -1,8 +1,8 @@
 # Exception
 
-## Translatable Exception
+## Translatable exception
 
-To show the customer a translated exception message in the shopware error controller, the exception must implement the `B2BTranslatableException` Interface.
+To show the customer a translated exception message in the Shopware error controller, the exception must implement the `B2BTranslatableException` Interface.
 
 ```php
 <?php declare(strict_types=1);

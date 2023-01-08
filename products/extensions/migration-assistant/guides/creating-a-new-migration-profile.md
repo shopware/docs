@@ -1,6 +1,6 @@
-# Creating a new migration profile
+# Creating a New Migration Profile
 
-If you want to migrate your data from a different source system than Shopware, create a new migration profile for the Migration Assistant. But if you want to convert your plugin data from a Shopware system to Shopware 6, please have a look at this HowTo: [extend a shopware migration profile](extending-a-shopware-migration-profile.md).
+If you want to migrate your data from a different source system than Shopware, create a new migration profile for the Migration Assistant. But if you want to convert your plugin data from a Shopware system to Shopware 6, look at this article on [Extending a Shopware Migration Profile](extending-a-shopware-migration-profile.md).
 
 ## Setup
 
@@ -18,7 +18,7 @@ CREATE TABLE product
 );
 ```
 
-This table should simulate simple a third party source system, which should be migrated in the following steps.
+This table should simulate a simple third-party source system, which should be migrated in the following steps.
 
 ## Creating a profile
 
@@ -80,7 +80,7 @@ The profile itself does not contain any logic and is used to bundle the executin
 
 ## Creating a gateway
 
-Next, you have to create a new gateway, which supports your profile:
+Next, you have to create a new gateway which supports your profile:
 
 ```php
 <?php declare(strict_types=1);
@@ -193,7 +193,7 @@ class OwnLocaleGateway implements GatewayInterface
 }
 ```
 
-As you have seen above, the gateway uses the `ConnectionFactory` to test the connection to the source system. You can also implement your own way to check this, but to use this factory is the simplest way for a gateway to connect a local database. Like the profile you have to register the new gateway in the `service.xml` and tag it with `shopware.migration.gateway`:
+As you have seen above, the gateway uses the `ConnectionFactory` to test the connection to the source system. You can also implement your own way to check this, but using this factory is the simplest way for a gateway to connect to a local database. Like the profile, you have to register the new gateway in the `service.xml` and tag it with `shopware.migration.gateway`:
 
 ```markup
 <service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\Gateway\OwnLocaleGateway">
@@ -205,7 +205,7 @@ As you have seen above, the gateway uses the `ConnectionFactory` to test the con
 
 ## Creating a credentials page
 
-If you would like to try your current progress in the administration, you could select the profile and gateway in the migration wizard already. If you try to go to the next page, there will be an error message, because no credentials page was found. To create a new credentials page, you have to add an `index.js` for your new component into `Resources/app/administration/src/own-profile/profile`:
+If you want to try your current progress in the Administration, you can select the profile and gateway in the migration wizard. If you try to go to the next page, there will be an error message because no credentials page was found. To create a new credentials page, you have to add an `index.js` for your new component into `Resources/app/administration/src/own-profile/profile`:
 
 ```javascript
 import { Component } from 'src/core/shopware';
@@ -287,7 +287,7 @@ Component.register('swag-migration-profile-ownProfile-local-credential-form', {
 });
 ```
 
-As you can see above, currently the template does not exists and you have to create this file: `swag-migration-profile-ownProfile-local-credential-form.html.twig`
+As you can see above, currently, the template does not exist and you have to create this file: `swag-migration-profile-ownProfile-local-credential-form.html.twig`
 
 {% raw %}
 
@@ -362,7 +362,7 @@ As you can see above, currently the template does not exists and you have to cre
 
 {% endraw %}
 
-A few things to notice: The component name isn't random, it has to consist of:
+Note that the component name isn't random and consists of:
 
 1. The prefix: `swag-migration-profile-`
 1. The name of the profile
@@ -375,9 +375,9 @@ To see your credentials page, you have to register this component in your `main.
 import './own-profile/profile';
 ```
 
-## Creating a DataSet and DataSelection
+## Creating a dataSet and dataSelection
 
-Now the credentials page is loaded in the administration and the connection check will succeed. But there is no data selection, if you open the data selection table. To add an entry to this table, you have to create a `ProductDataSet` first:
+Now the credentials page is loaded in the Administration and the connection check will succeed. But there is no data selection if you open the data selection table. To add an entry to this table, you have to create a `ProductDataSet` first:
 
 ```php
 <?php declare(strict_types=1);
@@ -469,10 +469,10 @@ class ProductDataSelection implements DataSelectionInterface
 ```
 
 {% hint style="info" %}
-The order in the `getDataSets` array is important, because this it determines the order in which the entities are processed. Because of that, the manufacturers, for example, have to be positioned before the products, so that the products can use those later on.
+The order in the `getDataSets` array is important as it determines the order in which the entities are processed. Because of that, the manufacturers, for example, have to be positioned before the products so that the products can use those later on.
 {% endhint %}
 
-To see the created `ProductDataSelection` in the administration, you have to register it both in the `services.xml` and tag them with `shopware.migration.data_selection` and `shopware.migration.data_set`:
+To see the created `ProductDataSelection` in the Administration, you have to register it both in the `services.xml` and tag them with `shopware.migration.data_selection` and `shopware.migration.data_set`:
 
 ```markup
 <service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\DataSelection\ProductDataSelection">
@@ -486,7 +486,7 @@ To see the created `ProductDataSelection` in the administration, you have to reg
 
 ## Creating a product gateway reader
 
-Currently, you can see the `DataSelection` in the administration, but if you select it and start a migration, there will be no product migrated. That's because the gateway `read` function isn't implemented, yet. But before you can implement this function, you have to create a new `ProductReader` first:
+Currently, you can see the `DataSelection` in the Administration, but if you select it and start a migration, no product will be migrated. That is because the gateway `read` function isn't implemented yet. But before you can implement this function, you have to create a new `ProductReader` first:
 
 ```php
 <?php declare(strict_types=1);
@@ -688,7 +688,7 @@ class OwnLocaleGateway implements GatewayInterface
 
 ## Creating a converter
 
-By using the gateway reader, you fetch all products, but don't use this data yet. In this step you implement the logic of the converter:
+By using the gateway reader, you fetch all products but don't use this data yet. In this step, you implement the logic of the converter:
 
 ```php
 <?php declare(strict_types=1);
@@ -833,7 +833,7 @@ class ProductConverter extends ShopwareConverter
 }
 ```
 
-If you don't know which properties or requirements your entity has in Shopware 6, you may check the corresponding `EntityDefinition`. For this example, please take a look at the `ProductEntityDefinition` to know how to convert the data exactly.
+If you don't know which properties or requirements your entity has in Shopware 6, you may check the corresponding `EntityDefinition`. For this example, look at the `ProductEntityDefinition` to know how to convert the data exactly.
 
 To use this converter, you must register it in the `services.xml`:
 
@@ -863,8 +863,8 @@ class ProductWriter extends AbstractWriter
 }
 ```
 
-This writer will automatically be called, because the `getEntityName` method of your `ProductDataSet` is compared with the return value of the `supports` method of the writer in the `WriterRegistry`. These values are identically and so the writer will be used to write your product entities.
+This writer will be called automatically as the `getEntityName` method of your `ProductDataSet` is compared with the return value of the `supports` method of the writer in the `WriterRegistry`. These values are identical, and so the writer will be used to write your product entities.
 
 ## Source
 
-There's a GitHub repository available, containing a full example source. Check it out [here](https://github.com/shopware/swag-docs-create-migration-profile).
+Check out this [GitHub repository](https://github.com/shopware/swag-docs-create-migration-profile) containing a full example source.

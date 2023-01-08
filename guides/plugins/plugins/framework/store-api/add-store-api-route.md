@@ -1,8 +1,8 @@
-# Add store API route
+# Add Store API route
 
 ## Overview
 
-In this guide you'll learn how to add a custom store API route. In this example, we will create a new route called `ExampleRoute` that searches entities of type `swag_example`. The route will be accessible under `/store-api/example`.
+In this guide you will learn how to add a custom store API route. In this example, we will create a new route called `ExampleRoute` that searches entities of type `swag_example`. The route will be accessible under `/store-api/example`.
 
 ## Prerequisites
 
@@ -12,7 +12,7 @@ You also should have a look at our [Adding custom complex data](../data-handling
 
 ## Add Store API route
 
-As you may already know from the [adjusting service](../../plugin-fundamentals/adjusting-service.md) guide, we use abstract classes to make our routes more decoratable.
+As you may already know from the [Adjusting a service](../../plugin-fundamentals/adjusting-service.md) guide, we use abstract classes to make our routes more decoratable.
 
 {% hint style="warning" %}
 All fields that should be available through the API require the flag `ApiAware` in the definition.
@@ -240,7 +240,7 @@ Your generated request and response could look like this:
 
 ## Make the route available for the storefront
 
-If you want to access the functionality of your route also from the storefront you need to make it available there by adding a custom [storefront controller](../../storefront/add-custom-controller.md) that will wrap your just created route.
+If you want to access the functionality of your route also from the storefront you need to make it available there by adding a custom [Storefront controller](../../storefront/add-custom-controller.md) that will wrap your just created route.
 
 {% code title="<plugin root>/src/Storefront/Controller/ExampleController.php" %}
 

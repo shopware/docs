@@ -8,9 +8,9 @@ Shopware 6 Toolbox is a helper plugin and productivity tool for common tasks for
 
 ## Current features
 
-### Live Templates
+### Live templates
 
-Multiple live templates for development. Use Cmd/Ctrl + J to see all live templates available
+Multiple live templates for development. Use Cmd/Ctrl + J to see all live templates available.
 
 ### Generators
 
@@ -21,9 +21,9 @@ Multiple live templates for development. Use Cmd/Ctrl + J to see all live templa
 * Scheduled task
 * Changelog
 
-### Static Code Check
+### Static code check
 
-Inspection to show an error when abstract class is used incorrectly in the constructor (guideline check)
+Inspection to show an error when abstract class is used incorrectly in the constructor (guideline check).
 
 ### Auto-completion
 

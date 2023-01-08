@@ -1,8 +1,8 @@
 # Completion
 
-The Advanced Search does not use the default [Elasticsearch Completion](https://www.elastic.co/guide/en/elasticsearch/reference/7.10/search-suggesters.html#completion-suggester), because it does only support a fixed order and the storage size is high. As an alternative, the Advanced Search uses aggregations to find the most important words combinations for your search input.
+The Advanced Search does not use the default [Elasticsearch Completion](https://www.elastic.co/guide/en/elasticsearch/reference/7.10/search-suggesters.html#completion-suggester) because it does only support a fixed order and the storage size is high. As an alternative, Advanced Search uses aggregations to find the most important word combinations for your search input.
 
-The Full Text Boosted field is used to generate a list of completions. Each word is a separate completion suggestion.
+The `FullText` Boosted field is used to generate a list of completions. Each word is a separate completion suggestion.
 
 ## Extension for compound completions
 
@@ -10,7 +10,7 @@ The Full Text Boosted field is used to generate a list of completions. Each word
 The default Advanced Search does not support compound completions from multiple words.
 {% endhint %}
 
-To support compound completions, it's necessary to decorate the appropriate Elasticsearch Definition. And add the [Tag](https://symfony.com/doc/current/service_container/tags.html) `swag_ses.completion_definition` to the service, like to Advanced Search default services. Make sure, that the new created decorator runs after the Advanced Search decorator, otherwise it will override your values.
+To support compound completions, it is necessary to decorate the appropriate Elasticsearch definition. And add the [Service Tag](https://symfony.com/doc/current/service_container/tags.html) `swag_ses.completion_definition` to the service, like to Advanced Search default services. Make sure that the newly created decorator runs after the Advanced Search decorator; otherwise, it will override your values.
 
 {% code title="MyProductDefinitionDecorator.php" %}
 
@@ -62,7 +62,7 @@ class MyProductDefinitionDecorator extends AbstractElasticsearchDefinition
         $collection = $this->decorated->extendEntities($collection);
 
         foreach ($collection->getIterator() as $entity) {
-            // Here you can add your custom completions
+            // Here, you can add your custom completions
             $completionTerms = ['blue shoes', 'green socks'];
 
             CompletionExtension::addCompletionExtension($entity, $completionTerms);

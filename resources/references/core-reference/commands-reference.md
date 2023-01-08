@@ -6,8 +6,6 @@ These commands can be executed using the Shopware command line interface \(CLI\)
 $ bin/console [command] [parameters]
 ```
 
-
-
 ## Commands
 
 ### General
@@ -41,7 +39,7 @@ $ bin/console [command] [parameters]
 
 | Command | Description |  |
 | :--- | :--- | :--- |
-| `bundle:dump` | \[administration:dump:plugins | administration:dump:bundles\] Creates a json file with the configuration for each active Shopware bundle. |
+| `bundle:dump` | \[administration:dump:bundles\] Creates a json file with the configuration for each active Shopware bundle. |
 
 ### Cache
 
@@ -312,4 +310,3 @@ $ bin/console [command] [parameters]
 | :--- | :--- |
 | `user:change-password` |  |
 | `user:create` |  |
-

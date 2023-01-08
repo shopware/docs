@@ -2,13 +2,13 @@
 
 ## Overview
 
-A reverse http cache is a cache server placed before the web shop. If you are not familiar with http caching, please see our [http cache concept](../../../concepts/framework/http_cache.md). The reverse http cache needs the following capabilities to fully function with Shopware:
+A reverse http cache is a cache server placed before the web shop. If you are not familiar with http caching, please refer to the [HTTP cache](../../../concepts/framework/http_cache.md) concept. The reverse http cache needs the following capabilities to function with Shopware fully:
 
 * Able to differentiate the request with multiple cookies
 * Allow clearing the cache using a web request for a specific site or with `/` for all pages
 
 {% hint style="info" %}
-In this guide, we will use Varnish as example for an http cache.
+In this guide, we will use Varnish as an example for http cache.
 {% endhint %}
 
 ### The example Setup with Varnish
@@ -19,15 +19,15 @@ This setup is compatible from Shopware version 6.4.
 
 ![](../../../.gitbook/assets/reverse_proxy_setup.svg)
 
-### Configure shopware
+### Configure Shopware
 
-At first we need to activate the reverse proxy support in Shopware. To enable it we need to create a new file in `config/packages/storefront.yaml`
+First, we need to activate the reverse proxy support in Shopware. To enable it, we need to create a new file in `config/packages/storefront.yaml`:
 
 ```yaml
 storefront:
     csrf:
         enabled: true
-        # The internal Shopware http cache replaces the csrf token on the fly. This can't be done in Reverse proxy. So we use ajax to get an csrf token
+        # The internal Shopware http cache replaces the csrf token on the fly. This can't be done in reverse proxy. So we use ajax to get a csrf token
         mode: ajax
     reverse_proxy:
         enabled: true
@@ -44,17 +44,17 @@ Also set `SHOPWARE_HTTP_CACHE_ENABLED=1` in your `.env` file.
 
 #### Trusted proxies
 
-For the most part, using symfony and varnish doesn't cause any problems. But, when a request passes through a proxy, certain request information is sent using either the standard Forwarded header or X-Forwarded-* headers. For example, instead of reading the REMOTE_ADDR header (which will now be the IP address of your reverse proxy), the user's true IP will be stored in a standard Forwarded: for="..." header or a X-Forwarded-For header.
+For the most part, using Symfony and Varnish doesn't cause any problem. But, when a request passes through a proxy, certain request information is sent using either the standard Forwarded header or *X-Forwarded* headers. For example, instead of reading the *REMOTE_ADDR* header (which will now be the IP address of your reverse proxy), the user's true IP will be stored in a standard Forwarded: for="..." header or an *X-Forwarded-For* header.
 
-If you don't configure Symfony to look for these headers, you'll get incorrect information about the client's IP address, whether or not the client is connecting via HTTPS, the client's port and the hostname being requested.
+If you don't configure Symfony to look for these headers, you will get incorrect information about the client's IP address. Whether or not the client connects via https, the client's port and the hostname are requested.
 
-[Read more](https://symfony.com/doc/current/deployment/proxies.html)
+Go through [Proxies](https://symfony.com/doc/current/deployment/proxies.html) section for more information.
 
 ### Configure Varnish
 
 As Shopware is now prepared to work with a reverse proxy, we need to configure Varnish to use a Shopware specific configuration (VCL). Below you can find an example Shopware 6 Varnish configuration.
 
-On hard purge, the cache will be immediately purged and the next requesting user will get a slow response, as the cache has been deleted. On soft purge, the user still gets the cached response after purge, but in the configured time interval the cache will be refreshed. This makes sure, that the client gets the fastest response possible.
+On hard purge, the cache will be immediately purged and the next requesting user will get a slow response, as the cache has been deleted. On soft purge, the user still gets the cached response after the purge, but in the configured time interval, the cache will be refreshed. This makes sure that the client gets the fastest response possible.
 
 #### Hard purge
 
@@ -223,7 +223,7 @@ sub vcl_deliver {
     ## we don't want the client to cache
     set resp.http.Cache-Control = "max-age=0, private";
 
-    # remove link header, if session is already started to save client resources
+    # remove link header if session is already started to save client resources
     if (req.http.cookie ~ "session-") {
         unset resp.http.Link;
     }
@@ -456,7 +456,7 @@ sub soft_purge_page {
 }
 ```
 
-### Using Varnish XKey Module without Redis
+### Using Varnish XKey module without Redis
 
 Varnish XKey is a cache key module that allows you to use Varnish with surrogate keys. It is a module that is not included in the default Varnish installation. It is available for Varnish 4.1 and 6.0.
 
@@ -502,7 +502,7 @@ sub vcl_recv {
     # Mitigate httpoxy application vulnerability, see: https://httpoxy.org/
     unset req.http.Proxy;
 
-    #  Ignore query strings that are only necessary for the js on the client.  Customize as needed.
+    #  Ignore query strings that are only necessary for the js on the client. Customize as needed.
     if (req.url ~ "(\?|&)(pk_campaign|piwik_campaign|pk_kwd|piwik_kwd|pk_keyword|pixelId|kwid|kw|adid|chl|dv|nk|pa|camid|adgid|cx|ie|cof|siteurl|utm_[a-z]+|_ga|gclid)=") {
         # see rfc3986#section-2.3 "Unreserved Characters" for regex
         set req.url = regsuball(req.url, "(pk_campaign|piwik_campaign|pk_kwd|piwik_kwd|pk_keyword|pixelId|kwid|kw|adid|chl|dv|nk|pa|camid|adgid|cx|ie|cof|siteurl|utm_[a-z]+|_ga|gclid)=[A-Za-z0-9\-\_\.\~]+&?", "");
@@ -687,9 +687,9 @@ sub vcl_deliver {
 
 ### Disable the verification headers
 
-The `X-Cache` and `X-Cache-Hits` headers are only meant to verify that Varnish is doing it's job. You typically don't want to have those headers enabled on a production environment.
+The `X-Cache` and `X-Cache-Hits` headers are only meant to verify that Varnish is doing its job. You typically don't want to have those headers enabled in a production environment.
 
-To disable these headers, comment out the lines by prefixing them with the `#` character. The lines in questions are:
+To disable these headers, comment out the lines by prefixing them with the `#` character. The lines in question are:
 
 ```vcl
 # Set a cache header to allow us to inspect the response headers during testing
@@ -719,7 +719,7 @@ if (obj.hits > 0) {
 
 ## Configure Fastly
 
-Fastly is supported since Shopware 6.4.11.0 out of the box with some configurations. To enable it we need to create a new file in `config/packages/storefront.yaml`
+Fastly is supported since Shopware 6.4.11.0 is out-of-the-box with some configurations. To enable it, we need to create a new file in `config/packages/storefront.yaml`
 
 ```yaml
 storefront:
@@ -740,7 +740,7 @@ storefront:
 This feature has been introduced with Shopware version 6.4.15.0
 {% endhint %}
 
-By default, the cache will be immediately purged and the next requesting user will get a slow response, as the cache has been deleted. On soft purge, the user still gets the cached response after purge, but in the configured time interval the cache will be refreshed. This makes sure, that the client gets the fastest response possible.
+By default, the cache will be immediately purged and the next requesting user will get a slow response as the cache has been deleted. On soft purge, the user still gets the cached response after the purge, but in the configured time interval, the cache will be refreshed. This makes sure that the client gets the fastest response possible.
 
 ```yaml
 storefront:

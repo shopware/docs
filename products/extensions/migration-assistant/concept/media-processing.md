@@ -1,10 +1,10 @@
 # Media Processing
 
-To import files to Shopware 6 using the migration, two steps are necessary. First create a media file object  \(`MediaDefinition` / `media` table, for more details take a look at the `MediaConverter`\) and create an entry in the `SwagMigrationMediaFileDefinition` / `swag_migration_media_file` table.
+Two steps are necessary to import files to Shopware 6 using the migration. First // todo10 , create a media file object  \(`MediaDefinition` / `media` table, for more details, take a look at the `MediaConverter`\) and create an entry in the `SwagMigrationMediaFileDefinition` / `swag_migration_media_file` table.
 
-Every entry in the `swag_migration_media_file` table of the associated migration run will get processed by an implementation of `MediaFileProcessorInterface`. For the `api` gateway the `HttpMediaDownloadService` is used and will download the files via HTTP.
+Every entry in the `swag_migration_media_file` table of the associated migration run will get processed by an implementation of `MediaFileProcessorInterface`. For the `api` gateway, the `HttpMediaDownloadService` is used and will download the files via HTTP.
 
-To add a file to the table you can do something like this in your `Converter` class \(this example is from the `MediaConverter`\):
+To add a file to the table, you can do something like this in your `Converter` class \(this example is from the `MediaConverter`\):
 
 ```php
 <?php declare(strict_types=1);
@@ -75,7 +75,7 @@ abstract class MediaConverter extends ShopwareConverter
             $data['id'],
             $data['albumID'],
 
-            // Legacy data which don't need a mapping or there is no equivalent field
+            // Legacy data that don't need mapping or there is no equivalent field
             $data['path'],
             $data['type'],
             $data['extension'],
@@ -100,7 +100,7 @@ abstract class MediaConverter extends ShopwareConverter
 }
 ```
 
-`swag_migration_media_files` are processed by the right processor service. This service is different for documents and normal media, but it still is gateway dependent. For example the `HttpMediaDownloadService` works like this:
+`swag_migration_media_files` are processed by the right processor service. This service is different for documents and normal media, but it still is gateway dependent. For example, the `HttpMediaDownloadService` works like this:
 
 ```php
 <?php declare(strict_types=1);
@@ -124,7 +124,7 @@ class HttpMediaDownloadService implements MediaFileProcessorInterface
     {
         /* ... */
 
-        //Fetch media from database
+        //Fetch media from the database
         $media = $this->getMediaFiles($mediaIds, $runId, $context);
 
         $client = new Client([
@@ -148,4 +148,4 @@ class HttpMediaDownloadService implements MediaFileProcessorInterface
 }
 ```
 
-First, the service fetches all media files associated with the given media IDs and downloads these media files from the source system. After this, it handles the response, saves the media files in a temporary folder and copies them to Shopware 6 filesystem. In the end the service sets a `processed` status to these media files, saves all warnings that may have occurred and returns the status of the processed files.
+First, the service fetches all media files associated with the given media IDs and downloads these media files from the source system. After this, it handles the response, saves the media files in a temporary folder and copies them to Shopware 6 filesystem. In the end, the service sets a `processed` status to these media files, saves all warnings that may have occurred and returns the status of the processed files.

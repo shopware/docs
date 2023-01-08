@@ -1,8 +1,8 @@
 # Logging
 
-Logging is essential for anyone using the Shopware Migration Assistant. In case of failure it enables users to find out why part of their data might be missing. Most of the logging takes place in the `Converter` classes, each time they detect missing required values. Also every exception will create a log entry automatically.
+Logging is essential for anyone using the Shopware Migration Assistant. In case of failure, it enables users to find out why part of their data might be missing. Most of the logging takes place in the `Converter` classes each time they detect missing required values. Also, every exception will create a log entry automatically.
 
-We use `LogEntry` objects for our logging, so it's easier to group logs / errors of the same type and get the corresponding amount. Here is an example of how the logging works in the `CustomerConverter`:
+We use `LogEntry` objects for our logging, so it's easier to group logs/errors of the same type and get the corresponding amount. Here is an example of how the logging works in the `CustomerConverter`:
 
 ```php
 <?php declare(strict_types=1);
@@ -41,7 +41,7 @@ abstract class CustomerConverter extends ShopwareConverter
 }
 ```
 
-You can get the `LoggingService` from the service container. Use the `addLogEntry` method with a compatible instance of `LogEntryInterface` and save the logging afterwards with `saveLogging`:
+You can get the `LoggingService` from the service container. Use the `addLogEntry` method with a compatible instance of `LogEntryInterface` and save the logging later with `saveLogging`:
 
 ```php
 <?php declare(strict_types=1);
@@ -54,7 +54,7 @@ interface LoggingServiceInterface
 }
 ```
 
-You should take a look at the already existing classes, which implement the `LogEntryInterface` to find one that fits your needs, just like the `EmptyNecessaryFieldRunLog` in the `CustomerConverter` example above. All the general LogEntry classes are located under the following namespace `SwagMigrationAssistant\Migration\Logging\Log`.
+Look at the already existing classes, which implement the `LogEntryInterface` to find one that fits your needs, just like the `EmptyNecessaryFieldRunLog` in the `CustomerConverter` example above. All the general LogEntry classes are located under the following namespace `SwagMigrationAssistant\Migration\Logging\Log`.
 
 To create a custom LogEntry make sure you at least implement the `LogEntryInterface` or, if your log happens during a running migration, you can also extend your LogEntry by the `BaseRunLogEntry`.
 
@@ -131,6 +131,6 @@ class EmptyNecessaryFieldRunLog extends BaseRunLogEntry
 }
 ```
 
-The important part here is the `getCode` method. It should not contain any details, otherwise grouping won't work properly. Also keep in mind to specify the English title and description in the respective `getTitle` and `getDescription` methods. Create corresponding snippets with the same content for both the `getTitleSnippet` and `getDescriptionSnippet` method.
+The important part here is the `getCode` method. It should not contain any details, otherwise, grouping won't work properly. Also, keep in mind to specify the English title and description in the respective `getTitle` and `getDescription` methods. Create corresponding snippets with the same content for both the `getTitleSnippet` and `getDescriptionSnippet` methods.
 
-The English text is used in the international log file. Snippets instead are used all over the Administration, in order to inform or guide the user. Parameters for the description should be returned by the `getParameters` method so the English description and snippets can both use them.
+The English text is used in the international log file. Instead, snippets are used all over in the Administration to inform or guide the user. Parameters for the description should be returned by the `getParameters` method so the English description and snippets can both use them.

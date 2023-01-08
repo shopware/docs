@@ -1,4 +1,4 @@
-# Customize price calculation
+# Customize Price Calculation
 
 ## Overview
 

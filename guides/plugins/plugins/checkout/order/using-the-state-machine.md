@@ -1,4 +1,4 @@
-# Using the state machine
+# Using the State Machine
 
 ## Overview
 

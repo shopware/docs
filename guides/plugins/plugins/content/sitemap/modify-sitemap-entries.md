@@ -1,4 +1,4 @@
-# Modify sitemap entries
+# Modify Sitemap Entries
 
 ## Overview
 
@@ -9,7 +9,7 @@ This guide will cover modifying e.g. the product URLs for the sitemap.
 
 ## Prerequisites
 
-This guide is built upon the [plugin base guide](../../plugin-base-guide.md), like most guides.
+This guide is built upon the [Plugin base guide](../../plugin-base-guide.md), like most guides.
 
 Modifying the sitemap entries is done via decoration, so should know how that's done as well.
 Also, knowing how the URL providers work, like it's explained in our guide about [adding custom sitemap entries](add-custom-sitemap-entries.md),
