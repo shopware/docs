@@ -1,14 +1,22 @@
 # Quality Guidelines for Apps and Themes based on App System in Shopware Store
 
 > **Changelog**
+>
 >> 28/10/21: Added "Safe your app idea and get a preview in the store".
+>
 >> 06/08/21: Added, "Useful links and tutorials for creating an app".
+>
 >> 08/06/21: Added URL and info regarding the docker environment we use for testing SW6 apps.
+>
 >> 07/06/21: Template Tests: Now using Scheme.org Structured Data Testing Tool instead of Google Structured Testing Tool.
+>
 >> 07/06/21: Account app description: Subprocessor and/or Further subprocessor information may be required for your app.
+>
 >> 17/04/21: Restructure the quality guidelines. No new content added.
+>
 >> 12/05/20: Add app Checklist for your Quality assurance.
->> 22/04/20: Menu entries in the main menu of the Administration are not allowed anymore because of look & feel.
+>
+>> 22/04/20: Menu entries in the main menu of the Administration are not allowed anymore because of look and feel.
 
 ## The way we test apps based on the app system
 
