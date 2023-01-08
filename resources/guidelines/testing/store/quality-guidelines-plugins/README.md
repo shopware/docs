@@ -280,12 +280,6 @@ See ["Cross-document messaging domains should be carefully restricted"](https://
 
 The bootstrap cannot be found. The reasons could be that the folder structure in the ZIP file is incorrect, there could be a typo, or a case-sensitive error in the app source (e.g., in the technical name).
 
-### Warning: ExtJS was detected in your app
-
-*SW5 related only*
-The app manufacturer needs an SDK license for a commercial app that uses ExtJS. For more information, please write an email to [alliances@shopware.com](mailto:alliances@shopware.com?subject=extJS-SDK%20needed).  
-See [Shopware 5 SDK License](https://docs.shopware.com/en/plugin-standard-for-community-store#shopware-5-0-sdk-license) for more information.
-
 ### Class Shopware\Storefront\* not found
 
 Missing requirements in the composer.json (e.g. "require": {"shopware/frontend": "*"},)  

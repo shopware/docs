@@ -26,8 +26,8 @@ docker run --rm -p 80:80 -e VIRTUAL_HOST=localhost ghcr.io/shopwarelabs/testenv:
 ```
 
 {% hint style="information" %}
-The shop will be accessible at `http://localhost/shop/public`  
-Admin-User and Admin-Password: demo
+**The shop will be accessible at:** `http://localhost/shop/public`  
+**Admin-User and Admin-Password:** demo
 {% endhint %}
 
 {% hint style="information" %}

@@ -6,7 +6,7 @@ Check out the points that affect your extension and go through them before submi
 
 We assign three statuses when testing your extension:
 
-* {% hint style="successful" %}
+* {% hint style="success" %}
 OK: This point was tested and passed
 {% endhint %}
 
