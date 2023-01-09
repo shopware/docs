@@ -114,7 +114,7 @@ Depending on whether you want to set up a fresh Shopware project or contribute t
 
 {% tabs %}
 {% tab title="Symfony Flex" %}
-If you are already using Symfony Flex, you require a composer package to get a basic devenv configuration:
+If you are already using Symfony Flex, you require a Composer package to get a basic devenv configuration:
 
 ```bash
 composer require devenv
