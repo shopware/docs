@@ -12,7 +12,7 @@ composer create-project shopware/production:dev-flex <project-name>
 
 This creates a new project in the `<project-name>` directory. The `dev-flex` version constraint installs the latest version of Shopware. The constraint `dev-flex` will be removed once the template is generally available.
 
-The template contains all Shopware bundles like `shopware/administration`, `shopware/storefront` and `shopware/elasticsearch`. If you don't need any of them, you can uninstall it with:
+The template contains all Shopware bundles like `shopware/administration`, `shopware/storefront` and `shopware/elasticsearch`. If you don't need any, then you can uninstall them with:
 
 ```shell
 composer remove shopware/<bundle-name>
