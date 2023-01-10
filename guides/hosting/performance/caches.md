@@ -10,10 +10,10 @@ The HTTP Cache is a *must-have* for every production system. With an enabled cac
 
 The HTTP cache configuration takes place completely in the `.env file.` The following configurations are available here:
 
-| Name | Description |
-| :--- | :--- |
-| `SHOPWARE_HTTP_CACHE_ENABLED` | Enables the http cache |
-| `SHOPWARE_HTTP_DEFAULT_TTL` | Defines the default cache time |
+| Name                          | Description                    |
+|:------------------------------|:-------------------------------|
+| `SHOPWARE_HTTP_CACHE_ENABLED` | Enables the HTTP cache         |
+| `SHOPWARE_HTTP_DEFAULT_TTL`   | Defines the default cache time |
 
 ### How to trigger the HTTP cache warmer
 

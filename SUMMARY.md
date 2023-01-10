@@ -342,7 +342,7 @@
   * [Infrastructure](guides/hosting/infrastructure/README.md)
     * [Filesystem](guides/hosting/infrastructure/filesystem.md)
     * [Message Queue](guides/hosting/infrastructure/message-queue.md)
-    * [Reverse Http Cache](guides/hosting/infrastructure/reverse-http-cache.md)
+    * [Reverse HTTP Cache](guides/hosting/infrastructure/reverse-http-cache.md)
     * [Elasticsearch](guides/hosting/infrastructure)
       * [Set up Elasticsearch](guides/hosting/infrastructure/elasticsearch/elasticsearch-setup.md)
       * [Debugging Elasticsearch](guides/hosting/infrastructure/elasticsearch/elasticsearch-debugging.md)

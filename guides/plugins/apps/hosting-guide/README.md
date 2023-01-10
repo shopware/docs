@@ -38,7 +38,7 @@ responsibility to provide deployables.
 
 ### Serverless
 
-Serverless services, also called function as a service, provide the most elastic way to scale your application. A serverless solution treats your application code as a function that is called with some input parameters. In the case of a web application, the "function" takes a http request and returns a response that is then passed to the client.
+Serverless services, also called function as a service, provide the most elastic way to scale your application. A serverless solution treats your application code as a function that is called with some input parameters. In the case of a web application, the "function" takes a HTTP request and returns a response that is then passed to the client.
 
 This is reflected by the way serverless solutions often directly take source code and then take care of distributing it. This makes serverless applications very scalable due to the fact that the service provider takes care to boot a runtime for your code and as many parallel runtimes as are necessary to handle large loads. This approach abstracts away any notion of reserved resources, billing is handled by the millisecond, hence the name serverless.
 

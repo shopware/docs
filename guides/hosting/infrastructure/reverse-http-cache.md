@@ -1,14 +1,14 @@
-# Reverse Http Cache
+# Reverse HTTP Cache
 
 ## Overview
 
-A reverse http cache is a cache server placed before the web shop. If you are not familiar with http caching, please refer to the [HTTP cache](../../../concepts/framework/http_cache.md) concept. The reverse http cache needs the following capabilities to function with Shopware fully:
+A reverse HTTP cache is a cache server placed before the web shop. If you are not familiar with HTTP caching, please refer to the [HTTP cache](../../../concepts/framework/http_cache.md) concept. The reverse http cache needs the following capabilities to function with Shopware fully:
 
 * Able to differentiate the request with multiple cookies
 * Allow clearing the cache using a web request for a specific site or with `/` for all pages
 
 {% hint style="info" %}
-In this guide, we will use Varnish as an example for http cache.
+In this guide, we will use Varnish as an example for HTTP cache.
 {% endhint %}
 
 ### The example Setup with Varnish
@@ -27,7 +27,7 @@ First, we need to activate the reverse proxy support in Shopware. To enable it, 
 storefront:
     csrf:
         enabled: true
-        # The internal Shopware http cache replaces the csrf token on the fly. This can't be done in reverse proxy. So we use ajax to get a csrf token
+        # The internal Shopware HTTP cache replaces the CSRF token on the fly. This can't be done in reverse proxy. So we use AJAX to get a CSRF token
         mode: ajax
     reverse_proxy:
         enabled: true
@@ -36,7 +36,7 @@ storefront:
         hosts: [ "http://varnish" ]
         # Max parallel invalidations at same time for a single worker
         max_parallel_invalidations: 3
-        # Redis Storage for the http cache tags
+        # Redis Storage for the HTTP cache tags
         redis_url: "redis://redis"
 ```
 
@@ -155,7 +155,7 @@ sub vcl_recv {
 }
 
 sub vcl_hash {
-    # Consider Shopware http cache cookies
+    # Consider Shopware HTTP cache cookies
     if (req.http.cookie ~ "sw-cache-hash=") {
         hash_data("+context=" + regsub(req.http.cookie, "^.*?sw-cache-hash=([^;]*);*.*$", "\1"));
     } elseif (req.http.cookie ~ "sw-currency=") {
@@ -349,7 +349,7 @@ sub vcl_recv {
 }
 
 sub vcl_hash {
-    # Consider Shopware http cache cookies
+    # Consider Shopware HTTP cache cookies
     if (req.http.cookie ~ "sw-cache-hash=") {
         hash_data("+context=" + regsub(req.http.cookie, "^.*?sw-cache-hash=([^;]*);*.*$", "\1"));
     } elseif (req.http.cookie ~ "sw-currency=") {
@@ -593,7 +593,7 @@ sub vcl_recv {
 }
 
 sub vcl_hash {
-    # Consider Shopware http cache cookies
+    # Consider Shopware HTTP cache cookies
     if (req.http.cookie ~ "sw-cache-hash=") {
         hash_data("+context=" + regsub(req.http.cookie, "^.*?sw-cache-hash=([^;]*);*.*$", "\1"));
     } elseif (req.http.cookie ~ "sw-currency=") {
