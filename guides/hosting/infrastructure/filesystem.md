@@ -49,6 +49,26 @@ shopware:
       # The Adapter Configuration
 ```
 
+If you want to regulate the uploaded file types, then you could add the keys `allowed_extensions`for the public filesystem or `private_local_download_strategy` for the private filesystem.
+With the `private_local_download_strategy` key you could choose the download strategy for private files (e.g. the downloadable products):
+
+```yaml
+shopware:
+  filesystem:
+    public:
+      # The Adapter Configuration
+    private:
+      # The Adapter Configuration
+    allowed_extensions: # Array with allowed file extensions for public filesystem
+    private_allowed_extensions: # Array with allowed file extensions for private filesystem
+    private_local_download_strategy: # Name of the download strategy: php, x-sendfile or x-accel
+```
+
+Following download strategies are valid:
+* `php` (default): A streamed response of content type `application/octet-stream` with binary data
+* `x-sendfile` (Apache only): X-Sendfile allows you to use PHP to instruct the server to send a file to a user, without having to load that file into PHP. You must have the [`mod_xsendfile`](https://github.com/nmaier/mod_xsendfile) Apache module installed.
+* `x-accel` (Nginx only): X-accel allows for internal redirection to a location determined by a header returned from a backend. See the [example configuration](https://www.nginx.com/resources/wiki/start/topics/examples/x-accel/).
+
 ## Integrated adapter configurations
 
 ### Local
