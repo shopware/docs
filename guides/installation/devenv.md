@@ -62,15 +62,18 @@ Before installing devenv, instruct Cachix to use the devenv cache:
 cachix use devenv
 ```
 
-{% hint style="info" %}
-When running `cachix use ...` for the first time, you will see a warning that you are not a trusted user.
+{% hint style="info %}
+The first time you run `cachix use`, you will be prompted a warning that you are not a trusted user.
+{% endhint %}
 
-```bash
+```shell
 This user doesn't have permissions to configure binary caches.
 
 You can either:
-...
-...
+
+a) ...
+
+b) ...
 ```
 
 When you encounter the above message, run:
@@ -78,8 +81,6 @@ When you encounter the above message, run:
 ```shell
 echo "trusted-users = root ${USER}" | sudo tee -a /etc/nix/nix.conf && sudo pkill nix-daemon
 ```
-
-{% endhint %}
 
 ### Devenv
 
@@ -113,7 +114,7 @@ Depending on whether you want to set up a fresh Shopware project or contribute t
 
 {% tabs %}
 {% tab title="Symfony Flex" %}
-If you are already using Symfony Flex, you require a composer package to get a basic devenv configuration:
+If you are already using Symfony Flex, you require a Composer package to get a basic devenv configuration:
 
 ```bash
 composer require devenv
@@ -218,7 +219,7 @@ eval "$(direnv hook zsh)"
 {% code title="~/.config/fish/config.fish" %}
 
 ```bash
->direnv hook fish | source
+direnv hook fish | source
 ```
 
 {% endcode %}
