@@ -33,7 +33,7 @@ While working with your own theme, you might have already come across the [Theme
 
 {% endcode %}
 
-Next, please run the bin/console assets:install command. This will copy your plugin assets over to the public/bundles folder:
+Next, please run the bin/console assets:install command. The command copies files from `bundlePath/Resources/public` to the `/public/bundles` directory and the assets will be copied by the `theme:compile`:
 
 {% code title="<shopware root>/public/bundles" %}
 
@@ -67,7 +67,7 @@ In SCSS you can link to the asset like the following:
 
 ```css
 body {
-    background-image: url("/bundles/swagbasicexampletheme/your-image.png");
+    background-image: url("../asset/your-image.png");
 }
 ```
 
