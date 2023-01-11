@@ -158,7 +158,7 @@ At first, you import the Admin Extension SDK's cms object, used for `cms.registe
 
 That is all about what is required to register your CMS element. As a best practice, it is recommended to create a **constant** for the CMS element name and the publishing key. This makes it easier to maintain and keep track of changes. The publishing key can be predefined since the name must be a combination of CMS element name and the `__config-element` suffix as shown above.
 
-## Templates and communitcation with the Administration
+## Templates and communication with the Administration
 
 The last files are the components inside our `views` folder. Just like you know it from typical CMS element loading, we will create a folder with the full component name, containing 3 files as shown below:
 
