@@ -41,7 +41,7 @@ public function myAction()
 public function myAction()
 ```
 
-Symfony passes then the defaults to the attribute bag of the `Request` object and we can check the attributes in the request cycle of the HTTP kernel.
+Symfony passes then the defaults to the attribute bag of the Request object and we can check the attributes in the request cycle of the http kernel.
 
 Following annotations will be replaced:
 - `@Captcha` -> `_captcha`
