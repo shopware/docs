@@ -99,4 +99,4 @@ Be aware that this is not recommended and could create a security vulnerability!
 
 ## Caching and CSRF
 
-The default configuration for the `csrf` mode is `twig` and works fine with the shopware http cache. If an external cache \(e.g. varnish\) is used, the mode needs to be `ajax`. A valid CRSF token is then fetched before a `POST` request and appended.
+The default configuration for the `csrf` mode is `twig` and works fine with the shopware HTTP cache. If an external cache \(e.g. varnish\) is used, the mode needs to be `ajax`. A valid CRSF token is then fetched before a `POST` request and appended.

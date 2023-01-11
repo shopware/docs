@@ -96,7 +96,7 @@ Workers are copies of your application instance after the [build hook](#build-ho
 
 ## [.platform / routes.yaml](https://github.com/shopware/recipes/blob/main/shopware/paas-meta/6.4/.platform/routes.yaml)
 
-This file configures incoming http requests routed to the `app` instance.
+This file configures incoming HTTP requests routed to the `app` instance.
 
 ## [.platform / services.yaml](https://github.com/shopware/recipes/blob/main/shopware/paas-meta/6.4/.platform/services.yaml)
 

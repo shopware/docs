@@ -31,7 +31,7 @@ The data files of the index will be found in the data directory later on. Anothe
 
 ### Nodes
 
-Every instance of Elasticsearch starts a node. A collection of connected nodes are called a cluster. All nodes can handle http and transport traffic.
+Every instance of Elasticsearch starts a node. A collection of connected nodes are called a cluster. All nodes can handle HTTP and transport traffic.
 Depending on your setup, the needed performance, and reliability, you might want to have dedicated nodes of the following types in your cluster.
 
 #### Master nodes
