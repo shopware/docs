@@ -326,6 +326,18 @@ Refer to the official devenv documentation to get a complete list of all availab
 }
 ```
 
+### Use MariaDB instead of MySQL
+
+{% code title="<PROJECT_ROOT>/devenv.local.nix" %}
+
+```nix
+{ pkgs, config, lib, ... }:
+
+{
+  services.mysql.package = pkgs.mariadb;
+}
+```
+
 {% endcode %}
 
 ## Known issues
