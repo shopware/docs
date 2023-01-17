@@ -14,6 +14,6 @@ This plugin contains various feature, which are already covered in our docs as w
 
 * [Custom Pricing](guides/plugins/plugins/api/custom-pricing)
 
-{% hint style="warning" %}
+::: warning
 **Caveat**: in accordance with a Shopware merchant's active account configuration, features within the plugin will be in an _active_ or _inactive_ (whilst still being installed within the shopware codebase). Pay close attention to any install information or special conditions for the provided features.
-{% endhint %}
+:::
