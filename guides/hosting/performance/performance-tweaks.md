@@ -41,9 +41,9 @@ shopware:
 
 ## MySQL instead of MariaDB
 
-{% hint style="info" %}
+::: info
 If you use Elasticsearch/Opensearch as a search engine, you can ignore this section. All filtering, sorting and aggregations is done in Elasticsearch/Opensearch.
-{% endhint %}
+:::
 
 In some places in the code, we use JSON fields. As soon as it comes to filtering, sorting, or aggregating JSON fields, MySQL is ahead of the MariaDB fork. Therefore, we strongly recommend the use of MySQL.
 
