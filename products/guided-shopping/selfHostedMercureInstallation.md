@@ -1,29 +1,31 @@
-# Self hosted Mercure installation for Guided Shopping
+# Self Hosted Mercure Installation for Guided Shopping
+
+## Mercure settings in general
+
+| Name | Variable | Description |
+| ---- | -------- | ----------- |
+| Publisher JWT Key  | publisher_jwt      | The JWT key used for authenticating publishers |
+| Subscriber JWT Key | subscriber_jwt     | The JWT key used for authenticating subscribers|
+| CORS Origin        | cors_origins       | Pages from where access is allowed [troubleshoot cors errors](https://mercure.rocks/docs/hub/troubleshooting#cors-issues) |
+| UI                 | ui                 | Enable the UI and expose demo |
+| Demo               | demo               | Enable the UI but do not expose demo |
+| Anonymous          | anonymous          | Allow subscribers with no valid JWT to connect |
 
 ## Mercure installation
 
-### Mercure settings in general
+### 1. Docker
 
-| Variable           | Description                                                                                                                    | dev | production | SAAS |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------ | --- | ---------- | ---- |
-| Publisher JWT key  | The key which is used                                                                                                          | --  | ..         | .    |
-| Subscriber JWT key | ...                                                                                                                            | --  | ..         | .    |
-| cors_origins       | The pages from where access is allowed [toueble shoot cors errors](https://mercure.rocks/docs/hub/troubleshooting#cors-issues) | --  | ..         | .    |
-| ui                 | enables the UI and expose demo endpoints                                                                                       | 1   | 0          | ??   |
-| demo               | enable the UI but do not expose demo endpoints                                                                                 | 1   | 0          | ??   |
-| anonymous          | allow subscribers with no valid JWT to connect                                                                                 | 0   | 0          | ??   |
+If you host Mercure yourself, the easiest way is to do it via docker. The image can be found at [dunglas/mercure](https://hub.docker.com/r/dunglas/mercure).
 
-### 1. via docker
+#### Configure Mercure docker
 
-if you host mercure your self the easyest way is to do it via docker.
-The image can be found here [dunglas/mercure](https://hub.docker.com/r/dunglas/mercure)
+The docker image allows you to use the following env variables to configure Mercure. You can also configure it like the self installed version via the Caddyfile.
 
-#### configure mercure docker
+{% hint style="warning" %}
+Use different publisher and subscriber keys for security reasons.
+{% endhint %}
 
-The docker image allows you to use the following env variables to configure mercure, you could also configure it like the self installed version via the caddy file.
-
-Use different keys for publishing and subscribers for security reasons!
-<code>
+{% code %}
 
 - MERCURE_PUBLISHER_JWT_KEY: your-256-bit-publisher-key
 - MERCURE_SUBSCRIBER_JWT_KEY: your-256-bit-subscriber-key
@@ -31,15 +33,18 @@ Use different keys for publishing and subscribers for security reasons!
    cors_origins "https://my-pwa-shop.com https://en.my-pwa-shop.com"  
    anonymous 0  
    ui 1
-  </code>
+
+{% encode %}
 
 ### 2. Self installed
 
-The [installation guide](https://mercure.rocks/docs/hub/install) explains all steps that are required.
+The [installation guide](https://mercure.rocks/docs/hub/install) explains all steps that are required for installing the Mercure.
 
-#### production config
+#### Production config
 
-<code>mercure {
+{% code %}
+
+mercure {
 ...  
 publisher_jwt my-publisher-key HS256  
 subscriber_jwt my-subscriber-key HS256  
@@ -47,6 +52,6 @@ cors_origins "https://my-pwa-shop.com https://en.my-pwa-shop.com"
 demo 0  
 ui 0  
 ...
-}</code>
+}
 
-### 3. SAAS instance
+{% encode %}

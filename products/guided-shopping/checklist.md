@@ -2,30 +2,31 @@
 
 ## Requirements for default basic stack
 
-<aside>
-💡 This checklist does not cover the project specific configuration like cms pages, specific presentation. The only intention of the checklist is to provide plugin fully working at every stack and make it ready to be used in terms of administration stuff and end-user experience.
+{% hint style="info" %}
+💡 This checklist does not cover project specific configurations like cms pages, specific presentation, etc. The only intention of the checklist is to provide fully working plugin at every stack and make it ready to use in terms of administration and end-user experience.
+{% endhint %}
 
-</aside>
+### Shopware fundamentals required
 
-### Shopware fundamentals
+- 🌐Shopware 6 is available on the web over HTTPS.
+- PWA plugin for Shopware 6 is installed.
+- 🌐Shopware PWA is generated and available in public under some URL over HTTPS.
 
-- [ ] 🌐Shopware 6 is available on the web over https
-- [ ] PWA plugin for Shopware 6 is installed
-- [ ] 🌐Shopware PWA is generated and available in public under some URL over https
+### External services required
 
-### Required external services
-
-- [ ] [Mercure.rocks](http://Mercure.rocks) service is available on the web over https with required settings
-- [ ] [Daily.co](http://Daily.co) service is available on the web with default settings
+- [Mercure.rocks](http://Mercure.rocks) service is available on the web over HTTPS with required settings.
+- [Daily.co](http://Daily.co) service is available on the web with default settings.
 
 ### Setup
 
-- [ ] the plugin is installed with no errors and it’s available in the “Marketing” section
-  ![Untitled](assets/checklist.png)
-- [ ] the plugin is set up with settings based on the configuration of external services
+![Untitled](../../../docs/.gitbook/assets/products-guidedShopping-checklist.png)
+
+- The plugin is installed with no errors and it is available in the “Marketing” section.
+  
+- The plugin is set up with settings based on the configuration of external services.
 
 ### Refresh Shopware PWA
 
-- [ ] an instance is rebuilt (`yarn build`) and redeployed
+- An instance is rebuilt using `yarn build` and redeployed.
 
-**👌🏼 Great! Now it’s time to setup the presentations and prepare the appointments in order to start using the Guided Shopping.**
+Now it is time to setup the presentations and prepare the appointments in order to start using the Guided Shopping.
