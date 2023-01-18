@@ -53,6 +53,7 @@
       * [Decorating a Shopware Migration Assistant converter](products/extensions/migration-assistant/guides/decorating-a-shopware-migration-assistant-converter.md)
       * [Creating a new migration profile](products/extensions/migration-assistant/guides/creating-a-new-migration-profile.md)
     * [Commercial](products/plugins/commercial/README.md)
+      * [Flow Sharing](products/plugins/commercial/flow-sharing.md)
   * [B2B Suite](products/extensions/b2b-suite.md)
     * [Concepts](products/extensions/b2b-suite/concepts/README.md)
       * [System architecture](products/extensions/b2b-suite/concepts/system-architecture.md)
