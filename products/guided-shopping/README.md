@@ -8,6 +8,10 @@ You can create interactive live video events for your customers straight from yo
 
 To install this feature, you need the below prerequisites and know how to get the plugin for Shopware 6.
 
+{% hint style="warning" %}
+Guided Shopping is a commercial extension and is available as open source.
+{% endhint %}
+
 ## Prerequisites
 
 1. Instance of [Shopware 6](https://developer.shopware.com/docs/guides/installation/from-scratch) (supported versions: > 6.4.10.0)
