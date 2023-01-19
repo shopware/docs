@@ -7,7 +7,7 @@ for await (const entry of walk("./resources/references/adr")) {
 	if (entry.isDirectory) continue;
 	if (entry.path.startsWith('resources/references/adr/assets')) continue;
 	if (path.basename(entry.path).startsWith('_')) continue;
-	if (path.basename(entry.path) === 'README.md') continue;
+	if (path.basename(entry.path) === 'index.md') continue;
 	formattingPromises.push(formatADR(entry.path));
 }
 
@@ -24,10 +24,10 @@ async function formatADR(filePath: string): Promise<void> {
 		lineNumber++;
 		buffer += line + '\n';
 		if (lineNumber === 2) {
-			buffer += '{% hint style="info" %}\n';
+			buffer += '::: info\n';
 			buffer += 'This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.\n';
 			buffer += `You can find the original version [here](${adrPathToGithubLink(filePath)})\n`;
-			buffer += '{% endhint %}\n';
+			buffer += ':::\n';
 			buffer += '\n';
 		}
 	}
