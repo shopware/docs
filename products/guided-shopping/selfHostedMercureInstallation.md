@@ -1,17 +1,19 @@
-# Self Hosted Mercure Installation for Guided Shopping
+# Self-hosted Mercure Installation for Guided Shopping
 
-## Mercure settings in general
+## Mercure installation
+
+### Mercure settings in general
 
 | Name | Variable | Description |
 | ---- | -------- | ----------- |
 | Publisher JWT Key  | publisher_jwt      | The JWT key used for authenticating publishers |
 | Subscriber JWT Key | subscriber_jwt     | The JWT key used for authenticating subscribers|
-| CORS Origin        | cors_origins       | Pages from where access is allowed [troubleshoot cors errors](https://mercure.rocks/docs/hub/troubleshooting#cors-issues) |
+| CORS Origin        | cors_origins       | List of domains allowed to connect to the Mercure hub as value of the cors_origins. For other cases check [troubleshoot cors errors](https://mercure.rocks/docs/hub/troubleshooting#cors-issues) |
 | UI                 | ui                 | Enable the UI and expose demo |
 | Demo               | demo               | Enable the UI but do not expose demo |
 | Anonymous          | anonymous          | Allow subscribers with no valid JWT to connect |
 
-## Mercure installation
+There are two recommended ways of Mercure installations:
 
 ### 1. Docker
 
@@ -19,7 +21,7 @@ If you host Mercure yourself, the easiest way is to do it via docker. The image 
 
 #### Configure Mercure docker
 
-The docker image allows you to use the following env variables to configure Mercure. You can also configure it like the self installed version via the Caddyfile.
+The docker image allows you to use the following *env* variables to configure Mercure.
 
 {% hint style="warning" %}
 Use different publisher and subscriber keys for security reasons.
@@ -36,7 +38,43 @@ Use different publisher and subscriber keys for security reasons.
 
 {% encode %}
 
-### 2. Self installed
+You can also configure it like the self-installed version via the Caddyfile.
+
+{% code title="Sample Caddyfile" %}
+
+```
+{
+    # Debug mode (disable it in production!)
+    debug
+    # HTTP/3 support
+}
+:80
+log
+route {
+    redir / /.well-known/mercure/ui/
+    encode gzip
+    mercure {
+        # Enable the demo endpoint (disable it in production!)
+        demo
+        # Publisher JWT key
+        publisher_jwt MySecret
+        # Subscriber JWT key
+        subscriber_jwt MySecret
+        # CORS
+        cors_origins http://localhost:3000 http://localhost:8080 http://shopware.test http://7779-91-90-160-158.ngrok.io
+        publish_origins localhost:3000 localhost:8080 shopware.test 7779-91-90-160-158.ngrok.io
+        # Allow anonymous subscribers (double-check that it's what you want)
+        anonymous
+        # Enable the subscription API (double-check that it's what you want)
+        subscriptions
+    }
+    respond "Not Found" 404
+}
+```
+
+{% endcode %}
+
+### 2. Self-installed
 
 The [installation guide](https://mercure.rocks/docs/hub/install) explains all steps that are required for installing the Mercure.
 
@@ -44,6 +82,7 @@ The [installation guide](https://mercure.rocks/docs/hub/install) explains all st
 
 {% code %}
 
+```
 mercure {
 ...  
 publisher_jwt my-publisher-key HS256  
@@ -53,5 +92,6 @@ demo 0
 ui 0  
 ...
 }
+```
 
-{% encode %}
+{% endcode %}
