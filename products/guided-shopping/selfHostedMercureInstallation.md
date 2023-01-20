@@ -2,7 +2,7 @@
 
 ## Mercure installation
 
-### Mercure settings in general
+### Mercure general settings
 
 | Name | Variable | Description |
 | ---- | -------- | ----------- |
@@ -29,14 +29,16 @@ Use different publisher and subscriber keys for security reasons.
 
 {% code %}
 
+```
 - MERCURE_PUBLISHER_JWT_KEY: your-256-bit-publisher-key
 - MERCURE_SUBSCRIBER_JWT_KEY: your-256-bit-subscriber-key
 - MERCURE_EXTRA_DIRECTIVES: |-  
    cors_origins "https://my-pwa-shop.com https://en.my-pwa-shop.com"  
    anonymous 0  
    ui 1
+```
 
-{% encode %}
+{% endcode %}
 
 You can also configure it like the self-installed version via the Caddyfile.
 

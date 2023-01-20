@@ -8,9 +8,9 @@
 
 ### Shopware fundamentals required
 
-- 🌐Shopware 6 is available on the web over HTTPS.
+- Shopware 6 is available on the web over HTTPS.
 - PWA plugin for Shopware 6 is installed.
-- 🌐Shopware PWA is generated and available in public under some URL over HTTPS.
+- Shopware PWA is generated and available in public under some URL over HTTPS.
 
 ### External services required
 
@@ -27,6 +27,6 @@
 
 ### Refresh Shopware PWA
 
-- An instance is rebuilt using `yarn build` and redeployed.
+- An instance of Shopware PWA is rebuilt using `yarn build` and redeployed.
 
 Now it is time to setup the presentations and prepare the appointments in order to start using the Guided Shopping.

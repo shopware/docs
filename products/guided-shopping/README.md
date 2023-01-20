@@ -13,18 +13,23 @@ Guided Shopping is a commercial extension and is not available as open source.
 ## Prerequisites
 
 1. Instance of [Shopware 6](https://developer.shopware.com/docs/guides/installation/from-scratch)(version 6.4.10.0 and above).
+
+  {% hint style="warning" %}
+  Compliant Node.js version for PWA setup is v14.0.0 to v16.0.0.
+  {% endhint %}
+
 1. Instance of [Shopware PWA](https://github.com/vuestorefront/shopware-pwa)(version 1.2.0 and above).
 1. Install and activate [PWA plugin](https://github.com/shopware/SwagShopwarePwa)(version 0.3 and above) in Shopware 6 instance.
 1. Install [Mercure package](https://packagist.org/packages/symfony/mercure#v0.5.3)(version 0.5.3) in Shopware 6 instance.
 
-    {% hint style="info" %}
-    To install Mercure 0.5.3, use the following command :
+  {% hint style="info" %}
+  To install Mercure 0.5.3, use the following command:
     
-    ```
-    composer require symfony/mercure ^0.5.3
-    ```
+  ```
+  composer require symfony/mercure ^0.5.3
+  ```
     
-    {% endhint %}
+  {% endhint %}
 
 1. Install Mercure service with the below available options:
    * [Self-hosted installation](./selfHostedMercureInstallation.md).
@@ -38,7 +43,7 @@ To install and use the Guided Shopping feature, follow the below steps:
 ### Get the plugin
 
 1. Clone or download the [repository](https://github.com/shopware/guided-shopping).
-1. Extract the plugin to `custom/plugins/SwagGuidedShopping` directory, including the outer folder `SwagGuidedShopping`.
+1. Extract the plugin including the outer folder `SwagGuidedShopping` to `platform/custom/plugins` directory of Shopware repository.
 1. Make sure the plugin has a PHP package structure containing _`composer.json`_ file, _`src/`_ folder and so on.
 1. Prepare a zip file containing the plugin as in the following structure:
 
@@ -82,7 +87,7 @@ You can install the plugin via admin panel or terminal server.
 
 1. On successful installation, activate the plugin by clicking on the switch button on the left.
 
-#### Install via the terminal server
+#### Terminal server
 
 1. Log in to a server.
 2. Zip the plugin and place it in `<shopware-root-dir>/custom/plugins` directory.
@@ -122,7 +127,7 @@ Detailed below the minimum configuration needed for a working stack apart from p
 
 ### Daily
 
-Daily service is responsible for streaming a video between the attendees.
+Daily service is responsible for streaming a video between the attendees. It is necessary to have an account to avail its services.
 
 #### Set up an account
 
@@ -134,49 +139,48 @@ Daily service is responsible for streaming a video between the attendees.
 
 Once the plugin is installed, the services are up and running and have all the required credentials, then the next thing to do is to configure the Guided Shopping plugin itself.
 
-Here, we focus on external services (like Daily, Mercure) because they are crucial for working with a plugin.
+To do so,
 
-Goto admin panel where the Guided Shopping plugin is installed. Click on configure to configure the below two sections.
+1. Navigate to admin panel where the Guided Shopping plugin is installed.
+1. Click the menu and select configure option to configure the below two sections.
 
-#### Video (daily)
+    * **Video (daily)**
 
-1. You can leave the **API Base URL** as it is `https://api.daily.co/v1/` if not necessary.
-1. Put your **API KEY** into the right input.
+      * You can leave the **API Base URL** as it is `https://api.daily.co/v1/` if not necessary.
+      * Put your **API KEY** into the right input.
 
-![an example of Video section in the plugin’s configuration](../../../docs/.gitbook/assets/products-guidedShopping-videoConfig.png)
+    ![an example of Video section in the plugin’s configuration](../../../docs/.gitbook/assets/products-guidedShopping-videoConfig.png)
 
-#### Mercure
+    * **Mercure**
 
-1. Replace *Mercure Hub Url* and *Mercure Hub Public Url* with your domain’s URL where the Mercure service is working and accessible from your stack. For instance, for the URL `https://fcoxpx.stackhero-network.com`, it would be `https://fcoxpx.stackhero-network.com/.well-known/mercure`
-1. Paste the secret tokens that were set up in your Mercure service configuration.
+      * Replace *Mercure Hub Url* and *Mercure Hub Public Url* with your domain’s URL where the Mercure service is working and accessible from your stack. For instance, for the URL `https://fcoxpx.stackhero-network.com`, it would be `https://fcoxpx.stackhero-network.com/.well-known/mercure`.
+      * Paste the secret tokens that were set up in your Mercure service configuration.
 
-![an example of Mercure section in the plugin’s configuration](../../../docs/.gitbook/assets/products-guidedShopping-mercureConfigExample.png)
+    ![an example of Mercure section in the plugin’s configuration](../../../docs/.gitbook/assets/products-guidedShopping-mercureConfigExample.png)
+
+Daily and Mercure are two external services that are crucial for working with the Guided Shopping plugin.
 
 ### Install Guided Shopping into PWA
 
-1. Make sure you have a `guided-shopping` repository.
-
-  {% hint style="warning" %}
-   Node.js version supported v14.0.0 to v16.0.0
-  {% endhint %}
+1. Make sure you have the `guided-shopping` repository.
 
 1. Generate a [PWA project](https://shopware-pwa-docs.vuestorefront.io/)
 
 1. Link the guided-shopping plugin to PWA using the below command:
 
     ```
-    ln -s /YOUR/PATH/TO/GS-REPO/src/Resources/app/pwa /YOUR/PATH/TO/SHOPWARE-PWA-REPO/sw-plugins/guided-shopping
+    ln -s <your-path-to-guidedShoppingRepo>/src/Resources/app/pwa <your-path-to-shopware-pwa-repo>/sw-plugins/guided-shopping
     ```
 
-1. In pwa folder, navigate to `sw-plugins/local-plugins.json` and add `"guided-shopping": true`.
-1. Edit PWA_PATH in makefile in guided-shopping folder with your current pwa folder path.
-1. Install additional dependencies.
+1. Navigate to folder pwa > sw-plugins and open `local-plugins.json` file to add `"guided-shopping": true`.
+1. Edit `PWA_PATH` in makefile in guided-shopping folder with your current pwa folder path.
+1. Install additional dependencies using the below command:
 
     ```
     make install-pwa
     ```
 
-1. Update `jest.config.ts`. Follow the example file below:
+1. Update `jest.config.ts` with the following example file:
 
     ```js
     module.exports = {
@@ -219,7 +223,7 @@ Goto admin panel where the Guided Shopping plugin is installed. Click on configu
     }
     ```
 
-1. Update `tsconfig.json` and add `@types/jest` into `compilerOptions.types`
+1. Open `tsconfig.json` file to add `@types/jest` into `compilerOptions.types` array and save it.
 
 ### Rebuild Shopware PWA
 
@@ -235,11 +239,11 @@ In order to synchronize `SwagGuidedShopping` plugin on the backend (installed be
     ```
     
     {% hint style="info" %}
-    💡 Alternatively, you can invoke the `plugins` command manually, using directly:
+    💡 Alternatively, you can invoke the `plugins` command manually, using :
     `npx @shopware-pwa/cli@canary plugins --user YOUR_ADMIN_USERNAME --password=YOUR_SECRET_PASS`
-    then, the application is ready for the rebuild process.
+    Now, the application is ready for the rebuild process.
     
-    Note that the admin credentials are required to connect to the installed plugin library through an ADMIN API.
+    Note that the admin credentials are required to connect to the installed plugin library through an Admin API.
     {% endhint %}
 
 1. Re-deploy Shopware PWA
