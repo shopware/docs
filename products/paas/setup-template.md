@@ -55,9 +55,9 @@ You do not have access to any of the services configured, as the application is 
 
 #### deploy hook
 
-{% hint style="warning" %}
+::: warning
 The environment will be cut off from web traffic during the execution of the deploy hook. The shorter this script is, the shorter the downtime will be.
-{% endhint %}
+:::
 
 This script is called during the deployment process. Theme configuration is copied, the install scripts are executed and secrets are generated.
 

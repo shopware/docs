@@ -29,9 +29,9 @@ Plugins are the most powerful extension mechanism, as they can be used to extend
 
 Follow our [Plugin Base Guide](plugins/plugin-base-guide.md) to learn how to develop a plugin. See the [Plugin Fundamentals](plugins/plugin-fundamentals/) section below for more examples.
 
-{% hint style="info" %}
+::: info
 If your extensions do not require any of the above but rather design changes, a template tweak might ideally be appropriate.
-{% endhint %}
+:::
 
 ## Themes
 
@@ -44,9 +44,9 @@ A theme lets you perform the tasks listed below.
 
 Technically, plugins and themes are very similar and overlap in most of their logic. However, some special aspects are handled differently, such as template and style priority or their activation. Once plugins are installed and activated, their styles and templates are applied immediately. If a theme is installed, it must first be selected in the theme manager.
 
-{% hint style="info" %}
+::: info
 Note that a plugin can also override templates.
-{% endhint %}
+:::
 
 To get started with your first theme, follow our [Theme Base Guide](themes/theme-base-guide.md).
 

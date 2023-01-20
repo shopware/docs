@@ -56,7 +56,7 @@ computed: {
 
 Those computed properties can then be used in your templates the familiar way:
 
-```markup
+```html
 <div>
     <sw-field ... :error="propertyError"></sw-field>
 </div>
@@ -95,7 +95,7 @@ Component.register('sw-product-basic-form', {
 
 Which then are bound to the inputs like this:
 
-```markup
+```html
 <sw-field type="text" v-model="product.name" :error="productNameError">
 ```
 
@@ -105,7 +105,7 @@ Which then are bound to the inputs like this:
 
 ​ When working with nested views, you need a way to tell the user that an error occurred on another view, e.g in another `tab`. For this you can write a config for your `sw-page` component which looks like seen below: ​
 
-```javascript
+```json
 {
   "sw.product.detail.base": {
     "product": [
@@ -142,7 +142,7 @@ Shopware.Component.register('sw-product-detail', {
 
 This makes it possible to indicate if one or more errors exists, in another view or a tab:
 
-```markup
+```html
 <sw-tabs
     :hasError="swProductDetailBaseError">
 </sw-tabs>

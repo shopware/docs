@@ -1,10 +1,9 @@
 # 2021-01-21 - Deprecation Strategy
 # Superseded by [Feature flags for major versions](2022-01-20-feature-flags-for-major-versions.md)
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/workflow/2021-01-21-deprecation-strategy.md)
-{% endhint %}
-
+:::
 
 ## Context
 
@@ -108,6 +107,7 @@ One for the major release with the changes behind the major flag, which will be 
 In this way, only the minor changes will be published with the minor release and the major changes will be published with the major release.
 
 Changelog minor
+
 ```md
 ---
 title: I have done something
@@ -116,9 +116,11 @@ flag: FEATURE_NEXT_11111
 ---
 # Core
 *  Added a property to SampleClass
+
 ``` 
 
 Changelog major
+
 ```md
 ---
 title: I have done something serious
@@ -138,6 +140,7 @@ When a new service is implemented, the tag `shopware.feature` with the minor-fla
 The new service should be usable, as soon as the development is finished to allow plugin developers to implement new services early.
 If it is not intended to allow the use beforehand, you can also use the major flag to make the service unavailable until the next major.
 service.xml
+
 ```xml
         <service id="Shopware\Core\Content\MyTest\Service\MyNewTestClass" public="true">
             <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
@@ -149,6 +152,7 @@ service.xml
 If you want to exchange an old service with a new one, you act for the new service like above.
 If the old service is not used anywhere right now, you can deprecate it with the symfony tag.
 On feature release the service will be deprecated with the symfony tag:
+
 ```xml
         <!-- feature-deprecated flag:FEATURE_NEXT_22222 deprecate service on feature release -->
         <service id="Shopware\Core\Content\MyTest\Service\MyTestClass" public="true">
@@ -158,6 +162,7 @@ On feature release the service will be deprecated with the symfony tag:
 ```
 If it is still used, but marked as major-deprecated, you can use the tag-type "deprecated" with the major flag.
 This will cause an error if this service is still used while the major flag is active.
+
 ```xml
         <!-- feature-deprecated flag:FEATURE_NEXT_22222 deprecate service on feature release -->
         <service id="Shopware\Core\Content\MyTest\Service\MyTestClass" public="true">
@@ -197,6 +202,7 @@ Classes which should not be used anymore should marked as deprecated with FEATUR
 We can not simply remove it directly because a class can always be initiated in a plugin.
 
 PHP
+
 ```php
 /**
  * @deprecated tag:v6.4.0 (flag:FEATURE_NEXT_22222) MyTestClass will be removed in 6.4.0 use MyNewTestClass instead
@@ -231,7 +237,6 @@ public function testNewWorkflow(): void
 {
     Feature::skipTestIfInActive('FEATURE_NEXT_22222', $this);
 }
-
 ```
 
 ##### Add an argument to a public method
@@ -254,12 +259,12 @@ If you want to add an argument to a public method you have to add the new argume
             //Do old calculation
         }
     }
-
 ```
 
 ##### Change direct Service Call to PageLoader and route call
 
 ###### Original
+
 ```php
 class Controller
 {
@@ -291,10 +296,10 @@ class ProductService
         return $product;
     }
 }
-
 ```
 
 ###### while development
+
 ```php
 class Controller
 {
@@ -368,6 +373,7 @@ class ProductRoute
 ```
 
 ###### Development finished: merged into trunk and remove feature flag
+
 ```php
 class Controller
 {
@@ -434,6 +440,7 @@ class ProductRoute
 ```
 
 ###### Major Release: v6.4.0 ####
+
 ```php
 class Controller
 {
@@ -490,6 +497,7 @@ Should a property of a class be removed, it will be annotated as deprecated and 
 ##### While Developing:
 
 ###### Original class:
+
 ```php
 class MyTestClass
 {
@@ -848,6 +856,7 @@ If you can be sure that no caller of the method typehinted the return value, you
 If you can not be sure (and with public methods you bearly can be sure) you have to add a new method.
 
 ###### New Method - while develoment:
+
 ```php
 class MyTestClass
 {
@@ -885,6 +894,7 @@ class MyTestCallerClass
 ```
 
 ###### New Method - After major release:
+
 ```php
 class MyTestClass
 {
@@ -932,6 +942,7 @@ class MyTestCallerClass
 ```
 
 ###### Remove Typehint - After major release:
+
 ```php
 class MyTestCallerClass
 {
@@ -949,6 +960,7 @@ If an argument is added, which is not available without the feature, it has to b
 Also it has to be annotated as @internal in the dependency-xml as well and the comment should explicitly explain that the `on-invalid="null"` should be removed.
 
 PHP class
+
 ```php
 class MyTestClass
 {
@@ -964,6 +976,7 @@ class MyTestClass
 ```
 
 service.xml
+
 ```xml
         <!-- major-deprecated flag:FEATURE_NEXT_22222 deprecate service on feature release -->
         <service id="Shopware\Core\Content\MyTest\Service\MyTestClass" public="true">
@@ -983,6 +996,7 @@ This only applies in compatible interface changes. If you have to break the inte
 
 In this example the MyTestClass implements MyTestInterface and other classes typehinted MyTestClass with this interface, so you have to make sure that the interface is still present.
 ###### Original Class
+
 ```php
 class MyTestClass implements MyTestInterface
 {
@@ -999,6 +1013,7 @@ class MyTestCaller
 ```
 
 ###### Original Interface
+
 ```php
 interface MyTestInterface
 {
@@ -1007,6 +1022,7 @@ interface MyTestInterface
 ```
 
 ###### Deprecated Interface
+
 ```php
 /**
  * @deprecated tag:v6.4.0 (flag:FEATURE_NEXT_22222) interface MyTestInterface will be removed in v6.4.0 
@@ -1018,6 +1034,7 @@ interface MyTestInterface
 ```
 
 ###### New Abstract class
+
 ```php
 /**
  * @internal (flag:FEATURE_NEXT_11111) interface MyTestInterface will be removed in v6.4.0 
@@ -1043,6 +1060,7 @@ class MyTestClass extends MyTestAbstractClass
 ```
 
 ###### On Minor release
+
 ```php
 abstract class MyTestAbstractClass implements MyTestInterface
 {
@@ -1052,6 +1070,7 @@ abstract class MyTestAbstractClass implements MyTestInterface
 ```
 
 ###### Removal on Major release
+
 ```php
 abstract class MyTestAbstractClass
 {

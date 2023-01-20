@@ -11,8 +11,8 @@ There are a couple of ways to get Shopware running on your system. Depending on 
 * [Installation from scratch](from-scratch.md): You can install Shopware 6 locally. However, be aware that this will be a more complex solution since additional or changed system requirements need to be managed by you.
 
 Did you know that there is a video available on this topic? Please take a look:
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://www.youtube.com/watch?v=ML1QyUr0wsk" caption="" %}
+
+<PageRef page="https://www.youtube.com/watch?v=ML1QyUr0wsk" title="" target="_blank" />
 
 ## Prerequisites
 
@@ -98,19 +98,19 @@ Although Shopware 6 supports most UNIX-like environments, we recommend using **U
 * Bash
 * Git
 
-{% hint style="info" %}
+::: info
 Please note that we always want to support the latest versions. If you find an issue with a newer version, please let us know about it in our [issue tracker](https://issues.shopware.com)
-{% endhint %}
+:::
 
 ### Recommendations
 
 * Zend Opcache \(256M or more\)
 * Webserver with HTTP2 support
 
-{% hint style="info" %}
-<!-- markdown-link-check-disable-next-line -->
+::: info
+
 Adminer \([https://www.adminer.org/](https://www.adminer.org/)\) is our recommended database Administration tool since it has better support for binary data types.
-{% endhint %}
+:::
 
 ### Requirements for docker setup
 
@@ -139,11 +139,11 @@ Let's discuss their differences, so you can make an informed decision.
 | Build a custom project/deployment | ✅ | ❌ |
 | Manage dependencies / bundles | ✅ | ❌ |
 
-{% embed url="https://www.youtube.com/watch?v=ML1QyUr0wsk" caption="" %}
+<PageRef page="https://www.youtube.com/watch?v=ML1QyUr0wsk" title="" target="_blank" />
 
-{% hint style="info" %}
+::: info
 This video is part of the online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma) available on Shopware Academy for **free**.
-{% endhint %}
+:::
 
 ## Preparatory steps
 

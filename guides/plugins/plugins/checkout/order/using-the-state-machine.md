@@ -184,9 +184,9 @@ In this case we're using the `Criteria` constructor parameter, which is an array
 
 After searching for the order, we're using the `getDeliveries` method on the order entity and this way receive the ID of the delivery, which we can then continue to use with the state machine.
 
-{% hint style="warning" %}
+::: warning
 In those examples, we're using the method `first` on the deliveries. Yet, it's important to note, that there may be more than one delivery or even transaction and using `first` may not always return the right delivery or transaction. In that case, you'll definitely need more filters to find the proper delivery or transaction, e.g. if you want to change the very last delivery, you could use a sorting for this.
-{% endhint %}
+:::
 
 And that's it. You should now be able to change all kinds of order states!
 

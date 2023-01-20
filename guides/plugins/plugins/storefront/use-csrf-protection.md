@@ -14,7 +14,7 @@ Knowing what exactly CSRF is and how the attack works may come in handy, so you 
 
 As already mentioned, this guide assumed you've already got a custom form running, which needs CSRF protection. The following will be the example form we're going to use:
 
-```markup
+```html
 <form action="{{ path('some.action') }}"
     method="post"
     data-form-csrf-handler="true"
@@ -32,7 +32,7 @@ Every storefront `POST` request is checked for a valid CSRF token to prevent [Cr
 
 Protecting it now with the built-in tools requires you to add two new lines, but let's have a look at a secure example first:
 
-```markup
+```html
 <form action="{{ path('some.action') }}"
     method="post"
     data-form-csrf-handler="true"
@@ -71,16 +71,13 @@ Therefore, the two new lines are the following:
 
 CSRF protection can be configured via [Symfony configuration files](https://symfony.com/doc/current/configuration.html).
 
-{% code title="<platform root>/src/Storefront/Resources/config/packages/storefront.yaml" %}
-
 ```yaml
+// <platform root>/src/Storefront/Resources/config/packages/storefront.yaml
 storefront:
     csrf:
         enabled: true   // true/false to turn protection on/off
         mode: twig      // Valid modes are `twig` or `ajax`
 ```
-
-{% endcode %}
 
 ## Exclude controller action from CSRF checks
 
@@ -93,9 +90,9 @@ As previously said, each Storefront route is looking for a CSRF token by default
 public function exampleAction() {}
 ```
 
-{% hint style="danger" %}
+::: danger
 Be aware that this is not recommended and could create a security vulnerability!
-{% endhint %}
+:::
 
 ## Caching and CSRF
 

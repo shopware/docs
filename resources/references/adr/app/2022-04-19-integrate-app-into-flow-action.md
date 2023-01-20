@@ -1,9 +1,9 @@
 # 2022-04-19 - Integrate an app into flow action
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/app/2022-04-19-integrate-app-into-flow-action.md)
-{% endhint %}
+:::
 
 We want to offer apps the possibility to deliver their own flow actions. Each app should be able to deliver multiple flow actions. The implementation should be done via webhooks and XML configuration. The information will be stored in the database as usual. If the app is uninstalled, all data will be deleted.
 
@@ -20,6 +20,7 @@ For flow actions, configuration parameters may be necessary that can be stored i
 4) `<config>` - configuration information for the admin UI
 
 A complete XML structure looks like this:
+
 ```xml
 <flow-actions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://test-flow.com/flow-action-1.0.xsd">
     <flow-action>
@@ -48,4 +49,3 @@ A complete XML structure looks like this:
     </flow-action>
 </flow-actions>
 ```
-

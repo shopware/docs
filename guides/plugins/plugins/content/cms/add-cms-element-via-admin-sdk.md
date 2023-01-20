@@ -10,9 +10,9 @@ This article will teach you how to create a new CMS element via the Admin Extens
 * Knowledge on the [creation of custom admin components](https://developer.shopware.com/docs/guides/plugins/plugins/administration/add-custom-component#creating-a-custom-component)
 * Understanding the [Admin Extension SDK](https://shopware.github.io/admin-extension-sdk/docs/guide/getting-started/installation)
 
-{% hint style="info" %}
+::: info
 This example uses TypeScript, which is recommended, but not required for developing Shopware.
-{% endhint %}
+:::
 
 ## Creating your custom element
 
@@ -27,9 +27,8 @@ You can decide what approach to use when creating apps since everything here is 
 
 When our extension is finished, you will get the following file structure:
 
-{% code title="<plugin root>/src/Resources/app/administration/src" %}
-
 ```bash
+// <plugin root>/src/Resources/app/administration/src
 ├── base
 │   └── mainCommands.ts
 ├── main.ts
@@ -40,8 +39,6 @@ When our extension is finished, you will get the following file structure:
         ├── swag-dailymotion-element.ts
         └── swag-dailymotion-preview.ts
 ```
-
-{% endcode %}
 
 ## Initial loading of components
 
@@ -162,17 +159,14 @@ That is all about what is required to register your CMS element. As a best pract
 
 The last files are the components inside our `views` folder. Just like you know it from typical CMS element loading, we will create a folder with the full component name, containing 3 files as shown below:
 
-{% code title="<plugin root>/src/Resources/app/administration/src" %}
-
 ```bash
+// <plugin root>/src/Resources/app/administration/src
 views
 └── swag-dailymotion
     ├── swag-dailymotion-config.ts
     ├── swag-dailymotion-element.ts
     └── swag-dailymotion-preview.ts
 ```
-
-{% endcode %}
 
 You can vary the structure of `swag-dailymotion`'s contents and create folders for each of the three. However, let us keep it simple with single file components.
 
@@ -330,8 +324,6 @@ After everything for the admin is done, there is still the need for a storefront
 
 Since everything is already described in guide [CMS element development for plugins](https://developer.shopware.com/docs/guides/plugins/plugins/content/cms/add-cms-element#storefront-implementation), the following example just shows how your storefront template (`swag-daiĺymotion/Resources/views/storefront/element/cms-element-swag-dailymotion.html.twig`) could look like:
 
-{% raw %}
-
 ```twig
 {% block element_swag_dailymotion %}
 <div class="cms-element-swag-dailymotion" style="height: 100%; width: 100%">
@@ -351,5 +343,3 @@ Since everything is already described in guide [CMS element development for plug
 </div>
 {% endblock %}
 ```
-
-{% endraw %}

@@ -23,9 +23,8 @@ Adding a new document is done by adding two entries to the database:
 
 We're doing this via a migration. In the following example migration, a new document named "custom" will be created, which is assigned to the `Storefront` sales channel.
 
-{% code title="<plugin root>/src/Migration/Migration1616668698AddDocument.php" %}
-
 ```php
+// <plugin root>/src/Migration/Migration1616668698AddDocument.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Migration;
@@ -125,8 +124,6 @@ SQL;
     }
 }
 ```
-
-{% endcode %}
 
 So it's basically fetching the "Storefront" sales channel ID, and the document type ID of the "Delivery note" document type and then inserts the necessary entries with some example data.
 

@@ -22,9 +22,8 @@ In the following paragraphs, there will be examples for each kind of association
 
 As already mentioned, this guide will always use the same two example entities for each type of association. They both contain only an ID field, nothing else. For the sake of clarity, here are those example entity definitions:
 
-{% code title="<plugin root>/src/Core/Content/Bar/BarDefinition.php" %}
-
 ```php
+// <plugin root>/src/Core/Content/Bar/BarDefinition.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Bar;
@@ -54,11 +53,8 @@ class BarDefinition extends EntityDefinition
 }
 ```
 
-{% endcode %}
-
-{% code title="<plugin root>/src/Core/Content/Foo/FooDefinition.php" %}
-
 ```php
+// <plugin root>/src/Core/Content/Foo/FooDefinition.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Foo;
@@ -88,17 +84,14 @@ class FooDefinition extends EntityDefinition
 }
 ```
 
-{% endcode %}
-
 ### One to One associations
 
 One to One associations require you to define a foreign key for one of the two connected associations. E.g. the `bar` table has to contain a `foo_id` column, or the other way around: A `bar_id` column in the `foo` table. In this example it will be `foo_id` in the `BarDefinition`.
 
 Let's have a look at the `defineFields` methods of both entity definitions:
 
-{% code title="<plugin root>/src/Core/Content/Bar/BarDefinition.php" %}
-
 ```php
+// <plugin root>/src/Core/Content/Bar/BarDefinition.php
 protected function defineFields(): FieldCollection
 {
     return new FieldCollection([
@@ -111,17 +104,14 @@ protected function defineFields(): FieldCollection
 }
 ```
 
-{% endcode %}
-
 Note the new `FkField`, which basically is the mentioned `foo_id` column. Its parameters are the name of the column in your database\(snake\_case\), the property name in your definition \(lowerCamelCase\) and the respective definition class.
 
 Additional to that, we've got the `OneToOneAssociationField`. Here you supply the name of the property, which should contain the associated entity, in your respective definition, e.g. in this case we want the `FooDefinition` to appear in the `foo` property of our entity. Following are `foo_id`, which is the name of the column in the database, `id` as the ID column in the referenced database \(`foo` in this case\) and the referenced definition. The last parameter defines, if you want to automatically load this association every time you load a `bar` entity. We've set this to `false`.
 
 For the sake of completion, here is the respective `defineFields` method of the `FooDefinition`:
 
-{% code title="<plugin root>/src/Core/Content/Foo/FooDefinition.php" %}
-
 ```php
+// <plugin root>/src/Core/Content/Foo/FooDefinition.php
 protected function defineFields(): FieldCollection
 {
     return new FieldCollection([
@@ -133,8 +123,6 @@ protected function defineFields(): FieldCollection
 }
 ```
 
-{% endcode %}
-
 Note, that in here there is no `FkField` necessary.
 
 ### One to Many / Many to One
@@ -143,9 +131,8 @@ In "One To Many" / "Many To One" associations, you need to define a foreign key 
 
 Let's have a look at the `defineFields` methods of both entity definitions:
 
-{% code title="<plugin root>/src/Core/Content/Bar/BarDefinition.php" %}
-
 ```php
+// <plugin root>/src/Core/Content/Bar/BarDefinition.php
 protected function defineFields(): FieldCollection
 {
     return new FieldCollection([
@@ -156,15 +143,12 @@ protected function defineFields(): FieldCollection
 }
 ```
 
-{% endcode %}
-
 Next to the `IdField`, you only have to define the `OneToManyAssociationField` in your `BarDefinition`. Its paremeter are `foos`, which is the property that will contain all `FooEntity`'s, the class name of `FooDefinition` and the name of the column in the referenced table, which points to the definition itself.
 
 Let's have a look at the `FooDefinition` now:
 
-{% code title="<plugin root>/src/Core/Content/Foo/FooDefinition.php" %}
-
 ```php
+// <plugin root>/src/Core/Content/Foo/FooDefinition.php
 protected function defineFields(): FieldCollection
 {
     return new FieldCollection([
@@ -175,8 +159,6 @@ protected function defineFields(): FieldCollection
     ]);
 }
 ```
-
-{% endcode %}
 
 Next to the `IdField`, you can see a new `FkField`, which is the field for the new `bar_id` column. Its parameters are the name of the column in your database \(snake\_case\), the property name in your definition \(lowerCamelCase\) and the respective definition class.
 
@@ -190,9 +172,8 @@ Instead of adding a `OneToManyAssociationField` here now, we have to use the rev
 
 Let's create this one first:
 
-{% code title="<plugin root>/src/Core/Content/FooBarMappingDefinition.php" %}
-
 ```php
+// <plugin root>/src/Core/Content/FooBarMappingDefinition.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content;
@@ -228,8 +209,6 @@ class FooBarMappingDefinition extends MappingEntityDefinition
 }
 ```
 
-{% endcode %}
-
 The mapping definition has to extend from the `MappingEntityDefinition`, instead of the `EntityDefinition` like in other entity definitions. The rest is quite the same: Your entity definitions needs an entity name, saved in `ENTITY_NAME`, as well as the method `defineFields`, which has to return a `FieldCollection`.
 
 First of all there are two `FkField`'s. Its parameters are the name of the column in your database\(snake\_case\), the property name in your definition \(lowerCamelCase\) and the respective definition class.
@@ -242,9 +221,8 @@ Of course, you have to add both mentioned fields for each definition you want to
 
 The last thing to do, is to add a `ManyToManyAssociationField` to each of your definitions themselves, like in the following example:
 
-{% code title="<plugin root>/src/Core/Content/Bar/BarDefinition.php" %}
-
 ```php
+// <plugin root>/src/Core/Content/Bar/BarDefinition.php
 protected function defineFields(): FieldCollection
 {
     return new FieldCollection([
@@ -261,8 +239,6 @@ protected function defineFields(): FieldCollection
 }
 ```
 
-{% endcode %}
-
 Its parameters are the following:
 
 * `propertyName`: The name of the property in your entity, that will contain the associated entities.
@@ -273,9 +249,8 @@ Its parameters are the following:
 
 For the sake of completion, here is the respective `FooDefinition`:
 
-{% code title="<plugin root>/src/Core/Content/Foo/FooDefinition.php" %}
-
 ```php
+// <plugin root>/src/Core/Content/Foo/FooDefinition.php
 protected function defineFields(): FieldCollection
 {
     return new FieldCollection([
@@ -291,8 +266,6 @@ protected function defineFields(): FieldCollection
     ]);
 }
 ```
-
-{% endcode %}
 
 And that's it, your `ManyToMany` association is now set up properly.
 

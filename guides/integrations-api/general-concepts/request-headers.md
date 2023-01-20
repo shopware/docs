@@ -9,11 +9,11 @@ POST /api/search/product
 --header 'sw-language-id: be01bd336c204f20ab86eab45bbdbe45'
 ```
 
-{% hint style="info" %}
+::: info
 Shopware only populates a translatable field if there is an explicit translation for that field. Instead, the `translated` object always contains values, if necessary fallbacks.
 
 **Example:** You instruct Shopware to fetch the french translation of a product using the `sw-language-id` header, but there's no french translation for the products name. The resulting field `product.name` will be `null`. When you're building applications, always use `product.translated.[value]`to access translated values, to make sure you will always get a valid translation or fallback value.
-{% endhint %}
+:::
 
 ## sw-inheritance
 

@@ -23,9 +23,9 @@ To create, alter and/or delete customer-specific prices, you can use the API end
 Otherwise, the Customer-specific Pricing API interface models itself upon the interface of the sync API, so you will
 be able to package your requests similarly, see our [API documentation](https://shopware.stoplight.io/docs/admin-api).
 
-{% hint style="info" %}
+::: info
 You can use the route with single `upsert` and `delete` actions or even combine those in a single request: you can pack several different commands inside one sync API request, and each of them is executed in an independent and isolated way
-{% endhint %}
+:::
 
 So, it's not surprising that the request body looks like a familiar sync request. In the payload for the `upsert` action, you pass the following data:
 
@@ -85,13 +85,13 @@ For the `delete` action, the workflow operation accepts 3 different array of ids
 ]
 ```
 
-{% hint style="info" %}
+::: info
 In case of an error occurs, the response will not return an error code - which is typical for the sync API; instead, any validation errors will be stored within the `errors` key.
-{% endhint %}
+:::
 
-{% hint style="warning" %}
+::: warning
 When working with this route, one difference sets it apart from the familiar `sync` requests: You cannot specify headers to adapt the endpoint's behavior.
-{% endhint %}
+:::
 
 ## Known caveats or issues
 

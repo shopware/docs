@@ -8,7 +8,7 @@ All components contain own templates and some style. Of course, you may want to 
 
 However, this guide does not explain how to create a custom component, so head over to the official guide about creating a custom component to learn this first.
 
-{% page-ref page="add-custom-component.md" %}
+<PageRef page="add-custom-component" />
 
 In addition, you need to have a basic knowledge of CSS and SCSS in order to use custom styles. This is though considered a basic requirement and won't be taught in this guide.
 
@@ -28,17 +28,13 @@ Just like most components, it has a custom template. First we create the templat
 
 This template now has to define the basic structure of your component. In this simple case, you only need a parent container and two sub-elements, whatever those are.
 
-{% raw %}
-
-```markup
+```html
 {% block example_block %}
     <div class="sw-hello-world">
         <p>Hello world!</p>
     </div>
 {% endblock %}
 ```
-
-{% endraw %}
 
 You've got a parent `div` containing the content of your template, an abstract with the text "Hello world!" in this case. Next up, you need to import that template in your `index.js` file of your component:
 

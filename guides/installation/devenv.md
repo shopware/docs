@@ -14,39 +14,39 @@ The main difference to other tools like Docker or a VM is that it neither uses c
 
 As devenv is built on top of Nix, first install Nix with the following command based on your OS:
 
-{% tabs %}
-{% tab title="macOS" %}
+<Tabs>
+<Tab title="macOS">
 
 ```shell
 sh <(curl -L https://nixos.org/nix/install)
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Linux" %}
+<Tab title="Linux">
 
 ```shell
 sh <(curl -L https://nixos.org/nix/install) --daemon
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Windows (WSL2)" %}
+<Tab title="Windows (WSL2)">
 
 ```shell
 sh <(curl -L https://nixos.org/nix/install) --no-daemon
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Docker" %}
+<Tab title="Docker">
 
 ```shell
 docker run -it nixos/nix
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ### Cachix
 
@@ -62,9 +62,9 @@ Before installing devenv, instruct Cachix to use the devenv cache:
 cachix use devenv
 ```
 
-{% hint style="info %}
+::: info
 The first time you run `cachix use`, you will be prompted a warning that you are not a trusted user.
-{% endhint %}
+:::
 
 ```shell
 This user doesn't have permissions to configure binary caches.
@@ -105,15 +105,14 @@ echo '{ allowUnfree = true; }' > ~/.config/nixpkgs/config.nix
 
 You can find the whole installation guide for devenv in their official documentation:
 
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://devenv.sh/getting-started/" caption="Getting started - devenv.sh" %}
+<PageRef page="https://devenv.sh/getting-started/" title="Getting started - devenv.sh" target="_blank" />
 
 ### Shopware
 
 Depending on whether you want to set up a fresh Shopware project or contribute to the Shopware core, choose between:
 
-{% tabs %}
-{% tab title="Symfony Flex" %}
+<Tabs>
+<Tab title="Symfony Flex">
 If you are already using Symfony Flex, you require a Composer package to get a basic devenv configuration:
 
 ```bash
@@ -121,17 +120,17 @@ composer require devenv
 ```
 
 This will create a basic `devenv.nix` file to enable devenv support for Shopware.
-{% endtab %}
+</Tab>
 
-{% tab title="shopware/platform (Contribute)" %}
+<Tab title="shopware/platform (Contribute)">
 Clone [shopware/platform](https://github.com/shopware/platform) and change into the project directory:
 
 ```shell
 git clone git@github.com:shopware/platform.git
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 Since the environment is described via a `devenv.nix` file committed to version control, you can now boot up the environment:
 
@@ -139,19 +138,16 @@ Since the environment is described via a `devenv.nix` file committed to version 
 devenv up
 ```
 
-{% hint style="warning" %}
+::: warning
 Make sure that the ports for the services are not already in use, or else the command will fail.
-{% endhint %}
+:::
 
 Ensure to change your `.env` file to have the database connect using localhost's IP address instead of the default MySQL socket:
 
-{% code title="<PROJECT_ROOT>/.env" %}
-
-```dotenv
+```txt
+// <PROJECT_ROOT>/.env
 DATABASE_URL="mysql://shopware:shopware@127.0.0.1:3306/shopware?sslmode=disable&charset=utf8mb4"
 ```
-
-{% endcode %}
 
 Inside the project directory, run the following command to initialize Shopware:
 
@@ -168,68 +164,65 @@ This means that you can use the binaries and services without having to run `dev
 
 First, install direnv:
 
-{% tabs %}
-{% tab title="macOS" %}
+<Tabs>
+<Tab title="macOS">
 The preferred way to install direnv on macOS is using Homebrew:
 
 ```bash
 brew install direnv
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Ubuntu" %}
+<Tab title="Ubuntu">
 
 ```bash
 apt install direnv
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Other" %}
+<Tab title="Other">
 The installation instructions for other OS are available on direnv's [official documentation](https://direnv.net/docs/hook.html).
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 Afterwards, add the following hook to your shell:
 
-{% tabs %}
+<Tabs>
 
-{% tab title="Bash" %}
-{% code title="~/.bashrc" %}
+<Tab title="Bash">
 
 ```bash
+// ~/.bashrc
 eval "$(direnv hook bash)"
 ```
 
-{% endcode %}
-{% endtab %}
+</Tab>
 
-{% tab title="Zsh" %}
-{% code title="~/.zshrc" %}
+<Tab title="Zsh">
 
 ```bash
+// ~/.zshrc
 eval "$(direnv hook zsh)"
 ```
 
-{% endcode %}
-{% endtab %}
+</Tab>
 
-{% tab title="Fish" %}
-{% code title="~/.config/fish/config.fish" %}
+<Tab title="Fish">
 
 ```bash
+// ~/.config/fish/config.fish
 direnv hook fish | source
 ```
 
-{% endcode %}
-{% endtab %}
+</Tab>
 
-{% tab title="Other" %}
+<Tab title="Other">
 The installation instructions for other OS are available on direnv's [official documentation](https://direnv.net/docs/hook.html).
-{% endtab %}
+</Tab>
 
-{% endtabs %}
+</Tabs>
 
 After you change into a project directory using devenv for the first time, you need to allow direnv to load the environment:
 
@@ -237,8 +230,7 @@ After you change into a project directory using devenv for the first time, you n
 direnv allow
 ```
 
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://devenv.sh/automatic-shell-activation/" caption="Automatic Shell Activation - devenv.sh" %}
+<PageRef page="https://devenv.sh/automatic-shell-activation/" title="Automatic Shell Activation - devenv.sh" target="_blank" />
 
 ## Default services
 
@@ -257,9 +249,8 @@ Here is an overview of services Shopware provides by default and how you can acc
 To customize the predefined services to match your needs, e.g., changing the virtual host, database name, or environment variables, you can create `devenv.local.nix` to override the service definitions.
 It also allows you to add and configure additional services you might require for your local development.
 
-{% code title="<PROJECT_ROOT>/devenv.local.nix" %}
-
 ```nix
+// <PROJECT_ROOT>/devenv.local.nix
 { pkgs, config, lib, ... }:
 
 {
@@ -280,18 +271,14 @@ It also allows you to add and configure additional services you might require fo
 }
 ```
 
-{% endcode %}
-
 Refer to the official devenv documentation to get a complete list of all available services and their configuration possibilities:
 
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://devenv.sh/reference/options/" caption="devenv.nix Reference - devenv.sh" %}
+<PageRef page="https://devenv.sh/reference/options/" title="devenv.nix Reference - devenv.sh" target="_blank" />
 
 ### Enable Blackfire
 
-{% code title="<PROJECT_ROOT>/devenv.local.nix" %}
-
 ```nix
+// <PROJECT_ROOT>/devenv.local.nix
 { pkgs, config, lib, ... }:
 
 {
@@ -303,13 +290,10 @@ Refer to the official devenv documentation to get a complete list of all availab
 }
 ```
 
-{% endcode %}
-
 ### Enable XDebug
 
-{% code title="<PROJECT_ROOT>/devenv.local.nix" %}
-
 ```nix
+// <PROJECT_ROOT>/devenv.local.nix
 { pkgs, config, lib, ... }:
 
 {
@@ -328,17 +312,14 @@ Refer to the official devenv documentation to get a complete list of all availab
 
 ### Use MariaDB instead of MySQL
 
-{% code title="<PROJECT_ROOT>/devenv.local.nix" %}
-
 ```nix
+// <PROJECT_ROOT>/devenv.local.nix
 { pkgs, config, lib, ... }:
 
 {
   services.mysql.package = pkgs.mariadb;
 }
 ```
-
-{% endcode %}
 
 ## Known issues
 
@@ -355,8 +336,7 @@ direnv reload
 The bigger your project directory is getting over time (e.g. cache files piling up), the slower direnv will be.
 This is a known issue and the devenv developers are working on a solution.
 
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://github.com/cachix/devenv/issues/257" caption="Devenv slows down with big code repositories #257" %}
+<PageRef page="https://github.com/cachix/devenv/issues/257" title="Devenv slows down with big code repositories #257" target="_blank" />
 
 ## FAQ
 

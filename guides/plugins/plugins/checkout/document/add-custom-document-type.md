@@ -16,9 +16,8 @@ Let's start with adding your custom document type to the database, so it's actua
 
 Let's have a look at an example migration:
 
-{% code title="<plugin root>/src/Migration/Migration1616677952AddDocumentType.php" %}
-
 ```php
+// <plugin root>/src/Migration/Migration1616677952AddDocumentType.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Migration;
@@ -81,8 +80,6 @@ class Migration1616677952AddDocumentType extends MigrationStep
 }
 ```
 
-{% endcode %}
-
 So first of all we're creating the new document type with the `technical_name` "example". Make sure to save the ID here, since you're going to need it for the following translations.
 
 Afterwards we're inserting the translations, one for German, one for English. For this we're using the `Shopware\Core\Migration\Traits\ImportTranslationsTrait`, which adds the helper method `importTranslation`. There you have to supply the translation table and an instance of `Shopware\Core\Migration\Traits\Translations`. The latter accepts two constructor parameters:
@@ -115,9 +112,8 @@ Furthermore your generator has to be registered to the [service container](../..
 
 Let's have a look at an example generator:
 
-{% code title="<plugin root>/src/Core/Checkout/Document/DocumentGenerator/ExampleDocumentGenerator.php" %}
-
 ```php
+// <plugin root>/src/Core/Checkout/Document/DocumentGenerator/ExampleDocumentGenerator.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Checkout\Document\DocumentGenerator;
@@ -172,8 +168,6 @@ class ExampleDocumentGenerator implements DocumentGeneratorInterface
 }
 ```
 
-{% endcode %}
-
 First of all we're injecting the `rootDir` of the Shopware installation into our generator, since we'll need that for rendering our template, and the `DocumentTemplateRenderer`, which will do the template rendering.
 
 The `supports` method just returns the string "example", which is the technical name of our new document type. The `getFileName` method is very default - it just builds a string consisting of the file name prefix, that you configured, the current document number and the file name suffix.
@@ -190,15 +184,10 @@ Let's have a quick look at an example document type template. Go ahead and creat
 
 In there you should extend from the default document base template:
 
-{% code title="<plugin root>/src/Resources/views/documents/example\_document.html.twig" %}
-{% raw %}
-
-```php
+```twig
+// <plugin root>/src/Resources/views/documents/example\_document.html.twig
 {% sw_extends '@Framework/documents/base.html.twig' %}
 ```
-
-{% endraw %}
-{% endcode %}
 
 This could be it already. The [base.html.twig](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Framework/Resources/views/documents/base.html.twig) template comes with a lot of default templating, which you can now override by using blocks. If you don't know how that's done, have a look at our guide regarding [customizing templates](../../storefront/customize-templates.md).
 
@@ -217,9 +206,8 @@ For this we need a few more things:
 
 Sounds like a lot, but having a look at an example migration, you will notice that it's not too much of a hassle.
 
-{% code title="<plugin root>/src/Migration/Migration1616974646AddDocumentNumberRange.php" %}
-
 ```php
+// <plugin root>/src/Migration/Migration1616974646AddDocumentNumberRange.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Migration;
@@ -342,8 +330,6 @@ SQL;
     }
 }
 ```
-
-{% endcode %}
 
 As already said, we're first creating the entries in the tables `number_range`, `number_range_type` and `number_range_sales_channel`. For the latter, we're assigning a Storefront sales channel, if any available. Make sure to check here, since in theory there could be no storefront sales channel.
 

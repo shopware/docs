@@ -2,9 +2,9 @@
 
 If your app needs to manipulate the cart, you can do so by using the [`cart`](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#cart) script hook.
 
-{% hint style="info" %}
+::: info
 Note that app scripts were introduced in Shopware 6.4.8.0 and are not supported in previous versions.
-{% endhint %}
+:::
 
 ## Overview
 
@@ -25,24 +25,19 @@ After changing the price definitions in the cart, the total prices of the cart a
 
 But if your script depends on updated and recalculated prices, you can recalculate the entire cart manually.
 
-{% code title="Resources/scripts/cart/my-cart-script.twig" %}
-{% raw %}
-
 ```twig
+// Resources/scripts/cart/my-cart-script.twig
 {% do services.cart.products.add(productId) %}
 
 {% do services.cart.calculate() %}
 ```
 
-{% endraw %}
-{% endcode %}
-
 The `calculate()` call will recalculate the whole cart and update the total prices, etc. For this the complete [`process`-step](../../../../concepts/commerce/checkout-concept/cart.md#calculation) is executed again.
 
-{% hint style="warning" %}
+::: warning
 Note that by executing the `process` step, all properties of the cart (e.g. `products()`, `items()`, `price()`) are recreated and thus will return new instances.
 This means if your script still holds references to those properties inside variables from before the recalculation, those are outdated after the recalculation.
-{% endhint %}
+:::
 
 ### Multiple calculations
 
@@ -52,25 +47,18 @@ This means that you have to check that your script works when it is executed mul
 The safest way to ensure is to check the cart to see if your script's action was already taken and only execute it if not.
 For example, you could only add a discount to the cart if it doesn't already exist.
 
-{% code title="Resources/scripts/cart/my-cart-script.twig" %}
-{% raw %}
-
 ```twig
+// Resources/scripts/cart/my-cart-script.twig
 {% if not services.cart.has('my-custom-discount') %}
     {% do services.cart.discount('my-custom-discount', 'percentage', 10, 'A custom discount') %}
 {% endif %}
 ```
 
-{% endraw %}
-{% endcode %}
-
 An alternative solution would be to mark that you already did perform an action by adding a custom state to the cart.
 This way, you can only perform the action if your custom state is not present and additionally, you can remove the state again when you revert your action.
 
-{% code title="Resources/scripts/cart/my-cart-script.twig" %}
-{% raw %}
-
 ```twig
+// Resources/scripts/cart/my-cart-script.twig
 {% set isEligable = services.cart.items.count > 3 %}
 
 {% if not services.cart.states.has('swag-my-state') %}
@@ -88,12 +76,9 @@ This way, you can only perform the action if your custom state is not present an
 {% endif %}
 ```
 
-{% endraw %}
-{% endcode %}
-
-{% hint style="information" %}
+::: info
 Note that the state name should be unique, this means you should always use your vendor prefix in the state name.
-{% endhint %}
+:::
 
 ## Price definitions
 
@@ -103,9 +88,8 @@ In general, Shopware prices consist of gross and net prices and are currency dep
 
 You can define price fields for [custom fields](../custom-data/custom-fields.md)
 
-{% code title="manifest.xml" %}
-
 ```xml
+// manifest.xml
 <custom-fields>
     <custom-field-set>
         <name>custom_field_test</name>
@@ -124,15 +108,12 @@ You can define price fields for [custom fields](../custom-data/custom-fields.md)
 </custom-fields>
 ```
 
-{% endcode %}
-
 ### Price fields inside app config
 
 You can define price fields for [app configuration](../configuration.md).
 
-{% code title="Resources/config/config.xml" %}
-
 ```xml
+// Resources/config/config.xml
 <card>
     <title>Basic configuration</title>
     <title lang="de-DE">Grundeinstellungen</title>
@@ -145,17 +126,13 @@ You can define price fields for [app configuration](../configuration.md).
 </card>
 ```
 
-{% endcode %}
-
 ### Manual price definition
 
 The simplest way is to define the price manually and hard code it into your app scripts. We provide a factory method that you can use to create price definitions.
 You can specify the `gross` and `net` prices for each currency.
 
-{% code title="Resources/scripts/cart/my-cart-script.twig" %}
-{% raw %}
-
 ```twig
+// Resources/scripts/cart/my-cart-script.twig
 {% set price = services.cart.price.create({
     'default': { 'gross': 19.99, 'net': 19.99},
     'EUR': { 'gross': 19.99, 'net': 19.99},
@@ -163,24 +140,16 @@ You can specify the `gross` and `net` prices for each currency.
 }) %}
 ```
 
-{% endraw %}
-{% endcode %}
-
 ### Prices inside the app config
 
 As described above, it is also possible to use price fields inside the [app configuration](../configuration.md). In your cart scripts, you can access those config values over the [`config` service](../../../../resources/references/app-reference/script-reference/miscellaneous-script-services-reference.md#SystemConfigFacade) and pass them to the same price factory as the manual definitions.
 
-{% code title="Resources/scripts/cart/my-cart-script.twig" %}
-{% raw %}
-
 ```twig
+// Resources/scripts/cart/my-cart-script.twig
 {% set priceData = services.config.app('myCustomPrice') %}
 
 {% set discountPrice = services.cart.price.create(priceData) %}
 ```
-
-{% endraw %}
-{% endcode %}
 
 Note that if you don't provide a default value for your configuration, you should add a null-check, to verify that the config value you want to use was actually configured by the merchant.
 
@@ -193,17 +162,12 @@ Inside your cart scripts, you can modify the line items inside the current cart.
 You can add a new product line item simply by providing the product `id` of the product that should be added.
 Additionally, you may provide a quantity as a second parameter if the product should be added with a quantity higher than 1.
 
-{% code title="Resources/scripts/cart/my-cart-script.twig" %}
-{% raw %}
-
 ```twig
+// Resources/scripts/cart/my-cart-script.twig
 {% do services.cart.products.add(productId) %}
 
 {% do services.cart.products.add(productId, 4) %}
 ```
-
-{% endraw %}
-{% endcode %}
 
 ### Add an absolute discount
 
@@ -213,10 +177,8 @@ The fourth parameter is the label of the discount. You can either use a hard-cod
 
 Note that you should check if your discount was already added, as your script may run multiple times.
 
-{% code title="Resources/scripts/cart/my-cart-script.twig" %}
-{% raw %}
-
 ```twig
+// Resources/scripts/cart/my-cart-script.twig
 {% set discountPrice = services.cart.price.create({
     'default': { 'gross': 19.99, 'net': 19.99},
     'EUR': { 'gross': 19.99, 'net': 19.99},
@@ -227,31 +189,21 @@ Note that you should check if your discount was already added, as your script ma
 {% endif %}
 ```
 
-{% endraw %}
-{% endcode %}
-
 ### Add a relative discount
 
 Adding a relative discount is very similar to adding an absolute discount. Instead of providing a price definition, you can provide a percentage value that should be discounted, and the absolute value will be calculated automatically based on the current total price of the cart.
 
-{% code title="Resources/scripts/cart/my-cart-script.twig" %}
-{% raw %}
-
 ```twig
+// Resources/scripts/cart/my-cart-script.twig
 {% do services.cart.discount('my-custom-discount', 'percentage', 10, 'A custom 10% discount') %}
 ```
-
-{% endraw %}
-{% endcode %}
 
 ### Remove a line item
 
 You can remove line items by providing the `id` of the line item that should be removed.
 
-{% code title="Resources/scripts/cart/my-cart-script.twig" %}
-{% raw %}
-
 ```twig
+// Resources/scripts/cart/my-cart-script.twig
 {# first add the product #}
 {% do services.cart.products.add(productId) %}
 {# then remove it again #}
@@ -263,9 +215,6 @@ You can remove line items by providing the `id` of the line item that should be 
 {% do services.cart.remove('my-custom-discount') %}
 ```
 
-{% endraw %}
-{% endcode %}
-
 ## Split line items
 
 It is also possible to split one line item with a quantity of 2 or more.
@@ -274,10 +223,8 @@ Optionally you can provide the new `id` of the new line item as a second paramet
 
 Note that the `take()` method won't automatically add the new line item to the cart, but instead, it returns the split line item, so you have to add it to the corresponding line item collection manually in your script.
 
-{% code title="Resources/scripts/cart/my-cart-script.twig" %}
-{% raw %}
-
 ```twig
+// Resources/scripts/cart/my-cart-script.twig
 {% set existingLineItem = services.cart.products.get(productId) %}
 
 {% if existingLineItem and existingLineItem.quantity > 3 %}
@@ -286,26 +233,18 @@ Note that the `take()` method won't automatically add the new line item to the c
 {% endif %}
 ```
 
-{% endraw %}
-{% endcode %}
-
 ## Add custom data to line items
 
 You can add custom (meta-) data to line items in the cart by manipulating the payload of the cart items.
 
-{% code title="Resources/scripts/cart/my-cart-script.twig" %}
-{% raw %}
-
 ```twig
+// Resources/scripts/cart/my-cart-script.twig
 {% set lineItem = services.cart.get(lineItemId) %}
 {# Add a custom payload value #}
 {% do lineItem.payload.set('custom-payload', myValue) %}
 {# Access the value #}
 {%  set value = lineItem.payload['custom-payload']) %}
 ```
-
-{% endraw %}
-{% endcode %}
 
 ## Add errors and notifications to the cart
 
@@ -314,10 +253,8 @@ As the first parameter you have to provide the [snippet key](../../plugins/store
 As the second optional parameter, you can specify a `id` for the error, so you can reference the error later on in your script.
 Lastly, you can provide an array of parameters as the optional third parameter if you need to pass parameters to the snippet.
 
-{% code title="Resources/scripts/cart/my-cart-script.twig" %}
-{% raw %}
-
 ```twig
+// Resources/scripts/cart/my-cart-script.twig
 {% if not cartIsValid %}
     {# add a new error #}
     {% do services.cart.errors.error('my-error-message', 'error-id') %}
@@ -326,31 +263,22 @@ Lastly, you can provide an array of parameters as the optional third parameter i
 {% endif %}
 ```
 
-{% endraw %}
-{% endcode %}
-
 If you only want to display some information to the user during the checkout process, you can also add messages using `warning` and `notice`. Those will be displayed during the checkout process but won't prevent the customer from completing the checkout.
 
 The API is basically the same as for adding errors.
 
-{% code title="Resources/scripts/cart/my-cart-script.twig" %}
-{% raw %}
-
 ```twig
+// Resources/scripts/cart/my-cart-script.twig
 {% do services.cart.errors.notice('my-notice') %}
 ```
-
-{% endraw %}
-{% endcode %}
 
 ## Rule based cart scripts
 
 The cart scripts automatically integrate with the [Rule Builder](../../../../concepts/framework/rules.md) and you can use the full power of the rule builder to only do your cart manipulations if a given rule matches.
 For example, you can add an entity-single-select field to your [app's config](../configuration.md) to allow the merchant to choose a rule that needs to match your app script taking effect.
 
-{% code title="Resources/config/config.xml" %}
-
 ```xml
+// Resources/config/config.xml
 <card>
     <title>Basic configuration</title>
     <title lang="de-DE">Grundeinstellungen</title>
@@ -363,14 +291,10 @@ For example, you can add an entity-single-select field to your [app's config](..
 </card>
 ```
 
-{% endcode %}
-
 Inside your cart script, you can check if the rule matches by checking if the configured rule id exists in the list of matched rule ids of the context:
 
-{% code title="Resources/scripts/cart/my-cart-script.twig" %}
-{% raw %}
-
 ```twig
+// Resources/scripts/cart/my-cart-script.twig
 {% set ruleId = services.config.app('exampleRule') %}
 
 {% if ruleId and ruleId in hook.context.ruleIds %}
@@ -380,9 +304,6 @@ Inside your cart script, you can check if the rule matches by checking if the co
 {% endif %}
 ```
 
-{% endraw %}
-{% endcode %}
-
 ## Further information
 
-{% page-ref page="../../../../resources/references/app-reference/script-reference/cart-manipulation-script-services-reference.md" %}
+<PageRef page="../../../../resources/references/app-reference/script-reference/cart-manipulation-script-services-reference" />

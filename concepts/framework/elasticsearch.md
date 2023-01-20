@@ -12,9 +12,9 @@ Elasticsearch is only used in searches that are explicitly defined.
 This is by default set to the `ProductSearchRoute`, `ProductListingRoute`, and `ProductSuggestRoute`.
 To use Elasticsearch on your own searches, make sure to add the Elasticsearch aware state to your criteria.
 
-{% hint style="info" %}
+::: info
 If the Elasticsearch query fails, the data is loaded using MySQL. You can disable this behavior by setting the environment variable `SHOPWARE_ES_THROW_EXCEPTION=1`
-{% endhint %}
+:::
 
 ```php
 $criteria = new \Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria();

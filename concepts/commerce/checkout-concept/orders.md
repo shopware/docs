@@ -20,8 +20,8 @@ During the order placement, at least three distinct state machines are started a
 ![The transaction state machine](../../../.gitbook/assets/order-payment-state-machine.png)
 ![The delivery state machine](../../../.gitbook/assets/order-delivery-state-machine.png)
 
-{% hint style="successful" %}
+::: tip
 The state machines displayed in the following sections can actually be modified through the API, this is just the default setup.
-{% endhint %}
+:::
 
 These can be used to track the progress during the order process and notify the customer about the current state of the order.

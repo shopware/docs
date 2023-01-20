@@ -57,9 +57,9 @@ Your collector has to be defined in the service container using the tag `shopwar
 A processor is the class that will actually process the cart and is supposed to apply changes to the cart.
 It will most likely use data, that was previously fetched by a collector.
 
-{% hint style="warning" %}
+::: warning
 Do not query data in the process method, since it may be executed a lot of times. Always use the collect method of a collector for this case!
-{% endhint %}
+:::
 
 Your processor class has to implement the interface `Shopware\Core\Checkout\Cart\CartProcessorInterface` and its `process` method.
 

@@ -8,10 +8,9 @@ In this guide, you'll learn what migrations are and how to use them. Migrations 
 
 In order to add your own database migrations for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
 
-<!-- markdown-link-check-disable-next-line -->
-{% hint style="info" %}
+::: info
 Refer to this video on **[Database migrations](https://www.youtube.com/watch?v=__pWwaK6lxw)**. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
-{% endhint %}
+:::
 
 ## File structure
 
@@ -68,9 +67,8 @@ _Note: If you create a new migration yourself, the timestamp will vary._
 
 If you take a look at your created migration it should look similar to this:
 
-{% code title="<plugin root>/src/Migration/Migration1611740369ExampleDescription.php" %}
-
 ```php
+// <plugin root>/src/Migration/Migration1611740369ExampleDescription.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Migration;
@@ -97,8 +95,6 @@ class Migration1611740369ExampleDescription extends MigrationStep
 }
 ```
 
-{% endcode %}
-
 As you can see your migration contains 3 methods:
 
 * getCreationTimestamp\(\)
@@ -107,15 +103,14 @@ As you can see your migration contains 3 methods:
 
 There is no need to change `getCreationTimestamp()`, it returns the timestamp that's also part of the file name. In the `update()` method you implement non-destructive changes which should always be **reversible**. The `updateDestructive()` method is the follow up step, that is run after `update()` and used for **destructive none reversible changes**, like dropping columns or tables. Destructive migrations are only executed explicitly.
 
-{% hint style="info" %}
+::: info
 You do not add instructions to revert your migrations within the migration class itself. `updateDestructive` is not meant to revert instructions in `update`. Reverting changes in the database is done explicitly in plugin lifecycle method `uninstall`. Read more about [it here](./plugin-lifecycle.md#uninstall).
-{% endhint %}
+:::
 
 Here's an example of a non-destructive migration, creating a new table:
 
-{% code title="<plugin root>/src/Migration/Migration1611740369ExampleDescription.php" %}
-
 ```php
+// <plugin root>/src/Migration/Migration1611740369ExampleDescription.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Migration;
@@ -152,8 +147,6 @@ SQL;
 }
 ```
 
-{% endcode %}
-
 ## SQL schema
 
 If you want to create a migration for your new custom entity, you could execute the following command. This command selects all active entities and saves it into `platform/src/schema`.
@@ -168,9 +161,9 @@ _Note: Your plugin has to be activated, otherwise your custom entity definition 
 
 When you install your plugin, the migration directory is added to a MigrationCollection and all migrations are executed. Also, when you update a plugin via the Plugin Manager, all **new** migrations are executed. If you want to perform a migration manually as part of your development process, simply create it after installing your plugin. This way, your plugin migration directory will already be registered during the installation process and you can run any newly created migration by hand using one of the following commands.
 
-{% hint style="warning" %}
+::: warning
 When updating a plugin, do not change a migration that was already executed, since every migration is only run once.
-{% endhint %}
+:::
 
 | Command | Arguments | Usage |
 | :--- | :--- | :--- |

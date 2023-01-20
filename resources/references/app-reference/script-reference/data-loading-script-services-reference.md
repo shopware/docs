@@ -20,7 +20,6 @@ Keep in mind that your app needs to have the correct permissions for the data it
 * **Examples:**
     * Load a single product.
 
-        {% raw %}
         ```twig
         {% set page = hook.page %}
 		{# @var page \Shopware\Storefront\Page\Page #}
@@ -33,10 +32,9 @@ Keep in mind that your app needs to have the correct permissions for the data it
 		
 		{% do page.addExtension('myProduct', product) %}
         ```
-        {% endraw %}
+
     * Filter the search result.
 
-        {% raw %}
         ```twig
         {% set page = hook.page %}
 		{# @var page \Shopware\Storefront\Page\Page #}
@@ -51,10 +49,9 @@ Keep in mind that your app needs to have the correct permissions for the data it
 		
 		{% do page.addExtension('myProduct', product) %}
         ```
-        {% endraw %}
+
     * Add associations that should be included in the result.
 
-        {% raw %}
         ```twig
         {% set page = hook.page %}
 		{# @var page \Shopware\Storefront\Page\Page #}
@@ -71,7 +68,7 @@ Keep in mind that your app needs to have the correct permissions for the data it
 		{% do page.addExtension('myProduct', product) %}
 		{% do page.addExtension('myManufacturer', product.manufacturer) %}
         ```
-        {% endraw %}
+
 ### ids()
 
 * The `ids()` method allows you to search for the Ids of Entities that match a given criteria.
@@ -86,7 +83,6 @@ Keep in mind that your app needs to have the correct permissions for the data it
 * **Examples:**
     * Get the Ids of products with the given ProductNumber.
 
-        {% raw %}
         ```twig
         {% set page = hook.page %}
 		{# @var page \Shopware\Storefront\Page\Page #}
@@ -103,7 +99,7 @@ Keep in mind that your app needs to have the correct permissions for the data it
 		    'ids': productIds
 		}) %}
         ```
-        {% endraw %}
+
 ### aggregate()
 
 * The `aggregate()` method allows you to execute aggregations specified in the given criteria.
@@ -118,7 +114,6 @@ Keep in mind that your app needs to have the correct permissions for the data it
 * **Examples:**
     * Aggregate data for multiple entities, e.g. the sum of the gross price of all products.
 
-        {% raw %}
         ```twig
         {% set page = hook.page %}
 		{# @var page \Shopware\Storefront\Page\Page #}
@@ -135,7 +130,7 @@ Keep in mind that your app needs to have the correct permissions for the data it
 		    'sum': sumResult.getSum
 		}) %}
         ```
-        {% endraw %}
+
 _________
 ## [services.store (`Shopware\Core\Framework\DataAbstractionLayer\Facade\SalesChannelRepositoryFacade`)](https://github.com/shopware/platform/blob/trunk/src/Core/Framework/DataAbstractionLayer/Facade/SalesChannelRepositoryFacade.php) {#saleschannelrepositoryfacade}
 
@@ -160,7 +155,6 @@ this means that e.g. product prices are already calculated based on the current 
 * **Examples:**
     * Load a single storefront product.
 
-        {% raw %}
         ```twig
         {% set page = hook.page %}
 		{# @var page \Shopware\Storefront\Page\Page #}
@@ -173,10 +167,9 @@ this means that e.g. product prices are already calculated based on the current 
 		
 		{% do page.addExtension('myProduct', product) %}
         ```
-        {% endraw %}
+
     * Filter the search result.
 
-        {% raw %}
         ```twig
         {% set page = hook.page %}
 		{# @var page \Shopware\Storefront\Page\Page #}
@@ -191,10 +184,9 @@ this means that e.g. product prices are already calculated based on the current 
 		
 		{% do page.addExtension('myProduct', product) %}
         ```
-        {% endraw %}
+
     * Add associations that should be included in the result.
 
-        {% raw %}
         ```twig
         {% set page = hook.page %}
 		{# @var page \Shopware\Storefront\Page\Page #}
@@ -211,7 +203,7 @@ this means that e.g. product prices are already calculated based on the current 
 		{% do page.addExtension('myProduct', product) %}
 		{% do page.addExtension('myManufacturer', product.manufacturer) %}
         ```
-        {% endraw %}
+
 ### ids()
 
 * The `ids()` method allows you to search for the Ids of Entities that match a given criteria.
@@ -226,7 +218,6 @@ this means that e.g. product prices are already calculated based on the current 
 * **Examples:**
     * Get the Ids of products with the given ProductNumber.
 
-        {% raw %}
         ```twig
         {% set page = hook.page %}
 		{# @var page \Shopware\Storefront\Page\Page #}
@@ -243,7 +234,7 @@ this means that e.g. product prices are already calculated based on the current 
 		    'ids': productIds
 		}) %}
         ```
-        {% endraw %}
+
 ### aggregate()
 
 * The `aggregate()` method allows you to execute aggregations specified in the given criteria.
@@ -258,7 +249,6 @@ this means that e.g. product prices are already calculated based on the current 
 * **Examples:**
     * Aggregate data for multiple entities, e.g. the sum of the children of all products.
 
-        {% raw %}
         ```twig
         {% set page = hook.page %}
 		{# @var page \Shopware\Storefront\Page\Page #}
@@ -275,5 +265,5 @@ this means that e.g. product prices are already calculated based on the current 
 		    'sum': sumResult.getSum
 		}) %}
         ```
-        {% endraw %}
+
 _________

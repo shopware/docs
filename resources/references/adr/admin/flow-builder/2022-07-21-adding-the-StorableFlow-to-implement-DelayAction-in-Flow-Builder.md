@@ -1,9 +1,9 @@
 # 2022-07-21 Adding the `StorableFlow` instead of the `FlowEvent` for implementing the flow DelayAction in Flow Builder
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/admin/flow-builder/2022-07-21-adding-the-StorableFlow-to-implement-DelayAction-in-Flow-Builder.md)
-{% endhint %}
+:::
 
 ## Context
 
@@ -21,6 +21,7 @@ We would need to detach the Event System and the Flow System from each other, th
 Meaning the Actions must not have access to the original Events.
 
 We would create a class `StorableFlow`, that can store the data in the original event as scalar values, and restore the original data based on this stored data.
+
 ```php
 class StorableFlow
 {
@@ -130,6 +131,7 @@ class OrderStorer implements FlowStorer
 
 About the additional data defined in `availabelData` in original events, that aren't defined in any Aware Interfaces and we can't restore that data in the `Storer`.
 To cover the additional data from original events, we will have another `store` `AdditionalStorer` to store those data.
+
 ```php
 class AdditionalStorer extends FlowStorer
 {
@@ -202,6 +204,7 @@ Before, in the flow actions still dependency Aware interfaces:
     }
 ```
 After in the flow actions:
+
 ```php
     public function handle(StorableFlow $event) {
         ...
@@ -214,6 +217,7 @@ After in the flow actions:
 
 * `getAvailableData` must NOT be responsible for the access of the data.
 * To create new or restore the `StorableFlow` by on the existing stored data, we need to provider the `FlowFactory`.
+
 ```php
 class FlowFactory
 {    

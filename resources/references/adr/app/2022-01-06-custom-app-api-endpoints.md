@@ -1,9 +1,9 @@
 # 2022-01-06 - Allow apps to define custom api endpoints
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/app/2022-01-06-custom-app-api-endpoints.md)
-{% endhint %}
+:::
 
 ## Context
 Apps should be allowed to provide their own API and Store-API and Storefront endpoints where they can execute different logics, that deviates from the automatic entity API.
@@ -45,6 +45,7 @@ The following data is given to the script:
 We will add a new `response` service that provides factory methods to create response objects. The returned Response object is a generic wrapper around one of the following responses: `JsonResponse`, `RedirectResponse`, `StorefrontResponse`.
 
 To output the created response it has to be assigned to the hook:
+
 ```twig
 {% do hook.setResponse(response) %}
 ```
@@ -53,6 +54,7 @@ If no response is set an empty 204 response will be sent as default.
 ##### Returning a custom JsonResponse
 
 The json() method allows to specify the data and the http-status code to be returned:
+
 ```twig
 {% set response = services.response.json({'data': data}, statusCode) %}
 ```
@@ -60,6 +62,7 @@ The json() method allows to specify the data and the http-status code to be retu
 ##### Redirecting
 
 The redirect() method allows to specify a route and route params, to which should be redirected, and an optional statusCode (302 is default):
+
 ```twig
 {% set response = services.response.redirect('routeName', params, statusCode) %}
 ```
@@ -67,6 +70,7 @@ The redirect() method allows to specify a route and route params, to which shoul
 ##### Rendering a template
 
 The render() factory allows to pass the template name and the parameters (the page object and additional params) and will perform the `StorefrontController->renderStorefront()`.
+
 ```twig
 {% set response = services.response.render('@myApp/storefront/pages/my-custom-page.html.twig', { 'page': hook.page }) %}
 ```
@@ -76,6 +80,7 @@ If it is called outside of a SalesChannelContext (e.g. from an `/api` endpoint) 
 
 We will add a helper method to the SalesChannelContext to ensure that a customer is logged in before continuing to execute the script. The helper method will check if there is a customer in the current `SalesChannelContext` 
 and will throw an `CustomerNotLoggedInException` if there is no customer logged in.
+
 ```twig
 {% do hook.context.ensureLogin() %}
 ```
@@ -83,6 +88,7 @@ and will throw an `CustomerNotLoggedInException` if there is no customer logged 
 #### Caching
 
 Our script response wrapper allows to modify the caching strategies for the responses.
+
 ```twig
 {% do response.cache.invalidationState('logged-in', 'cart-filled') %}
 {% do response.cache.maxAge(7200) %}

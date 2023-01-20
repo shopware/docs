@@ -14,7 +14,7 @@ We will start by taking a rather abstract approach to content organization and l
 
 Every CMS page or layout \(they are really technically the same\) is a hierarchical structure made of sections, blocks, elements, and additional configurations within each of those components. An exemplary CMS page printed in JSON would look similar to this:
 
-```javascript
+```json
 {
   cmsPage: {
       sections: [{
@@ -163,14 +163,14 @@ The CMS is designed in a way that doesn't fix it to a single presentation channe
 
 By default, Shopware provides the server-side rendered Storefront as a default presentation channel, but [Shopware PWA](../../../products/pwa.md) also supports CMS pages. Using the CMS through the API, you will have full flexibility in how to display your content.
 
-{% hint style="info" %}
+::: info
 All this comes at a price: The admin preview of your content is only as representative of your content presentation as your presentation channel resembles it. **A major implication for headless frontends.** For that reason, Shopware PWA has functionality built into the plugin, allowing you to preview content pages in the PWA.
-{% endhint %}
+:::
 
 ## Further reading
 
-{% page-ref page="../../../guides/plugins/plugins/content/cms/add-cms-block.md" %}
+<PageRef page="../../../guides/plugins/plugins/content/cms/add-cms-block" />
 
-{% page-ref page="../../../guides/plugins/apps/content/cms/add-custom-cms-blocks.md" %}
+<PageRef page="../../../guides/plugins/apps/content/cms/add-custom-cms-blocks" />
 
-{% page-ref page="../../../guides/plugins/plugins/content/cms/add-cms-element.md" %}
+<PageRef page="../../../guides/plugins/plugins/content/cms/add-cms-element" />

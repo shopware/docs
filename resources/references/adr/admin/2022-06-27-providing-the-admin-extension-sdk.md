@@ -1,9 +1,9 @@
 # 15.06.2022 - providing the Admin Extension SDK
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/admin/2022-06-27-providing-the-admin-extension-sdk.md)
-{% endhint %}
+:::
 
 ## Context
 The Admin Extension SDK is a toolkit for plugin and app developers to extend or modify the administration via their plugins or apps. The SDK contains easy to use methods which interact with the administration in the background via the PostMessage API for iFrames.
@@ -35,7 +35,3 @@ Monorepos have several advantages over multi repos. But in the case of the SDK a
 
 ## Consequences
 If you want to add something to the SDK you need to checkout the GitHub repository and publish the changes to this repository. If the change is also relevant for the administration side - then this version also needs to be bumped up there.
-
-
-
-

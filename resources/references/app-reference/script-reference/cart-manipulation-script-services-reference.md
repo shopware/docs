@@ -72,7 +72,6 @@ You can use the cart service to add line-items, change prices, add discounts, et
 * **Examples:**
     * Add an absolute discount to the cart.
 
-        {% raw %}
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
 		{% do services.cart.products.add(hook.ids.get('p1')) %}
@@ -91,10 +90,9 @@ You can use the cart service to add line-items, change prices, add discounts, et
 		
 		{% do services.cart.discount('my-discount', 'absolute', price, 'Fanzy discount') %}
         ```
-        {% endraw %}
+
     * Add a relative discount to the cart.
 
-        {% raw %}
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
 		
@@ -106,7 +104,7 @@ You can use the cart service to add line-items, change prices, add discounts, et
 		
 		{% do services.cart.discount('my-discount', 'percentage', -10, 'Fanzy discount') %}
         ```
-        {% endraw %}
+
 ### surcharge()
 
 * The `surcharge()` methods creates a new surcharge line-item with the given type and value.
@@ -123,7 +121,6 @@ You can use the cart service to add line-items, change prices, add discounts, et
 * **Examples:**
     * Add an absolute surcharge to the cart.#
 
-        {% raw %}
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
 		{% do services.cart.products.add(hook.ids.get('p1')) %}
@@ -134,10 +131,9 @@ You can use the cart service to add line-items, change prices, add discounts, et
 		
 		{% do services.cart.surcharge('my-surcharge', 'absolute', price, 'Fanzy surcharge') %}
         ```
-        {% endraw %}
+
     * Add a relative surcharge to the cart.
 
-        {% raw %}
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
 		
@@ -149,7 +145,7 @@ You can use the cart service to add line-items, change prices, add discounts, et
 		
 		{% do services.cart.surcharge('my-surcharge', 'percentage', -10, 'Fanzy discount') %}
         ```
-        {% endraw %}
+
 ### get()
 
 * `get()` returns the line-item with the given id from this collection.
@@ -170,13 +166,12 @@ You can use the cart service to add line-items, change prices, add discounts, et
 * **Examples:**
     * Add and then remove a product line-item from the cart.
 
-        {% raw %}
         ```twig
         {% do services.cart.products.add(hook.ids.get('p1')) %}
 		
 		{% do services.cart.products.remove(hook.ids.get('p1')) %}
         ```
-        {% endraw %}
+
 ### has()
 
 * `has()` checks if a line-item with the given id exists in this collection.
@@ -199,7 +194,6 @@ _________
 ## [`Shopware\Core\Checkout\Cart\Facade\CartPriceFacade`](https://github.com/shopware/platform/blob/trunk/src/Core/Checkout/Cart/Facade/CartPriceFacade.php) {#cartpricefacade}
 
 The CartPriceFacade is a wrapper around the calculated price of a cart.
-
 
 ### getNet()
 
@@ -256,13 +250,12 @@ The CartPriceFacade is a wrapper around the calculated price of a cart.
 * **Examples:**
     * Create a new Price in the default currency.
 
-        {% raw %}
         ```twig
         {% set price = services.cart.price.create({
 		    'default': { 'gross': 19.99, 'net': 19.99}
 		}) %}
         ```
-        {% endraw %}
+
 _________
 ## [`Shopware\Core\Checkout\Cart\Facade\DiscountFacade`](https://github.com/shopware/platform/blob/trunk/src/Core/Checkout/Cart/Facade/DiscountFacade.php) {#discountfacade}
 
@@ -308,11 +301,10 @@ You can use it to add new errors to the cart or remove existing ones.
 * **Examples:**
     * Add a error to the cart.
 
-        {% raw %}
         ```twig
         {% do services.cart.errors.error('NO_PRODUCTS_IN_CART') %}
         ```
-        {% endraw %}
+
 ### warning()
 
 * The `warning()` method adds a new error of type `warning` to the cart.
@@ -330,11 +322,10 @@ You can use it to add new errors to the cart or remove existing ones.
 * **Examples:**
     * Add a warning to the cart.
 
-        {% raw %}
         ```twig
         {% do services.cart.errors.notice('YOU_SHOULD_REALLY_ADD_PRODUCTS') %}
         ```
-        {% endraw %}
+
 ### notice()
 
 * The `notice()` method adds a new error of type `notice` to the cart.
@@ -352,25 +343,22 @@ You can use it to add new errors to the cart or remove existing ones.
 * **Examples:**
     * Add a notice to the cart.
 
-        {% raw %}
         ```twig
         {% do services.cart.errors.warning('ADD_PRODUCTS_OR_GO_AWAY') %}
         ```
-        {% endraw %}
+
     * Add a notice to the cart with a custom id.
 
-        {% raw %}
         ```twig
         {% do services.cart.errors.notice('YOU_SHOULD_REALLY_ADD_PRODUCTS', 'add-same-message') %}
         ```
-        {% endraw %}
+
     * Add a notice to the cart with parameters.
 
-        {% raw %}
         ```twig
         {% do services.cart.errors.notice('MESSAGE_WITH_PARAMETERS', null, {'foo': 'bar'}) %}
         ```
-        {% endraw %}
+
 ### has()
 
 * The `has()` method, checks if an error with a given id exists.
@@ -403,7 +391,6 @@ _________
 
 The ItemFacade is a wrapper around one line-item.
 
-
 ### getPrice()
 
 * `getPrice()` returns the calculated price of the line-item.
@@ -428,7 +415,6 @@ The ItemFacade is a wrapper around one line-item.
 * **Examples:**
     * Take a quantity of 2 from an existing product line-item and add it to the cart again.
 
-        {% raw %}
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
 		
@@ -440,7 +426,7 @@ The ItemFacade is a wrapper around one line-item.
 		
 		{% do services.cart.products.add(split) %}
         ```
-        {% endraw %}
+
 ### getId()
 
 * `getId()` returns the id of the line-item.
@@ -502,7 +488,6 @@ _________
 
 The ItemsFacade is a wrapper around a collection of line-items.
 
-
 ### add()
 
 * `add()` adds a line-item to this collection.
@@ -516,7 +501,6 @@ The ItemsFacade is a wrapper around a collection of line-items.
 * **Examples:**
     * Add an absolute discount to the cart.
 
-        {% raw %}
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
 		{% do services.cart.products.add(hook.ids.get('p1')) %}
@@ -535,7 +519,7 @@ The ItemsFacade is a wrapper around a collection of line-items.
 		
 		{% do services.cart.discount('my-discount', 'absolute', price, 'Fanzy discount') %}
         ```
-        {% endraw %}
+
 ### get()
 
 * `get()` returns the line-item with the given id from this collection.
@@ -566,13 +550,12 @@ The ItemsFacade is a wrapper around a collection of line-items.
 * **Examples:**
     * Add and then remove a product line-item from the cart.
 
-        {% raw %}
         ```twig
         {% do services.cart.products.add(hook.ids.get('p1')) %}
 		
 		{% do services.cart.products.remove(hook.ids.get('p1')) %}
         ```
-        {% endraw %}
+
 ### count()
 
 * `count()` returns the count of line-items in this collection.
@@ -585,7 +568,6 @@ _________
 ## [`Shopware\Core\Checkout\Cart\Facade\PriceFacade`](https://github.com/shopware/platform/blob/trunk/src/Core/Checkout/Cart/Facade/PriceFacade.php) {#pricefacade}
 
 The PriceFacade is a wrapper around a price.
-
 
 ### getTotal()
 
@@ -624,18 +606,16 @@ The PriceFacade is a wrapper around a price.
 * **Examples:**
     * Create a new Price in the default currency.
 
-        {% raw %}
         ```twig
         {% set price = services.cart.price.create({
 		    'default': { 'gross': 19.99, 'net': 19.99}
 		}) %}
         ```
-        {% endraw %}
+
 _________
 ## [`Shopware\Core\Checkout\Cart\Facade\ProductsFacade`](https://github.com/shopware/platform/blob/trunk/src/Core/Checkout/Cart/Facade/ProductsFacade.php) {#productsfacade}
 
 The ProductsFacade is a wrapper around a collection of product line-items.
-
 
 ### get()
 
@@ -650,11 +630,10 @@ The ProductsFacade is a wrapper around a collection of product line-items.
 * **Examples:**
     * Get a product line-item by id.
 
-        {% raw %}
         ```twig
         {% set product = services.cart.products.get(hook.ids.get('p1')) %}
         ```
-        {% endraw %}
+
 ### add()
 
 * `add()` adds a new product  line-item to this collection.
@@ -671,11 +650,10 @@ The ProductsFacade is a wrapper around a collection of product line-items.
 * **Examples:**
     * Add a product to the cart by id.
 
-        {% raw %}
         ```twig
         {% do services.cart.products.add(hook.ids.get('p1')) %}
         ```
-        {% endraw %}
+
 ### create()
 
 * `create()` creates a new product line-item for the product with the given id in the given quantity.
@@ -699,13 +677,12 @@ The ProductsFacade is a wrapper around a collection of product line-items.
 * **Examples:**
     * Add and then remove a product line-item from the cart.
 
-        {% raw %}
         ```twig
         {% do services.cart.products.add(hook.ids.get('p1')) %}
 		
 		{% do services.cart.products.remove(hook.ids.get('p1')) %}
         ```
-        {% endraw %}
+
 ### has()
 
 * `has()` checks if a line-item with the given id exists in this collection.
@@ -728,7 +705,6 @@ _________
 ## [`Shopware\Core\Checkout\Cart\Facade\StatesFacade`](https://github.com/shopware/platform/blob/trunk/src/Core/Checkout/Cart/Facade/StatesFacade.php) {#statesfacade}
 
 The StatesFacade allows access to the current cart states and functions.
-
 
 ### add()
 

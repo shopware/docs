@@ -6,28 +6,22 @@ Perform the following steps to activate Elasticsearch in your environment.
 
 Add (or uncomment) the Elasticsearch service configuration.
 
-{% code title=".platform/services.yaml" %}
-
 ```yaml
+// .platform/services.yaml
 elasticsearch:
    type: opensearch:1.2
    disk: 256
 ```
 
-{% endcode %}
-
 ## Add relationship
 
 Add (or uncomment) the relationship for the app configuration.
 
-{% code title=".platform.app.yaml" %}
-
 ```yaml
+// .platform.app.yaml
 relationships:
     elasticsearch: "elasticsearch:opensearch"
 ```
-
-{% endcode %}
 
 ## Configure instance
 

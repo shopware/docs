@@ -2,9 +2,9 @@
 
 It is common to prebuild assets in professional deployments to deploy the build artifact assets to the production environment. This task is mostly done by a CI job that doesn't have access to the production database. Shopware needs access to the database to look up the installed extensions/load the configured theme variables. To be able to build the assets without a database, we can use static dumped files.
 
-{% hint style="warning" %}
+::: warning
 This guide requires Shopware 6.4.4.0 or higher
-{% endhint %}
+:::
 
 ## Compiling the Administration without database
 

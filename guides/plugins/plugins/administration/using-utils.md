@@ -10,9 +10,8 @@ All you need for this guide is a running Shopware 6 instance, the files, a regis
 
 Let us see how to use one of the utility functions — for example, `capitalizeString` function. As the name implies, the `capitalizeString` function capitalizes strings by calling the [`lodash capitalize`](https://lodash.com/docs/4.17.15#capitalize) function.
 
-{% code title="<extension root>/src/Resources/app/administration/app/src/component/swag-basic-example/index.js" %}
-
 ```javascript
+// <extension root>/src/Resources/app/administration/app/src/component/swag-basic-example/index.js
 const { Component, Utils } = Shopware;
 
 Component.register('swag-basic-example', {
@@ -34,8 +33,6 @@ Component.register('swag-basic-example', {
     },
 });
 ```
-
-{% endcode %}
 
 ## More, interesting topics
 

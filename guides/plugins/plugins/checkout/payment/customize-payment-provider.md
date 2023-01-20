@@ -12,9 +12,8 @@ As most guides, this guide is also built upon the [Plugin base guide](../../plug
 
 First, we create a new class that extends from the provider we want to customise. In this example we customise the class `Shopware\Core\Checkout\Payment\Cart\PaymentHandler\DebitPayment` and name our class `ExampleDebitPayment`. The constructor has to accept an instance of `OrderTransactionStateHandler` like the original service and additionally an instance of `DebitPayment` that we want to decorate.
 
-{% code title="<plugin root>/src/Service/ExampleDebitPayment.php" %}
-
 ```php
+// <plugin root>/src/Service/ExampleDebitPayment.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -49,13 +48,10 @@ class ExampleDebitPayment extends DebitPayment
 }
 ```
 
-{% endcode %}
-
 After we've created our customized payment provider class, we have to register it to the DI-container.
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
-
-```markup
+```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -70,5 +66,3 @@ xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/sc
     </services>
 </container>
 ```
-
-{% endcode %}

@@ -18,9 +18,8 @@ To define a controller route as cacheable, it must be annotated with `@HttpCache
 
 If the controller route is not to be cached for one or both of these states, the annotation can be defined as follows: `@HttpCache(states={"cart-filled", "logged-in"})`
 
-{% code title="<plugin root>/src/Storefront/Controller/ExampleController.php" %}
-
 ```php
+// <plugin root>/src/Storefront/Controller/ExampleController.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Storefront\Controller;
@@ -49,8 +48,6 @@ class ExampleController extends StorefrontController
     }
 }
 ```
-
-{% endcode %}
 
 ## Cache invalidation
 

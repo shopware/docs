@@ -33,4 +33,3 @@ In Shopware, we extend Twig's functionality by custom ones. See our own actions 
 | `seoUrl()` | Returns seo URL of given route | --- |
 | `searchMedia()` | Resolves media ids to media objects | See [Add media](../../../guides/plugins/plugins/storefront/use-media-thumbnails.md) guide for details. |
 | `rawUrl()` | Returns full URL | --- |
-
