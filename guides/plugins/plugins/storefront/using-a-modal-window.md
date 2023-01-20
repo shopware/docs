@@ -81,7 +81,7 @@ This does not work when the trigger selector is being changed via JavaScript, e.
 
 To create a modal window you can use the `PseudoModalUtil` in your plugin.
 
-As explained in the guide on [adding custom javascript](./add-custom-javascript.md) we load our JavaScript plugin by creating `index.html.twig` template in the `<plugin root>/src/Resources/views/storefront/page/content/` folder.
+As explained in the guide on [adding custom javascript](./add-custom-javascript) we load our JavaScript plugin by creating `index.html.twig` template in the `<plugin root>/src/Resources/views/storefront/page/content/` folder.
 Inside this template, extend from the `@Storefront/storefront/page/content/index.html.twig` and overwrite the `base_main_inner` block. After the parent content of the blog, add a template tag with the `data-example-plugin` attribute.
 
 ```twig

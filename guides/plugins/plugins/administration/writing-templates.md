@@ -54,5 +54,5 @@ Vue is used to link the data and the DOM in order to make them reactive. Learn a
 
 ## More interesting topics
 
-* [Add custom styling](add-custom-styles.md)
+* [Add custom styling](add-custom-styles)
 * [Adding shortcuts](https://github.com/shopware/docs/tree/575c2fa12ef272dc25744975e2f1e4d44721f0f1/guides/plugins/plugins/administration/add-shortcuts.md)

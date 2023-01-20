@@ -10,21 +10,21 @@ We will provide you with a basic introduction to the concepts and structure righ
 
 Users of the plugin can create connections to different source systems. A connection is used to allow multiple migrations from the same source and update the right data \(mapping\). Connections require a specific profile indicating the type of source system. Users can, for example, create a connection to a Shopware shop using the Shopware 5.5 profile. Developers can create their own profiles from scratch, connect to different source systems, or just build and extend existing ones.
 
-For more details, look at [Profile and Connection](profile-and-connection.md).
+For more details, look at [Profile and Connection](profile-and-connection).
 
 ## DataSelection and dataSet
 
-These are the fundamental data structures for defining what to migrate. Each `DataSet` represents an entity, for example, a database table. Each `DataSelection` represents an orderly group of `DataSets`. For more information, refer to the articles on [DataSelection and DataSet](dataselection-and-dataset.md).
+These are the fundamental data structures for defining what to migrate. Each `DataSet` represents an entity, for example, a database table. Each `DataSelection` represents an orderly group of `DataSets`. For more information, refer to the articles on [DataSelection and DataSet](dataselection-and-dataset).
 
 ## Migration context
 
-This data structure provides all the necessary data for the migration. For more details, refer to the [Migration Context](migration-context.md).
+This data structure provides all the necessary data for the migration. For more details, refer to the [Migration Context](migration-context).
 
 ## Premapping
 
 Because the structure of the source system does not always match the structure of the target system, the user may need to map the old structure to the new one. For example, in Shopware 5, we have default salutations like `Mr.`, but the user can also create custom ones. In Shopware 6, there are default salutations like Mr.` and the user can also create custom ones. So the salutation `Mr.` from Shopware 5 must be mapped to Shopware 6 `Mr.`. In this default case, the mapping can be achieved automatically, but customized salutations will most likely have to be mapped manually. The premapping will be written into the mapping table to associate the old identifier with the new one.
 
-You can look at [Premapping](premapping.md) section for more details.
+You can look at [Premapping](premapping) section for more details.
 
 ## Gateway and reader
 
@@ -32,31 +32,31 @@ Users will have to specify a gateway for the connection. The gateway defines the
 
 To use the `ShopwareApiGateway`, you must download the [Shopware Connector](https://github.com/shopware/SwagMigrationConnector) plugin for your Shopware 5.
 
-For more details, look at the [Gateway and Reader](gateway-and-reader.md) article.
+For more details, look at the [Gateway and Reader](gateway-and-reader) article.
 
 ## Converter, mapping, and deltas
 
 Data gathered by `Reader` objects is transferred to `Converter` objects that put the data in a format Shopware 6 is able to work with. Simultaneously entries in the underlying mapping table are inserted to map the old identifiers to the new ones for future migrations \(Have a look at the `MappingService` for that\). The mapping is saved for the current connection. Converted data will be removed after the migration, and the mapping will stay persistent. Also, a checksum is saved to the mapping to identify and skip the same source data \(data has not been changed since the last migration\).
 
-You can find out more about them in the [Convert and Mapping](convert-and-mapping.md) section of this guide.
+You can find out more about them in the [Convert and Mapping](convert-and-mapping) section of this guide.
 
 ## Logging
 
 During any migration, especially during the data conversion, there will possibly be errors that should be logged. The users can see these errors and these should be as helpful as possible.
 
-For more information, have a look at the [Logging](logging.md) section.
+For more information, have a look at the [Logging](logging) section.
 
 ## Writer
 
 The `Writer` objects will receive the converted data and write it to Shopware 6. There is no special magic here; you don't need to worry about error handling because the migration assistant takes care of it.
 
-To learn more about them, take a look at [Writer](writer.md) section.
+To learn more about them, take a look at [Writer](writer) section.
 
 ## Media processing
 
 During a typical migration, we download the media files from the source system to Shopware 6. This is the last processing step in the migration and may be done differently for other gateways. For example, the `local` gateway will copy and rename the files directly in the local filesystem.
 
-You can look at [Media Processing](media-processing.md) article for more details.
+You can look at [Media Processing](media-processing) article for more details.
 
 ## After migration
 
@@ -87,7 +87,7 @@ The recommended way to migrate plugin data from a source system is to extend tha
 
 Take a look at the following HowTos for your scenario to get a step-by-step tutorial:
 
-* [Extending a Shopware Migration Profile](../guides/extending-a-shopware-migration-profile.md): Migrating your first basic plugin data \(via local gateway\).
-* [Extending the Migration Connector](../guides/extending-the-migration-connector.md): Add API support for your migration.
-* [Decorating a Shopware Migration Assistant Converter](../guides/decorating-a-shopware-migration-assistant-converter.md): Implement a premapping and change the behavior of an existing converter.
-* [Creating a New Migration Profile](../guides/creating-a-new-migration-profile.md): Create a new profile from scratch to support a third-party source system \(other than Shopware\).
+* [Extending a Shopware Migration Profile](../guides/extending-a-shopware-migration-profile): Migrating your first basic plugin data \(via local gateway\).
+* [Extending the Migration Connector](../guides/extending-the-migration-connector): Add API support for your migration.
+* [Decorating a Shopware Migration Assistant Converter](../guides/decorating-a-shopware-migration-assistant-converter): Implement a premapping and change the behavior of an existing converter.
+* [Creating a New Migration Profile](../guides/creating-a-new-migration-profile): Create a new profile from scratch to support a third-party source system \(other than Shopware\).

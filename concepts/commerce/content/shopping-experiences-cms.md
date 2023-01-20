@@ -161,7 +161,7 @@ Shopware allows registering custom resolvers by implementing a corresponding int
 
 The CMS is designed in a way that doesn't fix it to a single presentation channel \(also referred to it as "headless"\). What at first might seem like an unnecessary abstraction turns out to give us a lot of flexibility. Each presentation channel can have its own twist on interpreting the content and displaying it to the user. A browser can leverage the [Shopware Storefront](../../../guides/plugins/plugins/storefront/) and display the HTML or use the resulting markup from a single page application that interprets the API responses. A native mobile application can strip out unnecessary blocks and only display texts and images as view components. A smart speaker simply reads out the content of elements with the `voice` type.
 
-By default, Shopware provides the server-side rendered Storefront as a default presentation channel, but [Shopware PWA](../../../products/pwa.md) also supports CMS pages. Using the CMS through the API, you will have full flexibility in how to display your content.
+By default, Shopware provides the server-side rendered Storefront as a default presentation channel, but [Shopware PWA](../../../products/pwa) also supports CMS pages. Using the CMS through the API, you will have full flexibility in how to display your content.
 
 ::: info
 All this comes at a price: The admin preview of your content is only as representative of your content presentation as your presentation channel resembles it. **A major implication for headless frontends.** For that reason, Shopware PWA has functionality built into the plugin, allowing you to preview content pages in the PWA.

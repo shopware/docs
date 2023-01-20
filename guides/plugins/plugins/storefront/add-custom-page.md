@@ -6,11 +6,11 @@ In this guide you will learn how to create custom page for your Storefront. A pa
 
 ## Prerequisites
 
-In order to add your own custom page for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md). Since you need to load your page with a controller, you might want to have a look at our guide about [creating a controller](add-custom-controller.md) first. The controller created in the previously mentioned controller guide will also be used in this guide.
+In order to add your own custom page for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide). Since you need to load your page with a controller, you might want to have a look at our guide about [creating a controller](add-custom-controller) first. The controller created in the previously mentioned controller guide will also be used in this guide.
 
 ## Adding custom page
 
-In the following sections, we'll create each of the necessary classes one by one. The first one will be controller, whose creation is not going to explained here again. Have a look at the guide about [creating a controller](add-custom-controller.md) to see why it works.
+In the following sections, we'll create each of the necessary classes one by one. The first one will be controller, whose creation is not going to explained here again. Have a look at the guide about [creating a controller](add-custom-controller) to see why it works.
 
 ### Creating ExampleController
 
@@ -42,7 +42,7 @@ class ExampleController extends StorefrontController
 
 It has a method `examplePage`, which is accessible via the route `example-page`. This method will be responsible for loading your page later on, but we'll leave it like that for now.
 
-Don't forget to [register your controller via the DI](add-custom-controller.md#Services.xml%20example).
+Don't forget to [register your controller via the DI](add-custom-controller#Services.xml%20example).
 
 ### Creating the pageloader
 
@@ -194,7 +194,7 @@ class ExamplePage extends Page
 }
 ```
 
-As explained in the page loader section, your page can contain all kinds of custom data. It has to provide a getter and a setter for the custom data, so it can be applied and read. In this example, the entity from our guide about [creating custom complex data](../framework/data-handling/add-custom-complex-data.md#Entity%20class) is being used.
+As explained in the page loader section, your page can contain all kinds of custom data. It has to provide a getter and a setter for the custom data, so it can be applied and read. In this example, the entity from our guide about [creating custom complex data](../framework/data-handling/add-custom-complex-data#Entity%20class) is being used.
 
 And that's it already. Your page is ready to go.
 
@@ -241,4 +241,4 @@ Your example page should now be fully functioning.
 
 You've now successfully created a whole new page, including a custom controller, a custom template, and the necessary classes to create a new page, a loader, the page struct and the page loaded event.
 
-In your `load` method, you've used the `GenericPageLoader`, which takes care of such a thing as the footer or the header. Those two are so called "pagelets", basically reusable fractions of a page. Learn how to [create a custom pagelet](add-custom-pagelet.md).
+In your `load` method, you've used the `GenericPageLoader`, which takes care of such a thing as the footer or the header. Those two are so called "pagelets", basically reusable fractions of a page. Learn how to [create a custom pagelet](add-custom-pagelet).

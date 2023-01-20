@@ -5,13 +5,13 @@ Sales channels allow you to operate multiple separate stores from a single Shopw
 These stores can have different configurations based on:
 
 * Channel type \(Storefront, API consumer, feed export, social channels\)
-* Appearance \([Themes](../../../guides/plugins/themes/theme-base-guide.md) for [Storefront](../../../concepts/framework/architecture/storefront-concept.md) sales channels\)
-* [Payment methods](../checkout-concept/payments.md)
+* Appearance \([Themes](../../../guides/plugins/themes/theme-base-guide) for [Storefront](../../../concepts/framework/architecture/storefront-concept) sales channels\)
+* [Payment methods](../checkout-concept/payments)
 * Languages
 * Currencies
 * Domains
 * Prices
-* [Products](products.md) and [Categories](02-categories.md)
+* [Products](products) and [Categories](02-categories)
 
 ## Store separation
 

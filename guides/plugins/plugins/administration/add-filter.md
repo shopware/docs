@@ -6,7 +6,7 @@ In this guide you'll learn, how to create a filter for the Shopware administrati
 
 ## Prerequisites
 
-This guide requires you to already have a basic plugin running. If you don't know how to do this in the first place, have a look at our [Plugin base guide](../plugin-base-guide.md).
+This guide requires you to already have a basic plugin running. If you don't know how to do this in the first place, have a look at our [Plugin base guide](../plugin-base-guide).
 
 ## Creating the filter
 
@@ -41,4 +41,4 @@ Last, import the filter into your plugin's `main.js` file.
 
 ## Next steps
 
-Now that you know how to create a filter for the administration, we want to use it in our code. For this head over to our [using filter](using-filter.md) guide.
+Now that you know how to create a filter for the administration, we want to use it in our code. For this head over to our [using filter](using-filter) guide.

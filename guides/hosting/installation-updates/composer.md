@@ -262,4 +262,4 @@ rw shared - read and write access, it should be shared across the app servers
 rw local - locale read and write access
 ```
 
-Some of these directories, like `public`, can also be changed to a different [Flysystem](../infrastructure/filesystem.md#flysystem-overview) to host the files on S3.
+Some of these directories, like `public`, can also be changed to a different [Flysystem](../infrastructure/filesystem#flysystem-overview) to host the files on S3.

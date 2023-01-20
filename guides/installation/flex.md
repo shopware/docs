@@ -28,7 +28,7 @@ After you have created the project via Composer, you have to adjust the generate
 bin/console system:install --basic-setup
 ```
 
-This installs Shopware and creates a default [sales channel](../../concepts/commerce/catalog/sales-channels.md) with Shopware's default Administration credentials:
+This installs Shopware and creates a default [sales channel](../../concepts/commerce/catalog/sales-channels) with Shopware's default Administration credentials:
 
 | Username | Password   |
 |:---------|:-----------|

@@ -27,7 +27,7 @@ Plugins are the most powerful extension mechanism, as they can be used to extend
 * Dynamic validations
 * Customer tracking
 
-Follow our [Plugin Base Guide](plugins/plugin-base-guide.md) to learn how to develop a plugin. See the [Plugin Fundamentals](plugins/plugin-fundamentals/) section below for more examples.
+Follow our [Plugin Base Guide](plugins/plugin-base-guide) to learn how to develop a plugin. See the [Plugin Fundamentals](plugins/plugin-fundamentals/) section below for more examples.
 
 ::: info
 If your extensions do not require any of the above but rather design changes, a template tweak might ideally be appropriate.
@@ -48,12 +48,12 @@ Technically, plugins and themes are very similar and overlap in most of their lo
 Note that a plugin can also override templates.
 :::
 
-To get started with your first theme, follow our [Theme Base Guide](themes/theme-base-guide.md).
+To get started with your first theme, follow our [Theme Base Guide](themes/theme-base-guide).
 
 ## Apps
 
-Operation in cloud environments is not possible due to the aspects listed under [Plugins](overview.md#plugins). Therefore, a different, less intrusive pattern was introduced. Apps enable event-based integrations that communicate with external services via a synchronous API.
+Operation in cloud environments is not possible due to the aspects listed under [Plugins](overview#plugins). Therefore, a different, less intrusive pattern was introduced. Apps enable event-based integrations that communicate with external services via a synchronous API.
 
-Most of the app's logic resides in this third-party service, so developers must ensure that they handle the details of the API and provide their service with appropriate security, protection, and reliability. While it comes with these responsibilities, you are free to choose which operating environment, framework, or programming language you wish to use as long as our [guidelines for Shopware apps](apps/app-base-guide.md) are followed.
+Most of the app's logic resides in this third-party service, so developers must ensure that they handle the details of the API and provide their service with appropriate security, protection, and reliability. While it comes with these responsibilities, you are free to choose which operating environment, framework, or programming language you wish to use as long as our [guidelines for Shopware apps](apps/app-base-guide) are followed.
 
-Apps also provide theme support, so all the features of [Themes](overview.md#themes) are also available for apps. Payments are also supported by apps and the user can be forwarded to a payment provider.
+Apps also provide theme support, so all the features of [Themes](overview#themes) are also available for apps. Payments are also supported by apps and the user can be forwarded to a payment provider.

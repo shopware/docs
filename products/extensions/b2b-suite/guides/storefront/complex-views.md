@@ -114,4 +114,4 @@ Since `POST` only actions never have views, these controllers only have one view
 
 ## Modal component
 
-You can find more information about the modal component in this article: [B2B Suite Modal Component](modal-component.md)
+You can find more information about the modal component in this article: [B2B Suite Modal Component](modal-component)

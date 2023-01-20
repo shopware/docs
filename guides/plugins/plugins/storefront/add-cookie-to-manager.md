@@ -6,7 +6,7 @@ Since the GDPR was introduced, every website has to be shipped with some sort of
 
 ## Prerequisites
 
-This guide is built upon the [Plugin base guide](../plugin-base-guide.md), so have a look at that first if you're lacking a running plugin. Also you will have to know how to [create your own service](../plugin-fundamentals/add-custom-service.md) and [decorations](../plugin-fundamentals/adjusting-service.md#decorating-the-service), so you might want to have a look at those guides as well.
+This guide is built upon the [Plugin base guide](../plugin-base-guide), so have a look at that first if you're lacking a running plugin. Also you will have to know how to [create your own service](../plugin-fundamentals/add-custom-service) and [decorations](../plugin-fundamentals/adjusting-service#decorating-the-service), so you might want to have a look at those guides as well.
 
 ## Extend the cookie consent manager
 
@@ -123,4 +123,4 @@ Here's a list of attributes, that you can apply to a cookie array:
 
 ## Next steps
 
-Those changes will mainly just show your new cookies in the cookie consent manager, but without much function. Head over to our guide about [Reacting to cookie consent changes](reacting-to-cookie-consent-changes.md) to see how you can implement your custom logic once your cookie got accepted or declined.
+Those changes will mainly just show your new cookies in the cookie consent manager, but without much function. Head over to our guide about [Reacting to cookie consent changes](reacting-to-cookie-consent-changes) to see how you can implement your custom logic once your cookie got accepted or declined.

@@ -14,7 +14,7 @@ All you need for this guide is a running Shopware 6 instance and full access to 
 
 ## Registering a directives globally
 
-Directives can be registered globally via the [Shopware Objects](the-shopware-object.md) `register` helper function as seen below:
+Directives can be registered globally via the [Shopware Objects](the-shopware-object) `register` helper function as seen below:
 
 ```javascript
 // <plugin-root>/src/Resources/app/administration/app/src/directive/focus.js

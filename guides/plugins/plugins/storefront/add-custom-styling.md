@@ -6,7 +6,7 @@ Quite often your plugin will have to change a few templates for the Storefront. 
 
 ## Prerequisites
 
-You won't learn to create a plugin in this guide, head over to our [Plugin base guide](../plugin-base-guide.md) to create a plugin first, if you don't know how it is done yet. Also knowing and understanding [SCSS](https://sass-lang.com/documentation) will be quite mandatory to fully understand what is going on here.
+You won't learn to create a plugin in this guide, head over to our [Plugin base guide](../plugin-base-guide) to create a plugin first, if you don't know how it is done yet. Also knowing and understanding [SCSS](https://sass-lang.com/documentation) will be quite mandatory to fully understand what is going on here.
 
 Other than having those two requirements, nothing else is necessary for this guide.
 

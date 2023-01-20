@@ -100,4 +100,4 @@ Your processor has to be defined in the service container using the tag `shopwar
 ## Next steps
 
 If you want to see a better example on what can be done with a collector and a processor, you might want to have a look at our guide
-regarding [Changing the price of an item in the cart](./change-price-of-item.md).
+regarding [Changing the price of an item in the cart](./change-price-of-item).

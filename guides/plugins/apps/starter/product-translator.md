@@ -389,6 +389,6 @@ And when you save a product, the description will automatically update.
 
 In this example, you have learned how to receive events and modify data through the app system. You can also:
 
-* Add [new payments](../payment.md) as apps
-* Write code that runs during checkout [app scripting](../app-scripts/cart-manipulation.md)
-* Add new endpoints to the API [custom endpoints](./add-api-endpoint.md)
+* Add [new payments](../payment) as apps
+* Write code that runs during checkout [app scripting](../app-scripts/cart-manipulation)
+* Add new endpoints to the API [custom endpoints](./add-api-endpoint)

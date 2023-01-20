@@ -6,7 +6,7 @@ This guide explains how you can add your custom styling via SCSS and add your cu
 
 ## Prerequisites
 
-All you need for this guide is a running Shopware 6 instance and full access to both the files, as well as the command line. You also need to have an installed and activated theme which is assigned to a sales channel. Checkout the [Create a first theme](create-a-theme.md) guide if you have not yet a working theme setup.
+All you need for this guide is a running Shopware 6 instance and full access to both the files, as well as the command line. You also need to have an installed and activated theme which is assigned to a sales channel. Checkout the [Create a first theme](create-a-theme) guide if you have not yet a working theme setup.
 
 ## Adding custom SCSS
 
@@ -116,5 +116,5 @@ This command starts a NodeJS web server on port `9998`. If you open the Storefro
 
 Now that you know how to customize the styling via SCSS and add JavaScript, here is a list of things you can do.
 
-* [Override Bootstrap variables in a theme](override-bootstrap-variables-in-a-theme.md)
-* [Customize templates](../plugins/storefront/customize-templates.md)
+* [Override Bootstrap variables in a theme](override-bootstrap-variables-in-a-theme)
+* [Customize templates](../plugins/storefront/customize-templates)

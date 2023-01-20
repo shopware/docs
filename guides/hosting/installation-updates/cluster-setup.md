@@ -6,7 +6,7 @@ This guide contains information for everyone who intends to start with such a pr
 
 ## Production template
 
-Use [production template](composer.md#shopware-6-production-template) from the [shopware/production](https://github.com/shopware/production) repository. A fork should be made of the template, in which the desired Shopware repositories (core, storefront, admin, elastic, etc.) are then pinned to the desired version.
+Use [production template](composer#shopware-6-production-template) from the [shopware/production](https://github.com/shopware/production) repository. A fork should be made of the template, in which the desired Shopware repositories (core, storefront, admin, elastic, etc.) are then pinned to the desired version.
 
 Pinning the versions prevents unwanted updates when deploying.
 
@@ -31,12 +31,12 @@ For requests, the entire handling of the app and plugin system via the database 
 
 We recommend setting up at least five Redis servers for the following resources:
 
-1. [Session](../performance/session.md) + [cart](../infrastructure/database-cluster.md#cart-in-redis)
-1. [cache.object](../performance/caches.md#example-replace-some-cache-with-redis)
-1. [Lock](../performance/lock-store.md)) + [Increment storage](../performance/increment.md))
-1. [Number Ranges](../performance/number-ranges.md)
-1. [Enqueue](../infrastructure/message-queue.md#transport-redis-example)  
-   Instead of setting up a Redis server for `enqueue`, you can also work directly with [RabbitMQ](../infrastructure/message-queue.md#transport-rabbitmq-example)
+1. [Session](../performance/session) + [cart](../infrastructure/database-cluster#cart-in-redis)
+1. [cache.object](../performance/caches#example-replace-some-cache-with-redis)
+1. [Lock](../performance/lock-store)) + [Increment storage](../performance/increment))
+1. [Number Ranges](../performance/number-ranges)
+1. [Enqueue](../infrastructure/message-queue#transport-redis-example)  
+   Instead of setting up a Redis server for `enqueue`, you can also work directly with [RabbitMQ](../infrastructure/message-queue#transport-rabbitmq-example)
 
 The PHP Redis extension provides persistent Redis connections. Persistent connections can help in high load scenarios as each request doesn't have to open and close connections. Using non-persistent Redis connections can also hit the system's maximum open sockets. Because of these limitations, the Redis extension is preferred over Predis.
 
@@ -52,13 +52,13 @@ We have compiled some best practices and configurations to allow you to operate 
 
 In a multi-app-server system, manage specific directories over a shared filesystem. This includes assets, theme files, and private as well as public filesystems. The recommendation is to use an S3 compatible bucket.
 
-For more information, refer to the [filesystems](../infrastructure/filesystem.md) section of this guide.
+For more information, refer to the [filesystems](../infrastructure/filesystem) section of this guide.
 
 ### Shared directories
 
 Besides the S3 bucket, it is also necessary to create certain directories for the app servers as shared filesystem.
 
-For more information, refer to the [Storage and caches](./composer.md#storage-and-caches) section of this guide.
+For more information, refer to the [Storage and caches](./composer#storage-and-caches) section of this guide.
 
 ## Shopware updates + security
 
@@ -81,7 +81,7 @@ shopware:
 
 ## Message queue
 
-On a productive system, the [message queue](../infrastructure/message-queue.md) should be processed via CLI processes instead of the [Admin worker](../infrastructure/message-queue.md#admin-worker). This way, messages are completed regardless of logged-in Administration users and CPU load, as messages can be regulated through the amount of worker processes. Furthermore, you can change the transport to another system like [RabbitMQ](https://www.rabbitmq.com/).
+On a productive system, the [message queue](../infrastructure/message-queue) should be processed via CLI processes instead of the [Admin worker](../infrastructure/message-queue#admin-worker). This way, messages are completed regardless of logged-in Administration users and CPU load, as messages can be regulated through the amount of worker processes. Furthermore, you can change the transport to another system like [RabbitMQ](https://www.rabbitmq.com/).
 
 It is recommended to run multiple `messenger:consume` workers. To automatically start the processes again after they stopped because of exceeding the given limits you can use a process control system like [systemd](https://www.freedesktop.org/wiki/Software/systemd/) or [supervisor](http://supervisord.org/running.html).
 
@@ -104,7 +104,7 @@ It is important to keep the local development environments of the developers sim
 
 ## Theme compiling
 
-The [theme compilation](deployments/build-w-o-db.md#compiling-the-storefront-without-database) in Shopware by default depends on the settings in the database. However, since a connection to the database is usually not guaranteed during deployment, we recommend configuring static theme compilation.
+The [theme compilation](deployments/build-w-o-db#compiling-the-storefront-without-database) in Shopware by default depends on the settings in the database. However, since a connection to the database is usually not guaranteed during deployment, we recommend configuring static theme compilation.
 
 ## Strong CPU
 
@@ -114,4 +114,4 @@ For the server setup, pay special attention to CPU speed. This applies to all se
 
 When setting up big scale projects, there are some settings and conditions that should be taken into account with regard to performance.
 
-Read more on [performance tweaks](../performance/performance-tweaks.md).
+Read more on [performance tweaks](../performance/performance-tweaks).

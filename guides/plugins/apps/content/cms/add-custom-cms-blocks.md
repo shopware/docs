@@ -3,7 +3,7 @@
 ::: info
 This functionality is available starting with Shopware 6.4.4.0.
 
-You can [add custom CMS blocks](../../../plugins/content/cms/add-cms-block.md) using the plugin system, however these will not be available in Shopware cloud stores.
+You can [add custom CMS blocks](../../../plugins/content/cms/add-cms-block) using the plugin system, however these will not be available in Shopware cloud stores.
 :::
 
 Didn't get in touch with Shopware's Shopping Experiences \(CMS\) yet? Check out the concept behind it first:
@@ -12,11 +12,11 @@ Didn't get in touch with Shopware's Shopping Experiences \(CMS\) yet? Check out 
 
 ## Prerequisites
 
-This guide is based on our [App Base Guide](../../app-base-guide.md) and assumes you have already set up an app.
+This guide is based on our [App Base Guide](../../app-base-guide) and assumes you have already set up an app.
 
 ## Overview
 
-Adding custom CMS blocks from an app works a bit differently than [adding them from a plugin](../../../plugins/content/cms/add-cms-block.md).
+Adding custom CMS blocks from an app works a bit differently than [adding them from a plugin](../../../plugins/content/cms/add-cms-block).
 Custom CMS blocks are added by providing a `cms.xml` in the `Resources/` directory of your app.
 The basic directory structure looks as follows:
 
@@ -108,7 +108,7 @@ Let's have a look at how to configure a CMS block from your app's `cms.xml`:
 
 `<name>` : A **unique** technical name for your block.
 
-`<category>` : Blocks are divided into categories. Available categories can be found in the [plugin guide](../../../plugins/content/cms/add-cms-block.md#custom-block-in-the-administration).
+`<category>` : Blocks are divided into categories. Available categories can be found in the [plugin guide](../../../plugins/content/cms/add-cms-block#custom-block-in-the-administration).
 
 `<label>` : The **translatable** label will be shown in the Administration.
 
@@ -207,7 +207,7 @@ Unlike adding blocks from a plugin, blocks provided from an app will be automati
 
 ## Storefront representation
 
-Providing the Storefront representation of your blocks works very similarly as in the [plugin example](../../../plugins/content/cms/add-cms-block.md#storefront-representation).
+Providing the Storefront representation of your blocks works very similarly as in the [plugin example](../../../plugins/content/cms/add-cms-block#storefront-representation).
 In `Resources/views/storefront/block/` a Twig template matching the pattern `cms-block-${block.name}-component.html.twig` is expected.
 
 So in this example, it's sufficient to simply extend the existing `image-text` element:

@@ -2,7 +2,7 @@
 
 ## Overview
 
-This guide will tackle the issue of changing the price of a line item in the cart dynamically. The following example is **not** recommended if you want to add a discount / surcharge to your products. Make sure to check out the guide about [adding a discount into the cart](add-cart-discounts.md).
+This guide will tackle the issue of changing the price of a line item in the cart dynamically. The following example is **not** recommended if you want to add a discount / surcharge to your products. Make sure to check out the guide about [adding a discount into the cart](add-cart-discounts).
 
 ::: warning
 Changing the price like it's done in the following example should rarely be done and only with great caution. A live-shopping plugin would be a good example about when to actually change an item's price instead of adding a discount / surcharge.
@@ -10,9 +10,9 @@ Changing the price like it's done in the following example should rarely be done
 
 ## Prerequisites
 
-This guide is also built upon the [plugin base guide](../../plugin-base-guide.md), which creates a plugin first. The namespaces used in the examples of this guide match those of the plugin base guide, yet those are just examples.
+This guide is also built upon the [plugin base guide](../../plugin-base-guide), which creates a plugin first. The namespaces used in the examples of this guide match those of the plugin base guide, yet those are just examples.
 
-Furthermore, you should know how to register a service to the [dependency injection container](../../plugin-fundamentals/dependency-injection.md).
+Furthermore, you should know how to register a service to the [dependency injection container](../../plugin-fundamentals/dependency-injection).
 
 ## Changing the price
 
@@ -26,7 +26,7 @@ While we will start with the collector part, do not be confused later on in this
 
 So the collector has to collect all prices necessary in order to overwrite a line item.
 
-This guide will not cover where to actually fetch the new prices from, that's up to you. This could e.g. be an [extension of the product entity](../../framework/data-handling/add-complex-data-to-existing-entities.md), which contains the new price, or an API call from somewhere else, which will return the new price.
+This guide will not cover where to actually fetch the new prices from, that's up to you. This could e.g. be an [extension of the product entity](../../framework/data-handling/add-complex-data-to-existing-entities), which contains the new price, or an API call from somewhere else, which will return the new price.
 
 Your collector class has to implement the interface `Shopware\Core\Checkout\Cart\CartDataCollectorInterface` and therefore the method `collect`.
 
@@ -118,7 +118,7 @@ Afterwards we're iterating over all product IDs, that still need to request a ne
 
 The last step is to save that new price to the `CartDataCollector`.
 
-And that's it, we're now collecting the prices for our product line items. Registering the class to the [dependency injection container](../../plugin-fundamentals/dependency-injection.md) will be done in the [last section](change-price-of-item.md#Registering%20to%20DI%20container) of this guide.
+And that's it, we're now collecting the prices for our product line items. Registering the class to the [dependency injection container](../../plugin-fundamentals/dependency-injection) will be done in the [last section](change-price-of-item#Registering%20to%20DI%20container) of this guide.
 
 ### The processor
 

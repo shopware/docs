@@ -6,11 +6,11 @@ In this guide, you will see an example of how you can extend a Shopware migratio
 
 ## Setup
 
-It is required to have a basic plugin running. You must have installed the [SwagAdvDevBundle](https://github.com/shopwareLabs/SwagAdvDevBundle) plugin in Shopware 5, an own [Plugin](../../../../guides/plugins/plugins/plugin-base-guide.md#create-your-first-plugin) and [Shopware Migration Assistant](https://store.shopware.com/search?sSearch=Swag257162657297f) in Shopware 6.
+It is required to have a basic plugin running. You must have installed the [SwagAdvDevBundle](https://github.com/shopwareLabs/SwagAdvDevBundle) plugin in Shopware 5, an own [Plugin](../../../../guides/plugins/plugins/plugin-base-guide#create-your-first-plugin) and [Shopware Migration Assistant](https://store.shopware.com/search?sSearch=Swag257162657297f) in Shopware 6.
 
 ## Enrich existing plugin with migration features
 
-Instead of creating a new plugin for the migration, you might want to add migration features to your existing plugin. Of course, your plugin should then also be installable without the Migration Assistant plugin. So we have an optional requirement. Have a look at this [section of the guide](../../../../guides/plugins/plugins/plugin-fundamentals/database-migrations.md) on how to inject the needed migration services only if the Migration Assistant plugin is available. You could also have a look at the example plugin to see how the conditional loading is managed in the plugin base class.
+Instead of creating a new plugin for the migration, you might want to add migration features to your existing plugin. Of course, your plugin should then also be installable without the Migration Assistant plugin. So we have an optional requirement. Have a look at this [section of the guide](../../../../guides/plugins/plugins/plugin-fundamentals/database-migrations) on how to inject the needed migration services only if the Migration Assistant plugin is available. You could also have a look at the example plugin to see how the conditional loading is managed in the plugin base class.
 
 ## Creating a new dataSet
 
@@ -451,7 +451,7 @@ In the `BundleDefinition`, you can see which fields the entity has and which are
 </service>
 ```
 
-For more general information on converter, mapping, and deltas concept, refer to [Converter and Mapping](../concept/convert-and-mapping.md) section of the guide.
+For more general information on converter, mapping, and deltas concept, refer to [Converter and Mapping](../concept/convert-and-mapping) section of the guide.
 
 ## Adding a writer
 
@@ -481,7 +481,7 @@ class BundleWriter extends AbstractWriter
 </service>
 ```
 
-You only need to implement the `supports` method and specify the right `Definition` in `migration_assistant_extension.xml`. The logic to write the data is defined in the `AbstractWriter` class and should almost always be the same. Look at [writer concept](../concept/writer.md) for more information.
+You only need to implement the `supports` method and specify the right `Definition` in `migration_assistant_extension.xml`. The logic to write the data is defined in the `AbstractWriter` class and should almost always be the same. Look at [writer concept](../concept/writer) for more information.
 
 With that have implemented your first plugin migration. Install your plugin, clear the cache and build the Administration again to see the migration of your bundle entities.
 

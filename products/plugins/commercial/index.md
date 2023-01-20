@@ -4,7 +4,7 @@ The Shopware 6 commercial feature-set comprises myriad features, the sum of whic
 
 ## Plugin structure
 
-The commercial plugin is structured as a group of nested sub-bundles. [Plugins](../../../concepts/extensions/plugins-concept.md) concept explains you more about this.
+The commercial plugin is structured as a group of nested sub-bundles. [Plugins](../../../concepts/extensions/plugins-concept) concept explains you more about this.
 
 ## Setup
 

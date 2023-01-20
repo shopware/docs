@@ -7,15 +7,15 @@ When you plan to build an app, there will come a point when you have to consider
 Not all apps need hosting. If your app requires a server depends on the kinds of functionalities that it uses.
 
 - **Features that require a server**
-  - [Custom Modules](../administration/add-custom-modules.md)
-  - [Action Buttons](../administration/add-custom-action-button.md)
-  - [Webhooks](../app-base-guide.md#webhooks)
-  - [Payment Processing](../payment.md)
+  - [Custom Modules](../administration/add-custom-modules)
+  - [Action Buttons](../administration/add-custom-action-button)
+  - [Webhooks](../app-base-guide#webhooks)
+  - [Payment Processing](../payment)
 - **Features that work without a server**
-  - [Themes](../storefront/apps-as-themes.md)
-  - [Template changes](../storefront/README.md)
-  - [CMS Blocks](../content/cms/add-custom-cms-blocks.md)
-  - [App configuration](../configuration.md)
+  - [Themes](../storefront/apps-as-themes)
+  - [Template changes](../storefront/)
+  - [CMS Blocks](../content/cms/add-custom-cms-blocks)
+  - [App configuration](../configuration)
   
 ## Hosting options
 

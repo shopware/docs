@@ -15,7 +15,7 @@ The base of Shopware Migration Assistant is the profile, which enables you to mi
 </service>
 ```
 
-In order to identify itself, the profile has to implement getter functions like `getName`, which returns the unique name of the profile. The profile is used together with the [Gateway](gateway-and-reader.md#gateway) to check and apply the right processing during a migration run.
+In order to identify itself, the profile has to implement getter functions like `getName`, which returns the unique name of the profile. The profile is used together with the [Gateway](gateway-and-reader#gateway) to check and apply the right processing during a migration run.
 
 ```php
 <?php declare(strict_types=1);
@@ -65,7 +65,7 @@ class Shopware55Profile implements ShopwareProfileInterface
 
 ## Connection
 
-To connect Shopware 6 to your source system \(e.g., Shopware 5\), you will need a connection entity. The connection includes all the important information for your migration run. It contains the credentials for the API or database access, the actual [Premapping](premapping.md) and the profile, [Gateway](gateway-and-reader.md) combination which is used for your migration:
+To connect Shopware 6 to your source system \(e.g., Shopware 5\), you will need a connection entity. The connection includes all the important information for your migration run. It contains the credentials for the API or database access, the actual [Premapping](premapping) and the profile, [Gateway](gateway-and-reader) combination which is used for your migration:
 
 ```php
 <?php declare(strict_types=1);
