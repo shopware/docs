@@ -74,7 +74,9 @@ class CachedExampleRoute extends AbstractExampleRoute
         $this->tracer = $tracer;
         
         // declares that this route can not be cached if the customer is logged in
-        $this->states = [CacheStateSubscriber::STATE_LOGGED_IN];
+        $this->states = [
+            CacheStateSubscriber::STATE_LOGGED_IN
+        ];
         $this->logger = $logger;
     }
     
@@ -121,7 +123,9 @@ class CachedExampleRoute extends AbstractExampleRoute
         $item->tag(array_merge(
             // get traced tags and configs        
             $this->tracer->get(self::buildName()),
-            [self::buildName()]
+            [
+                self::buildName()
+            ]
         ));
 
         $this->cache->save($item);

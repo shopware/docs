@@ -7,7 +7,7 @@
 The B2B Suite provides a general audit log that can be implemented in every component.
 The audit log component can save different log types and author information like first name, last name, and email. It provides a one-to-many association index. The database structure is described in the graphic below:
 
-![image](../../../../../../.gitbook/assets/audit_log_structure.svg)
+![image](../../../../../.gitbook/assets/audit_log_structure.svg)
 
 As you can see, the database structure is very flat. In the `b2b_audit_log` table, we save a log type and a serialized *AuditLogValueEntity*.
 All required author information is saved in the `b2b_audit_log_author` table.

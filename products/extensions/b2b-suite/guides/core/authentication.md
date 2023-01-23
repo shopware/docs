@@ -1,6 +1,6 @@
 # Storefront Authentication
 
-[Download]](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bAuth.zip) a plugin showcasing how to add a provider. You can [download](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bLogin.zip) a plugin that exchange the login value.
+[Download](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bAuth.zip) a plugin showcasing how to add a provider. You can [download](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bLogin.zip) a plugin that exchange the login value.
 
 ## Description
 
@@ -13,7 +13,7 @@ It extends the Shopware default authentication component and provides several be
 
 A schematic overview of the central usage of the Authentication component looks like this:
 
-![image](../../../../../../.gitbook/assets/authentication-overview.svg)
+![image](../../../../../.gitbook/assets/authentication-overview.svg)
 
 | Color  |   Type   |                                                                                  Description                                                                                  |
 |--------|:--------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|

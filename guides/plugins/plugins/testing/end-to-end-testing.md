@@ -145,6 +145,7 @@ It is **crucial** to set these environment variables in the **same terminal sess
 Make sure that the `DISPLAY` environment variable on your Mac is properly set **before** you start the containers as it will be **passed** to the Cypress container when the container is **created**.
 Updating the variable on your host won't update it in the container until it is re-created!
 :::
+
 </Tab>
 
 <Tab title="Platform: Local environment">
@@ -156,6 +157,7 @@ To use E2E tests locally, you need to set the variable `CYPRESS_LOCAL` in your `
 
 <Tabs>
 <Tab title="Plugin setup">
+
 If you want to run E2E tests in your plugin, just switch to the folder `Resources/app/<enviroment>/test/e2e` and execute the following command:
 
 ```bash
@@ -169,9 +171,11 @@ It opens up the Cypress test runner which allows you to run and debug your tests
 ::: danger
 Don't forget that you might need to adjust test cleanup and other environment-related things according to your plugin's setup.
 :::
+
 </Tab>
 
 <Tab title="Execution in platform project">
+
 If you use Docker for your development environment, you are able to start right away.
 
 To prepare your shopware installation, your environment and install dependencies, please run the following command as first step, **outside** of your docker container:

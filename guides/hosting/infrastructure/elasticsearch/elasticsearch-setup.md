@@ -121,7 +121,7 @@ Shopware will use by default 3 shards and 3 replicas for the created index. This
 This configuration is available since Shopware version 6.4.12.0
 :::
 
-```yml
+```yaml
 elasticsearch:
   index_settings:
     number_of_shards: 1

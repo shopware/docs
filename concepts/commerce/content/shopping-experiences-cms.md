@@ -136,7 +136,7 @@ Whereas the structure of a CMS page remains somewhat static, its content can be 
 
 The following diagram illustrates how that works using the example of a category:
 
-![Flow of resolving CMS page content](../../../.gitbook/assets/image%20%282%29.png)
+<!--![Flow of resolving CMS page content](../../../.gitbook/assets/image%20%282%29.png)-->
 
 Let's go through the steps one by one.
 

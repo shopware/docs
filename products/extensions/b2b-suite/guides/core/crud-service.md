@@ -10,7 +10,7 @@ Although these entities may have special requirements, an exclusively used namin
 
 The diagram below shows the usually implemented objects with their outside dependencies:
 
-![image](../../../../../../.gitbook/assets/crud-service.svg)
+![image](../../../../../.gitbook/assets/crud-service.svg)
 
 ## Entity
 

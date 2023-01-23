@@ -10,7 +10,7 @@ To reduce the necessary duplications, there are common implementations for this.
 
 The diagram below shows the usually implemented objects with their outside dependencies.
 
-![image](../../../../../../.gitbook/assets/listing-service.svg)
+![image](../../../../../.gitbook/assets/listing-service.svg)
 
 ## Search struct
 

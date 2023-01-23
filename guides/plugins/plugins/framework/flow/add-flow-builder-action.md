@@ -101,7 +101,9 @@ class CreateTagAction extends FlowAction
 
     public function requirements(): array
     {
-        return [TagAware::class];
+        return [
+            TagAware::class,
+        ];
     }
 
     public function handle(FlowEvent $event): void
@@ -178,7 +180,9 @@ class CreateTagAction extends FlowAction
 
     public function requirements(): array
     {
-        return [TagAware::class];
+        return [
+            TagAware::class,
+        ];
     }
 
     public function handleFlow(StorableFlow $flow): void

@@ -35,7 +35,9 @@ class SmsHandler extends AbstractMessageHandler
 
     public static function getHandledMessages(): iterable
     {
-        return [SmsNotification::class];
+        return [
+            SmsNotification::class,
+        ];
     }
 }
 ```
