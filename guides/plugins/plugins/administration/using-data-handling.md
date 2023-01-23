@@ -6,15 +6,15 @@ The Shopware 6 Administration allows you to fetch and write nearly everything in
 
 All you need for this guide is a running Shopware 6 instance and full access to both the files, as well as the command line and preferably registered module. Of course you'll have to understand JavaScript, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation.
 
-Considering that the data handling in the administration is remotely operating the Data Abstraction Layer its highly encouraged to read the articles [Reading data with the DAL](../framework/data-handling/reading-data.md) and [Writing data with the DAL](../framework/data-handling/writing-data.md).
+Considering that the data handling in the Administration is remotely operating the Data Abstraction Layer its highly encouraged to read the articles [Reading data with the DAL](../framework/data-handling/reading-data.md) and [Writing data with the DAL](../framework/data-handling/writing-data.md).
 
 ## Relevant classes
 
-`Repository`: Allows to send requests to the server - used for all CRUD operations `Entity`: Object for a single storage record `EntityCollection`: Enable object-oriented access to a collection of entities `SearchResult`: Contains all information available through a search request `RepositoryFactory`: Allows to create a repository for an entity `Context`: Contains the global state of the administration \(language, version, auth, ...\) `Criteria`: Contains all information for a search request \(filter, sorting, pagination, ...\)
+`Repository`: Allows to send requests to the server - used for all CRUD operations `Entity`: Object for a single storage record `EntityCollection`: Enable object-oriented access to a collection of entities `SearchResult`: Contains all information available through a search request `RepositoryFactory`: Allows to create a repository for an entity `Context`: Contains the global state of the Administration \(language, version, auth, ...\) `Criteria`: Contains all information for a search request \(filter, sorting, pagination, ...\)
 
 ## The repository service
 
-Accessing the Shopware API in the Administration is done by using the repository service, which can be injected with a [bottleJs](https://github.com/young-steveo/bottlejs) dependency injection container. In the Shopware administration, there's a wrapper that makes `bottleJs` work with the [inject / provide](https://vuejs.org/v2/api/#provide-inject) from [`Vue`](https://vuejs.org/). In short: You can use the `inject` key in your component configuration to fetch services from the `bottleJs` DI container, such as the `repositoryFactory`, that you will need in order to get a repository for a single entity.
+Accessing the Shopware API in the Administration is done by using the repository service, which can be injected with a [bottleJs](https://github.com/young-steveo/bottlejs) dependency injection container. In the Shopware Administration, there's a wrapper that makes `bottleJs` work with the [inject / provide](https://vuejs.org/v2/api/#provide-inject) from [`Vue`](https://vuejs.org/). In short: You can use the `inject` key in your component configuration to fetch services from the `bottleJs` DI container, such as the `repositoryFactory`, that you will need in order to get a repository for a single entity.
 
 Add those lines to your component configuration:
 

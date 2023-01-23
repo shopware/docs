@@ -326,9 +326,9 @@ export default Vue.extend({
 
 ## Storefront implementation
 
-After everything for the admin is done, there is still the need for a storefront representation of your blocks. This works similarly to typical plugin development, with an exception to the path. All storefront templates must match the following path pattern: `<app-name>/Resources/views/storefront/element/<elementname>.html.twig`
+After everything for the admin is done, there is still the need for a storefront representation of your blocks. This works similarly to typical plugin development, with an exception to the path. All Storefront templates must match the following path pattern: `<app-name>/Resources/views/storefront/element/<elementname>.html.twig`
 
-Since everything is already described in guide [CMS element development for plugins](https://developer.shopware.com/docs/guides/plugins/plugins/content/cms/add-cms-element#storefront-implementation), the following example just shows how your storefront template (`swag-daiĺymotion/Resources/views/storefront/element/cms-element-swag-dailymotion.html.twig`) could look like:
+Since everything is already described in guide [CMS element development for plugins](https://developer.shopware.com/docs/guides/plugins/plugins/content/cms/add-cms-element#storefront-implementation), the following example just shows how your Storefront template (`swag-daiĺymotion/Resources/views/storefront/element/cms-element-swag-dailymotion.html.twig`) could look like:
 
 {% raw %}
 

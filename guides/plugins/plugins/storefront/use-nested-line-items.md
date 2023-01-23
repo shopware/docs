@@ -2,7 +2,7 @@
 
 ## Overview
 
-This guide will show you how to use the nested line items in the storefront.
+This guide will show you how to use the nested line items in the Storefront.
 
 ## Prerequisites
 

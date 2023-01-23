@@ -6,7 +6,7 @@ In this guide you'll learn how to add Composer dependencies to your project.
 
 All you need for this guide is a running Shopware 6 instance and full access to both the files and a running plugin. Of course you'll have to understand PHP, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation. Further a basic understanding Node and NPM is required.
 
-## Adding a composer plugin to the `composer.json` file
+## Adding a Composer plugin to the `composer.json` file
 
 In this guide we will install [`exporter`](https://github.com/sebastianbergmann/exporter), which provides the functionality to export PHP variables for visualization.
 
@@ -17,7 +17,7 @@ Now we can simply install `exporter` by running `composer require sebastian/expo
 After that we have to add our dependency to shopware back in.
 
 {% hint style="warning" %}
-The `vendor` directory, where the composer saves the dependencies, has to be included in the plugin bundle. The plugin bundle size is not allowed to exceed 5 MB.
+The `vendor` directory, where the Composer saves the dependencies, has to be included in the plugin bundle. The plugin bundle size is not allowed to exceed 5 MB.
 {% endhint %}
 
 ## Loading the `autoload.php`
@@ -34,9 +34,9 @@ if (file_exists(dirname(__DIR__) . '/vendor/autoload.php')) {
 
 {% endcode %}
 
-## Using the composer plugin
+## Using the Composer plugin
 
-PHP doesn't require a build system, which means that we can just add `use` statements and then use the composer dependency directly.
+PHP doesn't require a build system, which means that we can just add `use` statements and then use the Composer dependency directly.
 
 The following code sample imports `SebastianBergmann\Exporter\Exporter` and logs `hello, world!` to the Symfony profiler logs whenever the `NavigationPageLoadedEvent` is fired. Learn how to [register this listener](listening-to-events.md).
 
@@ -81,9 +81,9 @@ class MySubscriber implements EventSubscriberInterface
 
 {% endcode %}
 
-## Adding private composer dependencies
+## Adding private Composer dependencies
 
-You can bundle composer dependencies with your plugin by adding them to the `/packages/` folder of your plugin.
+You can bundle Composer dependencies with your plugin by adding them to the `/packages/` folder of your plugin.
 
 Example structure:
 

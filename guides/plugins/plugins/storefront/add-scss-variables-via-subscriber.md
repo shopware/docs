@@ -94,12 +94,12 @@ The `ThemeCompilerEnrichScssVariablesEvent` provides the `addVariable()` method 
 * `$sanitize` \(bool - optional\): Optional parameter to remove special characters from the variables value. The parameter will also add quotes around the variables value. In most cases quotes are not needed e.g. for color hex values. However, there may be situations where you want to pass individual strings to your SCSS variable.
 
 {% hint style="warning" %}
-Please note that plugins are not sales channel specific. Your SCSS variables are directly added in the SCSS compilation process and will be globally available throughout all themes and storefront sales channels. If you want to change a variables value for each sales channel you should use plugin config fields and follow the next example.
+Please note that plugins are not sales channel specific. Your SCSS variables are directly added in the SCSS compilation process and will be globally available throughout all themes and Storefront sales channels. If you want to change a variables value for each sales channel you should use plugin config fields and follow the next example.
 {% endhint %}
 
 ## Plugin config values as SCSS variables
 
-Inside your `ThemeVariableSubscriber` you can also read values from the plugin configuration and assign those to a SCSS variable. This makes it also possible to have different values for each sales channel. Depending on the selected sales channel inside the plugin configuration in the administration.
+Inside your `ThemeVariableSubscriber` you can also read values from the plugin configuration and assign those to a SCSS variable. This makes it also possible to have different values for each sales channel. Depending on the selected sales channel inside the plugin configuration in the Administration.
 
 First, lets add a new plugin configuration field according to the [Plugin Configurations](../plugin-fundamentals/add-plugin-configuration.md):
 
@@ -122,7 +122,7 @@ First, lets add a new plugin configuration field according to the [Plugin Config
 
 {% endcode %}
 
-As you can see in the example, we add an input field of the type colorpicker for our plugin. In the administration, the component 'sw-colorpicker' will later be displayed for the selection of the value. You also can set a `defaultValue` which will be pre-selected like the following:
+As you can see in the example, we add an input field of the type colorpicker for our plugin. In the Administration, the component 'sw-colorpicker' will later be displayed for the selection of the value. You also can set a `defaultValue` which will be pre-selected like the following:
 
 {% code title="<plugin root>/src/Resources/config/config.xml" %}
 

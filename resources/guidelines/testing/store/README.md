@@ -30,7 +30,7 @@ Here is what the test criteria include:
 
 * **[Lighthouse audit home/listing/detail](../store/quality-guidelines-apps/README.md#frontend-apps)** - We check:
 
-    * If your extension affects the storefront or not?  (so that the search engines have no problems with it).
+    * If your extension affects the Storefront or not?  (so that the search engines have no problems with it).
     * If all buttons, labels, etc., are named correctly?
 
 We pay attention to all five audits. The app must not limit these. Like most search engines, we also pay attention to mobile-first.
@@ -42,9 +42,9 @@ We pay attention to all five audits. The app must not limit these. Like most sea
 
 Rich snippets have no influence on the ranking of a website. Thus, they do not count among the ranking factors. Nevertheless, search hits enriched with additional information have various SEO advantages: higher attention, higher click-through rate, and greater relevance.
 
-* **[No errors in the storefront and 503/404 errors](../store/quality-guidelines-apps/README.md#error-messages-must-be-entered-in-the-event-log)** - We check:
+* **[No errors in the Storefront and 503/404 errors](../store/quality-guidelines-apps/README.md#error-messages-must-be-entered-in-the-event-log)** - We check:
 
-    * If the app is active in the storefront?
+    * If the app is active in the Storefront?
     * If it involves display errors and errors of any kind?
 
 The end customer should not receive any misleading error messages. It does not matter whether a function causes the error or the customer does not use the function correctly. For example, the customer can upload a picture using a function, but if the customer tries to upload a video, a clear message should be displayed here.
@@ -57,7 +57,7 @@ The end customer should not receive any misleading error messages. It does not m
 
     * **Statistics and Tracking**: Statistics and everything that has to do with data collection and tracking.
 
-* **[Store description German/English](../store/quality-guidelines-apps/README.md#app-descriptions-in-your-shopware-account)** - The app store description includes several points if the app can be used only in a specific country, so leave this clearly in the description. The German description is only mandatory if the app is to be offered in the German market. Furthermore, there must always be at least two images of the app in English, e.g., of the storefront and the admin.
+* **[Store description German/English](../store/quality-guidelines-apps/README.md#app-descriptions-in-your-shopware-account)** - The app store description includes several points if the app can be used only in a specific country, so leave this clearly in the description. The German description is only mandatory if the app is to be offered in the German market. Furthermore, there must always be at least two images of the app in English, e.g., of the Storefront and the Admin.
 
 * **[Translations managed admin](../store/quality-guidelines-apps/README.md#fallback-language)** - We check if the app is available in all languages specified in your account. However, it is important that English is fallback if the app does not support any other language.
 

@@ -16,7 +16,7 @@ Multiple live templates for development. Use Cmd/Ctrl + J to see all live templa
 
 * Vue.js Admin component
 * config.xml
-* Extend storefront blocks with automatic file creation
+* Extend Storefront blocks with automatic file creation
 * Vue module
 * Scheduled task
 * Changelog

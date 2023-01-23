@@ -178,7 +178,7 @@ If you overwrite variables of another theme from a third party provider and thes
 
 The `theme.json` contains a `config` property which contains a list of tabs, blocks, sections and fields.
 
-The key of each config field item is also the technical name which you use to access the config option in your theme or scss files. `config` entries will show up in the administration and can be customized by the end user \(if `editable` is set to `true`, see table below\).
+The key of each config field item is also the technical name which you use to access the config option in your theme or scss files. `config` entries will show up in the Administration and can be customized by the end user \(if `editable` is set to `true`, see table below\).
 
 The following parameters can be defined for a config field item:
 
@@ -186,13 +186,13 @@ The following parameters can be defined for a config field item:
 | :--- | :--- |
 | `label` | Array of translations with locale code as key |
 | `type` | Type of the config. Possible values: color, text, number, fontFamily, media, checkbox, switch and url |
-| `editable` | If set to false, the config option will not be displayed \(e.g. in the administration\) |
+| `editable` | If set to false, the config option will not be displayed \(e.g. in the Administration\) |
 | `tab` | Name of a tab to organize the config options |
 | `block` | Name of a block to organize the config options |
 | `section` | Name of a section to organize the config options |
 | `custom` | The defined data will not be processed but is available via API |
 | `scss` | If set to false, the config option will not be injected as a SCSS variable |
-| `fullWidth` | If set to true, the administration component width will be displayed in full width |
+| `fullWidth` | If set to true, the Administration component width will be displayed in full width |
 
 ## Field types
 

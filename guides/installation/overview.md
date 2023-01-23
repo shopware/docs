@@ -33,7 +33,7 @@ You can use these commands to check your actual environment:
 * `php -v`: Show CLI PHP version
 * `php -m`: Show CLI PHP modules
 * `php -i | grep memory_limit`: Show your actual CLI PHP memory limit
-* `composer -v`: Show your actual composer version
+* `composer -v`: Show your actual Composer version
 * `node -v`: Show you actual Node version
 * `npm -v`: Show you actual NPM version
 

@@ -2,7 +2,7 @@
 
 ## Overview
 
-When working with an own plugin, the usage of own custom images or other assets is a natural requirement. So of course you can do that in Shopware as well. In this guide we will explore how you can add custom assets in your plugin in order to use them in the administration.
+When working with an own plugin, the usage of own custom images or other assets is a natural requirement. So of course you can do that in Shopware as well. In this guide we will explore how you can add custom assets in your plugin in order to use them in the Administration.
 
 ## Prerequisites
 
@@ -51,12 +51,12 @@ This way, your plugin assets are copied to the `public/bundles` folder:
     └── your-image.png <-- Your asset is copied here
 ```
 
-## Use custom assets in the administration
+## Use custom assets in the Administration
 
-After adding your assets to the `public/bundles` folder, you can start using your assets in the administration. Basically, you just need to use the Vue [filter](https://vuejs.org/v2/guide/filters.html) `asset`.
+After adding your assets to the `public/bundles` folder, you can start using your assets in the Administration. Basically, you just need to use the Vue [filter](https://vuejs.org/v2/guide/filters.html) `asset`.
 
 ```markup
 <img :src="'/<plugin root>/static/your-image.png' | asset">
 ```
 
-You're able to use this line in your `twig`/`html` files as you please and that's basically it. You successfully added your own asset to the administration.
+You're able to use this line in your `twig`/`html` files as you please and that's basically it. You successfully added your own asset to the Administration.

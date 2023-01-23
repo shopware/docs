@@ -6,7 +6,7 @@ One of the common security risks of your application could be a [Cross Site Requ
 
 ## Prerequisites
 
-Since this guide will be a general example and not a plugin-specific one, there is no need for a running plugin. However, it will assume you've got a custom `form` element in the storefront, which you want to secure.
+Since this guide will be a general example and not a plugin-specific one, there is no need for a running plugin. However, it will assume you've got a custom `form` element in the Storefront, which you want to secure.
 
 Knowing what exactly CSRF is and how the attack works may come in handy, so you might want to have a look at the [OWASP page regarding CSRF](https://owasp.org/www-community/attacks/csrf).
 

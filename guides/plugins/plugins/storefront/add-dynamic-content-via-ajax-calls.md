@@ -2,7 +2,7 @@
 
 ## Overview
 
-This guide will show you how to add dynamic content to your storefront. It combines and builds upon the the guides about [adding custom Javascript](add-custom-javascript.md) and [adding a custom controller](add-custom-controller.md), so you should probably read them first.
+This guide will show you how to add dynamic content to your Storefront. It combines and builds upon the the guides about [adding custom Javascript](add-custom-javascript.md) and [adding a custom controller](add-custom-controller.md), so you should probably read them first.
 
 ## Setting up the Controller
 
@@ -87,7 +87,7 @@ The following `services.xml` and `routes.xml` are identical as in the before men
 
 Now we have to add a `Storefront Javascript plugin` to display the timestamp we get from our controller.
 
-Again this is built upon the [adding custom Javascript](add-custom-javascript.md) article, so if you don't already know what storefront `plugins` are, hold on and read it first.
+Again this is built upon the [adding custom Javascript](add-custom-javascript.md) article, so if you don't already know what Storefront `plugins` are, hold on and read it first.
 
 {% code title="<plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js" %}
 
@@ -129,7 +129,7 @@ export default class AjaxPlugin extends Plugin {
 
 ## Adding the Template
 
-The only thing that is now left, is to provide a template for the storefront plugin to hook into:
+The only thing that is now left, is to provide a template for the Storefront plugin to hook into:
 
 {% code title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig" %}
 {% raw %}

@@ -26,7 +26,7 @@ window.PluginManager.deregister('OffCanvasCart', '[data-offcanvas-cart]');
 
 {% endcode %}
 
-After building the storefront anew, you shouldn't be able to open the offcanvas cart anymore. Another useful way of testing this is using your browser's devtools. Just open your devtool's console and type in `PluginManager.getPluginList()` in order to get a list of all registered plugins.
+After building the Storefront anew, you shouldn't be able to open the offcanvas cart anymore. Another useful way of testing this is using your browser's devtools. Just open your devtool's console and type in `PluginManager.getPluginList()` in order to get a list of all registered plugins.
 
 In our case, we shouldn't find `OffCanvasCart` in the listed plugins anymore.
 

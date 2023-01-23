@@ -2,7 +2,7 @@
 
 ## Overview
 
-In an online shop, filters are an important feature. So you might use filters in your custom plugin. This guide will get you covered on how to implement your own, custom filters in Shopware's storefront.
+In an online shop, filters are an important feature. So you might use filters in your custom plugin. This guide will get you covered on how to implement your own, custom filters in Shopware's Storefront.
 
 ## Prerequisites
 
@@ -118,9 +118,9 @@ class ExampleListingSubscriber implements EventSubscriberInterface
 
 ## Add your filter to the Storefront UI
 
-Well, fine - you successfully created a filter via subscriber. However, you want to enable your shop customer to use it, right? Now you need to integrate your filter in the storefront. Let's start by searching the template file you need to extend in Shopware's storefront. It's this one - `src/Storefront/Resources/views/storefront/component/listing/filter-panel.html.twig`.
+Well, fine - you successfully created a filter via subscriber. However, you want to enable your shop customer to use it, right? Now you need to integrate your filter in the Storefront. Let's start by searching the template file you need to extend in Shopware's Storefront. It's this one - `src/Storefront/Resources/views/storefront/component/listing/filter-panel.html.twig`.
 
-In this template, the existing filters are contained in the block `component_filter_panel_items`. We are going to extend this block with our new filter. If you're not sure on how to customize templates in the storefront, we got you covered with another guide:
+In this template, the existing filters are contained in the block `component_filter_panel_items`. We are going to extend this block with our new filter. If you're not sure on how to customize templates in the Storefront, we got you covered with another guide:
 
 {% page-ref page="customize-templates.md" %}
 
@@ -186,6 +186,6 @@ If we instead want our filter to be placed before or after a specific filter in 
 
 ## Next steps
 
-Are you interested in adding custom sorting options to your listing in the storefront as well? Head over to the corresponding guide to learn more about that:
+Are you interested in adding custom sorting options to your listing in the Storefront as well? Head over to the corresponding guide to learn more about that:
 
 {% page-ref page="add-custom-sorting-product-listing.md" %}

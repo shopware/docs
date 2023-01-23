@@ -2,7 +2,7 @@
 
 ## Overview
 
-In this guide you'll learn how to make your app introduce custom conditions for use in the [Rule Builder](../../../../concepts/framework/rules.md). Custom conditions can be defined with fields to be rendered in the administration and with their own logic, using the same approach as [App Scripts](../app-scripts/README.md).
+In this guide you'll learn how to make your app introduce custom conditions for use in the [Rule Builder](../../../../concepts/framework/rules.md). Custom conditions can be defined with fields to be rendered in the Administration and with their own logic, using the same approach as [App Scripts](../app-scripts/README.md).
 
 {% hint style="info" %}
 Note that app rule conditions were introduced in Shopware 6.4.12.0, and are not supported in previous versions.
@@ -75,16 +75,16 @@ For a complete reference of the structure of the manifest file take a look at th
 Following fields are required:
 
 * `identifier`: A technical name for the condition that should be unique within the scope of the app. The name is being used to identifiy existing conditions when updating the app, so it should not be changed.
-* `name`: A descriptive and translatable name for the condition. The name will be shown within the Rule Builder's selection of conditions in the administration.
+* `name`: A descriptive and translatable name for the condition. The name will be shown within the Rule Builder's selection of conditions in the Administration.
 * `script`: The file name and extension of the file that contains the script for the condition. All scripts for rule conditions must be placed inside `Resources/scripts/rule-conditions` within the root directory of the app.
 
 ### Constraints
 
 Constraints are optional and may be used to define fields, whose purpose is to provide data for use within the condition's script.
 
-Constraints are a collection of [custom fields](../custom-data.md), which allows you to provide a variety of different fields for setting parameters within the administration. Fields may be marked as `required`. The `name` attribute of the field is also the variable the field's value will be exposed as within the condition's script. So it is advisable to use a variable-friendly name and to use unique names within the confines of a single condition.
+Constraints are a collection of [custom fields](../custom-data.md), which allows you to provide a variety of different fields for setting parameters within the Administration. Fields may be marked as `required`. The `name` attribute of the field is also the variable the field's value will be exposed as within the condition's script. So it is advisable to use a variable-friendly name and to use unique names within the confines of a single condition.
 
-The above example will add the condition shown below for selection in the administration:
+The above example will add the condition shown below for selection in the Administration:
 
 ![App Rule Condition](../../../../.gitbook/assets/app-rule-condition.png)
 
@@ -202,7 +202,7 @@ We then use the variables `operator` and `firstName`, provided by the constraint
 {% endraw %}
 {% endcode %}
 
-In this example we first check if the current scope is `LineItemScope` and refers to a specific line item. If so we compare that specific line item. Otherwise we check if the scope has a cart and return false if it doesn't. We have a multi select for product selection in the administration which provides an array of product IDs in the script. We iterate the current cart's line items to check if the product is included and return `true` if that is the case.
+In this example we first check if the current scope is `LineItemScope` and refers to a specific line item. If so we compare that specific line item. Otherwise we check if the scope has a cart and return false if it doesn't. We have a multi select for product selection in the Administration which provides an array of product IDs in the script. We iterate the current cart's line items to check if the product is included and return `true` if that is the case.
 
 ### Date condition example
 

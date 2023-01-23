@@ -2,7 +2,7 @@
 
 ## Overview
 
-If you have to customize the logic of some core JavaScript storefront plugins you can override them with your own implementations. You will see how this works by extending the cookie permission plugin and showing the cookie notice on every page load and asking the user if he wants to hide cookie bar via a confirm dialogue.
+If you have to customize the logic of some core JavaScript Storefront plugins you can override them with your own implementations. You will see how this works by extending the cookie permission plugin and showing the cookie notice on every page load and asking the user if he wants to hide cookie bar via a confirm dialogue.
 
 ## Prerequisites
 
@@ -10,7 +10,7 @@ While this is not mandatory, having read the guide about [adding custom javascri
 
 ## Extending an existing JavaScript plugin
 
-As JavaScript storefront plugins are vanilla JavaScript classes, you can simply extend them.
+As JavaScript Storefront plugins are vanilla JavaScript classes, you can simply extend them.
 
 {% hint style="info" %}
 Each JavaScript plugin can only be overridden once. If two Shopware plugins try to override the same plugin, only the last one of them will actually work.
@@ -101,7 +101,7 @@ if (module.hot) {
 
 ### Testing your changes
 
-To see your changes you have to build the storefront. Use the following command and reload your storefront.
+To see your changes you have to build the Storefront. Use the following command and reload your Storefront.
 
 {% tabs %}
 {% tab title="Development template" %}

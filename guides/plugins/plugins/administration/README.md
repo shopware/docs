@@ -1,6 +1,6 @@
 # Administration
 
-Following are important topics that you might want to have a look at when working with the administration.
+Following are important topics that you might want to have a look at when working with the Administration.
 
 {% page-ref page="add-custom-module.md" %}
 

@@ -63,7 +63,7 @@ bin/console system:setup
 # create app secret: APP_SECRET=$(bin/console system:generate-app-secret)
 # create .env
 
-# create database with a basic setup (admin user and storefront sales channel)
+# create database with a basic setup (admin user and Storefront sales channel)
 bin/console system:install --create-database --basic-setup
 
 # or use the interactive installer in the browser: /recovery/install/index.php
@@ -90,7 +90,7 @@ This project is called [production template](https://github.com/shopware/product
 * Add dependencies
 * Add project specific plugins
 * Update var/plugins.json \(bin/console bundle:dump, paths need to be relative to the project root\)
-* Build administration/storefront
+* Build Administration or Storefront
 * Update composer.json and composer.lock
 * Commit changes
 
@@ -122,9 +122,9 @@ Bash is required for the shell scripts.
 | :--- | :--- |
 | `bin/console theme:compile` | Compile all assigned themes |
 | `bin/build.sh` | Complete build including composer install |
-| `bin/build-js.sh` | Build administration and Storefront, including all plugins in `var/plugins.json`. |
-| `bin/build-administration.sh` | Just build the administration. |
-| `bin/build-storefront.sh` | Just build the Storefront. You need to have built the administration once. |
+| `bin/build-js.sh` | Build Administration and Storefront, including all plugins in `var/plugins.json`. |
+| `bin/build-administration.sh` | Just build the Administration. |
+| `bin/build-storefront.sh` | Just build the Storefront. You need to have built the Administration once. |
 
 **Dev**
 
@@ -137,8 +137,8 @@ Bash is required for the shell scripts.
 | Command | Description |
 | :--- | :--- |
 | `bin/console theme:refresh` | Reload theme.json of active themes |
-| `bin/watch-administration.sh` | Watcher for administration changes, recompile and reload page if required |
-| `bin/watch-storefront.sh` | Watcher for storefront changes, recompile and reload page if required |
+| `bin/watch-administration.sh` | Watcher for Administration changes, recompile and reload page if required |
+| `bin/watch-storefront.sh` | Watcher for Storefront changes, recompile and reload page if required |
 
 ### Configuration
 
@@ -248,7 +248,7 @@ The following directories should be shared by all app servers:
 │   ├── jwt # ro - should be written on first deployment
 │   ├── secrets # rw shared - see, if you want to use it: https://symfony.com/blog/new-in-symfony-4-4-encrypted-secrets-management 
 ├── public
-│   ├── bundles # rw shared - Written by `assets:install` / `theme:compile`, can also be initiated by the administration
+│   ├── bundles # rw shared - Written by `assets:install` / `theme:compile`, can also be initiated by the Administration
 │   ├── media # rw shared
 │   ├── theme # rw shared - generated themes by `theme:compile/change`
 │   └── thumbnail # rw shared - media thumbnails

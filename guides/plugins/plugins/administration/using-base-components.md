@@ -14,7 +14,7 @@ All Shopware 6 Administration components can be found in the [Component Library]
 
 As mentioned before in the introduction, all components used in the Shopware 6 Administration are first registered to the `component registry`. This `component registry` is just a map of all components, which then get registered to Vue during the `Administrations boot process`. Since all of the components are registered as [global `Vue` components](https://vuejs.org/v2/guide/components-registration.html#Global-Registration), they are accessible in all templates of the Administration.
 
-Using base components in your own administration templates is rather simple. In the example below we will use the `sw-text-field` in our template, which simply renders a `text` input tag, but also supports some fancy functionality, like inheritance, etc:
+Using base components in your own Administration templates is rather simple. In the example below we will use the `sw-text-field` in our template, which simply renders a `text` input tag, but also supports some fancy functionality, like inheritance, etc:
 
 {% code title="<plugin-root>/src/Resources/app/administration/app/src/component/example-component/example.html.twig" %}
 

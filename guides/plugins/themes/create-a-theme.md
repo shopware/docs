@@ -79,11 +79,11 @@ Your theme was successfully installed and activated.
 The last thing we need to do to work with the theme is to assign it to a sales channel. You can do that by running the `theme:change` command in the terminal and follow the instructions.
 
 ```bash
-# run this to change the current storefront theme
+# run this to change the current Storefront theme
 $ bin/console theme:change
 
 # you will get an interactive prompt to change the 
-# current theme of the storefront like this
+# current theme of the Storefront like this
 
 Please select a sales channel:
 [0] Storefront | 64bbbe810d824c339a6c191779b2c205

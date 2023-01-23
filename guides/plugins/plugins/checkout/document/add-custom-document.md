@@ -2,7 +2,7 @@
 
 ## Overview
 
-Using the Shopware administration, you can easily create new documents. This guide will teach you how to achieve the same result, which is creating a new document, using your plugin.
+Using the Shopware Administration, you can easily create new documents. This guide will teach you how to achieve the same result, which is creating a new document, using your plugin.
 
 ## Prerequisites
 
@@ -132,7 +132,7 @@ So it's basically fetching the "Storefront" sales channel ID, and the document t
 
 You'll have to provide a `name` and a `filename_prefix` for your custom document. If you create a new document for e.g. a completely new document type, you might want to set `global` to `1`, so it acts like a fallback. Also make sure to have a look at the `getConfig` method here, since it contains important configurations you can set for your custom document.
 
-Basically, that's it already! You can now browse your administration and use your newly configured document.
+Basically, that's it already! You can now browse your Administration and use your newly configured document.
 
 ## Next steps
 

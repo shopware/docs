@@ -2,7 +2,7 @@
 
 ## Overview
 
-You can add new mail templates to Shopware by using the administration. However, you might want to ship a mail template with your plugin, so using the administration is no option.
+You can add new mail templates to Shopware by using the Administration. However, you might want to ship a mail template with your plugin, so using the Administration is no option.
 
 This guide will cover how to add a custom mail template with your plugin.
 

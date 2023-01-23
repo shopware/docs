@@ -13,7 +13,7 @@ However, that's a prerequisite for Shopware as a whole and will not be taught as
 
 In this guide we want to change the heading of the Shopware 6 dashboard to be `Welcome to a customized Administration` instead of `Welcome to Shopware 6`.
 To do this we first need to find an appropriate twig block to override.
-We don't want to replace too much but also to not override too little of the administration.
+We don't want to replace too much but also to not override too little of the Administration.
 In this case we only want to override the headline and not links or anything else on the page.
 Looking at the twig markup for the dashboard [here](https://github.com/shopware/platform/blob/trunk/src/Administration/Resources/app/administration/src/module/sw-dashboard/page/sw-dashboard-index/sw-dashboard-index.html.twig),
 suggests that we only need to override the Twig block with the name `sw_dashboard_index_content_intro_content_headline` to achieve our goal.
@@ -41,7 +41,7 @@ However, if we want to retain the original content of the Twig block and just ad
 Learn more about the capabilities of twig.js [here](https://github.com/twigjs/twig.js/wiki).
 
 As you might have noticed the heading we just replaced had a `{ $tc() }` [string interpolation](https://vuejs.org/v2/guide/syntax.html#Text) which is used to make it multilingual.
-Learn more about internationalization in the Shopware 6 Administration and about adding your own snippets to the administration [here](adding-snippets.md).
+Learn more about internationalization in the Shopware 6 Administration and about adding your own snippets to the Administration [here](adding-snippets.md).
 
 ## Applying the override
 
@@ -60,7 +60,7 @@ The first parameter matches the component to override, the second parameter has 
 
 ## Loading the JavaScript File
 
-The main entry point to customize the administration via a plugin is the `main.js` file.
+The main entry point to customize the Administration via a plugin is the `main.js` file.
 It has to be placed into the `<plugin root>/src/Resources/app/administration/src` directory in order to be automatically found by Shopware 6.
 
 The only thing now left to just add an import for our of previously created `./sw-dashboard-index-override/index.js` in the `main.js`:

@@ -209,7 +209,7 @@ Additionally, you may provide a quantity as a second parameter if the product sh
 
 To add an absolute discount, you can use the `discount()` function, but you have to define a [price definition](#price-definitions) beforehand.
 The first argument is the `id` of the line item. You can use that `id`, e.g., to check if the discount was already added to the cart.
-The fourth parameter is the label of the discount. You can either use a hard-coded string label or use the `|trans` filter to use a storefront snippet as the label.
+The fourth parameter is the label of the discount. You can either use a hard-coded string label or use the `|trans` filter to use a Storefront snippet as the label.
 
 Note that you should check if your discount was already added, as your script may run multiple times.
 

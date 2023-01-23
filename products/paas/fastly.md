@@ -9,6 +9,6 @@ Fastly is supported in Shopware versions 6.4.11 or newer.
 {% endhint %}
 
 1. Make sure `FASTLY_API_TOKEN` and `FASTLY_SERVICE_ID` are set in the environment or contact the support when they are missing.
-1. Install the Fastly composer package using `composer req paas`.
+1. Install the Fastly Composer package using `composer req paas`.
 1. Disable caching in the `.platform/routes.yaml`.
 1. Push the new config and Fastly gets enabled.

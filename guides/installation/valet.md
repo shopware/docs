@@ -8,7 +8,7 @@ This is a modified version of the [official Installation Guide](https://github.c
 
 ## Prerequisites
 
-Before proceeding with this guide, have a look at [Installation overview](overview.md). Also, your system should be running [brew](https://brew.sh/) and [composer](https://getcomposer.org/) already.
+Before proceeding with this guide, have a look at [Installation overview](overview.md). Also, your system should be running [brew](https://brew.sh/) and [Composer](https://getcomposer.org/) already.
 
 ## If you have Valet installed
 
@@ -23,7 +23,7 @@ Run `composer remove laravel/valet`.
 
 ## Installing Valet+
 
-* If needed, install composer via `brew install composer`.
+* If needed, install Composer via `brew install composer`.
 * Install Valet+ via `composer global require weprovide/valet-plus`.
 * Make sure `~/.composer/vendor/bin` is in your path by adding `export PATH="$PATH:$HOME/.composer/vendor/bin"` to your `bash_profile` or `.zshrc`.
 * Check for the following common problem with `valet fix`.

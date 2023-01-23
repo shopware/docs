@@ -2,7 +2,7 @@
 
 ## Overview
 
-This documentation chapter will cover how to use an existing administration mixin in your plugin. Generally, mixins behave the same as they do in Vue normally, differing only in the registration and the way mixins are included in a component.
+This documentation chapter will cover how to use an existing Administration mixin in your plugin. Generally, mixins behave the same as they do in Vue normally, differing only in the registration and the way mixins are included in a component.
 
 ## Prerequisites
 
@@ -16,7 +16,7 @@ If you want to learn how to create your own mixin look at this guide: [Creating 
 
 ## Using the Mixin
 
-After we've found the mixin we need, we can get it from the registry with the `Mixin.getByName` function and inject it into our component as seen below. In this example we'll use the notification mixin, which is useful for creating notifications visible to the user in the administration.
+After we've found the mixin we need, we can get it from the registry with the `Mixin.getByName` function and inject it into our component as seen below. In this example we'll use the notification mixin, which is useful for creating notifications visible to the user in the Administration.
 
 {% code title="<administration root>/components/swag-basic-example/index.js" %}
 

@@ -69,7 +69,7 @@ Be sure to use the most recent testing checklist from Shopware and not from any 
 
 * **Cookie check in the browser console**: If the app sets cookies in any way in the checkout, these cookies must be registered to the cookie configuration box in the frontend.
 
-* Every external link in the administration or storefront must be marked as *rel="no opener" AND target="_blank"*.
+* Every external link in the Administration or Storefront must be marked as *rel="no opener" AND target="_blank"*.
 
 * We check for styling errors on every viewport.
 
@@ -103,7 +103,7 @@ Be sure to use the most recent testing checklist from Shopware and not from any 
     You can no longer advertise your Shopware certificates within the app description, in your app images, or in your manufacturer profile. The manufacturer/partner certificates are dynamically loaded at the end of each app description and published by us.
     {% endhint %}
 
-* Include several screenshots and descriptive images from the storefront and backend that represent the app functionality. They must show the app "in action", its configuration options, and how to use it.
+* Include several screenshots and descriptive images from the Storefront and backend that represent the app functionality. They must show the app "in action", its configuration options, and how to use it.
 
 * Be sure that the app is assigned to the appropriate categories.
 
@@ -157,13 +157,13 @@ Iframes, external scripts, or tracking pixels are not allowed in the description
 
 * Use *Scheme.org's Structured Data Testing Tool* to check the homepage, categories, and various product detail pages (incl. available products, unavailable products, products with no review, single review, many reviews with various ratings, out of stock products, products to be released in the future or any other kind of product configuration). Also, check for any new bugs.
 
-* We check for new errors throughout the entire storefront using the Browser Debug Console. We also pay attention to new JavaScript errors.
+* We check for new errors throughout the entire Storefront using the Browser Debug Console. We also pay attention to new JavaScript errors.
 
 * We do a *Lighthouse Audit* to check the performance and quality of your frontend app. There should not be any drastic change in performance or accessibility values when activating the app.
 
 ### Admin apps
 
-We check the complete functionality of the app and test wherever the administration is impacted by the app.
+We check the complete functionality of the app and test wherever the Administration is impacted by the app.
 
 ### API or payment apps
 
@@ -227,7 +227,7 @@ We expect that every cookie set from the store URL is [registered in our Cookie 
 
 ### Menu entries in the main menu not allowed
 
-Menu entries in the main menu of the administration are not allowed because of the look and feel.
+Menu entries in the main menu of the Administration are not allowed because of the look and feel.
 
 ### Automated code tests with Cypress
 

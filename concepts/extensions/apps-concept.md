@@ -21,9 +21,9 @@ To secure this communication, a registration handshake is performed during the i
 Notice that this is optional if Shopware and your app don't need to communicate, e.g., because your app provides a [Theme](apps-concept.md).
 {% endhint %}
 
-## Modify the appearance of the storefront
+## Modify the appearance of the Storefront
 
-Your app can modify the storefront's appearance by shipping your storefront assets \(template files, javascript sources, SCSS sources, snippet files\) alongside your manifest file. You don't need to serve those assets from your external server, as Shopware will build the storefront a new one on the installation of your app and will consider your modifications in that process. Find out more about modifying the appearance of the storefront in the [App Storefront guide](../../guides/plugins/apps/storefront/README.md)
+Your app can modify the Storefront's appearance by shipping your Storefront assets \(template files, javascript sources, SCSS sources, snippet files\) alongside your manifest file. You don't need to serve those assets from your external server, as Shopware will build the Storefront a new one on the installation of your app and will consider your modifications in that process. Find out more about modifying the appearance of the Storefront in the [App Storefront guide](../../guides/plugins/apps/storefront/README.md)
 
 ## Integrate payment providers
 
@@ -39,7 +39,7 @@ Shopware provides functionality for your app to be able to integrate payment pro
 This functionality is available starting with Shopware 6.4.8.0.
 {% endhint %}
 
-[App scripts](../../guides/plugins/apps/app-scripts/README.md) allow your app to execute custom business logic inside the Shopware execution stack. This allows for new use cases, e.g., if you need to load additional data that should be rendered in the storefront or need to manipulate the cart.
+[App scripts](../../guides/plugins/apps/app-scripts/README.md) allow your app to execute custom business logic inside the Shopware execution stack. This allows for new use cases, e.g., if you need to load additional data that should be rendered in the Storefront or need to manipulate the cart.
 
 ## Add conditions to the Rule Builder
 

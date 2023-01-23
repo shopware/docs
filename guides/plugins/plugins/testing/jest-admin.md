@@ -4,7 +4,7 @@
 
 You should write a unit test for every functional change. It should guarantee that your written code works and that a third developer can't break the functionality with their code.
 
-With a good test coverage we can have the confidence to deploy a stable software without needing to manually test the software in its entirety. This little guide will guide you how to write unit tests for the administration in Shopware 6.
+With a good test coverage we can have the confidence to deploy a stable software without needing to manually test the software in its entirety. This little guide will guide you how to write unit tests for the Administration in Shopware 6.
 
 We are using [Jest](https://jestjs.io) as our testing framework. It's a solid foundation and widely used by many developers. Before you are reading this guide you have to make sure you understand the basics of unit tests and how Jest works.
 
@@ -16,7 +16,7 @@ Did you know that there's a video available to this topic? Please take a look:
 
 ## Prerequisites
 
-This tutorial will have a strong focus on how unit tests should be written when it comes to components in the administration. So please make sure you already know what a unit test is and why we are doing it. Furthermore, you should know what components tests are and what we want to achieve with them. You can find a good source for best practices in this Github repository:
+This tutorial will have a strong focus on how unit tests should be written when it comes to components in the Administration. So please make sure you already know what a unit test is and why we are doing it. Furthermore, you should know what components tests are and what we want to achieve with them. You can find a good source for best practices in this Github repository:
 <!-- markdown-link-check-disable-next-line -->
 {% embed url="https://github.com/goldbergyoni/javascript-testing-best-practices" caption="" %}
 
@@ -74,7 +74,7 @@ After setting up your component test, you need to write your tests. A good way t
 * set Vue Props and check if component looks correctly
 * interact with the DOM and check if the desired behaviour is happening
 
-However, when it comes to writing component tests for Shopware's administration, there are some further steps to go. We will take a look at them in the following paragraphs.
+However, when it comes to writing component tests for Shopware's Administration, there are some further steps to go. We will take a look at them in the following paragraphs.
 
 ## Setup for testing Vue components
 
@@ -82,7 +82,7 @@ We are using the [Vue Test Utils](https://vue-test-utils.vuejs.org) for easier t
 
 However, there are some important differences. We can't test components that easily like in other Vue projects because we are supporting template inheritance and extendability for third party developers. This causes overhead which we need to bear in mind.
 
-We are using a global object as an interface for the whole administration. Every component gets registered to this object, e.g. `Shopware.Component.register()`. Therefore, we have access to Component with the `Shopware.Component.build()` method. This creates a native Vue component with a working template. Every override and extension from another components are resolved in the built component.
+We are using a global object as an interface for the whole Administration. Every component gets registered to this object, e.g. `Shopware.Component.register()`. Therefore, we have access to Component with the `Shopware.Component.build()` method. This creates a native Vue component with a working template. Every override and extension from another components are resolved in the built component.
 
 ## Setup tests with create test command
 
@@ -94,9 +94,9 @@ If everything is correct you should now have a `.spec` file with our newest reco
 
 ### Executing tests
 
-Before you are using the commands make sure that you installed all dependencies for your administration. If you haven't done this already, then you can do it running the following PSH command: `composer run init:js`
+Before you are using the commands make sure that you installed all dependencies for your Administration. If you haven't done this already, then you can do it running the following PSH command: `composer run init:js`
 
-In order to run jest unit tests of the administration, you can use the psh commands provided by our development template.
+In order to run jest unit tests of the Administration, you can use the psh commands provided by our development template.
 
 {% hint style="info" %}
 This only applies to the Shopware provided Administration! If you use unit tests in your plugin, you might need to write your own scripts for that.
@@ -501,7 +501,7 @@ responses.addResponse({
 global.repositoryFactoryMock.showWarning = false;
 ```
 
-The response value should contain your test data. It needs to match the response from the backend API. An easy way to get the correct response is to inspect the response from the real API when you open the administration.
+The response value should contain your test data. It needs to match the response from the backend API. An easy way to get the correct response is to inspect the response from the real API when you open the Administration.
 
 If you don't want to use this helper then you can easily overwrite it by setting a custom mock for the repositoryFactory in your mount method.
 
@@ -614,7 +614,7 @@ beforeAll(() => {
 
 ## Next steps
 
-Do you want to see these examples in practice? Head over to our [video tutorial](https://youtu.be/nWUBK3fjwVg) on how to write component tests in jest for the Shopware administration.
+Do you want to see these examples in practice? Head over to our [video tutorial](https://youtu.be/nWUBK3fjwVg) on how to write component tests in jest for the Shopware Administration.
 
 Furthermore, you might want to have a look at one of the following guides as well:
 

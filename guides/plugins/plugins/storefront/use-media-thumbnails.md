@@ -6,7 +6,7 @@ In Shopware's Storefront, you can assign media objects to the different entities
 
 ## Prerequisites
 
-In order to use your own media files or thumbnails of your plugin in the storefront, of course you first need a plugin as base. To create an own plugin, you can refer to the Plugin Base Guide:
+In order to use your own media files or thumbnails of your plugin in the Storefront, of course you first need a plugin as base. To create an own plugin, you can refer to the Plugin Base Guide:
 
 {% page-ref page="../plugin-base-guide.md" %}
 
@@ -16,7 +16,7 @@ Displaying custom images is often done by using custom fields. To take full adva
 
 ## Using searchMedia function
 
-You should be able to store media in your shop and to maintain them in your Administration. It is not possible to display such an image in the storefront with only its media ID though. To achieve that, the function `searchMedia` exists:
+You should be able to store media in your shop and to maintain them in your Administration. It is not possible to display such an image in the Storefront with only its media ID though. To achieve that, the function `searchMedia` exists:
 
 ```php
 public function searchMedia (array $ids, Context $context): MediaCollection { 

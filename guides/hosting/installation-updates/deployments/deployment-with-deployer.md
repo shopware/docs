@@ -277,14 +277,14 @@ Deploy:
     before_script:
         # First, we need to execute all commands that are defined in the `configureSSHAgent` variable.
         - *configureSSHAgent
-        # To use Deployer for our deployment, it needs to be installed globally via composer.
+        # To use Deployer for our deployment, it needs to be installed globally via Composer.
         - composer global require deployer/deployer
     script:
         # This command starts the workflow that is defined in the `deploy` task in the `deploy.php`.
         # `production` is the stage that was defined in the `host` in the `deploy.php`
         - dep deploy production
 
-    # This tells the GitLab Runner to download (`policy: pull`) the `vendor` directory, which contains all composer
+    # This tells the GitLab Runner to download (`policy: pull`) the `vendor` directory, which contains all Composer
     # dependencies into the runner's workspace before the job starts.
     # The cache entry was created by the `Install dependencies` job.
     cache:

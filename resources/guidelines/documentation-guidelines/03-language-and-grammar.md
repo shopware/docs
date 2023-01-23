@@ -128,7 +128,7 @@ Abbreviations include initialisms, acronyms, shortened words, and contractions. 
 
 * In a series of three or more items, use a comma before the sentence's final conjugation (and, or) — for example, *Bundles and plugins can provide their own resources like assets, controllers, services, or tests*.
 
-* Place a comma after an introductory word or phrase — for example, *Also, each plugin is represented as a composer package*.
+* Place a comma after an introductory word or phrase — for example, *Also, each plugin is represented as a Composer package*.
 
 * Use a semicolon, a period, or a dash before a conjunctive adverb, such as *otherwise, however*. Place a comma after the conjunctive adverb.
 

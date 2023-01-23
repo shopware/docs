@@ -2,7 +2,7 @@
 
 ## Overview
 
-Individual sortings are groups of sorting options which you can use to sort product listings. The sortings are available in the storefront.
+Individual sortings are groups of sorting options which you can use to sort product listings. The sortings are available in the Storefront.
 
 This guide will show you how to add individual sorting options using a migration \(manageable\) or at runtime \(non-manageable\).
 
@@ -14,7 +14,7 @@ You should also have a look at our [Database migrations](../plugin-fundamentals/
 
 ## Create individual sorting with migration
 
-In order to make your sorting manageable in the administration by the user, you will need to migrate the data to the database.
+In order to make your sorting manageable in the Administration by the user, you will need to migrate the data to the database.
 
 Create a new Migration in your plugin:
 
@@ -47,9 +47,9 @@ class Migration1615470599ExampleSorting extends MigrationStep
         $myCustomSorting = [
             'id' => Uuid::randomBytes(),
             'url_key' => 'my-custom-sort',  // shown in url - must be unique system wide
-            'priority' => 5,                // the higher the priority, the further upwards it will be shown in the sortings dropdown in storefront
+            'priority' => 5,                // the higher the priority, the further upwards it will be shown in the sortings dropdown in Storefront
             'active' => 1,                  // activate / deactivate the sorting
-            'locked' => 0,                  // you can lock the sorting here to prevent it from being edited in the administration
+            'locked' => 0,                  // you can lock the sorting here to prevent it from being edited in the Administration
             'fields' => json_encode([
                 [
                     'field' => 'product.name',  // field to sort by
@@ -94,7 +94,7 @@ class Migration1615470599ExampleSorting extends MigrationStep
 You can subscribe to the `ProductListingCriteriaEvent` to add a `ProductSortingEntity` as available sorting on the fly. If you don't know how to do this, head over to our [Listening to events](../plugin-fundamentals/listening-to-events.md) guide.
 
 {% hint style="info" %}
-While possible, it is not recommended adding an individual sorting at runtime. If you just wish for your individual sorting to be not editable by users in the administration, create a migration and set the parameter `locked` to be `true`.
+While possible, it is not recommended adding an individual sorting at runtime. If you just wish for your individual sorting to be not editable by users in the Administration, create a migration and set the parameter `locked` to be `true`.
 {% endhint %}
 
 Here's an example how your subscriber could look like:
@@ -155,6 +155,6 @@ class ExampleListingSubscriber implements EventSubscriberInterface
 
 ## Next steps
 
-Are you interested to add a custom filter to your listing in the storefront, as well? Head over to the corresponding guide to learn more about that:
+Are you interested to add a custom filter to your listing in the Storefront, as well? Head over to the corresponding guide to learn more about that:
 
 {% page-ref page="add-listing-filters.md" %}

@@ -16,11 +16,11 @@ This guide will also not explain how a custom component can be created in genera
 
 Imagine you want to create a new element to display a Dailymotion video. The shop manager can configure the link of the video to be shown. That's exactly what you're going to build in this guide.
 
-Creating a new element requires you to extend the administration.
+Creating a new element requires you to extend the Administration.
 
-### Injecting into the administration
+### Injecting into the Administration
 
-The main entry point to customize the administration via plugin is the `main.js` file. It has to be placed into a `<plugin root>/src/Resources/app/administration/src` directory in order to be automatically found by the Shopware platform.
+The main entry point to customize the Administration via plugin is the `main.js` file. It has to be placed into a `<plugin root>/src/Resources/app/administration/src` directory in order to be automatically found by the Shopware platform.
 
 ## Registering a new element
 
@@ -56,7 +56,7 @@ The method `registerCmsElement` takes a configuration object, containing the fol
 | :--- | :--- |
 | name | The technical name of your element. Will be used for the template loading later on. |
 | label | A name to be shown for your element in the User Interface. Preferably as a snippet key. |
-| component | The Vue component to be used when rendering your actual element in the administration. |
+| component | The Vue component to be used when rendering your actual element in the Administration. |
 | configComponent | The Vue component defining the "configuration detail" page of your element. |
 | previewComponent | The Vue component to be used in the "list of available elements". Just shows a tiny preview of what your element would look like if it was used. |
 | defaultConfig | A default configuration to be applied to this element. Must be an object containing properties matching the used variable names, containing the default values. |
@@ -101,7 +101,7 @@ To do this, create a folder with the name snippet in your `sw-cms` folder. After
 }
 ```
 
-To learn more about adding own snippets, please refer to [Add snippets to administration](../../administration/adding-snippets.md) for more information.
+To learn more about adding own snippets, please refer to [Add snippets to Administration](../../administration/adding-snippets.md) for more information.
 
 For all three fields `component`, `configComponent` and `previewComponent`, components that do not _yet_ exist were applied. Those will be created in the next few steps as well. The `defaultConfig` defines the default values for the element's configuration. There will be a text field to enter a Dailymotion video ID called `dailyUrl`.
 
@@ -405,7 +405,7 @@ Shopware.Service('cmsService').registerCmsElement({
 
 {% endcode %}
 
-That's it! You could now go ahead and fully test your new element! Install this plugin via `bin/console plugin:install --activate SwagBasicExample`, rebuild the administration using the following command and then start using your new element in the administration.
+That's it! You could now go ahead and fully test your new element! Install this plugin via `bin/console plugin:install --activate SwagBasicExample`, rebuild the Administration using the following command and then start using your new element in the Administration.
 
 {% tabs %}
 {% tab title="Development template" %}
@@ -435,7 +435,7 @@ So go ahead and re-create that structure in your plugin: `<plugin root>/src/Reso
 
 In there create a new twig template named after your element, so `cms-element-dailymotion.html.twig` that is.
 
-The template for this is super easy though, just like it's been in your main component for the administration. Just add an iFrame again. Simply apply the same styles like in the administration, 100% to both height and width that is.
+The template for this is super easy though, just like it's been in your main component for the Administration. Just add an iFrame again. Simply apply the same styles like in the Administration, 100% to both height and width that is.
 
 {% code title="platform/src/Storefront/Resources/views/storefront/element/cms-element-dailymotion.html.twig" %}
 {% raw %}
@@ -466,7 +466,7 @@ The template for this is super easy though, just like it's been in your main com
 
 The URL is parsed here using the twig variable element, which is automatically available in your element's template.
 
-Once more: That's it! Your element is now fully working! The shop manager can choose your new element in the 'Shopping Experiences' module, he can configure it and even see it being rendered live in the administration. After saving and applying this layout to e.g. a category, this element will also be rendered into the storefront.
+Once more: That's it! Your element is now fully working! The shop manager can choose your new element in the 'Shopping Experiences' module, he can configure it and even see it being rendered live in the Administration. After saving and applying this layout to e.g. a category, this element will also be rendered into the Storefront.
 
 ## Next steps
 
