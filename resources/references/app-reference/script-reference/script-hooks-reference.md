@@ -26,7 +26,7 @@ All available Hooks that can be used to load additional data.
 | **Class**              | `Shopware\Core\Checkout\Shipping\Hook\ShippingMethodRouteHook`                      |
 | **Description**        | Triggered when ShippingMethodRoute is requested<br>                  |
 | **Available Data**     | collection: [`Shopware\Core\Checkout\Shipping\ShippingMethodCollection`](https://github.com/shopware/platform/blob/trunk/src/Core/Checkout/Shipping/ShippingMethodCollection.php)<br>onlyAvailable: `bool`<br>salesChannelContext: [`Shopware\Core\System\SalesChannel\SalesChannelContext`](https://github.com/shopware/platform/blob/trunk/src/Core/System/SalesChannel/SalesChannelContext.php)<br>context: [`Shopware\Core\Framework\Context`](https://github.com/shopware/platform/blob/trunk/src/Core/Framework/Context.php)<br>        |
-| **Available Services** | [repository](./data-loading-script-services-reference.md#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference.md#SystemConfigFacade)<br>[store](./data-loading-script-services-reference.md#SalesChannelRepositoryFacade)<br> |
+| **Available Services** | [repository](./data-loading-script-services-reference.md#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference.md#servicesconfig-shopwarecoresystemsystemconfigfacadesystemconfigfacade-systemconfigfacade)<br>[store](./data-loading-script-services-reference.md#servicesstore-shopwarecoreframeworkdataabstractionlayerfacadesaleschannelrepositoryfacade-saleschannelrepositoryfacade)<br> |
 | **Stoppable**          | `false`                  |
 
 #### customer-group-registration-page-loaded
