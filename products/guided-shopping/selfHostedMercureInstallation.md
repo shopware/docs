@@ -29,7 +29,7 @@ Use different publisher and subscriber keys for security reasons.
 
 {% code %}
 
-```
+```dockerfile
 - MERCURE_PUBLISHER_JWT_KEY: your-256-bit-publisher-key
 - MERCURE_SUBSCRIBER_JWT_KEY: your-256-bit-subscriber-key
 - MERCURE_EXTRA_DIRECTIVES: |-  
@@ -44,7 +44,7 @@ You can also configure it like the self-installed version via the Caddyfile.
 
 {% code title="Sample Caddyfile" %}
 
-```
+```dockerfile
 {
     # Debug mode (disable it in production!)
     debug
@@ -84,7 +84,7 @@ The [installation guide](https://mercure.rocks/docs/hub/install) explains all st
 
 {% code %}
 
-```
+```dockerfile
 mercure {
 ...  
 publisher_jwt my-publisher-key HS256  

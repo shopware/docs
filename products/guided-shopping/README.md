@@ -22,14 +22,14 @@ Guided Shopping is a commercial extension and is not available as open source.
 1. Install and activate [PWA plugin](https://github.com/shopware/SwagShopwarePwa)(version 0.3.3 and above) in Shopware 6 instance.
 1. Install [Mercure package](https://packagist.org/packages/symfony/mercure#v0.5.3)(version 0.5.3) in Shopware 6 instance.
 
-  {% hint style="info" %}
-  To install Mercure 0.5.3, use the following command:
-    
-  ```
-  composer require symfony/mercure ^0.5.3
-  ```
-    
-  {% endhint %}
+    {% hint style="info" %}
+    To install Mercure 0.5.3, use the following command:
+
+    ```php
+    composer require symfony/mercure ^0.5.3
+    ```
+
+    {% endhint %}
 
 1. Install Mercure service with the below available options:
    * [Self-hosted installation](./selfHostedMercureInstallation.md).
@@ -44,7 +44,7 @@ To install and use the Guided Shopping feature, follow the below steps:
 
 1. Clone or download the [repository](https://github.com/shopware/guided-shopping).
 1. Extract the plugin including the outer folder `SwagGuidedShopping` to `platform/custom/plugins` directory of Shopware repository.
-1. Make sure the plugin has a PHP package structure containing _`composer.json`_ file, _`src/`_ folder and so on.
+1. Make sure the plugin has a PHP package structure containing `composer.json` file, `src/` folder and so on.
 1. Prepare a zip file containing the plugin as in the following structure:
 
 {% code %}
@@ -90,9 +90,9 @@ You can install the plugin via admin panel or terminal server.
 #### Terminal server
 
 1. Log in to a server.
-2. Zip the plugin and place it in `<shopware-root-dir>/custom/plugins` directory.
-3. Extract the zip file from `<shopware-root-dir>/custom/plugins` directory.
-4. Run the below Symfony commands:
+1. Zip the plugin and place it in `<shopware-root-dir>/custom/plugins` directory.
+1. Extract the zip file from `<shopware-root-dir>/custom/plugins` directory.
+1. Run the below Symfony commands:
 
 ```bash
 # refresh the list of available plugins
@@ -132,8 +132,8 @@ Daily service is responsible for streaming a video between the attendees. It is 
 #### Set up an account
 
 1. Go to the [Daily dashboard](https://dashboard.daily.co/).
-2. Visit the “developers” section on the left.
-3. Get the **API KEY**.
+1. Visit the “developers” section on the left.
+1. Get the **API KEY**.
 
 ### Configure the plugin
 
@@ -168,7 +168,7 @@ Daily and Mercure are two external services that are crucial for working with th
 
 1. Link the guided-shopping plugin to PWA using the below command:
 
-    ```
+    ```text
     ln -s <your-path-to-guidedShoppingRepo>/src/Resources/app/pwa <your-path-to-shopware-pwa-repo>/sw-plugins/guided-shopping
     ```
 
@@ -176,7 +176,7 @@ Daily and Mercure are two external services that are crucial for working with th
 1. Edit `PWA_PATH` in makefile in guided-shopping folder with your current pwa folder path.
 1. Install additional dependencies using the below command:
 
-    ```
+    ```text
     make install-pwa
     ```
 
@@ -237,12 +237,12 @@ In order to synchronize `SwagGuidedShopping` plugin on the backend (installed be
     yarn build
     # under the hood, plugins synchronization will be processed at the same time
     ```
-    
+
     {% hint style="info" %}
     💡 Alternatively, you can invoke the `plugins` command manually, using :
     `npx @shopware-pwa/cli@canary plugins --user YOUR_ADMIN_USERNAME --password=YOUR_SECRET_PASS`
     Now, the application is ready for the rebuild process.
-    
+
     Note that the admin credentials are required to connect to the installed plugin library through an Admin API.
     {% endhint %}
 
