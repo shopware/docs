@@ -14,7 +14,7 @@ All available Hooks that can be used to load additional data.
 | **Class**              | `Shopware\Core\Checkout\Payment\Hook\PaymentMethodRouteHook`                      |
 | **Description**        | Triggered when PaymentMethodRoute is requested<br>                  |
 | **Available Data**     | collection: [`Shopware\Core\Checkout\Payment\PaymentMethodCollection`](https://github.com/shopware/platform/blob/trunk/src/Core/Checkout/Payment/PaymentMethodCollection.php)<br>onlyAvailable: `bool`<br>salesChannelContext: [`Shopware\Core\System\SalesChannel\SalesChannelContext`](https://github.com/shopware/platform/blob/trunk/src/Core/System/SalesChannel/SalesChannelContext.php)<br>context: [`Shopware\Core\Framework\Context`](https://github.com/shopware/platform/blob/trunk/src/Core/Framework/Context.php)<br>        |
-| **Available Services** | [repository](./data-loading-script-services-reference.md#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference.md#SystemConfigFacade)<br>[store](./data-loading-script-services-reference.md#SalesChannelRepositoryFacade)<br> |
+| **Available Services** | [repository](./data-loading-script-services-reference.md#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference.md#servicesconfig-shopwarecoresystemsystemconfigfacadesystemconfigfacade-systemconfigfacade)<br>[store](./data-loading-script-services-reference.md#servicesstore-shopwarecoreframeworkdataabstractionlayerfacadesaleschannelrepositoryfacade-saleschannelrepositoryfacade)<br> |
 | **Stoppable**          | `false`                  |
 
 #### shipping-method-route-request
