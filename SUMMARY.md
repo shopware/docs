@@ -459,6 +459,7 @@
       * [Atomic theme compilation](resources/references/adr/storefront/2023-01-10-atomic-theme-compilation.md)
     * [Testing](resources/references/adr/testing/README.md)
       * [Deprecation handling during phpunit test execution](resources/references/adr/testing/2022-10-20-deprecation-handling-during-phpunit-test-execution.md)
+      * [Mocking repositories](resources/references/adr/testing/2023-04-01-mocking-repositories.md)
     * [Workflow](resources/references/adr/workflow/README.md)
       * [Implement architecture decision records](resources/references/adr/workflow/2020-06-25-implement-architecture-decision-records.md)
       * [Implement New Changelog](resources/references/adr/workflow/2020-08-03-implement-New-Changelog.md)
