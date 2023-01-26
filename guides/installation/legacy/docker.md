@@ -1,8 +1,12 @@
 # Docker
 
+{% hint style="danger" %}
+This approach is no longer recomended. It is kept here as a reference.
+{% endhint %}
+
 Docker is **not** the recommended way to install Shopware 6 on a Mac when it comes to the default way, due to performance issues. You can still have a look at other possibilities below.
 
-When using Windows, it is recommended to use [Dockware](dockware.md) or other ways to install Shopware.
+When using Windows, it is recommended to use [Dockware](../community/dockware.md) or other ways to install Shopware.
 
 ## Default way
 
@@ -99,6 +103,5 @@ As the next step, you might want to start writing your very own plugin. Refer to
 
 Would you like to explore alternative ways to install Shopware? You can install Shopware on Mac with the help of other tools:
 
-* [Dockware](dockware.md)
+* [Dockware](../community/dockware.md)
 * [Vagrant](vagrant.md)
-* [MAMP](mamp.md)

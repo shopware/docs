@@ -43,8 +43,6 @@ Follow the below steps to start your project:
 You can install Shopware on Mac with the help of other tools:
 
 * Docker
-* Vagrant
-* MAMP
 ```
 
 However, regular bulleted lists within tables use HTML tags.
