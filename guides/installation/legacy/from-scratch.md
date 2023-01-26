@@ -1,6 +1,6 @@
 # Installation from Scratch
 
-{% hint style="info" %}
+{% hint style="danger" %}
 This approach is no longer recomended. It is kept here as a reference.
 {% endhint %}
 
