@@ -33,7 +33,7 @@ In this very simple example it suffices to create a twig file, declare a block w
 ```
 
 This overrides the entire Twig block with our new markup.
-However, if we want to retain the original content of the Twig block and just add our markup to the existing one, we can do that by including a {% raw %}`{% parent %}`{% endraw %} somewhere in the Twig block.
+However, if we want to retain the original content of the Twig block and just add our markup to the existing one, we can do that by including a <code v-pre>{% parent %}</code> somewhere in the Twig block.
 Learn more about the capabilities of twig.js [here](https://github.com/twigjs/twig.js/wiki).
 
 As you might have noticed the heading we just replaced had a `{ $tc() }` [string interpolation](https://vuejs.org/v2/guide/syntax.html#Text) which is used to make it multilingual.
