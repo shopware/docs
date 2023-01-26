@@ -1,5 +1,9 @@
 # Valet+
 
+{% hint style="info" %}
+This approach is no longer recomended. It is kept here as a reference.
+{% endhint %}
+
 ## Overview
 
 Valet+ is a fork of [laravel/valet](https://github.com/laravel/valet). It supports automatic virtual host configuration based on the folder structure.
