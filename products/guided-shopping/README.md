@@ -14,11 +14,11 @@ Guided Shopping is a commercial extension and is not available as open source.
 
 Review the below minimum operating requirements before you install the Guided Shopping feature:
 
-1. Instance of [Shopware 6](https://developer.shopware.com/docs/guides/installation/from-scratch)(version 6.4.18.0 and above).
+1. Instance of [Shopware 6](../../guides/installation/from-scratch.md)(version 6.4.18.0 and above).
 
-  {% hint style="warning" %}
-  Compliant Node.js version for PWA setup is v14.0.0 to v16.0.0.
-  {% endhint %}
+    {% hint style="warning" %}
+    Compliant Node.js version for PWA setup is v14.0.0 to v16.0.0.
+    {% endhint %}
 
 1. Instance of [Shopware PWA](https://github.com/vuestorefront/shopware-pwa)(version 1.2.0 and above).
 1. Install and activate [PWA plugin](https://github.com/shopware/SwagShopwarePwa)(version 0.3.3 and above) in Shopware 6 instance.
@@ -35,5 +35,5 @@ Review the below minimum operating requirements before you install the Guided Sh
 
 1. Install Mercure service with the below available options:
    * [Self-hosted installation](./selfHostedMercureInstallation.md).
-   * [Cloud service](https://mercure.rocks/). Refer to the [basic configuration](./installation.md#basic-configuration-of-mercure-hub) section.
+   * [Cloud service](https://mercure.rocks/). Refer to the [basic configuration of Mercure hub](./installation.md#basic-configuration-of-mercure-hub) section.
 1. An account in [daily.co](http://daily.co/). Refer to [set up an account](./installation.md#set-up-an-account) section.

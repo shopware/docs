@@ -4,7 +4,7 @@ To install and use the Guided Shopping feature, follow the below steps:
 
 ## Get the plugin
 
-1. Clone or download the [repository](https://github.com/shopware/guided-shopping).
+1. Clone or download the [guided-shopping repository](https://github.com/shopware/guided-shopping).
 1. Extract the plugin including the outer folder `SwagGuidedShopping` to `platform/custom/plugins` directory of Shopware repository.
 1. Make sure the plugin has a PHP package structure containing `composer.json` file, `src/` folder and so on.
 1. Prepare a zip file containing the plugin as in the following structure:
@@ -32,7 +32,7 @@ To install and use the Guided Shopping feature, follow the below steps:
 
 You can install the plugin via admin panel or terminal server.
 
-### Admin panel using the zip package
+### Admin panel
 
 1. Log in to the admin panel.
 1. Go to Extensions > My extensions
@@ -64,7 +64,7 @@ bin/console plugin:install **SwagGuidedShopping** --activate
 # clear the cache afterwards
 bin/console cache:clear
 
-# Now it is ready to use :) 🏁
+# Now it is ready to use
 ```
 
 ## Basic configuration of Mercure Hub
@@ -104,19 +104,19 @@ Once the plugin is installed, the services are up and running and have all the r
 To do so,
 
 1. Navigate to admin panel where the Guided Shopping plugin is installed.
-1. Click the menu and select configure option to configure the below two sections.
+1. Click the menu and select configure option to configure the below two sections:
 
-    * **Video (daily)**
+    * **Video (daily.co)**
 
       * You can leave the **API Base URL** as it is `https://api.daily.co/v1/` if not necessary.
-      * Put your **API KEY** into the right input.
+      * Insert your **API KEY**.
 
     ![an example of Video section in the plugin’s configuration](../../../docs/.gitbook/assets/products-guidedShopping-videoConfig.png)
 
     * **Mercure**
 
       * Replace *Mercure Hub Url* and *Mercure Hub Public Url* with your domain’s URL where the Mercure service is working and accessible from your stack. For instance, for the URL `https://fcoxpx.stackhero-network.com`, it would be `https://fcoxpx.stackhero-network.com/.well-known/mercure`.
-      * Paste the secret tokens that were set up in your Mercure service configuration.
+      * Input the secret tokens that were set up in your Mercure service configuration.
 
     ![an example of Mercure section in the plugin’s configuration](../../../docs/.gitbook/assets/products-guidedShopping-mercureConfigExample.png)
 
@@ -134,7 +134,7 @@ Daily and Mercure are two external services that are crucial for working with th
     ln -s <your-path-to-guidedShoppingRepo>/src/Resources/app/pwa <your-path-to-shopware-pwa-repo>/sw-plugins/guided-shopping
     ```
 
-1. Navigate to folder pwa > sw-plugins and open `local-plugins.json` file to add `"guided-shopping": true`.
+1. Navigate to the folder `pwa` > `sw-plugins` and open `local-plugins.json` file to add `"guided-shopping": true`.
 1. Edit `PWA_PATH` in makefile in guided-shopping folder with your current pwa folder path.
 1. Install additional dependencies using the below command:
 
@@ -189,9 +189,9 @@ Daily and Mercure are two external services that are crucial for working with th
 
 ## Rebuild Shopware PWA
 
-In order to synchronize `SwagGuidedShopping` plugin on the backend (installed before), the Shopware PWA must be rebuilt (recompiled) after the plugins are downloaded. Thanks to this, the PWA will contain the Guided Shopping plugin installed and ready to use.
+In order to synchronize the installed `SwagGuidedShopping` plugin in the backend, the Shopware PWA must be rebuilt (recompiled) after the plugins are downloaded. Follow the below steps:
 
-1. Check credentials in the `.env` file (ADMIN_USER and ADMIN_PASSWORD)
+1. Check credentials in the `.env` file (ADMIN_USER and ADMIN_PASSWORD).
 1. Run the build command.
 
     ```bash
@@ -208,6 +208,8 @@ In order to synchronize `SwagGuidedShopping` plugin on the backend (installed be
     Note that the admin credentials are required to connect to the installed plugin library through an Admin API.
     {% endhint %}
 
-1. Re-deploy Shopware PWA
+1. Re-deploy Shopware PWA.
 
-Now let us rehearse the steps before deployment by going through the [Checklist](checklist.md).
+With this the PWA will contain the Guided Shopping plugin and ready to use.
+
+Now let us rehearse the steps before deployment by going through the [Checklist](./checklist.md).
