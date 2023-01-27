@@ -83,7 +83,9 @@ Detailed below is the minimum configuration needed for a working stack apart fro
 
 * **Set up the subscriber (JWT) key** - Set whatever you want.
 
-* **Other settings** - Take a look at this [sample Mercure config on StackHero](./sampleMercureConfig.md) (Default settings is recommended).
+* **Other settings** - Take a look at the below sample Mercure configurations on StackHero (Default settings is recommended).
+
+![ ](../../.gitbook/assets/products-guidedShopping-mercureConfig.png)
 
 ### Daily service access
 

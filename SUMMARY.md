@@ -107,6 +107,7 @@
 * [Guided Shopping](products/guided-shopping/README.md)
   * [Guided Shopping installation](products/guided-shopping/installation.md)
   * [Self-hosted Mercure installation](products/guided-shopping/selfHostedMercureInstallation.md)
+  * [Developers' checklist](products/guided-shopping/checklist.md)
 
 ## Guides
 
