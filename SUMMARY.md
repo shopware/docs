@@ -105,10 +105,10 @@
 * [PWA](products/pwa.md)
 * [Community Edition](products/community-edition.md)
 * [Guided Shopping](products/guided-shopping/README.md)
-  * [Guided Shopping installation](products/guided-shopping/installation.md)
-  * [Self-hosted Mercure installation](products/guided-shopping/selfHostedMercureInstallation.md)
-  * [Developers' checklist](products/guided-shopping/checklist.md)
+  * [Guided Shopping Installation](products/guided-shopping/installation.md)
   * [Sample Mercure Configuration](products/guided-shopping/sampleMercureConfig.md)
+  * [Self-hosted Mercure Installation](products/guided-shopping/selfHostedMercureInstallation.md)
+  * [Developers' Checklist](products/guided-shopping/checklist.md)
 
 ## Guides
 
