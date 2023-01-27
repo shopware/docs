@@ -90,7 +90,9 @@ use Shopware\Core\Content\Media\TypeDetector\TypeDetectorInterface;
 class CustomImageTypeDetector implements TypeDetectorInterface
 {
     protected const SUPPORTED_FILE_EXTENSIONS = [
-        'img' => [ImageType::TRANSPARENT],
+        'img' => [
+            ImageType::TRANSPARENT,
+        ],
     ];
 
     public function detect(MediaFile $mediaFile, ?MediaType $previouslyDetectedType): ?MediaType
