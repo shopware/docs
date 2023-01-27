@@ -4,7 +4,7 @@ Guided Shopping is the state-of-the-art new feature that seamlessly integrates i
 
 You can create interactive live video events for your customers straight from your Shopware website without having to switch between a presentation tool, video conferencing system, and store system. It is one sophisticated solution to highlight your products, engage your customers and reinforce brand loyalty.
 
-![Untitled](../../../docs/.gitbook/assets/products-guidedShopping.png)
+![Untitled](../../.gitbook/assets/products-guidedShopping.png)
 
 {% hint style="warning" %}
 Guided Shopping is a commercial extension and is not available as open source.

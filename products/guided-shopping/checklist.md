@@ -19,7 +19,7 @@
 
 ### Setup
 
-![Untitled](../../../docs/.gitbook/assets/products-guidedShopping-checklist.png)
+![Untitled](../../.gitbook/assets/products-guidedShopping-checklist.png)
 
 - The plugin is installed with no errors and it is available in the “Marketing” section.
   
