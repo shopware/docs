@@ -85,7 +85,7 @@ Detailed below is the minimum configuration needed for a working stack apart fro
 
 * **Other settings** - Take a look at the below sample Mercure configuration on StackHero (Default settings is recommended).
 
-[](./sampleMercureConfig.md)
+![ ](../../.gitbook/assets/products-guidedShopping-mercureConfig.png)
 
 ### Daily service access
 
