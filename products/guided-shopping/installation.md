@@ -37,15 +37,15 @@ You can install the plugin via admin panel or terminal server.
 1. Log in to the admin panel.
 1. Go to Extensions > My extensions
 
-   ![Untitled](../../.gitbook/assets/products-guidedShopping-extensionsMenu.png)
+   ![Untitled](../../../docs/.gitbook/assets/products-guidedShopping-extensionsMenu.png)
 
 1. Click on the “Upload extension” button and choose the zip file containing the plugin from your device.
 
-   ![Untitled](../../.gitbook/assets/products-guidedShopping-uploadExtension.png)
+   ![Untitled](../../../docs/.gitbook/assets/products-guidedShopping-uploadExtension.png)
 
 1. Once it is uploaded and listed, click “Install app”.
 
-    ![Untitled](../../.gitbook/assets/products-guidedShopping-swagExtensionOnList.png)
+    ![Untitled](../../../docs/.gitbook/assets/products-guidedShopping-swagExtensionOnList.png)
 
 1. On successful installation, activate the plugin by clicking on the switch button on the left.
 
@@ -111,14 +111,14 @@ To do so,
       * You can leave the **API Base URL** as it is `https://api.daily.co/v1/` if not necessary.
       * Insert your **API KEY**.
 
-    ![an example of Video section in the plugin’s configuration](../../.gitbook/assets/products-guidedShopping-videoConfig.png)
+    ![an example of Video section in the plugin’s configuration](../../../docs/.gitbook/assets/products-guidedShopping-videoConfig.png)
 
     * **Mercure**
 
       * Replace *Mercure Hub Url* and *Mercure Hub Public Url* with your domain’s URL where the Mercure service is working and accessible from your stack. For instance, for the URL `https://fcoxpx.stackhero-network.com`, it would be `https://fcoxpx.stackhero-network.com/.well-known/mercure`.
       * Input the secret tokens that were set up in your Mercure service configuration.
 
-    ![an example of Mercure section in the plugin’s configuration](../../.gitbook/assets/products-guidedShopping-mercureConfigExample.png)
+    ![an example of Mercure section in the plugin’s configuration](../../../docs/.gitbook/assets/products-guidedShopping-mercureConfigExample.png)
 
 Daily and Mercure are two external services that are crucial for working with the Guided Shopping plugin.
 
