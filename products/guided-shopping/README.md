@@ -24,8 +24,8 @@ The compliant Node.js version for PWA setup is v14.0.0 to v16.0.0.
 * Install and activate [PWA plugin](https://github.com/shopware/SwagShopwarePwa)(version 0.3.3 and above) in Shopware 6 instance.
 * Install [Mercure package](https://packagist.org/packages/symfony/mercure#v0.5.3)(version 0.5.3) in Shopware 6 instance.
 
-```php
-//To install Mercure 0.5.3, use the following command
+```bash
+# To install Mercure 0.5.3, use the following command
 composer require symfony/mercure ^0.5.3
 ```
 
