@@ -1,3 +1,3 @@
-# Sample Mercure Config on StackHero
+# Sample Mercure Configuration on StackHero
 
-![mercureConfig](../../.gitbook/assets/products-guidedShopping-mercureConfig.png)
+![Mercure configuration](../../.gitbook/assets/products-guidedShopping-mercureConfig.png)

@@ -1,17 +1,17 @@
 # Self-hosted Mercure Installation for Guided Shopping
 
-## Mercure installation
-
-### Mercure general settings
+## Mercure general settings
 
 | Name | Variable | Description |
 | ---- | -------- | ----------- |
 | Publisher JWT Key  | publisher_jwt      | The JWT key used for authenticating publishers |
 | Subscriber JWT Key | subscriber_jwt     | The JWT key used for authenticating subscribers|
-| CORS Origin        | cors_origins       | List of domains allowed to connect to the Mercure hub as value of the cors_origins. For other cases check [troubleshoot cors errors](https://mercure.rocks/docs/hub/troubleshooting#cors-issues) |
-| UI                 | ui                 | Enable the UI and expose demo |
-| Demo               | demo               | Enable the UI but do not expose demo |
+| CORS Origin        | cors_origins       | List of domains allowed to connect to the Mercure hub as value of the cors_origins. For other cases, check [troubleshoot cors errors](https://mercure.rocks/docs/hub/troubleshooting#cors-issues) |
+| UI                 | ui                 | Enable the UI and expose the demo |
+| Demo               | demo               | Enable the UI but do not expose the demo |
 | Anonymous          | anonymous          | Allow subscribers with no valid JWT to connect |
+
+## Mercure installation
 
 There are two recommended ways of Mercure installations:
 
@@ -76,11 +76,11 @@ route {
 
 {% endcode %}
 
-### 2. Self-installed
+### 2. Self-installation
 
 The [installation guide](https://mercure.rocks/docs/hub/install) explains all steps that are required for installing the Mercure.
 
-#### Production config
+#### Production configuration
 
 {% code %}
 
