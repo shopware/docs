@@ -15,6 +15,7 @@ As most guides, this guide is also built upon the [Plugin base guide](../../plug
 First, we have to create a new class which we will name `SmsHandler` in this example. To mark the class as message handler, we use the php attribute `#[AsMessageHandler]` and implement the method `__invoke`. We can also define multiple handlers for the same message. To register a handler, we have to tag it with the `messenger.message_handler` tag.
 
 {% code title="<plugin root>/src/MessageQueue/Handler/SmsHandler.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -150,24 +151,9 @@ A [transport](https://symfony.com/doc/current/messenger.html#transports-async-qu
 
 You can configure an amqp transport directly in your `framework.yaml` and simply tell Symfony to use your  transports.
 
-In your `framework.yaml` you simply configure your transports as follows:
-
-{% code title="<platform root>/src/Core/Framework/Resources/config/packages/enqueue.yaml" %}
-
-```yaml
-framework:
-  messenger:
-    transports:
-      default: # the name of your transport
-        dsn: # the dsn configuration
-        serializer: # the serializer configuration
-```
-
-{% endcode %}
-
 In a simple setup you only need to set the transport to a valid DSN like:
 
-{% code title="<platform root>/src/Core/Framework/Resources/config/packages/enqueue.yaml" %}
+{% code title="<platform root>/src/Core/Framework/Resources/config/packages/queue.yaml" %}
 
 ```yaml
 framework:
@@ -175,8 +161,6 @@ framework:
     transports:
       my_transport:
         dsn: "%env(MESSENGER_TRANSPORT_DSN)%"
-        options:
-          auto_setup: false
 ```
 
 {% endcode %}
@@ -216,7 +200,7 @@ shopware:
     admin_worker:
         enable_admin_worker: true
         poll_interval: 30
-        transports: ["default"]
+        transports: ["async"]
 ```
 
 {% endcode %}
