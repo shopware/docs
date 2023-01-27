@@ -7,11 +7,9 @@ To install and use the Guided Shopping feature, follow the below steps:
 ### Get the plugin
 
 1. Clone or download the [guided-shopping repository](https://github.com/shopware/guided-shopping).
-1. Extract the plugin including the outer folder `SwagGuidedShopping` to `platform/custom/plugins` directory of Shopware repository.
-1. Make sure the plugin has a PHP package structure containing `composer.json` file, `src/` folder and so on.
+1. Extract the plugin, including the outer folder `SwagGuidedShopping`, to `platform/custom/plugins` directory of Shopware repository.
+1. Make sure the plugin has a PHP package structure containing `composer.json` file, `src/` folder, and so on.
 1. Prepare a zip file containing the plugin as in the following structure:
-
-{% code %}
 
 ```bash
 # SwagGuidedShopping.zip
@@ -28,11 +26,9 @@ To install and use the Guided Shopping feature, follow the below steps:
 └── tests
 ```
 
-{% encode %}
-
 ### Install the plugin
 
-You can install the plugin via admin panel or terminal server.
+You can install the plugin via the admin panel or terminal server.
 
 #### Admin panel
 
@@ -74,14 +70,14 @@ bin/console cache:clear
 Except for the self-hosted service, we recommend using any cloud-based service.
 
 {% hint style="info" %}
-💡 We tested the service provided by [StackHero](https://www.stackhero.io/en/services/Mercure-Hub/pricing). Depending on the expected traffic, you can easily switch between the plans. For a small demo between few people at the same time, the “Hobby” plan is sufficient.
+💡 We tested the service provided by [StackHero](https://www.stackhero.io/en/services/Mercure-Hub/pricing). Depending on the expected traffic, you can easily switch between the plans. For a small demo among a few people at the same time, the “Hobby” plan is sufficient.
 {% endhint %}
 
-Detailed below the minimum configuration needed for a working stack apart from project specific CMS configuration.
+Detailed below is the minimum configuration needed for a working stack apart from project specific CMS configurations.
 
 * **Set up CORS allowed origins** - In our case, it would be the domain where the Shopware PWA is hosted and available. For instance: `https://shopware-pwa-gs.herokuapp.com`(frontend).
 
-* **Set up publish allowed origins** - The domains which requests the Mercure service must be added to publish allowed origins else it gets rejected. For instance (HTTP protocol must not be included): `shopware-pwa-gs.herokuapp.com` (frontend) and `pwa-demo-api.shopware.com`(backend - API).
+* **Set up publish allowed origins** - The domains which request the Mercure service must be added to *publish allowed origins* else it gets rejected. For instance (HTTP protocol must not be included): `shopware-pwa-gs.herokuapp.com` (frontend) and `pwa-demo-api.shopware.com`(backend - API).
 
 * **Set up the publisher (JWT) key** - Set whatever you want.
 
@@ -105,7 +101,7 @@ Once the plugin is installed, the services are up and running and have all the r
 
 To do so,
 
-1. Navigate to admin panel where the Guided Shopping plugin is installed.
+1. Navigate to the admin panel where the Guided Shopping plugin is installed.
 1. Click the menu and select configure option to configure the below two sections:
 
     * **Video (daily.co)**
@@ -194,6 +190,15 @@ Daily and Mercure are two external services that are crucial for working with th
 In order to synchronize the installed `SwagGuidedShopping` plugin in the backend, the Shopware PWA must be rebuilt (recompiled) after the plugins are downloaded. Follow the below steps:
 
 1. Check credentials in the `.env` file (ADMIN_USER and ADMIN_PASSWORD).
+
+    {% hint style="info" %}
+    💡 Alternatively, you can invoke the `plugins` command manually using:
+    `npx @shopware-pwa/cli@canary plugins --user YOUR_ADMIN_USERNAME --password=YOUR_SECRET_PASS`
+    Now, the application is ready for the rebuild process.
+
+    Note that the admin credentials are required to connect to the installed plugin library through an Admin API.
+    {% endhint %}
+
 1. Run the build command.
 
     ```bash
@@ -202,16 +207,8 @@ In order to synchronize the installed `SwagGuidedShopping` plugin in the backend
     # under the hood, plugins synchronization will be processed at the same time
     ```
 
-    {% hint style="info" %}
-    💡 Alternatively, you can invoke the `plugins` command manually, using :
-    `npx @shopware-pwa/cli@canary plugins --user YOUR_ADMIN_USERNAME --password=YOUR_SECRET_PASS`
-    Now, the application is ready for the rebuild process.
-
-    Note that the admin credentials are required to connect to the installed plugin library through an Admin API.
-    {% endhint %}
-
 1. Re-deploy Shopware PWA.
 
-With this the PWA will contain the Guided Shopping plugin and ready to use.
+With this, the PWA will contain the Guided Shopping plugin and be ready to use.
 
 Now let us rehearse the steps before deployment by going through the [Checklist](./checklist.md).
