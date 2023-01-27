@@ -1,8 +1,6 @@
 # Self-hosted Mercure Installation for Guided Shopping
 
-## Mercure installation
-
-### Mercure general settings
+## Mercure general settings
 
 | Name | Variable | Description |
 | ---- | -------- | ----------- |
@@ -12,6 +10,8 @@
 | UI                 | ui                 | Enable the UI and expose demo |
 | Demo               | demo               | Enable the UI but do not expose demo |
 | Anonymous          | anonymous          | Allow subscribers with no valid JWT to connect |
+
+## Mercure installation
 
 There are two recommended ways of Mercure installations:
 

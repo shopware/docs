@@ -1,8 +1,10 @@
 # Guided Shopping Installation
 
+## Install and use the Guided Shopping feature
+
 To install and use the Guided Shopping feature, follow the below steps:
 
-## Get the plugin
+### Get the plugin
 
 1. Clone or download the [guided-shopping repository](https://github.com/shopware/guided-shopping).
 1. Extract the plugin including the outer folder `SwagGuidedShopping` to `platform/custom/plugins` directory of Shopware repository.
@@ -28,28 +30,28 @@ To install and use the Guided Shopping feature, follow the below steps:
 
 {% encode %}
 
-## Install the plugin
+### Install the plugin
 
 You can install the plugin via admin panel or terminal server.
 
-### Admin panel
+#### Admin panel
 
 1. Log in to the admin panel.
 1. Go to Extensions > My extensions
 
-   ![Untitled](../../.gitbook/assets/products-guidedShopping-extensionsMenu.png)
+   ![ ](../../.gitbook/assets/products-guidedShopping-extensionsMenu.png)
 
 1. Click on the “Upload extension” button and choose the zip file containing the plugin from your device.
 
-   ![Untitled](../../.gitbook/assets/products-guidedShopping-uploadExtension.png)
+   ![ ](../../.gitbook/assets/products-guidedShopping-uploadExtension.png)
 
-1. Once it is uploaded and listed, click “Install app”.
+1. Once it is uploaded and listed, click “Install”.
 
-    ![Untitled](../../.gitbook/assets/products-guidedShopping-swagExtensionOnList.png)
+    ![ ](../../.gitbook/assets/products-guidedShopping-swagExtensionInstall.png)
 
 1. On successful installation, activate the plugin by clicking on the switch button on the left.
 
-### Terminal server
+#### Terminal server
 
 1. Log in to a server.
 1. Zip the plugin and place it in `<shopware-root-dir>/custom/plugins` directory.
@@ -67,7 +69,7 @@ bin/console cache:clear
 # Now it is ready to use
 ```
 
-## Basic configuration of Mercure Hub
+### Basic configuration of Mercure Hub
 
 Except for the self-hosted service, we recommend using any cloud-based service.
 
@@ -87,17 +89,17 @@ Detailed below the minimum configuration needed for a working stack apart from p
 
 * **Other settings** - Take a look at this [sample Mercure config on StackHero](sampleMercureConfig.md) (Default settings is recommended).
 
-## Daily
+### Daily service access
 
 Daily service is responsible for streaming a video between the attendees. It is necessary to have an account to avail its services.
 
-### Set up an account
+#### Set up an account
 
 1. Go to the [Daily dashboard](https://dashboard.daily.co/).
 1. Visit the “developers” section on the left.
 1. Get the **API KEY**.
 
-## Configure the plugin
+### Configure the plugin
 
 Once the plugin is installed, the services are up and running and have all the required credentials, then the next thing to do is to configure the Guided Shopping plugin itself.
 
@@ -111,18 +113,18 @@ To do so,
       * You can leave the **API Base URL** as it is `https://api.daily.co/v1/` if not necessary.
       * Insert your **API KEY**.
 
-    ![an example of Video section in the plugin’s configuration](../../.gitbook/assets/products-guidedShopping-videoConfig.png)
+    ![ ](../../.gitbook/assets/products-guidedShopping-videoConfig.png)
 
     * **Mercure**
 
       * Replace *Mercure Hub Url* and *Mercure Hub Public Url* with your domain’s URL where the Mercure service is working and accessible from your stack. For instance, for the URL `https://fcoxpx.stackhero-network.com`, it would be `https://fcoxpx.stackhero-network.com/.well-known/mercure`.
       * Input the secret tokens that were set up in your Mercure service configuration.
 
-    ![an example of Mercure section in the plugin’s configuration](../../.gitbook/assets/products-guidedShopping-mercureConfigExample.png)
+    ![ ](../../.gitbook/assets/products-guidedShopping-mercureConfigExample.png)
 
 Daily and Mercure are two external services that are crucial for working with the Guided Shopping plugin.
 
-## Install Guided Shopping into PWA
+### Install the plugin into PWA
 
 1. Make sure you have the `guided-shopping` repository.
 
@@ -187,7 +189,7 @@ Daily and Mercure are two external services that are crucial for working with th
 
 1. Open `tsconfig.json` file to add `@types/jest` into `compilerOptions.types` array and save it.
 
-## Rebuild Shopware PWA
+### Rebuild Shopware PWA
 
 In order to synchronize the installed `SwagGuidedShopping` plugin in the backend, the Shopware PWA must be rebuilt (recompiled) after the plugins are downloaded. Follow the below steps:
 
