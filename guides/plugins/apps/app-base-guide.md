@@ -483,43 +483,24 @@ As the new installation will get a new shopId, the installed apps will continue 
 
 ## API Docs
 
-{% api-method method="get" host="https://my.example.com" path="" %}
-{% api-method-summary %}
-registration
-{% endapi-method-summary %}
+### Registration
 
-{% api-method-description %}
+`GET https://my.example.com`
 
-{% endapi-method-description %}
+#### Parameters
 
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-headers %}
-{% api-method-parameter name="shopware-app-signature" type="string" required=true %}
-The hmac-signature of the query string, signed with the app secret
-{% endapi-method-parameter %}
-{% endapi-method-headers %}
+| Parameter               | Type    | Description                                                                               |
+|-------------------------|---------|-------------------------------------------------------------------------------------------|
+| **Query**               |         |                                                                                           |
+| timestamp*              | integer | The current Unix timestamp when the request was created                                   |
+| shop-url*               | string  | The URL of the shop where the app was installed can be used to access to the Shopware API |
+| shop-id*                | string  | The unique identifier of the shop, where the app was installed                            |
+| **Header**              |         |                                                                                           |
+| shopware-app-signature* | string  | The hmac-signature of the query string, signed with the app secret                        |
 
-{% api-method-query-parameters %}
-{% api-method-parameter name="timestamp" type="integer" required=true %}
-The current Unix timestamp when the request was created
-{% endapi-method-parameter %}
+#### Responses
 
-{% api-method-parameter name="shop-url" type="string" required=true %}
-The URL of the shop where the app was installed can be used to access to the Shopware API
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="shop-id" type="string" required=true %}
-The unique identifier of the shop, where the app was installed
-{% endapi-method-parameter %}
-{% endapi-method-query-parameters %}
-{% endapi-method-request %}
-
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-
-{% endapi-method-response-example-description %}
+`200`
 
 ```json
 {
@@ -535,66 +516,24 @@ The unique identifier of the shop, where the app was installed
 }
 ```
 
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+### Confirmation
 
-{% api-method method="post" host="https://my.example.com" path="" %}
-{% api-method-summary %}
-confirmation
-{% endapi-method-summary %}
+`POST https://my.example.com`
 
-{% api-method-description %}
+#### Parameters
 
-{% endapi-method-description %}
+| Parameter                | Type    | Description                                                                                                                                                                                                                                                                                                                                                        |
+|--------------------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Header**               |         |                                                                                                                                                                                                                                                                                                                                                                    |
+| shopware-shop-signature* | string  | The hmac-signature of the body content, signed with the shop secret returned from the registration request                                                                                                                                                                                                                                                         |
+| sw-version*              | string  | Starting from Shopware version 6.4.1.0, the current Shopware version will be sent as a `sw-version` header. Starting from Shopware version 6.4.5.0, the current language id of the Shopware context will be sent as a `sw-context-language` header, and the locale of the user or locale of the context language is available under the `sw-user-language` header. |
+| **Body**                 |         |                                                                                                                                                                                                                                                                                                                                                                    |
+| shopId*                  | string  | The unique udentifier of the shop                                                                                                                                                                                                                                                                                                                                  |
+| shopUrl*                 | string  | The URL of the shop                                                                                                                                                                                                                                                                                                                                                |
+| timestamp*               | integer | The current nix timestamp when the request was created                                                                                                                                                                                                                                                                                                             |
+| secretKey*               | string  | SecretKey used to authenticate against the Shopware API                                                                                                                                                                                                                                                                                                            |
+| apiKey*                  | string  | ApiKey used to authenticate against the Shopware API                                                                                                                                                                                                                                                                                                               |
 
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-headers %}
-{% api-method-parameter name="shopware-shop-signature" type="string" required=true %}
-The hmac-signature of the body content, signed with the shop secret returned from the registration request
-{% endapi-method-parameter %}
+#### Responses
 
-{% api-method-parameter name="sw-version" type="string" required=true %}
-Starting from Shopware version 6.4.1.0, the current Shopware version will be sent as a `sw-version` header.
-Starting from Shopware version 6.4.5.0, the current language id of the Shopware context will be sent as a  `sw-context-language` header , and the locale of the user or locale of the context language is available under the `sw-user-language` header.
-{% endapi-method-parameter %}
-{% endapi-method-headers %}
-
-{% api-method-body-parameters %}
-{% api-method-parameter name="shopId" type="string" required=true %}
-The unique identifier of the shop
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="shopUrl" type="string" required=true %}
-The URL of the shop
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="timestamp" type="integer" required=true %}
-The current Unix timestamp when the request was created
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="secretKey" type="string" required=true %}
-SecretKey used to authenticate against the Shopware API
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="apiKey" type="string" required=true %}
-ApiKey used to authenticate against the Shopware API
-{% endapi-method-parameter %}
-{% endapi-method-body-parameters %}
-{% endapi-method-request %}
-
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-
-{% endapi-method-response-example-description %}
-
-```text
-```
-
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+`200`
