@@ -1,0 +1,1033 @@
+diff --git a/.gitbook/assets/adr/tideways_benchmark.PNG b/.gitbook/assets/adr/tideways_benchmark.png
+similarity index 100%
+rename from .gitbook/assets/adr/tideways_benchmark.PNG
+rename to .gitbook/assets/adr/tideways_benchmark.png
+diff --git a/concepts/commerce/content/shopping-experiences-cms.md b/concepts/commerce/content/shopping-experiences-cms.md
+index c985160..c897e12 100644
+--- a/concepts/commerce/content/shopping-experiences-cms.md
++++ b/concepts/commerce/content/shopping-experiences-cms.md
+@@ -136,7 +136,7 @@ Whereas the structure of a CMS page remains somewhat static, its content can be
+ 
+ The following diagram illustrates how that works using the example of a category:
+ 
+-![Flow of resolving CMS page content](../../../.gitbook/assets/image%20%282%29.png)
++<!--![Flow of resolving CMS page content](../../../.gitbook/assets/image%20%282%29.png)-->
+ 
+ Let's go through the steps one by one.
+ 
+diff --git a/guides/hosting/infrastructure/database-cluster.md b/guides/hosting/infrastructure/database-cluster.md
+index a6ea2de..3ceb75c 100644
+--- a/guides/hosting/infrastructure/database-cluster.md
++++ b/guides/hosting/infrastructure/database-cluster.md
+@@ -30,7 +30,7 @@ After this change, you can set also `SQL_SET_DEFAULT_SESSION_VARIABLES=0` in the
+ As we learned in the beginning, Shopware queries a read-only MySQL server until the first write attempt. To maximize this behavior, it is highly recommended to outsource as many write operations as possible from the database. One of the easiest solutions is to use the Redis as storage for store carts.
+ To use Redis, add the following snippet to `config/packages/cart.yml`
+ 
+-```yml
++```yaml
+ shopware:
+     cart:
+         redis_url: 'redis://localhost:6379/0?persistent=1'
+diff --git a/guides/hosting/infrastructure/elasticsearch/elasticsearch-setup.md b/guides/hosting/infrastructure/elasticsearch/elasticsearch-setup.md
+index fe2833c..f8fae1c 100644
+--- a/guides/hosting/infrastructure/elasticsearch/elasticsearch-setup.md
++++ b/guides/hosting/infrastructure/elasticsearch/elasticsearch-setup.md
+@@ -121,7 +121,7 @@ Shopware will use by default 3 shards and 3 replicas for the created index. This
+ This configuration is available since Shopware version 6.4.12.0
+ :::
+ 
+-```yml
++```yaml
+ elasticsearch:
+   index_settings:
+     number_of_shards: 1
+diff --git a/guides/plugins/apps/app-base-guide.md b/guides/plugins/apps/app-base-guide.md
+index 9bec62f..0f3219b 100644
+--- a/guides/plugins/apps/app-base-guide.md
++++ b/guides/plugins/apps/app-base-guide.md
+@@ -478,43 +478,24 @@ As the new installation will get a new shopId, the installed apps will continue
+ 
+ ## API Docs
+ 
+-{% api-method method="get" host="https://my.example.com" path="" %}
+-{% api-method-summary %}
+-registration
+-{% endapi-method-summary %}
++### Registration
+ 
+-{% api-method-description %}
++`GET https://my.example.com`
+ 
+-{% endapi-method-description %}
++#### Parameters
+ 
+-{% api-method-spec %}
+-{% api-method-request %}
+-{% api-method-headers %}
+-{% api-method-parameter name="shopware-app-signature" type="string" required=true %}
+-The hmac-signature of the query string, signed with the app secret
+-{% endapi-method-parameter %}
+-{% endapi-method-headers %}
++| Parameter               | Type    | Description                                                                               |
++|-------------------------|---------|-------------------------------------------------------------------------------------------|
++| **Query**               |         |                                                                                           |
++| timestamp*              | integer | The current Unix timestamp when the request was created                                   |
++| shop-url*               | string  | The URL of the shop where the app was installed can be used to access to the Shopware API |
++| shop-id*                | string  | The unique identifier of the shop, where the app was installed                            |
++| **Header**              |         |                                                                                           |
++| shopware-app-signature* | string  | The hmac-signature of the query string, signed with the app secret                        |
+ 
+-{% api-method-query-parameters %}
+-{% api-method-parameter name="timestamp" type="integer" required=true %}
+-The current Unix timestamp when the request was created
+-{% endapi-method-parameter %}
++#### Responses
+ 
+-{% api-method-parameter name="shop-url" type="string" required=true %}
+-The URL of the shop where the app was installed can be used to access to the Shopware API
+-{% endapi-method-parameter %}
+-
+-{% api-method-parameter name="shop-id" type="string" required=true %}
+-The unique identifier of the shop, where the app was installed
+-{% endapi-method-parameter %}
+-{% endapi-method-query-parameters %}
+-{% endapi-method-request %}
+-
+-{% api-method-response %}
+-{% api-method-response-example httpCode=200 %}
+-{% api-method-response-example-description %}
+-
+-{% endapi-method-response-example-description %}
++`200`
+ 
+ ```json
+ {
+@@ -530,66 +511,24 @@ The unique identifier of the shop, where the app was installed
+ }
+ ```
+ 
+-{% endapi-method-response-example %}
+-{% endapi-method-response %}
+-{% endapi-method-spec %}
+-{% endapi-method %}
+-
+-{% api-method method="post" host="https://my.example.com" path="" %}
+-{% api-method-summary %}
+-confirmation
+-{% endapi-method-summary %}
++### Confirmation
+ 
+-{% api-method-description %}
+-
+-{% endapi-method-description %}
+-
+-{% api-method-spec %}
+-{% api-method-request %}
+-{% api-method-headers %}
+-{% api-method-parameter name="shopware-shop-signature" type="string" required=true %}
+-The hmac-signature of the body content, signed with the shop secret returned from the registration request
+-{% endapi-method-parameter %}
+-
+-{% api-method-parameter name="sw-version" type="string" required=true %}
+-Starting from Shopware version 6.4.1.0, the current Shopware version will be sent as a `sw-version` header.
+-Starting from Shopware version 6.4.5.0, the current language id of the Shopware context will be sent as a  `sw-context-language` header , and the locale of the user or locale of the context language is available under the `sw-user-language` header.
+-{% endapi-method-parameter %}
+-{% endapi-method-headers %}
++`POST https://my.example.com`
+ 
+-{% api-method-body-parameters %}
+-{% api-method-parameter name="shopId" type="string" required=true %}
+-The unique identifier of the shop
+-{% endapi-method-parameter %}
++#### Parameters
+ 
+-{% api-method-parameter name="shopUrl" type="string" required=true %}
+-The URL of the shop
+-{% endapi-method-parameter %}
++| Parameter                | Type    | Description                                                                                                                                                                                                                                                                                                                                                        |
++|--------------------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
++| **Header**               |         |                                                                                                                                                                                                                                                                                                                                                                    |
++| shopware-shop-signature* | string  | The hmac-signature of the body content, signed with the shop secret returned from the registration request                                                                                                                                                                                                                                                         |
++| sw-version*              | string  | Starting from Shopware version 6.4.1.0, the current Shopware version will be sent as a `sw-version` header. Starting from Shopware version 6.4.5.0, the current language id of the Shopware context will be sent as a `sw-context-language` header, and the locale of the user or locale of the context language is available under the `sw-user-language` header. |
++| **Body**                 |         |                                                                                                                                                                                                                                                                                                                                                                    |
++| shopId*                  | string  | The unique udentifier of the shop                                                                                                                                                                                                                                                                                                                                  |
++| shopUrl*                 | string  | The URL of the shop                                                                                                                                                                                                                                                                                                                                                |
++| timestamp*               | integer | The current nix timestamp when the request was created                                                                                                                                                                                                                                                                                                             |
++| secretKey*               | string  | SecretKey used to authenticate against the Shopware API                                                                                                                                                                                                                                                                                                            |
++| apiKey*                  | string  | ApiKey used to authenticate against the Shopware API                                                                                                                                                                                                                                                                                                               |
+ 
+-{% api-method-parameter name="timestamp" type="integer" required=true %}
+-The current Unix timestamp when the request was created
+-{% endapi-method-parameter %}
+-
+-{% api-method-parameter name="secretKey" type="string" required=true %}
+-SecretKey used to authenticate against the Shopware API
+-{% endapi-method-parameter %}
+-
+-{% api-method-parameter name="apiKey" type="string" required=true %}
+-ApiKey used to authenticate against the Shopware API
+-{% endapi-method-parameter %}
+-{% endapi-method-body-parameters %}
+-{% endapi-method-request %}
+-
+-{% api-method-response %}
+-{% api-method-response-example httpCode=200 %}
+-{% api-method-response-example-description %}
+-
+-{% endapi-method-response-example-description %}
+-
+-```text
+-```
++#### Responses
+ 
+-{% endapi-method-response-example %}
+-{% endapi-method-response %}
+-{% endapi-method-spec %}
+-{% endapi-method %}
++`200`
+diff --git a/guides/plugins/apps/flow-builder/add-custom-flow-actions-from-app-system.md b/guides/plugins/apps/flow-builder/add-custom-flow-actions-from-app-system.md
+index 4cebe9e..ee338cb 100644
+--- a/guides/plugins/apps/flow-builder/add-custom-flow-actions-from-app-system.md
++++ b/guides/plugins/apps/flow-builder/add-custom-flow-actions-from-app-system.md
+@@ -181,13 +181,13 @@ To fulfill the requirements, refer to a subset of action triggers aware:
+ 
+ Define the `parameter` for the URL body based on your URL webhook services.
+ 
+-| Key | Description |
+-| :--- | :--- |
+-| type | Type of parameter, only support `string` type. |
+-| name | The body key for your URL. |
+-| value | The content message for your URL; free to design your content message here. |
+-| {{ message }} | The variable from your `<input-field>` defined in `flow-action.xml`. |
+-| {{ order.orderNumber }} | For each trigger event, the action will have the variables suitable. [Read more variables here](../../../../resources/references/app-reference/flow-action-reference). |
++| Key                                        | Description |
++|:-------------------------------------------| :--- |
++| type                                       | Type of parameter, only support `string` type. |
++| name                                       | The body key for your URL. |
++| value                                      | The content message for your URL; free to design your content message here. |
++| <code v-pre>{{ message}}</code>            | The variable from your `<input-field>` defined in `flow-action.xml`. |
++| <code v-pre>{{ order.orderNumber }}</code> | For each trigger event, the action will have the variables suitable. [Read more variables here](../../../../resources/references/app-reference/flow-action-reference). |
+ 
+ With the parameters configured like described above, an exemplary call of your Webhook Action could look like this:
+ 
+diff --git a/guides/plugins/plugins/administration/customizing-components.md b/guides/plugins/plugins/administration/customizing-components.md
+index e7a1737..2a99afd 100644
+--- a/guides/plugins/plugins/administration/customizing-components.md
++++ b/guides/plugins/plugins/administration/customizing-components.md
+@@ -33,7 +33,7 @@ In this very simple example it suffices to create a twig file, declare a block w
+ ```
+ 
+ This overrides the entire Twig block with our new markup.
+-However, if we want to retain the original content of the Twig block and just add our markup to the existing one, we can do that by including a {% raw %}`{% parent %}`{% endraw %} somewhere in the Twig block.
++However, if we want to retain the original content of the Twig block and just add our markup to the existing one, we can do that by including a <code v-pre>{% parent %}</code> somewhere in the Twig block.
+ Learn more about the capabilities of twig.js [here](https://github.com/twigjs/twig.js/wiki).
+ 
+ As you might have noticed the heading we just replaced had a `{ $tc() }` [string interpolation](https://vuejs.org/v2/guide/syntax.html#Text) which is used to make it multilingual.
+diff --git a/guides/plugins/plugins/content/media/add-custom-file-extension.md b/guides/plugins/plugins/content/media/add-custom-file-extension.md
+index 3fbf72c..dd279cf 100644
+--- a/guides/plugins/plugins/content/media/add-custom-file-extension.md
++++ b/guides/plugins/plugins/content/media/add-custom-file-extension.md
+@@ -90,7 +90,9 @@ use Shopware\Core\Content\Media\TypeDetector\TypeDetectorInterface;
+ class CustomImageTypeDetector implements TypeDetectorInterface
+ {
+     protected const SUPPORTED_FILE_EXTENSIONS = [
+-        'img' => [ImageType::TRANSPARENT],
++        'img' => [
++            ImageType::TRANSPARENT,
++        ],
+     ];
+ 
+     public function detect(MediaFile $mediaFile, ?MediaType $previouslyDetectedType): ?MediaType
+diff --git a/guides/plugins/plugins/framework/flow/add-flow-builder-action.md b/guides/plugins/plugins/framework/flow/add-flow-builder-action.md
+index 59acf74..8baa071 100644
+--- a/guides/plugins/plugins/framework/flow/add-flow-builder-action.md
++++ b/guides/plugins/plugins/framework/flow/add-flow-builder-action.md
+@@ -101,7 +101,9 @@ class CreateTagAction extends FlowAction
+ 
+     public function requirements(): array
+     {
+-        return [TagAware::class];
++        return [
++            TagAware::class,
++        ];
+     }
+ 
+     public function handle(FlowEvent $event): void
+@@ -178,7 +180,9 @@ class CreateTagAction extends FlowAction
+ 
+     public function requirements(): array
+     {
+-        return [TagAware::class];
++        return [
++            TagAware::class,
++        ];
+     }
+ 
+     public function handleFlow(StorableFlow $flow): void
+diff --git a/guides/plugins/plugins/framework/flow/add-flow-builder-trigger.md b/guides/plugins/plugins/framework/flow/add-flow-builder-trigger.md
+index 923296f..15c3393 100644
+--- a/guides/plugins/plugins/framework/flow/add-flow-builder-trigger.md
++++ b/guides/plugins/plugins/framework/flow/add-flow-builder-trigger.md
+@@ -39,7 +39,7 @@ To create a custom flow trigger, firstly you have to create a plugin and install
+ 
+ ### Create a new trigger (event)
+ 
+-In this example, we will name it ExampleEvent to some actions related to customers when dispatching this event. It will be placed in the directory <plugin root>/src/Core/Checkout/Customer/Event. Our new event has to implement Shopware\Core\Framework\Event\CustomerAware interface to enable actions requiring this Aware.
++In this example, we will name it ExampleEvent to some actions related to customers when dispatching this event. It will be placed in the directory `<plugin root>/src/Core/Checkout/Customer/Event`. Our new event has to implement `Shopware\Core\Framework\Event\CustomerAware` interface to enable actions requiring this Aware.
+ 
+ Currently, you will need to also implement `Shopware\Core\Framework\Event\BusinessEventInterface;` in case the feature flag `FEATURE_NEXT_17858` is inactive. Please take note that this interface will be removed in `v6.5` .
+ 
+@@ -104,7 +104,7 @@ class ExampleEvent extends Event implements CustomerAware, BusinessEventInterfac
+ 
+ ### Add your new event to the flow trigger list
+ 
+- At this step you need to add your new event to the flow trigger list, let see the code below:
++At this step you need to add your new event to the flow trigger list, let see the code below:
+ 
+ ```php
+ // <plugin root>/src/Core/Checkout/Customer/Subscriber/BusinessEventCollectorSubscriber.php
+diff --git a/guides/plugins/plugins/framework/message-queue/add-message-handler.md b/guides/plugins/plugins/framework/message-queue/add-message-handler.md
+index c157ea1..1de3037 100644
+--- a/guides/plugins/plugins/framework/message-queue/add-message-handler.md
++++ b/guides/plugins/plugins/framework/message-queue/add-message-handler.md
+@@ -35,7 +35,9 @@ class SmsHandler extends AbstractMessageHandler
+ 
+     public static function getHandledMessages(): iterable
+     {
+-        return [SmsNotification::class];
++        return [
++            SmsNotification::class,
++        ];
+     }
+ }
+ ```
+diff --git a/guides/plugins/plugins/framework/store-api/add-caching-for-store-api-route.md b/guides/plugins/plugins/framework/store-api/add-caching-for-store-api-route.md
+index a014e2a..273842a 100644
+--- a/guides/plugins/plugins/framework/store-api/add-caching-for-store-api-route.md
++++ b/guides/plugins/plugins/framework/store-api/add-caching-for-store-api-route.md
+@@ -74,7 +74,9 @@ class CachedExampleRoute extends AbstractExampleRoute
+         $this->tracer = $tracer;
+         
+         // declares that this route can not be cached if the customer is logged in
+-        $this->states = [CacheStateSubscriber::STATE_LOGGED_IN];
++        $this->states = [
++            CacheStateSubscriber::STATE_LOGGED_IN
++        ];
+         $this->logger = $logger;
+     }
+     
+@@ -121,7 +123,9 @@ class CachedExampleRoute extends AbstractExampleRoute
+         $item->tag(array_merge(
+             // get traced tags and configs        
+             $this->tracer->get(self::buildName()),
+-            [self::buildName()]
++            [
++                self::buildName()
++            ]
+         ));
+ 
+         $this->cache->save($item);
+diff --git a/guides/plugins/plugins/plugin-fundamentals/add-custom-commands.md b/guides/plugins/plugins/plugin-fundamentals/add-custom-commands.md
+index 01d096d..3793cc5 100644
+--- a/guides/plugins/plugins/plugin-fundamentals/add-custom-commands.md
++++ b/guides/plugins/plugins/plugin-fundamentals/add-custom-commands.md
+@@ -118,11 +118,11 @@ Available commands:
+   help                                    Displays help for a command
+   list                                    Lists commands
+  feature
+-  feature:dump                            [administration:dump:features] Creating json file with feature config for js testing and hot reloading capabilities.
++  feature:dump                            Creating json file with feature config for js testing and hot reloading capabilities.
+  assets
+   assets:install                          
+  bundle
+-  bundle:dump                              [administration:dump:plugins|administration:dump:bundles] Creates a json file with the configuration for each active Shopware bundle.
++  bundle:dump                             Creates a json file with the configuration for each active Shopware bundle.
+  cache
+   cache:clear                             Clears the cache
+   cache:pool:clear                        Clears cache pools
+diff --git a/guides/plugins/plugins/storefront/customize-templates.md b/guides/plugins/plugins/storefront/customize-templates.md
+index cd567c4..4a5ad11 100644
+--- a/guides/plugins/plugins/storefront/customize-templates.md
++++ b/guides/plugins/plugins/storefront/customize-templates.md
+@@ -58,7 +58,7 @@ To override it now, just add the very same block into your custom file and repla
+ {% endblock %}
+ ```
+ 
+-If you wanted to append your text to the logo instead of replacing it, you could add a line like this to your override: `{{ parent() }}`
++If you wanted to append your text to the logo instead of replacing it, you could add a line like this to your override: <code v-pre>{{ parent() }}</code>
+ 
+ And that's it already, you're done. You might have to clear the cache and refresh your storefront to see your changes in action. This can be done by using the command following command inside your command line:
+ 
+diff --git a/guides/plugins/plugins/testing/end-to-end-testing.md b/guides/plugins/plugins/testing/end-to-end-testing.md
+index cebaa66..0e72761 100644
+--- a/guides/plugins/plugins/testing/end-to-end-testing.md
++++ b/guides/plugins/plugins/testing/end-to-end-testing.md
+@@ -145,6 +145,7 @@ It is **crucial** to set these environment variables in the **same terminal sess
+ Make sure that the `DISPLAY` environment variable on your Mac is properly set **before** you start the containers as it will be **passed** to the Cypress container when the container is **created**.
+ Updating the variable on your host won't update it in the container until it is re-created!
+ :::
++
+ </Tab>
+ 
+ <Tab title="Platform: Local environment">
+@@ -156,6 +157,7 @@ To use E2E tests locally, you need to set the variable `CYPRESS_LOCAL` in your `
+ 
+ <Tabs>
+ <Tab title="Plugin setup">
++
+ If you want to run E2E tests in your plugin, just switch to the folder `Resources/app/<enviroment>/test/e2e` and execute the following command:
+ 
+ ```bash
+@@ -169,9 +171,11 @@ It opens up the Cypress test runner which allows you to run and debug your tests
+ ::: danger
+ Don't forget that you might need to adjust test cleanup and other environment-related things according to your plugin's setup.
+ :::
++
+ </Tab>
+ 
+ <Tab title="Execution in platform project">
++
+ If you use Docker for your development environment, you are able to start right away.
+ 
+ To prepare your shopware installation, your environment and install dependencies, please run the following command as first step, **outside** of your docker container:
+diff --git a/guides/plugins/themes/add-assets-to-theme.md b/guides/plugins/themes/add-assets-to-theme.md
+index 315f0a3..43828c3 100644
+--- a/guides/plugins/themes/add-assets-to-theme.md
++++ b/guides/plugins/themes/add-assets-to-theme.md
+@@ -20,7 +20,6 @@ While working with your own theme, you might have already come across the [Theme
+ 
+ ```javascript
+ // <plugin root>/src/Resources/theme.json
+-# src/Resources/theme.json
+ {
+   ...
+   "asset": [
+@@ -53,8 +52,8 @@ This way of adding custom assets refers to the default way of dealing with asset
+ 
+ You can link to the asset with the twig [asset](https://symfony.com/doc/current/templates.html#linking-to-css-javascript-and-image-assets) function:
+ 
+-```html
+-<img src="{{ asset('bundles/swagbasicexampletheme/your-image.png', 'asset') }}">
++```twig
++{{ asset('bundles/swagbasicexampletheme/your-image.png', 'asset') }}
+ ```
+ 
+ In SCSS you can link to the asset like the following:
+diff --git a/products/extensions/b2b-suite/concepts/basic-conventions.md b/products/extensions/b2b-suite/concepts/basic-conventions.md
+index 96d233b..a8ff5c4 100644
+--- a/products/extensions/b2b-suite/concepts/basic-conventions.md
++++ b/products/extensions/b2b-suite/concepts/basic-conventions.md
+@@ -2,23 +2,23 @@
+ 
+ This is the list of naming conventions the B2B Suite complies to:
+ 
+-| Group                                                                                              | Practice                                                                            |
+-|----------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+-| DI Container                                                                                       | All container ids look like `b2b_*.*`                                               |
+-| The first asterisk is the component name                                                            |                                                                                     |
+-| The second asterisk is a class name abbreviation                                                   |                                                                                     |
+-| Database                                                                                           | All table names start with `b2b_`                                                   |
+-| All table names are in singular                                                                |                                                                                     |
+-| All field and table names are in snake case                                                         |                                                                                     |
+-| Attributes                                                                                         | All attribute names start with `swag_b2b_`                                          |
+-| Subscriber                                                                                         | All subscriber methods are named in accordance with their function, not to the event  |
+-| Tests                                                                                              | All test methods are in snake case                                                  |
+-| All test methods start with `test_`                                                                |                                                                                     |
+-| Templates                                                                                          | All new layout modules are wrapped in `b2b--*` class containers                     |
+-| Modules reuse the template style of Shopware                                                       |                                                                                     |
+-| CSS Selectors                                                                                      | Three levels of selector depth as max                                                   |
+-| Twig Blocks                                                                                        | {% raw %}`{% block b2b_* %}{% endblock %}`{% endraw %} empty blocks are in one line |                                                                                     |
+-| JavaScript                                                                                         | The B2B Suite is written in TypeScript                                              |
+-| Storefront plugins                                                                                 | File names end with *.plugin.ts                                                     |
++| Group                                                                                              | Practice                                                                             |
++|----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
++| DI Container                                                                                       | All container ids look like `b2b_*.*`                                                |
++| The first asterisk is the component name                                                            |                                                                                      |
++| The second asterisk is a class name abbreviation                                                   |                                                                                      |
++| Database                                                                                           | All table names start with `b2b_`                                                    |
++| All table names are in singular                                                                |                                                                                      |
++| All field and table names are in snake case                                                         |                                                                                      |
++| Attributes                                                                                         | All attribute names start with `swag_b2b_`                                           |
++| Subscriber                                                                                         | All subscriber methods are named in accordance with their function, not to the event |
++| Tests                                                                                              | All test methods are in snake case                                                   |
++| All test methods start with `test_`                                                                |                                                                                      |
++| Templates                                                                                          | All new layout modules are wrapped in `b2b--*` class containers                      |
++| Modules reuse the template style of Shopware                                                       |                                                                                      |
++| CSS Selectors                                                                                      | Three levels of selector depth as max                                                |
++| Twig Blocks                                                                                        | <code v-pre>`{% block b2b_* %}{% endblock %}`</code> empty blocks are in one line    |                                                                                     |
++| JavaScript                                                                                         | The B2B Suite is written in TypeScript                                               |
++| Storefront plugins                                                                                 | File names end with *.plugin.ts                                                      |
+ | Interfaces                                                                                         | File names start with `I`, e.g., `IAjaxPanelEvent.ts`                                |
+-| Snippets                                                                                           | The root snippet key is `b2b`                                                       |
++| Snippets                                                                                           | The root snippet key is `b2b`                                                        |
+diff --git a/products/extensions/b2b-suite/concepts/line-item-list.md b/products/extensions/b2b-suite/concepts/line-item-list.md
+index 6fe3e9f..edb85f3 100644
+--- a/products/extensions/b2b-suite/concepts/line-item-list.md
++++ b/products/extensions/b2b-suite/concepts/line-item-list.md
+@@ -11,7 +11,7 @@ The LineItemList component is the central representation of product lists in the
+ 
+ The component is used across multiple different child components throughout the B2B Suite.
+ 
+-![image](../../../../../.gitbook/assets/line-item-list-outer-dependencies.svg)
++![image](../../../../.gitbook/assets/line-item-list-outer-dependencies.svg)
+ 
+ The yellow colored blocks represent components, while the smaller green ones are context objects that contain the component specific information.
+ 
+@@ -23,18 +23,18 @@ In most cases, these line items will be products but may include other types (e.
+ To make this work with the Shopware cart, order, and product listing, the `LineItemReferences` themselves can be set up by different entities.
+ Schematically a list that is not yet ordered looks like this:
+ 
+-![image](../../../../../.gitbook/assets/line-item-list-with-listing.svg)
++![image](../../../../.gitbook/assets/line-item-list-with-listing.svg)
+ 
+ Whereas an ordered list looks like this:
+ 
+-![image](../../../../../.gitbook/assets/line-item-list-with-order.svg)
++![image](../../../../.gitbook/assets/line-item-list-with-order.svg)
+ 
+ As you can see, each `LineItemReference` borrows data from Shopware data structures, but a user of these objects can solely
+ depend on the `LineItemReference` and `LineItemList` objects for unified access.
+ 
+ This basic pattern revolves against other data structures in the component as well.
+ 
+-![image](../../../../../.gitbook/assets/line-item-list-with-order-context.svg)
++![image](../../../../.gitbook/assets/line-item-list-with-order-context.svg)
+ 
+ As you can see, the specific data is abstracted away through the order context object.
+ An object that can either be generated during the Shopware checkout process or be created dynamically through the API.
+diff --git a/products/extensions/b2b-suite/concepts/system-architecture.md b/products/extensions/b2b-suite/concepts/system-architecture.md
+index 5743ad1..3ae2340 100644
+--- a/products/extensions/b2b-suite/concepts/system-architecture.md
++++ b/products/extensions/b2b-suite/concepts/system-architecture.md
+@@ -6,7 +6,7 @@ The B2B Suite is a collection of loosely coupled, mostly uniform components pack
+ 
+ A single component with all layers and the maximum of allowed dependencies looks like this:
+ 
+-![image](../../../../../.gitbook/assets/b2b-architecture-component.png)
++![image](../../../../.gitbook/assets/b2b-architecture-component.png)
+ 
+ The responsibilities from bottom to top:
+ 
+@@ -32,19 +32,19 @@ There is a small library of shared functionality. It contains a few commonly use
+ 
+ The user management is based on the `StoreFrontAuthentication` component and then provides `Contact` and `Debtor` entities which have `Address`es and `Role`s. These entities are mostly informational and CRUD based. Other parts of the system only depend on the `StoreFrontAuthentication` component but not the specific implementations as *Debtor* or *Contact*.
+ 
+-![image](../../../../../.gitbook/assets/b2b-architecture-users.png)
++![image](../../../../.gitbook/assets/b2b-architecture-users.png)
+ 
+ ### ACL
+ 
+ The `acl` implementation is connected to most other entities provided by the B2B Suite.
+ 
+-![image](../../../../../.gitbook/assets/b2b-architecture-acl.png)
++![image](../../../../.gitbook/assets/b2b-architecture-acl.png)
+ 
+ ### Order and contingent management
+ 
+ `ContingentGroups`s are connected to `Debtor`s and can have `acl` settings based on `Role`s or `Contact`s. `Order`s are personalized through the `StoreFrontAuthentication`.
+ 
+-![image](../../../../../.gitbook/assets/b2b-architecture-order.png)
++![image](../../../../.gitbook/assets/b2b-architecture-order.png)
+ 
+ ### The whole picture
+ 
+@@ -55,6 +55,6 @@ Most dependencies are directly derived from requirements. So, the dependency flo
+ 
+ So, for the sake of completeness, this is the whole picture:
+ 
+-![image](../../../../../.gitbook/assets/b2b-architecture-components-complete.png)
++![image](../../../../.gitbook/assets/b2b-architecture-components-complete.png)
+ 
+ Everything you should get from that is that there is a left to right propagation of dependencies. The components on the left side can be useful entirely without the components on the right side.
+diff --git a/products/extensions/b2b-suite/guides/core/assignment-service.md b/products/extensions/b2b-suite/guides/core/assignment-service.md
+index aa9fcf8..8f2ba4d 100644
+--- a/products/extensions/b2b-suite/guides/core/assignment-service.md
++++ b/products/extensions/b2b-suite/guides/core/assignment-service.md
+@@ -7,7 +7,7 @@ The B2B Suite ships with many new entities and therefore provides the means to c
+ 
+ The diagram below shows the usually implemented objects with their outside dependencies.
+ 
+-![image](../../../../../../.gitbook/assets/assignment-service.svg)
++![image](../../../../../.gitbook/assets/assignment-service.svg)
+ 
+ ## Repository
+ 
+diff --git a/products/extensions/b2b-suite/guides/core/audit-log.md b/products/extensions/b2b-suite/guides/core/audit-log.md
+index c5e8ff0..c669aed 100644
+--- a/products/extensions/b2b-suite/guides/core/audit-log.md
++++ b/products/extensions/b2b-suite/guides/core/audit-log.md
+@@ -7,7 +7,7 @@
+ The B2B Suite provides a general audit log that can be implemented in every component.
+ The audit log component can save different log types and author information like first name, last name, and email. It provides a one-to-many association index. The database structure is described in the graphic below:
+ 
+-![image](../../../../../../.gitbook/assets/audit_log_structure.svg)
++![image](../../../../../.gitbook/assets/audit_log_structure.svg)
+ 
+ As you can see, the database structure is very flat. In the `b2b_audit_log` table, we save a log type and a serialized *AuditLogValueEntity*.
+ All required author information is saved in the `b2b_audit_log_author` table.
+diff --git a/products/extensions/b2b-suite/guides/core/authentication.md b/products/extensions/b2b-suite/guides/core/authentication.md
+index 9e129b7..21547e9 100644
+--- a/products/extensions/b2b-suite/guides/core/authentication.md
++++ b/products/extensions/b2b-suite/guides/core/authentication.md
+@@ -1,6 +1,6 @@
+ # Storefront Authentication
+ 
+-[Download]](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bAuth.zip) a plugin showcasing how to add a provider. You can [download](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bLogin.zip) a plugin that exchange the login value.
++[Download](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bAuth.zip) a plugin showcasing how to add a provider. You can [download](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bLogin.zip) a plugin that exchange the login value.
+ 
+ ## Description
+ 
+@@ -13,7 +13,7 @@ It extends the Shopware default authentication component and provides several be
+ 
+ A schematic overview of the central usage of the Authentication component looks like this:
+ 
+-![image](../../../../../../.gitbook/assets/authentication-overview.svg)
++![image](../../../../../.gitbook/assets/authentication-overview.svg)
+ 
+ | Color  |   Type   |                                                                                  Description                                                                                  |
+ |--------|:--------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+diff --git a/products/extensions/b2b-suite/guides/core/crud-service.md b/products/extensions/b2b-suite/guides/core/crud-service.md
+index 3291f62..16642d2 100644
+--- a/products/extensions/b2b-suite/guides/core/crud-service.md
++++ b/products/extensions/b2b-suite/guides/core/crud-service.md
+@@ -10,7 +10,7 @@ Although these entities may have special requirements, an exclusively used namin
+ 
+ The diagram below shows the usually implemented objects with their outside dependencies:
+ 
+-![image](../../../../../../.gitbook/assets/crud-service.svg)
++![image](../../../../../.gitbook/assets/crud-service.svg)
+ 
+ ## Entity
+ 
+diff --git a/products/extensions/b2b-suite/guides/core/currency.md b/products/extensions/b2b-suite/guides/core/currency.md
+index 3e96ea5..5fe2d71 100644
+--- a/products/extensions/b2b-suite/guides/core/currency.md
++++ b/products/extensions/b2b-suite/guides/core/currency.md
+@@ -4,7 +4,7 @@
+ 
+ The Currency component provides the means for currency calculation in the B2B Suite. The following graph shows components depending on this component:
+ 
+-![image](../../../../../../.gitbook/assets/currency-usage.svg)
++![image](../../../../../.gitbook/assets/currency-usage.svg)
+ 
+ ## Context
+ 
+diff --git a/products/extensions/b2b-suite/guides/core/entity-acl.md b/products/extensions/b2b-suite/guides/core/entity-acl.md
+index 03972ec..5deaaec 100644
+--- a/products/extensions/b2b-suite/guides/core/entity-acl.md
++++ b/products/extensions/b2b-suite/guides/core/entity-acl.md
+@@ -14,7 +14,7 @@ They provide the means of creating the tables, storing and removing the relation
+ In order to understand the design decisions of the ACL component, we first take a look at the different requirements imposed on ACL.
+ As you can see in the graphic below, access control is basically a concern of every technical layer of the application.
+ 
+-![acl addresses](../../../../../../.gitbook/assets/acl-architecture.svg)
++![acl addresses](../../../../../.gitbook/assets/acl-architecture.svg)
+ 
+ The base ACL component described in this document provides functionality for repository filtering and service checks.
+ The [Authentication component](https://docs.enterprise.shopware.com/b2b-suite/technical/store-front-authentication/) provides the context for the currently logged-in user and the [ACL route](https://docs.enterprise.shopware.com/b2b-suite/technical/acl-routes/) component then provides the ability to secure routes and means of inspection for allowed routes.
+@@ -51,7 +51,7 @@ CREATE TABLE `b2b_acl_*` (
+ 
+ For example, let's look at the schema part responsible for storing the address access rights.
+ 
+-![acl addresses](../../../../../../.gitbook/assets/acl-address-schema.svg)
++![acl addresses](../../../../../.gitbook/assets/acl-address-schema.svg)
+ 
+ As you can see, the addresses (subject) can be allowed in two distinct contexts.
+ Either through a *role* or through a *contact*. So between these entities are two ACL tables holding the M:N relations.
+diff --git a/products/extensions/b2b-suite/guides/core/listing-service.md b/products/extensions/b2b-suite/guides/core/listing-service.md
+index 82925da..7ff0bcf 100644
+--- a/products/extensions/b2b-suite/guides/core/listing-service.md
++++ b/products/extensions/b2b-suite/guides/core/listing-service.md
+@@ -10,7 +10,7 @@ To reduce the necessary duplications, there are common implementations for this.
+ 
+ The diagram below shows the usually implemented objects with their outside dependencies.
+ 
+-![image](../../../../../../.gitbook/assets/listing-service.svg)
++![image](../../../../../.gitbook/assets/listing-service.svg)
+ 
+ ## Search struct
+ 
+diff --git a/products/extensions/b2b-suite/guides/storefront/acl-routing.md b/products/extensions/b2b-suite/guides/storefront/acl-routing.md
+index 21345f1..41b4624 100644
+--- a/products/extensions/b2b-suite/guides/storefront/acl-routing.md
++++ b/products/extensions/b2b-suite/guides/storefront/acl-routing.md
+@@ -82,7 +82,8 @@ the action is new, and you must update the file to add the correct privilege nam
+ The ACL implementation is safe at the PHP level. Any route you have no access to will automatically be blocked, but for a better user experience, you should also extend the template to hide inaccessible actions.
+ 
+ ```twig
+-<a href="{{ url("frontend.b2b." ~ page.route ~ ".assign") }}" class="{{ b2b_acl('b2broleaddress', 'assign') }}">
++Href: {{ url("frontend.b2b." ~ page.route ~ ".assign") }}
++Class: {{ b2b_acl('b2broleaddress', 'assign') }}
+ ```
+ 
+ This will add a few vital CSS classes:
+diff --git a/products/extensions/b2b-suite/guides/storefront/ajax-panel.md b/products/extensions/b2b-suite/guides/storefront/ajax-panel.md
+index 5edb3b7..a603b99 100644
+--- a/products/extensions/b2b-suite/guides/storefront/ajax-panel.md
++++ b/products/extensions/b2b-suite/guides/storefront/ajax-panel.md
+@@ -4,7 +4,7 @@
+ 
+ The diagram below shows how this schematically behaves:
+ 
+-![image](/.gitbook/assets/ajax-panel-abstract.svg)
++![image](../../../../../.gitbook/assets/ajax-panel-abstract.svg)
+ 
+ ## Basic usage
+ 
+@@ -58,12 +58,12 @@ One panel can influence another one by defining and linking to an id.
+ 
+ The B2B Suite comes with a library of simple helper plugins to add behavior to the ajax panels.
+ 
+-![image](/.gitbook/assets/ajax-panel-structure.svg)
++![image](../../../../../.gitbook/assets/ajax-panel-structure.svg)
+ 
+ As you can see, there is the `AjaxPanelPluginLoader` responsible for initializing and reinitializing plugins inside b2b-panels.
+ Let's take our last example and extend it with a form plugin:
+ 
+-```html
++```twig
+ <div
+     class="b2b--ajax-panel"
+     data-url="{{ path('frontend.b2b.b2bcontact.grid') }}"
+@@ -81,7 +81,7 @@ While few of them add very specific behavior to the grid or tab's views, there a
+ 
+ The `b2bAjaxPanelModal` plugin helps to open ajax panel content in a modal dialog box. Let's extend our initial example:
+ 
+-```html
++```twig
+ <div
+     class="b2b--ajax-panel b2b-modal-panel"
+     data-url="{{ path('frontend.b2b.b2bcontact.grid') }}"
+@@ -99,7 +99,7 @@ Sometimes a change in one panel needs to trigger reload in another panel.
+ This might be the case if you are editing in a dialog and displaying a grid behind it.
+ In this case, you can just trigger reload on other panel id's, just like that:
+ 
+-```html
++```twig
+ <div class="b2b--ajax-panel" data-url="{{ path('frontend.b2b.b2bcontact.grid') }}" data-id="grid">
+     <!-- grid -->
+ </div>
+@@ -114,7 +114,7 @@ Now every change in the form view will trigger reload in the grid view.
+ ### TreeSelect
+ 
+ This `TreeSelect` plugin allows to display a tree view with enabled drag and drop.
+-In the view the `div` element needs the class `is--b2b-tree-select-container` and the data attribute `data-move-url="{{ path('frontend.b2b.b2brole.move') }}"`.
++In the view the `div` element needs the class `is--b2b-tree-select-container` and the data attribute <code v-pre>data-move-url="{{ path('frontend.b2b.b2brole.move') }}"</code>.
+ The controller has to implement a move action, which accepts the `roleId`, `relatedRoleId`, and the `type`.
+ 
+ Possible types:
+diff --git a/products/extensions/b2b-suite/guides/storefront/company.md b/products/extensions/b2b-suite/guides/storefront/company.md
+index 54acb3d..93256e9 100644
+--- a/products/extensions/b2b-suite/guides/storefront/company.md
++++ b/products/extensions/b2b-suite/guides/storefront/company.md
+@@ -2,7 +2,7 @@
+ 
+ The company component acts as a container for role related entities by providing a minimalistic interface to the different components. This ensures shared functionality. The following graph shows components that are managed in this component:
+ 
+-![image](/.gitbook/assets/company-management.svg)
++![image](../../../../../.gitbook/assets/company-management.svg)
+ 
+ ## Context
+ 
+diff --git a/products/extensions/b2b-suite/guides/storefront/complex-views.md b/products/extensions/b2b-suite/guides/storefront/complex-views.md
+index a30db7d..6d7fcb2 100644
+--- a/products/extensions/b2b-suite/guides/storefront/complex-views.md
++++ b/products/extensions/b2b-suite/guides/storefront/complex-views.md
+@@ -2,7 +2,7 @@
+ 
+ The B2B Suite comes with a whole UI providing Administration like features in the frontend. The structure is reflected in the naming of the several controller classes. Each controller then uses a canonical naming scheme. The example below shows the *ContactController* with all its assignment controllers.
+ 
+-![image](/.gitbook/assets/contact-controller-complex-example.svg)
++![image](../../../../../.gitbook/assets/contact-controller-complex-example.svg)
+ 
+ As you can see, every controller is associated with one specific component.
+ 
+diff --git a/products/extensions/b2b-suite/guides/storefront/product-search.md b/products/extensions/b2b-suite/guides/storefront/product-search.md
+index c6a3bde..43eb8c6 100644
+--- a/products/extensions/b2b-suite/guides/storefront/product-search.md
++++ b/products/extensions/b2b-suite/guides/storefront/product-search.md
+@@ -3,14 +3,16 @@
+ Our product search is a small Storefront plugin that allows you to create input fields with autocompletion for products.
+ A small example is shown below. The plugin deactivates the default autocompletion for this field from your browser.
+ 
++<!--
+ ```twig
+ <div class="b2b--search-container">
+     <input type="text" name="" data-product-search="{{ path('frontend.b2b.b2bproductsearch.searchProduct') }}" value="" />
+ </div>
+ ```
++-->
+ 
+ ## Elasticsearch
+ 
+ While using Elasticsearch, you have to enable the variants filter in the filter menu of the basic settings to show all variants in the product search.
+ 
+-![ProductSearchOptions](/.gitbook/assets/product-search-options.png)
++![ProductSearchOptions](../../../../../.gitbook/assets/product-search-options.png)
+diff --git a/resources/references/adr/checkout/2021-10-01-payment-flow.md b/resources/references/adr/checkout/2021-10-01-payment-flow.md
+index 6e59040..3d964ee 100644
+--- a/resources/references/adr/checkout/2021-10-01-payment-flow.md
++++ b/resources/references/adr/checkout/2021-10-01-payment-flow.md
+@@ -21,7 +21,7 @@ The synchronous payment is intended to execute a payment immediately after the o
+ 
+ The following diagram shows a happy case sequence of a synchronous payment handling. The error handling is described [here](#after-order-payment-error-case) 
+ 
+-![Synchronous Payment](../assets/payment-flow/synchronous-payment.png)
++![Synchronous Payment](../../../../.gitbook/assets/adr/payment-flow/synchronous-payment.png)
+ 
+ ### Asynchronous Payment
+ 
+@@ -29,7 +29,7 @@ An asynchronous payment handler has to be implemented, when the client (user) ha
+ 
+ The following diagram shows a happy case sequence of an asynchronous payment handling. The error handling is described [here](#after-order-payment-error-case) 
+ 
+-![Asynchronous Payment](../assets/payment-flow/asynchronous-payment.png)
++![Asynchronous Payment](../../../../.gitbook/assets/adr/payment-flow/asynchronous-payment.png)
+ 
+ ### App payments
+ 
+diff --git a/resources/references/adr/content-management/2022-07-19-blog-concept.md b/resources/references/adr/content-management/2022-07-19-blog-concept.md
+index de5d3a4..94f8617 100644
+--- a/resources/references/adr/content-management/2022-07-19-blog-concept.md
++++ b/resources/references/adr/content-management/2022-07-19-blog-concept.md
+@@ -28,8 +28,6 @@ In addition, the `cms-aware` flag also will bring some pre-defined fields, used
+ To keep everything tidy, we decided to implement using two different files `admin-ui.xml` and `cms-aware.xml` and keep a distinct separation of schema and UI. 
+ This flag will also result in new component types, so that for example the `cms-aware` property's `sw_cms_page_id` can be rendered as a CMS page selection, like known from the categories.
+ 
+-![Category menu with Content types](../assets/content-management/example-cms-aware-admin-menu.png)
+-
+ #### Example `admin-ui.xml`
+ 
+ ```xml
+diff --git a/resources/references/adr/performance/2022-03-25-profiler-integrations.md b/resources/references/adr/performance/2022-03-25-profiler-integrations.md
+index 0fae163..d70abe2 100644
+--- a/resources/references/adr/performance/2022-03-25-profiler-integrations.md
++++ b/resources/references/adr/performance/2022-03-25-profiler-integrations.md
+@@ -108,7 +108,7 @@ class CartCalculator
+ ```
+ 
+ These spans are then displayed in the timeline of the corresponding profilers:
+-![](../../../../.gitbook/assets/adr/tideways_benchmark.PNG "Tideways benchmark")
++![](../../../../.gitbook/assets/adr/tideways_benchmark.png "Tideways benchmark")
+ 
+ Which profiler should be used in the system can be configured via `config/packages/*.yaml`:
+ 
+diff --git a/resources/references/app-reference/payment-reference.md b/resources/references/app-reference/payment-reference.md
+index 2b02896..9c25cdc 100644
+--- a/resources/references/app-reference/payment-reference.md
++++ b/resources/references/app-reference/payment-reference.md
+@@ -6,150 +6,90 @@ This feature is only available starting with Shopware 6.4.1.0.
+ 
+ These two requests are executed against your API, the up to two endpoints you define per payment method. All bodies are JSON encoded.
+ 
+-{% api-method method="post" host="https://payment.app/" path="/pay" %}
+-{% api-method-summary %}
+-pay
+-{% endapi-method-summary %}
++### Pay
++
++`POST https://payment.app/pay`
+ 
+-{% api-method-description %}
+ This request gets called, when the users hits _Confirm Order_ in Shopware.
+-{% endapi-method-description %}
+-
+-{% api-method-spec %}
+-{% api-method-request %}
+-{% api-method-headers %}
+-{% api-method-parameter name="shopware-shop-signature" type="string" required=true %}
+-The hmac-signature of the JSON encoded body content, signed with the shop secret returned from the registration request
+-{% endapi-method-parameter %}
+-{% endapi-method-headers %}
+-
+-{% api-method-body-parameters %}
+-{% api-method-parameter name="order" type="OrderEntity" required=true %}
+-The order entity from Shopware including all necessary associations \(like currency, shipping address, billing address, line items\). See Shopware for detailed and current structure.
+-{% endapi-method-parameter %}
+-
+-{% api-method-parameter name="orderTransaction" type="OrderTransactionEntity" required=true %}
+-The order transaction entity from Shopware representing the payment your are supposed to process. See Shopware for detailed and current structure.
+-{% endapi-method-parameter %}
+-
+-{% api-method-parameter name="orderTransaction.id" type="string" required=true %}
+-This should be used to identify the order transaction on a second finalize request.
+-{% endapi-method-parameter %}
+-
+-{% api-method-parameter name="returnUrl" type="string" required=false %}
+-This URL is the URL your app or your payment provider is supposed to redirect back to, once the user has been redirected to the payment provider with the URL you provide in your response. Only supplied on asynchronous payments.
+-{% endapi-method-parameter %}
+-
+-{% api-method-parameter name="source" type="array" required=true %}
+-Data to identify the shop that sent this request
+-{% endapi-method-parameter %}
+-
+-{% api-method-parameter name="source.url" type="string" required=true %}
+-The shop URL sending this request
+-{% endapi-method-parameter %}
+-
+-{% api-method-parameter name="source.shopId" type="string" required=true %}
+-The shop id you can use to identify the shop that has been registered before with your app.
+-{% endapi-method-parameter %}
+-
+-{% api-method-parameter name="source.appVersion" type="string" required=true %}
+-The version of the app that is installed in the shop.
+-{% endapi-method-parameter %}
+-{% endapi-method-body-parameters %}
+-{% endapi-method-request %}
+-
+-{% api-method-response %}
+-{% api-method-response-example httpCode=200 %}
+-{% api-method-response-example-description %}
+-See comments for different successful responses
+-{% endapi-method-response-example-description %}
+-
+-```javascript
++
++#### Parameters
++
++| Parameter                | Type                   | Description                                                                                                                                                                                                                          |
++|--------------------------|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
++| **Header**               |                        |                                                                                                                                                                                                                                      |
++| shopware-shop-signature* | string                 | The hmac-signature of the JSON encoded body content, signed with the shop secret returned from the registration request                                                                                                              |
++| **Body**                 |                        |                                                                                                                                                                                                                                      |
++| order*                   | OrderEntity            | The order entity from Shopware including all necessary associations (like currency, shipping address, billing address, line items). See Shopware for detailed and current structure.                                                 |
++| orderTransaction*        | OrderTransactionEntity | The order transaction entity from Shopware representing the payment you are supposed to process. See Shopware for detailed and current structure.                                                                                    |
++| orderTransaction.id*     | string                 | This should be used to identify the order transaction on a second finalize request.                                                                                                                                                  |
++| returnUrl                | string                 | This URL is the URL your app or your payment provider is supposed to redirect back to, once the user has been redirected to the payment provider with the URL you provide in your response. Only supplied on asynchrounous payments. |
++| source*                  | object                 | Data to identify the shop that sent this request                                                                                                                                                                                     |
++| source.url*              | string                 | The Shop URL sending this request                                                                                                                                                                                                    |
++| source.shopId*           | string                 | The shop id you can use to identify the sho that has been registered before with your app.                                                                                                                                           |
++| source.appVersion*       | string                 | The version of the app that is installed in the shop.                                                                                                                                                                                |
++
++#### Responses
++
++`200`
++
++```json5
+ /* Successful redirect */
+ {
+-    "redirectUrl": "https://payment.app/user/go/here/068b1ec4d7ff431b95d3b7431cc725aa/"
++  "redirectUrl": "https://payment.app/user/go/here/068b1ec4d7ff431b95d3b7431cc725aa/"
+ }
++```
+ 
++```json5
+ /* Failure due to missing credentials */
+ {
+-    "status": "fail",
+-    "message": "The shop has not provided all credentials for the payment provider."
++  "status": "fail",
++  "message": "The shop has not provided all credentials for the payment provider."
+ }
+ ```
+-{% endapi-method-response-example %}
+-{% endapi-method-response %}
+-{% endapi-method-spec %}
+-{% endapi-method %}
+ 
+-{% api-method method="post" host="https://payment.app/" path="/finalize" %}
+-{% api-method-summary %}
+-finalize
+-{% endapi-method-summary %}
++### Finalize
++
++`POST https://payment.app/finalize`
+ 
+-{% api-method-description %}
+ This request gets called once the user returns to the `returnUrl` Shopware provided in the first request.
+-{% endapi-method-description %}
+-
+-{% api-method-spec %}
+-{% api-method-request %}
+-{% api-method-headers %}
+-{% api-method-parameter name="shopware-shop-signature" type="string" required=true %}
+-The hmac-signature of the JSON encoded body content, signed with the shop secret returned from the registration request
+-{% endapi-method-parameter %}
+-{% endapi-method-headers %}
+-
+-{% api-method-body-parameters %}
+-{% api-method-parameter name="orderTransaction" type="OrderTransactionEntity" required=true %}
+-The order transaction entity from Shopware representing the payment your are supposed to process. See Shopware for detailed and current structure.
+-{% endapi-method-parameter %}
+-
+-{% api-method-parameter name="orderTransaction.id" type="string" required=true %}
+-This should be used to identify the order transaction on a second finalize request.
+-{% endapi-method-parameter %}
+-
+-{% api-method-parameter name="source" type="array" required=true %}
+-Data to identify the shop that sent this request
+-{% endapi-method-parameter %}
+-
+-{% api-method-parameter name="source.url" type="string" required=true %}
+-The shop URL sending this request
+-{% endapi-method-parameter %}
+-
+-{% api-method-parameter name="source.shopId" type="string" required=true %}
+-The shop id you can use to identify the shop that has been registered before with your app.
+-{% endapi-method-parameter %}
+-
+-{% api-method-parameter name="source.appVersion" type="string" required=true %}
+-The version of the app that is installed in the shop.
+-{% endapi-method-parameter %}
+-{% endapi-method-body-parameters %}
+-{% endapi-method-request %}
+-
+-{% api-method-response %}
+-{% api-method-response-example httpCode=200 %}
+-{% api-method-response-example-description %}
+-See comments for different successful responses
+-{% endapi-method-response-example-description %}
+-
+-```javascript
++
++#### Parameters
++
++| Parameter                | Type                   | Description                                                                                                                                                                                                                          |
++|--------------------------|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
++| **Header**               |                        |                                                                                                                                                                                                                                      |
++| shopware-shop-signature* | string                 | The hmac-signature of the JSON encoded body content, signed with the shop secret returned from the registration request                                                                                                              |
++| **Body**                 |                        |                                                                                                                                                                                                                                      |
++| orderTransaction*        | OrderTransactionEntity | The order transaction entity from Shopware representing the payment you are supposed to process. See Shopware for detailed and current structure.                                                                                    |
++| orderTransaction.id*     | string                 | This should be used to identify the order transaction on a second finalize request.                                                                                                                                                  |
++| source*                  | object                 | Data to identify the shop that sent this request                                                                                                                                                                                     |
++| source.url*              | string                 | The Shop URL sending this request                                                                                                                                                                                                    |
++| source.shopId*           | string                 | The shop id you can use to identify the sho that has been registered before with your app.                                                                                                                                           |
++| source.appVersion*       | string                 | The version of the app that is installed in the shop.                                                                                                                                                                                |
++
++#### Responses
++
++`200`
++
++```json5
+ /* Successful redirect */
+ {
+-    "status": "paid"
++  "status": "paid"
+ }
++```
+ 
++```json5
+ /* Failure due to missing funds */
+ {
+-    "status": "fail",
+-    "message": "The user did not have adequate funds."
++  "status": "fail",
++  "message": "The user did not have adequate funds."
+ }
++```
+ 
++```json5
+ /* Failure if the user has not finished the payment process. */
+ {
+-    "status": "cancel",
+-    "message": "The user did not finish payment."
++  "status": "cancel",
++  "message": "The user did not finish payment."
+ }
+-```
+-{% endapi-method-response-example %}
+-{% endapi-method-response %}
+-{% endapi-method-spec %}
+-{% endapi-method %}
++```
+\ No newline at end of file
