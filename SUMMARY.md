@@ -494,6 +494,6 @@
     * [Best practises on writing end-to-end tests](resources/guidelines/testing/e2e-best-practises.md)
 * [Tooling](resources/tooling/README.md)
   * [CLI](resources/tooling/cli/README.md)
-    * [Using watchers](resources/tooling/cli/using-watchers.md)
+    * [Hot Module Reloading using watchers](resources/tooling/cli/using-watchers.md)
   * [IDE](resources/tooling/ide/README.md)
     * [Shopware Toolbox](resources/tooling/ide/shopware-toolbox.md)
