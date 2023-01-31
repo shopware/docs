@@ -1,6 +1,6 @@
 # Hot Module Reloading
 
-## Using watchers
+## Watchers
 
 When developing with Shopware, you will probably notice that changes in JavaScript require commands to build the Administration or Storefront, depending on your change using the following commands:
 
