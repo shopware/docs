@@ -78,5 +78,4 @@ When using `APP_ENV=dev`, Shopware runs in development mode and provides feature
 
 #### IPV4FIRST
 
-Starting with NodeJS v17.0.0, it prefers IPv6 over IPv4. In some setups, this may cause problems when using watchers.
-In case IPv6 causes problems, `IPV4FIRST=1` reverts this behaviour.
+Starting with NodeJS v17.0.0, it prefers IPv6 over IPv4. However, in some setups, IPv6 may cause problems when using watchers. In such cases, setting `IPV4FIRST=1` reverts this behavior.
