@@ -113,7 +113,7 @@ From 6.5, in Flow Builder, the original event will be deprecated and we will onl
 
 We have created many Aware interfaces. These Aware are the conditions to restore event data in Flow Builder via `FlowStorer` respective.
 
-| Aware | Storer |
+| Aware interface | Storer respective |
 | :--- | :--- |
 | Shopware\Core\Content\Flow\Dispatching\Aware\ConfirmUrlAware | Shopware\Core\Content\Flow\Dispatching\Storer\ConfirmUrlStorer |
 | Shopware\Core\Content\Flow\Dispatching\Aware\ContactFormDataAware | Shopware\Core\Content\Flow\Dispatching\Storer\ContactFormDataStorer |
