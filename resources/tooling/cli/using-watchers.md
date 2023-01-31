@@ -75,6 +75,7 @@ APP_ENV=prod composer run watch:storefront
 #### APP_ENV
 
 When using `APP_ENV=dev`, Shopware runs in development mode and provides features for debugging - for example, the Symfony toolbar in the Storefront, while its counterpart `APP_ENV=prod` enables production mode and therefore disables any such tools.
+
 #### IPV4FIRST
 
 Starting with NodeJS v17.0.0, it prefers IPv6 over IPv4. In some setups, this may cause problems when using watchers.
