@@ -2,7 +2,7 @@
 
 ## Using watchers
 
-When developing with Shopware, you'll probably notice that changes in JavaScript require commands to build the Administration or Storefront, depending on your change using the following commands:
+When developing with Shopware, you will probably notice that changes in JavaScript require commands to build the Administration or Storefront, depending on your change using the following commands:
 
 {% tabs %}
 {% tab title="Administration (Composer)" %}
