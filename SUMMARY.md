@@ -529,5 +529,7 @@
     * [Doc Process](resources/guidelines/documentation-guidelines/06-doc-process.md)
 
 * [Tooling](resources/tooling/README.md)
+  * [CLI](resources/tooling/cli/README.md)
+    * [Hot Module Reloading using watchers](resources/tooling/cli/using-watchers.md)
   * [IDE](resources/tooling/ide/README.md)
     * [Shopware Toolbox](resources/tooling/ide/shopware-toolbox.md)
