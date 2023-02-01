@@ -1,6 +1,6 @@
 # CRUD Service
 
-[Download](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bAcl.zip) a plugin showcasing the topic.
+[Download](../example-plugins/B2bAcl.zip) a plugin showcasing the topic.
 
 ## Pattern
 
@@ -10,7 +10,7 @@ Although these entities may have special requirements, an exclusively used namin
 
 The diagram below shows the usually implemented objects with their outside dependencies:
 
-![image](../../../../../../.gitbook/assets/crud-service.svg)
+![image](../../../../../.gitbook/assets/crud-service.svg)
 
 ## Entity
 

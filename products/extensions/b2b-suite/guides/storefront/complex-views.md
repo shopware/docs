@@ -2,7 +2,7 @@
 
 The B2B Suite comes with a whole UI providing Administration like features in the frontend. The structure is reflected in the naming of the several controller classes. Each controller then uses a canonical naming scheme. The example below shows the *ContactController* with all its assignment controllers.
 
-![image](/.gitbook/assets/contact-controller-complex-example.svg)
+![image](../../../../../.gitbook/assets/contact-controller-complex-example.svg)
 
 As you can see, every controller is associated with one specific component.
 
