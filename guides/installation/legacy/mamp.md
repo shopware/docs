@@ -170,4 +170,4 @@ The underlying problem is that Mac supports case-insensitive paths but not the t
 
 ## Next steps
 
-As you successfully installed Shopware, you may want to start writing your own plugin. Head over to [Plugin base guide](../plugins/plugins/plugin-base-guide.md) to get a grip on that topic.
+As you successfully installed Shopware, you may want to start writing your own plugin. Head over to [Plugin base guide](../../plugins/plugins/plugin-base-guide.md) to get a grip on that topic.
