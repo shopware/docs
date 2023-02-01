@@ -153,7 +153,14 @@ DATABASE_URL="mysql://shopware:shopware@127.0.0.1:3306/shopware?sslmode=disable&
 
 {% endcode %}
 
-Inside the project directory, run the following command to initialize Shopware:
+With a new terminal, go to the project directory and run the following command to launch a devenv shell.
+This shell includes all needed programs (php, composer, npm, node, etc.), to initialize Shopware:
+
+```shell
+devenv shell
+```
+
+In the devenv shell, run the following command to initialize Shopware:
 
 ```shell
 composer setup
