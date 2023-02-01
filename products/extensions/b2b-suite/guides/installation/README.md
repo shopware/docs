@@ -2,9 +2,8 @@
 
 ## General
 
-We provide two kinds of virtualization, a Vagrant and a Docker based solution. Our developers use the Docker containers mainly.
+We provide a Docker based solution, also mainly used by our developers.
 These containers are also used in our continuous integration process. The supported functions are for both systems equal if the host system is based on Linux.
-Instead of testing windows in combination with Docker, we evaluated the Vagrant setup.
 
 If you want to install the B2B Suite for the production environment, your system must fit the defined [system requirements](https://developers.shopware.com/sysadmins-guide/system-requirements/) for the Shopware Core.
 

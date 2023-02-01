@@ -6,7 +6,7 @@ The Community Edition is an open-source, basic variant of Shopware, free for eve
 
 ## Running Shopware
 
-There are several opportunities to run Shopware in general. When speaking of the Community Edition, let's be more precise about the **Shopware Platform**, which can be included inside several [setup templates](../guides/installation/overview.md#setup-templates) or can be shipped as a One-Click-Installer. Of course, there are other operation forms like Docker, Vagrant, Valet+, which are explained in the [installation guide](../guides/installation/) section. Inside that section, you will also find the [system requirements](../guides/installation/overview.md#prerequisites) needed for running Shopware as a PHP application built upon Symfony.
+There are several opportunities to run Shopware in general. When speaking of the Community Edition, let's be more precise about the **Shopware Platform**, which can be included inside several [setup templates](../guides/installation/overview.md#setup-templates) or can be shipped as a One-Click-Installer. Of course, there are other operation forms like Docker, Valet+, which are explained in the [installation guide](../guides/installation/) section. Inside that section, you will also find the [system requirements](../guides/installation/overview.md#prerequisites) needed for running Shopware as a PHP application built upon Symfony.
 
 ## Platform components
 
