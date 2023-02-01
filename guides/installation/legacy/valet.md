@@ -71,4 +71,4 @@ Try disabling SSL via `valet unsecure`.
 
 ## Next steps
 
-Now that you have a running Shopware 6 instance, you can create your first plugin. Refer to [Plugin base guide](../plugins/plugins/plugin-base-guide.md) for more information.
+Now that you have a running Shopware 6 instance, you can create your first plugin. Refer to [Plugin base guide](../../plugins/plugins/plugin-base-guide.md) for more information.

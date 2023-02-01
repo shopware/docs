@@ -82,7 +82,7 @@ Following fields are required:
 
 Constraints are optional and may be used to define fields, whose purpose is to provide data for use within the condition's script.
 
-Constraints are a collection of [custom fields](../custom-data.md), which allows you to provide a variety of different fields for setting parameters within the administration. Fields may be marked as `required`. The `name` attribute of the field is also the variable the field's value will be exposed as within the condition's script. So it is advisable to use a variable-friendly name and to use unique names within the confines of a single condition.
+Constraints are a collection of [custom fields](../custom-data/README.md), which allows you to provide a variety of different fields for setting parameters within the administration. Fields may be marked as `required`. The `name` attribute of the field is also the variable the field's value will be exposed as within the condition's script. So it is advisable to use a variable-friendly name and to use unique names within the confines of a single condition.
 
 The above example will add the condition shown below for selection in the administration:
 

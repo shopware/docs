@@ -99,7 +99,7 @@ For more information, look at Shopware [Installation Overview](overview.md).
 
 ## Next steps
 
-As the next step, you might want to start writing your very own plugin. Refer to [Plugin base guide](../plugins/plugins/plugin-base-guide.md) to learn about that topic.
+As the next step, you might want to start writing your very own plugin. Refer to [Plugin base guide](../../plugins/plugins/plugin-base-guide.md) to learn about that topic.
 
 Would you like to explore alternative ways to install Shopware? You can install Shopware on Mac with the help of other tools:
 

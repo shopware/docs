@@ -82,4 +82,4 @@ The command `es:test:analyzer` runs an Elasticsearch analyzer on your indices. F
 
 ## Customize the Elasticsearch integration
 
-To customize the Elasticsearch integration or add your own fields and entities, refer to the [Elasticsearch extension guide](../../guides/plugins/plugins/elasticsearch)
+To customize the Elasticsearch integration or add your own fields and entities, refer to the [Elasticsearch extension guide](../../guides/plugins/plugins/elasticsearch/add-product-entity-extension-to-elasticsearch.md)
