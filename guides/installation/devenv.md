@@ -171,7 +171,7 @@ composer setup
 If you wish to switch between multiple development environments which use devenv seamlessly, we recommend installing [direnv](https://direnv.net/).
 
 When you enter a project directory using devenv, direnv will automatically activate the environment for you.
-This means that you can use the binaries and services without having to run `devenv up` manually.
+This means that you can use the binaries without having to run `devenv shell` manually, though you still have to run `devenv up` to start all services.
 
 First, install direnv:
 
