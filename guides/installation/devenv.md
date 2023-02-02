@@ -333,6 +333,8 @@ Refer to the official devenv documentation to get a complete list of all availab
 }
 ```
 
+{% endcode %}
+
 ### Use MariaDB instead of MySQL
 
 {% code title="<PROJECT_ROOT>/devenv.local.nix" %}
