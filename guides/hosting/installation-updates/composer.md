@@ -36,9 +36,9 @@ See also:
 
 ### Requirements
 
-To get an overview of the requirements, see the following guide:
+To get an overview of the requirements, see the following page:
 
-{% page-ref page="../../installation/overview.md" %}
+{% page-ref page="../../installation/requirements.md" %}
 
 NPM and Node are only required during the build process and for development. If you don't have javascript customizations, it is not required at all because the Storefront and Admin are pre-build.
 

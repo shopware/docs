@@ -6,7 +6,7 @@ The Community Edition is an open-source, basic variant of Shopware, free for eve
 
 ## Running Shopware
 
-There are several opportunities to run Shopware in general. When speaking of the Community Edition, let's be more precise about the **Shopware Platform**, which can be included inside several [setup templates](../guides/installation/overview.md#setup-templates) or can be shipped as a One-Click-Installer. Of course, there are other operation forms like Docker, Valet+, which are explained in the [installation guide](../guides/installation/) section. Inside that section, you will also find the [system requirements](../guides/installation/overview.md#prerequisites) needed for running Shopware as a PHP application built upon Symfony.
+There are several opportunities to run Shopware in general, which are explained in the [installation overview](../guides/installation/README.md) section. Inside that section, you will also find the [system requirements](../guides/installation/requirements.md) needed for running Shopware as a PHP application built upon Symfony.
 
 ## Platform components
 
@@ -28,7 +28,7 @@ Last but not least, there is a most important technical feature, which gives you
 
 ## Repository structure
 
-Shopware 6 consists of multiple repositories bundled inside a [Mono repository](https://www.atlassian.com/git/tutorials/monorepos) called [shopware/platform](https://github.com/shopware/platform). This is where the Shopware core is developed. You need it as a dependency in your projects and this is where you can participate in the development of Shopware through pull requests. It is split into multiple repositories for production setups, all of them are read-only and includes  Core, Storefront, Administration and Elasticsearch. Besides that, there is also a `Recovery` directory, which provides the opportunity to interactively update, install and maintain Shopware throughout the browser. To start developing with Shopware 6, there are two [setup templates](../guides/installation/overview.md#setup-templates) and preparatory/installation steps.
+Shopware 6 consists of multiple repositories bundled inside a [Mono repository](https://www.atlassian.com/git/tutorials/monorepos) called [shopware/platform](https://github.com/shopware/platform). This is where the Shopware core is developed. You need it as a dependency in your projects and this is where you can participate in the development of Shopware through pull requests. It is split into multiple repositories for production setups, all of them are read-only and includes  Core, Storefront, Administration and Elasticsearch. Besides that, there is also a `Recovery` directory, which provides the opportunity to interactively update, install and maintain Shopware throughout the browser. To start developing with Shopware 6, refer to the [installation overview](../guides/installation/README.md) for an overview of the supported devolpment environments.
 <!-- markdown-link-check-disable-next-line -->
 {% embed url="https://www.youtube.com/watch?v=oPf4-8eU8jQ" caption="" %}
 

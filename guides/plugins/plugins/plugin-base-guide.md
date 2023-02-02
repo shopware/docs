@@ -5,7 +5,7 @@
 Plugins in Shopware are essentially an extension of [Symfony bundles](plugins-for-symfony-developers.md). Such bundles and plugins can provide their own resources like assets, controllers, services or tests, which you'll learn in the next guides.  
 A plugin is the main way to extend your Shopware 6 instance programmatically.
 
-This guide will teach you the basics of creating your very first plugin from scratch, which then can be installed to your Shopware 6 instance. Refer to the guide section to know how to [Install Shopware 6](../../installation/overview.md).
+This guide will teach you the basics of creating your very first plugin from scratch, which then can be installed to your Shopware 6 instance. Refer to the guide section to know how to [Install Shopware 6](../../installation/README.md).
 
 ## Prerequisites
 
