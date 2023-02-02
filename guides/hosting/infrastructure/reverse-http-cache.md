@@ -426,6 +426,11 @@ sub vcl_backend_response {
 sub vcl_deliver {
     ## we don't want the client to cache
     set resp.http.Cache-Control = "max-age=0, private";
+    
+    #caching static assets is fine through
+    if (req.url ~ "\.(jpg|jpeg|png|gif|css|js|woff|woff2|svg|eot|webp)$") {
+        set resp.http.Cache-Control = "max-age=2592000, public";
+    }
 
     # remove link header, if session is already started to save client resources
     if (req.http.cookie ~ "session-") {
