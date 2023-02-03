@@ -5,7 +5,7 @@ Before installing Shopware 6, you should take a quick look at the requirements t
 ## Operating System
 
 Shopware 6 is currently only supported on linux and macOS setups.
-Windows is only supported inside wsl.
+Windows is only supported inside WSL 2.
 
 ## Versions
 
