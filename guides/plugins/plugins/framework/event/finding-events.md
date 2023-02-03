@@ -279,3 +279,7 @@ There's a vue browser extension which can greatly help will development in gener
 
 [Vue.js devtools for Firefox](https://addons.mozilla.org/de/firefox/addon/vue-js-devtools/)
 [Vue.js devtools for Google Chrome](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
+
+## Flow builder events
+
+In Flow Builder, all events data will be stored in the `StorableFlow`, hence the `getAvailableData` function can no more be used to get data from the Flow Builder. For more information on this refer to [Add Flow Builder trigger](../../../../../guides/plugins/plugins/framework/flow/add-flow-builder-trigger.md#event-interfaces-and-classes) section of this guide.
