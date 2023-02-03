@@ -47,14 +47,19 @@ You can use these commands to check your actual environment:
 
 **SQL**
 
-* Tested on MySQL 5.7.21, and 8.0
-  * Only MySQL 8.0.20 in specific, is not compatible
-* Tested on MariaDB 10.3.22, 10.4 and 10.5
-  * MariaDB 10.3.29, 10.4.19, 10.5.10 are not compatible at the moment
+MySQL 5.7.21, and 8.0 are tested to work.
+Known problematic Versions:
+- 8.0.20 
+
+MariaDB 10.3.22, 10.4 and 10.5 are all tested.
+Known problematic Versions:
+- 10.3.29
+- 10.4.19
+- 10.5.10 
 
 **JavaScript**
 
-* Node.js 12.21.0 or higher
+* Node.js 16.00.0 or higher
 * NPM 6.5.0 or higher
 
 ## Webserver
@@ -68,8 +73,25 @@ Below you find the default configuration using either Caddy, Nginx or Apache as 
 
 ```text
 mydomain.com {
+  header {
+    X-Frame-Options DENY
+    Referrer-Policy no-referrer-when-downgrade
+  }
+
+  @svg {
+    file
+    path *.svg
+  }
+
+  header @svg Content-Security-Policy "script-src 'none'"
+
+  @default {
+    not path /theme/* /media/* /thumbnail/* /bundles/* /css/* /fonts/* /js/* /recovery/* /sitemap/*
+  }
+
   root * public
   php_fastcgi 127.0.0.1:9000
+  encode zstd gzip
   file_server
 }
 ```
@@ -154,7 +176,13 @@ server {
 {% tab title="Apache" %}
 
 {% hint style="info" %}
-`mod_headers` must be enabled to securely serve `.svg` files.
+The following modules are required:
+
+- mod_negotiation
+- mod_rewrite
+- mod_headers
+- mod_deflate
+
 {% endhint %}
 
 ```text
@@ -174,6 +202,19 @@ server {
 
 {% endtab %}
 {% endtabs %}
+
+## Recommended Stack
+
+While not necessary we recommend the following stack:
+
+Webserver: Caddy
+PHP: 8.1
+Node: 16
+Search: Opensearch 2.5.0
+Queue: Rabbitmq
+
+Recommended PHP ini:
+{% page-ref page="../hosting/performance/performance-tweaks.md#php-config-tweaks" %}
 
 # Setup
 
