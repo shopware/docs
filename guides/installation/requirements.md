@@ -162,7 +162,7 @@ server {
    ServerName "HOST_NAME"
    DocumentRoot _SHOPWARE_LOCATION_/public
    <Directory _SHOPWARE_LOCATION_>
-      Options Indexes FollowSymLinks MultiViews
+      Options -Indexes +FollowSymLinks +MultiViews
       AllowOverride All
       Order allow,deny
       allow from all
