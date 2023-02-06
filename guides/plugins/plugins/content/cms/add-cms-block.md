@@ -272,18 +272,17 @@ Shopware.Service('cmsService').registerCmsBlock({
 In order to test your changes now, you should rebuild your administration. This can be done with the following command:
 
 {% tabs %}
-{% tab title="Development template" %}
-
-```bash
-./psh.phar administration:build
-```
-
-{% endtab %}
-
 {% tab title="Production template" %}
 
 ```bash
 ./bin/build-administration.sh
+```
+
+{% endtab %}
+{% tab title="platform only" %}
+
+```bash
+composer run build:js:admin
 ```
 
 {% endtab %}

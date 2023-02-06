@@ -99,21 +99,21 @@ In the end, by running the command `bin/console theme:compile` your custom JS pl
 
 Of course, the theme compilation with `bin/console theme:compile` will get tedious if you change files a lot and want to check the changes in the browser. So there is a better way while you are developing your theme with the `hot-proxy` option, which will give you the live reload feature.
 
-To activate the hot-proxy, run the following command `./psh.phar storefront:hot-proxy` in your terminal.
+To activate the hot-proxy, run the following command in your terminal.
 
 {% tabs %}
-{% tab title="Development template" %}
-
-```bash
-./psh.phar storefront:hot-proxy
-```
-
-{% endtab %}
 
 {% tab title="Production template" %}
 
 ```bash
 ./bin/watch-storefront.sh
+```
+
+{% endtab %}
+{% tab title="platform only" %}
+
+```bash
+composer run watch:admin
 ```
 
 {% endtab %}

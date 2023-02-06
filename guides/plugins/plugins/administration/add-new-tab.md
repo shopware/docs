@@ -151,18 +151,17 @@ import './page/sw-product-detail';
 {% hint style="info" %}
 Don't forget to rebuild the administration after applying changes to your `main.js`.
 {% tabs %}
-{% tab title="Development template" %}
-
-```bash
-./psh.phar administration:build
-```
-
-{% endtab %}
-
 {% tab title="Production template" %}
 
 ```bash
 ./bin/build-administration.sh
+```
+
+{% endtab %}
+{% tab title="platform only" %}
+
+```bash
+composer run build:js:admin
 ```
 
 {% endtab %}
