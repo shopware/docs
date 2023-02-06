@@ -151,7 +151,7 @@ import './page/sw-product-detail';
 {% hint style="info" %}
 Don't forget to rebuild the administration after applying changes to your `main.js`.
 {% tabs %}
-{% tab title="Production template" %}
+{% tab title="Template" %}
 
 ```bash
 ./bin/build-administration.sh

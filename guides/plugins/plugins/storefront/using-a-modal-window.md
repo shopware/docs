@@ -171,7 +171,7 @@ export default class ExamplePlugin extends Plugin {
 To see your changes you have to build the storefront. Use the following command to build your storefront and reload it afterwards:
 
 {% tabs %}
-{% tab title="Production template" %}
+{% tab title="Template" %}
 
 ```bash
 ./bin/build-storefront.sh

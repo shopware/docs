@@ -103,7 +103,7 @@ To activate the hot-proxy, run the following command in your terminal.
 
 {% tabs %}
 
-{% tab title="Production template" %}
+{% tab title="Template" %}
 
 ```bash
 ./bin/watch-storefront.sh

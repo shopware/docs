@@ -272,7 +272,7 @@ Shopware.Service('cmsService').registerCmsBlock({
 In order to test your changes now, you should rebuild your administration. This can be done with the following command:
 
 {% tabs %}
-{% tab title="Production template" %}
+{% tab title="Template" %}
 
 ```bash
 ./bin/build-administration.sh

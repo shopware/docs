@@ -104,7 +104,7 @@ if (module.hot) {
 To see your changes you have to build the storefront. Use the following command and reload your storefront.
 
 {% tabs %}
-{% tab title="Production template" %}
+{% tab title="Template" %}
 
 ```bash
 ./bin/build-storefront.sh
