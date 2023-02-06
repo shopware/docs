@@ -4,7 +4,7 @@
 
 The Currency component provides the means for currency calculation in the B2B Suite. The following graph shows components depending on this component:
 
-![image](../../../../../../.gitbook/assets/currency-usage.svg)
+![image](../../../../../.gitbook/assets/currency-usage.svg)
 
 ## Context
 
