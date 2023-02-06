@@ -78,7 +78,7 @@ As mentioned above, Shopware 6 is looking for a `main.js` file in your plugin. I
 ```
 
 {% endtab %}
-{% tab title="platform only" %}
+{% tab title="platform only (contribution setup)" %}
 
 ```bash
 composer run build:js:admin

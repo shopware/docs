@@ -178,7 +178,7 @@ To see your changes you have to build the storefront. Use the following command 
 ```
 
 {% endtab %}
-{% tab title="platform only" %}
+{% tab title="platform only (contribution setup)" %}
 
 ```bash
 composer run build:js:storefront

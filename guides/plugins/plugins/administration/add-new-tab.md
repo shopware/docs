@@ -158,7 +158,7 @@ Don't forget to rebuild the administration after applying changes to your `main.
 ```
 
 {% endtab %}
-{% tab title="platform only" %}
+{% tab title="platform only (contribution setup)" %}
 
 ```bash
 composer run build:js:admin

@@ -208,7 +208,7 @@ Given this plugin would be named "AdministrationNewModule", the bundled and mini
 
 {% endtab %}
 
-{% tab title="platform only" %}
+{% tab title="platform only (contribution setup)" %}
 
 ```bash
 composer run build:js:admin

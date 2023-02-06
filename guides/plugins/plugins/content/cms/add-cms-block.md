@@ -279,7 +279,7 @@ In order to test your changes now, you should rebuild your administration. This 
 ```
 
 {% endtab %}
-{% tab title="platform only" %}
+{% tab title="platform only (contribution setup)" %}
 
 ```bash
 composer run build:js:admin

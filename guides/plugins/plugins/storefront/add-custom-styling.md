@@ -71,7 +71,7 @@ Now you want to test if your custom styles actually apply to the Storefront. For
 ```
 
 {% endtab %}
-{% tab title="platform only" %}
+{% tab title="platform only (contribution setup)" %}
 
 ```bash
 composer run build:js:storefront
@@ -90,7 +90,7 @@ If you want to see all style changes made by you live, you can also use our Stor
 ```
 
 {% endtab %}
-{% tab title="platform only" %}
+{% tab title="platform only (contribution setup)" %}
 
 ```bash
 composer run watch:storefront

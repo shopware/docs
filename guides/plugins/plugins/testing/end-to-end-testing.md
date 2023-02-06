@@ -193,7 +193,9 @@ If you want to run the tests in CLI, please use the following command outside yo
 ```bash
 composer run e2e:admin:run
 ```
+
 or
+
 ```bash
 composer run e2e:storefront:run
 ```

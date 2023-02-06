@@ -415,7 +415,7 @@ That's it! You could now go ahead and fully test your new element! Install this 
 ```
 
 {% endtab %}
-{% tab title="platform only" %}
+{% tab title="platform only (contribution setup)" %}
 
 ```bash
 composer run build:js:admin

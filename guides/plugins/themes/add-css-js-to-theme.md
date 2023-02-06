@@ -110,7 +110,7 @@ To activate the hot-proxy, run the following command in your terminal.
 ```
 
 {% endtab %}
-{% tab title="platform only" %}
+{% tab title="platform only (contribution setup)" %}
 
 ```bash
 composer run watch:admin
