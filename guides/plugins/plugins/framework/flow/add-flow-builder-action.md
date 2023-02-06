@@ -640,5 +640,3 @@ Now, after you click on the action, the new sequence will automatically be added
 You can view the whole demo for this custom Flow Builder trigger and action below:
 
 ![Flow Builder demo](../../../../../.gitbook/assets/flow-builder-demo.gif)
-
-The source code for this demo you could find it at [Flow Builder ExamplePlugin](https://github.com/huytdq94/sw-example-plugin-flow-builder).

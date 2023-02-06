@@ -1,5 +1,9 @@
 # Installation from Scratch
 
+{% hint style="danger" %}
+This approach is no longer recomended. It is kept here as a reference.
+{% endhint %}
+
 If it is *impossible* to get Docker up and running on your development environment, you can install Shopware 6 locally.
 
 {% hint style="info" %}
@@ -162,4 +166,4 @@ Note that this will reset your database.
 
 ## Next steps
 
-Now that you got a running Shopware installation, why not start with your first very own plugin? Refer to the [Plugin base guide](../plugins/plugins/plugin-base-guide.md) for a good starting point.
+Now that you got a running Shopware installation, why not start with your first very own plugin? Refer to the [Plugin base guide](../../plugins/plugins/plugin-base-guide.md) for a good starting point.

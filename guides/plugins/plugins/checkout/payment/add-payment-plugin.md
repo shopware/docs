@@ -443,6 +443,9 @@ class SwagBasicExample extends Plugin
             'name' => 'Example payment',
             'description' => 'Example payment description',
             'pluginId' => $pluginId,
+            // if true, payment method will also be available after the order 
+            // is created, e.g. if payment fails and the user wants to try again
+            'afterOrderEnabled' => true,
         ];
 
         /** @var EntityRepositoryInterface $paymentRepository */

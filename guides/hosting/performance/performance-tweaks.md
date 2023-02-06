@@ -57,7 +57,7 @@ and then you can set `SQL_SET_DEFAULT_SESSION_VARIABLES=0` to your `.env` file
 
 We designed the DAL (Data Abstraction Layer) to provide developers a flexible and extensible data management. However, features in such a system come at the cost of performance. Therefore, using DBAL (plain SQL) is much faster than using the DAL in many scenarios, especially when it comes to internal processes, where often only one ID of an entity is needed.
 
-Refer to this article to know more on [when to use plain SQL and DAL](../../../../resources/references/adr/dal/2021-05-14-when-to-use-plain-sql-or-dal.md).
+Refer to this article to know more on [when to use plain SQL and DAL](../../../resources/references/adr/dal/2021-05-14-when-to-use-plain-sql-or-dal.md).
 
 ## Elasticsearch/Opensearch
 

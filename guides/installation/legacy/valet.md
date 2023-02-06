@@ -1,5 +1,9 @@
 # Valet+
 
+{% hint style="danger" %}
+This approach is no longer recomended. It is kept here as a reference.
+{% endhint %}
+
 ## Overview
 
 Valet+ is a fork of [laravel/valet](https://github.com/laravel/valet). It supports automatic virtual host configuration based on the folder structure.
@@ -67,4 +71,4 @@ Try disabling SSL via `valet unsecure`.
 
 ## Next steps
 
-Now that you have a running Shopware 6 instance, you can create your first plugin. Refer to [Plugin base guide](../plugins/plugins/plugin-base-guide.md) for more information.
+Now that you have a running Shopware 6 instance, you can create your first plugin. Refer to [Plugin base guide](../../plugins/plugins/plugin-base-guide.md) for more information.

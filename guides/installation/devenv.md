@@ -153,7 +153,14 @@ DATABASE_URL="mysql://shopware:shopware@127.0.0.1:3306/shopware?sslmode=disable&
 
 {% endcode %}
 
-Inside the project directory, run the following command to initialize Shopware:
+With a new terminal, go to the project directory and run the following command to launch a devenv shell.
+This shell includes all needed programs (php, composer, npm, node, etc.), to initialize Shopware:
+
+```shell
+devenv shell
+```
+
+In the devenv shell, run the following command to initialize Shopware:
 
 ```shell
 composer setup
@@ -164,7 +171,7 @@ composer setup
 If you wish to switch between multiple development environments which use devenv seamlessly, we recommend installing [direnv](https://direnv.net/).
 
 When you enter a project directory using devenv, direnv will automatically activate the environment for you.
-This means that you can use the binaries and services without having to run `devenv up` manually.
+This means that you can use the binaries without having to run `devenv shell` manually, though you still have to run `devenv up` to start all services.
 
 First, install direnv:
 
@@ -325,6 +332,8 @@ Refer to the official devenv documentation to get a complete list of all availab
   };
 }
 ```
+
+{% endcode %}
 
 ### Use MariaDB instead of MySQL
 

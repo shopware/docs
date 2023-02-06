@@ -1,7 +1,7 @@
 # MAMP
 
-{% hint style="info" %}
-This guide has been migrated from the old documentation and is subject to change. Feel free to give input using the ["Edit page on GitHub"](https://github.com/shopware/docs/blob/master/guides/installation/mamp.md) button.
+{% hint style="danger" %}
+This approach is no longer recomended. It is kept here as a reference.
 {% endhint %}
 
 ## Overview
@@ -170,10 +170,4 @@ The underlying problem is that Mac supports case-insensitive paths but not the t
 
 ## Next steps
 
-As you successfully installed Shopware, you may want to start writing your own plugin. Head over to [Plugin base guide](../plugins/plugins/plugin-base-guide.md) to get a grip on that topic.
-
-Did you know you can install Shopware on Mac with the help of other tools? See the guides below:
-
-- [Docker](docker.md)
-- [Vagrant](vagrant.md)
-- [Dockware](dockware.md)
+As you successfully installed Shopware, you may want to start writing your own plugin. Head over to [Plugin base guide](../../plugins/plugins/plugin-base-guide.md) to get a grip on that topic.

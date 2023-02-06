@@ -138,15 +138,7 @@ Default credentials for Dockware can be found at [https://docs.dockware.io/use-d
 
 ## Next steps
 
-Would you like to explore alternative ways to install Shopware?
-
-You can install Shopware on Mac with the help of other tools:
-
-* [Docker](docker.md)
-* [Vagrant](vagrant.md)
-* [MAMP](mamp.md)
-
-Otherwise, you might want to start writing your very own plugin. Head over to ["Plugin base guide"](../plugins/plugins/plugin-base-guide.md) to get a grip on that topic.
+You might want to start writing your very own plugin. Head over to ["Plugin base guide"](../../plugins/plugins/plugin-base-guide.md) to get a grip on that topic.
 
 {% hint style="info" %}
 Refer to this video on **[Using Dockware](https://www.youtube.com/watch?v=b9wVfUOKqmI)** that explains the basics of Dockware. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).

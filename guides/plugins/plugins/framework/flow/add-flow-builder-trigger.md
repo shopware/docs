@@ -105,6 +105,238 @@ class ExampleEvent extends Event implements CustomerAware, BusinessEventInterfac
 
 {% endcode %}
 
+{% hint style="info" %}
+  Available starting with Shopware 6.5.0.0
+{% endhint %}
+
+From 6.5, in Flow Builder, the original event will be deprecated and we will only use a class `StorableFlow`. All event data will be stored in the `StorableFlow`, hence the `getAvailableData` function can no more be used to get data from the Flow Builder.
+
+We have created many Aware interfaces. These Aware are the conditions to restore event data in Flow Builder via `FlowStorer` respective.
+
+| Aware interface | Storer respective |
+| :--- | :--- |
+| Shopware\Core\Content\Flow\Dispatching\Aware\ConfirmUrlAware | Shopware\Core\Content\Flow\Dispatching\Storer\ConfirmUrlStorer |
+| Shopware\Core\Content\Flow\Dispatching\Aware\ContactFormDataAware | Shopware\Core\Content\Flow\Dispatching\Storer\ContactFormDataStorer |
+| Shopware\Core\Content\Flow\Dispatching\Aware\ContentsAware | Shopware\Core\Content\Flow\Dispatching\Storer\ContentsStorer |
+| Shopware\Core\Content\Flow\Dispatching\Aware\ContextTokenAware | Shopware\Core\Content\Flow\Dispatching\Storer\ContextTokenStorer |
+| Shopware\Core\Content\Flow\Dispatching\Aware\CustomerGroupAware | Shopware\Core\Content\Flow\Dispatching\Storer\CustomerGroupStorer |
+| Shopware\Core\Content\Flow\Dispatching\Aware\CustomerRecoveryAware | Shopware\Core\Content\Flow\Dispatching\Storer\CustomerRecoveryStorer |
+| Shopware\Core\Framework\Event\CustomerAware | Shopware\Core\Content\Flow\Dispatching\Storer\CustomerStorer |
+| Shopware\Core\Content\Flow\Dispatching\Aware\DataAware | Shopware\Core\Content\Flow\Dispatching\Storer\DataStorer |
+| Shopware\Core\Content\Flow\Dispatching\Aware\EmailAware | Shopware\Core\Content\Flow\Dispatching\Storer\EmailStorer |
+| Shopware\Core\Framework\Event\MailAware | Shopware\Core\Content\Flow\Dispatching\Storer\MailStorer |
+| Shopware\Core\Content\Flow\Dispatching\Aware\MessageAware | Shopware\Core\Content\Flow\Dispatching\Storer\MessageStorer |
+| Shopware\Core\Content\Flow\Dispatching\Aware\NameAware | Shopware\Core\Content\Flow\Dispatching\Storer\NameStorer |
+| Shopware\Core\Content\Flow\Dispatching\Aware\NewsletterRecipientAware | Shopware\Core\Content\Flow\Dispatching\Storer\NewsletterRecipientStorer |
+| Shopware\Core\Framework\Event\OrderAware | Shopware\Core\Content\Flow\Dispatching\Storer\OrderStorer |
+| Shopware\Core\Content\Flow\Dispatching\Aware\OrderTransactionAware | Shopware\Core\Content\Flow\Dispatching\Storer\OrderTransactionStorer |
+| Shopware\Core\Framework\Event\ProductAware | Shopware\Core\Content\Flow\Dispatching\Storer\ProductStorer |
+| Shopware\Core\Content\Flow\Dispatching\Aware\RecipientsAware | Shopware\Core\Content\Flow\Dispatching\Storer\RecipientsStorer |
+| Shopware\Core\Content\Flow\Dispatching\Aware\ResetUrlAware | Shopware\Core\Content\Flow\Dispatching\Storer\ResetUrlStorer |
+| Shopware\Core\Content\Flow\Dispatching\Aware\ReviewFormDataAware | Shopware\Core\Content\Flow\Dispatching\Storer\ReviewFormDataStorer |
+| Shopware\Core\Content\Flow\Dispatching\Aware\ShopNameAware | Shopware\Core\Content\Flow\Dispatching\Storer\ShopNameStorer |
+| Shopware\Core\Content\Flow\Dispatching\Aware\SubjectAware | Shopware\Core\Content\Flow\Dispatching\Storer\SubjectStorer |
+| Shopware\Core\Content\Flow\Dispatching\Aware\TemplateDataAware | Shopware\Core\Content\Flow\Dispatching\Storer\TemplateDataStorer |
+| Shopware\Core\Content\Flow\Dispatching\Aware\UrlAware | Shopware\Core\Content\Flow\Dispatching\Storer\UrlStorer |
+| Shopware\Core\Framework\Event\UserAware | Shopware\Core\Content\Flow\Dispatching\Storer\UserStorer |
+
+```php
+<?php declare(strict_types=1);
+
+namespace Swag\ExamplePlugin\Core\Checkout\Customer\Event;
+
+use Shopware\Core\Checkout\Customer\CustomerEntity;
+use Shopware\Core\Framework\Event\CustomerAware;
+use Shopware\Core\Framework\Event\ShopNameAware;
+use Shopware\Core\Framework\Event\EventData\EventDataCollection;
+use Symfony\Contracts\EventDispatcher\Event;
+
+class ExampleEvent extends Event implements CustomerAware, ShopNameAware
+{
+    public const EVENT_NAME = 'example.event';
+
+    private CustomerEntity $customer;
+
+    public function __construct(CustomerEntity $customer, string $shopName)
+    {
+        $this->customer = $customer;
+        $this->shopName = $shopName;
+    }
+
+    public function getName(): string
+    {
+        return self::EVENT_NAME;
+    }
+
+    public function getCustomerId(): string
+    {
+        return $this->customer->getId();
+    }
+
+    public static function getAvailableData(): EventDataCollection
+    {
+        return (new EventDataCollection());
+    }
+
+    public function getShopName(): string
+    {
+        return $this->shopName;
+    }
+}
+```
+
+In the example above, to get the `customerId` and `shopName` data events, you need to store these data via `CustomerStorer` and `ShopNameStorer`.
+
+```php
+class CustomerStorer extends FlowStorer
+{
+	public function store(FlowEventAware $event, array $stored): array
+	{
+    		if (!$event instanceof CustomerAware || isset($stored['customerId'])) {
+        		return $stored;
+    		}
+
+    		$stored['customerId'] = $event->getCustomerId();
+
+    		return $stored;
+	}
+
+	public function restore(StorableFlow $storable): void
+	{
+    		if (!$storable->hasStore('customerId')) {
+        		return;
+    		}
+
+   		$storable->setData('customer', $this->getCustomer($storable->getStore('customerId')));
+	}
+
+	private function getCustomer(string $customerId): Customer
+	{
+		// load customer via $customerId
+		
+		return $customer;
+	}
+}
+```
+
+```php
+class ShopNameStorer extends FlowStorer
+{
+    public function store(FlowEventAware $event, array $stored): array
+    {
+        if (!$event instanceof ShopNameAware || isset($stored['shopName'])) {
+            return $stored;
+        }
+
+        $stored['shopName'] = $event->getShopName();
+
+        return $stored;
+    }
+
+    public function restore(StorableFlow $storable): void
+    {
+        if (!$storable->hasStore('shopName')) {
+            return;
+        }
+
+        $storable->setData('shopName', $storable->getStore('shopName'));
+    }
+}
+```
+
+We already have Aware interfaces, but if you want to use the custom data that is not available, you can define a new Aware interface and a Storer respective.
+
+```php
+<?php declare(strict_types=1);
+
+namespace Swag\ExamplePlugin\Core\Checkout\Customer\Event;
+
+use Shopware\Core\Framework\Event\CustomExampleDataAware;
+use Shopware\Core\Framework\Event\EventData\EventDataCollection;
+use Symfony\Contracts\EventDispatcher\Event;
+
+class ExampleEvent extends Event implements CustomExampleDataAware
+{
+    public const EVENT_NAME = 'example.event';
+
+    private string $customExampleData;
+
+    public function __construct(string $customExampleData)
+    {
+        $this->customExampleData = $customExampleData;
+    }
+
+    public function getName(): string
+    {
+        return self::EVENT_NAME;
+    }
+
+    public function getCustomExampleData(): string
+    {
+        return $this->customExampleData;
+    }
+
+    public static function getAvailableData(): EventDataCollection
+    {
+        return (new EventDataCollection());
+    }
+}
+```
+
+Aware:
+
+```php
+interface CustomExampleDataAware extends FlowEventAware
+{
+    public const CUSTOM_EXAMPLE_DATA = 'customExampleData';
+
+    public function getCustomExampleData(): string;
+}
+```
+
+Storer respective:
+
+```php
+class CustomExampleDataStorer extends FlowStorer
+{
+    public function store(FlowEventAware $event, array $stored): array
+    {
+        if (!$event instanceof CustomExampleDataAware || isset($stored[CustomExampleDataAware::CUSTOM_EXAMPLE_DATA])) {
+            return $stored;
+        }
+
+        $stored[CustomExampleDataAware::CUSTOM_EXAMPLE_DATA] = $event->getCustomExampleData();
+
+        return $stored;
+    }
+
+    public function restore(StorableFlow $storable): void
+    {
+        if (!$storable->hasStore(CustomExampleDataAware::CUSTOM_EXAMPLE_DATA)) {
+            return;
+        }
+
+        $storable->setData(CustomExampleDataAware::CUSTOM_EXAMPLE_DATA, $storable->getStore(CustomExampleDataAware::CUSTOM_EXAMPLE_DATA));
+    }
+}
+```
+
+In Flow Actions, you can get the data easily via `getStore` and `getData`.
+
+```php
+class SendMailAction
+{
+	public function handleFlow(StorableFlow $flow)
+	{
+		$shopName = $flow->getStore('shopName');
+		$customer = $flow->getData('customer');
+		$customExampleData = $flow->getData('customExampleData');
+	}
+}
+```
+
+Take a look at the [Add Flow Builder Action](/guides/plugins/plugins/framework/flow/add-flow-builder-action.md) section of the guide for how to use data in Flow Actions.
+
 ### Add your new event to the flow trigger list
 
  At this step you need to add your new event to the flow trigger list, let see the code below:

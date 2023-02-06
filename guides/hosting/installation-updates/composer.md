@@ -1,5 +1,9 @@
 # Versioning and Dependencies
 
+{% hint style="danger" %}
+This setup is no longer the recomended way to manage a Shopware installation. Please refer to our [Flex-guide](../../installation/flex.md#How-do-I-migrate-from-Production-Template-to-Symfony-Flex?) on how to migrate to a symfony flex based setup.
+{% endhint %}
+
 ## Overview
 
 ### Shopware 6 production template
@@ -9,10 +13,6 @@ The Shopware 6 production template enables you to build, package and deploy Shop
 {% embed url="https://github.com/shopware/production" caption="" %}
 
 The template is optimized for production usage and contains basic development tooling. It is intended as a basis for project customizations, which are usually done by agencies.
-
-{% hint style="info" %}
-If you want to contribute to the [Shopware Platform](https://github.com/shopware/platform) or develop store plugins, you should use the [Development template](https://github.com/shopware/development).
-{% endhint %}
 
 ### Branches and stability
 
