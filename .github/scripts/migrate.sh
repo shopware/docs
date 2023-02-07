@@ -48,6 +48,9 @@ find . -name '*.md' -exec sed -i 's/{% page-ref page="\(.*\).md" %}/<PageRef pag
 # non-md page-ref
 find . -name '*.md' -exec sed -i 's/{% page-ref page="\(.*\)" %}/<PageRef page="\1" \/>/g' {} +
 
+# transform links
+find . -name '*.md' -exec sed -i 's/](https:\/\/developer.shopware.com\/docs\//](\/docs\//g' {} +
+
 # external embeds
 find . -name '*.md' -exec sed -i 's/{% embed url="\(https:\/\/[^"]*\)\.md" caption="\([^"]*\)" %}/<PageRef page="\1" title="\2" target="_blank" \/>/g' {} +
 
