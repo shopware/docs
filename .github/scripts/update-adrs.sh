@@ -17,4 +17,4 @@ find resources/references/adr -type f -name '*md' -not -name '_*' -exec sed -i '
 # remove once https://gitlab.shopware.com/shopware/6/product/platform/-/merge_requests/10463 is merged
 find resources/references/adr -type f -name '*md' -not -name '_*' -exec sed -i 's#(\.\./assets#(../../../.gitbook/assets/adr#' {} \;
 
-find resources/references/adr/ -type d -exec touch '{}'/README.md \;
+find resources/references/adr/ -type d -exec touch '{}'/index.md \;
