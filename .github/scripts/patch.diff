@@ -1,0 +1,503 @@
+diff --git a/.github/scripts/patch.diff b/.github/scripts/patch.diff
+index 50d8ff20..e69de29b 100644
+--- a/.github/scripts/patch.diff
++++ b/.github/scripts/patch.diff
+@@ -1,264 +0,0 @@
+-diff --git a/guides/plugins/apps/flow-builder/add-custom-flow-actions-from-app-system.md b/guides/plugins/apps/flow-builder/add-custom-flow-actions-from-app-system.md
+-index 4cebe9e7..07673ee4 100644
+---- a/guides/plugins/apps/flow-builder/add-custom-flow-actions-from-app-system.md
+-+++ b/guides/plugins/apps/flow-builder/add-custom-flow-actions-from-app-system.md
+-@@ -186,8 +186,8 @@ Define the `parameter` for the URL body based on your URL webhook services.
+- | type | Type of parameter, only support `string` type. |
+- | name | The body key for your URL. |
+- | value | The content message for your URL; free to design your content message here. |
+--| {{ message }} | The variable from your `<input-field>` defined in `flow-action.xml`. |
+--| {{ order.orderNumber }} | For each trigger event, the action will have the variables suitable. [Read more variables here](../../../../resources/references/app-reference/flow-action-reference). |
+-+| <code v-pre>{{ message }}</code> | The variable from your `<input-field>` defined in `flow-action.xml`. |
+-+| <code v-pre>{{ order.orderNumber }}</code> | For each trigger event, the action will have the variables suitable. [Read more variables here](../../../../resources/references/app-reference/flow-action-reference). |
+- 
+- With the parameters configured like described above, an exemplary call of your Webhook Action could look like this:
+- 
+-diff --git a/guides/plugins/plugins/administration/customizing-components.md b/guides/plugins/plugins/administration/customizing-components.md
+-index e7a17370..2a99afdc 100644
+---- a/guides/plugins/plugins/administration/customizing-components.md
+-+++ b/guides/plugins/plugins/administration/customizing-components.md
+-@@ -33,7 +33,7 @@ In this very simple example it suffices to create a twig file, declare a block w
+- ```
+- 
+- This overrides the entire Twig block with our new markup.
+--However, if we want to retain the original content of the Twig block and just add our markup to the existing one, we can do that by including a {% raw %}`{% parent %}`{% endraw %} somewhere in the Twig block.
+-+However, if we want to retain the original content of the Twig block and just add our markup to the existing one, we can do that by including a <code v-pre>{% parent %}</code> somewhere in the Twig block.
+- Learn more about the capabilities of twig.js [here](https://github.com/twigjs/twig.js/wiki).
+- 
+- As you might have noticed the heading we just replaced had a `{ $tc() }` [string interpolation](https://vuejs.org/v2/guide/syntax.html#Text) which is used to make it multilingual.
+-diff --git a/guides/plugins/plugins/framework/flow/add-flow-builder-trigger.md b/guides/plugins/plugins/framework/flow/add-flow-builder-trigger.md
+-index a5449dd1..16d8d76f 100644
+---- a/guides/plugins/plugins/framework/flow/add-flow-builder-trigger.md
+-+++ b/guides/plugins/plugins/framework/flow/add-flow-builder-trigger.md
+-@@ -39,7 +39,7 @@ To create a custom flow trigger, firstly you have to create a plugin and install
+- 
+- ### Create a new trigger (event)
+- 
+--In this example, we will name it ExampleEvent to some actions related to customers when dispatching this event. It will be placed in the directory <plugin root>/src/Core/Checkout/Customer/Event. Our new event has to implement Shopware\Core\Framework\Event\CustomerAware interface to enable actions requiring this Aware.
+-+In this example, we will name it ExampleEvent to some actions related to customers when dispatching this event. It will be placed in the directory `<plugin root>/src/Core/Checkout/Customer/Event`. Our new event has to implement Shopware\Core\Framework\Event\CustomerAware interface to enable actions requiring this Aware.
+- 
+- Currently, you will need to also implement `Shopware\Core\Framework\Event\BusinessEventInterface;` in case the feature flag `FEATURE_NEXT_17858` is inactive. Please take note that this interface will be removed in `v6.5` .
+- 
+-@@ -336,7 +336,7 @@ Take a look at the [Add Flow Builder Action](/guides/plugins/plugins/framework/f
+- 
+- ### Add your new event to the flow trigger list
+- 
+-- At this step you need to add your new event to the flow trigger list, let see the code below:
+-+At this step you need to add your new event to the flow trigger list, let see the code below:
+- 
+- ```php
+- // <plugin root>/src/Core/Checkout/Customer/Subscriber/BusinessEventCollectorSubscriber.php
+-diff --git a/guides/plugins/plugins/plugin-fundamentals/add-custom-commands.md b/guides/plugins/plugins/plugin-fundamentals/add-custom-commands.md
+-index 01d096d0..3793cc58 100644
+---- a/guides/plugins/plugins/plugin-fundamentals/add-custom-commands.md
+-+++ b/guides/plugins/plugins/plugin-fundamentals/add-custom-commands.md
+-@@ -118,11 +118,11 @@ Available commands:
+-   help                                    Displays help for a command
+-   list                                    Lists commands
+-  feature
+--  feature:dump                            [administration:dump:features] Creating json file with feature config for js testing and hot reloading capabilities.
+-+  feature:dump                            Creating json file with feature config for js testing and hot reloading capabilities.
+-  assets
+-   assets:install                          
+-  bundle
+--  bundle:dump                              [administration:dump:plugins|administration:dump:bundles] Creates a json file with the configuration for each active Shopware bundle.
+-+  bundle:dump                             Creates a json file with the configuration for each active Shopware bundle.
+-  cache
+-   cache:clear                             Clears the cache
+-   cache:pool:clear                        Clears cache pools
+-diff --git a/guides/plugins/plugins/storefront/customize-templates.md b/guides/plugins/plugins/storefront/customize-templates.md
+-index cd567c49..4a5ad112 100644
+---- a/guides/plugins/plugins/storefront/customize-templates.md
+-+++ b/guides/plugins/plugins/storefront/customize-templates.md
+-@@ -58,7 +58,7 @@ To override it now, just add the very same block into your custom file and repla
+- {% endblock %}
+- ```
+- 
+--If you wanted to append your text to the logo instead of replacing it, you could add a line like this to your override: `{{ parent() }}`
+-+If you wanted to append your text to the logo instead of replacing it, you could add a line like this to your override: <code v-pre>{{ parent() }}</code>
+- 
+- And that's it already, you're done. You might have to clear the cache and refresh your storefront to see your changes in action. This can be done by using the command following command inside your command line:
+- 
+-diff --git a/guides/plugins/plugins/testing/end-to-end-testing.md b/guides/plugins/plugins/testing/end-to-end-testing.md
+-index cebaa66b..2213d078 100644
+---- a/guides/plugins/plugins/testing/end-to-end-testing.md
+-+++ b/guides/plugins/plugins/testing/end-to-end-testing.md
+-@@ -42,6 +42,7 @@ The`./psh.phar` commands to run our E2E tests in CLI or in Cypress' test runner
+- 
+- <Tabs>
+- <Tab title="Plugin setup">
+-+
+- Depending on your environment \(administration or storefront\) please create the following folder structure:
+- 
+- ```text
+-@@ -145,10 +146,12 @@ It is **crucial** to set these environment variables in the **same terminal sess
+- Make sure that the `DISPLAY` environment variable on your Mac is properly set **before** you start the containers as it will be **passed** to the Cypress container when the container is **created**.
+- Updating the variable on your host won't update it in the container until it is re-created!
+- :::
+-+
+- </Tab>
+- 
+- <Tab title="Platform: Local environment">
+- To use E2E tests locally, you need to set the variable `CYPRESS_LOCAL` in your `.psh.yaml.override` to `true`. This way, Cypress will recognise your environment as local, without the use of docker. Afterwards, you are able to use the same `./psh.phar` commands as you would do using docker-based development environment.
+-+
+- </Tab>
+- </Tabs>
+- 
+-@@ -156,6 +159,7 @@ To use E2E tests locally, you need to set the variable `CYPRESS_LOCAL` in your `
+- 
+- <Tabs>
+- <Tab title="Plugin setup">
+-+
+- If you want to run E2E tests in your plugin, just switch to the folder `Resources/app/<environment>/test/e2e` and execute the following command:
+- 
+- ```bash
+-@@ -169,6 +173,7 @@ It opens up the Cypress test runner which allows you to run and debug your tests
+- ::: danger
+- Don't forget that you might need to adjust test cleanup and other environment-related things according to your plugin's setup.
+- :::
+-+
+- </Tab>
+- 
+- <Tab title="Execution in platform project">
+-diff --git a/guides/plugins/themes/add-assets-to-theme.md b/guides/plugins/themes/add-assets-to-theme.md
+-index 315f0a3a..4db36fa1 100644
+---- a/guides/plugins/themes/add-assets-to-theme.md
+-+++ b/guides/plugins/themes/add-assets-to-theme.md
+-@@ -20,7 +20,6 @@ While working with your own theme, you might have already come across the [Theme
+- 
+- ```javascript
+- // <plugin root>/src/Resources/theme.json
+--# src/Resources/theme.json
+- {
+-   ...
+-   "asset": [
+-@@ -53,8 +52,8 @@ This way of adding custom assets refers to the default way of dealing with asset
+- 
+- You can link to the asset with the twig [asset](https://symfony.com/doc/current/templates.html#linking-to-css-javascript-and-image-assets) function:
+- 
+--```html
+--<img src="{{ asset('bundles/swagbasicexampletheme/your-image.png', 'asset') }}">
+-+```twig
+-+{{ asset('bundles/swagbasicexampletheme/your-image.png', 'asset') }}
+- ```
+- 
+- In SCSS you can link to the asset like the following:
+-diff --git a/products/extensions/b2b-suite/concepts/basic-conventions.md b/products/extensions/b2b-suite/concepts/basic-conventions.md
+-index 96d233bc..d3e2bb4e 100644
+---- a/products/extensions/b2b-suite/concepts/basic-conventions.md
+-+++ b/products/extensions/b2b-suite/concepts/basic-conventions.md
+-@@ -2,23 +2,23 @@
+- 
+- This is the list of naming conventions the B2B Suite complies to:
+- 
+--| Group                                                                                              | Practice                                                                            |
+--|----------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+--| DI Container                                                                                       | All container ids look like `b2b_*.*`                                               |
+--| The first asterisk is the component name                                                            |                                                                                     |
+--| The second asterisk is a class name abbreviation                                                   |                                                                                     |
+--| Database                                                                                           | All table names start with `b2b_`                                                   |
+--| All table names are in singular                                                                |                                                                                     |
+--| All field and table names are in snake case                                                         |                                                                                     |
+--| Attributes                                                                                         | All attribute names start with `swag_b2b_`                                          |
+--| Subscriber                                                                                         | All subscriber methods are named in accordance with their function, not to the event  |
+--| Tests                                                                                              | All test methods are in snake case                                                  |
+--| All test methods start with `test_`                                                                |                                                                                     |
+--| Templates                                                                                          | All new layout modules are wrapped in `b2b--*` class containers                     |
+--| Modules reuse the template style of Shopware                                                       |                                                                                     |
+--| CSS Selectors                                                                                      | Three levels of selector depth as max                                                   |
+--| Twig Blocks                                                                                        | {% raw %}`{% block b2b_* %}{% endblock %}`{% endraw %} empty blocks are in one line |                                                                                     |
+--| JavaScript                                                                                         | The B2B Suite is written in TypeScript                                              |
+--| Storefront plugins                                                                                 | File names end with *.plugin.ts                                                     |
+-+| Group                                                                                              | Practice                                                                             |
+-+|----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+-+| DI Container                                                                                       | All container ids look like `b2b_*.*`                                                |
+-+| The first asterisk is the component name                                                            |                                                                                      |
+-+| The second asterisk is a class name abbreviation                                                   |                                                                                      |
+-+| Database                                                                                           | All table names start with `b2b_`                                                    |
+-+| All table names are in singular                                                                |                                                                                      |
+-+| All field and table names are in snake case                                                         |                                                                                      |
+-+| Attributes                                                                                         | All attribute names start with `swag_b2b_`                                           |
+-+| Subscriber                                                                                         | All subscriber methods are named in accordance with their function, not to the event |
+-+| Tests                                                                                              | All test methods are in snake case                                                   |
+-+| All test methods start with `test_`                                                                |                                                                                      |
+-+| Templates                                                                                          | All new layout modules are wrapped in `b2b--*` class containers                      |
+-+| Modules reuse the template style of Shopware                                                       |                                                                                      |
+-+| CSS Selectors                                                                                      | Three levels of selector depth as max                                                |
+-+| Twig Blocks                                                                                        | <code v-pre>{% block b2b_* %}{% endblock %}</code> empty blocks are in one line      |                                                                                     |
+-+| JavaScript                                                                                         | The B2B Suite is written in TypeScript                                               |
+-+| Storefront plugins                                                                                 | File names end with *.plugin.ts                                                      |
+- | Interfaces                                                                                         | File names start with `I`, e.g., `IAjaxPanelEvent.ts`                                |
+--| Snippets                                                                                           | The root snippet key is `b2b`                                                       |
+-+| Snippets                                                                                           | The root snippet key is `b2b`                                                        |
+-diff --git a/products/extensions/b2b-suite/guides/storefront/acl-routing.md b/products/extensions/b2b-suite/guides/storefront/acl-routing.md
+-index 21345f1c..41b4624a 100644
+---- a/products/extensions/b2b-suite/guides/storefront/acl-routing.md
+-+++ b/products/extensions/b2b-suite/guides/storefront/acl-routing.md
+-@@ -82,7 +82,8 @@ the action is new, and you must update the file to add the correct privilege nam
+- The ACL implementation is safe at the PHP level. Any route you have no access to will automatically be blocked, but for a better user experience, you should also extend the template to hide inaccessible actions.
+- 
+- ```twig
+--<a href="{{ url("frontend.b2b." ~ page.route ~ ".assign") }}" class="{{ b2b_acl('b2broleaddress', 'assign') }}">
+-+Href: {{ url("frontend.b2b." ~ page.route ~ ".assign") }}
+-+Class: {{ b2b_acl('b2broleaddress', 'assign') }}
+- ```
+- 
+- This will add a few vital CSS classes:
+-diff --git a/products/extensions/b2b-suite/guides/storefront/ajax-panel.md b/products/extensions/b2b-suite/guides/storefront/ajax-panel.md
+-index 6a8025e2..a603b991 100644
+---- a/products/extensions/b2b-suite/guides/storefront/ajax-panel.md
+-+++ b/products/extensions/b2b-suite/guides/storefront/ajax-panel.md
+-@@ -63,7 +63,7 @@ The B2B Suite comes with a library of simple helper plugins to add behavior to t
+- As you can see, there is the `AjaxPanelPluginLoader` responsible for initializing and reinitializing plugins inside b2b-panels.
+- Let's take our last example and extend it with a form plugin:
+- 
+--```html
+-+```twig
+- <div
+-     class="b2b--ajax-panel"
+-     data-url="{{ path('frontend.b2b.b2bcontact.grid') }}"
+-@@ -81,7 +81,7 @@ While few of them add very specific behavior to the grid or tab's views, there a
+- 
+- The `b2bAjaxPanelModal` plugin helps to open ajax panel content in a modal dialog box. Let's extend our initial example:
+- 
+--```html
+-+```twig
+- <div
+-     class="b2b--ajax-panel b2b-modal-panel"
+-     data-url="{{ path('frontend.b2b.b2bcontact.grid') }}"
+-@@ -99,7 +99,7 @@ Sometimes a change in one panel needs to trigger reload in another panel.
+- This might be the case if you are editing in a dialog and displaying a grid behind it.
+- In this case, you can just trigger reload on other panel id's, just like that:
+- 
+--```html
+-+```twig
+- <div class="b2b--ajax-panel" data-url="{{ path('frontend.b2b.b2bcontact.grid') }}" data-id="grid">
+-     <!-- grid -->
+- </div>
+-@@ -114,7 +114,7 @@ Now every change in the form view will trigger reload in the grid view.
+- ### TreeSelect
+- 
+- This `TreeSelect` plugin allows to display a tree view with enabled drag and drop.
+--In the view the `div` element needs the class `is--b2b-tree-select-container` and the data attribute `data-move-url="{{ path('frontend.b2b.b2brole.move') }}"`.
+-+In the view the `div` element needs the class `is--b2b-tree-select-container` and the data attribute <code v-pre>data-move-url="{{ path('frontend.b2b.b2brole.move') }}"</code>.
+- The controller has to implement a move action, which accepts the `roleId`, `relatedRoleId`, and the `type`.
+- 
+- Possible types:
+-diff --git a/products/extensions/b2b-suite/guides/storefront/product-search.md b/products/extensions/b2b-suite/guides/storefront/product-search.md
+-index e0e9b5f3..43eb8c6e 100644
+---- a/products/extensions/b2b-suite/guides/storefront/product-search.md
+-+++ b/products/extensions/b2b-suite/guides/storefront/product-search.md
+-@@ -3,11 +3,13 @@
+- Our product search is a small Storefront plugin that allows you to create input fields with autocompletion for products.
+- A small example is shown below. The plugin deactivates the default autocompletion for this field from your browser.
+- 
+-+<!--
+- ```twig
+- <div class="b2b--search-container">
+-     <input type="text" name="" data-product-search="{{ path('frontend.b2b.b2bproductsearch.searchProduct') }}" value="" />
+- </div>
+- ```
+-+-->
+- 
+- ## Elasticsearch
+- 
+diff --git a/guides/plugins/apps/flow-builder/add-custom-flow-actions-from-app-system.md b/guides/plugins/apps/flow-builder/add-custom-flow-actions-from-app-system.md
+index f7b94f70..be629703 100644
+--- a/guides/plugins/apps/flow-builder/add-custom-flow-actions-from-app-system.md
++++ b/guides/plugins/apps/flow-builder/add-custom-flow-actions-from-app-system.md
+@@ -186,8 +186,8 @@ Define the `parameter` for the URL body based on your URL webhook services.
+ | type | Type of parameter, only support `string` type. |
+ | name | The body key for your URL. |
+ | value | The content message for your URL; free to design your content message here. |
+-| {{ message }} | The variable from your `<input-field>` defined in `flow-action.xml`. |
+-| {{ order.orderNumber }} | For each trigger event, the action will have the variables suitable. [Read more variables here](../../../../resources/references/app-reference/flow-action-reference). |
++| <code v-pre>{{ message }}</code> | The variable from your `<input-field>` defined in `flow-action.xml`. |
++| <code v-pre>{{ order.orderNumber }}</code> | For each trigger event, the action will have the variables suitable. [Read more variables here](../../../../resources/references/app-reference/flow-action-reference). |
+ 
+ With the parameters configured like described above, an exemplary call of your Webhook Action could look like this:
+ 
+diff --git a/guides/plugins/plugins/administration/customizing-components.md b/guides/plugins/plugins/administration/customizing-components.md
+index a1e8b625..52b07902 100644
+--- a/guides/plugins/plugins/administration/customizing-components.md
++++ b/guides/plugins/plugins/administration/customizing-components.md
+@@ -33,7 +33,7 @@ In this very simple example it suffices to create a twig file, declare a block w
+ ```
+ 
+ This overrides the entire Twig block with our new markup.
+-However, if we want to retain the original content of the Twig block and just add our markup to the existing one, we can do that by including a {% raw %}`{% parent %}`{% endraw %} somewhere in the Twig block.
++However, if we want to retain the original content of the Twig block and just add our markup to the existing one, we can do that by including a <code v-pre>{% parent %}</code> somewhere in the Twig block.
+ Learn more about the capabilities of twig.js [here](https://github.com/twigjs/twig.js/wiki).
+ 
+ As you might have noticed the heading we just replaced had a `{ $tc() }` [string interpolation](https://vuejs.org/v2/guide/syntax.html#Text) which is used to make it multilingual.
+diff --git a/guides/plugins/plugins/framework/flow/add-flow-builder-trigger.md b/guides/plugins/plugins/framework/flow/add-flow-builder-trigger.md
+index fe889da9..31fedbab 100644
+--- a/guides/plugins/plugins/framework/flow/add-flow-builder-trigger.md
++++ b/guides/plugins/plugins/framework/flow/add-flow-builder-trigger.md
+@@ -39,7 +39,7 @@ To create a custom flow trigger, firstly you have to create a plugin and install
+ 
+ ### Create a new trigger (event)
+ 
+-In this example, we will name it ExampleEvent to some actions related to customers when dispatching this event. It will be placed in the directory <plugin root>/src/Core/Checkout/Customer/Event. Our new event has to implement Shopware\Core\Framework\Event\CustomerAware interface to enable actions requiring this Aware.
++In this example, we will name it ExampleEvent to some actions related to customers when dispatching this event. It will be placed in the directory `<plugin root>/src/Core/Checkout/Customer/Event`. Our new event has to implement Shopware\Core\Framework\Event\CustomerAware interface to enable actions requiring this Aware.
+ 
+ Currently, you will need to also implement `Shopware\Core\Framework\Event\BusinessEventInterface;` in case the feature flag `FEATURE_NEXT_17858` is inactive. Please take note that this interface will be removed in `v6.5` .
+ 
+@@ -336,7 +336,7 @@ Take a look at the [Add Flow Builder Action](/guides/plugins/plugins/framework/f
+ 
+ ### Add your new event to the flow trigger list
+ 
+- At this step you need to add your new event to the flow trigger list, let see the code below:
++At this step you need to add your new event to the flow trigger list, let see the code below:
+ 
+ ```php
+ // <plugin root>/src/Core/Checkout/Customer/Subscriber/BusinessEventCollectorSubscriber.php
+diff --git a/guides/plugins/plugins/plugin-fundamentals/add-custom-commands.md b/guides/plugins/plugins/plugin-fundamentals/add-custom-commands.md
+index 01d096d0..3793cc58 100644
+--- a/guides/plugins/plugins/plugin-fundamentals/add-custom-commands.md
++++ b/guides/plugins/plugins/plugin-fundamentals/add-custom-commands.md
+@@ -118,11 +118,11 @@ Available commands:
+   help                                    Displays help for a command
+   list                                    Lists commands
+  feature
+-  feature:dump                            [administration:dump:features] Creating json file with feature config for js testing and hot reloading capabilities.
++  feature:dump                            Creating json file with feature config for js testing and hot reloading capabilities.
+  assets
+   assets:install                          
+  bundle
+-  bundle:dump                              [administration:dump:plugins|administration:dump:bundles] Creates a json file with the configuration for each active Shopware bundle.
++  bundle:dump                             Creates a json file with the configuration for each active Shopware bundle.
+  cache
+   cache:clear                             Clears the cache
+   cache:pool:clear                        Clears cache pools
+diff --git a/guides/plugins/plugins/storefront/customize-templates.md b/guides/plugins/plugins/storefront/customize-templates.md
+index cd567c49..4a5ad112 100644
+--- a/guides/plugins/plugins/storefront/customize-templates.md
++++ b/guides/plugins/plugins/storefront/customize-templates.md
+@@ -58,7 +58,7 @@ To override it now, just add the very same block into your custom file and repla
+ {% endblock %}
+ ```
+ 
+-If you wanted to append your text to the logo instead of replacing it, you could add a line like this to your override: `{{ parent() }}`
++If you wanted to append your text to the logo instead of replacing it, you could add a line like this to your override: <code v-pre>{{ parent() }}</code>
+ 
+ And that's it already, you're done. You might have to clear the cache and refresh your storefront to see your changes in action. This can be done by using the command following command inside your command line:
+ 
+diff --git a/guides/plugins/plugins/testing/end-to-end-testing.md b/guides/plugins/plugins/testing/end-to-end-testing.md
+index 413193fa..c203afdc 100644
+--- a/guides/plugins/plugins/testing/end-to-end-testing.md
++++ b/guides/plugins/plugins/testing/end-to-end-testing.md
+@@ -42,6 +42,7 @@ The`./psh.phar` commands to run our E2E tests in CLI or in Cypress' test runner
+ 
+ <Tabs>
+ <Tab title="Plugin setup">
++
+ Depending on your environment \(administration or storefront\) please create the following folder structure:
+ 
+ ```text
+@@ -156,6 +158,7 @@ To use E2E tests locally, you need to set the variable `CYPRESS_LOCAL` in your `
+ 
+ <Tabs>
+ <Tab title="Plugin setup">
++
+ If you want to run E2E tests in your plugin, just switch to the folder `Resources/app/<environment>/test/e2e` and execute the following command:
+ 
+ ```bash
+@@ -169,6 +172,7 @@ It opens up the Cypress test runner which allows you to run and debug your tests
+ ::: danger
+ Don't forget that you might need to adjust test cleanup and other environment-related things according to your plugin's setup.
+ :::
++
+ </Tab>
+ 
+ <Tab title="Execution in platform project">
+diff --git a/guides/plugins/themes/add-assets-to-theme.md b/guides/plugins/themes/add-assets-to-theme.md
+index 315f0a3a..43828c3b 100644
+--- a/guides/plugins/themes/add-assets-to-theme.md
++++ b/guides/plugins/themes/add-assets-to-theme.md
+@@ -20,7 +20,6 @@ While working with your own theme, you might have already come across the [Theme
+ 
+ ```javascript
+ // <plugin root>/src/Resources/theme.json
+-# src/Resources/theme.json
+ {
+   ...
+   "asset": [
+@@ -53,8 +52,8 @@ This way of adding custom assets refers to the default way of dealing with asset
+ 
+ You can link to the asset with the twig [asset](https://symfony.com/doc/current/templates.html#linking-to-css-javascript-and-image-assets) function:
+ 
+-```html
+-<img src="{{ asset('bundles/swagbasicexampletheme/your-image.png', 'asset') }}">
++```twig
++{{ asset('bundles/swagbasicexampletheme/your-image.png', 'asset') }}
+ ```
+ 
+ In SCSS you can link to the asset like the following:
+diff --git a/products/extensions/b2b-suite/concepts/basic-conventions.md b/products/extensions/b2b-suite/concepts/basic-conventions.md
+index 96d233bc..c2c25b83 100644
+--- a/products/extensions/b2b-suite/concepts/basic-conventions.md
++++ b/products/extensions/b2b-suite/concepts/basic-conventions.md
+@@ -17,7 +17,7 @@ This is the list of naming conventions the B2B Suite complies to:
+ | Templates                                                                                          | All new layout modules are wrapped in `b2b--*` class containers                     |
+ | Modules reuse the template style of Shopware                                                       |                                                                                     |
+ | CSS Selectors                                                                                      | Three levels of selector depth as max                                                   |
+-| Twig Blocks                                                                                        | {% raw %}`{% block b2b_* %}{% endblock %}`{% endraw %} empty blocks are in one line |                                                                                     |
++| Twig Blocks                                                                                        | <code v-pre>{% block b2b_* %}{% endblock %}</code> empty blocks are in one line |                                                                                     |
+ | JavaScript                                                                                         | The B2B Suite is written in TypeScript                                              |
+ | Storefront plugins                                                                                 | File names end with *.plugin.ts                                                     |
+ | Interfaces                                                                                         | File names start with `I`, e.g., `IAjaxPanelEvent.ts`                                |
+diff --git a/products/extensions/b2b-suite/guides/storefront/acl-routing.md b/products/extensions/b2b-suite/guides/storefront/acl-routing.md
+index 21345f1c..41b4624a 100644
+--- a/products/extensions/b2b-suite/guides/storefront/acl-routing.md
++++ b/products/extensions/b2b-suite/guides/storefront/acl-routing.md
+@@ -82,7 +82,8 @@ the action is new, and you must update the file to add the correct privilege nam
+ The ACL implementation is safe at the PHP level. Any route you have no access to will automatically be blocked, but for a better user experience, you should also extend the template to hide inaccessible actions.
+ 
+ ```twig
+-<a href="{{ url("frontend.b2b." ~ page.route ~ ".assign") }}" class="{{ b2b_acl('b2broleaddress', 'assign') }}">
++Href: {{ url("frontend.b2b." ~ page.route ~ ".assign") }}
++Class: {{ b2b_acl('b2broleaddress', 'assign') }}
+ ```
+ 
+ This will add a few vital CSS classes:
+diff --git a/products/extensions/b2b-suite/guides/storefront/ajax-panel.md b/products/extensions/b2b-suite/guides/storefront/ajax-panel.md
+index 6a8025e2..a603b991 100644
+--- a/products/extensions/b2b-suite/guides/storefront/ajax-panel.md
++++ b/products/extensions/b2b-suite/guides/storefront/ajax-panel.md
+@@ -63,7 +63,7 @@ The B2B Suite comes with a library of simple helper plugins to add behavior to t
+ As you can see, there is the `AjaxPanelPluginLoader` responsible for initializing and reinitializing plugins inside b2b-panels.
+ Let's take our last example and extend it with a form plugin:
+ 
+-```html
++```twig
+ <div
+     class="b2b--ajax-panel"
+     data-url="{{ path('frontend.b2b.b2bcontact.grid') }}"
+@@ -81,7 +81,7 @@ While few of them add very specific behavior to the grid or tab's views, there a
+ 
+ The `b2bAjaxPanelModal` plugin helps to open ajax panel content in a modal dialog box. Let's extend our initial example:
+ 
+-```html
++```twig
+ <div
+     class="b2b--ajax-panel b2b-modal-panel"
+     data-url="{{ path('frontend.b2b.b2bcontact.grid') }}"
+@@ -99,7 +99,7 @@ Sometimes a change in one panel needs to trigger reload in another panel.
+ This might be the case if you are editing in a dialog and displaying a grid behind it.
+ In this case, you can just trigger reload on other panel id's, just like that:
+ 
+-```html
++```twig
+ <div class="b2b--ajax-panel" data-url="{{ path('frontend.b2b.b2bcontact.grid') }}" data-id="grid">
+     <!-- grid -->
+ </div>
+@@ -114,7 +114,7 @@ Now every change in the form view will trigger reload in the grid view.
+ ### TreeSelect
+ 
+ This `TreeSelect` plugin allows to display a tree view with enabled drag and drop.
+-In the view the `div` element needs the class `is--b2b-tree-select-container` and the data attribute `data-move-url="{{ path('frontend.b2b.b2brole.move') }}"`.
++In the view the `div` element needs the class `is--b2b-tree-select-container` and the data attribute <code v-pre>data-move-url="{{ path('frontend.b2b.b2brole.move') }}"</code>.
+ The controller has to implement a move action, which accepts the `roleId`, `relatedRoleId`, and the `type`.
+ 
+ Possible types:
+diff --git a/concepts/framework/migrations.md b/concepts/framework/migrations.md
+index 5f7b23dc..573de6b2 100644
+--- a/concepts/framework/migrations.md
++++ b/concepts/framework/migrations.md
+@@ -15,10 +15,10 @@ For Shopware to recognize additional plugin migrations, they need to be placed i
+
+ Each migration filename follows a specific pattern. To ease plugin development, Shopware provides a console command which can be used to generate a correctly named migration file with the default methods needed.
+
+-<PageRef page="../../guides/plugins/plugins/plugin-fundamentals/database-migrations.md#create-migration" title="Create migration" />
++<PageRef page="../../guides/plugins/plugins/plugin-fundamentals/database-migrations.html#create-migration" title="Create migration" />
+
+ ## Modifying the database
+
+ Each migration can have two methods. The `update` and `updateDestructive`. The `update` method must contain only non-destructive changes which can be rolled back at any time. The `updateDestructive` method can contain destructive changes, like dropping columns or tables, which cannot be reversed. For examples of database migrations, refer to the below guide:
+
+-<PageRef page="../../guides/plugins/plugins/plugin-fundamentals/database-migrations.md" title="Database migration" />
++<PageRef page="../../guides/plugins/plugins/plugin-fundamentals/database-migrations.html" title="Database migration" />
+diff --git a/products/extensions/b2b-suite/guides/storefront/product-search.md b/products/extensions/b2b-suite/guides/storefront/product-search.md
+index e0e9b5f3..43eb8c6e 100644
+--- a/products/extensions/b2b-suite/guides/storefront/product-search.md
++++ b/products/extensions/b2b-suite/guides/storefront/product-search.md
+@@ -3,11 +3,13 @@
+ Our product search is a small Storefront plugin that allows you to create input fields with autocompletion for products.
+ A small example is shown below. The plugin deactivates the default autocompletion for this field from your browser.
+ 
++<!--
+ ```twig
+ <div class="b2b--search-container">
+     <input type="text" name="" data-product-search="{{ path('frontend.b2b.b2bproductsearch.searchProduct') }}" value="" />
+ </div>
+ ```
++-->
+ 
+ ## Elasticsearch
+ 
