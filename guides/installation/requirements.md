@@ -49,13 +49,15 @@ You can use these commands to check your actual environment:
 
 MySQL 5.7.21, and 8.0 are tested to work.
 Known problematic Versions:
-- 8.0.20 
+
+* 8.0.20
 
 MariaDB 10.3.22, 10.4 and 10.5 are all tested.
 Known problematic Versions:
-- 10.3.29
-- 10.4.19
-- 10.5.10 
+
+* 10.3.29
+* 10.4.19
+* 10.5.10
 
 **JavaScript**
 
@@ -172,7 +174,6 @@ server {
 
 {% endtab %}
 
-
 {% tab title="Apache" %}
 
 {% hint style="info" %}
@@ -216,7 +217,7 @@ Queue: Rabbitmq
 Recommended PHP ini:
 {% page-ref page="../hosting/performance/performance-tweaks.md#php-config-tweaks" %}
 
-# Setup
+## Setup
 
 If the requirements are fullfilled you can continue to our template guide to set up Shopware.
 
