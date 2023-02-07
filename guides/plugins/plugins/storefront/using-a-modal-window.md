@@ -171,17 +171,17 @@ export default class ExamplePlugin extends Plugin {
 To see your changes you have to build the storefront. Use the following command to build your storefront and reload it afterwards:
 
 {% tabs %}
-{% tab title="Development template" %}
-
-```bash
-./psh.phar storefront:build
-```
-
-{% endtab %}
-{% tab title="Production template" %}
+{% tab title="Template" %}
 
 ```bash
 ./bin/build-storefront.sh
+```
+
+{% endtab %}
+{% tab title="platform only (contribution setup)" %}
+
+```bash
+composer run build:js:storefront
 ```
 
 {% endtab %}

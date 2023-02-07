@@ -8,11 +8,11 @@ In end-to-end testing \(E2E testing in short\) real user workflows are simulated
 
 To use Shopware E2E tests, at first you need to have a Shopware 6 installation running. Making sure, that your tests are reliable, you should have a clean installation. Cleanup means no categories, no products, no settings, nothing!
 
-The easiest way to clean up your installation is the initialization. Using the command `./psh.phar init` Shopware 6 gets initialized clean and without demo data. Installation of E2E dependencies can be accomplished separately by running `npm install` in the E2E folder you're using, e.g. for Shopware Administration it's `src/Administration/Resources/app/administration/test/e2e`.
+The easiest way to clean up your installation is the initialization. Using the command `composer run init` Shopware 6 gets initialized clean and without demo data. Installation of E2E dependencies can be accomplished separately by running `npm install` in the E2E folder you're using, e.g. for Shopware Administration it's `src/Administration/Resources/app/administration/test/e2e`.
 
 Since our tests should run on an installation that is as close as possible to a release package, we use production mode. If you run the tests on a development environment, the test results may vary.
 
-On top of that, please make sure your shop has a theme assigned. When using `./psh.phar e2e:open` or `run`, this is done automatically.
+On top of that, please make sure your shop has a theme assigned. When using `composer run e2e:open` or `run`, this is done automatically.
 
 This guide also won't teach you how to write Cypress tests in general. Please take a look at the official Cypress documentation for further guidance.
 <!-- markdown-link-check-disable-next-line -->
@@ -38,7 +38,7 @@ Please have a look on our [cypress.json](https://github.com/shopware/e2e-testsui
 
 When you use our [Development template](https://github.com/shopware/development), we provide you some tooling scripts located in `dev-ops/e2e/actions`, to use E2E tests more comfortably.
 
-The`./psh.phar` commands to run our E2E tests in CLI or in Cypress' test runner are explained in the paragraph [Executing e2e tests](end-to-end-testing.md#executing-e2e-tests).
+The`composer` scripts to run our E2E tests in CLI or in Cypress' test runner are explained in the paragraph [Executing e2e tests](end-to-end-testing.md#executing-e2e-tests).
 
 {% tabs %}
 {% tab title="Plugin setup" %}
@@ -146,10 +146,6 @@ Make sure that the `DISPLAY` environment variable on your Mac is properly set **
 Updating the variable on your host won't update it in the container until it is re-created!
 {% endhint %}
 {% endtab %}
-
-{% tab title="Platform: Local environment" %}
-To use E2E tests locally, you need to set the variable `CYPRESS_LOCAL` in your `.psh.yaml.override` to `true`. This way, Cypress will recognise your environment as local, without the use of docker. Afterwards, you are able to use the same `./psh.phar` commands as you would do using docker-based development environment.
-{% endtab %}
 {% endtabs %}
 
 ## Executing E2E tests
@@ -177,34 +173,34 @@ If you use Docker for your development environment, you are able to start right 
 To prepare your shopware installation, your environment and install dependencies, please run the following command as first step, **outside** of your docker container:
 
 ```bash
- ./psh.phar e2e:init
+ composer run e2e:setup
 ```
 
-In our tests, we assume a clean shopware installation, so we strongly recommend to use `e2e:init`. However, if your shopware installation is already clean and prepared, you can skip the preparation of your shopware installation by using the following command **inside** your docker container:
+In our tests, we assume a clean shopware installation, so we strongly recommend to use `e2e:setup`. However, if your shopware installation is already clean and prepared, you can skip the preparation of your shopware installation by using the following command **inside** your docker container:
 
 ```bash
- ./psh.phar e2e:prepare-environment
+ composer run e2e:prepare
 ```
 
 Afterwards, just use the following command outside of your container to run the Cypress Test Runner:
 
 ```bash
-./psh.phar e2e:open
+composer run e2e:open
 ```
 
 If you want to run the tests in CLI, please use the following command outside your container:
 
 ```bash
-./psh.phar e2e:run
+composer run e2e:admin:run
 ```
 
-Please keep in mind that we use `Administration` as default app environment. If you want to use `Storefront` environment, add the following parameter:
+or
 
 ```bash
-./psh.phar e2e:open --CYPRESS_ENV=Storefront
+composer run e2e:storefront:run
 ```
 
-To see a complete overview on all psh scripts for e2e tests, feel free to refer to our [e2e psh command reference](../../../../resources/references/testing-reference/e2e-psh-commands.md).
+To see a complete overview on all psh scripts for e2e tests, feel free to refer to our [e2e command reference](../../../../resources/references/testing-reference/e2e-commands.md).
 {% endtab %}
 {% endtabs %}
 

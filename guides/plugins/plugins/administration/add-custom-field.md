@@ -71,18 +71,17 @@ This block contains the whole settings form of the product detail page. In order
 As mentioned above, Shopware 6 is looking for a `main.js` file in your plugin. Its contents get minified into a new file named after your plugin and will be moved to the `public` directory of Shopware 6 root directory. Given this plugin would be named "AdministrationNewField", the minified javascript code for this example would be located under `<plugin root>/src/Resources/public/administration/js/administration-new-field.js`, once you run the command following command in your shopware root directory:
 
 {% tabs %}
-{% tab title="Development template" %}
-
-```bash
-./psh.phar administration:build
-```
-
-{% endtab %}
-
-{% tab title="Production template" %}
+{% tab title="Template" %}
 
 ```bash
 ./bin/build-administration.sh
+```
+
+{% endtab %}
+{% tab title="platform only (contribution setup)" %}
+
+```bash
+composer run build:js:admin
 ```
 
 {% endtab %}

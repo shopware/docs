@@ -64,18 +64,17 @@ This comes with the advantage that when you want to change this color for all oc
 Now you want to test if your custom styles actually apply to the Storefront. For this, you have to execute the compiling and building of the `.scss` files first. This is done by using the following command:
 
 {% tabs %}
-{% tab title="Development template" %}
-
-```bash
-./psh.phar storefront:build
-```
-
-{% endtab %}
-
-{% tab title="Production template" %}
+{% tab title="Template" %}
 
 ```bash
 ./bin/build-storefront.sh
+```
+
+{% endtab %}
+{% tab title="platform only (contribution setup)" %}
+
+```bash
+composer run build:js:storefront
 ```
 
 {% endtab %}
@@ -84,18 +83,17 @@ Now you want to test if your custom styles actually apply to the Storefront. For
 If you want to see all style changes made by you live, you can also use our Storefront hot-proxy for that case:
 
 {% tabs %}
-{% tab title="Development template" %}
-
-```bash
-./psh.phar storefront:hot-proxy
-```
-
-{% endtab %}
-
-{% tab title="Production template" %}
+{% tab title="Template" %}
 
 ```bash
 ./bin/watch-storefront.sh
+```
+
+{% endtab %}
+{% tab title="platform only (contribution setup)" %}
+
+```bash
+composer run watch:storefront
 ```
 
 {% endtab %}
