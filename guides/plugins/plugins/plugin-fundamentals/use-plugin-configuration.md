@@ -124,7 +124,7 @@ This service comes with a `get` method to read the configurations. The first ide
 
 But what would happen, if there were more plugins providing the same technical name for their very own configuration field? How would you access the proper field, how would you prevent plugin conflicts?
 
-That's why the plugin configurations are always prefixed. By default, the pattern is the following: `<BundleName>.config.<configName>` Thus, it would be `SwagBasicExample.config.example` here.
+That's why the plugin configurations are always prefixed. By default, the pattern is the following: `<BundleName>.config.<configName>`. Thus, it would be `SwagBasicExample.config.example` here.
 
 {% code title="<plugin root>/src/Subscriber/MySubscriber.php" %}
 
@@ -140,9 +140,13 @@ class MySubscriber implements EventSubscriberInterface
     ...
     public function onProductsLoaded(EntityLoadedEvent $event): void
     {
-        $exampleConfig = $this->systemConfigService->get('SwagBasicExample.config.example');
+        $exampleConfig = $this->systemConfigService->get('SwagBasicExample.config.example', $salesChannelId);
     }
 }
 ```
 
 {% endcode %}
+
+{% hint style="info" %}
+Set the `saleschannelId` to `null` for the plugin to be accessible by all Sales Channels else set to the corresponding Sales Channel ID.
+{% endhint %}
