@@ -75,16 +75,16 @@ Our new class has to extend from the abstract class `Shopware\Core\Framework\Eve
 namespace Swag\ExamplePlugin\Core\Content\Flow\Dispatching\Action;
 
 use Shopware\Core\Content\Flow\Dispatching\Action\FlowAction;
-use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\Uuid\Uuid;
 use Swag\ExamplePlugin\Core\Framework\Event\TagAware;
 use Shopware\Core\Framework\Event\FlowEvent;
 
 class CreateTagAction extends FlowAction
 {
-    private EntityRepositoryInterface $tagRepository;
+    private EntityRepository $tagRepository;
 
-    public function __construct(EntityRepositoryInterface $tagRepository)
+    public function __construct(EntityRepository $tagRepository)
     {
         // you would need this repository to create a tag
         $this->tagRepository = $tagRepository;
@@ -162,16 +162,16 @@ As you can see, several methods are already implemented:
 namespace Swag\ExamplePlugin\Core\Content\Flow\Dispatching\Action;
 
 use Shopware\Core\Content\Flow\Dispatching\Action\FlowAction;
-use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\Uuid\Uuid;
 use Swag\ExamplePlugin\Core\Framework\Event\TagAware;
 use Shopware\Core\Content\Flow\Dispatching\StorableFlow;
 
 class CreateTagAction extends FlowAction
 {
-    private EntityRepositoryInterface $tagRepository;
+    private EntityRepository $tagRepository;
 
-    public function __construct(EntityRepositoryInterface $tagRepository)
+    public function __construct(EntityRepository $tagRepository)
     {
         // you would need this repository to create a tag
         $this->tagRepository = $tagRepository;

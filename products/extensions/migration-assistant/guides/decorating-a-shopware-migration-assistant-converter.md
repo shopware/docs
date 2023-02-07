@@ -23,7 +23,7 @@ namespace SwagMigrationExtendConverterExample\Profile\Shopware\Premapping;
 
 use Shopware\Core\Content\Product\Aggregate\ProductManufacturer\ProductManufacturerEntity;
 use Shopware\Core\Framework\Context;
-use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Sorting\FieldSorting;
 use SwagMigrationAssistant\Migration\Gateway\GatewayRegistryInterface;
@@ -40,7 +40,7 @@ class ManufacturerReader extends AbstractPremappingReader
 {
     private const MAPPING_NAME = 'swag_manufacturer';
 
-    private EntityRepositoryInterface $manufacturerRepo;
+    private EntityRepository $manufacturerRepo;
 
     private GatewayRegistryInterface $gatewayRegistry;
 
@@ -49,7 +49,7 @@ class ManufacturerReader extends AbstractPremappingReader
     private array $preselectionSourceNameDictionary;
 
     public function __construct(
-        EntityRepositoryInterface $manufacturerRepo,
+        EntityRepository $manufacturerRepo,
         GatewayRegistryInterface $gatewayRegistry
     ) {
         $this->manufacturerRepo = $manufacturerRepo;
