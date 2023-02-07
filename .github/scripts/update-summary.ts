@@ -49,7 +49,7 @@ for (const entry of walkSync("./resources/references/adr", { includeDirs: false,
 	ADRs.set(topicName(adr), topic);
 }
 
-let adrSummary = summaryItem(1, 'Architecture Reference', 'resources/references/adr/README.md');
+let adrSummary = summaryItem(1, 'Architecture Reference', 'resources/references/adr/index.md');
 
 const names = Array.from(ADRs.keys());
 names.sort();
@@ -58,14 +58,14 @@ names.forEach((name) => {
 	const topic = ADRs.get(name);
 	const depthDiff = names.length > 1 ? 1 : 0;
 	if (depthDiff > 0) {
-		adrSummary += summaryItem(2, topicName(topic), path.join(topic.path, 'README.md'));
+		adrSummary += summaryItem(2, topicName(topic), path.join(topic.path, 'index.md'));
 	}
 	for (const adr of topic.entries) {
 		adrSummary += summaryItem(2 + depthDiff, adrTitle(adr), adr.path);
 	}
 });
 
-const filename = path.join(Deno.cwd(), "./SUMMARY.md");
+const filename = path.join(Deno.cwd(), "./SUMMARY");
 
 const summary = {
 	lines: <string[]> [], 
