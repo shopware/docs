@@ -223,3 +223,9 @@ Now register this processor in your `services.xml` like this:
 {% endcode %}
 
 And that's it. You should now be able to create line items of type `example`.
+
+## Adding nested line item
+
+When implementing nested line items, the plugins have to implement their own processing logic or alternatively extend Shopware's cart processors.
+
+A plugin that reuses core line items can easily call the other processors to handle the nested line items themselves. Refer to [nested line items](../../../../../resources/references/adr/checkout/2021-03-24-nested-line-items.md) section of the guide for more information.
