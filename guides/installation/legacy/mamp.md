@@ -18,7 +18,7 @@ As a first step, make sure you installed MAMP beforehand. You can download MAMP 
 
 First, you have to modify the PHP settings inside MAMP, as seen in the following screenshot:
 
-![PHP settings](../../.gitbook/assets/10-mac-os-x-php.png)
+![PHP settings](../../../.gitbook/assets/10-mac-os-x-php.png)
 
 Next, start the mysql webserver-service with the toggle buttons on the left side in the MAMP management console.
 
@@ -26,7 +26,7 @@ Next, start the mysql webserver-service with the toggle buttons on the left side
 
 - Open the **MySQL Tab** on the left side and click on the *PhpMyAdmin* icon. In case the icon is grayed out, check if the mysql and webserver services are running.
 
-![Mysql settings](../../.gitbook/assets/10-mac-os-x-mysql.png)
+![Mysql settings](../../../.gitbook/assets/10-mac-os-x-mysql.png)
 
 - Inside PhpMyAdmin, switch to the user account management on the top menu and click *add new user*.
 
@@ -110,7 +110,7 @@ First, add a new host in MAMP:
 - Port = 8000
 - Document Root = Browse for the public directory inside the new directory that you used before \(e.g.,/PhpstormProjects/shopware/development/public\)
 
-![hosts](../../.gitbook/assets/10-mac-os-x-net.png)
+![hosts](../../../.gitbook/assets/10-mac-os-x-net.png)
 
 As a next step, change the installation settings:
 
