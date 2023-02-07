@@ -206,8 +206,6 @@ As you can see, this processor takes an "original cart" as an input and adds all
 
 Of course you can use processors to do much more than this. Have a look at [adding cart processors and collectors](./add-cart-processor-collector.md).
 
-Nested 
-
 Now register this processor in your `services.xml` like this:
 
 {% code title="<plugin root>/Resources/config/services.xml" %}
