@@ -22,7 +22,7 @@ It is important to consider the background of the potential audience reading you
 
 ## List of docs maintained by us
 
-* [Developer Guide](https://developer.shopware.com/docs/)
+* [Developer Guide](/docs/)
 * [API Reference Guide](https://shopware.stoplight.io/)
 * [PWA](https://shopware-pwa-docs.vuestorefront.io/)
 * [Admin Extension SDK](https://shopware.github.io/admin-extension-sdk/)

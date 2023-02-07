@@ -228,7 +228,7 @@ If the app creates its own pages that are set to "index, follow" and the URLs ar
 
 ### Register a cookie to the Cookie Consent Manager
 
-We expect that every cookie set from the store URL is [registered in our Cookie Consent Manager](https://developer.shopware.com/docs/guides/plugins/plugins/storefront/add-cookie-to-manager). We differentiate between "Technically required", "Comfort functions" and "Statistics and Tracking". All cookies have to appear in the cookie configuration box in the frontend.
+We expect that every cookie set from the store URL is [registered in our Cookie Consent Manager](/docs/guides/plugins/plugins/storefront/add-cookie-to-manager). We differentiate between "Technically required", "Comfort functions" and "Statistics and Tracking". All cookies have to appear in the cookie configuration box in the frontend.
 
 ### Shopping worlds/shopping experiences
 
@@ -258,7 +258,7 @@ Our most current code review configurations that we use when uploading apps via 
 
 There are Cypress tests for Shopware 6 on GitHub. The project is driven by the *Friends of Shopware* group. You can contribute at any time:
 
-* [Developer Documentation Cypress Tests for Shopware 6](https://developer.shopware.com/docs/guides/plugins/plugins/testing/end-to-end-testing)
+* [Developer Documentation Cypress Tests for Shopware 6](/docs/guides/plugins/plugins/testing/end-to-end-testing)
 * [Cypress Tests for Shopware 6](https://github.com/shopware/platform/tree/trunk/src/Administration/Resources)
 
 ### Helpful tools for app developers

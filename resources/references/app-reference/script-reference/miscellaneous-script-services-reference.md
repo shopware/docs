@@ -19,7 +19,6 @@ Examples:
 {% foreach array as key => value %}
 ```
 
-
 ### set()
 
 * `set()` adds a new element to the array using the given key.

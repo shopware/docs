@@ -6,8 +6,8 @@ This article will teach you how to create a new CMS element via the Admin Extens
 
 ## Prerequisites
 
-* Knowledge on the creation of [Plugins](https://developer.shopware.com/docs/guides/plugins/plugins/plugin-base-guide) or [Apps](https://developer.shopware.com/docs/guides/plugins/apps/app-base-guide)
-* Knowledge on the [creation of custom admin components](https://developer.shopware.com/docs/guides/plugins/plugins/administration/add-custom-component#creating-a-custom-component)
+* Knowledge on the creation of [Plugins](/docs/guides/plugins/plugins/plugin-base-guide) or [Apps](/docs/guides/plugins/apps/app-base-guide)
+* Knowledge on the [creation of custom admin components](/docs/guides/plugins/plugins/administration/add-custom-component#creating-a-custom-component)
 * Understanding the [Admin Extension SDK](https://shopware.github.io/admin-extension-sdk/docs/guide/getting-started/installation)
 
 ::: info
@@ -16,7 +16,7 @@ This example uses TypeScript, which is recommended, but not required for develop
 
 ## Creating your custom element
 
-Similar to [Creating a new custom element via plugin](https://developer.shopware.com/docs/guides/plugins/plugins/content/cms/add-cms-element#creating-your-custom-element), this article describes creating a new custom element via app.
+Similar to [Creating a new custom element via plugin](/docs/guides/plugins/plugins/content/cms/add-cms-element#creating-your-custom-element), this article describes creating a new custom element via app.
 Creating a new element requires Admin Extension SDK.
 
 Consider the same scenario to allow a shop manager configure a link to display the Dailymotion video. That is exactly what you are going to build.
@@ -322,7 +322,7 @@ export default Vue.extend({
 
 After everything for the admin is done, there is still the need for a storefront representation of your blocks. This works similarly to typical plugin development, with an exception to the path. All storefront templates must match the following path pattern: `<app-name>/Resources/views/storefront/element/<elementname>.html.twig`
 
-Since everything is already described in guide [CMS element development for plugins](https://developer.shopware.com/docs/guides/plugins/plugins/content/cms/add-cms-element#storefront-implementation), the following example just shows how your storefront template (`swag-daiĺymotion/Resources/views/storefront/element/cms-element-swag-dailymotion.html.twig`) could look like:
+Since everything is already described in guide [CMS element development for plugins](/docs/guides/plugins/plugins/content/cms/add-cms-element#storefront-implementation), the following example just shows how your storefront template (`swag-daiĺymotion/Resources/views/storefront/element/cms-element-swag-dailymotion.html.twig`) could look like:
 
 ```twig
 {% block element_swag_dailymotion %}

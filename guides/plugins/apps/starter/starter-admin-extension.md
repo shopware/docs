@@ -148,4 +148,4 @@ This example showed end-to-end how to create a local dev environment and connect
 
 * Did you know, you can add [new sections](https://shopware.github.io/admin-extension-sdk/docs/guide/api-reference/ui/component-section) to the UI or even [entire modules](https://shopware.github.io/admin-extension-sdk/docs/guide/api-reference/ui/mainModule)?
 * The Admin Extension SDK also offers [TypeScript support](https://shopware.github.io/admin-extension-sdk/docs/guide/getting-started/installation#using-npm-require-bundling) (including autocompletion)
-* Don't want to extend the admin panel? Have a look at [App Scripts](https://developer.shopware.com/docs/guides/plugins/apps/app-scripts)
+* Don't want to extend the admin panel? Have a look at [App Scripts](/docs/guides/plugins/apps/app-scripts)

@@ -47,9 +47,9 @@ We always test with the [actual SW6 version](https://www.shopware.com/de/downloa
 ### Useful links and tutorials for creating an app
 
 * [Sample app development template](https://github.com/shopwareLabs/AppExample)
-* [App base guide](https://developer.shopware.com/docs/guides/plugins/apps/app-base-guide)
-* [Storefront](https://developer.shopware.com/docs/guides/plugins/apps/storefront)
-* [Admin](https://developer.shopware.com/docs/guides/plugins/apps/administration)
+* [App base guide](/docs/guides/plugins/apps/app-base-guide)
+* [Storefront](/docs/guides/plugins/apps/storefront)
+* [Admin](/docs/guides/plugins/apps/administration)
 
 ## Checklist for app testing
 
@@ -219,7 +219,7 @@ If the app creates its own pages that are set to "index, follow" and the URLs ar
 
 ### Register a cookie to the Cookie Consent Manager
 
-We expect that every cookie set from the store URL is [registered in our Cookie Consent Manager](https://developer.shopware.com/docs/guides/plugins/plugins/storefront/add-cookie-to-manager). We differentiate between "Technically required", "Comfort functions" and "Statistics and Tracking". All cookies have to appear in the cookie configuration box in the frontend.
+We expect that every cookie set from the store URL is [registered in our Cookie Consent Manager](/docs/guides/plugins/plugins/storefront/add-cookie-to-manager). We differentiate between "Technically required", "Comfort functions" and "Statistics and Tracking". All cookies have to appear in the cookie configuration box in the frontend.
 
 ### Shopping worlds/shopping experiences
 
@@ -233,7 +233,7 @@ Menu entries in the main menu of the administration are not allowed because of t
 
 There are Cypress tests for Shopware 6 on GitHub. The project is driven by the *Friends of Shopware* group. You can contribute at any time:
 
-* [Developer Documentation Cypress Tests for Shopware 6](https://developer.shopware.com/docs/guides/plugins/plugins/testing/end-to-end-testing)
+* [Developer Documentation Cypress Tests for Shopware 6](/docs/guides/plugins/plugins/testing/end-to-end-testing)
 * [Cypress Tests for Shopware 6](https://github.com/shopware/platform/tree/trunk/src/Administration/Resources)
 
 ### Helpful tools for app developers
