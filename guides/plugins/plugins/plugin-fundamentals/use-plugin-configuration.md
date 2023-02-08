@@ -148,5 +148,5 @@ class MySubscriber implements EventSubscriberInterface
 {% endcode %}
 
 {% hint style="info" %}
-Set the `saleschannelId` to `null` for the plugin to be accessible by all Sales Channels else set to the corresponding Sales Channel ID.
+Set the `saleschannelId` to `null` for the plugin configuration to be used by all Sales Channels else set to the corresponding Sales Channel ID.
 {% endhint %}
