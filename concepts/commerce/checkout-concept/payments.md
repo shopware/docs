@@ -17,7 +17,7 @@ These steps are outlined in the diagram below:
 
 ![Headless payment flow](../../../.gitbook/assets/payment-flow-headless.png)
 
-The diagram above shows the payment flow for headless environments; however, for the single-stack scenario (i.e., when our default storefront is used) the differences are minor and described in the section below.
+The diagram above shows the payment flow for headless environments; however, for the single-stack scenario (i.e., when the default Storefront is used) the differences are minor and described in the section below.
 
 If you want to see a specific example of a headless payment using the Store API, head to [API documentation](https://shopware.stoplight.io/docs/store-api/docs/guides/quick-start/handling-the-payment.md).
 
@@ -57,7 +57,7 @@ These payments include a user redirect. The redirect target is defined by the pa
 
 The frontend can also define success and error URLs that will be used for the eventual redirect after step 3.3.
 
-In the default storefront, this redirect takes place automatically. In the headless scenario, Shopware returns the redirect URL within the  API response so that the frontend can perform the redirect.
+In the default Storefront, this redirect takes place automatically. In the headless scenario, Shopware returns the redirect URL within the  API response so that the frontend can perform the redirect.
 
 #### 3.2 Payment execution on gateway (optional)
 

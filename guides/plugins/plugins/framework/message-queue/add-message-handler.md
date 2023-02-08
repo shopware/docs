@@ -81,7 +81,7 @@ The receiver will consume messages for 2 seconds and then you get the count of t
 
 ### The admin-worker
 
-Per default there is an admin-worker that will periodically ping the endpoint to consume messages from the administration. This feature is intended for development and hosting environments where a more complex setup is not feasible. However, you really should use the cli-worker in production setups, because the admin-worker just consumes messages if an administration user is logged in.
+Per default there is an admin-worker that will periodically ping the endpoint to consume messages from the Administration. This feature is intended for development and hosting environments where a more complex setup is not feasible. However, you really should use the cli-worker in production setups, because the admin-worker just consumes messages if an Administration user is logged in.
 
 ### The cli-worker
 
@@ -225,7 +225,7 @@ You can route messages by their classname and use the asterisk as a fallback for
 
 ### Admin worker
 
-The admin-worker can be configured or disabled in the general `shopware.yml` configuration. If you want to use the admin worker you have to specify each transport, that previously was configured. The poll interval is the time in seconds that the admin-worker polls messages from the queue. After the poll-interval is over the request terminates and the administration initiates a new request.
+The admin-worker can be configured or disabled in the general `shopware.yml` configuration. If you want to use the admin worker you have to specify each transport, that previously was configured. The poll interval is the time in seconds that the admin-worker polls messages from the queue. After the poll-interval is over the request terminates and the Administration initiates a new request.
 
 {% code title="<platform root>/src/Core/Framework/Resources/config/packages/shopware.yaml" %}
 

@@ -2,7 +2,7 @@
 
 ## Overview
 
-You want to create a new tab in the administration? This guide gets you covered on this subject. A realistic example would be adding a new association for an entity, which you want to configure on a separate tab on the entity detail page.
+You want to create a new tab in the Administration? This guide gets you covered on this subject. A realistic example would be adding a new association for an entity, which you want to configure on a separate tab on the entity detail page.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ Also, we will use a small, custom component to fill our custom tab. In order to 
 
 ### Please remember
 
-The main entry point to customize the administration via plugin is the `main.js` file. It has to be placed into a `<plugin root>/src/Resources/app/administration/src` directory in order to be found by Shopware 6. So please use the file accordingly and refer to the [plugin base guide](../plugin-base-guide.md) for more details.
+The main entry point to customize the Administration via plugin is the `main.js` file. It has to be placed into a `<plugin root>/src/Resources/app/administration/src` directory in order to be found by Shopware 6. So please use the file accordingly and refer to the [plugin base guide](../plugin-base-guide.md) for more details.
 {% endhint %}
 
 ## Creating a custom tab
@@ -140,7 +140,7 @@ The [route](add-custom-route.md) being used here has the name `sw.product.detail
 
 ### Loading the new tab
 
-You've now created a new tab, but your new template is not yet loaded. Remember, that the main entry point for custom javascript for the administration is the your plugin's `main.js` file. And that's also the file you need to adjust now, so it loads your `sw-product-detail` override.
+You've now created a new tab, but your new template is not yet loaded. Remember, that the main entry point for custom javascript for the Administration is the your plugin's `main.js` file. And that's also the file you need to adjust now, so it loads your `sw-product-detail` override.
 
 This is an example of what your `main.js` should look like in order to load your override:
 
@@ -149,7 +149,7 @@ import './page/sw-product-detail';
 ```
 
 {% hint style="info" %}
-Don't forget to rebuild the administration after applying changes to your `main.js`.
+Don't forget to rebuild the Administration after applying changes to your `main.js`.
 {% tabs %}
 {% tab title="Development template" %}
 
@@ -173,7 +173,7 @@ Don't forget to rebuild the administration after applying changes to your `main.
 
 Your new tab should now already show up on the product detail page, but clicking it should always result in an error. It's basically pointing to a new route, which you never defined yet.
 
-Next step would be the following: Create a new route and map it to your own component. This is done by registering a new dummy module, which then overrides the method `routeMiddleware` of a module. It gets called for each and every route that is called in the administration. Once the `sw.product.detail` route is called, you want to add your new child route to it.
+Next step would be the following: Create a new route and map it to your own component. This is done by registering a new dummy module, which then overrides the method `routeMiddleware` of a module. It gets called for each and every route that is called in the Administration. Once the `sw.product.detail` route is called, you want to add your new child route to it.
 
 You can add those changes to your `main.js` file, which could then look like this:
 
@@ -215,7 +215,7 @@ It then points to a component, which represents the routes actual content - so y
 
 ## Creating your new component
 
-As shown in the previous example, your custom component is expected to be in a directory `view/sw-product-detail-custom`, so create this directory in your plugin now. The directory structure inside of your administration directory should then look like this:
+As shown in the previous example, your custom component is expected to be in a directory `view/sw-product-detail-custom`, so create this directory in your plugin now. The directory structure inside of your Administration directory should then look like this:
 
 ```text
 administration

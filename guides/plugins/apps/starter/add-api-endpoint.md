@@ -77,7 +77,7 @@ The prefix for our API endpoint is one of the following and cannot be changed:
 | Storefront | Default Storefront           | `/storefront/script/` |
 
 {% hint style="info" %}
-You might wonder why the storefront shows up in that table. In storefront endpoints, you can render not only JSON but also twig templates.
+You might wonder why the Storefront shows up in that table. In Storefront endpoints, you can render not only JSON but also twig templates.
 But use them with care - whenever you create a Storefront endpoint, your app will not be compatible with headless consumers.
 
 Learn more about the different endpoints in [custom endpoints](../app-scripts/custom-endpoints.md)

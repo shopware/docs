@@ -22,9 +22,9 @@ Especially if you want to add a new page for an own module, you should consider 
 
 This way, you're able to start building your own module in the right order.
 
-### Injecting into the administration
+### Injecting into the Administration
 
-Same as with all custom extensions of the Administration, the main entry point to extend the administration via plugin is the `main.js` file. It has to be placed into a `<plugin root>/src/Resources/app/administration/src` directory in order to be found by Shopware 6.
+Same as with all custom extensions of the Administration, the main entry point to extend the Administration via plugin is the `main.js` file. It has to be placed into a `<plugin root>/src/Resources/app/administration/src` directory in order to be found by Shopware 6.
 
 ## Creating a custom component
 

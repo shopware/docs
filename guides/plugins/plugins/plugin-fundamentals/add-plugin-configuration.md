@@ -14,7 +14,7 @@ To build your own configuration page for your plugin, you first need a plugin as
 This video is part of the online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma) available on Shopware Academy for **free**.
 {% endhint %}
 
-All you need to do is creating a `config.xml` file inside of a `Resources/config` directory in your plugin root. The content of the `config.xml` will be dynamically rendered in the administration. Below you'll find an example structure:
+All you need to do is creating a `config.xml` file inside of a `Resources/config` directory in your plugin root. The content of the `config.xml` will be dynamically rendered in the Administration. Below you'll find an example structure:
 
 ```text
 └── plugins
@@ -176,7 +176,7 @@ Each `<options>` element must contain at least one `<option>` element. Each `<op
 
 ### Advanced custom input fields
 
-For more complex and advanced configurations it is possible to declare a `<component name="componentName">` element. This element can render many admin components. It is also possible to render your own admin component which you could deliver with your plugin. The name of the component has to match the components name in the administration, for example `sw-entity-single-select`. The component also needs a `<name>` element first. All other elements within the component element will be passed to the rendered admin component as properties. For some components you could also use [`label` and `placeholder`](add-plugin-configuration.md#label-placeholder-and-help-text).
+For more complex and advanced configurations it is possible to declare a `<component name="componentName">` element. This element can render many admin components. It is also possible to render your own admin component which you could deliver with your plugin. The name of the component has to match the components name in the Administration, for example `sw-entity-single-select`. The component also needs a `<name>` element first. All other elements within the component element will be passed to the rendered admin component as properties. For some components you could also use [`label` and `placeholder`](add-plugin-configuration.md#label-placeholder-and-help-text).
 
 Here are some examples:
 

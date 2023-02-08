@@ -112,7 +112,7 @@ As already mentioned, we're overwriting the method `getCookieGroups` and in ther
 
 This will eventually lead to a new group being created, containing two new cookies, as well as a new cookie without a group.
 
-And that's basically it already. After loading your storefront, you should now see your new cookies and the cookie-group.
+And that's basically it already. After loading your Storefront, you should now see your new cookies and the cookie-group.
 
 ### Cookie array keys
 

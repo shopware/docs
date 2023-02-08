@@ -80,9 +80,9 @@ The next step is installing NodeJS and NPM. Therefore you need to leave the term
 brew install node@12
 ```
 
-### Install composer
+### Install Composer
 
-To install composer, please open the terminal application and execute the following command:
+To install Composer, please open the terminal application and execute the following command:
 
 ```bash
 brew install composer

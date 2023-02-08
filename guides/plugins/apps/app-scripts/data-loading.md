@@ -1,6 +1,6 @@
-# Load additional data for the storefront with App Scripts
+# Load additional data for the Storefront with App Scripts
 
-If your app needs additional data in your [customized storefront templates](../../../plugins/plugins/storefront/customize-templates.md), you can load that data with app scripts and make it available to your template.
+If your app needs additional data in your [customized Storefront templates](../../../plugins/plugins/storefront/customize-templates.md), you can load that data with app scripts and make it available to your template.
 
 {% hint style="info" %}
 Note that app scripts were introduced in Shopware 6.4.8.0 and are not supported in previous versions.
@@ -34,14 +34,14 @@ For example, if you want to enrich a storefront detail page with additional data
     'example': 'just an example'
 } %}
 
-{# it also lets you add data to it, that you can later use in your storefront templates #}
+{# it also lets you add data to it, that you can later use in your Storefront templates #}
 {% do page.addArrayExtension('swagMyAdditionalData', myAdditionalData) %}
 ```
 
 {% endraw %}
 {% endcode %}
 
-In your storefront templates, you can read the data again from the `page` object:
+In your Storefront templates, you can read the data again from the `page` object:
 
 {% code title="Resources/views/storefront/page/product-detail/index.html.twig" %}
 {% raw %}
@@ -113,7 +113,7 @@ The criteria object can be assembled inside scripts as follows:
 
 Besides the `repository` service, a separate `store` service is also available that provides the same basic functionality and the same interface.
 
-The `store` service is available for all "public" entities (e.g. `product` and `category`) and will return a storefront optimized representation of the entities.
+The `store` service is available for all "public" entities (e.g. `product` and `category`) and will return a Storefront optimized representation of the entities.
 This means that, for example, SEO related data is resolved for `products` and `categories`, loaded over the `store` service, but not over the `repository` service.
 Additionally, product prices are only calculated using the `store` service.
 
@@ -132,7 +132,7 @@ For a full description of the `repository` and `store` service, take a look at t
 ## Adding data to the page object
 
 There are two ways to add data to the page object, either with the `addExtension()` or the `addArrayExtension()` methods.
-Both methods expect the name under which the extension should be added as the first parameter. Under that name, you can later access the extension in your storefront template with the `page.getExtension('extensionName')` call.
+Both methods expect the name under which the extension should be added as the first parameter. Under that name, you can later access the extension in your Storefront template with the `page.getExtension('extensionName')` call.
 
 {% hint style="warning" %}
 Note that the extension names need to be unique. Therefore always use your vendor prefix as a prefix for the extension name.
@@ -163,7 +163,7 @@ In your **scripts** that would look something like this:
 
 {% endraw %}
 
-You can access the extensions again in your **storefront templates** like this:
+You can access the extensions again in your **Storefront templates** like this:
 
 {% raw %}
 

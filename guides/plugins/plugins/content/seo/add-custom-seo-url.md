@@ -169,7 +169,7 @@ If you're going to generate custom SEO URLs for your custom entities, you'll hav
 
 #### Dynamic SEO URLs for entities
 
-This scenario will be about a custom entity, to be specific we're going to use the entity from our guide about [adding custom complex data](../../framework/data-handling/add-custom-complex-data.md), which then would have a custom storefront route for each entity.
+This scenario will be about a custom entity, to be specific we're going to use the entity from our guide about [adding custom complex data](../../framework/data-handling/add-custom-complex-data.md), which then would have a custom Storefront route for each entity.
 
 Each entity comes with a name, which eventually should be the SEO URL. Thus, your entity named `Foo` should be accessible using the route `yourShop.com/Foo` or `yourShop.com/Entities/Foo` or whatever you'd like. Now, everytime you create a new entity, a SEO URL has to be automatically created as well. When you update your entities' name, guess what, you'll have to change the SEO URL as well.
 

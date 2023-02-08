@@ -10,9 +10,9 @@ This guide **does not** explain how you can create a new plugin for Shopware 6. 
 
 {% page-ref page="../plugin-base-guide.md" %}
 
-## Injecting into the administration
+## Injecting into the Administration
 
-The main entry point to customize the administration via plugin is the `main.js` file. It has to be placed into a `<plugin root>/src/Resources/app/administration/src` directory in order to be automatically found by Shopware 6.
+The main entry point to customize the Administration via plugin is the `main.js` file. It has to be placed into a `<plugin root>/src/Resources/app/administration/src` directory in order to be automatically found by Shopware 6.
 
 Your `main.js` file then needs to override the [Vue component](https://vuejs.org/v2/guide/components.html) using the `override` method of our `ComponentFactory`.
 

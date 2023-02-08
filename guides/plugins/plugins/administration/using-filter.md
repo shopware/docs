@@ -2,7 +2,7 @@
 
 ## Overview
 
-In this guide you'll learn how to use filters in the Shopware administration.
+In this guide you'll learn how to use filters in the Shopware Administration.
 
 ## Prerequisites
 

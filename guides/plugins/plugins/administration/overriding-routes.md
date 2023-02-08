@@ -44,4 +44,4 @@ Module.register('my-new-custom-route', {
 
 This `routeMiddleware` changes the required privileges for the `sw.product.detail.base` route from `product.viewer` to `product.editor`. The rest of the route configurations stays the same in this example.
 
-If you want to learn more about ACL take a look at this [guide](add-acl-rules.md) and if you want to learn everything about administration routes, head over to this [guide](add-custom-route.md)
+If you want to learn more about ACL take a look at this [guide](add-acl-rules.md) and if you want to learn everything about Administration routes, head over to this [guide](add-custom-route.md)

@@ -193,7 +193,7 @@ This should be your snippet file now:
 }
 ```
 
-## Build the administration
+## Build the Administration
 
 As mentioned above, Shopware 6 is looking for a `main.js` file in your plugin.
 Its contents get minified into a new file named after your plugin and will be moved to the `public` directory of Shopware 6 root directory.
@@ -230,7 +230,7 @@ Your minified javascript file will now be loaded in production environments.
 
 ### Link your module into settings
 
-If you think about creating a module concerning settings, you might want to link your module in the `settings` section of the administration.
+If you think about creating a module concerning settings, you might want to link your module in the `settings` section of the Administration.
 You can add the `settingsItem` option to the module configuration as seen below:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
@@ -333,7 +333,7 @@ Shopware.Module.register('swag-example', {
 ## Next steps
 
 As you might have noticed, we are just adding a custom module to the module.
-However, there's a lot more possible when it comes to extending the administration.
+However, there's a lot more possible when it comes to extending the Administration.
 In addition, you surely want to customize your module even more.
 You may want to try the following things:
 
@@ -343,5 +343,5 @@ You may want to try the following things:
 * [Add a custom service](add-custom-service.md)
 * [Add translations](adding-snippets.md)
 * [Customizing another module](customizing-modules.md)
-* [Dealing with data in the administration](using-data-handling.md)
+* [Dealing with data in the Administration](using-data-handling.md)
 * [Adding permissions to your module](add-acl-rules.md)

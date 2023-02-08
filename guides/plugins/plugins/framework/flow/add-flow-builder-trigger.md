@@ -21,7 +21,7 @@ You can refer to the [Flow reference](../../../../../resources/references/core-r
 
 ## Event interfaces and classes
 
-Any event that implements one of these interfaces will be available in the trigger list of the Flow Builder module in administration. Besides, the event will have the ability to execute the action that belongs to the interface.
+Any event that implements one of these interfaces will be available in the trigger list of the Flow Builder module in Administration. Besides, the event will have the ability to execute the action that belongs to the interface.
 
 - `MailAware`: This interface provides `MailRecipientStruct` and `salesChannelId`.
 
@@ -35,7 +35,7 @@ Any event that implements one of these interfaces will be available in the trigg
 
 ## Create custom flow trigger
 
-To create a custom flow trigger, firstly you have to create a plugin and install it, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md) to do it. I will create a plugin named `ExamplePlugin`. There will be an example to actually show your new trigger in the administration.
+To create a custom flow trigger, firstly you have to create a plugin and install it, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md) to do it. I will create a plugin named `ExamplePlugin`. There will be an example to actually show your new trigger in the Administration.
 
 ### Create a new trigger (event)
 
@@ -417,6 +417,6 @@ Well done, you have successfully created your own flow trigger.
 
 ### Let's check the result
 
-Go to administration page -> Settings -> Flow Builder, then click Add flow to create a new flow, search for Example Event. You could see your event is available and having actions related to the Customer likes to Add tag, Remove tag, etc...
+Go to Administration page -> Settings -> Flow Builder, then click Add flow to create a new flow, search for Example Event. You could see your event is available and having actions related to the Customer likes to Add tag, Remove tag, etc...
 
 ![Flow Builder Action Example](../../../../../.gitbook/assets/flow-builder-action.png)

@@ -413,9 +413,9 @@ At our case at Shopware, Ids on UUID basis tend to change from one installation 
 
 ### API implementation
 
-Analogue to the administration itself, the api access of the e2e test is based on [axios](https://www.npmjs.com/package/axios), a promise based HTTP client for the browser and node.js.
+Analogue to the Administration itself, the api access of the e2e test is based on [axios](https://www.npmjs.com/package/axios), a promise based HTTP client for the browser and node.js.
 
-Just like the administration, we use services to access Shopware's REST API. Therefore, we use the ApiService to provide the basic methods for accessing the api. Located in `e2e/cypress/support/service/api.service.js`, ApiService is shared between all repositories and acts as a basis for all your next steps of creating fixtures. That implies that the axios implementation of all important api methods can be found there. This service acts as an interface: Next to the basic functions like get, post etc the request method is specified here as well as some Shopware-related methods which have to be available in all repositories.
+Just like the Administration, we use services to access Shopware's REST API. Therefore, we use the ApiService to provide the basic methods for accessing the api. Located in `e2e/cypress/support/service/api.service.js`, ApiService is shared between all repositories and acts as a basis for all your next steps of creating fixtures. That implies that the axios implementation of all important api methods can be found there. This service acts as an interface: Next to the basic functions like get, post etc the request method is specified here as well as some Shopware-related methods which have to be available in all repositories.
 
 {% hint style="info" %}
 Cypress provides an own axios-based way to handle requests in its command `cy.request`. However, Cypress commands are not real promises, see [Commands are not Promises](https://docs.cypress.io/guides/core-concepts/introduction-to-cypress.html#Commands-Are-Not-Promises). As we aim to parallelize the promises to fetch test data, we use our own implementation instead.
@@ -429,7 +429,7 @@ All fixture services can be found in `cypress/support/service/`:
 
 ```bash
 service
-  |-- administration // this folder stores the administration channel API services
+  |-- administration // this folder stores the Administration channel API services
     `-- <environment>
       `-- test
         `-- e2e
@@ -541,7 +541,7 @@ That's it! There you go: You have successfully created a customised service that
 Below you will find some best practices and tricks we explored to help you with your testing tasks:
 
 * A source of information can be found in FieldCollection of the several EntityDefinition files. All fields belonging to an entity are defined there. For example, if you're searching for customer related data, please search for the `CustomerDefinition` in Shopware platform.
-* If you want to extract mandatory data that is not covered by the error message received with the API's response, it's useful to reproduce your workflow manually: E.g. if you need to find out what data is mandatory for creating a customer, try to save an empty one in the administration. Keep an eye on the developer tools of your browser while doing so, especially on the preview and response section of your request. As you get your response, you can see what data is still missing.
+* If you want to extract mandatory data that is not covered by the error message received with the API's response, it's useful to reproduce your workflow manually: E.g. if you need to find out what data is mandatory for creating a customer, try to save an empty one in the Administration. Keep an eye on the developer tools of your browser while doing so, especially on the preview and response section of your request. As you get your response, you can see what data is still missing.
 * If you need to set non-mandatory data, reproducing the above mentioned workflow is recommended as well: Even if the error response does not contain a readable error, you can still inspect it: All the relevant information is stored in 'data'. IDs can be found there directly, other relevant data is stored in "attributes".
 * Cypress' test runner can help you a lot with inspecting API requests. Just click on the request in the test runner's log to get a full print of it in your console.
 

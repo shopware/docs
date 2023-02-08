@@ -49,5 +49,5 @@ The new tag is `<css>` and takes the name of the scss variable as its value.
 
 ```
 
-This value will now be exposed as SCSS variable and will have the value set in the administration or the default value if not set. **When this value is changed you still have to recompile the theme manually for the changes to take effect.**
-Plugin configurations with declared SCSS variable in its config.xml have a notice in the administration that changes can change the theme.
+This value will now be exposed as SCSS variable and will have the value set in the Administration or the default value if not set. **When this value is changed you still have to recompile the theme manually for the changes to take effect.**
+Plugin configurations with declared SCSS variable in its config.xml have a notice in the Administration that changes can change the theme.

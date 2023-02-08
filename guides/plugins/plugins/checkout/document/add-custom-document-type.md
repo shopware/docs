@@ -2,7 +2,7 @@
 
 ## Overview
 
-Using the Shopware administration, you can easily create new documents. This guide will teach you how to achieve the same result, which is creating a new document, using your plugin.
+Using the Shopware Administration, you can easily create new documents. This guide will teach you how to achieve the same result, which is creating a new document, using your plugin.
 
 ## Prerequisites
 
@@ -92,7 +92,7 @@ Afterwards we're inserting the translations, one for German, one for English. Fo
 
   It will then take care of properly inserting those translations.
 
-After installing your plugin, your new document type should be available in the administration. However, it wouldn't work yet, since every document type has to come with a respective `DocumentGeneratorInterface`. This is covered in the next section.
+After installing your plugin, your new document type should be available in the Administration. However, it wouldn't work yet, since every document type has to come with a respective `DocumentGeneratorInterface`. This is covered in the next section.
 
 ## Adding a generator
 
@@ -178,7 +178,7 @@ First of all we're injecting the `rootDir` of the Shopware installation into our
 
 The `supports` method just returns the string "example", which is the technical name of our new document type. The `getFileName` method is very default - it just builds a string consisting of the file name prefix, that you configured, the current document number and the file name suffix.
 
-Now let's have a look at the `generate` method. Technically it's possible to apply a custom template path, which is why this is an optional parameter, which we have to check for. Yet, it can't be defined in the administration and will most likely be empty. We're using a default template path here, which has to point to a template file for our new document type. This can be an existing default document template, in that case you can use them via the following path: `@Framework/documents/delivery_note.html.twig`
+Now let's have a look at the `generate` method. Technically it's possible to apply a custom template path, which is why this is an optional parameter, which we have to check for. Yet, it can't be defined in the Administration and will most likely be empty. We're using a default template path here, which has to point to a template file for our new document type. This can be an existing default document template, in that case you can use them via the following path: `@Framework/documents/delivery_note.html.twig`
 
 In this example we're rendering a custom template though, which we will have a short look at in the next section.
 

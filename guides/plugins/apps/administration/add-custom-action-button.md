@@ -1,6 +1,6 @@
 # Add custom action button
 
-One extension possibility in the administration is the ability to add custom action buttons to the smartbar. For now, you can add them in the smartbar of detail and list views:
+One extension possibility in the Administration is the ability to add custom action buttons to the smartbar. For now, you can add them in the smartbar of detail and list views:
 
 ![Custom action buttons in the Administration](../../../../.gitbook/assets/custom-buttons.png)
 
@@ -69,7 +69,7 @@ A sample payload may look like the following:
 Starting from Shopware version 6.4.1.0, the current shopware version will be sent as a `sw-version` header.
 {% endhint %}
 
-Again you can verify the authenticity of the incoming request, like with [webhooks](../app-base-guide.md#webhooks), by checking the `shopware-shop-signature` it too contains the sha256 hmac of the request body, that is signed with the secret your app assigned the shop during the [registration](../app-base-guide.md#setup).
+Again you can verify the authenticity of the incoming request, like with [webhooks](../app-base-guide.md#webhooks), by checking the `shopware-shop-signature` it too contains the SHA256 HMAC of the request body, that is signed with the secret your app assigned the shop during the [registration](../app-base-guide.md#setup).
 
 ## Providing feedback in the Administration
 
@@ -90,7 +90,7 @@ Starting from Shopware version 6.4.8.0, the requests of the [tab](#opening-a-new
 You **must** make sure to verify the authenticity of the incoming request by checking the `shopware-shop-signature`, which is a hash of the request's query part, signed with the shop's secret key.
 {% endhint %}
 
-If you want to trigger an action inside the administration upon completing the action, the app should return a response with a valid body and the header `shopware-app-signature` containing the sha256 hmac of the whole response body signed with the app secret.
+If you want to trigger an action inside the Administration upon completing the action, the app should return a response with a valid body and the header `shopware-app-signature` containing the SHA256 HMAC of the whole response body signed with the app secret.
 If you do not need to trigger any actions, a response with an empty body is also always valid.
 
 ### Opening a new tab for the user

@@ -6,8 +6,8 @@ This guide will teach you how to add a service to the Shopware 6 Administration,
 
 This documentation chapter will cover the following topics:
 
-* What is an administration service?
-* How to register a new administration service for your plugin
+* What is an Administration service?
+* How to register a new Administration service for your plugin
 
 ## Prerequisites
 
@@ -135,7 +135,7 @@ Shopware.Application.addServiceProviderDecorator('joker', joker => {
 
 ## Next steps
 
-Now that we have created a service, you might want to create or customize a administration component:
+Now that we have created a service, you might want to create or customize a Administration component:
 
 * [Creating a new administration component](add-custom-component.md)
 * [Extending an existing administration component](customizing-components.md)

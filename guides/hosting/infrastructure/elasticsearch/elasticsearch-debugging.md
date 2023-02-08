@@ -238,7 +238,7 @@ bin/console es:index
 bin/console messenger:consume -vv
 ```
 
-After the last message has been processed, your index should be found in your storefront else execute:
+After the last message has been processed, your index should be found in your Storefront else execute:
 
 ```bash
 bin/console es:create:alias

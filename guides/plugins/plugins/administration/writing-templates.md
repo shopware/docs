@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Shopware 6 Administration uses a combination of [twig](https://twig.symfony.com/) and [Vue](https://vuejs.org/) templates in its administration to provide easy extensibility. This guide will teach you how to use templates to extend the Administration with twig and Vue and how import them into a component.
+The Shopware 6 Administration uses a combination of [twig](https://twig.symfony.com/) and [Vue](https://vuejs.org/) templates in its Administration to provide easy extensibility. This guide will teach you how to use templates to extend the Administration with twig and Vue and how import them into a component.
 
 ## Prerequisites
 

@@ -4,7 +4,7 @@ The variety of Shopware's extension interfaces can be overwhelming, so let us st
 
 | Task | Plugin | Theme | App | Remarks |
 | :--- | :--- | :--- | :--- | :--- |
-| Change storefront appearance | ✅ | ✅ | ✅ |  |
+| Change Storefront appearance | ✅ | ✅ | ✅ |  |
 | Add admin modules | ✅ | ❌ | ✅ |  |
 | Execute Webhooks | ✅ | ❌ | ✅ | Apps main functionality is to call Webhooks, but Plugins can be implemented to do that as well. |
 | Add custom entities | ✅ | ❌ | ✅ |  |

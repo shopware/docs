@@ -2,7 +2,7 @@
 
 ## Overview
 
-In this guide you'll learn how to add translations to the storefront and how to use them in your twig templates. To organize your snippets you can add them to `.json` files, so structuring and finding snippets you want to change is very easy.
+In this guide you'll learn how to add translations to the Storefront and how to use them in your twig templates. To organize your snippets you can add them to `.json` files, so structuring and finding snippets you want to change is very easy.
 
 ## Prerequisites
 
@@ -30,7 +30,7 @@ So your structure could then look like this:
 
 ## Creating the translation
 
-Now that we know how the structure of snippets should be, we can create a new snippet file. In this example we are creating a snippet file for British English called `example.en-GB.json`. If you are using nested objects, you can access the values with `exampleOne.exampleTwo.exampleThree`. We can also use template variables, which we can assign values later in the template. There is no explicit syntax for variables in the storefront. However, it is recommended to enclose them with `%` symbols to make their purpose clear.
+Now that we know how the structure of snippets should be, we can create a new snippet file. In this example we are creating a snippet file for British English called `example.en-GB.json`. If you are using nested objects, you can access the values with `exampleOne.exampleTwo.exampleThree`. We can also use template variables, which we can assign values later in the template. There is no explicit syntax for variables in the Storefront. However, it is recommended to enclose them with `%` symbols to make their purpose clear.
 
 Here's an example of an English translation file:
 

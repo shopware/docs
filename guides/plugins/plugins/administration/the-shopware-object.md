@@ -5,7 +5,7 @@
 The global `Shopware` object is the bridge between the Shopware Administration and your plugin as third party code. It provides utility functions to interface to the rest of the Administration.
 
 {% hint style="warning" %}
-Don't try to access other parts of the administration directly, always use the `Shopware` object.
+Don't try to access other parts of the Administration directly, always use the `Shopware` object.
 {% endhint %}
 
 It is bound to a window object in order to be accessible everywhere and can therefore be inspected with the browser console in the developer tools. To take a look at it, open the `Administration` in your browser and run this in the dev-tools console:
@@ -59,7 +59,7 @@ We now have discussed the most commonly used parts of the `Shopware` object, but
 | Locale     | A registry for `locales`                                                                    |
 | Mixin      | A registry for `mixins`                                                                     |
 | Module     | A registry for `modules`                                                                    |
-| Plugin     | An interface to add `promise`based hooks to run when the administration launches            |
+| Plugin     | An interface to add `promise`based hooks to run when the Administration launches            |
 | Service    | A helper to get quick access to service, e.g. `Shopware.Service('snippetService')`          |
 | Shortcut   | A registry for keyboard shortcuts                                                           |
 | State      | A wrapper for the [VueX](https://vuex.vuejs.org/) store to manage state                     |
@@ -71,7 +71,7 @@ We now have discussed the most commonly used parts of the `Shopware` object, but
 TypeScript declarations are available from Shopware Version 6.4.4.0
 {% endhint %}
 
-The Shopware administration is written in pure JavaScript. To provide you with the benefits of TypeScript and the best possible developer experience while working in JavaScript files we're providing TypeScript declaration files within the administration. These files are helping you to understand how the Shopware object works and what arguments you have to provide for example when you're creating a new module or registering a new component.
+The Shopware Administration is written in pure JavaScript. To provide you with the benefits of TypeScript and the best possible developer experience while working in JavaScript files we're providing TypeScript declaration files within the Administration. These files are helping you to understand how the Shopware object works and what arguments you have to provide for example when you're creating a new module or registering a new component.
 
 ![TypeScript declarations example](../../../../.gitbook/assets/typescript-declaration-shopware-module.gif)
 

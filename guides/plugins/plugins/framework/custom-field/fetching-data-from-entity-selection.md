@@ -2,7 +2,7 @@
 
 ## Overview
 
-If you set up a custom field with an entity selection in the administration, you may need a data resolver to resolve the ID to an entity object.
+If you set up a custom field with an entity selection in the Administration, you may need a data resolver to resolve the ID to an entity object.
 
 ## Prerequisites
 
@@ -12,7 +12,7 @@ This guide will not explain how to create custom field in general, so head over 
 
 In this example we assume that we already set up a custom field called `custom_linked_product`, which is assigned to the products entity. The type of the custom field `custom_linked_product` is also a product.
 
-If you now update a product in the administration and select a value for `custom_linked_product` only the `id` of the selected product entity gets store in the custom field.
+If you now update a product in the Administration and select a value for `custom_linked_product` only the `id` of the selected product entity gets store in the custom field.
 
 To resolve the `id` and getting access to the product we have linked here, we can create a `ProductSubscriber` which listens to the `ProductEvents::PRODUCT_LOADED_EVENT`. The event will be triggered, when the associated main product will be loaded. So we can easily resolve the id in the custom field.
 

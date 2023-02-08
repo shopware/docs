@@ -272,7 +272,7 @@ Therefore, this is how your configuration could then look like:
 
 ## Next steps
 
-You've learned about PHPUnit tests here now. But what about unit testing your javascript code, either in the storefront or the administration?
+You've learned about PHPUnit tests here now. But what about unit testing your javascript code, either in the Storefront or the Administration?
 
-* [Jest unit tests in Shopware's administration](jest-admin.md)
-* [Jest unit tests in Shopware's storefront](jest-storefront.md)
+* [Jest unit tests in Shopware's Administration](jest-admin.md)
+* [Jest unit tests in Shopware's Storefront](jest-storefront.md)

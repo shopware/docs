@@ -103,4 +103,4 @@ When working with custom prices, there are currently some caveats or issues to k
 (`indexing-behavior, single-operation`). Indexing of any relevant database (product) data is handled on a per-request basis, without the need to specify indexing handling.
 - The `customerGroupId` parameter within a Customer-specific Pricing API request body is a stub implementation to avoid breaking
 
-changes in future versions and is not currently functional. Any data provided for this parameter will not affect the storefront.
+changes in future versions and is not currently functional. Any data provided for this parameter will not affect the Storefront.

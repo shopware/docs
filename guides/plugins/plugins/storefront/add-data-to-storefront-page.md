@@ -6,7 +6,7 @@ Pages or pagelets are the objects that get handed to the templates and provide a
 
 If you make template changes you probably want to display some data that is currently not available in the page.
 In this case you will have to listen on the page loaded event and then load the additional data and add it to the page object.
-This guide will show you how to achieve this, by adding the total number of active products to the footer pagelet and displaying them in the storefront.
+This guide will show you how to achieve this, by adding the total number of active products to the footer pagelet and displaying them in the Storefront.
 
 ## Prerequisites
 
@@ -19,7 +19,7 @@ Also the following knowledge is necessary, even though some of them are covered 
 * Knowing how to [read data using our data abstraction layer](../framework/data-handling/reading-data.md)
 * Knowing how to [add a store-api route](../framework/store-api/add-store-api-route.md)
 
-## Adding data to the storefront
+## Adding data to the Storefront
 
 The workflow you need here was already described in the overview:
 
@@ -27,7 +27,7 @@ The workflow you need here was already described in the overview:
 1. Register to the event that this page is firing
 1. Add a store-api route for your needed data
 1. Add data to the page via the event
-1. Display this data in the storefront
+1. Display this data in the Storefront
 
 ### Subscribe to an event
 
@@ -216,7 +216,7 @@ Now you only have to adjust your service definition to inject the productCountRo
 </container>
 ```
 
-### Displaying the data in the storefront
+### Displaying the data in the Storefront
 
 To display the additional data we need to override the footer template and render the data.
 Refer to the respective section of this guide for detailed information on how to [extend templates and override blocks](customize-templates.md).
@@ -244,4 +244,4 @@ For our case we extend the footer template and add a new column to the navigatio
 
 Note the usage of the variable here. You're accessing the footer object, in which you can now find the path `extensions.product_count.count`.
 
-That's it for this guide, you've successfully added data to a storefront page\(let\).
+That's it for this guide, you've successfully added data to a Storefront page\(let\).

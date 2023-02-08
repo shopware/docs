@@ -30,7 +30,7 @@ The main entry point to deploy your SCSS code is defined in the `theme.json` fil
 
 {% endcode %}
 
-When the storefront gets compiled the PHP SASS compiler will look up the files declared in the `style` section of the theme configuration. You can define the SCSS entry-points individually if you want to.
+When the Storefront gets compiled the PHP SASS compiler will look up the files declared in the `style` section of the theme configuration. You can define the SCSS entry-points individually if you want to.
 
 In order to add some custom SCSS in your theme, you just need to edit the `base.scss` file which in located in `<plugin root>/src/Resources/app/storefront/src/scss` directory.
 

@@ -63,7 +63,7 @@ This second route, `detail`, comes with a dynamic parameter as part of the route
 path: 'detail/:id'
 ```
 
-Furthermore, the `detail` route comes with another new configuration, which is called `meta`. As the name suggests, you can use this object to apply more meta information for your route. In this case the `parentPath` is filled. Its purpose is to link the path of the actual parent route. In the administration, this results in a "back" button on the top left of your module when being on the detail page. This button will then link back to the list route and the icon defined earlier will also be used for this button.
+Furthermore, the `detail` route comes with another new configuration, which is called `meta`. As the name suggests, you can use this object to apply more meta information for your route. In this case the `parentPath` is filled. Its purpose is to link the path of the actual parent route. In the Administration, this results in a "back" button on the top left of your module when being on the detail page. This button will then link back to the list route and the icon defined earlier will also be used for this button.
 
 You might want to have a closer look at the `parentPath` value though. Its route follows this pattern: `<bundle-name>.<name of the route>`
 

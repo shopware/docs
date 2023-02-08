@@ -4,7 +4,7 @@
 
 You should write a unit test for every functional change. Writing tests will ensure that your written code works and that another change can't break your code's functionality with their code.
 
-With a good test coverage you gain confidence to deploy a stable software without the requirement to manually test every change. This little guide will guide you how to write unit tests for the administration in Shopware 6.
+With a good test coverage you gain confidence to deploy a stable software without the requirement to manually test every change. This little guide will guide you how to write unit tests for the Administration in Shopware 6.
 
 We are using JestJS as our testing framework as it's a solid foundation and widely used by many developers.
 <!-- markdown-link-check-disable-next-line -->
@@ -26,7 +26,7 @@ For one example, we use a Javascript plugin. In oder to follow this example, you
 When it comes to the path to the test folder, you are quite free to use your own requirements. You could even build up a separate test suite if you need. There's one limitation though: Please take care you place your tests according your `package.json` file!
 {% endhint %}
 
-The following configuration matches our core configuration in order to give you a starting point. In Shopware's platform repository, you will find the storefront unit tests in the following directory: `platform/src/Storefront/Resources/app/storefront/test` It may be a good convention to resemble this directory structure, but it's no fixed requirement.
+The following configuration matches our core configuration in order to give you a starting point. In Shopware's platform repository, you will find the Storefront unit tests in the following directory: `platform/src/Storefront/Resources/app/storefront/test` It may be a good convention to resemble this directory structure, but it's no fixed requirement.
 
 Inside the test directory, you add a test for a file in the same path as the source path. You see: When creating the file, the name should also be the same as the component has with an additional `test`.
 
@@ -46,7 +46,7 @@ Please note that in this example, `<environment>` is a placeholder for the envir
 
 ## Writing a basic test
 
-When writing jest unit tests in the storefront, you will soon realize that it's not that much different from writing jest unit tests in general. Unlike the [Jest unit tests in the Administration](jest-admin.md), you basically don't need to go an extra mile to write your unit tests. Services, helper and isolated ECMAScript modules are well testable because you can import them directly without mocking or stubbing dependencies. They can be used isolated and therefore are easy to test.
+When writing jest unit tests in the Storefront, you will soon realize that it's not that much different from writing jest unit tests in general. Unlike the [Jest unit tests in the Administration](jest-admin.md), you basically don't need to go an extra mile to write your unit tests. Services, helper and isolated ECMAScript modules are well testable because you can import them directly without mocking or stubbing dependencies. They can be used isolated and therefore are easy to test.
 
 Let's start from scratch with a simple example: Imagine we want to write a test for a helper class, e.g. the `feature.helper` of our Storefront, handling the feature flag usage. We want to test, if our feature helper can indeed handle active feature flags.
 
@@ -146,13 +146,13 @@ That's basically it! We wrote our first jest unit test in the Storefront.
 
 ## Executing the tests
 
-Before you are using the commands make sure that you installed all dependencies for your storefront. If you haven't done this already, then you can do it running the following PSH command:
+Before you are using the commands make sure that you installed all dependencies for your Storefront. If you haven't done this already, then you can do it running the following PSH command:
 
 ```bash
 > ./psh.phar storefront:install-dependencies
 ```
 
-In order to run jest unit tests of the storefront, you can use the psh commands provided by our development template. This command executes all unit tests and shows you the complete code coverage.
+In order to run jest unit tests of the Storefront, you can use the psh commands provided by our development template. This command executes all unit tests and shows you the complete code coverage.
 
 ```bash
 > ./psh.phar storefront:unit
@@ -281,7 +281,7 @@ If you execute your test now, you'll run into an error:
           124 |         const plugin = window.PluginManager.getPlugin(this._pluginName, false);
 ```
 
-This was to be expected because you need to mock some more things required for the plugin to run. To solve this issue, you need to mock the `PluginManager` which holds all plugin instances globally in the Storefront. Because our test is just testing the single plugin class, the actual implementation on the real DOM element in the storefront isn't too important at this moment.
+This was to be expected because you need to mock some more things required for the plugin to run. To solve this issue, you need to mock the `PluginManager` which holds all plugin instances globally in the Storefront. Because our test is just testing the single plugin class, the actual implementation on the real DOM element in the Storefront isn't too important at this moment.
 
 {% code title="<plugin root>/src/Resources/app/storefront/test/plugin/hello-world/hello-world.plugin.test.js" %}
 

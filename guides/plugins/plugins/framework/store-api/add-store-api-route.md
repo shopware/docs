@@ -238,9 +238,9 @@ Your generated request and response could look like this:
 }
 ```
 
-## Make the route available for the storefront
+## Make the route available for the Storefront
 
-If you want to access the functionality of your route also from the storefront you need to make it available there by adding a custom [Storefront controller](../../storefront/add-custom-controller.md) that will wrap your just created route.
+If you want to access the functionality of your route also from the Storefront you need to make it available there by adding a custom [Storefront controller](../../storefront/add-custom-controller.md) that will wrap your just created route.
 
 {% code title="<plugin root>/src/Storefront/Controller/ExampleController.php" %}
 
@@ -279,11 +279,11 @@ class ExampleController extends StorefrontController
 ```
 
 This looks very similar then what we did in the `ExampleRoute` itself. The main difference is that this route is registered for the `storefront` route scope.
-Additionally, we also use the `defaults={"XmlHttpRequest"=true}` config option on the route, this will enable us to request that route via AJAX-calls from the storefronts javascript.
+Additionally, we also use the `defaults={"XmlHttpRequest"=true}` config option on the route, this will enable us to request that route via AJAX-calls from the Storefronts javascript.
 
-### Register storefront api-route
+### Register Storefront api-route
 
-We need to tell Shopware that there is a new API-route for the `storefront` scope by extending the `routes.xml` to also include all storefront controllers.
+We need to tell Shopware that there is a new API-route for the `storefront` scope by extending the `routes.xml` to also include all Storefront controllers.
 
 {% code title="<plugin root>/src/Resources/config/routes.xml" %}
 
@@ -301,10 +301,10 @@ We need to tell Shopware that there is a new API-route for the `storefront` scop
 
 {% endcode %}
 
-### Requesting your route from the storefront
+### Requesting your route from the Storefront
 
-You can request your new route from the storefront from inside a [custom javascript plugin](../../storefront/add-custom-javascript.md).
-We expect that you have followed that guide and know how to register your custom javascript plugin in the storefront.
+You can request your new route from the Storefront from inside a [custom javascript plugin](../../storefront/add-custom-javascript.md).
+We expect that you have followed that guide and know how to register your custom javascript plugin in the Storefront.
 
 When you want to request your custom route you can use the existing `http-client` service for that.
 

@@ -16,7 +16,7 @@ It might be helpful to gather some general understanding about the concept of [R
 
 ## Create custom rule
 
-To create a custom rule, we have to implement both backend \(PHP\) code and a user interface in the administration to manage it. Let's start with the PHP part first, which basically handles the main logic of our rule. After that, there will be an example to actually show your new rule in the administration.
+To create a custom rule, we have to implement both backend \(PHP\) code and a user interface in the Administration to manage it. Let's start with the PHP part first, which basically handles the main logic of our rule. After that, there will be an example to actually show your new rule in the Administration.
 
 ### Creating rule in PHP
 
@@ -78,7 +78,7 @@ class LunarEclipseRule extends Rule
 
 As you can see, several methods are already implemented:
 
-* `__constructor`: This only defines the default expected value. This is overwritten at runtime with the actual value, that the shop owner set in the administration.
+* `__constructor`: This only defines the default expected value. This is overwritten at runtime with the actual value, that the shop owner set in the Administration.
 * `getName`: Returns a unique technical name for your rule.
 * `match`: This checks whether the rule applies. Accordingly, a boolean is returned whether the rule applies or not.
 * `getConstraints`: This method returns an array of the possible fields and its types. You could also return the `NotBlank` class here, to require this field.
@@ -98,9 +98,9 @@ You can access all active rules by using the `getRuleIds` method of the context.
 $context->getRuleIds();
 ```
 
-### Showing rule in the administration
+### Showing rule in the Administration
 
-Now we want to implement our new rule in the administration so that we can manage it. To achieve this, we have to call the `addCondition` method of the [RuleConditionService](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/service/rule-condition.service.js), by decorating this service. The decoration of services in the administration will be covered in our [Adding services](../../administration/add-custom-service.md#Decorating%20a%20service) guide.
+Now we want to implement our new rule in the Administration so that we can manage it. To achieve this, we have to call the `addCondition` method of the [RuleConditionService](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/service/rule-condition.service.js), by decorating this service. The decoration of services in the Administration will be covered in our [Adding services](../../administration/add-custom-service.md#Decorating%20a%20service) guide.
 
 Create a new directory called `<plugin root>/src/Resources/app/administration/src/decorator`. In this directory we create a new file called `rule-condition-service-decoration.js`.
 
@@ -123,9 +123,9 @@ Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderServi
 
 {% endcode %}
 
-As you can see, this is decorating the `RuleConditionService` by using its name `ruleConditionDataProviderService`. The decoration adds a new condition called `lunar_eclipse`. Make sure to match the name we've used in the `getName` method in PHP. Next, we define the component, in our case `swag-lunar-eclipse`, which is responsible for rendering the rule inside the administration. We will create this component in the next step. Furthermore we defined a label, which will be displayed in the rule builder selection. The last option is the scope, which in our case is `global`, as we have not specified a specific one in our core class.
+As you can see, this is decorating the `RuleConditionService` by using its name `ruleConditionDataProviderService`. The decoration adds a new condition called `lunar_eclipse`. Make sure to match the name we've used in the `getName` method in PHP. Next, we define the component, in our case `swag-lunar-eclipse`, which is responsible for rendering the rule inside the Administration. We will create this component in the next step. Furthermore we defined a label, which will be displayed in the rule builder selection. The last option is the scope, which in our case is `global`, as we have not specified a specific one in our core class.
 
-We also have to create a `main.js` file in our administration sources directory and import the decorator file we've created above. The `main.js` file is used as an entry point to load administration modules from Shopware plugins:
+We also have to create a `main.js` file in our Administration sources directory and import the decorator file we've created above. The `main.js` file is used as an entry point to load Administration modules from Shopware plugins:
 
 {% code title="<plugin root>/src/Resources/app/administration/src/main.js" %}
 
@@ -141,7 +141,7 @@ It may be possible that rules, with your newly created condition, aren't selecta
 
 ### Custom rule component
 
-Now that you have registered your rule to the administration, you would still be lacking the actual component `swag-lunar-eclipse`. As you have already defined a path for it in your service decoration, create the following directory: `<plugin root>/src/Resources/app/administration/src/core/component/swag-lunar-eclipse`. If you are unfamiliar with creating components in Shopware, refer to the [add your own component](../../administration/add-custom-component.md) section.
+Now that you have registered your rule to the Administration, you would still be lacking the actual component `swag-lunar-eclipse`. As you have already defined a path for it in your service decoration, create the following directory: `<plugin root>/src/Resources/app/administration/src/core/component/swag-lunar-eclipse`. If you are unfamiliar with creating components in Shopware, refer to the [add your own component](../../administration/add-custom-component.md) section.
 
 Here's an example of what this component could look like:
 
@@ -192,7 +192,7 @@ As you can see, our `swag-lunar-eclipse` has to extend from the `sw-condition-ba
 
 The second and last computed property is `isLunarEclipse`, which uses a getter and setter to define the value of the condition.
 
-### Custom rule administration template
+### Custom rule Administration template
 
 The last step is, creating a template for our condition. We will create a new file called `swag-lunar-eclipse.html.twig` in the same directory as the component. In our template, we have to overwrite the block `sw_condition_value_content`. In this example we define a `sw-single-select` in this block.
 
@@ -222,11 +222,11 @@ As you can see, our `sw-single-select` uses the previously created computed prop
 This feature is available in version 6.5.0.0 or above.
 {% endhint %}
 
-Rules in the Shopware administration are aware of where users assign them. That means that a user can't add a rule to a promotion when the rule contains the condition "Cart amount". That also works the other way around. If the rule is assigned to a promotion, the user can't use the "Cart amount" condition.
+Rules in the Shopware Administration are aware of where users assign them. That means that a user can't add a rule to a promotion when the rule contains the condition "Cart amount". That also works the other way around. If the rule is assigned to a promotion, the user can't use the "Cart amount" condition.
 
 ![Select component with disabled rules](../../../../../.gitbook/assets/rule-restrictions-rule-builder.png)
 
-It is possible to define where rules can be assigned inside the administration. Let us see about it.
+It is possible to define where rules can be assigned inside the Administration. Let us see about it.
 
 ### Defining restrictions
 

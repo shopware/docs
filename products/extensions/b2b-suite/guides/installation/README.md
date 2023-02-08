@@ -93,6 +93,6 @@ Once the environment has been booted successfully, you can use the common script
 
 ```bash
 ./psh.phar clear # remove vendor components and previously set state
-./psh.phar init # init composer, install plugins
+./psh.phar init # init Composer, install plugins
 ./psh.phar unit # execute test suite
 ```

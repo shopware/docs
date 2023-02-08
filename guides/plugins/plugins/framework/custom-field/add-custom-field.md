@@ -189,7 +189,7 @@ class ExampleTranslationDefinition extends EntityTranslationDefinition
 
 The previous section was about adding support for custom fields in your entity, but this section will cover how to add an actual custom field to an entity and how to fill it with data.
 
-Technically, there is no need to define a custom field set and its fields first, before actually inserting values into the `custom_fields` column of your entities' database table via the DAL. Defining a custom field set is only necessary, if you want it to be editable in the administration or if you need validation when writing your custom field.
+Technically, there is no need to define a custom field set and its fields first, before actually inserting values into the `custom_fields` column of your entities' database table via the DAL. Defining a custom field set is only necessary, if you want it to be editable in the Administration or if you need validation when writing your custom field.
 
 Because of that, we'll start with filling data to an actual entities' custom field, before actually defining it.
 
@@ -219,11 +219,11 @@ $this->swagExampleRepository->upsert([[
 
 ### Adding an actual custom field
 
-You can skip this section if you do not want your new custom field to be editable in the administration.
+You can skip this section if you do not want your new custom field to be editable in the Administration.
 
 So now you've already filled the custom fields of one of your entity instances via code. But what if you want your user to do that, which is the more common case?
 
-Only if you want your custom field to show up in the administration and to be editable in there, you have to define the custom fields first in a custom field set. For this you have to use the custom fieldset repository, which can be retrieved from the dependency injection container via the `custom_field_set.repository` key and is used like any other repository. If you don't know how that is done, head over to our guide regarding [Writing data](../data-handling/writing-data.md).
+Only if you want your custom field to show up in the Administration and to be editable in there, you have to define the custom fields first in a custom field set. For this you have to use the custom fieldset repository, which can be retrieved from the dependency injection container via the `custom_field_set.repository` key and is used like any other repository. If you don't know how that is done, head over to our guide regarding [Writing data](../data-handling/writing-data.md).
 
 Now use the `create` method of the repository to create a new custom field set.
 
@@ -258,15 +258,15 @@ $this->customFieldSetRepository->create([
 ], $context);
 ```
 
-This will now create a custom field set with the name `swag_example_set` and the field we already used in the previous step, `swag_example_size`. This time we also define its type, which should be of type integer here. The type is important to mention, because the administration will use this information to display a proper field. Also, when trying to write the custom field `swag_example_size`, the value has to be an integer.
+This will now create a custom field set with the name `swag_example_set` and the field we already used in the previous step, `swag_example_size`. This time we also define its type, which should be of type integer here. The type is important to mention, because the Administration will use this information to display a proper field. Also, when trying to write the custom field `swag_example_size`, the value has to be an integer.
 
-Also we've taken care of adding translated labels to both the field and the set, which are going to be displayed in the administration. If you have several custom fields and want to order them within a specific order, you can do so with the `customFieldPosition` property.
+Also we've taken care of adding translated labels to both the field and the set, which are going to be displayed in the Administration. If you have several custom fields and want to order them within a specific order, you can do so with the `customFieldPosition` property.
 
 {% hint style="warning" %}
 Custom field sets are deletable by the shop administrator, so you cannot rely on their existence.
 {% endhint %}
 
-While theoretically your custom field is now properly defined for the administration, you'll still have to do some work in your custom entities' administration module. Head over to this guide to learn how to add your field to the administration:
+While theoretically your custom field is now properly defined for the Administration, you'll still have to do some work in your custom entities' Administration module. Head over to this guide to learn how to add your field to the Administration:
 
 {% page-ref page="../../administration/using-custom-fields.md" %}
 

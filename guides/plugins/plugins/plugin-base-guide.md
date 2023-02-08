@@ -117,7 +117,7 @@ Here's an example `composer.json` for this guide, which will do the trick:
         },
         "description": {
             "de-DE": "Beschreibung in der Administration für das Plugin",
-            "en-GB": "Description in the administration for this plugin"
+            "en-GB": "Description in the Administration for this plugin"
         }
     },
     "autoload": {

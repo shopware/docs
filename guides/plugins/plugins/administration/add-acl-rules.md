@@ -46,7 +46,7 @@ The role indicates which authorization is given for the key. So four predefined 
 * `creator`: The Creator is allowed to create new entities
 * `deleter`: The Deleter is allowed to delete entities
 
-It is important to note that these combinations are not API permissions. They are only intended to enable, disable, deactivate or hide certain elements in the administration.
+It is important to note that these combinations are not API permissions. They are only intended to enable, disable, deactivate or hide certain elements in the Administration.
 
 For each admin privilege, the needed entity privileges need to be assigned. Depending on the admin privileges, these can be much more complex. This means that for example if a user should be allowed to view reviews, then they also have to be allowed to view customers, products and sales channels.
 
@@ -66,7 +66,7 @@ The `additional_permissions` have their own card below the normal permissions gr
 
 ## Register admin privilege
 
-The privilege service is used to handle privileges in the administration. Those privileges will then be displayed in the Users & Permissions module under the roles.
+The privilege service is used to handle privileges in the Administration. Those privileges will then be displayed in the Users & Permissions module under the roles.
 
 Privileges can be added or extended with the Method `addPrivilegeMappingEntry` of the privilege service:
 
@@ -85,7 +85,7 @@ Each role in roles:
 | privileges | You need to add all API permissions here which are required for an working admin privilege. The structure is `entity_name:operation`, e.g. 'product:read'. |
 | dependencies | In some cases it is necessary to automatically check another role. To do this, you need to add the identifier, e.g. `product.viewer`. |
 
-Here's an example how this can look like for the review functionality in the administration:
+Here's an example how this can look like for the review functionality in the Administration:
 
 ```javascript
 Shopware.Service('privileges')
@@ -250,7 +250,7 @@ Shopware.Service('privileges').addPrivilegeMappingEntry({
 
 Now all users with the privilege `product.viewer` automatically have access to all privileges from the `rule.viewer`.
 
-Important: The user still has no access to the module itself in the administration. This means that the example above doesn't give a user access to the `rule` module.
+Important: The user still has no access to the module itself in the Administration. This means that the example above doesn't give a user access to the `rule` module.
 
 ## Protect your plugin routes
 

@@ -7,7 +7,7 @@ You might have noticed though, that this condition builder does not show all ava
 since some of them are blacklisted in the code, such as e.g. `createdAt`.
 
 In this guide you'll get two quick examples on how to either add new properties to this blacklist or even remove
-properties from the blacklist, so they're actually shown in the administration and thus can be used.
+properties from the blacklist, so they're actually shown in the Administration and thus can be used.
 
 ## Prerequisites
 

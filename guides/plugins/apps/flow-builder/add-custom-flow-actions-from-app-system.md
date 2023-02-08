@@ -208,7 +208,7 @@ With the parameters configured like described above, an exemplary call of your W
 
 ### Action configuration
 
-You can make your flow action configurable in the administration by adding input fields. Based on your configuration - similar to the [app configurations](../../plugins/plugin-fundamentals/add-plugin-configuration.md) - you can later on use these configuration values within flow parameters.
+You can make your flow action configurable in the Administration by adding input fields. Based on your configuration - similar to the [app configurations](../../plugins/plugin-fundamentals/add-plugin-configuration.md) - you can later on use these configuration values within flow parameters.
 
 ```xml
 <flow-action>

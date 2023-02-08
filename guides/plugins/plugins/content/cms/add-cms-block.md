@@ -6,9 +6,9 @@ This guide will teach you how to create your very own CMS block with your plugin
 
 ## Prerequisites
 
-This plugin is built upon our plugin from the [Plugin base guide](../../plugin-base-guide.md), but the examples mentioned here are applicable to every valid Shopware 6 plugin. Also, you should know how to handle the "Shopping Experiences" module in the administration first. Furthermore, you definitely need to know how to create a custom component in the administration, which is covered here [Creating a component](../../administration/add-custom-component.md).
+This plugin is built upon our plugin from the [Plugin base guide](../../plugin-base-guide.md), but the examples mentioned here are applicable to every valid Shopware 6 plugin. Also, you should know how to handle the "Shopping Experiences" module in the Administration first. Furthermore, you definitely need to know how to create a custom component in the Administration, which is covered here [Creating a component](../../administration/add-custom-component.md).
 
-## Custom block in the administration
+## Custom block in the Administration
 
 Let's get started with adding your first custom block. By default, Shopware 6 comes with several blocks, such as a block called `image_text`. It renders an image element on the left side and a simple text element on the right side. In this guide, you're going to create a new block to swap those two elements, so the text is on the left side and the image on the right side.
 
@@ -28,9 +28,9 @@ All blocks can be found in the directory [/src/Administration/Resources/app/admi
 
 `video` : Our blocks for youtube and vimeo videos reside here.
 
-### Injecting into the administration
+### Injecting into the Administration
 
-The main entry point to customize the administration via plugin is the `main.js` file. It has to be placed into a `<plugin root>/src/Resources/app/administration/src` directory in order to be automatically found by Shopware 6.
+The main entry point to customize the Administration via plugin is the `main.js` file. It has to be placed into a `<plugin root>/src/Resources/app/administration/src` directory in order to be automatically found by Shopware 6.
 
 Create this `main.js` file for now, it will be used later.
 
@@ -72,7 +72,7 @@ The method `registerCmsBlock` takes a configuration object, containing the follo
 
 `category` : The category this block belongs to.
 
-`component` : The Vue component to be used when rendering your actual block in the administration sidebar.
+`component` : The Vue component to be used when rendering your actual block in the Administration sidebar.
 
 `previewComponent` : The Vue component to be used in the "list of available blocks". Just shows a tiny preview of what your block would look like if it was used.
 
@@ -269,7 +269,7 @@ Shopware.Service('cmsService').registerCmsBlock({
 
 {% endcode %}
 
-In order to test your changes now, you should rebuild your administration. This can be done with the following command:
+In order to test your changes now, you should rebuild your Administration. This can be done with the following command:
 
 {% tabs %}
 {% tab title="Development template" %}
@@ -293,9 +293,9 @@ You should now be able to use your new block in the "Shopping Experiences" modul
 
 ## Storefront representation
 
-While your new block is fully functional in the administration already, you've never defined a template for it for the Storefront.
+While your new block is fully functional in the Administration already, you've never defined a template for it for the Storefront.
 
-A block's storefront representation is always expected in the directory [platform/src/Storefront/Resources/views/storefront/block](https://github.com/shopware/platform/tree/v6.3.4.1/src/Storefront/Resources/views/storefront/block). In there, a twig template named after your block is expected.
+A block's Storefront representation is always expected in the directory [platform/src/Storefront/Resources/views/storefront/block](https://github.com/shopware/platform/tree/v6.3.4.1/src/Storefront/Resources/views/storefront/block). In there, a twig template named after your block is expected.
 
 So go ahead and re-create that structure in your plugin: `<plugin root>/src/Resources/views/storefront/block/`
 

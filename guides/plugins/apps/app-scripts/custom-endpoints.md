@@ -111,9 +111,9 @@ For a complete overview of the available data and services, refer to the [refere
 
 ### Storefront endpoints
 
-Scripts available for the storefront should be stored in a folder prefixed with `storefront-`, so the folder name would be `storefront-{hook-name}`.
+Scripts available for the Storefront should be stored in a folder prefixed with `storefront-`, so the folder name would be `storefront-{hook-name}`.
 The execution of those scripts is possible over the `/storefront/script/{hook-name}` endpoint.
-Custom storefront endpoints can be called by a normal browser request or from javascript via ajax.
+Custom Storefront endpoints can be called by a normal browser request or from javascript via ajax.
 
 This endpoint allows `POST` and `GET` requests.
 

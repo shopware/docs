@@ -64,7 +64,7 @@
         <!-- register webhooks you want to receive, keep in mind that the name needs to be unique -->
         <webhook name="product-changed" url="https://example.com/event/product-changed" event="product.written"/>
     </webhooks>
-    <!-- Optional, can be omitted if the administration should not be extended -->
+    <!-- Optional, can be omitted if the Administration should not be extended -->
     <admin>
         <!-- Optional, entry point for the Admin Extension API (since 6.4.12.0) -->
         <base-app-url>https://app.example.com</base-app-url>
@@ -86,7 +86,7 @@
         </module>
         <!-- Register a module that is opened from the app store and your list of installed apps -->
         <main-module source="https://example.com/main-module"/>
-        <!-- Register action buttons that should be displayed in the detail and listing pages of the administration -->
+        <!-- Register action buttons that should be displayed in the detail and listing pages of the Administration -->
         <!-- view is one of: "list", "detail" -->
         <action-button action="setPromotion" entity="promotion" view="detail" url="https://example.com/promotion/set-promotion">
             <label>set Promotion</label>

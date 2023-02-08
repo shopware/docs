@@ -2,11 +2,11 @@
 
 ## Overview
 
-If you want to add interactivity to your storefront you probably have to write your own JavaScript plugin. Here you will be guided through the process of writing and registering your own JavaScript plugins. You will write a plugin that simply checks if the user has scrolled to the bottom of the page and then creates an alert.
+If you want to add interactivity to your Storefront you probably have to write your own JavaScript plugin. Here you will be guided through the process of writing and registering your own JavaScript plugins. You will write a plugin that simply checks if the user has scrolled to the bottom of the page and then creates an alert.
 
 ## Prerequisites
 
-You need for this guide a running plugin and therefore a running Shopware 6 instance, with full access to all files. This also includes access to the command line to execute a command, which then builds the storefront. A general understanding of vanilla JavaScript ES6 is also mandatory. Everything else is explained in this guide itself.
+You need for this guide a running plugin and therefore a running Shopware 6 instance, with full access to all files. This also includes access to the command line to execute a command, which then builds the Storefront. A general understanding of vanilla JavaScript ES6 is also mandatory. Everything else is explained in this guide itself.
 
 ## Writing a JavaScript plugin
 
@@ -252,7 +252,7 @@ Make sure to ship the compiled file with your plugin as well.
 
 ## Testing your changes
 
-To see your changes you have to build the storefront. Use the following command and reload your storefront:
+To see your changes you have to build the Storefront. Use the following command and reload your Storefront:
 
 {% tabs %}
 {% tab title="Development template" %}
