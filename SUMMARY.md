@@ -283,6 +283,7 @@
       * [PHP unit testing](guides/plugins/plugins/testing/php-unit.md)
     * [API](guides/plugins/plugins/api/README.md)
       * [Custom Pricing](guides/plugins/plugins/api/customer-specific-pricing.md)
+      * [Multi Inventory](guides/plugins/plugins/api/multi-inventory.md)
   * [Themes](guides/plugins/themes/README.md)
     * [Theme base guide](guides/plugins/themes/theme-base-guide.md)
     * [Create a first theme](guides/plugins/themes/create-a-theme.md)
@@ -526,7 +527,7 @@
     * [Language & Grammar](resources/guidelines/documentation-guidelines/03-language-and-grammar.md)
     * [Fonts & Formats](resources/guidelines/documentation-guidelines/04-fonts-and-formats/README.md)
       * [Text](resources/guidelines/documentation-guidelines/04-fonts-and-formats/01-text.md)
-      * [Code](resources/guidelines/documentation-guidelines/04-fonts-and-formats/02-code.md)  
+      * [Code](resources/guidelines/documentation-guidelines/04-fonts-and-formats/02-code.md)
     * [Methodize Assets](resources/guidelines/documentation-guidelines/05-methodize-assets.md)
     * [Doc Process](resources/guidelines/documentation-guidelines/06-doc-process.md)
 

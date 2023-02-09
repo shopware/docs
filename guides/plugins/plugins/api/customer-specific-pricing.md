@@ -101,6 +101,4 @@ When working with custom prices, there are currently some caveats or issues to k
 - ElasticSearch product mapping does not currently support the Customer-specific Pricing data
 - Optional header flags within the core `sync` API are not supported within the provided endpoint
 (`indexing-behavior, single-operation`). Indexing of any relevant database (product) data is handled on a per-request basis, without the need to specify indexing handling.
-- The `customerGroupId` parameter within a Customer-specific Pricing API request body is a stub implementation to avoid breaking
-
-changes in future versions and is not currently functional. Any data provided for this parameter will not affect the Storefront.
+- The `customerGroupId` parameter within a Customer-specific Pricing API request body is a stub implementation to avoid breaking changes in future versions and is not currently functional. Any data provided for this parameter will not affect the Storefront.
