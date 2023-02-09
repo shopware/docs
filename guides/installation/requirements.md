@@ -179,10 +179,10 @@ server {
 {% hint style="info" %}
 The following modules are required:
 
-- mod_negotiation
-- mod_rewrite
-- mod_headers
-- mod_deflate
+* mod_negotiation
+* mod_rewrite
+* mod_headers
+* mod_deflate
 
 {% endhint %}
 
