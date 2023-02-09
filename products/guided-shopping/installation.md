@@ -6,7 +6,7 @@ To install and use the Guided Shopping feature, follow the below steps:
 
 ### Get the plugin
 
-1. Clone or download the [guided-shopping repository](https://github.com/shopware/guided-shopping).
+1. Clone or download the [guided-shopping repository](https://gitlab.com/shopware/shopware/shopware-6/services/swagguidedshopping).
 1. Extract the plugin, including the outer folder `SwagGuidedShopping`, to `platform/custom/plugins` directory of Shopware repository.
 1. Make sure the plugin has a PHP package structure containing `composer.json` file, `src/` folder, and so on.
 1. Prepare a zip file containing the plugin as in the following structure:
