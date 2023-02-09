@@ -39,12 +39,14 @@ Mixin.register('swag-basic-mixin', {
 
 ## Importing the Mixin in the Plugin
 
-Now that we have registered the mixin, we need to import it at the top of our `main.js` file.
+Now that we have registered the mixin, we need to import it *before importing our components* in the `main.js` file.
 
 {% code title="<administration root>/src/main.js" %}
 
 ```javascript
 import '<administration root>/mixins/swag-basic-example.js'
+    
+// importing components...
 ```
 
 {% endcode %}
