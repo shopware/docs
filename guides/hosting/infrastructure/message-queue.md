@@ -7,7 +7,7 @@ Shopware uses the Symfony Messenger component and Enqueue to handle asynchronous
 ## Message queue on production systems
 
 On a production system, the message queue should be processed via the CLI instead of the browser in the Administration ([Admin worker](#admin-worker)). This way, tasks are also completed when no one is logged into the Administration and high CPU load due to multiple users in the admin is also avoided. Furthermore, you can change the transport to another system like [RabbitMQ](https://www.rabbitmq.com/). This would, relieve the database and, on the other hand, use a much more specialized service for handling message queues. The following are examples of the steps needed.  
-It is recommended to run one or more `messenger:consume`workers. To automatically start the processes again after they stopped because of exceeding the given limits you can use a process control system like [systemd](https://www.freedesktop.org/wiki/Software/systemd/) or [supervisor](http://supervisord.org/running.html).
+It is recommended to run one or more `messenger:consume` workers. To automatically start the processes again after they stopped because of exceeding the given limits you can use a process control system like [systemd](https://www.freedesktop.org/wiki/Software/systemd/) or [supervisor](http://supervisord.org/running.html).
 Alternatively, you can configure a cron job that runs the command periodically.
 
 {% hint style="info" %}
@@ -20,16 +20,18 @@ Find here the docs of Symfony: <https://symfony.com/doc/current/messenger.html#d
 It is recommended to use a third-party message queue to support multiple consumers and/or a greater amount of data to index.
 {% endhint %}
 
-### Consuming Messages
+## Execution methods
 
-The recommended method for consuming messages is using the CLI worker.
+### CLI worker
 
-#### Cli worker
+{% hint style="info" %}
+The CLI worker is the recommended way to consume messages.
+{% endhint %}
 
 You can configure the command just to run a certain amount of time and to stop if it exceeds a certain memory limit like:
 
 ```bash
-bin/console messenger:consume default --time-limit=60 --memory-limit=128M
+bin/console messenger:consume async --time-limit=60 --memory-limit=128M
 ```
 
 For more information about the command and its configuration, use the -h option:
@@ -37,8 +39,6 @@ For more information about the command and its configuration, use the -h option:
 ```bash
 bin/console messenger:consume -h
 ```
-
-#### Admin worker
 
 If you have configured the cli-worker, you should turn off the admin worker in the Shopware configuration file. Therefore, create or edit the configuration `shopware.yaml`.
 
@@ -49,16 +49,9 @@ shopware:
         enable_admin_worker: false
 ```
 
-The admin worker, if used, can be configured in the general `shopware.yml` configuration. If you want to use the admin worker, you have to specify each transport that was previously configured. The poll interval is the time in seconds that the admin worker polls messages from the queue. After the poll interval is over, the request terminates, and the Administration initiates a new request.
-
-```yaml
-# config/packages/shopware.yaml
-shopware:
-    admin_worker:
-        enable_admin_worker: true
-        poll_interval: 30
-        transports: ["default"]
-```
+{% hint style="warning" %}
+Make sure to set up the CLI worker also for the failed queue. Otherwise, failed messages will not be processed.
+{% endhint %}
 
 #### systemd example
 
@@ -77,7 +70,7 @@ User=www-data # Change this to webserver's user name
 Restart=always
 # Change the path to your shop path
 WorkingDirectory=/var/www/html
-ExecStart=php /var/www/html/bin/console messenger:consume --time-limit=60 --memory-limit=512M
+ExecStart=php /var/www/html/bin/console messenger:consume --time-limit=60 --memory-limit=512M async
 
 [Install]
 WantedBy=shopware_consumer.target
@@ -106,7 +99,20 @@ At the end start the services:
 
 Please refer to the [Symfony documentation](https://symfony.com/doc/current/messenger.html#supervisor-configuration) for the setup.
 
-### Sending mails over the message queue
+### Admin worker
+
+The admin worker, if used, can be configured in the general `shopware.yml` configuration. If you want to use the admin worker, you have to specify each transport that was previously configured. The poll interval is the time in seconds that the admin worker polls messages from the queue. After the poll interval is over, the request terminates, and the Administration initiates a new request.
+
+```yaml
+# config/packages/shopware.yaml
+shopware:
+    admin_worker:
+        enable_admin_worker: true
+        poll_interval: 30
+        transports: ["async"]
+```
+
+## Sending mails over the message queue
 
 By default, Shopware sends the mails synchronously. Since this can affect the page speed, you can switch it to use the Message Queue with a small configuration change.
 
@@ -117,39 +123,17 @@ framework:
         message_bus: 'messenger.default_bus'
 ```
 
-### Transport: RabbitMQ example
+## Failed messages
 
-In this example, we replace the standard transport, which stores the messages in the database, with RabbitMQ. Of course, other transport can be used as well. Detailed documentation of the parameters and possibilities can be found in the [Symfony documentation](https://symfony.com/doc/5.4/messenger.html#amqp-transport). In the following, I assume that RabbitMQ is installed and started. Furthermore, a queue, here called `messages`, should be created inside RabbitMQ. The only thing left is to tell Shopware about the new transport. Therefore we edit/create the configuration file `framework.yaml` with the following content:
+If a message fails, it will be moved to the failed transport. The failed transport is configured using the `MESSENGER_TRANSPORT_FAILURE_DSN` env. The default is the Doctrine transport. The messages are retried automatically 3 times. If the message fails again, it will be deleted. You can learn more about the failed transport and how you can configure it in the Symfony Messenger documentation: <https://symfony.com/doc/current/messenger.html#retries-failures>
 
-```yaml
-# config/packages/framework.yaml
-framework:
-    messenger:
-        transports:
-            default:
-                dsn: "amqp://localhost:5672/%2f/messages"
-```
+## Changing the transport
 
-{% hint style="info" %}
-The system needs the AMQP php extension
-{% endhint %}
+By default, Shopware uses the Doctrine transport. This is simple transport that stores the messages in the database. This is a good choice for development, but not recommended for production systems. You can change the transport to another system like [RabbitMQ](https://www.rabbitmq.com/). This would, relieve the database and, on the other hand, use a much more specialized service for handling message queues. The following are examples of the steps needed.
 
-### Transport: Redis example
+You can find all available transport options in the Symfony Messenger documentation: <https://symfony.com/doc/current/messenger.html#transport-configuration>
 
-In the following, I assume that Redis is installed and started. To use the [Symfony Messenger Redis Transport](https://symfony.com/doc/current/messenger.html#redis-transport) configure as below:
+Following environment variables are in use out of the box:
 
-```yaml
-# config/packages/framework.yaml
-parameters:
-  env(MESSENGER_CONSUMER_NAME): 'consumer'
-
-framework:
-  messenger:
-    transports:
-      default:
-        dsn: "redis://redis:port/messages/symfony/%env(MESSENGER_CONSUMER_NAME)%?delete_after_ack=true&delete_after_reject=true&dbindex=0"
-```
-
-{% hint style="info" %}
-As Shopware handles failed messages on its own. We can enable the deletion of failed or acknowledged messages. When running more than one consumer, `MESSENGER_CONSUMER_NAME` needs to be set. For example, in supervisor with `environment=MESSENGER_CONSUMER_NAME=%(program_name)s_%(process_num)02d`.
-{% endhint %}
+* `MESSENGER_TRANSPORT_DSN` - The DSN to the transport to use (e.g. `doctrine://default`).
+* `MESSENGER_TRANSPORT_FAILURE_DSN` - The DSN to the transport to use for failed messages (e.g. `doctrine://default?queue_name=failed`).
