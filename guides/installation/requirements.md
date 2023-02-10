@@ -113,12 +113,7 @@ server {
 
     root __DOCUMENT_ROOT__/public;
 
-    # Shopware install / update
-    location /recovery/install {
-        index index.php;
-        try_files $uri /recovery/install/index.php$is_args$args;
-    }
-
+    # Shopware update
     location /recovery/update/ {
         location /recovery/update/assets {
         }
