@@ -66,15 +66,13 @@ cachix use devenv
 The first time you run `cachix use`, you will be prompted a warning that you are not a trusted user.
 {% endhint %}
 
-```shell
-This user doesn't have permissions to configure binary caches.
-
-You can either:
-
-a) ...
-
-b) ...
-```
+> This user doesn't have permissions to configure binary caches.
+>
+> You can either:
+>
+> a) ...
+>
+> b) ...
 
 When you encounter the above message, run:
 
@@ -87,7 +85,7 @@ echo "trusted-users = root ${USER}" | sudo tee -a /etc/nix/nix.conf && sudo pkil
 Finally, install devenv:
 
 ```shell
-nix-env -if https://github.com/cachix/devenv/tarball/v0.5
+nix-env -if https://github.com/cachix/devenv/tarball/latest
 ```
 
 Before booting up your development environment, configure Cachix to use Shopware's cache:
