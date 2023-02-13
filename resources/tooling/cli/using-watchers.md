@@ -8,7 +8,7 @@ When developing with Shopware, you will probably notice that changes in JavaScri
 {% tab title="Administration (Composer)" %}
 
 ```bash
-composer run build:js:storefront
+composer run build:js:admin
 ```
 
 {% endtab %}
@@ -24,7 +24,7 @@ composer run build:js:storefront
 {% tab title="Storefront (Composer)" %}
 
 ```bash
-composer run build:js:admin
+composer run build:js:storefront
 ```
 
 {% endtab %}
