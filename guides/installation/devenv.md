@@ -318,16 +318,13 @@ Refer to the official devenv documentation to get a complete list of all availab
 { pkgs, config, lib, ... }:
 
 {
-  languages.php.package = pkgs.php.buildEnv {
-    extensions = { all, enabled }: with all; enabled ++ [ amqp redis blackfire grpc xdebug ];
-    extraConfig = ''
-      # Copy the config from devenv.nix and append the XDebug config
-      # [...]
-      xdebug.mode=debug
-      xdebug.discover_client_host=1
-      xdebug.client_host=127.0.0.1
-    '';
-  };
+  # XDebug
+  languages.php.extensions = [ "xdebug" ];
+  languages.php.ini = ''
+    xdebug.mode = debug
+    xdebug.discover_client_host = 1
+    xdebug.client_host = 127.0.0.1
+  '';
 }
 ```
 
