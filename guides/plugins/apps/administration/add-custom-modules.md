@@ -9,7 +9,7 @@ Creating custom modules takes place at the `<admin>` section of your `manifest.x
 To configure your module you can set it up with with some additional attributes.
 
 * `name` \(required\): The technical name of the module. This is the name your module is referenced with.
-* `parent` \(required\): The Administration navigation id from the menu item that serves as the parent menu item. If omitted your module will be listed under the "My apps" menu entry.
+* `parent` \(required\): The Administration navigation id of the menu item that serves as the parent menu item.
 * `source` \(optional\): The URL to your app servers endpoint from which the module is served from. This can be omitted if you want to define a menu item that should serve as a parent menu item for other app modules.
 * `position` \(optional\): A numeric index that sets the position of your menu entry regarding to it's siblings.
 
