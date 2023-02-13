@@ -66,15 +66,13 @@ cachix use devenv
 The first time you run `cachix use`, you will be prompted a warning that you are not a trusted user.
 {% endhint %}
 
-```shell
-This user doesn't have permissions to configure binary caches.
-
-You can either:
-
-a) ...
-
-b) ...
-```
+> This user doesn't have permissions to configure binary caches.
+>
+> You can either:
+>
+> a) ...
+>
+> b) ...
 
 When you encounter the above message, run:
 
@@ -87,7 +85,7 @@ echo "trusted-users = root ${USER}" | sudo tee -a /etc/nix/nix.conf && sudo pkil
 Finally, install devenv:
 
 ```shell
-nix-env -if https://github.com/cachix/devenv/tarball/v0.5
+nix-env -if https://github.com/cachix/devenv/tarball/latest
 ```
 
 Before booting up your development environment, configure Cachix to use Shopware's cache:
@@ -320,16 +318,13 @@ Refer to the official devenv documentation to get a complete list of all availab
 { pkgs, config, lib, ... }:
 
 {
-  languages.php.package = pkgs.php.buildEnv {
-    extensions = { all, enabled }: with all; enabled ++ [ amqp redis blackfire grpc xdebug ];
-    extraConfig = ''
-      # Copy the config from devenv.nix and append the XDebug config
-      # [...]
-      xdebug.mode=debug
-      xdebug.discover_client_host=1
-      xdebug.client_host=127.0.0.1
-    '';
-  };
+  # XDebug
+  languages.php.extensions = [ "xdebug" ];
+  languages.php.ini = ''
+    xdebug.mode = debug
+    xdebug.discover_client_host = 1
+    xdebug.client_host = 127.0.0.1
+  '';
 }
 ```
 
@@ -375,7 +370,7 @@ Periodically run `devenv gc` to remove orphaned services, packages and processes
 
 ### How do I access the database?
 
-The MySQL service is exposed under its default port `3306`, see [Default services](#default-services).
+The MySQL service is exposed under its default port `3306`, see [default services](#default-services).
 
 Be aware that you cannot connect using the `localhost` socket. Instead, you must use `127.0.0.1`.
 
