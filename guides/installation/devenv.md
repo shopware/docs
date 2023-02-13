@@ -373,7 +373,7 @@ Periodically run `devenv gc` to remove orphaned services, packages and processes
 
 ### How do I access the database?
 
-The MySQL service is exposed under its default port `3306`, see [Default services](#default-services).
+The MySQL service is exposed under its default port `3306`, see [default services](#default-services).
 
 Be aware that you cannot connect using the `localhost` socket. Instead, you must use `127.0.0.1`.
 
