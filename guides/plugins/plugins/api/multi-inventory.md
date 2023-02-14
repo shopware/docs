@@ -129,7 +129,7 @@ Availability of Products is defined in 2 steps:
 
 * WarehouseGroups can be assigned to Rules (Rule builder)
   * If the rule is invalid, this Group will not be considered in calculating Product availability.
-  * Products / Warehouses still can be available via other groups.
+  * Products/Warehouses can still be available via other groups.
   * If multiple rules a valid, WarehosueGroups can be prioritized with their own priority, they are not tied to rule priority.
 * Products can have a stock per Warehouse
   * All Warehouses inside an active WarehouseGroup are taken into account for calculating the total stock of a specific Product.
