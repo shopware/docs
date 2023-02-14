@@ -2,6 +2,8 @@
 
 > **Changelog**
 >
+>> 14/02/23: Added new STP tracking  "External technology apps / STP apps"
+>
 >> 28/10/21: Added "Safe your app idea and get a preview in the store".
 >
 >> 06/08/21: Added, "Useful links and tutorials for creating an app".
@@ -170,6 +172,36 @@ We check the complete functionality of the app and test wherever the Administrat
 * The functionality of an app will be tested together with the app developer in a live session.
 
 * Define in the description which currencies/countries are compatible with the payment method.
+
+### External technology apps / STP apps
+
+* Every external technology app needs to track their commission. This is an example to implement the tracking 
+
+    {
+      "identifier": "8e167662-6bbb-11eb-9439-0242ac130002",
+      "reportDate": "2005-08-15T15:52:01",
+      "instanceId": "alur24esfaw3ghk",
+      "shopwareVersion": "6.3.1",
+      "reportDataKeys": [
+        {
+          "customer": 3
+        },
+        {
+          "turnover": 440
+        }
+      ]
+    }
+
+identifier*: uuid                      Identifier used to validate the request
+
+reportDate*: date-time                 Date from when the given information are. Needs to be in DATE_ATOM format
+
+instanceId: string                     The id used to identify a shop can be send, when the given data is provided by a shop
+
+shopwareVersion: string                The shopware version of a shop, can be send, when the given data is provided by a shop
+
+reportDataKeys*: [{                    Contains the information, which are being tracked
+
 
 ## Quality guidelines for Shopware 6 apps based on the app system
 
