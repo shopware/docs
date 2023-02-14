@@ -125,7 +125,7 @@ Multi-Inventory is intended to be used as an interface between Shopware and your
 
 ### Product Availability
 
-Availability of Products is defined in 2 steps
+Availability of Products is defined in 2 steps:
 
 * WarehouseGroups can be assigned to Rules (Rule builder)
   * If the rule is invalid, this Group will not be considered in calculating Product availability.
