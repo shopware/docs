@@ -1,4 +1,4 @@
-# Quality Guidelines for Apps and Themes based on App System in Shopware Store
+# Quality Guidelines for Apps and Themes based on App System in Shopware Store test
 
 > **Changelog**
 >
