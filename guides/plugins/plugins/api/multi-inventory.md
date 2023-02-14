@@ -121,7 +121,7 @@ Note: Every described behavior only applies to Products, which are assigned to W
 
 ### ERP System as Single-Source-of-Truth
 
-Multi-Inventory is intended to be used as an interface between Shopware and your resource management software. This means that Shopware will only calculate availability of Products based on your Warehouse configuration, and only changes stocks of a Warehouse, when an order is created. This is to prevent oversales, while also making your system the single source of truth - making it easier to maintain both systems at the same time.
+Multi-Inventory is intended to be used as an interface between Shopware and your resource management software. This means that Shopware will only calculate the availability of Products based on your Warehouse configuration and changes stocks of a Warehouse when an order is created. This prevents oversales while also making your system the single source of truth - making it easier to maintain both systems at the same time.
 
 ### Product Availability
 
