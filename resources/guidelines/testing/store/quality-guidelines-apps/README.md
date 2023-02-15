@@ -192,17 +192,6 @@ We check the complete functionality of the app and test wherever the Administrat
       ]
     }
 
-identifier*: uuid                      Identifier used to validate the request
-
-reportDate*: date-time                 Date from when the given information are. Needs to be in DATE_ATOM format
-
-instanceId: string                     The id used to identify a shop can be send, when the given data is provided by a shop
-
-shopwareVersion: string                The shopware version of a shop, can be send, when the given data is provided by a shop
-
-reportDataKeys*: [{                    Contains the information, which are being tracked
-
-
 ## Quality guidelines for Shopware 6 apps based on the app system
 
 ### Extension master data/license
