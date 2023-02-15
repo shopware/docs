@@ -1,10 +1,5 @@
 # 2021-08-10 - Storefront coding standars
 
-{% hint style="info" %}
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/storefront/2021-08-10-storefront-coding-standards.md)
-{% endhint %}
-
 ## Context
 
 * The current coding standards are not put into an ADR yet.
