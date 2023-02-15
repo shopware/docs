@@ -250,6 +250,10 @@ A test button for optional API access data must be available. If the API data is
 
 Every external technology app needs to track their commission. This is an example to implement the tracking 
 
+
+{% code %}
+
+```json
     {
       "identifier": "8e167662-6bbb-11eb-9439-0242ac130002",
       "reportDate": "2005-08-15T15:52:01",
