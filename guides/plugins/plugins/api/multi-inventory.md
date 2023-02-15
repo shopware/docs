@@ -4,15 +4,21 @@
 
 ### Commercial Plugin
 
-As Multi-Inventory is part of the Commercial plugin, it requires an existing Shopware 6 installation and the activated Commercial plugin on top. The plugin can be installed following these [install instructions](../../../../guides/plugins/plugins/plugin-base-guide#install-your-plugin). In addition, the Multi-Inventory feature requires [Shopware Beyond](https://docs.shopware.com/en/shopware-6-en/features/shopware-beyond).
+Multi-Inventory is part of the Commercial plugin available along with the Beyond plan. This feature requires:
+
+* Shopware 6 instance
+* [Shopware Beyond](https://docs.shopware.com/en/shopware-6-en/features/shopware-beyond) license
+* Activated Commercial plugin. Refer to [plugin base guide](../../../../guides/plugins/plugins/plugin-base-guide#install-your-plugin) for installation instructions
 
 ### Admin UI
 
-While this feature is supposed to be used API first, i.e. by ERP systems, it still comes with an user interface for the administration. If you're looking for user documentation, [please head here](https://docs.shopware.com/en/shopware-6-en/extensions).
+While this feature is supposed to be used by API first, i.e. by ERP systems, it still comes with an user interface for the Administration. Refer to [My extensions](https://docs.shopware.com/en/shopware-6-en/extensions/myextensions) section of shopware docs to explore more about it.
 
 ### Admin API
 
-To create, alter and/or delete warehouse groups, warehouses and other things related to Multi-Inventory, you can access Admin API endpoints decscribed in the following paragraphs. The following links provide further documentation regarding the general use of the Admin API.
+To create, modify or delete Warehouses, WarehouseGroups,etc, related to Multi-Inventory, you can access Admin API endpoints decscribed further.
+
+Meanwhile, refer to the following links regarding the general use of the Admin API:
 
 * [Authentication & Authorization](https://shopware.stoplight.io/docs/admin-api/ZG9jOjEwODA3NjQx-authentication)
 * [Request & Response Structure](https://shopware.stoplight.io/docs/admin-api/ZG9jOjEyMzAzNDU1-request-and-response-structure)
