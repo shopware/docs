@@ -269,16 +269,6 @@ Every external technology app needs to track their commission. This is an exampl
       ]
     }
 
-identifier*: uuid                      Identifier used to validate the request
-
-reportDate*: date-time                 Date from when the given information are. Needs to be in DATE_ATOM format
-
-instanceId: string                     The id used to identify a shop can be send, when the given data is provided by a shop
-
-shopwareVersion: string                The shopware version of a shop, can be send, when the given data is provided by a shop
-
-reportDataKeys*:                       Contains the information, which are being tracked 
-
 ### Menu entries in the main menu not allowed
 
 Menu entries in the main menu of the Administration are not allowed because of the look and feel.
