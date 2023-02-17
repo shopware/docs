@@ -203,11 +203,11 @@ The following modules are required:
 
 While not necessary we recommend the following stack:
 
-Webserver: Caddy
-PHP: 8.1
-Node: 16
-Search: Opensearch 2.5.0
-Queue: Rabbitmq
+* Webserver: Caddy
+* PHP: 8.1
+* Node: 16
+* Search: Opensearch 2.5.0
+* Queue: Rabbitmq
 
 Recommended PHP ini:
 {% page-ref page="../hosting/performance/performance-tweaks.md#php-config-tweaks" %}
