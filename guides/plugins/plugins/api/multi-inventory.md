@@ -122,7 +122,9 @@ You can update `product_warehouse.stock` in batch via SyncApi, or patch a specif
 
 ## Concept
 
-Note: Every described behavior only applies to Products, which are assigned to WarehouseGroups - every unrelated Product will use the default Shopware behavior.
+{% hint style="info" %}
+Every described behavior only applies to Products that are assigned to WarehouseGroups and every unrelated Product will use the default Shopware behavior.
+{% endhint %}
 
 ### ERP System as Single-Source-of-Truth
 
