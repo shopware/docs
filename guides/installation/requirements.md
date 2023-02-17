@@ -199,7 +199,7 @@ The following modules are required:
 {% endtab %}
 {% endtabs %}
 
-## Recommended Stack
+## Recommended stack
 
 While not necessary we recommend the following stack:
 
