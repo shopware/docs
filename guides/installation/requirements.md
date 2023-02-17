@@ -214,6 +214,6 @@ Recommended PHP ini:
 
 ## Setup
 
-If the requirements are fullfilled you can continue to our template guide to set up Shopware.
+Once the requirements are fulfilled, follow up with the [Template](template.md) guide to set up Shopware.
 
 {% page-ref page="template.md" %}
