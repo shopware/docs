@@ -1,16 +1,17 @@
-# Installation
-
-## Development setup
+# Installation Overview
 
 This section discusses ways to set up Shopware on local machines so you can use it as a foundation for your development.
 
-There are a couple of ways to get Shopware running on your system togehter with the most useful services for data storage and a webserver.
+There are a couple of ways to get Shopware running on your system, together with the most useful services for data storage and the web server.
 
-* [devenv](devenv.md): Installation using devenv, built on top of Nix.
-* [Dockware](community/dockware.md): This is a managed docker setup for Shopware 6 by Shopware agency [dasistweb](https://www.dasistweb.de/).
+## Installation modes
 
-## Production hosting
+* [Devenv](devenv.md) installation manages all necessary services. A description file in the source code manages the versions of these services. This setup works for Linux, WSL and macOS.
 
-If you are looking for a guide to set up Shopware in a production environment, please follow the link below:
+* Alternatively, [Dockware](community/dockware.md) - This is a managed docker setup for Shopware 6 by Shopware agency [dasistweb](https://www.dasistweb.de/).
 
-{% page-ref page="flex.md" %}
+## Set up your own environment
+  
+Refer to the [Requirements](requirements.md) section to install and configure the necessary services like a database and a webserver to a nix system like Linux, macOS, WSL etc.
+
+Next, you can [Setup Shopware as a Symfony flex project](template.md#set-up-a-new-project).
