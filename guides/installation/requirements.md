@@ -11,12 +11,12 @@ Windows is only supported inside WSL 2.
 
 You can use these commands to check your actual environment:
 
-* `php -v`: Show CLI PHP version
-* `php -m`: Show CLI PHP modules
-* `php -i | grep memory_limit`: Show your actual CLI PHP memory limit
-* `composer -v`: Show your actual composer version
-* `node -v`: Show you actual Node version
-* `npm -v`: Show you actual NPM version
+* `php -v`: Shows CLI PHP version
+* `php -m`: Shows CLI PHP modules
+* `php -i | grep memory_limit`: Shows your actual CLI PHP memory limit
+* `composer -v`: Shows your actual composer version
+* `node -v`: Shows your actual Node version
+* `npm -v`: Shows your actual NPM version
 
 **PHP**
 
