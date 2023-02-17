@@ -4,7 +4,7 @@ This section discusses ways to set up Shopware on local machines so you can use 
 
 There are a couple of ways to get Shopware running on your system, together with the most useful services for data storage and the web server.
 
-## Declaratively managed
+## Installation modes
 
 The installation with Devenv ([see the guide](devenv.md)) manages all necessary services. A description file in the source code manages the versions of these services.
 This setup works for Linux (also WSL) and macOS.
