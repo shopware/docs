@@ -6,14 +6,11 @@ There are a couple of ways to get Shopware running on your system, together with
 
 ## Installation modes
 
-The installation with Devenv ([see the guide](devenv.md)) manages all necessary services. A description file in the source code manages the versions of these services.
-This setup works for Linux (also WSL) and macOS.
+* [Devenv](devenv.md) installation manages all necessary services. A description file in the source code manages the versions of these services. This setup works for Linux (also WSL) and macOS.
+	
+* Alternatively, [Dockware](community/dockware.md) - This is a managed docker setup for Shopware 6 by Shopware agency [dasistweb](https://www.dasistweb.de/).
 
-A community powered alternative to this is [Dockware](community/dockware.md).
-This is a managed docker setup for Shopware 6 by Shopware agency [dasistweb](https://www.dasistweb.de/).
+* Setting up your own environment
+  Refer to the [requirements](requirements.md) section to install and configure the necessary services like a database and a webserver to a nix system like Linux, macOS, WSL etc.
 
-## Setting up your own environment
-
-Refer to the [requirements](requirements.md) section to install and configure the necessary services like a database and a webserver to a nix system like Linux, macOS, WSL etc.
-
-After that, you can [setup Shopware as a Symfony flex project](template.md).
+  After that, you can [setup Shopware as a Symfony flex project](template.md).
