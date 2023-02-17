@@ -201,7 +201,7 @@ The following modules are required:
 
 ## Recommended stack
 
-While not necessary we recommend the following stack:
+We recommend the following stack:
 
 * Webserver: Caddy
 * PHP: 8.1
