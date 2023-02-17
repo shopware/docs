@@ -1,6 +1,6 @@
 # Requirements
 
-Before installing Shopware 6, you should take a quick look at the requirements to check if your local environment is capable of running it.
+Before installing Shopware 6, take a quick look at the requirements below to check if your local environment is capable of running it.
 
 ## Operating System
 
