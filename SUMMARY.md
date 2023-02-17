@@ -113,8 +113,8 @@
 
 * [Installation](guides/installation/README.md)
   * [Requirements](guides/installation/requirements.md)
-  * [Devenv](guides/installation/devenv.md)
   * [Template](guides/installation/template.md)
+  * [Devenv](guides/installation/devenv.md)
   * [Community Setups](guides/installation/community/README.md)
     * [Dockware](guides/installation/community/dockware.md)
   * [Legacy Setups](guides/installation/legacy/README.md)
