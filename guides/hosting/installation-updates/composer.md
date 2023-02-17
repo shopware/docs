@@ -36,7 +36,7 @@ See also:
 
 ### Requirements
 
-To get an overview of the requirements, see the following page:
+To get an overview of the requirements, refer to the following:
 
 {% page-ref page="../../installation/requirements.md" %}
 
