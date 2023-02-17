@@ -24,7 +24,6 @@ Meanwhile, refer to the following links regarding the general use of the Admin A
 * [Request & Response Structure](https://shopware.stoplight.io/docs/admin-api/ZG9jOjEyMzAzNDU1-request-and-response-structure)
 * [Endpoint Structure](https://shopware.stoplight.io/docs/admin-api/ZG9jOjEyMzA1ODA5-endpoint-structure)
 
----
 
 ## Working with the API
 
