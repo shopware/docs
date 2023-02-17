@@ -48,7 +48,7 @@ The following examples contain payloads for typical use-cases of this feature. B
 }
 ```
 
-### Creating or Updating a Warehouse and assigning it to existing WarehouseGroups
+### Creating or updating a Warehouse and assigning it to an existing WarehouseGroups
 
 ```json
 
