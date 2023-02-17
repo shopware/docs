@@ -6,7 +6,7 @@ The Community Edition is an open-source, basic variant of Shopware, free for eve
 
 ## Running Shopware
 
-There are several opportunities to run Shopware in general, which are explained in the [installation overview](../guides/installation/README.md) section. Inside that section, you will also find the [system requirements](../guides/installation/requirements.md) needed for running Shopware as a PHP application built upon Symfony.
+In general, there are several options to run Shopware, as explained in the [Installation](../guides/installation/README.md) section. Also, find the [system requirements](../guides/installation/requirements.md) needed for running Shopware as a PHP application built upon Symfony.
 
 ## Platform components
 
