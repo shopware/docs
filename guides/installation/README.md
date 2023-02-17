@@ -16,4 +16,4 @@ This is a managed docker setup for Shopware 6 by Shopware agency [dasistweb](htt
 
 Refer to the [requirements](requirements.md) section to install and configure the necessary services like a database and a webserver to a nix system like Linux, macOS, WSL etc.
 
-After that you can setup Shopware as a Symfony flex project. [Guide](template.md)
+After that, you can [setup Shopware as a Symfony flex project](template.md).
