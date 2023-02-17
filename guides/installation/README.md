@@ -2,7 +2,7 @@
 
 This section discusses ways to set up Shopware on local machines so you can use it as a foundation for your development.
 
-There are a couple of ways to get Shopware running on your system togehter with the most useful services for data storage and a webserver.
+There are a couple of ways to get Shopware running on your system, together with the most useful services for data storage and the web server.
 
 ## Declaratively managed
 
