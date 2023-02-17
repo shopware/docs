@@ -68,7 +68,7 @@ Known problematic Versions:
 
 To run Shopware in a development context, the [Symfony CLI](https://symfony.com/doc/current/setup/symfony_server.html) will work nicely.
 
-Below you find the default configuration using either Caddy, Nginx or Apache as a websever.
+Below you will find the default configuration using either Caddy, Nginx or Apache as a webserver.
 
 {% tabs %}
 {% tab title="Caddy" %}
