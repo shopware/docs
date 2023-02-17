@@ -29,7 +29,7 @@ Meanwhile, refer to the following links regarding the general use of the Admin A
 
 The following examples contain payloads for typical use-cases of this feature. Basically all new entities fully support the Admin API via sync service or their generic entity endpoints.
 
-### Creating or Updating a WarehouseGroup and assigning it to an existing Warehouse
+### Creating or updating a WarehouseGroup and assigning it to an existing Warehouse
 
 ```json
 
