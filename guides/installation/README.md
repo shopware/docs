@@ -7,7 +7,7 @@ There are a couple of ways to get Shopware running on your system, together with
 ## Installation modes
 
 * [Devenv](devenv.md) installation manages all necessary services. A description file in the source code manages the versions of these services. This setup works for Linux (also WSL) and macOS.
-	
+
 * Alternatively, [Dockware](community/dockware.md) - This is a managed docker setup for Shopware 6 by Shopware agency [dasistweb](https://www.dasistweb.de/).
 
 * Setting up your own environment
