@@ -246,7 +246,7 @@ A test button for optional API access data must be available. If the API data is
 
 [Example for implementing an API Test Button into the System Config form](https://github.com/shyim/ShyimApiTest)
 
-### External technology apps / STP apps
+### External technology apps/STP apps
 
 Every external technology app needs to track their commission. This is an example to implement the tracking 
 
