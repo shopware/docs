@@ -2,6 +2,8 @@
 
 > **Changelog**
 >
+>> 14/02/23: Added new STP tracking  "External technology apps/STP apps"
+>
 >> 28/10/21: Added "Safe your app idea and get a preview in the store".
 >
 >> 06/08/21: Added, "Useful links and tutorials for creating an app".
