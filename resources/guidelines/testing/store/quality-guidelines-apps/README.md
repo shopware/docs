@@ -173,7 +173,7 @@ We check the complete functionality of the app and test wherever the Administrat
 
 * Define in the description which currencies/countries are compatible with the payment method.
 
-### External technology apps/STP apps
+### External technology/ Shopware Technology Partner (STP) apps
 
 Every external technology app needs to track its commission. Below is an example of implementing the tracking logic in their extensions:
 
