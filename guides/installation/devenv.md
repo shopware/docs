@@ -280,6 +280,11 @@ It also allows you to add and configure additional services you might require fo
     '';
   };
   
+  # Customize nodejs version
+  languages.javascript = {
+    package = pkgs.nodejs-18_x;
+  };
+
   # Override an environment variable
   env.APP_URL = "http://shopware.swag";
 }
