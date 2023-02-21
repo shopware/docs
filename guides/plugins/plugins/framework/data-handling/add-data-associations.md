@@ -221,8 +221,8 @@ class FooBarMappingDefinition extends MappingEntityDefinition
         return new FieldCollection([
             (new FkField('bar_id', 'barId', BarDefinition::class))->addFlags(new PrimaryKey(), new Required()),
             (new FkField('foo_id', 'fooId', FooDefinition::class))->addFlags(new PrimaryKey(), new Required()),
-            new ManyToOneAssociationField('bars', 'bar_id', BarDefinition::class, 'id'),
-            new ManyToOneAssociationField('foos', 'foo_id', FooDefinition::class, 'id')
+            new ManyToOneAssociationField('bar', 'bar_id', BarDefinition::class, 'id'),
+            new ManyToOneAssociationField('foo', 'foo_id', FooDefinition::class, 'id')
         ]);
     }
 }
