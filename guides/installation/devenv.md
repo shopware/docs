@@ -262,6 +262,10 @@ Here is an overview of services Shopware provides by default and how you can acc
 To customize the predefined services to match your needs, e.g., changing the virtual host, database name, or environment variables, you can create `devenv.local.nix` to override the service definitions.
 It also allows you to add and configure additional services you might require for your local development.
 
+{% hint style="warning" %}
+After changing `devenv.local.nix`, please [reload your environment](#manually-reloading-devenv).
+{% endhint %}
+
 {% code title="<PROJECT_ROOT>/devenv.local.nix" %}
 
 ```nix
@@ -351,12 +355,12 @@ Refer to the official devenv documentation to get a complete list of all availab
 
 ## Known issues
 
-### Manually reloading direnv
+### Manually reloading devenv
 
 If you decided against using direnv, keep in mind that on every change to the `*.nix` files you need to manually reload the environment:
 
 ```shell
-direnv reload
+devenv up
 ```
 
 ### Direnv slow in big projects
