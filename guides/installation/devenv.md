@@ -357,10 +357,10 @@ Refer to the official devenv documentation to get a complete list of all availab
 
 ### Manually reloading devenv
 
-If you decided against using direnv, keep in mind that on every change to the `*.nix` files you need to manually reload the environment:
+If you decided against using direnv, keep in mind that on every change to the `*.nix` files you need to manually reload the environment. Run `exit` to quit the current devenv shell and enter the shell again to reload:
 
 ```shell
-devenv up
+devenv shell
 ```
 
 ### Direnv slow in big projects
