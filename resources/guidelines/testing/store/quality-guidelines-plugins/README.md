@@ -2,7 +2,7 @@
 
 > **Changelog**
 >
->> 14/02/23: Added new STP tracking  "External technology apps / STP apps"
+>> 14/02/23: Added new STP tracking  "External technology apps/STP apps"
 >
 >> 11/07/22: [Added a list of all Blockers - Changes to the autom. coderview 1.st Oct. 2022](https://docs.shopware.com/en/account-en/manufacturer-area/quality-guidelines-for-extensions-in-the-shopware-store-based-on-our-extension-system#sonarcube-rules-status-blocker).
 >
@@ -246,14 +246,14 @@ A test button for optional API access data must be available. If the API data is
 
 [Example for implementing an API Test Button into the System Config form](https://github.com/shyim/ShyimApiTest)
 
-### External technology apps/STP apps
+### External technology/ Shopware Technology Partner (STP) apps
 
-Every external technology app needs to track their commission. This is an example to implement the tracking 
-
+Every external technology app needs to track its commission. Below is an example of implementing the tracking logic in their extensions:
 
 {% code %}
 
-//Post /shopwarepartners/reports/technology - Allows partners to send us the info based on the STP contract
+// POST /shopwarepartners/reports/technology - Allows partners to send us the info based on the STP contract
+
 ```json
     {
       "identifier": "8e167662-6bbb-11eb-9439-0242ac130002",
@@ -269,6 +269,9 @@ Every external technology app needs to track their commission. This is an exampl
         }
       ]
     }
+```
+
+{% endcode %}
 
 ### Menu entries in the main menu not allowed
 
