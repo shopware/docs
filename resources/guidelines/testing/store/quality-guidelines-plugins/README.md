@@ -2,6 +2,8 @@
 
 > **Changelog**
 >
+>> 14/02/23: Added new STP tracking  "External technology apps/STP apps"
+>
 >> 11/07/22: [Added a list of all Blockers - Changes to the autom. coderview 1.st Oct. 2022](https://docs.shopware.com/en/account-en/manufacturer-area/quality-guidelines-for-extensions-in-the-shopware-store-based-on-our-extension-system#sonarcube-rules-status-blocker).
 >
 >> 26/10/21: [Added safe your app idea and get a preview in the store](https://docs.shopware.com/en/account-en/manufacturer-area/quality-guidelines-for-extensions-in-the-shopware-store-based-on-our-extension-system?category=account-en/manufacturer-area#safe-your-app-idea-and-get-a-preview-in-the-store).
@@ -244,6 +246,33 @@ We check if the "pluginlogger" service is used for the debug/error.log and that 
 A test button for optional API access data must be available. If the API data is incorrect, an entry must appear in the event log file in the Shopware folder `/var/log/` respectively in the database. Apart from that, you can validate the required credentials while saving them in the app settings. In this case, a status message must be displayed in the backend and in the Shopware log.
 
 [Example for implementing an API Test Button into the System Config form](https://github.com/shyim/ShyimApiTest)
+
+### External technology/ Shopware Technology Partner (STP) apps
+
+Every external technology app needs to track its commission. Below is an example of implementing the tracking logic in their extensions:
+
+{% code %}
+
+// POST /shopwarepartners/reports/technology - Allows partners to send us the info based on the STP contract
+
+```json
+    {
+      "identifier": "8e167662-6bbb-11eb-9439-0242ac130002",
+      "reportDate": "2005-08-15T15:52:01",
+      "instanceId": "alur24esfaw3ghk",
+      "shopwareVersion": "6.3.1",
+      "reportDataKeys": [
+        {
+          "customer": 3
+        },
+        {
+          "turnover": 440
+        }
+      ]
+    }
+```
+
+{% endcode %}
 
 ### Menu entries in the main menu not allowed
 
