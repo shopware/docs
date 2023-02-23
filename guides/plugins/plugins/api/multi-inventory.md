@@ -26,7 +26,7 @@ Meanwhile, refer to the following links regarding the general use of the Admin A
 
 ## Data structure
 
-The multi-inventory feature relies on a specific data structure to function optimally. To understand this data structure, a detailed entity-relationship model is provided below. This model visually represents the various entities involved in the multi-inventory feature, as well as the relationships between them.
+The Multi-Inventory feature implements a specific data structure for its internal stock handling. The following entity-relationship model visually represents the new entities, as well as the relationships between them and platform entities.
 
 ![multi-inventory_data-structure](../../../../.gitbook/assets/multi-inventory-data-structure.png)
 
