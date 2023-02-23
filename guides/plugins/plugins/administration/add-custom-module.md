@@ -200,18 +200,18 @@ Its contents get minified into a new file named after your plugin and will be mo
 Given this plugin would be named "AdministrationNewModule", the bundled and minified javascript code for this example would be located under `<plugin root>/src/Resources/public/administration/js/administration-new-module.js`, once you run the command following command in your shopware root directory:
 
 {% tabs %}
-{% tab title="Development template" %}
+{% tab title="Template" %}
 
 ```bash
-./psh.phar administration:build
+./bin/build-administration.sh
 ```
 
 {% endtab %}
 
-{% tab title="Production template" %}
+{% tab title="platform only (contribution setup)" %}
 
 ```bash
-./bin/build-administration.sh
+composer run build:js:admin
 ```
 
 {% endtab %}

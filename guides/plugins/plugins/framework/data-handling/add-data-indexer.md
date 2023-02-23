@@ -22,7 +22,7 @@ namespace Swag\BasicExample\Core\Framework\DataAbstractionLayer\Indexing;
 use Doctrine\DBAL\Connection;
 use Shopware\Core\Checkout\Customer\CustomerDefinition;
 use Shopware\Core\Framework\DataAbstractionLayer\Dbal\Common\IteratorFactory;
-use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Event\EntityWrittenContainerEvent;
 use Shopware\Core\Framework\DataAbstractionLayer\Indexing\EntityIndexer;
 use Shopware\Core\Framework\DataAbstractionLayer\Indexing\EntityIndexingMessage;
@@ -30,24 +30,15 @@ use Shopware\Core\Framework\Uuid\Uuid;
 
 class ExampleIndexer extends EntityIndexer
 {
-    /**
-     * @var IteratorFactory
-     */
     private IteratorFactory $iteratorFactory;
 
-    /**
-     * @var EntityRepositoryInterface
-     */
-    private EntityRepositoryInterface $repository;
+    private EntityRepository $repository;
 
-    /**
-     * @var Connection
-     */
     private Connection $connection;
 
     public function __construct(
         IteratorFactory $iteratorFactory,
-        EntityRepositoryInterface $repository,
+        EntityRepository $repository,
         Connection $connection
     ) {
         $this->iteratorFactory = $iteratorFactory;

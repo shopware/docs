@@ -54,7 +54,7 @@ Now we can create a new class `ExampleRoute` which uses our previously created `
 namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
 
 use OpenApi\Annotations as OA;
-use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\Plugin\Exception\DecorationPatternException;
 use Shopware\Core\Framework\Routing\Annotation\Entity;
@@ -66,9 +66,9 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ExampleRoute extends AbstractExampleRoute
 {
-    protected EntityRepositoryInterface $exampleRepository;
+    protected EntityRepository $exampleRepository;
 
-    public function __construct(EntityRepositoryInterface $exampleRepository)
+    public function __construct(EntityRepository $exampleRepository)
     {
         $this->exampleRepository = $exampleRepository;
     }

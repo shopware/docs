@@ -492,7 +492,7 @@ use Cocur\Slugify\SlugifyInterface;
 use Shopware\Core\Content\Seo\SeoUrlPersister;
 use Shopware\Core\Defaults;
 use Shopware\Core\Framework\Context;
-use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
 
@@ -500,24 +500,15 @@ class DynamicSeoUrlsService
 {
     public const ROUTE_NAME = 'example.route.name';
 
-    /**
-     * @var SeoUrlPersister
-     */
     private SeoUrlPersister $seoUrlPersister;
 
-    /**
-     * @var EntityRepositoryInterface
-     */
-    private EntityRepositoryInterface $salesChannelRepository;
+    private EntityRepository $salesChannelRepository;
 
-    /**
-     * @var SlugifyInterface
-     */
     private SlugifyInterface $slugify;
 
     public function __construct(
         SeoUrlPersister $seoUrlPersister,
-        EntityRepositoryInterface $salesChannelRepository,
+        EntityRepository $salesChannelRepository,
         SlugifyInterface $slugify
     ) {
         $this->seoUrlPersister = $seoUrlPersister;

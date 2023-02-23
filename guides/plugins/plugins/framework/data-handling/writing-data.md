@@ -50,15 +50,15 @@ And here's the respective class including its constructor:
 
 namespace Swag\BasicExample\Service;
 
-use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 
 class WritingData
 {
-    private EntityRepositoryInterface $productRepository;
+    private EntityRepository $productRepository;
 
-    private EntityRepositoryInterface $taxRepository;
+    private EntityRepository $taxRepository;
 
-    public function __construct(EntityRepositoryInterface $productRepository, EntityRepositoryInterface $taxRepository)
+    public function __construct(EntityRepository $productRepository, EntityRepository $taxRepository)
     {
         $this->productRepository = $productRepository;
         $this->taxRepository = $taxRepository;

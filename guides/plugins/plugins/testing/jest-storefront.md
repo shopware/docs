@@ -149,13 +149,13 @@ That's basically it! We wrote our first jest unit test in the Storefront.
 Before you are using the commands make sure that you installed all dependencies for your Storefront. If you haven't done this already, then you can do it running the following PSH command:
 
 ```bash
-> ./psh.phar storefront:install-dependencies
+> composer run build:js:storefront
 ```
 
 In order to run jest unit tests of the Storefront, you can use the psh commands provided by our development template. This command executes all unit tests and shows you the complete code coverage.
 
 ```bash
-> ./psh.phar storefront:unit
+> composer run storefront:unit
 ```
 
 {% hint style="info" %}

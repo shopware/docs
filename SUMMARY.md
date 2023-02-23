@@ -500,7 +500,7 @@
     * [Shopware's twig functions](resources/references/storefront-reference/twig-function-reference.md)
   * [Testing Reference](resources/references/testing-reference/README.md)
     * [Custom E2E Commands](resources/references/testing-reference/e2e-custom-commands.md)
-    * [PSH E2E Commands](resources/references/testing-reference/e2e-psh-commands.md)
+    * [E2E Commands](resources/references/testing-reference/e2e-commands.md)
 * [Guidelines](resources/guidelines/README.md)
   * [Code](resources/guidelines/code/README.md)
     * [Contribution Guidelines](resources/guidelines/code/contribution.md)

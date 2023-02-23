@@ -150,7 +150,7 @@ Now we can use the product repository in our subscriber.
 namespace Swag\BasicExample\Subscriber;
 
 use Shopware\Core\Content\Product\ProductEntity;
-use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Event\EntityLoadedEvent;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -158,10 +158,10 @@ use Shopware\Core\Content\Product\ProductEvents;
 
 class ProductSubscriber implements EventSubscriberInterface
 {
-    private EntityRepositoryInterface $productRepository;
+    private EntityRepository $productRepository;
 
     public function __construct(
-        EntityRepositoryInterface $productRepository
+        EntityRepository $productRepository
     ) {
         $this->productRepository = $productRepository;
     }
@@ -184,7 +184,7 @@ Let's have a look at the final implementation of the subscriber.
 namespace Swag\BasicExample\Subscriber;
 
 use Shopware\Core\Content\Product\ProductEntity;
-use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Event\EntityLoadedEvent;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -192,10 +192,10 @@ use Shopware\Core\Content\Product\ProductEvents;
 
 class ProductSubscriber implements EventSubscriberInterface
 {
-    private EntityRepositoryInterface $productRepository;
+    private EntityRepository $productRepository;
 
     public function __construct(
-        EntityRepositoryInterface $productRepository
+        EntityRepository $productRepository
     ) {
         $this->productRepository = $productRepository;
     }

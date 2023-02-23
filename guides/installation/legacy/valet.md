@@ -1,7 +1,7 @@
 # Valet+
 
 {% hint style="danger" %}
-This approach is no longer recomended. It is kept here as a reference.
+This approach is no longer recommended. It is kept here as a reference.
 {% endhint %}
 
 ## Overview

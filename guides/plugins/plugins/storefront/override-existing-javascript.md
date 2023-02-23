@@ -104,18 +104,17 @@ if (module.hot) {
 To see your changes you have to build the Storefront. Use the following command and reload your Storefront.
 
 {% tabs %}
-{% tab title="Development template" %}
-
-```bash
-./psh.phar storefront:build
-```
-
-{% endtab %}
-
-{% tab title="Production template" %}
+{% tab title="Template" %}
 
 ```bash
 ./bin/build-storefront.sh
+```
+
+{% endtab %}
+{% tab title="platform only (contribution setup)" %}
+
+```bash
+composer run build:js:storefront
 ```
 
 {% endtab %}

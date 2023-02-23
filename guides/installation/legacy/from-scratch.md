@@ -1,7 +1,7 @@
 # Installation from Scratch
 
 {% hint style="danger" %}
-This approach is no longer recomended. It is kept here as a reference.
+This approach is no longer recommended. It is kept here as a reference.
 {% endhint %}
 
 If it is *impossible* to get Docker up and running on your development environment, you can install Shopware 6 locally.

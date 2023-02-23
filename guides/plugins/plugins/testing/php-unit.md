@@ -34,7 +34,7 @@ Here's an example configuration for the development template:
 
     <php>
         <ini name="error_reporting" value="-1"/>
-        <server name="KERNEL_CLASS" value="Shopware\Development\Kernel"/>
+        <server name="KERNEL_CLASS" value="Shopware\Core\Kernel"/>
         <env name="APP_ENV" value="test"/>
         <env name="APP_DEBUG" value="1"/>
         <env name="APP_SECRET" value="s$cretf0rt3st"/>
@@ -168,14 +168,6 @@ class Migration1611740369ExampleDescriptionTest extends TestCase
 
 {% endcode %}
 
-## Database setup
-
-Once we've created our tests, we have to initialize the test databases for our migration test. This can be done with the following command:
-
-```bash
-$ ./psh.phar init-test-databases
-```
-
 ## Mocking services
 
 In some cases you want a service to behave differently in the test run. Such a case could be where a service deletes a file or makes a critical api call. To avoid this in a test run it is possible to create a `<plugin root>/Resources/config/services_test.{xml|yml}` file which will override your `<plugin root>/Resources/config/services.{xml|yml}`. But only for the test environment.  
@@ -227,7 +219,7 @@ $ ./bin/phpunit.sh --filter testNoChanges src/Migration/Test/Migration1611740369
 
 If you use the production template \(which is also used by the zipped download version\), you have to change a few things. First the path to the bootstrap file is different, because there's no `shopware/platform`, but `shopware/core`. So we have to change `vendor/shopware/platform/src/Core/TestBootstrap.php` to `vendor/shopware/core/TestBootstrap.php`.
 
-We also need to change the `KERNEL_CLASS` from `Shopware\Development\Kernel` to `Shopware\Production\Kernel`.
+We also need to change the `KERNEL_CLASS` from `Shopware\Core\Kernel` to `Shopware\Production\Kernel`.
 
 Therefore, this is how your configuration could then look like:
 

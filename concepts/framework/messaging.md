@@ -14,7 +14,7 @@ A [Middleware](https://symfony.com/doc/current/messenger.html#middleware) is cal
 
 ### Handler
 
-A [Handler](https://symfony.com/doc/current/messenger.html#registering-handlers) gets called once the message is dispatched by the `handle_messages` middleware. Handlers do the actual processing of the message. Therefore they must extend the `AbstractMessageHandler`class and implement the `handle()` method. To register a handler, you have to tag it with the `messenger.message_handler` tag. To specify which methods should be handled by a given handler, implement the static `getHandledMessages()` method and return the *MessageClasses* which that handler should handle. You can also define multiple handlers for the same message.
+A [Handler](https://symfony.com/doc/current/messenger.html#registering-handlers) gets called once the message is dispatched by the `handle_messages` middleware. A message handler is a PHP callable, the recommended way to create it is to create a class that has the `AsMessageHandler` attribute and has an `__invoke()` method that's type-hinted with the message class (or a message interface)
 
 ### Message
 

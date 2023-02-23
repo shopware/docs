@@ -10,7 +10,7 @@ All you need for this guide is a running Shopware 6 instance and full access to 
 
 In this guide we will install [`exporter`](https://github.com/sebastianbergmann/exporter), which provides the functionality to export PHP variables for visualization.
 
-We have to manually remove all of the references to Shopware itself from the `composer.json` file, that was created in the [Plugin base guide](../plugin-base-guide.md), before we add our own dependencies to it. This is done to prevent `composer` from downloading Shopware into the `vendor` folder.
+Now we can simply install the `exporter` package by adding `"sebastian/exporter": "*"` to the list in `require` section of the `composer.json` of our plugin.
 
 Now we can simply install `exporter` by running `composer require sebastian/exporter` in your plugin directory.
 
@@ -20,15 +20,27 @@ After that we have to add our dependency to shopware back in.
 The `vendor` directory, where the Composer saves the dependencies, has to be included in the plugin bundle. The plugin bundle size is not allowed to exceed 5 MB.
 {% endhint %}
 
-## Loading the `autoload.php`
+## Executing composer commands during plugin installation
 
-The `composer require` command created the `autoload.php` that we now need to require in our plugin.
+In order that the additional package our plugin requires are installed as well when our plugin is installed, shopware need to execute composer commands to do so.
+Therefore, we need to overwrite the `executeComposerCommands` method in our plugin base class and return true.
 
 {% code title="<plugin root>/src/SwagBasicExample.php" %}
 
 ```php
-if (file_exists(dirname(__DIR__) . '/vendor/autoload.php')) {
-    require_once dirname(__DIR__) . '/vendor/autoload.php';
+<?php declare(strict_types=1);
+
+namespace Swag\BasicExample;
+
+use Shopware\Core\Framework\Plugin;
+
+class SwagBasicExample extends Plugin
+{
+    public function executeComposerCommands(): bool
+    {
+        return true;
+    }
+
 }
 ```
 

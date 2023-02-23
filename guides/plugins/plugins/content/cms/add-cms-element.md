@@ -408,18 +408,17 @@ Shopware.Service('cmsService').registerCmsElement({
 That's it! You could now go ahead and fully test your new element! Install this plugin via `bin/console plugin:install --activate SwagBasicExample`, rebuild the Administration using the following command and then start using your new element in the Administration.
 
 {% tabs %}
-{% tab title="Development template" %}
-
-```bash
-./psh.phar administration:build
-```
-
-{% endtab %}
-
-{% tab title="Production template" %}
+{% tab title="Template" %}
 
 ```bash
 ./bin/build-administration.sh
+```
+
+{% endtab %}
+{% tab title="platform only (contribution setup)" %}
+
+```bash
+composer run build:js:admin
 ```
 
 {% endtab %}

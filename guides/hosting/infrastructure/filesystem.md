@@ -6,11 +6,11 @@ Shopware 6 stores and processes a wide variety of files. This goes from product 
 
 ## Flysystem overview
 
-Shopware 6 can be used with several cloud storage providers. It uses [Flysystem](https://flysystem.thephpleague.com/docs/) to provide a common interface between different providers as well as the local filesystem. This enables your shops to read and write files through a common interface.
+Shopware 6 can be used with several cloud storage providers. It uses [Flysystem](https://flysystem.thephpleague.com/docs/) to provide a common interface between different providers as well as the local file system. This enables your shops to read and write files through a common interface.
 
-The filesystem can be divided into multiple adapters. Each adapter can handle one or more of the following directories: media. sitemaps, and more. Of course, you can also use the same configuration for:
+The file system can be divided into multiple adapters. Each adapter can handle one or more of the following directories: media. sitemaps, and more. Of course, you can also use the same configuration for:
 
-* private files: invoices, delivery notes, plugin files, etc
+* private files: invoices, delivery notes, plugin files, etc.
 * public files: product pictures, media files, plugin files in general
 * theme files
 * sitemap files
@@ -21,13 +21,17 @@ The filesystem can be divided into multiple adapters. Each adapter can handle on
 The configuration for file storage of Shopware 6 resides in the general bundle configuration:
 
 ```text
-<development root>
+<project root>
 └── config
    └── packages
       └── shopware.yml
 ```
 
 To set up a non-default filesystem for your shop, you need to add the `filesystem:` map to the `shopware.yml`. Under this key, you can separately define your storage for the public, private, theme, sitemap, and asset \(bundle assets\).
+
+{% hint style="info" %}
+You can also change only the URL of the file systems. This is useful if you want to use a different domain for your files. For example, you can use a CDN for your public files.
+{% endhint %}
 
 ```yaml
 shopware:
@@ -49,6 +53,26 @@ shopware:
       # The Adapter Configuration
 ```
 
+If you want to regulate the uploaded file types, then you could add the keys `allowed_extensions`for the public filesystem or `private_local_download_strategy` for the private filesystem.
+With the `private_local_download_strategy` key you could choose the download strategy for private files (e.g. the downloadable products):
+
+```yaml
+shopware:
+  filesystem:
+    public:
+      # The Adapter Configuration
+    private:
+      # The Adapter Configuration
+    allowed_extensions: # Array with allowed file extensions for public filesystem
+    private_allowed_extensions: # Array with allowed file extensions for private filesystem
+    private_local_download_strategy: # Name of the download strategy: php, x-sendfile or x-accel
+```
+
+Following download strategies are valid:
+* `php` (default): A streamed response of content type `application/octet-stream` with binary data
+* `x-sendfile` (Apache only): X-Sendfile allows you to use PHP to instruct the server to send a file to a user, without having to load that file into PHP. You must have the [`mod_xsendfile`](https://github.com/nmaier/mod_xsendfile) Apache module installed.
+* `x-accel` (Nginx only): X-accel allows for internal redirection to a location determined by a header returned from a backend. See the [example configuration](https://www.nginx.com/resources/wiki/start/topics/examples/x-accel/).
+
 ## Integrated adapter configurations
 
 ### Local
@@ -69,15 +93,20 @@ shopware:
     filesystem:
       {ADAPTER_NAME}:
         type: "amazon-s3"
+        url: "https://your-cloudfront-url"
         visibility: "private" # Default is "public", can be set only on shopware.filesystem.private
         config:
             bucket: "{your-public-bucket-name}"
             region: "{your-bucket-region}"
             endpoint: "{your-s3-provider-endpoint}"
             root: "{your-root-folder}"
+            # Optional, otherwise will be automatically discovered with AWS content discovery
+            credentials:
+              key: '{your-access-key}'
+              secret: '{your-secret-key}'
 ```
 
-For the usage of Minio, consider setting `use_path_style_endpoint` to `true`.
+If your S3 provider does not use buckets as subdomain like Minio in default configuration, you need to set `use_path_style_endpoint` to `true` inside `config`.
 
 ### Google Cloud Platform
 
@@ -88,6 +117,7 @@ shopware:
     filesystem:
       {ADAPTER_NAME}:
         type: "google-storage"
+        url: "https://storage.googleapis.com/{your-public-bucket-name}"
         visibility: "private" # Default is "public", can be set only on shopware.filesystem.private
         config:
             bucket: "{your-public-bucket-name}"

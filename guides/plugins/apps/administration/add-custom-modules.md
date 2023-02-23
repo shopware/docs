@@ -9,6 +9,7 @@ Creating custom modules takes place at the `<admin>` section of your `manifest.x
 To configure your module you can set it up with with some additional attributes.
 
 * `name` \(required\): The technical name of the module. This is the name your module is referenced with.
+* `parent` \(required\): The Administration navigation id of the menu item that serves as the parent menu item.
 * `source` \(optional\): The URL to your app servers endpoint from which the module is served from. This can be omitted if you want to define a menu item that should serve as a parent menu item for other app modules.
 * `parent` \(optional\): The Administration navigation id from the menu item that serves as the parent menu item. If omitted your module will be listed under the "My apps" menu entry. **This field will be required in future versions as we are going to remove the "My Apps" menu item**
 * `position` \(optional\): A numeric index that sets the position of your menu entry regarding to it's siblings.
@@ -17,9 +18,9 @@ Additionally you can define `label` elements inside of your `module` element, to
 
 {% code title="manifest.xml" %}
 
-```markup
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
         ...
     </meta>
@@ -73,13 +74,13 @@ With Shopware 6.4.0.0 we added a third level in the admin menu structure. This c
 
 When you define a module, it gets automatically loaded by the Administration. Additionally the Administration creates a menu entry for your module. You can reference this menu entry and set it as the parent menu entry for your other modules.
 
-The navigation id of your modules uses always pattern `app-<appName>-<moduleName>`. So, within your manifest you can add a reference to modules that you just created:
+The navigation id of your modules always uses the pattern `app-<appName>-<moduleName>`. So, within your manifest you can add a reference to modules that you just created:
 
 {% code title="manifest.xml" %}
 
-```markup
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
         <name>myApp</app>
         ...
@@ -120,9 +121,9 @@ To avoid mixing other modules with your main module, we decided to separate the 
 
 {% code title="manifest.xml" %}
 
-```markup
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
         <name>myApp</app>
         ...
