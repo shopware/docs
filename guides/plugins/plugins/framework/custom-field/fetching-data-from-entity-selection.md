@@ -209,6 +209,9 @@ class ProductSubscriber implements EventSubscriberInterface
 
     public function onProductLoaded(EntityLoadedEvent $event): void
     {
+        // we build up a mapping of id>custom_field to not execute multiple queries
+        $mapping = [];
+    
         // loop through all loaded products
         /** @var ProductEntity $productEntity */
         foreach ($event->getEntities() as $productEntity) {
@@ -219,6 +222,8 @@ class ProductSubscriber implements EventSubscriberInterface
                 if ($name !== 'custom_demo_test' || emtpy($value)) {
                     continue;
                 }
+
+                $mapping[$productEntity->getId()] = $value
 
                 $context = $event->getContext();
 
@@ -235,6 +240,8 @@ class ProductSubscriber implements EventSubscriberInterface
 
             $productEntity->setCustomFields($customFields);
         }
+
+    
     }
 }
 ```
