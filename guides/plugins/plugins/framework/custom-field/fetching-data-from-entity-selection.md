@@ -160,9 +160,8 @@ class ProductSubscriber implements EventSubscriberInterface
 {
     private EntityRepository $productRepository;
 
-    public function __construct(
-        EntityRepository $productRepository
-    ) {
+    public function __construct(EntityRepository $productRepository) 
+    {
         $this->productRepository = $productRepository;
     }
 
@@ -194,9 +193,8 @@ class ProductSubscriber implements EventSubscriberInterface
 {
     private EntityRepository $productRepository;
 
-    public function __construct(
-        EntityRepository $productRepository
-    ) {
+    public function __construct(EntityRepository $productRepository) 
+    {
         $this->productRepository = $productRepository;
     }
 
@@ -209,31 +207,26 @@ class ProductSubscriber implements EventSubscriberInterface
 
     public function onProductLoaded(EntityLoadedEvent $event): void
     {
-        // loop through all loaded products
-        /** @var ProductEntity $productEntity */
-        foreach ($event->getEntities() as $productEntity) {
-            $customFields = $productEntity->getCustomFields();
+        // extract all ids of our custom field
+        $ids = array_map(function (ProductEntity $entity) {
+            return $entity->getCustomFields()['custom_demo_test'] ?? null;
+        }, $event->getEntities());
 
-            // loop through each product's custom fields
-            foreach($customFields as $name => $value) {
-                if ($name !== 'custom_demo_test' || emtpy($value)) {
-                    continue;
-                }
+        // filter empty ids
+        $ids = array_filter($ids);
 
-                $context = $event->getContext();
+        // load all products in one request instead of one request per product (big performance boost)
+        $products = $this->productRepository->search(new Criteria($ids), $event->getContext());
 
-                // search the entity via the repository here
-                /** @var ProductEntity $productEntity */
-                $product = $this->productRepository
-                    ->search(new Criteria([$value]), $context)->first();
-
-                if($product) {
-                    // replace the custom field's value with the actual entity
-                    $customFields[$name] = $product;
-                }
+        /** @var ProductEntity $entity */
+        foreach ($event->getEntities() as $entity) {
+            // check if the custom field is set
+            if (!$id = $entity->getCustomFields()['custom_demo_test'] ?? null) {
+                continue;
             }
 
-            $productEntity->setCustomFields($customFields);
+            // add the product to the entity as entity extension
+            $entity->addExtension('my_custom_demo_product', $products->get($id));
         }
     }
 }
