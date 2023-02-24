@@ -468,6 +468,7 @@
       * [Image lazy loading](resources/references/adr/storefront/2023-01-30-image-lazy-loading.md)
     * [Testing](resources/references/adr/testing/README.md)
       * [Deprecation handling during phpunit test execution](resources/references/adr/testing/2022-10-20-deprecation-handling-during-phpunit-test-execution.md)
+      * [Follow test pyramid](resources/references/adr/testing/2023-02-13-follow-test-pyramid.md)
       * [Mocking repositories](resources/references/adr/testing/2023-04-01-mocking-repositories.md)
     * [Workflow](resources/references/adr/workflow/README.md)
       * [Implement architecture decision records](resources/references/adr/workflow/2020-06-25-implement-architecture-decision-records.md)
