@@ -1,8 +1,8 @@
 # Tax provider
 
-Tax calculations differ from country to country. Especially in the US, the sales tax calculation can be tedious, as the laws and regulation differ from state to state or even county or certain city taxes can apply. Therefore, most shops use a third-party service (so called tax providers) to calculate sales taxes for them.
+Tax calculations differ from country to country. Especially in the US, the sales tax calculation can be tedious, as the laws and regulations differ from state to state, country-wise, or even based on cities. Therefore, most shops use a third-party service (so-called tax provider) to calculate sales taxes.
 
-Starting with version 6.5.0.0, Shopware allows apps to integrate custom tax calculation, which could include an automatic tax calculation with a tax provider. An app has to provide an endpoint, which is called during checkout and provide new tax rates. The requests and responses of all of your endpoints will be signed and feature JSON content.
+With version 6.5.0.0, Shopware allows apps to integrate custom tax calculations, which could include an automatic tax calculation with a tax provider. An app has to provide an endpoint, which is called during the checkout to provide new tax rates. The requests and responses of all of your endpoints will be signed and featured as JSON content.
 
 ## Prerequisites
 
