@@ -162,7 +162,7 @@ class MigrationTaxProvider extends MigrationStep
 
 ### Via repository
 
-You may want to have a look at the [repository guide](../../../../../concepts/framework/data-abstraction-layer#crud-operations) to learn more about on how to use the entity repository to manipulate data.
+You may want to have a look at the [repository guide](../../../../../concepts/framework/data-abstraction-layer#crud-operations) to learn more on how to use the entity repository to manipulate data.
 
 A good place for persisting your tax provider to the database would be the `install` lifecycle method of your plugin.
 
