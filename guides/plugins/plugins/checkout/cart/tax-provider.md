@@ -104,9 +104,7 @@ After you've created your tax provider, you need to register it in the DI contai
 
 ## Migrate your tax provider to the database
 
-To let Shopware know of your new tax provider, you will have to persist it to the database.
-
-You can either to do so via a migration or the entity repository.
+To let Shopware know of your new tax provider, you will have to persist it to the database. You can do so either via a migration or the entity repository.
 
 ### Via migration
 
