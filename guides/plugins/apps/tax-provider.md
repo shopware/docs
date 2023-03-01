@@ -16,7 +16,7 @@ To reproduce this example, you should also be aware of how to set up an app on y
 
 ## Manifest configuration
 
-To signalize Shopware, that your app uses a custom tax calculation, you have to provide one or more `tax-provider` properties inside a `tax` parent property in your app's `manifest.xml`.
+To indicate to Shopware that your app uses a custom tax calculation, you must provide one or more `tax-provider` properties inside a `tax` parent property of your app's `manifest.xml`.
 
 Below, you can see an example definition of a working tax provider.
 
