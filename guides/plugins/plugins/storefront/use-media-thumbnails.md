@@ -213,7 +213,7 @@ With the `attributes` param, it is also possible to enable native lazy loading o
 } %}
 ```
 
-This will generate the output below:
+This will generate the below output:
 
 ```markup
 <img 
