@@ -224,8 +224,8 @@ This will generate the below output:
 
 By default, lazy loading is disabled for newly added `sw_thumbnail` elements. You should consider activating it in the following scenarios:
 
-* When multiple `sw_thumbnail` elements occur on one page and it is likely that multiple `sw_thumbnail` are not in the initial viewport.
-* When images rendered by `sw_thumbnail` are within a container which is hidden by CSS via `display: none`.
+* When multiple `sw_thumbnail` elements occur on one page while the `sw_thumbnail` s are not in the initial viewport.
+* When images rendered by `sw_thumbnail` are within a container hidden by CSS via `display: none`.
 
 ## More interesting topics
 
