@@ -12,11 +12,9 @@ As most guides, this guide is also built upon our [plugin base guide](../../plug
 
 ## Creating a tax provider
 
-First of all, we need to create a class which handles the tax calculation or calls your preferred tax provider.
+Firstly you need to create a class which handles the tax calculation or calls your preferred tax provider. For an easy start, extend your class from `Shopware\Core\Checkout\Cart\TaxProvider\AbstractTaxProvider` and implement the `provide` method.
 
-For an easy start, extend your class from `Shopware\Core\Checkout\Cart\TaxProvider\AbstractTaxProvider` and implement the `provide` method.
-
-You probably want to call a tax provider, which will calculate the taxes for you. In our case, we simply apply a hefty 50% tax rate for all line-items in the cart.
+You may then call a tax provider, which will calculate the taxes for you. For example, we simply apply a hefty 50% tax rate for all line-items in the cart.
 
 {% code title="<plugin root>/src/Checkout/Cart/Tax/TaxProvider.php" %}
 
