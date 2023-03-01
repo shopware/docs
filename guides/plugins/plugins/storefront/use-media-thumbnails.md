@@ -200,6 +200,33 @@ This will generate the output below:
     title="My beautiful image">
 ```
 
+### Native lazy loading
+
+With the `attributes` param, it is also possible to enable native lazy loading on the thumbnail element:
+
+```text
+{% sw_thumbnails 'my-thumbnails' with {
+    media: cover,
+    attributes: {
+        'loading': 'lazy'
+    }
+} %}
+```
+
+This will generate the below output:
+
+```markup
+<img 
+    src="..." 
+    sizes="..." 
+    loading="lazy">
+```
+
+By default, lazy loading is disabled for newly added `sw_thumbnail` elements. You should consider activating it in the following scenarios:
+
+* When multiple `sw_thumbnail` elements occur on one page while the `sw_thumbnail` s are not in the initial viewport.
+* When images rendered by `sw_thumbnail` are within a container hidden by CSS via `display: none`.
+
 ## More interesting topics
 
 * [Use custom assets in general](add-custom-assets.md)
