@@ -107,11 +107,13 @@ It has to extend from the abstract class `Shopware\Core\Checkout\Cart\Error\Erro
 * `getLevel`: The kind of error, available are `notice`, `warning` and `error`. Depending on that decision, the error will be printed in a blue,
 
   yellow or red box respectively. This example will use the error here.
-
 * `blockOrder`: Return a boolean on whether this exception should block the possibility to actually finish the checkout.
 
   In this case it will be `true`, hence the error level defined earlier. It wouldn't make sense to block the checkout, but only display a notice.
 
+* `blockResubmit`: Optional, return a boolean on whether this exception block the user from trying to finish the checkout again.
+
+  If you want to use it, add the method `blockResubmit(): bool` to your custom error. If you don't, it is `true` by default.
 * `getParameters`: You can add custom payload here. Technically any plugin or code could read the errors of the cart and act accordingly.
 
   If you need extra payload to your error class, this is the place to go.
