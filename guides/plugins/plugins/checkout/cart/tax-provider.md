@@ -230,4 +230,4 @@ class SwagBasicExample extends Plugin
 
 {% endcode %}
 
-If you have taken these steps, your tax provider should be ready. You should see the new tax provider showing up in the administration in `Settings > Tax`, where you can change the active state, priority and availability rule manually afterwards.
+You should now see the new tax provider showing up in the Administration in `Settings > Tax`, where you can change the active state, priority and availability rule manually.
