@@ -82,7 +82,7 @@ class TaxProvider extends AbstractTaxProvider
 
 ## Registering the tax provider in the DI container
 
-After you've created your tax provider, you need to register it in the DI container. To do so, you need to create a new service in the `services.xml` file and tag the service as `shopware.tax.provider`.
+After you have created your tax provider, you need to register it in the DI container. To do so, you need to create a new service in the `services.xml` file and tag the service as `shopware.tax.provider`.
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
 
