@@ -8,7 +8,7 @@ With version 6.5.0.0, Shopware allows plugins to integrate custom tax calculatio
 
 ## Prerequisites
 
-As most guides, this guide is also built upon our [plugin base guide](../../plugin-base-guide.md), but it's not mandatory to use exactly that plugin as a foundation. The examples in this guide use the namespace however.
+Refer to [plugin base guide](../../plugin-base-guide.md). It is not mandatory to use exactly the same plugin as a foundation.
 
 ## Creating a tax provider
 
