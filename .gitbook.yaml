@@ -17,3 +17,4 @@ redirects:
     guides/integrations-api/admin-api/writing-entities/product-data: guides/integrations-api/README.md
     resources/references/api-reference/admin-api-reference: guides/integrations-api/README.md
     concepts/extensions/elasticsearch-concept: concepts/framework/elasticsearch.md
+    docs/guides/installation/flex: guides/installation/template.md
