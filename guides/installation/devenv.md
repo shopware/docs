@@ -353,6 +353,68 @@ Refer to the official devenv documentation to get a complete list of all availab
 
 {% endcode %}
 
+### Use customized MySQL port
+
+{% code title="<PROJECT_ROOT>/devenv.local.nix" %}
+
+```nix
+{ pkgs, config, lib, ... }:
+
+{
+  services.mysql.settings = {
+    mysqld = {
+      port = 33881;
+    };
+  };
+  
+}
+```
+
+{% endcode %}
+
+### Use customized VirtualHosts port for Caddy
+
+{% code title="<PROJECT_ROOT>/devenv.local.nix" %}
+
+```nix
+{ pkgs, config, lib, ... }:
+
+{
+  services.caddy.virtualHosts = lib.mkForce {
+      ":8029" = lib.mkDefault {
+          extraConfig = lib.mkDefault ''
+              @default {
+                not path /theme/* /media/* /thumbnail/* /bundles/* /css/* /fonts/* /js/* /sitemap/*
+              }
+
+              root * public
+              php_fastcgi @default unix/${config.languages.php.fpm.pools.web.socket} {
+                  trusted_proxies private_ranges
+              }
+              file_server
+          '';
+      };
+  };
+  
+}
+```
+
+{% endcode %}
+
+### Use customized Adminer port
+
+{% code title="<PROJECT_ROOT>/devenv.local.nix" %}
+
+```nix
+{ pkgs, config, lib, ... }:
+
+{
+  services.adminer.listen = "127.0.0.1:9084";
+}
+```
+
+{% endcode %}
+
 ## Known issues
 
 ### Manually reloading devenv
