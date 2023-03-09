@@ -10,7 +10,7 @@
 | Deprecated | This flag is used to mark that the field has been deprecated and will be removed with the next major version. |
 | Extension | Defines that the data of this field is stored in an Entity::$extension and are not part of the struct itself. |
 | Inherited | Defines that the data of this field can be inherited by the parent record |
-| PrimaryKey | The PrimaryKey flag defines that this field is part of the primary key of the entity. Usually this should be the ID field.  |
+| PrimaryKey | The PrimaryKey flag defines the field as part of the entity's primary key. Usually, this should be the ID field.  |
 | Required | Fields marked as "Required" must be specified during the create request of an entity. This configuration is only taken into account during the write process. |
 | RestrictDelete | Associated data with this flag, restricts the delete of the entity in case that a record with the primary key exists. |
 | ReverseInherited | Flags "ReverseInherited" |
