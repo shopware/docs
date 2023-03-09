@@ -7,7 +7,7 @@
 | ApiAware | Makes a field available in the Store or Admin API. If no parameter is passed for the flag, the field will be exposed in the both Store and Admin API. By default, all fields are enabled for the Admin API, as the flag is added in the base Field class. However, the scope can be restricted to `AdminApiSource` and `SalesChannelApiSource`.  |
 | CascadeDelete | In case the referenced association data will be deleted, the related data will be deleted too |
 | Computed | The value is computed by indexer or external systems and cannot be written using the DAL.|
-| Deprecated | This flag is used to mark that the field has been deprecated and will be removed with the next major version. |
+| Deprecated | This flag is used to mark the field that has been deprecated and will be removed with the next major version. |
 | Extension | Defines that the data of this field is stored in an Entity::$extension and are not part of the struct itself. |
 | Inherited | Defines that the data of this field can be inherited by the parent record |
 | PrimaryKey | The PrimaryKey flag defines the field as part of the entity's primary key. Usually, this should be the ID field.  |
