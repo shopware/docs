@@ -71,7 +71,7 @@ Normally a shard in Elasticsearch can hold at least tens of gigabytes, so you mi
 | Variable | Possible values | Description |
 | ---------|-----------------|-------------|
 | `APP_ENV`| `prod` / `dev` | This variable is important if you want to activate the debug mode and see possible errors of Elasticsearch. You have to set the variable to dev for debug mode and prod if you want to use elasticsaerch in a productive system.|
-| `SHOPWARE_ES_HOSTS`| `localhost:9200` | A comma separated list of Elasticsearch hosts. You can find the possible formats [here](https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/host-config.html#inline-host-config)|
+| `OPENSEARCH_URL`| `localhost:9200` | A comma separated list of Elasticsearch hosts. You can find the possible formats [here](https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/host-config.html#inline-host-config)|
 | `SHOPWARE_ES_INDEXING_ENABLED`| `0` / `1` |  This variable activates the indexing to Elasticsearch|
 | `SHOPWARE_ES_ENABLED`| `0` / `1` | This variable activates the usage of Elasticsearch for your shop|
 | `SHOPWARE_ES_INDEX_PREFIX`| `sw_myshop` | This variable defines the prefix for the Elasticsearch indices|
@@ -88,7 +88,7 @@ APP_URL=http://localhost
 MAILER_URL=smtp://localhost:1025
 COMPOSER_HOME=/var/www/html/var/cache/composer
 
-SHOPWARE_ES_HOSTS="elasticsearchhostname:9200"
+OPENSEARCH_URL="elasticsearchhostname:9200"
 SHOPWARE_ES_ENABLED="1"
 SHOPWARE_ES_INDEXING_ENABLED="1"
 SHOPWARE_ES_INDEX_PREFIX="sw"
@@ -106,7 +106,7 @@ APP_URL=http://localhost
 MAILER_URL=smtp://localhost:1025
 COMPOSER_HOME=/var/www/html/var/cache/composer
 
-SHOPWARE_ES_HOSTS="elasticsearchhostname:9200"
+OPENSEARCH_URL="elasticsearchhostname:9200"
 SHOPWARE_ES_ENABLED="1"
 SHOPWARE_ES_INDEXING_ENABLED="1"
 SHOPWARE_ES_INDEX_PREFIX="sw"
