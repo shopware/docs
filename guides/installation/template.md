@@ -101,8 +101,8 @@ nix-env -iA nixos.php81 nixpkgs.symfony-cli
 The template is small and does not contain any dev-tooling or integrations like PaaS or Fastly. You can easily add them to your project with the following commands:
 
 ```bash
-# Install Symfony default profiler
-composer req --dev profiler
+# Install profiler and other dev tools, eg Faker for demo data generation
+composer req --dev dev-tools
 
 # Install PaaS integration
 composer req paas
