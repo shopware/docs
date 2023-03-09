@@ -4,7 +4,7 @@
 | :--- | :--- |
 | AllowEmptyString | Flag a text column that an empty string should not be considered as null|
 | AllowHtml | In case a column is allowed to contain HTML-esque data. Beware of injection possibilities |
-| ApiAware | Make this property exposed by different APIs. If no parameter is passed for the flag, the field will be output in the Store API, as well as in the Admin API. By default, all fields are enabled for the Admin API, as the flag is added in the base Field class. The scope can be restricted to `AdminApiSource` and `SalesChannelApiSource`.  |
+| ApiAware | Makes a field available in the Store or Admin API. If no parameter is passed for the flag, the field will be exposed in the both Store and Admin API. By default, all fields are enabled for the Admin API, as the flag is added in the base Field class. However, the scope can be restricted to `AdminApiSource` and `SalesChannelApiSource`.  |
 | CascadeDelete | In case the referenced association data will be deleted, the related data will be deleted too |
 | Computed | The value is computed by indexer or external systems and cannot be written using the DAL.|
 | Deprecated | This flag is used to mark that the field has been deprecated and will be removed with the next major version. |
