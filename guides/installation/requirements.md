@@ -150,7 +150,7 @@ server {
         try_files $uri /index.php$is_args$args;
     }
 
-    location ~ \.php$ {
+    location ~ ^/(index|shopware-installer\.phar)\.php(/|$) {
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
         include fastcgi.conf;
         fastcgi_param HTTP_PROXY "";
@@ -162,7 +162,6 @@ server {
         send_timeout 300s;
         client_body_buffer_size 128k;
         fastcgi_pass 127.0.0.1:9000;
-        http2_push_preload on;
     }
 }
 ```
