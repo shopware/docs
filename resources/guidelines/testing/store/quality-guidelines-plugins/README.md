@@ -284,6 +284,13 @@ Our most current code review configurations that we use when uploading apps via 
 
 * [Code reviews for Shopware 6 on GitHub](https://github.com/shopwareLabs/store-plugin-codereview)
 
+### Sonarcube Rules status Blocker
+
+The following statements will be blocked as of 1st Oct. 2022:  
+-die; exit; var_dump; @internal  
+
+[Refer to the list of the already existing blockers](https://s3.eu-central-1.amazonaws.com/wiki-assets.shopware.com/1657519735/blocker.txt).
+
 ### Automated code tests with Cypress
 
 There are Cypress tests for Shopware 6 on GitHub. The project is driven by the *Friends of Shopware* group. You can contribute at any time:
@@ -379,13 +386,6 @@ Not allowed folders and files:
     * .tar
     * .tar.gz
     * .phar
-
-## Sonarcube Rules status Blocker
-
-The following statements will be blocked as of 1st Oct. 2022:  
--die; exit; var_dump; @internal  
-
-[Refer to the list of the already existing blockers](https://s3.eu-central-1.amazonaws.com/wiki-assets.shopware.com/1657519735/blocker.txt).
 
 ## Note on Shopware technology partner contract for interfaces
 
