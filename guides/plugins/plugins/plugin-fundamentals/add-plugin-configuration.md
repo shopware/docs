@@ -43,7 +43,6 @@ The `config.xml` follows a simple syntax. You can organize the content in `<card
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
-
     <card>
         <title>Minimal configuration</title>
         <input-field>
