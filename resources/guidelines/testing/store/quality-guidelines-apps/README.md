@@ -142,6 +142,27 @@ Iframes, external scripts, or tracking pixels are not allowed in the description
 
 * The price and shopping cart button may not be covered by customizations - for example, "badges". Furthermore, the shopping cart button must always be clickable.
 
+
+### Dummy App 
+
+With a dummy app you can offer your middleware in the store, if you only use the APIs of Shopware. 
+We recommend you to develop this as a cloud app. The app will be available for both cloud and on-premises customers.
+
+The following basic requirements must be met:
+
+* as a basis, the manufacturer contract must be accepted
+
+* The STP contract must be additionally concluded with the technology 
+
+* The app needs a login page as iFrame  
+
+* The company logo and the manifest xml file are sufficient for the dummy app 
+
+* The iFrame can be called via a PHP index or the URL
+
+* A custom UI may be used
+
+
 ### Shopping worlds/storytelling elements
 
 * Links must include a "title-tag" and images must have an "alt-tag".
