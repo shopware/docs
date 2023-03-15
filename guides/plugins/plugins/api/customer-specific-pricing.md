@@ -17,7 +17,7 @@ to be activated within the relevant merchant account.
 
 ## Working with the API route
 
-To create, alter and/or delete customer-specific prices, you can use the API endpoint `/api/_action/product-customer-price`. As like with any other admin request in Shopware, you first need to authenticate yourself. Therefore, please head over to the
+To create, alter and/or delete customer-specific prices, you can use the API endpoint `/api/_action/custom-price`. As like with any other admin request in Shopware, you first need to authenticate yourself. Therefore, please head over to the
 [authentication guide](https://shopware.stoplight.io/docs/admin-api/ZG9jOjEwODA3NjQx-authentication) for details.
 
 Otherwise, the Customer-specific Pricing API interface models itself upon the interface of the sync API, so you will
