@@ -229,6 +229,7 @@ Now use the `create` method of the repository to create a new custom field set.
 
 ```php
 use Shopware\Core\System\CustomField\CustomFieldTypes;
+use \Shopware\Core\Defaults;
 
 [...]
 
@@ -238,7 +239,8 @@ $this->customFieldSetRepository->create([
         'config' => [
             'label' => [
                 'en-GB' => 'English custom field set label',
-                'de-DE' => 'German custom field set label'
+                'de-DE' => 'German custom field set label',
+                Defaults::SYSTEM_LANGUAGE => "Mention the fallback label here"
             ]
         ],
         'customFields' => [
@@ -248,7 +250,8 @@ $this->customFieldSetRepository->create([
                 'config' => [
                     'label' => [
                         'en-GB' => 'English custom field label',
-                        'de-DE' => 'German custom field label'
+                        'de-DE' => 'German custom field label',
+                        Defaults::SYSTEM_LANGUAGE => "Mention the fallback label here"
                     ],
                     'customFieldPosition' => 1
                 ]
@@ -258,9 +261,11 @@ $this->customFieldSetRepository->create([
 ], $context);
 ```
 
-This will now create a custom field set with the name `swag_example_set` and the field we already used in the previous step, `swag_example_size`. This time we also define its type, which should be of type integer here. The type is important to mention, because the Administration will use this information to display a proper field. Also, when trying to write the custom field `swag_example_size`, the value has to be an integer.
+This will now create a custom field set with the name `swag_example_set` and the field, `swag_example_size`. This time we also define its type, which should be of type integer here. The type is important to mention, because the Administration will use this information to display a proper field. Also, when trying to write the custom field `swag_example_size`, the value has to be an integer.
 
-Also we've taken care of adding translated labels to both the field and the set, which are going to be displayed in the Administration. If you have several custom fields and want to order them within a specific order, you can do so with the `customFieldPosition` property.
+The translated labels are added to both the field and the set, which are going to be displayed in the Administration. Also, the fallback language can be defined in case the system language is not guarenteed to be either en_GB or de_DE.
+  
+If you have several custom fields and want to order them within a specific order, you can do so with the `customFieldPosition` property.
 
 {% hint style="warning" %}
 Custom field sets are deletable by the shop administrator, so you cannot rely on their existence.
