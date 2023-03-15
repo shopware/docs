@@ -400,6 +400,7 @@
       * [Replace drop shadow with box shadow](resources/references/adr/admin/2022-21-11-replace-drop-shadow-with-box-shadow.md)
       * [Run lighthouse test ine2e env](resources/references/adr/admin/2022-25-11-run-lighthouse-test-ine2e-env.md)
       * [Vue 2.7 update](resources/references/adr/admin/2022-27-09-vue-2.7-update.md)
+      * [Native extension system with vue](resources/references/adr/admin/2023-02-27-native-extension-system-with-vue.md)
       * [Npm packages pre release versions](resources/references/adr/admin/2023-16-01-npm-packages-pre-release-versions.md)
       * [Adding the StorableFlow to implement DelayAction in Flow Builder](resources/references/adr/admin/flow-builder/2022-07-21-adding-the-StorableFlow-to-implement-DelayAction-in-Flow-Builder.md)
     * [API](resources/references/adr/api/README.md)
