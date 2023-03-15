@@ -754,7 +754,7 @@ storefront:
     stale_if_error: 3600
   reverse_proxy:
     enabled: true
-  fastly:
+    fastly:
       enabled: true
       api_key: '<personal-token-from-fastly>'
       service_id: '<service-id>'
