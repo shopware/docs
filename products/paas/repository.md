@@ -60,7 +60,7 @@ platform	<paas-url>.git (push)
 
 ## Migrating from old template to the new template
 
-If you have already used the [Shopware PaaS old template](https://github.com/shopware/paas), please follow the guide to [migrate it to the new structure](../../guides/installation/flex.md#how-to-migrate-from-production-template-to-symfony-flex).
+If you have already used the [Shopware PaaS old template](https://github.com/shopware/paas), please follow the guide to [migrate it to the new structure](../../guides/installation/template.md#how-to-migrate-from-production-template-to-symfony-flex).
 
 Following tasks has to be done additionally to the flex migration:
 
