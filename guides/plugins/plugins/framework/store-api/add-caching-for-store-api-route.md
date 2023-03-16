@@ -36,7 +36,7 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Shopware\Core\Framework\Adapter\Cache\AbstractCacheTracer;
 use Shopware\Core\Framework\Adapter\Cache\CacheCompressor;
 use Shopware\Core\Framework\DataAbstractionLayer\Cache\EntityCacheKeyGenerator;
-use Shopware\Core\Framework\DataAbstractionLayer\FieldSerializer\JsonFieldSerializer;
+use Shopware\Core\Framework\Util\Json;
 use Shopware\Core\Framework\Routing\Annotation\Entity;
 use Shopware\Core\Framework\Routing\Annotation\Since;
 use Symfony\Component\Cache\Adapter\TagAwareAdapterInterface;
@@ -144,7 +144,7 @@ class CachedExampleRoute extends AbstractExampleRoute
             $this->generator->getSalesChannelContextHash($context),
         ];
           
-        return md5(JsonFieldSerializer::encodeJson($parts));
+        return md5(Json::encode($parts));
     }
 }
 ```
