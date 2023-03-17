@@ -150,17 +150,17 @@ We recommend you to develop this as a cloud app. The app will be available for b
 
 The following basic requirements must be met:
 
-* as a basis, the manufacturer contract must be accepted
+* The manufacturer contract must be accepted.
 
-* The STP(Shopware technology partner) contract must be additionally concluded with the technology 
+* The STP(Shopware technology partner) contract must be additionally concluded with the technology.
 
-* The app needs to provide a login page as an iFrame  
+* The app needs to provide a login page as an iFrame.
 
-* The company logo and the manifest xml file are sufficient for the dummy app 
+* The company logo and the manifest xml file are sufficient for the dummy app.
 
-* The iFrame can be called via a PHP index or the URL
+* The iFrame can be called via the URL.
 
-* A custom UI may be used
+* The app UI can be provided through the iFrame mentioned above.
 
 
 ### Shopping worlds/storytelling elements
