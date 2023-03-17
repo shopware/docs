@@ -154,7 +154,7 @@ The following basic requirements must be met:
 
 * The STP(Shopware technology partner) contract must be additionally concluded with the technology 
 
-* The app needs a login page as iFrame  
+* The app needs to provide a login page as an iFrame  
 
 * The company logo and the manifest xml file are sufficient for the dummy app 
 
