@@ -152,7 +152,7 @@ The following basic requirements must be met:
 
 * as a basis, the manufacturer contract must be accepted
 
-* The STP contract must be additionally concluded with the technology 
+* The STP(Shopware technology partner) contract must be additionally concluded with the technology 
 
 * The app needs a login page as iFrame  
 
