@@ -287,7 +287,7 @@ Our most current code review configurations that we use when uploading apps via 
 ### Sonarcube Rules status Blocker
 
 The following statements will be blocked as of 1st Oct. 2022:  
--die; exit; var_dump; @internal  
+-die; exit; var_dump
 
 [Refer to the list of the already existing blockers](https://s3.eu-central-1.amazonaws.com/wiki-assets.shopware.com/1657519735/blocker.txt).
 
