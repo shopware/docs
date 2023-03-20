@@ -135,7 +135,7 @@ Keep in mind that just by providing a `message`, the payment will default to sta
 
 Asynchronous payments are more complicated and rely on interaction with the user and therefore a redirect to the payment provider. For example, this might be an integration with _PayPal_ or _Stripe_. The following process applies:
 
-Shopware sends the first `pay` POST request which is supposed to start the payment with the payment provider. All necessary data is provided: the `order`, `orderTransaction` and a `returnUrl`, where the user should be redirected to once the payment process with the payment provider has been finished. If everything is correct and the payment process is ready to start, the response to this request should be a `redirectUrl`, where the user is redirected to by Shopware. In case the payment can't be started \(for example because of missing credentials for the shop\), this can also return a `fail` status and / or a `message`.
+Shopware sends the first `pay` POST request which is supposed to start the payment with the payment provider. All necessary data is provided: the `order`, `orderTransaction` and a `returnUrl`, where the user should be redirected to once the payment process with the payment provider has been finished. If everything is correct and the payment process is ready to start, the response to this request must be a `redirectUrl`, where the user is redirected to by Shopware. In case the payment can't be started \(for example because of missing credentials for the shop\), the response can return a `fail` status and / or a `message`. However, the provided `message` will be logged only, it is not being shown on redirect back to the shop.
 
 ```php
 use Symfony\Component\HttpFoundation\Request;
