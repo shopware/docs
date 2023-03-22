@@ -503,7 +503,7 @@ As already said, we're first creating the entries in the tables `number_range`, 
 
 Afterwards we import the translations for the `number_range_translation` and the `number_range_type_translation` tables by using the `ImportTranslationsTrait` once again.
 
-And that's it now! You've just created:
+And that's it now. You Have just created:
 
 * A custom document type, including translations
 * A custom document renderer
