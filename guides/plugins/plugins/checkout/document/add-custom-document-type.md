@@ -153,7 +153,7 @@ After installing your plugin, your new document type should be available in the 
 
 ## Adding a renderer
 
-The renderer for a document type is responsible for actually rendering the respective document, including a template. That's why we'll have to create a custom renderer for the new type as well, we'll call it `ExampleDocumentRenderer`.
+The renderer for a document type is responsible for rendering the respective document, including a template. That is why we will have to create a custom renderer for the new type as well, lets call it `ExampleDocumentRenderer`.
 
 We'll place it in the same directory as all other default document renderers: `<plugin root>/src/Core/Checkout/Document/Renderer`
 
