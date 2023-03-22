@@ -147,7 +147,7 @@ Afterwards we're inserting the translations, one for German, one for English. Fo
 
   It will then take care of properly inserting those translations.
 
-And the last, We're creating the new document base configuration for the new document type to store some default configuration for out new document type.
+And the last, We are creating the new document base configuration for the new document type to store some default configurations for our new document type.
 
 After installing your plugin, your new document type should be available in the Administration. However, it wouldn't work yet, since every document type has to come with a respective `AbstractDocumentRenderer`. This is covered in the next section.
 
