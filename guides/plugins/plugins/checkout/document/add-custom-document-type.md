@@ -336,7 +336,7 @@ Here's what the function does:
 * If an error occurs, the exception is caught and the error message is added to the `RendererResult` object as an error.
 * `The RendererResult` object is returned.
 
-In this example we're rendering a specific template, which we will have a short look at in the next section.
+In this example, we are rendering a specific template, which we will have a look at in the next section.
 
 ### Adding a document type template
 
