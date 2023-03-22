@@ -155,7 +155,7 @@ After installing your plugin, your new document type should be available in the 
 
 The renderer for a document type is responsible for rendering the respective document, including a template. That is why we will have to create a custom renderer for the new type as well, lets call it `ExampleDocumentRenderer`.
 
-We'll place it in the same directory as all other default document renderers: `<plugin root>/src/Core/Checkout/Document/Renderer`
+We will place it in the same directory as all other default document renderers: `<plugin root>/src/Core/Checkout/Document/Renderer`
 
 Your custom document renderer has to implement the `Shopware\Core\Checkout\Document\Renderer\AbstractDocumentRenderer`, which forces you to implement three methods:
 
