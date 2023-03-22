@@ -8,7 +8,7 @@ Using the Shopware Administration, you can easily create new documents. This gui
 
 This guide is built upon the [plugin base guide](../../plugin-base-guide.md), but of course you can use those examples with any other plugin.
 
-Furthermore, adding a custom document type via your plugin is done by using [plugin database migrations](../../plugin-fundamentals/database-migrations.md). Since this isn't explained in this guide, you'll have to know and understand the plugin database migrations first.
+Furthermore, adding a custom document type via your plugin is done by using [plugin database migrations](../../plugin-fundamentals/database-migrations.md). Since this isn't explained in this guide, you will have to know and understand the plugin database migrations first.
 
 ## Adding a custom document type, and its own base configuration to the database
 
