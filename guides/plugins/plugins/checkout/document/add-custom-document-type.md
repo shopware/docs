@@ -333,7 +333,7 @@ Here's what the function does:
 * A search is performed on the order repository to find all orders by `$ids`.
 * For each order found, the function attempts to generate a document.
 * If successful, a new `RenderedDocument` object is created. This object is then added to the `RendererResult` object as a success.
-* If an error occurs, an exception is caught, error message are added to the `RendererResult` object as an error.
+* If an error occurs, the exception is caught and the error message is added to the `RendererResult` object as an error.
 * `The RendererResult` object is returned.
 
 In this example we're rendering a specific template, which we will have a short look at in the next section.
