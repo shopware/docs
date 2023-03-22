@@ -328,7 +328,7 @@ Now let's have a look at the `render` method. This function contains three param
 The function returns a `RendererResult` object.
 Here's what the function does:
 
-* It creates an array `$ids` which is populated with the `orderId` of each `DocumentGenerateOperation` object in $operations.
+* It creates an array of `$ids`, which is populated with the `orderId` of each `DocumentGenerateOperation` object in $operations.
 * If `$ids` is empty, the function returns an empty `RendererResult` object.
 * A search is performed on the order repository to find all orders by `$ids`.
 * For each order found, the function attempts to generate a document.
