@@ -20,7 +20,7 @@ You can use these commands to check your actual environment:
 
 **PHP**
 
-* Tested on 7.4.3, 8.0 and 8.1
+* Tested on 8.1 and 8.2
 * `memory_limit` 512M minimum
 * `max_execution_time` 30 seconds minimum
 * Extensions:
@@ -47,7 +47,7 @@ You can use these commands to check your actual environment:
 
 **SQL**
 
-MySQL 5.7.21, and 8.0 are tested to work.
+MySQL 8.0 is tested to work.
 Known problematic Versions:
 
 * 8.0.20
@@ -61,8 +61,8 @@ Known problematic Versions:
 
 **JavaScript**
 
-* Node.js 16.00.0 or higher
-* NPM 6.5.0 or higher
+* Node.js 18.00.0 or higher
+* NPM 8.0.0 or higher
 
 ## Webserver
 
