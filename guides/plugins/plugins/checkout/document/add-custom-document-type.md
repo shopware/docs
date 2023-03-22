@@ -321,9 +321,9 @@ The `supports` method just returns the string "example", which is the technical 
 
 Now let's have a look at the `render` method. This function contains three parameters:
 
-* $operations: An array of `DocumentGenerateOperation` objects.
-* $context: A Context object.
-* $rendererConfig: A `DocumentRendererConfig` object, so we can add additional configuration later.
+* `$operations`: An array of `DocumentGenerateOperation` objects.
+* `$context`: A Context object.
+* `$rendererConfig`: A `DocumentRendererConfig` object, so we can add additional configuration later.
 
 The function returns a `RendererResult` object.
 Here's what the function does:
