@@ -315,7 +315,7 @@ class ExampleDocumentRenderer extends AbstractDocumentRenderer
 
 {% endcode %}
 
-First we're injecting the `rootDir` of the Shopware installation into our renderer, since we'll need that for rendering our template, and the `DocumentTemplateRenderer`, which will do the template rendering. We also inject `orderRepository` to get all order entity by list of order's id, `documentConfigLoader` to load the document configuration and `numberRangeValueGenerator` to get the document number
+First, we are injecting the `rootDir` of the Shopware installation into our renderer since we will need that for rendering our template, and the `DocumentTemplateRenderer`, which will do the template rendering. We also inject `orderRepository` to get all order entities by list of order's id, `documentConfigLoader` to load the document configuration and `numberRangeValueGenerator` to get the document number
 
 The `supports` method just returns the string "example", which is the technical name of our new document type.
 
