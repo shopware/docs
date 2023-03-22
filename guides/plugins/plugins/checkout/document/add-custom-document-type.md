@@ -358,7 +358,7 @@ This could be it already. The [base.html.twig](https://github.com/shopware/platf
 
 ## Adding a number range
 
-You're almost done here. You've got a new document type in the database, a renderer for your new document type, and it even uses a custom template. However, you also need to add a new number range for your documents, otherwise a new number for your documents wouldn't be generated.
+You are almost done here. You have a new document type in the database, a renderer for your new document type, and it even uses a custom template. However, you also need to add a new number range for your documents; otherwise, a new number wouldn't be generated for your documents.
 
 Adding a new number range is also done by using a [plugin database migration](../../plugin-fundamentals/database-migrations.md).
 
