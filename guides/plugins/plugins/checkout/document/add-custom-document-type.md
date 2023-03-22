@@ -138,7 +138,7 @@ class Migration1616677952AddDocumentType extends MigrationStep
 
 {% endcode %}
 
-So first we're creating the new document type with the `technical_name` "example". Make sure to save the ID here, since you're going to need it for the following translations.
+So first, we are creating the new document type with the `technical_name` as "example". Make sure to save the ID here since you are going to need it for the following translations:
 
 Afterwards we're inserting the translations, one for German, one for English. For this we're using the `Shopware\Core\Migration\Traits\ImportTranslationsTrait`, which adds the helper method `importTranslation`. There you have to supply the translation table and an instance of `Shopware\Core\Migration\Traits\Translations`. The latter accepts two constructor parameters:
 
