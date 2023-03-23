@@ -458,3 +458,11 @@ The [NixOS package search](https://search.nixos.org/packages) is a good starting
 The binaries can be found in the `<PROJECT_ROOT>/.devenv/profile/bin` directory.
 
 This comes in handy if you want to configure interpreters in your IDE.
+
+### How do I stop all processes at once?
+
+In case you can't find and stop running devenv processes, you can use the following command to kill them:
+
+```shell
+kill $(ps -ax | grep /nix/store  | awk '{print $1}')
+```
