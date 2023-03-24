@@ -31,9 +31,14 @@ async function formatADR(filePath: string): Promise<void> {
 
 	let lineNumber = 0;
 	let frontmatter = 0;
+	let title;
 	for await (const line of readLines(adrFile)) {
 		lineNumber++;
 		buffer += line + '\n';
+
+		if (!title && frontmatter === 1 && line.startsWith('title:')) {
+			title = line.substring('title: '.length);
+		}
 
 		// note: some --- ends with additional space
 		if (!line.startsWith('---')) {
@@ -46,6 +51,10 @@ async function formatADR(filePath: string): Promise<void> {
 		}
 
 		buffer = addHint(buffer, filePath);
+
+		if (title) {
+			buffer += `\n# ${title}\n`;
+		}
 	}
 
 	if (frontmatter < 2) {
