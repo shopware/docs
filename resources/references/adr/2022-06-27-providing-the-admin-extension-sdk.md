@@ -5,12 +5,12 @@ area: administration
 tags: [admin-extension-sdk, vue]
 ---
 
+# Providing the admin extension SDK
+
 {% hint style="info" %}
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-06-27-providing-the-admin-extension-sdk.md)
 {% endhint %}
-
-# Providing the admin extension SDK
 
 ## Context
 The Admin Extension SDK is a toolkit for plugin and app developers to extend or modify the administration via their plugins or apps. The SDK contains easy to use methods which interact with the administration in the background via the PostMessage API for iFrames.

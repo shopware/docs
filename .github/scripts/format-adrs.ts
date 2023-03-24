@@ -50,11 +50,11 @@ async function formatADR(filePath: string): Promise<void> {
 			continue;
 		}
 
-		buffer = addHint(buffer, filePath);
-
 		if (title) {
 			buffer += `\n# ${title}\n`;
 		}
+
+		buffer = addHint(buffer, filePath);
 	}
 
 	if (frontmatter < 2) {

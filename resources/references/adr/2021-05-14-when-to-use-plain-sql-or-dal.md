@@ -5,12 +5,12 @@ area: core
 tags: [sql, dal, store-api, storefront, admin-api, entity-indexer]
 --- 
 
+# When to use plain SQL or the DAL
+
 {% hint style="info" %}
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-05-14-when-to-use-plain-sql-or-dal.md)
 {% endhint %}
-
-# When to use plain SQL or the DAL
 
 ## Context
 

@@ -5,12 +5,12 @@ area: business-ops
 tags: [framework, rules, context, data-handling]
 --- 
 
+# Preparing data for rule evaluation
+
 {% hint style="info" %}
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-11-02-preparing-data-for-rule-evaluation.md)
 {% endhint %}
-
-# Preparing data for rule evaluation
 
 ## Context
 

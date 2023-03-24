@@ -5,12 +5,12 @@ area: checkout
 tags: [checkout, payment, flow]
 --- 
 
+# Payment Flow
+
 {% hint style="info" %}
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-10-01-payment-flow.md)
 {% endhint %}
-
-# Payment Flow
 
 ## Context
 
