@@ -1,4 +1,11 @@
-# [YYYY-MM-DD] - [Title]
+---
+title: {{ title }}
+date: {{ date }}
+area: {{ area }}
+tags: [{{ tags }}]
+---
+
+# {{ title }}
 
 {% hint style="info" %}
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.

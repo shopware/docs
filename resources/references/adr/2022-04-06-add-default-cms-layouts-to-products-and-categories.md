@@ -1,4 +1,11 @@
-# 2022-04-06 - Add default cms pages to products and categories
+---
+title: Add default cms pages to products and categories
+date: 2022-04-06
+area: content
+tags: [cms, product, category]
+--- 
+
+# Add default cms pages to products and categories
 
 {% hint style="info" %}
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.

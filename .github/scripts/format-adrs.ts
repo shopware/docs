@@ -13,6 +13,16 @@ for await (const entry of walk("./resources/references/adr")) {
 
 await Promise.allSettled(formattingPromises);
 
+function addHint(buffer, filePath) {
+	buffer += '\n';
+	buffer += '{% hint style="info" %}\n';
+	buffer += 'This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.\n';
+	buffer += `You can find the original version [here](${adrPathToGithubLink(filePath)})\n`;
+	buffer += '{% endhint %}\n';
+
+	return buffer;
+}
+
 async function formatADR(filePath: string): Promise<void> {
 	const adrFile = await Deno.open(filePath, {write: true, read: true});
 
@@ -20,17 +30,40 @@ async function formatADR(filePath: string): Promise<void> {
 	const encoder = new TextEncoder();
 
 	let lineNumber = 0;
+	let frontmatter = 0;
+	let title;
 	for await (const line of readLines(adrFile)) {
 		lineNumber++;
 		buffer += line + '\n';
-		if (lineNumber === 2) {
-			buffer += '{% hint style="info" %}\n';
-			buffer += 'This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.\n';
-			buffer += `You can find the original version [here](${adrPathToGithubLink(filePath)})\n`;
-			buffer += '{% endhint %}\n';
-			buffer += '\n';
+
+		if (!title && frontmatter === 1 && line.startsWith('title:')) {
+			title = line.substring('title: '.length);
 		}
+
+		// note: some --- ends with additional space
+		if (!line.startsWith('---')) {
+			continue;
+		}
+
+		frontmatter++;
+		if (frontmatter !== 2) {
+			continue;
+		}
+
+		if (title) {
+			buffer += `\n# ${title}\n`;
+		}
+
+		buffer = addHint(buffer, filePath);
 	}
+
+	if (frontmatter < 2) {
+		const prevBuffer = buffer;
+		buffer = addHint("\n", filePath);
+		buffer += "\n";
+		buffer += prevBuffer;
+	}
+
 	await adrFile.truncate();
 	await adrFile.seek(0, Deno.SeekMode.Start);
 	await adrFile.write(encoder.encode(buffer));

@@ -1,4 +1,11 @@
-# 2022-02-24 - Domain exceptions
+---
+title: Domain exceptions
+date: 2022-02-24
+area: core
+tags: [architecture, exception, domain]
+--- 
+
+# Domain exceptions
 
 {% hint style="info" %}
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
