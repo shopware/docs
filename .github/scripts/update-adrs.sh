@@ -1,11 +1,5 @@
 #! /usr/bin/env bash
 
-~/.deno/bin/deno run --allow-read --allow-write ./.github/scripts/update-summary.ts
-
-git status
-
-exit
-
 git clone --depth 1 https://github.com/shopware/platform.git
 
 rm -r ./resources/references/adr
