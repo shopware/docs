@@ -56,9 +56,12 @@ names.sort();
 
 names.forEach((name) => {
 	const topic = ADRs.get(name);
-	adrSummary += summaryItem(2, topicName(topic), path.join(topic.path, 'README.md'));
+	const depthDiff = names.length > 1 ? 1 : 0;
+	if (depthDiff > 0) {
+		adrSummary += summaryItem(2, topicName(topic), path.join(topic.path, 'README.md'));
+	}
 	for (const adr of topic.entries) {
-		adrSummary += summaryItem(3, adrTitle(adr), adr.path);
+		adrSummary += summaryItem(2 + depthDiff, adrTitle(adr), adr.path);
 	}
 });
 
