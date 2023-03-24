@@ -1,14 +1,14 @@
 ---
 title: Use `ResetInterface` to reset instance state during requests
-{% hint style="info" %}
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-03-09-reset-class-state-during-requests.md)
-{% endhint %}
-
 date: 2022-03-09
 area: core
 tags: [php, architecture, performance]
 --- 
+
+{% hint style="info" %}
+This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
+You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-03-09-reset-class-state-during-requests.md)
+{% endhint %}
 
 ## Context
 

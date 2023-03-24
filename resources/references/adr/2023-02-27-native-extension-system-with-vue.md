@@ -1,14 +1,14 @@
 ---
 title: Native extension system with vue
-{% hint style="info" %}
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2023-02-27-native-extension-system-with-vue.md)
-{% endhint %}
-
 date: 2023-02-27
 area: administration
 tags: [vue, extensibility, performance, administration]
 ---
+
+{% hint style="info" %}
+This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
+You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2023-02-27-native-extension-system-with-vue.md)
+{% endhint %}
 
 ## Context
 Our current plugin extension system for the administration is based on our Component Factory. This factory generates native Vue components at runtime based on a base Shopware component which can be extended or overwritten by plugins. This approach offers flexibility to plugin developers to modify every component. For the template part, we use Twig.JS and compile the Vue template in the client at runtime.

@@ -1,14 +1,14 @@
 ---
 title: Test structure
-{% hint style="info" %}
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-10-20-test-structure.md)
-{% endhint %}
-
 date: 2022-10-20
 area: administration
 tags: [test, structure]
 --- 
+
+{% hint style="info" %}
+This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
+You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-10-20-test-structure.md)
+{% endhint %}
 
 ## Context
 Currently, all tests are in the same folder: `src/Administration/Resources/app/administration/test`.

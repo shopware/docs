@@ -1,14 +1,14 @@
 ---
 title: Remove static analysis with psalm
-{% hint style="info" %}
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-05-12-remove-static-analysis-with-psalm.md)
-{% endhint %}
-
 date: 2022-05-12
 area: core
 tags: [phpstan, psalm, static-analyse]
 --- 
+
+{% hint style="info" %}
+This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
+You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-05-12-remove-static-analysis-with-psalm.md)
+{% endhint %}
 
 ## Context
 Currently, we are running static analysis over the php code with both `phpstan` and `psalm`.

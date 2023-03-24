@@ -1,14 +1,14 @@
 ---
 title: Refactor admin build process to webpack-multi-compiler mode
-{% hint style="info" %}
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-08-31-refactor-admin-build-process-to-webpack-multi-compiler-mode.md)
-{% endhint %}
-
 date: 2021-08-31
 area: administration
 tags: [administration, webpack, plugin, build]
 --- 
+
+{% hint style="info" %}
+This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
+You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-08-31-refactor-admin-build-process-to-webpack-multi-compiler-mode.md)
+{% endhint %}
 
 ## Context
 Previously the plugins are not completely independent from the core and other plugins. This has sometimes caused built plugin files to be incompatible with the core. Unless they were rebuilt again with the core.

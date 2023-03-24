@@ -1,14 +1,14 @@
 ---
 title: Import ACL privileges from other roles
-{% hint style="info" %}
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-08-28-import-acl-privileges-from-other-roles.md)
-{% endhint %}
-
 date: 2020-08-28
 area: administration
 tags: [acl, privileges, dependency, administration]
 --- 
+
+{% hint style="info" %}
+This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
+You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-08-28-import-acl-privileges-from-other-roles.md)
+{% endhint %}
 
 ## Context
 Some modules have components which require many acl privileges. Examples

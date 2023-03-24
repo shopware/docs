@@ -1,14 +1,14 @@
 ---
 title: Extract data handling classes to extension sdk
-{% hint style="info" %}
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-03-15-extract-data-handling-classes-to-extension-sdk.md)
-{% endhint %}
-
 date: 2022-03-15
 area: administration
 tags: [admin, extension-api]
 --- 
+
+{% hint style="info" %}
+This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
+You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-03-15-extract-data-handling-classes-to-extension-sdk.md)
+{% endhint %}
 
 ## Context
 * The package `@shopware-ag/admin-extension-sdk` will be referred to as sdk

@@ -1,14 +1,14 @@
 ---
 title: App scripts
-{% hint style="info" %}
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-10-21-app-scripting.md)
-{% endhint %}
-
 date: 2021-10-21
 area: core
 tags: [app-system, app-scripts]
 ---
+
+{% hint style="info" %}
+This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
+You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-10-21-app-scripting.md)
+{% endhint %}
 
 ## Context
 

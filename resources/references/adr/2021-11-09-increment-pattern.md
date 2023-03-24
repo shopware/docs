@@ -1,14 +1,14 @@
 ---
 title: Introduce increment pattern
-{% hint style="info" %}
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-11-09-increment-pattern.md)
-{% endhint %}
-
 date: 2021-11-09
 area: system-settings
 tags: [architecture, increment, message-queue-stats]
 --- 
+
+{% hint style="info" %}
+This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
+You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-11-09-increment-pattern.md)
+{% endhint %}
 
 ## Context
 The current `message_queue_stats` table records which messages are in the message queue and how often. This
@@ -35,7 +35,7 @@ So we implement a new gateway with the following methods:
 
 This then enables the following functional flow:
 
-![](../../../../.gitbook/assets/adr/message_queue_stats.png "Message queue stats gateway")
+![](../../../.gitbook/assets/adr/message_queue_stats.png "Message queue stats gateway")
 
 Furthermore, it should also be possible to completely disable the message queue stats or any pool via config file.
 
