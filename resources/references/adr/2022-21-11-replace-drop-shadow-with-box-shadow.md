@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-21-11-replace-drop-shadow-with-box-shadow.md)
 {% endhint %}
 
+# Replace drop-shadow with box-shadow
+
 ## Context
 Safari has drastic performance issues with drop-shadow.
 

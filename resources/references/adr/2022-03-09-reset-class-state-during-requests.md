@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-03-09-reset-class-state-during-requests.md)
 {% endhint %}
 
+# Use `ResetInterface` to reset instance state during requests
+
 ## Context
 
 In many places we use [memoization](https://en.wikipedia.org/wiki/Memoization) to store data inside an instance variable 

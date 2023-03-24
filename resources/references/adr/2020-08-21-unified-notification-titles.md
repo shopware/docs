@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-08-21-unified-notification-titles.md)
 {% endhint %}
 
+# Notification titles are pre-defined and make use of the global namespace
+
 ## Context
 
 * Creating notifications messages in the administration caused the effort of making up not only a title but a message too.

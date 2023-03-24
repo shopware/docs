@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-01-20-feature-flags-for-major-versions.md)
 {% endhint %}
 
+# Feature flags for major versions
+
 ## Context
 Feature flags enable the developer to create new code which is hidden behind the flag and merge it into the trunk branch, even when the code is not finalized.
 We use this functionality to merge breaks into the trunk early, without them already being switched active.

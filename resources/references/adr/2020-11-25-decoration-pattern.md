@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-11-25-decoration-pattern.md)
 {% endhint %}
 
+# Decoration pattern
+
 ## Context
 
 There are currently two different patterns that are applied in the platform to allow the decoration of services. 

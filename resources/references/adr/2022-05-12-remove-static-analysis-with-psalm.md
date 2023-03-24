@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-05-12-remove-static-analysis-with-psalm.md)
 {% endhint %}
 
+# Remove static analysis with psalm
+
 ## Context
 Currently, we are running static analysis over the php code with both `phpstan` and `psalm`.
 This slows down our pipeline and may lead to weird effects where `phpstan` and `psalm` report errors that are incompatible with each other. 

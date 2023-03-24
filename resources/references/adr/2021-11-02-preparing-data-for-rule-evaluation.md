@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-11-02-preparing-data-for-rule-evaluation.md)
 {% endhint %}
 
+# Preparing data for rule evaluation
+
 ## Context
 
 When we are creating new `Rule` definitions, we need to consider how we are retrieving the data necessary for the evaluation.

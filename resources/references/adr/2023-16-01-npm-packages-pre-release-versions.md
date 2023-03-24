@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2023-16-01-npm-packages-pre-release-versions.md)
 {% endhint %}
 
+# Npm packages pre-release versions
+
 ## Context
 A pre-release package version is a version followed by a hyphen and an alphanumeric string.
 

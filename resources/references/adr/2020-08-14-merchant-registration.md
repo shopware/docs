@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-08-14-merchant-registration.md)
 {% endhint %}
 
+# Merchant registration
+
 ## Context
 
 We have to provide a registration for merchant.

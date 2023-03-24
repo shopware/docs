@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-09-28-mapping-of-product-area.md)
 {% endhint %}
 
+# Mapping of product area
+
 ## Context
 
 We have a lot of teams working on different parts of the Shopware 6 platform.

@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-10-01-payment-flow.md)
 {% endhint %}
 
+# Payment Flow
+
 ## Context
 
 We have to provide a standardized way for Shopware extensions to implement custom payments.

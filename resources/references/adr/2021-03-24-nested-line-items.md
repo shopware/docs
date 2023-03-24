@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-03-24-nested-line-items.md)
 {% endhint %}
 
+# Processing of nested line items
+
 ## Context
 
 We want to handle nested order line items.

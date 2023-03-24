@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-11-19-dal-join-filter.md)
 {% endhint %}
 
+# DAL join filter
+
 ## Context
 Currently, there are various difficulties with the current implementation of the `anti-join-filter`. 
 Sometimes this does not lead to the correct results or the query cannot be executed due to a PHP exception.

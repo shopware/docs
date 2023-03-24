@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-02-21-rule-scripting-in-apps.md)
 {% endhint %}
 
+# Rule Scripting in apps
+
 ## Context
 
 Currently rule conditions need to be hard-coded both as PHP classes and in the administration as Vue components. We want to introduce the possibility for apps to provide their own custom rule conditions.

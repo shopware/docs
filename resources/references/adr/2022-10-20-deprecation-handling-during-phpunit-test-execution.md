@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-10-20-deprecation-handling-during-phpunit-test-execution.md)
 {% endhint %}
 
+# Deprecation handling during PHPUnit test execution
+
 ## Context 
 
 To stay innovative and on the bleeding edge of technology it is important, that we don't rely on deprecated functionality, as it prevents us from using the latest and greatest versions of libraries, that may include important bug fixes, performance improvements or new features.

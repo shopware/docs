@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-09-14-technical-concept-custom-entities.md)
 {% endhint %}
 
+# Technical concept custom entities
+
 ## Context
 It should be possible for apps to define their entities. Furthermore, it should be possible, if desired, that these entities are available via Store API.
 Later, it should also be possible for store operators to create such entities. The concept is to consider that Apps can not add PHP code into the system under current circumstances. Also, a store operator is, seen from our point of view, not able to write PHP code himself to guarantee logic for his custom entities.

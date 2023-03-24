@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-07-22-move-storefront-scripts-to-head.md)
 {% endhint %}
 
+# Move storefront script to head with defer
+
 ## Context
 
 * Currently, our main storefront scripts (inline scripts as well as `all.js`) are located at the bottom of the page near the body end tag.

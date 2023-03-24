@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-11-06-creating-events.md)
 {% endhint %}
 
+# Creating events in Shopware
+
 ## Context
 
 Events throughout Shopware are quite inconsistent.

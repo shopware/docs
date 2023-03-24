@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-08-03-implement-new-changelog.md)
 {% endhint %}
 
+# Implement new changelog
+
 ## Context
 The current workflow for writing technical changelog is not very suited for a trunk based development and branching process. There are some major issues with the current workflow of using one file with a fixed version number:
 

@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-05-28-introduce-eslint-on-vue-admin.md)
 {% endhint %}
 
+# Vue administration app has ESLint support
+
 ## Context
 
 We want to support ESLint of the administration vue app to keep and increase code quality.

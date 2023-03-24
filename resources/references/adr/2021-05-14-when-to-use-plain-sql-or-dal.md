@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-05-14-when-to-use-plain-sql-or-dal.md)
 {% endhint %}
 
+# When to use plain SQL or the DAL
+
 ## Context
 
 It is often discussed whether to work with plain SQL or with the Data Abstraction Layer.

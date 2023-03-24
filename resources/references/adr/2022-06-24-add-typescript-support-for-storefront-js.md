@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-06-24-add-typescript-support-for-storefront-js.md)
 {% endhint %}
 
+# Add typescript support for storefront javascript
+
 ## Context
 
 * We want to add TypeScript support to the Storefront, to make use of all of it's features increasing the overall developer experience, quality and maintainability.

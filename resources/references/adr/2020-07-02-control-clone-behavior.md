@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-07-02-control-clone-behavior.md)
 {% endhint %}
 
+# Get control of association clone behavior as developer
+
 ## Context
 The developer should be able to define, if an association has to be considered or skipped during the cloning of an entity.
 

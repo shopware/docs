@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-25-11-run-lighthouse-test-ine2e-env.md)
 {% endhint %}
 
+# Run Lighthouse tests in E2E env
+
 ## Context
 The Lighthouse test ran in the `APP_ENV=prod`, this meant that also AdminQueueWorker was active, which is recommended to not be used in real prod setups.
 

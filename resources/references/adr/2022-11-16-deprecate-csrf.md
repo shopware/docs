@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-11-16-deprecate-csrf.md)
 {% endhint %}
 
+# Deprecate the storefront CSRF implementation
+
 ## Context
 
 * With browsers evolving and dropping support for older browser in 6.5 we have wide support for SameSite cookies.

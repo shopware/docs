@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-05-23-rule-condition-field-abstraction.md)
 {% endhint %}
 
+# Rule condition field abstraction
+
 ## Context
 Conditions for the Rule Builder consist of a `shopware.rule.definition` tagged service and a corresponding Vue component. Many of these Vue components follow a common scheme, so it is possible to use an abstracted single component for all of these.
 

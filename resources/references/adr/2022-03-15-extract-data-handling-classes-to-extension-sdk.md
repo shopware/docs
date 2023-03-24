@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-03-15-extract-data-handling-classes-to-extension-sdk.md)
 {% endhint %}
 
+# Extract data handling classes to extension sdk
+
 ## Context
 * The package `@shopware-ag/admin-extension-sdk` will be referred to as sdk
 * The ts/js implementation of the Administration is referred to as administration

@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-11-20-add-login-required-annotation.md)
 {% endhint %}
 
+# Add the login required annotation
+
 ## Context
 Some routes for the `sales-channel-api` and the `store-api/storefront` depend on `SalesChannelContext` to identify whether the Customer is logged or not.
 For keeping clean code, consistency, and more easy to readable API. We create a new annotation for routing `\Core\Framework\Routing\Annotation\LoginRequired`.

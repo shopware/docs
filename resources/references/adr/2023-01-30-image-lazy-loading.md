@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2023-01-30-image-lazy-loading.md)
 {% endhint %}
 
+# Add native lazy loading for images to the storefront
+
 ## Context
 
 * Currently, the images/thumbnails inside the Storefront are not making use of any lazy loading mechanism. 

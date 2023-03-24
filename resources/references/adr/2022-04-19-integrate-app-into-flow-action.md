@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-04-19-integrate-app-into-flow-action.md)
 {% endhint %}
 
+# Integrate an app into flow action
+
 We want to offer apps the possibility to deliver their own flow actions. Each app should be able to deliver multiple flow actions. The implementation should be done via webhooks and XML configuration. The information will be stored in the database as usual. If the app is uninstalled, all data will be deleted.
 
 ## Webhooks

@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-12-02-removing-api-version.md)
 {% endhint %}
 
+# API version removal
+
 ## Context
 
 Due to the new deprecation strategy and the 6-8 months major cycle, API versioning is no longer  reasonable or even possible.

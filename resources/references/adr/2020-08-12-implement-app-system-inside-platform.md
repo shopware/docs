@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-08-12-implement-app-system-inside-platform.md)
 {% endhint %}
 
+# Implement app system inside platform
+
 ## Context
 
 We need a different extension mechanism besides the well known plugins, that works in cloud and on-prem environments in the same way.

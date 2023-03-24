@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2023-01-10-atomic-theme-compilation.md)
 {% endhint %}
 
+# Atomic theme compilation
+
 ## Context
 
 The theme compilation could result in a broken storefront, when there is some error during theme compilation (e.g. because of wrongly configured values in the theme configuration by the customer).

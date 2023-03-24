@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2023-02-13-follow-test-pyramid.md)
 {% endhint %}
 
+# Follow test pyramid
+
 ## Context
 
 Since the beginning of the development of shopware 6 we've tried to test as much as possible. Most of the effort went

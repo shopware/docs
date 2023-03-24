@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-11-22-merge-e2e-projects-into-a-single-project.md)
 {% endhint %}
 
+# Merge E2E projects into a single project
+
 ## Context
 
 It's hard to test components in isolation. Other components are almost always also tested, which is intended because it's the nature of end-to-end tests being workflow-based.

@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-09-23-add-bootstrap-util.md)
 {% endhint %}
 
+# Add bootstrap JS-plugin initialization utility to storefront JS
+
 ## Context
 
 * Some Bootstrap JavaScript plugins have to be initialized manually to the desired DOM elements, see: https://getbootstrap.com/docs/4.3/components/tooltips/#example-enable-tooltips-everywhere

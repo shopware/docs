@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-08-11-make-platform-stand-alone.md)
 {% endhint %}
 
+# Make shopware/platform stand-alone for development and testing
+
 ## Context
 
 The platform requires some additional config, a console and web entrypoint and additional development tooling for development, tests and

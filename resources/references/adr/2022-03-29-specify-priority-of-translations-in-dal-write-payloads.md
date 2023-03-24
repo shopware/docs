@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-03-29-specify-priority-of-translations-in-dal-write-payloads.md)
 {% endhint %}
 
+# Specify priority of translations in DAL write payloads
+
 ## Context
 
 The DAL allows to write translated values in multiple ways:

@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-08-14-implement-individual-sorting.md)
 {% endhint %}
 
+# Implement individual sorting
+
 ## Context
 
 Shop owners should be able to define custom sorting options for product listings and search result pages out of the administration.

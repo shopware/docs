@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-01-05-add-feature-flag-support-for-storefront-scss.md)
 {% endhint %}
 
+# Add feature flag support for Storefront SCSS
+
 ## Context
 
 * There is no possibility to check for feature flags inside the Storefront SCSS.

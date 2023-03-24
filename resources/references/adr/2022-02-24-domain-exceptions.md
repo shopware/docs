@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-02-24-domain-exceptions.md)
 {% endhint %}
 
+# Domain exceptions
+
 ## Context
 
 Until now, we have implemented many different exception classes in Shopware to map different exception cases. 

@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-10-17-hide-and-show-cms-content.md)
 {% endhint %}
 
+# Hide and show CMS content
+
 ## Context
 Many merchants reached out to us, that the possibility to customize content per device is important for them. Therefore, we would like to provide a solution to allow merchants to hide and show cms sections or blocks per devices.
 

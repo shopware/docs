@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-01-21-deprecation-strategy.md)
 {% endhint %}
 
+# Deprecation strategy
+
 ## Context
 
 Define a strategy for deprecations.

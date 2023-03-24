@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-03-17-new-nested-line-items.md)
 {% endhint %}
 
+# New templates for line items and nested line items
+
 ## Context
 
 In the storefront there are multiple templates, which display line items in different areas of the shop.

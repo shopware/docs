@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-11-09-composer-based-web-updater.md)
 {% endhint %}
 
+# Composer-based web updater
+
 ## Context
 
 Currently, we are using a Slim Framework 2 based web updater which downloads the zip file from our server and unpacks it.

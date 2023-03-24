@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-10-21-app-scripting.md)
 {% endhint %}
 
+# App scripts
+
 ## Context
 
 To improve the abilities of Apps, they should be able to execute code synchronously and hook into familiar places like:

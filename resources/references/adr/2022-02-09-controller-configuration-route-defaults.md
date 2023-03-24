@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-02-09-controller-configuration-route-defaults.md)
 {% endhint %}
 
+# Move controller level annotation into Symfony route annotation
+
 ## Context
 
 Annotations are used to configure controllers in the core currently. 

@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-09-08-custom-field-label-loading-in-storefront.md)
 {% endhint %}
 
+# CustomField label loading in storefront
+
 ## Context
 
 We want to provide the labels of custom fields in the storefront to third party developers.

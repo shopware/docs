@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/YYYY-MM-DD-template.md)
 {% endhint %}
 
+# {{ title }}
+
 ## Context
 
 ## Decision

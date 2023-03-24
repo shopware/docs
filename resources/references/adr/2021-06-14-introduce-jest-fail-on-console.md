@@ -10,6 +10,8 @@ This document represents an architecture decision record (ADR) and has been mirr
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-06-14-introduce-jest-fail-on-console.md)
 {% endhint %}
 
+# Introduce jest-fail-on-console
+
 ## Context
 A jest pipeline run produced previously hundreds of errors and warnings, which made it hard to see why a test failed and if a passing test isn’t just a false positive.
 
