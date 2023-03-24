@@ -7,8 +7,8 @@ rm -r ./.gitbook/assets/adr
 cp -r ./platform/adr ./resources/references
 rm -rf ./platform
 
-~/.deno/bin/deno run --allow-read --allow-write ./.github/scripts/update-summary.ts
-~/.deno/bin/deno run --allow-read --allow-write ./.github/scripts/format-adrs.ts
+deno run --allow-read --allow-write ./.github/scripts/update-summary.ts
+deno run --allow-read --allow-write ./.github/scripts/format-adrs.ts
 
 mkdir -p ./.gitbook/assets/adr
 mv ./resources/references/adr/assets/* .gitbook/assets/adr/
