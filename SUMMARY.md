@@ -334,6 +334,7 @@
     * [Tax provider](guides/plugins/apps/tax-provider.md)
   * [API](guides/plugins/plugins/api/README.md)
     * [Customer Specific Pricing](guides/plugins/plugins/api/customer-specific-pricing.md)
+  * [Icon Guidelines](guides/plugins/icon-guidelines.md)
 * [Hosting](guides/hosting/README.md)
   * [Installation & Updates](guides/hosting/installation-updates/README.md)
     * [Deployments](guides/hosting/installation-updates/deployments/README.md)
