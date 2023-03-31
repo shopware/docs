@@ -70,7 +70,7 @@ To adapt your existing brand to the Shopware Store icon guidelines, try the foll
 
 ### Download design template
 
-- [Figma](linkToFigmaCommunityFile.com)
+- [Figma](FigmaCommunityFile.com)
 - [Sketch](../../.gitbook/assets/shopware-extension-store-icon-guidelines-sketch.sketch)
 - [Adobe Illustrator](../../.gitbook/assets/shopware-extension-store-icon-guidelines-ai.ai)
 - [Adobe XD](../../.gitbook/assets/shopware-extension-store-icon-guidelines-xd.xd)
