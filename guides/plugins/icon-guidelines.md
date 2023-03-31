@@ -67,3 +67,11 @@ To adapt your existing brand to the Shopware Store icon guidelines, try the foll
 - Don't force your logo to fill the entire icon space
 
 ![](../../.gitbook/assets/extension-icon-guidelines-logos-1.png)
+
+### Download design template
+
+- [Figma](linkToFigmaCommunityFile.com)
+- [Sketch](../../.gitbook/assets/shopware-extension-store-icon-guidelines-sketch.sketch)
+- [Adobe Illustrator](../../.gitbook/assets/shopware-extension-store-icon-guidelines-ai.ai)
+- [Adobe XD](../../.gitbook/assets/shopware-extension-store-icon-guidelines-xd.xd)
+- [Adobe Photoshop](../../.gitbook/assets/shopware-extension-store-icon-guidelines-ps.psd)
