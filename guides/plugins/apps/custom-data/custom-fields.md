@@ -62,4 +62,4 @@ When defining custom fields in the `<fields>` element, you can configure additio
 
 Please refer to the custom field documentation for further details.
 
-{% page-ref page="../plugins/framework/custom-field/" %}
+{% page-ref page="../../plugins/framework/custom-field/" %}
