@@ -67,7 +67,6 @@ Beyond the `media-upload-finish` event there are a few more events:
 | `media-upload-fail`   | This event is triggered on an upload failing       |
 | `media-upload-cancel` | This event is triggered when an upload is canceled |
 
-
 ## Previewing Media
 
 Media can be previewed with the `sw-media-preview-v2` component as seen below:

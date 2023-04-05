@@ -56,4 +56,3 @@ import './sw-dashboard-index-override/';
 * [Customizing templates](writing-templates.md)
 * [Customizing via custom styles](add-custom-styles.md)
 * [Using base components](using-base-components.md)
-

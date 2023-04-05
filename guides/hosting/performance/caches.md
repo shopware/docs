@@ -98,4 +98,3 @@ twig:
 ```
 
 If you want to know more about caching in twig, take a look at the [Twig for Developers](https://twig.symfony.com/doc/3.x/api.html#) page in the twig documentation.
-

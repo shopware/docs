@@ -18,9 +18,9 @@ To avoid that your pull request gets rejected, you should always check that you 
 * Is there already an existing pull request tackling the same issue?
 * Write your commit messages in English, have them short and descriptive and squash your commits meaningfully.
 
-{% hint style="danger" %}
+::: danger
 Pull requests which do not fulfill these requirements will never be accepted by our team. To avoid that your changes go through unnecessary workflow cycles make sure to check this list with every pull request.
-{% endhint %}
+:::
 
 ## The developing workflow on GitHub
 
@@ -49,4 +49,3 @@ Here is a list with common reasons why we reject a pull request:
 * The benefit of your change is not relevant for the whole product but only for your personal intent.
 * The benefit of your change is too minor. Sometimes we do not have enough resources to handle every small change.
 * Your change implements a feature which does not fit to our roadmap, or our company values.
-

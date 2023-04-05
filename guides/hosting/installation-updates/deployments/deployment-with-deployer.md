@@ -6,19 +6,19 @@ Automized deployments shouldn't be a pain and have several advantages like lower
 
 This article explains the fundamental steps it takes, to deploy Shopware 6 to a certain infrastructure, focussing on continuous deployment using [GitLab CI](https://docs.gitlab.com/ee/ci/) and [Deployer](https://deployer.org/). [Deployer](https://deployer.org/) is a deployment tool written in PHP.
 
-{% hint style="info" %}
+::: info
 This "certain infrastructure" will be called "target server" in the following.
-{% endhint %}
+:::
 
 ## Video
 
-{% embed url="https://www.youtube.com/watch?v=Oo-KvyxJvpo" caption="" %}
+<PageRef page="https://www.youtube.com/watch?v=Oo-KvyxJvpo" title="" target="_blank" />
 
 ## Prerequisites
 
 Please make sure you already have a working Shopware 6 instance running, and your repository is based on the Shopware production template, because this article relies on some scripts to exist in your repository.
 
-{% embed url="https://github.com/shopware/production" caption="" %}
+<PageRef page="https://github.com/shopware/production" title="" target="_blank" />
 
 ### Preparations before the first deployment
 
@@ -95,9 +95,9 @@ Install dependencies:
 
 ### 3. Building assets
 
-{% hint style="info" %}
+::: info
 From this step on, all other steps are handled by [Deployer](https://deployer.org/), defined in the [`deploy.php`](deployment-with-deployer.md#deploy-php).
-{% endhint %}
+:::
 
 In order to compile and copy assets, the Shopware production template provides a script, which is located under [`bin/build-js.sh`](https://github.com/shopware/production/blob/6.3/bin/build-js.sh). This script installs the [NPM](https://www.npmjs.com/) dependencies and builds assets that are needed for the administration, storefront and plugins.
 
@@ -138,9 +138,9 @@ task('deploy:update_code', static function () {
 
 The migrations need to be applied on the target server.
 
-{% hint style="danger" %}
+::: danger
 If you are deploying to a cluster with multiple web servers, please make sure to run the migrations only on one of the servers.
-{% endhint %}
+:::
 
 This step is defined in the `sw:database:migrate` job in the [`deploy.php`](deployment-with-deployer.md#deploy-php), which is part of the `sw:deploy` task group:
 
@@ -422,4 +422,3 @@ task('deploy', [
 
 after('deploy:failed', 'deploy:unlock');
 ```
-

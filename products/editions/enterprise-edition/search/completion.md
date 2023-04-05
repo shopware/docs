@@ -6,14 +6,14 @@ The Full Text Boosted field is used to generate a list of completions. Each word
 
 ## Extension for compound completions
 
-{% hint style="warning" %}
+::: warning
 The default Enterprise Search does not support compound completions from multiple words.
-{% endhint %}
+:::
 
 To support compound completions, it's necessary to decorate the appropriate Elasticsearch Definition. And add the [Tag](https://symfony.com/doc/current/service_container/tags.html) `swag_ses.completion_definition` to the service, like to Enterprise Search default services. Make sure, that the new created decorator runs after the Enterprise Search decorator, otherwise it will override your values.
 
-{% code title="MyProductDefinitionDecorator.php" %}
 ```php
+// MyProductDefinitionDecorator.php
 <?php declare(strict_types=1);
 
 namespace Swag\Example\Completion;
@@ -74,5 +74,3 @@ class MyProductDefinitionDecorator extends AbstractElasticsearchDefinition
     }
 }
 ```
-{% endcode %}
-

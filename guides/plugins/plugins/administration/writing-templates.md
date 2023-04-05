@@ -14,7 +14,7 @@ Templates in Shopware are usually defined in a separate `.twig` file, named afte
 
 Let's look at all of this in practice, with the example of a component statically printing `'Hello World'`:
 
-```markup
+```html
 {% block swag_basic_example_page %}
     <sw-page class="swag-example-list">
         <template slot="content">
@@ -56,4 +56,3 @@ Vue is used to link the data and the DOM in order to make them reactive. Learn a
 
 * [Add custom styling](add-custom-styles.md)
 * [Adding shortcuts](https://github.com/shopware/docs/tree/575c2fa12ef272dc25744975e2f1e4d44721f0f1/guides/plugins/plugins/administration/add-shortcuts.md)
-

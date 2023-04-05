@@ -19,4 +19,3 @@
 | SetNullOnDeleteField | Flags "SetNullOnDelete" |
 | SinceField | Flags "Since" |
 | WriteProtectedField | Flags "WriteProtected" |
-

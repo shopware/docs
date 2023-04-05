@@ -8,11 +8,11 @@ In Shopware's Storefront, you can assign media objects to the different entities
 
 In order to use your own media files or thumbnails of your plugin in the storefront, of course you first need a plugin as base. To create an own plugin, you can refer to the Plugin Base Guide:
 
-{% page-ref page="../plugin-base-guide.md" %}
+<PageRef page="../plugin-base-guide" />
 
 Displaying custom images is often done by using custom fields. To take full advantage of this guide, you might want to read the corresponding guide on using custom fields:
 
-{% page-ref page="../administration/add-custom-field.md" %}
+<PageRef page="../administration/add-custom-field" />
 
 ## Using searchMedia function
 
@@ -43,9 +43,9 @@ This `searchMedia` function reads out the corresponding media objects for the gi
 {% endblock %}
 ```
 
-{% hint style="danger" %}
+::: danger
 Please note that this function performs a query against the database and should therefore not be used within a loop.
-{% endhint %}
+:::
 
 The function is already structured in a way that several IDs can be passed. To read the media objects within the product listing we recommend the following procedure:
 
@@ -99,7 +99,7 @@ With the `sizes` parameter you can control the `sizes` attribute of the `img` an
 
 You can find more information on those sizes here: 
 
-{% embed url="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img\#attr-srcset" caption="" %}
+<PageRef page="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img\#attr-srcset" title="" target="_blank" />
 
 E.g. if the browser is in Bootstrap viewport `lg` \(which is 992px - 1199px\) use an image which is closest to 333px. If `sizes` is not set, Shopware will automatically use fallback values from global `shopware.theme.breakpoint`.
 
@@ -120,7 +120,7 @@ Let's think about the snippet below:
 
 This example will print out the following output:
 
-```markup
+```html
 <img 
     src="http://shopware.local/media/06/f0/5c/1614258798/example-image.jpg" 
     srcset="http://shopware.local/media/06/f0/5c/1614258798/example-image.jpg 1921w, 
@@ -152,7 +152,7 @@ By giving the `default` size you can override the media queries and always refer
 
 This example will create the output below:
 
-```markup
+```html
 <img 
     src="http://shopware.local/media/06/f0/5c/1614258798/example-image.jpg" 
     srcset="http://shopware.local/media/06/f0/5c/1614258798/example-image.jpg 1921w, 
@@ -162,9 +162,9 @@ This example will create the output below:
     sizes="100px">
 ```
 
-{% hint style="danger" %}
+::: danger
 Please note that those sizes only work with bootstrap viewports, like xs, sm, md, lg and xl. Custom media queries will not work.
-{% endhint %}
+:::
 
 ### Additional attributes
 
@@ -183,7 +183,7 @@ With the `attributes` param, additional attributes can be applied. Imagine the f
 
 This will generate the output below:
 
-```markup
+```html
 <img 
     src="..." 
     sizes="..." 
@@ -195,4 +195,3 @@ This will generate the output below:
 ## More interesting topics
 
 * [Use custom assets in general](add-custom-assets.md)
-

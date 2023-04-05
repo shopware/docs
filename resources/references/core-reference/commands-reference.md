@@ -312,4 +312,3 @@ $ bin/console [command] [parameters]
 | :--- | :--- |
 | `user:change-password` |  |
 | `user:create` |  |
-

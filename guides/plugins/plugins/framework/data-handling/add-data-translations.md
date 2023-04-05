@@ -22,8 +22,8 @@ swag\_example\_idThis will refer to the swag\_example this translation belongs t
 
 Therefore, this is how your migration could then look like:
 
-{% code title="<plugin root>/src/Migration/Migration1612863838ExampleTranslation.php" %}
 ```php
+// <plugin root>/src/Migration/Migration1612863838ExampleTranslation.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Migration;
@@ -65,7 +65,6 @@ SQL;
     }
 }
 ```
-{% endcode %}
 
 ## Creating the translation entity
 
@@ -75,8 +74,8 @@ The translation is an aggregation to the `ExampleEntity`. Therefore, you should 
 
 Now we can start creating our `ExampleTranslationDefinition` which extends from `Shopware\Core\Framework\DataAbstractionLayer\EntityTranslationDefinition`. Special for entity translation is, that we have to override a method called `getParentDefinitionClass` which returns the definition class of our entity we want to translate. In this case it's `ExampleDefinition`.
 
-{% code title="<plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationDefinition.php" %}
 ```php
+// <plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationDefinition.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Example\Aggregate\ExampleTranslation;
@@ -109,7 +108,6 @@ class ExampleTranslationDefinition extends EntityTranslationDefinition
     }
 }
 ```
-{% endcode %}
 
 As you can see, we've implemented a `StringField` for the `name` column, the other fields like the `language_id` will be automatically added by the `EntityTranslationDefinition` since they are base fields of it.
 
@@ -117,8 +115,8 @@ All that's left to do now, is to introduce your `ExampleTranslationDefinition` t
 
 Here's the `services.xml` as it should look like:
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
-```markup
+```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -135,7 +133,6 @@ Here's the `services.xml` as it should look like:
     </services>
 </container>
 ```
-{% endcode %}
 
 ### Entity class
 
@@ -143,8 +140,8 @@ So far we introduced our definition, we can create our `ExampleTranslationEntity
 
 Here's our `ExampleTranslationEntity`:
 
-{% code title="<plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationEntity.php" %}
 ```php
+// <plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationEntity.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Example\Aggregate\ExampleTranslation;
@@ -200,7 +197,6 @@ class ExampleTranslationEntity extends TranslationEntity
     }
 }
 ```
-{% endcode %}
 
 Now we need our translation definition to know its custom entity class. This is done by overriding the method `getEntityClass` in our `ExampleTranslationDefinition`.
 
@@ -208,7 +204,6 @@ Now we need our translation definition to know its custom entity class. This is 
 ```
 
 ```
-{% endcode %}
 
 ```php
 class ExampleTranslationDefinition extends EntityTranslationDefinition
@@ -228,8 +223,8 @@ As we already know, we should create an `EntityCollection` for our `Entity` too.
 
 Our collection class could then look like this:
 
-{% code title="<plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationCollection.php" %}
 ```php
+// <plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationCollection.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Example\Aggregate\ExampleTranslation;
@@ -253,5 +248,3 @@ class ExampleTranslationCollection extends EntityCollection
     }
 }
 ```
-{% endcode %}
-

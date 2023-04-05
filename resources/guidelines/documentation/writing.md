@@ -35,4 +35,3 @@ When you started writing, there will be a new draft created with your changes. E
 ```
 
 After your draft has been reviewed a final time, it will be published once you notify one of the administrators.
-

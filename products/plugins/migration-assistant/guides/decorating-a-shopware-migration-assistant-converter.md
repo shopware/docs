@@ -187,7 +187,7 @@ The created premapping reader fetches all manufacturers of the source system, ge
 
 Currently, the premapping card has no snippets at all, so you have to create a new snippet file for the title:
 
-```javascript
+```json
 {
      "swag-migration": {
          "index": {
@@ -311,7 +311,7 @@ Your new decorated product migration converter checks, if a manufacturer is set 
 
 In the end you have to register your decorated converter in your `services.xml`:
 
-```markup
+```html
 <service id="SwagMigrationExtendConverterExample\Profile\Shopware\Converter\Shopware55DecoratedProductConverter"
           decorates="SwagMigrationAssistant\Profile\Shopware55\Converter\Shopware55ProductConverter">
     <argument type="service" id="SwagMigrationExtendConverterExample\Profile\Shopware\Converter\Shopware55DecoratedProductConverter.inner"/>
@@ -326,4 +326,3 @@ Now you're done. You have already decorated your first Shopware migration conver
 ## Source
 
 There's a GitHub repository available, containing a full example source. Check it out [here](https://github.com/shopware/swag-docs-decorate-shopware-migration-converter).
-

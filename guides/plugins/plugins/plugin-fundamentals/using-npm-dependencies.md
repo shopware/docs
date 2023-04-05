@@ -10,7 +10,7 @@ All you need for this guide is a running Shopware 6 instance and full access to 
 
 This guide is also available as a video:
 
-{% embed url="https://www.youtube.com/watch?v=wfBuWdff35c" caption="" %}
+<PageRef page="https://www.youtube.com/watch?v=wfBuWdff35c" title="" target="_blank" />
 
 ## Adding a npm package to the Administration or the Storefront
 
@@ -24,8 +24,8 @@ Shopware's storefront as well as for administration is based on the build system
 
 To do this we put a new “build” folder below the current area: Either `Resources/app/storefront` or `Resources/app/administration`. We then create a new file with the name `webpack.config.js`. We thereby make it possible to extend the Webpack configuration of Shopware.
 
-{% code title="<plugin root>/src/Resources/app/administration/webpack.config.js" %}
 ```javascript
+// <plugin root>/src/Resources/app/administration/webpack.config.js
 const { join, resolve } = require('path'); 
 module.exports = () => { 
     return { 
@@ -39,7 +39,6 @@ module.exports = () => {
    }; 
 }
 ```
-{% endcode %}
 
 Let us take a closer look at the code. In the first line, we import the two functions `join` and `resolve` for the path module of Node.js. In the second line, we export a so-called arrow function. The build system from Shopware calls this function when either the administration or storefront is being built.
 
@@ -51,8 +50,8 @@ We proceed from the inside to the outside. We use [`join`](https://nodejs.org/ap
 
 Once we have installed all the dependencies and registered the package in the build system with an alias, we can use the package in our own code.
 
-{% code title="<plugin root>/src/Resources/app/src/main.js" %}
 ```javascript
+// <plugin root>/src/Resources/app/src/main.js
 import Plugin from 'src/plugin-system/plugin.class';
 
 // Import logger
@@ -73,7 +72,6 @@ export default class ExamplePlugin extends Plugin {
     }
 }
 ```
-{% endcode %}
 
 We import the function log as well as the constants tag via `destructuring` in the specified code. Through the use of the alias, we keep the paths short and recognize that this is an alias at first glance via the prefix.
 
@@ -82,4 +80,3 @@ We import the function log as well as the constants tag via `destructuring` in t
 Now that you know how to include new `npm` dependencies you might want to create a service with them. Learn how to do that in this guide: [How to add a custom-service](../administration/add-custom-service.md)
 
 If you want to add [composer dependencies](using-composer-dependencies.md), or even other [plugin dependencies](add-plugin-dependencies.md), we've got you covered as well.
-

@@ -8,7 +8,7 @@ This guide will walk you through the process of adding your own app to Shopware 
 
 If your're not familiar with the app system, please take a look at the concept first.
 
-{% page-ref page="../../../concepts/extensions/apps-concept.md" %}
+<PageRef page="../../../concepts/extensions/apps-concept" />
 
 ## File structure
 
@@ -26,8 +26,8 @@ To get started with your app, create an `apps` folder inside the `custom` folder
 
 The manifest file is the central point of your app. It defines the interface between your app and the Shopware instance. It provides all the information concerning your app, as seen in the minimal version below:
 
-{% code title="manifest.xml" %}
-```markup
+```xml
+// manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
@@ -43,11 +43,10 @@ The manifest file is the central point of your app. It defines the interface bet
     </meta>
 </manifest>
 ```
-{% endcode %}
 
-{% hint style="warning" %}
+::: warning
 The name of your app, that you provide in the manifest file, needs to match the folder name of your app.
-{% endhint %}
+:::
 
 The app can now be installed by running the following command:
 
@@ -57,9 +56,9 @@ bin/console app:install --activate MyExampleApp
 
 By default, your app files will be [validated](app-base-guide.md#Validation) before installation, to skip the validation you may use the `--no-validate` flag.
 
-{% hint style="info" %}
+::: info
 Apps get installed as inactive. You can activate them by passing the `--activate` flag to the `app:install` command or by executing the `app:activate` command after installation.
-{% endhint %}
+:::
 
 For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../resources/references/app-reference/manifest-reference.md).
 
@@ -76,8 +75,8 @@ The setup workflow is shown in the following schema, each step will be explained
 
 The registration request is made as a GET-Request against a URL that you provide in the manifest file of your app.
 
-{% code title="manifest.xml" %}
-```markup
+```xml
+// manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
@@ -88,7 +87,6 @@ The registration request is made as a GET-Request against a URL that you provide
     </setup>
 </manifest>
 ```
-{% endcode %}
 
 The following query parameters will be send with the request:
 
@@ -105,20 +103,21 @@ GET https://my.example.com/registration?shop-id=KIPf0Fz6BUkN&shop-url=http%3A%2F
 Additionally, the `shopware-app-signature` header will be provided, which contains a cryptographic signature of the query string.  
 The secret used to generate this signature is the `app secret`, that is unique per app and will be provided by the Shopware Account if you upload your app to the store. This secret won't leave the Shopware Account, so it won't be even leaked to the shops installing your app.
 
-{% hint style="danger" %}
+::: danger
 You and the Shopware Account are the only parties that should know your `app-secret`, therefore make sure you never accidentally publish your `app-secret`.
-{% endhint %}
+:::
 
-{% hint style="warning" %}
+::: warning
 For local development you can specify a &lt;secret&gt; in the manifest file, that is used for signing the registration request. However if a app uses a hard-coded secret in the manifest it can not be uploaded to the store.
-{% endhint %}
+:::
 
 To verify that the registration can only be triggered by authenticated Shopware shops you need to recalculate the signature and check that the signatures match, thus you've verified that the sender of the request possesses the `app secret`.
 
 Following code snippet can be used to recalculate the signature:
 
-{% tabs %}
-{% tab title="PHP" %}
+<Tabs>
+<Tab title="PHP">
+
 ```php
 use Psr\Http\Message\RequestInterface;
 
@@ -126,8 +125,8 @@ use Psr\Http\Message\RequestInterface;
 $queryString = $request->getUri()->getQuery();
 $signature = hash_hmac('sha256', $queryString, $appSecret);
 ```
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ### Registration Response
 
@@ -135,8 +134,9 @@ To verify that you are also in possession of the `app secret` you need to provid
 
 Following code snippet can be used to calculate the proof:
 
-{% tabs %}
-{% tab title="PHP" %}
+<Tabs>
+<Tab title="PHP">
+
 ```php
 use Psr\Http\Message\RequestInterface;
 
@@ -149,20 +149,20 @@ $proof = \hash_hmac(
     $appSecret
 );
 ```
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 Besides the proof your app needs to provide a randomly generated secret, that should be used to sign every further request from this shop. Make sure to save the shopId, shopUrl and generated secret, so you can associate and use this information later.
 
-{% hint style="info" %}
+::: info
 This secret will be called `shop-secret` to distinguish it from the `app-secret`. The `app-secret` is unique for your app and is used to sign the registration request of every shop that installs your app. The `shop-secret` will be provided by your app during the registration and should be unique for every shop
-{% endhint %}
+:::
 
 The last thing needed in the registration response is a URL, which the confirmation request will be send to.
 
 A sample registration response may look like this:
 
-```javascript
+```json
 {
   "proof": "94b42d39280141de84bd6fc8e538946ccdd182e4558f1e690eabb94f924e7bc7",
   "secret": "random secret string",
@@ -182,7 +182,7 @@ If the proof you provided in the [registration response](app-base-guide.md#regis
 
 The payload of that request may look like this:
 
-```javascript
+```json
 {
   "apiKey":"SWIARXBSDJRWEMJONFK2OHBNWA",
   "secretKey":"Q1QyaUg3ZHpnZURPeDV3ZkpncXdSRzJpNjdBeWM1WWhWYWd0NE0",
@@ -199,16 +199,17 @@ You need to recalculate that signature and check that it matches the provided on
 
 You can use following code snippet to generate the signature:
 
-{% tabs %}
-{% tab title="PHP" %}
+<Tabs>
+<Tab title="PHP">
+
 ```php
 use Psr\Http\Message\RequestInterface;
 
 /** @var RequestInterface $request */
 $hmac = \hash_hmac('sha256', $request->getBody()->getContents(), $shopSecret);
 ```
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Permissions
 
@@ -216,8 +217,8 @@ Shopware comes with the possibility to create fine grained [Access Control Lists
 
 Sample permissions to read, create and update products, as well as delete orders look like this:
 
-{% code title="manifest.xml" %}
-```markup
+```xml
+// manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
@@ -232,13 +233,12 @@ Sample permissions to read, create and update products, as well as delete orders
     </permissions>
 </manifest>
 ```
-{% endcode %}
 
 The permissions you request need to be accepted by the user during the installation of your app. After that these permissions are granted for your app and your API access through the credentials from the [confirmation request](app-base-guide.md#confirmation-request) of the [setup workflow](app-base-guide.md#setup) are limited to those permissions.
 
-{% hint style="warning" %}
+::: warning
 Keep in mind that read permissions also extend to the data contained in the requests so that your app needs read permissions for the entities contained in the subscribed [webhooks](app-base-guide.md#webhooks).
-{% endhint %}
+:::
 
 ## Webhooks
 
@@ -246,8 +246,8 @@ With webhooks you are able to subscribe to events occurring in Shopware. Wheneve
 
 To use webhooks in your app, you need to implement a `<webhooks>` element in your manifest file, like this:
 
-{% code title="manifest.xml" %}
-```markup
+```xml
+// manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
@@ -258,13 +258,12 @@ To use webhooks in your app, you need to implement a `<webhooks>` element in you
     </webhooks>
 </manifest>
 ```
-{% endcode %}
 
 This example illustrates you how to define a webhook with the name `product-changed` and the url `https://example.com/event/product-changed` which will be triggered if the event `product.written` is fired. So every time a product is changed, your custom logic will get executed. Further down you will find a list of the most important events you can hook into.
 
 An event contains as much data as is needed to react to that event. The data is json contained in the request body. For example:
 
-```javascript
+```json
 {
   "data":{
     "payload":[
@@ -330,7 +329,7 @@ Apps can also register to lifecycle events of its own lifecycle, namely its inst
 
 Example request body:
 
-```javascript
+```json
 {
   "data":{
     "payload":[
@@ -467,10 +466,8 @@ ApiKey used to authenticate against the Shopware API
 {% endapi-method-response-example-description %}
 
 ```text
-
 ```
 {% endapi-method-response-example %}
 {% endapi-method-response %}
 {% endapi-method-spec %}
 {% endapi-method %}
-

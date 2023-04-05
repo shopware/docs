@@ -12,8 +12,8 @@ As noted in the introduction utils in the Shopware 6 Administration are bound to
 
 In this very short example we'll show you how to use a function of utility functions, in this case the `capitalizeString` function. The `capitalizeString` function in turn calls the [`lodash capitalize`](https://lodash.com/docs/4.17.15#capitalize) function wich as the name implies capitalizes strings.
 
-{% code title="<plugin-root>/src/Resources/app/administration/app/src/component/swag-basic-example/index.js" %}
 ```javascript
+// <plugin-root>/src/Resources/app/administration/app/src/component/swag-basic-example/index.js
 const { Component, Utils } = Shopware;
 
 Component.register('swag-basic-example', {
@@ -36,7 +36,6 @@ Component.register('swag-basic-example', {
     }
 });
 ```
-{% endcode %}
 
 ## An overview of all the functions
 
@@ -48,4 +47,3 @@ If want to look up at all available utility functions, take a look at the previo
 
 * [Adding filters](add-filter.md)
 * [Adding mixins](add-mixins.md)
-

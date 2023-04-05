@@ -20,7 +20,7 @@ Dealing with the Data Abstraction Layer is done by using the automatically gener
 The repository's service name follows this pattern: `entity_name.repository`  
 For products this then would be `product.repository`, so let's do this.
 
-```markup
+```xml
 // SwagBasicExample/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -369,4 +369,3 @@ And that's basically it for this guide!
 ## Next steps
 
 Now that you know how to read data from the database using the Data Abstraction Layer, you can head over to our guide on [writing data](writing-data.md).
-

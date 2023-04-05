@@ -100,4 +100,3 @@ As next step, you might want to start writing your very own plugin. Head over to
 * [Dockware](dockware.md)
 * [Vagrant](vagrant.md)
 * [MAMP](mamp.md)
-

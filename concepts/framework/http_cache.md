@@ -61,4 +61,3 @@ This cookie replaces the `sw-currency` cookie and contains the active rules and 
 This cookie describes the current session in simple tags like `cart-filled` and `logged-in`. When the client tags fit to the response `sw-invalidation-states` header the cache will be skipped.
 
 Example usage for this feature is to save the cache for logged in customers only.
-

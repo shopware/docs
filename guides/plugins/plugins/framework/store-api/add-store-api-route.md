@@ -14,16 +14,16 @@ You also should have a look at our [Adding custom complex data](../data-handling
 
 As you may already know from the [adjusting service](../../plugin-fundamentals/adjusting-service.md) guide, we use abstract classes to make our routes more decoratable.
 
-{% hint style="warning" %}
+::: warning
 All fields that should be available through the API require the flag `ApiAware` in the definition.
-{% endhint %}
+:::
 
 ### Create abstract route class
 
 First of all, we create an abstract class called `AbstractExampleRoute`. This class has to contain a method `getDecorated` and a method `load` with a `Criteria` and `SalesChannelContext` as parameter. The `load` method has to return an instance of `ExampleRouteResponse`, which we will create later on.
 
-{% code title="<plugin root>/src/Core/Content/Example/SalesChannel/AbstractExampleRoute.php" %}
 ```php
+// <plugin root>/src/Core/Content/Example/SalesChannel/AbstractExampleRoute.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
@@ -38,14 +38,13 @@ abstract class AbstractExampleRoute
     abstract public function load(Criteria $criteria, SalesChannelContext $context): ExampleRouteResponse;
 }
 ```
-{% endcode %}
 
 ### Create route class
 
 Now we can create a new class `ExampleRoute` which uses our previously created `AbstractExampleRoute`.
 
-{% code title="<plugin root>/src/Core/Content/Example/SalesChannel/ExampleRoute.php" %}
 ```php
+// <plugin root>/src/Core/Content/Example/SalesChannel/ExampleRoute.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
@@ -117,7 +116,6 @@ class ExampleRoute extends AbstractExampleRoute
     }
 }
 ```
-{% endcode %}
 
 As you can see, our class is annotated with `@RouteScope` and the defined scope `store-api`.
 
@@ -144,8 +142,8 @@ Finally, we have our retrieved entities, using an `@OA\Items` annotation which r
 
 After we have created our route, we need to create the mentioned `ExampleRouteResponse`. This class should extend from `Shopware\Core\System\SalesChannel\StoreApiResponse`. In this class we have a property `$object` of type `Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult`. The class constructor has one argument `EntitySearchResult`, which was passed to it by our `ExampleRoute`. The constructor calls the parent constructor with the parameter `$object` which sets the value for our object property. Finally, we add a method `getExamples` in which we return our entity collection that we got from the object.
 
-{% code title="<plugin root>/src/Core/Content/Example/SalesChannel/ExampleRouteResponse.php" %}
 ```php
+// <plugin root>/src/Core/Content/Example/SalesChannel/ExampleRouteResponse.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
@@ -175,14 +173,13 @@ class ExampleRouteResponse extends StoreApiResponse
     }
 }
 ```
-{% endcode %}
 
 ## Register route
 
 The last thing we need to do now is to tell Shopware how to look for new routes in our plugin. This is done with a `routes.xml` file at `<plugin root>/src/Resources/config/` location. Have a look at the official [Symfony documentation](https://symfony.com/doc/current/routing.html) about routes and how they are registered.
 
-{% code title="<plugin root>/src/Resources/config/routes.xml" %}
-```markup
+```xml
+// <plugin root>/src/Resources/config/routes.xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <routes xmlns="http://symfony.com/schema/routing"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -192,17 +189,15 @@ The last thing we need to do now is to tell Shopware how to look for new routes 
     <import resource="../../Core/**/*Route.php" type="annotation" />
 </routes>
 ```
-{% endcode %}
 
 ## Check route via Symfony debugger
 
 To check, if your route was registered correctly, you can use the [Symfony route debugger](https://symfony.com/doc/current/routing.html#debugging-routes).
 
-{% code title="" %}
 ```bash
+// 
 $ ./bin/console debug:router store-api.example.search
 ```
-{% endcode %}
 
 ## Check route in Swagger
 
@@ -212,7 +207,7 @@ Your generated request and response could look like this:
 
 ### Request
 
-```javascript
+```json
 {
   "page": 0,
   "limit": 0,
@@ -264,7 +259,7 @@ Your generated request and response could look like this:
 
 ### Response
 
-```javascript
+```json
 {
   "total": 0,
   "aggregations": {},
@@ -280,4 +275,3 @@ Your generated request and response could look like this:
   ]
 }
 ```
-

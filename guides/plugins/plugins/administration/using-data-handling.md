@@ -110,7 +110,6 @@ Shopware.Component.register('swag-basic-example', {
         criteria.getAssociation('categories')
             .addSorting(Criteria.sort('category.name', 'ASC'));
 
-
         this.productRepository.create('product');
 
         this.productRepository
@@ -586,7 +585,6 @@ Shopware.Component.register('swag-basic-example', {
             .then(product => {
                 this.product = product;
 
-
             });
     },
     methods: {
@@ -694,4 +692,3 @@ Shopware.Component.register('swag-basic-example', {
 ## Next steps
 
 As this is very similar to the DAL it might be interesting to learn more about that. For this, head over to the section about the [data handling](../framework/data-handling/) in PHP.
-

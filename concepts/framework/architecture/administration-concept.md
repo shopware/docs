@@ -122,11 +122,10 @@ Within plugins, you do have the following options, when it comes to adjusting ex
 
 You will find more information about customizing components of the administration in our guided articles:
 
-{% page-ref page="administration-concept.md" %}
+<PageRef page="administration-concept" />
 
 ## ACL in the Administration
 
 The Access Control List or ACL in Shopware ensures that by default data can only be created, read, updated or deleted \( CRUD\), once the user has specific privileges for a module. Additionally, one can set up custom roles in the Administrations UI or develop individual privileges with plugins. These roles do have finely granular rights, which every shop operator can set up himself and can be assigned to users. By default, a module of the Administration has a directory called `acl` included. In this directory one will find specific mappings of privileges \(permissions for roles; additional permissions\) for the default roles: `viewer`, `editor`, `creator`, `deleter`. A more guided article about ACL can be found here:
 
-{% page-ref page="administration-concept.md" %}
-
+<PageRef page="administration-concept" />

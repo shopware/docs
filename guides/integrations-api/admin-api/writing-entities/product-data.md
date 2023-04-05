@@ -16,7 +16,7 @@ A product has only a handful of required fields:
 
 The smallest required payload for a product can therefore be as follows:
 
-```javascript
+```json
 {
     "name": "test",
     "productNumber": "random",
@@ -56,7 +56,7 @@ Within the price, the different currency prices are available. Each of these cur
 
 To define prices for a product in different currencies, this is an exemplary payload:
 
-```javascript
+```json
 {
     "name": "test",
     "productNumber": "random",
@@ -101,7 +101,7 @@ Each price in `product.prices` has the following properties:
 
 To define prices for a rule including a quantity discount, this is an exemplary payload:
 
-```javascript
+```json
 {
     "name": "test",
     "productNumber": "random",
@@ -166,7 +166,7 @@ The product has various `many-to-many` associations. This type of association is
 
 For assigning several `properties` and `categories` this is an exemplary payload:
 
-```javascript
+```json
 {
     "name": "test",
     "productNumber": "random",
@@ -293,7 +293,7 @@ This can be set to three different values:
 
 Since visibility can be configured per sales channel, the entity also has its own ID. This is needed to delete or update the assignment later. To assign a product to several sales channels, the following payload can be used:
 
-```javascript
+```json
 {
     "name": "test",
     "productNumber": "random",
@@ -334,7 +334,7 @@ Variants are child elements of a product. As soon as a product is configured wit
 * `productNumber` \[string\] - Defines the unique product number
 * `options` \[array\]        - Defines the characteristic of the variant.
 
-```javascript
+```json
 {
     "id": "0d0adf2a3aa1488eb177288cfac9d47e",
     "parentId": "17f255e0a12848c38b7ec6767a6d6adf",
@@ -353,7 +353,7 @@ Data that is not defined in a variant, is inherited from the parent product. If 
 
 To define a separate `price` for a variant, the same payload can be used as for a non-variant products:
 
-```javascript
+```json
 {
     "id": "0d0adf2a3aa1488eb177288cfac9d47e",
     "parentId": "17f255e0a12848c38b7ec6767a6d6adf",
@@ -388,7 +388,7 @@ However, it is also possible to resolve the inheritance in the `/api` by providi
 
 To create a complete product with variants, not only the variants have to be created but also the corresponding `options` have to be configured. For the variants this is done via the `options` association. This association defines the characteristics of the variant, i.e. whether it is the yellow or red t-shirt. For the parent product, the `configuratorSettings` association must be defined. This defines which options are generally available. The Admin UI and the Storefront UI are built using this data. The following payload can be used to generate a product with the variants: red-xl, red-l, yellow-xl, yellow-l.
 
-```javascript
+```json
 {
     "stock": 10,
     "productNumber": "random",
@@ -465,4 +465,3 @@ To create a complete product with variants, not only the variants have to be cre
     ]
 }
 ```
-

@@ -24,9 +24,10 @@ Slot ids that should be resolved exclusively. Separate multiple slot ids using a
 
 Returns a category object.
 
-{% tabs %}
-{% tab title="200 OK" %}
-```javascript
+<Tabs>
+<Tab title="200 OK">
+
+```json
 {
   "parentId": "845170a6041f4b76bad7bd2de47b7aae",
   "autoIncrement": 3,
@@ -71,8 +72,8 @@ Returns a category object.
   "apiAlias": "category"
 }
 ```
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Fetch a list of categories by criteria
 
@@ -90,9 +91,10 @@ Perform a filtered search for categories.
 
 Returns a search result containing categories, aggregations and pagination properties.
 
-{% tabs %}
-{% tab title="200 OK" %}
-```javascript
+<Tabs>
+<Tab title="200 OK">
+
+```json
 {
   "total": 1,
   "aggregations": [],
@@ -102,8 +104,8 @@ Returns a search result containing categories, aggregations and pagination prope
   "apiAlias": "dal_entity_search_result"
 }
 ```
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Fetch a navigation menu
 
@@ -126,7 +128,7 @@ Id of the active category in the navigation tree \(if not used, just set to the 
 **`rootId`** \| uuid \| required  
 Id of the root category for your desired navigation tree. You can use it to fetch sub-trees of your navigation tree.
 
-{% hint style="info" %}
+::: info
 Instead of passing **uuids**, you can also use one of the following **aliases** for the **`activeId`** and **`rootId`** parameters to get the respective navigations of your sales channel.
 
 * `main-navigation`
@@ -136,7 +138,7 @@ Instead of passing **uuids**, you can also use one of the following **aliases** 
 ```text
 POST /navigation/main-navigation/main-navigation
 ```
-{% endhint %}
+:::
 
 **Body**
 
@@ -152,8 +154,9 @@ Determines the depth of fetched navigation levels. Default is `2`.
 
 Returns a collection of categories.
 
-{% tabs %}
-{% tab title="200 OK" %}
+<Tabs>
+<Tab title="200 OK">
+
 ```javascript
 [
   {
@@ -205,6 +208,5 @@ Returns a collection of categories.
   { ... }
 ]
 ```
-{% endtab %}
-{% endtabs %}
-
+</Tab>
+</Tabs>

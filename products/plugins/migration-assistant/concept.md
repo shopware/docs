@@ -1,7 +1,5 @@
 # Concept
 
-
-
 [Shopware Migration Assistant](https://github.com/shopware/SwagMigrationAssistant) was built with simple but powerful concepts in mind. These enable you to extend the plugin in various ways and migrate data into the Shopware 6 environment. You should have a basic understanding of how to use the migration plugin and its core features, before extending it yourself. \(this documentation will not explain the usage of the plugin\).
 
 We will provide you with a basic introduction into the concepts and structure right here in this chapter. Take a look at the last headline \(Extension points\) to find out more about the various ways to extend this plugin.
@@ -76,4 +74,3 @@ Take a look at the following HowTos for your scenario to get a step by step tuto
 * [Extending the Migration Connector](./guides/extending-the-migration-connector.md) &lt;- add API support for your migration
 * [Decorating a Shopware Migration Assistant converter](./guides/decorating-a-shopware-migration-assistant-converter.md) &lt;- implement a premapping and change the behavior of an existing converter
 * [Creating a new migration profile](./guides/creating-a-new-migration-profile.md) &lt;- create a new profile from scratch to support a third party source system \(other than Shopware\)
-

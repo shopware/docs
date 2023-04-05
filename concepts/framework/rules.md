@@ -50,5 +50,4 @@ Following Shopware 6s data driven approach the rule objects are stored to the da
 
 For more insights on the rule validation take a look at the cart documentation:
 
-{% page-ref page="rules.md" %}
-
+<PageRef page="rules" />

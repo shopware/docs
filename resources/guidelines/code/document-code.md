@@ -4,4 +4,3 @@
 * Unnecessary doc block lines should always be avoided. This includes the `@param` and `@return` annotation as long as this is already defined by type hints.
 * In a doc block, all exceptions thrown directly by the function should be documented via `@throws` annotation. 
 * Exceptions that could be thrown by a library are not included in the doc blocks.
-

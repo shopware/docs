@@ -220,4 +220,3 @@ You can control the behaviour using the following headers:
     }
 }
 ```
-

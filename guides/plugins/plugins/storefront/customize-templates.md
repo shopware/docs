@@ -22,9 +22,9 @@ As mentioned earlier, this guide is only trying to replace the 'demo' logo with 
 
 Overriding this file now requires you to copy the exact same directory structure starting from the `views` directory. In this case, the file `logo.html.twig` is located in a directory called `storefront/layout/header`, so make sure to remember this path.
 
-{% hint style="info" %}
+::: info
 There's a plugin out there called [FroshDevelopmentHelper](https://github.com/FriendsOfShopware/FroshDevelopmentHelper), that adds hints about template blocks and includes into the rendered HTML. This way it's easier to actually find the proper template.
-{% endhint %}
+:::
 
 ### Overriding the template
 
@@ -62,19 +62,21 @@ If you wanted to append your text to the logo instead of replacing it, you could
 
 And that's it already, you're done already. You might have to clear the cache and refresh your storefront to see your changes in action. This can be done by using the command following command inside your command line.
 
-{% tabs %}
-{% tab title="Development template" %}
+<Tabs>
+<Tab title="Development template">
+
 ```bash
 ./psh.phar cache
 ```
-{% endtab %}
+</Tab>
 
-{% tab title="Production template" %}
+<Tab title="Production template">
+
 ```bash
 ./bin/console cache:clear
 ```
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ### Finding variables
 
@@ -88,9 +90,9 @@ But rather than that, how do you know which variables are available to use? For 
 
 This `dump()` call will print out all variables available on this page.
 
-{% hint style="info" %}
+::: info
 Once again, the plugin called [FroshDevelopmentHelper](https://github.com/FriendsOfShopware/FroshDevelopmentHelper) adds all available page data to the Twig tab in the profiler, when opening a request and its details. This might help here as well.
-{% endhint %}
+:::
 
 ## Next steps
 
@@ -100,4 +102,3 @@ You're able to customize templates now, which is a good start. However, there's 
 * [Adding translations](add-translations.md)
 * [Using icons]()
 * [Using custom assets](add-custom-assets.md)
-

@@ -19,19 +19,21 @@ Identifier of a product. If it points to a "parent" product, it returns the chea
 
 Returns a single product together with a configurator object that contains its variant options.
 
-{% tabs %}
-{% tab title="200 OK" %}
-```javascript
+<Tabs>
+<Tab title="200 OK">
+
+```json
 {
   "apiAlias": "product_detail",
   "product": { ... }
   "configurator": []
 }
 ```
-{% endtab %}
+</Tab>
 
-{% tab title="404 Not Found" %}
-```javascript
+<Tab title="404 Not Found">
+
+```json
 {
   "errors": [
     {
@@ -48,8 +50,8 @@ Returns a single product together with a configurator object that contains its v
   ]
 }
 ```
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Fetch a list of products by category
 
@@ -70,9 +72,10 @@ Identifier of a category.
 
 Returns a product listing containing all products and additional fields to display a listing.
 
-{% tabs %}
-{% tab title="200 OK" %}
-```javascript
+<Tabs>
+<Tab title="200 OK">
+
+```json
 {
   "sorting": "name-asc",
   "currentFilters": { ... },
@@ -86,8 +89,8 @@ Returns a product listing containing all products and additional fields to displ
   "apiAlias": "product_listing"
 }
 ```
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Fetch a list of products by criteria
 
@@ -103,9 +106,10 @@ Returns a product listing containing all products and additional fields to displ
 
 Returns a search result containing products, aggregations and pagination properties.
 
-{% tabs %}
-{% tab title="200 OK" %}
-```javascript
+<Tabs>
+<Tab title="200 OK">
+
+```json
 {
   "total": 1,
   "aggregations": [],
@@ -115,8 +119,8 @@ Returns a search result containing products, aggregations and pagination propert
   "apiAlias": "dal_entity_search_result"
 }
 ```
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Fetch cross-selling groups of a product
 
@@ -137,8 +141,9 @@ Identifier of a product.
 
 Returns a list of cross-selling groups for the given product including their respective items.
 
-{% tabs %}
-{% tab title="200 OK" %}
+<Tabs>
+<Tab title="200 OK">
+
 ```javascript
 [
   {
@@ -172,8 +177,8 @@ Returns a list of cross-selling groups for the given product including their res
   }
 ]
 ```
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Search for products
 
@@ -196,9 +201,10 @@ Returns a product listing including all products that match your search term. Ad
 
 When you're using the /search-suggest endpoint, aggregations, currentFilters and availableSortings are not included in the response.
 
-{% tabs %}
-{% tab title="200 OK" %}
-```javascript
+<Tabs>
+<Tab title="200 OK">
+
+```json
 {
   "sorting": "score",
   "currentFilters": { ... },
@@ -222,8 +228,8 @@ When you're using the /search-suggest endpoint, aggregations, currentFilters and
   "apiAlias": "product_listing"
 }
 ```
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Fetch product reviews
 
@@ -244,9 +250,10 @@ Identifier of a product.
 
 Returns a search result containing all reviews for the given product.
 
-{% tabs %}
-{% tab title="200 OK" %}
-```javascript
+<Tabs>
+<Tab title="200 OK">
+
+```json
 {
   "total": 1,
   "aggregations": [],
@@ -280,8 +287,8 @@ Returns a search result containing all reviews for the given product.
   "apiAlias": "dal_entity_search_result"
 }
 ```
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Save product reviews
 
@@ -323,11 +330,11 @@ Identifier of a product.
 
 Returns an empty when the response was created or modified.
 
-{% tabs %}
-{% tab title="204 No Content" %}
+<Tabs>
+<Tab title="204 No Content">
+
 ```javascript
 // No Content
 ```
-{% endtab %}
-{% endtabs %}
-
+</Tab>
+</Tabs>

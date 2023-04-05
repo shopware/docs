@@ -110,4 +110,3 @@ This way the product will now lose the association to the media entity. Note: Th
 ## More interesting topics
 
 * [Replacing associated data](replacing-associated-data.md)
-

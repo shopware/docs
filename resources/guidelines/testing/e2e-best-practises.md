@@ -76,4 +76,3 @@ cy.wait('@getData').then((xhr) => {
     expect(xhr).to.have.property('status', 200);
 });
 ```
-

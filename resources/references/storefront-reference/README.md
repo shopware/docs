@@ -1,2 +1,0 @@
-# Storefront Reference
-

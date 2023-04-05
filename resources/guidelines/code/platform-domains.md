@@ -4,4 +4,3 @@
 * The `Administration` domain may have dependencies on the `Core` domain, but not on `Storefront` or `Elasticsearch` domain.
 * The `Elasticsearch` domain may have dependencies on the `Core` domain, but not on `Storefront` or `Administration` domain.
 * The `Storefront` domain may have dependencies on the `Core` domain, but not on `Administration` or `Elasticsearch` domain.
-

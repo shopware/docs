@@ -7,8 +7,8 @@ In order to create a custom module, you need to define an admin element to defin
 * Here you're able to define the technical name of your module and the source: Please insert the link to your website there.
 * To define the module's title and its translation, you can add a label as child element.
 
-{% code title="manifest.xml" %}
-```markup
+```xml
+// manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
@@ -22,7 +22,6 @@ In order to create a custom module, you need to define an admin element to defin
     </admin>
 </manifest>
 ```
-{% endcode %}
 
 For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference.md).
 
@@ -52,4 +51,3 @@ function sendReadyState() {
 ```
 
 This has to be done as soon as everything is loaded so that the loading spinner disappears. If your view is not fully loaded after 5 seconds, it will be aborted.
-

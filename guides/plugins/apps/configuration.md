@@ -1,8 +1,8 @@
 # Configuration
 
-{% hint style="info" %}
+::: info
 Configurations for apps adhere to the same schema as [Plugin Configurations](../plugins/plugin-fundamentals/add-plugin-configuration.md).
-{% endhint %}
+:::
 
 To offer configuration possibilities to your users you can provide a `config.xml` file that describes your configuration options. You can find detailed information about the possibilities and the structure of the `config.xml` in the according documentation page. To include a `config.xml` file in your app put it into the `Resources/config` folder:
 
@@ -33,15 +33,14 @@ GET /api/v{version}/_action/system-config?domain=DemoApp.config&salesChannelId=9
 }
 ```
 
-{% hint style="warning" %}
+::: warning
 Keep in mind that your app needs the `system_config:read` permission to access this API.
-{% endhint %}
+:::
 
 ### Reading the config in templates
 
 Inside twig templates you can use the `config` property of the global `shopware` object to read your configuration. An example twig template could look like this:
 
-```markup
+```html
 {{ shopware.config.DemoApp.config.field1 }}
 ```
-

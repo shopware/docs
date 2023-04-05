@@ -21,7 +21,7 @@ Dealing with the Data Abstraction Layer is done by using the automatically gener
 The repository's service name follows this pattern: `entity_name.repository`  
 For products this then would be `product.repository`. Additional to that, you're going to need the `tax` repository later for this guide, so let's add this as well already.
 
-```markup
+```xml
 // SwagBasicExample/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -357,4 +357,3 @@ Replacing associated data is not always as easy as it seems. Head over to our [g
 That's it for this guide already!
 
 You should now be able to write data to the database using the Data Abstraction Layer from Shopware 6. You might have missed the guide about [reading data](reading-data.md) in the first place though, and you should definitely know how that's done.
-

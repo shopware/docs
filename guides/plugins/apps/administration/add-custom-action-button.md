@@ -6,8 +6,8 @@ One extension possibility in the administration is the ability to add custom act
 
 To get those buttons, you start in the `admin` section of your manifest file. There you can define `<action-button>` elements in order to add your button, as seen as below:
 
-{% code title="manifest.xml" %}
-```markup
+```xml
+// manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
@@ -26,7 +26,6 @@ To get those buttons, you start in the `admin` section of your manifest file. Th
     </admin>
 </manifest>
 ```
-{% endcode %}
 
 For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference.md).
 
@@ -40,7 +39,7 @@ When the user clicks on the action button your app receives a request similar to
 
 A sample payload may look like the following:
 
-```javascript
+```json
 {
   "source":{
     "url":"http:\/\/localhost:8000",
@@ -63,4 +62,3 @@ A sample payload may look like the following:
 ```
 
 Again you can verify the authenticity of the incoming request, like with [webhooks](../app-base-guide.md#webhooks), by checking the `shopware-shop-signature` it too contains the sha256 hmac of the request body, that is signed with the secret your app assigned the shop during the [registration](../app-base-guide.md#setup).
-

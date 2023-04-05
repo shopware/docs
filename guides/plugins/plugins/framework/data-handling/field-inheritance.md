@@ -30,8 +30,8 @@ ALTER TABLE `swag_example` MODIFY `description` VARCHAR(255) NULL;
 
 To avoid creating the column incorrectly, you can simply use the `Shopware\Core\Framework\Migration\InheritanceUpdaterTrait` in your migrations for new fields:
 
-{% code title="<plugin root>/src/Migration/Migration1615363012AddInheritanceColumnToExample.php" %}
 ```php
+// <plugin root>/src/Migration/Migration1615363012AddInheritanceColumnToExample.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Migration;
@@ -59,7 +59,6 @@ class Migration1615363012AddInheritanceColumnToExample extends MigrationStep
     }
 }
 ```
-{% endcode %}
 
 ### Add the ParentFkField and the associations
 
@@ -71,8 +70,8 @@ After we've made all our fields nullable, we still need to add the following fie
 
 In default, it points to a `parent_id` column in the database. All these fields must refer to our definition by using `self::class`. The `ParentAssociationField` has as its second parameter the referenceField, which in our case is `id`. Below you can find an example of how it should then look.
 
-{% code title="<plugin root>/src/Core/Content/Example/ExampleDefinition.php" %}
 ```php
+// <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 protected function defineFields(): FieldCollection
 {
     return new FieldCollection([
@@ -86,27 +85,25 @@ protected function defineFields(): FieldCollection
     ]);
 }
 ```
-{% endcode %}
 
 ### Allow inheritance
 
 Now we need to enable inheritance by overriding the `isInheritanceAware` method in our definition, which must then return `true`.
 
-{% code title="<plugin root>/src/Core/Content/Example/ExampleDefinition.php" %}
 ```php
+// <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 public function isInheritanceAware(): bool
 {
     return true;
 }
 ```
-{% endcode %}
 
 ### Flag fields as inheritable
 
 After we've enabled inheritance for our definition, we need to add the`Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\Inherited` flag to all the fields in our definition that should be inherited.
 
-{% code title="<plugin root>/src/Core/Content/Example/ExampleDefinition.php" %}
 ```php
+// <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 protected function defineFields(): FieldCollection
 {
     return new FieldCollection([
@@ -122,14 +119,13 @@ protected function defineFields(): FieldCollection
     ]);
 }
 ```
-{% endcode %}
 
 ### Add getters and setters to the entity class
 
 The last thing we need to do is add our new fields to our entity class.
 
-{% code title="<plugin root>/src/Core/Content/Example/ExampleEntity.php" %}
 ```php
+// <plugin root>/src/Core/Content/Example/ExampleEntity.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Example;
@@ -189,7 +185,6 @@ class ExampleEntity extends Entity
     }
 }
 ```
-{% endcode %}
 
 ## Translations
 
@@ -210,4 +205,3 @@ Assuming our definition is already aware of inheritance, we have to update our d
 (new TranslatedField('name'))->addFlags(new Inherited()),
 (new TranslationsAssociationField(ExampleTranslationDefinition::class))->addFlags(new Inherited()),
 ```
-

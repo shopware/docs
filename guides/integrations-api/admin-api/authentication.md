@@ -12,28 +12,29 @@ OAuth 2.0 defines various ways that users can authenticate, so-called **applicat
 
 **Not sure which grant type to use?**
 
-{% tabs %}
-{% tab title="Client Credentials" %}
+<Tabs>
+<Tab title="Client Credentials">
 Per standard, the client credentials grant type should be used for machine-to-machine communications, such as CLI jobs or automated services. Once an access token has been obtained, it remains valid for 10 minutes.
 
 It requires the setup of an integration and two credentials - an **application id** and an **application secret**.
-{% endtab %}
+</Tab>
 
-{% tab title="Resource Owner Password" %}
+<Tab title="Resource Owner Password">
 The resource owner password credentials grant is used by our admin panel. It identifies the API user based on a **username** and a **password** in exchange for an access token with a lifetime of 10 minutes and a refresh token. We recommend to only use this grant flow for client applications that should perform administrative actions and require a user-based authentication.
 
 It requires an admin user to be set up.
-{% endtab %}
+</Tab>
 
-{% tab title="Refresh Token" %}
+<Tab title="Refresh Token">
 This grant is only available, when a preceding authentication with the resource owner password grant type has been performed. The **refresh token** obtained during the initial authentication can be exchanged for another short-lived \(10 minutes\) access token.
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 In order to obtain an access token, perform one of the following requests
 
-{% tabs %}
-{% tab title="Integration" %}
+<Tabs>
+<Tab title="Integration">
+
 ```javascript
 // POST /api/oauth/token
 
@@ -46,16 +47,17 @@ In order to obtain an access token, perform one of the following requests
 
 which will return
 
-```javascript
+```json
 {
   "token_type": "Bearer",
   "expires_in": 600,
   "access_token": "xxxxxxxxxxxxxx"
 }
 ```
-{% endtab %}
+</Tab>
 
-{% tab title="Username and Password" %}
+<Tab title="Username and Password">
+
 ```javascript
 // POST /api/oauth/token
 
@@ -70,7 +72,7 @@ which will return
 
 which will return
 
-```javascript
+```json
 {
   "token_type": "Bearer",
   "expires_in": 600,
@@ -80,10 +82,11 @@ which will return
 ```
 
 Make sure to also persist the `refresh_token` for subsequent authentications using the refresh token grant.
-{% endtab %}
+</Tab>
 
-{% tab title="Refresh Token" %}
-```javascript
+<Tab title="Refresh Token">
+
+```json
 {
     "grant_type": "refresh_token",
     "client_id": "<client-id>",
@@ -93,7 +96,7 @@ Make sure to also persist the `refresh_token` for subsequent authentications usi
 
 which will return
 
-```javascript
+```json
 {
   "token_type": "Bearer",
   "expires_in": 600,
@@ -101,8 +104,8 @@ which will return
   "refresh_token": "token"
 }
 ```
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Passing the access token
 
@@ -115,4 +118,3 @@ Host: shop.example.com
 Content-Type: application/json
 Authorization: Bearer eyJ0....
 ```
-

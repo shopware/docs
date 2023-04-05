@@ -9,4 +9,3 @@ In addition to the default indexing the Enterprise Search indexes every field of
 ## Fuzziness
 
 Elasticsearch supports by default a [fuzzy search](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-fuzzy-query.html). In the Enterprise Search the fuzziness depends on the type of a field. The fuzziness for numeric term is 0, for other terms the `auto` value is taken.
-

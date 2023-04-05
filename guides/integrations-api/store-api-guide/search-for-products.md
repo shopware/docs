@@ -23,7 +23,7 @@ Let's start by performing a simple product search
 
 Let's look at the response:
 
-```javascript
+```json
 {
   "sorting": "score",
   "currentFilters": {
@@ -194,13 +194,13 @@ The following request provides us with a response containing the most essential 
 
 It doesn't take a lot of time to shrink your response down to a fraction and you have full control over the fields it contains.
 
-{% hint style="info" %}
+::: info
 Why is the **`translated`** field always included?
 
 Most natural text fields in Shopware are stored as translatable values. Depending on the current language, Shopware will try to hydrate these fields with the correct value. Sometimes it occurs, that a text value is not maintained in a given language. For that case, Shopware provides a fallback mechanism based on a translation hierarchy. However, these fallback values are only contained in the translated field of the entity.
 
 By using **`product.translated.name`** instead of **`product.name`** you can make sure to always fall back correctly if there's no translated value present.
-{% endhint %}
+:::
 
 ## Fetching associations
 
@@ -224,11 +224,11 @@ Sometimes it's necessary to fetch additional associations like categories or pro
 
 Once we've provided the association, Shopware will try to fetch the related entities and hydrate the response accordingly.
 
-{% hint style="info" %}
+::: info
 **Wonder which associations there are?**
 
 Normally, an unfiltered response already suggests which associations you could load. Usually these fields are pre-filled with `null` if the association is not fetched. You can always look into the entities `*Definition.php` class to see which associations it contains.
-{% endhint %}
+:::
 
 ## Fetch a single product
 
@@ -240,5 +240,4 @@ Sometimes, you just want to fetch a single product, the product endpoint \(as we
 
 Now that we're done with searching products, let's do something with them.
 
-{% page-ref page="work-with-the-cart.md" %}
-
+<PageRef page="work-with-the-cart" />

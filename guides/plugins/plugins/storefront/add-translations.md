@@ -33,8 +33,8 @@ Now that we know how the structure of snippets should be, we can create a new sn
 
 Here's an example of an English translation file:
 
-{% code title="<plugin root>/src/Resources/snippet/en\_GB/example.en-GB.json" %}
-```javascript
+```js
+// <plugin root>/src/Resources/snippet/en\_GB/example.en-GB.jsonon
 {
   "header": {
     "example": "Our example header"
@@ -42,7 +42,6 @@ Here's an example of an English translation file:
   "soldProducts": "Sold about %count% products in %country%"
 }
 ```
-{% endcode %}
 
 ## Using the translation in templates
 
@@ -79,4 +78,3 @@ Translation with placeholders:
 ```php
 $this->trans('soldProducts', ['%count%' => 3, '%country%' => 'Germany']);
 ```
-

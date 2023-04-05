@@ -29,4 +29,3 @@ A sales channel can have multiple associated domain configurations. These domain
   * Locale de-DE, German, Euro
 * [https://fruitsandveggies.es/](https://fruitsandveggies.es/)
   * Locale es-ES, Spanish, Euro
-

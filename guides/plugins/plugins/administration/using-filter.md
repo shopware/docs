@@ -53,4 +53,3 @@ When using multiple arguments, we can pass them as shown below.
 ```text
 <example-component :title="$tc('swag-example.general.myCustomText')|example('secondArgument', 'thirdArgument')"></example-component>
 ```
-

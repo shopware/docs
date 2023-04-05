@@ -10,7 +10,7 @@ Normally you want to use snippets in you custom module. To keep things organized
 
 Each language then receives a nested object of translations, so let's have a look at an example `snippet/en-GB.json`:
 
-```javascript
+```json
 {
     "swag-example": {
         "nested": {
@@ -61,4 +61,3 @@ The same `$tc` helper function can be used in the templates to access translatio
 
 * [Learning about the global Shopware object](the-shopware-object.md)
 * [Learning about the VueX state](https://github.com/shopware/docs/tree/575c2fa12ef272dc25744975e2f1e4d44721f0f1/guides/plugins/plugins/administration/using-vuex-state.md)
-

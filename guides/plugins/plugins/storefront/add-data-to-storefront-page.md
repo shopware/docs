@@ -51,8 +51,9 @@ class AddDataToPage implements EventSubscriberInterface
 
 The next thing we need to do is register our subscriber in the DI-Container and tag it as an event subscriber:
 
-```markup
-<!-- in Resources/config/services.xml -->
+```xml
+// Resources/config/services.xml
+<?xml version="1.0" ?>
 <service id="Swag\BasicExample\Service\AddDataToPage" >
     <tag name="kernel.event_subscriber" />
 </service>
@@ -120,7 +121,7 @@ Basically you're doing here, is to fetch actual pagelet instance from the event 
 
 Now you only have to adjust your service definition to inject the product repository:
 
-```markup
+```xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -141,8 +142,8 @@ To display the additional data we need to override the footer template and rende
 
 For our case we extend the footer template and add a new column to the navigation block:
 
-```text
-<!-- in Resources/views/storefront/layout/footer/footer.html.twig -->
+```twig
+// Resources/views/storefront/layout/footer/footer.html.twig
 {% sw_extends '@Storefront/storefront/layout/footer/footer.html.twig' %}
 
 {% block layout_footer_navigation_columns %}
@@ -159,4 +160,3 @@ For our case we extend the footer template and add a new column to the navigatio
 Note the usage of the variable here. You're accessing the footer object, in which you can now find the path `extensions.product_count.count`.
 
 That's it for this guide, you've successfully added data to a storefront page\(let\).
-

@@ -4,7 +4,7 @@ The `Writer` objects will get the converted data from the `swag_migration_data` 
 
 When creating a writer, register it in a manner resembling the following:
 
-```markup
+```html
 <service id="SwagMigrationAssistant\Migration\Writer\ProductWriter"
          parent="SwagMigrationAssistant\Migration\Writer\AbstractWriter">
     <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Write\EntityWriter"/>
@@ -32,4 +32,3 @@ class ProductWriter extends AbstractWriter
 ```
 
 In case you need more control over the writing, you can implement the `WriterInterface` by yourself and the class will receive the data in the `writeData` method. Received data is an array of converted values. The amount depends on the limit of the request. Error handling is already done in the overlying `MigrationDataWriter` class. If writing the entries fails with a `WriteException` from the DAL, it will try to exclude the reported failures and try again. If any other exception occurs, it will retry them one by one to minimize data loss.
-

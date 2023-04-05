@@ -12,7 +12,7 @@ There are a couple of ways to get Shopware running on your system. Depending on 
 
 Did you know that there's a video available to this topic? Please take a look:
 
-{% embed url="https://www.youtube.com/watch?v=ML1QyUr0wsk" caption="" %}
+<PageRef page="https://www.youtube.com/watch?v=ML1QyUr0wsk" title="" target="_blank" />
 
 ## Prerequisites
 
@@ -93,9 +93,9 @@ Various
 * Zend Opcache \(256M or more\)
 * Webserver with HTTP2 support
 
-{% hint style="info" %}
+::: info
 Adminer \([https://www.adminer.org/](https://www.adminer.org/)\) is our recommended database administration tool since it has better support for binary data types.
-{% endhint %}
+:::
 
 ### Requirements for docker setup
 
@@ -159,4 +159,3 @@ As already mentioned, there are several ways to install Shopware. So we got you 
 * [Dockware](dockware.md)
 * [Valet+](valet.md)
 * [MAMP](mamp.md)
-

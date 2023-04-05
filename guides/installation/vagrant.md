@@ -1,8 +1,5 @@
 # Vagrant
 
-{% hint style="info" %}
+::: info
 Not officially supported installation method
-{% endhint %}
-
-
-
+:::

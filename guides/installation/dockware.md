@@ -41,9 +41,9 @@ Afterwards, you are almost ready to start. You just need to use the following co
 $ docker run --rm -p 80:80 dockware/dev:latest
 ```
 
-{% hint style="danger" %}
+::: danger
 Beware that this is meant for quickstart. The parameter `--rm` will throw everything away. If the container is stopped the whole database etc. will be gone. So if you want a persistent solution, head over to the "Using docker-compose" paragraph.
-{% endhint %}
+:::
 
 This command will install Dockware \#dev version, which is based on `Production` template. If you want to use `development` template, you need to use \#contribute version. As soon as the docker image is downloaded and dockware is ready, you will see this text:
 
@@ -136,9 +136,9 @@ Open the "src" folder with your preferred IDE and wait until finished loading. T
 
 That's it, you're done and ready to develop your own plugins and projects.
 
-{% hint style="info" %}
+::: info
 Default credentials for dockware can be found at [https://dockware.io/docs\#default-credentials](https://dockware.io/docs#default-credentials)
-{% endhint %}
+:::
 
 ## Next steps
 
@@ -149,4 +149,3 @@ Would you like to explore alternative ways to install Shopware? You can install 
 * [MAMP](mamp.md)
 
 Otherwise, you might want to start writing your very own plugin. Head over to [Plugin base guide](../plugins/plugins/plugin-base-guide.md) to get a grip on that topic.
-

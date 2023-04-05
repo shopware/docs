@@ -20,8 +20,8 @@ So let's add an example product to the cart using code. For that case, you'll ne
 
 Let's have a look at an example.
 
-{% code title="<plugin root>/src/Service/ExampleController.php" %}
 ```php
+// <plugin root>/src/Service/ExampleController.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -76,7 +76,6 @@ class ExampleController extends StorefrontController
     }
 }
 ```
-{% endcode %}
 
 As mentioned earlier, you can just apply the `Cart` argument to your method and it will be automatically filled.
 
@@ -103,8 +102,8 @@ Sometimes you really want to have a custom line item handler, e.g. for your own 
 
 You need to create a new class which implements the interface `\Shopware\Core\Checkout\Cart\LineItemFactoryHandler\LineItemFactoryInterface` and it needs to be registered in the DI container with the tag `shopware.cart.line_item.factory`.
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
-```markup
+```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -117,12 +116,11 @@ You need to create a new class which implements the interface `\Shopware\Core\Ch
     </services>
 </container>
 ```
-{% endcode %}
 
 Let's first have a look at an example handler:
 
-{% code title="<plugin root>/src/Service/ExampleHandler.php" %}
 ```php
+// <plugin root>/src/Service/ExampleHandler.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -151,7 +149,6 @@ class ExampleHandler implements LineItemFactoryInterface
     }
 }
 ```
-{% endcode %}
 
 Implementing the `LineItemFactoryInterface` will force you to also implement three new methods:
 
@@ -170,4 +167,3 @@ Implementing the `LineItemFactoryInterface` will force you to also implement thr
   Here you can define which properties of your line item may actually be updated. E.g. if you really want property X to contain "Y", you can do so here.
 
 And that's it. You should now be able to create line items of type `example` once your handler is properly registered.
-

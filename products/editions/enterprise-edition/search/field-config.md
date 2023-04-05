@@ -77,4 +77,3 @@ In addition to the Shopware Elasticsearch default analyzer, the Enterprise Searc
    Is the default [search analyzer](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-analyzer.html) for the search words.
 
    Filters which were used: `synonym`
-

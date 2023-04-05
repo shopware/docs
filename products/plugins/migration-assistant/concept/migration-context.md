@@ -69,4 +69,3 @@ class MigrationContext extends Struct implements MigrationContextInterface
     }
 }
 ```
-
