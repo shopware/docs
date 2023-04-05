@@ -10,7 +10,7 @@ All you need for this guide is a running Shopware 6 instance and full access to 
 
 This guide is also available as a video:
 
-<PageRef page="https://www.youtube.com/watch?v=wfBuWdff35c" title="" target="_blank" />
+<YoutubeRef video="wfBuWdff35c" title="Shopware 6: Your custom NPM dependencies (Developer Tutorial) - YouTube" target="_blank" />
 
 ## Adding a npm package to the Administration or the Storefront
 
