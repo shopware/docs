@@ -6,9 +6,9 @@ This guide will teach you everything you need to know in order to write data to 
 
 ## Prerequisites
 
-This guide is built upon the [Plugin base guide](../../plugin-base-guide.md), so having a look at it first won't hurt. Having read the guide about [Reading data](reading-data.md) or understanding how to read data is mandatory for at least one short part of this guide.
+This guide is built upon the [Plugin base guide](../../plugin-base-guide), so having a look at it first won't hurt. Having read the guide about [Reading data](reading-data) or understanding how to read data is mandatory for at least one short part of this guide.
 
-You also might want to have a look at the concept behind the [Data abstraction layer](../../../../../concepts/framework/data-abstraction-layer.md) first to get a better grasp of how it works.
+You also might want to have a look at the concept behind the [Data abstraction layer](../../../../../concepts/framework/data-abstraction-layer) first to get a better grasp of how it works.
 
 ::: info
 Refer to this video on **[Using repositories](https://www.youtube.com/watch?v=b3wOs_OWvP0)** that covers the basics of repositories. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
@@ -111,9 +111,9 @@ In there, we're calling the `create` method on the product repository with two p
 
 This minimal example is just filling in the product's mandatory fields: The `name`, the `productNumber`, the `stock`, the `taxId` and the `price`. So the first three fields are just plain values, easy as that.
 
-The `taxId` though represents the ID of the associated `tax`. Since we want to assign an existing tax here, we've created a new method called `getTaxId` to actually read the ID that we need. For this purpose, you need to understand how to read data from Shopware, so have a look at our guide about [Reading data](reading-data.md). We're calling `searchIds` on the `taxRepository` to only get IDs, since we don't need the full tax data here. Since we only need the first ID with the given tax rate here, we're just grabbing the first ID by using the `firstId` method on the collection. And there we go, we got a tax ID to fill into the mandatory field `taxId`.
+The `taxId` though represents the ID of the associated `tax`. Since we want to assign an existing tax here, we've created a new method called `getTaxId` to actually read the ID that we need. For this purpose, you need to understand how to read data from Shopware, so have a look at our guide about [Reading data](reading-data). We're calling `searchIds` on the `taxRepository` to only get IDs, since we don't need the full tax data here. Since we only need the first ID with the given tax rate here, we're just grabbing the first ID by using the `firstId` method on the collection. And there we go, we got a tax ID to fill into the mandatory field `taxId`.
 
-A further explanation on how to write new associated data, instead of using existing entities, is also provided in the section [Assigning associated data](writing-data.md#assigning-associated-data).
+A further explanation on how to write new associated data, instead of using existing entities, is also provided in the section [Assigning associated data](writing-data#assigning-associated-data).
 
 Now, let's go on to the last field, the `price`. The price is saved to the product entity via a `JsonField`, so it's saved in the JSON format in the database. A product can have multiple prices, thus we're providing an array of arrays again here. For this example we'll still just write a single price. The structure for the JSON can be found in the [getConstraints method of the PriceFieldSerializer](https://github.com/shopware/platform/blob/v6.3.4.0/src/Core/Framework/DataAbstractionLayer/FieldSerializer/PriceFieldSerializer.php#L112-L141). Basically you need to provide a currency ID, for which we'll just use the shop's default currency, a gross and a net price and a boolean value of whether or not the gross and the net price are linked. If `linked` is set to `true`, changes to the gross price will also affect the net price, using the product's tax.
 
@@ -212,7 +212,7 @@ Once again: An array of arrays, since you can delete more than one entry at once
 
 Assigning associated data is different for each kind of association. Every single of them will be covered here, from `OneToOne` associations, to `ManyToOne` and `OneToMany` associations and `ManyToMany` associations.
 
-If you don't know how to add associations to an entity, maybe to your own entity, head over to our guide for adding an association to an entity [Add data associations](add-data-associations.md).
+If you don't know how to add associations to an entity, maybe to your own entity, head over to our guide for adding an association to an entity [Add data associations](add-data-associations).
 
 #### OneToOne and ManyToOne associations
 
@@ -296,7 +296,7 @@ public function writeData(Context $context): void
 
 The reason for that is simple: With every update action, you need to provide the primary key and the data to be updated. For mapping entities though, all data you could provide are primary keys themselves and you can't update primary keys.
 
-Your only way to solve this is by replacing the association. Head over to our guide regarding [Replacing associated data](replacing-associated-data.md).
+Your only way to solve this is by replacing the association. Head over to our guide regarding [Replacing associated data](replacing-associated-data).
 
 ### Creating associated data
 
@@ -348,8 +348,8 @@ Note the `categories` field here. Just remember to use an array of arrays for `T
 
 ### Replacing and deleting associated data
 
-Replacing associated data is not always as easy as it seems. Head over to our guide about [Replacing associated data](replacing-associated-data.md) to get a full grasp of how it is done. While [Deleting associated data](deleting-associated-data.md) is a separate guide refer to that as well.
+Replacing associated data is not always as easy as it seems. Head over to our guide about [Replacing associated data](replacing-associated-data) to get a full grasp of how it is done. While [Deleting associated data](deleting-associated-data) is a separate guide refer to that as well.
 
 ## Next steps
 
-You should now be able to write data to the database using the Data Abstraction Layer from Shopware 6. You might have missed the guide about [Reading data](reading-data.md) in the first place though, and you should definitely know how that is done.
+You should now be able to write data to the database using the Data Abstraction Layer from Shopware 6. You might have missed the guide about [Reading data](reading-data) in the first place though, and you should definitely know how that is done.

@@ -6,17 +6,17 @@ This guide will show you how to create line items like products, promotion and o
 
 ## Prerequisites
 
-As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide.md), but you don't necessarily need that. It will use an example Storefront controller, so if you don't know how to add a custom Storefront controller yet, have a look at our guide about [Adding a custom page](../../storefront/add-custom-page.md). Furthermore, registering classes or services to the DI container is also not explained here, but it's covered in our guide about [Dependency injection](../../plugin-fundamentals/dependency-injection.md), so having this open in another tab won't hurt.
+As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide), but you don't necessarily need that. It will use an example Storefront controller, so if you don't know how to add a custom Storefront controller yet, have a look at our guide about [Adding a custom page](../../storefront/add-custom-page). Furthermore, registering classes or services to the DI container is also not explained here, but it's covered in our guide about [Dependency injection](../../plugin-fundamentals/dependency-injection), so having this open in another tab won't hurt.
 
 ## Adding a simple item
 
-For this guide, we will use an example controller, that is already registered. The process of creating such a controller is not explained here, for that case head over to our guide about [Adding a custom page](../../storefront/add-custom-page.md).
+For this guide, we will use an example controller, that is already registered. The process of creating such a controller is not explained here, for that case head over to our guide about [Adding a custom page](../../storefront/add-custom-page).
 
 However, having a controller is not a necessity here, it just comes with the advantage of fetching the current cart by adding `\Shopware\Core\Checkout\Cart\Cart` as a method argument, which will automatically be filled by our argument resolver.
 
 If you're planning to use this guide for something else but a controller, you can fetch the current cart with the `\Shopware\Core\Checkout\Cart\SalesChannel\CartService::getCart` method.
 
-So let's add an example product to the cart using code. For that case, you'll need to have access to both the services `\Shopware\Core\Checkout\Cart\LineItemFactoryRegistry` and `\Shopware\Core\Checkout\Cart\SalesChannel\CartService` supplied to your controller or service via [Dependency injection](../../plugin-fundamentals/dependency-injection.md).
+So let's add an example product to the cart using code. For that case, you'll need to have access to both the services `\Shopware\Core\Checkout\Cart\LineItemFactoryRegistry` and `\Shopware\Core\Checkout\Cart\SalesChannel\CartService` supplied to your controller or service via [Dependency injection](../../plugin-fundamentals/dependency-injection).
 
 Let's have a look at an example.
 
@@ -192,7 +192,7 @@ class ExampleProcessor implements CartProcessorInterface
 
 As you can see, this processor takes an "original cart" as an input and adds all instances of our example type to a second cart, which will actually be persisted.
 
-Of course you can use processors to do much more than this. Have a look at [adding cart processors and collectors](./add-cart-processor-collector.md).
+Of course you can use processors to do much more than this. Have a look at [adding cart processors and collectors](./add-cart-processor-collector).
 
 Now register this processor in your `services.xml` like this:
 
@@ -213,4 +213,4 @@ And that's it. You should now be able to create line items of type `example`.
 
 When implementing nested line items, the plugins have to implement their own processing logic or alternatively extend Shopware's cart processors.
 
-A plugin that reuses core line items can easily call the other processors to handle the nested line items themselves. Refer to [nested line items](../../../../../resources/references/adr/checkout/2021-03-24-nested-line-items.md) section of the guide for more information.
+A plugin that reuses core line items can easily call the other processors to handle the nested line items themselves. Refer to [nested line items](../../../../../resources/references/adr/checkout/2021-03-24-nested-line-items) section of the guide for more information.

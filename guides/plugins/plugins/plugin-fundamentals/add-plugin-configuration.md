@@ -4,7 +4,7 @@ The `Shopware plugin system` provides you with the option to create a configurat
 
 ## Prerequisites
 
-To build your own configuration page for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
+To build your own configuration page for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide).
 
 ## Create your plugin configuration
 
@@ -76,11 +76,11 @@ Your `<input-field>` can be of different types, this is managed via the `type` a
 
 | Type | Configuration settings | Renders |
 | :--- | :--- | :--- |
-| text | [copyable](add-plugin-configuration.md#copyable), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text) | Text field |
-| textarea | [copyable](add-plugin-configuration.md#copyable), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text) | Text area |
-| text-editor | [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text) | HTML editor |
-| url | [copyable](add-plugin-configuration.md#copyable), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text) | URL field |
-| password | [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text) | Password field |
+| text | [copyable](add-plugin-configuration#copyable), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Text field |
+| textarea | [copyable](add-plugin-configuration#copyable), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Text area |
+| text-editor | [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | HTML editor |
+| url | [copyable](add-plugin-configuration#copyable), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | URL field |
+| password | [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Password field |
 | int |  | Integer field |
 | float |  | Float field |
 | bool |  | Switch |
@@ -89,12 +89,12 @@ Your `<input-field>` can be of different types, this is managed via the `type` a
 | date |  | Date picker |
 | time |  | Time picker |
 | colorpicker |  | Color picker |
-| single-select | [options](add-plugin-configuration.md#options), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text) | Single-Select box |
-| multi-select | [options](add-plugin-configuration.md#options), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text) | Multi-Select box |
+| single-select | [options](add-plugin-configuration#options), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Single-Select box |
+| multi-select | [options](add-plugin-configuration#options), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Multi-Select box |
 
 ### Input field settings
 
-These settings are used to configure your `<input-field>`. **Every `<input-field>` has to start with the `<name>` element.** After the `<name>` element you can configure any of the other settings mentioned above. Beside these settings, they have the followings in common: [label](add-plugin-configuration.md#label-placeholder-and-help-text), [helpText](add-plugin-configuration.md#label-placeholder-and-help-text), [defaultValue](add-plugin-configuration.md#defaultvalue) and [disabled](add-plugin-configuration.md#disabled).
+These settings are used to configure your `<input-field>`. **Every `<input-field>` has to start with the `<name>` element.** After the `<name>` element you can configure any of the other settings mentioned above. Beside these settings, they have the followings in common: [label](add-plugin-configuration#label-placeholder-and-help-text), [helpText](add-plugin-configuration#label-placeholder-and-help-text), [defaultValue](add-plugin-configuration#defaultvalue) and [disabled](add-plugin-configuration#disabled).
 
 #### Label, placeholder and help text
 
@@ -172,7 +172,7 @@ Each `<options>` element must contain at least one `<option>` element. Each `<op
 
 ### Advanced custom input fields
 
-For more complex and advanced configurations it is possible to declare a `<component name="componentName">` element. This element can render many admin components. It is also possible to render your own admin component which you could deliver with your plugin. The name of the component has to match the components name in the Administration, for example `sw-entity-single-select`. The component also needs a `<name>` element first. All other elements within the component element will be passed to the rendered admin component as properties. For some components you could also use [`label` and `placeholder`](add-plugin-configuration.md#label-placeholder-and-help-text).
+For more complex and advanced configurations it is possible to declare a `<component name="componentName">` element. This element can render many admin components. It is also possible to render your own admin component which you could deliver with your plugin. The name of the component has to match the components name in the Administration, for example `sw-entity-single-select`. The component also needs a `<name>` element first. All other elements within the component element will be passed to the rendered admin component as properties. For some components you could also use [`label` and `placeholder`](add-plugin-configuration#label-placeholder-and-help-text).
 
 Here are some examples:
 
@@ -302,4 +302,4 @@ Now all that's left to do is to present you a working example `config.xml` and s
 
 ## Next steps
 
-Now you've added your own plugin configuration. But how do you actually read which configurations the shop owner used? This will be covered in our guide about [Using the plugin configuration](use-plugin-configuration.md).
+Now you've added your own plugin configuration. But how do you actually read which configurations the shop owner used? This will be covered in our guide about [Using the plugin configuration](use-plugin-configuration).

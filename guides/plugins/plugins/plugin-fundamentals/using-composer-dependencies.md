@@ -47,7 +47,7 @@ class SwagBasicExample extends Plugin
 
 PHP doesn't require a build system, which means that we can just add `use` statements and then use the Composer dependency directly.
 
-The following code sample imports `SebastianBergmann\Exporter\Exporter` and logs `hello, world!` to the Symfony profiler logs whenever the `NavigationPageLoadedEvent` is fired. Learn how to [register this listener](listening-to-events.md).
+The following code sample imports `SebastianBergmann\Exporter\Exporter` and logs `hello, world!` to the Symfony profiler logs whenever the `NavigationPageLoadedEvent` is fired. Learn how to [register this listener](listening-to-events).
 
 ```php
 // <plugin root>/src/SwagBasicExample.php
@@ -115,5 +115,5 @@ You can then require them like other dependencies:
 
 ## More interesting topics
 
-* [Using NPM dependencies](using-npm-dependencies.md)
-* [Adding plugin dependencies](add-plugin-dependencies.md)
+* [Using NPM dependencies](using-npm-dependencies)
+* [Adding plugin dependencies](add-plugin-dependencies)

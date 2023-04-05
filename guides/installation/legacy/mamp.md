@@ -90,7 +90,7 @@ brew install composer
 
 ## Checkout Shopware
 
-Before you are able to set up Shopware, you need to checkout Shopware's repositories. This is explained in the "Preparatory steps" of the [Installation overview](overview.md)  guide. Nevertheless, below you see a brief summary of this process:
+Before you are able to set up Shopware, you need to checkout Shopware's repositories. This is explained in the "Preparatory steps" of the [Installation overview](overview)  guide. Nevertheless, below you see a brief summary of this process:
 
 ```bash
 # Choose your own directory
@@ -170,4 +170,4 @@ The underlying problem is that Mac supports case-insensitive paths but not the t
 
 ## Next steps
 
-As you successfully installed Shopware, you may want to start writing your own plugin. Head over to [Plugin base guide](../../plugins/plugins/plugin-base-guide.md) to get a grip on that topic.
+As you successfully installed Shopware, you may want to start writing your own plugin. Head over to [Plugin base guide](../../plugins/plugins/plugin-base-guide) to get a grip on that topic.

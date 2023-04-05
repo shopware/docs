@@ -1,6 +1,6 @@
 # Manipulate the Cart with App Scripts
 
-If your app needs to manipulate the cart, you can do so by using the [`cart`](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#cart) script hook.
+If your app needs to manipulate the cart, you can do so by using the [`cart`](../../../../resources/references/app-reference/script-reference/script-hooks-reference#cart) script hook.
 
 ::: info
 Note that app scripts were introduced in Shopware 6.4.8.0 and are not supported in previous versions.
@@ -8,14 +8,14 @@ Note that app scripts were introduced in Shopware 6.4.8.0 and are not supported 
 
 ## Overview
 
-The cart manipulation in app scripts expands on the general [cart concept](../../../../concepts/commerce/checkout-concept/cart.md). In that concept, your cart scripts act as another [cart processor](../../../../concepts/commerce/checkout-concept/cart.md#cart-processors---price-calculation-and-validation).
+The cart manipulation in app scripts expands on the general [cart concept](../../../../concepts/commerce/checkout-concept/cart). In that concept, your cart scripts act as another [cart processor](../../../../concepts/commerce/checkout-concept/cart#cart-processors---price-calculation-and-validation).
 
 Your `cart` scripts run whenever the cart is calculated, this means that the script will be executed when an item is added to the cart, when the selected shipping and payment methods change, etc.
-You have access to a `cart`-service that provides a [fluent API](https://www.martinfowler.com/bliki/FluentInterface.html) to get data from the cart or to manipulate the cart. For an overview of all data and services that are available, please refer to the [cart hook reference](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#cart).
+You have access to a `cart`-service that provides a [fluent API](https://www.martinfowler.com/bliki/FluentInterface.html) to get data from the cart or to manipulate the cart. For an overview of all data and services that are available, please refer to the [cart hook reference](../../../../resources/references/app-reference/script-reference/script-hooks-reference#cart).
 
 ## Prerequisites
 
-To get a better understanding of the cart, please make yourself familiar with the [cart concept](../../../../concepts/commerce/checkout-concept/cart.md) in general.
+To get a better understanding of the cart, please make yourself familiar with the [cart concept](../../../../concepts/commerce/checkout-concept/cart) in general.
 We will expand on that concept and refer to ideas defined there in this guide.
 
 ## Calculating the cart
@@ -32,7 +32,7 @@ But if your script depends on updated and recalculated prices, you can recalcula
 {% do services.cart.calculate() %}
 ```
 
-The `calculate()` call will recalculate the whole cart and update the total prices, etc. For this the complete [`process`-step](../../../../concepts/commerce/checkout-concept/cart.md#calculation) is executed again.
+The `calculate()` call will recalculate the whole cart and update the total prices, etc. For this the complete [`process`-step](../../../../concepts/commerce/checkout-concept/cart#calculation) is executed again.
 
 ::: warning
 Note that by executing the `process` step, all properties of the cart (e.g. `products()`, `items()`, `price()`) are recreated and thus will return new instances.
@@ -86,7 +86,7 @@ In general, Shopware prices consist of gross and net prices and are currency dep
 
 ### Price fields inside custom fields
 
-You can define price fields for [custom fields](../custom-data/custom-fields.md)
+You can define price fields for [custom fields](../custom-data/custom-fields)
 
 ```xml
 // manifest.xml
@@ -110,7 +110,7 @@ You can define price fields for [custom fields](../custom-data/custom-fields.md)
 
 ### Price fields inside app config
 
-You can define price fields for [app configuration](../configuration.md).
+You can define price fields for [app configuration](../configuration).
 
 ```xml
 // Resources/config/config.xml
@@ -142,7 +142,7 @@ You can specify the `gross` and `net` prices for each currency.
 
 ### Prices inside the app config
 
-As described above, it is also possible to use price fields inside the [app configuration](../configuration.md). In your cart scripts, you can access those config values over the [`config` service](../../../../resources/references/app-reference/script-reference/miscellaneous-script-services-reference.md#SystemConfigFacade) and pass them to the same price factory as the manual definitions.
+As described above, it is also possible to use price fields inside the [app configuration](../configuration). In your cart scripts, you can access those config values over the [`config` service](../../../../resources/references/app-reference/script-reference/miscellaneous-script-services-reference#SystemConfigFacade) and pass them to the same price factory as the manual definitions.
 
 ```twig
 // Resources/scripts/cart/my-cart-script.twig
@@ -249,7 +249,7 @@ You can add custom (meta-) data to line items in the cart by manipulating the pa
 ## Add errors and notifications to the cart
 
 Your app script can block the cart's checkout by raising an error.
-As the first parameter you have to provide the [snippet key](../../plugins/storefront/add-translations.md) of the error message that should be displayed to the user.
+As the first parameter you have to provide the [snippet key](../../plugins/storefront/add-translations) of the error message that should be displayed to the user.
 As the second optional parameter, you can specify a `id` for the error, so you can reference the error later on in your script.
 Lastly, you can provide an array of parameters as the optional third parameter if you need to pass parameters to the snippet.
 
@@ -274,8 +274,8 @@ The API is basically the same as for adding errors.
 
 ## Rule based cart scripts
 
-The cart scripts automatically integrate with the [Rule Builder](../../../../concepts/framework/rules.md) and you can use the full power of the rule builder to only do your cart manipulations if a given rule matches.
-For example, you can add an entity-single-select field to your [app's config](../configuration.md) to allow the merchant to choose a rule that needs to match your app script taking effect.
+The cart scripts automatically integrate with the [Rule Builder](../../../../concepts/framework/rules) and you can use the full power of the rule builder to only do your cart manipulations if a given rule matches.
+For example, you can add an entity-single-select field to your [app's config](../configuration) to allow the merchant to choose a rule that needs to match your app script taking effect.
 
 ```xml
 // Resources/config/config.xml

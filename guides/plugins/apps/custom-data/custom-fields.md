@@ -29,7 +29,7 @@ To make use of the custom fields register your custom field sets in your manifes
 </manifest>
 ```
 
-For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference.md).
+For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference).
 
 For the data needed, please refer to the custom fields in general: At first, you need a custom field set, as [custom fields](../../plugins/framework/custom-field/) in Shopware are organised in sets. Here you need to consider some important fields:
 

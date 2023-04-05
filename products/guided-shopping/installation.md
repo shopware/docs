@@ -213,4 +213,4 @@ In order to synchronize the installed `SwagGuidedShopping` plugin in the backend
 
 With this, the PWA will contain the Guided Shopping plugin and be ready to use.
 
-Now let us rehearse the steps before deployment by going through the [Checklist](./checklist.md).
+Now let us rehearse the steps before deployment by going through the [Checklist](./checklist).

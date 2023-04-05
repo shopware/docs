@@ -66,6 +66,6 @@ An example of usage for this feature is to save the cache for logged-in customer
 
 As soon as a response has been defined as cacheable and the response is written to the cache, it is tagged accordingly. For this purpose, the core uses all cache tags generated during the request or loaded from existing cache entries. The cache invalidation of a Storefront controller route is controlled by the cache invalidation of the Store API routes.
 
-For more information about Store API cache invalidation, you can refer to the [Add Cache for Store API Route Guide](../../guides/plugins/plugins/framework/store-api/add-caching-for-store-api-route.md).
+For more information about Store API cache invalidation, you can refer to the [Add Cache for Store API Route Guide](../../guides/plugins/plugins/framework/store-api/add-caching-for-store-api-route).
 
 This is because all data loaded in a Storefront controller, is loaded in the core via the corresponding Store API routes and provided with corresponding cache tags. So the tags of the HTTP cache entries we have in the core consist of the sum of all Store API tags generated or loaded during the request. Therefore, the invalidation of a controller route is controlled over the Store API cache invalidation.

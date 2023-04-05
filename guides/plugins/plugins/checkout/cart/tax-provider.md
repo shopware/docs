@@ -8,7 +8,7 @@ With version 6.5.0.0, Shopware allows plugins to integrate custom tax calculatio
 
 ## Prerequisites
 
-Refer to [plugin base guide](../../plugin-base-guide.md). It is not mandatory to use exactly the same plugin as a foundation.
+Refer to [plugin base guide](../../plugin-base-guide). It is not mandatory to use exactly the same plugin as a foundation.
 
 ## Creating a tax provider
 
@@ -99,7 +99,7 @@ To let Shopware know of your new tax provider, you will have to persist it to th
 
 ### Via migration
 
-You may want to have a look at the [migration guide](../../plugin-fundamentals/database-migrations.md) to learn more about migrations.
+You may want to have a look at the [migration guide](../../plugin-fundamentals/database-migrations) to learn more about migrations.
 
 ```php
 // <plugin root>/src/Migration/MigrationTaxProvider.php
@@ -152,7 +152,7 @@ You may want to have a look at the [repository guide](../../../../../concepts/fr
 
 A good place for persisting your tax provider to the database would be the `install` lifecycle method of your plugin.
 
-If you do not know of plugin lifecycle methods yet, please refer to our [plugin lifecycle guide](../../plugin-fundamentals/plugin-lifecycle.md).
+If you do not know of plugin lifecycle methods yet, please refer to our [plugin lifecycle guide](../../plugin-fundamentals/plugin-lifecycle).
 
 ```php
 // <plugin root>/src/BasicExample.php

@@ -14,7 +14,7 @@ properties from the blacklist, so they're actually shown in the Administration a
 This guide **will not** explain in detail how to override an existing component.
 For this guide you'll have to extend the component [sw-product-stream-field-select](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/module/sw-product-stream/component/sw-product-stream-field-select/index.js) though, since it's the one [actually checking for the properties in the computed property options](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/module/sw-product-stream/component/sw-product-stream-field-select/index.js#L41).
 
-An example on how to override a component can be found [here](./customizing-components.md).
+An example on how to override a component can be found [here](./customizing-components).
 
 ## Adding properties to blacklist
 

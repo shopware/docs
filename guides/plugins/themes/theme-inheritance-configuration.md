@@ -14,7 +14,7 @@ Imagine you have a theme that is applying your corporate design to the storefron
 
 ### Create two themes
 
-Create the two themes like described in [Theme inheritance](./add-theme-inheritance.md).
+Create the two themes like described in [Theme inheritance](./add-theme-inheritance).
 
 ### Configure your themes
 
@@ -117,5 +117,5 @@ In this theme (`SwagBasicExampleThemeExtend`) all the configuration fields from 
 
 Now that you know how the theme inheritance works you can start with own customizations. Here is a list of other related topics where assets can be used.
 
-* [Add SCSS Styling and JavaScript to a theme](add-css-js-to-theme.md)
-* [Customize templates](../plugins/storefront/customize-templates.md)
+* [Add SCSS Styling and JavaScript to a theme](add-css-js-to-theme)
+* [Customize templates](../plugins/storefront/customize-templates)

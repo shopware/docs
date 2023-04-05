@@ -6,13 +6,13 @@ A Shopware plugin can be installed, activated, deactivated and then again uninst
 
 ## Prerequisites
 
-This guide is built upon our [plugin base guide](../plugin-base-guide.md), which explains the basics of a plugin as a whole. Make sure to have a look at it to get started on building your first plugin.
+This guide is built upon our [plugin base guide](../plugin-base-guide), which explains the basics of a plugin as a whole. Make sure to have a look at it to get started on building your first plugin.
 
 ## Lifecycle methods
 
 Each of the followings methods are going to be part of the plugin bootstrap, in this example the file will be `<plugin root>/src/SwagBasicExample.php`, which is the bootstrap file of the previously mentioned plugin base guide.
 
-Throughout all of the lifecycle methods, you have access to the [service container](dependency-injection.md) via `$this->container`.
+Throughout all of the lifecycle methods, you have access to the [service container](dependency-injection) via `$this->container`.
 
 ### Install
 
@@ -31,7 +31,7 @@ In your install method, you have access to the `InstallContext`, which provides 
 * The current plugin version
 * The current Shopware version
 * The `Context`, which provides a lot more of system information, e.g. the currently used language
-* A collection of the [plugin migrations](database-migrations.md)
+* A collection of the [plugin migrations](database-migrations)
 * If the migrations should be executed \(`isAutoMigrate` or `setAutoMigrate` to prevent the execution\)
 
 ::: info
@@ -118,7 +118,7 @@ The `DeactivateContext` provides the same information as the `InstallContext`.
 
 ### Update
 
-The `update` method is executed once your plugin gets updated to a new version. You do not need to update database entries here, since this should be done via [plugin migrations](database-migrations.md). Otherwise you'd have to check if this specific update to an entity was already done in a previous `update` method execution, mostly by using plugin version conditions.
+The `update` method is executed once your plugin gets updated to a new version. You do not need to update database entries here, since this should be done via [plugin migrations](database-migrations). Otherwise you'd have to check if this specific update to an entity was already done in a previous `update` method execution, mostly by using plugin version conditions.
 
 However, of course you can still do that if necessary. Also, non-database updates can be done here.
 

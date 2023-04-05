@@ -12,9 +12,9 @@ Throughout this guide, you will find the `$` symbol representing your command li
 
 ## Prerequisites
 
-In order to create tests for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
+In order to create tests for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide).
 
-Furthermore, you should have a look at our [Execute database queries/migrations](../plugin-fundamentals/database-migrations.md) guide since this guide will show you how to create a migration test for these example.
+Furthermore, you should have a look at our [Execute database queries/migrations](../plugin-fundamentals/database-migrations) guide since this guide will show you how to create a migration test for these example.
 
 ## PHPUnit configuration
 
@@ -251,5 +251,5 @@ Therefore, this is how your configuration could then look like:
 
 You've learned about PHPUnit tests here now. But what about unit testing your javascript code, either in the Storefront or the Administration?
 
-* [Jest unit tests in Shopware's Administration](jest-admin.md)
-* [Jest unit tests in Shopware's Storefront](jest-storefront.md)
+* [Jest unit tests in Shopware's Administration](jest-admin)
+* [Jest unit tests in Shopware's Storefront](jest-storefront)

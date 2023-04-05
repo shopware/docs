@@ -6,9 +6,9 @@ When you develop your own plugin, you might want to fetch necessary data from th
 
 ## Prerequisites
 
-This guide requires you to already have a basic plugin running. If you don't know how to do this in the first place, have a look at our [Plugin base guide](../plugin-base-guide.md).
+This guide requires you to already have a basic plugin running. If you don't know how to do this in the first place, have a look at our [Plugin base guide](../plugin-base-guide).
 
-While this is not mandatory, having read the guide about [adding custom javascript](add-custom-javascript.md) plugins beforehand might help you understand this guide a bit further.
+While this is not mandatory, having read the guide about [adding custom javascript](add-custom-javascript) plugins beforehand might help you understand this guide a bit further.
 
 ## Fetching data
 
@@ -58,7 +58,7 @@ The third parameter of the `get` method is the `contentType` which will be sent 
 
 ## Call the Store API from the Storefront
 
-There's an extension of the client above - the `StoreApiClient` which automatically injects the correct credentials, so you can make calls from the Storefront to the [Store API](../../../../concepts/api/store-api.md).
+There's an extension of the client above - the `StoreApiClient` which automatically injects the correct credentials, so you can make calls from the Storefront to the [Store API](../../../../concepts/api/store-api).
 
 It works the same as the `HttpClient`:
 

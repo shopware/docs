@@ -1,6 +1,6 @@
 # Repository
 
-The source code of your project will reside in a git-based VCS repository. You can start with a plain project. However, we suggest starting with a new Composer create-project. You will learn more about the setup template in the [Setup Template](setup-template.md) section.
+The source code of your project will reside in a git-based VCS repository. You can start with a plain project. However, we suggest starting with a new Composer create-project. You will learn more about the setup template in the [Setup Template](setup-template) section.
 
 ::: info
 This guide explains the repository setup using **GitHub**. You can also integrate Bitbucket or GitLab-based version control environments with Shopware PaaS. Refer to [Source Integrations](https://docs.platform.sh/integrations/source.html) for more information.
@@ -8,7 +8,7 @@ This guide explains the repository setup using **GitHub**. You can also integrat
 
 ## Create a Shopware project
 
-Firstly,  create a new project with `composer create-project shopware/platform:dev-flex <folder-name>` using the [Symfony Flex](../../guides/installation/flex.md) template.
+Firstly,  create a new project with `composer create-project shopware/platform:dev-flex <folder-name>` using the [Symfony Flex](../../guides/installation/flex) template.
 
 This will create a brand new Shopware 6 project in the given folder. Now, change it into the newly created project and require the PaaS configuration with `composer req paas`.
 
@@ -60,7 +60,7 @@ platform	<paas-url>.git (push)
 
 ## Migrating from old template to the new template
 
-If you have already used the [Shopware PaaS old template](https://github.com/shopware/paas), please follow the guide to [migrate it to the new structure](../../guides/installation/template.md#how-to-migrate-from-production-template-to-symfony-flex).
+If you have already used the [Shopware PaaS old template](https://github.com/shopware/paas), please follow the guide to [migrate it to the new structure](../../guides/installation/template#how-to-migrate-from-production-template-to-symfony-flex).
 
 Following tasks has to be done additionally to the flex migration:
 

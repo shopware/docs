@@ -1,7 +1,7 @@
 # Custom entities
 
-In addition to [Custom fields](custom-fields.md), you can create completely own entities in the system, named custom entities.
-Unlike [Custom fields](custom-fields.md), you can generate completely custom data structures with custom relations, which can then be maintained by the admin.
+In addition to [Custom fields](custom-fields), you can create completely own entities in the system, named custom entities.
+Unlike [Custom fields](custom-fields), you can generate completely custom data structures with custom relations, which can then be maintained by the admin.
 To make use of the custom entities register your entities in your `entities.xml` file, which is located in the `Resources` directory of your app.
 
 ```xml
@@ -18,17 +18,17 @@ To make use of the custom entities register your entities in your `entities.xml`
 </entities>
 ```
 
-For a complete reference of the structure of the entities file take a look at the [Custom entity xml reference](../../../../resources/references/app-reference/entities-reference.md).
+For a complete reference of the structure of the entities file take a look at the [Custom entity xml reference](../../../../resources/references/app-reference/entities-reference).
 
 ## Functionality
 
-All registered entities will get an automatically registered repository. It is also available in the [App scripts](../app-scripts/README.md) section, in case you are allowed to access the repository service inside the hook.
+All registered entities will get an automatically registered repository. It is also available in the [App scripts](../app-scripts/) section, in case you are allowed to access the repository service inside the hook.
 
 ```twig
 {% set blogs = services.repository.search('custom_entity_blog', criteria) %}
 ```
 
-Additionally, to the repository you can also access your custom entities via [Admin api](../../../../concepts/api/admin-api.md).
+Additionally, to the repository you can also access your custom entities via [Admin api](../../../../concepts/api/admin-api).
 
 ```bash
 POST /api/search/custom-entity-blog
@@ -37,7 +37,7 @@ POST /api/search/custom-entity-blog
 ## Permissions
 
 Unlike core entities, your app directly has full access rights to your own custom entities. However, if your entity has associations that reference core tables,
-you need the appropriate [permissions](../../../../resources/references/app-reference/manifest-reference.md) to load and write these associations.
+you need the appropriate [permissions](../../../../resources/references/app-reference/manifest-reference) to load and write these associations.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>

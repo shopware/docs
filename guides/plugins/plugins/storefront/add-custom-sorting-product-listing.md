@@ -8,9 +8,9 @@ This guide will show you how to add individual sorting options using a migration
 
 ## Prerequisites
 
-In order to add your own custom sorting for product listings for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
+In order to add your own custom sorting for product listings for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide).
 
-You should also have a look at our [Database migrations](../plugin-fundamentals/database-migrations.md) guide, as we use one in this guide.
+You should also have a look at our [Database migrations](../plugin-fundamentals/database-migrations) guide, as we use one in this guide.
 
 ## Create individual sorting with migration
 
@@ -88,7 +88,7 @@ class Migration1615470599ExampleSorting extends MigrationStep
 
 ## Create individual sorting at runtime
 
-You can subscribe to the `ProductListingCriteriaEvent` to add a `ProductSortingEntity` as available sorting on the fly. If you don't know how to do this, head over to our [Listening to events](../plugin-fundamentals/listening-to-events.md) guide.
+You can subscribe to the `ProductListingCriteriaEvent` to add a `ProductSortingEntity` as available sorting on the fly. If you don't know how to do this, head over to our [Listening to events](../plugin-fundamentals/listening-to-events) guide.
 
 ::: info
 While possible, it is not recommended adding an individual sorting at runtime. If you just wish for your individual sorting to be not editable by users in the Administration, create a migration and set the parameter `locked` to be `true`.

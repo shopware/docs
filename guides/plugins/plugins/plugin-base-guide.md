@@ -2,10 +2,10 @@
 
 ## Overview
 
-Plugins in Shopware are essentially an extension of [Symfony bundles](plugins-for-symfony-developers.md). Such bundles and plugins can provide their own resources like assets, controllers, services or tests, which you'll learn in the next guides.  
+Plugins in Shopware are essentially an extension of [Symfony bundles](plugins-for-symfony-developers). Such bundles and plugins can provide their own resources like assets, controllers, services or tests, which you'll learn in the next guides.  
 A plugin is the main way to extend your Shopware 6 instance programmatically.
 
-This section guides you through the basics of creating a plugin from scratch, which can then be installed on your Shopware 6 instance. Refer to the Guide section to know how to [Install Shopware 6](../../installation/README.md).
+This section guides you through the basics of creating a plugin from scratch, which can then be installed on your Shopware 6 instance. Refer to the Guide section to know how to [Install Shopware 6](../../installation/).
 
 ## Prerequisites
 
@@ -190,12 +190,12 @@ And that's basically it.
 
 There's many more things to discover when creating your first plugin. Hence, here's a list of important articles, that may be of interest for you.
 
-* [Installing data with your plugin](plugin-fundamentals/database-migrations.md)
-* [Learn more about the plugin lifecycle methods](plugin-fundamentals/plugin-lifecycle.md)
-* [Adding a configuration to your plugin](plugin-fundamentals/add-plugin-configuration.md)
-* [Learning about the service container](plugin-fundamentals/dependency-injection.md)
-* [Adding a custom service](plugin-fundamentals/add-custom-service.md)
-* [Start listening to events](plugin-fundamentals/listening-to-events.md)
+* [Installing data with your plugin](plugin-fundamentals/database-migrations)
+* [Learn more about the plugin lifecycle methods](plugin-fundamentals/plugin-lifecycle)
+* [Adding a configuration to your plugin](plugin-fundamentals/add-plugin-configuration)
+* [Learning about the service container](plugin-fundamentals/dependency-injection)
+* [Adding a custom service](plugin-fundamentals/add-custom-service)
+* [Start listening to events](plugin-fundamentals/listening-to-events)
 
 Furthermore, you should definitely have a look into these sections:
 

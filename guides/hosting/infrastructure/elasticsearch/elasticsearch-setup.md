@@ -7,7 +7,7 @@ As soon as several thousand data sets are used in a project, it makes sense to d
 ## Requirements
 
 * Opensearch >= 1.0 or Elasticsearch >= 7.8
-* [Running message queue workers in background](../message-queue.md)
+* [Running message queue workers in background](../message-queue)
 
 ## Server basics
 

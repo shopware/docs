@@ -38,7 +38,7 @@ This is technically done by calling the method `registerModule` method of our [M
 
 Instead, you're using the `Shopware.Module.register()` method, but why is that?
 
-`Shopware` is a [global object](the-shopware-object.md) created for third party developers.
+`Shopware` is a [global object](the-shopware-object) created for third party developers.
 It is mainly the bridge between the Shopware Administration and our plugin.
 The `Module` object comes with a `register` helper method to easily register your module.
 The method needs two parameters to be set, the first one being the module's name, the second being a javascript object, which contains your module's configuration.
@@ -62,7 +62,7 @@ In our case here, let's say we use the icon `default-shopping-paper-bag-product`
 
 ::: danger
 This is not the icon being used for a menu entry! The icon for that needs to be configured separately.
-Please refer to the [Add a menu entry](add-menu-entry.md) guide for more information on this topic.
+Please refer to the [Add a menu entry](add-menu-entry) guide for more information on this topic.
 :::
 
 In addition, you're able to configure a title here, which will be used for the actual browser title.
@@ -319,11 +319,11 @@ However, there's a lot more possible when it comes to extending the Administrati
 In addition, you surely want to customize your module even more.
 You may want to try the following things:
 
-* [Add custom component](add-custom-component.md)
-* [Add a menu entry](add-menu-entry.md)
-* [Add a custom route](add-custom-route.md)
-* [Add a custom service](add-custom-service.md)
-* [Add translations](adding-snippets.md)
-* [Customizing another module](customizing-modules.md)
-* [Dealing with data in the Administration](using-data-handling.md)
-* [Adding permissions to your module](add-acl-rules.md)
+* [Add custom component](add-custom-component)
+* [Add a menu entry](add-menu-entry)
+* [Add a custom route](add-custom-route)
+* [Add a custom service](add-custom-service)
+* [Add translations](adding-snippets)
+* [Customizing another module](customizing-modules)
+* [Dealing with data in the Administration](using-data-handling)
+* [Adding permissions to your module](add-acl-rules)

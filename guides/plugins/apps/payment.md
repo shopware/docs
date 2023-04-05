@@ -90,7 +90,7 @@ If you would just like to define another payment method like _advanced payment_ 
 
 On the other hand, if you define a `pay-url`, you have the option to respond on this request with a different transaction status, for example `authorize`, `paid`or `fail`. This is useful if you would like to add a payment provider which only need the information the user has already provided in the checkout process and no additional information is required. This could be - for example - a simple credit check for payment upon invoice.
 
-Below you can see an example for a simple answer from your app to mark a payment as authorized. You can see two methods, `checkSignature` and `sign`, for both of these see the section [Validation](payment.md#validation). The provided status should be the transistion name for the transaction based on the previous status `open`.
+Below you can see an example for a simple answer from your app to mark a payment as authorized. You can see two methods, `checkSignature` and `sign`, for both of these see the section [Validation](payment#validation). The provided status should be the transistion name for the transaction based on the previous status `open`.
 
 ```php
 use Symfony\Component\HttpFoundation\Request;
@@ -320,7 +320,7 @@ public function refundPayment(Request $request): JsonResponse
 
 ## Validation
 
-All of the payment requests you receive from Shopware should be checked for a correct signature and the responses should be signed as well. You should be familiar with the Setup process from the [App base guide](app-base-guide.md#setup), as this validation is very similar.
+All of the payment requests you receive from Shopware should be checked for a correct signature and the responses should be signed as well. You should be familiar with the Setup process from the [App base guide](app-base-guide#setup), as this validation is very similar.
 
 <PageRef page="app-base-guide" />
 

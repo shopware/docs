@@ -6,9 +6,9 @@ Payments are an essential part of the checkout process. That's the reason why Sh
 
 ## Prerequisites
 
-The examples mentioned in this guide are built upon our [Plugin base guide](../../plugin-base-guide.md).
+The examples mentioned in this guide are built upon our [Plugin base guide](../../plugin-base-guide).
 
-If you want to understand the payment process in detail, head to our [Payment Concept](../../../../../concepts/commerce/checkout-concept/payments.md).
+If you want to understand the payment process in detail, head to our [Payment Concept](../../../../../concepts/commerce/checkout-concept/payments).
 
 ::: info
 Refer to this video on **[Introduction to payment handlers](https://www.youtube.com/watch?v=K58--Pxvudk)** that details you about payment extensions and payment handlers. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
@@ -39,7 +39,7 @@ All methods get the `\Shopware\Core\System\SalesChannel\SalesChannelContext` inj
 
 ### Registering the service
 
-Before we're going to have a look at some examples, we need to register our new service to the [Dependency Injection](../../plugin-fundamentals/dependency-injection.md) container. We'll use a class called `ExamplePayment` here.
+Before we're going to have a look at some examples, we need to register our new service to the [Dependency Injection](../../plugin-fundamentals/dependency-injection) container. We'll use a class called `ExamplePayment` here.
 
 ```xml
 // <plugin root>/src/Resources/config/services.xml
@@ -467,7 +467,7 @@ class SwagBasicExample extends Plugin
 }
 ```
 
-In the `install` method, you actually start by creating a new payment method, if it doesn't exist yet. If you don't know what's happening in there, you might want to have a look at our guide regarding [Writing data](../../framework/data-handling/writing-data.md).
+In the `install` method, you actually start by creating a new payment method, if it doesn't exist yet. If you don't know what's happening in there, you might want to have a look at our guide regarding [Writing data](../../framework/data-handling/writing-data).
 
 However, **do not** do the opposite in the `uninstall` method and remove the payment method. This might lead to data inconsistency, if the payment method was used in some orders. Instead, only deactivate the method!
 

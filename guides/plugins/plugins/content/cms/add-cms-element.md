@@ -92,7 +92,7 @@ To do this, create a folder with the name snippet in your `sw-cms` folder. After
 }
 ```
 
-To learn more about adding own snippets, please refer to [Add snippets to Administration](../../administration/adding-snippets.md) for more information.
+To learn more about adding own snippets, please refer to [Add snippets to Administration](../../administration/adding-snippets) for more information.
 
 For all three fields `component`, `configComponent` and `previewComponent`, components that do not _yet_ exist were applied. Those will be created in the next few steps as well. The `defaultConfig` defines the default values for the element's configuration. There will be a text field to enter a Dailymotion video ID called `dailyUrl`.
 
@@ -416,4 +416,4 @@ Once more: That's it! Your element is now fully working! The shop manager can ch
 
 ## Next steps
 
-There are many possibilities to extend Shopware's CMS. If you haven't done so already, consider using your element in a cms block. To learn how to do this, take a look at the guide on [Add custom cms block](add-cms-block.md).
+There are many possibilities to extend Shopware's CMS. If you haven't done so already, consider using your element in a cms block. To learn how to do this, take a look at the guide on [Add custom cms block](add-cms-block).

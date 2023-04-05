@@ -9,9 +9,9 @@ It will provide an explanation on how you can add new allowed file extensions to
 
 ## Prerequisites
 
-As most of our plugin guides, this guide was also built upon our [Plugin base guide](../../plugin-base-guide.md).
-Furthermore, you'll have to know about adding classes to the [Dependency injection](../../plugin-fundamentals/dependency-injection.md) container
-and about using a subscriber in order to [Listen to events](../../plugin-fundamentals/listening-to-events.md).
+As most of our plugin guides, this guide was also built upon our [Plugin base guide](../../plugin-base-guide).
+Furthermore, you'll have to know about adding classes to the [Dependency injection](../../plugin-fundamentals/dependency-injection) container
+and about using a subscriber in order to [Listen to events](../../plugin-fundamentals/listening-to-events).
 
 ## Adding a custom extension
 
@@ -20,7 +20,7 @@ exactly what kind of file this new extension represents (Images, videos, documen
 
 For this to work, all you have to do is to register to the `MediaFileExtensionWhitelistEvent` event, which can be found
 [here](https://github.com/shopware/platform/blob/v6.4.0.0/src/Core/Content/Media/File/FileSaver.php#L397-L398).
-This is of course done via a [subscriber](../../plugin-fundamentals/listening-to-events.md).
+This is of course done via a [subscriber](../../plugin-fundamentals/listening-to-events).
 
 Have a look at the following code example:
 
@@ -147,7 +147,7 @@ Make sure to add flags to your media type, e.g. the `transparent` flag, or if it
 You can find all available flags in their respective media type classes,
 e.g. [here](https://github.com/shopware/platform/blob/v6.4.0.0/src/Core/Content/Media/MediaType/ImageType.php#L7-L10) for the image media type.
 
-Make sure to register your new type detector to the [Dependency injection container](../../plugin-fundamentals/dependency-injection.md)
+Make sure to register your new type detector to the [Dependency injection container](../../plugin-fundamentals/dependency-injection)
 by using the tag `shopware.media_type.detector`.
 
 Shopware will now recognise your new image extension and handle your new file like an image.

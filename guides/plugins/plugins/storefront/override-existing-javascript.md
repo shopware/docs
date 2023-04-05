@@ -6,7 +6,7 @@ If you have to customize the logic of some core JavaScript Storefront plugins yo
 
 ## Prerequisites
 
-While this is not mandatory, having read the guide about [adding custom javascript plugins](add-custom-javascript.md) in the first place might help you understand this guide a bit further. Other than that, this guide just requires you to have a running plugin installed, e.g. our plugin from the [Plugin base guide](../plugin-base-guide.md).
+While this is not mandatory, having read the guide about [adding custom javascript plugins](add-custom-javascript) in the first place might help you understand this guide a bit further. Other than that, this guide just requires you to have a running plugin installed, e.g. our plugin from the [Plugin base guide](../plugin-base-guide).
 
 ## Extending an existing JavaScript plugin
 
@@ -124,4 +124,4 @@ You should see the cookie notice at the bottom of the page. If you click the "Ac
 
 ## Next steps
 
-Sometimes you don't have to actually override a javascript plugin, since sometimes you can simply use an event instead. Learn how this is done in our guide about [listening to events](../plugin-fundamentals/listening-to-events.md).
+Sometimes you don't have to actually override a javascript plugin, since sometimes you can simply use an event instead. Learn how this is done in our guide about [listening to events](../plugin-fundamentals/listening-to-events).

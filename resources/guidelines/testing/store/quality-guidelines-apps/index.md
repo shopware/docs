@@ -150,7 +150,7 @@ With SSA, you can offer API services for apps in the store. We recommend you dev
 
 * The STP (Shopware technology partner) contract must be additionally concluded with the technology.
 
-* Add the company logo and the manifest file. For more support, refer to our [App Base Guide](/docs/guides/plugins/apps/app-base-guide.md).
+* Add the company logo and the manifest file. For more support, refer to our [App Base Guide](/docs/guides/plugins/apps/app-base-guide).
 
 ::: warning
 The name of your app that you provide in the manifest file needs to match the folder name of your app.

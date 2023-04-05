@@ -5,19 +5,19 @@ Sales channels allow you to operate multiple separate stores from a single Shopw
 These stores can have different configurations based on:
 
 * Channel type \(Storefront, API consumer, feed export, social channels\)
-* Appearance \([Themes](../../../guides/plugins/themes/theme-base-guide.md) for [Storefront](../../../concepts/framework/architecture/storefront-concept.md) sales channels\)
-* [Payment methods](../checkout-concept/payments.md)
+* Appearance \([Themes](../../../guides/plugins/themes/theme-base-guide) for [Storefront](../../../concepts/framework/architecture/storefront-concept) sales channels\)
+* [Payment methods](../checkout-concept/payments)
 * Languages
 * Currencies
 * Domains
 * Prices
-* [Products](products.md) and [Categories](categories.md)
+* [Products](products) and [Categories](categories)
 
 ## Store separation
 
 While using sales channels, you can achieve a logical separation of stores facing customers. They are technically not separated within your store's backend. Any admin user can still see orders, products, prices, etc., from every sales channel.
 
-Usually, sales channels are identified by their URL; however, some clients don't have any URLs, like mobile applications or integrations to other distribution channels, e.g., social media platforms. These integration points can use an *access key* when they [use the API](../../../guides/integrations-api/README.md) to identify the right sales channel.
+Usually, sales channels are identified by their URL; however, some clients don't have any URLs, like mobile applications or integrations to other distribution channels, e.g., social media platforms. These integration points can use an *access key* when they [use the API](../../../guides/integrations-api/) to identify the right sales channel.
 
 ## Domains
 

@@ -6,7 +6,7 @@ This approach is no longer recommended. It is kept here as a reference.
 
 Docker is **not** the recommended way to install Shopware 6 on a Mac when it comes to the default way, due to performance issues. You can still have a look at other possibilities below.
 
-When using Windows, it is recommended to use [Dockware](../community/dockware.md) or other ways to install Shopware.
+When using Windows, it is recommended to use [Dockware](../community/dockware) or other ways to install Shopware.
 
 ## Default way
 
@@ -95,10 +95,10 @@ This command creates and starts the containers, watchers, and the sync itself. R
 ./psh.phar install
 ```
 
-For more information, look at Shopware [Installation Overview](overview.md).
+For more information, look at Shopware [Installation Overview](overview).
 
 ## Next steps
 
-As the next step, you might want to start writing your very own plugin. Refer to [Plugin base guide](../../plugins/plugins/plugin-base-guide.md) to learn about that topic.
+As the next step, you might want to start writing your very own plugin. Refer to [Plugin base guide](../../plugins/plugins/plugin-base-guide) to learn about that topic.
 
-Would you like to explore alternative ways to install Shopware? You can install Shopware on Mac with the help of [Dockware](../community/dockware.md).
+Would you like to explore alternative ways to install Shopware? You can install Shopware on Mac with the help of [Dockware](../community/dockware).

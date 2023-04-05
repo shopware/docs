@@ -6,7 +6,7 @@ The Shopware 6 Sanitizer Helper is a wrapper around [`DOMPurify`](https://github
 
 ## Where is it registered?
 
-The Sanitizer Helper is registered to the [Shopware Global Object](./the-shopware-object.md) and therefore can be accessed anywhere in your plugin.
+The Sanitizer Helper is registered to the [Shopware Global Object](./the-shopware-object) and therefore can be accessed anywhere in your plugin.
 
 ```javascript
 const sanitizer = Shopware.Helper.SanitizerHelper; 
@@ -22,7 +22,7 @@ const sanitize = this.$sanitize;
 
 ## Sanitizing HTML
 
-As mentioned before the `SanitizerHelper` is registered to the [Shopware Global Object](./the-shopware-object.md) and therefore can be accessed like this everywhere:
+As mentioned before the `SanitizerHelper` is registered to the [Shopware Global Object](./the-shopware-object) and therefore can be accessed like this everywhere:
 
 ```javascript
 Shopware.Helper.SanitizerHelper.sanitize('<img src=x onerror=alert(1)//>'); // becomes <img src="x">

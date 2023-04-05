@@ -8,9 +8,9 @@ This guide will teach you how to add new data to the mail templates using your p
 
 ## Prerequisites
 
-This guide is built upon our [plugin base guide](../../plugin-base-guide.md), whose namespace is going to be used in the examples of this guide. However, you can use those examples with any plugin, you'll just have to adjust the namespace and the directory the files are located in.
+This guide is built upon our [plugin base guide](../../plugin-base-guide), whose namespace is going to be used in the examples of this guide. However, you can use those examples with any plugin, you'll just have to adjust the namespace and the directory the files are located in.
 
-Furthermore, you should know how to [decorate a service](../../plugin-fundamentals/adjusting-service.md).
+Furthermore, you should know how to [decorate a service](../../plugin-fundamentals/adjusting-service).
 
 ## Adding data via decorator
 
@@ -56,7 +56,7 @@ class AddDataToMails extends AbstractMailService
 }
 ```
 
-If you don't recognise the decoration pattern used here, make sure to have a look at our guide about [decorations](../../plugin-fundamentals/adjusting-service.md).
+If you don't recognise the decoration pattern used here, make sure to have a look at our guide about [decorations](../../plugin-fundamentals/adjusting-service).
 
 As always, we're passing in the original `MailService` as a constructor parameter, so we can return it in the `getDecorated` method, as well as use the original `send` method after having adjusted the `$templateData`.
 

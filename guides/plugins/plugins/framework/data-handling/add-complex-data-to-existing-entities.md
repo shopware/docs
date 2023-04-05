@@ -6,9 +6,9 @@ Sometimes you want to extend existing entities with some custom information, thi
 
 ## Prerequisites
 
-In order to create your own entity extension for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md).
+In order to create your own entity extension for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide).
 
-Also, basic knowledge of [creating a custom entity](add-custom-complex-data.md) and [adding associations](add-data-associations.md) to it are very helpful here.
+Also, basic knowledge of [creating a custom entity](add-custom-complex-data) and [adding associations](add-data-associations) to it are very helpful here.
 
 ## Creating the extension
 
@@ -48,7 +48,7 @@ class CustomExtension extends EntityExtension
 }
 ```
 
-Now we have to register our extension via the DI-container. If you don't know how that's done in general, head over to our guide about registering a custom service [Add a custom class / service](../../plugin-fundamentals/add-custom-service.md) or our guide about the [dependency injection](../../plugin-fundamentals/dependency-injection.md).
+Now we have to register our extension via the DI-container. If you don't know how that's done in general, head over to our guide about registering a custom service [Add a custom class / service](../../plugin-fundamentals/add-custom-service) or our guide about the [dependency injection](../../plugin-fundamentals/dependency-injection).
 
 Here's our `services.xml`:
 
@@ -70,7 +70,7 @@ Here's our `services.xml`:
 
 ### Adding a field with database
 
-In this guide you're extending the product entity in order to add a new string field to it. Since you must not extend the `product` table with a new column, you'll have to add a new table which contains the new data for the product. This new table will then be associated using a [OneToOne association](add-data-associations.md#One%20to%20One%20associations).
+In this guide you're extending the product entity in order to add a new string field to it. Since you must not extend the `product` table with a new column, you'll have to add a new table which contains the new data for the product. This new table will then be associated using a [OneToOne association](add-data-associations#One%20to%20One%20associations).
 
 Let's start with the `CustomExtension` class by adding a new field in the `extendFields` method.
 
@@ -117,7 +117,7 @@ As you can see, we're adding a new `OneToOneAssociationField`. Its parameters ar
 
 You most likely noticed the new classs `ExampleExtensionDefinition`, which we're going to create now. It will contain the actual string field that we wanted to add to the product.
 
-Creating a new entity is not explained in this guide, so make sure you know [this guide](add-custom-complex-data.md) beforehand.
+Creating a new entity is not explained in this guide, so make sure you know [this guide](add-custom-complex-data) beforehand.
 
 Our new entity will be located in the same directory as our extension. Let's first have a look at it before going into the explanation:
 
@@ -198,7 +198,7 @@ Of course, this new definition also needs to be registered to the DI container:
 
 #### Adding the new database table
 
-Of course you have to add the new database table via a [Database migration](../../plugin-fundamentals/database-migrations.md). Have a look into the guide linked above to see how exactly this is done. Here's the example migration and how it could look like:
+Of course you have to add the new database table via a [Database migration](../../plugin-fundamentals/database-migrations). Have a look into the guide linked above to see how exactly this is done. Here's the example migration and how it could look like:
 
 ```php
 <?php declare(strict_types=1);
@@ -240,7 +240,7 @@ SQL;
 
 As already mentioned, your new association is automatically being loaded every time a product entity is loaded. This section here will show you how to write to the new field instead.
 
-As every [write operation](writing-data.md), this is done via the product repository in this example.
+As every [write operation](writing-data), this is done via the product repository in this example.
 
 ```php
 $this->productRepository->upsert([[
@@ -287,7 +287,7 @@ class CustomExtension extends EntityExtension
 
 In this case, you directly add the `StringField` to the extension class itself. Afterwards we're adding the `Runtime` flag to this field, so Shopware knows that it doesn't have to take care of this new field automatically. We're doing this ourselves now.
 
-For this we need a new subscriber. If you are not familiar with a subscriber, have a look at our [Listening to events](../../plugin-fundamentals/listening-to-events.md) guide.
+For this we need a new subscriber. If you are not familiar with a subscriber, have a look at our [Listening to events](../../plugin-fundamentals/listening-to-events) guide.
 
 We can use the DAL event which gets fired every time the product entity is loaded. You can find those kind of events in the respective entities' event class, in this case it is `Shopware\Core\Content\Product\ProductEvents`.
 
@@ -352,4 +352,4 @@ After we've created our subscriber, we have to adjust our `services.xml` to regi
 
 ## Entity extension vs. Custom fields
 
-[Custom fields](../custom-field/add-custom-field.md) are by default configurable by the admin user in the Administration and they mostly support scalar types, e.g. a text-field, a number field or the likes. If you'd like to create associations between entities, you'll need to use an entity extension, just like we did here. Of course you can also add scalar values without an association to an entity via an extension.
+[Custom fields](../custom-field/add-custom-field) are by default configurable by the admin user in the Administration and they mostly support scalar types, e.g. a text-field, a number field or the likes. If you'd like to create associations between entities, you'll need to use an entity extension, just like we did here. Of course you can also add scalar values without an association to an entity via an extension.
