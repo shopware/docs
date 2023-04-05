@@ -6,13 +6,13 @@ In this guide you'll learn how to add a custom store API route. In this example,
 
 ## Prerequisites
 
-In order to add your own store API route for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md).
+In order to add your own store API route for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide).
 
-You also should have a look at our [Adding custom complex data](../data-handling/add-custom-complex-data.md) guide, since this guide is built upon it.
+You also should have a look at our [Adding custom complex data](../data-handling/add-custom-complex-data) guide, since this guide is built upon it.
 
 ## Add Store API route
 
-As you may already know from the [adjusting service](../../plugin-fundamentals/adjusting-service.md) guide, we use abstract classes to make our routes more decoratable.
+As you may already know from the [adjusting service](../../plugin-fundamentals/adjusting-service) guide, we use abstract classes to make our routes more decoratable.
 
 ::: warning
 All fields that should be available through the API require the flag `ApiAware` in the definition.

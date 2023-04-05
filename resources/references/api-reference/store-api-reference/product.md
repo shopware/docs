@@ -13,7 +13,7 @@ Identifier of a product. If it points to a "parent" product, it returns the chea
 
 **Body**
 
-[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) \| Criteria \| optional
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria) \| Criteria \| optional
 
 ### Returns
 
@@ -66,7 +66,7 @@ Identifier of a category.
 
 **Body**
 
-[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) \| Criteria \| optional
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria) \| Criteria \| optional
 
 ### Returns
 
@@ -100,7 +100,7 @@ Returns a product listing containing all products and additional fields to displ
 
 **Body**
 
-[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) \| Criteria \| optional
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria) \| Criteria \| optional
 
 ### Returns
 
@@ -135,7 +135,7 @@ Identifier of a product.
 
 **Body**
 
-[`includes`](../../../../guides/integrations-api/general-concepts/search-criteria.md#includes-apialias) \| object \| optional
+[`includes`](../../../../guides/integrations-api/general-concepts/search-criteria#includes-apialias) \| object \| optional
 
 ### Returns
 
@@ -193,7 +193,7 @@ Returns a list of cross-selling groups for the given product including their res
 **`search`** \| string \| required  
 Term to search after.
 
-[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) \| Criteria \| optional
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria) \| Criteria \| optional
 
 ### Returns
 
@@ -244,7 +244,7 @@ Identifier of a product.
 
 **Body**
 
-[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) \| Criteria \| optional
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria) \| Criteria \| optional
 
 ### Returns
 
@@ -299,7 +299,7 @@ Returns a search result containing all reviews for the given product.
 **Header**
 
 **`sw-context-token`** \| string \| required  
-Context token of a [logged in](../../../../guides/integrations-api/store-api-guide/register-a-customer.md#logging-in) user.
+Context token of a [logged in](../../../../guides/integrations-api/store-api-guide/register-a-customer#logging-in) user.
 
 **Path**
 
@@ -315,7 +315,7 @@ Identifier of a product.
 Identifier of a product.
 
 `id` \| uuid \| optional  
-Used for edits only. The review will be updated, if it's created by the [logged in](../../../../guides/integrations-api/store-api-guide/register-a-customer.md#logging-in) user.
+Used for edits only. The review will be updated, if it's created by the [logged in](../../../../guides/integrations-api/store-api-guide/register-a-customer#logging-in) user.
 
 `name` \| string \| optional  
 Name of the reviewer. If not set, it defaults to the customer's first name.

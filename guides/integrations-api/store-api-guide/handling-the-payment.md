@@ -26,7 +26,7 @@ The payment method for an order is part of the users context. You can obtain the
 ```
 
 ::: info
-How to find the [list of available payment methods](work-with-the-cart.md#payment-methods)?
+How to find the [list of available payment methods](work-with-the-cart#payment-methods)?
 :::
 
 ## Initiate the payment
@@ -118,4 +118,4 @@ In order to alter the payment method for your order, call the **order payment** 
 }
 ```
 
-Calling this endpoint will cause Shopware to cancel all existing payment transactions an create a single new transaction with the `open` state. Think of it like a "reset payment transactions" endpoint. Now that you've resetted the order payment, you can re-initiate the payment using the flow [described above](handling-the-payment.md#introduction).
+Calling this endpoint will cause Shopware to cancel all existing payment transactions an create a single new transaction with the `open` state. Think of it like a "reset payment transactions" endpoint. Now that you've resetted the order payment, you can re-initiate the payment using the flow [described above](handling-the-payment#introduction).

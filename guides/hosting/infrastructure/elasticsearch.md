@@ -7,7 +7,7 @@ As soon as several thousand data sets are used in a project, it makes sense to d
 ## Requirements
 
 * Elasticsearch 7.3 or newer
-* [Running message queue workers in background](message-queue.md)
+* [Running message queue workers in background](message-queue)
 
 ## Activating and first time Indexing
 

@@ -241,7 +241,7 @@ Shopware's data model is capable of representing multiple deliveries or shipment
 
 ### `order.transactions`
 
-A transaction represents a payment for an order. It contains a payment method, an amount and a state. An order can have multiple payments \(for example, if a payment fails, you can [switch methods](handling-the-payment.md#handle-exceptions) and create a second transaction with an alternative payment method\).
+A transaction represents a payment for an order. It contains a payment method, an amount and a state. An order can have multiple payments \(for example, if a payment fails, you can [switch methods](handling-the-payment#handle-exceptions) and create a second transaction with an alternative payment method\).
 
 ### `order.addresses`
 

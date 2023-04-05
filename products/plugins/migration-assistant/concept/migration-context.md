@@ -5,7 +5,7 @@ The central data structure of Shopware Migration Assistant is the migration cont
 1. The current connection of migration \(which holds the credentials\)
 2. Current Profile and Gateway instances
 3. Identifier of the current run
-4. Information on the current processing data \([DataSet](dataselection-and-dataset.md)\)
+4. Information on the current processing data \([DataSet](dataselection-and-dataset)\)
 5. Offset and limit of the current call
 
 ```php

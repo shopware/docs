@@ -144,8 +144,8 @@ Your minified javascript file will now be loaded in production environments.
 
 You've now added a custom component, including a little template. However, there's more discover here.
 
-* [More about templates](writing-templates.md)
-* [Add some styling to your component](add-custom-styles.md)
+* [More about templates](writing-templates)
+* [Add some styling to your component](add-custom-styles)
 * [Use shortcuts for your component](https://github.com/shopware/docs/tree/575c2fa12ef272dc25744975e2f1e4d44721f0f1/guides/plugins/plugins/administration/add-shortcuts.md)
 
-Furthermore, what about [customizing other components](customizing-components.md), instead of creating new ones.
+Furthermore, what about [customizing other components](customizing-components), instead of creating new ones.

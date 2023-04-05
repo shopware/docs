@@ -81,4 +81,4 @@ Of course, you're able to use custom assets in themes as well. In this context t
 
 ## Next steps
 
-One of the said custom assets are medias. For those, we've got a separate [guide](use-media-thumbnails.md).
+One of the said custom assets are medias. For those, we've got a separate [guide](use-media-thumbnails).

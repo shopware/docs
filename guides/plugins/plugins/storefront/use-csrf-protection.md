@@ -27,7 +27,7 @@ As already mentioned, this guide assumed you've already got a custom form runnin
 
 Just a basic form with a submit button and a hidden input, that must not be manipulated.
 
-Every storefront `POST` request is checked for a valid CSRF token to prevent [Cross Site Request Forgery attacks](https://owasp.org/www-community/attacks/csrf), since by default every Storefront route is automatically looking for a CSRF token. This also means, that the simple example form mentioned above will not work, since it's missing a CSRF token. You can make the form work, by [disabling the CSRF protection](use-csrf-protection.md#Exclude%20controller%20action%20from%20CSRF%20checks) on your route.
+Every storefront `POST` request is checked for a valid CSRF token to prevent [Cross Site Request Forgery attacks](https://owasp.org/www-community/attacks/csrf), since by default every Storefront route is automatically looking for a CSRF token. This also means, that the simple example form mentioned above will not work, since it's missing a CSRF token. You can make the form work, by [disabling the CSRF protection](use-csrf-protection#Exclude%20controller%20action%20from%20CSRF%20checks) on your route.
 
 Protecting it now with the built-in tools requires you to add two new lines, but let's have a look at a secure example first:
 

@@ -1,6 +1,6 @@
 # Storefront
 
-You can modify the whole appearance of the storefront within your app. This includes [customizing templates](../plugins/storefront/customize-templates.md), [adding custom Javascript](../plugins/storefront/add-custom-javascript.md) and [custom styling](../plugins/storefront/add-custom-styling.md).
+You can modify the whole appearance of the storefront within your app. This includes [customizing templates](../plugins/storefront/customize-templates), [adding custom Javascript](../plugins/storefront/add-custom-javascript) and [custom styling](../plugins/storefront/add-custom-styling).
 
 As the storefront will be build on the Shopware server you don't have to set up any external servers for this. All you have to do is including your modifications \(in form of `.html.twig`, `.js` or `.scss` files\) inside the `Resources` folder of your app. The base folder structure of your app my look like this:
 

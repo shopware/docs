@@ -12,7 +12,7 @@ All you need for this guide is a running Shopware 6 instance. Of course, you'll 
 
 Module settings like `color`, `icon`, `navigation` are fixed by design and cannot be changed.
 
-A guide for customizing components, which are already defined in existing modules, can be found here - [Customizing components](customizing-components.md).
+A guide for customizing components, which are already defined in existing modules, can be found here - [Customizing components](customizing-components).
 
 However, modules themselves cannot be directly overridden.
 
@@ -45,5 +45,5 @@ You can find a detailed example in the [Add tab to existing module]() guide.
 
 ## More interesting topics
 
-* [Customizing components](customizing-components.md)
-* [Adding a route](add-custom-route.md)
+* [Customizing components](customizing-components)
+* [Adding a route](add-custom-route)

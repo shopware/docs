@@ -1,6 +1,6 @@
 # Rules
 
-The rule system pervades Shopware 6. It solves the problem of calculating the cart differently based on the context \([`SalesChannel`](../commerce/catalog/sales-channels.md), `CustomerGroup`, ...\) and the current state \([`LineItems`](../commerce/checkout-concept/cart.md#line-items), `Amount`, ...\), but user controlled and decoupled from the [cart](../commerce/checkout-concept/cart.md) itself. In theory [every part of Shopware 6](../../resources/references/core-reference/rules-reference.md) can contribute to the set of available rules.
+The rule system pervades Shopware 6. It solves the problem of calculating the cart differently based on the context \([`SalesChannel`](../commerce/catalog/sales-channels), `CustomerGroup`, ...\) and the current state \([`LineItems`](../commerce/checkout-concept/cart#line-items), `Amount`, ...\), but user controlled and decoupled from the [cart](../commerce/checkout-concept/cart) itself. In theory [every part of Shopware 6](../../resources/references/core-reference/rules-reference) can contribute to the set of available rules.
 
 ## Scenario
 
@@ -38,7 +38,7 @@ Which will result in the following call order:
 
 ![](../../.gitbook/assets/rule-sequence.png)
 
-As you can see a single rule can either contain user defined values or other, user defined, rules. These are Container rules. The rule system here bears some resemblance to the [SearchCriteria](../../guides/plugins/plugins/framework/data-handling/reading-data.md#Filtering), although independent. Where a criteria is the representation of a query that gets translated and executed through the storage engine, the rule matches **in memory** in PHP.
+As you can see a single rule can either contain user defined values or other, user defined, rules. These are Container rules. The rule system here bears some resemblance to the [SearchCriteria](../../guides/plugins/plugins/framework/data-handling/reading-data#Filtering), although independent. Where a criteria is the representation of a query that gets translated and executed through the storage engine, the rule matches **in memory** in PHP.
 
 The last building block then is the **Rule Scope**. The Scope contains the current runtime state of the application and is necessary to match the data. The whole picture is visualized in the next diagram:
 

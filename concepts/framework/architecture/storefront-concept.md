@@ -12,7 +12,7 @@ In this article, we'll get to know our Storefront component and learn a lot of i
 
 ## Introduction
 
-The Storefront component is a frontend written in PHP. It conceptually sits on top of our Core - similar to the [Administration](administration-concept.md) component. As the Storefront can be seen as a classical PHP application, it makes usage of HTML rendering, JavaScript and a CSS preprocessor. Speaking of technologies, the Storefront component uses Twig as the templating engine and SASS for styling purposes. The foundation of the Storefront template is based on the Bootstrap framework and therefore fully customizable.
+The Storefront component is a frontend written in PHP. It conceptually sits on top of our Core - similar to the [Administration](administration-concept) component. As the Storefront can be seen as a classical PHP application, it makes usage of HTML rendering, JavaScript and a CSS preprocessor. Speaking of technologies, the Storefront component uses Twig as the templating engine and SASS for styling purposes. The foundation of the Storefront template is based on the Bootstrap framework and therefore fully customizable.
 
 ## Main concerns
 
@@ -25,9 +25,9 @@ There are a few main concerns which the Storefront component has. To give you a 
 
 Contrary to API calls that result in single resource data, a whole page in the Storefront displays multiple different data sets on a single page. Think of partials, which lead to a single page being displayed. Imagine a page which displays the order overview in the customer account environment. There are partials which are generic and will be displayed on almost every page. These partials include for example Header and Footer information and are being wrapped into a `GenericPage` as our so called `Pagelets` \(`HeaderPagelet`, `FooterPagelet`\). This very generic page will afterwards be enriched with the specific information you want to display through a separate loader \(e.g. a list of orders\).
 
-To achieve getting information from a specific resource, the Storefronts second concern is to map requests to the Core. Internally, the Storefront makes use of our [Store API](../../api/store-api.md) routes to enrich the Page with additional information like e.g. a list of orders, which is being fetched through the order route. Once all needed information were added to the page, the corresponding page loader returns the page to a Storefront controller.
+To achieve getting information from a specific resource, the Storefronts second concern is to map requests to the Core. Internally, the Storefront makes use of our [Store API](../../api/store-api) routes to enrich the Page with additional information like e.g. a list of orders, which is being fetched through the order route. Once all needed information were added to the page, the corresponding page loader returns the page to a Storefront controller.
 
-Contrary to the Core that can almost completely omit templating in favor JSON responses, the Storefront contains a rich set of Twig templates to display a fully functional shop. Having said that, another concern of the Storefront is to provide templating with Twig. The page object, which was enriched beforehand, will afterwards be passed to a specific Twig page template throughout a controller. A more detailed look into an example can be found in [Composite data handling](storefront-concept.md#composite-data-handling).
+Contrary to the Core that can almost completely omit templating in favor JSON responses, the Storefront contains a rich set of Twig templates to display a fully functional shop. Having said that, another concern of the Storefront is to provide templating with Twig. The page object, which was enriched beforehand, will afterwards be passed to a specific Twig page template throughout a controller. A more detailed look into an example can be found in [Composite data handling](storefront-concept#composite-data-handling).
 
 Last, but not least, the Storefront not only contains static templates but also inhibits a theming engine to modify the rendered templates or change the default layout programmatically with your own [Themes](../../../guides/plugins/themes/) or [Plugins]().
 
@@ -70,7 +70,7 @@ A single **page** is always a three class namespace. There is the Page-Struct \(
 
 ### Example: Composition of the account order page
 
-Getting back to our example described at the [main concerns chapter](storefront-concept.md#main-concerns), we'd now like to have a detailed look at the composition of the Storefronts `AccountOrderPage` with Header and Footer information. The composition is handled through the page loaders themselves, by triggering loading of associated data internally. Information: Following example will also be used for any other page being displayed in our Storefront.
+Getting back to our example described at the [main concerns chapter](storefront-concept#main-concerns), we'd now like to have a detailed look at the composition of the Storefronts `AccountOrderPage` with Header and Footer information. The composition is handled through the page loaders themselves, by triggering loading of associated data internally. Information: Following example will also be used for any other page being displayed in our Storefront.
 
 Starting to describe how the composition of the page works, we would at first like to know what the _result_ of composition should be.
 

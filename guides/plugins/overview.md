@@ -26,7 +26,7 @@ Plugins are the most powerful extension mechanism, as they can be used to extend
 * Dynamic validations
 * Customer tracking
 
-You will probably need to write a plugin for that. Follow our [Plugin Base Guide](plugins/plugin-base-guide.md) to learn how to develop a plugin. You will find further examples in the subsequent section [Plugin Fundamentals](plugins/plugin-fundamentals/).
+You will probably need to write a plugin for that. Follow our [Plugin Base Guide](plugins/plugin-base-guide) to learn how to develop a plugin. You will find further examples in the subsequent section [Plugin Fundamentals](plugins/plugin-fundamentals/).
 
 ::: info
 If your extensions requires nothing of the above but rather template changes, you might be fine with a Theme.
@@ -47,12 +47,12 @@ Technically, plugins and themes are very similar and overlap in most of their lo
 Note, that a plugin can also override templates.
 :::
 
-To start your first theme, follow our [Theme Base Guide](themes/theme-base-guide.md).
+To start your first theme, follow our [Theme Base Guide](themes/theme-base-guide).
 
 ## Apps
 
-For the aspects listed under [Plugins](overview.md#plugins), it is not possible to operate those in cloud environments. Therefore, a different, less intrusive pattern has been introduced. Apps allow for event-based integrations which communicate with external services through a synchronous API.
+For the aspects listed under [Plugins](overview#plugins), it is not possible to operate those in cloud environments. Therefore, a different, less intrusive pattern has been introduced. Apps allow for event-based integrations which communicate with external services through a synchronous API.
 
-Most of the logic of the app resides within that third party service, so developers have to make sure to work out the details of the API and provide proper security, protection and reliability to their service. While it comes with those responsibilities, it gives you free choice of which operating environments, frameworks or programming languages to use, as long as our [guidelines for Shopware apps](apps/app-base-guide.md) are followed.
+Most of the logic of the app resides within that third party service, so developers have to make sure to work out the details of the API and provide proper security, protection and reliability to their service. While it comes with those responsibilities, it gives you free choice of which operating environments, frameworks or programming languages to use, as long as our [guidelines for Shopware apps](apps/app-base-guide) are followed.
 
-Apps also provide theme support, so all functionalities of [Themes](overview.md#themes) are available to apps as well.
+Apps also provide theme support, so all functionalities of [Themes](overview#themes) are available to apps as well.

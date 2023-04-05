@@ -5,7 +5,7 @@ The app system allows you to extend and modify the functionality and appearance 
 The app system is designed to be decoupled from Shopware itself. This has two great advantages:
 
 1. Freedom of choice: You need to understand only the interface between Shopware and your app to get started with developing your own app. You don't need special knowledge of the inner workings and internal structure of Shopware itself. Additionally you have the freedom to choose a programming language or framework of your choice to implement your app. This is achieved by decoupling the deployment of Shopware itself and your app and by using the Admin API and webhooks to communicate between Shopware and your app, instead of using programming language constructs directly.
-2. Fully cloud compatible: By decoupling Shopware and your app, your app is automatically compatible for the use in a multi tenant cloud system, therefore your app can be used within self-hosted shops and shops on [Shopware Cloud](../../products/cloud-1.md).
+2. Fully cloud compatible: By decoupling Shopware and your app, your app is automatically compatible for the use in a multi tenant cloud system, therefore your app can be used within self-hosted shops and shops on [Shopware Cloud](../../products/cloud-1).
 
 The central interface between your app and Shopware is defined by a dedicated manifest file. The manifest is what glues Shopware and your app together. It defines what features your app uses and how Shopware can connect to your app. You can find more information about how to use the manifest file in the App Base Guide.
 
@@ -17,10 +17,10 @@ Shopware communicates with your app only exclusively HTTP-Requests, therefore yo
 
 ![Communication between Shopware and your app](../../.gitbook/assets/shop-app-communication.svg)
 
-To secure this communication a registration handshake is performed during the installation of your app. During this registration it is verified that Shopware talks to the right app backend server and your app get's credentials used to authenticate against the API. You can read more on the registration worklfow in the [App Base Guide](../../guides/plugins/apps/app-base-guide.md).
+To secure this communication a registration handshake is performed during the installation of your app. During this registration it is verified that Shopware talks to the right app backend server and your app get's credentials used to authenticate against the API. You can read more on the registration worklfow in the [App Base Guide](../../guides/plugins/apps/app-base-guide).
 
 ::: info
-Notice that this is optional in the case that Shopware and your app don't need to communicate, e.g. because your app provides a [Theme](apps-concept.md).
+Notice that this is optional in the case that Shopware and your app don't need to communicate, e.g. because your app provides a [Theme](apps-concept).
 :::
 
 ## Modify the appearance of the storefront

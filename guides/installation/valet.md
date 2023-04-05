@@ -8,7 +8,7 @@ This is a modified version of the [official Installation Guide](https://github.c
 
 ## Prerequisites
 
-You should have a look at our [overview](overview.md) before proceeding with this guide. Also, your system should be running [brew](https://brew.sh/) and [composer](https://getcomposer.org/) already.
+You should have a look at our [overview](overview) before proceeding with this guide. Also, your system should be running [brew](https://brew.sh/) and [composer](https://getcomposer.org/) already.
 
 ## If you have Valet installed
 
@@ -67,4 +67,4 @@ Try disabing SSL via `valet unsecure`.
 
 ## Next steps
 
-Now, that you've got a running Shopware 6 instance, you could try to create your first plugin. Head over to our [plugin base guide](../plugins/plugins/plugin-base-guide.md) for more information.
+Now, that you've got a running Shopware 6 instance, you could try to create your first plugin. Head over to our [plugin base guide](../plugins/plugins/plugin-base-guide) for more information.

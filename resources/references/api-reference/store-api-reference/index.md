@@ -10,7 +10,7 @@ The actual structure and functionality of the endpoints can differ from this ref
 
 ### Helpful guides to read before using this reference <a id="helpful-guides-to-read-before-using-this-reference"></a>
 
-* ​[Concept of the Store API](../../../../concepts/api/store-api.md)​
+* ​[Concept of the Store API](../../../../concepts/api/store-api)​
 * ​[Common API Concepts](../../../../guides/integrations-api/general-concepts/)​
 * ​[Store API Guide](../../../../guides/integrations-api/store-api-guide/)​
 
@@ -28,7 +28,7 @@ See the below section for an exemplary endpoint description.‌
 
 ### **Parameters** <a id="parameters"></a>
 
-> The parameters section contains parameters of the endpoint. Depending on the endpoint parameters can be passed as a header, as a **query parameter** \(`?onlyAvailable=1` \), as a **route path parameter** \(`/product/{productId}` \) or \(for post requests\) as **body parameter.** The most common parameters are defined in the search criteria parameters, which can be passed in almost every list endpoint. More information about the [search criteria](../../../../guides/integrations-api/general-concepts/search-criteria.md).
+> The parameters section contains parameters of the endpoint. Depending on the endpoint parameters can be passed as a header, as a **query parameter** \(`?onlyAvailable=1` \), as a **route path parameter** \(`/product/{productId}` \) or \(for post requests\) as **body parameter.** The most common parameters are defined in the search criteria parameters, which can be passed in almost every list endpoint. More information about the [search criteria](../../../../guides/integrations-api/general-concepts/search-criteria).
 
 **Path**‌
 
@@ -37,7 +37,7 @@ Identifier of a product. If it points to a "parent" product, it returns the chea
 
 **Body**‌
 
-​[**`Search Criteria`**](../../../../guides/integrations-api/general-concepts/search-criteria.md) \| Criteria \| optional
+​[**`Search Criteria`**](../../../../guides/integrations-api/general-concepts/search-criteria) \| Criteria \| optional
 
 ‌
 
@@ -45,7 +45,7 @@ Identifier of a product. If it points to a "parent" product, it returns the chea
 
 > The return codes and bodies differ from endpoint to endpoint. Usually, our reference contains examples for the successful response and the most common 4xx errors. See [Response Types](https://app.gitbook.com/@shopware/s/shopware-1/~/drafts/-MU8LxyY2Ad3ushWb8Jl/resources/references/api-reference/store-api-reference#response-types/@drafts).
 
-Returns a single product together with a [configurator object](../../../../concepts/commerce/catalog/products.md#configurator) that contains its variant options.404 Not Found
+Returns a single product together with a [configurator object](../../../../concepts/commerce/catalog/products#configurator) that contains its variant options.404 Not Found
 
 <Tabs>
 <Tab title="200 OK">

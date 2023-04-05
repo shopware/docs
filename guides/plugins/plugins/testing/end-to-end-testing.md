@@ -20,7 +20,7 @@ This guide also won't teach you how to write Cypress tests in general. Please ta
 
 ### Using our testsuite
 
-The [E2E platform testsuite package](https://github.com/shopware/e2e-testsuite-platform) contains commands and helpers supporting you while building E2E tests for Shopware 6. On top of that, test data management and custom commands are included as well. More on that here: [Command reference](../../../../resources/references/core-reference/commands-reference.md).
+The [E2E platform testsuite package](https://github.com/shopware/e2e-testsuite-platform) contains commands and helpers supporting you while building E2E tests for Shopware 6. On top of that, test data management and custom commands are included as well. More on that here: [Command reference](../../../../resources/references/core-reference/commands-reference).
 
 This test suite is built on top of [Cypress](https://www.cypress.io/) as well as the following Cypress plugins:
 
@@ -36,7 +36,7 @@ Here you can find the npm package of our testsuite:
 
 When you use our [Development template](https://github.com/shopware/development), we provide you some tooling scripts located in `dev-ops/e2e/actions`, to use E2E tests more comfortably.
 
-The`./psh.phar` commands to run our E2E tests in CLI or in Cypress' test runner are explained in the paragraph [Executing e2e tests](end-to-end-testing.md#Executing%20E2E%20tests).
+The`./psh.phar` commands to run our E2E tests in CLI or in Cypress' test runner are explained in the paragraph [Executing e2e tests](end-to-end-testing#Executing%20E2E%20tests).
 
 <Tabs>
 <Tab title="Plugin setup">
@@ -55,7 +55,7 @@ Resources
             `-- support
 ```
 
-We will cover the use of every folder in detail in our guide [Writing E2E tests](end-to-end-testing.md#Writing-End-to-End-Tests).
+We will cover the use of every folder in detail in our guide [Writing E2E tests](end-to-end-testing#Writing-End-to-End-Tests).
 
 Within the folder `Resources/app/<environment>/test/e2e`, please run `npm init -y` to generate a `package.json` file. It is very convenient to place a script inside the newly created `package.json` to run the tests locally. Please add the following section to do so:
 
@@ -148,7 +148,7 @@ Please keep in mind that we use `Administration` as default app environment. If 
 ./psh.phar e2e:open --CYPRESS_ENV=Storefront
 ```
 
-To see a complete overview on all psh scripts for e2e tests, feel free to refer to our [e2e psh command reference](../../../../resources/references/testing-reference/e2e-psh-commands.md).
+To see a complete overview on all psh scripts for e2e tests, feel free to refer to our [e2e psh command reference](../../../../resources/references/testing-reference/e2e-psh-commands).
 </Tab>
 </Tabs>
 
@@ -201,7 +201,7 @@ These two configuration files are important to mention as well:
 
   [Cypress configuration docs](https://docs.cypress.io/guides/references/configuration.html).
 
-If you need to use this structure in a plugin, it is just the path to the `e2e` folder, which is slightly different. You can find the folder structure in the paragraph [Setup](end-to-end-testing.md#Plugin%20setup).
+If you need to use this structure in a plugin, it is just the path to the `e2e` folder, which is slightly different. You can find the folder structure in the paragraph [Setup](end-to-end-testing#Plugin%20setup).
 
 If you want to contribute to Shopware platform's tests, please ensure to place your test in one of those folders:
 
@@ -264,7 +264,7 @@ it('test something', () => {
 
 You can chain commands by passing its return value to the next one. These commands may contain extra steps to take, e.g. a `click` or `type` operation.
 
-Cypress provides a lot of commands to represent a variety of steps a user could do. On top of that, our E2E testsuite contains a couple of [custom commands](../../../../resources/references/testing-reference/e2e-custom-commands.md) specially for Shopware.
+Cypress provides a lot of commands to represent a variety of steps a user could do. On top of that, our E2E testsuite contains a couple of [custom commands](../../../../resources/references/testing-reference/e2e-custom-commands) specially for Shopware.
 
 ### Assertions
 
@@ -491,6 +491,6 @@ Below you will find some best practices and tricks we explored to help you with 
 
 ## More interesting topics
 
-* [Unit testing with PHPUnit](php-unit.md)
-* [Jest unit tests in Shopware's administration](jest-admin.md)
-* [Jest unit tests in Shopware's storefront](jest-storefront.md)
+* [Unit testing with PHPUnit](php-unit)
+* [Jest unit tests in Shopware's administration](jest-admin)
+* [Jest unit tests in Shopware's storefront](jest-storefront)

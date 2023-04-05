@@ -6,7 +6,7 @@ In this guide you'll learn how to customize an existing payment provider. In thi
 
 ## Prerequisites
 
-As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide.md), but you don't necessarily need that. It is helpful to have looked at the guide about [adding a custom payment method](add-payment-plugin.md) beforehand. Furthermore, decorating a service is also not explained here, but it's covered in our guide about [adjusting a service](../../plugin-fundamentals/adjusting-service.md), so having this open in another tab won't hurt.
+As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide), but you don't necessarily need that. It is helpful to have looked at the guide about [adding a custom payment method](add-payment-plugin) beforehand. Furthermore, decorating a service is also not explained here, but it's covered in our guide about [adjusting a service](../../plugin-fundamentals/adjusting-service), so having this open in another tab won't hurt.
 
 ## Customize the payment provider
 

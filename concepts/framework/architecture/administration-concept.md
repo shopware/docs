@@ -13,7 +13,7 @@ In this article, we'll get to know our Administration component and learn a lot 
 
 ## Introduction
 
-The Administration component is a Symfony bundle which contains a Single Page Application \(SPA\) written in JavaScript. It conceptually sits on top of our Core - similar to the [Storefront](storefront-concept.md) component. The SPA itself provides a rich user interface on top of a REST-API based communication. It communicates with the Core component throughout the Admin API & is an Interaction Oriented System following the example of the web components patterns - albeit through [Vue.js](https://vuejs.org/). Similar to the frameworks being used in the Storefront component, the Administration component uses SASS for styling purposes and [Twig.js](https://github.com/twigjs/twig.js/wiki) to offer templating functionalities. By default, Shopware 6 uses the [Vue I18n plugin](https://kazupon.github.io/vue-i18n/) in the Administration to deal with translation. Furthermore, [Webpack](https://webpack.js.org/) is being used to bundle and compile the SPA.
+The Administration component is a Symfony bundle which contains a Single Page Application \(SPA\) written in JavaScript. It conceptually sits on top of our Core - similar to the [Storefront](storefront-concept) component. The SPA itself provides a rich user interface on top of a REST-API based communication. It communicates with the Core component throughout the Admin API & is an Interaction Oriented System following the example of the web components patterns - albeit through [Vue.js](https://vuejs.org/). Similar to the frameworks being used in the Storefront component, the Administration component uses SASS for styling purposes and [Twig.js](https://github.com/twigjs/twig.js/wiki) to offer templating functionalities. By default, Shopware 6 uses the [Vue I18n plugin](https://kazupon.github.io/vue-i18n/) in the Administration to deal with translation. Furthermore, [Webpack](https://webpack.js.org/) is being used to bundle and compile the SPA.
 
 ## Main concerns
 
@@ -25,11 +25,11 @@ Apart from the - arguably most central - responsibility of creating the UI itsel
 
   one also has the opportunity to override or extend the Administration to fit needs. More information can be found in
 
-  the [inheritance](administration-concept.md#inheritance) chapter of this article.
+  the [inheritance](administration-concept#inheritance) chapter of this article.
 
 * **Data management**: The Administration displays entities of the Core component and handles the management of this
 
-  data. So of course REST-API access is an important concern of [pages and views](administration-concept.md#modules-and-their-components) - where
+  data. So of course REST-API access is an important concern of [pages and views](administration-concept#modules-and-their-components) - where
 
   necessary. You will find many components working with in-memory representations of API-Data.
 
@@ -61,7 +61,7 @@ The `src` directory of the SPA below is structured along the three different use
 * `core`: Contains the binding to the Admin API and services.
 * `module`: UI and state management of specific view pages, structured along the Core modules. Head to
 
-  the [modules section](administration-concept.md#modules-and-their-components) to learn more about a modules structure.
+  the [modules section](administration-concept#modules-and-their-components) to learn more about a modules structure.
 
 ## Modules and their components
 
@@ -89,7 +89,7 @@ At least one `page` is mandatory in each module. Though views and components can
 
 ### Order module
 
-Having a look at a more practical example, one can look closer at the order module. Typically, you'll find this structure alongside other modules. Especially, when it comes to creating pages or views for creating/editing, listing or viewing a specific entity. Please head to the [Add custom module](../../../guides/plugins/plugins/administration/add-custom-module.md) article if you want to learn more about adding your custom module with a Shopware plugin.
+Having a look at a more practical example, one can look closer at the order module. Typically, you'll find this structure alongside other modules. Especially, when it comes to creating pages or views for creating/editing, listing or viewing a specific entity. Please head to the [Add custom module](../../../guides/plugins/plugins/administration/add-custom-module) article if you want to learn more about adding your custom module with a Shopware plugin.
 
 ```bash
 <platform/src/Administration/Resources/app/administration/src/module/sw-order/>

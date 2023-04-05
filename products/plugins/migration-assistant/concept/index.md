@@ -10,7 +10,7 @@ We will provide you with a basic introduction into the concepts and structure ri
 
 Users of the plugin can create connections to different source systems. A connection is used to allow multiple migrations from the same source and update the right data \(mapping\). Connections require a specific profile, indicating the type of source system. Users can, for example, create a connection to a Shopware shop using the Shopware 5.5 profile. Developers are able to create their own profiles from scratch and connect to different source systems or just build up on and extend existing ones.
 
-For more details have a look at [Profile and Connection](profile-and-connection.md).
+For more details have a look at [Profile and Connection](profile-and-connection).
 
 <PageRef page="profile-and-connection" />
 
@@ -36,7 +36,7 @@ Because the structure of the source system does not always match the structure o
 
 Users will have to specify a gateway for the connection. The gateway defines the way of communicating with the source system. Behind the user interface we use `Reader` objects to read the data from the source system. For the `shopware55` profile we have the `api` gateway, which communicates via http/s with the source system, and the `local` gateway, which communicates directly with the source system's database. Thus both systems must be on the same server for successfully using the `local` gateway.
 
-If you want to use the `ShopwareApiGateway` you have to download the [Shopware Connector](https://github.com/shopware/SwagMigrationConnector) plugin for your Shopware 5. For more details have a look at the [Gateway and reader](gateway-and-reader.md).
+If you want to use the `ShopwareApiGateway` you have to download the [Shopware Connector](https://github.com/shopware/SwagMigrationConnector) plugin for your Shopware 5. For more details have a look at the [Gateway and reader](gateway-and-reader).
 
 <PageRef page="premapping" />
 
@@ -60,7 +60,7 @@ The `Writer` objects will receive the converted data and write it to Shopware 6.
 
 ## Media processing
 
-During a typical migration we download the media files from the source system to Shopware 6. This is the last processing step in the migration and may be done differently for other gateways. For example the `local` gateway will copy and rename the files directly in the local filesystem. For more Details you can look at [Media processing](media-processing.md).
+During a typical migration we download the media files from the source system to Shopware 6. This is the last processing step in the migration and may be done differently for other gateways. For example the `local` gateway will copy and rename the files directly in the local filesystem. For more Details you can look at [Media processing](media-processing).
 
 <PageRef page="premapping" />
 
@@ -88,7 +88,7 @@ The recommended way to migrate plugin data from a source system is to extend tha
 
 Take a look at the following HowTos for your scenario to get a step by step tutorial:
 
-* [Extending a Shopware migration profile](../guides/extending-a-shopware-migration-profile.md): Migrating your first basic plugin data \(via local gateway\)
-* [Extending the Migration Connector](../guides/extending-the-migration-connector.md): Add API support for your migration
-* [Decorating a Shopware Migration Assistant converter](../guides/decorating-a-shopware-migration-assistant-converter.md): Implement a premapping and change the behavior of an existing converter
-* [Creating a new migration profile](../guides/creating-a-new-migration-profile.md): Create a new profile from scratch to support a third party source system \(other than Shopware\)
+* [Extending a Shopware migration profile](../guides/extending-a-shopware-migration-profile): Migrating your first basic plugin data \(via local gateway\)
+* [Extending the Migration Connector](../guides/extending-the-migration-connector): Add API support for your migration
+* [Decorating a Shopware Migration Assistant converter](../guides/decorating-a-shopware-migration-assistant-converter): Implement a premapping and change the behavior of an existing converter
+* [Creating a new migration profile](../guides/creating-a-new-migration-profile): Create a new profile from scratch to support a third party source system \(other than Shopware\)

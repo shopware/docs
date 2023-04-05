@@ -181,7 +181,7 @@ class ManufacturerReader extends AbstractPremappingReader
 }
 ```
 
-The created premapping reader fetches all manufacturers of the source system, gets all manufacturer choices out of the Shopware 6 database and does a simple preselection via the manufacturer name. The `getPremapping` function returns the whole premapping structure. With this structure, the administration creates a new premapping card and creates for each source system manufacturer a selectbox with all Shopware 6 manufacturers as choices. For more details have a look at the [premapping concept](../concept/premapping.md).
+The created premapping reader fetches all manufacturers of the source system, gets all manufacturer choices out of the Shopware 6 database and does a simple preselection via the manufacturer name. The `getPremapping` function returns the whole premapping structure. With this structure, the administration creates a new premapping card and creates for each source system manufacturer a selectbox with all Shopware 6 manufacturers as choices. For more details have a look at the [premapping concept](../concept/premapping).
 
 ## Adding snippets to premapping card
 

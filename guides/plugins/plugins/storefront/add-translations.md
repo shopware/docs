@@ -6,7 +6,7 @@ In this guide you'll learn how to add translations to the storefront and how to 
 
 ## Prerequisites
 
-In order to add your own custom translations for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
+In order to add your own custom translations for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide).
 
 ## Snippet file structure
 

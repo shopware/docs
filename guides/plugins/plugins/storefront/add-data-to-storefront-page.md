@@ -8,13 +8,13 @@ If you make template changes you probably want to display some data that is curr
 
 ## Prerequisites
 
-This guide is built upon our [Plugin base guide](../plugin-base-guide.md), so keep that in mind.
+This guide is built upon our [Plugin base guide](../plugin-base-guide), so keep that in mind.
 
 Also the following knowledge is necessary, even though some of them are covered here as well:
 
-* Knowing how to [listen to events by using a subscriber](../plugin-fundamentals/listening-to-events.md)
-* Knowing how to [customize storefront templates](customize-templates.md)
-* Knowing how to [read data using our data abstraction layer](../framework/data-handling/reading-data.md)
+* Knowing how to [listen to events by using a subscriber](../plugin-fundamentals/listening-to-events)
+* Knowing how to [customize storefront templates](customize-templates)
+* Knowing how to [read data using our data abstraction layer](../framework/data-handling/reading-data)
 
 ## Adding data to the storefront
 
@@ -63,7 +63,7 @@ The next thing we need to do is register our subscriber in the DI-Container and 
 
 Now that we have registered our Subscriber to the right event, we first need to fetch the additional data we need and then add it as an extension to the pagelet.
 
-If you don't understand what's happening in the example, make sure to have a look at our guide about [reading data](../framework/data-handling/reading-data.md) first.
+If you don't understand what's happening in the example, make sure to have a look at our guide about [reading data](../framework/data-handling/reading-data) first.
 
 ```php
 <?php declare(strict_types=1);
@@ -113,7 +113,7 @@ class AddDataToPage implements EventSubscriberInterface
 }
 ```
 
-So you should know and understand the first few lines if you've read our guide about [reading data](../framework/data-handling/reading-data.md) first. Make sure to also understand the usage of aggregations, since this is what is done here. The only main difference you might notice is, that we're using the `aggregate()` method instead of the `search()` method. This will not actually search for any products and return the whole products dataset, but rather just the aggregated data, nothing else.
+So you should know and understand the first few lines if you've read our guide about [reading data](../framework/data-handling/reading-data) first. Make sure to also understand the usage of aggregations, since this is what is done here. The only main difference you might notice is, that we're using the `aggregate()` method instead of the `search()` method. This will not actually search for any products and return the whole products dataset, but rather just the aggregated data, nothing else.
 
 Completely new should only be the last line: `$event->getPagelet()->addExtension('product_count', $productCountResult);`
 
@@ -138,7 +138,7 @@ Now you only have to adjust your service definition to inject the product reposi
 
 ### Displaying the data in the storefront
 
-To display the additional data we need to override the footer template and render the data. You can find detailed information on how to extend templates and override blocks [here](customize-templates.md).
+To display the additional data we need to override the footer template and render the data. You can find detailed information on how to extend templates and override blocks [here](customize-templates).
 
 For our case we extend the footer template and add a new column to the navigation block:
 

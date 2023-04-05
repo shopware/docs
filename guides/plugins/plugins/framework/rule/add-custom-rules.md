@@ -8,9 +8,9 @@ This example will introduce a new rule, which checks if there's currently a luna
 
 ## Prerequisites
 
-In order to add your own custom rules for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md).
+In order to add your own custom rules for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide).
 
-You also should be familiar with the [Dependency Injection container](../../plugin-fundamentals/dependency-injection.md) as this is used to register your custom rule.
+You also should be familiar with the [Dependency Injection container](../../plugin-fundamentals/dependency-injection) as this is used to register your custom rule.
 
 ## Create custom rule
 
@@ -93,7 +93,7 @@ $context->getRuleIds();
 
 ### Showing rule in the administration
 
-Now we want to implement our new rule in the administration so that we can manage it. To achieve this, we have to call the `addCondition` method of the [RuleConditionService](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/service/rule-condition.service.js), by decorating this service. The decoration of services in the administration will be covered in our [Adding services](../../administration/add-custom-service.md#Decorating%20a%20service) guide.
+Now we want to implement our new rule in the administration so that we can manage it. To achieve this, we have to call the `addCondition` method of the [RuleConditionService](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/service/rule-condition.service.js), by decorating this service. The decoration of services in the administration will be covered in our [Adding services](../../administration/add-custom-service#Decorating%20a%20service) guide.
 
 Create a new directory called `<plugin root>/src/Resources/app/administration/src/decorator`. In this directory we create a new file called `rule-condition-service-decoration.js`.
 
@@ -116,7 +116,7 @@ As you can see, this is decorating the `RuleConditionService` by using its name 
 
 ### Custom rule component
 
-Since we've registered our rule to the administration now, we're still lacking the actual component `swag-lunar-eclipse`. As previously mentioned, we've already defined a path for it in our service decoration. So create the following directory: `<plugin root>/src/Resources/app/administration/src/core/component/swag-lunar-eclipse`. If you are not familiar with creating components in Shopware, take a look at our [Add your own component](../../administration/add-custom-component.md) guide.
+Since we've registered our rule to the administration now, we're still lacking the actual component `swag-lunar-eclipse`. As previously mentioned, we've already defined a path for it in our service decoration. So create the following directory: `<plugin root>/src/Resources/app/administration/src/core/component/swag-lunar-eclipse`. If you are not familiar with creating components in Shopware, take a look at our [Add your own component](../../administration/add-custom-component) guide.
 
 Here's an example of what this component could look like:
 

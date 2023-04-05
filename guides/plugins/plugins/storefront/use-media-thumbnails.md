@@ -194,4 +194,4 @@ This will generate the output below:
 
 ## More interesting topics
 
-* [Use custom assets in general](add-custom-assets.md)
+* [Use custom assets in general](add-custom-assets)

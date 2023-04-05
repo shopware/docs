@@ -6,7 +6,7 @@ If you want to place orders, manage a profile or view old orders, you have to re
 
 ## Registration of a customer
 
-A customer needs some personal data and a billing address to be created. In addition to that, you have to define a storefront URL. This URL is required for Shopware to correctly assemble a confirmation link so they can confirm their registration in case of a [double opt in](register-a-customer.md#double-opt-in). This is especially required for frontends that have a different host than the Shopware API itself.
+A customer needs some personal data and a billing address to be created. In addition to that, you have to define a storefront URL. This URL is required for Shopware to correctly assemble a confirmation link so they can confirm their registration in case of a [double opt in](register-a-customer#double-opt-in). This is especially required for frontends that have a different host than the Shopware API itself.
 
 ::: info
 The customer requires a **salutationId** and a **countryId** parameter. You can fetch the different options using the `/store-api/v3/salutation` and `/store-api/v3/country` endpoints respectively.
@@ -36,7 +36,7 @@ If your request is successful, the response contains a representation of the new
 **Context Token**
 
 ::: info
-When you're using double opt-in, please follow [these steps](register-a-customer.md#double-opt-in) before continuing.
+When you're using double opt-in, please follow [these steps](register-a-customer#double-opt-in) before continuing.
 :::
 
 There's one more interesting thing. If you look at the response headers, you will find the `sw-context-token` header. Usually that header contains the token which identifies your current session. However, when you register a customer, it contains both the new and the old token, separated by a comma:

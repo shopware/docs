@@ -16,7 +16,7 @@ Analogous to the reading endpoints, the API also provides endpoints for all enti
 
 The payload for writing entities is dictated by the API scheme, which in turn is generated from entity definitions which are part of the Shopware core \(unless they are custom entities\).
 
-See this section on [opening the schema](../../general-concepts/generated-reference.md#entity-schema) of the API payloads.
+See this section on [opening the schema](../../general-concepts/generated-reference#entity-schema) of the API payloads.
 
 ::: info
 If it is not clear how the data has to be sent despite the scheme, it is also possible to open the administration and to have a look at the corresponding requests. To do this, simply open the network tab in the developer tools of your browser, which lists all requests and payloads sent by the administration.
@@ -34,7 +34,7 @@ Shopware 6 works with UUIDv4 as primary keys instead of auto increments. We have
 
 ### **Bulk Payloads**
 
-If you intend to write multiple entities of a different type or perform various operations \(update, delete\) within a single request, take a look at the [sync endpoint or Sync API](bulk-payloads.md).
+If you intend to write multiple entities of a different type or perform various operations \(update, delete\) within a single request, take a look at the [sync endpoint or Sync API](bulk-payloads).
 
 ## Creating entities
 
