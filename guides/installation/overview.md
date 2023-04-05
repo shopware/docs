@@ -12,7 +12,7 @@ There are a couple of ways to get Shopware running on your system. Depending on 
 
 Did you know that there's a video available to this topic? Please take a look:
 
-<PageRef page="https://www.youtube.com/watch?v=ML1QyUr0wsk" title="" target="_blank" />
+<YoutubeRef video="ML1QyUr0wsk" title="Installing Shopware 6 for extension development (Developer Tutorial) - YouTube" target="_blank" />
 
 ## Prerequisites
 

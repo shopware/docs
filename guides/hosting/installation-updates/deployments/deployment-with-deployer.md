@@ -12,7 +12,7 @@ This "certain infrastructure" will be called "target server" in the following.
 
 ## Video
 
-<PageRef page="https://www.youtube.com/watch?v=Oo-KvyxJvpo" title="" target="_blank" />
+<YoutubeRef video="Oo-KvyxJvpo" title="Continuous Deployment: Automizing Shopware 6 deployments (Developer Tutorial) - YouTube" target="_blank" />
 
 ## Prerequisites
 
