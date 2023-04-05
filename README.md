@@ -1,5 +1,5 @@
 ---
-description: Welcome to the official Shopware 6 Developer Documentation.
+description: Welcome to the official Shopware 6 Developer Documentation
 ---
 
 # Home
