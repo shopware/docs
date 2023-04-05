@@ -8,7 +8,7 @@ You can [add custom CMS blocks](../../../plugins/content/cms/add-cms-block.md) u
 
 Didn't get in touch with Shopware's Shopping Experiences \(CMS\) yet? Check out the concept behind it first:
 
-{% page-ref page="../../../../../concepts/commerce/core/shopping-experiences-cms.md" %}
+{% page-ref page="../../../../../concepts/commerce/content/shopping-experiences-cms.md" %}
 
 ## Prerequisites
 
