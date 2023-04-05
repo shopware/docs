@@ -33,7 +33,7 @@ As a consequence, you're able to use this component to display your custom field
 
 For further details on the `sw-custom-field-set-renderer` component, feel free to refer to its page in our component library:
 
-<PageRef page="https://component-library.shopware.com/components/sw-custom-field-set-renderer" title="" target="_blank" />
+<PageRef page="https://component-library.shopware.com/components/sw-custom-field-set-renderer" title="Homepage - Shopware Component library" target="_blank" />
 
 The next step is loading your custom fields. First things first, create a variable for your custom fields in `data`:
 

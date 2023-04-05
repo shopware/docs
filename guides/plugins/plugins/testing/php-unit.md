@@ -4,7 +4,7 @@
 
 In this guide you'll learn how to create PHPUnit tests in Shopware 6. You can read more about PHP unit testing at the official PHPUnit documentation.
 
-<PageRef page="https://phpunit.de/documentation.html" title="" target="_blank" />
+<PageRef page="https://phpunit.de/documentation.html" title="Documentation for PHPUnit &#x2013; The PHP Testing Framework" target="_blank" />
 
 ::: info
 Throughout this guide, you will find the `$` symbol representing your command line.

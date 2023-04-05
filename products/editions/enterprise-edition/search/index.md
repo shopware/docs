@@ -4,4 +4,4 @@ Shopware Enterprise Search \(SESP in short\) is an advanced search module using 
 
 Before continuing, you should make sure you have a basic knowledge of Elasticsearch and the Shopware implementation of it:
 
-<PageRef page="https://www.elastic.co/guide/en/elasticsearch/reference/7.10/index.html" title="" target="_blank" />
+<PageRef page="https://www.elastic.co/guide/en/elasticsearch/reference/7.10/index.html" title="Elasticsearch Guide [7.10] | Elastic" target="_blank" />

@@ -18,7 +18,7 @@ This "certain infrastructure" will be called "target server" in the following.
 
 Please make sure you already have a working Shopware 6 instance running, and your repository is based on the Shopware production template, because this article relies on some scripts to exist in your repository.
 
-<PageRef page="https://github.com/shopware/production" title="" target="_blank" />
+<PageRef page="https://github.com/shopware/production" title="shopware/production @ GitHub" target="_blank" />
 
 ### Preparations before the first deployment
 
