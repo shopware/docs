@@ -18,7 +18,7 @@ Did you know that there's a video available to this topic? Please take a look:
 
 This tutorial will have a strong focus on how unit tests should be written when it comes to components in the Administration. So please make sure you already know what a unit test is and why we are doing it. Furthermore, you should know what components tests are and what we want to achieve with them. You can find a good source for best practices in this Github repository:
 
-<PageRef page="https://github.com/goldbergyoni/javascript-testing-best-practices" title="" target="_blank" />
+<PageRef page="https://github.com/goldbergyoni/javascript-testing-best-practices" title="Javascript testing - best practices @ GitHub" target="_blank" />
 
 In addition, you need a running Shopware 6 installation. Your repository used for that should be based on development template, as we need to use some scripts provided by it.
 

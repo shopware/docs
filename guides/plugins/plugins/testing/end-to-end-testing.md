@@ -16,7 +16,7 @@ On top of that, please make sure your shop has a theme assigned. When using `com
 
 This guide also won't teach you how to write Cypress tests in general. Please take a look at the official Cypress documentation for further guidance.
 
-<PageRef page="http://docs.cypress.io" title="" target="_blank" />
+<PageRef page="http://docs.cypress.io" title="Cypress Documentation" target="_blank" />
 
 ### Using our testsuite
 
@@ -30,7 +30,7 @@ This test suite is built on top of [Cypress](https://www.cypress.io/) as well as
 
 Here you can find the npm package of our testsuite:
 
-<PageRef page="http://www.npmjs.com/package/@shopware-ag/e2e-testsuite-platform" title="" target="_blank" />
+<PageRef page="http://www.npmjs.com/package/@shopware-ag/e2e-testsuite-platform" title="@shopware-ag/e2e-testsuite-platform - npm" target="_blank" />
 
 Please have a look on our [cypress.json](https://github.com/shopware/e2e-testsuite-platform/blob/3.x/cypress.json), a few of our commands expect some configuration, e.g. viewportHeight and width, because the admin menu only opens if the viewport is wide enough.
 

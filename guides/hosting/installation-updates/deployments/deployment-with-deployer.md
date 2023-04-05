@@ -14,7 +14,7 @@ This article explains the fundamental steps to deploy Shopware 6 to a certain in
 
 Please make sure you already have a working Shopware 6 instance running and that your repository is based on the Shopware production template because this article relies on some scripts to exist in your repository.
 
-<PageRef page="https://github.com/shopware/production" title="" target="_blank" />
+<PageRef page="https://github.com/shopware/production" title="shopware/production @ GitHub" target="_blank" />
 
 ### Preparations before the first deployment
 
