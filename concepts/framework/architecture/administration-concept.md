@@ -1,3 +1,10 @@
+---
+nav:
+  title: Administration
+  position: 20
+
+---
+
 # Administration
 
 In this article, we'll get to know our Administration component and learn a lot of its main concepts. Along the way, you'll find answers to the following questions:

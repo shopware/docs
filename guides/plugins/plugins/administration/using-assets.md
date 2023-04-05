@@ -1,3 +1,10 @@
+---
+nav:
+  title: Using assets
+  position: 160
+
+---
+
 # Using assets
 
 ## Overview

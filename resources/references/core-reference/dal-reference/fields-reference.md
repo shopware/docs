@@ -1,3 +1,10 @@
+---
+nav:
+  title: Fields Reference
+  position: 10
+
+---
+
 # Fields Reference
 
 | Name | Description |

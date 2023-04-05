@@ -1,3 +1,10 @@
+---
+nav:
+  title: Adding data associations
+  position: 70
+
+---
+
 # Adding data associations
 
 ## Overview

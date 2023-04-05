@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom listing filters
+  position: 110
+
+---
+
 # Add custom listing filters
 
 ## Overview

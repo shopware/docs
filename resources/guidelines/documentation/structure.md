@@ -1,3 +1,10 @@
+---
+nav:
+  title: Structure
+  position: 10
+
+---
+
 # Structure
 
 Our documentation follows a structure which provides different levels of detail, abstraction and focus. In order to give our readers a good experience, we're also establishing guidelines for writing documentation in the different sections.

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Using Mixins
+  position: 80
+
+---
+
 # Using Mixins
 
 ## Overview

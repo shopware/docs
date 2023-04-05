@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add translations
+  position: 100
+
+---
+
 # Add translations
 
 ## Overview

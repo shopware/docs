@@ -1,3 +1,10 @@
+---
+nav:
+  title: Extending Webpack
+  position: 230
+
+---
+
 # Extending Webpack
 
 ## Overview

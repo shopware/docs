@@ -1,3 +1,10 @@
+---
+nav:
+  title: API
+  position: 10
+
+---
+
 # API
 
 In operational environments, a lot of applications interact with your shop platform. The industry standard for interactions between networking applications are APIs. Shopware provides HTTP **APIs** to allow for communication with external systems.

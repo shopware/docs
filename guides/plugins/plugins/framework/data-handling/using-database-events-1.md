@@ -1,3 +1,10 @@
+---
+nav:
+  title: Using database events
+  position: 120
+
+---
+
 # Using database events
 
 ## Overview

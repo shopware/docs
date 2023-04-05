@@ -1,3 +1,10 @@
+---
+nav:
+  title: Configuration
+  position: 20
+
+---
+
 # Configuration
 
 ::: info

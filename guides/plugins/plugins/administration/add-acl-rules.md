@@ -1,3 +1,10 @@
+---
+nav:
+  title: Adding permissions
+  position: 100
+
+---
+
 # Adding permissions
 
 ## Overview

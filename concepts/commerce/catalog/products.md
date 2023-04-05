@@ -1,3 +1,10 @@
+---
+nav:
+  title: Products
+  position: 20
+
+---
+
 # Products
 
 Products are sellable items within your shop. Depending on your setup, Shopware can handle up to 10.000s of products, with some tweaks even beyond that. However, it depends on other factors like the number of categories, sales channels or product properties.

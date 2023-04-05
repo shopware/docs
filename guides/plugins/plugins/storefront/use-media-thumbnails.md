@@ -1,3 +1,10 @@
+---
+nav:
+  title: Working with media and thumbnails
+  position: 180
+
+---
+
 # Working with media and thumbnails
 
 ## Overview

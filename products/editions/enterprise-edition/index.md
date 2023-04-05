@@ -1,3 +1,10 @@
+---
+nav:
+  title: Enterprise Edition
+  position: 30
+
+---
+
 # Enterprise Edition
 
 Shopware's **Enterprise Edition** is the most extensive product variant of Shopware. It comes with enhanced B2B features, a sophisticated search engine and much more.

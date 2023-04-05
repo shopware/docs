@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add data to CMS element
+  position: 30
+
+---
+
 # Add data to CMS element
 
 ## Overview

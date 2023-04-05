@@ -1,3 +1,10 @@
+---
+nav:
+  title: Professional Edition
+  position: 20
+
+---
+
 # Professional Edition
 
 The **Professional Edition** of Shopware comes with additional features that enhance the functionality of the standard [Community Edition](community-edition).

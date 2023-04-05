@@ -1,3 +1,10 @@
+---
+nav:
+  title: Categories
+  position: 10
+
+---
+
 # Categories
 
 Products in Shopware are organised in categories. Categories are represented as a hierarchical tree and they contain products. A product can be contained in multiple categories.

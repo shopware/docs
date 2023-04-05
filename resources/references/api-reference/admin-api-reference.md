@@ -1,3 +1,10 @@
+---
+nav:
+  title: Admin API Reference
+  position: 10
+
+---
+
 # Admin API Reference
 
 ## Admin API Reference

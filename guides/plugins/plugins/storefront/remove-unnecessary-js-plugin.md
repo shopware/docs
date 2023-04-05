@@ -1,3 +1,10 @@
+---
+nav:
+  title: Remove Javascript plugin
+  position: 190
+
+---
+
 # Remove Javascript plugin
 
 ## Overview

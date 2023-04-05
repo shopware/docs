@@ -1,3 +1,10 @@
+---
+nav:
+  title: Adding snippets
+  position: 60
+
+---
+
 # Adding snippets
 
 ## Overview

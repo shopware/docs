@@ -1,3 +1,10 @@
+---
+nav:
+  title: Guides
+  position: 10
+
+---
+
 # Guides
 
 <PageRef page="extending-a-shopware-migration-profile" />

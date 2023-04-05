@@ -1,3 +1,10 @@
+---
+nav:
+  title: Contribution Guidelines
+  position: 10
+
+---
+
 # Contribution Guidelines
 
 ## Introduction

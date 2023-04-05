@@ -1,3 +1,10 @@
+---
+nav:
+  title: Fetching data from "entity selection" custom field
+  position: 20
+
+---
+
 # Fetching data from "entity selection" custom field
 
 ## Overview

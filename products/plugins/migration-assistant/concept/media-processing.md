@@ -1,3 +1,10 @@
+---
+nav:
+  title: Media Processing
+  position: 90
+
+---
+
 # Media Processing
 
 To import files to Shopware 6 using the migration, two steps are necessary. First create a media file object  \(`MediaDefinition` / `media` table, for more details take a look at the `MediaConverter`\) and create an entry in the `SwagMigrationMediaFileDefinition` / `swag_migration_media_file` table.

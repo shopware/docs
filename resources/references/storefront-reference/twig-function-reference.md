@@ -1,3 +1,10 @@
+---
+nav:
+  title: Shopware's twig functions
+  position: 10
+
+---
+
 # Shopware's twig functions
 
 In Shopware, we extend Twig's functionality by custom ones. See our own actions below.

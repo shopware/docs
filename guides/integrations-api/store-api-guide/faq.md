@@ -1,3 +1,10 @@
+---
+nav:
+  title: FAQ
+  position: 50
+
+---
+
 # FAQ
 
 **How do I fetch associations to my Store API request?**

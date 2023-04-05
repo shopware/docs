@@ -1,3 +1,10 @@
+---
+nav:
+  title: Cloud
+  position: 10
+
+---
+
 # Cloud
 
 **Shopware Cloud** is the SaaS Edition of Shopware. That means, that everything form updates, hosting, infrastructure is provided by Shopware. However, it doesn't mean there's no way to extend it.

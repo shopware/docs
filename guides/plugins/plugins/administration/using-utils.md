@@ -1,3 +1,10 @@
+---
+nav:
+  title: Using Utility functions
+  position: 240
+
+---
+
 # Using Utility functions
 
 Utility functions in the Shopware 6 Administration are registered to the Shopware object and are therefore accessible everywhere in the Administration. They provide many useful shortcuts for common tasks, see all of them [here](../../../../resources/references/core-reference/administration-reference/utils) in our reference section.

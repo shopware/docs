@@ -1,3 +1,10 @@
+---
+nav:
+  title: Platform.sh template
+  position: 20
+
+---
+
 # Platform.sh template
 
 ## Overview

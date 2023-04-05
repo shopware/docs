@@ -1,3 +1,10 @@
+---
+nav:
+  title: Registering a customer
+  position: 10
+
+---
+
 # Registering a customer
 
 ## Overview

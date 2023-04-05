@@ -1,3 +1,10 @@
+---
+nav:
+  title: Docker
+  position: 30
+
+---
+
 # Docker
 
 Docker is **not** the recommended way to install Shopware 6 on a Mac when it comes to the default way, due to performance issues. You still can have a look at the following possibilities though.

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Writing entities
+  position: 30
+
+---
+
 # Writing entities
 
 ## Overview

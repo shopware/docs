@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom module
+  position: 20
+
+---
+
 # Add custom module
 
 In your app, you are able to add your own module to the administration, that can be accessed via the `My Extensions` listing. Your custom module consists of an iframe that is embedded in the Shopware administration and within this iframe, your website will be loaded and shown.

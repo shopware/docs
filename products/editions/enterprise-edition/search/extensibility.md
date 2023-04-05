@@ -1,3 +1,10 @@
+---
+nav:
+  title: Extensibility
+  position: 30
+
+---
+
 # Extensibility
 
 ::: warning

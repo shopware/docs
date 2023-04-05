@@ -1,3 +1,10 @@
+---
+nav:
+  title: Community Edition
+  position: 10
+
+---
+
 # Community Edition
 
 ## Overview

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Database migrations
+  position: 30
+
+---
+
 # Database migrations
 
 ## Overview

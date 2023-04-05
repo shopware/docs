@@ -1,3 +1,10 @@
+---
+nav:
+  title: Valet+
+  position: 50
+
+---
+
 # Valet+
 
 ## Overview

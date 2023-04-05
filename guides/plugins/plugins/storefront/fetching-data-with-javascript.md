@@ -1,3 +1,10 @@
+---
+nav:
+  title: Fetching data with Javascript
+  position: 120
+
+---
+
 # Fetching data with Javascript
 
 ## Overview

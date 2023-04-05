@@ -1,3 +1,10 @@
+---
+nav:
+  title: Product
+  position: 10
+
+---
+
 # Product
 
 ## Fetch a single product

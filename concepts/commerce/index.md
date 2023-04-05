@@ -1,3 +1,10 @@
+---
+nav:
+  title: Commerce
+  position: 10
+
+---
+
 # Commerce
 
 At core, Shopware is a **commerce platform**. If you want to understand the commerce-related concepts of our software, make sure to go here.

@@ -1,3 +1,10 @@
+---
+nav:
+  title: HTTP Cache
+  position: 10
+
+---
+
 # HTTP Cache
 
 There are several caches in shopware which can be used to optimize the performance. This page gives a brief overview and shows how to configure them.

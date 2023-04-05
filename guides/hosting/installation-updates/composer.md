@@ -1,3 +1,10 @@
+---
+nav:
+  title: Versioning & Dependencies
+  position: 10
+
+---
+
 # Versioning & Dependencies
 
 ## Versioning & Dependencies

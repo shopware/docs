@@ -1,3 +1,10 @@
+---
+nav:
+  title: Authentication
+  position: 10
+
+---
+
 # Authentication
 
 Before you can use the API, you need to authenticate. The API uses the [OAuth 2.0](https://oauth.net/2/) standard to authenticate users. In short, OAuth 2.0 requires you to obtain an access token which you will have to include in every subsequent request so the server can confirm your identity.

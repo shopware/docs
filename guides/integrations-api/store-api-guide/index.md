@@ -1,3 +1,10 @@
+---
+nav:
+  title: Store API Guide
+  position: 10
+
+---
+
 # Store API Guide
 
 ## Overview

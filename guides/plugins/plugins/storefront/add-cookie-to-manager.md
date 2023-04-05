@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add cookie to manager
+  position: 140
+
+---
+
 # Add cookie to manager
 
 ## Overview

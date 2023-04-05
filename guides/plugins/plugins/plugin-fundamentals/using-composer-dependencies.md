@@ -1,3 +1,10 @@
+---
+nav:
+  title: Adding Composer dependencies
+  position: 130
+
+---
+
 # Adding Composer dependencies
 
 In this guide you'll learn how to add Composer dependencies to your project.

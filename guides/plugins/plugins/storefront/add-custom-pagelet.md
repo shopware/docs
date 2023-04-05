@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom pagelet
+  position: 90
+
+---
+
 # Add custom pagelet
 
 ## Overview

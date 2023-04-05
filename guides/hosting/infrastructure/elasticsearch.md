@@ -1,3 +1,10 @@
+---
+nav:
+  title: Elasticsearch
+  position: 30
+
+---
+
 # Elasticsearch
 
 ## Overview

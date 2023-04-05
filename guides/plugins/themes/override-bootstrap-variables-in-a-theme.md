@@ -1,3 +1,10 @@
+---
+nav:
+  title: Override Bootstrap variables in a Theme
+  position: 60
+
+---
+
 # Override Bootstrap variables in a Theme
 
 ## Overview

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Search Criteria
+  position: 10
+
+---
+
 # Search Criteria
 
 ## Overview

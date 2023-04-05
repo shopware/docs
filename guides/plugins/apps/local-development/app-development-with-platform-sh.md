@@ -1,3 +1,10 @@
+---
+nav:
+  title: App development with platform.sh
+  position: 20
+
+---
+
 # App development with platform.sh
 
 ## Overview

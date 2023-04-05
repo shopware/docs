@@ -1,3 +1,10 @@
+---
+nav:
+  title: Routing
+  position: 100
+
+---
+
 # Routing
 
 * Storefront routes must always have the prefix `frontend` in the name.

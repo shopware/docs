@@ -1,3 +1,10 @@
+---
+nav:
+  title: Adding custom complex data
+  position: 30
+
+---
+
 # Adding custom complex data
 
 ## Overview

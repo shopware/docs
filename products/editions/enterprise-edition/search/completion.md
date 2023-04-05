@@ -1,3 +1,10 @@
+---
+nav:
+  title: Completion
+  position: 50
+
+---
+
 # Completion
 
 The Enterprise Search does not use the default [Elasticsearch Completion](https://www.elastic.co/guide/en/elasticsearch/reference/7.10/search-suggesters.html#completion-suggester), because it does only support a fixed order and the storage size is high. As an alternative, the Enterprise Search uses aggregations to find the most important words combinations for your search input.

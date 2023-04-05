@@ -1,3 +1,10 @@
+---
+nav:
+  title: MAMP
+  position: 70
+
+---
+
 # MAMP
 
 ::: info

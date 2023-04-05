@@ -1,3 +1,10 @@
+---
+nav:
+  title: Store API Reference
+  position: 10
+
+---
+
 # Store API Reference
 
 This endpoint reference contains an overview of all endpoints contained in the Shopware Store API.

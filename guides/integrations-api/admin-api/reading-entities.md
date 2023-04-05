@@ -1,3 +1,10 @@
+---
+nav:
+  title: Reading entities
+  position: 20
+
+---
+
 # Reading entities
 
 The Admin API is designed in such a way that all entities of the system can be read in the same way. Once an entity is registered in the system, it can be written and read via API - this also applies to your custom entities. The appropriate routes for the entity are generated automatically and follow the REST pattern.

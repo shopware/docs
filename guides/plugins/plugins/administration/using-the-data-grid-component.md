@@ -1,3 +1,10 @@
+---
+nav:
+  title: Using the data grid component
+  position: 220
+
+---
+
 # Using the data grid component
 
 ## Overview

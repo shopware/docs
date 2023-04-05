@@ -1,3 +1,10 @@
+---
+nav:
+  title: Admin API Guide
+  position: 10
+
+---
+
 # Admin API Guide
 
 In this guide, you'll learn how to use the Admin API. If you want to understand the concept behind the API or find a full endpoint reference, please visit the following sections:

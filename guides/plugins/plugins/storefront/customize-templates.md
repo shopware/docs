@@ -1,3 +1,10 @@
+---
+nav:
+  title: Customize templates
+  position: 10
+
+---
+
 # Customize templates
 
 ## Overview

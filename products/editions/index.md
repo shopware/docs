@@ -1,3 +1,10 @@
+---
+nav:
+  title: Editions
+  position: 10
+
+---
+
 # Editions
 
 <PageRef page="community-edition" />

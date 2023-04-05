@@ -1,3 +1,10 @@
+---
+nav:
+  title: Product Data
+  position: 30
+
+---
+
 # Product Data
 
 ## Overview

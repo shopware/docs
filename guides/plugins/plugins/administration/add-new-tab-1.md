@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add tab to existing module
+  position: 180
+
+---
+
 # Add tab to existing module
 
 ## Overview

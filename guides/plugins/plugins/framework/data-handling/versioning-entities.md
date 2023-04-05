@@ -1,3 +1,10 @@
+---
+nav:
+  title: Versioning entities
+  position: 130
+
+---
+
 # Versioning entities
 
 ## Overview

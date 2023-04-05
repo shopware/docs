@@ -1,3 +1,10 @@
+---
+nav:
+  title: Theme base guide
+  position: 10
+
+---
+
 # Theme base guide
 
 A Theme gives you the ability to change the visual appearance of the storefront via styling the SCSS/CSS and adjusting twig templates. You can also provide JavaScript with your theme to change how the storefront behaves in the browser. For example, JavaScript is used in Shopware to open the offcanvas shopping-cart. Now, as you might know, Shopware comes with a default theme, to make things a bit easier. The default theme in Shopware is built on top of Boostrap 4, style-wise. So everything you can do with Bootstrap, you can do with the Shopware storefront as well.

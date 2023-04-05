@@ -1,3 +1,10 @@
+---
+nav:
+  title: Extending the Migration Connector
+  position: 20
+
+---
+
 # Extending the Migration Connector
 
 In this guide you will see an example on how you can extend the [Migration Connector](https://github.com/shopware/SwagMigrationConnector) plugin to migrate the Shopware 5 [SwagAdvDevBundle](https://github.com/shopwareLabs/SwagAdvDevBundle) to a Shopware 6 plugin via API.

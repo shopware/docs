@@ -1,3 +1,10 @@
+---
+nav:
+  title: Using Directives
+  position: 170
+
+---
+
 # Using Directives
 
 ## Overview

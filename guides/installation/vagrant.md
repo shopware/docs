@@ -1,3 +1,10 @@
+---
+nav:
+  title: Vagrant
+  position: 60
+
+---
+
 # Vagrant
 
 ::: info

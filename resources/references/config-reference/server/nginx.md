@@ -1,3 +1,10 @@
+---
+nav:
+  title: Nginx
+  position: 20
+
+---
+
 # Nginx
 
 ::: info

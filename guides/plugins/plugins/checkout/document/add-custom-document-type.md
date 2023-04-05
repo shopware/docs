@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom document type
+  position: 20
+
+---
+
 # Add custom document type
 
 ## Overview

@@ -1,3 +1,10 @@
+---
+nav:
+  title: PSH E2E Commands
+  position: 20
+
+---
+
 # PSH E2E Commands
 
 | Command | Description |

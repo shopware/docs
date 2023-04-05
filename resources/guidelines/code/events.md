@@ -1,3 +1,10 @@
+---
+nav:
+  title: Events
+  position: 60
+
+---
+
 # Events
 
 * An event must always implement the `\Shopware\Core\Framework\Event\ShopwareEvent` class.

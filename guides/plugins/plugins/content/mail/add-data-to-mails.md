@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add data to mails
+  position: 10
+
+---
+
 # Add data to mails
 
 ## Overview

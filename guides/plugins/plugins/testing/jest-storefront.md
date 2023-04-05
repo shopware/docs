@@ -1,3 +1,10 @@
+---
+nav:
+  title: Jest unit tests in Shopware's storefront
+  position: 30
+
+---
+
 # Jest unit tests in Shopware's storefront
 
 ## Overview

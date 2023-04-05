@@ -1,3 +1,10 @@
+---
+nav:
+  title: Associations
+  position: 10
+
+---
+
 # Associations
 
 ## Overview

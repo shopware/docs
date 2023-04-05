@@ -1,3 +1,10 @@
+---
+nav:
+  title: Change price of items in cart
+  position: 40
+
+---
+
 # Change price of items in cart
 
 ## Overview

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Reacting to cookie consent changes
+  position: 150
+
+---
+
 # Reacting to cookie consent changes
 
 ## Overview

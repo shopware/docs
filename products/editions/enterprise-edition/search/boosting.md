@@ -1,3 +1,10 @@
+---
+nav:
+  title: Boosting
+  position: 40
+
+---
+
 # Boosting
 
 ## Overview

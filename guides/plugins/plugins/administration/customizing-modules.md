@@ -1,3 +1,10 @@
+---
+nav:
+  title: Customize modules
+  position: 120
+
+---
+
 # Customize modules
 
 ## Overview

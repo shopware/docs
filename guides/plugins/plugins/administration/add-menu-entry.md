@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add menu entry
+  position: 40
+
+---
+
 # Add menu entry
 
 ## Overview

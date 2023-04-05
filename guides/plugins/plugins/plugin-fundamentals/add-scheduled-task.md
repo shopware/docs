@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add scheduled task
+  position: 100
+
+---
+
 # Add scheduled task
 
 ## Overview

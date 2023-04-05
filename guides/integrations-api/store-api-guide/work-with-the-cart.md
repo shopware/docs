@@ -1,3 +1,10 @@
+---
+nav:
+  title: Working with the cart
+  position: 30
+
+---
+
 # Working with the cart
 
 ## Overiew

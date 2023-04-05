@@ -1,3 +1,10 @@
+---
+nav:
+  title: Store API
+  position: 10
+
+---
+
 # Store API
 
 Every interaction between the store and a customer can be modeled using the Store API. It serves as a normalised layer or interface to communicate between customer-facing applications and the Shopware Core. It can be used to build custom frontends like singe page applications, native apps or simple catalog apps. It really doesn't matter, what you want to build, as long as you're able to consume a JSON API via HTTP.

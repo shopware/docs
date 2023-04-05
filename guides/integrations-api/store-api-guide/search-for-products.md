@@ -1,3 +1,10 @@
+---
+nav:
+  title: Searching for products
+  position: 20
+
+---
+
 # Searching for products
 
 ## Overview

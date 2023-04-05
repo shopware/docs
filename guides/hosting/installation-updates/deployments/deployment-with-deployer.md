@@ -1,3 +1,10 @@
+---
+nav:
+  title: Deployment with Deployer
+  position: 10
+
+---
+
 # Deployment with Deployer
 
 ## Overview

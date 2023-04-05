@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add SCSS Styling and JavaScript to a Theme
+  position: 50
+
+---
+
 # Add SCSS Styling and JavaScript to a Theme
 
 ## Overview

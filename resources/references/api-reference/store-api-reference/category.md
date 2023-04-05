@@ -1,3 +1,10 @@
+---
+nav:
+  title: Category
+  position: 20
+
+---
+
 # Category
 
 ## Fetch a single category

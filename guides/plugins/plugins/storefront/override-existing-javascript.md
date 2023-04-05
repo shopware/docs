@@ -1,3 +1,10 @@
+---
+nav:
+  title: Override existing Javascript
+  position: 40
+
+---
+
 # Override existing Javascript
 
 ## Overview

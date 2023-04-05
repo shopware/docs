@@ -1,3 +1,10 @@
+---
+nav:
+  title: Adding Mixins
+  position: 70
+
+---
+
 # Adding Mixins
 
 ## Overview

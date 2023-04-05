@@ -1,3 +1,10 @@
+---
+nav:
+  title: Installation overview
+  position: 10
+
+---
+
 # Installation overview
 
 ## Overview

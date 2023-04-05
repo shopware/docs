@@ -1,3 +1,10 @@
+---
+nav:
+  title: Create a first theme
+  position: 20
+
+---
+
 # Create a first theme
 
 ## Overview

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom page
+  position: 80
+
+---
+
 # Add custom page
 
 ## Overview

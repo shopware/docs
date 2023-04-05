@@ -1,3 +1,10 @@
+---
+nav:
+  title: Handling the payment
+  position: 40
+
+---
+
 # Handling the payment
 
 ## Overview

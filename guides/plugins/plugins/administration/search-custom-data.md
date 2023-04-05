@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom data to the search
+  position: 300
+
+---
+
 # Add custom data to the search
 
 ## Overview

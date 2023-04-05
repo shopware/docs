@@ -1,3 +1,10 @@
+---
+nav:
+  title: Action Routes
+  position: 10
+
+---
+
 # Action Routes
 
 ## Action Routes

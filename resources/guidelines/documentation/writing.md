@@ -1,3 +1,10 @@
+---
+nav:
+  title: Writing
+  position: 20
+
+---
+
 # Writing
 
 Once you are assigned to a certain topic or area, consider yourself the "knowledge lead" for this particular area of our documentation. Prepare a rough outline containing the following points and prompt other maintainers for feedback.

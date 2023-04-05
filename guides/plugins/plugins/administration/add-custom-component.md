@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom component
+  position: 20
+
+---
+
 # Add custom component
 
 ## Overview
