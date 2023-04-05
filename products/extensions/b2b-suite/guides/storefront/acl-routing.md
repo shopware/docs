@@ -82,7 +82,8 @@ the action is new, and you must update the file to add the correct privilege nam
 The ACL implementation is safe at the PHP level. Any route you have no access to will automatically be blocked, but for a better user experience, you should also extend the template to hide inaccessible actions.
 
 ```twig
-<a href="{{ url("frontend.b2b." ~ page.route ~ ".assign") }}" class="{{ b2b_acl('b2broleaddress', 'assign') }}">
+Href: {{ url("frontend.b2b." ~ page.route ~ ".assign") }}
+Class: {{ b2b_acl('b2broleaddress', 'assign') }}
 ```
 
 This will add a few vital CSS classes:
