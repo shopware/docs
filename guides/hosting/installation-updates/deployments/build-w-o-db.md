@@ -32,7 +32,7 @@ storefront:
 This will force the theme compiler to use the static dumped file instead of looking into the database.
 
 {% hint style="information" %}
-Warnings about Database errors can still occur but will be catched and should be ignored in this case.
+Warnings about Database errors can still occur but will be caught and should be ignored in this case.
 {% endhint %}
 
 The dumped files should be found in the directory `files/theme-config`
