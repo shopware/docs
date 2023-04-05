@@ -8,7 +8,7 @@ Users of the plugin can create connections to different source systems. A connec
 
 The base of Shopware Migration Assistant is the profile, which enables you to migrate your shop system to Shopware 6. Shopware Migration Assistant comes with the default Shopware 5.5 profile and is located in the `shopware55.xml`:
 
-```markup
+```html
 <!-- Shopware 5.5 Profile -->
 <service id="SwagMigrationAssistant\Profile\Shopware55\Shopware55Profile">
     <tag name="shopware.migration.profile"/>

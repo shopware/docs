@@ -31,19 +31,17 @@ Also, you may want to add translatable custom fields, which is also covered in v
 
 ### Add custom field to entity
 
-{% hint style="info" %}
+::: info
   Available starting with Shopware 6.4.1.0.
-{% endhint %}
+:::
 
 Let's assume you already got a working and running entity definition. If you want to support custom fields with your custom entity, you may add the `EntityCustomFieldsTrait` to your entity class, so the methods `getCustomFields()` and `setCustomFields()` can be used.
 
-{% code title="<plugin root>/src/Core/Content/Example/ExampleEntity.php" %}
-
 ```php
+// <plugin root>/src/Core/Content/Example/ExampleEntity.php
 use Shopware\Core\Framework\DataAbstractionLayer\Entity;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityCustomFieldsTrait;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityIdTrait;
-
 
 [...]
 class ExampleEntity extends Entity
@@ -56,15 +54,12 @@ class ExampleEntity extends Entity
 }
 ```
 
-{% endcode %}
-
 ### Add custom field to entity definition
 
 Now follows the important part. For this to work, you have to add the Data Abstraction Layer \(DAL\) field `CustomFields` to your entity definition.
 
-{% code title="<plugin root>/src/Core/Content/Example/ExampleDefinition.php" %}
-
 ```php
+// <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 use Shopware\Core\Framework\DataAbstractionLayer\Field\CustomFields;                                                                    
 
 [...]
@@ -87,8 +82,6 @@ class ExampleDefinition extends EntityDefinition
 }
 ```
 
-{% endcode %}
-
 Note the new field that was added in the `FieldCollection`. That's already it for your custom entity definition. Now go ahead and add the column to the database.
 
 ### Add column in database table
@@ -97,9 +90,8 @@ Once again, this example is built upon the [Add custom complex data](../data-han
 
 If you want to support custom fields now, you have to add a new column `custom_fields` of type `JSON` to your migration.
 
-{% code title="<plugin root>/src/Migration/Migration1611664789Example.php" %}
-
 ```php
+// <plugin root>/src/Migration/Migration1611664789Example.php
 public function update(Connection $connection): void
 {
     $sql = <<<SQL
@@ -123,17 +115,14 @@ public function update(Connection $connection): void
 }
 ```
 
-{% endcode %}
-
 Note the new `custom_fields` column here. It has to be a JSON field and should default to `NULL`, since it doesn't have to contain values.
 
 ### Add translatable custom field to entity definition
 
 Make sure to understand entity translations in general first, which is explained here [Add data translations](../data-handling/add-data-translations.md). If you want your custom fields to be translatable, you can simply work with a `TranslatedField` here as well.
 
-{% code title="<plugin root>/src/Core/Content/Example/ExampleDefinition.php" %}
-
 ```php
+// <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 use Shopware\Core\Framework\DataAbstractionLayer\Field\TranslatedField;                                                               
 
 [...]
@@ -156,15 +145,12 @@ class ExampleDefinition extends EntityDefinition
 }
 ```
 
-{% endcode %}
-
 Just add the `TranslatedField` and apply `customFields` as a parameter.
 
 In your translated entity definition, you then add the `CustomFields` field instead.
 
-{% code title="<plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationDefinition.php" %}
-
 ```php
+// <plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationDefinition.php
 use Shopware\Core\Framework\DataAbstractionLayer\Field\CustomFields;                                                                    
 
 [...]
@@ -182,8 +168,6 @@ class ExampleTranslationDefinition extends EntityTranslationDefinition
     }
 }
 ```
-
-{% endcode %}
 
 ## Add custom fields to an entity
 
@@ -267,13 +251,13 @@ The translated labels are added to both the field and the set, which are going t
   
 If you have several custom fields and want to order them within a specific order, you can do so with the `customFieldPosition` property.
 
-{% hint style="warning" %}
+::: warning
 Custom field sets are deletable by the shop administrator, so you cannot rely on their existence.
-{% endhint %}
+:::
 
 While theoretically your custom field is now properly defined for the Administration, you'll still have to do some work in your custom entities' Administration module. Head over to this guide to learn how to add your field to the Administration:
 
-{% page-ref page="../../administration/using-custom-fields.md" %}
+<PageRef page="../../administration/using-custom-fields" />
 
 ## Next steps
 

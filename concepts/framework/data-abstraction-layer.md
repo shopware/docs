@@ -14,34 +14,28 @@ An EntityRepository is used to interact with the DAL. This is the recommended wa
 
 Before using the repositories, you will need to get them from the [Dependency Injection Container (DIC)](../../guides/plugins/plugins/plugin-fundamentals/dependency-injection.md). This is done with [Constructor injection](https://symfony.com/doc/current/service_container/injection_types.html#constructor-injection), so you will need to extend your services constructor by expecting an EntityRepository:
 
-{% code title="<plugin root>/src/Service/DalExampleService.php" %}
-
 ```php
+// <plugin root>/src/Service/DalExampleService.php
 public function __construct (EntityRepository $productRepository)
 {
     $this->productRepository = $productRepository;
 }
 ```
 
-{% endcode %}
-
 If you are using [Service autowiring](https://symfony.com/doc/current/service_container/autowiring.html) with the correct type and argument variable names, the repository will be injected automatically.
 
 Alternatively, configure the `product.repository` service to be injected explicitly:
 
-{% code title="<plugin root>src/Resources/config/service.xml" %}
-
-```markup
+```html
+// <plugin root>src/Resources/config/service.xml
 <service id="Swag\ExamplePlugin\Service\DalExampleService">
     <argument type="service" id="product.repository"/>
 </service>
 ```
 
-{% endcode %}
-
 You can read more about dependency injection and service registration in Shopware in the services guides:
 
-{% page-ref page="../../guides/plugins/plugins/plugin-fundamentals/add-custom-service.md" %}
+<PageRef page="../../guides/plugins/plugins/plugin-fundamentals/add-custom-service" />
 
 ### Translations
 

@@ -63,8 +63,9 @@ class AddDataToPage implements EventSubscriberInterface
 
 The next thing we need to do is register our subscriber in the DI-Container and tag it as an event subscriber:
 
-```markup
-<!-- in Resources/config/services.xml -->
+```xml
+// Resources/config/services.xml
+<?xml version="1.0" ?>
 <service id="Swag\BasicExample\Service\AddDataToPage" >
     <tag name="kernel.event_subscriber" />
 </service>
@@ -201,7 +202,7 @@ This data will then be available via the name `product_count`, but we'll get to 
 
 Now you only have to adjust your service definition to inject the productCountRoute:
 
-```markup
+```xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -223,10 +224,8 @@ Refer to the respective section of this guide for detailed information on how to
 
 For our case we extend the footer template and add a new column to the navigation block:
 
-{% raw %}
-
-```text
-<!-- in Resources/views/storefront/layout/footer/footer.html.twig -->
+```twig
+// Resources/views/storefront/layout/footer/footer.html.twig
 {% sw_extends '@Storefront/storefront/layout/footer/footer.html.twig' %}
 
 {% block layout_footer_navigation_columns %}
@@ -239,8 +238,6 @@ For our case we extend the footer template and add a new column to the navigatio
     {% endif %}
 {% endblock %}
 ```
-
-{% endraw %}
 
 Note the usage of the variable here. You're accessing the footer object, in which you can now find the path `extensions.product_count.count`.
 

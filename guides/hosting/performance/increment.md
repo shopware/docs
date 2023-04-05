@@ -1,8 +1,8 @@
 # Increment Storage
 
-{% hint style="info" %}
+::: info
 This feature has been introduced with Shopware version 6.4.7.0
-{% endhint %}
+:::
 
 The increment storage is used to store status and display it in the Administration. This can include
 

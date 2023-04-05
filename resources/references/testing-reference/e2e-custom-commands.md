@@ -67,4 +67,3 @@ In this reference, all Shopware commands provided by [e2e-testsuite-platform](ht
 | createSnippetFixture | - | Create snippet fixture using Shopware API at the given endpoint |
 | createGuestOrder | `productId, userData)` | Create guest order fixture |
 | setProductFixtureVisibility | `(productName, categoryName)` | Sets category and visibility for a product in order to set it visible in the Storefront |
-

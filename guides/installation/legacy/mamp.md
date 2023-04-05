@@ -1,8 +1,8 @@
 # MAMP
 
-{% hint style="danger" %}
+::: danger
 This approach is no longer recommended. It is kept here as a reference.
-{% endhint %}
+:::
 
 ## Overview
 
@@ -48,9 +48,9 @@ export PATH=/Applications/MAMP/bin/php/php7.2.14/bin:$PATH
 source ~/.bash_profile
 ```
 
-{% hint style="info" %}
+::: info
 The folder used in `PATH` \(`PATH=/Applications/MAMP/bin/php/php7.2.14/bin:$PATH`\) may change. Please look in the `php` folder for its current name.
-{% endhint %}
+:::
 
 Then you need to make sure MAMP mysql binary is used globally on your CLI:
 

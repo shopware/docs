@@ -3,27 +3,26 @@
 To ease development tasks, Shopware contains the Symfony commands functionality. This allows \(plugin-\) developers to define new commands executable via the Symfony console at `bin/console`. The best thing about commands is, that they're more than just simple standalone PHP scripts - they integrate into Symfony and Shopware, so you've got access to all the functionality offered by both of them.
 
 Creating a command for Shopware 6 via a plugin works exactly like you would add a command to Symfony. Make sure to have a look at the Symfony commands guide:
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://symfony.com/doc/current/console.html\#registering-the-command" caption="" %}
+
+<PageRef page="https://symfony.com/doc/current/console.html\#registering-the-command" title="" target="_blank" />
 
 ## Prerequisites
 
 This guide **does not** explain how to create a new plugin for Shopware 6. Head over to our plugin base guide to learn how to create a plugin at first:
 
-{% page-ref page="../plugin-base-guide.md" %}
+<PageRef page="../plugin-base-guide" />
 
 The main requirement here is to have a `services.xml` file loaded in your plugin. This can be achieved by placing the file into a `Resources/config` directory relative to your plugin's base class location.
 
-<!-- markdown-link-check-disable-next-line -->
-{% hint style="info" %}
+::: info
 Refer to this video on custom **[Creating a CLI command](https://www.youtube.com/watch?v=OL_qNVLLyaI)**. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
-{% endhint %}
+:::
 
 ## Registering your command
 
 From here on, everything works exactly like in Symfony itself. Commands are recognised by Shopware, once they're tagged with the `console.command` tag in the [dependency injection](dependency-injection.md) container. So to register a new command, just add it to your plugin's `services.xml` and specify the `console.command` tag:
 
-```markup
+```html
 <services>
    <!-- ... -->
 
@@ -36,9 +35,8 @@ From here on, everything works exactly like in Symfony itself. Commands are reco
 
 Here's a full example `services.xml` which registers your custom command:
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
-
-```markup
+```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -53,13 +51,10 @@ Here's a full example `services.xml` which registers your custom command:
 </container>
 ```
 
-{% endcode %}
-
 Your command's class should extend from the `Symfony\Component\Console\Command\Command` class, here's an example:
 
-{% code title="<plugin root>/src/Command/ExampleCommand.php" %}
-
 ```php
+// <plugin root>/src/Command/ExampleCommand.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Command;
@@ -90,13 +85,11 @@ class ExampleCommand extends Command
 }
 ```
 
-{% endcode %}
-
 This command is of course only a basic example, so feel free to experiment. As stated above, you now have access to all the functionality offered by Symfony and Shopware.
 
-{% hint style="info" %}
+::: info
 For inspiration, maybe have a look at the Symfony documentation - you may for example use [tables](https://symfony.com/doc/current/components/console/helpers/table.html), [progress bars](https://symfony.com/doc/current/components/console/helpers/progressbar.html), or [custom formats](https://symfony.com/doc/current/components/console/helpers/formatterhelper.html).
-{% endhint %}
+:::
 
 ### Running commands
 

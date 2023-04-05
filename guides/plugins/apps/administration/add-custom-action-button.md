@@ -6,9 +6,8 @@ One extension possibility in the Administration is the ability to add custom act
 
 To get those buttons, you start in the `admin` section of your manifest file. There you can define `<action-button>` elements in order to add your button, as seen as below:
 
-{% code title="manifest.xml" %}
-
 ```xml
+// manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
@@ -28,8 +27,6 @@ To get those buttons, you start in the `admin` section of your manifest file. Th
 </manifest>
 ```
 
-{% endcode %}
-
 For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference.md).
 
 An action button must have the following attributes:
@@ -43,7 +40,7 @@ The main difference is that it contains the name of the entity and an array of i
 
 A sample payload may look like the following:
 
-```javascript
+```json
 {
   "source":{
     "url":"http:\/\/localhost:8000",
@@ -65,19 +62,19 @@ A sample payload may look like the following:
 }
 ```
 
-{% hint style="info" %}
+::: info
 Starting from Shopware version 6.4.1.0, the current shopware version will be sent as a `sw-version` header.
-{% endhint %}
+:::
 
 Again you can verify the authenticity of the incoming request, like with [webhooks](../app-base-guide.md#webhooks), by checking the `shopware-shop-signature` it too contains the SHA256 HMAC of the request body, that is signed with the secret your app assigned the shop during the [registration](../app-base-guide.md#setup).
 
 ## Providing feedback in the Administration
 
-{% hint style="info" %}
+::: info
 This feature was added in Shopware 6.4.3.0, previous versions will ignore the response content.
-{% endhint %}
+:::
 
-{% hint style="info" %}
+::: info
 Starting from Shopware version 6.4.8.0, the requests of the [tab](#opening-a-new-tab-for-the-user) and [custom modal](#open-a-custom-modal) have the following additional query parameters:
 
 * `shop-id`
@@ -88,7 +85,7 @@ Starting from Shopware version 6.4.8.0, the requests of the [tab](#opening-a-new
 * `shopware-shop-signature`
 
 You **must** make sure to verify the authenticity of the incoming request by checking the `shopware-shop-signature`, which is a hash of the request's query part, signed with the shop's secret key.
-{% endhint %}
+:::
 
 If you want to trigger an action inside the Administration upon completing the action, the app should return a response with a valid body and the header `shopware-app-signature` containing the SHA256 HMAC of the whole response body signed with the app secret.
 If you do not need to trigger any actions, a response with an empty body is also always valid.
@@ -105,7 +102,6 @@ To open a new tab in the user browser you can use the `openNewTab` action type. 
     "redirectUrl": "http://google.com"
   }
 }
-
 ```
 
 ### Show a notification to the user
@@ -120,7 +116,6 @@ To send a notification, you can use the `notification` action type. You need to 
     "message": "This is the successful message"
   }
 }
-
 ```
 
 ### Reload the current page
@@ -132,7 +127,6 @@ To reload the data in the user's current page you can use the `reload` action ty
   "actionType": "reload",
   "payload": {}
 }
-
 ```
 
 ### Open a custom modal
@@ -165,15 +159,14 @@ To open a modal with the embedded link in the iframe, you can use the `openModal
 
 It is also possible to use [custom endpoints](../app-scripts/custom-endpoints.md) as target for action buttons.
 
-{% hint style="info" %}
+::: info
 This feature was added in Shopware 6.4.10.0, previous versions don't support relative target urls for action buttons.
-{% endhint %}
+:::
 
 To use custom endpoints as the target url for action buttons you can define the target url as a relative url in your apps manifest.xml:
 
-{% code title="manifest.xml" %}
-
 ```xml
+// manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
@@ -187,14 +180,10 @@ To use custom endpoints as the target url for action buttons you can define the 
 </manifest>
 ```
 
-{% endcode %}
-
 And then add the corresponding app script that should be executed when the user clicks the action button.
 
-{% code title="Resources/scripts/api-action-button/action-button-script.twig" %}
-{% raw %}
-
 ```twig
+// Resources/scripts/api-action-button/action-button-script.twig
 {% set ids = hook.request.ids %}
 
 {% set response = services.response.json({
@@ -207,8 +196,5 @@ And then add the corresponding app script that should be executed when the user 
 
 {% do hook.setResponse(response) %}
 ```
-
-{% endraw %}
-{% endcode %}
 
 As you can see it is possible to provide a [`JsonResponse`](../../../../resources/references/app-reference/script-reference/custom-endpoint-script-services-reference.md#json) to give [feedback to the user in the administration](#providing-feedback-in-the-administration).

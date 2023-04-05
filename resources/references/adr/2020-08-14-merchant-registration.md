@@ -7,10 +7,10 @@ tags: [merchant, registration, customer-group]
 
 # Merchant registration
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-08-14-merchant-registration.md)
-{% endhint %}
+:::
 
 ## Context
 

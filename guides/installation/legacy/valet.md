@@ -1,8 +1,8 @@
 # Valet+
 
-{% hint style="danger" %}
+::: danger
 This approach is no longer recommended. It is kept here as a reference.
-{% endhint %}
+:::
 
 ## Overview
 

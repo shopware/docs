@@ -600,4 +600,3 @@ All available hooks that can be used to execute scripts during your app's lifecy
 | **Available Data**     | event: [`Shopware\Core\Framework\App\Event\AppUpdatedEvent`](https://github.com/shopware/platform/blob/trunk/src/Core/Framework/App/Event/AppUpdatedEvent.php) <br>context: [`Shopware\Core\Framework\Context`](https://github.com/shopware/platform/blob/trunk/src/Core/Framework/Context.php) <br> |
 | **Available Services** | [repository](./data-loading-script-services-reference.md#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference.md#SystemConfigFacade)<br>[writer](./custom-endpoint-script-services-reference.md#RepositoryWriterFacade)<br>                                                                            |
 | **Stoppable**          | `false`                                                                                                                                               |
-

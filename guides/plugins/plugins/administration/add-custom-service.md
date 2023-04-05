@@ -112,9 +112,9 @@ Shopware.Service().register('joker', (container) => {
 
 Service decoration can be us in a variety of ways. Services can be initialized right after their creation and single methods can get an altered behavior. Like in the service registration, a script that is part of the `main.js` is needed.
 
-{% hint style="warning" %}
+::: warning
 Decorators are just simple functions, which intercept a service in the provider phase. This means that a service can only be decorated in the timeframe between it being created and it being accessed for the first time.
-{% endhint %}
+:::
 
 If you need to alter a service method return value or add an additional parameter you can also do this using decoration. For this example a `funny` attribute is added to the requested jokes by the previously registered `JokeService`:
 

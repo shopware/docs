@@ -4,9 +4,8 @@ In addition to [Custom fields](custom-fields.md), you can create completely own 
 Unlike [Custom fields](custom-fields.md), you can generate completely custom data structures with custom relations, which can then be maintained by the admin.
 To make use of the custom entities register your entities in your `entities.xml` file, which is located in the `Resources` directory of your app.
 
-{% code title="<app root>/Resources/entities.xml" %}
-
 ```xml
+// <app root>/Resources/entities.xml
 <?xml version="1.0" encoding="utf-8" ?>
 <entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/CustomEntity/Xml/entity-1.0.xsd">
     <entity name="custom_entity_bundle">
@@ -19,20 +18,15 @@ To make use of the custom entities register your entities in your `entities.xml`
 </entities>
 ```
 
-{% endcode %}
-
 For a complete reference of the structure of the entities file take a look at the [Custom entity xml reference](../../../../resources/references/app-reference/entities-reference.md).
 
 ## Functionality
 
 All registered entities will get an automatically registered repository. It is also available in the [App scripts](../app-scripts/README.md) section, in case you are allowed to access the repository service inside the hook.
-{% raw %}
 
 ```twig
 {% set blogs = services.repository.search('custom_entity_blog', criteria) %}
 ```
-
-{% endraw %}
 
 Additionally, to the repository you can also access your custom entities via [Admin api](../../../../concepts/api/admin-api.md).
 
@@ -84,6 +78,6 @@ If you use the shorthand in the entity definition, you also need to use it if yo
 POST /api/search/ce_blog
 ```
 
-{% hint style="warning" %}
+::: warning
 Note that you can't rename existing custom entities as that would lead to the deletion of all existing data.
-{% endhint %}
+:::

@@ -8,21 +8,19 @@ This guide explains how you can use a modal window in your plugin in different s
 
 This guide requires you to already have a basic plugin running. This guide **does not** explain how to create a new plugin for Shopware 6. Head over to our Plugin base guide to learn how to create a plugin at first:
 
-{% page-ref page="../plugin-base-guide.md" %}
+<PageRef page="../plugin-base-guide" />
 
 While this is not mandatory, having read the guide about adding custom JavaScript plugins beforehand might help you understand this guide a bit further:
 
-{% page-ref page="./add-custom-javascript.md" %}
+<PageRef page="./add-custom-javascript" />
 
 ## Create a modal manually from the DOM using Bootstrap
 
 The simples solution to create a modal is by using Bootstrap. More info: [Modal Bootstrap](https://getbootstrap.com/docs/4.0/components/modal/#live-demo)
 Here is a basic implementation as an example. We override the `base_main_inner` from the `@Storefront/storefront/page/content/index.html.twig` template to insert the modal specific DOM elements.
 
-{% code title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig" %}
-{% raw %}
-
-```text
+```twig
+// <plugin root>/src/Resources/views/storefront/page/content/index.html.twig
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
 {% block base_main_inner %}
@@ -57,17 +55,12 @@ Here is a basic implementation as an example. We override the `base_main_inner` 
 {% endblock %}
 ```
 
-{% endraw %}
-{% endcode %}
-
 ## Create a modal using AjaxModalPlugin
 
 When setting a `data-url` in addition to `data-toggle="modal"` shopware automatically uses the `PseudoModalUtil` and the pseudo modal template from the `base.html.twig` to render a modal:
 
-{% code title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig" %}
-{% raw %}
-
-```text
+```twig
+// <plugin root>/src/Resources/views/storefront/page/content/index.html.twig
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
 {% block base_main_inner %}
@@ -80,12 +73,9 @@ When setting a `data-url` in addition to `data-toggle="modal"` shopware automati
 {% endblock %}
 ```
 
-{% endraw %}
-{% endcode %}
-
-{% hint style="warning" %}
+::: warning
 This does not work when the trigger selector is being changed via JavaScript, e.g. because of an AJAX call which replaces the content.
-{% endhint %}
+:::
 
 ## Advanced / manual using Pseudo Modal Utility
 
@@ -94,10 +84,8 @@ To create a modal window you can use the `PseudoModalUtil` in your plugin.
 As explained in the guide on [adding custom javascript](./add-custom-javascript.md) we load our JavaScript plugin by creating `index.html.twig` template in the `<plugin root>/src/Resources/views/storefront/page/content/` folder.
 Inside this template, extend from the `@Storefront/storefront/page/content/index.html.twig` and overwrite the `base_main_inner` block. After the parent content of the blog, add a template tag with the `data-example-plugin` attribute.
 
-{% code title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig" %}
-{% raw %}
-
-```text
+```twig
+// <plugin root>/src/Resources/views/storefront/page/content/index.html.twig
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
 {% block base_main_inner %}
@@ -107,14 +95,10 @@ Inside this template, extend from the `@Storefront/storefront/page/content/index
 {% endblock %}
 ```
 
-{% endraw %}
-{% endcode %}
-
 Now we need to register the plugin which should create a modal in the `PluginManager`. To achieve this you can add the following code to the `main.js` file.
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/main.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/storefront/src/main.js
  // Import all necessary Storefront plugins
  import ExamplePlugin from './example-plugin/example-plugin.plugin';
 
@@ -123,13 +107,10 @@ Now we need to register the plugin which should create a modal in the `PluginMan
  PluginManager.register('ExamplePlugin', ExamplePlugin, '[data-example-plugin]');
 ```
 
-{% endcode %}
-
 Now let's get started with the modal window. First we have to import the `PseudoModalUtil` class in our plugin.
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
 import Plugin from 'src/plugin-system/plugin.class';
 import PseudoModalUtil from 'src/utility/modal-extension/pseudo-modal.util';
 
@@ -140,14 +121,11 @@ export default class ExamplePlugin extends Plugin {
 }
 ```
 
-{% endcode %}
-
 Now we create a new modal instance using `new PseudoModalUtil()` and assign to a property of our plugin for later usage.
 We also call the method `open()` to make it visible.
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
 import Plugin from 'src/plugin-system/plugin.class';
 import PseudoModalUtil from 'src/utility/modal-extension/pseudo-modal.util';
 
@@ -166,35 +144,32 @@ export default class ExamplePlugin extends Plugin {
 }
 ```
 
-{% endcode %}
-
 To see your changes you have to build the storefront. Use the following command to build your storefront and reload it afterwards:
 
-{% tabs %}
-{% tab title="Template" %}
+<Tabs>
+<Tab title="Template">
 
 ```bash
 ./bin/build-storefront.sh
 ```
 
-{% endtab %}
-{% tab title="platform only (contribution setup)" %}
+</Tab>
+<Tab title="platform only (contribution setup)">
 
 ```bash
 composer run build:js:storefront
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 You can now see a blank modal which contains `undefined`. This is because we have not added any content to show inside the modal.
 
 The constructor method of `PseudoModalUtil()` expects some HTML `content` to display. To keep this guide simple, we are only including sample code here.
 Of course, the content can also be generated via an API and inserted via AJAX requests.
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
 import Plugin from 'src/plugin-system/plugin.class';
 import PseudoModalUtil from 'src/utility/modal-extension/pseudo-modal.util';
 
@@ -221,8 +196,6 @@ export default class ExamplePlugin extends Plugin {
 }
 ```
 
-{% endcode %}
-
 ## Closing the modal
 
 The `PseudoModalUtil` class also provide a `close()` method. Same as with opening the modal by calling `this.modal.open()`, you can simply close the modal with `this.modal.close()`.
@@ -231,9 +204,8 @@ The `PseudoModalUtil` class also provide a `close()` method. Same as with openin
 
 The `open()` method of the `PseudoModalUtil` class supports a callback function as an argument. So if you need to perform some action when your modal opens, you can implement a callback like this:
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
 import Plugin from 'src/plugin-system/plugin.class';
 import PseudoModalUtil from 'src/utility/modal-extension/pseudo-modal.util';
 
@@ -264,16 +236,13 @@ export default class ExamplePlugin extends Plugin {
 }
 ```
 
-{% endcode %}
-
 ## Updating the modal content
 
 To update the content of a modal, `PseudoModalUtil` provides a method `updateContent()` to which you can pass the updated template string. The method also accepts a callback function as a second argument, which is called after the content has been updated.
 Here is an example how to use it:
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
 import Plugin from 'src/plugin-system/plugin.class';
 import PseudoModalUtil from 'src/utility/modal-extension/pseudo-modal.util';
 
@@ -320,15 +289,12 @@ export default class ExamplePlugin extends Plugin {
 }
 ```
 
-{% endcode %}
-
 ## Customize the modal appearance
 
 The constructor method of `PseudoModalUtil` provides optional configuration. If you don't need backdrop of the modal for example just turn it off by instantiating the modal like this
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
 import Plugin from 'src/plugin-system/plugin.class';
 import PseudoModalUtil from 'src/utility/modal-extension/pseudo-modal.util';
 
@@ -358,8 +324,6 @@ export default class ExamplePlugin extends Plugin {
 }
 ```
 
-{% endcode %}
-
 As you can see in the sample code, we are using the `js-pseudo-modal-template-title-element` class to style the title text of the modal.
 It also tells the `PseudoModalUtil` class that the content of the `div` holds the title text.
 Furthermore there are two more css selectors `js-pseudo-modal-template` and `js-pseudo-modal-template-content-element` to define the structure of the template string.
@@ -368,9 +332,8 @@ If you want to customize your modal by using different style classes, you can do
 
 Here is an example which shows how to override the CSS class names.
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
 // ...
 export default class ExamplePlugin extends Plugin {
     init() {
@@ -395,5 +358,3 @@ export default class ExamplePlugin extends Plugin {
     }
 }
 ```
-
-{% endcode %}

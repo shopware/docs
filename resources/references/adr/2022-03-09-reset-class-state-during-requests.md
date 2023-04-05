@@ -7,10 +7,10 @@ tags: [php, architecture, performance]
 
 # Use `ResetInterface` to reset instance state during requests
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-03-09-reset-class-state-during-requests.md)
-{% endhint %}
+:::
 
 ## Context
 
@@ -35,6 +35,7 @@ Additionally, it makes unit testing easier, as phpunit already reuses service in
 ## Consequences
 
 Wherever we have a class that holds some memoized data in an instance variable e.g.
+
 ```php
 class FooService
 {
@@ -52,6 +53,7 @@ class FooService
 ```
 
 We will implement the `ResetInterface` and provide a `reset()` method, to reset that internal state between requests:
+
 ```php
 use Symfony\Contracts\Service\ResetInterface;
 
@@ -76,6 +78,7 @@ class FooService implements ResetInterface
 ```
 
 And additionally we will tag the service with the `kernel.reset` tag:
+
 ```xml
 <service id="FooService">
     <tag name="kernel.reset" method="reset"/>

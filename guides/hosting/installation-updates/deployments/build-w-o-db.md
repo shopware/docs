@@ -2,9 +2,9 @@
 
 It is common to prebuild assets in professional deployments to deploy the build artifact assets to the production environment. This task is mostly done by a CI job that doesn't have access to the production database. Shopware needs access to the database to look up the installed extensions/load the configured theme variables. To be able to build the assets without a database, we can use static dumped files.
 
-{% hint style="warning" %}
+::: warning
 This guide requires Shopware 6.4.4.0 or higher
-{% endhint %}
+:::
 
 ## Compiling the Administration without database
 
@@ -31,9 +31,9 @@ storefront:
 
 This will force the theme compiler to use the static dumped file instead of looking into the database.
 
-{% hint style="information" %}
+::: info
 Warnings about Database errors can still occur but will be caught and should be ignored in this case.
-{% endhint %}
+:::
 
 The dumped files should be found in the directory `files/theme-config`
 

@@ -12,9 +12,8 @@ This guide is built upon the [Plugin base guide](../../plugin-base-guide.md), bu
 
 It is possible to add data indexer for your own entities, like the one created in the [Adding custom complex data](./add-custom-complex-data.md) guide or for existing entities. However, if you want to react on changes of existing entities the preferred way should be subscribing to the events if available. See the [Index data using existing events](Index data using existing events) section below. To create a new indexer, just create a new class in your plugin:
 
-{% code title="<plugin root>/src/Core/Framework/DataAbstractionLayer/Indexing/ExampleIndexer.php" %}
-
 ```php
+// <plugin root>/src/Core/Framework/DataAbstractionLayer/Indexing/ExampleIndexer.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Framework\DataAbstractionLayer\Indexing;
@@ -195,9 +194,8 @@ There are already a bunch of indexers in shopware that you can use. If you take 
 
 For this we need a new subscriber. If you are not familiar with a subscriber, have a look at our [Listening to events](../../plugin-fundamentals/listening-to-events.md) guide. For this example, we just write a new entry to the `log_entry` database table, indicating that a customer was updated.
 
-{% code title="<plugin root>/src/Service/Subscriber.php" %}
-
 ```php
+// <plugin root>/src/Service/Subscriber.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;

@@ -20,11 +20,11 @@ This concept is very advantageous if we now want to include a cache layer for th
 
 First, we create an abstract class called `CachedExampleRoute` which extends the `AbstractExampleRoute`.
 
-{% tabs %}
-{% tab title="CachedExampleRoute" %}
-{% code title="<plugin root>/src/Core/Content/Example/SalesChannel/CachedExampleRoute.php" %}
+<Tabs>
+<Tab title="CachedExampleRoute">
 
 ```php
+// <plugin root>/src/Core/Content/Example/SalesChannel/CachedExampleRoute.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
@@ -149,13 +149,12 @@ class CachedExampleRoute extends AbstractExampleRoute
 }
 ```
 
-{% endcode %}
-{% endtab %}
+</Tab>
 
-{% tab title="services.xml" %}
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<Tab title="services.xml">
 
 ```xml
+// <plugin root>/src/Resources/config/services.xml
 
 <?xml version="1.0" ?> 
 
@@ -173,12 +172,10 @@ class CachedExampleRoute extends AbstractExampleRoute
         </service>
     </services>
 </container>
-
 ```
 
-{% endcode %}
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 In the new `CachedExampleRoute` some core classes are used which simplify the caching.
 
@@ -194,12 +191,11 @@ In the new `CachedExampleRoute` some core classes are used which simplify the ca
 
 Cache invalidation is much harder to implement than the actual caching. Finding the right balance between too much and too little invalidation is difficult. Therefore, there is no precise guidance or documentation on when to invalidate what. What and how to invalidate depends on what has been cached. For example, the product routes in the core are always invalidated when the product is written, but also when the product is ordered and reaches the out-of-stock status. The entire cache invalidation in Shopware is controlled via events. On the one hand there is the entity written event and on the other hand the corresponding business events like `ProductNoLongerAvailableEvent`.
 
-{% tabs %}
-{% tab title="CacheInvalidationSubscriber.php" %}
-
-{% code title="<plugin root>/src/Core/Content/Example/SalesChannel/CacheInvalidationSubscriber.php" %}
+<Tabs>
+<Tab title="CacheInvalidationSubscriber.php">
 
 ```php
+// <plugin root>/src/Core/Content/Example/SalesChannel/CacheInvalidationSubscriber.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
@@ -245,13 +241,12 @@ class CacheInvalidationSubscriber implements EventSubscriberInterface
 }
 ```
 
-{% endcode %}
-{% endtab %}
+</Tab>
 
-{% tab title="services.xml" %}
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<Tab title="services.xml">
 
 ```xml
+// <plugin root>/src/Resources/config/services.xml
 
 <?xml version="1.0" ?> 
 
@@ -265,9 +260,7 @@ class CacheInvalidationSubscriber implements EventSubscriberInterface
         </service>
     </services>
 </container>
-
 ```
 
-{% endcode %}
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>

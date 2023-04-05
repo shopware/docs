@@ -1,8 +1,8 @@
 # Docker
 
-{% hint style="danger" %}
+::: danger
 This approach is no longer recommended. It is kept here as a reference.
-{% endhint %}
+:::
 
 Docker is **not** the recommended way to install Shopware 6 on a Mac when it comes to the default way, due to performance issues. You can still have a look at other possibilities below.
 
@@ -31,7 +31,7 @@ On Linux OS, Docker installation is the easiest way to get a running Shopware 6.
 ```
 
 This may take a while since many caches need to be generated on the first execution.
-<!-- markdown-link-check-disable-next-line -->
+
 To be sure the installation succeeded, just open the following URL in your browser: [http://localhost:8000/](http://localhost:8000/)
 
 After exploring Shopware 6, you can terminate it with these two commands:

@@ -39,9 +39,9 @@ shopware:
 
 ## MySQL instead of MariaDB
 
-{% hint style="info" %}
+::: info
 If you use Elasticsearch/Opensearch as a search engine, you can ignore this section. All filtering, sorting, and aggregations are done in Elasticsearch/Opensearch.
-{% endhint %}
+:::
 
 In some places in the code, we use JSON fields. As soon as it comes to filtering, sorting, or aggregating JSON fields, MySQL is ahead of the MariaDB fork. Therefore, we strongly recommend the use of MySQL.
 
@@ -69,9 +69,9 @@ Read more on [Elasticsearch setup](../infrastructure/elasticsearch/elasticsearch
 
 ## Prevent mail data updates
 
-{% hint style="info" %}
+::: info
 [Prevent mail updates](../../../resources/references/adr/performance/2022-03-25-prevent-mail-updates.md) feature is available starting with Shopware 6.4.11.0.
-{% endhint %}
+:::
 
 To provide auto-completion for different mail templates in the Administration UI, Shopware has a mechanism that writes an example mail into the database when sending the mail.
 
@@ -159,9 +159,9 @@ zend.detect_unicode=0
 realpath_cache_ttl=3600
 ```
 
-{% hint style="info" %}
+::: info
 The web updater is not compatible with opcache, as updates require an opcache clear.
-{% endhint %}
+:::
 
 Also, PHP PCRE Jit Target should be enabled. This can be checked using `php -i | grep 'PCRE JIT Target'` or looking into the *phpinfo* page.
 

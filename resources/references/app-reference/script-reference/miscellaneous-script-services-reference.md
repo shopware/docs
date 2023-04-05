@@ -6,7 +6,7 @@
 The ArrayFacade acts as a wrapper around an array and allows easier manipulation of arrays inside scripts.
 An array facade can also be accessed like a "normal" array inside twig.
 Examples:
-{% raw %}
+
 ```twig
 {% do array.push('test') %}
 
@@ -18,7 +18,6 @@ Examples:
 
 {% foreach array as key => value %}
 ```
-{% endraw %}
 
 ### set()
 
@@ -31,13 +30,12 @@ Examples:
 * **Examples:**
     * Add a new element with key `test` and value 1.
 
-        {% raw %}
         ```twig
         {% set product = services.cart.products.get(hook.ids.get('p1')) %}
 		
 		{% do product.payload.set('test', 1) %}
         ```
-        {% endraw %}
+
 ### push()
 
 * `push()` adds a new value to the end of the array.
@@ -74,13 +72,12 @@ Examples:
 * **Examples:**
     * Merge two arrays.
 
-        {% raw %}
         ```twig
         {% set my_array = array({'bar': 'foo', 'baz': true}) %}
 		
 		{% do product.payload.merge(my_array) %}
         ```
-        {% endraw %}
+
 ### replace()
 
 * `replace()` recursively replaces elements from the given array into this array.
@@ -91,13 +88,12 @@ Examples:
 * **Examples:**
     * Replace elements in the product payload array.
 
-        {% raw %}
         ```twig
         {% set second = array({'bar': 'baz'}) %}
 		
 		{% do product.payload.replace(second) %}
         ```
-        {% endraw %}
+
 ### count()
 
 * `count()` returns the count of elements inside this array.
@@ -119,7 +115,6 @@ _________
 
 The `config` service allows you to access the shop's and your app's configuration values.
 
-
 ### get()
 
 * The `get()` method allows you to access all config values of the store.
@@ -136,11 +131,10 @@ The `config` service allows you to access the shop's and your app's configuratio
 * **Examples:**
     * Read an arbitrary system_config value.
 
-        {% raw %}
         ```twig
         {% set systemConfig = services.config.get('core.listing.productsPerPage') %}
         ```
-        {% endraw %}
+
 ### app()
 
 * The `app()` method allows you to access the config values your app's configuration.
@@ -157,9 +151,8 @@ The `config` service allows you to access the shop's and your app's configuratio
 * **Examples:**
     * Read your app's config value.
 
-        {% raw %}
         ```twig
         {% set appConfig = services.config.app('app_config') %}
         ```
-        {% endraw %}
+
 _________

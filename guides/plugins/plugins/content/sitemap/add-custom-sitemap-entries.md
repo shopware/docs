@@ -30,11 +30,12 @@ a class via decoration. Learn more about this [here](../../plugin-fundamentals/a
 containing an array of all URLs to be added.
 
 Let's have a look at the example class:
-{% tabs %}
-{% tab title="CustomUrlProvider.php" %}
-{% code title="<plugin root>/src/Core/Content/Sitemap/Provider/CustomUrlProvider.php" %}
+
+<Tabs>
+<Tab title="CustomUrlProvider.php">
 
 ```php
+// <plugin root>/src/Core/Content/Sitemap/Provider/CustomUrlProvider.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Sitemap\Provider;
@@ -132,13 +133,12 @@ class CustomUrlProvider extends AbstractUrlProvider
 }
 ```
 
-{% endcode %}
-{% endtab %}
+</Tab>
 
-{% tab title="services.xml" %}
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<Tab title="services.xml">
 
 ```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -156,9 +156,8 @@ class CustomUrlProvider extends AbstractUrlProvider
 </container>
 ```
 
-{% endcode %}
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 Let's go through this step by step.
 First of all we created a new class `CustomUrlProvider`, which is extending from the `AbstractUrlProvider`.

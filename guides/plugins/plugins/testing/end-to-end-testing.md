@@ -15,8 +15,8 @@ Since our tests should run on an installation that is as close as possible to a 
 On top of that, please make sure your shop has a theme assigned. When using `composer run e2e:open` or `run`, this is done automatically.
 
 This guide also won't teach you how to write Cypress tests in general. Please take a look at the official Cypress documentation for further guidance.
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="http://docs.cypress.io" caption="" %}
+
+<PageRef page="http://docs.cypress.io" title="" target="_blank" />
 
 ### Using our testsuite
 
@@ -29,8 +29,8 @@ This test suite is built on top of [Cypress](https://www.cypress.io/) as well as
 * [cypress-file-upload](https://github.com/abramenal/cypress-file-upload)
 
 Here you can find the npm package of our testsuite:
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="http://www.npmjs.com/package/@shopware-ag/e2e-testsuite-platform" caption="" %}
+
+<PageRef page="http://www.npmjs.com/package/@shopware-ag/e2e-testsuite-platform" title="" target="_blank" />
 
 Please have a look on our [cypress.json](https://github.com/shopware/e2e-testsuite-platform/blob/3.x/cypress.json), a few of our commands expect some configuration, e.g. viewportHeight and width, because the admin menu only opens if the viewport is wide enough.
 
@@ -40,8 +40,8 @@ When you use our [Development template](https://github.com/shopware/development)
 
 The`composer` scripts to run our E2E tests in CLI or in Cypress' test runner are explained in the paragraph [Executing e2e tests](end-to-end-testing.md#executing-e2e-tests).
 
-{% tabs %}
-{% tab title="Plugin setup" %}
+<Tabs>
+<Tab title="Plugin setup">
 Depending on your environment \(administration or storefront\) please create the following folder structure:
 
 ```text
@@ -86,9 +86,9 @@ Finally, create a new file e2e/cypress/support/index.js with the following line:
 require('@shopware-ag/e2e-testsuite-platform/cypress/support');
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Platform: Developing with docker" %}
+<Tab title="Platform: Developing with docker">
 If you are using docker, you don't need to install a thing: We use the [Cypress/Included image](https://github.com/cypress-io/cypress-docker-images/tree/master/included) to use Cypress in Docker completely.
 
 However, as we're using this image for running the test runner as well, you may need to do some configuration first. Based on this [guide](https://www.cypress.io/blog/2019/05/02/run-cypress-with-a-single-docker-command) you need to forward the XVFB messages from Cypress out of the Docker container into an X11 server running on the host machine. The guide shows an example for Mac; other operating systems might require different commands.
@@ -113,9 +113,9 @@ Got to `XQuartz > Preferences` (`⌘ + ,`) and enable `Allow connections from ne
 
 ![XQuartz Preferences](../../../../.gitbook/assets/xquartz-allow-connections-from-network-clients.png)
 
-{% hint style="warning" %}
+::: warning
 Restart your Mac before proceeding with the following steps.
-{% endhint %}
+:::
 
 **Configure your environment**
 
@@ -139,19 +139,19 @@ Add `$IP` to xhost's ACL:
 xhost + $IP
 ```
 
-{% hint style="danger" %}
+::: danger
 It is **crucial** to set these environment variables in the **same terminal session** from where you will later run `psh e2e:open`!
 
 Make sure that the `DISPLAY` environment variable on your Mac is properly set **before** you start the containers as it will be **passed** to the Cypress container when the container is **created**.
 Updating the variable on your host won't update it in the container until it is re-created!
-{% endhint %}
-{% endtab %}
-{% endtabs %}
+:::
+</Tab>
+</Tabs>
 
 ## Executing E2E tests
 
-{% tabs %}
-{% tab title="Plugin setup" %}
+<Tabs>
+<Tab title="Plugin setup">
 If you want to run E2E tests in your plugin, just switch to the folder `Resources/app/<enviroment>/test/e2e` and execute the following command:
 
 ```bash
@@ -162,12 +162,12 @@ CYPRESS_baseUrl=<your-url> npm run open
 
 It opens up the Cypress test runner which allows you to run and debug your tests, similar to the `e2e:open` command.
 
-{% hint style="danger" %}
+::: danger
 Don't forget that you might need to adjust test cleanup and other environment-related things according to your plugin's setup.
-{% endhint %}
-{% endtab %}
+:::
+</Tab>
 
-{% tab title="Execution in platform project" %}
+<Tab title="Execution in platform project">
 If you use Docker for your development environment, you are able to start right away.
 
 To prepare your shopware installation, your environment and install dependencies, please run the following command as first step, **outside** of your docker container:
@@ -201,8 +201,8 @@ composer run e2e:storefront:run
 ```
 
 To see a complete overview on all psh scripts for e2e tests, feel free to refer to our [e2e command reference](../../../../resources/references/testing-reference/e2e-commands.md).
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Writing your first test
 
@@ -269,9 +269,9 @@ If you want to contribute to Shopware platform's tests, please ensure to place y
   `-- settings
 ```
 
-{% hint style="warning" %}
+::: warning
 This is important because otherwise your test is not considered by our CI.
-{% endhint %}
+:::
 
 ### Test layout and syntax
 
@@ -381,7 +381,7 @@ To define the request you send to Shopware and to set first test data, store as 
 
 In the example file below, this file is used in order to define and create a customer. So, it provides data so that the customer can be created in Shopware.
 
-```javascript
+```json
 {
   "customerNumber": "C-1232123",
   "salutation": "Mr",
@@ -397,15 +397,15 @@ In the example file below, this file is used in order to define and create a cus
 }
 ```
 
-{% hint style="warning" %}
+::: warning
 Use only fields, which you can access in the UI / Storefront. Keep in mind that all tests in the file may use the fixture. So keep an eye on compatibility.
-{% endhint %}
+:::
 
 A small note on ID usage: Using ids may be easier for finding elements, but it isn't a proper way for testing in every case - It depends on your application. You need to be 100% sure that the id is persistent and won't change between builds. Never use ids here if you cannot be 100% sure they will not change at all, e.g. in another build.
 
-{% hint style="info" %}
+::: info
 At our case at Shopware, Ids on UUID basis tend to change from one installation to the next, so they are not always suitable to be used as selector in your test.
-{% endhint %}
+:::
 
 ### API implementation
 
@@ -413,9 +413,9 @@ Analogue to the Administration itself, the api access of the e2e test is based o
 
 Just like the Administration, we use services to access Shopware's REST API. Therefore, we use the ApiService to provide the basic methods for accessing the api. Located in `e2e/cypress/support/service/api.service.js`, ApiService is shared between all repositories and acts as a basis for all your next steps of creating fixtures. That implies that the axios implementation of all important api methods can be found there. This service acts as an interface: Next to the basic functions like get, post etc the request method is specified here as well as some Shopware-related methods which have to be available in all repositories.
 
-{% hint style="info" %}
+::: info
 Cypress provides an own axios-based way to handle requests in its command `cy.request`. However, Cypress commands are not real promises, see [Commands are not Promises](https://docs.cypress.io/guides/core-concepts/introduction-to-cypress.html#Commands-Are-Not-Promises). As we aim to parallelize the promises to fetch test data, we use our own implementation instead.
-{% endhint %}
+:::
 
 ### Services and commands
 

@@ -1,7 +1,7 @@
 # Entities Reference
 
-{% code title="entities.xml" %}
 ```xml
+// entities.xml
 <?xml version="1.0" encoding="utf-8" ?>
 <entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/CustomEntity/Xml/entity-1.0.xsd">
     <entity name="custom_entity_blog">
@@ -76,4 +76,3 @@
     </entity>
 </entities>
 ```
-{% endcode %}

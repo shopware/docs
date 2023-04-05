@@ -7,10 +7,10 @@ tags: [decoration, plugin, interface, abstraction]
 
 # Decoration pattern
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-11-25-decoration-pattern.md)
-{% endhint %}
+:::
 
 ## Context
 
@@ -70,6 +70,7 @@ class CustomerRoute extends AbstractCustomerRoute
 ### It is not possible to provide further functions in the class 
 If we have to implement another function in an interface this is only possible in a very complicated way.
 * a new interface is implemented which extends the old one:
+
 ```php
 interface DataValidationFactoryInterface
 {
@@ -110,6 +111,7 @@ abstract class AbstractCustomerRoute
 ```
 
 At the appropriate place where the class is called, we can simply use the new function without checking if the current service instance already contains the new method:
+
 ```php
 $service->loadV2(..);
 ```

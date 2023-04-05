@@ -7,10 +7,10 @@ tags: [flow, storer, scalar, deprecation]
 
 # Flow storer with scalar values
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2023-02-02-flow-storer-with-scalar-values.md)
-{% endhint %}
+:::
 
 ## Context
 At the moment we have a bunch of different `FlowStorer` implementations. Most of them are used to store scalar values without any restore logic. Each of the Storer class has an own interface which is used to identify if the data of the event should be stored. This leads to much boilerplate code when adding new storer implementations or when plugins want to bypass some for events. 

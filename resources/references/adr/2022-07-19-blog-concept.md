@@ -7,10 +7,10 @@ tags: [content, cms, blog, custom-entities]
 
 # Concept for blogs using Shopping Experiences
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-07-19-blog-concept.md)
-{% endhint %}
+:::
 
 ## Context
 A highly requested feature & expected for the CMS of Shopware 6 is the blog. In addition, this is an ideal use case and example for the use of [Custom Entities](../app/2021-09-14-technical-concept-custom-entities.md).
@@ -38,6 +38,7 @@ This flag will also result in new component types, so that for example the `cms-
 ![Category menu with Content types](../../../.gitbook/assets/adr/content-management/example-cms-aware-admin-menu.png)
 
 #### Example `admin-ui.xml`
+
 ```xml
 <admin-ui>
     <entity name="custom_entity_example"
@@ -92,6 +93,7 @@ This flag will also result in new component types, so that for example the `cms-
 ```
 
 #### Example `cms-aware.xml`
+
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
 <cms-aware xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -110,6 +112,7 @@ The CMS page template assigned to the category will contain a post listing.
 With content types in mind, this will be an additional step to be auto generated via the `cms-aware` flag of Custom Entities.
 
 ### Basic blog structure
+
 ```mermaid
 erDiagram
     blog_post {
@@ -146,6 +149,7 @@ erDiagram
 
 ### Snippet structure
 Modules generated via `admin-ui.xml` are automatically referring to the following snippet structure:
+
 ```json
 {
    "custom_entity_bundle": {

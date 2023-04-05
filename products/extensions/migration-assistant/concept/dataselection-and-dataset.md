@@ -118,7 +118,7 @@ class ProductDataSet extends DataSet
 
 The `dataSelections` are registered the following way:
 
-```markup
+```html
 <service id="SwagMigrationAssistant\Profile\Shopware\DataSelection\ProductDataSelection">
     <tag name="shopware.migration.data_selection"/>
 </service>
@@ -201,6 +201,6 @@ class ProductReviewDataSelection implements DataSelectionInterface
 }
 ```
 
-{% hint style="info" %}
+::: info
 There are duplicate DataSets from the `ProductDataSelection`, because they are also required if the user does not select the product `DataSelection`. If the user selects both, this `DataSets` will be only migrated once \(with their first occurrence\).
-{% endhint %}
+:::

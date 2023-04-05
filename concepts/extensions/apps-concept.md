@@ -17,9 +17,9 @@ Shopware communicates with your app only exclusively via HTTP-Requests. Therefor
 
 To secure this communication, a registration handshake is performed during the installation of your app. During this registration, it is verified that Shopware talks to the right app backend server, and your app gets credentials used to authenticate against the API. You can read more on the registration workflow in the [App base guide](../../guides/plugins/apps/app-base-guide.md).
 
-{% hint style="info" %}
+::: info
 Notice that this is optional if Shopware and your app don't need to communicate, e.g., because your app provides a [Theme](apps-concept.md).
-{% endhint %}
+:::
 
 ## Modify the appearance of the Storefront
 
@@ -27,26 +27,26 @@ Your app can modify the Storefront's appearance by shipping your Storefront asse
 
 ## Integrate payment providers
 
-{% hint style="info" %}
+::: info
 This functionality is available starting with Shopware 6.4.1.0.
-{% endhint %}
+:::
 
 Shopware provides functionality for your app to be able to integrate payment providers. You can use the synchronous payment to provide payment with a provider that does not require any user interaction, for which you can choose a simple request for approval in the background. You can use an asynchronous payment if you would like to redirect a user to a payment provider. Your app, therefore, provides a URL for redirection. After the user returns to the shop, Shopware will verify the payment status with your app. Find out more about providing payment endpoints in the [App payment guide](../../guides/plugins/apps/payment.md).
 
 ## Execute business logic inside Shopware with App Scripts
 
-{% hint style="info" %}
+::: info
 This functionality is available starting with Shopware 6.4.8.0.
-{% endhint %}
+:::
 
 [App scripts](../../guides/plugins/apps/app-scripts/README.md) allow your app to execute custom business logic inside the Shopware execution stack. This allows for new use cases, e.g., if you need to load additional data that should be rendered in the Storefront or need to manipulate the cart.
 
 ## Add conditions to the Rule Builder
 
-{% hint style="info" %}
+::: info
 This functionality is available starting with Shopware 6.4.12.0.
-{% endhint %}
+:::
 
 Your app may introduce custom conditions for use in the [Rule builder](../framework/rules.md).
 
-{% page-ref page="../../guides/plugins/apps/rule-builder/add-custom-rule-conditions.md" %}
+<PageRef page="../../guides/plugins/apps/rule-builder/add-custom-rule-conditions" />

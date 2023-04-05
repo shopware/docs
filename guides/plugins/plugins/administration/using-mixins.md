@@ -18,9 +18,8 @@ If you want to learn how to create your own mixin look at this guide: [Creating 
 
 After we've found the mixin we need, we can get it from the registry with the `Mixin.getByName` function and inject it into our component as seen below. In this example we'll use the notification mixin, which is useful for creating notifications visible to the user in the Administration.
 
-{% code title="<administration root>/components/swag-basic-example/index.js" %}
-
 ```javascript
+// <administration root>/components/swag-basic-example/index.js
 const { Component, Mixin } = Shopware;
 
 Component.register('swag-basic-example', {
@@ -36,5 +35,3 @@ Component.register('swag-basic-example', {
     }
 });
 ```
-
-{% endcode %}

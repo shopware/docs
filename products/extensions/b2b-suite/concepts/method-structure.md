@@ -12,9 +12,8 @@ Protected functions with an `@internal` comment aren't guaranteed to be compatib
 
 Example:
 
-{% code title="<b2b root>/components/Common/Controller/GridHelper.php" %}
-
 ```php
+// <b2b root>/components/Common/Controller/GridHelper.php
 <?php declare(strict_types=1);
 
 namespace Shopware\B2B\Common\Controller;
@@ -38,8 +37,6 @@ class GridHelper
 }
 ```
 
-{% endcode %}
-
 ### Public functions in framework
 
 Public functions are made to be compatible and not changed until the major version changes.
@@ -51,8 +48,6 @@ Furthermore, the same deprecation rules you already know from other parts of Sho
 
 Example:
 
-{% code %}
-
 ```typescript
 export default class {
     public addClass(element: HTMLElement, name: string): void {
@@ -60,5 +55,3 @@ export default class {
     }
 }
 ```
-
-{% endcode %}

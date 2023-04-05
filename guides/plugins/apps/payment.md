@@ -6,11 +6,11 @@ Starting with version 6.4.1.0, Shopware also provides functionality for your app
 
 You should be familiar with the concept of Apps and their registration.
 
-{% page-ref page="app-base-guide.md" %}
+<PageRef page="app-base-guide" />
 
 To reproduce this example, you should also be aware of how to set up an app on your development platform.
 
-{% page-ref page="local-development/" %}
+<PageRef page="local-development/" />
 
 ## Manifest configuration
 
@@ -20,9 +20,8 @@ You may choose between a synchronous and an asynchronous payment method. These t
 
 Below you can see three different definitions of payment methods.
 
-{% code title="manifest.xml" %}
-
 ```xml
+// manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
@@ -83,8 +82,6 @@ Below you can see three different definitions of payment methods.
 </manifest>
 ```
 
-{% endcode %}
-
 ## Synchronous payments
 
 Synchronous payments are the more simple kind of payments without any further interaction with the user. You have two different kind of options here. Depending on if you have defined a `pay-url`, you can choose to be informed about - and possibly process - a payment or not.
@@ -127,9 +124,9 @@ $response = [
 ];
 ```
 
-{% hint style="warning" %}
+::: warning
 Keep in mind that just by providing a `message`, the payment will default to status `fail`.
-{% endhint %}
+:::
 
 ## Asynchronous payments
 
@@ -216,9 +213,9 @@ $response = [
 ];
 ```
 
-{% hint style="warning" %}
+::: warning
 Keep in mind that just by providing a `message` in either request response, the payment will default to status `fail`, except if you also provide the status `cancel` in the `finalize` request.
-{% endhint %}
+:::
 
 ## Prepared payments
 
@@ -284,9 +281,9 @@ public function capturePreparedPayment(Request $request): JsonResponse
 }
 ```
 
-{% hint style="warning" %}
+::: warning
 Keep in mind that if the integration into the checkout process does not work as expected, your customer might not be able to use the prepared payment. This is especially valid for after order payments, since there the order already exists. For these cases, you should still offer a traditional synchronous / asynchronous payment flow. Don't worry, if you have set the transaction state in your capture call to anything but open, the asynchronous payment process will not be started immediately after the prepared payment flow.
-{% endhint %}
+:::
 
 ## Refund
 
@@ -325,7 +322,7 @@ public function refundPayment(Request $request): JsonResponse
 
 All of the payment requests you receive from Shopware should be checked for a correct signature and the responses should be signed as well. You should be familiar with the Setup process from the [App base guide](app-base-guide.md#setup), as this validation is very similar.
 
-{% page-ref page="app-base-guide.md" %}
+<PageRef page="app-base-guide" />
 
 When receiving a payment `pay` or `finalize` request, you need to first validation the signature of the request. This signature is provided in the `shopware-shop-signature` header, which contains a cryptographic signature of the query string. Therefore you need to calculate the `sha256 hmac` based on the encoded JSON and the secret you have saved during the app registration.
 
@@ -375,4 +372,4 @@ private function sign(array $content, string $shopId): JsonResponse
 
 ## API docs
 
-{% page-ref page="../../../resources/references/app-reference/payment-reference.md" %}
+<PageRef page="../../../resources/references/app-reference/payment-reference" />

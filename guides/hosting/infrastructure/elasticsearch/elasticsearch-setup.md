@@ -117,11 +117,11 @@ SHOPWARE_ES_THROW_EXCEPTION=1
 
 Shopware will use by default 3 shards and 3 replicas for the created index. This configuration can be overwritten with a new config file in `config/packages/elasticsearch.yml`
 
-{% hint style="info" %}
+::: info
 This configuration is available since Shopware version 6.4.12.0
-{% endhint %}
+:::
 
-```yml
+```yaml
 elasticsearch:
   index_settings:
     number_of_shards: 1

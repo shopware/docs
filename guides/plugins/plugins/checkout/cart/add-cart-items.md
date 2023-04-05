@@ -20,9 +20,8 @@ So let's add an example product to the cart using code. For that case, you'll ne
 
 Let's have a look at an example.
 
-{% code title="<plugin root>/src/Service/ExampleController.php" %}
-
 ```php
+// <plugin root>/src/Service/ExampleController.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -71,8 +70,6 @@ class ExampleController extends StorefrontController
 }
 ```
 
-{% endcode %}
-
 As mentioned earlier, you can just apply the `Cart` argument to your method and it will be automatically filled.
 
 Afterwards you create a line item using the `LineItemFactoryRegistry` and its `create` method. It is mandatory to supply the `type` property, which can be one of the following by default:
@@ -98,9 +95,8 @@ Sometimes you really want to have a custom line item handler, e.g. for your own 
 
 You need to create a new class which implements the interface `\Shopware\Core\Checkout\Cart\LineItemFactoryHandler\LineItemFactoryInterface` and it needs to be registered in the DI container with the tag `shopware.cart.line_item.factory`.
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
-
-```markup
+```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -114,13 +110,10 @@ You need to create a new class which implements the interface `\Shopware\Core\Ch
 </container>
 ```
 
-{% endcode %}
-
 Let's first have a look at an example handler:
 
-{% code title="<plugin root>/src/Service/ExampleHandler.php" %}
-
 ```php
+// <plugin root>/src/Service/ExampleHandler.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -152,8 +145,6 @@ class ExampleHandler implements LineItemFactoryInterface
 }
 ```
 
-{% endcode %}
-
 Implementing the `LineItemFactoryInterface` will force you to also implement three new methods:
 
 * `supports`: A method that is applied a string `$type`. This method has to return a bool whether or not it supports this type.
@@ -172,9 +163,8 @@ Implementing the `LineItemFactoryInterface` will force you to also implement thr
 
 Now you'll need to add a processor for your type. Otherwise your item won't be persisted in the cart. A simple processor for our ExampleHandler could look like this:
 
-{% code title="<plugin root>/Core/Checkout/Cart/ExampleProcessor.php" %}
-
 ```php
+// <plugin root>/Core/Checkout/Cart/ExampleProcessor.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Checkout\Cart;
@@ -200,17 +190,14 @@ class ExampleProcessor implements CartProcessorInterface
 }
 ```
 
-{% endcode %}
-
 As you can see, this processor takes an "original cart" as an input and adds all instances of our example type to a second cart, which will actually be persisted.
 
 Of course you can use processors to do much more than this. Have a look at [adding cart processors and collectors](./add-cart-processor-collector.md).
 
 Now register this processor in your `services.xml` like this:
 
-{% code title="<plugin root>/Resources/config/services.xml" %}
-
-```markup
+```html
+// <plugin root>/Resources/config/services.xml
 ...
 <services>
     ...
@@ -219,8 +206,6 @@ Now register this processor in your `services.xml` like this:
     </service>
 </services>
 ```
-
-{% endcode %}
 
 And that's it. You should now be able to create line items of type `example`.
 

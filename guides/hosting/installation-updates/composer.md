@@ -1,16 +1,16 @@
 # Versioning and Dependencies
 
-{% hint style="danger" %}
+::: danger
 This setup is no longer the recomended way to manage a Shopware installation. Please refer to our [Flex-guide](../../installation/flex.md#How-do-I-migrate-from-Production-Template-to-Symfony-Flex?) on how to migrate to a symfony flex based setup.
-{% endhint %}
+:::
 
 ## Overview
 
 ### Shopware 6 production template
 
 The Shopware 6 production template enables you to build, package and deploy Shopware 6 to production shops. This template is also used to build the official packages distributed by [shopware](https://www.shopware.com/en/download).
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://github.com/shopware/production" caption="" %}
+
+<PageRef page="https://github.com/shopware/production" title="" target="_blank" />
 
 The template is optimized for production usage and contains basic development tooling. It is intended as a basis for project customizations, which are usually done by agencies.
 
@@ -31,14 +31,14 @@ Starting with `6.3.0.0`, we use a slightly modified version of SemVer. The patte
 * 6.4.1.0 - Major=4, Minor=1, Patch=0
 
 See also:
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://www.shopware.com/en/news/shopware-6-versioning-strategy" caption="" %}
+
+<PageRef page="https://www.shopware.com/en/news/shopware-6-versioning-strategy" title="" target="_blank" />
 
 ### Requirements
 
 To get an overview of the requirements, refer to the following:
 
-{% page-ref page="../../installation/requirements.md" %}
+<PageRef page="../../installation/requirements" />
 
 NPM and Node are only required during the build process and for development. If you don't have javascript customizations, it is not required at all because the Storefront and Admin are pre-build.
 
@@ -114,9 +114,9 @@ The following commands and scripts are available:
 
 **Build**
 
-{% hint style="info" %}
+::: info
 Bash is required for the shell scripts.
-{% endhint %}
+:::
 
 | Command | Description |
 | :--- | :--- |
@@ -130,9 +130,9 @@ Bash is required for the shell scripts.
 
 Run `bin/build-js.sh` once to install the npm dependencies.
 
-{% hint style="info" %}
+::: info
 Bash is required for the shell scripts.
-{% endhint %}
+:::
 
 | Command | Description |
 | :--- | :--- |
@@ -186,7 +186,7 @@ This directory tree should give an overview of the template structure.
 
 You only need to require the things you want. If you only want to run shopware 6 in headless mode, your composer.json could look like this:
 
-```javascript
+```json
 {
     "name": "acme/shopware-production",
     "type": "project",
@@ -212,17 +212,17 @@ You only need to require the things you want. If you only want to run shopware 6
 
 If you have project specific plugins, place them under `custom/static-plugins/{YourPlugin}` and require them in your `composer.json`.
 
-{% hint style="info" %}
+::: info
 The plugins needs a \(stable\) version to work with the default stability `stable`.
-{% endhint %}
+:::
 
 ```bash
 composer require "exampleorg/myplugin"
 ```
 
 External plugins in private repositories can also be required by adding the repository to your `composer.json`. To learn more about the usage of private repositories, see here:
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://getcomposer.org/doc/05-repositories.md\#using-private-repositories" caption="" %}
+
+<PageRef page="https://getcomposer.org/doc/05-repositories.md\#using-private-repositories" title="" target="_blank" />
 
 #### Update Shopware packages
 

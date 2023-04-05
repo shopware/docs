@@ -8,7 +8,7 @@ If you were wondering how to add a new input field to an existing module in the 
 
 This guide **does not** explain how you can create a new plugin for Shopware 6. Head over to our plugin base guide to learn how to create a plugin at first:
 
-{% page-ref page="../plugin-base-guide.md" %}
+<PageRef page="../plugin-base-guide" />
 
 ## Injecting into the Administration
 
@@ -18,9 +18,8 @@ Your `main.js` file then needs to override the [Vue component](https://vuejs.org
 
 The first parameter matches the component to override, the second parameter has to be an object containing the actually overridden properties , e.g. the new twig template extension for this component.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/main.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/administration/src/main.js
 import template from './extension/sw-product-settings-form/sw-product-settings-form.html.twig';
 
 Shopware.Component.override('sw-product-settings-form', {
@@ -28,28 +27,24 @@ Shopware.Component.override('sw-product-settings-form', {
 });
 ```
 
-{% endcode %}
-
 In this case, the `sw-product-settings-form` component is overridden, which reflects the settings form on the product detail page. As mentioned above, the second parameter has to be an object, which includes the actual template extension.
 
 ## Adding the custom template
 
 Time to create the referenced twig template for your plugin now.
 
-{% hint style="info" %}
+::: info
 We're dealing with a [TwigJS](https://github.com/twigjs/twig.js/wiki) template here.
-{% endhint %}
+:::
 
 Create a file called `sw-product-settings-form.html.twig` in the following directory: `<plugin root>/src/Resources/app/administration/src/extension/sw-product-settings-form`
 
-{% hint style="info" %}
+::: info
 The path starting from 'src' is fully customizable, yet we recommend choosing a pattern like this one.
-{% endhint %}
+:::
 
-{% code title="<plugin root>/src/Resources/app/administration/src/extension/sw-product-settings-form/sw-product-settings-form.html.twig" %}
-{% raw %}
-
-```markup
+```twig
+// <plugin root>/src/Resources/app/administration/src/extension/sw-product-settings-form/sw-product-settings-form.html.twig
 {% block sw_product_settings_form_content %}
     {% parent %}
 
@@ -59,9 +54,6 @@ The path starting from 'src' is fully customizable, yet we recommend choosing a 
 {% endblock %}
 ```
 
-{% endraw %}
-{% endcode %}
-
 Basically the twig block `sw_product_settings_form_content` is overridden here. Make sure to have a look at the [Twig documentation about the template inheritance](https://twig.symfony.com/doc/2.x/templates.html#template-inheritance), to understand how blocks in Twig work.
 
 This block contains the whole settings form of the product detail page. In order to add a new input field to it, you need to override the block, call the block's original content \(otherwise we'd replace the whole form\), and then add your custom input field to it. Also, the input field is "disabled", since it should be readable only. This should result in a new input field with the label 'Manufacturer ID', which then contains the ID of the actually chosen manufacturer.
@@ -70,26 +62,26 @@ This block contains the whole settings form of the product detail page. In order
 
 As mentioned above, Shopware 6 is looking for a `main.js` file in your plugin. Its contents get minified into a new file named after your plugin and will be moved to the `public` directory of Shopware 6 root directory. Given this plugin would be named "AdministrationNewField", the minified javascript code for this example would be located under `<plugin root>/src/Resources/public/administration/js/administration-new-field.js`, once you run the command following command in your shopware root directory:
 
-{% tabs %}
-{% tab title="Template" %}
+<Tabs>
+<Tab title="Template">
 
 ```bash
 ./bin/build-administration.sh
 ```
 
-{% endtab %}
-{% tab title="platform only (contribution setup)" %}
+</Tab>
+<Tab title="platform only (contribution setup)">
 
 ```bash
 composer run build:js:admin
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
-{% hint style="info" %}
+::: info
 Your plugin has to be activated for this to work.
-{% endhint %}
+:::
 
 Make sure to also include that file when publishing your plugin! A copy of this file will then be put into the directory `<shopware root>/public/bundles/administration/newfield/administration/js/administration-new-field.js`.
 

@@ -8,11 +8,11 @@ With version 6.5.0.0, Shopware allows apps to integrate custom tax calculations,
 
 You should be familiar with the concept of apps and their registration.
 
-{% page-ref page="app-base-guide.md" %}
+<PageRef page="app-base-guide" />
 
 To reproduce this example, you should also be aware of how to set up an app on your development platform.
 
-{% page-ref page="local-development/" %}
+<PageRef page="local-development/" />
 
 ## Manifest configuration
 
@@ -20,9 +20,8 @@ To indicate to Shopware that your app uses a custom tax calculation, you must pr
 
 Below, you can see an example definition of a working tax provider.
 
-{% code title="manifest.xml" %}
-
-```markup
+```xml
+// manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
@@ -42,27 +41,24 @@ Below, you can see an example definition of a working tax provider.
 </manifest>
 ```
 
-{% endcode %}
-
 After successful installation of your app, the tax provider will already be used during checkout to provide taxes. You should also see the new tax provider showing up in the administration in `Settings > Tax`.
 
 ## Tax provider endpoint
 
 During checkout, Shopware checks for any active tax providers - sorted by priority - and will call the `processUrl` to provide taxes one-by-one, until one of endpoint successfully provides taxes for the current cart.
 
-{% hint style="warning" %}
+::: warning
 **Connection timeouts**
 
 The Shopware shop will wait for a response for 5 seconds. Be sure, that your tax provider implementation responds in time, otherwise Shopware will time out and drop the connection.
-{% endhint %}
+:::
 
 In the following, we will have a look at a working example of a tax provider endpoint.
 
 Our implementation uses the [Shopware AppTemplate](https://github.com/shopware/AppTemplate): An easy app-server-integration for Symfony PHP implementations.
 
-{% code title="ProcessController.php" %}
-
 ```php
+// ProcessController.php
 <?php declare(strict_types=1);
 
 namespace App\Controller;
@@ -123,7 +119,6 @@ class ProcessController extends AbstractController
             ];
         }
 
-
         // you can provide lineItemTaxes, deliveryTaxes and cartPriceTaxes
         // if you do not provide cartPriceTaxes, Shopware will recalculate them according to your provided taxes
         $responseContent = [
@@ -141,7 +136,5 @@ class ProcessController extends AbstractController
     }
 }
 ```
-
-{% endcode %}
 
 If you wish to use a tax provider, you will probably have to provide the whole cart for the tax provider to correctly calculate taxes during checkout and you will probably get sums of the specific tax rates, which you can respond to Shopware via `cartPriceTaxes`. If given, Shopware does not recalculate the tax sums and will use those given by your tax provider.
