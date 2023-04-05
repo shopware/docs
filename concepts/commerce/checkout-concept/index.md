@@ -11,8 +11,4 @@ The checkout in Shopware deals with the entire process of turning a cart into an
 
 <PageRef page="cart" />
 
-{% endpage-ref %}
-
 <PageRef page="orders" />
-
-{% endpage-ref %}
