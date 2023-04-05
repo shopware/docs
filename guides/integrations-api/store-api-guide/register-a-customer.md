@@ -82,7 +82,7 @@ You can always double check the state of your session using the `/store-api/v3/a
 
 Some data regulations force stores to provide a double opt-in registration. In that flow, customers have to confirm their registration using a link sent to them by email. Shopware assembles this URL using the following format, where storefrontUrl is the URL of your application \(as provided during registration\).
 
-```http
+```txt
 [storefrontUrl]/registration/confirm?em=[email-hash]&hash=[customer-hash]
 ```
 

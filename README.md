@@ -14,7 +14,7 @@ These two sections are complemented by the **References**, which contain structu
 
 Visit the [academy](https://academy.shopware.com/collections?category=developer-sw6) for video content. If you have any questions left, you can always ask them on [StackOverflow](https://stackoverflow.com/search?q=shopware) or join our awesome community on [Slack](https://slack.shopware.com/).
 
-![](.gitbook/assets/image%20%289%29.png)
+![](./.gitbook/assets/image-9.png)
 
 ## Need help getting started?
 

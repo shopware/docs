@@ -11,7 +11,7 @@ Products in Shopware are organised in categories. Categories are represented as 
 
 There is a single category tree that represents the whole product catalog of your store.
 
-![](../../../.gitbook/assets/image%20%287%29.png)
+![](../../../.gitbook/assets/image-7.png)
 
 ## Product assignments
 

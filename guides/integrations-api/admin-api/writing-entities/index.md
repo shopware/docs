@@ -29,7 +29,7 @@ See this section on [opening the schema](../../general-concepts/generated-refere
 If it is not clear how the data has to be sent despite the scheme, it is also possible to open the administration and to have a look at the corresponding requests. To do this, simply open the network tab in the developer tools of your browser, which lists all requests and payloads sent by the administration.
 :::
 
-![](../../../../.gitbook/assets/image%20%286%29.png)
+![](../../../../.gitbook/assets/image-6.png)
 
 ### Primary Keys
 
