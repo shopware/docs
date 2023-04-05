@@ -1,3 +1,10 @@
+---
+nav:
+  title: Modifying sitemap entries
+  position: 20
+
+---
+
 # Modify Sitemap Entries
 
 ## Overview

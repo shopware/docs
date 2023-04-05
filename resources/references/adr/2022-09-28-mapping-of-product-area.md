@@ -2,8 +2,13 @@
 title: Mapping of product area
 date: 2022-09-28
 area: product-operations
-tags: [workflow]
---- 
+tags:
+  - workflow
+nav:
+  title: Mapping of product area
+  position: 690
+
+---
 
 # Mapping of product area
 

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Use CSRF protection
+  position: 190
+
+---
+
 # Use CSRF Protection
 
 ## Overview

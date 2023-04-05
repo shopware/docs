@@ -2,7 +2,14 @@
 title: Deprecation strategy
 date: 2021-01-21
 area: core
-tags: [deprecation, feature-flags, workflow]
+tags:
+  - deprecation
+  - feature-flags
+  - workflow
+nav:
+  title: Deprecation strategy
+  position: 200
+
 ---
 
 # Deprecation strategy

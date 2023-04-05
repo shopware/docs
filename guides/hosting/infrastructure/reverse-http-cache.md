@@ -1,3 +1,10 @@
+---
+nav:
+  title: Reverse HTTP Cache
+  position: 30
+
+---
+
 # Reverse HTTP Cache
 
 ## Overview

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Starter Guide - Admin Extensions
+  position: 30
+
+---
+
 # App-Starter - Create an Admin Extension
 
 In this guide, you will learn how to set up an extension for the Administration UI.

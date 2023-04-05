@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom module
+  position: 20
+
+---
+
 # Add custom module
 
 ## Overview

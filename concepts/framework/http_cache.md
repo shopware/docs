@@ -1,3 +1,10 @@
+---
+nav:
+  title: HTTP Cache
+  position: 50
+
+---
+
 # HTTP Cache
 
 The HTTP cache allows you to cache responses of the shop system. This means that the next time the same page is requested, the answer can be returned much faster. While the general concept of a cache is quite simple, there are many details to think of in a complex system like a shopping cart. For that reason, the following overview might come in handy for you.

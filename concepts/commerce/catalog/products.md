@@ -1,3 +1,10 @@
+---
+nav:
+  title: Products
+  position: 10
+
+---
+
 # Products
 
 Products are sellable entities (physical and digital products) within your shop.

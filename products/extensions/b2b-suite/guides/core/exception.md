@@ -1,3 +1,10 @@
+---
+nav:
+  title: Exception
+  position: 80
+
+---
+
 # Exception
 
 ## Translatable exception

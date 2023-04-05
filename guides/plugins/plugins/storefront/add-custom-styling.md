@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom styling
+  position: 80
+
+---
+
 # Add Custom Styling
 
 ## Overview

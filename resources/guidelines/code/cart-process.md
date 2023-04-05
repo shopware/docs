@@ -1,3 +1,10 @@
+---
+nav:
+  title: Cart Process
+  position: 30
+
+---
+
 # Cart Process
 
 * Within `\Shopware\Core\Checkout\Cart\CartProcessorInterface::process`, no queries may be executed because this method is executed several times in a row to resolve the dependencies of the elements in the shopping cart.

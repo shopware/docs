@@ -1,3 +1,10 @@
+---
+nav:
+  title: App Base Guide
+  position: 10
+
+---
+
 # App Base Guide
 
 ## Overview

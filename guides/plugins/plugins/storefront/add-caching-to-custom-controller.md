@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add caching to custom controller
+  position: 30
+
+---
+
 # Add Caching to Custom Controller
 
 ## Overview

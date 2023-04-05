@@ -2,8 +2,15 @@
 title: Document template refactoring
 date: 2020-08-12
 area: customer-order
-tags: [document, template, twig]
---- 
+tags:
+  - document
+  - template
+  - twig
+nav:
+  title: Document template refactoring
+  position: 60
+
+---
 
 # Document template refactoring
 

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Lock Storage
+  position: 40
+
+---
+
 # Lock store
 
 Shopware uses [Symfony's lock component](https://symfony.com/doc/5.4/lock.html) to implement locking functionality.

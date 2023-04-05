@@ -1,3 +1,10 @@
+---
+nav:
+  title: General
+  position: 10
+
+---
+
 # Documentation Guidelines
 
 Your style, your words, and your tone define you. Correspondingly, this style guide lays out standard editorial instructions that define Shopware documentation.

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Storefront Controller
+  position: 140
+
+---
+
 # Storefront Controller
 
 ## Controller

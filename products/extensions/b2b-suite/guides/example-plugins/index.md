@@ -1,3 +1,10 @@
+---
+nav:
+  title: Example Plugins
+  position: 20
+
+---
+
 # Example Plugins
 
 ## General

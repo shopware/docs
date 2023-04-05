@@ -2,8 +2,15 @@
 title: Integrate an app into flow action
 date: 2022-04-19
 area: business-ops
-tags: [flow, app, flow-action]
---- 
+tags:
+  - flow
+  - app
+  - flow-action
+nav:
+  title: Integrate app into flow action
+  position: 600
+
+---
 
 # Integrate an app into flow action
 

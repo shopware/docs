@@ -2,8 +2,15 @@
 title: Run Lighthouse tests in E2E env
 date: 2022-21-11
 area: storefront
-tags: [lighthouse, performance, storefront]
---- 
+tags:
+  - lighthouse
+  - performance
+  - storefront
+nav:
+  title: Run lighthouse test ine2e env
+  position: 760
+
+---
 
 # Run Lighthouse tests in E2E env
 

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Currency
+  position: 90
+
+---
+
 # Currency
 
 ## Introduction

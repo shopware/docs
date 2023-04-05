@@ -1,3 +1,10 @@
+---
+nav:
+  title: Administration
+  position: 10
+
+---
+
 # Administration
 
 You can't extend the Shopware Administration by means of freely overriding and extending Administration components, all js files you provide in the `Resources/administration` namespace will be ignored. Instead, you have more defined extension points and can extend the Administration by other means: You are able to [add your own modules](add-custom-modules), [custom fields](../custom-data/custom-fields) or [action buttons](add-custom-action-button) via manifest file.

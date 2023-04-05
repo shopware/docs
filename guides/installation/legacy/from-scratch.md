@@ -1,3 +1,10 @@
+---
+nav:
+  title: Installation from scratch
+  position: 20
+
+---
+
 # Installation from Scratch
 
 ::: danger

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Data Handling / DataAbstractionLayer
+  position: 10
+
+---
+
 # Data Handling/DataAbstractionLayer
 
 The data handling, or the Data Abstraction Layer \(DAL\), can be an overwhelming topic. Yet, if you know the right start, it will be fairly easy to deal with.

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Shopping Experiences (CMS)
+  position: 10
+
+---
+
 # Shopping Experiences \(CMS\)
 
 Shopware comes with an extensive CMS system referred to as *Shopping Experiences* built upon pages or layouts, which can be reused and dynamically hydrated based on their assignments to categories or other entities.

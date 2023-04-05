@@ -1,3 +1,10 @@
+---
+nav:
+  title: Field Configuration
+  position: 20
+
+---
+
 # Field Configuration
 
 With the [relevance](relevance), the Advanced Search offers the possibility to customize the searched fields.

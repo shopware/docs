@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add cookies to the consent manager
+  position: 20
+
+---
+
 # Add cookies to the consent manager
 
 ## Prerequisites

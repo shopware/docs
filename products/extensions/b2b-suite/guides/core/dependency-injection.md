@@ -1,3 +1,10 @@
+---
+nav:
+  title: Dependency injection
+  position: 10
+
+---
+
 # Dependency Injection
 
 ## Shopware DIC

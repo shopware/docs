@@ -1,3 +1,10 @@
+---
+nav:
+  title: Guidelines
+  position: 10
+
+---
+
 # Guidelines
 
 This document is intended for all readers and contributors. We have defined coding, documentation, and testing guidelines.

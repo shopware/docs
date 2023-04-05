@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom field in the storefront
+  position: 220
+
+---
+
 # Add Custom Field in the Storefront
 
 ## Overview

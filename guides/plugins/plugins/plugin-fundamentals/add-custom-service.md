@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom service
+  position: 60
+
+---
+
 # Add Custom Service
 
 ## Overview

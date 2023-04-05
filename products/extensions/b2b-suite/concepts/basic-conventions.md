@@ -1,3 +1,10 @@
+---
+nav:
+  title: Basic conventions
+  position: 20
+
+---
+
 # Basic Conventions
 
 This is the list of naming conventions the B2B Suite complies to:

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Number Ranges
+  position: 50
+
+---
+
 # Number Ranges
 
 ::: info

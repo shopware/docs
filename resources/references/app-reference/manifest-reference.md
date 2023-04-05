@@ -1,3 +1,10 @@
+---
+nav:
+  title: Manifest Reference
+  position: 10
+
+---
+
 # Manifest Reference
 
 ```xml

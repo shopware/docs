@@ -2,8 +2,15 @@
 title: Replace drop-shadow with box-shadow
 date: 2022-21-11
 area: storefront
-tags: [safari, performance, storefront]
---- 
+tags:
+  - safari
+  - performance
+  - storefront
+nav:
+  title: Replace drop shadow with box shadow
+  position: 750
+
+---
 
 # Replace drop-shadow with box-shadow
 

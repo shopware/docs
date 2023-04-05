@@ -1,3 +1,10 @@
+---
+nav:
+  title: Concept
+  position: 10
+
+---
+
 # Concept
 
 ## Overview

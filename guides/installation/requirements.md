@@ -1,3 +1,10 @@
+---
+nav:
+  title: Requirements
+  position: 10
+
+---
+
 # Requirements
 
 Before installing Shopware 6, take a quick look at the requirements below to check if your local environment is capable of running it.

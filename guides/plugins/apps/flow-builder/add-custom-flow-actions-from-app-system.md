@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom flow action from app system
+  position: 10
+
+---
+
 # Add custom flow actions
 
 ::: info

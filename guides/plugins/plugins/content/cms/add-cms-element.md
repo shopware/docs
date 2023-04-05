@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add CMS element
+  position: 20
+
+---
+
 # Add CMS Element
 
 ## Overview

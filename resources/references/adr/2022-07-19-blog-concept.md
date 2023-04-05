@@ -2,8 +2,16 @@
 title: Concept for blogs using Shopping Experiences
 date: 2022-07-18
 area: content
-tags: [content, cms, blog, custom-entities]
---- 
+tags:
+  - content
+  - cms
+  - blog
+  - custom-entities
+nav:
+  title: Blog concept
+  position: 660
+
+---
 
 # Concept for blogs using Shopping Experiences
 

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Acl Routing
+  position: 60
+
+---
+
 # ACL and Routing
 
 The ACL Routing component allows you to block Controller Actions for B2B users. It relies on and extends the technologies already defined by the ACL component. To accomplish this, the component directly maps an `action` in a given `controller` to a `resource` (= entity type) and `privilege` (= class of actions). There are two core actions you should know: `index` and `detail`, as you can see in the following acl-config example below.

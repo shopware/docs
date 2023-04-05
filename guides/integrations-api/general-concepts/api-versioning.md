@@ -1,3 +1,10 @@
+---
+nav:
+  title: API Versioning
+  position: 40
+
+---
+
 # API Versioning
 
 ## Overview

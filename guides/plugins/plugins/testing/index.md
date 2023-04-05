@@ -1,3 +1,10 @@
+---
+nav:
+  title: Testing
+  position: 10
+
+---
+
 # Testing
 
 When it comes to testing, you might immediately thing about unit tests. Of course, we've got you covered then:

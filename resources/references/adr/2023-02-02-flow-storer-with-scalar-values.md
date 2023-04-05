@@ -2,8 +2,16 @@
 title: Flow storer with scalar values
 date: 2023-02-02
 area: core
-tags: [flow, storer, scalar, deprecation]
---- 
+tags:
+  - flow
+  - storer
+  - scalar
+  - deprecation
+nav:
+  title: Flow storer with scalar values
+  position: 810
+
+---
 
 # Flow storer with scalar values
 

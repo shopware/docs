@@ -1,3 +1,10 @@
+---
+nav:
+  title: Guided Shopping
+  position: 30
+
+---
+
 # Guided Shopping Overview
 
 Guided Shopping is the state-of-the-art new feature that seamlessly integrates into your Shopware system landscape and co-operates with your existing ecommerce infrastructure.

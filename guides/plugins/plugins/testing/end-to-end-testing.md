@@ -1,3 +1,10 @@
+---
+nav:
+  title: End-to-end testing
+  position: 10
+
+---
+
 # End-to-End Testing
 
 ## Overview

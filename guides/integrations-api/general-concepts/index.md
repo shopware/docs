@@ -1,3 +1,10 @@
+---
+nav:
+  title: General Concepts
+  position: 10
+
+---
+
 # General Concepts
 
 Even though the Admin API and the Store API serve very different purposes, they have some commonalities handy to be aware of.

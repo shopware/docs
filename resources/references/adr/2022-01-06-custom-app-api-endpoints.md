@@ -2,8 +2,15 @@
 title: Allow apps to define custom api endpoints
 date: 2022-01-06
 area: core
-tags: [admin-api, store-api, app-system]
---- 
+tags:
+  - admin-api
+  - store-api
+  - app-system
+nav:
+  title: Custom app API endpoints
+  position: 420
+
+---
 
 # Allow apps to define custom api endpoints
 

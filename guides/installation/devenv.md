@@ -1,3 +1,10 @@
+---
+nav:
+  title: Devenv
+  position: 30
+
+---
+
 # What is devenv?
 
 Imagine [devenv](https://devenv.sh) to function as a dependency manager for the services and packages that you need to run your application for local development or even in a CI/CD context.

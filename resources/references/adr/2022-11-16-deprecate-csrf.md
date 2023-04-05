@@ -2,8 +2,15 @@
 title: Deprecate the storefront CSRF implementation
 date: 2022-11-16
 area: storefront
-tags: [csrf, security, storefront]
---- 
+tags:
+  - csrf
+  - security
+  - storefront
+nav:
+  title: Deprecate csrf
+  position: 740
+
+---
 
 # Deprecate the storefront CSRF implementation
 

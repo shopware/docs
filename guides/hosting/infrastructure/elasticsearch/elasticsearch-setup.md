@@ -1,3 +1,10 @@
+---
+nav:
+  title: Set up Elasticsearch
+  position: 10
+
+---
+
 # Set up Elasticsearch
 
 ## Overview

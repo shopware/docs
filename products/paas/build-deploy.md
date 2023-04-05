@@ -1,3 +1,10 @@
+---
+nav:
+  title: Build & Deploy
+  position: 30
+
+---
+
 # Build and Deploy
 
 Now that we have set up the repository, we are ready to push changes to your PaaS environment.

@@ -2,8 +2,14 @@
 title: Test structure
 date: 2022-10-20
 area: administration
-tags: [test, structure]
---- 
+tags:
+  - test
+  - structure
+nav:
+  title: Test structure
+  position: 720
+
+---
 
 # Test structure
 

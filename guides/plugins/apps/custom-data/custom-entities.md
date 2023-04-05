@@ -1,3 +1,10 @@
+---
+nav:
+  title: Custom entities
+  position: 20
+
+---
+
 # Custom entities
 
 In addition to [Custom fields](custom-fields), you can create completely own entities in the system, named custom entities.

@@ -2,7 +2,13 @@
 title: Providing the admin extension SDK
 date: 2022-06-15
 area: administration
-tags: [admin-extension-sdk, vue]
+tags:
+  - admin-extension-sdk
+  - vue
+nav:
+  title: Providing the admin extension sdk
+  position: 650
+
 ---
 
 # Providing the admin extension SDK

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Elasticsearch
+  position: 60
+
+---
+
 # Elasticsearch
 
 Perform the following steps to activate Elasticsearch in your environment.

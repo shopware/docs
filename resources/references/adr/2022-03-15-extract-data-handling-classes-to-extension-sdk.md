@@ -2,8 +2,14 @@
 title: Extract data handling classes to extension sdk
 date: 2022-03-15
 area: administration
-tags: [admin, extension-api]
---- 
+tags:
+  - admin
+  - extension-api
+nav:
+  title: Extract data handling classes to extension sdk
+  position: 490
+
+---
 
 # Extract data handling classes to extension sdk
 

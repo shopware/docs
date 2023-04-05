@@ -1,3 +1,10 @@
+---
+nav:
+  title: Extensions
+  position: 10
+
+---
+
 # Extensions
 
 In order to provide users \(i.e., developers\) with a clear abstraction, Shopware consists of a Core designed in a way that allows for a lot of extensibility without sacrificing maintainability or structural integrity. Some of those concepts were already introduced in the [Frameworks](../framework/) section.

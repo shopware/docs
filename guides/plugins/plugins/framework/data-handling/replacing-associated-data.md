@@ -1,3 +1,10 @@
+---
+nav:
+  title: Replacing associated data
+  position: 50
+
+---
+
 # Replacing Associated Data
 
 ## Overview

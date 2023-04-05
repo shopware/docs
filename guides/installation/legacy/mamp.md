@@ -1,3 +1,10 @@
+---
+nav:
+  title: MAMP
+  position: 40
+
+---
+
 # MAMP
 
 ::: danger

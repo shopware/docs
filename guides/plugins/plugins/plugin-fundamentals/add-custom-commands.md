@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom CLI commands
+  position: 90
+
+---
+
 # Add Custom CLI Commands
 
 To ease development tasks, Shopware contains the Symfony commands functionality. This allows \(plugin-\) developers to define new commands executable via the Symfony console at `bin/console`. The best thing about commands is, that they're more than just simple standalone PHP scripts - they integrate into Symfony and Shopware, so you've got access to all the functionality offered by both of them.

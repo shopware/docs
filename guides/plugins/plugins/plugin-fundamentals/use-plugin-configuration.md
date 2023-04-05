@@ -1,3 +1,10 @@
+---
+nav:
+  title: Use plugin configuration
+  position: 20
+
+---
+
 # Use Plugin Configuration
 
 In our guide on how to [add a plugin configuration](add-plugin-configuration), you can learn how to provide this possibility to use configuration options in your plugins. This guide will aid you on how to then use this configuration in your plugin.

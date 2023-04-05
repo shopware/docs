@@ -1,3 +1,10 @@
+---
+nav:
+  title: The Shopware object
+  position: 270
+
+---
+
 # The Shopware object
 
 ## Overview

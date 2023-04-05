@@ -2,8 +2,15 @@
 title: Rule Scripting in apps
 date: 2022-02-21
 area: business-ops
-tags: [rule, app-system, app-scripts]
---- 
+tags:
+  - rule
+  - app-system
+  - app-scripts
+nav:
+  title: Rule scripting in apps
+  position: 450
+
+---
 
 # Rule Scripting in apps
 

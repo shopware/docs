@@ -1,3 +1,10 @@
+---
+nav:
+  title: Using the datepicker plugin
+  position: 270
+
+---
+
 # Using the Datepicker Plugin
 
 ## Overview

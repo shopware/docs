@@ -1,3 +1,10 @@
+---
+nav:
+  title: Integrations / API
+  position: 10
+
+---
+
 # Integrations/API
 
 Generally, Shopware provides two APIs that serve two aspects of integrations with our platform. Both APIs are based on HTTP and though they serve different use cases, they share some underlying concepts. We recommend understanding these concepts before diving deeper into either of the APIs.

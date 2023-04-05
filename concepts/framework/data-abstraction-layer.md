@@ -1,3 +1,10 @@
+---
+nav:
+  title: Data Abstraction Layer
+  position: 10
+
+---
+
 # Data Abstraction Layer
 
 ## Database access

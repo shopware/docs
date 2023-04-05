@@ -1,3 +1,10 @@
+---
+nav:
+  title: Hot Module Reloading using watchers
+  position: 10
+
+---
+
 # Hot Module Reloading
 
 ## Watchers

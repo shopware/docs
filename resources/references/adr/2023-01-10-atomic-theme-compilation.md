@@ -2,8 +2,15 @@
 title: Atomic theme compilation
 date: 2023-01-10
 area: storefront
-tags: [theme, storefront, performance]
---- 
+tags:
+  - theme
+  - storefront
+  - performance
+nav:
+  title: Atomic theme compilation
+  position: 780
+
+---
 
 # Atomic theme compilation
 

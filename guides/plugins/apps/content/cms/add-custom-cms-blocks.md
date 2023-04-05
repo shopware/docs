@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom CMS blocks
+  position: 10
+
+---
+
 # Add custom CMS blocks
 
 ::: info

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Commercial
+  position: 10
+
+---
+
 # Commercial
 
 The Shopware 6 commercial feature-set comprises myriad features, the sum of which provide additional support for businesses which require extended functionality within the Shopware 6 ecosystem.

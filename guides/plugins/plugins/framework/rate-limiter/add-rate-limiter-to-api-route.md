@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add Rate Limiter to API Route
+  position: 10
+
+---
+
 # Add Rate Limiter to API Route
 
 ## Overview

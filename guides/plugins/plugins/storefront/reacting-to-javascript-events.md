@@ -1,3 +1,10 @@
+---
+nav:
+  title: Reacting to javascript events
+  position: 180
+
+---
+
 # Reacting to Javascript Events
 
 ## Overview

@@ -2,7 +2,14 @@
 title: Hide and show CMS content
 date: 2022-10-17
 area: content
-tags: [cms, storefront, admin]
+tags:
+  - cms
+  - storefront
+  - admin
+nav:
+  title: Hide and show cms content
+  position: 700
+
 ---
 
 # Hide and show CMS content

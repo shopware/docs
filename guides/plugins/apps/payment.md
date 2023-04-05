@@ -1,3 +1,10 @@
+---
+nav:
+  title: Payment
+  position: 20
+
+---
+
 # Payment
 
 Starting with version 6.4.1.0, Shopware also provides functionality for your app to be able to integrate payment providers. You can choose between just a simple request for approval in the background \(synchronous payment\) and the user being forwarded to a provider for payment \(asynchronous payment\). You provide one or two endpoints, one for starting the payment and providing a redirect URL and one for finalization to check for the resulting status of the payment. The requests and responses of all of your endpoints will be signed and feature JSON content.

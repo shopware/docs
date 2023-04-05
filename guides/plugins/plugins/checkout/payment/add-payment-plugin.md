@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add payment plugin
+  position: 10
+
+---
+
 # Add Payment Plugin
 
 ## Overview

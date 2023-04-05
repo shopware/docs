@@ -1,3 +1,10 @@
+---
+nav:
+  title: Multi Inventory
+  position: 20
+
+---
+
 # Multi-Inventory
 
 ## Pre-requisites and setup

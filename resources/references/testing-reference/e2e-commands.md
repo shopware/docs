@@ -1,3 +1,10 @@
+---
+nav:
+  title: E2E Commands
+  position: 20
+
+---
+
 # E2E Commands
 
 | Command                               | Description                                                      |

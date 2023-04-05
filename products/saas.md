@@ -1,3 +1,10 @@
+---
+nav:
+  title: SaaS
+  position: 10
+
+---
+
 # Cloud
 
 With the SaaS platform, Shopware provides updates, hosting, and infrastructure. Also, there are ways to extend it.
