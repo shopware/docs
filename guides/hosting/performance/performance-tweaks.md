@@ -19,6 +19,7 @@ By default, Shopware can no longer deliver complete pages from a cache for a log
 However, if the project does not require such functionality, pages can also be cached by the HTTP cache/reverse proxy. To disable cache invalidation in these cases:
 
 ```yaml
+# config/packages/prod/shopware.yaml
 shopware:
     cache:
         invalidation:
@@ -30,6 +31,7 @@ shopware:
 A delay for the cache invalidation can be activated for systems with a high update frequency for the inventory (products, categories). Once the instruction to delete the cache entries for a specific product or category occurs, they are not deleted instantly but processed by a background task afterwards. Thus, if two processes invalidate the cache in quick succession, the timer for the invalidation of this cache entry will only reset.
 
 ```yaml
+# config/packages/prod/shopware.yaml
 shopware:
     cache:
         invalidation:
@@ -78,6 +80,7 @@ To provide auto-completion for different mail templates in the Administration UI
 With the `shopware.mail.update_mail_variables_on_send` configuration, you can disable this source of database load:
 
 ```yaml
+# config/packages/prod/shopware.yaml
 shopware:
     mail:
         update_mail_variables_on_send: false
@@ -89,6 +92,7 @@ The [Increment storage](../performance/increment.md) is used to store the state 
 This storage increments or decrements a given key in a transaction-safe way, which causes locks upon the storage. Therefore, we recommend moving this source of server load to a separate Redis:
 
 ```yaml
+# config/packages/prod/shopware.yaml
 shopware:
     increment:
         user_activity:
@@ -110,6 +114,7 @@ Shopware uses [Symfony's Lock component](https://symfony.com/doc/5.4/lock.html) 
 By default, Symfony will use a local file-based [lock store](../performance/lock-store.md), which breaks into multi-machine (cluster) setups. This is avoided using one of the [supported remote stores](https://symfony.com/doc/5.4/components/lock.html#available-stores).
 
 ```yaml
+# config/packages/prod/framework.yaml
 framework:
     lock: 'redis://host:port'
 ```
@@ -124,6 +129,7 @@ In scenarios where high throughput is required (e.g., thousands of orders per mi
 Redis offers better support for atomic increments than the database. Therefore the number ranges should be stored in Redis in such scenarios.
 
 ```yaml
+# config/packages/prod/shopware.yaml
 shopware:
   number_range:
     increment_storage: "Redis"
@@ -135,6 +141,7 @@ shopware:
 Shopware sends the mails by default synchronously. This process can take a while when the remote SMTP server is struggling. For this purpose, it is possible to handle the mails in the message queue. To enable this, add the following config to your config:
 
 ```yaml
+# config/packages/prod/framework.yaml
 framework:
     mailer:
         message_bus: 'messenger.default_bus'
@@ -199,6 +206,7 @@ Tools such as [locust](https://locust.io/) or [k6](https://k6.io/) can be used f
 Set the log level of the monolog to `error` to reduce the amount of logged events. Also, limiting the `buffer_size` of monolog prevents memory overflows for long-lived jobs:
 
 ```yaml
+# config/packages/prod/monolog.yaml
 monolog:
     handlers:
         main:
