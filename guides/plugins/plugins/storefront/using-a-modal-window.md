@@ -8,7 +8,7 @@ This guide explains how you can use a modal window in your plugin in different s
 
 This guide requires you to already have a basic plugin running. This guide **does not** explain how to create a new plugin for Shopware 6. Head over to our Plugin base guide to learn how to create a plugin at first:
 
-{% page-ref page="./../plugin-base-guide.md" %}
+{% page-ref page="../plugin-base-guide.md" %}
 
 While this is not mandatory, having read the guide about adding custom JavaScript plugins beforehand might help you understand this guide a bit further:
 
