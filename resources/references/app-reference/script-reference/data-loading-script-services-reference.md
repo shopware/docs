@@ -143,7 +143,8 @@ The `store` service can be used to access publicly available `store-api` data.
 As the data is publicly available your app does not need any additional permissions to use this service,
 however querying data and also loading associations is restricted to the entities that are also available through the `store-api`.
 
-Notice that the returned entities are already processed for the Storefront, this means that e.g. product prices are already calculated based on the current context.
+Notice that the returned entities are already processed for the storefront,
+this means that e.g. product prices are already calculated based on the current context.
 
 ### search()
 
