@@ -86,6 +86,8 @@ shopware:
         update_mail_variables_on_send: false
 ```
 
+If you wonder, why it is in `prod`, have a look into the [Symfony configuration about configuration environments](https://symfony.com/doc/current/configuration.html#configuration-environments).
+
 ## Increment storage
 
 The [Increment storage](../performance/increment.md) is used to store the state and display it in the Administration.
