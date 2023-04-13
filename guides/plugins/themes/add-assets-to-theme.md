@@ -67,7 +67,7 @@ You can link to the asset with the twig [asset](https://symfony.com/doc/current/
 <img src="{{ asset('/assets/your-image.png', 'theme') }}">
 ```
 
-In SCSS you can link to the asset like the following:
+In SCSS, you can link to the asset like the following:
 
 ```css
 body {
