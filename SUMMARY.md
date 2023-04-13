@@ -467,7 +467,9 @@
     * [Follow test pyramid](resources/references/adr/2023-02-13-follow-test-pyramid.md)
     * [Unstructured adrs](resources/references/adr/2023-02-20-unstructured-adrs.md)
     * [Native extension system with vue](resources/references/adr/2023-02-27-native-extension-system-with-vue.md)
+    * [Admin text editor evaluation](resources/references/adr/2023-03-27-admin-text-editor-evaluation.md)
     * [Mocking repositories](resources/references/adr/2023-04-01-mocking-repositories.md)
+    * [Disable css autoprefixer](resources/references/adr/2023-04-03-disable-css-autoprefixer.md)
     * [Npm packages pre release versions](resources/references/adr/2023-16-01-npm-packages-pre-release-versions.md)
     * [YYYY MM DD template](resources/references/adr/YYYY-MM-DD-template.md)
 
