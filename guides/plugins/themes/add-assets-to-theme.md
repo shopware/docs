@@ -33,7 +33,7 @@ While working with your own theme, you might have already come across the [Theme
 
 {% endcode %}
 
-Next, please run the command `bin/console theme:compile`. The assets from the path defined in the `theme.json` file will be copied by the `theme:compile` command to `<shopware root>/public/theme/<theme-asset-uuid>` alongside with the compiled CSS and JS which are stored in a separate folder.
+Next, run the command `bin/console theme:compile`. The assets from the path defined in the `theme.json` file will be copied by the `theme:compile` command to `<shopware root>/public/theme/<theme-asset-uuid>` along with the compiled CSS and JS, which are stored in a separate folder.
 
 {% code title="<shopware root>/public" %}
 
