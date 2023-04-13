@@ -33,24 +33,22 @@ While working with your own theme, you might have already come across the [Theme
 
 {% endcode %}
 
-Next, please run the commands `bin/console assets:install` and `bin/console theme:compile`. `assets:install` deletes the content of `<shopware root>/public/bundles/<your-theme-name>` and copies files from `<plugin root>/src/Resources/public` into it. The assets from the path defined in the `theme.json` file will be copied by the `theme:compile` to `<shopware root>/public/bundles/<your-theme-name>` and `<shopware root>/public/theme/<theme-uuid>` :
+Next, please run the command `bin/console theme:compile`. The assets from the path defined in the `theme.json` file will be copied by the `theme:compile` command to `<shopware root>/public/theme/<theme-asset-uuid>` alongside with the compiled CSS and JS which are stored in a separate folder.
 
 {% code title="<shopware root>/public" %}
 
 ```text
 # 
 .
-├── bundles
-│   ├── framework
-│   ├── administration
-│   ├── storefront
-│   └── <your-plugin-name> <-- e.g. swagbasicexampletheme
-│       └── assets <-- Your asset is copied here
-│           └── your-image.png
 └── theme
-    └── <theme-uuid>
-        └── assets <-- Your asset is copied here
-            └── your-image.png
+    ├── <theme-uuid>
+    │   ├── css
+    │   │   └── all.css
+    │   └── js
+    │       └── all.js
+    └── <theme-asset-uuid>
+        └── asset
+            └── your-image.png <-- Your asset is copied here  
 ```
 
 {% endcode %}
@@ -66,14 +64,14 @@ This way of adding custom assets refers to the default way of dealing with asset
 You can link to the asset with the twig [asset](https://symfony.com/doc/current/templates.html#linking-to-css-javascript-and-image-assets) function:
 
 ```markup
-<img src="{{ asset('bundles/<your-plugin-name>/assets/your-image.png', 'asset') }}">
+<img src="{{ asset('/assets/your-image.png', 'theme') }}">
 ```
 
 In SCSS you can link to the asset like the following:
 
 ```css
 body {
-    background-image: url("../assets/your-image.png");
+    background-image: url('#{$app-css-relative-asset-path}/your-image.png');
 }
 ```
 
