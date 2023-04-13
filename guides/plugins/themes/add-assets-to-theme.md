@@ -33,18 +33,22 @@ While working with your own theme, you might have already come across the [Theme
 
 {% endcode %}
 
-Next, please run the bin/console assets:install command. The command copies files from `bundlePath/Resources/public` to the `/public/bundles` directory and the assets will be copied by the `theme:compile`:
+Next, run the command `bin/console theme:compile`. The assets from the path defined in the `theme.json` file will be copied by the `theme:compile` command to `<shopware root>/public/theme/<theme-asset-uuid>` along with the compiled CSS and JS, which are stored in a separate folder.
 
-{% code title="<shopware root>/public/bundles" %}
+{% code title="<shopware root>/public" %}
 
 ```text
 # 
 .
-├── administration
-├── framework
-├── storefront
-└── <your-theme-name> <-- e.g. swagbasicexampletheme
-    └── your-image.png <-- Your asset is copied here
+└── theme
+    ├── <theme-uuid>
+    │   ├── css
+    │   │   └── all.css
+    │   └── js
+    │       └── all.js
+    └── <theme-asset-uuid>
+        └── asset
+            └── your-image.png <-- Your asset is copied here  
 ```
 
 {% endcode %}
@@ -60,14 +64,14 @@ This way of adding custom assets refers to the default way of dealing with asset
 You can link to the asset with the twig [asset](https://symfony.com/doc/current/templates.html#linking-to-css-javascript-and-image-assets) function:
 
 ```markup
-<img src="{{ asset('bundles/swagbasicexampletheme/your-image.png', 'asset') }}">
+<img src="{{ asset('/assets/your-image.png', 'theme') }}">
 ```
 
-In SCSS you can link to the asset like the following:
+In SCSS, you can link to the asset like the following:
 
 ```css
 body {
-    background-image: url("../asset/your-image.png");
+    background-image: url('#{$app-css-relative-asset-path}/your-image.png');
 }
 ```
 
