@@ -205,7 +205,7 @@ To install Symfony Flex, you need to have Composer installed. If you don't have 
 To install Symfony Flex, you need to run the following commands and allow both new Composer plugins.
 
 ```bash
-composer require symfony/flex:~2 symfony/runtime:~5.4
+composer require symfony/flex:~2 symfony/runtime:~6.4
 
 composer recipe:install --force --reset
 ```
