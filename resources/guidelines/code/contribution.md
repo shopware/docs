@@ -13,7 +13,7 @@ To avoid your pull request getting rejected, you should always check that you pr
 
 * A pull request to the Shopware core always has to be made to the [platform](https://github.com/shopware/platform) repository.
 * Fill out the [pull request info template](https://github.com/shopware/platform/blob/master/.github/PULL_REQUEST_TEMPLATE.md) as detailed as possible.
-* Create a changelog file with documentation of your changes. Refer to [Changelog](https://github.com/shopware/platform/blob/master/adr/workflow/2020-08-03-implement-New-Changelog.md) section for more detailed information about writing changelog.
+* Create a changelog file with documentation of your changes. Refer to [Changelog](https://github.com/shopware/platform/blob/master/adr/2020-08-03-implement-New-Changelog.md) section for more detailed information about writing changelog.
 * Check if your pull request addresses the correct Shopware version. Breaks and features can't be merged in a patch release.
 * Check if your implementation is missing some important parts - For example, translations, downward compatibility, compatibility with important plugins, etc.
 * Provide the necessary tests for your implementation.
