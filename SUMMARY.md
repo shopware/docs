@@ -461,7 +461,9 @@
     * [Run lighthouse test ine2e env](resources/references/adr/2022-25-11-run-lighthouse-test-ine2e-env.md)
     * [Vue 2.7 update](resources/references/adr/2022-27-09-vue-2.7-update.md)
     * [Atomic theme compilation](resources/references/adr/2023-01-10-atomic-theme-compilation.md)
+    * [Npm packages pre release versions](resources/references/adr/2023-01-16-npm-packages-pre-release-versions.md)
     * [Image lazy loading](resources/references/adr/2023-01-30-image-lazy-loading.md)
+    * [App script product pricing](resources/references/adr/2023-02-01-app-script-product-pricing.md)
     * [Deprecate autoload true in DAL associations](resources/references/adr/2023-02-02-deprecate-autoload-true-in-dal-associations.md)
     * [Flow storer with scalar values](resources/references/adr/2023-02-02-flow-storer-with-scalar-values.md)
     * [Follow test pyramid](resources/references/adr/2023-02-13-follow-test-pyramid.md)
@@ -470,7 +472,7 @@
     * [Admin text editor evaluation](resources/references/adr/2023-03-27-admin-text-editor-evaluation.md)
     * [Mocking repositories](resources/references/adr/2023-04-01-mocking-repositories.md)
     * [Disable css autoprefixer](resources/references/adr/2023-04-03-disable-css-autoprefixer.md)
-    * [Npm packages pre release versions](resources/references/adr/2023-16-01-npm-packages-pre-release-versions.md)
+    * [Jest test files should be javascript only](resources/references/adr/2023-04-14-jest-test-files-should-be-javascript-only.md)
     * [YYYY MM DD template](resources/references/adr/YYYY-MM-DD-template.md)
 
   * [App Reference](resources/references/app-reference/README.md)
