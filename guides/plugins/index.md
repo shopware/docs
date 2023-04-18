@@ -51,10 +51,10 @@ The comparison above in not exhaustive, but it should give you a good idea of th
 
 Topics that might factor into your decision include:
 
- - How deep does the extension need to go into the Shopware core
- - What is the targeted deployment environment (e.g. cloud, on-premise, etc.)
- - What parts of Shopware are affected by the extension (e.g. storefront, administration, cart calculation etc.)
- - Should the extension be available for all Shopware users or only for a specific customer
+* How deep does the extension need to go into the Shopware core
+* What is the targeted deployment environment (e.g. cloud, on-premise, etc.)
+* What parts of Shopware are affected by the extension (e.g. storefront, administration, cart calculation etc.)
+* Should the extension be available for all Shopware users or only for a specific customer
 
 See a table of both extension system's capabilities below.
 
