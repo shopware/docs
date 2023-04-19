@@ -92,17 +92,17 @@ Be sure to use the most recent testing checklist from Shopware and not from any 
 
 * **Description:** (Min. 200 characters) - The app description must contain at least 200 characters and should clearly represent the app functions in detail.
 
-    * Inline styles will be stripped. The following HTML tags are allowed:
+  * Inline styles will be stripped. The following HTML tags are allowed:
 
     ```markdown
     <a> <p> <br> <b> <strong> <i> <ul> <ol> <li> <h2> <h3> <h4> <h5>
     ```
 
-    * **Tips:**
+  * **Tips:**
 
-        * When it comes to increasing your app sales, it is important that potential customers feel completely informed about your products and services. To this end, you should provide a description that is meaningful, detailed, and easy to understand, even for people with very little technical knowledge. Explain step-by-step how your app works and how to use it to achieve the desired result. Of course, your app description should be accompanied by clean HTML source code.
+    * When it comes to increasing your app sales, it is important that potential customers feel completely informed about your products and services. To this end, you should provide a description that is meaningful, detailed, and easy to understand, even for people with very little technical knowledge. Explain step-by-step how your app works and how to use it to achieve the desired result. Of course, your app description should be accompanied by clean HTML source code.
 
-        * Video content increases awareness, trust and has proven to convert potential customers better than other content types. Help your customers better understand your app or service with explainer videos, product demos, tutorials, etc. You can embed maximum 2 YouTube videos in your app description.
+    * Video content increases awareness, trust and has proven to convert potential customers better than other content types. Help your customers better understand your app or service with explainer videos, product demos, tutorials, etc. You can embed maximum 2 YouTube videos in your app description.
 
     {% hint style="information" %}
     You can no longer advertise your Shopware certificates within the app description, in your app images, or in your manufacturer profile. The manufacturer/partner certificates are dynamically loaded at the end of each app description and published by us.
@@ -129,8 +129,10 @@ Iframes, external scripts, or tracking pixels are not allowed in the description
 ### Template tests
 
 * **Testing tools**:
-    * [Schema Markup Validator of Schema.org](https://validator.schema.org/)
-    * [Google Lighthouse](https://developers.google.com/web/tools/lighthouse)
+
+  * [Schema Markup Validator of Schema.org](https://validator.schema.org/)
+
+  * [Google Lighthouse](https://developers.google.com/web/tools/lighthouse)
 
 ### Theme apps
 
