@@ -77,7 +77,7 @@ Be sure to use the most recent testing checklist from Shopware and not from any 
 
 * We check the complete functionality of the app (including the uninstallation and reinstallation procedure).
 
-* We want to improve the quality of the Shopware Community Store and offer as many different apps as possible. Hence, we check for a functional comparison with other apps already present in the Shopware Community Store or in our Rise or above edition. If there is an app with the same function, it can be rejected as it doesn't provide any added value. For further information, write an email to [alliances@shopware.com](mailto:alliances@shopware.com).
+* We want to improve the quality of the Shopware Community Store and offer as many different apps as possible. Hence, we check for a functional comparison with other apps already in the Shopware Community store, in the Rise edition, or above. If there is an app with the same function, it can be rejected as it doesn't provide any added value. For further information, write an email to [alliances@shopware.com](mailto:alliances@shopware.com).
 
 {% hint style="information" %}
 **Safe your app idea and get a preview in the store** - If you already have an idea and don't want it to be snatched away, then make sure you get it by creating a preview in your account. You can apply for this if you already have maintained images, description, and release months without uploading anything.
