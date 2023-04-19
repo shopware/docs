@@ -1,5 +1,9 @@
 # Guided Shopping Installation
 
+{% hint style="warning" %}
+To access Guided Shopping source code, please get in touch with the Shopware Sales department so as to get access to the private repository.
+{% endhint %}
+
 ## Install and use the Guided Shopping feature
 
 To install and use the Guided Shopping feature, follow the below steps:
