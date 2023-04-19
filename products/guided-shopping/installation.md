@@ -1,7 +1,7 @@
 # Guided Shopping Installation
 
 {% hint style="warning" %}
-To access Guided Shopping source code, please get in touch with the Shopware Sales department so as to get access to the private repository.
+To access the Guided Shopping source code, please create a support ticket in your Shopware Account and share your GitLab (not GitHub) username. You will then be granted access to the private repository.
 {% endhint %}
 
 ## Install and use the Guided Shopping feature
