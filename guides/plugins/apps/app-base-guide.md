@@ -50,7 +50,7 @@ The manifest file is the central point of your app. It defines the interface bet
 The name of your app that you provide in the manifest file needs to match the folder name of your app.
 {% endhint %}
 
-The app can now be installed by running the following command:
+The app can now be installed and activated by running the following command:
 
 ```bash
 bin/console app:install --activate MyExampleApp
@@ -59,7 +59,7 @@ bin/console app:install --activate MyExampleApp
 By default, your app files will be [validated](app-base-guide.md#validation) before installation. To skip the validation, you may use the `--no-validate` flag.
 
 {% hint style="info" %}
-Apps get installed as inactive. You can activate them by passing the `--activate` flag to the `app:install` command or by executing the `app:activate` command after installation.
+Without the `--activate` flag the Apps get installed as inactive. By executing the `app:activate` command after installation this can be activated, too.
 {% endhint %}
 
 For a complete reference of the structure of the manifest file, take a look at the [Manifest reference](../../../resources/references/app-reference/manifest-reference.md).
