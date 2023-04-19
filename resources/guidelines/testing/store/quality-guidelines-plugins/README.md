@@ -2,7 +2,7 @@
 
 > **Changelog**
 >
->> 12/04/23: We are now checking for a functional comparison with functions from our Rise or above edition. 
+>> 12/04/23: Check for a functional comparison with functions from the Rise or above edition. 
 >
 >> 14/02/23: Added new STP tracking  "External technology apps/STP apps"
 >
