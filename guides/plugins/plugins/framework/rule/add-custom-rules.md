@@ -104,7 +104,7 @@ Now we want to implement our new rule in the Administration so that we can manag
 
 Create a new directory called `<plugin root>/src/Resources/app/administration/src/decorator`. In this directory we create a new file called `rule-condition-service-decoration.js`.
 
-{% code title="<plugin root>src/Resources/app/administration/src/app/decorator/condition-type-data-provider.decorator.js" %}
+{% code title="<plugin root>/src/Resources/app/administration/src/decorator/condition-type-data-provider.decorator.js" %}
 
 ```javascript
 import '../core/component/swag-lunar-eclipse';
