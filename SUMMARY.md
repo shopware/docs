@@ -170,6 +170,7 @@
         * [Add data to mails](guides/plugins/plugins/content/mail/add-data-to-mails.md)
         * [Add mail templates](guides/plugins/plugins/content/mail/add-mail-template.md)
       * [Media](guides/plugins/plugins/content/media/README.md)
+        * [Prevent Deletion of Media Files Referenced in your Plugins](guides/plugins/plugins/content/media/prevent-deletion-of-media-files-referenced-in-your-plugins.md)
         * [Add custom media extension](guides/plugins/plugins/content/media/add-custom-file-extension.md)
       * [SEO](guides/plugins/plugins/content/seo/README.md)
         * [Add custom SEO URLs](guides/plugins/plugins/content/seo/add-custom-seo-url.md)
