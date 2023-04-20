@@ -253,7 +253,7 @@ Here is an overview of services Shopware provides by default and how you can acc
 |------------------|------------------------------------------------|
 | MySQL            | `mysql://shopware:shopware@127.0.0.1:3306`     |
 | Caddy            | [http://localhost:8000](http://localhost:8000) |
-| Adminer          | [http://localhost:9080](http://localhost:9080) |
+| Adminer          | [http://localhost:8010](http://localhost:8010) |
 | Mailhog (SMTP)   | `smtp://127.0.0.1:1025`                        |
 | Mailhog (Web UI) | [http://localhost:8025](http://localhost:8025) |
 
