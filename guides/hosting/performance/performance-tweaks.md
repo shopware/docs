@@ -219,3 +219,8 @@ monolog:
 ```
 
 The `business_event_handler_buffer` handler logs flow. Setting it to `error` will disable the logging of flow activities that succeed.
+
+## Disable App url external check
+
+On any Administration load Shopware tries to request himself to test that the configured `APP_URL` inside `.env` is correct. 
+If your `APP_URL` is correct, you can disable this behaviour with an environment variable `APP_URL_CHECK_DISABLED=1`.
