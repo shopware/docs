@@ -118,7 +118,7 @@ sub vcl_recv {
         } elsif (req.http.Accept-Encoding ~ "deflate") {
             set req.http.Accept-Encoding = "deflate";
         } else {
-            # unkown algorithm
+            # unknown algorithm
             unset req.http.Accept-Encoding;
         }
     }
@@ -312,7 +312,7 @@ sub vcl_recv {
         } elsif (req.http.Accept-Encoding ~ "deflate") {
             set req.http.Accept-Encoding = "deflate";
         } else {
-            # unkown algorithm
+            # unknown algorithm
             unset req.http.Accept-Encoding;
         }
     }
@@ -556,7 +556,7 @@ sub vcl_recv {
         } elsif (req.http.Accept-Encoding ~ "deflate") {
             set req.http.Accept-Encoding = "deflate";
         } else {
-            # unkown algorithm
+            # unknown algorithm
             unset req.http.Accept-Encoding;
         }
     }

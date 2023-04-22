@@ -173,7 +173,7 @@ Now let's get to the main method `getUrls`.
 Here we start of with fetching all custom entities, using the provided `$limit` and `$offset` values.
 Make sure to always use those values, as the sitemap support "paging" and therefore you do not want to simply fetch all
 of your entities.
-If there arent't any entities to be fetched, there is nothing more to be done here.
+If there aren't any entities to be fetched, there is nothing more to be done here.
 
 Afterwards we fetch all already existing SEO URLs for our custom entities. Once again, have a look at our guide about
 [adding a custom SEO URL](../seo/add-custom-seo-url.md#Dynamic SEO URLs for entities) if you don't know how to add custom
@@ -186,7 +186,7 @@ This struct requests each of the typical sitemap information:
 - `lastMod`: The last time this entry was modified. Just use the `updatedAt` value here, if available
 - `changeFreq`: How often will the entry most likely change?
 Possible values are `always`, `hourly`, `daily`, `weekly`, `monthly`, `yearly` and `never`
-- `priority`: Has to have a value between 0 and 1. URLs with higher priority are considered to be "more imporant" by common
+- `priority`: Has to have a value between 0 and 1. URLs with higher priority are considered to be "more important" by common
 search engines.
 - `resource`: Just a name for your entry, in this example we're just using the entity class name
 - `identifier`: The ID of the entry, if available

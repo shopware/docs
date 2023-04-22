@@ -16,7 +16,7 @@ While this feature is supposed to be used by API first, i.e. by ERP systems, it 
 
 ### Admin API
 
-To create, modify or delete Warehouses, WarehouseGroups,etc, related to Multi-Inventory, you can access Admin API endpoints decscribed further.
+To create, modify or delete Warehouses, WarehouseGroups etc., related to Multi-Inventory, you can access Admin API endpoints described further.
 
 Meanwhile, refer to the following links regarding the general use of the Admin API:
 
@@ -71,7 +71,7 @@ The following examples contain payloads for typical use-cases of this feature. B
 }
 ```
 
-### Assigning WarehouseGroups to Products, creating ProductWarehouses via assocation
+### Assigning WarehouseGroups to Products, creating ProductWarehouses via association
 
 ```json
 
@@ -142,7 +142,7 @@ Availability of Products is defined in 2 steps:
 * WarehouseGroups can be assigned to Rules (Rule builder)
   * If the rule is invalid, this Group will not be considered in calculating Product availability.
   * Products/Warehouses can still be available via other groups.
-  * If multiple rules a valid, WarehosueGroups can be prioritized with their own priority, they are not tied to rule priority.
+  * If multiple rules are valid, WarehouseGroups can be prioritized with their own priority, they are not tied to rule priority.
 * Products can have a stock per Warehouse
   * All Warehouses inside an active WarehouseGroup are taken into account for calculating the total stock of a specific Product.
   * Warehouses are unique, but can be assigned to multiple Groups (e.g. all Warehouses in the Group "Germany" can also be in the Group "Europe").

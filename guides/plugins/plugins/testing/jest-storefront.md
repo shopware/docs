@@ -55,7 +55,7 @@ At first, you need to create your test file, e.g. `feature.helper.test.js`. With
 {% code title="<plugin root>/src/Resources/app/storefront/test/helper/feature.helper.test.js" %}
 
 ```javascript
-// descrube is meant for grouping and structure
+// describe is meant for grouping and structure
 describe('feature.helper.js', () => {
 
     // This is your actual test

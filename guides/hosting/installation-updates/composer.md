@@ -1,7 +1,7 @@
 # Versioning and Dependencies
 
 {% hint style="danger" %}
-This setup is no longer the recomended way to manage a Shopware installation. Please refer to our [Flex-guide](../../installation/flex.md#How-do-I-migrate-from-Production-Template-to-Symfony-Flex?) on how to migrate to a symfony flex based setup.
+This setup is no longer the recommended way to manage a Shopware installation. Please refer to our [Flex-guide](../../installation/flex.md#How-do-I-migrate-from-Production-Template-to-Symfony-Flex?) on how to migrate to a symfony flex based setup.
 {% endhint %}
 
 ## Overview
@@ -255,7 +255,7 @@ The following directories should be shared by all app servers:
 │   └── sitemap # rw shared - generated sitemaps
 ├── var
 │   ├── cache # rw local - contains the containers, which contains additional cache directories (twig, translations, etc)
-│   ├── log # a - append only, can be change in the monlog config
+│   ├── log # a - append only, can be change in the monolog config
 
 ro - Readonly after deployment
 rw shared - read and write access, it should be shared across the app servers

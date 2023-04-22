@@ -346,7 +346,7 @@ Shopware.Component.register('swag-basic-example', {
             .then((product) => {
                 this.product = product;
 
-                this.product.manufacturerId = 'some-manufacturer-id'; // manually set the forign key y
+                this.product.manufacturerId = 'some-manufacturer-id'; // manually set the foreign key y
 
                 this.productRepository.save(this.product, Shopware.Context.api);
             });
@@ -356,7 +356,7 @@ Shopware.Component.register('swag-basic-example', {
 
 ### Working with lazy loaded associations
 
-In most cases, _ToMany_ associations can be loaded by adding a the association with the `.addAsscoiation()` method of the Criteria object.
+In most cases, _ToMany_ associations can be loaded by adding a the association with the `.addAssociation()` method of the Criteria object.
 
 ```javascript
 Shopware.Component.register('swag-basic-example', {
@@ -374,7 +374,7 @@ Shopware.Component.register('swag-basic-example', {
         productRepository() {
             return this.repositoryFactory.create('product');
         },
-        productCritera() {
+        productCriteria() {
             const criteria = new Criteria();
             criteria.addAssociation('prices');
 
@@ -384,7 +384,7 @@ Shopware.Component.register('swag-basic-example', {
 
     created() {
         this.productRepository
-            .get('some-id', Shopware.Context.api, this.productCritera)
+            .get('some-id', Shopware.Context.api, this.productCriteria)
             .then((product) => {
                 this.product = product;
             });
@@ -449,7 +449,7 @@ Shopware.Component.register('swag-basic-example', {
             const newPrice = this.priceRepository.create(Shopware.Context.api);
 
             newPrice.quantityStart = 1;
-          // Note: there are more things requiered then just the quantityStart
+          // Note: there are more things required than just the quantityStart
 
             this.priceRepository
                 .save(newPrice, Shopware.Context.api)

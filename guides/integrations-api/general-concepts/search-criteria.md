@@ -103,7 +103,7 @@ The `includes` parameter allows you to restrict the returned fields.
     }
 }
 
-// Reponse
+// Response
 {
     "total": 120,
     "data": [

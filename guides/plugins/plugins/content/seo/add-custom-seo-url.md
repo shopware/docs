@@ -71,7 +71,7 @@ The important information you'll need here is the route name, `frontend.example.
 
 Creating a SEO URL in this scenario can be achieved by creating a [plugin migration](../../plugin-fundamentals/database-migrations.md).
 
-The migration has to insert an entry for each sales channel and language into the `seo_url` table. For thise case, we're making use of the `ImportTranslationsTrait`, which comes with a helper method `importTranslation`.
+The migration has to insert an entry for each sales channel and language into the `seo_url` table. For this case, we're making use of the `ImportTranslationsTrait`, which comes with a helper method `importTranslation`.
 
 Don't be confused here, we'll just treat the `seo_url` table like a translation table, since it also needs a `language_id` and respective translated SEO URLs. You'll have to pass a German and an English array into an instance of the `Translations` class, which is then the second parameter for the `importTranslation` method.
 

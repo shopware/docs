@@ -70,7 +70,7 @@ Normally a shard in Elasticsearch can hold at least tens of gigabytes, so you mi
 
 | Variable | Possible values | Description |
 | ---------|-----------------|-------------|
-| `APP_ENV`| `prod` / `dev` | This variable is important if you want to activate the debug mode and see possible errors of Elasticsearch. You have to set the variable to dev for debug mode and prod if you want to use elasticsaerch in a productive system.|
+| `APP_ENV`| `prod` / `dev` | This variable is important if you want to activate the debug mode and see possible errors of Elasticsearch. You have to set the variable to dev for debug mode and prod if you want to use Elasticsearch in a productive system.|
 | `OPENSEARCH_URL`| `localhost:9200` | A comma separated list of Elasticsearch hosts. You can find the possible formats [here](https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/host-config.html#inline-host-config)|
 | `SHOPWARE_ES_INDEXING_ENABLED`| `0` / `1` |  This variable activates the indexing to Elasticsearch|
 | `SHOPWARE_ES_ENABLED`| `0` / `1` | This variable activates the usage of Elasticsearch for your shop|
@@ -144,7 +144,7 @@ For a reindex of the whole shop, you can use the command `bin/console dal:refres
 ### Alias creation
 
 Some systems require you to manually execute `bin/console es:create:alias` after the indexing is processed completely.
-Try that command if your index was created fully without errors and you still dont see products in your Storefront.
+Try that command if your index was created fully without errors and you still don't see products in your Storefront.
 
 ### What happens when indexing
 

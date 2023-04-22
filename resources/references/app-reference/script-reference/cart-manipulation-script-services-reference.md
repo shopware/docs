@@ -89,7 +89,7 @@ You can use the cart service to add line-items, change prices, add discounts, et
 		    'default': { 'gross': -19.99, 'net': -19.99}
 		}) %}
 		
-		{% do services.cart.discount('my-discount', 'absolute', price, 'Fanzy discount') %}
+		{% do services.cart.discount('my-discount', 'absolute', price, 'Fancy discount') %}
         ```
         {% endraw %}
 
@@ -105,7 +105,7 @@ You can use the cart service to add line-items, change prices, add discounts, et
 		    {% return %}
 		{% endif %}
 		
-		{% do services.cart.discount('my-discount', 'percentage', -10, 'Fanzy discount') %}
+		{% do services.cart.discount('my-discount', 'percentage', -10, 'Fancy discount') %}
         ```
         {% endraw %}
 
@@ -136,7 +136,7 @@ You can use the cart service to add line-items, change prices, add discounts, et
 		    'default': { 'gross': 19.99, 'net': 19.99}
 		}) %}
 		
-		{% do services.cart.surcharge('my-surcharge', 'absolute', price, 'Fanzy surcharge') %}
+		{% do services.cart.surcharge('my-surcharge', 'absolute', price, 'Fancy surcharge') %}
         ```
         {% endraw %}
 
@@ -152,7 +152,7 @@ You can use the cart service to add line-items, change prices, add discounts, et
 		    {% return %}
 		{% endif %}
 		
-		{% do services.cart.surcharge('my-surcharge', 'percentage', -10, 'Fanzy discount') %}
+		{% do services.cart.surcharge('my-surcharge', 'percentage', -10, 'Fancy discount') %}
         ```
         {% endraw %}
 
@@ -456,7 +456,7 @@ The ContainerFacade allows you to wrap multiple line-items inside a container li
 		    'default': { 'gross': -19.99, 'net': -19.99}
 		}) %}
 		
-		{% do services.cart.discount('my-discount', 'absolute', price, 'Fanzy discount') %}
+		{% do services.cart.discount('my-discount', 'absolute', price, 'Fancy discount') %}
         ```
         {% endraw %}
 
@@ -472,7 +472,7 @@ The ContainerFacade allows you to wrap multiple line-items inside a container li
 		    {% return %}
 		{% endif %}
 		
-		{% do services.cart.discount('my-discount', 'percentage', -10, 'Fanzy discount') %}
+		{% do services.cart.discount('my-discount', 'percentage', -10, 'Fancy discount') %}
         ```
         {% endraw %}
 
@@ -503,7 +503,7 @@ The ContainerFacade allows you to wrap multiple line-items inside a container li
 		    'default': { 'gross': 19.99, 'net': 19.99}
 		}) %}
 		
-		{% do services.cart.surcharge('my-surcharge', 'absolute', price, 'Fanzy surcharge') %}
+		{% do services.cart.surcharge('my-surcharge', 'absolute', price, 'Fancy surcharge') %}
         ```
         {% endraw %}
 
@@ -519,7 +519,7 @@ The ContainerFacade allows you to wrap multiple line-items inside a container li
 		    {% return %}
 		{% endif %}
 		
-		{% do services.cart.surcharge('my-surcharge', 'percentage', -10, 'Fanzy discount') %}
+		{% do services.cart.surcharge('my-surcharge', 'percentage', -10, 'Fancy discount') %}
         ```
         {% endraw %}
 
@@ -899,7 +899,7 @@ The ItemsFacade is a wrapper around a collection of line-items.
 		    'default': { 'gross': -19.99, 'net': -19.99}
 		}) %}
 		
-		{% do services.cart.discount('my-discount', 'absolute', price, 'Fanzy discount') %}
+		{% do services.cart.discount('my-discount', 'absolute', price, 'Fancy discount') %}
         ```
         {% endraw %}
 

@@ -49,7 +49,7 @@ Additionally, it registers Valet's daemon to launch when your system starts.
 ### Testing your installation
 
 * Make sure `ping something.test` responds from 127.0.0.1.
-* Run `nginx -t` or `sudo nginx -t` and check for any errors. If there is a missing *elastisearch* file, follow the "Missing Elasticsearch stub fix" further below.
+* Run `nginx -t` or `sudo nginx -t` and check for any errors. If there is a missing *elasticsearch* file, follow the "Missing Elasticsearch stub fix" further below.
 
 ### Install Error: "*The process has been signaled with signal 9*"
 

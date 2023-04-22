@@ -6,7 +6,7 @@
 >
 >> 14/02/23: Added new STP tracking  "External technology apps/STP apps"
 >
->> 11/07/22: [Added a list of all Blockers - Changes to the autom. coderview 1.st Oct. 2022](https://docs.shopware.com/en/account-en/manufacturer-area/quality-guidelines-for-extensions-in-the-shopware-store-based-on-our-extension-system#sonarcube-rules-status-blocker).
+>> 11/07/22: [Added a list of all Blockers - Changes to the autom. codereview 1.st Oct. 2022](https://docs.shopware.com/en/account-en/manufacturer-area/quality-guidelines-for-extensions-in-the-shopware-store-based-on-our-extension-system#sonarcube-rules-status-blocker).
 >
 >> 26/10/21: [Added safe your app idea and get a preview in the store](https://docs.shopware.com/en/account-en/manufacturer-area/quality-guidelines-for-extensions-in-the-shopware-store-based-on-our-extension-system?category=account-en/manufacturer-area#safe-your-app-idea-and-get-a-preview-in-the-store).
 >
@@ -317,7 +317,7 @@ There are Cypress tests for Shopware 6 on GitHub. The project is driven by the *
 
 **Cause:** Error in composer.json  
 
-One possible cause is that the technical app name from the Community Store or Account does not match the technical name entered in composer.json, or the app is incorrectly zipped. The technical app name has to be stored in the last part of the composer.json located at composore.json > extra > shopware-plugin-class. So take a look at the bootstrap class. Most of the errors is caused by the wrong technical name. For example, "Swag\\MyPlugin\\SwagMyPluginSW6" instead of "Swag\\MyPlugin\\SwagMyPlugin".
+One possible cause is that the technical app name from the Community Store or Account does not match the technical name entered in composer.json, or the app is incorrectly zipped. The technical app name has to be stored in the last part of the composer.json located at composer.json > extra > shopware-plugin-class. So take a look at the bootstrap class. Most of the errors is caused by the wrong technical name. For example, "Swag\\MyPlugin\\SwagMyPluginSW6" instead of "Swag\\MyPlugin\\SwagMyPlugin".
 
 [Here is an example](https://github.com/FriendsOfShopware/FroshPlatformPerformance/blob/master/composer.json#L20) of a valid composer.json.  
 See "[Plugin-Base Class](https://developers.shopware.com/designers-guide/javascript-statemanager-and-pluginbase/#plugin-base-class)" for more information.

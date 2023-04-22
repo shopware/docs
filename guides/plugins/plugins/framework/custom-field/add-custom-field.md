@@ -263,7 +263,7 @@ $this->customFieldSetRepository->create([
 
 This will now create a custom field set with the name `swag_example_set` and the field, `swag_example_size`. This time we also define its type, which should be of type integer here. The type is important to mention, because the Administration will use this information to display a proper field. Also, when trying to write the custom field `swag_example_size`, the value has to be an integer.
 
-The translated labels are added to both the field and the set, which are going to be displayed in the Administration. Also, the fallback language can be defined in case the system language is not guarenteed to be either en_GB or de_DE.
+The translated labels are added to both the field and the set, which are going to be displayed in the Administration. Also, the fallback language can be defined in case the system language is not guaranteed to be either en_GB or de_DE.
   
 If you have several custom fields and want to order them within a specific order, you can do so with the `customFieldPosition` property.
 

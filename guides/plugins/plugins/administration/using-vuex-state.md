@@ -70,7 +70,7 @@ All of this can be seen in the following code sample:
 
 ```javascript
     beforeCreate() {
-        // registering the store to vuex trough the Shopware objects helper function
+        // registering the store to vuex through the Shopware objects helper function
         // the first argument is the name the second the imported namespaced store
         Shopware.State.registerModule('swagBasicState', swagBasicState);
     },

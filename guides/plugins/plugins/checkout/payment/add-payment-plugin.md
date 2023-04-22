@@ -258,7 +258,7 @@ class ExamplePayment implements PreparedPaymentHandlerInterface
 
         if (!$paymentData) {
             // no payment data simulates an error response from our payment provider in this example
-            throw new ValidatePreparedPaymentException('Unkown payment for token ' . $token);
+            throw new ValidatePreparedPaymentException('Unknown payment for token ' . $token);
         }
 
         // other checks could include comparing the cart value with the actual payload of your PSP

@@ -22,7 +22,7 @@ This will trigger a new build with a subsequent deploy consisting of the followi
 | --- | --- |
 | Configuration validation | Hold app requests |
 | Build container image | Unmount live containers |
-| Installing dependecies | Mount file systems |
+| Installing dependencies | Mount file systems |
 | Run [build hook](./setup-template.md#build-hook) | Run [deploy hook](./setup-template.md#deploy-hook) |
 | Building app image | Serve requests |
 

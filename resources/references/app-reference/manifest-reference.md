@@ -76,7 +76,7 @@
             <label>My modules</label>
             <label lang="de-DE">Meine Module</label>
         </module>
-        <!-- Register a custom module (iframe), that should be loaded from the given surce -->
+        <!-- Register a custom module (iframe), that should be loaded from the given source -->
         <module name="exampleModule"
                 source="https://example.com/promotion/view/promotion-module"
                 parent="app-MyExampleApp-myAdminModules"

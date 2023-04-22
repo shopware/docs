@@ -97,10 +97,10 @@ import Plugin from 'src/plugin-system/plugin.class';
 
 export default class AjaxPlugin extends Plugin {
     init() {
-        // initalize the HttpClient
+        // initialize the HttpClient
         this._client = new HttpClient();
 
-        // get refernces to the dom elements
+        // get references to the dom elements
         this.button = this.el.children['ajax-button'];
         this.textdiv = this.el.children['ajax-display'];
 

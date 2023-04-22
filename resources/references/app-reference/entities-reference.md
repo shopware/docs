@@ -21,7 +21,7 @@
             <email name="email"  store-api-aware="false" />
             <price name="price" store-api-aware="false" />
 
-            <!-- you may want to define that some fields should not be availble in the store-api -->
+            <!-- you may want to define that some fields should not be available in the store-api -->
             <text name="internal_comment" store-api-aware="false" />
 
             <!-- you can also define relation between entities -->

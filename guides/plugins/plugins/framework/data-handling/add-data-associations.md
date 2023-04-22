@@ -158,7 +158,7 @@ protected function defineFields(): FieldCollection
 
 {% endcode %}
 
-Next to the `IdField`, you only have to define the `OneToManyAssociationField` in your `BarDefinition`. Its paremeter are `foos`, which is the property that will contain all `FooEntity`'s, the class name of `FooDefinition` and the name of the column in the referenced table, which points to the definition itself.
+Next to the `IdField`, you only have to define the `OneToManyAssociationField` in your `BarDefinition`. Its parameters are `foos`, which is the property that will contain all `FooEntity`'s, the class name of `FooDefinition` and the name of the column in the referenced table, which points to the definition itself.
 
 Let's have a look at the `FooDefinition` now:
 

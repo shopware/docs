@@ -73,7 +73,7 @@ bin/console dal:refresh:index --use-queue
 
 ### Messenger consume
 
-`messenger:consume -vv` starts a message consumer working on all tasks. This could be startet *X* times. When using more than 3 message consumers, you will need something like RabbitMq to handle the data.
+`messenger:consume -vv` starts a message consumer working on all tasks. This could be started *X* times. When using more than 3 message consumers, you will need something like RabbitMq to handle the data.
 
 ```bash​
 bin/console messenger:consume -vv
