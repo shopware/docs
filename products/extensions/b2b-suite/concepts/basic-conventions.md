@@ -22,3 +22,14 @@ This is the list of naming conventions the B2B Suite complies to:
 | Storefront plugins                                                                                 | File names end with *.plugin.ts                                                     |
 | Interfaces                                                                                         | File names start with `I`, e.g., `IAjaxPanelEvent.ts`                                |
 | Snippets                                                                                           | The root snippet key is `b2b`                                                       |
+
+| English term (e.g Display name)                    | B2B-Suite term (e.g. Entity name)                 |
+|----------------------------------------------------|---------------------------------------------------|
+| Company Administrator                              | Debtor                                            |
+| Employee                                           | Contact                                           |
+| Cart details                                       | Positions                                         |
+| Quick order                                        | Fastorder                                         |
+| Quote                                              | Offers                                            |
+| Purchase restriction                               | Contingent                                        |
+| Order restriction                                  | Contingent rule                                   |
+| Product restriction                                | Contingent restrictions                           |
