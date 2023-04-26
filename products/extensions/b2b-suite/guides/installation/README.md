@@ -5,20 +5,24 @@
 We provide a Docker based solution, also mainly used by our developers.
 These containers are also used in our continuous integration process. The supported functions are for both systems equal if the host system is based on Linux.
 
-If you want to install the B2B Suite for the production environment, your system must fit the defined [system requirements](https://developers.shopware.com/sysadmins-guide/system-requirements/) for the Shopware Core.
+If you want to install the B2B Suite for the production environment, your system must fit the defined [system requirements](https://docs.shopware.com/en/shopware-6-en/first-steps/system-requirements?category=shopware-6-en/getting-started) for the Shopware Core.
 
 ### Minimum requirements
 
 The B2B Suite is based on the minimum requirements of the Shopware Core.
 
-These requirements apply from **B2B Suite 4.6.0 and above**:
+Specific requirements for different versions B2B Suite:
 
-* Shopware 6.4
-* PHP 7.4.3
-* MySQL 5.7.21
-* MariaDB 10.3.22
+* B2B Suite  from 4.6.0 till 4.7.0
+    * Shopware 6.4
+    * PHP 7.4.3
+    * MySQL 5.7.21
+    * MariaDB 10.3.22
 
-**Like in the Shopware 6 core MySQL 8.0.20 and MariaDB 10.3.29, 10.4.19, 10.5.10 are not supported because of technical issues.**
+    **Like in the Shopware 6 core MySQL 8.0.20 and MariaDB 10.3.29, 10.4.19, 10.5.10 are not supported because of technical issues.**    
+
+* B2B Suite 4.7.0 and above
+    * Shopware 6.5
 
 ## Installation on a Linux based system
 
