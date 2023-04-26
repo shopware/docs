@@ -1,6 +1,8 @@
 # Basic Conventions
 
-This is the list of naming conventions the B2B Suite complies to:
+## Codebase conventions
+
+This is a list of naming conventions the B2B Suite complies to:
 
 | Group                                                                                              | Practice                                                                            |
 |----------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
@@ -23,7 +25,11 @@ This is the list of naming conventions the B2B Suite complies to:
 | Interfaces                                                                                         | File names start with `I`, e.g., `IAjaxPanelEvent.ts`                                |
 | Snippets                                                                                           | The root snippet key is `b2b`                                                       |
 
-| English term (e.g Display name)                    | B2B-Suite term (e.g. Entity name)                 |
+## Entity naming convention
+
+In order to make a more comprehensible B2B UI for English storefronts, some domain entities (i.e: Contact, Contingent Rule) do not have parallel naming conventions between the B2B GUI and the codebase:
+
+| English term (Display name)                        | B2B-Suite term (Entity name)                      |
 |----------------------------------------------------|---------------------------------------------------|
 | Company Administrator                              | Debtor                                            |
 | Employee                                           | Contact                                           |
@@ -33,3 +39,5 @@ This is the list of naming conventions the B2B Suite complies to:
 | Purchase restriction                               | Contingent                                        |
 | Order restriction                                  | Contingent rule                                   |
 | Product restriction                                | Contingent restrictions                           |
+
+You can use the table above as a reference to identify a domain entity in the codebase when working with the B2B storefront.
