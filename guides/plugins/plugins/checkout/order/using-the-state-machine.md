@@ -76,7 +76,7 @@ Here's an example on how to set the order transaction from `open` to `in_progres
 ```php
 $this->stateMachineRegistry->transition(new Transition(
     OrderTransactionDefinition::ENTITY_NAME,
-    '<Order transaciton ID here>',
+    '<Order transaction ID here>',
     'do_pay',
     'stateId'
 ), $context);

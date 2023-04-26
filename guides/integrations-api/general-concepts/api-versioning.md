@@ -55,7 +55,7 @@ GET /api/test
 sw-expect-packages: shopware/core:~6.4
 ```
 
-This would expect that atleast Shopware with version 6.4 is installed.
+This would expect that at least Shopware with version 6.4 is installed.
 
 ```text
 GET /api/test

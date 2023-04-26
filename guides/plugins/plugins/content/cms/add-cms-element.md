@@ -40,7 +40,7 @@ import './module/sw-cms/elements/dailymotion';
 
 Now open up your empty `dailymotion/index.js` file. In order to register a new element to the system, you have to call the method `registerCmsElement` of the [cmsService](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/module/sw-cms/service/cms.service.js). Since it's available in the Dependency Injection Container, you can fetch it from there.
 
-First of all, access our `Applicaton` wrapper, which will grant you access to the DI container. So go ahead and fetch the `cmsService` from it and call the mentioned `registerCmsElement` method.
+First of all, access our `Application` wrapper, which will grant you access to the DI container. So go ahead and fetch the `cmsService` from it and call the mentioned `registerCmsElement` method.
 
 {% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/index.js" %}
 

@@ -82,7 +82,7 @@ You can find the parent id at the `index.js` file in each module folder. You can
 
 ## Nesting menu entries
 
-The parent can be on any level because the menu supports infinite depth nesting. For example, if `sw-manufacturer` were taken as the `parent`, the menu item would be present on the third level. So whats important here is that the configured parent defines where the menu entry will take place.
+The parent can be on any level because the menu supports infinite depth nesting. For example, if `sw-manufacturer` were taken as the `parent`, the menu item would be present on the third level. So what's important here is that the configured parent defines where the menu entry will take place.
 
 {% hint style="info" %}
 If you're planning to publish your plugin to the Shopware Store keep in mind we're rejecting plugins which have created their own menu entry on the first level.

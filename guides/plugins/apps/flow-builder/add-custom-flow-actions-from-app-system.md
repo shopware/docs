@@ -268,7 +268,7 @@ To get more information on how to create configuration forms, see [Plugin Config
 | time | `<sw-datepicker/>` |
 | colorpicker | `<sw-colorpicker/>` |
 | single-select | `<sw-single-select/>` |
-| ulti-select | `<sw-multi-select/>` |
+| multi-select | `<sw-multi-select/>` |
 
 ## Install the App
 
@@ -281,4 +281,4 @@ bin/console app:install --activate FlowBuilderActionApp
 ## Further steps
 
 * [Flow action example configuration](../../../../resources/references/app-reference/flow-action-reference.md) page
-* [Schema definiton for flow actions (GitHub)](https://github.com/shopware/platform/blob/trunk/src/Core/Framework/App/FlowAction/Schema/flow-action-1.0.xsd)`
+* [Schema definition for flow actions (GitHub)](https://github.com/shopware/platform/blob/trunk/src/Core/Framework/App/FlowAction/Schema/flow-action-1.0.xsd)`

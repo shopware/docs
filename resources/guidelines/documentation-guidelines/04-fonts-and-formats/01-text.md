@@ -91,7 +91,7 @@ Spell out all ordinal numbers in the text, such as first, fourth, twelfth, and t
 
 * Use tables only when you have more than one row and column to represent.
 
-* Don't end sentences with punctuation, including a period, an ellipses, or a colon.
+* Don't end sentences with punctuation, including a period, an ellipsis, or a colon.
 
 * Use sentence case for all the elements in a table - contents, headings, labels, and captions.
 

@@ -407,11 +407,11 @@ Shopware.Component.register('sw-old', {
 ```javascript
 {
     createdComponent() {
-        /** @deprecated tag:v6.5.0 - Warning will be removed when prop is requirerd */
+        /** @deprecated tag:v6.5.0 - Warning will be removed when prop is required */
         if (!this.newProp) {
             debug.warn(
                 'sw-example-component',
-                '"newProp" will be requirerd in tag:v6.5.0'
+                '"newProp" will be required in tag:v6.5.0'
             );
         }
     }

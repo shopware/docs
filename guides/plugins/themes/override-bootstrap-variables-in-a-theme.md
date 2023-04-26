@@ -2,11 +2,11 @@
 
 ## Overview
 
-The storefront theme is implemented as a skin on top of Boostrap:
+The storefront theme is implemented as a skin on top of Bootstrap:
 <!-- markdown-link-check-disable-next-line -->
 {% embed url="https://getbootstrap.com/" caption="" %}
 
-Sometimes it is necessary to adjust SCSS variables if you want to change the look of the Storefront for example default variables like `$border-radius` which is defined by Boostrap. This guide will show how you can override those SCSS variables.
+Sometimes it is necessary to adjust SCSS variables if you want to change the look of the Storefront for example default variables like `$border-radius` which is defined by Bootstrap. This guide will show how you can override those SCSS variables.
 
 ## Prerequisites
 
@@ -88,7 +88,7 @@ When running `composer run watch:storefront` in platform only setups or `./bin/w
 
 ## Next steps
 
-Now that you know how to override Boostrap variables, here is a list of related topics which might be interesting for you.
+Now that you know how to override Bootstrap variables, here is a list of related topics which might be interesting for you.
 
 * [Theme configuration](theme-configuration.md)
 * [Add SCSS Styling and JavaScript to a theme](add-css-js-to-theme.md)

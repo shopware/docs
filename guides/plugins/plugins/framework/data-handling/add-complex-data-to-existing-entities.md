@@ -124,7 +124,7 @@ As you can see, we're adding a new `OneToOneAssociationField`. Its parameters ar
 
 #### Creating ExampleExtensionDefinition
 
-You most likely noticed the new classs `ExampleExtensionDefinition`, which we're going to create now. It will contain the actual string field that we wanted to add to the product.
+You most likely noticed the new class `ExampleExtensionDefinition`, which we're going to create now. It will contain the actual string field that we wanted to add to the product.
 
 Creating a new entity is not explained in this guide, so make sure you know [this guide](add-custom-complex-data.md) beforehand.
 
@@ -182,7 +182,7 @@ So let's have a look at the `defineFields` method. There's the default `IdField`
 
 Now we're getting to the actual new data, in this example this is just a new string field. It is called `customString` and could now be used in order to store new string data for the product in the database.
 
-The last field is the inverse side of the `OneToOneAssociationField`. The first parameter defines the name of the propery again, which will contain the `ProductEntity`. Now have a look at the second and third parameter - those are the same as in the `ProductDefinition`, but the other way around. This is important, do not forget to do that!
+The last field is the inverse side of the `OneToOneAssociationField`. The first parameter defines the name of the property again, which will contain the `ProductEntity`. Now have a look at the second and third parameter - those are the same as in the `ProductDefinition`, but the other way around. This is important, do not forget to do that!
 
 The fourth parameter is the class of the associated definition, the `ProductDefinition` in this case. The last parameter, once again, defines the auto loading. In this example, the product definition will **not** be loaded, when you're just trying to load this extension entity. Yet, the extension entity will always automatically be loaded when the product entity is loaded, just like we defined earlier.
 
@@ -345,7 +345,7 @@ class ProductSubscriber implements EventSubscriberInterface
 
 {% endcode %}
 
-We're registering to the `ProductEvents::PRODUCT_LOADED_EVENT` event, which is fired everytime one or multiple products are requested. In the event listener method `onProductsLoaded`, we're then adding our own data to the new field via the method `addExtension`.
+We're registering to the `ProductEvents::PRODUCT_LOADED_EVENT` event, which is fired every time one or multiple products are requested. In the event listener method `onProductsLoaded`, we're then adding our own data to the new field via the method `addExtension`.
 
 Please note that its second parameter, the actual value, has to be a struct and not just a string or other kind of scalar value.
 

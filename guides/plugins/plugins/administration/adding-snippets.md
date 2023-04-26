@@ -70,7 +70,7 @@ The same `$tc` helper function can be used in the templates to access translatio
 
 {% endraw %}
 
-Another feature of `$tc` is pluralization. Use a `|` in snippets to provide translations dependending on the number. The first part shows singular expression, while the second takes care of plural cases.
+Another feature of `$tc` is pluralization. Use a `|` in snippets to provide translations depending on the number. The first part shows singular expression, while the second takes care of plural cases.
 Let's have a look at this example of `"examplePluralization": "One Product | {n} Products"` with the following implementation:
 
 {% raw %}

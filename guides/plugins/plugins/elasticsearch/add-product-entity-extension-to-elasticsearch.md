@@ -285,7 +285,7 @@ class MyProductEsDecorator extends AbstractElasticsearchDefinition
             }
 
             /**
-             * Field with multiple id entrys from associated entity
+             * Field with multiple id entries from associated entity
              */
             if (isset($associationOneToMany[$document['id']])) {
                 $document['oneToManyExampleExtension'] = array_map(function (string $id) {

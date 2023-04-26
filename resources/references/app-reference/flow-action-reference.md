@@ -94,7 +94,7 @@
 
 ## Variables
 
-| Event | Valriables |
+| Event | Variables |
 | :--- | :--- |
 | checkout.order.placed <br> state_enter.order.state.cancelled <br> state_enter.order.state.completed <br> state_enter.order.state.in_progress <br>state_enter.order_transaction.state.reminded <br> state_enter.order_transaction.state.open <br> state_enter.order_transaction.state.refunded <br>state_enter.order_transaction.state.paid <br> state_enter.order_transaction.state.cancelled <br> state_enter.order_transaction.state.refunded_partially <br> state_enter.order_transaction.state.paid_partially <br> state_enter.order_delivery.state.cancelled <br>  state_enter.order_delivery.state.shipped <br> state_enter.order_delivery.state.returned_partially <br> state_enter.order_delivery.state.shipped_partially <br> state_enter.order_delivery.state.returned | order |
 | customer.group.registration.declined <br> customer.group.registration.accepted | customer <br> customerGroup |

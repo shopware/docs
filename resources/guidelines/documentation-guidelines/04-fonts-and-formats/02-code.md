@@ -1,6 +1,6 @@
 # Fonts and Format for Code
 
-Fonts and formats for inline code, code blocks, non-code items, API referece, classes and methods are detailed below:
+Fonts and formats for inline code, code blocks, non-code items, API reference, classes and methods are detailed below:
 
 ## Inline code
 

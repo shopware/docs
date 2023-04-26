@@ -74,7 +74,7 @@ For a complete reference of the structure of the manifest file take a look at th
 
 Following fields are required:
 
-* `identifier`: A technical name for the condition that should be unique within the scope of the app. The name is being used to identifiy existing conditions when updating the app, so it should not be changed.
+* `identifier`: A technical name for the condition that should be unique within the scope of the app. The name is being used to identify existing conditions when updating the app, so it should not be changed.
 * `name`: A descriptive and translatable name for the condition. The name will be shown within the Rule Builder's selection of conditions in the Administration.
 * `script`: The file name and extension of the file that contains the script for the condition. All scripts for rule conditions must be placed inside `Resources/scripts/rule-conditions` within the root directory of the app.
 
@@ -120,7 +120,7 @@ compare(operator, value, comparable)
 
 The `operator` _must_ be one of the following string values: `=`, `!=`, `>`, `>=`, `<`, `<=`, `empty`
 
-If either one or both of `value` and `comparable` are an array, then only `=` and `!=` should be used as operator. It will then compare whether there is at least one occurence of the value within the other array and return `true` if that is the case. As an example `value` might be an ID, `comparable` an array of IDs and you could use the function to match whether the ID is included in that array.
+If either one or both of `value` and `comparable` are an array, then only `=` and `!=` should be used as operator. It will then compare whether there is at least one occurrence of the value within the other array and return `true` if that is the case. As an example `value` might be an ID, `comparable` an array of IDs and you could use the function to match whether the ID is included in that array.
 
 ### Example
 

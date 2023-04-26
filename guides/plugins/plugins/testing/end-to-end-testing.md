@@ -152,7 +152,7 @@ Updating the variable on your host won't update it in the container until it is 
 
 {% tabs %}
 {% tab title="Plugin setup" %}
-If you want to run E2E tests in your plugin, just switch to the folder `Resources/app/<enviroment>/test/e2e` and execute the following command:
+If you want to run E2E tests in your plugin, just switch to the folder `Resources/app/<environment>/test/e2e` and execute the following command:
 
 ```bash
 CYPRESS_baseUrl=<your-url> npm run open
