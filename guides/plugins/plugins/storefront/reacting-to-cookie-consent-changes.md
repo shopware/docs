@@ -47,11 +47,6 @@ Just like with every custom JavaScript file, you have to load this one as well i
 
 ```javascript
 import './reacting-cookie/reacting-cookie'
-
-// Necessary for the webpack hot module reloading server
-if (module.hot) {
-    module.hot.accept();
-}
 ```
 
 {% endcode %}
