@@ -169,11 +169,11 @@ $ bin/console [command] [parameters]
 
 ### Media
 
-| Command | Description |
-| :--- | :--- |
-| `media:delete-unused` | Deletes all media files that are never used |
-| `media:generate-media-types` | Generates the media type for all media entities |
-| `media:generate-thumbnails` | Generates the thumbnails for media entities |
+| Command                      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+|:-----------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `media:delete-unused`        | Deletes all media files that are never used. Use the `--dry-run` flag to see a paginated list of files that will be deleted, without actually deleting them. Use the `--grace-period-days=10` to set a grace period for unused media, meaning that only media uploaded before the current date and time minus 10 days will be considered for deletion. The default is 20 and therefore any media uploaded in the previous 20 days will not be considered for deletion even if it is unused. |
+| `media:generate-media-types` | Generates the media type for all media entities                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `media:generate-thumbnails`  | Generates the thumbnails for media entities                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 
 ### Messenger
 
