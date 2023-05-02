@@ -4,6 +4,8 @@
 
 As soon as several thousand data sets are used in a project, it makes sense to deal with Elasticsearch. The Elasticsearch integration for Shopware is in the [shopware/elasticsearch](https://github.com/shopware/elasticsearch) bundle. If this is not available in your project, you can simply add it via `composer require shopware/elasticsearch`. In this documentation, we will provide you with a short overview of the functionalities of Elasticsearch on your server and the configuration, activation, and indexing process in Shopware for live and test environments.
 
+{% hint style="info" %} Currently, the implementation for Elasticsearch/Opensearch works in the same way. {% endhint %}
+
 ## Requirements
 
 * Opensearch >= 1.0 or Elasticsearch >= 7.8
