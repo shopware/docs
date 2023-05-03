@@ -13,13 +13,11 @@ The B2B Suite is based on the minimum requirements of the Shopware Core.
 
 Specific requirements for different versions B2B Suite:
 
-* B2B Suite  from 4.6.0 till 4.7.0
+* B2B Suite from 4.6.0 till 4.6.9
     * Shopware 6.4
     * PHP 7.4.3
     * MySQL 5.7.21
     * MariaDB 10.3.22
-
-    **Like in the Shopware 6 core MySQL 8.0.20 and MariaDB 10.3.29, 10.4.19, 10.5.10 are not supported because of technical issues.**
 
 * B2B Suite 4.7.0 and above
     * Shopware 6.5
