@@ -17,8 +17,8 @@ A schematic overview of the central usage of the Authentication component looks 
 
 | Color  |   Type   |                                                                                  Description                                                                                  |
 |--------|:--------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| Green  | Provider | Provides user identities. For example, a contact and a debtor are both valid B2B-Accounts that log in through the same user interface but do not share a common storage table |
-| Yellow | Context  |                            Uses the `Identity` as a context to determine what data should be shown. Usually, a simple debtor or tenant-like filter                             |
+| Green  | Provider | Provides user identities. For example, an Employee and a Company Administrator are both valid B2B-Accounts that log in through the same user interface but do not share a common storage table |
+| Yellow | Context  |                            Uses the `Identity` as a context to determine what data should be shown. Usually, a simple Company Administrator or tenant-like filter                             |
 | Blue |  Owner   |                                                          Uses the `Identity` to store the specific owner of a record                                                          |
 
 ## Working with the identity as a context
@@ -26,7 +26,7 @@ A schematic overview of the central usage of the Authentication component looks 
 The `StoreFrontAuthentication` component provides an identity representing the currently logged-in user,
 that can easily be retrieved and inspected through `Shopware\B2B\StoreFrontAuthentication\Framework\AuthenticationService`.
 
-Typically, you want to use the identity as a global criterion to secure so that the data does not leak from one debtor to another.
+Typically, you want to use the identity as a global criterion to secure so that the data does not leak from one Company Administrator to another.
 Therefore, you should add a `context_owner_id` to your MySQL table design.
 
 ```sql
@@ -147,7 +147,7 @@ $connection->fetchAll(
 
 ## Working with the identity as a provider
 
-If you need another type of user, you can follow the `Contact` and `Debtor` implementations.
+If you need another type of user, you can follow the `Employee` and `Company Administrator` implementations.
 This guide will show you which classes need to be extended.
 
 ### Implement your own identity
@@ -223,10 +223,10 @@ Finally, you register your authentication provider (in our case a repository) as
 
 ## Sales representative
 
-Both sales representative identities extend the debtor identity.
-The sales representative identity is to log in as clients (debtors).
+Both sales representative identities extend the Company Administrator identity.
+The sales representative identity is to log in as clients (Company Administrators).
 
-After logging in, the sales representative gets the sales representative debtor's identity.
+After logging in, the sales representative gets the sales representative Company Administrator's identity.
 This structure allows the original sales representative identity to be identified when logged in as a client.
 
-As a sales representative debtor, he is actually logged in as the client with additional possibilities.
+As a sales representative Company Administrator, he is actually logged in as the client with additional possibilities.

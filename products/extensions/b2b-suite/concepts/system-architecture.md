@@ -30,7 +30,7 @@ There is a small library of shared functionality. It contains a few commonly use
 
 ### User management
 
-The user management is based on the `StoreFrontAuthentication` component and then provides `Contact` and `Debtor` entities which have `Address`es and `Role`s. These entities are mostly informational and CRUD based. Other parts of the system only depend on the `StoreFrontAuthentication` component but not the specific implementations as *Debtor* or *Contact*.
+The user management is based on the `StoreFrontAuthentication` component and then provides `Employee` and `Company Administrator` entities which have `Address`es and `Role`s. These entities are mostly informational and CRUD based. Other parts of the system only depend on the `StoreFrontAuthentication` component but not the specific implementations as *Company Administrator* or *Employee*.
 
 ![image](../../../../.gitbook/assets/b2b-architecture-users.png)
 
@@ -40,9 +40,9 @@ The `acl` implementation is connected to most other entities provided by the B2B
 
 ![image](../../../../.gitbook/assets/b2b-architecture-acl.png)
 
-### Order and contingent management
+### Order and Purchase restriction management
 
-`ContingentGroups`s are connected to `Debtor`s and can have `acl` settings based on `Role`s or `Contact`s. `Order`s are personalized through the `StoreFrontAuthentication`.
+`ContingentGroups`s are connected to `Company Administrator`s and can have `acl` settings based on `Role`s or `Employee`s. `Order`s are personalized through the `StoreFrontAuthentication`.
 
 ![image](../../../../.gitbook/assets/b2b-architecture-order.png)
 
@@ -50,8 +50,8 @@ The `acl` implementation is connected to most other entities provided by the B2B
 
 Most dependencies are directly derived from requirements. So, the dependency flow of the components should follow the basic business needs. There are a few exceptions, mainly the M:N assignment components, each representing a reset in complexity where a complex feature resolves itself into a context object for another use case. You can think of it like that.
 
-* A Debtor can be created and updated through a service **=>** _The debtor is an **entity**_
-* A Debtor may be an entity connected to many workflows by its id **=>** _The Debtor is just the **context**_
+* A Company Administrator can be created and updated through a service **=>** _The Company Administrator is an **entity**_
+* A Company Administrator may be an entity connected to many workflows by its id **=>** _The Company Administrator is just the **context**_
 
 So, for the sake of completeness, this is the whole picture:
 

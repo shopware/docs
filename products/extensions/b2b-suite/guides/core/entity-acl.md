@@ -54,8 +54,8 @@ For example, let's look at the schema part responsible for storing the address a
 ![acl addresses](../../../../../.gitbook/assets/acl-address-schema.svg)
 
 As you can see, the addresses (subject) can be allowed in two distinct contexts.
-Either through a *role* or through a *contact*. So between these entities are two ACL tables holding the M:N relations.
-On the left, you see the *ContactRole* table. This table holds the information on which contact is assigned to what roles.
+Either through a *role* or through a *Employee*. So between these entities are two ACL tables holding the M:N relations.
+On the left, you see the *ContactRole* table. This table holds the information on which Employee is assigned to what roles.
 
 This allows for a single query to select all allowed addresses of a particular user combined from the role and direct assignments.
 
@@ -182,7 +182,7 @@ Depending on the provided context, the methods decide whether they utilize both 
 
 If the provided context is not supported, a `Shopware\B2B\Acl\Framework\AclUnsupportedContextException` is thrown.
 
-Debtors, for example, are unknown to the ACL, so all debtor identities will trigger the exception.
+Company Administrators, for example, are unknown to the ACL, so all Company Administrator identities will trigger the exception.
 
 ### Modifying entity access
 
@@ -285,7 +285,7 @@ The most common use case will be that you want to extend the ACL to span around 
 How this is done can be observed in many places throughout the B2B Suite.
 So let's take a look at the addresses again.
 
-You first need to define the relations from role and contact to your entity.
+You first need to define the relations from role and Employee to your entity.
 This is achieved by creating small classes that contain particular information:
 
 ```php
@@ -357,7 +357,7 @@ There we are; the addresses are ACL-ified entities.
 ### Add a new context
 
 Since the ACL is so loosely coupled with the B2B Suite, it is possible to create your own complete subset of restrictions based on
-other contexts than *contact* and *role*. For this, you have to create a different `Shopware\B2B\Acl\Framework\AclContextResolver`.
+other contexts than *Employee* and *role*. For this, you have to create a different `Shopware\B2B\Acl\Framework\AclContextResolver`.
 An `AclContextResolver` is responsible for extracting the primary key out of a given context object and produces a query that joins the main ACL table.
 This is done by implementing `getQuery`, `isMainContext`, and `extractId`.
 
