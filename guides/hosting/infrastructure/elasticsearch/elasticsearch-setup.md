@@ -167,7 +167,7 @@ To configure which fields and elements are searchable when using Elasticsearch, 
 
 ## Elasticsearch for Admin
 
-In Shopware 6.4.19.0, the "AND/OR Search" feature was released to be used in Administration.
+Shopware 6.4.19.0 and above supports "AND/OR Search" functionality in Administration for more flexible search queries using either "AND" or "OR" operators.
 
 Add the below config variables to set up Elasticsearch for Administration:
 
@@ -178,10 +178,14 @@ SHOPWARE_ADMIN_ES_REFRESH_INDICES=1
 SHOPWARE_ADMIN_ES_INDEX_PREFIX=sw-admin
 ```
 
-Also the CLI Commands used are as below:
+Also the CLI Commands can be used as below:
 
 ```bash
 bin/console es:admin:index                                              
 bin/console es:admin:reset                                              
 bin/console es:admin:test
 ```
+
+{% hint style="info" %}
+Advanced admin users can refer to [elasticsearch reference](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-simple-query-string-query.html) to search so the advanced user can utilize it in their queries.
+{% endhint %}
