@@ -61,7 +61,7 @@ Known problematic Versions:
 
 **JavaScript**
 
-* Node.js 18.00.0 or higher
+* Node.js 18.0.0 or higher
 * NPM 8.0.0 or higher
 
 ## Webserver
@@ -204,9 +204,9 @@ We recommend the following stack:
 
 * Webserver: Caddy
 * PHP: 8.1
-* Node: 16
-* Search: Opensearch 2.5.0
-* Queue: Rabbitmq
+* Node: 18
+* Search: OpenSearch 2.5.0
+* Queue: RabbitMQ
 
 Recommended PHP ini:
 {% page-ref page="../hosting/performance/performance-tweaks.md#php-config-tweaks" %}
