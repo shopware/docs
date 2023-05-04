@@ -5,13 +5,6 @@ area: core
 tags: [app-system, app-scripts]
 ---
 
-# App scripts
-
-{% hint style="info" %}
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-10-21-app-scripting.md)
-{% endhint %}
-
 ## Context
 
 To improve the abilities of Apps, they should be able to execute code synchronously and hook into familiar places like:
