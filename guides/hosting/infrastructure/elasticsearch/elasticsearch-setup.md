@@ -115,7 +115,7 @@ SHOPWARE_ES_INDEX_PREFIX="sw"
 SHOPWARE_ES_THROW_EXCEPTION=1
 ```
 
-### example for changing index configuration
+### Example for changing index configuration
 
 Shopware will use by default 3 shards and 3 replicas for the created index. This configuration can be overwritten with a new config file in `config/packages/elasticsearch.yml`
 
@@ -164,3 +164,28 @@ If you want more than that, a tool like [RabbitMq](/docs/guides/hosting/infrastr
 
 Keep in mind that the search configuration of Shopware has no effect when using Elasticsearch.
 To configure which fields and elements are searchable when using Elasticsearch, you must install the extension [Advanced Search](https://docs.shopware.com/en/shopware-6-en/enterprise-extensions/enterprise-search).
+
+## Elasticsearch for Admin
+
+Shopware 6.4.19.0 and above supports "AND/OR Search" functionality in Administration for more flexible search queries using either "AND" or "OR" operators.
+
+Add the below config variables to set up Elasticsearch for Administration:
+
+```bash
+ADMIN_OPENSEARCH_URL=YOUR OPEN SEARCH URL 
+SHOPWARE_ADMIN_ES_ENABLED=1
+SHOPWARE_ADMIN_ES_REFRESH_INDICES=1
+SHOPWARE_ADMIN_ES_INDEX_PREFIX=sw-admin
+```
+
+Also the CLI commands can be used as below:
+
+```bash
+bin/console es:admin:index                                              
+bin/console es:admin:reset                                              
+bin/console es:admin:test
+```
+
+{% hint style="info" %}
+Advanced admin users can refer to [elasticsearch reference guide](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-simple-query-string-query.html) for complex search queries.
+{% endhint %}
