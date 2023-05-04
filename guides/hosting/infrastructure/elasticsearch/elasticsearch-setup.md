@@ -178,7 +178,7 @@ SHOPWARE_ADMIN_ES_REFRESH_INDICES=1
 SHOPWARE_ADMIN_ES_INDEX_PREFIX=sw-admin
 ```
 
-Also the CLI Commands can be used as below:
+Also the CLI commands can be used as below:
 
 ```bash
 bin/console es:admin:index                                              
@@ -187,5 +187,5 @@ bin/console es:admin:test
 ```
 
 {% hint style="info" %}
-Advanced admin users can refer to [elasticsearch reference](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-simple-query-string-query.html) to search so the advanced user can utilize it in their queries.
+Advanced admin users can refer to [elasticsearch reference guide](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-simple-query-string-query.html) for complex search queries.
 {% endhint %}
