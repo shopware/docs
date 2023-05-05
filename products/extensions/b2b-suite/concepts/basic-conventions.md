@@ -25,7 +25,7 @@ List of naming conventions the B2B Suite complies to:
 | Interfaces                                                                                         | File names start with `I`, e.g., `IAjaxPanelEvent.ts`                                |
 | Snippets                                                                                           | The root snippet key is `b2b`                                                       |
 
-## Entity naming convention
+## Entity naming conventions
 
 In order to make a more comprehensible B2B UI for English storefronts, some domain entities (i.e: Contact, Contingent Rule) do not have parallel naming conventions between the B2B GUI and the codebase:
 
