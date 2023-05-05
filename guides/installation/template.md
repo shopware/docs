@@ -7,7 +7,7 @@ Symfony Flex is a Composer plugin that helps you to manage and keep your Shopwar
 To create a new Shopware project, run the following command:
 
 ```bash
-composer create-project shopware/production:dev-flex <project-name>
+composer create-project shopware/production <project-name>
 ```
 
 This creates a new project in the `<project-name>` directory. The `dev-flex` version constraint installs the latest version of Shopware. The constraint `dev-flex` will be removed once the template is generally available.
