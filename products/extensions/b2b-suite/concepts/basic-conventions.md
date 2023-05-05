@@ -2,7 +2,7 @@
 
 ## Codebase conventions
 
-This is a list of naming conventions the B2B Suite complies to:
+List of naming conventions the B2B Suite complies to:
 
 | Group                                                                                              | Practice                                                                            |
 |----------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
