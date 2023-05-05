@@ -31,7 +31,7 @@ Certain domain entities, such as Contact, Contingent Rule, and others, have diff
 
 | English term (Display name)                        | B2B-Suite term (Entity name)                      |
 |----------------------------------------------------|---------------------------------------------------|
-| Company Administrator                              | Debtor                                            |
+| Company administrator                              | Debtor                                            |
 | Employee                                           | Contact                                           |
 | Cart details                                       | Positions                                         |
 | Quick order                                        | Fastorder                                         |
