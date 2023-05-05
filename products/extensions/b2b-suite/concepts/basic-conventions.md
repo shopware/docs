@@ -27,7 +27,7 @@ List of naming conventions the B2B Suite complies to:
 
 ## Entity naming conventions
 
-In order to make a more comprehensible B2B UI for English storefronts, some domain entities (i.e: Contact, Contingent Rule) do not have parallel naming conventions between the B2B GUI and the codebase:
+Certain domain entities, such as Contact, Contingent Rule, and others, have different naming conventions in the B2B UI and the codebase. To make things easier to understand, here is a comparison between these entities' B2B UI to their corresponding names in English Storefronts:
 
 | English term (Display name)                        | B2B-Suite term (Entity name)                      |
 |----------------------------------------------------|---------------------------------------------------|
