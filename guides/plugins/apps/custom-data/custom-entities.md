@@ -40,6 +40,43 @@ Additionally, to the repository you can also access your custom entities via [Ad
 POST /api/search/custom-entity-blog
 ```
 
+## Using Custom Entities with Custom Fields
+
+By default, it is not possible to create a custom field of type "Entity Select", which references a custom entity. However, you can opt in to this behavior. You will need to add the `custom-fields-aware` & `label-property` attributes to your entity definition:
+
+{% code title="Resources/entities.xml" %}
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/CustomEntity/Xml/entity-1.0.xsd">
+    <entity name="custom_entity_bundle" custom-fields-aware="true" label-property="name">
+        <fields>
+            <string name="name" required="true" translatable="true" store-api-aware="true" />
+            <price name="discount" required="true" store-api-aware="true"/>
+            <many-to-many name="products" reference="product" store-api-aware="true" />
+        </fields>
+    </entity>
+</entities>
+```
+
+{% endcode %}
+
+To enable the usage of custom fields, the `custom-fields-aware` setting should be set to true. Then, it is necessary to indicate a label field for the entity that will be used when selecting via the custom field. In this example, the `name` field is selected as the `label-property` field. It is important to note that this field must be included in the `fields` section of the entity definition and be of type `string`.
+
+Now you will find your entity in the "Entity Type" select when creating a custom field of type "Entity Select". Without a snippet label for the entity, it will display as `custom_entity_bundle.label`. You can create a snippet to add a label like so:
+
+{% code title="Resources/app/administration/snippet/en-GB.json" %}
+
+```json
+{
+  "custom_entity_bundle": {
+    "label": "My Custom Entity"
+  }
+}
+```
+
+{% endcode %}
+
 ## Permissions
 
 Unlike core entities, your app directly has full access rights to your own custom entities. However, if your entity has associations that reference core tables,
