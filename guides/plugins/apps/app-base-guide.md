@@ -110,7 +110,7 @@ Additionally, the request has the following headers:
 * `shopware-app-signature`: The signature of the query string
 * `sw-version`: The Shopware version of the shop *(since 6.4.1.0)*
 
-An example request may look like this:
+An example request look like this:
 
 ```http request
 GET https://my.example.com/registration?shop-id=KIPf0Fz6BUkN&shop-url=http%3A%2F%2Fmy.shop.com&timestamp=159239728
@@ -191,7 +191,7 @@ This secret will be called `shop-secret` to distinguish it from the `app-secret`
 
 The last thing needed in the registration response is a URL to which the confirmation request will be sent.
 
-A sample registration response may look like this:
+A sample registration response look like this:
 
 ```json
 {
