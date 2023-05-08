@@ -229,7 +229,7 @@ from the Admin API.
 You can find out more about how to use these credentials in our Admin API authentication guide:
 
 <!-- markdown-link-check-disable-next-line -->
-{% embed url="https://shopware.stoplight.io/docs/admin-api/ZG9jOjEwODA3NjQx-authentication-and-authorisation#integration-client-credentials-grant-type" caption="Admin API Authentication & Authorisation" %}
+{% embed url="<https://shopware.stoplight.io/docs/admin-api/ZG9jOjEwODA3NjQx-authentication-and-authorisation#integration-client-credentials-grant-type>" caption="Admin API Authentication & Authorisation" %}
 
 {% hint style="info" %}
 Starting from Shopware version 6.4.1.0, the current Shopware version will be sent as a `sw-version` header.
@@ -490,7 +490,7 @@ As the new installation will get a new shopId, the installed apps will continue 
 
 ## API Docs
 <!-- markdown-link-check-disable-next-line -->
-{% api-method method="get" host="https://my.example.com" path="" %}
+{% api-method method="get" host="<https://my.example.com>" path="" %}
 {% api-method-summary %}
 registration
 {% endapi-method-summary %}
@@ -548,7 +548,7 @@ The unique identifier of the shop, where the app was installed
 {% endapi-method %}
 
 <!-- markdown-link-check-disable-next-line -->
-{% api-method method="post" host="https://my.example.com" path="" %}
+{% api-method method="post" host="<https://my.example.com>" path="" %}
 {% api-method-summary %}
 confirmation
 {% endapi-method-summary %}

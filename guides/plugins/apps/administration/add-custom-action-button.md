@@ -43,6 +43,10 @@ The main difference is that it contains the name of the entity and an array of i
 
 A sample payload may look like the following:
 
+{% tabs %}
+
+{% tab title="HTTP" %}
+
 ```javascript
 {
   "source":{
@@ -64,6 +68,23 @@ A sample payload may look like the following:
   }
 }
 ```
+
+{% endtab %}
+
+{% tab title="App PHP SDK" %}
+
+```php
+// injected or build by yourself
+$shopResolver = new ShopResolver($repository);
+$contextResolver = new ContextResolver();
+
+$shop = $shopResolver->resolveShop($serverRequest);
+$actionButton = $contextResolver->assembleActionButton($serverRequest, $shop);
+```
+
+{% endtab %}
+
+{% endtabs %}
 
 {% hint style="info" %}
 Starting from Shopware version 6.4.1.0, the current shopware version will be sent as a `sw-version` header.
@@ -98,19 +119,42 @@ If you do not need to trigger any actions, a response with an empty body is also
 Examples response body:
 To open a new tab in the user browser you can use the `openNewTab` action type. You need to pass the url that should be opened as the `redirectUrl` property inside the payload.
 
-```json
+{% tabs %}
+
+{% tab title="HTTP" %}
+
+```http request
+Content-Type: application/json
+
 {
   "actionType": "openNewTab",
   "payload": {
     "redirectUrl": "http://google.com"
   }
 }
-
 ```
+
+{% endtab %}
+
+{% tab title="App PHP SDK" %}
+
+```php
+use Shopware\App\SDK\Response\ActionButtonResponse;
+
+ActionButtonResponse::openNewTab('https://www.shopware.com');
+```
+
+{% endtab %}
+
+{% endtabs %}
 
 ### Show a notification to the user
 
 To send a notification, you can use the `notification` action type. You need to pass the `status` property and the content of the notification as `message` property inside the payload.
+
+{% tabs %}
+
+{% tab title="HTTP" %}
 
 ```json
 {
@@ -123,9 +167,27 @@ To send a notification, you can use the `notification` action type. You need to 
 
 ```
 
+{% endtab %}
+
+{% tab title="App PHP SDK" %}
+
+```php
+use Shopware\App\SDK\Response\ActionButtonResponse;
+
+ActionButtonResponse::notification('success', 'foo');
+```
+
+{% endtab %}
+
+{% endtabs %}
+
 ### Reload the current page
 
 To reload the data in the user's current page you can use the `reload` action type with an empty payload.
+
+{% tabs %}
+
+{% tab title="HTTP" %}
 
 ```json
 {
@@ -135,9 +197,27 @@ To reload the data in the user's current page you can use the `reload` action ty
 
 ```
 
+{% endtab %}
+
+{% tab title="App PHP SDK" %}
+
+```php
+use Shopware\App\SDK\Response\ActionButtonResponse;
+
+ActionButtonResponse::reload();
+```
+
+{% endtab %}
+
+{% endtabs %}
+
 ### Open a custom modal
 
 To open a modal with the embedded link in the iframe, you can use the `openModal` action type. You need to pass the url that should be opened as the `iframeUrl` property and the `size` property inside the payload.
+
+{% tabs %}
+
+{% tab title="HTTP" %}
 
 ```json
 {
@@ -149,6 +229,20 @@ To open a modal with the embedded link in the iframe, you can use the `openModal
   }
 }
 ```
+
+{% endtab %}
+
+{% tab title="App PHP SDK" %}
+
+```php
+use Shopware\App\SDK\Response\ActionButtonResponse;
+
+ActionButtonResponse::modal('https://shopware.com', size: 'medium', expand: true)
+```
+
+{% endtab %}
+
+{% endtabs %}
 
 ### General structure
 

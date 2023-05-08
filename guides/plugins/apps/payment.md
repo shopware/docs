@@ -101,6 +101,7 @@ Below you can see an example of a simple answer from your app to mark a payment 
 {% tab title="HTTP" %}
 
 Request content is JSON
+
 ```json
 {
   "source": {
@@ -135,7 +136,6 @@ Failing states can have also a `message` property with the reason displayed to t
 }
 ```
 
-
 {% endtab %}
 
 {% tab title="App PHP SDK" %}
@@ -166,7 +166,6 @@ function myController(RequestInterface $request): ResponseInterface
 
 {% endtabs %}
 
-
 ## Asynchronous payments
 
 Asynchronous payments are more complicated than synchronous payments.
@@ -175,7 +174,7 @@ They require interaction with the user and a redirect to the payment provider su
 Here’s how it works:
 
 - Shopware sends the first pay POST request to start the payment with the payment provider.
-  The request includes all necessary data such as the `order`, `orderTransaction`, and a `returnUrl`, 
+  The request includes all necessary data such as the `order`, `orderTransaction`, and a `returnUrl`,
   where the user should be redirected once the payment process with the payment provider has been finished.
 - Our app server returns a response with a `redirectUrl` to the payment provider.
 - The browser will be redirected to this URL and processes his order, and the payment provider will redirect the user
@@ -188,6 +187,7 @@ Here’s how it works:
 {% tab title="HTTP" %}
 
 Request content is JSON
+
 ```json
 {
   "source": {
@@ -245,8 +245,7 @@ function pay(RequestInterface $request): ResponseInterface
 
 {% endtabs %}
 
-
-The second `finalize` POST request will be called once the user has been redirected back to the shop. 
+The second `finalize` POST request will be called once the user has been redirected back to the shop.
 This second request is only provided with the `orderTransaction` for identification purposes and `requestData` with all query parameters
 passed by the payment provider.
 The response `status` value determines the outcome of the payment, e.g.:
@@ -263,6 +262,7 @@ The response `status` value determines the outcome of the payment, e.g.:
 {% tab title="HTTP" %}
 
 Request content is JSON
+
 ```json
 {
   "source": {
@@ -296,7 +296,6 @@ Failing states can have also a `message` property with the reason displayed to t
   "message": "The customer failed to pass the credit check."
 }
 ```
-
 
 {% endtab %}
 
@@ -349,6 +348,7 @@ Let's first talk about the `validate` call. Here, you will receive three items t
 {% tab title="HTTP" %}
 
 Request content is JSON
+
 ```json
 {
   "source": {
@@ -382,7 +382,6 @@ and your response should look like this:
 
 this will be forwarded to the `capture` call afterward.
 
-
 {% endtab %}
 
 {% tab title="App PHP SDK" %}
@@ -413,7 +412,6 @@ function validate(RequestInterface $request): ResponseInterface
 
 {% endtabs %}
 
-
 If the payment has been validated and the order has been placed, you then receive another call to your `capture` endpoint. You will receive the `order`, the `orderTransaction` and also the `preOrderPayment` array data, that you have sent in your validate call.
 
 {% tabs %}
@@ -421,6 +419,7 @@ If the payment has been validated and the order has been placed, you then receiv
 {% tab title="HTTP" %}
 
 Request content is JSON
+
 ```json
 {
   "source": {
@@ -457,7 +456,6 @@ Failing states can have also a `message` property with the reason displayed to t
   "message": "The customer failed to pass the credit check."
 }
 ```
-
 
 {% endtab %}
 
@@ -507,6 +505,7 @@ Similar to the other requests, on your `refund` call you will receive the data r
 {% tab title="HTTP" %}
 
 Request content is JSON
+
 ```json
 {
   "source": {
@@ -532,7 +531,6 @@ and your response should look like this:
   "status": "completed"
 }
 ```
-
 
 {% endtab %}
 
@@ -563,7 +561,6 @@ function refund(RequestInterface $request): ResponseInterface
 {% endtab %}
 
 {% endtabs %}
-
 
 ## All possible payment states
 

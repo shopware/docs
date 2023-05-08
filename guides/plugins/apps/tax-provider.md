@@ -13,7 +13,6 @@ You should be familiar with the concept of Apps, their registration and signing 
 Your app-server should be also accessible for the Shopware server.
 You can use a tunneling service like [ngrok](https://ngrok.com/) for development.
 
-
 ## Manifest configuration
 
 To indicate to Shopware that your app uses a custom tax calculation, you must provide one or more `tax-provider` properties inside a `tax` parent property of your app's `manifest.xml`.
@@ -58,12 +57,12 @@ The Shopware shop will wait for a response for 5 seconds. Be sure, that your tax
 
 In response, you can adjust the taxes of the entire cart, of the entire delivery or per item in the cart.
 
-
 {% tabs %}
 
 {% tab title="HTTP" %}
 
 Request content is JSON
+
 ```json
 {
   "source": {
@@ -104,8 +103,6 @@ and your response should look like this:
   ]
 }
 ```
-
-
 
 {% endtab %}
 
