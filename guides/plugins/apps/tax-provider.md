@@ -6,13 +6,13 @@ With version 6.5.0.0, Shopware allows apps to integrate custom tax calculations,
 
 ## Prerequisites
 
-You should be familiar with the concept of apps and their registration.
+You should be familiar with the concept of Apps, their registration and signing and verifying of requests and responses.
 
 {% page-ref page="app-base-guide.md" %}
 
-To reproduce this example, you should also be aware of how to set up an app on your development platform.
+Your app-server should be also accessible for the Shopware server.
+You can use a tunneling service like [ngrok](https://ngrok.com/) for development.
 
-{% page-ref page="local-development/" %}
 
 ## Manifest configuration
 
@@ -56,92 +56,115 @@ During checkout, Shopware checks for any active tax providers - sorted by priori
 The Shopware shop will wait for a response for 5 seconds. Be sure, that your tax provider implementation responds in time, otherwise Shopware will time out and drop the connection.
 {% endhint %}
 
-In the following, we will have a look at a working example of a tax provider endpoint.
+In response, you can adjust the taxes of the entire cart, of the entire delivery or per item in the cart.
 
-Our implementation uses the [Shopware AppTemplate](https://github.com/shopware/AppTemplate): An easy app-server-integration for Symfony PHP implementations.
 
-{% code title="ProcessController.php" %}
+{% tabs %}
 
-```php
-<?php declare(strict_types=1);
+{% tab title="HTTP" %}
 
-namespace App\Controller;
-
-use App\Shop\ShopRepository;
-use Shopware\AppBundle\Authentication\RequestVerifier;
-use Shopware\AppBundle\Authentication\ResponseSigner;
-use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
-use Symfony\Bridge\PsrHttpMessage\HttpMessageFactoryInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-
-class ProcessController extends AbstractController
+Request content is JSON
+```json
 {
-    public function __construct(
-        private HttpMessageFactoryInterface $psrHttpFactory,
-        private RequestVerifier $requestVerifier,
-        private ResponseSigner $responseSigner,
-        private ShopRepository $shopRepository,
-    ) {
-    }
-
-    #[Route('/process', name: 'process')]
-    public function process(Request $request): Response
-    {
-        $content = \json_decode($request->getContent(), true);
-
-        // shop id is in source->shopId
-        $shopId = $content['source']['shopId'];
-        $shop = $this->shopRepository->getShopFromId($shopId);
-
-        // transform symfony request to psr request
-        // mandatory, if you use the shopware app template
-        // and want to authenticate the requests easily
-        $psrRequest = $this->psrHttpFactory->createRequest($request);
-
-        // authenticate, that the request came from shopware
-        $this->requestVerifier->authenticatePostRequest($psrRequest, $shop);
-
-        $lineItems = $content['cart']['lineItems'];
-        $lineItemTaxes = [];
-
-        // generally, you may want to call a tax provider here instead
-        // for our example we simply assume a hefty tax rate of 50%
-        foreach ($lineItems as $lineItem) {
-            $taxRate = 50;
-            $tax = $lineItem['price']['totalPrice'] * $taxRate / 100;
-
-            // shopware will look for the `uniqueIdentifier` property of the lineItem to identify this lineItem even in nested-line-item structures
-            $lineItemTaxes[$lineItem['uniqueIdentifier']] = [
-                [
-                    'tax' => $tax,
-                    'taxRate' => $taxRate,
-                    'price' => $lineItem['price']['totalPrice'],
-                ],
-            ];
-        }
-
-
-        // you can provide lineItemTaxes, deliveryTaxes and cartPriceTaxes
-        // if you do not provide cartPriceTaxes, Shopware will recalculate them according to your provided taxes
-        $responseContent = [
-            'lineItemTaxes' => $lineItemTaxes,
-            //'deliveryTaxes' => [], // use the deliveryPositionId as keys, if you want to transmit delivery taxes
-            //'cartPriceTaxes' => [],
-        ];
-
-        $response = new \GuzzleHttp\Psr7\Response(200, [], \json_encode($responseContent));
-        $response = $this->responseSigner->signResponse($response, $shop);
-
-        // transform psrResponse to symfony response
-        $factory = new HttpFoundationFactory();
-        return $factory->createResponse($response);
-    }
+  "source": {
+    "url": "http:\/\/localhost:8000",
+    "shopId": "hRCw2xo1EDZnLco4",
+    "appVersion": "1.0.0"
+  },
+  "cart": {
+    //...
+  },
+  "salesChannelContext": {
+    //...
+  }
 }
 ```
 
-{% endcode %}
+You can find an example payload [here](https://github.com/shopware/app-php-sdk/blob/main/tests/Context/_fixtures/tax.json)
+
+and your response should look like this:
+
+```json
+{
+  // optional: Overwrite the tax of an line item
+  "lineItemTaxes": {
+    "unique-identifier-of-lineitem": [
+      {"tax":19,"taxRate":23,"price":19}
+    ]
+  },
+  // optional: Overwrite the tax of an delivery
+  "deliveryTaxes": {
+    "unique-identifier-of-delivery-position": [
+      {"tax":19,"taxRate":23,"price":19}
+    ]
+  },
+  // optional: Overwrite the tax of the entire cart
+  "cartPriceTaxes": [
+    {"tax":19,"taxRate":23,"price":19}
+  ]
+}
+```
+
+
+
+{% endtab %}
+
+{% tab title="App PHP SDK" %}
+
+```php
+use Shopware\App\SDK\Shop\ShopResolver;
+use Shopware\App\SDK\Context\ContextResolver;
+use Shopware\App\SDK\Response\PaymentResponse;
+
+function taxController(RequestInterface $request): ResponseInterface
+{
+    // injected or build by yourself
+    $shopResolver = new ShopResolver($repository);
+    $contextResolver = new ContextResolver();
+    $signer = new ResponseSigner();
+    
+    $shop = $shopResolver->resolveShop($serverRequest);
+    $taxInfo = $contextResolver->assembleTaxProvider($serverRequest, $shop);
+    
+    $builder = new TaxProviderResponseBuilder();
+
+    // optional: Add tax for each line item
+    foreach ($taxInfo->cart->getLineItems() as $item) {
+        $taxRate = 50;
+
+        $price = $item->getPrice()->getTotalPrice() * $taxRate / 100;
+
+        $builder->addLineItemTax($item->getUniqueIdentifier(), new CalculatedTax(
+            tax: $price,
+            taxRate: $taxRate,
+            price: $item->getPrice()->getTotalPrice()
+        ));
+    }
+
+    // optional: Add tax for each delivery
+    foreach ($taxProviderContext->cart->getDeliveries() as $item) {
+        foreach ($item->getPositions() as $position) {
+            $builder->addDeliveryTax($position->getIdentifier(), new CalculatedTax(
+                10,
+                50,
+                100
+            ));
+        }
+    }
+
+    // optional: Add tax to the entire cart
+    $builder->addCartTax(new CalculatedTax(
+        tax: 20,
+        taxRate: 50,
+        price: 100
+    ));
+    
+    return $signer->signResponse($builder->build(), $shop);
+}
+```
+
+{% endtab %}
+
+{% endtabs %}
 
 If you wish to use a tax provider, you will probably have to provide the whole cart for the tax provider to correctly calculate taxes during checkout and you will probably get sums of the specific tax rates, which you can respond to Shopware via `cartPriceTaxes`. If given, Shopware does not recalculate the tax sums and will use those given by your tax provider.
