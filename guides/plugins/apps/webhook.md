@@ -68,7 +68,7 @@ function webhookController(RequestInterface $request): ResponseInterface
     $contextResolver = new ContextResolver();
     
     $shop = $shopResolver->resolveShop($serverRequest);
-    $webhook = $contextResolver->assemble($serverRequest, $shop);
+    $webhook = $contextResolver->assembleWebhook($serverRequest, $shop);
     
     // do something with the parsed webhook
 }

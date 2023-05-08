@@ -118,6 +118,8 @@ Request content is JSON
 }
 ```
 
+You can find an example refund payload [here](https://github.com/shopware/app-php-sdk/blob/main/tests/Context/_fixtures/payment.json)
+
 and your response should look like this:
 
 ```json
