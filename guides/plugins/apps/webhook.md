@@ -61,7 +61,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Shopware\App\SDK\Shop\ShopResolver;
 use Shopware\App\SDK\Context\ContextResolver;
-use Shopware\App\SDK\Response\PaymentResponse;
 
 function webhookController(RequestInterface $request): ResponseInterface
 {
@@ -73,6 +72,28 @@ function webhookController(RequestInterface $request): ResponseInterface
     $webhook = $contextResolver->assembleWebhook($serverRequest, $shop);
     
     // do something with the parsed webhook
+}
+```
+
+{% endtab %}
+
+{% tab title="Symfony Bundle" %}
+
+```php
+use Shopware\App\SDK\Context\Webhook\WebhookAction;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\Routing\Annotation\Route;
+
+#[AsController]
+class WebhookController {
+    #[Route('/webhook/product.created')]
+    public function handle(WebhookAction $webhook): Response
+    {
+        // handle webhook action
+        
+        return new Response(null, 204);
+    }
 }
 ```
 

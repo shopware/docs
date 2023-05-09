@@ -84,6 +84,29 @@ $actionButton = $contextResolver->assembleActionButton($serverRequest, $shop);
 
 {% endtab %}
 
+{% tab title="Symfony Bundle" %}
+
+```php
+use Shopware\App\SDK\Context\ActionButton\ActionButtonAction;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\Routing\Annotation\Route;
+use Psr\Http\Message\ResponseInterface;
+
+#[AsController]
+class ActionButtonController {
+    #[Route('/action/product/detail')]
+    public function handle(ActionButtonAction $button): ResponseInterface
+    {
+        // handle button
+        
+        return ActionButtonResponse::notification('success', 'Success message');
+    }
+}
+```
+
+{% endtab %}
+
 {% endtabs %}
 
 {% hint style="info" %}

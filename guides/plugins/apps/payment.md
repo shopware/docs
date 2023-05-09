@@ -164,6 +164,30 @@ function myController(RequestInterface $request): ResponseInterface
 
 {% endtab %}
 
+{% tab title="Symfony Bundle" %}
+
+```php
+use Shopware\App\SDK\Context\Payment\PaymentPayAction;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\Routing\Annotation\Route;
+use Shopware\App\SDK\Response\PaymentResponse;
+use Psr\Http\Message\ResponseInterface;
+
+#[AsController]
+class PaymentController {
+    #[Route('/payment/pay')]
+    public function handle(PaymentPayAction $payment): ResponseInterface
+    {
+        // handle payment
+        
+        return PaymentResponse::paid();
+    }
+}
+```
+
+{% endtab %}
+
 {% endtabs %}
 
 ## Asynchronous payments
@@ -240,6 +264,30 @@ function pay(RequestInterface $request): ResponseInterface
     // Payment providers should redirect the user to $payment->returnUrl once the payment process has been finished.
     
     return $signer->signResponse(PaymentResponse::redirect($paymentProviderRediectUrl), $shop);
+}
+```
+
+{% endtab %}
+
+{% tab title="Symfony Bundle" %}
+
+```php
+use Shopware\App\SDK\Context\Payment\PaymentPayAction;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\Routing\Annotation\Route;
+use Shopware\App\SDK\Response\PaymentResponse;
+use Psr\Http\Message\ResponseInterface;
+
+#[AsController]
+class PaymentController {
+    #[Route('/payment/pay')]
+    public function handle(PaymentPayAction $payment): ResponseInterface
+    {
+        // handle payment
+        
+        return PaymentResponse::redirect($myPaymentUrl);
+    }
 }
 ```
 
@@ -329,6 +377,30 @@ function finalize(RequestInterface $request): ResponseInterface
 
 {% endtab %}
 
+{% tab title="Symfony Bundle" %}
+
+```php
+use Shopware\App\SDK\Context\Payment\PaymentFinalizeAction;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\Routing\Annotation\Route;
+use Shopware\App\SDK\Response\PaymentResponse;
+use Psr\Http\Message\ResponseInterface;
+
+#[AsController]
+class PaymentController {
+    #[Route('/payment/finalize')]
+    public function handle(PaymentFinalizeAction $payment): ResponseInterface
+    {
+        // handle payment
+        
+        return PaymentResponse::paid();
+    }
+}
+```
+
+{% endtab %}
+
 {% endtabs %}
 
 ## Prepared payments
@@ -409,7 +481,31 @@ function validate(RequestInterface $request): ResponseInterface
     // implement your logic here based on the information provided in $payment
     
     // check PaymentResponse class for all available payment states
-    return $signer->signResponse(PaymentResponse::validateSuccess(['myCustomReference' => '1234567890'], $shop);
+    return $signer->signResponse(PaymentResponse::validateSuccess(['myCustomReference' => '1234567890']), $shop);
+}
+```
+
+{% endtab %}
+
+{% tab title="Symfony Bundle" %}
+
+```php
+use Shopware\App\SDK\Context\Payment\PaymentValidateAction;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\Routing\Annotation\Route;
+use Shopware\App\SDK\Response\PaymentResponse;
+use Psr\Http\Message\ResponseInterface;
+
+#[AsController]
+class PaymentController {
+    #[Route('/payment/pay')]
+    public function handle(PaymentValidateAction $payment): ResponseInterface
+    {
+        // handle payment
+        
+        return PaymentResponse::validateSuccess(['myCustomReference' => '1234567890']);
+    }
 }
 ```
 
@@ -490,6 +586,30 @@ function capture(RequestInterface $request): ResponseInterface
     
     // check PaymentResponse class for all available payment states
     return $signer->signResponse(PaymentResponse::paid(), $shop);
+}
+```
+
+{% endtab %}
+
+{% tab title="Symfony Bundle" %}
+
+```php
+use Shopware\App\SDK\Context\Payment\PaymentCaptureAction;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\Routing\Annotation\Route;
+use Shopware\App\SDK\Response\PaymentResponse;
+use Psr\Http\Message\ResponseInterface;
+
+#[AsController]
+class PaymentController {
+    #[Route('/payment/pay')]
+    public function handle(PaymentCaptureAction $payment): ResponseInterface
+    {
+        // handle payment
+        
+        return PaymentResponse::paid();
+    }
 }
 ```
 

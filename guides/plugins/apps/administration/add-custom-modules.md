@@ -75,6 +75,28 @@ $module = $contextResolver->assembleModule($serverRequest, $shop);
 
 {% endtab %}
 
+{% tab title="Symfony Bundle" %}
+
+```php
+use Shopware\App\SDK\Context\Module\ModuleAction;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\Routing\Annotation\Route;
+
+#[AsController]
+class ModuleController {
+    #[Route('/module')]
+    public function show(ModuleAction $module): Response
+    {
+        // handle payment
+        
+        return $this->render('....');
+    }
+}
+```
+
+{% endtab %}
+
 {% endtabs %}
 
 ## Leave loading state

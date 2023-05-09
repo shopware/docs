@@ -85,6 +85,7 @@ There are SDKs available to integrate apps easier into your application.
 The SDKs are simplifying the registration flow and other typical tasks.
 
 - [Official PHP SDK](https://github.com/shopware/app-php-sdk)
+- [Official Symfony Bundle](https://github.com/shopware/AppBundle)
 - [Go SDK](https://github.com/janbuecker/shopware-appserver-go)
 
 If there is no SDK available for your language, you can implement the registration process by yourself.
@@ -164,6 +165,12 @@ $signature = hash_hmac('sha256', $queryString, $appSecret);
 $verifier = new \Shopware\App\SDK\Authentication\RequestVerifier();
 $verifier->authenticateRegistrationRequest($request, new AppConfiguration('AppName', 'AppSecret', 'confirm-url'));
 ```
+
+{% endtab %}
+
+{% tab title="Symfony Bundle" %}
+
+The Symfony Bundle handles all verification automatically.
 
 {% endtab %}
 
@@ -477,7 +484,7 @@ As the new installation will get a new shopId, the installed apps will continue 
 
 ## API Docs
 <!-- markdown-link-check-disable-next-line -->
-{% api-method method="get" host="<https://my.example.com>" path="" %}
+{% api-method method="get" host="https://my.example.com" path="" %}
 {% api-method-summary %}
 registration
 {% endapi-method-summary %}
@@ -535,7 +542,7 @@ The unique identifier of the shop, where the app was installed
 {% endapi-method %}
 
 <!-- markdown-link-check-disable-next-line -->
-{% api-method method="post" host="<https://my.example.com>" path="" %}
+{% api-method method="post" host="https://my.example.com" path="" %}
 {% api-method-summary %}
 confirmation
 {% endapi-method-summary %}

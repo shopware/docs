@@ -113,7 +113,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Shopware\App\SDK\Shop\ShopResolver;
 use Shopware\App\SDK\Context\ContextResolver;
-use Shopware\App\SDK\Response\PaymentResponse;
 
 function taxController(RequestInterface $request): ResponseInterface
 {
@@ -159,6 +158,61 @@ function taxController(RequestInterface $request): ResponseInterface
     ));
     
     return $signer->signResponse($builder->build(), $shop);
+}
+```
+
+{% endtab %}
+
+{% tab title="Symfony Bundle" %}
+
+```php
+use Shopware\App\SDK\Context\TaxProvider\TaxProviderAction;
+use Shopware\App\SDK\TaxProvider\TaxProviderResponseBuilder;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\Routing\Annotation\Route;
+use Psr\Http\Message\ResponseInterface;
+
+#[AsController]
+class TaxController {
+    #[Route('/tax.process')]
+    public function handle(TaxProviderAction $taxInfo): ResponseInterface
+    {
+        $builder = new TaxProviderResponseBuilder();
+
+        // optional: Add tax for each line item
+        foreach ($taxInfo->cart->getLineItems() as $item) {
+            $taxRate = 50;
+    
+            $price = $item->getPrice()->getTotalPrice() * $taxRate / 100;
+    
+            $builder->addLineItemTax($item->getUniqueIdentifier(), new CalculatedTax(
+                tax: $price,
+                taxRate: $taxRate,
+                price: $item->getPrice()->getTotalPrice()
+            ));
+        }
+    
+        // optional: Add tax for each delivery
+        foreach ($taxProviderContext->cart->getDeliveries() as $item) {
+            foreach ($item->getPositions() as $position) {
+                $builder->addDeliveryTax($position->getIdentifier(), new CalculatedTax(
+                    tax: 10,
+                    taxRate: 50,
+                    price: 100
+                ));
+            }
+        }
+    
+        // optional: Add tax to the entire cart
+        $builder->addCartTax(new CalculatedTax(
+            tax: 20,
+            taxRate: 50,
+            price: 100
+        ));
+        
+        return $builder->build();
+    }
 }
 ```
 
