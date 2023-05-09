@@ -6,11 +6,11 @@ With version 6.5.0.0, Shopware allows apps to integrate custom tax calculations,
 
 ## Prerequisites
 
-You should be familiar with the concept of Apps, their registration and signing and verifying of requests and responses.
+You should be familiar with the concept of Apps, their registration flow as well as signing and verifying requests and responses between Shopware and the App backend server.
 
 {% page-ref page="app-base-guide.md" %}
 
-Your app-server should be also accessible for the Shopware server.
+Your app server must be also accessible for the Shopware server.
 You can use a tunneling service like [ngrok](https://ngrok.com/) for development.
 
 ## Manifest configuration
@@ -109,6 +109,8 @@ and your response should look like this:
 {% tab title="App PHP SDK" %}
 
 ```php
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Shopware\App\SDK\Shop\ShopResolver;
 use Shopware\App\SDK\Context\ContextResolver;
 use Shopware\App\SDK\Response\PaymentResponse;

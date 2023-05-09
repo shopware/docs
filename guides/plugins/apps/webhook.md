@@ -1,6 +1,6 @@
 # Webhook
 
-With webhooks, you are able to subscribe to events occurring in Shopware. Whenever such an event occurs, a `POST` request will be sent to the specified URL.
+With webhooks, you are able to subscribe to events occurring in Shopware. Whenever such an event occurs, a `POST` request will be sent to the URL specified for this particular event.
 
 To use webhooks in your app, you need to implement a `<webhooks>` element in your manifest file like this:
 
@@ -20,9 +20,9 @@ To use webhooks in your app, you need to implement a `<webhooks>` element in you
 
 {% endcode %}
 
-This example illustrates to you how to define a webhook with the name `product-changed` and the URL `https://example.com/event/product-changed`, which will be triggered if the event `product.written` is fired. So every time a product is changed, your custom logic will get executed. Further down, you will find a list of the most important events you can hook into.
+This example illustrates how to define a webhook with the name `product-changed` and the URL `https://example.com/event/product-changed`, which will be triggered if the event `product.written` is fired. So every time a product is changed, your custom logic will get executed. Further down, you will find a list of the most important events you can hook into.
 
-An event contains as much data as is needed to react to that event. The data is json contained in the request body. For example:
+An event contains as much data as is needed to react to that event. The data is sent as JSON in the request body:
 
 {% tabs %}
 
@@ -57,6 +57,8 @@ An event contains as much data as is needed to react to that event. The data is 
 {% tab title="App PHP SDK" %}
 
 ```php
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Shopware\App\SDK\Shop\ShopResolver;
 use Shopware\App\SDK\Context\ContextResolver;
 use Shopware\App\SDK\Response\PaymentResponse;
@@ -78,7 +80,7 @@ function webhookController(RequestInterface $request): ResponseInterface
 
 {% endtabs %}
 
-Where the `source` property contains all necessary information about the Shopware instance that sends the request:
+The `source` property contains all necessary information about the Shopware instance that sent the request:
 
 * `url` is the URL under which your app can reach the Shopware instance and its API.
 * `appVersion` is the version of the app that is installed.

@@ -4,11 +4,11 @@ Starting with version 6.4.1.0, Shopware also provides functionality for your app
 
 ## Prerequisites
 
-You should be familiar with the concept of Apps, their registration and signing and verifying of requests and responses.
+You should be familiar with the concept of Apps, their registration flow as well as signing and verifying requests and responses between Shopware and the App backend server.
 
 {% page-ref page="app-base-guide.md" %}
 
-Your app-server should be also accessible for the Shopware server.
+Your app server must be also accessible for the Shopware server.
 You can use a tunneling service like [ngrok](https://ngrok.com/) for development.
 
 ## Manifest configuration
@@ -84,15 +84,11 @@ Below you can see three different definitions of payment methods.
 ## Synchronous payments
 
 There are two types of payments: synchronous and other kinds like advanced payment or collect on delivery.
-Synchronous payments are simple and don't need any extra interaction with the user.
-If you have defined a pay-url, you can choose to be informed about and possibly process the payment or not.
-If you don't need to communicate with your app, you can stop reading here and the transaction will stay open.
-But if you do define a pay-url, you can respond to the request with a different transaction status like authorize, paid,
-or fail.
-This is useful
-if you want
-to add a payment provider that only needs the information the user has already provided in the checkout process
-and no extra information is needed.
+Synchronous payments are simple and do not need any additional interaction with the user.
+If you have defined a `pay-url`, you can choose to be informed about and possibly process the payment or not.
+If you do not need to communicate with your app, you can stop reading here and the transaction will stay open.
+But if you do define a `pay-url`, you can respond to the request with a different transaction status like authorize, paid, or failed.
+This is useful if you want to add a payment provider that only needs the information the user has already provided in the checkout process and no extra information is needed.
 For example, a simple credit check for payment upon invoice.
 Below you can see an example of a simple answer from your app to mark a payment as authorized.
 
@@ -143,6 +139,8 @@ Failing states can have also a `message` property with the reason displayed to t
 {% tab title="App PHP SDK" %}
 
 ```php
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Shopware\App\SDK\Shop\ShopResolver;
 use Shopware\App\SDK\Context\ContextResolver;
 use Shopware\App\SDK\Response\PaymentResponse;
@@ -173,12 +171,12 @@ function myController(RequestInterface $request): ResponseInterface
 Asynchronous payments are more complicated than synchronous payments.
 They require interaction with the user and a redirect to the payment provider such as PayPal or Stripe.
 
-Here’s how it works:
+Here is how it works:
 
 - Shopware sends the first pay POST request to start the payment with the payment provider.
   The request includes all necessary data such as the `order`, `orderTransaction`, and a `returnUrl`,
   where the user should be redirected once the payment process with the payment provider has been finished.
-- Our app server returns a response with a `redirectUrl` to the payment provider.
+- Your app server returns a response with a `redirectUrl` to the payment provider.
 - The browser will be redirected to this URL and processes his order, and the payment provider will redirect the user
   back to the `returnUrl` provided in the first request.
 - Shopware sends a second POST request to the `finalize-url` with the `orderTransaction` and all the query parameters passed by the payment provider to Shopware.
@@ -222,6 +220,8 @@ and your response should look like this:
 {% tab title="App PHP SDK" %}
 
 ```php
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Shopware\App\SDK\Shop\ShopResolver;
 use Shopware\App\SDK\Context\ContextResolver;
 use Shopware\App\SDK\Response\PaymentResponse;
@@ -304,6 +304,8 @@ Failing states can have also a `message` property with the reason displayed to t
 {% tab title="App PHP SDK" %}
 
 ```php
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Shopware\App\SDK\Shop\ShopResolver;
 use Shopware\App\SDK\Context\ContextResolver;
 use Shopware\App\SDK\Response\PaymentResponse;
@@ -333,7 +335,7 @@ function finalize(RequestInterface $request): ResponseInterface
 
 If you would like to not only offer forwarding to a payment provider,
 but integrate more deeply into the checkout process,
-with Shopware 6.4.9.0, and later you might like to use prepared payments.
+with Shopware 6.4.9.0, and later you might use prepared payments.
 This method allows you to prepare the payment already before the order is placed,
 e.g. with credit card fields on the checkout confirmation page.
 By adding parameters to the order placement request --
@@ -389,6 +391,7 @@ this will be forwarded to the `capture` call afterward.
 {% tab title="App PHP SDK" %}
 
 ```php
+use Psr\Http\Message\RequestInterface;
 use Shopware\App\SDK\Shop\ShopResolver;
 use Shopware\App\SDK\Context\ContextResolver;
 use Shopware\App\SDK\Response\PaymentResponse;
@@ -464,6 +467,8 @@ Failing states can have also a `message` property with the reason displayed to t
 {% tab title="App PHP SDK" %}
 
 ```php
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Shopware\App\SDK\Shop\ShopResolver;
 use Shopware\App\SDK\Context\ContextResolver;
 use Shopware\App\SDK\Response\PaymentResponse;
@@ -539,6 +544,8 @@ and your response should look like this:
 {% tab title="App PHP SDK" %}
 
 ```php
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Shopware\App\SDK\Shop\ShopResolver;
 use Shopware\App\SDK\Context\ContextResolver;
 use Shopware\App\SDK\Response\RefundResponse;

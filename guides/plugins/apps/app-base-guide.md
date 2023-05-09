@@ -81,13 +81,13 @@ The timeout for the requests against the app server is 5 seconds.
 
 ## SDK Integration
 
-There are SDK available to integrate apps easier into your application.
+There are SDKs available to integrate apps easier into your application.
 The SDKs are simplifying the registration flow and other typical tasks.
 
 - [Official PHP SDK](https://github.com/shopware/app-php-sdk)
 - [Go SDK](https://github.com/janbuecker/shopware-appserver-go)
 
-If there is no existing SDK for your language, you can implement the registration by yourself
+If there is no SDK available for your language, you can implement the registration process by yourself.
 
 ### Registration request
 
@@ -221,7 +221,7 @@ This secret will be called `shop-secret` to distinguish it from the `app-secret`
 
 The last thing needed in the registration response is a URL to which the confirmation request will be sent.
 
-A sample registration response look like this:
+A sample registration response looks like this:
 
 ```json
 {
@@ -259,7 +259,7 @@ from the Admin API.
 You can find out more about how to use these credentials in our Admin API authentication guide:
 
 <!-- markdown-link-check-disable-next-line -->
-{% embed url="<https://shopware.stoplight.io/docs/admin-api/ZG9jOjEwODA3NjQx-authentication-and-authorisation#integration-client-credentials-grant-type>" caption="Admin API Authentication & Authorisation" %}
+{% embed url="https://shopware.stoplight.io/docs/admin-api/ZG9jOjEwODA3NjQx-authentication-and-authorisation#integration-client-credentials-grant-type" caption="Admin API Authentication & Authorisation" %}
 
 {% hint style="info" %}
 Starting from Shopware version 6.4.1.0, the current Shopware version will be sent as a `sw-version` header.
