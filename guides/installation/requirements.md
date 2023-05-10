@@ -204,7 +204,7 @@ We recommend the following stack:
 
 * Webserver: Caddy
 * PHP: 8.1
-* Node: 16
+* Node: 18
 * Search: Opensearch 2.5.0
 * Queue: Rabbitmq
 
