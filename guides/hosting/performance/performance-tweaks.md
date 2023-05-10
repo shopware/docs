@@ -156,6 +156,7 @@ framework:
 assert.active=0
 
 # cache file_exists,is_file
+# WARNING: this will lead to thrown errors after clearing cache, while it tries to access cached Shopware_Core_KernelProdDebugContainer.php
 opcache.enable_file_override=1
 
 # increase opcache string buffer as shopware has many files
