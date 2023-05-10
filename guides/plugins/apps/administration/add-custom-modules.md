@@ -48,6 +48,10 @@ If the user opens the module in the Administration your app will receive a reque
 * `timestamp`: The Unix timestamp when the request was created
 * `shopware-shop-signature`: SHA256 HMAC of the rest of the query string, signed with the `shop-secret`
 
+{% tabs %}
+
+{% tab title="HTTP" %}
+
 A sample request may look like this:
 
 ```text
@@ -55,6 +59,45 @@ https://example.com/promotion/view/promotion-config?shop-id=HKTOOpH9nUQ2&shop-ur
 ```
 
 In this case the `shopware-shop-signature` parameter contains an SHA256 HMAC of the rest of the query string, signed again with the secret your app assigned the shop during the [registration](../app-base-guide.md#setup). The signature can be used to verify the authenticity of the request.
+
+{% endtab %}
+
+{% tab title="App PHP SDK" %}
+
+```php
+// injected or build by yourself
+$shopResolver = new ShopResolver($repository);
+$contextResolver = new ContextResolver();
+
+$shop = $shopResolver->resolveShop($serverRequest);
+$module = $contextResolver->assembleModule($serverRequest, $shop);
+```
+
+{% endtab %}
+
+{% tab title="Symfony Bundle" %}
+
+```php
+use Shopware\App\SDK\Context\Module\ModuleAction;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\Routing\Annotation\Route;
+
+#[AsController]
+class ModuleController {
+    #[Route('/module')]
+    public function show(ModuleAction $module): Response
+    {
+        // handle payment
+        
+        return $this->render('....');
+    }
+}
+```
+
+{% endtab %}
+
+{% endtabs %}
 
 ## Leave loading state
 

@@ -1,6 +1,8 @@
 # Basic Conventions
 
-This is the list of naming conventions the B2B Suite complies to:
+## Codebase conventions
+
+List of naming conventions the B2B Suite complies to:
 
 | Group                                                                                              | Practice                                                                            |
 |----------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
@@ -22,3 +24,20 @@ This is the list of naming conventions the B2B Suite complies to:
 | Storefront plugins                                                                                 | File names end with *.plugin.ts                                                     |
 | Interfaces                                                                                         | File names start with `I`, e.g., `IAjaxPanelEvent.ts`                                |
 | Snippets                                                                                           | The root snippet key is `b2b`                                                       |
+
+## Entity naming conventions
+
+Certain domain entities, such as Contact, Contingent Rule, and others, have different naming conventions in the B2B UI and the codebase. To make things easier to understand, here is a comparison between these entities' B2B UI to their corresponding names in English Storefronts:
+
+| English term (Display name)                        | B2B-Suite term (Entity name)                      |
+|----------------------------------------------------|---------------------------------------------------|
+| Company administrator                              | Debtor                                            |
+| Employee                                           | Contact                                           |
+| Cart details                                       | Positions                                         |
+| Quick order                                        | Fastorder                                         |
+| Quote                                              | Offers                                            |
+| Purchase restriction                               | Contingent                                        |
+| Order restriction                                  | Contingent rule                                   |
+| Product restriction                                | Contingent restrictions                           |
+
+You can use the table above as a reference to identify a domain entity in the codebase when working with the B2B storefront.

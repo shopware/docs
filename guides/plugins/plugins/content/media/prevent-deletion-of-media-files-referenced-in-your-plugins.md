@@ -118,6 +118,7 @@ Finally, we return all the IDs of Media which are used in the slider config so t
 Make sure to register your event subscriber to the [Dependency injection container](../../plugin-fundamentals/dependency-injection.md)
 by using the tag `kernel.event_subscriber`.
 
+{% tabs %}
 {% tab title="services.xml" %}
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
 
@@ -134,6 +135,8 @@ by using the tag `kernel.event_subscriber`.
     </services>
 </container>
 ```
+
+{% endcode %}
 
 {% endtab %}
 {% endtabs %}

@@ -4,13 +4,12 @@ Starting with version 6.4.1.0, Shopware also provides functionality for your app
 
 ## Prerequisites
 
-You should be familiar with the concept of Apps and their registration.
+You should be familiar with the concept of Apps, their registration flow as well as signing and verifying requests and responses between Shopware and the App backend server.
 
 {% page-ref page="app-base-guide.md" %}
 
-To reproduce this example, you should also be aware of how to set up an app on your development platform.
-
-{% page-ref page="local-development/" %}
+Your app server must be also accessible for the Shopware server.
+You can use a tunneling service like [ngrok](https://ngrok.com/) for development.
 
 ## Manifest configuration
 
@@ -26,14 +25,14 @@ Below you can see three different definitions of payment methods.
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
-        <!-- The name of the app should not change. Otherwise all payment methods are created as duplicates. -->
+        <!-- The name of the app should not change. Otherwise, all payment methods are created as duplicates. -->
         <name>PaymentApp</name>
         <!-- ... -->
     </meta>
 
     <payments>
         <payment-method>
-            <!-- The identifier of the payment method should not change. Otherwise a separate method is created. -->
+            <!-- The identifier of the payment method should not change. Otherwise, a separate method is created. -->
             <identifier>asynchronousPayment</identifier>
             <name>Asynchronous payment</name>
             <name lang="de-DE">Asynchrone Zahlung</name>
@@ -68,14 +67,11 @@ Below you can see three different definitions of payment methods.
 
         <payment-method>
             <!-- The identifier of the payment method should not change. Otherwise a separate method is created. -->
-            <identifier>allBellsAndWhistlesPayment</identifier>
+            <identifier>preparedPayment</identifier>
             <name>Payment, that offers everything</name>
             <name lang="de-DE">Eine Zahlungsart, die alles kann</name>
-            <pay-url>https://payment.app/async/pay</pay-url>
-            <finalize-url>https://payment.app/async/finalize</finalize-url>
             <validate-url>https://payment.app/prepared/validate</validate-url>
             <capture-url>https://payment.app/prepared/capture</capture-url>
-            <refund-url>https://payment.app/refund</refund-url>
             <!-- This optional path to this icon must be relative to the manifest.xml -->
             <icon>Resources/paymentLogo.png</icon>
         </payment-method>
@@ -87,202 +83,539 @@ Below you can see three different definitions of payment methods.
 
 ## Synchronous payments
 
-Synchronous payments are the more simple kind of payments without any further interaction with the user. You have two different kind of options here. Depending on if you have defined a `pay-url`, you can choose to be informed about - and possibly process - a payment or not.
+There are two types of payments: synchronous and other kinds like advanced payment or collect on delivery.
+Synchronous payments are simple and do not need any additional interaction with the user.
+If you have defined a `pay-url`, you can choose to be informed about and possibly process the payment or not.
+If you do not need to communicate with your app, you can stop reading here and the transaction will stay open.
+But if you do define a `pay-url`, you can respond to the request with a different transaction status like authorize, paid, or failed.
+This is useful if you want to add a payment provider that only needs the information the user has already provided in the checkout process and no extra information is needed.
+For example, a simple credit check for payment upon invoice.
+Below you can see an example of a simple answer from your app to mark a payment as authorized.
 
-If you would just like to define another payment method like _advanced payment_ or _collect on delivery_, where the owner of the shop will manually mark the payment as `paid` later, you can stop reading this guide here, because no communication with your app is required. The transaction will remain on the status `open`.
+{% tabs %}
 
-On the other hand, if you define a `pay-url`, you have the option to respond on this request with a different transaction status, for example `authorize`, `paid`or `fail`. This is useful if you would like to add a payment provider which only need the information the user has already provided in the checkout process and no additional information is required. This could be - for example - a simple credit check for payment upon invoice.
+{% tab title="HTTP" %}
 
-Below you can see an example for a simple answer from your app to mark a payment as authorized. You can see two methods, `checkSignature` and `sign`, for both of these see the section [Validation](payment.md#validation). The provided status should be the transition name for the transaction based on the previous status `open`.
+Request content is JSON
 
-```php
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Annotation\Route;
-
-/**
- * @Route("/sync/process", name="sync.process", methods={"POST"})
- */
-public function processSynchronousPayment(Request $request): JsonResponse
+```json
 {
-      // more on this in section "Validation"
-      $this->checkSignature($request);
-
-      $content = \json_decode($request->getContent(), true);
-
-      // implement your logic here based on the information provided in $content
-      $response = [ 'status' => 'authorize' ];
-
-      // this returns a json encoded response with the `shopware-app-signature` in the header
-      return $this->sign($response, $content['source']['shopId']);
+  "source": {
+    "url": "http:\/\/localhost:8000",
+    "shopId": "hRCw2xo1EDZnLco4",
+    "appVersion": "1.0.0"
+  },
+  "orderTransaction": {
+    //...
+  },
+  "order": {
+    //...
+  }
 }
 ```
 
-Instead of a successful response, you can also provide a failed response with a message \(which will be logged\) like this:
+You can find an example refund payload [here](https://github.com/shopware/app-php-sdk/blob/main/tests/Context/_fixtures/payment.json)
 
-```php
-$response = [
-    'status' => 'fail',
-    'message' => 'The customer failed to pass the credit check.',
-];
+and your response should look like this:
+
+```json
+{
+  "status": "authorize"
+}
 ```
 
-{% hint style="warning" %}
-Keep in mind that just by providing a `message`, the payment will default to status `fail`.
-{% endhint %}
+You can find all possible status values [here](#all-possible-payment-states).
+Failing states can have also a `message` property with the reason displayed to the user.
+
+```json
+{
+  "status": "authorize",
+  "message": "The customer failed to pass the credit check."
+}
+```
+
+{% endtab %}
+
+{% tab title="App PHP SDK" %}
+
+```php
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+use Shopware\App\SDK\Shop\ShopResolver;
+use Shopware\App\SDK\Context\ContextResolver;
+use Shopware\App\SDK\Response\PaymentResponse;
+
+function myController(RequestInterface $request): ResponseInterface
+{
+    // injected or build by yourself
+    $shopResolver = new ShopResolver($repository);
+    $contextResolver = new ContextResolver();
+    $signer = new ResponseSigner();
+    
+    $shop = $shopResolver->resolveShop($serverRequest);
+    $payment = $contextResolver->assemblePaymentPay($serverRequest, $shop);
+    
+    // implement your logic here based on the information provided in $payment
+    
+    // check PaymentResponse class for all available payment states
+    return $signer->signResponse(PaymentResponse::paid(), $shop);
+}
+```
+
+{% endtab %}
+
+{% tab title="Symfony Bundle" %}
+
+```php
+use Shopware\App\SDK\Context\Payment\PaymentPayAction;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\Routing\Annotation\Route;
+use Shopware\App\SDK\Response\PaymentResponse;
+use Psr\Http\Message\ResponseInterface;
+
+#[AsController]
+class PaymentController {
+    #[Route('/payment/pay')]
+    public function handle(PaymentPayAction $payment): ResponseInterface
+    {
+        // handle payment
+        
+        return PaymentResponse::paid();
+    }
+}
+```
+
+{% endtab %}
+
+{% endtabs %}
 
 ## Asynchronous payments
 
-Asynchronous payments are more complicated and rely on interaction with the user and therefore a redirect to the payment provider. For example, this might be an integration with _PayPal_ or _Stripe_. The following process applies:
+Asynchronous payments are more complicated than synchronous payments.
+They require interaction with the user and a redirect to the payment provider such as PayPal or Stripe.
 
-Shopware sends the first `pay` POST request, which is supposed to start the payment with the payment provider. All necessary data is provided: the `order`, `orderTransaction`, and a `returnUrl`, where the user should be redirected once the payment process with the payment provider has been finished. If everything is correct and the payment process is ready to start, the response to this request must be a `redirectUrl`, where the user is redirected to by Shopware. In case the payment can't be started \(for example, because of missing credentials for the shop\), the response can return a `fail` status and/or a `message`. If you provide a message, the payment process will fail automatically and a generic error message is shown to the user. The provided message will be shown in the log files.
+Here is how it works:
+
+- Shopware sends the first pay POST request to start the payment with the payment provider.
+  The request includes all necessary data such as the `order`, `orderTransaction`, and a `returnUrl`,
+  where the user should be redirected once the payment process with the payment provider has been finished.
+- Your app server returns a response with a `redirectUrl` to the payment provider.
+- The browser will be redirected to this URL and processes his order, and the payment provider will redirect the user
+  back to the `returnUrl` provided in the first request.
+- Shopware sends a second POST request to the `finalize-url` with the `orderTransaction` and all the query parameters passed by the payment provider to Shopware.
+- Our app server responds with a `status` and a `message` if necessary like in the synchronous payment.
+
+{% tabs %}
+
+{% tab title="HTTP" %}
+
+Request content is JSON
+
+```json
+{
+  "source": {
+    "url": "http:\/\/localhost:8000",
+    "shopId": "hRCw2xo1EDZnLco4",
+    "appVersion": "1.0.0"
+  },
+  "orderTransaction": {
+    //...
+  },
+  "order": {
+    //...
+  },
+  "returnUrl": "https://shop.com/checkout/...."
+}
+```
+
+You can find an example refund payload [here](https://github.com/shopware/app-php-sdk/blob/main/tests/Context/_fixtures/payment.json)
+
+and your response should look like this:
+
+```json
+{
+  "redirectUrl": "https://payment.app/user/gotoPaymentProvider"
+}
+```
+
+{% endtab %}
+
+{% tab title="App PHP SDK" %}
 
 ```php
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+use Shopware\App\SDK\Shop\ShopResolver;
+use Shopware\App\SDK\Context\ContextResolver;
+use Shopware\App\SDK\Response\PaymentResponse;
+
+function pay(RequestInterface $request): ResponseInterface
+{
+    // injected or build by yourself
+    $shopResolver = new ShopResolver($repository);
+    $contextResolver = new ContextResolver();
+    $signer = new ResponseSigner();
+    
+    $shop = $shopResolver->resolveShop($serverRequest);
+    $payment = $contextResolver->assemblePaymentPay($serverRequest, $shop);
+    
+    // Implement your logic here based on the information provided in $payment. 
+    // Payment providers should redirect the user to $payment->returnUrl once the payment process has been finished.
+    
+    return $signer->signResponse(PaymentResponse::redirect($paymentProviderRediectUrl), $shop);
+}
+```
+
+{% endtab %}
+
+{% tab title="Symfony Bundle" %}
+
+```php
+use Shopware\App\SDK\Context\Payment\PaymentPayAction;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
+use Shopware\App\SDK\Response\PaymentResponse;
+use Psr\Http\Message\ResponseInterface;
 
-/**
- * @Route("/async/pay", name="async.pay", methods={"POST"})
- */
-public function startAsyncPayment(Request $request): JsonResponse
-{
-    // more on this in section "Validation"
-    $this->checkSignature($request);
-
-    $content = json_decode($request->getContent(), true);
-
-    // you can identify the transaction later on with the orderTransactionId
-    $transactionId = $content['orderTransaction']['id'];
-
-    // implement your logic here based on the information provided in $content
-    // you should save the transactionId for later identification in the second request and in the user redirection
-    $response = [ 'redirectUrl' => sprintf('https://payment.app/user/go/here/%s/', $transactionId) ];
-
-    // this returns a json encoded response with the `shopware-app-signature` in the header
-    return $this->sign($response, $content['source']['shopId']);
+#[AsController]
+class PaymentController {
+    #[Route('/payment/pay')]
+    public function handle(PaymentPayAction $payment): ResponseInterface
+    {
+        // handle payment
+        
+        return PaymentResponse::redirect($myPaymentUrl);
+    }
 }
 ```
 
-The second `finalize` POST request will be called once the user has been redirected that your app or your payment provider should back to the shop. This second request is only provided with the `orderTransaction` for identification purposes. The response `status` value determines the outcome of the payment, e.g.:
+{% endtab %}
 
-| Status | Description |
-| :--- | :--- |
-| `cancel` | User has aborted the payment at the payment provider's site |
-| `fail` | Payment has failed \(e.g. missing funds\) |
-| `paid` | Successful immediate payment |
-| `authorize` | Delayed payment |
+{% endtabs %}
+
+The second `finalize` POST request will be called once the user has been redirected back to the shop.
+This second request is only provided with the `orderTransaction` for identification purposes and `requestData` with all query parameters
+passed by the payment provider.
+The response `status` value determines the outcome of the payment, e.g.:
+
+| Status      | Description                                                 |
+|:------------|:------------------------------------------------------------|
+| `cancel`    | User has aborted the payment at the payment provider's site |
+| `fail`      | Payment has failed \(e.g. missing funds\)                   |
+| `paid`      | Successful immediate payment                                |
+| `authorize` | Delayed payment                                             |
+
+{% tabs %}
+
+{% tab title="HTTP" %}
+
+Request content is JSON
+
+```json
+{
+  "source": {
+    "url": "http:\/\/localhost:8000",
+    "shopId": "hRCw2xo1EDZnLco4",
+    "appVersion": "1.0.0"
+  },
+  "orderTransaction": {
+    //...
+  },
+  "requestData": {
+    //...
+  }
+}
+```
+
+and your response should look like this:
+
+```json
+{
+  "status": "paid"
+}
+```
+
+You can find all possible status values [here](#all-possible-payment-states).
+Failing states can have also a `message` property with the reason displayed to the user.
+
+```json
+{
+  "status": "authorize",
+  "message": "The customer failed to pass the credit check."
+}
+```
+
+{% endtab %}
+
+{% tab title="App PHP SDK" %}
 
 ```php
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+use Shopware\App\SDK\Shop\ShopResolver;
+use Shopware\App\SDK\Context\ContextResolver;
+use Shopware\App\SDK\Response\PaymentResponse;
+
+function finalize(RequestInterface $request): ResponseInterface
+{
+    // injected or build by yourself
+    $shopResolver = new ShopResolver($repository);
+    $contextResolver = new ContextResolver();
+    $signer = new ResponseSigner();
+    
+    $shop = $shopResolver->resolveShop($serverRequest);
+    $payment = $contextResolver->assemblePaymentFinalize($serverRequest, $shop);
+    
+    // implement your logic here based on the information provided in $payment
+    
+    // check PaymentResponse class for all available payment states
+    return $signer->signResponse(PaymentResponse::paid(), $shop);
+}
+```
+
+{% endtab %}
+
+{% tab title="Symfony Bundle" %}
+
+```php
+use Shopware\App\SDK\Context\Payment\PaymentFinalizeAction;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
+use Shopware\App\SDK\Response\PaymentResponse;
+use Psr\Http\Message\ResponseInterface;
 
-/**
- * @Route("/async/finalize", name="async.finalize", methods={"POST"})
- */
-public function finalizeAsyncPayment(Request $request): JsonResponse
-{
-    // more on this in section "Validation"
-    $this->checkSignature($request);
-
-    $content = json_decode($request->getContent(), true);
-
-    // you can identify the transaction again with the orderTransactionId
-    $transactionId = $content['orderTransaction']['id'];
-    $status = $this->getStatusFromPaymentProvider($transactionId);
-
-    // implement your logic here based on the information provided in $content
-    // you should save the transactionId for later identification in the second request and in the user redirection
-    $response = [ 'status' => $status ];
-
-    // this returns a json encoded response with the `shopware-app-signature` in the header
-    return $this->sign($response, $content['source']['shopId']);
-}
-
-private function getStatusFromPaymentProvider(string $transactionId): string
-{
-    // check with the payment provider here to receive the final status
-    return 'paid';
+#[AsController]
+class PaymentController {
+    #[Route('/payment/finalize')]
+    public function handle(PaymentFinalizeAction $payment): ResponseInterface
+    {
+        // handle payment
+        
+        return PaymentResponse::paid();
+    }
 }
 ```
 
-Instead of a successful response, you can also provide a failed response with a message \(which will be logged\) like this:
+{% endtab %}
 
-```php
-$response = [
-    'status' => 'fail',
-    'message' => 'The customer failed to pass the credit check.',
-];
-```
-
-{% hint style="warning" %}
-Keep in mind that just by providing a `message` in either request response, the payment will default to status `fail`, except if you also provide the status `cancel` in the `finalize` request.
-{% endhint %}
+{% endtabs %}
 
 ## Prepared payments
 
-If you would like to not only offer forwarding to a payment provider, but integrate more deeply into the checkout process, with Shopware 6.4.9.0 and later you might like to use prepared payments. This method allows you to prepare the payment already before the order is placed, e.g. with credit card fields on the checkout confirm page. By adding parameters to the order placement request -- in the Storefront, this is the checkout confirm form -- you can then hand your prepared payment handler the parameters to successfully capture the payment when the order is placed.
+If you would like to not only offer forwarding to a payment provider,
+but integrate more deeply into the checkout process,
+with Shopware 6.4.9.0, and later you might use prepared payments.
+This method allows you to prepare the payment already before the order is placed,
+e.g. with credit card fields on the checkout confirmation page.
+By adding parameters to the order placement request --
+in the Storefront, this is the checkout confirmation form --
+you can then hand your prepared payment handler the parameters
+to successfully capture the payment when the order is placed.
 
 For this, you have two calls available during the order placement, the `validate` call to verify, that the payment reference is valid and if not, stop the placement of the order, and the `capture` call, which then allows the payment to be processed to completion after the order has been placed and persisted.
 
 Let's first talk about the `validate` call. Here, you will receive three items to validate your payment. The `cart` with all its line items, the `requestData` from the `CartOrderRoute` request and the current `salesChannelContext`. This allows you to validate, if the payment reference you may have given your payment handler via the Storefront implementation is valid and will be able to be used to pay the order which is about to be placed. The array data you may send as the `preOrderPayment` object in your response will be forwarded to your `capture` call, so you don't have to worry about identifying the order by looking at the cart from the `validate` call. If the payment is invalid, either return a response with an error response code or provide a `message` in your response.
 
-```php
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Annotation\Route;
+{% tabs %}
 
-/**
- * @Route("/prepared/validate", name="prepared.validate", methods={"POST"})
- */
-public function validatePreparedPayment(Request $request): JsonResponse
+{% tab title="HTTP" %}
+
+Request content is JSON
+
+```json
 {
-    // more on this in section "Validation"
-    $this->checkSignature($request);
-
-    $content = json_decode($request->getContent(), true);
-
-    // you may validate your payment now with e.g. this data
-    $yourPaymentReference = $content['requestData']['myAppPaymentId'];
-    $cartAmount = $content['cart']['price']['totalPrice'];
-
-    // this helps you later identify the payment reference in your capture call
-    $response = [ 'preOrderPayment' => ['paymentId' => $yourPaymentReference] ];
-
-    // this returns a json encoded response with the `shopware-app-signature` in the header
-    return $this->sign($response, $content['source']['shopId']);
+  "source": {
+    "url": "http:\/\/localhost:8000",
+    "shopId": "hRCw2xo1EDZnLco4",
+    "appVersion": "1.0.0"
+  },
+  "cart": {
+    //...
+  },
+  "requestData": {
+    //...
+  },
+  "salesChannelContext": {
+    //...
+  }
 }
 ```
+
+You can find an example validation payload [here](https://github.com/shopware/app-php-sdk/blob/main/tests/Context/_fixtures/payment-validation.json)
+
+and your response should look like this:
+
+```json
+{
+  "preOrderPayment": {
+    "myCustomReference": "1234567890"
+  }
+}
+```
+
+this will be forwarded to the `capture` call afterward.
+
+{% endtab %}
+
+{% tab title="App PHP SDK" %}
+
+```php
+use Psr\Http\Message\RequestInterface;
+use Shopware\App\SDK\Shop\ShopResolver;
+use Shopware\App\SDK\Context\ContextResolver;
+use Shopware\App\SDK\Response\PaymentResponse;
+
+function validate(RequestInterface $request): ResponseInterface
+{
+    // injected or build by yourself
+    $shopResolver = new ShopResolver($repository);
+    $contextResolver = new ContextResolver();
+    $signer = new ResponseSigner();
+    
+    $shop = $shopResolver->resolveShop($serverRequest);
+    $payment = $contextResolver->assemblePaymentValidate($serverRequest, $shop);
+    
+    // implement your logic here based on the information provided in $payment
+    
+    // check PaymentResponse class for all available payment states
+    return $signer->signResponse(PaymentResponse::validateSuccess(['myCustomReference' => '1234567890']), $shop);
+}
+```
+
+{% endtab %}
+
+{% tab title="Symfony Bundle" %}
+
+```php
+use Shopware\App\SDK\Context\Payment\PaymentValidateAction;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\Routing\Annotation\Route;
+use Shopware\App\SDK\Response\PaymentResponse;
+use Psr\Http\Message\ResponseInterface;
+
+#[AsController]
+class PaymentController {
+    #[Route('/payment/pay')]
+    public function handle(PaymentValidateAction $payment): ResponseInterface
+    {
+        // handle payment
+        
+        return PaymentResponse::validateSuccess(['myCustomReference' => '1234567890']);
+    }
+}
+```
+
+{% endtab %}
+
+{% endtabs %}
 
 If the payment has been validated and the order has been placed, you then receive another call to your `capture` endpoint. You will receive the `order`, the `orderTransaction` and also the `preOrderPayment` array data, that you have sent in your validate call.
 
-```php
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Annotation\Route;
+{% tabs %}
 
-/**
- * @Route("/prepared/capture", name="prepared.capture", methods={"POST"})
- */
-public function capturePreparedPayment(Request $request): JsonResponse
+{% tab title="HTTP" %}
+
+Request content is JSON
+
+```json
 {
-    // more on this in section "Validation"
-    $this->checkSignature($request);
-
-    $content = json_decode($request->getContent(), true);
-
-    // you may capture your payment now with e.g. this data
-    $yourPaymentReference = $content['preOrderPayment']['paymentId'];
-    $orderAmount = $content['order']['price']['totalPrice'];   
-    
-    // you can provide any status here that the payment should have later on in Shopware
-    $response = [ 'status' => 'paid' ];
-
-    // this returns a json encoded response with the `shopware-app-signature` in the header
-    return $this->sign($response, $content['source']['shopId']);
+  "source": {
+    "url": "http:\/\/localhost:8000",
+    "shopId": "hRCw2xo1EDZnLco4",
+    "appVersion": "1.0.0"
+  },
+  "orderTransaction": {
+    //...
+  },
+  "order": {
+    //...
+  },
+  "preOrderPayment": {
+    //...
+  }
 }
 ```
+
+and your response should look like this:
+
+```json
+{
+  "status": "authorize"
+}
+```
+
+You can find all possible status values [here](#all-possible-payment-states).
+Failing states can have also a `message` property with the reason displayed to the user.
+
+```json
+{
+  "status": "authorize",
+  "message": "The customer failed to pass the credit check."
+}
+```
+
+{% endtab %}
+
+{% tab title="App PHP SDK" %}
+
+```php
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+use Shopware\App\SDK\Shop\ShopResolver;
+use Shopware\App\SDK\Context\ContextResolver;
+use Shopware\App\SDK\Response\PaymentResponse;
+
+function capture(RequestInterface $request): ResponseInterface
+{
+    // injected or build by yourself
+    $shopResolver = new ShopResolver($repository);
+    $contextResolver = new ContextResolver();
+    $signer = new ResponseSigner();
+    
+    $shop = $shopResolver->resolveShop($serverRequest);
+    $payment = $contextResolver->assemblePaymentCapture($serverRequest, $shop);
+    
+    // contains your passed data from the validate call (preOrderPayment)
+    $payment->requestData
+    
+    // implement your logic here based on the information provided in $payment
+    
+    // check PaymentResponse class for all available payment states
+    return $signer->signResponse(PaymentResponse::paid(), $shop);
+}
+```
+
+{% endtab %}
+
+{% tab title="Symfony Bundle" %}
+
+```php
+use Shopware\App\SDK\Context\Payment\PaymentCaptureAction;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\Routing\Annotation\Route;
+use Shopware\App\SDK\Response\PaymentResponse;
+use Psr\Http\Message\ResponseInterface;
+
+#[AsController]
+class PaymentController {
+    #[Route('/payment/pay')]
+    public function handle(PaymentCaptureAction $payment): ResponseInterface
+    {
+        // handle payment
+        
+        return PaymentResponse::paid();
+    }
+}
+```
+
+{% endtab %}
+
+{% endtabs %}
 
 {% hint style="warning" %}
 Keep in mind that if the integration into the checkout process does not work as expected, your customer might not be able to use the prepared payment. This is especially valid for after order payments, since there the order already exists. For these cases, you should still offer a traditional synchronous / asynchronous payment flow. Don't worry, if you have set the transaction state in your capture call to anything but open, the asynchronous payment process will not be started immediately after the prepared payment flow.
@@ -294,84 +627,94 @@ With Shopware 6.4.12.0, we have also added basic functionality to be able to ref
 
 Similar to the other requests, on your `refund` call you will receive the data required to process your refund. This is the `order` with all its details and also the `refund` which holds the information on the `amount`, the referenced `capture` and, if provided, a `reason` and specific `positions` which items are being refunded.
 
-```php
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Annotation\Route;
+{% tabs %}
 
-/**
- * @Route("/refund", name="refund", methods={"POST"})
- */
-public function refundPayment(Request $request): JsonResponse
+{% tab title="HTTP" %}
+
+Request content is JSON
+
+```json
 {
-    // more on this in section "Validation"
-    $this->checkSignature($request);
+  "source": {
+    "url": "http:\/\/localhost:8000",
+    "shopId": "hRCw2xo1EDZnLco4",
+    "appVersion": "1.0.0"
+  },
+  "order": {
+    //...
+  },
+  "refund": {
+    //...
+  }
+}
+```
 
-    $content = json_decode($request->getContent(), true);
+You can find an example refund payload [here](https://github.com/shopware/app-php-sdk/blob/main/tests/Context/_fixtures/refund.json)
 
-    // you may capture your payment now with e.g. this data
-    $captureId = $content['refund']['captureId'];
-    $refundAmount = $content['refund']['amount']['totalPrice'];
+and your response should look like this:
+
+```json
+{
+  "status": "completed"
+}
+```
+
+{% endtab %}
+
+{% tab title="App PHP SDK" %}
+
+```php
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+use Shopware\App\SDK\Shop\ShopResolver;
+use Shopware\App\SDK\Context\ContextResolver;
+use Shopware\App\SDK\Response\RefundResponse;
+
+function refund(RequestInterface $request): ResponseInterface
+{
+    // injected or build by yourself
+    $shopResolver = new ShopResolver($repository);
+    $contextResolver = new ContextResolver();
+    $signer = new ResponseSigner();
     
-    // you can provide any status here that the refund should have later on in Shopware
-    $response = [ 'status' => 'refunded' ];
-
-    // this returns a json encoded response with the `shopware-app-signature` in the header
-    return $this->sign($response, $content['source']['shopId']);
+    $shop = $shopResolver->resolveShop($serverRequest);
+    $payment = $contextResolver->assemblePaymentRefund($serverRequest, $shop);
+    
+    // implement your logic here based on the information provided in $payment
+    
+    // check RefundResponse class for all available refund states
+    return $signer->signResponse(RefundResponse::completed(), $shop);
 }
 ```
 
-## Validation
+{% endtab %}
 
-All of the payment requests you receive from Shopware should be checked for a correct signature and the responses should be signed as well. You should be familiar with the Setup process from the [App base guide](app-base-guide.md#setup), as this validation is very similar.
+{% endtabs %}
 
-{% page-ref page="app-base-guide.md" %}
+## All possible payment states
 
-When receiving a payment `pay` or `finalize` request, you need to first validation the signature of the request. This signature is provided in the `shopware-shop-signature` header, which contains a cryptographic signature of the query string. Therefore you need to calculate the `sha256 hmac` based on the encoded JSON and the secret you have saved during the app registration.
+The following lists are all possible payment state options:
 
-```php
-use Symfony\Component\HttpFoundation\Request;
+- `open` - The payment is open and can be processed
+- `paid` - The payment has been paid
+- `cancelled` - The payment has been canceled
+- `refunded` - The payment has been refunded
+- `failed` - The payment has failed
+- `authorized` - The payment has been authorized
+- `unconfirmed` - The payment has not been confirmed yet
+- `in_progress` - The payment is in progress
+- `reminded` - The payment has been reminded
+- `chargeback` - The payment has been charged back
 
-private function checkSignature(Request $request): void
-{
-    $requestContent = json_decode($request->getContent(), true);
-    $shopId = $requestContent['source']['shopId'];
+## All possible refund states
 
-    // get the secret you have saved on registration for this shopId
-    $shopSecret = $this->getSecretByShopId($shopId);
+The following lists are all possible refund state options:
 
-    $signature = $request->headers->get('shopware-shop-signature'):
-    if ($signature === null) {
-        throw new Exception('No signature provided signature');
-    }
-
-    $hmac = hash_hmac('sha256', $request->getContent(), $shopSecret);
-    if (!hash_equals($hmac, $signature)) {
-        throw new Exception('Invalid signature');
-    }
-}
-```
-
-When sending your response, you also need to add a signature to the header of the request. This signature needs to be provided in the `shopware-app-signature` header. This also needs to be calculated as a `sha256 hmac` based on the encoded JSON and the secret you have saved during the app registration.
-
-```php
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\JsonResponse;
-
-private function sign(array $content, string $shopId): JsonResponse
-{
-    // this encodes the json automatically
-    $response = new JsonResponse($content);
-
-    // get the secret you have saved on registration for this shopId
-    $shopSecret = $this->getSecretByShopId($shopId);
-
-    $hmac = \hash_hmac('sha256', $response->getContent(), $secret);
-    $response->headers->set('shopware-app-signature', $hmac);
-
-    return $response;
-}
-```
+- `open` - The refund is open and can be processed
+- `in_progress` - The refund is in progress
+- `cancelled` - The refund has been canceled
+- `failed` - The refund has failed
+- `completed` - The refund has been refunded
 
 ## API docs
 
