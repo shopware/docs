@@ -332,6 +332,7 @@
     * [Rule Builder](guides/plugins/apps/rule-builder/README.md)
       * [Add custom rule conditions](guides/plugins/apps/rule-builder/add-custom-rule-conditions.md)
     * [Tax provider](guides/plugins/apps/tax-provider.md)
+    * [Webhook](guides/plugins/apps/webhook.md)
   * [API](guides/plugins/plugins/api/README.md)
     * [Customer Specific Pricing](guides/plugins/plugins/api/customer-specific-pricing.md)
 * [Hosting](guides/hosting/README.md)

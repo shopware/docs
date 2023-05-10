@@ -39,6 +39,24 @@ GET /api/_action/system-config?domain=DemoApp.config&salesChannelId=98432def39fc
 Keep in mind that your app needs the `system_config:read` permission to access this API.
 {% endhint %}
 
+### Writing the config over the API
+
+To write your app's configuration over the API make a POST request against the `/api/_action/system-config` route.
+You have to provide the configurations as JSON object and optionally provide a `salesChannelId` query param, if you want to write the values for a specific Sales Channel.
+
+```http request
+POST /api/_action/system-config?salesChannelId=98432def39fc4624b33213a56b8c944d
+Content-Type: application/json
+
+{
+    "DemoApp.config.field1": true
+}
+```
+
+{% hint style="warning" %}
+Keep in mind that your app needs the `system_config:update`, `system_config:create` and `system_config:delete` permission to access this API.
+{% endhint %}
+
 ### Reading the config in templates
 
 Inside twig templates you can use the twig function `config` (see [Shopware Twig functions](../../../resources/references/storefront-reference/twig-function-reference.md)). An example twig template could look like this:
