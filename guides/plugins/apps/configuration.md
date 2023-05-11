@@ -41,7 +41,7 @@ Keep in mind that your app needs the `system_config:read` permission to access t
 
 ### Writing the config over the API
 
-To write your app's configuration over the API make a POST request against the `/api/_action/system-config` route.
+To write your app's configuration over the API, make a `POST`request against the `/api/_action/system-config` route.
 You have to provide the configurations as JSON object and optionally provide a `salesChannelId` query param, if you want to write the values for a specific Sales Channel.
 
 ```http request

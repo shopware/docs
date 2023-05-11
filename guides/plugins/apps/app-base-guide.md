@@ -242,11 +242,11 @@ A sample registration response looks like this:
 
 If the proof you provided in the [registration response](app-base-guide.md#registration-response) matches the one generated on the shop side, the registration is completed. As a result, your app will receive a `POST` request against the URL specified as the `confirmation_url` of the registration with the following parameters send in the request body:
 
-- `apiKey`: The API key used to authenticate against the Shopware Admin API
-- `secretKey`: The secret key used to authenticate against the Shopware Admin API
-- `timestamp`: The Unix timestamp when the request was created
-- `shopUrl`: The URL of the shop
-- `shopId`: The unique identifier of the shop
+- `apiKey`: The API key used to authenticate against the Shopware Admin API.
+- `secretKey`: The secret key used to authenticate against the Shopware Admin API.
+- `timestamp`: The Unix timestamp when the request was created.
+- `shopUrl`: The URL of the shop.
+- `shopId`: The unique identifier of the shop.
 
 The payload of that request may look like this:
 
@@ -329,7 +329,7 @@ Keep in mind that read permissions also extend to the data contained in the requ
 
 ### App notification
 
-Starting from Shopware version 6.4.7.0, if you want to send notifications to the admin to inform the user about some actions that happened on the app side, the app should send a POST request to the `api/notification` endpoint with a valid body and the header `Authorization` token.
+Starting from Shopware version 6.4.7.0, if you want to send notifications to the admin to inform the user about some actions that happened on the app side, the app should send a `POST` request to the `api/notification` endpoint with a valid body and the header `Authorization` token.
 Your app can request 10 times before being delayed by the system.
 
 After 10 attempts, you need to wait 10 seconds before trying to make requests again.
@@ -353,7 +353,7 @@ POST /api/notification
 
 ```
 
-- `status`: Notification status, one of `success`, `error`, `info`, `warning`.
+- `status`: Notification status - `success`, `error`, `info`, `warning`.
 - `message`: The content of the notification.
 - `adminOnly`: Only admins can read this notification if this value is true.
 - `requiredPrivileges`: The required privileges that users need to have to read the notification.
@@ -472,9 +472,9 @@ The user can either run a strategy with the `bin/console app:url-change:resolve`
 
 - **MoveShopPermanently**: This strategy should be used if the live production shop is migrated from one URL to another one. This strategy will ultimately notify all apps about the change of the APP_URL and the apps will continue working like before, including all the data the apps may already have associated with the given shop. It is important to notice that in this case, the apps in the old installation on the old URL (if it is still running) will stop working.
 
-Technically this is achieved by rerunning the registration process again for all apps. During the registration, the same shopId is used as before, but now with a different shop-url and a different key pair used to communicate over the Shopware API. Also, you must generate a new communication secret during this registration process that is subsequently used for the communication between Shopware and the app backend.
+Technically this is achieved by rerunning the registration process for all apps. During the registration, the same shopId is used as before, but now with a different shop-url and a different key pair used to communicate over the Shopware API. Also, you must generate a new communication secret during this registration process that is subsequently used to communicate between Shopware and the app backend.
 
-This way, it is ensured that the apps are notified about the new URL and the integration with the old installation stops working (because a new communication secret is associated with the given shop id that the old installation does not know).
+This way, it is ensured that the apps are notified about the new URL and the integration with the old installation stops working because a new communication secret is associated with the given shopId that the old installation does not know.
 
 - **ReinstallApps**: This strategy makes sense to use in the case of the staging shop. By running this strategy, all installed apps will be reinstalled. This means that this installation will get a new shopId, that is used during registration.
 
