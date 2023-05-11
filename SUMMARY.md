@@ -309,8 +309,6 @@
       * [Cart manipulation](guides/plugins/apps/app-scripts/cart-manipulation.md)
       * [Data loading](guides/plugins/apps/app-scripts/data-loading.md)
       * [Custom endpoints](guides/plugins/apps/app-scripts/custom-endpoints.md)
-    * [Hosting Guide](guides/plugins/apps/hosting-guide/README.md)
-      * [Platform.sh Deployment](guides/plugins/apps/hosting-guide/platform-sh-deployment.md)
     * [Local development](guides/plugins/apps/local-development/README.md)
       * [App development with platform.sh](guides/plugins/apps/local-development/app-development-with-platform-sh.md)
     * [Storefront](guides/plugins/apps/storefront/README.md)
