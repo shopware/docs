@@ -83,14 +83,7 @@ Below you can see three different definitions of payment methods.
 
 ## Synchronous payments
 
-There are two types of payments: synchronous and other kinds like advanced payment or collect on delivery.
-Synchronous payments are simple and do not need any additional interaction with the user.
-If you have defined a `pay-url`, you can choose to be informed about and possibly process the payment or not.
-If you do not need to communicate with your app, you can stop reading here and the transaction will stay open.
-But if you do define a `pay-url`, you can respond to the request with a different transaction status like authorize, paid, or failed.
-This is useful if you want to add a payment provider that only needs the information the user has already provided in the checkout process and no extra information is needed.
-For example, a simple credit check for payment upon invoice.
-Below you can see an example of a simple answer from your app to mark a payment as authorized.
+There are different types of payments. Synchronous payment is the simplest of all and does not need any additional interaction with the user. If you have defined a `pay-url`, you can choose to be informed about and possibly process the payment or not. If you do not need to communicate with your app, you can stop reading here and the transaction will stay open. But if you do define a `pay-url`, you can respond to the request with a different transaction status like authorize, paid, or failed. This is useful if you want to add a payment provider that only needs the information if the user has already provided it in the checkout process or not. For example, a simple credit check for payment upon invoice. Below you can see an example of a simple answer from your app to mark a payment as authorized.
 
 {% tabs %}
 
@@ -114,9 +107,7 @@ Request content is JSON
 }
 ```
 
-You can find an example refund payload [here](https://github.com/shopware/app-php-sdk/blob/main/tests/Context/_fixtures/payment.json)
-
-and your response should look like this:
+Refer to an example on [refund payload](https://github.com/shopware/app-php-sdk/blob/main/tests/Context/_fixtures/payment.json) and the response should look like this:
 
 ```json
 {
@@ -124,8 +115,7 @@ and your response should look like this:
 }
 ```
 
-You can find all possible status values [here](#all-possible-payment-states).
-Failing states can have also a `message` property with the reason displayed to the user.
+Refer to possible [status values](#all-possible-payment-states). Failing states can also have a `message` property with the reason displayed to the user.
 
 ```json
 {
@@ -192,19 +182,16 @@ class PaymentController {
 
 ## Asynchronous payments
 
-Asynchronous payments are more complicated than synchronous payments.
-They require interaction with the user and a redirect to the payment provider such as PayPal or Stripe.
+Asynchronous payments are more complicated than synchronous payments. They require interaction with the user and a redirect to the payment provider, such as PayPal or Stripe.
 
 Here is how it works:
 
-- Shopware sends the first pay POST request to start the payment with the payment provider.
-  The request includes all necessary data such as the `order`, `orderTransaction`, and a `returnUrl`,
-  where the user should be redirected once the payment process with the payment provider has been finished.
-- Your app server returns a response with a `redirectUrl` to the payment provider.
-- The browser will be redirected to this URL and processes his order, and the payment provider will redirect the user
+* Shopware sends the first pay `POST` request to start the payment with the payment provider. The request includes all necessary data such as the `order`, `orderTransaction`, and a `returnUrl`, where the user should be redirected once the payment process with the payment provider has been finished.
+* Your app server returns a response with a `redirectUrl` to the payment provider.
+* The browser will be redirected to this URL and processes his order, and the payment provider will redirect the user
   back to the `returnUrl` provided in the first request.
-- Shopware sends a second POST request to the `finalize-url` with the `orderTransaction` and all the query parameters passed by the payment provider to Shopware.
-- Our app server responds with a `status` and a `message` if necessary like in the synchronous payment.
+* Shopware sends a second `POST` request to the `finalize-url` with the `orderTransaction` and all the query parameters passed by the payment provider to Shopware.
+* Our app server responds with a `status` and a `message` if necessary, like in the synchronous payment.
 
 {% tabs %}
 
@@ -337,8 +324,7 @@ and your response should look like this:
 }
 ```
 
-You can find all possible status values [here](#all-possible-payment-states).
-Failing states can have also a `message` property with the reason displayed to the user.
+Refer possible [status values](#all-possible-payment-states). Failing states can also have a `message` property with the reason displayed to the user.
 
 ```json
 {
@@ -405,15 +391,7 @@ class PaymentController {
 
 ## Prepared payments
 
-If you would like to not only offer forwarding to a payment provider,
-but integrate more deeply into the checkout process,
-with Shopware 6.4.9.0, and later you might use prepared payments.
-This method allows you to prepare the payment already before the order is placed,
-e.g. with credit card fields on the checkout confirmation page.
-By adding parameters to the order placement request --
-in the Storefront, this is the checkout confirmation form --
-you can then hand your prepared payment handler the parameters
-to successfully capture the payment when the order is placed.
+With Shopware 6.4.9.0, you can use prepared payments to enhance your checkout process beyond forwarding to a payment provider. This feature enables you to integrate more deeply into the checkout process. This method allows you to prepare the payment before placing the order, e.g., with credit card fields on the checkout confirmation page. Once you add specific parameters to the order placement request in the Storefront, which is also known as the checkout confirmation form, you can pass these parameters to your prepared payment handler. This enables your payment handler to capture the payment successfully when the order is placed.
 
 For this, you have two calls available during the order placement, the `validate` call to verify, that the payment reference is valid and if not, stop the placement of the order, and the `capture` call, which then allows the payment to be processed to completion after the order has been placed and persisted.
 
@@ -444,9 +422,7 @@ Request content is JSON
 }
 ```
 
-You can find an example validation payload [here](https://github.com/shopware/app-php-sdk/blob/main/tests/Context/_fixtures/payment-validation.json)
-
-and your response should look like this:
+You can refer to an example on [validation payload](https://github.com/shopware/app-php-sdk/blob/main/tests/Context/_fixtures/payment-validation.json) and your response looks like this:
 
 ```json
 {
@@ -649,9 +625,7 @@ Request content is JSON
 }
 ```
 
-You can find an example refund payload [here](https://github.com/shopware/app-php-sdk/blob/main/tests/Context/_fixtures/refund.json)
-
-and your response should look like this:
+You can refer to [refund payload](https://github.com/shopware/app-php-sdk/blob/main/tests/Context/_fixtures/refund.json) example and your response should look like this:
 
 ```json
 {
@@ -695,26 +669,26 @@ function refund(RequestInterface $request): ResponseInterface
 
 The following lists are all possible payment state options:
 
-- `open` - The payment is open and can be processed
-- `paid` - The payment has been paid
-- `cancelled` - The payment has been canceled
-- `refunded` - The payment has been refunded
-- `failed` - The payment has failed
-- `authorized` - The payment has been authorized
-- `unconfirmed` - The payment has not been confirmed yet
-- `in_progress` - The payment is in progress
-- `reminded` - The payment has been reminded
-- `chargeback` - The payment has been charged back
+* `open` - The payment is open and can be processed
+* `paid` - The payment has been paid
+* `cancelled` - The payment has been canceled
+* `refunded` - The payment has been refunded
+* `failed` - The payment has failed
+* `authorized` - The payment has been authorized
+* `unconfirmed` - The payment has not been confirmed yet
+* `in_progress` - The payment is in progress
+* `reminded` - The payment has been reminded
+* `chargeback` - The payment has been charged back
 
 ## All possible refund states
 
 The following lists are all possible refund state options:
 
-- `open` - The refund is open and can be processed
-- `in_progress` - The refund is in progress
-- `cancelled` - The refund has been canceled
-- `failed` - The refund has failed
-- `completed` - The refund has been refunded
+* `open` - The refund is open and can be processed
+* `in_progress` - The refund is in progress
+* `cancelled` - The refund has been canceled
+* `failed` - The refund has failed
+* `completed` - The refund has been refunded
 
 ## API docs
 

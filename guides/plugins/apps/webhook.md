@@ -1,8 +1,8 @@
 # Webhook
 
-With webhooks, you are able to subscribe to events occurring in Shopware. Whenever such an event occurs, a `POST` request will be sent to the URL specified for this particular event.
+With webhooks, you can subscribe to events occurring in Shopware. Whenever such an event occurs, a `POST` request will be sent to the URL specified for this particular event.
 
-To use webhooks in your app, you need to implement a `<webhooks>` element in your manifest file like this:
+To use webhooks in your app, you need to implement a `<webhooks>` element in your manifest file as shown below:
 
 {% code title="manifest.xml" %}
 

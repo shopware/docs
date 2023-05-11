@@ -55,7 +55,7 @@ During checkout, Shopware checks for any active tax providers - sorted by priori
 The Shopware shop will wait for a response for 5 seconds. Be sure, that your tax provider implementation responds in time, otherwise Shopware will time out and drop the connection.
 {% endhint %}
 
-In response, you can adjust the taxes of the entire cart, of the entire delivery or per item in the cart.
+In response, you can adjust the taxes of the entire cart, the entire delivery, or each item in the cart.
 
 {% tabs %}
 
