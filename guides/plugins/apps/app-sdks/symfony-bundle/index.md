@@ -1,6 +1,6 @@
 # App Bundle
 
-App Bundle integrates the PHP App SDK for Symfony. This can be accessible at [app-bundle-symfony](https://github.com/shopware/app-bundle-symfony).
+App Bundle integrates the PHP App SDK for Symfony. This can be accessed at [app-bundle-symfony](https://github.com/shopware/app-bundle-symfony).
 
 ## Installation
 
@@ -22,7 +22,7 @@ composer create-project symfony/skeleton:"6.2.*" my-app
 composer require shopware/app-bundle
 ```
 
-It's also recommended to install the monolog bundle to have logging:
+It is also recommended to install the monolog bundle to have logging:
 
 ```bash
 composer require logger
