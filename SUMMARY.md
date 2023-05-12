@@ -314,8 +314,6 @@
         * [HTTP-client](/guides/plugins/apps/app-sdks/php/05-http-client.md)
         * [Events](/guides/plugins/apps/app-sdks/php/06-events.md)
       * [Official Symfony bundle](/guides/plugins/apps/app-sdks/symfony-bundle/index.md)
-      * [GO SDK](/guides/plugins/apps/app-sdks/go/index.md)
-        * [Quickstart](/guides/plugins/apps/app-sdks/go/quickstart.md)
     * [App Scripts](guides/plugins/apps/app-scripts/README.md)
       * [Cart manipulation](guides/plugins/apps/app-scripts/cart-manipulation.md)
       * [Data loading](guides/plugins/apps/app-scripts/data-loading.md)
