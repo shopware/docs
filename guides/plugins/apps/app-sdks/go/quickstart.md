@@ -1,6 +1,6 @@
 # Quick start
 
-## Installing
+## Installation
 
 To start using the app server, install Go and run `go get`:
 

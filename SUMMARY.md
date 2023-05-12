@@ -305,7 +305,7 @@
       * [Starter Guide - Add an API endpoint](guides/plugins/apps/starter/add-api-endpoint.md)
       * [Starter Guide - Admin Extensions](guides/plugins/apps/starter/starter-admin-extension.md)
     * [App Base Guide](guides/plugins/apps/app-base-guide.md)
-    * [App SDK](guides/plugins/apps/app-sdks/README.md)
+    * [App SDKs](guides/plugins/apps/app-sdks/README.md)
       * [Official PHP SDK](/guides/plugins/apps/app-sdks/php/README.md)
         * [Getting started](/guides/plugins/apps/app-sdks/php/01-getting_started.md)
         * [Lifecycle](/guides/plugins/apps/app-sdks/php/02-lifecycle.md)
