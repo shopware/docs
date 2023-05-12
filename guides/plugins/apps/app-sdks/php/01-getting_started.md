@@ -1,6 +1,6 @@
 # Getting Started
 
-The app server written in PHP is an open-source project accessible at [app-php-sdk](https://github.com/janbuecker/shopware-appserver-go).
+The app server written in PHP is an open-source project accessible at [app-php-sdk](https://github.com/shopware/app-php-sdk).
 
 ## Installation
 
