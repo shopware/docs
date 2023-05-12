@@ -84,9 +84,9 @@ The timeout for the requests against the app server is 5 seconds.
 There are SDKs available to integrate apps easier into your application.
 The SDKs are simplifying the registration flow and other typical tasks.
 
-- [Official PHP SDK](https://github.com/shopware/app-php-sdk)
-- [Official Symfony Bundle](https://github.com/shopware/AppBundle)
-- [Go SDK](https://github.com/janbuecker/shopware-appserver-go)
+* [Official PHP SDK](app-sdks/php/01-getting_started.md)
+* [Official Symfony Bundle](app-sdks/symphony-bundle/index.md)
+* [Go SDK](app-sdks/go/index.md)
 
 If there is no SDK available for your language, you can implement the registration process by yourself.
 
