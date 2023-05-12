@@ -95,8 +95,9 @@ You can also check out the [APP SDK](https://github.com/shopware/app-php-sdk) do
 
 ### Optional: Webhook as Symfony Events
 
-The app bundle registers also a generic webhook controller which dispatches the webhook as Symfony event. 
-To use that, register your Shopware webhooks to the generic webhook which is by default `/app/webhook`
+The app bundle registers also a generic webhook controller which dispatches the webhook as Symfony event.
+To use that, register your Shopware webhooks to the generic webhook which is by default `/app/webhook`.
+
 ```xml
 <webhook name="productWritten" url="http://localhost:8000/app/webhook" event="product.written"/>
 ```

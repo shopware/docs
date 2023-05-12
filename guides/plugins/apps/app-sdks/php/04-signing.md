@@ -9,7 +9,6 @@ The signing is required for the following actions:
 - Payment
 - Payment
 
-
 To sign the response, you need to create a `ResponseSigner` and call the `signResponse` method with our PSR 7 Response.
 
 ```php

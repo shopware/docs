@@ -52,7 +52,7 @@ srv.Event("checkout.order.placed", func(ctx context.Context, webhook appserver.W
 
     return nil
 })
-``` 
+```
 
 ## Action buttons
 
@@ -89,7 +89,7 @@ srv.Action("product", "doSomething", func(ctx context.Context, action appserver.
 
     return nil
 })
-``` 
+```
 
 ## Full example
 

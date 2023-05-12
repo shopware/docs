@@ -37,6 +37,6 @@ $webhook->payload; // the event data
 - [Payment Pay](../src/Context/Payment/PaymentPayAction.php) - Payment pay action
 - [Payment Capture](../src/Context/Payment/PaymentCaptureAction.php) - Payment capture action
 - [Payment Validate](../src/Context/Payment/PaymentValidateAction.php) - Payment validate action
-- [Payment Finalize](../src/Context/Payment/PaymentFinalizeAction.php) - Payment finalize action 
+- [Payment Finalize](../src/Context/Payment/PaymentFinalizeAction.php) - Payment finalize action
 
 Next, we will look into the [Signing of responses](./04-signing.md).

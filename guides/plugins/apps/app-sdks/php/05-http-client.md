@@ -1,6 +1,6 @@
 # Making HTTP requests to the Shop
 
-The SDK provides a simple HTTP Client to make requests to the Shopware server. 
+The SDK provides a simple HTTP Client to make requests to the Shopware server.
 For you need the Shop entity
 which you can get using the ShopResolver from the current request or use the ShopRepository to get one by id.
 

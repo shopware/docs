@@ -112,14 +112,14 @@ The registration request is made as a `GET` request against a URL you provide in
 
 The following query parameters will be sent with the request:
 
-- `shop-id`: The unique identifier of the shop the app was installed.
-- `shop-url`: The URL of the shop, this can later be used to access the Shopware API.
-- `timestamp`: The Unix timestamp when the request was created.
+* `shop-id`: The unique identifier of the shop the app was installed.
+* `shop-url`: The URL of the shop, this can later be used to access the Shopware API.
+* `timestamp`: The Unix timestamp when the request was created.
 
 Additionally, the request has the following headers:
 
-- `shopware-app-signature`: The signature of the query string
-- `sw-version`: The Shopware version of the shop *(since 6.4.1.0)*
+* `shopware-app-signature`: The signature of the query string
+* `sw-version`: The Shopware version of the shop *(since 6.4.1.0)*
 
 An example request looks like this:
 
@@ -242,11 +242,11 @@ A sample registration response looks like this:
 
 If the proof you provided in the [registration response](app-base-guide.md#registration-response) matches the one generated on the shop side, the registration is completed. As a result, your app will receive a `POST` request against the URL specified as the `confirmation_url` of the registration with the following parameters send in the request body:
 
-- `apiKey`: The API key used to authenticate against the Shopware Admin API.
-- `secretKey`: The secret key used to authenticate against the Shopware Admin API.
-- `timestamp`: The Unix timestamp when the request was created.
-- `shopUrl`: The URL of the shop.
-- `shopId`: The unique identifier of the shop.
+* `apiKey`: The API key used to authenticate against the Shopware Admin API.
+* `secretKey`: The secret key used to authenticate against the Shopware Admin API.
+* `timestamp`: The Unix timestamp when the request was created.
+* `shopUrl`: The URL of the shop.
+* `shopId`: The unique identifier of the shop.
 
 The payload of that request may look like this:
 
@@ -353,10 +353,10 @@ POST /api/notification
 
 ```
 
-- `status`: Notification status - `success`, `error`, `info`, `warning`.
-- `message`: The content of the notification.
-- `adminOnly`: Only admins can read this notification if this value is true.
-- `requiredPrivileges`: The required privileges that users need to have to read the notification.
+* `status`: Notification status - `success`, `error`, `info`, `warning`.
+* `message`: The content of the notification.
+* `adminOnly`: Only admins can read this notification if this value is true.
+* `requiredPrivileges`: The required privileges that users need to have to read the notification.
 
 Remember that your app needs the `notification:create` permission to access this API.
 
@@ -428,11 +428,11 @@ For a full list of the available hook points and the available services refer to
 
 You can run the `app:validate` command to validate the configuration of your app. It will check for common errors, like:
 
-- non-matching app names
-- missing translations
-- unknown events registered as webhooks
-- missing permissions for webhooks
-- errors in the config.xml file, if it exists
+* non-matching app names
+* missing translations
+* unknown events registered as webhooks
+* missing permissions for webhooks
+* errors in the config.xml file, if it exists
 
 To validate all apps in your `custom/apps` folder run:
 
@@ -470,17 +470,17 @@ The user can either run a strategy with the `bin/console app:url-change:resolve`
 
 ### APP_URL change resolver
 
-- **MoveShopPermanently**: This strategy should be used if the live production shop is migrated from one URL to another one. This strategy will ultimately notify all apps about the change of the APP_URL and the apps will continue working like before, including all the data the apps may already have associated with the given shop. It is important to notice that in this case, the apps in the old installation on the old URL (if it is still running) will stop working.
+* **MoveShopPermanently**: This strategy should be used if the live production shop is migrated from one URL to another one. This strategy will ultimately notify all apps about the change of the APP_URL and the apps will continue working like before, including all the data the apps may already have associated with the given shop. It is important to notice that in this case, the apps in the old installation on the old URL (if it is still running) will stop working.
 
 Technically this is achieved by rerunning the registration process for all apps. During the registration, the same shopId is used as before, but now with a different shop-url and a different key pair used to communicate over the Shopware API. Also, you must generate a new communication secret during this registration process that is subsequently used to communicate between Shopware and the app backend.
 
 This way, it is ensured that the apps are notified about the new URL and the integration with the old installation stops working because a new communication secret is associated with the given shopId that the old installation does not know.
 
-- **ReinstallApps**: This strategy makes sense to use in the case of the staging shop. By running this strategy, all installed apps will be reinstalled. This means that this installation will get a new shopId, that is used during registration.
+* **ReinstallApps**: This strategy makes sense to use in the case of the staging shop. By running this strategy, all installed apps will be reinstalled. This means that this installation will get a new shopId, that is used during registration.
 
 As the new installation will get a new shopId, the installed apps will continue working on the old installation as before, but as a consequence, the data on the apps side that was associated with the old shopId can not be accessed on the new installation.
 
-- **UninstallApps**: This strategy will simply uninstall all apps on the new installation, thus keeping the old installation working like before.
+* **UninstallApps**: This strategy will simply uninstall all apps on the new installation, thus keeping the old installation working like before.
 
 ## API Docs
 <!-- markdown-link-check-disable-next-line -->
