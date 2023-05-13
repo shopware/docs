@@ -674,7 +674,7 @@ The following lists are all possible payment state options:
 * `cancelled` - The payment has been canceled
 * `refunded` - The payment has been refunded
 * `failed` - The payment has failed
-* `authorized` - The payment has been authorized
+* `authorize` - The payment has been authorized
 * `unconfirmed` - The payment has not been confirmed yet
 * `in_progress` - The payment is in progress
 * `reminded` - The payment has been reminded
