@@ -309,8 +309,6 @@
       * [Cart manipulation](guides/plugins/apps/app-scripts/cart-manipulation.md)
       * [Data loading](guides/plugins/apps/app-scripts/data-loading.md)
       * [Custom endpoints](guides/plugins/apps/app-scripts/custom-endpoints.md)
-    * [Local development](guides/plugins/apps/local-development/README.md)
-      * [App development with platform.sh](guides/plugins/apps/local-development/app-development-with-platform-sh.md)
     * [Storefront](guides/plugins/apps/storefront/README.md)
       * [Apps as themes](guides/plugins/apps/storefront/apps-as-themes.md)
       * [Add cookies to the consent manager](guides/plugins/apps/storefront/cookies-with-apps.md)
