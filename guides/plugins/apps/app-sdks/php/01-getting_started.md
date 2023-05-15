@@ -10,7 +10,7 @@ Install the Shopware APP SDK via composer:
 composer require shopware/app-php-sdk
 ```
 
-After the package installation, Composer will automatically install http client if missing
+After the package installation, Composer will automatically install the http client if missing.
 
 ## Registration process
 

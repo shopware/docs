@@ -1,15 +1,15 @@
 # Lifecycle
 
-The lifecycle of an app is managed by the Shopware App System.
-Shopware will send on any change if registered a webhook to our backend server.
+The Shopware App System manages the lifecycle of an app.
+Shopware will send any change if registered a webhook to our backend server.
 
-To track correctly the state in our Database, we need to implement some lifecycle methods.
+To track the state in our Database correctly, we need to implement some lifecycle methods.
 
 ## Lifecycle Methods
 
-- `activate`
-- `deactivate`
-- `uninstall`
+* `activate`
+* `deactivate`
+* `uninstall`
 
 The lifecycle registration in the `manifest.xml` would look like this:
 
@@ -50,6 +50,6 @@ $response = match ($_SERVER['REQUEST_URI']) {
 // return the response
 ```
 
-So in this case, our backend gets notified of any app change, and we can track the state in our database.
+So, in this case, our backend gets notified of any app change, and we can track the state in our database.
 
 Next, we will look into the [Context resolving](./03-context.md).

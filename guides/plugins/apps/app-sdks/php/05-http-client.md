@@ -1,8 +1,6 @@
 # Making HTTP requests to the Shop
 
-The SDK provides a simple HTTP Client to make requests to the Shopware server.
-For you need the Shop entity
-which you can get using the ShopResolver from the current request or use the ShopRepository to get one by id.
+The SDK offers a simple HTTP client for sending requests to the Shopware server. To utilize it, you will require the Shop entity, which you can obtain by using the `shopResolver` from the current request. Alternatively, you can use the `ShopRepository` to obtain the Shop entity by its ID.
 
 ```php
 $app = new AppConfiguration('Foo', 'test', 'http://localhost:6001/register/callback');
@@ -54,7 +52,7 @@ $simpleClient->post('https://shop.com/api/_action/sync', [
 
 ## Testing
 
-The `\Shopware\App\SDK\HttpClient\ClientFactory::factory` method accepts as second argument a PSR18 ClientInterface.
+The `\Shopware\App\SDK\HttpClient\ClientFactory::factory` method accepts as a second argument a PSR18 ClientInterface.
 So you can overwrite the client with a mock client for testing.
 
 ```php

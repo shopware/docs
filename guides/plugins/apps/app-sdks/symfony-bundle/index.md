@@ -65,10 +65,10 @@ and also adjust the environment variables inside your `.env` file to match them.
 
 By default, the following routes are registered:
 
-- `/app/lifecycle/register` - Register the app
-- `/app/lifecycle/activate` - Activate the app
-- `/app/lifecycle/deactivate` - Deactivate the app
-- `/app/lifecycle/delete` - Delete the app
+* `/app/lifecycle/register` - Register the app
+* `/app/lifecycle/activate` - Activate the app
+* `/app/lifecycle/deactivate` - Deactivate the app
+* `/app/lifecycle/delete` - Delete the app
 
 You can change the prefix by editing the `config/routes/shopware_app.yaml` file.
 
@@ -76,33 +76,30 @@ The registration also dispatches events to react to the different lifecycle even
 
 ### 4. Connecting Doctrine to a Database
 
-The App Bundle brings by default a basic Shop entity to store the shop information.
+The App Bundle brings, by default, a basic Shop entity to store the shop information.
 You can extend this entity to store more information about your app if needed.
 
-Doctrine is by default configured to use PostgreSQL. If you want to use MySQL, you need to change the `DATABASE_URL` environment variable in your `.env` file.
-For development, you can use also sqlite by setting the `DATABASE_URL` to `sqlite:///%kernel.project_dir%/var/app.db`.
+Doctrine is, by default, configured to use PostgreSQL. If you want to use MySQL, change the `DATABASE_URL` environment variable in your `.env` file.
+For development, you can also use SQLite by setting the `DATABASE_URL` to `sqlite:///%kernel.project_dir%/var/app.db`.
 
-After choosing your database engine, make sure you create your first migration using `./bin/console make:migration`.
-(Requires Migration Bundle `composer req migrations`)
-
-and apply it with the command: `bin/console doctrine:migrations:migrate`.
+After choosing your database engine, create your first migration using `./bin/console make:migration` (Requires Migration Bundle `composer req migrations`) and apply it with the command: `bin/console doctrine:migrations:migrate`.
 
 ### 5. Implement first ActionButtons, Webhooks, Payment
 
-[Checkout the Official app documentation to learn more about the different integration points with this SDK](https://developer.shopware.com/docs/guides/plugins/apps).
+[Check out the official app documentation to learn more about the different integration points with this SDK](https://developer.shopware.com/docs/guides/plugins/apps).
 
 You can also check out the [APP SDK](https://github.com/shopware/app-php-sdk) documentation.
 
 ### Optional: Webhook as Symfony Events
 
-The app bundle registers also a generic webhook controller which dispatches the webhook as Symfony event.
-To use that, register your Shopware webhooks to the generic webhook which is by default `/app/webhook`.
+The app bundle also registers a generic webhook controller, which dispatches the webhook as a Symfony event.
+To use that, register your Shopware webhooks to the generic webhook, which is by default `/app/webhook`.
 
 ```xml
 <webhook name="productWritten" url="http://localhost:8000/app/webhook" event="product.written"/>
 ```
 
-With that, you can write a Symfony EventListener/Subscriber to listen to the event and react to it.
+With that, you can write a Symfony EventListener/Subscriber to listen to and react to the event.
 
 ```php
 #[AsEventListener(event: 'webhook.product.written')]

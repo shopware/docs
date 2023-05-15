@@ -4,10 +4,9 @@ The Shopware App System requires you to sign your responses to the Shopware serv
 
 The signing is required for the following actions:
 
-- ActionButton
-- TaxProvider
-- Payment
-- Payment
+* ActionButton
+* TaxProvider
+* Payment
 
 To sign the response, you need to create a `ResponseSigner` and call the `signResponse` method with our PSR 7 Response.
 

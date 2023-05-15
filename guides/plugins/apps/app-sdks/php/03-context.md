@@ -1,6 +1,6 @@
 # Context
 
-The ContextResolver helps you to map the Shopware requests to struct classes to work with them easier.
+The ContextResolver helps you map the Shopware requests to struct classes to work with them more easily.
 It also does some validation and checks if the request is valid.
 
 ## Usage
@@ -21,7 +21,7 @@ $contextResolver = new \Shopware\App\SDK\Context\ContextResolver();
 // Find the actual shop by the request
 $shop = $shopResolver->resolveShop($psrRequest);
 
-// Parse the request as webhook
+// Parse the request as a webhook
 $webhook = $contextResolver->assembleWebhook($psrRequest, $shop);
 
 $webhook->eventName; // the event name
@@ -30,13 +30,13 @@ $webhook->payload; // the event data
 
 ## Supported requests
 
-- [Webhook](../src/Context/Webhook/WebhookAction.php) - Webhooks or App lifecycle events
-- [ActionButton](../src/Context/ActionButton/ActionButtonAction.php) - Administration buttons
-- [Module](../src/Context/Module/ModuleAction.php) - Iframe
-- [TaxProvider](../src/Context/TaxProvider/TaxProviderAction.php) - Tax calculation
-- [Payment Pay](../src/Context/Payment/PaymentPayAction.php) - Payment pay action
-- [Payment Capture](../src/Context/Payment/PaymentCaptureAction.php) - Payment capture action
-- [Payment Validate](../src/Context/Payment/PaymentValidateAction.php) - Payment validate action
-- [Payment Finalize](../src/Context/Payment/PaymentFinalizeAction.php) - Payment finalize action
+- [Webhook](https://github.com/shopware/app-php-sdk/blob/main/src/Context/Webhook/WebhookAction.php) - Webhooks or App lifecycle events
+- [ActionButton](https://github.com/shopware/app-php-sdk/blob/main/src/Context/ActionButton/ActionButtonAction.php) - Administration buttons
+- [Module](https://github.com/shopware/app-php-sdk/blob/main/src/Context/Module/ModuleAction.php) - Iframe
+- [TaxProvider](https://github.com/shopware/app-php-sdk/blob/main/src/Context/TaxProvider/TaxProviderAction.php) - Tax calculation
+- [Payment Pay](https://github.com/shopware/app-php-sdk/blob/main/src/Context/Payment/PaymentPayAction.php) - Payment pay action
+- [Payment Capture](https://github.com/shopware/app-php-sdk/blob/main/src/Context/Payment/PaymentCaptureAction.php) - Payment capture action
+- [Payment Validate](https://github.com/shopware/app-php-sdk/blob/main/src/Context/Payment/PaymentValidateAction.php) - Payment validate action
+- [Payment Finalize](https://github.com/shopware/app-php-sdk/blob/main/src/Context/Payment/PaymentFinalizeAction.php) - Payment finalize action
 
 Next, we will look into the [Signing of responses](./04-signing.md).
