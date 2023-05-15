@@ -143,9 +143,9 @@ function taxController(RequestInterface $request): ResponseInterface
     foreach ($taxProviderContext->cart->getDeliveries() as $item) {
         foreach ($item->getPositions() as $position) {
             $builder->addDeliveryTax($position->getIdentifier(), new CalculatedTax(
-                10,
-                50,
-                100
+                tax: 10,
+                taxRate: 50,
+                price: 100
             ));
         }
     }
