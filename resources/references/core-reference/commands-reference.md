@@ -137,7 +137,7 @@ $ bin/console [command] [parameters]
 
 | Command | Description |
 | :--- | :--- |
-| `feature:dump` | \[administration:dump:features\] Creates a json file with feature config for js testing and hot reloading capabilities |
+| `feature:dump` | \[administration:dump:features\] Creates a JSON file with feature config for JS testing and hot reloading capabilities |
 
 ### Framework
 
