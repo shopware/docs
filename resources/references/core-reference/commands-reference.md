@@ -1,6 +1,6 @@
 # Commands Reference
 
-These commands can be executed using the Shopware command line interface \(CLI\), located within your Shopware project
+These commands can be executed using the Shopware command line interface \(CLI\), located within your Shopware project.
 
 ```bash
 $ bin/console [command] [parameters]
@@ -16,18 +16,24 @@ $ bin/console [command] [parameters]
 | `help` | Displays help for a command |
 | `list` | Lists commands |
 
+### Administration
+
+| Command | Description |
+| :--- | :--- |
+| `administration:delete-files-after-build` | Deletes all unnecessary files of the administration after the build process |
+
 ### App
 
 | Command | Description |
 | :--- | :--- |
-| `app:activate` | activate the app in the folder with the given name |
-| `app:deactivate` | deactivate the app in the folder with the given name |
+| `app:activate` | Activates the app in the folder with the given name |
+| `app:create` | Creates an app skeleton |
+| `app:deactivate` | Deactivates the app in the folder with the given name |
 | `app:install` | Installs the app in the folder with the given name |
-| `app:refresh` | Refreshes the installed Apps |
+| `app:refresh` | \[app:update\] Refreshes the installed apps |
 | `app:uninstall` | Uninstalls the app |
-| `app:url-change:resolve` | Resolve changes in the app url and how the app system should handle it. |
-| `app:validate` | checks manifests for errors |
-| `app:verify` | checks manifests for errors |
+| `app:url-change:resolve` | Resolves changes in the app URL and how the app system should handle it. |
+| `app:validate` | Checks manifests for errors |
 
 ### Assets
 
@@ -37,9 +43,9 @@ $ bin/console [command] [parameters]
 
 ### Bundle
 
-| Command | Description |  |
-| :--- | :--- | :--- |
-| `bundle:dump` | \[administration:dump:bundles\] Creates a json file with the configuration for each active Shopware bundle. |
+| Command | Description |
+| :--- | :--- |
+| `bundle:dump` | \[administration:dump:plugins\|administration:dump:bundles\] Creates a JSON file with the configuration for each active Shopware bundle. |
 
 ### Cache
 
@@ -48,18 +54,24 @@ $ bin/console [command] [parameters]
 | `cache:clear` | Clears the cache |
 | `cache:pool:clear` | Clears cache pools |
 | `cache:pool:delete` | Deletes an item from a cache pool |
-| `cache:pool:list` | List available cache pools |
+| `cache:pool:list` | Lists available cache pools |
 | `cache:pool:prune` | Prunes cache pools |
 | `cache:warmup` | Warms up an empty cache |
+
+### Cart
+
+| Command | Description |
+| :--- | :--- |
+| `cart:migrate` | Migrates carts from redis to database |
 
 ### Changelog
 
 | Command | Description |
 | :--- | :--- |
 | `changelog:change` | Returns all changes made in a specific / unreleased version. |
-| `changelog:check` | Check the validation of a given changelog file. This command will check all files in "changelog/\_unreleased" folder, if users don't specify a changelog file. |
-| `changelog:create` | Create a changelog markdown file in `/changelog/_unreleased` |
-| `changelog:release` | Creating or updating the final changelog for a new release |
+| `changelog:check` | Checks the validation of a given changelog file or of all files in the "changelog/\_unreleased" folder |
+| `changelog:create` | Creates a changelog markdown file in `/changelog/_unreleased` |
+| `changelog:release` | Creates or updates the final changelog for a new release |
 
 ### Config
 
@@ -67,84 +79,85 @@ $ bin/console [command] [parameters]
 | :--- | :--- |
 | `config:dump-reference` | Dumps the default configuration for an extension |
 
+### Customer
+
+| Command | Description |
+| :--- | :--- |
+| `customer:delete-unused-guests` | Deletes unused guest customers |
+
 ### Dal
 
 | Command | Description |
 | :--- | :--- |
-| `dal:create:entities` |  |
-| `dal:create:schema` |  |
-| `dal:refresh:index` | Refreshes the shop indices |
-| `dal:validate` |  |
+| `dal:create:entities` | Creates the entity classes |
+| `dal:create:hydrators` | Creates the hydrator classes |
+| `dal:create:schema` | Creates the database schema |
+| `dal:refresh:index` | Refreshes the index for a given entity |
+| `dal:validate` | Validates the DAL definitions |
 
 ### Database
 
 | Command | Description |
 | :--- | :--- |
-| `database:clean-personal-data` |  |
-| `database:create-migration` |  |
-| `database:migrate` |  |
-| `database:migrate-destructive` |  |
-| `database:refresh-migration` |  |
+| `database:clean-personal-data` | Cleans personal data from the database |
+| `database:create-migration` | Creates a new migration file |
+| `database:migrate` | Executes all migrations |
+| `database:migrate-destructive` | Executes all migrations |
+| `database:refresh-migration` | Refreshes the migration state |
 
 ### Debug
 
 | Command | Description |
 | :--- | :--- |
 | `debug:autowiring` | Lists classes/interfaces you can use for autowiring |
-| `debug:business-events` |  |
+| `debug:business-events` | Dumps all business events |
 | `debug:config` | Dumps the current configuration for an extension |
 | `debug:container` | Displays current services for an application |
 | `debug:event-dispatcher` | Displays configured listeners for an application |
 | `debug:messenger` | Lists messages you can dispatch using the message buses |
 | `debug:router` | Displays current routes for an application |
-| `debug:swiftmailer` | Displays current mailers for an application |
 | `debug:translation` | Displays translation messages information |
 | `debug:twig` | Shows a list of twig functions, filters, globals and tests |
-
-### Enqueue
-
-| Command | Description |
-| :--- | :--- |
-| `enqueue:consume` | \[enq:c\] A client's worker that processes messages. By default it connects to default queue. It select an appropriate message processor based on a message headers |
-| `enqueue:produce` | Sends an event to the topic |
-| `enqueue:routes` | \[debug:enqueue:routes\] A command lists all registered routes. |
-| `enqueue:setup-broker` | \[enq:sb\] Setup broker. Configure the broker, creates queues, topics and so on. |
-| `enqueue:transport:consume` | A worker that consumes message from a broker. To use this broker you have to explicitly set a queue to consume from and a message processor service |
 
 ### Es
 
 | Command | Description |
 | :--- | :--- |
-| `es:create:alias` | Dev command to create alias immediately |
-| `es:index` | Reindex all entities to elasticsearch |
-| `es:index:cleanup` | Admin command to remove old and unused indices |
+| `es:admin:index` | Indexes the elasticsearch for the admin search |
+| `es:admin:reset` | Reset Admin Elasticsearch indexing |
+| `es:admin:test` | Allows you to test the admin search index |
+| `es:create:alias` | Creates the elasticsearch alias |
+| `es:index` | Reindexes all entities to elasticsearch |
+| `es:index:cleanup` | Cleans outdated indices |
+| `es:reset` | Resets the elasticsearch index |
+| `es:status` | Shows the status of the elasticsearch index |
 | `es:test:analyzer` | Allows to test an elasticsearch analyzer |
 
 ### Feature
 
 | Command | Description |
 | :--- | :--- |
-| `feature:dump` | \[administration:dump:features\] Creating json file with feature config for js testing and hot reloading capabilities. |
+| `feature:dump` | \[administration:dump:features\] Creates a JSON file with feature config for JS testing and hot reloading capabilities |
 
 ### Framework
 
 | Command | Description |
 | :--- | :--- |
-| `framework:demodata` |  |
-| `framework:dump:class:schema` |  |
+| `framework:demodata` | Generates demo data |
+| `framework:dump:class:schema` | Dumps the schema of the given entity |
 | `framework:schema` | Dumps the api definition to a json file. |
 
 ### Http
 
 | Command | Description |
 | :--- | :--- |
-| `http:cache:warm:up` |  |
+| `http:cache:warm:up` | Warms up the HTTP cache |
 
 ### Import
 
 | Command | Description |
 | :--- | :--- |
-| `import:entity` |  |
+| `import:entity` | Imports entities from a CSV file |
 
 ### Import-export
 
@@ -157,31 +170,41 @@ $ bin/console [command] [parameters]
 | Command | Description |
 | :--- | :--- |
 | `lint:container` | Ensures that arguments injected into services match type declarations |
-| `lint:twig` | Lints a template and outputs encountered errors |
+| `lint:twig` | Lints a Twig template and outputs encountered errors |
 | `lint:xliff` | Lints a XLIFF file and outputs encountered errors |
-| `lint:yaml` | Lints a file and outputs encountered errors |
+| `lint:yaml` | Lints a YAML file and outputs encountered errors |
 
-### Mail-templates
+### Mailer
 
 | Command | Description |
 | :--- | :--- |
-| `mail-templates:assign-to-saleschannels` | Assignes all mailTemplates to all SaleChannels |
+| `mailer:test` | Tests Mailer transports by sending an email |
 
 ### Media
 
 | Command                      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 |:-----------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `media:delete-unused`        | Deletes all media files that are never used. Use the `--dry-run` flag to see a paginated list of files that will be deleted, without actually deleting them. Use the `--grace-period-days=10` to set a grace period for unused media, meaning that only media uploaded before the current date and time minus 10 days will be considered for deletion. The default is 20 and therefore any media uploaded in the previous 20 days will not be considered for deletion even if it is unused. |
-| `media:generate-media-types` | Generates the media type for all media entities                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `media:generate-thumbnails`  | Generates the thumbnails for media entities                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `media:generate-media-types` | Generates the media types for all media entities                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `media:generate-thumbnails`  | Generates the thumbnails for all media entities                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 
 ### Messenger
 
 | Command | Description |
 | :--- | :--- |
-| `messenger:consume` | \[messenger:consume-messages\] Consumes messages |
+| `messenger:consume` | Consumes messages |
+| `messenger:failed:remove` | Removes given messages from the failure transport |
+| `messenger:failed:retry` | Retries one or more messages from the failure transport |
+| `messenger:failed:show` | Shows one or more messages from the failure transport |
 | `messenger:setup-transports` | Prepares the required infrastructure for the transport |
+| `messenger:stats` | Shows the message count for one or more transports |
 | `messenger:stop-workers` | Stops workers after their current message |
+
+### Number-range
+
+| Command | Description |
+| :--- | :--- |
+| `number-range:migrate` | Migrates the increment storage of a number range |
 
 ### Plugin
 
@@ -191,23 +214,17 @@ $ bin/console [command] [parameters]
 | `plugin:create` | Creates a plugin skeleton |
 | `plugin:deactivate` | Deactivates given plugins |
 | `plugin:install` | Installs given plugins |
-| `plugin:list` | Show a list of available plugins. |
+| `plugin:list` | Lists all plugins |
 | `plugin:refresh` | Refreshes the plugins list in the storage from the file system |
 | `plugin:uninstall` | Uninstalls given plugins |
 | `plugin:update` | Updates given plugins |
-| `plugin:zip-import` | Import plugin zip file. |
+| `plugin:zip-import` | Imports a plugin from a zip file |
 
 ### Product-export
 
 | Command | Description |
 | :--- | :--- |
-| `product-export:generate` |  |
-
-### Pwa
-
-| Command | Description |
-| :--- | :--- |
-| `pwa:dump-plugins` |  |
+| `product-export:generate` | Generates a product export file |
 
 ### Router
 
@@ -215,33 +232,40 @@ $ bin/console [command] [parameters]
 | :--- | :--- |
 | `router:match` | Helps debug routes by simulating a path info match |
 
+### S3
+
+| Command | Description |
+| :--- | :--- |
+| `s3:set-visibility` | Sets the visibility of all files in the s3 filesystem to public |
+
 ### Sales-channel
 
 | Command | Description |
 | :--- | :--- |
-| `sales-channel:create` |  |
-| `sales-channel:create:storefront` |  |
-| `sales-channel:list` |  |
-| `sales-channel:maintenance:disable` |  |
-| `sales-channel:maintenance:enable` |  |
+| `sales-channel:create` | Creates a new sales channel |
+| `sales-channel:create:storefront` | Creates a new storefront sales channel |
+| `sales-channel:list` | Lists all sales channels |
+| `sales-channel:maintenance:disable` | Disables maintenance mode for a sales channel |
+| `sales-channel:maintenance:enable` | Enables maintenance mode for a sales channel |
+| `sales-channel:update:domain` | Updates a sales channel domain |
 
 ### Scheduled-task
 
 | Command | Description |
 | :--- | :--- |
-| `scheduled-task:register` | Registers all available scheduled tasks. |
-| `scheduled-task:run` | Worker that runs scheduled task. |
+| `scheduled-task:register` | Registers all scheduled tasks |
+| `scheduled-task:run` | Runs scheduled tasks |
 
 ### Secrets
 
 | Command | Description |
 | :--- | :--- |
-| `secrets:decrypt-to-local` | Decrypts all secrets and stores them in the local vault. |
-| `secrets:encrypt-from-local` | Encrypts all local secrets to the vault. |
-| `secrets:generate-keys` | Generates new encryption keys. |
-| `secrets:list` | Lists all secrets. |
-| `secrets:remove` | Removes a secret from the vault. |
-| `secrets:set` | Sets a secret in the vault. |
+| `secrets:decrypt-to-local` | Decrypts all secrets and stores them in the local vault |
+| `secrets:encrypt-from-local` | Encrypts all local secrets to the vault |
+| `secrets:generate-keys` | Generates new encryption keys |
+| `secrets:list` | Lists all secrets |
+| `secrets:remove` | Removes a secret from the vault |
+| `secrets:set` | Sets a secret in the vault |
 
 ### Sitemap
 
@@ -253,60 +277,49 @@ $ bin/console [command] [parameters]
 
 | Command | Description |
 | :--- | :--- |
-| `snippets:validate` |  |
+| `snippets:validate` | Validates snippets |
 
 ### State-machine
 
 | Command | Description |
 | :--- | :--- |
-| `state-machine:dump` | Dump a workflow |
+| `state-machine:dump` | Dumps a state machine to a graphviz file |
 
 ### Store
 
 | Command | Description |
 | :--- | :--- |
-| `store:download` |  |
-| `store:login` |  |
-
-### Swiftmailer
-
-| Command | Description |
-| :--- | :--- |
-| `swiftmailer:email:send` | Send simple email message |
-| `swiftmailer:spool:send` | Sends emails from the spool |
+| `store:download` | Downloads a plugin from the store |
+| `store:login` | Login for the store |
 
 ### System
 
 | Command | Description |
 | :--- | :--- |
-| `system:config:get` |  |
-| `system:config:set` |  |
-| `system:generate-app-secret` |  |
-| `system:generate-jwt-secret` |  |
-| `system:install` |  |
-| `system:setup` |  |
-| `system:update:finish` |  |
-| `system:update:prepare` |  |
+| `system:config:get` | Gets a config value |
+| `system:config:set` | Sets a config value |
+| `system:configure-shop` | Configures the shop |
+| `system:generate-app-secret` | Generates a new app secret |
+| `system:generate-jwt-secret` | Generates a new JWT secret |
+| `system:install` | Installs the Shopware 6 system |
+| `system:setup` | Setup the system |
+| `system:update:finish` | Finishes the update process |
+| `system:update:prepare` | Prepares the update process |
 
 ### Theme
 
 | Command | Description |
 | :--- | :--- |
-| `theme:change` |  |
-| `theme:compile` |  |
+| `theme:change` | Changes the active theme for a sales channel |
+| `theme:compile` | Compiles the theme |
 | `theme:create` | Creates a theme skeleton |
-| `theme:dump` |  |
-| `theme:refresh` |  |
-
-### Translation
-
-| Command | Description |
-| :--- | :--- |
-| `translation:update` | Updates the translation file |
+| `theme:dump` | Dumps the theme configuration |
+| `theme:prepare-icons` | Prepares the theme icons |
+| `theme:refresh` | Refreshes the theme configuration |
 
 ### User
 
 | Command | Description |
 | :--- | :--- |
-| `user:change-password` |  |
-| `user:create` |  |
+| `user:change-password` | Changes the password of a user |
+| `user:create` | Creates a new user |
