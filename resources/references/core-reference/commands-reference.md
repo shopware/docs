@@ -157,7 +157,7 @@ $ bin/console [command] [parameters]
 
 | Command | Description |
 | :--- | :--- |
-| `import:entity` | Imports entities from a csv file |
+| `import:entity` | Imports entities from a CSV file |
 
 ### Import-export
 
