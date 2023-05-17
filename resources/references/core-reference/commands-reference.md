@@ -20,7 +20,7 @@ $ bin/console [command] [parameters]
 
 | Command | Description |
 | :--- | :--- |
-| `administration:delete-files-after-build` | Deletes all uneccessary files of the administration after the build process |
+| `administration:delete-files-after-build` | Deletes all unnecessary files of the administration after the build process |
 
 ### App
 
