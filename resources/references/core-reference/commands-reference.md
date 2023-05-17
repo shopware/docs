@@ -45,7 +45,7 @@ $ bin/console [command] [parameters]
 
 | Command | Description |
 | :--- | :--- |
-| `bundle:dump` | \[administration:dump:plugins\|administration:dump:bundles\] Creates a json file with the configuration for each active Shopware bundle. |
+| `bundle:dump` | \[administration:dump:plugins\|administration:dump:bundles\] Creates a JSON file with the configuration for each active Shopware bundle. |
 
 ### Cache
 
