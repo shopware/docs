@@ -151,7 +151,7 @@ $ bin/console [command] [parameters]
 
 | Command | Description |
 | :--- | :--- |
-| `http:cache:warm:up` | Warms up the http cache |
+| `http:cache:warm:up` | Warms up the HTTP cache |
 
 ### Import
 
