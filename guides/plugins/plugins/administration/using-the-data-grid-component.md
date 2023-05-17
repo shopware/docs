@@ -16,7 +16,7 @@ Let's create the simplest template we need in order to use the [`sw-data-grid`](
 
 ```markup
 <div>
-    <sw-data-grid :dataSource="dataSource" :columns="columns">
+    <sw-data-grid :data-source="dataSource" :columns="columns">
     </sw-data-grid>
 </div>
 ```
