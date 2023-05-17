@@ -32,7 +32,7 @@ $ bin/console [command] [parameters]
 | `app:install` | Installs the app in the folder with the given name |
 | `app:refresh` | \[app:update\] Refreshes the installed apps |
 | `app:uninstall` | Uninstalls the app |
-| `app:url-change:resolve` | Resolves changes in the app url and how the app system should handle it. |
+| `app:url-change:resolve` | Resolves changes in the app URL and how the app system should handle it. |
 | `app:validate` | Checks manifests for errors |
 
 ### Assets
