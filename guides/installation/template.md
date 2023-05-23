@@ -10,7 +10,7 @@ To create a new Shopware project, run the following command:
 composer create-project shopware/production <project-name>
 ```
 
-This creates a new project in the `<project-name>` directory. The `dev-flex` version constraint installs the latest version of Shopware. The constraint `dev-flex` will be removed once the template is generally available.
+This creates a new project in the `<project-name>` directory.
 
 The template contains all Shopware bundles like `shopware/administration`, `shopware/storefront` and `shopware/elasticsearch`. If you don't need any, then you can uninstall them with:
 
