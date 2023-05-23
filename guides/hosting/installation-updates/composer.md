@@ -1,7 +1,7 @@
 # Versioning and Dependencies
 
 {% hint style="danger" %}
-This setup is no longer the recommended way to manage a Shopware installation. Please refer to our [Flex-guide](../../installation/flex.md#How-do-I-migrate-from-Production-Template-to-Symfony-Flex?) on how to migrate to a symfony flex based setup.
+This setup is no longer the recommended way to manage a Shopware installation. Please refer to our [Flex-guide](../../installation/template.md#how-do-i-migrate-from-production-template-to-symfony-flex) on how to migrate to a symfony flex based setup.
 {% endhint %}
 
 ## Overview
