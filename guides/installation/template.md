@@ -102,13 +102,13 @@ The template is small and does not contain any dev-tooling or integrations like 
 
 ```bash
 # Install profiler and other dev tools, eg Faker for demo data generation
-composer req --dev dev-tools
+composer require --dev dev-tools
 
 # Install PaaS integration
-composer req paas
+composer require paas
 
 # Install Fastly integration
-composer req fastly
+composer require fastly
 ```
 
 ### Add Shopware packagist
@@ -227,10 +227,10 @@ If you want to use Shopware PaaS or Fastly, you need to install the following Co
 
 ```bash
 # PaaS
-composer req paas
+composer require paas
 
 # Fastly
-composer req fastly
+composer require fastly
 ```
 
 ## Update Shopware
@@ -248,7 +248,7 @@ There are two ways to update Shopware:
 Prior to Shopware 6.4.17.0, you have to install the Profiler bundle to get `APP_ENV=dev` working with:
 
 ```bash
-composer req --dev profiler
+composer require --dev profiler
 ```
 
 ### framework:demo-data is missing faker classes
@@ -256,5 +256,5 @@ composer req --dev profiler
 Prior to Shopware 6.4.17.0, you have to install some packages to get `framework:demo-data` command working:
 
 ```bash
-composer req --dev mbezhanov/faker-provider-collection maltyxx/images-generator
+composer require --dev mbezhanov/faker-provider-collection maltyxx/images-generator
 ```
