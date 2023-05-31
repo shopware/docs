@@ -87,17 +87,37 @@ Our new Route should look like this:
 
 namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
 
-use OpenApi\Annotations as OA;
-use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Shopware\Core\Framework\Plugin\Exception\DecorationPatternException;
-use Shopware\Core\Framework\Routing\Annotation\Entity;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route(defaults={"_routeScope"={"store-api"}})
  */
+abstract class AbstractProductCountRoute
+{
+    abstract public function getDecorated(): AbstractProductCountRoute;
+
+    abstract public function load(Criteria $criteria, SalesChannelContext $context): ProductCountRouteResponse;
+}
+
+```
+
+```php
+<?php declare(strict_types=1);
+
+namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
+
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Aggregation\Metric\CountAggregation;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\AggregationResult\Metric\CountResult;
+use Shopware\Core\Framework\Plugin\Exception\DecorationPatternException;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
+use Symfony\Component\Routing\Annotation\Route;
+
+#[Route(defaults: ['_routeScope' => ['store-api']])]
 class ProductCountRoute extends AbstractProductCountRoute
 {
     protected EntityRepository $productRepository;
@@ -107,45 +127,83 @@ class ProductCountRoute extends AbstractProductCountRoute
         $this->productRepository = $productRepository;
     }
 
-    public function getDecorated(): AbstractExampleRoute
+    public function getDecorated(): AbstractProductCountRoute
     {
         throw new DecorationPatternException(self::class);
     }
 
-    /**
-     * @Entity("swag_get_active_product_count")
-     * @OA\Post(
-     *      path="/get-active-product-count",
-     *      summary="This route can be used to get the count of all active products",
-     *      operationId="readProductCount",
-     *      tags={"Store API", "productCount"},
-     *      @OA\Parameter(name="Api-Basic-Parameters"),
-     *      @OA\Response(
-     *          response="200",
-     *          description="",
-     *          @OA\JsonContent(type="object",
-     *              @OA\Property(
-     *                  property="productCount",
-     *                  type="integer",
-     *                  description="Total amount"
-     *              )
-     *          )
-     *     )
-     * )
-     * @Route("/store-api/get-active-product-count", name="store-api.product-count.get", methods={"GET", "POST"})
-     */
+     #[Route(path: '/store-api/get-active-product-count', name: 'store-api.product-count.get', methods: ['GET', 'POST'], defaults: ['_entity' => 'product'])]
     public function load(Criteria $criteria, SalesChannelContext $context): ProductCountRouteResponse
     {
-        criteria = new Criteria();
+        $criteria = new Criteria();
         $criteria->addFilter(new EqualsFilter('product.active', true));
         $criteria->addAggregation(new CountAggregation('productCount', 'product.id'));
 
         /** @var CountResult $productCountResult */
         $productCountResult = $this->productRepository
-            ->aggregate($criteria, $event->getContext())
+            ->aggregate($criteria, $context->getContext())
             ->get('productCount');
             
         return new ProductCountRouteResponse($productCountResult);
+    }
+}
+```
+
+### Register route class
+
+```markup
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ProductCountRoute" >
+            <argument type="service" id="product.repository"/>
+        </service>
+    </services>
+</container>
+```
+
+The routes.xml according to our guide for [adding store-api routes](../framework/store-api/add-store-api-route) should look like this.
+
+```markup
+<?xml version="1.0" encoding="UTF-8" ?>
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing
+        https://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <import resource="../../Core/**/*Route.php" type="annotation" />
+</routes>
+```
+
+### ProductCountRouteResponse
+
+The RouteResponse according to our guide for [adding store-api routes](../framework/store-api/add-store-api-route) should look like this
+
+```php
+<?php declare(strict_types=1);
+
+namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
+
+use Shopware\Core\Framework\DataAbstractionLayer\Search\AggregationResult\Metric\CountResult;
+use Shopware\Core\System\SalesChannel\StoreApiResponse;
+
+/**
+ * Class CountResult
+ * @property CountResult $object
+ */
+class ProductCountRouteResponse extends StoreApiResponse
+{
+    public function __construct(CountResult $countResult)
+    {
+        parent::__construct($countResult);
+    }
+
+    public function getProductCount(): CountResult
+    {
+        return $this->object;
     }
 }
 ```
@@ -161,10 +219,7 @@ This will not actually search for any products and return the whole products dat
 namespace Swag\BasicExample\Service;
 
 use Shopware\Core\Content\Product\SalesChannel\ProductCountRoute;
-use Shopware\Core\Framework\DataAbstractionLayer\Search\Aggregation\Metric\CountAggregation;
-use Shopware\Core\Framework\DataAbstractionLayer\Search\AggregationResult\Metric\CountResult;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
 use Shopware\Storefront\Pagelet\Footer\FooterPageletLoadedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -186,7 +241,7 @@ class AddDataToPage implements EventSubscriberInterface
 
     public function addActiveProductCount(FooterPageletLoadedEvent $event): void
     {
-        $productCountResponse = $this->productCountRoute->load(new Criteria(), $event->getContext());
+        $productCountResponse = $this->productCountRoute->load(new Criteria(), $event->getSalesChannelContext());
 
         $event->getPagelet()->addExtension('product_count', $productCountResponse->getProductCount());
     }
@@ -208,6 +263,10 @@ Now you only have to adjust your service definition to inject the productCountRo
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+        <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ProductCountRoute" public="true">
+            <argument type="service" id="product.repository"/>
+        </service>
+        
         <service id="Swag\BasicExample\Service\AddDataToPage" >
             <argument type="service" id="Swag\BasicExample\Core\Content\Example\SalesChannel\ProductCountRoute"/>
             <tag name="kernel.event_subscriber" />

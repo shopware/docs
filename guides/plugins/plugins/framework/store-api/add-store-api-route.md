@@ -97,6 +97,22 @@ In our class constructor we've injected our `swag_example.repository`. The metho
 
 The `@Entity` annotation just marks the entity that the api will return.
 
+### Register route class
+
+```markup
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute" >
+            <argument type="service" id="swag_example.repository"/>
+        </service>
+    </services>
+</container>
+```
+
 ### Route response
 
 After we have created our route, we need to create the mentioned `ExampleRouteResponse`. This class should extend from `Shopware\Core\System\SalesChannel\StoreApiResponse`, consequently inheriting a property `$object` of type `Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult`. The `StoreApiResponse` parent constructor takes accepts one argument `$object` in order to set the value for the `$object` property (currently we provide this parameter our `ExampleRoute`). Finally, we add a method `getExamples` in which we return our entity collection that we got from the object.
@@ -280,6 +296,26 @@ class ExampleController extends StorefrontController
 
 This looks very similar then what we did in the `ExampleRoute` itself. The main difference is that this route is registered for the `storefront` route scope.
 Additionally, we also use the `defaults={"XmlHttpRequest"=true}` config option on the route, this will enable us to request that route via AJAX-calls from the Storefronts javascript.
+
+### Register the Controller
+
+```markup
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute" >
+            <argument type="service" id="swag_example.repository"/>
+        </service>
+    
+        <service id="Swag\BasicExample\Storefront\Controller\ExampleController" >
+            <argument type="service" id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute"/>
+        </service>
+    </services>
+</container>
+```
 
 ### Register Storefront api-route
 
