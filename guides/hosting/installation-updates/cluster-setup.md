@@ -6,7 +6,7 @@ This guide contains information for everyone who intends to start with such a pr
 
 ## Symfony Flex template
 
-Use the [Symfony Flex template](../../installation/template.md) and pinn the Shopware versions in the `composer.json` file. This prevents unwanted updates when deploying (without a composer.lock).
+Use the [Symfony Flex template](../../installation/template.md) and pin the Shopware versions in the `composer.json` file. This prevents unwanted updates when deploying (without a composer.lock).
 
 ## Sources
 
@@ -22,8 +22,8 @@ Most big-scale projects have a development team assigned. It is responsible for 
 
 ## Composer plugin loader
 
-Shopware loads by default all plugins via the database and allows to enable / disable plugins at runtime. This is not working well in a multi-app server environment. Therefore, we recommend using the Composer plugin loader. The Composer plugin loader loads the plugin state from Composer, so when a plugin is installed using Composer we assume that it is enabled.
-That allows you to deploy plugins to all app servers by deploying with installing them using Composer. The plugins have to be installed while deployment using `bin/console plugin:install --activate <name>`, so they are ready to use after the deployment. To use the composer plugin loader add the environment variable `COMPOSER_PLUGIN_LOADER=1` to your `.env` file.
+Shopware loads by default all plugins via the database and allows to enable/disable plugins at runtime. This needs to be fixed in a multi-app server environment. Therefore, we recommend using the Composer plugin loader. The Composer plugin loader loads the plugin state from Composer, so when a plugin is installed using Composer we assume that it is enabled.
+That allows you to deploy plugins to all app servers by deploying with installing them using Composer. The plugins must be installed while deployment using `bin/console plugin:install --activate <name>`, so they are ready to use after the deployment. To use the composer plugin loader, add the environment variable `COMPOSER_PLUGIN_LOADER=1` to your `.env` file.
 
 ## Redis
 
