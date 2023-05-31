@@ -479,6 +479,7 @@
     * [Mocking repositories](resources/references/adr/2023-04-01-mocking-repositories.md)
     * [Disable css autoprefixer](resources/references/adr/2023-04-03-disable-css-autoprefixer.md)
     * [Jest test files should be javascript only](resources/references/adr/2023-04-14-jest-test-files-should-be-javascript-only.md)
+    * [Exception log levels](resources/references/adr/2023-05-25-exception-log-levels.md)
     * [YYYY MM DD template](resources/references/adr/YYYY-MM-DD-template.md)
 
   * [App Reference](resources/references/app-reference/README.md)
