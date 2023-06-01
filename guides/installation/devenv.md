@@ -48,6 +48,24 @@ docker run -it nixos/nix
 {% endtab %}
 {% endtabs %}
 
+#### Using Oh My ZSH?
+
+You probably won't be able to use the commands below, use the following steps to continue using [oh my zsh](https://ohmyz.sh/):
+
+1. Open `/etc/zshrc` and look for the following lines (probably at the end of the file):
+ ```
+ # Nix
+ if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+ fi
+ # End Nix
+ ```
+2. Copy these lines and delete them from this file.
+1. Open `~/.zshrc` and add the above copied lines to the end of this file
+1. Initiate the terminal with `source ~/.zshrc` or reboot your terminal for nix to work
+
+Credits: https://stackoverflow.com/a/70822086/982278
+
 ### Cachix
 
 Next, install [Cachix](https://www.cachix.org/) to speed up the installation:
