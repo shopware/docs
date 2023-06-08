@@ -2,7 +2,7 @@
 
 ## Overview
 
-Shopware 6 provides certain rate limits by default that reduces the risk of bruteforce attacks for pages like login or password reset.
+Shopware 6 provides certain rate limits by default that reduces the risk of brute-force attacks for pages like login or password reset.
 
 ## Configuration
 

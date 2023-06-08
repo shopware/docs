@@ -1,4 +1,4 @@
-# App-Starter - Read and Write Data
+# Starter Guide - Read and Write Data
 
 This guide will show you how to set up an app server with our [app template](https://github.com/shopware/AppTemplate).
 You will learn how to read and write data to the Shopware Admin API using an example of fetching dynamic translations for products when they are updated.

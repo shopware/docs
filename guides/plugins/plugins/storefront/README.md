@@ -1,15 +1,3 @@
 # Storefront
 
-Following is a list of important Storefront topics, that you might want to have a look at.
-
-{% page-ref page="add-custom-controller.md" %}
-
-{% page-ref page="customize-templates.md" %}
-
-{% page-ref page="add-custom-javascript.md" %}
-
-{% page-ref page="reacting-to-javascript-events.md" %}
-
-{% page-ref page="add-cookie-to-manager.md" %}
-
-{% page-ref page="use-csrf-protection.md" %}
+Shopware is responsible for handling the front-end of the e-commerce platform, which includes the visual presentation and user interface of the online store. You can customize and enhance the storefront by adding or modifying templates, layouts, styles, and components via plugins. It provides the flexibility to add custom pages, layouts, dynamic content, filters, media, assets and styles to create unique and engaging shopping experiences, ensuring a seamless and visually appealing interface for customers. It enables businesses to showcase their products, implement responsive designs, optimize performance, and deliver a personalized shopping journey to their online visitors.

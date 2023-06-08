@@ -1,1 +1,3 @@
 # Code
+
+Code guidelines is a comprehensive developer handbook that includes dos and don'ts and clear description of how the code functions, blocks, class, method, argument, return value, files may be used. It enhances code readability, reproducibility, and usability.

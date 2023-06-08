@@ -1,9 +1,3 @@
 # Guides
 
-{% page-ref page="extending-a-shopware-migration-profile.md" %}
-
-{% page-ref page="extending-the-migration-connector.md" %}
-
-{% page-ref page="decorating-a-shopware-migration-assistant-converter.md" %}
-
-{% page-ref page="creating-a-new-migration-profile.md" %}
+This section guides you on how to migrate from different environments by using Migration Assistant converter, migration profile or migration connector.
