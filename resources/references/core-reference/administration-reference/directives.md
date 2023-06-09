@@ -12,4 +12,4 @@ Or see all of them in the folder [here](https://github.com/shopware/platform/tre
 | `dragdrop`   | Enables the drag and drop functionality of the CMS.         |
 | `popover`    | Directive for automatic edge detection of the element place |
 | `responsive` | Adds methods to add responsive element classes              |
-| `tooltip`    | Provides utility functions to display tooltips.           |
+| `tooltip`    | Provides utility functions to display tooltips.             |

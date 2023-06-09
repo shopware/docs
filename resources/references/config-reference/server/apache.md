@@ -20,4 +20,3 @@ The document root must always point to the public folder, to ensure all function
    CustomLog ${APACHE_LOG_DIR}/shopware.access.log combined
 </VirtualHost>
 ```
-

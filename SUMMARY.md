@@ -383,6 +383,7 @@
     * [Administration Reference](resources/references/core-reference/administration-reference/README.md)
       * [Utils](resources/references/core-reference/administration-reference/utils.md)
       * [Mixins](resources/references/core-reference/administration-reference/mixins.md)
+      * [Directives](resources/references/core-reference/administration-reference/directives.md)
     * [Commands Reference](resources/references/core-reference/commands-reference.md)
     * [Flow Reference](resources/references/core-reference/flow-reference.md)
     * [Rules Reference](resources/references/core-reference/rules-reference.md)
