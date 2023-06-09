@@ -2,7 +2,7 @@
 
 In Shopware, apps are custom-developed extensions that provide additional functionality and customization options to the e-commerce platform. These apps can be created using the Shopware app SDK, plugin system, or App scripts.
 
-Apps can be designed to serve various purposes. 
+Apps can be designed to serve various purposes.
 
 * **Extending functionality:** Apps can add new features and capabilities to the Shopware platform. This includes creating custom payment gateways, implementing advanced shipping methods, or enhancing the product catalog management.
 
