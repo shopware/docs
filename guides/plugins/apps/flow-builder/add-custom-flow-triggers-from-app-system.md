@@ -191,7 +191,7 @@ Please see the [StorableFlow Concept](../../../../resources/references/adr/admin
 
 ## Snippet for translation
 
-You can define snippets to translate your custom trigger to show in the trigger tree and flow list. For more information, refer to [Adding snippets](../../plugins/administration/adding-snippets.md) guide.
+You can define snippets to translate your custom trigger to show the trigger tree and flow list. Refer to the [Adding snippets](../../plugins/administration/adding-snippets.md) guide for more information.
 
 Snippet keys should be defined based on your trigger name defined at `<name>` in your `flow.xml`.
 
