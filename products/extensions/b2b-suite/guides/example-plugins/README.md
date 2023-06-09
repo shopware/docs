@@ -1,8 +1,6 @@
 # Example Plugins
 
-## General
-
-Our documentation provides several example plugins on how to extend the B2B Suite. In the following, you can find a list with further descriptions:
+Here is a list of example plugins with descriptions to extend the B2B Suite:
 
 | Plugin                                 | Description                                                                                            |
 |----------------------------------------|--------------------------------------------------------------------------------------------------------|
@@ -12,5 +10,5 @@ Our documentation provides several example plugins on how to extend the B2B Suit
 | [B2bAuth](B2bAuth.zip)                 | Login as a certain user                                                                                |
 | [B2bLogin](B2bLogin.zip)               | Exchange the E-Mail login with a staff-number login                                                    |
 | [B2bRestApi](B2bRestApi.zip)           | Plugin to show the `RestApi` Routing                                                                   |
-| [B2bServiceExtension](B2bServiceExtension.zip) | Plugin to show how to extend a Service                                                                 |
-| [B2bTemplateExtension](B2bTemplateExtension.zip) | Plugin to show how to extend the **SwagB2bPlatform** templates                                         |
+| [B2bServiceExtension](B2bServiceExtension.zip) | Plugin to show how to extend a Service                                                         |
+| [B2bTemplateExtension](B2bTemplateExtension.zip) | Plugin to show how to extend the **SwagB2bPlatform** templates                               |
