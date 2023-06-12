@@ -6,7 +6,7 @@ The API interface exposed by this module allows the user to operate a set of com
 
 ## Pre-requisites and setup
 
-Customer-specific Pricing is part of the Commercial plugin, so it requires an existing Shopware 6 installation and the activated Shopware 6 Commercial plugin. This Commercial plugin can be installed as per the [install instructions](../../../../guides/plugins/plugins/plugin-base-guide#install-your-plugin). In addition, the `Custom Prices` feature needs to be activated within the relevant merchant account.
+Customer-specific pricing is part of the Commercial plugin, requiring an existing Shopware 6 installation and the activated Shopware 6 Commercial plugin. This Commercial plugin can be installed as per the [install instructions](../../../../guides/plugins/plugins/plugin-base-guide#install-your-plugin). In addition, the `Custom Prices` feature needs to be activated within the relevant merchant account.
 
 ## Working with the API route
 
