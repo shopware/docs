@@ -23,7 +23,7 @@ Below, you can see an example definition of a working tax provider.
 
 ```markup
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
         <!-- The name of the app should not change. Otherwise all payment methods are created as duplicates. -->
         <name>PaymentApp</name>
@@ -35,7 +35,7 @@ Below, you can see an example definition of a working tax provider.
             <identifier>myCustomTaxProvider</identifier>                        <!-- Unique identifier of the tax provider -->
             <name>My custom tax provider</name>                                 <!-- Display name of the tax provider -->    
             <priority>1</priority>                                              <!-- Priority of the tax provider - can be changed in the administration as well -->
-            <processUrl>https://tax-provider.app/provide-taxes</processUrl>     <!-- Url of your implementation - is called during checkout to provide taxes -->
+            <process-url>https://tax-provider.app/provide-taxes</process-url>     <!-- Url of your implementation - is called during checkout to provide taxes -->
         </tax-provider>
     </tax>
 </manifest>
