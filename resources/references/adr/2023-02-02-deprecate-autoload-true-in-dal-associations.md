@@ -5,13 +5,6 @@ area: core
 tags: [dal, performance, api, core]
 --- 
 
-# Deprecate autoloading associations in DAL entity definitions
-
-{% hint style="info" %}
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2023-02-02-deprecate-autoload-true-in-dal-associations.md)
-{% endhint %}
-
 ## Context
 
 When using the `OneToOneAssociationField` & `ManyToOneAssociationField` associations it is possible to specify the parameter `autoload` as `true`. This causes the association to be loaded with every query, regardless of whether the data is used or not.
