@@ -2,7 +2,7 @@
 
 ## Overview
 
-Flysystem is a file storage library for PHP. It provides one interface to interact with many types of filesystems. The Flysystem file system in Shopware is a flexible that allows seamless interaction with various file storage systems. It provides a consistent interface to access, manipulate, and manage files across different storage backends.
+Flysystem is a file storage library for PHP. It provides one interface to interact with many types of filesystems. The Flysystem file system in Shopware is flexible, allowing seamless interaction with various file storage systems. It provides a consistent interface to access, manipulate, and manage files across different storage backends.
 
 ## Prerequisites
 
