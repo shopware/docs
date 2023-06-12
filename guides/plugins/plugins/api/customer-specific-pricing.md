@@ -2,8 +2,7 @@
 
 The Customer-specific pricing feature allows massive advances in the pricing model capabilities in the Shopware 6 ecosystem.
 
-The API interface exposed by this module allows the user to operate a set of commands which will enable the granular ''overriding'' of prices via an external data repository or ERP system. This is achieved by defining a custom
-relationship between the current price and the Customer entity.
+The API interface exposed by this module allows the user to operate a set of commands which will enable the granular overriding of prices via an external data repository or ERP system. This is achieved by defining a custom relationship between the current price and the Customer entity.
 
 ## Pre-requisites and setup
 
