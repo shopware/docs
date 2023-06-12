@@ -1,9 +1,3 @@
 # Administration
 
-Following are important topics that you might want to have a look at when working with the Administration.
-
-{% page-ref page="add-custom-module.md" %}
-
-{% page-ref page="using-data-handling.md" %}
-
-{% page-ref page="the-shopware-object.md" %}
+Shopware allows to extend the functionality of the Shopware administration panel, providing additional features and customization options for managing the e-commerce platform. The plugin allows businesses to tailor the administration interface to their specific needs, adding custom sections, modules, services, or functionalities to streamline their workflow and enhance the user experience. The administration plugin offers flexibility in configuring dashboards, menu structures, permissions, and settings, empowering businesses to create a customized and efficient administration experience that aligns with their unique requirements.

@@ -1,6 +1,6 @@
 # Testing
 
-When it comes to testing, you might immediately thing about unit tests. Of course, we've got you covered then:
+When it comes to testing, you might immediately think about unit tests. Of course, we have got you covered then:
 
 {% page-ref page="php-unit.md" %}
 

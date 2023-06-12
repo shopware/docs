@@ -1,12 +1,12 @@
 # Utils
 
-This is an overview of all the utility functions bound to the shopware global object. Utility functions provide many useful shortcuts for common tasks, see how to use them in your plugin [here](../../../../guides/plugins/plugins/administration/using-utils.md). Or see the code that registers them [here](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/core/service/util.service.js)
+This is an overview of all the utility functions bound to the shopware global object. Utility functions provide many useful shortcuts for common tasks, see how to use them in your plugin [here](../../../guides/plugins/plugins/administration/using-utils.md). Or see the code that registers them [here](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/core/service/util.service.js)
 
 ## General functions
 
 | Function | Description | Link |
 | :--- | :--- | :--- |
-| createId | Returns a uuid string in hex format. Generated with [uuid](https://www.npmjs.com/package/uuid) |  |
+| createId | Returns a uuid string in hex format. Generated with [uuid](https://www.npmjs.com/package/uuid) | [link](https://lodash.com/docs/4.17.15#create) |
 | throttle | Creates a `throttled` function that only invokes `func` at most once per every `wait` milliseconds. | [link](https://lodash.com/docs/4.17.15#throttle) |
 | debounce | Creates a `debounced` function that delays invoking `func` until after `wait` milliseconds have elapsed since the last time the `debounced` function was invoked. | [link](https://lodash.com/docs/4.17.15#debounce) |
 | flow | Creates a function that returns the result of invoking the given functions with the `this` binding of the created function, where each successive invocation is supplied the return value of the previous. | [link](https://lodash.com/docs/4.17.15#flow) |
@@ -80,7 +80,7 @@ This is an overview of all the utility functions bound to the shopware global ob
 | isBoolean | Checks if value is classified as a `boolean` primitive or object. | [link](https://lodash.com/docs/4.17.15#isBoolean) |
 | isEqual | Performs a deep comparison between two values to determine if they are equivalent. | [link](https://lodash.com/docs/4.17.15#isEqual) |
 | isNumber | Checks if `value` is classified as a Number primitive or object. | [link](https://lodash.com/docs/4.17.15#isNumber) |
-| isUndefined | Checks if `value` is `undefined`. |  |
+| isUndefined | Checks if `value` is `undefined`. | [link](https://lodash.com/docs/4.17.15#isUndefined) |
 
 ## Filereader
 
@@ -106,4 +106,3 @@ This is an overview of all the utility functions bound to the shopware global ob
 | remove | Removes all elements from `array` that predicate returns truthy for and returns an array of the removed elements | [link](https://lodash.com/docs/4.17.15#remove) |
 | slice | Creates a slice of `array` from `start` up to, but not including, `end`. | [link](https://lodash.com/docs/4.17.15#slice) |
 | uniqBy | This method is like [`_.uniq`](https://lodash.com/docs/4.17.15#uniq) except that it accepts `iteratee` which is invoked for each element in `array` to generate the criterion by which uniqueness is computed. | [link](https://lodash.com/docs/4.17.15#uniqBy) |
-
