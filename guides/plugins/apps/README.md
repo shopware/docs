@@ -13,4 +13,4 @@ Apps are built to serve various purposes.
 
 Shopware apps provide a flexible and modular approach to extend and customize the platform according to specific business requirements.
 
-While plugins and themes are also extensions but they differ from apps. To better understand the differences, take a look at the [Overview](/docs/guides/plugins/overview) article.
+While plugins and themes are also extensions but they differ from apps. To better understand the differences, take a look at the [Overview](../../../../docs/guides/plugins/overview) article.
