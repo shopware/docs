@@ -27,7 +27,7 @@ Here is a basic implementation as an example. We override the `base_main_inner` 
 
 {% block base_main_inner %}
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Launch demo modal
     </button>
 
@@ -62,7 +62,7 @@ Here is a basic implementation as an example. We override the `base_main_inner` 
 
 ## Create a modal using AjaxModalPlugin
 
-When setting a `data-url` in addition to `data-toggle="modal"` shopware automatically uses the `PseudoModalUtil` and the pseudo modal template from the `base.html.twig` to render a modal:
+When setting a `data-url` in addition to `data-bs-toggle="modal"` shopware automatically uses the `PseudoModalUtil` and the pseudo modal template from the `base.html.twig` to render a modal:
 
 {% code title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig" %}
 {% raw %}
@@ -73,7 +73,7 @@ When setting a `data-url` in addition to `data-toggle="modal"` shopware automati
 {% block base_main_inner %}
     <!-- This uses `AjaxModalPlugin` -->
     <button class="btn"
-            data-toggle="modal"
+            data-bs-toggle="modal"
             data-url="https://example.org/ajax-url">
 
     {{ parent() }}
