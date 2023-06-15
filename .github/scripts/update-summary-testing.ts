@@ -29,8 +29,8 @@ const adrTitle = (adr: ADREntry) => {
 };
 
 let ADRs = new Map<string,ADRTopic>();
-for (const entry of walkSync("./resources/references/adr", { includeDirs: false, includeFiles: true })) {
-	if (entry.path.startsWith('resources/references/adr/assets')) continue;
+for (const entry of walkSync("./resources/guidelines/testing", { includeDirs: false, includeFiles: true })) {
+	//if (entry.path.startsWith('resources/references/adr/assets')) continue;
 	if (path.basename(entry.path).startsWith('_')) continue;
 	if (path.basename(entry.path) === 'README.md') continue;
 
@@ -43,13 +43,13 @@ for (const entry of walkSync("./resources/references/adr", { includeDirs: false,
 	}
 	const topicDir = topicName(entry) === generalTopic ? '' : '/' + topicName(entry);
 	topic = {
-		path: `resources/references/adr${topicDir}`,
+		path: `resources/guidelines/testing${topicDir}`,
 		entries: [adr]
 	}
 	ADRs.set(topicName(adr), topic);
 }
 
-let adrSummary = summaryItem(1, 'Architecture Reference', 'resources/references/adr/README.md');
+let adrSummary = summaryItem(1, 'Unit Testing', 'resources/guidelines/testing/README.md');
 
 const names = Array.from(ADRs.keys());
 names.sort();

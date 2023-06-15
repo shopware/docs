@@ -72,6 +72,6 @@ async function formatADR(filePath: string): Promise<void> {
 }
 
 function testPathToGithubLink(testPath: string): string {
-	const urlPath = testPath.replace('resources/references/', '');
+	const urlPath = testPath.replace('resources/guidelines/', '');
 	return `https://github.com/shopware/platform/blob/trunk/coding-guidelines/core/${urlPath}`
 }
