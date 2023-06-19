@@ -161,7 +161,7 @@ devenv shell
 In the devenv shell, run the following command to initialize Shopware:
 
 ```shell
-composer setup
+bin/console system:install --basic-setup --create-database --force
 ```
 
 ### Direnv
