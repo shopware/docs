@@ -30,7 +30,7 @@ const adrTitle = (adr: ADREntry) => {
 
 let ADRs = new Map<string,ADRTopic>();
 for (const entry of walkSync("./resources/guidelines/testing", { includeDirs: false, includeFiles: true })) {
-	//if (entry.path.startsWith('resources/references/adr/assets')) continue;
+	if (entry.path.startsWith('resources/references/adr/assets')) continue;
 	if (path.basename(entry.path).startsWith('_')) continue;
 	if (path.basename(entry.path) === 'README.md') continue;
 
