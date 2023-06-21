@@ -21,7 +21,7 @@ The install method of a plugin is executed when the plugin is installed. You can
 {% code title="<plugin root>/src/SwagBasicExample" %}
 
 ```php
-public function install(InstallContext $context): void
+public function install(InstallContext $installContext): void
 {
     // Do stuff such as creating a new payment method
 }
@@ -52,7 +52,7 @@ You can't simply remove everything that your plugin created previously. Think ab
 {% code title="<plugin root>/src/SwagBasicExample" %}
 
 ```php
-public function uninstall(UninstallContext $context): void
+public function uninstall(UninstallContext $uninstallContext): void
 {
     // Remove or deactivate the data created by the plugin
 }
@@ -69,11 +69,11 @@ When uninstalling a plugin, the user is asked if he really wants to delete all t
 {% code title="<plugin root>/src/SwagBasicExample" %}
 
 ```php
-public function uninstall(UninstallContext $context): void
+public function uninstall(UninstallContext $uninstallContext): void
 {
-    parent::uninstall($context);
+    parent::uninstall($uninstallContext);
 
-    if ($context->keepUserData()) {
+    if ($uninstallContext->keepUserData()) {
         return;
     }
 
@@ -97,7 +97,7 @@ The `activate` method is executed once the plugin gets actually activated. You m
 {% code title="<plugin root>/src/SwagBasicExample" %}
 
 ```php
-public function activate(ActivateContext $context): void
+public function activate(ActivateContext $activateContext): void
 {
     // Activate entities, such as a new payment method
     // Or create new entities here, because now your plugin is installed and active for sure
@@ -120,7 +120,7 @@ The opposite of the `activate` method. Its triggered once the plugin deactivates
 {% code title="<plugin root>/src/SwagBasicExample" %}
 
 ```php
-public function deactivate(DeactivateContext $context): void
+public function deactivate(DeactivateContext $deactivateContext): void
 {
     // Deactivate entities, such as a new payment method
     // Or remove previously created entities
@@ -140,7 +140,7 @@ However, of course you can still do that if necessary. Also, non-database update
 {% code title="<plugin root>/src/SwagBasicExample" %}
 
 ```php
-public function update(UpdateContext $context): void
+public function update(UpdateContext $updateContext$context): void
 {
     // Update necessary stuff, mostly non-database related
 }
