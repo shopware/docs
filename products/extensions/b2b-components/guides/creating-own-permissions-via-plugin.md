@@ -46,17 +46,19 @@ class PermissionCollectorSubscriber implements EventSubscriberInterface
 
 The `PermissionCollector` collects the permissions of all subscribers and then passes them to the storefront, where they can be attached to the role by the user.
 If you want to check in the template if the user has this permission, the Twig function `isB2bAllowed` can be used:
+
 ```twig
 {% sw_extends '@Storefront/storefront/page/checkout/checkout-item.html.twig' %}
 
 {{ parent() }}
 
 {% if isB2bAllowed(constant('PermissionCollectorSubscriber::EMPLOYEE_READ') }}) %}
-    ...
+...
 {% endif  %}
 ```
 
 In controllers, the checking of permissions must happen via the employee's role:
+
 ```php
 <?php declare(strict_types=1);
 public function employeeList(Request $request, SalesChannelContext $context): Response
@@ -64,7 +66,6 @@ public function employeeList(Request $request, SalesChannelContext $context): Re
     if (!$context->getCustomer()->getEmployee()->getRole()->can(PermissionCollectorSubscriber::EMPLOYEE_READ)) {
         throw new PermissionDeniedException();
     }
-
-    ...
+...
 }
 ```
