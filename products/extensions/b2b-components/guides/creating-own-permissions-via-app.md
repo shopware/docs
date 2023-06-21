@@ -15,12 +15,13 @@ To add a new permission via an app, you need to use the app script hook `b2b-rol
 
 The `PermissionCollector` collects the permissions of all app scripts and then passes them to the storefront, where they can be attached to the role by the user.
 If you want to check in the template if the user has this permission, the Twig function `isB2bAllowed` can be used:
+
 ```twig
 {% sw_extends '@Storefront/storefront/page/checkout/checkout-item.html.twig' %}
 
 {{ parent() }}
 
 {% if isB2bAllowed('own_entity.read') }}) %}
-    ...
+...
 {% endif  %}
 ```
