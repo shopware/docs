@@ -54,7 +54,7 @@ You probably won't be able to use the commands below. Use the following steps to
 
 * Open `/etc/zshrc` and look for the following lines (probably at the end of the file):
 
- ```
+ ```bash
  # Nix
  if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
     . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
@@ -66,7 +66,7 @@ You probably won't be able to use the commands below. Use the following steps to
 * Open `~/.zshrc` and add the above copied lines to the end of this file.
 * Initiate the terminal with `source ~/.zshrc` or reboot your terminal for nix to work.
 
-Credits: https://stackoverflow.com/a/70822086/982278
+[Credits: "nixos installation issue,'command not found: nix'", StackOverflow](https://stackoverflow.com/a/70822086/982278)
 
 ### Cachix
 
