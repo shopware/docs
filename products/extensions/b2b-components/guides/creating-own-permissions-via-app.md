@@ -1,6 +1,6 @@
 # Creating own permissions via plugin
 
-This article explains how to create custom permissions using a app.
+This article explains how to create custom permissions using an app.
 
 To add a new permission via an app you need to use the app script hook `b2b-role-permissions` in conjunction with app scripting:
 {% code title="Resources/scripts/b2b-role-permissions/my-own-permissions.twig" %}
