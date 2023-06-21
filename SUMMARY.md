@@ -497,8 +497,6 @@
       * [Custom endpoint script services reference](resources/references/app-reference/script-reference/custom-endpoint-script-services-reference.md)
       * [Miscellaneous script services reference](resources/references/app-reference/script-reference/miscellaneous-script-services-reference.md)
       * [Script hooks reference](resources/references/app-reference/script-reference/script-hooks-reference.md)
-  * [Administration Reference](resources/references/administration-reference/README.md)
-    * [Utils](resources/references/administration-reference/utils.md)
   * [Storefront Reference](resources/references/storefront-reference/README.md)
     * [Shopware's twig functions](resources/references/storefront-reference/twig-function-reference.md)
   * [Testing Reference](resources/references/testing-reference/README.md)
