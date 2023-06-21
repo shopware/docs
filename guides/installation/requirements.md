@@ -109,20 +109,42 @@ server {
     index index.php index.html;
     server_name localhost;
 
-    client_max_body_size 128M;
+    client_max_body_size 32M;
 
     root __DOCUMENT_ROOT__/public;
 
-    # Shopware update
     location /recovery/update/ {
-        location /recovery/update/assets {
-        }
-        if (!-e $request_filename){
-            rewrite . /recovery/update/index.php last;
-        }
+        index index.php;
+        try_files $uri /recovery/install/index.php$is_args$args;
     }
 
-    location ~* ^.+\.(?:css|cur|js|jpe?g|gif|ico|png|svg|webp|html|woff|woff2|xml)$ {
+    location ~ ^/(index|shopware-installer\.phar)\.php(/|$) {
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        include fastcgi.conf;
+        fastcgi_param HTTP_PROXY "";
+        fastcgi_buffers 8 16k;
+        fastcgi_buffer_size 32k;
+        proxy_connect_timeout 300s;
+        proxy_send_timeout 300s;
+        proxy_read_timeout 300s;
+        send_timeout 300s;
+        client_body_buffer_size 128k;
+        fastcgi_pass unix:/run/php/php8.2-fpm.sock;
+    }
+
+    location = /sitemap.xml {
+            log_not_found off;
+            access_log off;
+            try_files $uri /;
+    }
+
+    location = /robots.txt {
+            log_not_found off;
+            access_log off;
+            try_files $uri /;
+    }
+
+    location ~* ^.+\.(?:css|cur|js|jpe?g|gif|ico|png|svg|webp|avif|html|woff|woff2|xml)$ {
         expires 1y;
         add_header Cache-Control "public, must-revalidate, proxy-revalidate";
 
@@ -139,31 +161,16 @@ server {
         open_file_cache_min_uses 2;
         open_file_cache_errors off;
 
-        try_files $uri /index.php$is_args$args;
-    }
-
-    location ~* ^.+\.svg$ {
-        add_header Content-Security-Policy "script-src 'none'";
+        location ~* ^.+\.svg$ {
+            add_header Content-Security-Policy "script-src 'none'";
+        }
     }
 
     location / {
         try_files $uri /index.php$is_args$args;
     }
-
-    location ~ ^/(index|shopware-installer\.phar)\.php(/|$) {
-        fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        include fastcgi.conf;
-        fastcgi_param HTTP_PROXY "";
-        fastcgi_buffers 8 16k;
-        fastcgi_buffer_size 32k;
-        proxy_connect_timeout 300s;
-        proxy_send_timeout 300s;
-        proxy_read_timeout 300s;
-        send_timeout 300s;
-        client_body_buffer_size 128k;
-        fastcgi_pass 127.0.0.1:9000;
-    }
 }
+
 ```
 
 {% endtab %}
