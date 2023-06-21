@@ -1,4 +1,4 @@
-# App-Starter - Create an Admin Extension
+# Starter Guide - Create an Admin Extension
 
 In this guide, you will learn how to set up an extension for the Administration UI.
 

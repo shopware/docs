@@ -48,6 +48,26 @@ docker run -it nixos/nix
 {% endtab %}
 {% endtabs %}
 
+#### Using Oh My ZSH?
+
+You probably won't be able to use the commands below. Use the following steps to continue using [oh my zsh](https://ohmyz.sh/):
+
+* Open `/etc/zshrc` and look for the following lines (probably at the end of the file):
+
+ ```bash
+ # Nix
+ if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+ fi
+ # End Nix
+ ```
+
+* Copy these lines and delete them from this file.
+* Open `~/.zshrc` and add the above copied lines to the end of this file.
+* Initiate the terminal with `source ~/.zshrc` or reboot your terminal for nix to work.
+
+[Credits: "nixos installation issue,'command not found: nix'", StackOverflow](https://stackoverflow.com/a/70822086/982278)
+
 ### Cachix
 
 Next, install [Cachix](https://www.cachix.org/) to speed up the installation:
@@ -66,7 +86,7 @@ cachix use devenv
 The first time you run `cachix use`, you will be prompted a warning that you are not a trusted user.
 {% endhint %}
 
-> This user doesn't have permissions to configure binary caches.
+> This user doesn't have permission to configure binary caches.
 >
 > You can either:
 >
@@ -152,7 +172,7 @@ DATABASE_URL="mysql://shopware:shopware@127.0.0.1:3306/shopware?sslmode=disable&
 {% endcode %}
 
 With a new terminal, go to the project directory and run the following command to launch a devenv shell.
-This shell includes all needed programs (php, composer, npm, node, etc.), to initialize Shopware:
+This shell includes all needed programs (php, composer, npm, node, etc.) to initialize Shopware:
 
 ```shell
 devenv shell
@@ -161,7 +181,7 @@ devenv shell
 In the devenv shell, run the following command to initialize Shopware:
 
 ```shell
-composer setup
+bin/console system:install --basic-setup --create-database --force
 ```
 
 ### Direnv
@@ -169,7 +189,7 @@ composer setup
 If you wish to switch between multiple development environments which use devenv seamlessly, we recommend installing [direnv](https://direnv.net/).
 
 When you enter a project directory using devenv, direnv will automatically activate the environment for you.
-This means that you can use the binaries without having to run `devenv shell` manually, though you still have to run `devenv up` to start all services.
+This means you can use the binaries without having to run `devenv shell` manually, though you still have to run `devenv up` to start all services.
 
 First, install direnv:
 

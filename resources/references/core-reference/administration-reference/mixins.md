@@ -19,4 +19,3 @@ If you want to learn how to use them in your plugin, take a look at this guide [
 | `sw-form-field` | This mixin is used to provide common functionality between form fields | [link](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/mixin/form-field.mixin.js) |
 | `sw-inline-snippet` | Makes it possible to use snippets inline | [link](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/mixin/sw-inline-snippet.mixin.js) |
 | `validation` | Is used to validate inputs in various form fields | [link](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/mixin/validation.mixin.js) |
-

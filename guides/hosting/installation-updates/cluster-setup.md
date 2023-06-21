@@ -4,11 +4,9 @@ The setup of high-scaling systems differs from a normal installation of Shopware
 
 This guide contains information for everyone who intends to start with such a project.
 
-## Production template
+## Symfony Flex template
 
-Use [production template](composer.md#shopware-6-production-template) from the [shopware/production](https://github.com/shopware/production) repository. A fork should be made of the template, in which the desired Shopware repositories (core, storefront, admin, elastic, etc.) are then pinned to the desired version.
-
-Pinning the versions prevents unwanted updates when deploying.
+Use the [Symfony Flex template](../../installation/template.md) and pin the Shopware versions in the `composer.json` file. This prevents unwanted updates when deploying (without a composer.lock).
 
 ## Sources
 
@@ -16,16 +14,16 @@ The following folders are available in the production template:
 
 - **/src**: Here, the project specific bundles and sources can be stored.
 - **/config**: Here are the .yaml config files and other possible configurations (routing, admin configs, etc).
-- **/tests**: Here, you can store the tests for the project specific sources.
 - **/config/bundles.php**: In this file, all Symfony bundles are defined, which should be included in the project.
 
 ## Third-party sources
 
 Most big-scale projects have a development team assigned. It is responsible for the stability and performance of the system. The integration of external sources via apps or plugins can be useful but should always be viewed with a critical eye. By including those sources, the development team relinquishes control over parts of the system. We recommend including necessary plugins as Composer packages instead of user-managed plugins.
 
-### Disable extensions
+## Composer plugin loader
 
-For requests, the entire handling of the app and plugin system via the database should be deactivated via the configuration `DISABLE_EXTENSIONS` for request handling PHP processes like php-fpm. If this environment variable is activated, the plugin list is acquired from the required Composer dependencies. This hands over the control over the active plugin list to be regulated via the project deployment. Third-party sources can rely on [plugin lifecycle events](https://developer.shopware.com/docs/guides/plugins/plugins/plugin-fundamentals/plugin-lifecycle), so running commands like `bin/console plugin:install --activate SwagExample` or `bin/console plugin:update SwagExample` needs to be integrated into the deployment without the `DISABLE_EXTENSIONS` flag.
+Shopware loads by default all plugins via the database and allows to enable/disable plugins at runtime. This needs to be fixed in a multi-app server environment. Therefore, we recommend using the Composer plugin loader. The Composer plugin loader loads the plugin state from Composer, so when a plugin is installed using Composer we assume that it is enabled.
+That allows you to deploy plugins to all app servers by deploying with installing them using Composer. The plugins must be installed while deployment using `bin/console plugin:install --activate <name>`, so they are ready to use after the deployment. To use the composer plugin loader, add the environment variable `COMPOSER_PLUGIN_LOADER=1` to your `.env` file.
 
 ## Redis
 
@@ -35,8 +33,8 @@ We recommend setting up at least five Redis servers for the following resources:
 1. [cache.object](../performance/caches.md#example-replace-some-cache-with-redis)
 1. [Lock](../performance/lock-store.md)) + [Increment storage](../performance/increment.md))
 1. [Number Ranges](../performance/number-ranges.md)
-1. [Enqueue](../infrastructure/message-queue.md#transport-redis-example)  
-   Instead of setting up a Redis server for `enqueue`, you can also work directly with [RabbitMQ](../infrastructure/message-queue.md#transport-rabbitmq-example)
+1. [Message Queue](../infrastructure/message-queue.md#transport-redis-example)  
+   Instead of setting up a Redis server for `messenger`, you can also work directly with [RabbitMQ](../infrastructure/message-queue.md#transport-rabbitmq-example)
 
 The PHP Redis extension provides persistent Redis connections. Persistent connections can help in high load scenarios as each request doesn't have to open and close connections. Using non-persistent Redis connections can also hit the system's maximum open sockets. Because of these limitations, the Redis extension is preferred over Predis.
 

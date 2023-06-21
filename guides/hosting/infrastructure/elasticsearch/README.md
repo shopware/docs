@@ -1,7 +1,5 @@
 # Elasticsearch
 
-Following are important topics that you might want to have a look at when working with the Elasticsearch.
+Elasticsearch is a robust search engine that can be integrated into Shopware to provide advanced search capabilities. It also supports AND/OR operations.
 
-{% page-ref page="elasticsearch-debugging.md" %}
-
-{% page-ref page="elasticsearch-setup.md" %}
+The following sections will help you to set up, configure, debug, resolve indexing issues, and optimize performance. By following these steps, you can leverage Elasticsearch to enhance search functionality in your Shopware store.
