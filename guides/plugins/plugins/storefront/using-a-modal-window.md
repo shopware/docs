@@ -62,7 +62,7 @@ Here is a basic implementation as an example. We override the `base_main_inner` 
 
 ## Create a modal using AjaxModalPlugin
 
-When setting a `data-url` in addition to `data-bs-toggle="modal"` shopware automatically uses the `PseudoModalUtil` and the pseudo modal template from the `base.html.twig` to render a modal:
+When setting `data-ajax-modal="true"` together with `data-url` shopware automatically uses the `PseudoModalUtil` and the pseudo modal template from the `base.html.twig` to render a modal:
 
 {% code title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig" %}
 {% raw %}
