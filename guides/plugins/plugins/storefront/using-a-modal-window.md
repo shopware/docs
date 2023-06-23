@@ -73,7 +73,7 @@ When setting `data-ajax-modal="true"` together with `data-url` shopware automati
 {% block base_main_inner %}
     <!-- This uses `AjaxModalPlugin` -->
     <button class="btn"
-            data-bs-toggle="modal"
+            data-ajax-modal="true"
             data-url="https://example.org/ajax-url">
 
     {{ parent() }}
