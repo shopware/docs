@@ -221,7 +221,21 @@ monolog:
 
 The `business_event_handler_buffer` handler logs flow. Setting it to `error` will disable the logging of flow activities that succeed.
 
-## Disable App url external check
+## Disable App URL external check
 
 On any Administration load Shopware tries to request himself to test that the configured `APP_URL` inside `.env` is correct.
-If your `APP_URL` is correct, you can disable this behaviour with an environment variable `APP_URL_CHECK_DISABLED=1`.
+If your `APP_URL` is correct, you can disable this behavior with an environment variable `APP_URL_CHECK_DISABLED=1`.
+
+## Disable fine-grained caching
+
+Shopware has a fine-grained caching system for system config, translation and theme config. This allows to clear only the relevant pages when a translation or theme config is changed. This is done by adding per config element a cache tag to the response. This behavior generates a lot of Redis keys or entries in Varnish. To save this overhead, it is possible to disable this behavior and clear the hole cache instead on config changes using the following config:
+
+```yaml
+# config/packages/shopware.yaml
+shopware:
+    cache:
+        tagging:
+            each_config: false
+            each_snippet: false
+            each_theme_config: false
+```
