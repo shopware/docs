@@ -22,7 +22,7 @@ This data structure provides all the necessary data for the migration. For more 
 
 ## Premapping
 
-Because the structure of the source system does not always match the structure of the target system, the user may need to map the old structure to the new one. For example, in Shopware 5, we have default salutations like `Mr.`, but the user can also create custom ones. In Shopware 6, there are default salutations like Mr.` and the user can also create custom ones. So the salutation `Mr.` from Shopware 5 must be mapped to Shopware 6 `Mr.`. In this default case, the mapping can be achieved automatically, but customized salutations will most likely have to be mapped manually. The premapping will be written into the mapping table to associate the old identifier with the new one.
+Because the structure of the source system does not always match the structure of the target system, the user may need to map the old structure to the new one. For example, in Shopware 5, we have default salutations like `Mr.`, but the user can also create custom ones. In Shopware 6, there are default salutations like `Mr.` and the user can also create custom ones. So the salutation `Mr.` from Shopware 5 must be mapped to Shopware 6 `Mr.`. In this default case, the mapping can be achieved automatically, but customized salutations will most likely have to be mapped manually. The premapping will be written into the mapping table to associate the old identifier with the new one.
 
 You can look at [Premapping](premapping.md) section for more details.
 
