@@ -118,7 +118,7 @@ server {
         try_files $uri /recovery/install/index.php$is_args$args;
     }
 
-    location ~ ^/(index|shopware-installer\.phar)\.php(/|$) {
+    location ~ ^/(recovery\/update\/index|index|shopware-installer\.phar)\.php(/|$) {
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
         include fastcgi.conf;
         fastcgi_param HTTP_PROXY "";
