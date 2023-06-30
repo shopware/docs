@@ -17,7 +17,9 @@ If your app should provide one or multiple payment methods, you need to define t
 
 You may choose between a synchronous and an asynchronous payment method. These two types are differentiated by defining a `finalize-url` or not. If no `finalize-url` is defined, the internal Shopware payment handler will default to a synchronous payment. If you do not want or need any communication during the payment process with your app, you can also choose not to provide a `pay-url`, then the payment will remain on open on checkout.
 
-Below you can see three different definitions of payment methods.
+Below you can see different definitions of payment methods.
+
+Depending on the URLs you provide, Shopware knows which kind of payment flow your payment method supports.
 
 {% code title="manifest.xml" %}
 
@@ -75,6 +77,26 @@ Below you can see three different definitions of payment methods.
             <!-- This optional path to this icon must be relative to the manifest.xml -->
             <icon>Resources/paymentLogo.png</icon>
         </payment-method>
+
+        <payment-method>
+            <!-- The identifier of the payment method should not change. Otherwise a separate method is created. -->
+            <identifier>refundPayment</identifier>
+            <name>Refund payments</name>
+            <name lang="de-DE">Einfache Erstattungen</name>
+            <refund-url>https://payment.app/refund</refund-url>
+            <!-- This optional path to this icon must be relative to the manifest.xml -->
+            <icon>Resources/paymentLogo.png</icon>
+        </payment-method>
+
+        <payment-method>
+            <!-- The identifier of the payment method should not change. Otherwise a separate method is created. -->
+            <identifier>recurringPayment</identifier>
+            <name>Recurring payments</name>
+            <name lang="de-DE">Einfache wiederkehrende Zahlungen</name>
+            <recurring-url>https://payment.app/recurring</recurring-url>
+            <!-- This optional path to this icon must be relative to the manifest.xml -->
+            <icon>Resources/paymentLogo.png</icon>
+        </payment-method>
     </payments>
 </manifest>
 ```
@@ -107,7 +129,7 @@ Request content is JSON
 }
 ```
 
-Refer to an example on [refund payload](https://github.com/shopware/app-php-sdk/blob/main/tests/Context/_fixtures/payment.json) and the response should look like this:
+Refer to an example on [payment payload](https://github.com/shopware/app-php-sdk/blob/main/tests/Context/_fixtures/payment.json) and the response should look like this:
 
 ```json
 {
@@ -658,6 +680,99 @@ function refund(RequestInterface $request): ResponseInterface
     
     // check RefundResponse class for all available refund states
     return $signer->signResponse(RefundResponse::completed(), $shop);
+}
+```
+
+{% endtab %}
+
+{% endtabs %}
+
+## Recurring captures
+
+{% hint style="info" %}
+Recurring orders and payments require the Subscriptions feature, available exclusively in our [paid plans](https://www.shopware.com/en/pricing/).
+{% endhint %}
+
+Recurring payments are a special case of payment that is used for handling recurring orders, such as subscriptions. The request and response payloads are similar to the synchronous payment flow. At this point, a valid running billing agreement between the customer and the PSP should exist. Use any of the other payment flows to capture the initial order and create such an agreement during the checkout. Afterwards, the payment can be captured via this flow for every recurring payment order.
+
+{% tabs %}
+
+{% tab title="HTTP" %}
+
+Request content is JSON
+
+```json
+{
+  "source": {
+    "url": "http:\/\/localhost:8000",
+    "shopId": "hRCw2xo1EDZnLco4",
+    "appVersion": "1.0.0"
+  },
+  "orderTransaction": {
+    //...
+  },
+  "order": {
+    //...
+  }
+}
+```
+
+You can refer to an example on [recurring capture payload](https://github.com/shopware/app-php-sdk/blob/main/tests/Context/_fixtures/payment.json) and your response looks like this:
+
+```json
+{
+  "status": "paid"
+}
+```
+
+{% endtab %}
+
+{% tab title="App PHP SDK" %}
+
+```php
+use Psr\Http\Message\RequestInterface;
+use Shopware\App\SDK\Shop\ShopResolver;
+use Shopware\App\SDK\Context\ContextResolver;
+use Shopware\App\SDK\Response\PaymentResponse;
+
+function validate(RequestInterface $request): ResponseInterface
+{
+    // injected or build by yourself
+    $shopResolver = new ShopResolver($repository);
+    $contextResolver = new ContextResolver();
+    $signer = new ResponseSigner();
+    
+    $shop = $shopResolver->resolveShop($serverRequest);
+    $payment = $contextResolver->assemblePaymentRecurringCapture($serverRequest, $shop);
+    
+    // implement your logic here based on the information provided in $payment
+    
+    // check PaymentResponse class for all available payment states
+    return $signer->signResponse(PaymentResponse::paid(), $shop);
+}
+```
+
+{% endtab %}
+
+{% tab title="Symfony Bundle" %}
+
+```php
+use Shopware\App\SDK\Context\Payment\PaymentPayAction;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\Routing\Annotation\Route;
+use Shopware\App\SDK\Response\PaymentResponse;
+use Psr\Http\Message\ResponseInterface;
+
+#[AsController]
+class PaymentController {
+    #[Route('/payment/pay')]
+    public function handle(PaymentPayAction $payment): ResponseInterface
+    {
+        // handle recurring payment capture
+        
+        return PaymentResponse::paid();
+    }
 }
 ```
 

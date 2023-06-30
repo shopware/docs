@@ -21,12 +21,13 @@ In order to create your own payment method with your plugin, you have to add a c
 
 You can create your own payment handler by implementing one of the following interfaces:
 
-| Interface | DI container tag | Usage |
-| :--- | :--- | :--- |
-| SynchronousPaymentHandlerInterface | `shopware.payment.method.sync` | Payment can be handled locally, e.g. pre-payment |
-| AsynchronousPaymentHandlerInterface | `shopware.payment.method.async` | A redirect to an external payment provider is required, e.g. PayPal |
-| PreparedPaymentHandlerInterface | `shopware.payment.method.prepared` | The payment was prepared beforehand and will only be validated and captured by your implementation |
-| RefundPaymentHandlerInterface | `shopware.payment.method.refund` | The payment allows refund handling |
+| Interface                           | DI container tag                    | Usage                                                                                              |
+|:------------------------------------|:------------------------------------|:---------------------------------------------------------------------------------------------------|
+| SynchronousPaymentHandlerInterface  | `shopware.payment.method.sync`      | Payment can be handled locally, e.g. pre-payment                                                   |
+| AsynchronousPaymentHandlerInterface | `shopware.payment.method.async`     | A redirect to an external payment provider is required, e.g. PayPal                                |
+| PreparedPaymentHandlerInterface     | `shopware.payment.method.prepared`  | The payment was prepared beforehand and will only be validated and captured by your implementation |
+| RefundPaymentHandlerInterface       | `shopware.payment.method.refund`    | The payment allows refund handling                                                                 |
+| RecurringPaymentHandlerInterface    | `shopware.payment.method.recurring` | The payment allows recurring payments, e.g. subscriptions                                       |
 
 Depending on the interface, those methods are required:
 
@@ -35,8 +36,9 @@ Depending on the interface, those methods are required:
 * `validate`: This method will be called before an order was placed and should check, if a given prepared payment is valid. The payment handler has to verify the given payload with the payment service, because Shopware cannot ensure that the transaction created by the frontend is valid for the current cart. Throw an `ValidatePreparedPaymentException` to fail the validation in your implementation.
 * `capture`: This method will be called after an order was placed, but only if the validation did not fail and stop the payment flow before. At this point, the order was created and the payment handler will be called again to charge the payment. When the charge was successful, the payment handler should update the transaction state to `paid`. The user will be forwarded to the finish page. Throw an `CapturePreparedPaymentException` on any errors to fail the capture process and the after order process will be active, so the customer can complete the payment again.
 * `refund`: This method is called, whenever a successful transaction is claimed to be refunded. The implementation of the refund handler should validate the legitimacy of the refund and call the PSP to refund the given transaction. Throw a `RefundException` to let the refund fail.
+* `captureRecurring`: This method is called whenever a recurring payment is charged. At this point, a valid billing agreement with the payment provider should exist. Use some of the other payment methods for handling the initial order and billing agreement. Use this interface only for handling all recurring captures afterwards.
 
-All methods get the `\Shopware\Core\System\SalesChannel\SalesChannelContext` injected. Please note, that this class contains properties, which are nullable. If you want to use this information, you have to ensure in your code that they are set and not `NULL`.
+All payment handler methods have the `\Shopware\Core\System\SalesChannel\SalesChannelContext` injected, except for the new  `captureRecurring`  method. Please note, that this class contains properties, which are nullable. If you want to use this information, you have to ensure in your code that they are set and not `NULL`.
 
 ### Registering the service
 
@@ -124,6 +126,7 @@ Let's have a look at an example implementation of your custom asynchronous payme
 
 namespace Swag\BasicExample\Service;
 
+use Shopware\Core\Checkout\Payment\PaymentException;
 use Shopware\Core\Checkout\Payment\Cart\AsyncPaymentTransactionStruct;
 use Shopware\Core\Checkout\Payment\Cart\PaymentHandler\AsynchronousPaymentHandlerInterface;
 use Shopware\Core\Checkout\Payment\Exception\AsyncPaymentProcessException;
@@ -151,7 +154,7 @@ class ExamplePayment implements AsynchronousPaymentHandlerInterface
         try {
             $redirectUrl = $this->sendReturnUrlToExternalGateway($transaction->getReturnUrl());
         } catch (\Exception $e) {
-            throw new AsyncPaymentProcessException(
+            throw PaymentException::asyncProcess(
                 $transaction->getOrderTransaction()->getId(),
                 'An error occurred during the communication with external payment gateway' . PHP_EOL . $e->getMessage()
             );
@@ -170,7 +173,7 @@ class ExamplePayment implements AsynchronousPaymentHandlerInterface
 
         // Example check if the user cancelled. Might differ for each payment provider
         if ($request->query->getBoolean('cancel')) {
-            throw new CustomerCanceledAsyncPaymentException(
+            throw PaymentException::asyncCustomerCanceled(
                 $transactionId,
                 'Customer canceled the payment on the PayPal page'
             );
@@ -225,6 +228,7 @@ namespace Swag\BasicExample\Service;
 
 use Shopware\Core\Checkout\Cart\Cart;
 use Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler;
+use Shopware\Core\Checkout\Payment\PaymentException;
 use Shopware\Core\Checkout\Payment\Cart\PaymentHandler\PreparedPaymentHandlerInterface;
 use Shopware\Core\Checkout\Payment\Cart\PreparedPaymentTransactionStruct;
 use Shopware\Core\Checkout\Payment\Exception\CapturePreparedPaymentException;
@@ -250,7 +254,7 @@ class ExamplePayment implements PreparedPaymentHandlerInterface
     ): Struct {
         if (!$requestDataBag->has('my-payment-token')) {
             // this will fail the validation
-            throw new ValidatePreparedPaymentException('No token supplied');
+            throw PaymentException::preparedValidate('No token supplied');
         }
 
         $token = $requestDataBag->get('my-payment-token');
@@ -258,7 +262,7 @@ class ExamplePayment implements PreparedPaymentHandlerInterface
 
         if (!$paymentData) {
             // no payment data simulates an error response from our payment provider in this example
-            throw new ValidatePreparedPaymentException('Unknown payment for token ' . $token);
+            throw PaymentException::preparedValidate('Unknown payment for token ' . $token);
         }
 
         // other checks could include comparing the cart value with the actual payload of your PSP
@@ -284,7 +288,7 @@ class ExamplePayment implements PreparedPaymentHandlerInterface
         
         // or in case of an error:
         $this->stateHandler->fail($orderTransaction->getId(), $context->getContext());
-        throw new CapturePreparedPaymentException($orderTransaction->getId(), 'Capture failed.')
+        throw PaymentException::preparedCapture($orderTransaction->getId(), 'Capture failed.');
     }
 
     private function getPaymentDataFromProvider(string $token): array
@@ -316,8 +320,8 @@ namespace Swag\BasicExample\Service;
 use Shopware\Core\Checkout\Order\Aggregate\OrderTransactionCaptureRefund\OrderTransactionCaptureRefundEntity;
 use Shopware\Core\Checkout\Order\Aggregate\OrderTransactionCaptureRefund\OrderTransactionCaptureRefundStateHandler;
 use Shopware\Core\Checkout\Order\Aggregate\OrderTransactionCaptureRefundPosition\OrderTransactionCaptureRefundPositionEntity;
+use Shopware\Core\Checkout\Payment\PaymentException;
 use Shopware\Core\Checkout\Payment\Cart\PaymentHandler\RefundPaymentHandlerInterface;
-use Shopware\Core\Checkout\Payment\Exception\RefundException;
 use Shopware\Core\Framework\Context;
 
 class ExamplePayment implements RefundPaymentHandlerInterface
@@ -333,7 +337,7 @@ class ExamplePayment implements RefundPaymentHandlerInterface
     {
         if ($refund->getAmount() > 100.00) {
             // this will stop the refund process and set the refunds state to `failed`
-            throw new RefundException($refund->getId(), 'Refunds over 100 € are not allowed');
+            throw PaymentException::refund($refund->getId(), 'Refunds over 100 € are not allowed');
         }
 
         // a refund can have multiple positions, with different order line items and amounts
@@ -352,7 +356,7 @@ class ExamplePayment implements RefundPaymentHandlerInterface
                 } catch (\Exception $e) {
                     // something went wrong at PSP side, throw a refund exception
                     // this will set the refund state to `failed`
-                    throw new RefundException($refund->getId(), 'Something went wrong');
+                    throw PaymentException::refund($refund->getId(), 'Something went wrong');
                 }
             }
         }
@@ -372,6 +376,56 @@ class ExamplePayment implements RefundPaymentHandlerInterface
 {% endcode %}
 
 As you can see, you have full control on how to handle the refund request and which positions to refund.
+
+### Recurring capture example
+
+{% hint style="info" %}
+Recurring orders and payments require the Subscriptions feature, available exclusively in our [paid plans](https://www.shopware.com/en/pricing/).
+{% endhint %}
+
+{% code title="<plugin root>/src/ExamplePayment.php" %}
+
+```php
+<?php declare(strict_types=1);
+
+namespace Swag\BasicExample\Service;
+
+use Shopware\Core\Checkout\Payment\PaymentException;
+use Shopware\Core\Checkout\Payment\Exception\RecurringPaymentProcessException;
+use Shopware\Core\Checkout\Payment\Cart\PaymentHandler\RecurringPaymentHandlerInterface;
+use Shopware\Core\Checkout\Payment\Cart\RecurringPaymentTransactionStruct;
+use Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler;
+use Shopware\Core\Framework\Context;
+use Shopware\Core\Framework\Validation\DataBag\RequestDataBag;
+
+class ExamplePayment implements RecurringPaymentHandlerInterface
+{
+    private OrderTransactionStateHandler $transactionStateHandler;
+
+    public function __construct(OrderTransactionStateHandler $transactionStateHandler)
+    {
+        $this->transactionStateHandler = $transactionStateHandler;
+    }
+
+    /**
+     * @throws RecurringPaymentProcessException
+     */
+    public function captureRecurring(RecurringPaymentTransactionStruct $transaction, Context $context): void
+    {
+        // call your PSP here for capturing a recurring payment
+        // a valid billing agreement between the customer and the PSP should already be in place 
+        // use on of the other payment interfaces to create such an agreement on checkout and capture the initial order once
+        // you will probably receive a token from your PSP for the billing agreement, which you will need to capture a recurring payment
+        
+        try {
+            // $this->callMyPsp();
+        } catch (\Throwable $e) {
+            // throw a RecurringPaymentProcessException: this will set the transaction state to `failed` 
+            throw PaymentException::recurringInterrupted($transaction->getOrderTransaction()->getId(), 'Something went wrong', $e);
+        }
+    }
+}
+```
 
 ## Setting up new payment method
 
