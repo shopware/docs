@@ -326,6 +326,7 @@
       * [Add custom module](guides/plugins/apps/administration/add-custom-modules.md)
     * [Flow Builder](guides/plugins/apps/flow-builder/README.md)
       * [Add custom flow action from app system](guides/plugins/apps/flow-builder/add-custom-flow-actions-from-app-system.md)
+      * [Add custom flow trigger from app system](guides/plugins/apps/flow-builder/add-custom-flow-triggers-from-app-system.md)
     * [Custom Data](guides/plugins/apps/custom-data/README.md)
       * [Custom fields](guides/plugins/apps/custom-data/custom-fields.md)
       * [Custom entities](guides/plugins/apps/custom-data/custom-entities.md)
