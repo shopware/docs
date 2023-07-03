@@ -367,6 +367,8 @@
     * [Request Headers](guides/integrations-api/general-concepts/request-headers.md)
     * [Generated Reference](guides/integrations-api/general-concepts/generated-reference.md)
     * [API Versioning](guides/integrations-api/general-concepts/api-versioning.md)
+* [Security](guides/security/README.md)
+  * [HTML sanitizer](guides/security/html-sanitizer.md)
 
 ## Resources
 
