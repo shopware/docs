@@ -58,7 +58,7 @@ Note: The version 1 used in the options is just an example, how to select a vers
 
 ## Working with the criteria class
 
-To fetch data from the server, the repository has a `search` function. Each repository function requires the API `context` and `criteria` class, witch contains all functionality of the core criteria class. If you want to see all the options take a look at the file `src/Administration/Resources/app/administration/src/core/data/criteria.data.js`.
+To fetch data from the server, the repository has a `search` function. Each repository function requires the API `context` and `criteria` class, which contains all functionality of the core criteria class. If you want to see all the options take a look at the file `src/Administration/Resources/app/administration/src/core/data/criteria.data.js`.
 
 ```javascript
 Shopware.Component.register('swag-basic-example', {

@@ -4,7 +4,7 @@ In this guide you'll learn how add NPM dependencies to your project.
 
 ## Prerequisites
 
-All you need for this guide is a running Shopware 6 instance and full access to both the files and a running plugin. Of course you'll have to understand JavaScript, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation. Further a basic understanding Node and NPM is required.
+All you need for this guide is a running Shopware 6 instance and full access to both the files and a running plugin. Of course you'll have to understand JavaScript, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation. Further a basic understanding of Node and NPM is required.
 
 ## Video
 

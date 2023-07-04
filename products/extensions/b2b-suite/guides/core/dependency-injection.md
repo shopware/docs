@@ -66,5 +66,5 @@ class MyB2bPlugin extends Plugin
 
 ## Tags
 
-Additionally, the B2B Suite heavily uses [Service Tags](http://symfony.com/doc/current/service_container/tags.html) as a more modern replacement for collect events.
+Additionally, the B2B Suite heavily uses [Service Tags](https://symfony.com/doc/current/service_container/tags.html) as a more modern replacement for collect events.
 They are used to help you extend central B2B services with custom logic. Take a look at the example plugins and their usage of that extension mechanism.

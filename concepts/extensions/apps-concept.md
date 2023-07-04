@@ -23,7 +23,7 @@ Notice that this is optional if Shopware and your app don't need to communicate,
 
 ## Modify the appearance of the Storefront
 
-Your app can modify the Storefront's appearance by shipping your Storefront assets \(template files, javascript sources, SCSS sources, snippet files\) alongside your manifest file. You don't need to serve those assets from your external server, as Shopware will build the Storefront a new one on the installation of your app and will consider your modifications in that process. Find out more about modifying the appearance of the Storefront in the [App Storefront guide](../../guides/plugins/apps/storefront/README.md)
+Your app can modify the Storefront's appearance by shipping your Storefront assets \(template files, javascript sources, SCSS sources, snippet files\) alongside your manifest file. You don't need to serve those assets from your external server, as Shopware will rebuild the Storefront upon the installation of your app and will consider your modifications in that process. Find out more about modifying the appearance of the Storefront in the [App Storefront guide](../../guides/plugins/apps/storefront/README.md)
 
 ## Integrate payment providers
 

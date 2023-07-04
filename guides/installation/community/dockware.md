@@ -76,7 +76,7 @@ version: "3"
 services:
 
     shopware:
-      # use either tag "latest" or any other version like "6.1.5", ...
+      # use either tag "latest" or any other version like "6.5.3.0", ...
       image: dockware/dev:latest
       container_name: shopware
       ports:
@@ -94,7 +94,7 @@ services:
          # default = 0, recommended to be OFF for frontend devs
          - XDEBUG_ENABLED=1
          # default = latest PHP, optional = specific version
-         - PHP_VERSION=7.4
+         - PHP_VERSION=8.1
 
 volumes:
   db_volume:

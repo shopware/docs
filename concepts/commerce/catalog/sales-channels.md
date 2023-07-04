@@ -15,7 +15,7 @@ These stores can have different configurations based on:
 
 ## Store separation
 
-While using sales channels, you can achieve a logical separation of stores facing customers. They are technically not separated within your store's backend. Any admin user can still see orders, products, prices, etc., from every sales channel.
+By using sales channels, you can achieve a logical separation of stores facing customers. They are technically not separated within your store's backend. Any admin user can still see orders, products, prices, etc., from every sales channel.
 
 Usually, sales channels are identified by their URL; however, some clients don't have any URLs, like mobile applications or integrations to other distribution channels, e.g., social media platforms. These integration points can use an *access key* when they [use the API](../../../guides/integrations-api/README.md) to identify the right sales channel.
 

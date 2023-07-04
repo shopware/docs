@@ -46,7 +46,7 @@ You maybe don't want to create new data necessary for your plugin in the `instal
 The opposite of the `install` method. It gets executed once the plugin is uninstalled. You might want to remove the data, that your plugin created upon installation.
 
 {% hint style="warning" %}
-You can't simply remove everything that your plugin created previously. Think about a new payment method, that your plugin created and which was then used for actual orders. If you were to remove this payment method when uninstalling the plugin, all the orders that used this payment method would be broken, since the system wouldn't find the used payment method anymore. In this case, you most likely just want to deactive the respective entity, if possible. Be careful here!
+You can't simply remove everything that your plugin created previously. Think about a new payment method, that your plugin created and which was then used for actual orders. If you were to remove this payment method when uninstalling the plugin, all the orders that used this payment method would be broken, since the system wouldn't find the used payment method anymore. In this case, you most likely just want to deactivate the respective entity, if possible. Be careful here!
 {% endhint %}
 
 {% code title="<plugin root>/src/SwagBasicExample" %}
@@ -110,12 +110,10 @@ The `ActivateContext` provides the same information as the `InstallContext`.
 
 ### Deactivate
 
-The opposite of the `activate` method. Its triggered once the plugin deactivates the plugin. This method should mostly do the opposite of the plugin's `activate` method:
+The opposite of the `activate` method. It is triggered once the plugin deactivates the plugin. This method should mostly do the opposite of the plugin's `activate` method:
 
 * Deactivate entities created by the `install` method
-* Maybe remove entities, that cannot be deactivated but would harm the system, if they remained in the system while the plugin
-
-  is inactive
+* Maybe remove entities, that cannot be deactivated but would harm the system, if they remained in the system while the plugin is inactive
 
 {% code title="<plugin root>/src/SwagBasicExample" %}
 

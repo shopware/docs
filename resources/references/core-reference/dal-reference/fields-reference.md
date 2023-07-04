@@ -12,7 +12,7 @@
 | ConfigJsonField | Stores a "ConfigJson" value |
 | CreatedAtField | Stores a "CreatedAt" value |
 | CreatedByField | Stores a "CreatedBy" value |
-| CustomField | s Stores a "Custom" value |
+| CustomField | Stores a "Custom" value |
 | DateField | Stores a "Date" value |
 | DateTimeField | Stores a "DateTime" value |
 | EmailField | Stores a "Email" value |
