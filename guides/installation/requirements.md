@@ -18,11 +18,11 @@ You can use these commands to check your actual environment:
 * `node -v`: Shows your actual Node version
 * `npm -v`: Shows your actual NPM version
 
-**PHP**
+### PHP
 
-* Tested on 8.1 and 8.2
-* `memory_limit` 512M minimum
-* `max_execution_time` 30 seconds minimum
+* Compatible version : 8.1 and 8.2
+* `memory_limit` : 512M minimum
+* `max_execution_time` : 30 seconds minimum
 * Extensions:
   * ext-curl
   * ext-dom  
@@ -43,23 +43,27 @@ You can use these commands to check your actual environment:
   * ext-xml  
   * ext-zip  
   * ext-zlib
-* Composer 2.0 or higher
+* Composer recommended version : 2.0 or higher
 
-**SQL**
+### SQL
 
-MySQL 8.0 is tested to work.
-Known problematic Versions:
+* MySQL
 
-* 8.0.20
+  * Recommended version : 8.0
 
-MariaDB 10.3.22, 10.4 and 10.5 are all tested.
-Known problematic Versions:
+  * Problematic versions: 8.0.20
 
-* 10.3.29
-* 10.4.19
-* 10.5.10
+* MariaDB
 
-**JavaScript**
+  * Compatible versions : 10.3.22, 10.4 and 10.5
+
+  * Recommended version : at least 10.11
+
+  * Problematic versions: 10.3.29, 10.4.19, 10.5.10
+
+The `media:delete-unused` command requires at least MariaDB 10.9 or MySQL 8.
+
+### JavaScript
 
 * Node.js 18.0.0 or higher
 * NPM 8.0.0 or higher
