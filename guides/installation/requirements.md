@@ -52,12 +52,14 @@ Known problematic Versions:
 
 * 8.0.20
 
-MariaDB 10.3.22, 10.4 and 10.5 are all tested.
+MariaDB 10.3.22, 10.4 and 10.5 are all tested and our recommandation is to use at least 10.11.
 Known problematic Versions:
 
 * 10.3.29
 * 10.4.19
 * 10.5.10
+
+The `media:delete-unused` command requires at least MariaDB 10.9 or MySQL 8.
 
 **JavaScript**
 
