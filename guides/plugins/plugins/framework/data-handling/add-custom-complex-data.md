@@ -76,7 +76,7 @@ Introducing the table to Shopware 6 is done by adding a so called `EntityDefinit
 Your custom entity definition should be placed inside a folder named after the domain it handles, e.g. "Checkout" if you were to include a Checkout entity. Thus, a good location for this example could be in a directory like this: `<plugin root>/src/Core/Content/Example`  
 This will also be the case for the `Entity` class itself, as well as the `EntityCollection` class, but those are explained later in this guide.
 
-Start of with creating a new file named `ExampleDefinition.php` in the directory `<plugin root>/src/Core/Content/Example/ExampleDefinition.php`. Below you'll see our example definition, which is explained afterwards:
+Start of with creating a new file named `ExampleDefinition.php` in the directory `<plugin root>/src/Core/Content/Example/ExampleDefinition.php`. Below you can see our example definition, which is explained afterwards:
 
 {% code title="<plugin root>/src/Core/Content/Example/ExampleDefinition.php" %}
 
