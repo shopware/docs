@@ -119,6 +119,6 @@ Spell out all ordinal numbers in the text, such as first, fourth, twelfth, and t
 
 * Follow camel case for all the `<H1>` headings — for example, *Flow Sequence Evaluation* and sentence case for the rest of the sub-headings that follow - for example, *Flow sequence evaluation*.
 
-Refer to [gitbook syntax](https://gitbook.gitbook.io/git-sync/lists) for more.
+Refer to [GitBook syntax](https://gitbook.gitbook.io/git-sync/lists) for more.
 
 This section covers fonts and formats for text, while the following section covers fonts and formats for code.

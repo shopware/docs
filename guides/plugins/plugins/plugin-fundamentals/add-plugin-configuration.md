@@ -97,7 +97,7 @@ Your `<input-field>` can be of different types, this is managed via the `type` a
 
 ### Input field settings
 
-These settings are used to configure your `<input-field>`. **Every `<input-field>` has to start with the `<name>` element.** After the `<name>` element you can configure any of the other settings mentioned above. Beside these settings, they have the followings in common: [label](add-plugin-configuration.md#label-placeholder-and-help-text), [helpText](add-plugin-configuration.md#label-placeholder-and-help-text), [defaultValue](add-plugin-configuration.md#defaultvalue) and [disabled](add-plugin-configuration.md#disabled).
+These settings are used to configure your `<input-field>`. **Every `<input-field>` has to start with the `<name>` element.** After the `<name>` element you can configure any of the other settings mentioned above. Beside these settings, they have the following in common: [label](add-plugin-configuration.md#label-placeholder-and-help-text), [helpText](add-plugin-configuration.md#label-placeholder-and-help-text), [defaultValue](add-plugin-configuration.md#defaultvalue) and [disabled](add-plugin-configuration.md#disabled).
 
 #### Label, placeholder and help text
 

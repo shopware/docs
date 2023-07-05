@@ -106,7 +106,7 @@ use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
 ```
 
-This example creates a new method called `writeData`, which will take of creating a new product. Its first parameter is the `Context`, which you need for the upcoming methods. This is usually passed through the stack, starting at a controller or event.
+This example creates a new method called `writeData`, which will take care of creating a new product. Its first parameter is the `Context`, which you need for the upcoming methods. This is usually passed through the stack, starting at a controller or event.
 
 In there, we're calling the `create` method on the product repository with two parameters. The first one is an array of arrays, since you can write more than just one product with a single call, thus the first array. The second and inner array is representing the entities' data to be written.
 
@@ -187,7 +187,7 @@ Sometimes you don't really mind if an entity already exists and thus has to be u
 
 You've learned to read data, to create data and to update data. Let's get to the last part of the CRUD operations: Deleting data.
 
-In order to create data, we've used the `create` method. For updating data, we've used the `update` method. You might have guesses it already, for this example you'll need the `delete` method.
+In order to create data, we've used the `create` method. For updating data, we've used the `update` method. You might have guessed it already, for this example you'll need the `delete` method.
 
 Here's an example on how to delete the previously created product:
 

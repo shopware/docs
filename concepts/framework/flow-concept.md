@@ -4,7 +4,7 @@ Flow Builder is a Shopware automation solution for shop owners with great adapta
 
 ## Flow
 
-A flow is an automation process in your business. From here, you can specify which actions are triggered by a trigger. Additionally, you can define conditions for these actions under which the actions are to be executed. If multiple flows with the same trigger, the priority point will decide which flow will perform first.
+A flow is an automation process in your business. From here, you can specify which actions are triggered by a trigger. Additionally, you can define conditions for these actions under which the actions are to be executed. If multiple flows with the same trigger exist, the priority point will decide which flow will perform first.
 
 ## Trigger
 
@@ -12,15 +12,17 @@ A trigger is an event that starts the flow and detects the event from the Storef
 
 ## Condition
 
-This is a business rule to determine whether the action should be executed.
+A condition is a business rule to determine whether the action should be executed.
 
 ## Action
 
-The tasks that execute when the trigger happens or the certain conditions are met. There is a special action called "Stop flow", which will stop any further action below.
+An action is a task that executes on a trigger or when certain conditions are met.
+
+A special action called "Stop flow" stops any further action in the flow sequence.
 
 ## Flow Templates
-		
-Pre-created [flows](#flow) built are designated as flow templates.
+
+A flow template is a pre-created [flow](#flow).
 
 The flow library contains the flow template listing that is shipped with Shopware. Two main ways to create a flow template in the template library are by [apps](../../guides/plugins/plugins/framework/flow/README.md) and [plugins](../../guides/plugins/apps/flow-builder/README.md).
 

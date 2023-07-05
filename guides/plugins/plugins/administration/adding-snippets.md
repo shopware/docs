@@ -18,7 +18,7 @@ Each language then receives a nested object of translations, so let's have a loo
 {
     "swag-example": {
         "nested": {
-            "value": "example"
+            "value": "example",
             "examplePluralization": "1 Product | {n} Products"
         },
         "foo": "bar"

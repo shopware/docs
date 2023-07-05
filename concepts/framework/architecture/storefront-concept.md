@@ -70,7 +70,7 @@ A single Page is always a three class namespace:
 
 * The Page-Struct \(`GenericPage`\) - represents the data
 * The PageLoader \(`PageLoaderInterface`\) - handles the creation of page structs
-* The PageEvent \(`NestedEvent`\) - addS a clean extension point to the pages
+* The PageEvent \(`NestedEvent`\) - adds a clean extension point to the pages
 
 ### Example: Composition of the account order page
 
@@ -79,7 +79,7 @@ Referring to the example described in the [main concerns chapter](storefront-con
 To describe how the composition of the Page works, first get to know what the result of the composition should be.
 
 * By calling a specific route \(e.g. `/account/order`\), one should receive a specific page in the Storefront.
-* This page exists of generic information \(e.g. Header, Footer\) and detailed information \(e.g. a list of orders\).
+* This page consists of generic information \(e.g. Header, Footer\) and detailed information \(e.g. a list of orders\).
 * Detailed information should be fetched throughout the Core component to make use of the [Store API routes](../../api/store-api.md).
 
 The best entry point to give you a good understanding of how the composition works is the corresponding controller. In our case, it is the `AccountOrderController`. The main and only task of the controller is to assign a page struct to a variable, which will later be passed to a Twig template. The Page is received by the specific `AccountOrderPageLoader`. Additionally, the method annotations of the controller also set routing information like path, name, options, and methods.

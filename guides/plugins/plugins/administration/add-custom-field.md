@@ -62,7 +62,7 @@ The path starting from 'src' is fully customizable, yet we recommend choosing a 
 {% endraw %}
 {% endcode %}
 
-Basically the twig block `sw_product_settings_form_content` is overridden here. Make sure to have a look at the [Twig documentation about the template inheritance](https://twig.symfony.com/doc/2.x/templates.html#template-inheritance), to understand how blocks in Twig work.
+Basically the twig block `sw_product_settings_form_content` is overridden here. Make sure to have a look at the [Twig documentation about the template inheritance](https://twig.symfony.com/doc/3.x/templates.html#template-inheritance), to understand how blocks in Twig work.
 
 This block contains the whole settings form of the product detail page. In order to add a new input field to it, you need to override the block, call the block's original content \(otherwise we'd replace the whole form\), and then add your custom input field to it. Also, the input field is "disabled", since it should be readable only. This should result in a new input field with the label 'Manufacturer ID', which then contains the ID of the actually chosen manufacturer.
 
