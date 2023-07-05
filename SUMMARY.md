@@ -484,8 +484,11 @@
     * [Jest test files should be javascript only](resources/references/adr/2023-04-14-jest-test-files-should-be-javascript-only.md)
     * [Optimise cart cleanup](resources/references/adr/2023-05-09-optimise-cart-cleanup.md)
     * [Stock API](resources/references/adr/2023-05-15-stock-api.md)
+    * [Php enums](resources/references/adr/2023-05-16-php-enums.md)
+    * [Symfony dependency management](resources/references/adr/2023-05-16-symfony-dependency-management.md)
     * [Switch to uuidv7](resources/references/adr/2023-05-22-switch-to-uuidv7.md)
     * [Exception log levels](resources/references/adr/2023-05-25-exception-log-levels.md)
+    * [Store API to app server](resources/references/adr/2023-06-27-store-api-to-app-server.md)
     * [YYYY MM DD template](resources/references/adr/YYYY-MM-DD-template.md)
 
   * [App Reference](resources/references/app-reference/README.md)
