@@ -20,9 +20,9 @@ You can use these commands to check your actual environment:
 
 ### PHP
 
-* Compatible with version 8.1 and 8.2
-* `memory_limit` 512M minimum
-* `max_execution_time` 30 seconds minimum
+* Compatible version : 8.1 and 8.2
+* `memory_limit` : 512M minimum
+* `max_execution_time` : 30 seconds minimum
 * Extensions:
   * ext-curl
   * ext-dom  
@@ -43,23 +43,23 @@ You can use these commands to check your actual environment:
   * ext-xml  
   * ext-zip  
   * ext-zlib
-* Composer recommended version 2.0 or higher
+* Composer recommended version : 2.0 or higher
 
 ### SQL
 
 * MySQL
 
-  * Recommended version 8.0
+  * Recommended version : 8.0
 
-  * Problematic Versions: 8.0.20
+  * Problematic versions: 8.0.20
 
 * MariaDB
 
   * Compatible versions : 10.3.22, 10.4 and 10.5
 
-  * Recommanded version : at least 10.11
+  * Recommended version : at least 10.11
 
-  * Known problematic Versions: 10.3.29, 10.4.19, 10.5.10
+  * Problematic versions: 10.3.29, 10.4.19, 10.5.10
 
 The `media:delete-unused` command requires at least MariaDB 10.9 or MySQL 8.
 
