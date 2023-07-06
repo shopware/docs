@@ -5,13 +5,6 @@ area:  core
 tags: [DAL]
 ---
 
-# Switch to UUIDv7
-
-{% hint style="info" %}
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2023-05-22-switch-to-uuidv7.md)
-{% endhint %}
-
 ## Context
 
 Using UUIDs as primary keys eases the integration of several different datasources,
