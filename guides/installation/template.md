@@ -25,7 +25,7 @@ composer remove shopware/<bundle-name>
 After you have created the project via Composer, you should create a `.env.local` file and specify the the enviroment variables you want to override from `.env` and run the following command:
 
 {% hint style="info %}
-The `.env` will be overwritten when the Shopware Web Installer is used for Shopware updates, so it's hightly recommanded to use a `.env.local` file.
+The `.env` will be overwritten when the Shopware Web Installer is used for Shopware updates, so it's highly recommended to use a `.env.local` file.
 {% endhint %}
 
 ```bash
