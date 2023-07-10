@@ -2,6 +2,13 @@
 
 In Shopware, we extend Twig's functionality by custom ones. See our own actions below.
 
+{% hint style="warning" %}
+**We do not support the usage of the `use` tag in twig**
+
+Be careful while using the `use` tag for horizontal reuse in twig. [Twig documentation - use tag](https://twig.symfony.com/doc/3.x/tags/use.html).
+Because it can break the inheritance we do not support the usage of the `use` tag with our `Storefront` templates. Any change in our templates can break your plugin or app.
+{% endhint %}
+
 ## Functions
 
 | Function | Description | Notes |
