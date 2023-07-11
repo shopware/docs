@@ -107,7 +107,6 @@ There are several required values and some optional values.
 | maxPurchase | int     | The maximum purchase value for this product                     | Optional          |
 | isCloseout  | boolean | Whether the product can be ordered if there is not enough stock | Optional          |
 
-
 For example:
 
 ```php

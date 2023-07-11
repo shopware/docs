@@ -21,7 +21,7 @@ Some features of Shopware are only activated when the corresponding feature flag
 
 {% code title="<project root>/.env" %}
 
-```
+```shell
 STOCK_HANDLING=1
 ```
 
@@ -37,7 +37,7 @@ The new system is not enabled by default To enable it, set the `STOCK_HANDLING` 
 
 {% code title="<project root>/.env" %}
 
-```
+```shell
 STOCK_HANDLING=1
 ```
 
@@ -67,7 +67,7 @@ shopware:
 
 Please not this only applies if you have the `STOCK_HANDLING` feature flag enabled.
 
-Since version 6.5.4 Shopware ships with an even subscriber to mirror stock updates from the `product.stock` field to the `product.availableStock` field for backwards compatibility purposes. This means that any writes performed on the `product.stock` field via the [DAL](../../../concepts/framework/data-abstraction-layer) will be mirrored to the `product.availableStock` field. 
+Since version 6.5.4 Shopware ships with an even subscriber to mirror stock updates from the `product.stock` field to the `product.availableStock` field for backwards compatibility purposes. This means that any writes performed on the `product.stock` field via the [DAL](../../../concepts/framework/data-abstraction-layer) will be mirrored to the `product.availableStock` field.
 
 If you don't need this behaviour you can disable it by setting `shopware.stock.enable_available_stock_mirror` to `false`:
 

@@ -10,7 +10,7 @@ We will be decorating a service, therefore it will be helpful to familiarise you
 
 ## Add a decorator to load the stock
 
-We want to communicate stock alterations to a third party service. We will decorate `\Shopware\Core\Content\Product\Stock\AbstractStockStorage` and implement the `alter` method. This method is triggered with an array of `StockAlteration`'s. Which contain the Product & Line Item ID's, the old quantity and the new quantity. 
+We want to communicate stock alterations to a third party service. We will decorate `\Shopware\Core\Content\Product\Stock\AbstractStockStorage` and implement the `alter` method. This method is triggered with an array of `StockAlteration`'s. Which contain the Product & Line Item ID's, the old quantity and the new quantity.
 
 {% tabs %}
 {% tab title="StockStorageDecorator.php" %}
@@ -88,7 +88,6 @@ class StockStorageDecorator extends AbstractStockStorage
 {% endtab %}
 {% endtabs %}
 
-
 The alter method will be called when a products stock should be updated. The `$changes` array contains a list of `StockAlteration` instances. These objects contain the following properties/methods:
 
 | Property/Method | Type   | Description                                             |
@@ -99,28 +98,25 @@ The alter method will be called when a products stock should be updated. The `$c
 | newQuantity     | int    | The new product stock level                             |
 | quantityDelta() | int    | The difference between the old and new stock level      |
 
-
 The scenarios from where these alterations are initiated from can be summarised as follows:
 
 ## Stock changing scenarios
 
 The following list contains all the scenarios that trigger stock alterations. All implementations of `AbstractStockStorage` should be able to handle these scenarios.
 
-* Order placed                             
-* Order cancelled                          
-* Order deleted                            
-* Cancelled order, reopened                
-* Line item added to order                 
-* Line item removed from an order          
+* Order placed
+* Order cancelled
+* Order deleted
+* Cancelled order, reopened
+* Line item added to order
+* Line item removed from an order
 * Line item updated (Product qty increased)
 * Line item updated (Product qty decreased)
-* Line item updated (Product sku changed)  
+* Line item updated (Product sku changed)
 
 All of these scenarios are handled by the event subscriber `Shopware\Core\Content\Product\Stock\OrderStockSubscriber`.
 
 ## Further extension points for advanced customisation
 
 1. If you need to listen to more events to trigger stock alterations, you can create an event subscriber for the required events and call the `\Shopware\Core\Content\Product\Stock\AbstractStockStorage::alter` method with a `StockAlteration` instance representative of the alteration.
-2. If you don't want to use Shopware's default events and stock storage, you can implement your own system and recommend that the project owner disables the Shopware stock management system. Refer them to [Configuration guide](../../../../../guides/installation/configuration).
-
-
+1. If you don't want to use Shopware's default events and stock storage, you can implement your own system and recommend that the project owner disables the Shopware stock management system. Refer them to [Configuration guide](../../../../../guides/installation/configuration).
