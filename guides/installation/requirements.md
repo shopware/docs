@@ -55,7 +55,7 @@ You can use these commands to check your actual environment:
 
 * MariaDB
 
-  * Compatible versions : 10.3.22, 10.4 and 10.5
+  * Compatible versions : at least 10.3
 
   * Recommended version : at least 10.11
 
