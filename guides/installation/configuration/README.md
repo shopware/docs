@@ -9,7 +9,7 @@ When running Shopware 6 there are various configuration options you can use to c
 The configuration for Shopware 6 resides in the general bundle configuration:
 
 ```text
-<shop root>
+<project root>
 └── config
    └── packages
       └── shopware.yaml
@@ -47,11 +47,11 @@ In the next major version of Shopware, the new stock management system will beco
 
 #### Disable Stock Management
 
-Please not this only applies if you have the `STOCK_HANDLING` feature flag enabled.
+Please note this only applies if you have the `STOCK_HANDLING` feature flag enabled.
 
-You can completely disable Shopware's default stock management system. When disabled, none of the event subscribers for order transitions will be executed. In practise this means that none of the subscribers in `Shopware\Core\Content\Product\Stock\OrderStockSubscriber` will be executed.
+You can completely disable Shopware's default stock management system. When disabled, none of the event subscribers for order transitions will be executed. In practise, this means that none of the subscribers in `Shopware\Core\Content\Product\Stock\OrderStockSubscriber` will be executed.
 
-To disable set `shopware.stock.enable_stock_management` to `false`:
+To disable, set `shopware.stock.enable_stock_management` to `false`:
 
 {% code title="<project root>/config/packages/shopware.yaml" %}
 
@@ -65,9 +65,9 @@ shopware:
 
 #### Disable the Available Stock Mirror
 
-Please not this only applies if you have the `STOCK_HANDLING` feature flag enabled.
+Please note this only applies if you have the `STOCK_HANDLING` feature flag enabled.
 
-Since version 6.5.4 Shopware ships with an even subscriber to mirror stock updates from the `product.stock` field to the `product.availableStock` field for backwards compatibility purposes. This means that any writes performed on the `product.stock` field via the [DAL](../../../concepts/framework/data-abstraction-layer) will be mirrored to the `product.availableStock` field.
+Since version 6.5.4 Shopware ships with an event subscriber to mirror stock updates from the `product.stock` field to the `product.availableStock` field for backwards compatibility purposes. This means that any writes performed on the `product.stock` field via the [DAL](../../../concepts/framework/data-abstraction-layer) will be mirrored to the `product.availableStock` field.
 
 If you don't need this behaviour you can disable it by setting `shopware.stock.enable_available_stock_mirror` to `false`:
 

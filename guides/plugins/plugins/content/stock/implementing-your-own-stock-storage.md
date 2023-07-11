@@ -2,7 +2,7 @@
 
 ## Overview
 
-Shopware stores stock as simple values in the `product` table. If you need to a more advanced stock management system, or you would simply like to write the stock alterations to a different system, you can implement your own stock storage.
+Shopware stores stock as simple integer values in the `product` table. If you need a more advanced stock management system, or would simply like to write the stock alterations to a different system, you can implement your own stock storage.
 
 ## Prerequisites
 
@@ -10,7 +10,7 @@ We will be decorating a service, therefore it will be helpful to familiarise you
 
 ## Add a decorator to load the stock
 
-We want to communicate stock alterations to a third party service. We will decorate `\Shopware\Core\Content\Product\Stock\AbstractStockStorage` and implement the `alter` method. This method is triggered with an array of `StockAlteration`'s. Which contain the Product & Line Item ID's, the old quantity and the new quantity.
+We want to communicate stock alterations to a third party service. We will decorate `\Shopware\Core\Content\Product\Stock\AbstractStockStorage` and implement the `alter` method. This method is triggered with an array of `StockAlteration`'s. Which contain the Product & Line Item ID's, the old quantity as well as the new quantity.
 
 {% tabs %}
 {% tab title="StockStorageDecorator.php" %}
@@ -97,8 +97,6 @@ The alter method will be called when a products stock should be updated. The `$c
 | quantityBefore  | int    | The old product stock level                             |
 | newQuantity     | int    | The new product stock level                             |
 | quantityDelta() | int    | The difference between the old and new stock level      |
-
-The scenarios from where these alterations are initiated from can be summarised as follows:
 
 ## Stock changing scenarios
 
