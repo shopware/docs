@@ -485,6 +485,7 @@
     * [Admin text editor evaluation](resources/references/adr/2023-03-27-admin-text-editor-evaluation.md)
     * [Mocking repositories](resources/references/adr/2023-04-01-mocking-repositories.md)
     * [Disable css autoprefixer](resources/references/adr/2023-04-03-disable-css-autoprefixer.md)
+    * [New language inheritance mechanism for opensearch](resources/references/adr/2023-04-11-new-language-inheritance-mechanism-for-opensearch.md)
     * [Jest test files should be javascript only](resources/references/adr/2023-04-14-jest-test-files-should-be-javascript-only.md)
     * [Optimise cart cleanup](resources/references/adr/2023-05-09-optimise-cart-cleanup.md)
     * [Stock API](resources/references/adr/2023-05-15-stock-api.md)
@@ -493,6 +494,7 @@
     * [Switch to uuidv7](resources/references/adr/2023-05-22-switch-to-uuidv7.md)
     * [Exception log levels](resources/references/adr/2023-05-25-exception-log-levels.md)
     * [Store API to app server](resources/references/adr/2023-06-27-store-api-to-app-server.md)
+    * [Default handle for non specified salutations](resources/references/adr/2023-06-28-default-handle-for-non-specified-salutations.md)
     * [YYYY MM DD template](resources/references/adr/YYYY-MM-DD-template.md)
 
   * [App Reference](resources/references/app-reference/README.md)
