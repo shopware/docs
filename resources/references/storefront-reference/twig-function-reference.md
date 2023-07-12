@@ -5,7 +5,7 @@ In Shopware, we extend Twig's functionality by custom ones. See our own actions 
 {% hint style="warning" %}
 **No official support for the twig {% use %} tag**
 
-Try to avoid importing blocks from the core templates with the **{% use %}** tag for horizontal reuse in twig. [Twig documentation - use tag](https://twig.symfony.com/doc/3.x/tags/use.html).
+Try to avoid importing blocks from the core templates with the \{\% use \%\} tag for horizontal reuse in twig. [Twig documentation - use tag](https://twig.symfony.com/doc/3.x/tags/use.html).
 
 The **{% use %}** tag does not consider the template inheritance similar to `{% sw_extends %}`.
 
