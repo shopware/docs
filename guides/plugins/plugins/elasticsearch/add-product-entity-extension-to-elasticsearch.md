@@ -232,6 +232,11 @@ class MyProductEsDecorator extends AbstractElasticsearchDefinition
         return $this->productDefinition->getEntityDefinition();
     }
 
+    public function buildTermQuery(Context $context, Criteria $criteria): BoolQuery
+    {
+        return $this->decoratedService->buildTermQuery($context, $criteria);
+    }
+
     /**
      * Extend the mapping with your own changes
      * Take care to get the default mapping first by `$this->productDefinition->getMapping($context);`
