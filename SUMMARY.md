@@ -373,6 +373,7 @@
     * [API Versioning](guides/integrations-api/general-concepts/api-versioning.md)
 * [Security](guides/security/README.md)
   * [HTML sanitizer](guides/security/html-sanitizer.md)
+  * [SameSite protection](guides/security/samesite-protection.md)
 
 ## Resources
 
