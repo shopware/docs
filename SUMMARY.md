@@ -273,7 +273,6 @@
       * [Add cookie to manager](guides/plugins/plugins/storefront/add-cookie-to-manager.md)
       * [Reacting to cookie consent changes](guides/plugins/plugins/storefront/reacting-to-cookie-consent-changes.md)
       * [Reacting to javascript events](guides/plugins/plugins/storefront/reacting-to-javascript-events.md)
-      * [Use CSRF protection](guides/plugins/plugins/storefront/use-csrf-protection.md)
       * [Working with media and thumbnails](guides/plugins/plugins/storefront/use-media-thumbnails.md)
       * [Remove Javascript plugin](guides/plugins/plugins/storefront/remove-unnecessary-js-plugin.md)
       * [Add custom field in the storefront](guides/plugins/plugins/storefront/using-custom-fields-storefront.md)
