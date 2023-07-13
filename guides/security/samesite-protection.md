@@ -5,12 +5,14 @@ This feature has been introduced with Shopware version 6.4.3.1
 {% endhint %}
 
 ## Overview
+
 The [SameSite configuration](https://symfony.com/doc/current/reference/configuration/framework.html#cookie-samesite) comes with the Symfony FrameworkBundle and supersedes the removed `sw_csrf` Twig function.
 It is widely [available](https://caniuse.com/same-site-cookie-attribute) in modern browsers and is set to `lax` per default.
 
 More information about SameSite cookies can be found [here](https://web.dev/i18n/en/samesite-cookies-explained/)
 
 ## Configuration
+
 Changes to the `cookie_samesite` attribute can be applied to your `framework.yaml`. The `cookie_secure` ensures that cookies are either sent via http or https,
 depending on the request origin.
 
