@@ -117,6 +117,11 @@
 
 * [Installation](guides/installation/README.md)
   * [Requirements](guides/installation/requirements.md)
+  * [Configurations](guides/installation/configurations.md)
+    * [Shopware](guides/installation/configurations/shopware.md)
+      * [HTML sanitizer](guides/installation/configurations/shopware/html-sanitizer.md)
+    * [Framwork](guides/installation/configurations/framwork.md)
+      * [SameSite protection](guides/installation/configurations/framwork/samesite-protection.md)
   * [Template](guides/installation/template.md)
   * [Devenv](guides/installation/devenv.md)
   * [Community Setups](guides/installation/community/README.md)
@@ -371,9 +376,6 @@
     * [Request Headers](guides/integrations-api/general-concepts/request-headers.md)
     * [Generated Reference](guides/integrations-api/general-concepts/generated-reference.md)
     * [API Versioning](guides/integrations-api/general-concepts/api-versioning.md)
-* [Security](guides/security/README.md)
-  * [HTML sanitizer](guides/security/html-sanitizer.md)
-  * [SameSite protection](guides/security/samesite-protection.md)
 
 ## Resources
 
@@ -517,6 +519,7 @@
   * [Testing Reference](resources/references/testing-reference/README.md)
     * [Custom E2E Commands](resources/references/testing-reference/e2e-custom-commands.md)
     * [E2E Commands](resources/references/testing-reference/e2e-commands.md)
+  * [Security](resources/references/security.md)
 * [Guidelines](resources/guidelines/README.md)
   * [Code](resources/guidelines/code/README.md)
     * [Contribution Guidelines](resources/guidelines/code/contribution.md)
