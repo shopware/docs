@@ -6,7 +6,7 @@ Shopware stores the current stock level alongside the product, this guide will h
 
 ## Reading Stock
 
-The `product.stock` field should be used to read the current stock level. When building extensions which need to query the stock of a product, use this field. It is always a real time calculated value of the available product stock.
+The `product.stock` field should be used to read the current stock level. When building extensions that need to query a product's stock, use this field. It is always a real-time calculated value of the available product stock.
 
 {% code title="<plugin root>/src/Swag/Example/ServiceReadingData.php" %}
 

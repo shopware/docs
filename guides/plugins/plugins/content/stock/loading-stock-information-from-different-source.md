@@ -2,15 +2,15 @@
 
 ## Overview
 
-If Shopware is not the source of truth for your stock data you can customise the stock loading process and provide your own data from a third party source.
+If Shopware is not the source of truth for your stock data, you can customize the stock loading process and provide your data from a third-party source.
 
 ## Prerequisites
 
-We will be decorating a service, therefore it will be helpful to familiarise yourself with the [Adjusting a Service](../../plugin-fundamentals/adjusting-service) guide.
+We will be decorating a service; therefore, familiarising yourself with the [Adjusting a Service](../../plugin-fundamentals/adjusting-service) guide will be helpful.
 
 ## Add a decorator to load the stock
 
-Say for example, we want to load stock from a third party API. We will decorate `\Shopware\Core\Content\Product\Stock\AbstractStockStorage` and implement the `load` method. When products are loaded in Shopware the `load` method will be invoked with the loaded product ID's.
+For example, we want to load stock from a third-party API. We will decorate `\Shopware\Core\Content\Product\Stock\AbstractStockStorage` and implement the `load` method. When products are loaded in Shopware the `load` method will be invoked with the loaded product IDs.
 
 {% tabs %}
 {% tab title="StockStorageDecorator.php" %}
@@ -90,7 +90,7 @@ class StockStorageDecorator extends AbstractStockStorage
 {% endtab %}
 {% endtabs %}
 
-In your `load` method you can access the product ID's from the `StockLoadRequest` instance and perform a request to your system to retrieve the data.
+In your `load` method, you can access the product IDs from the `StockLoadRequest` instance and perform a request to your system to retrieve the data.
 
 You then construct and return a `StockDataCollection` full of `StockData` instances. Each `StockData` instance represents a product.
 
@@ -132,7 +132,7 @@ $stockData = \Shopware\Core\Content\Product\Stock\StockData::fromArray([
 $stockData->addArrayExtension('extraData', ['foo' => 'bar']);
 ```
 
-The values provided in the `StockData` instance will be used to update the loaded product instance. Furthermore, it's possible to fetch the `StockData` instance from the product via the `stock_data` extension. For example:
+The values in the `StockData` instance will be used to update the loaded product instance. Furthermore, fetching the `StockData` instance from the product via the `stock_data` extension is possible. For example:
 
 ```php
 $stockData = $product->getExtension('stock_data');

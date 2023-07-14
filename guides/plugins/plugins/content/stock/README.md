@@ -1,9 +1,9 @@
 # Stock
 
 {% hint style="info" %}
-This documentation concerns the new stock management system implemented in Shopware 6.5.4.0. It is only enabled if the shop owner has the `STOCK_HANDLING` feature flag enabled.
+This documentation concerns the new stock management system implemented in Shopware 6.5.4.0. It is only enabled if the shop owner has enabled the `STOCK_HANDLING` feature flag.
 {% endhint %}
 
-The stock management system allows products to be assigned stock. Stock is incremented and decremented as orders are placed, modified, cancelled and refunded.
+The stock management system allows products to be assigned stock. Stock is incremented and decremented as orders are placed, modified, canceled and refunded.
 
-In order to accommodate for the various use-cases, the system has been kept as simple as possible, with the ability to be completely disabled by the shop owner, if not required.
+In order to accommodate for the various use cases, the stock management system has been kept as simple as possible. The shop owner can deactivate it entirely if not required.

@@ -49,7 +49,7 @@ In the next major version of Shopware, the new stock management system will beco
 
 Please note this only applies if you have the `STOCK_HANDLING` feature flag enabled.
 
-You can completely disable Shopware's default stock management system. When disabled, none of the event subscribers for order transitions will be executed. In practise, this means that none of the subscribers in `Shopware\Core\Content\Product\Stock\OrderStockSubscriber` will be executed.
+You can completely disable Shopware's default stock management system. When disabled, none of the event subscribers for order transitions will be executed. In practice, this means that none of the subscribers in `Shopware\Core\Content\Product\Stock\OrderStockSubscriber` will be executed.
 
 To disable, set `shopware.stock.enable_stock_management` to `false`:
 

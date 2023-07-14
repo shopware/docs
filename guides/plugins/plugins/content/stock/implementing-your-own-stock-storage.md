@@ -2,15 +2,15 @@
 
 ## Overview
 
-Shopware stores stock as simple integer values in the `product` table. If you need a more advanced stock management system, or would simply like to write the stock alterations to a different system, you can implement your own stock storage.
+Shopware stores stock as simple integer values in the `product` table. If you need a more advanced stock management system or would like to write the stock alterations to a different system, you can implement your own stock storage.
 
 ## Prerequisites
 
-We will be decorating a service, therefore it will be helpful to familiarise yourself with the [Adjusting a Service](../../plugin-fundamentals/adjusting-service) guide.
+We will be decorating a service; therefore it will be helpful to familiarise yourself with the [Adjusting a Service](../../plugin-fundamentals/adjusting-service) guide.
 
 ## Add a decorator to load the stock
 
-We want to communicate stock alterations to a third party service. We will decorate `\Shopware\Core\Content\Product\Stock\AbstractStockStorage` and implement the `alter` method. This method is triggered with an array of `StockAlteration`'s. Which contain the Product & Line Item ID's, the old quantity as well as the new quantity.
+We want to communicate stock alterations to a third-party service. We will decorate `\Shopware\Core\Content\Product\Stock\AbstractStockStorage` and implement the `alter` method. This method is triggered with an array of `StockAlteration`'s, which contain the Product & Line Item IDs, the old quantity and the new quantity.
 
 {% tabs %}
 {% tab title="StockStorageDecorator.php" %}
@@ -88,7 +88,7 @@ class StockStorageDecorator extends AbstractStockStorage
 {% endtab %}
 {% endtabs %}
 
-The alter method will be called when a products stock should be updated. The `$changes` array contains a list of `StockAlteration` instances. These objects contain the following properties/methods:
+The alter method will be called when the stock of a product should be updated. The `$changes` array contains a list of `StockAlteration` instances. These objects contain the following properties/methods:
 
 | Property/Method | Type   | Description                                             |
 |-----------------|--------|---------------------------------------------------------|
@@ -103,10 +103,10 @@ The alter method will be called when a products stock should be updated. The `$c
 The following list contains all the scenarios that trigger stock alterations. All implementations of `AbstractStockStorage` should be able to handle these scenarios.
 
 * Order placed
-* Order cancelled
+* Order canceled
 * Order deleted
 * Cancelled order, reopened
-* Line item added to order
+* Line item added to the order
 * Line item removed from an order
 * Line item updated (Product qty increased)
 * Line item updated (Product qty decreased)
