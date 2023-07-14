@@ -353,7 +353,7 @@
     * [Shopware](guides/hosting/configurations/shopware.md)
       * [HTML sanitizer](guides/hosting/configurations/shopware/html-sanitizer.md)
     * [Framwork](guides/hosting/configurations/framwork.md)
-      * [SameSite protection](guides/hosting/configurations/framwork/samesite-protection.md)
+      * [SameSite protection](guides/hosting/configurations/framework/samesite-protection.md)
   * [Performance](guides/hosting/performance/README.md)
     * [Cache](guides/hosting/performance/caches.md)
     * [Session](guides/hosting/performance/session.md)
