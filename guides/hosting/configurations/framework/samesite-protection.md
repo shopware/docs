@@ -13,8 +13,7 @@ For more information, refer to [SameSite cookies site](https://web.dev/i18n/en/s
 
 ## Configuration
 
-Changes to the `cookie_samesite` attribute can be applied to your `framework.yaml`. The `cookie_secure` ensures that cookies are either sent via http or https,
-depending on the request origin.
+Changes to the `cookie_samesite` attribute can be applied to your `framework.yaml`. The `cookie_secure` ensures that cookies are sent via HTTP or HTTPS, depending on the request's origin.
 
 ```yml
 
