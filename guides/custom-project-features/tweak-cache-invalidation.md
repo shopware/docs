@@ -8,7 +8,7 @@ These tags are determined by the Shopware core system when writing data via API 
 
 In the current state, almost all invalidations happen in class `Shopware\Core\Framework\Adapter\Cache\CacheInvalidationSubscriber`. This is an event listener which listens for various events in the system and determines the corresponding cache tags and sends them via `Shopware\Core\Framework\Adapter\Cache\CacheInvalidator` to the cache pool for invalidation.
 
-However, currently, the subscriber adheres to a highly precise invalidation concept, where any data written to the product results in the invalidation of cache tags for that specific product, even if the data is not utilized in the corresponding pages. This approach is not ideal for Shopware, being a standard product, as it becomes challenging to determine precisely when and which cache entries should be deleted. Moreover, due to project-specific variations, it is not feasible to generalize the process. 
+However, currently, the subscriber adheres to a highly precise invalidation concept, where any data written to the product results in the invalidation of cache tags for that specific product, even if the data is not utilized in the corresponding pages. This approach is not ideal for Shopware, being a standard product, as it becomes challenging to determine precisely when and which cache entries should be deleted. Moreover, due to project-specific variations, it is not feasible to generalize the process.
 
 Therefore, we have solved all configurations via the service definition of this subscriber, so that all events, on which the subscriber listens, can be manipulated via compiler passes.
 
