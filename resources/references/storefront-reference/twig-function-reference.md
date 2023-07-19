@@ -30,7 +30,7 @@ Furthermore, templates which are imported via \{\% use \%\} are not allowed to h
 | :--- | :--- | :--- |
 | `replace_recursive` | Enables recursive replacement in addition to twig's default `replace` filter | To see an example, see the guide on [add custom JavaScript](../../../guides/plugins/plugins/storefront/add-custom-javascript.md) |
 | `currency` | Adopts currency formatting: The currency symbol and the comma setting. | --- |
-| `sw_sanitize` | Filters tags and attributes from a given string. | --- |
+| `sw_sanitize` | Filters tags and attributes from a given string. By default, twig's auto escaping is on, so this filter explicitly allows basic HTML tags like <i>,<b>,... | --- |
 
 ## Extensions
 
