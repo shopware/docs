@@ -1,6 +1,7 @@
 # Quality Guidelines for Apps based on Plugin System in Shopware Store
 
 > **Changelog**
+>> 18/07/23: Compiled code
 >
 >> 12/04/23: Check for a functional comparison with functions from the Rise or above edition.
 >
@@ -76,6 +77,9 @@ Be sure to use the most recent testing checklist from Shopware and not from any 
 * We check for styling errors on every viewport.
 
 * We check the complete functionality of the app (including the uninstallation and reinstallation procedure).
+
+* Compiled JavaScript offers many benefits such as improved performance and code optimization. However, it is difficult to read and understand the compiled code.
+To ensure that the code remains accessible to all developers, the uncompiled version of the JavaScript code must be placed in a separate folder. This allows other developers to review and understand the code in its original, readable form.
 
 * We want to improve the quality of the Shopware Community Store and offer as many different apps as possible. Hence, we check for a functional comparison with other apps already in the Shopware Community store, in the Rise edition, or above. If there is an app with the same function, it can be rejected as it doesn't provide any added value. For further information, write an email to [alliances@shopware.com](mailto:alliances@shopware.com).
 
