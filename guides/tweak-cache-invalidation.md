@@ -4,7 +4,7 @@ The current cache system of Shopware is based on a multi-layer system, in which 
 
 Thus, an HTTP cache entry for a product detail page is built with all cache tags that are loaded or set during the rendering of the page for the individual routes or other cache entries in the system.
 
-These tags are determined by us when writing data, via API, and invalidated via the configured cache pool.
+These tags are determined by the Shopware core system when writing data via API and invalidated via the configured cache pool.
 
 In the current state, almost all invalidations happen in class `Shopware\Core\Framework\Adapter\Cache\CacheInvalidationSubscriber`. This is an event listener which listens for various events in the system and determines the corresponding cache tags and sends them via `Shopware\Core\Framework\Adapter\Cache\CacheInvalidator` to the cache pool for invalidation.
 
