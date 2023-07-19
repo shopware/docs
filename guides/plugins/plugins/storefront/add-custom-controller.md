@@ -80,7 +80,7 @@ class ExampleController extends StorefrontController
 
 {% endcode %}
 
-The name of the method does not really matter, but it should somehow fit its purpose. More important is the `Route` annotation, that points to the route `/example`. Also note its name, which is also quite important. Make sure to use prefixes `frontend`, `api` or `store-api` here, depending on what your route does. Inside the method, we're using the method `renderStorefront` to render a twig template file in addition with the template variable `example`, which contains `Hello world`. This template variable will be usable in the rendered template file. The method `renderStorefront` then returns a `Response`, as every routed controller method has to.
+The name of the method does not really matter, but it should somehow fit its purpose. More important is the `Route` annotation, that points to the route `/example`. Also note its name, which is also quite important. Make sure to use prefixes `frontend`, `widgets`, `payment`, `api` or `store-api` here, depending on what your route does. Inside the method, we're using the method `renderStorefront` to render a twig template file in addition with the template variable `example`, which contains `Hello world`. This template variable will be usable in the rendered template file. The method `renderStorefront` then returns a `Response`, as every routed controller method has to.
 
 It is also possible to define the `_routeScope` per route.
 

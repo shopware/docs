@@ -8,11 +8,11 @@ This guide explains the repository setup using **GitHub**. You can also integrat
 
 ## Create a Shopware project
 
-Firstly,  create a new project with `composer create-project shopware/platform:dev-flex <folder-name>` using the [Symfony Flex](../../guides/installation/flex.md) template.
+Firstly,  create a new project with `composer create-project shopware/platform <folder-name>` using the [Symfony Flex](../../guides/installation/flex.md) template.
 
 This will create a brand new Shopware 6 project in the given folder. Now, change it into the newly created project and require the PaaS configuration with `composer req paas`.
 
-Secondly, create a new Git repository and push it to your favorite Git hosting service.
+Secondly, create a new Git repository and push it to your favourite Git hosting service.
 
 ## Add PaaS remote
 
@@ -58,11 +58,11 @@ platform	<paas-url>.git (push)
 | `origin`   | Project Code      | This remote contains all your project specific source code              |
 | `platform` | PaaS Environment  | Changes pushed to this remote will be synced with your PaaS environment |
 
-## Migrating from old template to the new template
+## Migrating from the old template to the new template
 
 If you have already used the [Shopware PaaS old template](https://github.com/shopware/paas), please follow the guide to [migrate it to the new structure](../../guides/installation/template.md#how-to-migrate-from-production-template-to-symfony-flex).
 
-Following tasks has to be done additionally to the flex migration:
+The following tasks have to be done additionally to the flex migration:
 
 * The root `.platform.app.yml` has been moved to `.platform/applications.yaml`
 * The following services has been renamed:

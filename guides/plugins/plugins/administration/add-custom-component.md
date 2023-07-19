@@ -47,7 +47,7 @@ In the directory mentioned above, create a new file `index.js`. We will get you 
 {% code title="<plugin root>/src/Resources/app/administration/src" %}
 
 ```javascript
-import './app/component/custom-component/hello-world';
+import './component/custom-component/hello-world';
 ```
 
 {% endcode %}
