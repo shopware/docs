@@ -24,5 +24,4 @@ framework:
     cookie_samesite: lax
 ```
 
-If you want to deactivate the SameSite protection despite security risks, change the value from `lax` to `null`. For detailed
-configuration options please check the official [Symfony Docs](https://symfony.com/doc/current/reference/configuration/framework.html#cookie-samesite).
+If you want to deactivate the SameSite protection despite security risks, change the value from `lax` to `null`. For detailed configuration options, check the official [Symfony Docs](https://symfony.com/doc/current/reference/configuration/framework.html#cookie-samesite).
