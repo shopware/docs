@@ -38,7 +38,7 @@ Depending on the interface, those methods are required:
 * `refund`: This method is called, whenever a successful transaction is claimed to be refunded. The implementation of the refund handler should validate the legitimacy of the refund and call the PSP to refund the given transaction. Throw a `RefundException` to let the refund fail.
 * `captureRecurring`: This method is called whenever a recurring payment is charged. At this point, a valid billing agreement with the payment provider should exist. Use some of the other payment methods for handling the initial order and billing agreement. Use this interface only for handling all recurring captures afterwards.
 
-All payment handler methods have the `\Shopware\Core\System\SalesChannel\SalesChannelContext` injected, except for the new  `captureRecurring`  method. Please note, that this class contains properties, which are nullable. If you want to use this information, you have to ensure in your code that they are set and not `NULL`.
+All payment handler methods have the `\Shopware\Core\System\SalesChannel\SalesChannelContext` injected, except for the new  `captureRecurring`  method. Note that this class contains properties that are nullable. If you want to use this information, you have to ensure in your code that they are set and not `NULL`.
 
 ### Registering the service
 
