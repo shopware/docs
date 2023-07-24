@@ -61,7 +61,7 @@ The versioning is also reflected in the database. Entities that are versionable 
 
 ### Context
 
-The Context `core/Framework/Context.php` defines important configuration of the shop system and is instantiated once per request. Depending on the passed parameters it can change the CRUD behavior of the DAL. For example when using the currency toggle in the storefront and selecting Dollar instead of Euro, the context currency ID is changed accordingly and all operations now refer to Dollar.
+The context `core/Framework/Context.php` defines important configuration of the shop system and is instantiated once per request. Depending on the passed parameters it can change the CRUD behavior of the DAL. For example when using the currency toggle in the storefront and selecting Dollar instead of Euro, the context currency ID is changed accordingly and all operations now refer to Dollar.
 
 ### Inheritance
 
