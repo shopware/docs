@@ -486,6 +486,7 @@
     * [New language inheritance mechanism for opensearch](resources/references/adr/2023-04-11-new-language-inheritance-mechanism-for-opensearch.md)
     * [Jest test files should be javascript only](resources/references/adr/2023-04-14-jest-test-files-should-be-javascript-only.md)
     * [Optimise cart cleanup](resources/references/adr/2023-05-09-optimise-cart-cleanup.md)
+    * [Experimental features](resources/references/adr/2023-05-10-experimental-features.md)
     * [Stock API](resources/references/adr/2023-05-15-stock-api.md)
     * [Php enums](resources/references/adr/2023-05-16-php-enums.md)
     * [Symfony dependency management](resources/references/adr/2023-05-16-symfony-dependency-management.md)
