@@ -273,7 +273,6 @@
       * [Add cookie to manager](guides/plugins/plugins/storefront/add-cookie-to-manager.md)
       * [Reacting to cookie consent changes](guides/plugins/plugins/storefront/reacting-to-cookie-consent-changes.md)
       * [Reacting to javascript events](guides/plugins/plugins/storefront/reacting-to-javascript-events.md)
-      * [Use CSRF protection](guides/plugins/plugins/storefront/use-csrf-protection.md)
       * [Working with media and thumbnails](guides/plugins/plugins/storefront/use-media-thumbnails.md)
       * [Remove Javascript plugin](guides/plugins/plugins/storefront/remove-unnecessary-js-plugin.md)
       * [Add custom field in the storefront](guides/plugins/plugins/storefront/using-custom-fields-storefront.md)
@@ -350,6 +349,11 @@
       * [Building without Database](guides/hosting/installation-updates/deployments/build-w-o-db.md)
     * [Cluster Setup](guides/hosting/installation-updates/cluster-setup.md)
     * [Versioning & Dependencies](guides/hosting/installation-updates/composer.md)
+  * [Configurations](guides/hosting/configurations.md)
+    * [Shopware](guides/hosting/configurations/shopware.md)
+      * [HTML sanitizer](guides/hosting/configurations/shopware/html-sanitizer.md)
+    * [Framework](guides/hosting/configurations/framework.md)
+      * [SameSite protection](guides/hosting/configurations/framework/samesite-protection.md)
   * [Performance](guides/hosting/performance/README.md)
     * [Cache](guides/hosting/performance/caches.md)
     * [Session](guides/hosting/performance/session.md)
@@ -372,8 +376,6 @@
     * [Request Headers](guides/integrations-api/general-concepts/request-headers.md)
     * [Generated Reference](guides/integrations-api/general-concepts/generated-reference.md)
     * [API Versioning](guides/integrations-api/general-concepts/api-versioning.md)
-* [Security](guides/security/README.md)
-  * [HTML sanitizer](guides/security/html-sanitizer.md)
 
 ## Resources
 
@@ -515,6 +517,7 @@
   * [Testing Reference](resources/references/testing-reference/README.md)
     * [Custom E2E Commands](resources/references/testing-reference/e2e-custom-commands.md)
     * [E2E Commands](resources/references/testing-reference/e2e-commands.md)
+  * [Security](resources/references/security.md)
 * [Guidelines](resources/guidelines/README.md)
   * [Code](resources/guidelines/code/README.md)
     * [Contribution Guidelines](resources/guidelines/code/contribution.md)
