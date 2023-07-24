@@ -4,15 +4,17 @@
 
 ### Company
 
-The company entity represents a company that is registered as a customer in the shop. It is used to gather a company's employees and roles.
+The company entity contains additional B2B company data and therefore extends the basic storefront customer. Companies are used to pool employees, roles and global settings.
 
 ### Employee
 
-The employee entity represents a customer working for a specific B2B merchant. It acts on behalf of the associated company to e.g. place orders. A role can be assigned to an employee.
+The employee entity represents a separated login for the same company customer / B2B business partner. Employees act on behalf of the associated company to e.g. place orders. An employee can have a role assigned.
 
 ### Role
 
-The role entity represents a set of permissions that can be assigned to an employee. Permissions can restrict or allow employees to perform certain actions in the shop, like ordering or managing roles or employees themselves.
+The role entity represents a set of permissions that can be assigned to an employee. Permissions can restrict or allow employees to perform certain actions in the shop, like ordering or managing roles as well as employees.
+
+![ER model](../../../../../.gitbook/assets/b2b-employee-management-er-schema.png)
 
 ```mermaid
 erDiagram
@@ -43,5 +45,5 @@ erDiagram
     swag_b2b_company |o--|| customer : "is company administrator"
     swag_b2b_employee }o--|| customer : "uses data for orders from"
     swag_b2b_employee }o--o| swag_b2b_role : "has role"
-    swag_b2b_role }o--|| customer : "uses company data from"
+    swag_b2b_role }o--|| customer : "belongs to"
 ```
