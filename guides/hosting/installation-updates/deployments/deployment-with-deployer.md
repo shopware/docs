@@ -1,5 +1,7 @@
 # Deployment with Deployer
 
+{% hint style="danger" %} This document is outdated and only works up to version 6.3.* {% endhint %}
+
 ## Overview
 
 Automated deployments shouldn't be a pain and have several advantages, like lower failure rates and reproducible builds. Also, they increase overall productivity because actual testing can get more attention.
