@@ -343,6 +343,7 @@
       * [Add custom rule conditions](guides/plugins/apps/rule-builder/add-custom-rule-conditions.md)
     * [Tax provider](guides/plugins/apps/tax-provider.md)
     * [Webhook](guides/plugins/apps/webhook.md)
+    * [Client side communication to the app backend](guides/plugins/apps/clientside-to-app-backend.md)
 * [Hosting](guides/hosting/README.md)
   * [Installation & Updates](guides/hosting/installation-updates/README.md)
     * [Deployments](guides/hosting/installation-updates/deployments/README.md)
