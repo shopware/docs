@@ -178,7 +178,7 @@ $ ./bin/console debug:router store-api.example.search
 
 ## Add route to Swagger
 
-In order to add the route to the Swagger page a JSON file is needed in a certain [format](https://swagger.io/specification/#paths-object). It contains information about the paths, methods, parameters, and more.
+To add the route to the Swagger page, a JSON file is needed in a specific [format](https://swagger.io/specification/#paths-object). It contains information about the paths, methods, parameters, and more. You must place the JSON file in `<plugin root>/src/Resources/Schema/StoreApi/` so the shopware internal OpenApi3Generator can find it (for Admin API endpoints, use `AdminAPI`).
 
 {% code title="<plugin root>/src/Resources/Schema/StoreApi/example.json" %}
 
