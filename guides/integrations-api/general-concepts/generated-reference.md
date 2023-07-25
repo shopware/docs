@@ -10,11 +10,15 @@ Due to security restrictions, your **`APP_ENV`** environment variable has to be 
 
 ## Swagger UI
 
-The easiest way to access the generated schema is Swagger UI. Swagger UI is a small library that takes an OpenAPI specification and renders it into a more accessible user interface. Shopware already ships with these user interfaces. They are accessible at the following endpoint relative to their respective base path:
+The easiest way to access the generated schema is Swagger UI. [Swagger UI](https://swagger.io/tools/swagger-ui/) is a small library that takes an OpenAPI specification and renders it into a more accessible user interface. Shopware already ships with these user interfaces. They are accessible at the following endpoint relative to their respective base path:
 
-```yaml
+```text
 /(api|store-api)/_info/swagger.html
 ```
+
+{% hint style="info" %}
+The above path is relative and contains `api` (Admin API) and `store-api` seperated by a pipe. Please choose the appropriate option.
+{% endhint %}
 
 ## OpenAPI schema
 
