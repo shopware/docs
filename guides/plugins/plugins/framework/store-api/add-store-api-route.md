@@ -182,7 +182,7 @@ In order to add the route to the Swagger page a JSON file is needed in a certain
 
 {% code title="<plugin root>/src/Resources/Schema/StoreApi/example.json" %}
 
-```javascript
+```json
 {
   "openapi": "3.0.0",
   "info": [],
@@ -232,6 +232,8 @@ In order to add the route to the Swagger page a JSON file is needed in a certain
   }
 }
 ```
+
+{% endcode %}
 
 ### Check route in Swagger
 
