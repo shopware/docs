@@ -2,10 +2,39 @@ import { readLines } from "https://deno.land/std@0.145.0/io/mod.ts";
 import { walk } from "https://deno.land/std@0.145.0/fs/mod.ts";
 import * as path from "https://deno.land/std@0.145.0/path/mod.ts";
 
+/**
+ * This script supports 2 modes:
+ *  - adr -
+ *  - guidelines -
+ *
+ * Examples:
+ *  - deno run --allow-read --allow-write ./format-adrs.ts adr
+ *  - deno run --allow-read --allow-write ./format-adrs.ts guidelines
+ */
+
+const mode:'adr'|'guidelines' = Deno.args[0];
+
+if (!['adr', 'guidelines'].includes(mode)) {
+	throw new Error('Provide mode (adr | guidelines)');
+}
+
+const resource = {
+	adr: {
+		destination: './resources/references/adr',
+		source: 'adr',
+		message: 'This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.\n',
+	},
+	guidelines: {
+		destination: './resources/guidelines/testing',
+		source: 'coding-guidelines/core',
+		message: 'This document represents testing guidelines and has been mirrored from the core in our Shopware 6 repository.\n',
+	},
+}[mode];
+
 const formattingPromises = [];
-for await (const entry of walk("./resources/references/adr")) {
+for await (const entry of walk(resource.destination)) {
 	if (entry.isDirectory) continue;
-	if (entry.path.startsWith('resources/references/adr/assets')) continue;
+	if (entry.path.startsWith(`${resource.destination}/assets`)) continue;
 	if (path.basename(entry.path).startsWith('_')) continue;
 	if (path.basename(entry.path) === 'README.md') continue;
 	formattingPromises.push(formatADR(entry.path));
@@ -16,7 +45,7 @@ await Promise.allSettled(formattingPromises);
 function addHint(buffer, filePath) {
 	buffer += '\n';
 	buffer += '{% hint style="info" %}\n';
-	buffer += 'This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.\n';
+	buffer += resource.message;
 	buffer += `You can find the original version [here](${adrPathToGithubLink(filePath)})\n`;
 	buffer += '{% endhint %}\n';
 
@@ -72,6 +101,5 @@ async function formatADR(filePath: string): Promise<void> {
 }
 
 function adrPathToGithubLink(adrPath: string): string {
-	const urlPath = adrPath.replace('resources/references/', '');
-	return `https://github.com/shopware/platform/blob/trunk/${urlPath}`
+	return `https://github.com/shopware/platform/blob/trunk/${resource.source}${adrPath.substring(resource.destination.length - 2)}`;
 }

@@ -6,12 +6,13 @@ rm -r ./resources/references/adr
 rm -r ./resources/guidelines/testing
 rm -r ./.gitbook/assets/adr
 cp -r ./platform/adr ./resources/references
-cp -r ./platform/unit-tests ./resources/guidelines/testing
+cp -r ./platform/coding-guidelines/core ./resources/guidelines/testing
 rm -rf ./platform
 
-deno run --allow-read --allow-write ./.github/scripts/update-summary.ts
-deno run --allow-read --allow-write ./.github/scripts/format-adrs.ts
-deno run --allow-read --allow-write ./.github/scripts/format-testing-guidelines.ts
+deno run --allow-read --allow-write ./.github/scripts/update-summary.ts adrs
+deno run --allow-read --allow-write ./.github/scripts/update-summary.ts guidelines
+deno run --allow-read --allow-write ./.github/scripts/format-adrs.ts adrs
+deno run --allow-read --allow-write ./.github/scripts/format-adrs.ts guidelines
 
 mkdir -p ./.gitbook/assets/adr
 mv ./resources/references/adr/assets/* .gitbook/assets/adr/

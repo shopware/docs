@@ -1,13 +1,43 @@
 import { walkSync } from "https://deno.land/std@0.145.0/fs/mod.ts";
 import * as path from "https://deno.land/std@0.145.0/path/mod.ts";
 
+/**
+ * This script supports 2 modes:
+ *  - adr -
+ *  - guidelines -
+ *
+ * Examples:
+ *  - deno run --allow-read --allow-write ./update-summary.ts adr
+ *  - deno run --allow-read --allow-write ./update-summary.ts guidelines
+ */
+
+const mode:'adr'|'guidelines' = Deno.args[0];
+
+if (!['adr', 'guidelines'].includes(mode)) {
+	throw new Error('Provide mode (adr | guidelines)');
+}
+
+const resource = {
+	adr: {
+		heading: /\[Architecture Reference\]/,
+		refHeading: /\[App Reference\]/,
+		dir: './resources/references/adr',
+		name: 'Architecture Reference'
+	},
+	guidelines: {
+		heading: /\[Unit tests\]/,
+		refHeading: /\[App Reference\]/,
+		dir: './resources/guidelines/testing',
+		name: 'Unit Testing',
+	},
+}[mode];
 
 interface ADREntry { path: string }
 interface ADRTopic extends ADREntry { entries: ADREntry[] }
 
 const dateRegex = /[0-9]{4}-[0-9]{2}-[0-9]{2}/;
-const adrHeading = /\[Architecture Reference\]/;
-const appRefHeading = /\[App Reference\]/;
+const adrHeading = resource.heading;
+const appRefHeading = resource.refHeading;
 const generalTopic = 'general';
 
 
@@ -29,8 +59,8 @@ const adrTitle = (adr: ADREntry) => {
 };
 
 let ADRs = new Map<string,ADRTopic>();
-for (const entry of walkSync("./resources/references/adr", { includeDirs: false, includeFiles: true })) {
-	if (entry.path.startsWith('resources/references/adr/assets')) continue;
+for (const entry of walkSync(resource.dir, { includeDirs: false, includeFiles: true })) {
+	if (entry.path.startsWith(`${resource.dir.substring(2)}/assets`)) continue;
 	if (path.basename(entry.path).startsWith('_')) continue;
 	if (path.basename(entry.path) === 'README.md') continue;
 
@@ -43,13 +73,13 @@ for (const entry of walkSync("./resources/references/adr", { includeDirs: false,
 	}
 	const topicDir = topicName(entry) === generalTopic ? '' : '/' + topicName(entry);
 	topic = {
-		path: `resources/references/adr${topicDir}`,
+		path: `${resource.dir.substring(2)}${topicDir}`,
 		entries: [adr]
 	}
 	ADRs.set(topicName(adr), topic);
 }
 
-let adrSummary = summaryItem(1, 'Architecture Reference', 'resources/references/adr/README.md');
+let adrSummary = summaryItem(1, resource.name, `${resource.dir.substring(2)}/README.md`);
 
 const names = Array.from(ADRs.keys());
 names.sort();
