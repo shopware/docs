@@ -67,6 +67,14 @@ Updates of such systems require a certain amount of effort, as issues often aris
 
 For obtaining security fixes, without version upgrades, we provide a dedicated [Security plugin](https://store.shopware.com/swag136939272659f/shopware-6-sicherheits-plugin.html). This is compatible with all Shopware versions and corresponding hot fixes are only included in versions that are affected.
 
+### Update of composer dependencies
+
+It may happen that third party dependencies are affected by security vulnerabilities.
+In that case, a new shopware version will be released with a version of the dependency where the security vulnerability is already fixed.
+If an update to the latest shopware version in a timely manner is not possible, it is recommended to update the affected dependency manually.
+This can be done by running `composer update <dependency-name>`.
+To check if there is a dependency currently installed that has known vulnerabilities it makes sense to regularly run the [`composer audit`](https://getcomposer.org/doc/03-cli.md#audit) command.
+
 ### Disable auto-update
 
 Shopware's integrated auto-update functionality should be disabled to prevent unwanted updates. Also, this feature is not multi-app server compatible and should be controlled via deployment.
