@@ -1,29 +1,29 @@
 # Quality Guidelines for Apps based on Plugin System in Shopware Store
 
 > **Changelog**
->> 18/07/23: Compiled code
+>> 18/07/23: [Compiled code](../quality-guidelines-plugins/README.md#checklist-for-app-testing)
 >
->> 12/04/23: Check for a functional comparison with functions from the Rise or above edition.
+>> 12/04/23: [Check for a functional comparison with functions from the Rise or above edition.](../quality-guidelines-plugins/README.md#every-app-based-on-the-plugin-system)
 >
->> 14/02/23: Added new STP tracking  "External technology apps/STP apps"
+>> 14/02/23: [Added new STP tracking - External technology apps/STP apps.](../quality-guidelines-plugins/README.md#external-technology-shopware-technology-partner-stp-apps)
 >
->> 11/07/22: [Added a list of all Blockers - Changes to the autom. codereview 1.st Oct. 2022](https://docs.shopware.com/en/account-en/manufacturer-area/quality-guidelines-for-extensions-in-the-shopware-store-based-on-our-extension-system#sonarcube-rules-status-blocker).
+>> 11/07/22: [Added a list of all Blockers - Changes to the autom. codereview 1.st Oct. 2022](../quality-guidelines-plugins/README.md#sonarcube-rules-status-blocker)
 >
->> 26/10/21: [Added safe your app idea and get a preview in the store](https://docs.shopware.com/en/account-en/manufacturer-area/quality-guidelines-for-extensions-in-the-shopware-store-based-on-our-extension-system?category=account-en/manufacturer-area#safe-your-app-idea-and-get-a-preview-in-the-store).
+>> 26/10/21: [Added safe your app idea and get a preview in the store.](../quality-guidelines-plugins/README.md#every-app-based-on-the-plugin-system)
 >
->> 14/10/21: How we test your extension for the Shopware Store (DE): [https://www.youtube.com/watch?v=gLb5CmOdi4g](https://www.youtube.com/watch?v=gLb5CmOdi4g).
+>> 14/10/21: [How we test your extension for the Shopware Store (DE).](https://www.youtube.com/watch?v=gLb5CmOdi4g)
 >
->> 08/06/21: SW6: [Added URL and info regarding our docker environment we use for testing SW6 apps.](https://docs.shopware.com/en/account-en/manufacturer-area/quality-guidelines-for-extensions-in-the-community-store#the-way-we-test-apps-based-on-the-extension-system).
+>> 08/06/21: [Added URL and info regarding our docker environment we use for testing SW6 apps.](../quality-guidelines-plugins/README.md#the-way-we-test-apps-based-on-the-plugin-system)
 >
->> 07/06/21: Template Tests: Now using [Scheme.org Structured Data Testing Tool.](https://docs.shopware.com/en/account-en/manufacturer-area/quality-guidelines-for-extensions-in-the-community-store#template-tests) instead of Google Structured Testing Tool.
+>> 07/06/21: [Template Tests - Now using Scheme.org Structured Data Testing Tool instead of Google Structured Testing Tool.](../quality-guidelines-plugins/README.md#template-tests)
 >
->> 07/06/21: Account app description: [Subprocessor and/or Further subprocessors information may be required for your app.](https://docs.shopware.com/en/account-en/manufacturer-area/quality-guidelines-for-extensions-in-the-community-store#app-descriptions-in-your-shopware-account).
+>> 07/06/21: [Account app description - Subprocessor and/or Further subprocessors information may be required for your app.](../quality-guidelines-plugins/README.md#app-descriptions-in-your-shopware-account)
 >
->> 17/04/21: Restructure the quality guidelines. No new content added.
+>> 17/04/21: Restructured the quality guidelines. No new content added.
 >
->> 12/05/20: Add app [Checklist](https://docs.shopware.com/en/plugin-standard-for-community-store#checklist-for-plugin-testing) for your Quality assurance.
+>> 12/05/20: [Added app Checklist for your Quality assurance.](../quality-guidelines-plugins/README.md#checklist-for-app-testing)
 >
->> 22/04/20: SW6: [Menu entries in the main menu of the Administration are not allowed anymore](https://docs.shopware.com/en/account-en/manufacturer-area/quality-guidelines-for-extensions-in-the-community-store#menu-entries-in-the-main-menu-not-allowed) because of the look and feel.
+>> 22/04/20: [Menu entries in the main menu of the Administration are not allowed anymore because of the look and feel.](../quality-guidelines-plugins/README.md#menu-entries-in-the-main-menu-not-allowed)
 
 ## The way we test apps based on the plugin system
 
