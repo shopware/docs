@@ -8,7 +8,7 @@ The company entity contains additional B2B company data and therefore extends th
 
 ### Employee
 
-The employee entity represents a separate login for the same company customer / B2B business partner. Employees act on behalf of the associated company , e.g., to place orders. An employee can have a role assigned.
+The employee entity represents a separate login for the same company customer / B2B business partner. Employees act on behalf of the associated company, e.g., to place orders. An employee can have a role assigned.
 
 ### Role
 
