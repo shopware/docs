@@ -1,6 +1,8 @@
 # Quality Guidelines for Apps and Themes based on App System in Shopware Store
 
 > **Changelog**
+>> 26/07/23: [Added - Name preset according to new naming scheme](../quality-guidelines-apps/README.md#every-app-based-on-the-app-system)
+> 
 >> 18/07/23: [Compiled code.](../quality-guidelines-apps/README.md#checklist-for-app-testing)
 >
 >> 12/04/23: [Check for a functional comparison with functions from the Rise or above edition.](../quality-guidelines-apps/README.md#every-app-based-on-the-app-system)
@@ -66,10 +68,11 @@ Be sure to use the most recent testing checklist from Shopware and not from any 
 * If you are using external fonts (e.g., from Google fonts) or external services, the app store description must contain this information. Please be aware that you might have to edit your *data protection information*. This info could be otherwise placed as a tooltip near the font settings of the app configuration.
 
 * **App store description**:
-
+    
     * The mandatory number of characters is set in short and long descriptions. No blank spaces as fillers are allowed (EN/DE).
     * Check if the description makes sense and if it includes step-by-step instructions on how to use and test your app.
     * Check if you have included enough screenshots showing the app in action in the Storefront and Administration (please add a screenshot of the app in the extension manager settings).
+    * Check if the display name does not contain the term "plugin."
 
 * We pay attention to the automatic code review and look for security issues.
 
@@ -91,6 +94,8 @@ To ensure that the code remains accessible to all developers, the uncompiled ver
 {% endhint %}
 
 ### App descriptions in your Shopware account
+
+*  **Display name:** According to the new naming scheme, the word "plugin" is no longer allowed in the display name of extensions. Instead of "Plugin" use "Extension" or "App".
 
 * **Short description:** (Min. 150 - max. 185 characters) - The app's short description must have at least 150 characters long and unique. Use the short description wisely, as the text will be used to tease your app in the overview along with the "Customers also bought" and "Customers also viewed" recommendations. The short description is also published as a meta-description.
 
