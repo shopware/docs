@@ -13,10 +13,10 @@ cp -r ./platform/coding-guidelines/core ./resources/guidelines/testing/platform
 
 rm -rf ./platform
 
-deno run --allow-read --allow-write ./.github/scripts/update-summary.ts adrs
+deno run --allow-read --allow-write ./.github/scripts/update-summary.ts adr
 deno run --allow-read --allow-write ./.github/scripts/update-summary.ts guidelines
 
-deno run --allow-read --allow-write ./.github/scripts/format-adrs.ts adrs
+deno run --allow-read --allow-write ./.github/scripts/format-adrs.ts adr
 deno run --allow-read --allow-write ./.github/scripts/format-adrs.ts guidelines
 
 mkdir -p ./.gitbook/assets/adr
@@ -27,3 +27,4 @@ find resources/references/adr -type f -name '*md' -not -name '_*' -exec sed -i '
 find resources/references/adr -type f -name '*md' -not -name '_*' -exec sed -i 's#(\.\./assets#(../../../.gitbook/assets/adr#' {} \;
 
 find resources/references/adr/ -type d -exec touch '{}'/README.md \;
+find resources/guidelines/testing/platform/ -type d -exec touch '{}'/README.md \;

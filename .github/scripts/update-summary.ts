@@ -13,7 +13,7 @@ import * as path from "https://deno.land/std@0.145.0/path/mod.ts";
 
 const mode:'adr'|'guidelines' = Deno.args[0];
 
-if (!['adr', 'guidelines'].includes(mode)) {
+if (!(['adr', 'guidelines'].includes(mode))) {
 	throw new Error('Provide mode (adr | guidelines)');
 }
 
@@ -25,7 +25,7 @@ const resource = {
 		name: 'Architecture Reference'
 	},
 	guidelines: {
-		heading: /\[Unit tests\]/,
+		heading: /\[Unit Testing\]/,
 		refHeading: /\[App Reference\]/,
 		dir: './resources/guidelines/testing/platform',
 		name: 'Unit Testing',

@@ -14,7 +14,7 @@ import * as path from "https://deno.land/std@0.145.0/path/mod.ts";
 
 const mode:'adr'|'guidelines' = Deno.args[0];
 
-if (!['adr', 'guidelines'].includes(mode)) {
+if (!(['adr', 'guidelines'].includes(mode))) {
 	throw new Error('Provide mode (adr | guidelines)');
 }
 
