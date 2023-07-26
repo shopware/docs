@@ -16,7 +16,7 @@ The role entity represents a set of permissions that can be assigned to an emplo
 
 ## Schema
 
-![ER model](../../../../../../docs/.gitbook/assets/b2b-employee-management-er-schema.png)
+![ER model](../../../../../.gitbook/assets/b2b-employee-management-er-schema.png)
 
 <!---```mermaid
 erDiagram
