@@ -63,6 +63,8 @@ You can use these commands to check your actual environment:
 
 The `media:delete-unused` command requires at least MariaDB 10.9 or MySQL 8.
 
+For optimal MySQL performance, it is advisable to have minimum of 32 MB.
+
 ### JavaScript
 
 * Node.js 18.0.0 or higher
