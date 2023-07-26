@@ -69,13 +69,13 @@ For obtaining security fixes, without version upgrades, we provide a dedicated [
 
 ### Update of composer dependencies
 
-It may happen that third-party dependencies are affected by security vulnerabilities. In that case, a new shopware version will be released with a version of the dependency where the security vulnerability is already fixed. If an update to the latest shopware version in a timely manner is not possible, it is recommended to update the affected dependency manually. This can be done by using the following command:
+To ensure the security of your Shopware installation, it's essential to be vigilant about third-party dependencies that might be affected by security vulnerabilities. In that case, a new Shopware version will be released with updated dependencies. If an update to the latest Shopware version in a timely manner is not possible, it is recommended to update the affected dependency manually. This can be done by using the following command:
 
-```text
+```bash
  composer update <dependency-name>
 ```
 
- To check if there is a dependency currently installed that has known vulnerabilities, it makes sense to regularly run the [`composer audit`](https://getcomposer.org/doc/03-cli.md#audit) command.
+To identify any potential security risk in your current dependencies, it's a good practice to regularly run the [`composer audit`](https://getcomposer.org/doc/03-cli.md#audit) command. This command scans your dependencies and alerts you if there are any known vulnerabilities that need to be addressed.
 
 ### Disable auto-update
 
