@@ -27,7 +27,7 @@ const resource = {
 	guidelines: {
 		heading: /\[Unit tests\]/,
 		refHeading: /\[App Reference\]/,
-		dir: './resources/guidelines/testing',
+		dir: './resources/guidelines/testing/platform',
 		name: 'Unit Testing',
 	},
 }[mode];

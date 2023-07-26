@@ -6,7 +6,7 @@ rm -r ./resources/references/adr
 rm -r ./resources/guidelines/testing
 rm -r ./.gitbook/assets/adr
 cp -r ./platform/adr ./resources/references
-cp -r ./platform/coding-guidelines/core ./resources/guidelines/testing
+cp -r ./platform/coding-guidelines/core ./resources/guidelines/testing/platform
 rm -rf ./platform
 
 deno run --allow-read --allow-write ./.github/scripts/update-summary.ts adrs
