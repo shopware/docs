@@ -1,27 +1,27 @@
 # Quality Guidelines for Apps and Themes based on App System in Shopware Store
 
 > **Changelog**
->> 18/07/23: Compiled code
+>> 18/07/23: [Compiled code](https://developer.shopware.com/docs/resources/guidelines/testing/store/quality-guidelines-apps#every-app-based-on-the-app-system)
 >
->> 12/04/23: Check for a functional comparison with functions from the Rise or above edition.
+>> 12/04/23: [Check for a functional comparison with functions from the Rise or above edition.](https://developer.shopware.com/docs/resources/guidelines/testing/store/quality-guidelines-apps#every-app-based-on-the-app-system)
 >
->> 14/02/23: Added new STP tracking  "External technology apps/STP apps"
+>> 14/02/23: [Added new STP tracking  "External technology apps/STP apps"](https://developer.shopware.com/docs/resources/guidelines/testing/store/quality-guidelines-apps#app-descriptions-in-your-shopware-account)
 >
->> 28/10/21: Added "Safe your app idea and get a preview in the store".
+>> 28/10/21: [Added "Safe your app idea and get a preview in the store".](https://developer.shopware.com/docs/resources/guidelines/testing/store/quality-guidelines-apps#every-app-based-on-the-app-system)
 >
->> 06/08/21: Added, "Useful links and tutorials for creating an app".
+>> 06/08/21: [Added, "Useful links and tutorials for creating an app".](https://developer.shopware.com/docs/resources/guidelines/testing/store/quality-guidelines-apps#useful-links-and-tutorials-for-creating-an-app)
 >
->> 08/06/21: Added URL and info regarding the docker environment we use for testing SW6 apps.
+>> 08/06/21: [Added URL and info regarding the docker environment we use for testing SW6 apps.](https://developer.shopware.com/docs/resources/guidelines/testing/store/quality-guidelines-apps#the-way-we-test-apps-based-on-the-app-system)
 >
->> 07/06/21: Template Tests: Now using Scheme.org Structured Data Testing Tool instead of Google Structured Testing Tool.
+>> 07/06/21: [Template Tests: Now using Scheme.org Structured Data Testing Tool instead of Google Structured Testing Tool.](https://developer.shopware.com/docs/resources/guidelines/testing/store/quality-guidelines-apps#template-tests)
 >
->> 07/06/21: Account app description: Subprocessor and/or Further subprocessor information may be required for your app.
+>> 07/06/21: [Account app description: Subprocessor and/or Further subprocessor information may be required for your app.](https://developer.shopware.com/docs/resources/guidelines/testing/store/quality-guidelines-apps#app-descriptions-in-your-shopware-account)
 >
 >> 17/04/21: Restructure the quality guidelines. No new content added.
 >
->> 12/05/20: Add app Checklist for your Quality assurance.
+>> 12/05/20: [Add app Checklist for your Quality assurance.](https://developer.shopware.com/docs/resources/guidelines/testing/store/quality-guidelines-apps#checklist-for-app-testing)
 >
->> 22/04/20: Menu entries in the main menu of the Administration are not allowed anymore because of look and feel.
+>> 22/04/20: [Menu entries in the main menu of the Administration are not allowed anymore because of look and feel.](https://developer.shopware.com/docs/resources/guidelines/testing/store/quality-guidelines-apps#menu-entries-in-the-main-menu-not-allowed)
 
 ## The way we test apps based on the app system
 
