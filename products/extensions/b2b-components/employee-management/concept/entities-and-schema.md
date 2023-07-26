@@ -8,15 +8,17 @@ The company entity contains additional B2B company data and therefore extends th
 
 ### Employee
 
-The employee entity represents a separated login for the same company customer / B2B business partner. Employees act on behalf of the associated company to e.g. place orders. An employee can have a role assigned.
+The employee entity represents a separate login for the same company customer / B2B business partner. Employees act on behalf of the associated company , e.g., to place orders. An employee can have a role assigned.
 
 ### Role
 
 The role entity represents a set of permissions that can be assigned to an employee. Permissions can restrict or allow employees to perform certain actions in the shop, like ordering or managing roles as well as employees.
 
+## Schema
+
 ![ER model](../../../../../.gitbook/assets/b2b-employee-management-er-schema.png)
 
-```mermaid
+<!---```mermaid
 erDiagram
     swag_b2b_company {
         uuid id PK
@@ -47,3 +49,4 @@ erDiagram
     swag_b2b_employee }o--o| swag_b2b_role : "has role"
     swag_b2b_role }o--|| customer : "belongs to"
 ```
+--->
