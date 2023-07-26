@@ -14,4 +14,4 @@ The company customer is a regular storefront customer but with a few additional 
 
 ## Role management
 
-Employees are assigned roles that define their permissions and settings. These permissions can restrict or allow employees to perform certain actions, like ordering without approval or managing roles or employees. Refer to our guides section how permissions can be extended [via plugin](products/extensions/b2b-components/employee-management/guides/creating-own-permissions-via-plugin.md) or [via app](products/extensions/b2b-components/employee-management/guides/creating-own-permissions-via-app.md).
+Employees are assigned roles that define their permissions and settings. These permissions can restrict or allow employees to perform certain actions, like ordering without approval or managing roles or employees. Refer to our guides section how permissions can be extended [via plugin](../employee-management/guides/creating-own-permissions-via-app.md) or [via app](../employee-management/guides/creating-own-permissions-via-plugin.md).
