@@ -1,7 +1,7 @@
 # Quality Guidelines for Apps and Themes based on App System in Shopware Store
 
 > **Changelog**
->> 18/07/23: [Compiled code](https://developer.shopware.com/docs/resources/guidelines/testing/store/quality-guidelines-apps#every-app-based-on-the-app-system)
+>> 18/07/23: [Compiled code](/docs/resources/guidelines/testing/store/quality-guidelines-apps#every-app-based-on-the-app-system)
 >
 >> 12/04/23: [Check for a functional comparison with functions from the Rise or above edition.](https://developer.shopware.com/docs/resources/guidelines/testing/store/quality-guidelines-apps#every-app-based-on-the-app-system)
 >
