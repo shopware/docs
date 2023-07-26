@@ -2,15 +2,20 @@
 
 git clone --depth 1 https://github.com/shopware/platform.git
 
+# delete dirs
 rm -r ./resources/references/adr
-rm -r ./resources/guidelines/testing
+rm -r ./resources/guidelines/testing/platform
 rm -r ./.gitbook/assets/adr
+
+# copy contents
 cp -r ./platform/adr ./resources/references
 cp -r ./platform/coding-guidelines/core ./resources/guidelines/testing/platform
+
 rm -rf ./platform
 
 deno run --allow-read --allow-write ./.github/scripts/update-summary.ts adrs
 deno run --allow-read --allow-write ./.github/scripts/update-summary.ts guidelines
+
 deno run --allow-read --allow-write ./.github/scripts/format-adrs.ts adrs
 deno run --allow-read --allow-write ./.github/scripts/format-adrs.ts guidelines
 
