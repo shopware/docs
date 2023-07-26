@@ -1,7 +1,7 @@
 # Quality Guidelines for Apps and Themes based on App System in Shopware Store
 
 > **Changelog**
->> 18/07/23: Compiled code
+>> 18/07/23: [Compiled code](https://developer.shopware.com/docs/resources/guidelines/testing/store/quality-guidelines-apps#checklist-for-app-testing).
 >
 >> 12/04/23: Check for a functional comparison with functions from the Rise or above edition.
 >
