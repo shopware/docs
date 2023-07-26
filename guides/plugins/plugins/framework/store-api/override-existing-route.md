@@ -8,7 +8,7 @@ In this guide you will learn how to override existing Store API routes to add ad
 
 As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide.md), but you don't necessarily need that.
 
-Furthermore you should have a look at our guide about [Adding a Store API route](add-store-api-route.md), since this guide is built upon it.
+Furthermore, you should have a look at our guide about [Adding a Store API route](add-store-api-route.md), since this guide is built upon it.
 
 ## Decorating our route
 
@@ -21,7 +21,6 @@ First, we have to create a new class which extends `AbstractExampleRoute`. In th
 
 namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
 
-use OpenApi\Annotations as OA;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\Routing\Annotation\Entity;
