@@ -257,7 +257,6 @@ SQL;
 
 The `AssociationFields` take care of loading the data, but it is recommended to add [foreign key constraints](https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html) to your migration query. This will ensure that your data is consistent (checks if the foreign key exists); for example, it will delete the `swag_example_extension` entry when the linked product is deleted.
 
-
 #### Writing into the new field
 
 As already mentioned, your new association is automatically being loaded every time a product entity is loaded. This section here will show you how to write to the new field instead.
