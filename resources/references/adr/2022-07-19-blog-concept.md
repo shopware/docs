@@ -2,7 +2,7 @@
 title: Concept for blogs using Shopping Experiences
 date: 2022-07-18
 area: content
-tags: [content, cms, blog, custom-entities]
+tags: [content, cms, blog, custom-entities, mermaid]
 --- 
 
 # Concept for blogs using Shopping Experiences
