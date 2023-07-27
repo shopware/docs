@@ -359,6 +359,7 @@
       * [SameSite protection](guides/hosting/configurations/framework/samesite-protection.md)
   * [Performance](guides/hosting/performance/README.md)
     * [Cache](guides/hosting/performance/caches.md)
+    * [Custom cache invalidation](guides/hosting/performance/custom-cache-invalidation.md)
     * [Session](guides/hosting/performance/session.md)
     * [Increment Storage](guides/hosting/performance/increment.md)
     * [Lock Storage](guides/hosting/performance/lock-store.md)
