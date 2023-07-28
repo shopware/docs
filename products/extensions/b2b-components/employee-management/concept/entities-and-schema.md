@@ -16,9 +16,7 @@ The role entity represents a set of permissions that can be assigned to an emplo
 
 ## Schema
 
-![ER model](../../../../../.gitbook/assets/b2b-employee-management-er-schema.png)
-
-<!---```mermaid
+```mermaid
 erDiagram
     swag_b2b_company {
         uuid id PK
@@ -49,4 +47,3 @@ erDiagram
     swag_b2b_employee }o--o| swag_b2b_role : "has role"
     swag_b2b_role }o--|| customer : "belongs to"
 ```
---->
