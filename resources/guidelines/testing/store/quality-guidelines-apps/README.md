@@ -1,7 +1,7 @@
 # Quality Guidelines for Apps and Themes based on App System in Shopware Store
 
 > **Changelog**
->> 26/07/23: [Added - Name preset according to new naming scheme](../quality-guidelines-apps/README.md#every-app-based-on-the-app-system)
+>> 26/07/23: [Added - Name preset according to new naming scheme](#every-app-based-on-the-app-system)
 >
 >> 18/07/23: [Compiled code.](../quality-guidelines-apps/README.md#checklist-for-app-testing)
 >
