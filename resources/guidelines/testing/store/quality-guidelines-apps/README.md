@@ -3,7 +3,7 @@
 [Added - Name preset according to new naming scheme](#every-app-based-on-the-app-system)
 
 > **Changelog**
->> 26/07/23: [Added - Name preset according to new naming scheme](#every-app-based-on-the-app-system)
+>> 26/07/23: [Added - Name preset according to new naming scheme.](https://developer.shopware.com/docs/resources/guidelines/testing/store/quality-guidelines-apps#every-app-based-on-the-app-system)
 >
 >> 18/07/23: [Compiled code.](../quality-guidelines-apps/README.md#checklist-for-app-testing)
 >
