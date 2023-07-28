@@ -40,7 +40,7 @@ The JWT key can be generated with a POST request against `/store-api/app-system/
 
 {% tab title="Storefront" %}
 
-For the Storefront usage, there is an HTTP client helper, which handles the token generation for you and lets you to directly call your app backend.
+For the Storefront usage, there is an HTTP client helper, which handles the token generation and lets you directly call your app backend.
 
 ```javascript
 import AppClient from 'src/service/app-client.service.ts';
