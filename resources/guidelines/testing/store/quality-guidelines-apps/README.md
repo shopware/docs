@@ -1,5 +1,7 @@
 # Quality Guidelines for Apps and Themes based on App System in Shopware Store
 
+[Added - Name preset according to new naming scheme](#every-app-based-on-the-app-system)
+
 > **Changelog**
 >> 26/07/23: [Added - Name preset according to new naming scheme](#every-app-based-on-the-app-system)
 >
