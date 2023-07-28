@@ -61,7 +61,7 @@ client.delete('https://my-app-backend.com/foo')
 
 {% tab title="Custom" %}
 
-If you want to generate the JWT token yourself, you can use the following code snippet.
+If you want to generate the JWT token yourself, you can use the following code snippet:
 
 ```javascript
 const response = await fetch('/store-api/app-system/{name}/generate-token', {
