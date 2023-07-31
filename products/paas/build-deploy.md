@@ -45,3 +45,15 @@ The installer will create an administrator account with the default credentials.
 | `admin` | `shopware` |
 
 Make sure to change this password immediately in your Administration account settings. Not doing so is a security risk.
+
+## Composer authentication
+
+To install Extensions from the Shopware Store via composer, you will have to authenticate yourself. In your local development environment this is possible by creating an `auth.json` file which contains your auth token. However, this file should not be commited into the repository. 
+
+The following command adds your authentication token to the secure environment variable storage of Shopware Paas. The variable, which contains the content which would otherwise be in `auth.json`, will be available during the build step and be automatically picked up by Composer.
+
+Make sure to replace `%place your key here%` with your actual token. You can find your token by clicking 'Install with Composer' in your Shopware Account.
+
+```bash 
+shopware variable:create --level project --name env:COMPOSER_AUTH --json true --visible-runtime false --sensitive true --visible-build true --value '{"bearer": {"packages.shopware.com": "%place your key here%"}}'
+```
