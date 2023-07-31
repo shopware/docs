@@ -2,17 +2,11 @@
 
 ## Overview
 
-B2B employees and business partners share the same customer account.
-This can lead to inconsistency for all users of the shared account because they are allowed to change settings and data (both via Storefront and Store-API),
-which are not related to the B2B permission system.
-We decided to restrict most of the customer account routes by implementing a denylist pattern to prevent the illegal modification of customer data and settings,
-instead of replicating all customer features for employee accounts. We don't consider those features relevant to employee account users.
+B2B employees and business partners share the same customer account. This can lead to inconsistency for all users of the shared account because they are allowed to change settings and data (both via Storefront and Store-API), which are not related to the B2B permission system. We decided to restrict most of the customer account routes by implementing a denylist pattern to prevent the illegal modification of customer data and settings, instead of replicating all customer features for employee accounts. We don't consider those features relevant to employee account users.
 
 ## Denylist
 
-The denylist can be found in the employee management config at: `Resources\config\employee_route_access.xml`.
-All denied routes are inside `<denied>` tags.
-The routes inside the `<allowed>` tags are not important for third party developers because they are used for internal integration tests to remind developers to extend the list if new Store-API account routes were added.
+The denylist can be found in the employee management config at: `Resources\config\employee_route_access.xml`. All denied routes are inside `<denied>` tags. The routes inside the `<allowed>` tags are not important for third party developers because they are used for internal integration tests to remind developers to extend the list if new Store-API account routes were added.
 
 ### Denylist Example
 
@@ -31,19 +25,15 @@ The routes inside the `<allowed>` tags are not important for third party develop
 
 ### How to load the Denylist
 
-The denylist is loaded by using the `load` function in the `Shopware\Commercial\B2b\Domain\RouteAccess\EmployeeRouteAccessLoader` class.
-The return result is an associative array that includes arrays of all `allowed` and `denied` routes.
+The denylist is loaded by using the `load` function in the `Shopware\Commercial\B2b\Domain\RouteAccess\EmployeeRouteAccessLoader` class. The return result is an associative array that includes arrays of all `allowed` and `denied` routes.
 
 ### Where is the Denylist loaded
 
-The denylist is loaded in the `Shopware\Commercial\B2b\Subscriber\B2bRouteBlocker` which listens on each controller event and validates the route access before the request reaches the controller.
-Illegal attempts cause an exception to be thrown.
+The denylist is loaded in the `Shopware\Commercial\B2b\Subscriber\B2bRouteBlocker` which listens on each controller event and validates the route access before the request reaches the controller. Illegal attempts cause an exception to be thrown.
 
 ### How to override the Denylist
 
-It is possible to create additional `employee_route_access.xml` configs which includes new denied routes.
-After the config is ready, you can decorate the `Shopware\Commercial\B2b\Domain\RouteAccess\EmployeeRouteAccessLoader` which supports our recommended Shopware decoration pattern.
-Adapt the solution of the decorated `EmployeeRouteAccessLoader::load` function and return your own config.
+It is possible to create additional `employee_route_access.xml` configs which includes new denied routes. After the config is ready, you can decorate the `Shopware\Commercial\B2b\Domain\RouteAccess\EmployeeRouteAccessLoader` which supports our recommended Shopware decoration pattern. Adapt the solution of the decorated `EmployeeRouteAccessLoader::load` function and return your own config.
 
 #### Decoration Example
 
