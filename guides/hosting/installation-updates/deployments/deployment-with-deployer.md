@@ -12,9 +12,7 @@ This article explains the fundamental steps to deploy Shopware 6 to a certain in
 
 ## Prerequisites
 
-Please make sure you already have a working Shopware 6 instance running and that your repository is based on the Shopware production template because this article relies on some scripts to exist in your repository.
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://github.com/shopware/production" caption="" %}
+Please make sure you already have a working Shopware 6 instance running and that your repository is based on the [Symfony Flex template](../../installation/template.md) because this article relies on some scripts to exist in your repository.
 
 ### Preparations before the first deployment
 
@@ -53,8 +51,9 @@ The [GitLab runner](https://docs.gitlab.com/runner/) must have the following pac
 * [NodeJS](https://nodejs.org/en/)
 * [Node Package Manager \(npm\)](https://www.npmjs.com/)
 * OpenSSH
+* Docker
 
-This example uses the docker image `shopware/development:latest`. This image meets all requirements.
+This example uses the docker image `shopware/development:8.1-composer-2`. This image meets all requirements.
 
 ## Deployment steps
 
@@ -76,7 +75,7 @@ This step is defined in the `Install dependencies` job in the [`.gitlab-ci.yml`]
 ```text
 Install dependencies:
     stage: build
-    image: shopware/development:latest
+    image: shopware/development:8.1-composer-2
     script:
         - composer install --no-interaction --optimize-autoloader --no-suggest
         - composer install -d vendor/shopware/recovery --no-interaction --optimize-autoloader --no-suggest
@@ -256,10 +255,9 @@ stages:
 
 Install dependencies:
     stage: build
-    image: shopware/development:latest
+    image: shopware/development:8.1-composer-2
     script:
-        - composer install --no-interaction --optimize-autoloader --no-suggest
-        - composer install -d vendor/shopware/recovery --no-interaction --optimize-autoloader --no-suggest
+      - composer install --no-dev --no-interaction --optimize-autoloader --no-suggest --ignore-platform-req=ext-amqp
 
     # This tells the GitLab Runner to upload (`policy: push`) the `vendor` directory, which contains all Composer
     # dependencies to GitLab after the job has finished so that it can be re-used in other jobs.
@@ -271,14 +269,16 @@ Install dependencies:
 
 Deploy:
     stage: deploy
-    image: shopware/development:latest
+    image: shopware/development:8.1-composer-2
     only:
         - master
     before_script:
         # First, we need to execute all commands that are defined in the `configureSSHAgent` variable.
         - *configureSSHAgent
         # To use Deployer for our deployment, it needs to be installed globally via Composer.
-        - composer global require deployer/deployer
+        - curl -LO https://github.com/deployphp/deployer/releases/download/v7.0.2/deployer.phar
+        - mv deployer.phar /usr/local/bin/dep
+        - chmod +x /usr/local/bin/dep
     script:
         # This command starts the workflow that is defined in the `deploy` task in the `deploy.php`.
         # `production` is the stage that was defined in the `host` in the `deploy.php`
@@ -302,22 +302,33 @@ Deploy:
 namespace Deployer;
 
 require_once 'recipe/common.php';
+require_once 'contrib/cachetool.php';
 
+set('cachetool', '/run/php/php-fpm.sock');
 set('application', 'Shopware 6');
 set('allow_anonymous_stats', false);
 set('default_timeout', 3600); // Increase the `default_timeout`, if needed when tasks take longer than the limit.
 
 // For more information, please visit the Deployer docs: https://deployer.org/docs/configuration.html
+// SSH-HOSTNAME should be replaced with an IP address 
 host('SSH-HOSTNAME')
-    ->stage('production')
-    ->user('SSH-USER')
+    ->setLabels([
+        'type' => 'web',
+        'env'  => 'production',
+    ])
+    ->setRemoteUser('www-data')
     ->set('deploy_path', '/var/www/shopware')
     ->set('http_user', 'www-data') // Not needed, if the `user` is the same user, the webserver is running with
-    ->set('writable_mode', 'chmod');
+    ->set('writable_mode', 'chmod')
+    ->set('keep_releases', 5);
 
 // For more information, please visit the Deployer docs: https://deployer.org/docs/configuration.html#shared_files
 set('shared_files', [
     '.env',
+    '.env.prod.local',
+    'install.lock',
+    'public/.htaccess',
+    'public/.user.ini'
 ]);
 
 // For more information, please visit the Deployer docs: https://deployer.org/docs/configuration.html#shared_dirs
@@ -358,8 +369,9 @@ task('sw:touch_install_lock', static function () {
 });
 
 // This task remotely executes the `bin/build-js.sh` script on the target server.
+// SHOPWARE_ADMIN_BUILD_ONLY_EXTENSIONS and DISABLE_ADMIN_COMPILATION_TYPECHECK make the build faster
 task('sw:build', static function () {
-    run('cd {{release_path}} && bash bin/build-js.sh');
+    run('cd {{release_path}} && export SHOPWARE_ADMIN_BUILD_ONLY_EXTENSIONS=1 && export DISABLE_ADMIN_COMPILATION_TYPECHECK=1 && bash bin/build-js.sh');
 });
 
 // This task remotely executes the `theme:compile` console command on the target server.
@@ -389,8 +401,8 @@ task('sw:database:migrate', static function () {
  */
 task('sw:deploy', [
     'sw:touch_install_lock',
-    'sw:build',
     'sw:database:migrate',
+    'sw:build',
     'sw:theme:compile',
     'sw:cache:clear',
 ]);
@@ -400,19 +412,11 @@ task('sw:deploy', [
  */
 task('deploy', [
     'deploy:prepare',
-    'deploy:lock',
-    'deploy:release',
-    'deploy:update_code',
-    'deploy:shared',
     'sw:deploy',
-    'deploy:writable',
     'deploy:clear_paths',
-    'sw:cache:warmup',
-    'deploy:symlink',
-    'deploy:unlock',
-    'cleanup',
-    'success',
+    'deploy:publish',
 ])->desc('Deploy your project');
 
 after('deploy:failed', 'deploy:unlock');
+after('deploy:symlink', 'cachetool:clear:opcache');
 ```
