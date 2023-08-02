@@ -113,7 +113,7 @@ To activate the hot-proxy, run the following command in your terminal.
 {% tab title="platform only (contribution setup)" %}
 
 ```bash
-composer run watch:admin
+composer run watch:storefront
 ```
 
 {% endtab %}
