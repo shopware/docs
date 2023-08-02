@@ -6,7 +6,7 @@
 
 In contrast to most Symfony applications, Shopware uses no ORM, but a thin abstraction layer called the data abstraction layer \(DAL\). The DAL is implemented with the specific needs of Shopware in mind and lets developers access the database via pre-defined interfaces. Some concepts used by the DAL, like Criteria, may sound familiar to you if you know [Doctrine](https://symfony.com/doc/current/doctrine.html) or other ORMs. A reference to more in-depth documentation about the DAL can be found below.
 
-## CRUD operations
+### CRUD operations
 
 An EntityRepository is used to interact with the DAL. This is the recommended way for developers to interface with the DAL or the database in general.
 
@@ -58,6 +58,10 @@ The translations for a record are stored in a separate table. The name of this t
 Another feature of the DAL is the versioning it brings with it. This makes it possible to store multiple versions of an entity. All data subordinate to an entity is duplicated and made available under the new version. Multiple entities or changes to different entities can be stored for one version. The versioning was designed for previews, publishing, or campaign features, to prepare changes that are not yet live and to be able to view them in the store.
 
 The versioning is also reflected in the database. Entities that are versionable always have a compound foreign key: `id`, `version_id`. Also, the foreign keys, which point to a versioned record, always consist of two columns, e.g.: `product_id` and `product_version_id`.
+
+### Context
+
+The context `core/Framework/Context.php` defines important configuration of the shop system and is instantiated once per request. Depending on the passed parameters it can change the CRUD behavior of the DAL. For example when using the currency toggle in the storefront and selecting Dollar instead of Euro, the context currency ID is changed accordingly and all operations now refer to Dollar.
 
 ### Inheritance
 
