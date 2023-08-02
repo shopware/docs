@@ -128,7 +128,7 @@ class StorefrontController {
 
 {% tab title="Custom" %}
 
-Fetch the shop by the `shopware-app-shop-id` header and create a JWT verifier with the app secret as HMAC-SHA256 secret. Verify the JWT token (shopware-app-token) with the verifier
+Fetch the shop by the `shopware-app-shop-id` header and create a JWT verifier with the app secret as `HMAC-SHA256` secret. Verify the JWT token (shopware-app-token) with the verifier.
 
 {% endtab %}
 
