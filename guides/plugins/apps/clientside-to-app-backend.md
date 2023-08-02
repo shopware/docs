@@ -34,7 +34,7 @@ The JWT token is signed with `SHA256-HMAC` and the secret is the `appSecret` fro
 
 ## Generate JWT key
 
-The JWT key can be generated with a POST request against `/store-api/app-system/{name}/generate-token` or `/app-system/{name}/generate-token`. 
+The JWT key is generated with a POST request against `/store-api/app-system/{name}/generate-token` or `/app-system/{name}/generate-token`. 
 
 {% tabs %}
 
