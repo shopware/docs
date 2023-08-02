@@ -4,10 +4,9 @@ The entire build process is performed without an active database connection. How
 
 ## Set up theme configuration
 
-First of all, we need to set up the correct sales channels and configure their themes.
+First, set up the correct sales channels and configure their themes.
 
-Use the following command to change the theme for the sales channels.
-Use the `--no-compile` flag to disable compilation in this step, as this is not possible in a read-only environment after project deployment. The compilation will happen automatically in the next build step after the last step of this guide.
+Use the command below to change the theme for the sales channels. Add the `--no-compile` flag to disable compilation in this step, as this is not possible in a read-only environment after project deployment. The compilation will happen automatically in the next build step ( at the last step of this guide).
 
 ```bash
 bin/console theme:change --no-compile
@@ -15,7 +14,7 @@ bin/console theme:change --no-compile
 
 ## Dump configuration
 
-We need to dump the theme configuration.
+To dump the theme configuration, use the below command :
 
 ```bash
 shopware ssh -A app 'bin/console theme:dump'
