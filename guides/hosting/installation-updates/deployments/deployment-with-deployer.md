@@ -112,8 +112,11 @@ For transferring the files to the target server, please configure at least one h
 
 ```php
 host('SSH-HOSTNAME')
-    ->stage('production')
-    ->user('SSH-USER')
+    ->setLabels([
+        'type' => 'web',
+        'env'  => 'prod',
+    ])
+    ->setRemoteUser('www-data')
     ->set('deploy_path', '/var/www/shopware') // This is the path, where deployer will create its directory structure
     ->set('http_user', 'www-data') // Not needed, if the `user` is the same user, the webserver is running with 
     ->set('writable_mode', 'chmod');
@@ -176,10 +179,10 @@ This task is defined in the `deploy:symlink` default job in the [`deploy.php`](d
 
 ## Deployer output
 
-This is the output of `dep deploy production`:
+This is the output of `dep deploy env=prod`:
 
 ```text
-$ dep deploy production               
+$ dep deploy env=prod               
 
 ✔ Executing task deploy:prepare
 ✔ Executing task deploy:lock
@@ -255,6 +258,8 @@ stages:
 
 Install dependencies:
     stage: build
+    # Tags are useful to only use runners that are safe or meet specific requirements
+    tags: [ deployer ]
     image: shopware/development:8.1-composer-2
     script:
       - composer install --no-dev --no-interaction --optimize-autoloader --no-suggest --ignore-platform-req=ext-amqp
@@ -269,9 +274,11 @@ Install dependencies:
 
 Deploy:
     stage: deploy
+    # Tags are useful to only use runners that are safe or meet specific requirements
+    tags: [ deployer ]
     image: shopware/development:8.1-composer-2
     only:
-        - master
+        - main
     before_script:
         # First, we need to execute all commands that are defined in the `configureSSHAgent` variable.
         - *configureSSHAgent
@@ -282,7 +289,7 @@ Deploy:
     script:
         # This command starts the workflow that is defined in the `deploy` task in the `deploy.php`.
         # `production` is the stage that was defined in the `host` in the `deploy.php`
-        - dep deploy production
+        - dep deploy env=prod
 
     # This tells the GitLab Runner to download (`policy: pull`) the `vendor` directory, which contains all Composer
     # dependencies into the runner's workspace before the job starts.
@@ -320,15 +327,13 @@ host('SSH-HOSTNAME')
     ->set('deploy_path', '/var/www/shopware')
     ->set('http_user', 'www-data') // Not needed, if the `user` is the same user, the webserver is running with
     ->set('writable_mode', 'chmod')
-    ->set('keep_releases', 5);
+    ->set('keep_releases', 3); // Keeps 3 old releases for rollbacks (if no DB migrations were executed) 
 
 // For more information, please visit the Deployer docs: https://deployer.org/docs/configuration.html#shared_files
 set('shared_files', [
     '.env',
     '.env.prod.local',
     'install.lock',
-    'public/.htaccess',
-    'public/.user.ini'
 ]);
 
 // For more information, please visit the Deployer docs: https://deployer.org/docs/configuration.html#shared_dirs
@@ -370,8 +375,9 @@ task('sw:touch_install_lock', static function () {
 
 // This task remotely executes the `bin/build-js.sh` script on the target server.
 // SHOPWARE_ADMIN_BUILD_ONLY_EXTENSIONS and DISABLE_ADMIN_COMPILATION_TYPECHECK make the build faster
+// If you run into trouble with NPM it is recommended to add the .bashrc or .bash_aliases with source (for example when exporting NVM directory)
 task('sw:build', static function () {
-    run('cd {{release_path}} && export SHOPWARE_ADMIN_BUILD_ONLY_EXTENSIONS=1 && export DISABLE_ADMIN_COMPILATION_TYPECHECK=1 && bash bin/build-js.sh');
+    run('cd {{release_path}} && source /var/www/.bashrc && export SHOPWARE_ADMIN_BUILD_ONLY_EXTENSIONS=1 && export DISABLE_ADMIN_COMPILATION_TYPECHECK=1 && bash bin/build-js.sh');
 });
 
 // This task remotely executes the `theme:compile` console command on the target server.
