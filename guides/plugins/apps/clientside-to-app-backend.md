@@ -30,7 +30,7 @@ The JWT token contains the following claims:
 
 The claims are only set when the app has permission to that specific entity like `sales_channel:read` for `salesChannelId` claim.
 
-The JWT token is signed with SHA256-HMAC and the secret is the `appSecret` from the app registration and the issued by is the shopId also from the registration.
+The JWT token is signed with `SHA256-HMAC` and the secret is the `appSecret` from the app registration and the `issued by` is the shopId also from the registration.
 
 ## Generate JWT key
 
