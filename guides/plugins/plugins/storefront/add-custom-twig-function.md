@@ -18,9 +18,7 @@ In the following sections we will create and expand all necessary files for the 
 
 ### Creating the twig function
 
-For the sake of clarity, we will create a folder named Twig within the src folder. Within this we create a new php file. You can name this file whatever you want.
-
-Let's have a look at the created file.
+For clarity, create a folder named `Twig` within the `src` folder. Then create a new php file with desired file name within the `Twig` folder. Refer to the below example :
 
 {% code title="<plugin root>/src/Twig/SwagCreateMd5Hash.php" %}
 
