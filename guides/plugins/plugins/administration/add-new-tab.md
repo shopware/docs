@@ -228,9 +228,9 @@ administration
 │       └── sw-product-detail
 │           ├── index.js
 │           └── sw-product-detail.html.twig
-|── view
-│    └── sw-product-detail-custom
-│        ├── index.js        
+|   └──view
+│       └── sw-product-detail-custom
+│           ├── index.js        
 └── main.js
 ```
 
