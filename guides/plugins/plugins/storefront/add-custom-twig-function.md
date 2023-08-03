@@ -12,7 +12,7 @@ In our example we will pass a string to the Twig Function and return a MD5-Hash.
 
 In order to create your own twig function for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
 
-## Creating Twig Function
+## Creating twig function
 
 In the following sections we will create and expand all necessary files for the Twig function to work. These are actually exactly 2 files. First the PHP file with the Twig Functions itself and the services.xml.
 
