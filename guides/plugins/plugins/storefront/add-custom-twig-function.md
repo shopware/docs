@@ -16,7 +16,7 @@ In order to create your own twig function for your plugin, you first need a plug
 
 In the following sections we will create and expand all necessary files for the Twig function to work. These are actually exactly 2 files. First the PHP file with the Twig Functions itself and the services.xml.
 
-### Creating the Twig Function
+### Creating the twig function
 
 For the sake of clarity, we will create a folder named Twig within the src folder. Within this we create a new php file. You can name this file whatever you want.
 
