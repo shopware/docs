@@ -1,4 +1,4 @@
-# Add custom Twig Functions
+# Add Custom Twig Functions
 
 ## Overview
 
