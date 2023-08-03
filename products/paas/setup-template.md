@@ -1,25 +1,25 @@
 # Setup Template
 
-The setup template is a derivation from the [shopware/production](https://github.com/shopware/production) template. It contains build and deployment logic for Shopware PaaS as well as configuration for the underlying infrastructure and services. In this chapter, we will have a look at these customizations.
+The setup template is installed automatically using Symfony Flex when requiring the `paas` package as described in the [Repository](repository.md). It contains build and deployment logic for Shopware PaaS as well as configuration for the underlying infrastructure and services. In this chapter, we will have a look at these customizations.
 
-Below is a directory overview of the PaaS setup template:
+Below is an overview of the files and directories added by the PaaS meta-package:
 
 ```text
-shopware/paas/
+./
 ├─ .platform/
 │  ├─ applications.yaml
 │  ├─ routes.yaml
 │  ├─ services.yaml
 ├─ bin/
+│  ├─ prestart_cacheclear.sh
 ├─ config/
-├─ custom/
+│  ├─ packages/
+│  │  ├─ paas.yaml
 ├─ files/
 │  ├─ theme-config/
-├─ src/
-├─ .platform.app.yaml
 ```
 
-## [applications.yaml](https://github.com/shopware/recipes/blob/main/shopware/paas-meta/6.4/.platform/applications.yaml)
+## [.platform/applications.yaml](https://github.com/shopware/recipes/blob/main/shopware/paas-meta/6.4/.platform/applications.yaml)
 
 This file contains Shopware PaaS specific configuration and can be customized as needed for your individual project.
 
@@ -35,13 +35,13 @@ Unless there is a specific need for it, leave it as `app`.
 
 ### type
 
-This section contains the base image used for your build process.
+This section contains the base image used for your build process. This is also where you configure the PHP version used in your PaaS environment.
 
 ### variables
 
 This section contains configuration for environment variables or server settings. General store settings and configurations are set here. Here you can inject custom environment variables or enable feature flags.
 
-Variables in the `env` section are automatically injected as environment variables.
+Variables in the `env` section are automatically injected as environment variables. If a variable is also set in your .env file, the variables set in the `applications.yaml` file will overwrite these.
 
 ### hooks
 
@@ -49,9 +49,9 @@ Lifecycle hooks are custom scripts that are called during your build and deploy 
 
 #### build hook
 
-This script is called during the build process and builds your application's assets and disables the UI installer. You can customize this script if you need. During the execution, you may perform write operations on the file system, which are prohibited in the proceeding steps unless the corresponding directory is [mounted](#mounts).
+This script is called during the build process and builds your application's assets (composer dependencies, javascript- and css- assets of Shopware core and extensions) and disables the UI installer. You can customize this script if you need. During the execution, you may perform write operations on the file system, which are prohibited in the proceeding steps unless the corresponding directory is [mounted](#mounts).
 
-You do not have access to any of the services configured, as the application is not running yet. You should ensure to perform as much of your entire building procedure during the build step, as web traffic is blocked during the execution of the deploy step.
+You do not have access to any of the services (like the database or Redis) configured, as the application is not running yet. You should ensure to perform as much of your entire building procedure during the build step, as web traffic is blocked during the execution of the deploy step.
 
 #### deploy hook
 
@@ -63,6 +63,7 @@ This script is called during the deployment process. Theme configuration is copi
 
 * Copy theme configuration
 * Run database migrations
+* Set sales channel domains for non-production environments
 * Clear cache
 
 If this is the first deployment, the following operations are performed:
@@ -84,7 +85,11 @@ This section defines the mapping between services created in the [services.yaml]
 
 ### mounts
 
-By default, the entire storage of your application is read-only. All directories listed here are exempt from this policy.
+By default, the entire storage of your application is read-only. Mounts define directories that are writable after the build is complete. They aren’t available during the build.
+
+Every mount has one of two types: `local` or `service`.
+A local mount is unique to the service that is accessing it. For example `/var/cache` is a good local mount because the Symfony cache should not be shared between dfiferent app servers.
+A service mount references to another service (of the type `network-storage`). These mounts are shared between other services and between the different app servers. For example the `/public/media` folder is a good shared mount because the [workers](#workers) that consume the Messenger queue should be able to read and write to the media directory.
 
 ### web
 
@@ -101,6 +106,12 @@ This file configures incoming HTTP requests routed to the `app` instance.
 ## [.platform / services.yaml](https://github.com/shopware/recipes/blob/main/shopware/paas-meta/6.4/.platform/services.yaml)
 
 This file contains services that are used by the `app` instances. Depending on your setup, uncomment or add services that you need, and they will be created and scaled automatically.
+
+In our template there are 4 different services enabled by default:
+- `db`
+- `cacheredis`
+- `rabbitmq`
+- `fileshare`
 
 ## [files / theme-config](https://github.com/shopware/recipes/tree/main/shopware/paas-meta/6.4/files/theme-config)
 
