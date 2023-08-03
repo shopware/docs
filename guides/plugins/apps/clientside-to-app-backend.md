@@ -34,7 +34,7 @@ The JWT token is signed with `SHA256-HMAC` and the secret is the `appSecret` fro
 
 ## Generate JWT key
 
-The JWT key is generated with a POST request against `/store-api/app-system/{name}/generate-token` or `/app-system/{name}/generate-token`. 
+The JWT key is generated with a POST request against `/store-api/app-system/{name}/generate-token` or `/app-system/{name}/generate-token`.
 
 {% tabs %}
 
@@ -78,11 +78,11 @@ const { token, shopId } = await response.json();
 
 {% hint style="info" %}
 Requesting from the browser to the app backend is only possible when your app backend allows [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) requests. Example:
+
 - Access-Control-Allow-Origin: *
 - Access-Control-Allow-Methods: GET, POST, OPTIONS
 - Access-Control-Allow-Headers: shopware-app-shop-id, shopware-app-token
 {% endhint %}
-
 
 ## Validate the JWT token
 
@@ -133,4 +133,3 @@ Fetch the shop by the `shopware-app-shop-id` header and create a JWT verifier wi
 {% endtab %}
 
 {% endtabs %}
-
