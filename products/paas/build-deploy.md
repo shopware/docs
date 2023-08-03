@@ -52,7 +52,7 @@ You must authenticate yourself to install extensions from the Shopware store via
 
 The following command adds your authentication token to the secure environment variable storage of Shopware Paas. This variable (contains the content which would otherwise be in `auth.json`) will be available during the build step and be automatically picked up by the composer.
 
-```bash 
+```bash
 shopware variable:create --level project --name env:COMPOSER_AUTH --json true --visible-runtime false --sensitive true --visible-build true --value '{"bearer": {"packages.shopware.com": "%place your key here%"}}'
 ```
 
