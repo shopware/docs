@@ -58,7 +58,7 @@ However, these are not all of your possibilities of configuration. As you see, y
 | `size` | Sets the size of the icon | --- |
 | `namespace` | Selection of the namespace of the icon, you can compare it with the source of it | Important configuration if you want to use custom icons. |
 | `pack` | Selects the pack of different icons | --- |
-| `color` | Sets the color of the icon | --- |
+| `color` | Sets the color of the icon | You can either use pre-defined variants similar to bootstrap (eg: primary , danger etc) or manually style the icon with any color with CSS. |
 | `class` | Defines a class of the icon | --- |
 
 A simple but fully functional example could look like below:

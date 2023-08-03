@@ -1,29 +1,31 @@
 # Quality Guidelines for Apps based on Plugin System in Shopware Store
 
 > **Changelog**
->> 18/07/23: Compiled code
+>> 26/07/23: [Added - Name preset according to new naming scheme](../quality-guidelines-plugins/README.md#every-app-based-on-the-plugin-system)
 >
->> 12/04/23: Check for a functional comparison with functions from the Rise or above edition.
+>> 18/07/23: [Compiled code](../quality-guidelines-plugins/README.md#checklist-for-app-testing)
 >
->> 14/02/23: Added new STP tracking  "External technology apps/STP apps"
+>> 12/04/23: [Check for a functional comparison with functions from the Rise or above edition.](../quality-guidelines-plugins/README.md#every-app-based-on-the-plugin-system)
 >
->> 11/07/22: [Added a list of all Blockers - Changes to the autom. codereview 1.st Oct. 2022](https://docs.shopware.com/en/account-en/manufacturer-area/quality-guidelines-for-extensions-in-the-shopware-store-based-on-our-extension-system#sonarcube-rules-status-blocker).
+>> 14/02/23: [Added new STP tracking - External technology apps/STP apps.](../quality-guidelines-plugins/README.md#external-technology-shopware-technology-partner-stp-apps)
 >
->> 26/10/21: [Added safe your app idea and get a preview in the store](https://docs.shopware.com/en/account-en/manufacturer-area/quality-guidelines-for-extensions-in-the-shopware-store-based-on-our-extension-system?category=account-en/manufacturer-area#safe-your-app-idea-and-get-a-preview-in-the-store).
+>> 11/07/22: [Added a list of all Blockers - Changes to the autom. codereview 1.st Oct. 2022](../quality-guidelines-plugins/README.md#sonarcube-rules-status-blocker)
 >
->> 14/10/21: How we test your extension for the Shopware Store (DE): [https://www.youtube.com/watch?v=gLb5CmOdi4g](https://www.youtube.com/watch?v=gLb5CmOdi4g).
+>> 26/10/21: [Added safe your app idea and get a preview in the store.](../quality-guidelines-plugins/README.md#every-app-based-on-the-plugin-system)
 >
->> 08/06/21: SW6: [Added URL and info regarding our docker environment we use for testing SW6 apps.](https://docs.shopware.com/en/account-en/manufacturer-area/quality-guidelines-for-extensions-in-the-community-store#the-way-we-test-apps-based-on-the-extension-system).
+>> 14/10/21: [How we test your extension for the Shopware Store (DE).](https://www.youtube.com/watch?v=gLb5CmOdi4g)
 >
->> 07/06/21: Template Tests: Now using [Scheme.org Structured Data Testing Tool.](https://docs.shopware.com/en/account-en/manufacturer-area/quality-guidelines-for-extensions-in-the-community-store#template-tests) instead of Google Structured Testing Tool.
+>> 08/06/21: [Added URL and info regarding our docker environment we use for testing SW6 apps.](../quality-guidelines-plugins/README.md#the-way-we-test-apps-based-on-the-plugin-system)
 >
->> 07/06/21: Account app description: [Subprocessor and/or Further subprocessors information may be required for your app.](https://docs.shopware.com/en/account-en/manufacturer-area/quality-guidelines-for-extensions-in-the-community-store#app-descriptions-in-your-shopware-account).
+>> 07/06/21: [Template Tests - Now using Scheme.org Structured Data Testing Tool instead of Google Structured Testing Tool.](../quality-guidelines-plugins/README.md#template-tests)
 >
->> 17/04/21: Restructure the quality guidelines. No new content added.
+>> 07/06/21: [Account app description - Subprocessor and/or Further subprocessors information may be required for your app.](../quality-guidelines-plugins/README.md#app-descriptions-in-your-shopware-account)
 >
->> 12/05/20: Add app [Checklist](https://docs.shopware.com/en/plugin-standard-for-community-store#checklist-for-plugin-testing) for your Quality assurance.
+>> 17/04/21: Restructured the quality guidelines. No new content added.
 >
->> 22/04/20: SW6: [Menu entries in the main menu of the Administration are not allowed anymore](https://docs.shopware.com/en/account-en/manufacturer-area/quality-guidelines-for-extensions-in-the-community-store#menu-entries-in-the-main-menu-not-allowed) because of the look and feel.
+>> 12/05/20: [Added app Checklist for your Quality assurance.](../quality-guidelines-plugins/README.md#checklist-for-app-testing)
+>
+>> 22/04/20: [Menu entries in the main menu of the Administration are not allowed anymore because of the look and feel.](../quality-guidelines-plugins/README.md#menu-entries-in-the-main-menu-not-allowed)
 
 ## The way we test apps based on the plugin system
 
@@ -67,6 +69,7 @@ Be sure to use the most recent testing checklist from Shopware and not from any 
     * The mandatory number of characters is set in short and long descriptions. No blank spaces as fillers are allowed (EN/DE).
     * Check if the description makes sense and if it includes step-by-step instructions on how to use and test your app.
     * Check if you have included enough screenshots showing the app in action in the Storefront and Administration (please add a screenshot of the app in the extension manager settings).
+    * Check if the display name does not contain the term "plugin."
 
 * We pay attention to the automatic code review and look for security issues.
 
@@ -88,6 +91,8 @@ To ensure that the code remains accessible to all developers, the uncompiled ver
 {% endhint %}
 
 ### App descriptions in your Shopware account
+
+* **Display name:** According to the new naming scheme, the word "plugin" is no longer allowed in the display name of extensions. Instead of "Plugin" use "Extension" or "App".
 
 * **Short description:** (Min. 150 - max. 185 characters) - The app's short description must have at least 150 characters long and unique. Use the short description wisely, as the text will be used to tease your app in the overview along with the "Customers also bought" and "Customers also viewed" recommendations. The short description is also published as a meta-description.
 

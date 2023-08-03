@@ -1,27 +1,31 @@
 # Quality Guidelines for Apps and Themes based on App System in Shopware Store
 
+[Added - Name preset according to new naming scheme](./#every-app-based-on-the-app-system)
+
 > **Changelog**
->> 18/07/23: Compiled code
+>> 26/07/23: [Added - Name preset according to new naming scheme](#every-app-based-on-the-app-system)
 >
->> 12/04/23: Check for a functional comparison with functions from the Rise or above edition.
+>> 18/07/23: [Compiled code.](../quality-guidelines-apps/README.md#checklist-for-app-testing)
 >
->> 14/02/23: Added new STP tracking  "External technology apps/STP apps"
+>> 12/04/23: [Check for a functional comparison with functions from the Rise or above edition.](../quality-guidelines-apps/README.md#every-app-based-on-the-app-system)
 >
->> 28/10/21: Added "Safe your app idea and get a preview in the store".
+>> 14/02/23: [Added new STP tracking - External technology apps/STP apps.](../quality-guidelines-apps/README.md#external-technology-shopware-technology-partner-stp-apps)
 >
->> 06/08/21: Added, "Useful links and tutorials for creating an app".
+>> 28/10/21: [Added - Safe your app idea and get a preview in the store.](../quality-guidelines-apps/README.md#every-app-based-on-the-app-system)
 >
->> 08/06/21: Added URL and info regarding the docker environment we use for testing SW6 apps.
+>> 06/08/21: [Added - Useful links and tutorials for creating an app.](../quality-guidelines-apps/README.md#useful-links-and-tutorials-for-creating-an-app)
 >
->> 07/06/21: Template Tests: Now using Scheme.org Structured Data Testing Tool instead of Google Structured Testing Tool.
+>> 08/06/21: [Added URL and info regarding the docker environment we use for testing SW6 apps.](../quality-guidelines-apps/README.md#the-way-we-test-apps-based-on-the-app-system)
 >
->> 07/06/21: Account app description: Subprocessor and/or Further subprocessor information may be required for your app.
+>> 07/06/21: [Template Tests - Now using Scheme.org Structured Data Testing tool instead of Google Structured Testing tool.](../quality-guidelines-apps/README.md#theme-apps)
 >
->> 17/04/21: Restructure the quality guidelines. No new content added.
+>> 07/06/21: [Account app description - Subprocessor and/or Further subprocessor information may be required for your app.](../quality-guidelines-apps/README.md#app-descriptions-in-your-shopware-account)
 >
->> 12/05/20: Add app Checklist for your Quality assurance.
+>> 17/04/21: Restructured the quality guidelines. No new content added.
 >
->> 22/04/20: Menu entries in the main menu of the Administration are not allowed anymore because of look and feel.
+>> 12/05/20: [Added app checklist for your quality assurance.](../quality-guidelines-apps/README.md#checklist-for-app-testing)
+>
+>> 22/04/20: [Menu entries in the main menu of the Administration are not allowed anymore because of look and feel.](../quality-guidelines-apps/README.md#menu-entries-in-the-main-menu-not-allowed)
 
 ## The way we test apps based on the app system
 
@@ -59,7 +63,7 @@ We always test with the [actual SW6 version](https://www.shopware.com/de/downloa
 
 ## Checklist for app testing
 
-Be sure to use the most recent testing checklist from Shopware and not from any other provider. Please pay attention to every single point in this guide, as this will be reviewed by us in order to release your app.
+Be sure to use the most recent testing checklist from Shopware and not from any other provider. Pay attention to every single point given below in this guide, as this will be reviewed by us in order to release your app.
 
 ### Every app based on the app system
 
@@ -70,6 +74,7 @@ Be sure to use the most recent testing checklist from Shopware and not from any 
     * The mandatory number of characters is set in short and long descriptions. No blank spaces as fillers are allowed (EN/DE).
     * Check if the description makes sense and if it includes step-by-step instructions on how to use and test your app.
     * Check if you have included enough screenshots showing the app in action in the Storefront and Administration (please add a screenshot of the app in the extension manager settings).
+    * Check if the display name does not contain the term "plugin."
 
 * We pay attention to the automatic code review and look for security issues.
 
@@ -91,6 +96,8 @@ To ensure that the code remains accessible to all developers, the uncompiled ver
 {% endhint %}
 
 ### App descriptions in your Shopware account
+
+* **Display name:** According to the new naming scheme, the word "plugin" is no longer allowed in the display name of extensions. Instead of "Plugin" use "Extension" or "App".
 
 * **Short description:** (Min. 150 - max. 185 characters) - The app's short description must have at least 150 characters long and unique. Use the short description wisely, as the text will be used to tease your app in the overview along with the "Customers also bought" and "Customers also viewed" recommendations. The short description is also published as a meta-description.
 

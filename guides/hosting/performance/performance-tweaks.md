@@ -59,7 +59,7 @@ and then you can set `SQL_SET_DEFAULT_SESSION_VARIABLES=0` to your `.env` file
 
 We designed the DAL (Data Abstraction Layer) to provide developers a flexible and extensible data management. However, features in such a system come at the cost of performance. Therefore, using DBAL (plain SQL) is much faster than using the DAL in many scenarios, especially when it comes to internal processes, where often only one ID of an entity is needed.
 
-Refer to this article to know more on [when to use plain SQL and DAL](../../../resources/references/adr/dal/2021-05-14-when-to-use-plain-sql-or-dal.md).
+Refer to this article to know more on [when to use plain SQL and DAL](../../../resources/references/adr/2021-05-14-when-to-use-plain-sql-or-dal.md).
 
 ## Elasticsearch/Opensearch
 
@@ -72,7 +72,7 @@ Read more on [Elasticsearch setup](../infrastructure/elasticsearch/elasticsearch
 ## Prevent mail data updates
 
 {% hint style="info" %}
-[Prevent mail updates](../../../resources/references/adr/performance/2022-03-25-prevent-mail-updates.md) feature is available starting with Shopware 6.4.11.0.
+[Prevent mail updates](https://developer.shopware.com/docs/v/6.4/resources/references/adr/performance/2022-03-25-prevent-mail-updates) feature is available starting with Shopware 6.4.11.0.
 {% endhint %}
 
 To provide auto-completion for different mail templates in the Administration UI, Shopware has a mechanism that writes an example mail into the database when sending the mail.

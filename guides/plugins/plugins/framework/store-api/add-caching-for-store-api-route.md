@@ -29,9 +29,9 @@ First, we create an abstract class called `CachedExampleRoute` which extends the
 
 namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
 
-use OpenApi\Annotations as OA;
 use Psr\Log\LoggerInterface;
-use Shopware\Core\Framework\Adapter\Cache\CacheStateSubscriber;use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\Adapter\Cache\CacheStateSubscriber;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Shopware\Core\Framework\Adapter\Cache\AbstractCacheTracer;
 use Shopware\Core\Framework\Adapter\Cache\CacheCompressor;

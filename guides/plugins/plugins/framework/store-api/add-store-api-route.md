@@ -53,7 +53,6 @@ Now we can create a new class `ExampleRoute` which uses our previously created `
 
 namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
 
-use OpenApi\Annotations as OA;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\Plugin\Exception\DecorationPatternException;
@@ -177,13 +176,72 @@ $ ./bin/console debug:router store-api.example.search
 
 {% endcode %}
 
-## Check route in Swagger
+## Add route to Swagger
 
-To check, if your OpenApi Annotations are correct, you'll have to check Swagger. To do this, go to the following route: `/store-api/_info/swagger.html`.
+To add the route to the Swagger page, a JSON file is needed in a specific [format](https://swagger.io/specification/#paths-object). It contains information about the paths, methods, parameters, and more. You must place the JSON file in `<plugin root>/src/Resources/Schema/StoreApi/` so the shopware internal OpenApi3Generator can find it (for Admin API endpoints, use `AdminAPI`).
+
+{% code title="<plugin root>/src/Resources/Schema/StoreApi/example.json" %}
+
+```json
+{
+  "openapi": "3.0.0",
+  "info": [],
+  "paths": {
+    "/example": {
+      "post": {
+        "tags": [
+          "Example",
+          "Endpoints supporting Criteria "
+        ],
+        "summary": "Example entity endpoint",
+        "description": "Returns a list of example entities.",
+        "operationId": "example",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Criteria"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns a list of example entities.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Example"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+{% endcode %}
+
+### Check route in Swagger
+
+To check, if your file has the correct format, you'll have to check Swagger. To do this, go to the following route: `/store-api/_info/swagger.html`.
 
 Your generated request and response could look like this:
 
-### Request
+#### Request
 
 ```javascript
 {
@@ -235,7 +293,7 @@ Your generated request and response could look like this:
 }
 ```
 
-### Response
+#### Response
 
 ```javascript
 {
