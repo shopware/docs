@@ -23,6 +23,7 @@ For the sake of clarity, we will create a folder named Twig within the src folde
 Let's have a look at the created file.
 
 {% code title="<plugin root>/src/Twig/SwagCreateMd5Hash.php" %}
+
 ```php
 <?php declare(strict_types=1);
 
@@ -47,6 +48,7 @@ class SwagCreateMd5Hash extends AbstractExtension
     }
 }
 ```
+
 {% endcode %}
 
 Of course you can do everything in the createMd5Hash function that PHP can do.
@@ -54,6 +56,7 @@ Of course you can do everything in the createMd5Hash function that PHP can do.
 What is still missing is the registration of the service in the DI container.
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
+
 ```markup
 ...
     <services>
@@ -63,6 +66,7 @@ What is still missing is the registration of the service in the DI container.
     </services>
 ...
 ```
+
 {% endcode %}
 
 After all that is done, you can access this Twig function within your plugin.
