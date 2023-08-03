@@ -1,6 +1,6 @@
-# Client side communication to the app backend
+# Client-App backend communication
 
-To give some context to the request from the browser directly to the app backend, we allow generating a JWT token that contains session information as claims and is signed by the shop.
+Direct communication from the browser to the app backend involves generating a JWT token. This token contains session-specific information, as [claims](#the-jwt-token), and is securely signed by the shop. This mechanism ensures a secure exchange of data between the client and the app backend.
 
 {% hint style="warning" %}
 The JWT key can be only generated when in the browser the user is logged-in.
