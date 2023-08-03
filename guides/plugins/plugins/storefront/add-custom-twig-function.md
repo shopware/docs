@@ -67,7 +67,7 @@ What is still missing is the registration of the service in the DI container.
 
 After all that is done, you can access this Twig function within your plugin.
 
-### Use the Twig function in your template
+### Use twig function in template
 
 The created function is now available in all your templates. You can call it like each other function.
 
