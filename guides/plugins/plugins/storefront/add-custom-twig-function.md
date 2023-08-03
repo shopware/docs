@@ -6,7 +6,7 @@ Imagine you want to call a PHP script from the Twig template during the theme de
 
 In our example we will pass a string to the Twig Function and return a MD5-Hash.
 
-{% hint style="info" %}It is not recommended to use twig functions in order to retrieve data from the database. In these cases a DataResolver could come in handy.{% endhint %}
+{% hint style="info" %}It is not recommended to use twig functions in order to retrieve data from the database. In such a case, DataResolver could come in handy.{% endhint %}
 
 ## Prerequisites
 
