@@ -10,7 +10,7 @@ In our example we will pass a string to the Twig Function and return a MD5-Hash.
 
 ## Prerequisites
 
-In order to create your own Twig Function for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
+In order to create your own twig function for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
 
 ## Creating Twig Function
 
