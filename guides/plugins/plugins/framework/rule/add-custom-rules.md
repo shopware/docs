@@ -121,7 +121,7 @@ $context->getRuleIds();
 
 Now we want to implement our new rule in the Administration so that we can manage it. To achieve this, we have to call the `addCondition` method of the [RuleConditionService](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/service/rule-condition.service.js), by decorating this service. The decoration of services in the Administration will be covered in our [Adding services](../../administration/add-custom-service.md#Decorating%20a%20service) guide.
 
-Create a new directory called `<plugin root>/src/Resources/app/administration/src/decorator`. In this directory we create a new file called `rule-condition-service-decoration.js`.
+Create a new directory called `<plugin root>/src/Resources/app/administration/src/decorator/app`. In this directory we create a new file called `rule-condition-service-decoration.js`.
 
 {% code title="<plugin root>src/Resources/app/administration/src/decorator/app/rule-condition-service-decoration.js" %}
 
@@ -244,7 +244,7 @@ Rules in the Shopware Administration are aware of where users assign them. That 
 
 ![Select component with disabled rules](../../../../../.gitbook/assets/rule-restrictions-rule-builder.png)
 
-It is possible to define where rules can be assigned inside the Administration. Let us see about it.
+It is possible to define where rules can be assigned inside the Administration.
 
 ### Defining restrictions
 
@@ -252,7 +252,7 @@ You have previously added the condition inside `ruleConditionDataProviderService
 
 First, get the existing definition for the rule relation as below:
 
-{% code title="<plugin root>src/Resources/app/administration/src/app/decorator/condition-type-data-provider.decorator.js" %}
+{% code title="<plugin root>src/Resources/app/administration/src/decorator/app/rule-condition-service-decoration.js" %}
 
 ```javascript
 // Inside the addServiceProviderDecorator method
@@ -265,9 +265,17 @@ const restrictions = ruleConditionService.getAwarenessConfigurationByAssignmentN
 You can find all possible relations in `Shopware\Core\Content\Rule\RuleDefinition`;
 {% endhint %}
 
-Now, add your configuration by importing the `merge` function from `Shopware.Utils.object`. Then call the `addAwarenessConfiguration` method.
+Now, add your `awarenessConfiguration` and call the `addAwarenessConfiguration` method.
 
-{% code title="<plugin root>src/Resources/app/administration/src/app/decorator/condition-type-data-provider.decorator.js" %}
+```javascript
+type awarenessConfiguration = {
+notEquals?: Array<string>,
+equalsAny?: Array<string>,
+snippet?: string,
+}
+```
+
+{% code title="<plugin root>src/Resources/app/administration/src/decorator/app/rule-condition-service-decoration.js" %}
 
 ```javascript
 Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderService', (ruleConditionService) => {
@@ -276,12 +284,13 @@ Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderServi
     const restrictions = ruleConditionService.getAwarenessConfigurationByAssignmentName('productPrices');
 
     ruleConditionService
-        .addAwarenessConfiguration('productPrices', merge(restrictions, {
+        .addAwarenessConfiguration('productPrices', {
             notEquals: [
-                'first_monday',
+                'first_monday'
             ],
-            equalsAny: [], // ignore property if not needed
-        }));
+            equalsAny: [ ], // ignore if not needed
+            snippet: 'sw-restricted-rules.restrictedAssignment.productPrices',
+        });
 });
 ```
 
@@ -290,7 +299,7 @@ Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderServi
 What do `notEquals` and `equalsAny` actually mean?
 With these two properties, you can define the rules you want to assign to a specific relation, i.e., `productPrices` need to have at least one condition inside `equalsAny` or should not have any condition inside of `notEquals`.
 
-Finally, you just need a new snippet. With that said, you successfully defined restrictions for your custom condition. If you now try to assign a rule with your condition to advanced prices, you should see that it is not possible, and the rule is disabled.
+Finally, you just need a snippet, you can choose an existing one or create one yourself. With that said, you successfully defined restrictions for your custom condition. If you now try to assign a rule with your condition to advanced prices, you should see that it is not possible, and the rule is disabled.
 
 ### Restricting rule assignments
 
