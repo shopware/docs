@@ -121,9 +121,9 @@ $context->getRuleIds();
 
 Now we want to implement our new rule in the Administration so that we can manage it. To achieve this, we have to call the `addCondition` method of the [RuleConditionService](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/service/rule-condition.service.js), by decorating this service. The decoration of services in the Administration will be covered in our [Adding services](../../administration/add-custom-service.md#Decorating%20a%20service) guide.
 
-Create a new directory called `<plugin root>/src/Resources/app/administration/src/decorator/app`. In this directory we create a new file called `rule-condition-service-decoration.js`.
+Create a new directory called `<plugin root>/src/Resources/app/administration/src/decorator`. In this directory we create a new file called `rule-condition-service-decoration.js`.
 
-{% code title="<plugin root>src/Resources/app/administration/src/decorator/app/rule-condition-service-decoration.js" %}
+{% code title="<plugin root>src/Resources/app/administration/src/decorator/rule-condition-service-decoration.js" %}
 
 ```javascript
 import '../../core/component/swag-first-monday';
@@ -148,7 +148,7 @@ We also have to create a `main.js` file in our Administration sources directory 
 {% code title="<plugin root>/src/Resources/app/administration/src/main.js" %}
 
 ```javascript
-import './decorator/app/rule-condition-service-decoration';
+import './decorator/rule-condition-service-decoration';
 ```
 
 {% endcode %}
@@ -252,7 +252,7 @@ You have previously added the condition inside `ruleConditionDataProviderService
 
 First, get the existing definition for the rule relation as below:
 
-{% code title="<plugin root>src/Resources/app/administration/src/decorator/app/rule-condition-service-decoration.js" %}
+{% code title="<plugin root>src/Resources/app/administration/src/decorator/rule-condition-service-decoration.js" %}
 
 ```javascript
 // Inside the addServiceProviderDecorator method
@@ -275,7 +275,7 @@ snippet?: string,
 }
 ```
 
-{% code title="<plugin root>src/Resources/app/administration/src/decorator/app/rule-condition-service-decoration.js" %}
+{% code title="<plugin root>src/Resources/app/administration/src/decorator/rule-condition-service-decoration.js" %}
 
 ```javascript
 Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderService', (ruleConditionService) => {
