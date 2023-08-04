@@ -25,10 +25,10 @@ const resource = {
 		name: 'Architecture Reference'
 	},
 	guidelines: {
-		heading: /\[Unit Testing\]/,
+		heading: /\[Unit Tests\]/,
 		refHeading: /\[App Reference\]/,
 		dir: './resources/guidelines/testing/platform',
-		name: 'Unit Testing',
+		name: 'Unit Tests',
 	},
 }[mode];
 
