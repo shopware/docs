@@ -106,8 +106,14 @@ After we've created our rule class, we have to register it in our `services.xml`
 Please keep in mind: The variables to be used in the rule have to be 'protected' and not 'private', otherwise they won't work properly.
 
 {% hint style="warning" %}
-Never execute database queries or any other time consuming operations within the `match()` method of your rule, as it will drastically impact the performance of your store. Stick to the rule scope when evaluating whether your rule matches or not.
+Never execute database queries or any other time-consuming operations within the `match()` method of your rule, as it will drastically impact the performance of your store. Stick to the rule scope when evaluating whether your rule matches or not.
 {% endhint %}
+
+```php
+// Scope usage: Check if the customer is logged in 
+$customer = $scope->getSalesChannelContext()->getCustomer();
+$loggedIn = $customer !== null;
+```
 
 ### Active rules
 
@@ -323,6 +329,10 @@ Refer to [customize administration components](../../administration/customizing-
 {% endcode %}
 
 That's it! The component automatically fetches rules and marks them as disabled.
+
+## Multi select and other components
+
+The above guide explains the integration of a boolean and no values. If you want to go more in-depth, for example, search your entity, you can extend and use the different components that Shopware comes with. The multi select example can be found in `shopware/administration/Resources/app/administration/src/app/component/form/select/entity/sw-entity-multi-select`.
 
 ## Further reading
 
