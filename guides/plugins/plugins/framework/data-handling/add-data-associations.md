@@ -117,6 +117,10 @@ Note the new `FkField`, which basically is the mentioned `foo_id` column. Its pa
 
 Additional to that, we've got the `OneToOneAssociationField`. Here you supply the name of the property, which should contain the associated entity, in your respective definition, e.g. in this case we want the `FooDefinition` to appear in the `foo` property of our entity. Following are `foo_id`, which is the name of the column in the database, `id` as the ID column in the referenced database \(`foo` in this case\) and the referenced definition. The last parameter defines, if you want to automatically load this association every time you load a `bar` entity. We've set this to `false`.
 
+{% hint style="warning" %}
+Setting autoload to \`true\` on the \`EntityExtension\` and \`EntityDefinition\` will lead to a recursion / out of memory error. If you want to get the association on every load, set autoload to \`true\` only in the \`EntityExtension\`. See also [Add complex data to existing entities](../data-handling/add-complex-data-to-existing-entities.md#adding-a-field-with-database).
+{% endhint %}
+
 For the sake of completion, here is the respective `defineFields` method of the `FooDefinition`:
 
 {% code title="<plugin root>/src/Core/Content/Foo/FooDefinition.php" %}

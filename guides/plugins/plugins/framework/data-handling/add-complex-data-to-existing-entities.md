@@ -213,7 +213,7 @@ Of course, this new definition also needs to be registered to the DI container:
 
 #### Adding the new database table
 
-Of course you have to add the new database table via a [Database migration](../../plugin-fundamentals/database-migrations.md). Have a look into the guide linked above to see how exactly this is done. Here's the example migration and how it could look like:
+Of course, you have to add the new database table via a [Database migration](../../plugin-fundamentals/database-migrations.md). Look at the guide linked above to see how exactly this is done. Here's the example migration and how it could look like:
 
 ```php
 <?php declare(strict_types=1);
@@ -239,7 +239,9 @@ CREATE TABLE IF NOT EXISTS `swag_example_extension` (
     `custom_string` VARCHAR(255) NULL,
     `created_at` DATETIME(3) NOT NULL,
     `updated_at` DATETIME(3) NULL,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    KEY `fk.swag_example_extension.product_id` (`product_id`),
+    CONSTRAINT `fk.swag_example_extension.product_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 SQL;
         $connection->executeStatement($sql);
@@ -250,6 +252,10 @@ SQL;
     }
 }
 ```
+
+##### Foreign keys
+
+The `AssociationFields` take care of loading the data, but it is recommended to add [foreign key constraints](https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html) to your migration query. This will ensure that your data is consistent (checks if the foreign key exists); for example, it will delete the `swag_example_extension` entry when the linked product is deleted.
 
 #### Writing into the new field
 
