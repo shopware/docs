@@ -21,7 +21,7 @@ jobs:
           add-paths: |
             resources/references/adr/**/*
             resources/references/adr/*.md
-            resources/guidelines/testing/platform/*.md
+            resources/guidelines/code/core/*.md
             SUMMARY.md
           author: shopwareBot <example@example.com>
           committer: shopwareBot <example@example.com>
@@ -30,5 +30,3 @@ jobs:
           delete-branch: true
           title: 'Update Architecture Decision Records'
           body: 'Mirrored from: [shopware/platform](https://github.com/shopware/platform/tree/trunk)'
-
-
