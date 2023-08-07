@@ -4,12 +4,12 @@ git clone --depth 1 https://github.com/shopware/platform.git
 
 # delete dirs
 rm -r ./resources/references/adr
-rm -r ./resources/guidelines/testing/platform
+rm -r ./resources/guidelines/code/core
 rm -r ./.gitbook/assets/adr
 
 # copy contents
 cp -r ./platform/adr ./resources/references
-cp -r ./platform/coding-guidelines/core ./resources/guidelines/testing/platform
+cp -r ./platform/coding-guidelines/core ./resources/guidelines/code/core
 
 rm -rf ./platform
 
@@ -27,4 +27,4 @@ find resources/references/adr -type f -name '*md' -not -name '_*' -exec sed -i '
 find resources/references/adr -type f -name '*md' -not -name '_*' -exec sed -i 's#(\.\./assets#(../../../.gitbook/assets/adr#' {} \;
 
 find resources/references/adr/ -type d -exec touch '{}'/README.md \;
-find resources/guidelines/testing/platform/ -type d -exec touch '{}'/README.md \;
+find resources/guidelines/code/core/ -type d -exec touch '{}'/README.md \;
