@@ -29,7 +29,7 @@ const adrTitle = (adr: CodeGuidelinesEntry) => {
 };
 
 let ADRs = new Map<string,CodeGuidelinesTopic>();
-for (const entry of walkSync("./resources/references/adr", { includeDirs: false, includeFiles: true })) {
+for (const entry of walkSync("./resources/guidelines/code", { includeDirs: false, includeFiles: true })) {
 	if (path.basename(entry.path).startsWith('_')) continue;
 	if (path.basename(entry.path) === 'README.md') continue;
 
