@@ -6,7 +6,7 @@ interface CodeGuidelinesEntry { path: string }
 interface CodeGuidelinesTopic extends CodeGuidelinesEntry { entries: CodeGuidelinesEntry[] }
 
 const dateRegex = /[0-9]{4}-[0-9]{2}-[0-9]{2}/;
-const codeGuidelineHeading = /\[Core\]/;
+const codeGuidelineHeading = /\[Core guidelines\]/;
 const generalTopic = 'general';
 
 
