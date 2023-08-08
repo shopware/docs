@@ -26,7 +26,7 @@ const resource = {
 	},
 	guidelines: {
 		heading: /\[Core Guidelines\]/,
-		refHeading: /\[Storefront Controller\]/,
+		refHeading: /\[Test\]/,
 		dir: './resources/guidelines/code/core',
 		name: 'Core Guidelines',
 	},
