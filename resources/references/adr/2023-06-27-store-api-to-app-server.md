@@ -2,7 +2,7 @@
 title: Client side communication to App Server
 date: 2023-06-27
 area: core
-tags: [core, app-system, mermaid]
+tags: [core, app-system]
 ---
 
 # Client side communication to App Server
