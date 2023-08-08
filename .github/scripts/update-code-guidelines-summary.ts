@@ -6,8 +6,7 @@ interface CodeGuidelinesEntry { path: string }
 interface CodeGuidelinesTopic extends CodeGuidelinesEntry { entries: CodeGuidelinesEntry[] }
 
 const dateRegex = /[0-9]{4}-[0-9]{2}-[0-9]{2}/;
-const codeGuidelineHeading = /\[Core coding guidelines\]/;
-const appRefHeading = /\[Test\]/;
+const codeGuidelineHeading = /\[Core\]/;
 const generalTopic = 'general';
 
 
@@ -91,13 +90,6 @@ for (const line of lines) {
 }
 
 summary.addLine(adrSummary);
-
-for (const line of lines) {
-	if (appRefHeading.test(line)) {
-		summary.addLine(line);
-		break;
-	}
-}
 
 for (const line of lines) summary.addLine(line);
 

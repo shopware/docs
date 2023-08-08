@@ -540,6 +540,7 @@
     * [Session and State](resources/guidelines/code/session-and-state.md)
     * [Store API](resources/guidelines/code/store-api.md)
     * [Storefront Controller](resources/guidelines/code/storefront-controller.md)
+    * [Core](resources/guidelines/code/core/README.md)
   * [Test](resources/guidelines/testing/README.md)
     * [Best practices on writing end-to-end tests](resources/guidelines/testing/e2e-best-practises.md)
     * [Testing guidelines for extensions](resources/guidelines/testing/store/README.md)
