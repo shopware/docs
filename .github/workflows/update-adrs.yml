@@ -44,7 +44,6 @@ jobs:
       - uses: peter-evans/create-pull-request@v4
         with:
           add-paths: |
-            resources/guidelines/code/core/**/*            
             resources/guidelines/code/core/*.md
             SUMMARY.md
           author: shopwareBot <example@example.com>
