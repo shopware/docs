@@ -25,7 +25,7 @@ const resource = {
 		message: 'This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.\n',
 	},
 	guidelines: {
-		destination: './resources/guidelines/testing/platform',
+		destination: './resources/guidelines/code/core',
 		source: 'coding-guidelines/core',
 		message: 'This document represents testing guidelines and has been mirrored from the core in our Shopware 6 repository.\n',
 	},
