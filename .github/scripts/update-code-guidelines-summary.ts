@@ -2,25 +2,25 @@ import { walkSync } from "https://deno.land/std@0.145.0/fs/mod.ts";
 import * as path from "https://deno.land/std@0.145.0/path/mod.ts";
 
 
-interface ADREntry { path: string }
-interface ADRTopic extends ADREntry { entries: ADREntry[] }
+interface CodeGuidelinesEntry { path: string }
+interface CodeGuidelinesTopic extends CodeGuidelinesEntry { entries: CodeGuidelinesEntry[] }
 
 const dateRegex = /[0-9]{4}-[0-9]{2}-[0-9]{2}/;
-const adrHeading = /\[Architecture Reference\]/;
-const appRefHeading = /\[App Reference\]/;
+const codeGuidelineHeading = /\[Core coding guidelines\]/;
+const appRefHeading = /\[Test\]/;
 const generalTopic = 'general';
 
 
 const firstToUpper = (s: string) => `${s[0].toUpperCase()}${s.slice(1)}`;
 const fixName = (s: string) => firstToUpper(s).replaceAll(/api/gi, 'API').replaceAll(/dal/gi, 'DAL');
 
-const topicName = (entry: ADREntry) => {
+const topicName = (entry: CodeGuidelinesEntry) => {
 	const name = entry.path.split('/')[3] ?? generalTopic;
 	return name.endsWith('.md') ? generalTopic : name;
 }
 const summaryItem = (depth: number, name: string, path: string) => `${' '.repeat(depth * 2)}* [${fixName(name)}](${path})\n`;
 
-const adrTitle = (adr: ADREntry) => {
+const adrTitle = (adr: CodeGuidelinesEntry) => {
 	return path.basename(adr.path)
 		.replace(dateRegex, '')
 		.replace('.md', '')
@@ -28,13 +28,12 @@ const adrTitle = (adr: ADREntry) => {
 		.trim();
 };
 
-let ADRs = new Map<string,ADRTopic>();
+let ADRs = new Map<string,CodeGuidelinesTopic>();
 for (const entry of walkSync("./resources/references/adr", { includeDirs: false, includeFiles: true })) {
-	if (entry.path.startsWith('resources/references/adr/assets')) continue;
 	if (path.basename(entry.path).startsWith('_')) continue;
 	if (path.basename(entry.path) === 'README.md') continue;
 
-	const adr: ADREntry = { path: entry.path };
+	const adr: CodeGuidelinesEntry = { path: entry.path };
 	let topic = ADRs.get(topicName(adr));
 	if (!!topic) {
 		topic.entries.push(adr);
@@ -43,13 +42,13 @@ for (const entry of walkSync("./resources/references/adr", { includeDirs: false,
 	}
 	const topicDir = topicName(entry) === generalTopic ? '' : '/' + topicName(entry);
 	topic = {
-		path: `resources/references/adr${topicDir}`,
+		path: `resources/guidelines/code/core${topicDir}`,
 		entries: [adr]
 	}
 	ADRs.set(topicName(adr), topic);
 }
 
-let adrSummary = summaryItem(1, 'Architecture Reference', 'resources/references/adr/README.md');
+let adrSummary = summaryItem(1, 'Core coding guidelines', 'resources/guidelines/code/core/README.md');
 
 const names = Array.from(ADRs.keys());
 names.sort();
@@ -87,7 +86,7 @@ const summary = {
 const lines = Deno.readTextFileSync(filename).split('\n').values();
 
 for (const line of lines) {
-	if (adrHeading.test(line)) break;
+	if (codeGuidelineHeading.test(line)) break;
 	summary.addLine(line)
 }
 
