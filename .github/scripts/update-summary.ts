@@ -25,10 +25,10 @@ const resource = {
 		name: 'Architecture Reference'
 	},
 	guidelines: {
-		heading: /\[Core\]/,
-		refHeading: /\[App Reference\]/,
+		heading: /\[Core Guidelines\]/,
+		refHeading: /\[Storefront Controller\]/,
 		dir: './resources/guidelines/code/core',
-		name: 'Core',
+		name: 'Core Guidelines',
 	},
 }[mode];
 
