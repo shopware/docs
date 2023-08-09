@@ -20,7 +20,7 @@ To create a custom rule, we have to implement both backend \(PHP\) code and a us
 
 ### Creating rule in PHP
 
-First of all we need a new Rule class, in this example we will name it `FirstMondayOfTheMonthRule`. It will be placed in the directory `<plugin root>/src/Core/Rule`. Our new class has to extend from the abstract class `Shopware\Core\Framework\Rule\Rule`. Below you can find an example implementation.
+First of all, we need a new Rule class. In this example, we name it as `FirstMondayOfTheMonthRule`. It will be placed in the directory `<plugin root>/src/Core/Rule`. Our new class has to extend from the abstract class `Shopware\Core\Framework\Rule\Rule`. Below you can find an example implementation.
 
 {% code title="<plugin root>/src/Core/Rule/FirstMondayOfTheMonthRule.php" %}
 
