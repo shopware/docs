@@ -305,7 +305,7 @@ Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderServi
 What do `notEquals` and `equalsAny` actually mean?
 With these two properties, you can define the rules you want to assign to a specific relation, i.e., `productPrices` need to have at least one condition inside `equalsAny` or should not have any condition inside of `notEquals`.
 
-Finally, you just need a snippet, you can choose an existing one or create one yourself. With that said, you successfully defined restrictions for your custom condition. If you now try to assign a rule with your condition to advanced prices, you should see that it is not possible, and the rule is disabled.
+Finally, you just need a snippet, and you can choose an existing one or create one yourself. With that said, you successfully defined restrictions for your custom condition. If you now try to assign a rule with your condition to advanced prices, you should see that it is not possible, and the rule is disabled.
 
 ### Restricting rule assignments
 
