@@ -212,7 +212,7 @@ Shopware.Component.extend('swag-first-monday', 'sw-condition-base', {
 
 {% endcode %}
 
-As you can see, our `swag-first-monday` has to extend from the `sw-condition-base` component and has to bring a custom template, which will be explained in the next step. Let's have a look at each property and method. The first computed property is `selectValues`, which returns an array containing the values "true" and "false". Those will be used in the template later on, as they will be the selectable options for the shop administrator. Do not get confused by the call `this.$tc\('global.sw-condition.condition.yes'\)`; it's just loading a translation by its name, in this case, "Yes" and "No". 
+As you can see, our `swag-first-monday` has to extend from the `sw-condition-base` component and has to bring a custom template, which will be explained in the next step. Let's have a look at each property and method. The first computed property is `selectValues`, which returns an array containing the values "true" and "false". Those will be used in the template later on, as they will be the selectable options for the shop administrator. Do not get confused by the call `this.$tc\('global.sw-condition.condition.yes'\)`; it's just loading a translation by its name, in this case, "Yes" and "No".
 {%hint style = "info"%} When dealing with boolean values, make sure to always return strings here.{%endhint%}
 
 The second and last computed property is `isFirstMondayOfTheMonth`, which uses a getter and setter to define the value of the condition.
