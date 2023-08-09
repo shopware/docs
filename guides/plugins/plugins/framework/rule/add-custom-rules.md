@@ -239,7 +239,7 @@ The last step is, creating a template for our condition. We will create a new fi
 {% endraw %}
 {% endcode %}
 
-As you can see, our `sw-single-select` uses the previously created computed property `selectValues` as the `options` prop, and the value is saved into the variable `isFirstMondayOfTheMonth`. That's it, your rule is now fully integrated.
+As you can see, our `sw-single-select` uses the previously created computed property `selectValues` as the `options` prop, and the value is saved into the variable `isFirstMondayOfTheMonth`. That's it; your rule is now fully integrated.
 
 ## Context awareness
 
