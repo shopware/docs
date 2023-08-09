@@ -63,7 +63,7 @@ Of course, you can do everything in the `createMd5Hash` function that PHP can do
 
 {% endcode %}
 
-After all that is done, you can access this Twig function within your plugin.
+Once done, you can access this `TwigFunction` within your plugin.
 
 ### Use twig function in template
 
