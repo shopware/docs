@@ -47,9 +47,7 @@ class SwagCreateMd5Hash extends AbstractExtension
 
 {% endcode %}
 
-Of course you can do everything in the createMd5Hash function that PHP can do.
-
-What is still missing is the registration of the service in the DI container.
+Of course, you can do everything in the `createMd5Hash` function that PHP can do, but the `service.xml` handles registration of the service in the DI container.
 
 {% code title="<plugin root>/src/Resources/config/services.xml" %}
 
