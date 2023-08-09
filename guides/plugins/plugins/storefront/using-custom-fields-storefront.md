@@ -67,7 +67,7 @@ Now, we finally add our custom field as explained before:
 
 ## Custom fields in forms
 
-Let's say you have a custom field for the customer entity through the administration; now you want the customer to input data into it through a field in the customer register form. This can be done without the need for a subscriber or listener; simply add a field to the form using the correct name:
+Let's say you have a custom field for the customer entity through the administration; now, you want the customer to input data into it through a field in the customer register form. This can be done without the need for a subscriber or listener; simply add a field to the form using the correct custom field name.
 
 {% code title="<plugin root>/src/Resources/views/storefront/component/address/address-personal.html.twig" %}
 {% raw %}
