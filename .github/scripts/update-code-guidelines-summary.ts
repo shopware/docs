@@ -9,7 +9,6 @@ const dateRegex = /[0-9]{4}-[0-9]{2}-[0-9]{2}/;
 const codeGuidelineHeading = /\[Core guidelines\]/;
 const generalTopic = 'general';
 
-
 const firstToUpper = (s: string) => `${s[0].toUpperCase()}${s.slice(1)}`;
 const fixName = (s: string) => firstToUpper(s).replaceAll(/api/gi, 'API').replaceAll(/dal/gi, 'DAL');
 
@@ -91,7 +90,6 @@ for (const line of lines) {
 
 summary.addLine(adrSummary);
 
-for (const line of lines) summary.addLine(line);
 
 const fileWriter = await Deno.open(filename, {truncate: true, write: true});
 summary.writeTo(fileWriter);
