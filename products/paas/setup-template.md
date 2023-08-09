@@ -108,10 +108,11 @@ This file configures incoming HTTP requests routed to the `app` instance.
 This file contains services that are used by the `app` instances. Depending on your setup, uncomment or add services that you need, and they will be created and scaled automatically.
 
 In our template there are 4 different services enabled by default:
-- `db`
-- `cacheredis`
-- `rabbitmq`
-- `fileshare`
+
+* `db`
+* `cacheredis`
+* `rabbitmq`
+* `fileshare`
 
 ## [files / theme-config](https://github.com/shopware/recipes/tree/main/shopware/paas-meta/6.4/files/theme-config)
 
