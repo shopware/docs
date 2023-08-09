@@ -13,6 +13,7 @@ In order to create your own twig function for your plugin, you first need a plug
 ## Creating twig function
 
 In the following sections, we will create and expand all necessary files for the twig function to work. There are two such files:
+
 * PHP file with the twig functions itself and
 * Services.xml
 
