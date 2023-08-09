@@ -51,5 +51,5 @@ jobs:
           assignees: Isengo1989
           branch: code-guidelines-update
           delete-branch: true
-          title: 'Update code guidelines from platform'
+          title: 'Update code guidelines from platform repo'
           body: 'Mirrored from: [shopware/platform](https://github.com/shopware/platform/tree/trunk)'
