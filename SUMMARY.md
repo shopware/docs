@@ -285,6 +285,7 @@
       * [Using a modal window](guides/plugins/plugins/storefront/using-a-modal-window.md)
       * [Using the datepicker plugin](guides/plugins/plugins/storefront/using-the-datepicker-plugin.md)
       * [Use nested line items](guides/plugins/plugins/storefront/use-nested-line-items.md)
+      * [Add custom twig functions](guides/plugins/plugins/storefront/add-custom-twig-function.md)
     * [Testing](guides/plugins/plugins/testing/README.md)
       * [End-to-end testing](guides/plugins/plugins/testing/end-to-end-testing.md)
       * [Jest unit tests in Shopware's administration](guides/plugins/plugins/testing/jest-admin.md)

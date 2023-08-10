@@ -64,3 +64,29 @@ Now, we finally add our custom field as explained before:
 
 {% endraw %}
 {% endcode %}
+
+## Custom fields in forms
+
+Let's say you have a custom field for the customer entity through the administration; now, you want the customer to input data into it through a field in the customer register form. This can be done without the need for a subscriber or listener; simply add a field to the form using the correct custom field name.
+
+{% code title="<plugin root>/src/Resources/views/storefront/component/address/address-personal.html.twig" %}
+{% raw %}
+
+```text
+{% sw_extends '@Storefront/storefront/component/address/address-personal.html.twig' %}
+
+{% block component_address_personal_fields %}
+    {{ parent() }}
+
+	{# custom field #}
+	<div class="form-group col-sm-6">
+		<label class="form-label" for="customFields[custom_field_name]">
+			{{ "customFields.custom_field_name"|trans|sanitize}}*
+		</label>
+		<input type="text" class="form-control" name="customFields[custom_field_name]" value="{{context.customer.customFields['custom_field_name'] }}" id="customFields[custom_field_name]" required="required">
+	</div>
+{% endblock %}
+```
+
+{% endraw %}
+{% endcode %}
