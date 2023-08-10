@@ -2,13 +2,13 @@
 
 ## Entities
 
-### Company
+### BusinessPartner
 
-The company entity contains additional B2B company data and therefore extends the basic storefront customer. Companies are used to pool employees, roles and global settings.
+The business partner entity contains additional B2B company data and therefore extends the basic storefront customer. Business partners are used to pool employees, roles and global settings.
 
 ### Employee
 
-The employee entity represents a separate login for the same company customer / B2B business partner. Employees act on behalf of the associated company, e.g., to place orders. An employee can have a role assigned.
+The employee entity represents a separate login for the same business partner. Employees act on behalf of the associated business partner, e.g., to place orders. An employee can have a role assigned.
 
 ### Role
 
@@ -18,15 +18,15 @@ The role entity represents a set of permissions that can be assigned to an emplo
 
 ```mermaid
 erDiagram
-    swag_b2b_company {
+    swag_b2b_business_partner {
         uuid id PK
-        uuid company_customer_id FK
+        uuid customer_id FK
         uuid default_role_id FK
         json custom_fields
     }
     swag_b2b_employee {
         uuid id PK
-        uuid company_customer_id FK
+        uuid business_partner_customer_id FK
         uuid role_id FK
         boolean active
         string first_name
@@ -38,11 +38,11 @@ erDiagram
     }
     swag_b2b_role {
         uuid id PK
-        uuid company_customer_id FK
+        uuid business_partner_customer_id FK
         string name
         json permissions
     }
-    swag_b2b_company |o--|| customer : "is company administrator"
+    swag_b2b_business_partner |o--|| customer : "is company administrator"
     swag_b2b_employee }o--|| customer : "uses data for orders from"
     swag_b2b_employee }o--o| swag_b2b_role : "has role"
     swag_b2b_role }o--|| customer : "belongs to"

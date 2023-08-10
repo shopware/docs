@@ -4,13 +4,13 @@ A feature of the B2B components includes employee, role, and permission manageme
 
 ## Basic idea
 
-Employee management, as one of the B2B components, is a feature that allows you to manage employees and their permissions as an extension to Shopware's account and customer management, but set into a company context. This means that employees are associated with a **company customer** and will act on behalf of that company, e.g., placing orders. Accordingly, employees can make use of addresses that have been defined by administrators of their company.
+Employee management, as one of the B2B components, is a feature that allows you to manage employees and their permissions as an extension to Shopware's account and customer management, but set into a company context. This means that employees are associated with a **business partner** and will act on behalf of that business partner, e.g., placing orders. Accordingly, employees can make use of addresses that have been defined by administrators of their business partners.
 
-The **company customer** has the benefit of injecting company managed data into core processes without having to develop new employee processes from scratch or maintain multiple versions of these processes.
+The **business partner** has the benefit of injecting company managed data into core processes without having to develop new employee processes from scratch or maintain multiple versions of these processes.
 
-## Company customer
+## Business partner
 
-The company customer is a regular storefront customer but with a few additional properties. A customer's ID is used to associate employees with a company. Therefore, it is really easy to rely on Shopware's typical order relevant data like addresses. This allows us to keep using most core implementations, while only extending a few B2B related features, e.g., to reference an employee's actions.
+The business partner is a regular storefront customer but with a few additional properties. A customer's ID is used to associate employees with a business partner. Therefore, it is really easy to rely on Shopware's typical order relevant data like addresses. This allows us to keep using most core implementations, while only extending a few B2B related features, e.g., to reference an employee's actions.
 
 ## Role management
 
