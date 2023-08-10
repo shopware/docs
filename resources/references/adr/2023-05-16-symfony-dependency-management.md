@@ -5,13 +5,6 @@ area: core
 tags: [php, symfony, dependency]
 ---
 
-# Symfony Dependency Management
-
-{% hint style="info" %}
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2023-05-16-symfony-dependency-management.md)
-{% endhint %}
-
 ## Context
 
 The process of configuring dependencies has been upgraded with various new features in recent versions of Symfony.

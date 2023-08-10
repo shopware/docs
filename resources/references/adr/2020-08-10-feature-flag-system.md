@@ -5,13 +5,6 @@ area: core
 tags: [feature-flag, workflow]
 ---
 
-# Feature flag system
-
-{% hint style="info" %}
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-08-10-feature-flag-system.md)
-{% endhint %}
-
 ## Superseded by [Feature flags for major versions](2022-01-20-feature-flags-for-major-versions.md)
 
 ## Context

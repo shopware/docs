@@ -2,15 +2,8 @@
 title: Client side communication to App Server
 date: 2023-06-27
 area: core
-tags: [core, app-system, mermaid]
+tags: [core, app-system]
 ---
-
-# Client side communication to App Server
-
-{% hint style="info" %}
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2023-06-27-store-api-to-app-server.md)
-{% endhint %}
 
 ## Context
 
