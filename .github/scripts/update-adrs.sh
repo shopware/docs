@@ -2,22 +2,13 @@
 
 git clone --depth 1 https://github.com/shopware/platform.git
 
-# delete dirs
 rm -r ./resources/references/adr
-rm -r ./resources/guidelines/code/core
 rm -r ./.gitbook/assets/adr
-
-# copy contents
 cp -r ./platform/adr ./resources/references
-cp -r ./platform/coding-guidelines/core ./resources/guidelines/code/core
-
 rm -rf ./platform
 
-deno run --allow-read --allow-write ./.github/scripts/update-summary.ts adr
-deno run --allow-read --allow-write ./.github/scripts/update-summary.ts guidelines
-
-deno run --allow-read --allow-write ./.github/scripts/format-adrs.ts adr
-deno run --allow-read --allow-write ./.github/scripts/format-adrs.ts guidelines
+deno run --allow-read --allow-write ./.github/scripts/update-summary.ts
+deno run --allow-read --allow-write ./.github/scripts/format-adrs.ts
 
 mkdir -p ./.gitbook/assets/adr
 mv ./resources/references/adr/assets/* .gitbook/assets/adr/
@@ -27,4 +18,3 @@ find resources/references/adr -type f -name '*md' -not -name '_*' -exec sed -i '
 find resources/references/adr -type f -name '*md' -not -name '_*' -exec sed -i 's#(\.\./assets#(../../../.gitbook/assets/adr#' {} \;
 
 find resources/references/adr/ -type d -exec touch '{}'/README.md \;
-find resources/guidelines/code/core/ -type d -exec touch '{}'/README.md \;
