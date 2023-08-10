@@ -5,31 +5,31 @@ on:
     - cron: 0 */1 * * *
 
 jobs:
-#  create-pull-request:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v3
-#
-#      - uses: denoland/setup-deno@v1
-#        with:
-#          deno-version: "~1.32"
-#
-#      - run: ./.github/scripts/update-adrs.sh
-#
-#      - uses: peter-evans/create-pull-request@v4
-#        with:
-#          add-paths: |
-#            resources/references/adr/**/*
-#            resources/references/adr/*.md
-#            resources/guidelines/code/core/*.md
-#            SUMMARY.md
-#          author: shopwareBot <example@example.com>
-#          committer: shopwareBot <example@example.com>
-#          assignees: elkmod, Christian-Rades
-#          branch: adr-update
-#          delete-branch: true
-#          title: 'Update Architecture Decision Records'
-#          body: 'Mirrored from: [shopware/platform](https://github.com/shopware/platform/tree/trunk)'
+  create-adr-pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: "~1.32"
+
+      - run: ./.github/scripts/update-adrs.sh
+
+      - uses: peter-evans/create-pull-request@v4
+        with:
+          add-paths: |
+            resources/references/adr/**/*
+            resources/references/adr/*.md
+            resources/guidelines/code/core/*.md
+            SUMMARY.md
+          author: shopwareBot <example@example.com>
+          committer: shopwareBot <example@example.com>
+          assignees: elkmod, Christian-Rades
+          branch: adr-update
+          delete-branch: true
+          title: 'Update Architecture Decision Records'
+          body: 'Mirrored from: [shopware/platform](https://github.com/shopware/platform/tree/trunk)'
   create-code-pull-request:
     runs-on: ubuntu-latest
     steps:
@@ -51,5 +51,5 @@ jobs:
           assignees: Isengo1989
           branch: code-guidelines-update
           delete-branch: true
-          title: 'Update code guidelines from platform repo'
+          title: 'Update code guidelines from platform'
           body: 'Mirrored from: [shopware/platform](https://github.com/shopware/platform/tree/trunk)'
