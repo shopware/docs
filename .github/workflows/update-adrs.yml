@@ -25,7 +25,7 @@ jobs:
             SUMMARY.md
           author: shopwareBot <example@example.com>
           committer: shopwareBot <example@example.com>
-          assignees: elkmod, Christian-Rades
+          assignees: Isengo1989
           branch: adr-update
           delete-branch: true
           title: 'Update Architecture Decision Records'

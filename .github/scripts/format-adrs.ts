@@ -3,11 +3,11 @@ import { walk } from "https://deno.land/std@0.145.0/fs/mod.ts";
 import * as path from "https://deno.land/std@0.145.0/path/mod.ts";
 
 const formattingPromises = [];
-for await (const entry of walk("./resources/guidelines/code/core")) {
+for await (const entry of walk("./resources/references/adr")) {
 	if (entry.isDirectory) continue;
 	if (path.basename(entry.path).startsWith('_')) continue;
 	if (path.basename(entry.path) === 'README.md') continue;
-	formattingPromises.push(formatCode(entry.path));
+	formattingPromises.push(formatADR(entry.path));
 }
 
 await Promise.allSettled(formattingPromises);
@@ -16,14 +16,14 @@ function addHint(buffer, filePath) {
 	buffer += '\n';
 	buffer += '{% hint style="info" %}\n';
 	buffer += 'This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.\n';
-	buffer += `You can find the original version [here](${codePathToGithubLink(filePath)})\n`;
+	buffer += `You can find the original version [here](${adrPathToGithubLink(filePath)})\n`;
 	buffer += '{% endhint %}\n';
 
 	return buffer;
 }
 
-async function formatCode(filePath: string): Promise<void> {
-	const codeFile = await Deno.open(filePath, {write: true, read: true});
+async function formatADR(filePath: string): Promise<void> {
+	const adrFile = await Deno.open(filePath, {write: true, read: true});
 
 	let buffer = '';
 	const encoder = new TextEncoder();
@@ -31,7 +31,7 @@ async function formatCode(filePath: string): Promise<void> {
 	let lineNumber = 0;
 	let frontmatter = 0;
 	let title;
-	for await (const line of readLines(codeFile)) {
+	for await (const line of readLines(adrFile)) {
 		lineNumber++;
 		buffer += line + '\n';
 
@@ -63,14 +63,14 @@ async function formatCode(filePath: string): Promise<void> {
 		buffer += prevBuffer;
 	}
 
-	await codeFile.truncate();
-	await codeFile.seek(0, Deno.SeekMode.Start);
-	await codeFile.write(encoder.encode(buffer));
-	codeFile.close();
+	await adrFile.truncate();
+	await adrFile.seek(0, Deno.SeekMode.Start);
+	await adrFile.write(encoder.encode(buffer));
+	adrFile.close();
 	console.log('[✔] ', filePath);
 }
 
-function codePathToGithubLink(codePath: string): string {
-	const urlPath = codePath.replace('resources/guidelines/', '');
+function adrPathToGithubLink(adrPath: string): string {
+	const urlPath = adrPath.replace('resources/references/', '');
 	return `https://github.com/shopware/platform/blob/trunk/${urlPath}`
 }
