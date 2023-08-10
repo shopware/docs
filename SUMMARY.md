@@ -500,6 +500,7 @@
     * [Exception log levels](resources/references/adr/2023-05-25-exception-log-levels.md)
     * [Store API to app server](resources/references/adr/2023-06-27-store-api-to-app-server.md)
     * [Default handle for non specified salutations](resources/references/adr/2023-06-28-default-handle-for-non-specified-salutations.md)
+    * [Flow builder preview](resources/references/adr/2023-07-13-flow-builder-preview.md)
     * [YYYY MM DD template](resources/references/adr/YYYY-MM-DD-template.md)
 
   * [App Reference](resources/references/app-reference/README.md)
@@ -561,3 +562,16 @@
     * [Hot Module Reloading using watchers](resources/tooling/cli/using-watchers.md)
   * [IDE](resources/tooling/ide/README.md)
     * [Shopware Toolbox](resources/tooling/ide/shopware-toolbox.md)
+
+  * [Core Guidelines](resources/guidelines/code/core/README.md)
+    * [6.5 new php language features](resources/guidelines/code/core/6.5-new-php-language-features.md)
+    * [Adr](resources/guidelines/code/core/adr.md)
+    * [Benchmarks](resources/guidelines/code/core/benchmarks.md)
+    * [Decorator pattern](resources/guidelines/code/core/decorator-pattern.md)
+    * [Domain exceptions](resources/guidelines/code/core/domain-exceptions.md)
+    * [Extendability](resources/guidelines/code/core/extendability.md)
+    * [Final and internal](resources/guidelines/code/core/final-and-internal.md)
+    * [Internal](resources/guidelines/code/core/internal.md)
+    * [Unit tests](resources/guidelines/code/core/unit-tests.md)
+    * [Writing code for static analysis](resources/guidelines/code/core/writing-code-for-static-analysis.md)
+
