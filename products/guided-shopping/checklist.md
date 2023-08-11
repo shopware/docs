@@ -19,7 +19,7 @@
 
 ### Plugin Setup
 
-![ ](../../.gitbook/assets/products-guidedShopping-checklist.png)
+![ ](../../.gitbook/assets/products-digitalSalesRooms-checklist.png)
 
 * The plugin is installed with no errors and is available in the “Marketing” section.
   
@@ -29,4 +29,4 @@
 
 * An instance of Shopware PWA is rebuilt using `yarn build` and redeployed.
 
-Now it is time to set up the presentations and prepare the appointments in order to start using the Guided Shopping.
+Now it is time to set up the presentations and prepare the appointments in order to start using the Digital Sales Rooms (DSR).
