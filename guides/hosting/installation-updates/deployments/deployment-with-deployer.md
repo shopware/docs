@@ -86,7 +86,23 @@ Install dependencies:
         policy: push
 ```
 
-### 3. Building assets
+### 3. Applying migrations
+
+The migrations need to be applied on the target server.
+
+{% hint style="danger" %}
+If you are deploying to a cluster with multiple web servers, please make sure to run the migrations only on one of the servers.
+{% endhint %}
+
+This step is defined in the `sw:database:migrate` job in the [`deploy.php`](deployment-with-deployer.md#deploy-php), which is part of the `sw:deploy` task group:
+
+```php
+task('sw:database:migrate', static function () {
+    run('cd {{release_path}} && bin/console database:migrate --all');
+});
+```
+
+### 4. Building assets
 
 {% hint style="info" %}
 From this step on, all other steps are handled by Deployer defined in the [`deploy.php`](deployment-with-deployer.md#deploy-php).
@@ -106,7 +122,7 @@ task('sw:build', static function () {
 });
 ```
 
-### 4. Transferring the workspace
+### 5. Transferring the workspace
 
 For transferring the files to the target server, please configure at least one host in the [`deploy.php`](deployment-with-deployer.md#deploy-php):
 
@@ -127,22 +143,6 @@ This step is defined in the `deploy:update_code` job in the [`deploy.php`](deplo
 ```php
 task('deploy:update_code', static function () {
     upload('.', '{{release_path}}');
-});
-```
-
-### 5. Applying migrations
-
-The migrations need to be applied on the target server.
-
-{% hint style="danger" %}
-If you are deploying to a cluster with multiple web servers, please make sure to run the migrations only on one of the servers.
-{% endhint %}
-
-This step is defined in the `sw:database:migrate` job in the [`deploy.php`](deployment-with-deployer.md#deploy-php), which is part of the `sw:deploy` task group:
-
-```php
-task('sw:database:migrate', static function () {
-    run('cd {{release_path}} && bin/console database:migrate --all');
 });
 ```
 
@@ -190,9 +190,8 @@ $ dep deploy env=prod
 ✔ Executing task deploy:update_code
 ✔ Executing task deploy:shared
 ✔ Executing task sw:touch_install_lock
-✔ Executing task sw:build
 ✔ Executing task sw:database:migrate
-✔ Executing task sw:theme:compile
+✔ Executing task sw:build
 ✔ Executing task sw:cache:clear
 ✔ Executing task deploy:writable
 ✔ Executing task deploy:clear_paths
@@ -409,7 +408,6 @@ task('sw:deploy', [
     'sw:touch_install_lock',
     'sw:database:migrate',
     'sw:build',
-    'sw:theme:compile',
     'sw:cache:clear',
 ]);
 
