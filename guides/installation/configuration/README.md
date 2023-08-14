@@ -62,21 +62,3 @@ shopware:
 ```
 
 {% endcode %}
-
-#### Disable the Available Stock Mirror
-
-Please note this only applies if you have the `STOCK_HANDLING` feature flag enabled.
-
-Since version 6.5.4 Shopware ships with an event subscriber to mirror stock updates from the `product.stock` field to the `product.availableStock` field for backwards compatibility purposes. This means that any writes performed on the `product.stock` field via the [DAL](../../../concepts/framework/data-abstraction-layer) will be mirrored to the `product.availableStock` field.
-
-If you don't need this behaviour you can disable it by setting `shopware.stock.enable_available_stock_mirror` to `false`:
-
-{% code title="<project root>/config/packages/shopware.yaml" %}
-
-```yaml
-shopware:
-  stock:
-    enable_available_stock_mirror: false
-```
-
-{% endcode %}
