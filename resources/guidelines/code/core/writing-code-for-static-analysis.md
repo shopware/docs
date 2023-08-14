@@ -1,10 +1,3 @@
-
-
-{% hint style="info" %}
-This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/code/core/writing-code-for-static-analysis.md)
-{% endhint %}
-
 # Writing code for static analysis
 
 We rely heavily on static analysis (read phpstan) to ensure the quality of our code and enforce coding guidelines and best practices.

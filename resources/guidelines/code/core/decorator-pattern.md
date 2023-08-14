@@ -1,10 +1,3 @@
-
-
-{% hint style="info" %}
-This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/code/core/decorator-pattern.md)
-{% endhint %}
-
 # Decorator pattern
 
 The decorator pattern is a design pattern that allows behavior to be added to an individual object, either statically or dynamically, without affecting the behavior of other objects from the same class. 

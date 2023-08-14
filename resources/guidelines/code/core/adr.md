@@ -1,10 +1,3 @@
-
-
-{% hint style="info" %}
-This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/code/core/adr.md)
-{% endhint %}
-
 # ADR
 
 This guideline describes what we expect from our ADRs and how you can write some.
