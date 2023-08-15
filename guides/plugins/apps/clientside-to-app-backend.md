@@ -18,7 +18,7 @@ sequenceDiagram
     Client->>App Server: Post /product-review/submit containing JWT in header
 ```
 
-## The JWT token
+## The JWT token 
 
 The JWT token contains the following claims:
 
