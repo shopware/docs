@@ -223,13 +223,14 @@ As shown in the previous example, your custom component is expected to be in a d
 
 ```text
 administration
-├── page
-│   └── sw-product-detail
+├── src
+│   └──page
 │       └── sw-product-detail
 │           ├── index.js
 │           └── sw-product-detail.html.twig
-├── view
-│   └── sw-product-detail-custom
+|   └──view
+│       └── sw-product-detail-custom
+│           ├── index.js        
 └── main.js
 ```
 
