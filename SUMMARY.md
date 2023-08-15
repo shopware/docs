@@ -88,6 +88,7 @@
     * [Employee management](products/extensions/b2b-components/employee-management/README.md)
       * [Concept](products/extensions/b2b-components/employee-management/concept/README.md)
         * [Entities & Schema](products/extensions/b2b-components/employee-management/concept/entities-and-schema.md)
+        * [API Route Restriction for Employees](products/extensions/b2b-components/employee-management/concept/api-route-restriction-for-employees.md)
       * [Guides](products/extensions/b2b-components/employee-management/guides/README.md)
         * [Create permissions via app](products/extensions/b2b-components/employee-management/guides/creating-own-permissions-via-app.md)
         * [Create permissions via plugin](products/extensions/b2b-components/employee-management/guides/creating-own-permissions-via-plugin.md)

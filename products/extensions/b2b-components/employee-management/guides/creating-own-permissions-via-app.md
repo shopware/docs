@@ -1,11 +1,10 @@
-# Creating own permissions via plugin
+# Creating own permissions via app
 
 This article explains how to create custom permissions using an app.
 
 To add a new permission via an app, you need to use the app [script hook](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md) `b2b-role-permissions` in conjunction with app scripting:
 
 {% code title="Resources/scripts/b2b-role-permissions/my-own-permissions.twig" %}
-{% raw %}
 
 ```twig
 {% do hook.collection.addPermission('own_entity.read', 'own_entity', []) %}
@@ -14,7 +13,6 @@ To add a new permission via an app, you need to use the app [script hook](../../
 {% do hook.collection.addPermission('own_entity.delete', 'own_entity', ['own_entity.read', 'own_entity.edit']) %}
 ```
 
-{% endraw %}
 {% endcode %}
 
 The `PermissionCollector` collects the permissions of all app scripts and then passes them to the storefront, where they can be attached to the role by the user.
