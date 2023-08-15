@@ -8,7 +8,7 @@ The JWT key can be only generated when in the browser the user is logged-in.
 
 ## The Flow
 
-```
+```mermaid
 sequenceDiagram
     participant Client
     participant Shopware Backend
