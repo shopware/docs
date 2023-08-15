@@ -2,13 +2,13 @@
 
 ## Entities
 
-### BusinessPartner
+### Business Partner
 
 The business partner entity contains additional B2B company data and therefore extends the basic storefront customer. Business partners are used to pool employees, roles and global settings.
 
 ### Employee
 
-The employee entity represents a separate login for the same business partner. Employees act on behalf of the associated business partner, e.g., to place orders. An employee can have a role assigned.
+The employee entity represents a separate login within the context of the same business partner. This is to say that, employees operate on behalf of the linked business partner, facilitating actions like order placement. Additionally, these employees can be assigned specific roles.
 
 ### Role
 
