@@ -139,15 +139,15 @@ server {
     }
 
     location = /sitemap.xml {
-            log_not_found off;
-            access_log off;
-            try_files $uri /;
+        log_not_found off;
+        access_log off;
+        try_files $uri /;
     }
 
     location = /robots.txt {
-            log_not_found off;
-            access_log off;
-            try_files $uri /;
+        log_not_found off;
+        access_log off;
+        try_files $uri /;
     }
 
     location ~* ^.+\.(?:css|cur|js|jpe?g|gif|ico|png|svg|webp|avif|html|woff|woff2|xml)$ {
