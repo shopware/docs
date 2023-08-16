@@ -29,4 +29,4 @@
 
 * An instance of Shopware PWA is rebuilt using `yarn build` and redeployed.
 
-Now it is time to set up the presentations and prepare the appointments in order to start using the Digital Sales Rooms (DSR).
+Now it is time to set up the presentations and prepare the appointments in order to start using the *Digital Sales Rooms*.

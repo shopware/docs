@@ -1,4 +1,4 @@
-# Self-hosted Mercure Installation for Digital Sales Rooms (DSR)
+# Self-hosted Mercure Installation for Digital Sales Rooms
 
 ## Mercure general settings
 

@@ -1,17 +1,17 @@
 # Digital Sales Rooms Installation
 
 {% hint style="warning" %}
-To access the Digital Sales Rooms (DSR) source code, please create a support ticket in your Shopware Account and share your GitLab (not GitHub) username. You will then be granted access to the private repository.
+To access the *Digital Sales Rooms* source code, please create a support ticket in your Shopware Account and share your GitLab (not GitHub) username. You will then be granted access to the private repository.
 {% endhint %}
 
-## Install and use the DSR feature
+## Installation and usage
 
-To install and use the DSR feature, follow the below steps:
+To install and use the *Digital Sales Rooms* feature, follow the below steps:
 
 ### Get the plugin
 
 {% hint style="warning" %}
-The term "Guided Shopping" has been rebranded as "Digital Sales Rooms" (DSR), though no modifications have been implemented in the source code at this point.
+The term "Guided Shopping" has been rebranded as "Digital Sales Rooms", though no modifications have been implemented in the source code at this point.
 {% endhint %}
 
 1. Clone or download the [SwagGuidedShopping repository](https://gitlab.com/shopware/shopware/6/services/swagguidedshopping).
@@ -51,7 +51,7 @@ You can install the plugin via the admin panel or terminal server.
 
 1. Once it is uploaded and listed, click “Install”.
 
-    ![ ](../../.gitbook/assets/products-digitalSalesRooms-swagExtensionInstall.png)
+    ![ ](../../.gitbook/assets/products-digitalSalesRooms-installExtension.png)
 
 1. On successful installation, activate the plugin by clicking on the switch button on the left.
 
