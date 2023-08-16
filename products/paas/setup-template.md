@@ -88,7 +88,7 @@ This section defines the mapping between services created in the [services.yaml]
 By default, the entire storage of your application is read-only. Mounts define directories that are writable after the build is complete. They aren’t available during the build.
 
 Every mount has one of two types: `local` or `service`.
-A local mount is unique to the service that is accessing it. For example `/var/cache` is a good local mount because the Symfony cache should not be shared between dfiferent app servers.
+A local mount is unique to the service that is accessing it. For example `/var/cache` is a good local mount because the Symfony cache should not be shared between different app servers.
 A service mount references to another service (of the type `network-storage`). These mounts are shared between other services and between the different app servers. For example the `/public/media` folder is a good shared mount because the [workers](#workers) that consume the Messenger queue should be able to read and write to the media directory.
 
 ### web
