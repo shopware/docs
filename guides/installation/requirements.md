@@ -59,7 +59,7 @@ You can use these commands to check your actual environment:
 
   * Recommended version : at least 10.11
 
-  * Problematic versions: 10.3.29, 10.4.19, 10.5.10
+  * Problematic versions: 10.3.29, 10.4.19, 10.5.10, [10.5.22, 10.6.15, 10.9.8, 10.10.6, 10.11.5, 11.0.3](https://jira.mariadb.org/browse/MDEV-31931)
 
 The `media:delete-unused` command requires at least MariaDB 10.9 or MySQL 8.
 
