@@ -84,7 +84,8 @@ Example:
                         "type": "keyword",
                         "fields": {
                             "text": {
-                                "type": "text"
+                                "type": "text",
+                                "analyzer": "sw_english_analyzer"
                             },
                             "ngram": {
                                 "type": "text",
@@ -96,7 +97,8 @@ Example:
                         "type": "keyword",
                         "fields": {
                             "text": {
-                                "type": "text"
+                                "type": "text",
+                                "analyzer": "sw_german_analyzer"
                             },
                             "ngram": {
                                 "type": "text",
@@ -178,7 +180,8 @@ We add new painless scripts in `Framework/Indexing/Scripts/translated_field_sort
                     "type": "keyword",
                     "fields": {
                         "text": {
-                            "type": "text"
+                            "type": "text",
+                            "analyzer": "<new_language_stop_words_analyzer>"
                         },
                         "ngram": {
                             "type": "text",
