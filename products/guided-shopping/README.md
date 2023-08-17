@@ -14,7 +14,7 @@ You can create interactive live video events for your customers straight from yo
 
 Review the below minimum operating requirements before you install the *Digital Sales Rooms* feature:
 
-* Instance of [Shopware 6](../../guides/installation/legacy/from-scratch.md) (version 6.4.18.0 and above).
+* Instance of [Shopware 6](../../guides/installation/devenv.md) (version 6.4.18.0 and above).
 
 {% hint style="warning" %}
 The compliant Node.js version for PWA setup is v14.0.0 to v16.0.0.
