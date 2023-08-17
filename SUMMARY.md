@@ -112,8 +112,8 @@
   * [Fastly](products/paas/fastly.md)
 * [PWA](products/pwa.md)
 * [Community Edition](products/community-edition.md)
-* [Guided Shopping](products/guided-shopping/README.md)
-  * [Guided Shopping installation](products/guided-shopping/installation.md)
+* [Digital Sales Rooms](products/guided-shopping/README.md)
+  * [Digital Sales Rooms installation](products/guided-shopping/installation.md)
   * [Self-hosted Mercure installation](products/guided-shopping/selfHostedMercureInstallation.md)
   * [Developers' checklist](products/guided-shopping/checklist.md)
 
