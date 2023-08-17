@@ -19,7 +19,7 @@
 
 ### Plugin Setup
 
-![ ](../../.gitbook/assets/products-digitalSalesRooms-checklist.png)
+![ ](../../.gitbook/assets/products-digitalSalesRooms-display.png)
 
 * The plugin is installed with no errors and is available in the “Marketing” section.
   
