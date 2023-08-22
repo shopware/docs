@@ -6,7 +6,7 @@ If Shopware is not the source of truth for your stock data, you can customize th
 
 ## Prerequisites
 
-We will be decorating a service; therefore, familiarising yourself with the [Adjusting a Service](../../plugin-fundamentals/adjusting-service) guide will be helpful.
+Here again, you will be decorating a service; therefore, it will be helpful to familiarise yourself with the [Adjusting a Service](../../../../../plugin-fundamentals/adjusting-service) guide.
 
 ## Add a decorator to load the stock
 
