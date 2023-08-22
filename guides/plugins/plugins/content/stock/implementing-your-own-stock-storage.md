@@ -10,7 +10,11 @@ Here you will be decorating a service; therefore, it will be helpful to familiar
 
 ## Add a decorator to load the stock
 
-We want to communicate stock alterations to a third-party service. We will decorate `\Shopware\Core\Content\Product\Stock\AbstractStockStorage` and implement the `alter` method. This method is triggered with an array of `StockAlteration`'s, which contain the Product & Line Item IDs, the old quantity and the new quantity.
+First, to communicate stock alterations to a third-party service, you will have to decorate `\Shopware\Core\Content\Product\Stock\AbstractStockStorage` and implement the `alter` method. This method is triggered with an array of `StockAlteration`'s, which contains:
+
+* the Product and Line Item IDs, 
+* the old quantity and 
+* the new quantity.
 
 {% tabs %}
 {% tab title="StockStorageDecorator.php" %}
