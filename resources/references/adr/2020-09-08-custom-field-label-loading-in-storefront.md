@@ -5,13 +5,6 @@ area: storefront
 tags: [custom-fields, storefront, snippets]
 --- 
 
-# CustomField label loading in storefront
-
-{% hint style="info" %}
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-09-08-custom-field-label-loading-in-storefront.md)
-{% endhint %}
-
 ## Context
 
 We want to provide the labels of custom fields in the storefront to third party developers.
