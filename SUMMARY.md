@@ -126,7 +126,7 @@
     * [Installation from scratch](guides/installation/legacy/from-scratch.md)
     * [Valet+](guides/installation/legacy/valet.md)
     * [MAMP](guides/installation/legacy/mamp.md)
- * [Configuration](guides/installation/configuration/README.md) 
+   * [Configuration](guides/installation/configuration/README.md) 
 * [Extensions](guides/plugins/README.md)
   * [Overview](guides/plugins/overview.md)
   * [Plugins](guides/plugins/plugins/README.md)
