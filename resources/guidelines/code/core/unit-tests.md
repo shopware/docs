@@ -1,10 +1,3 @@
-
-
-{% hint style="info" %}
-This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/code/core/unit-tests.md)
-{% endhint %}
-
 # Unit tests
 
 Unit tests are an essential part of our software. The Shopware product grows and grows, the release cycles become shorter and shorter, more and more developers work with the software.
