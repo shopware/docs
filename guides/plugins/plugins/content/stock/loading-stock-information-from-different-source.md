@@ -120,7 +120,7 @@ $stockData = \Shopware\Core\Content\Product\Stock\StockData::fromArray([
 ]);
 ```
 
-It's also possible to provide arbitrary data via extensions:
+It is also possible to provide arbitrary data via extensions:
 
 ```php
 $stockData = \Shopware\Core\Content\Product\Stock\StockData::fromArray([
