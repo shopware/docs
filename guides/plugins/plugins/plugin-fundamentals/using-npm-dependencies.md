@@ -27,15 +27,12 @@ To do this we create a new folder called "build" under either `Resources/app/sto
 {% code title="<plugin root>/src/Resources/app/storefront/build/webpack.config.js" %}
 
 ```javascript
-const { join, resolve } = require('path'); 
-module.exports = () => { 
+module.exports = (params) => { 
     return { 
         resolve: { 
-           alias: { 
-               '@missionlog': resolve( 
-                    join(__dirname, '..', 'node_modules', 'missionlog') 
-               ) 
-           } 
+            modules: [
+                `${params.basePath}/Resources/app/storefront/node_modules`,
+            ],
        } 
    }; 
 }
@@ -43,15 +40,15 @@ module.exports = () => {
 
 {% endcode %}
 
-Let us take a closer look at the code. In the first line, we import the two functions `join` and `resolve` for the path module of Node.js. In the second line, we export a so-called arrow function. The build system from Shopware calls this function when either the Administration or Storefront is being built.
+Let us take a closer look at the code. In the first line, we export a so-called arrow function. The build system from Shopware calls this function when either the Administration or Storefront is being built.
 
-After that, there comes the exciting part for us: registering the alias. The alias for `missionlog` is given the prefix `@`, so it is possible to recognize later on in the source files. We will use the result of the two functions of the path module previously imported as a value.
-
-We proceed from the inside to the outside. We use [`join`](https://nodejs.org/api/path.html#path_path_join_paths) to reflect the path to the package inside the `node_modules` folder. The `node_modules` folder contains all the packages that we have installed via `npm install`. After we identified the relevant path to the package, we use the [`resolve`](https://nodejs.org/api/path.html#path_path_resolve_paths) function to transform this path into an absolute path.
+After that, there comes the exciting part for us: adding the `node_modules` folder from our extension. `resolve.modules` tells webpack what directories should be searched when resolving modules.
+By default the shopware webpack config only considers the `node_modules` folder of the platform. By accessing `params.basePath` we get the absolute path to our extension. We then add the
+rest of the path to our extensions `node_modules`. Now webpack will also search for modules in our `node_modules` folder.
 
 ## Using the dependency
 
-Once we have installed all the dependencies and registered the package in the build system with an alias, we can use the package in our own code.
+Once we have installed all the dependencies and registered the package in the build system, we can use the package in our own code.
 
 {% code title="<plugin root>/src/Resources/app/storefront/src/main.js" %}
 
@@ -59,7 +56,7 @@ Once we have installed all the dependencies and registered the package in the bu
 import Plugin from 'src/plugin-system/plugin.class';
 
 // Import logger
-import { log } from '@missionlog';
+import { log } from 'missionlog';
 
 // Initializing the logger
 log.init({ initializer: 'INFO' }, (level, tag, msg, params) => {
