@@ -10,7 +10,7 @@ Here again, you will be decorating a service; therefore, it will be helpful to f
 
 ## Add a decorator to load the stock
 
-For example, we want to load stock from a third-party API. We will decorate `\Shopware\Core\Content\Product\Stock\AbstractStockStorage` and implement the `load` method. When products are loaded in Shopware the `load` method will be invoked with the loaded product IDs.
+For example, to load stock from a third-party API, you need to decorate `\Shopware\Core\Content\Product\Stock\AbstractStockStorage` and implement the `load` method. When products are loaded in Shopware the `load` method will be invoked with the loaded product IDs.
 
 {% tabs %}
 {% tab title="StockStorageDecorator.php" %}
