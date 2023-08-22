@@ -118,7 +118,7 @@ The following list contains all the scenarios that trigger stock alterations. Al
 
 All of these scenarios are handled by the event subscriber `Shopware\Core\Content\Product\Stock\OrderStockSubscriber`.
 
-## Further extension points for advanced customisation
+## Further extension points for advanced customization
 
 1. If you need to listen to more events to trigger stock alterations, you can create an event subscriber for the required events and call the `\Shopware\Core\Content\Product\Stock\AbstractStockStorage::alter` method with a `StockAlteration` instance representative of the alteration.
 1. If you don't want to use Shopware's default events and stock storage, you can implement your own system and recommend that the project owner disables the Shopware stock management system. Refer them to [Configuration guide](../../../../../guides/installation/configuration).
