@@ -45,7 +45,7 @@ STOCK_HANDLING=1
 
 In the next major version of Shopware, the new stock management system will become the default.
 
-#### Disable Stock Management
+#### Disable stock management system
 
 Please note this only applies if you have the `STOCK_HANDLING` feature flag enabled.
 
