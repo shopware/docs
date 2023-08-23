@@ -118,8 +118,17 @@ The [theme compilation](deployments/build-w-o-db.md#compiling-the-storefront-wit
 
 For the server setup, pay special attention to CPU speed. This applies to all servers (app, SQL, Elasticsearch, Redis). Usually, it is more optimal to choose a slightly stronger CPU. This has to be determined more precisely depending on the project and load. Experience has shown that systems with powerful CPUs finish processes faster and can release resources sooner.
 
+## Health Check
+
+{% hint style="info" %}
+This feature is available starting with Shopware version 6.5.5.0
+{% endhint %}
+
+Use the Shopware-provided Health Check API (`/api/_info/health-check`) to monitor the health of your Shopware app server. It runs HTTP status `200` when the Shopware Application is working and `50x` when it is not.
+For docker, you can use: `HEALTHCHECK CMD curl --fail http://localhost/api/_info/health-check || exit 1`
+
 ## Performance tweaks
 
-When setting up big scale projects, there are some settings and conditions that should be taken into account with regard to performance.
+When setting up big-scale projects, there are some settings and conditions that should be taken into account with regard to performance.
 
 Read more on [performance tweaks](../performance/performance-tweaks.md).
