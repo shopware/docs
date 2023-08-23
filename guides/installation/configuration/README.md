@@ -33,7 +33,7 @@ STOCK_HANDLING=1
 
 As of Shopware 6.5.4, the stock management system has been rewritten. The `product.stock` field is now the primary source for real-time product stock values.
 
-The new system is not enabled by default To enable it, set the `STOCK_HANDLING` feature flag to `1`:
+The new system is not enabled by default. To enable it, set the `STOCK_HANDLING` feature flag to `1`.
 
 {% code title="<project root>/.env" %}
 
