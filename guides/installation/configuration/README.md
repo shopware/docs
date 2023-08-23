@@ -29,7 +29,7 @@ STOCK_HANDLING=1
 
 ### Stock
 
-#### Enable the new Stock Management system
+#### Enable stock management system
 
 As of Shopware 6.5.4, the stock management system has been rewritten. The `product.stock` field is now the primary source for real-time product stock values.
 
