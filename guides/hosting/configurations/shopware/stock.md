@@ -1,17 +1,6 @@
-# Configuration
+# Stock Configuration
 
-## Overview
-
-When running Shopware 6, you can use various configuration options to customize your installation. This page will give you an overview of the different configuration options and how they affect Shopware. The configuration for Shopware 6 resides in the general bundle configuration:
-
-```text
-<project root>
-└── config
-   └── packages
-      └── shopware.yaml
-```
-
-## Feature Flags
+When running Shopware 6 there are various configuration options you can use to customize your installation. These configurations reside in the general [bundle configuration](../../../../guides/hosting/configurations/README.md).
 
 Some features of Shopware are only activated when the corresponding feature flag is enabled. Feature flags can be enabled in your project's `.env` file:
 
@@ -23,9 +12,7 @@ STOCK_HANDLING=1
 
 {% endcode %}
 
-### Stock
-
-#### Enable stock management system
+## Enable stock management system
 
 As of Shopware 6.5.4, the stock management system has been rewritten. The `product.stock` field is now the primary source for real-time product stock values.
 
@@ -41,7 +28,7 @@ STOCK_HANDLING=1
 
 In the next major version of Shopware, the new stock management system will become the default.
 
-#### Disable stock management system
+## Disable stock management system
 
 Please note this only applies if you have the `STOCK_HANDLING` feature flag enabled.
 
