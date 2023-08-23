@@ -12,6 +12,10 @@ This guide is also available as a video:
 <!-- markdown-link-check-disable-next-line -->
 {% embed url="https://www.youtube.com/watch?v=wfBuWdff35c" caption="" %}
 
+{% hint style="warning" %}
+This video shows how to resolve the NPM package name as an alias. We recommend resolving all node_modules instead like shown in the code example below.
+{% endhint %}
+
 ## Adding a npm package to the Administration or the Storefront
 
 Presuming you have `npm` installed, run `npm init -y` in the `<plugin root>src/Resources/app/administration/` folder or the `<plugin root>src/Resources/app/storefront/` folder. This command creates a `package.json` file in the respective folder, depending on the environment you're working in. To add a package to the `package.json` file simply run the `npm install` command. In this example we will be installing [`missionlog`](https://www.npmjs.com/package/missionlog).
