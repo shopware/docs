@@ -121,7 +121,7 @@ For the server setup, pay special attention to CPU speed. This applies to all se
 ## Health Check
 
 {% hint style="info" %}
-This feature has been introduced with Shopware version 6.5.5.0
+This feature is available starting with Shopware version 6.5.5.0
 {% endhint %}
 
 Use the Shopware-provided Health Check API (`/api/_info/health-check`) to monitor the health of your Shopware app server. It runs http status 200 when the Shopware Application is working and 50x when it is not.
