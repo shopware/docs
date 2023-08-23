@@ -217,13 +217,30 @@ $this->swagExampleRepository->upsert([[
 ]], $context);
 ```
 
-### Adding an actual custom field
+### Add a custom field to the Administration
 
-You can skip this section if you do not want your new custom field to be editable in the Administration.
+You can skip this section if you don't want your new custom field to be editable in the Administration.
 
 So now you've already filled the custom fields of one of your entity instances via code. But what if you want your user to do that, which is the more common case?
 
-Only if you want your custom field to show up in the Administration and to be editable in there, you have to define the custom fields first in a custom field set. For this you have to use the custom fieldset repository, which can be retrieved from the dependency injection container via the `custom_field_set.repository` key and is used like any other repository. If you don't know how that is done, head over to our guide regarding [Writing data](../data-handling/writing-data.md).
+Only if you want your custom field to show up in the Administration and to be editable in there, you have to define the custom fields first in a custom field set. For this you have to use the custom fieldset repository, which can be retrieved from the dependency injection container via the `custom_field_set.repository` key and is used like any other repository.
+
+```xml
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="Swag\BasicExample\CustomFieldClass">
+          <argument type="service" id="custom_field_set.repository"/>
+          ...
+        </service>
+    </services>
+</container>
+```
+
+If you need to learn how that is done in full, head to our guide regarding [Writing data](../data-handling/writing-data.md).
 
 Now use the `create` method of the repository to create a new custom field set.
 
@@ -270,6 +287,8 @@ If you have several custom fields and want to order them within a specific order
 {% hint style="warning" %}
 Custom field sets are deletable by the shop administrator, so you cannot rely on their existence.
 {% endhint %}
+
+To update or delete a `custom_field_set`, you can use the standard repository methods like `update`, `upsert`, or `delete`.
 
 While theoretically your custom field is now properly defined for the Administration, you'll still have to do some work in your custom entities' Administration module. Head over to this guide to learn how to add your field to the Administration:
 
