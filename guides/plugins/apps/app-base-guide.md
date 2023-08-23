@@ -222,7 +222,7 @@ $signer->getRegistrationSignature(new AppConfiguration('AppName', 'AppSecret', '
 Besides the proof, your app needs to provide a randomly generated secret that should be used to sign every further request from this shop. Make sure to save the `shopId`, `shopUrl`, and generated secret so that you can associate and use this information later.
 
 {% hint style="info" %}
-This secret will be called `shop-secret` to distinguish it from the `app-secret`. The `app-secret` is unique to your app and is used to sign the registration request of every shop that installs your app. The `shop-secret` will be provided by your app during the registration and should be unique for every shop
+This secret will be called \`shop-secret\` to distinguish it from the \`app-secret\`. The \`app-secret\` is unique to your app and is used to sign the registration request of every shop that installs your app. The \`shop-secret\` will be provided by your app during the registration and should be unique for every shop and have a minimum length of 64 characters and maximum length of 255 characters.
 {% endhint %}
 
 The last thing needed in the registration response is a URL to which the confirmation request will be sent.

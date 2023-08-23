@@ -1,20 +1,20 @@
-# Guided Shopping Overview
+# Digital Sales Rooms Overview
 
-Guided Shopping is the state-of-the-art new feature that seamlessly integrates into your Shopware system landscape and co-operates with your existing ecommerce infrastructure.
+*Digital Sales Rooms* is a state-of-the-art new feature that seamlessly integrates into your Shopware system landscape and co-operates with your existing ecommerce infrastructure.
 
 You can create interactive live video events for your customers straight from your Shopware website without having to switch between a presentation tool, video conferencing system, and store system. It is one sophisticated solution to highlight your products, engage your customers and reinforce brand loyalty.
 
-![ ](../../.gitbook/assets/products-guidedShopping.png)
+![ ](../../.gitbook/assets/products-digitalSalesRooms.png)
 
 {% hint style="warning" %}
-Guided Shopping is a commercial extension and is not available as open source.
+*Digital Sales Rooms* is a commercial extension and is not available as open source.
 {% endhint %}
 
 ## Prerequisites
 
-Review the below minimum operating requirements before you install the Guided Shopping feature:
+Review the below minimum operating requirements before you install the *Digital Sales Rooms* feature:
 
-* Instance of [Shopware 6](../../guides/installation/legacy/from-scratch.md) (version 6.4.18.0 and above).
+* Instance of [Shopware 6](../../guides/installation/devenv.md) (version 6.4.18.0 and above).
 
 {% hint style="warning" %}
 The compliant Node.js version for PWA setup is v14.0.0 to v16.0.0.

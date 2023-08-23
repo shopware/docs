@@ -1,4 +1,4 @@
-# Creating own permissions via plugin
+# Creating own permissions via app
 
 This article explains how to create custom permissions using an app.
 
@@ -23,7 +23,7 @@ If you want to check in the template if the user has this permission, the Twig f
 
 {{ parent() }}
 
-{% if isB2bAllowed('own_entity.read') }}) %}
+{% if isB2bAllowed('own_entity.read') %}
 ...
 {% endif  %}
 ```

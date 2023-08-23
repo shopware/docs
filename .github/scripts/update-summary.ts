@@ -22,10 +22,10 @@ const summaryItem = (depth: number, name: string, path: string) => `${' '.repeat
 
 const adrTitle = (adr: ADREntry) => {
 	return path.basename(adr.path)
-	.replace(dateRegex, '')
-	.replace('.md', '')
-	.replaceAll('-', ' ')
-	.trim();
+		.replace(dateRegex, '')
+		.replace('.md', '')
+		.replaceAll('-', ' ')
+		.trim();
 };
 
 let ADRs = new Map<string,ADRTopic>();
@@ -68,10 +68,10 @@ names.forEach((name) => {
 const filename = path.join(Deno.cwd(), "./SUMMARY.md");
 
 const summary = {
-	lines: <string[]> [], 
+	lines: <string[]> [],
 	encoder: new TextEncoder(),
 	addLine(line: string) { this.lines.push(line) },
-	writeTo(writer: Deno.WriterSync) { 
+	writeTo(writer: Deno.WriterSync) {
 		for (let i = this.lines.length - 1; i > 0; i--) {
 			const line = <string> this.lines.pop();
 			if (line !== '') {

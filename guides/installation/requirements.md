@@ -55,13 +55,15 @@ You can use these commands to check your actual environment:
 
 * MariaDB
 
-  * Compatible versions : 10.3.22, 10.4 and 10.5
+  * Compatible versions : at least 10.3
 
   * Recommended version : at least 10.11
 
-  * Problematic versions: 10.3.29, 10.4.19, 10.5.10
+  * Problematic versions: 10.3.29, 10.4.19, 10.5.10, [10.5.22, 10.6.15, 10.9.8, 10.10.6, 10.11.5, 11.0.3](https://jira.mariadb.org/browse/MDEV-31931)
 
 The `media:delete-unused` command requires at least MariaDB 10.9 or MySQL 8.
+
+For optimal MySQL performance, it is advisable to have minimum of 32 MB.
 
 ### JavaScript
 
@@ -137,15 +139,15 @@ server {
     }
 
     location = /sitemap.xml {
-            log_not_found off;
-            access_log off;
-            try_files $uri /;
+        log_not_found off;
+        access_log off;
+        try_files $uri /;
     }
 
     location = /robots.txt {
-            log_not_found off;
-            access_log off;
-            try_files $uri /;
+        log_not_found off;
+        access_log off;
+        try_files $uri /;
     }
 
     location ~* ^.+\.(?:css|cur|js|jpe?g|gif|ico|png|svg|webp|avif|html|woff|woff2|xml)$ {
@@ -214,9 +216,10 @@ The following modules are required:
 We recommend the following stack:
 
 * Webserver: Caddy
-* PHP: 8.1
+* PHP: 8.2
+* SQL: MySQL 8 or Percona MySQL 8
 * Node: 18
-* Search: OpenSearch 2.5.0
+* Search: OpenSearch 2.8.0
 * Queue: RabbitMQ
 
 Recommended PHP ini:

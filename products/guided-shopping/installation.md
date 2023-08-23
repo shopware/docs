@@ -1,16 +1,20 @@
-# Guided Shopping Installation
+# Digital Sales Rooms Installation
 
 {% hint style="warning" %}
-To access the Guided Shopping source code, please create a support ticket in your Shopware Account and share your GitLab (not GitHub) username. You will then be granted access to the private repository.
+To access the *Digital Sales Rooms* source code, please create a support ticket in your Shopware Account and share your GitLab (not GitHub) username. You will then be granted access to the private repository.
 {% endhint %}
 
-## Install and use the Guided Shopping feature
+## Installation and usage
 
-To install and use the Guided Shopping feature, follow the below steps:
+To install and use the *Digital Sales Rooms* feature, follow the below steps:
 
 ### Get the plugin
 
-1. Clone or download the [guided-shopping repository](https://gitlab.com/shopware/shopware/shopware-6/services/swagguidedshopping).
+{% hint style="warning" %}
+The term "Guided Shopping" has been rebranded as "Digital Sales Rooms", though no modifications have been implemented in the source code at this point.
+{% endhint %}
+
+1. Clone or download the [SwagGuidedShopping repository](https://gitlab.com/shopware/shopware/6/services/swagguidedshopping).
 1. Extract the plugin, including the outer folder `SwagGuidedShopping`, to `platform/custom/plugins` directory of Shopware repository.
 1. Make sure the plugin has a PHP package structure containing `composer.json` file, `src/` folder, and so on.
 1. Prepare a zip file containing the plugin as in the following structure:
@@ -39,15 +43,15 @@ You can install the plugin via the admin panel or terminal server.
 1. Log in to the admin panel.
 1. Go to Extensions > My extensions
 
-   ![ ](../../.gitbook/assets/products-guidedShopping-extensionsMenu.png)
+   ![ ](../../.gitbook/assets/products-digitalSalesRooms-extensionsMenu.png)
 
 1. Click on the “Upload extension” button and choose the zip file containing the plugin from your device.
 
-   ![ ](../../.gitbook/assets/products-guidedShopping-uploadExtension.png)
+   ![ ](../../.gitbook/assets/products-digitalSalesRooms-uploadExtension.png)
 
 1. Once it is uploaded and listed, click “Install”.
 
-    ![ ](../../.gitbook/assets/products-guidedShopping-swagExtensionInstall.png)
+    ![ ](../../.gitbook/assets/products-digitalSalesRooms-installExtension.png)
 
 1. On successful installation, activate the plugin by clicking on the switch button on the left.
 
@@ -89,7 +93,7 @@ Detailed below is the minimum configuration needed for a working stack apart fro
 
 * **Other settings** - Take a look at the below sample Mercure configuration on StackHero (Default settings is recommended).
 
-![ ](../../.gitbook/assets/products-guidedShopping-mercureConfig.png)
+![ ](../../.gitbook/assets/products-digitalSalesRooms-mercureConfiguration.png)
 
 ### Daily service access
 
@@ -115,14 +119,14 @@ To do so,
       * You can leave the **API Base URL** as it is `https://api.daily.co/v1/` if not necessary.
       * Insert your **API KEY**.
 
-    ![ ](../../.gitbook/assets/products-guidedShopping-videoConfig.png)
+    ![ ](../../.gitbook/assets/products-digitalSalesRooms-videoConfig.png)
 
     * **Mercure**
 
       * Replace *Mercure Hub Url* and *Mercure Hub Public Url* with your domain’s URL where the Mercure service is working and accessible from your stack. For instance, for the URL `https://fcoxpx.stackhero-network.com`, it would be `https://fcoxpx.stackhero-network.com/.well-known/mercure`.
       * Input the secret tokens that were set up in your Mercure service configuration.
 
-    ![ ](../../.gitbook/assets/products-guidedShopping-mercureConfigExample.png)
+    ![ ](../../.gitbook/assets/products-digitalSalesRooms-mercureConfigExample.png)
 
 Daily and Mercure are two external services that are crucial for working with the Guided Shopping plugin.
 

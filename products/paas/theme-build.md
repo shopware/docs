@@ -2,9 +2,19 @@
 
 The entire build process is performed without an active database connection. However, for theme builds, Shopware needs to access the theme configuration. We make it available by checking it into our VCS repository. This process must be performed **after** you first installed Shopware in your PaaS environment because it runs a command that requires an existing database that was not created on the first run.
 
+## Set up theme configuration
+
+First, set up the correct sales channels and configure their themes.
+
+Use the command below to change the theme for the sales channels. Add the `--no-compile` flag to disable compilation in this step, as this is not possible in a read-only environment after project deployment. The compilation will happen automatically in the next build step ( at the last step of this guide).
+
+```bash
+bin/console theme:change --no-compile
+```
+
 ## Dump configuration
 
-First of all, we need to dump the theme configuration.
+To dump the theme configuration, use the below command :
 
 ```bash
 shopware ssh -A app 'bin/console theme:dump'

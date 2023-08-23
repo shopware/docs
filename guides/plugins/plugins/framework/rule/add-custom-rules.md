@@ -4,7 +4,7 @@
 
 In this guide you will learn how to create rules in Shopware. Rules are used by the rule builder.
 
-This example will introduce a new rule, which checks if there is currently a lunar eclipse or not. The shop owner is then able to react on a lunar eclipse with special prices or dispatch methods.
+This example will introduce a new rule, which checks if it is the first monday of the month or not. The shop owner is then able to react on this specific day every month with special prices or dispatch methods.
 
 ## Prerequisites
 
@@ -20,56 +20,75 @@ To create a custom rule, we have to implement both backend \(PHP\) code and a us
 
 ### Creating rule in PHP
 
-First of all we need a new Rule class, in this example we will name it `LunarEclipseRule`. It will be placed in the directory `<plugin root>/src/Core/Rule`. Our new class has to extend from the abstract class `Shopware\Core\Framework\Rule\Rule`. Below you can find an example implementation.
+First of all, we need a new Rule class. In this example, we name it as `FirstMondayOfTheMonthRule`. It will be placed in the directory `<plugin root>/src/Core/Rule`. Our new class has to extend from the abstract class `Shopware\Core\Framework\Rule\Rule`. Below you can find an example implementation.
 
-{% code title="<plugin root>/src/Core/Rule/LunarEclipseRule.php" %}
+{% code title="<plugin root>/src/Core/Rule/FirstMondayOfTheMonthRule.php" %}
 
 ```php
 <?php declare(strict_types=1);
 
-namespace Swag\BasicExample\Core\Rule;
+namespace SwagCustomRules\Core\Rule;
 
 use Shopware\Core\Framework\Rule\Rule;
 use Shopware\Core\Framework\Rule\RuleScope;
 use Symfony\Component\Validator\Constraints\Type;
 
-class LunarEclipseRule extends Rule
+class FirstMondayOfTheMonthRule extends Rule
 {
-    protected bool $isLunarEclipse; // 'protected' is very important here!
+    protected bool $isFirstMondayOfTheMonth;
 
     public function __construct()
     {
         parent::__construct();
 
         // Will be overwritten at runtime. Reflects the expected value.
-        $this->isLunarEclipse = false;
+        $this->isFirstMondayOfTheMonth = false;
     }
 
     public function getName(): string
     {
-        return 'lunar_eclipse';
+        return 'first_monday';
     }
 
     public function match(RuleScope $scope): bool
     {
-        // Not implemented in this example
-        $isCurrentlyLunarEclipse = $this->isCurrentlyLunarEclipse();
+        $isFirstMondayOfTheMonth = $this->isCurrentlyFirstMondayOfTheMonth(date("Y-m-d") );
 
-        // Checks if the shop owner set the rule to "Lunar eclipse => Yes"
-        if ($this->isLunarEclipse) {
-            // Shop administrator wants the rule to match if there's currently a lunar eclipse.
-            return $isCurrentlyLunarEclipse;
+        // Checks if the shop owner set the rule to "First monday => Yes"
+        if ($this->isFirstMondayOfTheMonth) {
+            // Shop administrator wants the rule to match if there's currently the first monday of the month.
+            return $isFirstMondayOfTheMonth;
         }
 
-        // Shop administrator wants the rule to match if there's currently NOT a lunar eclipse.
-        return !$isCurrentlyLunarEclipse;
+        // Shop administrator wants the rule to match if there's currently NOT the first monday of the month.
+        return !$isFirstMondayOfTheMonth;
     }
 
     public function getConstraints(): array
     {
         return [
-            'isLunarEclipse' => [ new Type('bool') ]
+            'isFirstMondayOfTheMonth' => [new Type('bool')]
         ];
+    }
+
+    private function isCurrentlyFirstMondayOfTheMonth($dateString)
+    {
+        $date = new \DateTime($dateString);
+        $dayOfWeek = (int) $date->format('w');
+        
+        // Check if it's Monday (1 is Monday)
+        if ($dayOfWeek !== 1) {
+            return false;
+        }
+
+        // Check if the date is within the first seven days of the month
+        $dayOfMonth = (int) $date->format('j');
+        if ($dayOfMonth > 7) {
+            return false;
+        }
+
+        // If it passed both checks, it's the first Thursday of the month
+        return true;
     }
 }
 ```
@@ -87,8 +106,14 @@ After we've created our rule class, we have to register it in our `services.xml`
 Please keep in mind: The variables to be used in the rule have to be 'protected' and not 'private', otherwise they won't work properly.
 
 {% hint style="warning" %}
-Never execute database queries or any other time consuming operations within the `match()` method of your rule, as it will drastically impact the performance of your store. Stick to the rule scope when evaluating whether your rule matches or not.
+Never execute database queries or any other time-consuming operations within the `match()` method of your rule, as it will drastically impact the performance of your store. Stick to the rule scope when evaluating whether your rule matches or not.
 {% endhint %}
+
+```php
+// Scope usage: Check if the customer is logged in 
+$customer = $scope->getSalesChannelContext()->getCustomer();
+$loggedIn = $customer !== null;
+```
 
 ### Active rules
 
@@ -104,26 +129,25 @@ Now we want to implement our new rule in the Administration so that we can manag
 
 Create a new directory called `<plugin root>/src/Resources/app/administration/src/decorator`. In this directory we create a new file called `rule-condition-service-decoration.js`.
 
-{% code title="<plugin root>src/Resources/app/administration/src/app/decorator/condition-type-data-provider.decorator.js" %}
+{% code title="<plugin root>src/Resources/app/administration/src/decorator/rule-condition-service-decoration.js" %}
 
 ```javascript
-import '../core/component/swag-lunar-eclipse';
+import '../../core/component/swag-first-monday';
 
 Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderService', (ruleConditionService) => {
-    ruleConditionService.addCondition('lunar_eclipse', {
-        component: 'swag-lunar-eclipse',
-        label: 'Is lunar eclipse today',
+    ruleConditionService.addCondition('first_monday', {
+        component: 'swag-first-monday',
+        label: 'Is first monday of the month',
         scopes: ['global']
     });
 
     return ruleConditionService;
 });
-
 ```
 
 {% endcode %}
 
-As you can see, this is decorating the `RuleConditionService` by using its name `ruleConditionDataProviderService`. The decoration adds a new condition called `lunar_eclipse`. Make sure to match the name we've used in the `getName` method in PHP. Next, we define the component, in our case `swag-lunar-eclipse`, which is responsible for rendering the rule inside the Administration. We will create this component in the next step. Furthermore we defined a label, which will be displayed in the rule builder selection. The last option is the scope, which in our case is `global`, as we have not specified a specific one in our core class.
+As you can see, this is decorating the `RuleConditionService` by using its name `ruleConditionDataProviderService`. The decoration adds a new condition called `first_monday`. Make sure to match the name we have used in the `getName` method in PHP. Next, we define the component, in our case, `swag-first-monday`, which is responsible for rendering the rule inside the Administration. We will create this component in the next step. Furthermore, we defined a label, which will be displayed in the rule builder selection. The last option is the scope, which in our case is `global`, as we have not specified a specific one in our core class.
 
 We also have to create a `main.js` file in our Administration sources directory and import the decorator file we've created above. The `main.js` file is used as an entry point to load Administration modules from Shopware plugins:
 
@@ -141,16 +165,16 @@ It may be possible that rules, with your newly created condition, aren't selecta
 
 ### Custom rule component
 
-Now that you have registered your rule to the Administration, you would still be lacking the actual component `swag-lunar-eclipse`. As you have already defined a path for it in your service decoration, create the following directory: `<plugin root>/src/Resources/app/administration/src/core/component/swag-lunar-eclipse`. If you are unfamiliar with creating components in Shopware, refer to the [add your own component](../../administration/add-custom-component.md) section.
+Now that you have registered your rule to the Administration, you would still be lacking the actual component `swag-first-monday`. As you have already defined a path for it in your service decoration, create the following directory: `<plugin root>/src/Resources/app/administration/src/core/component/swag-first-monday`. If you are unfamiliar with creating components in Shopware, refer to the [add your own component](../../administration/add-custom-component.md) section.
 
 Here's an example of what this component could look like:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/core/component/swag-lunar-eclipse/index.js" %}
+{% code title="<plugin root>/src/Resources/app/administration/src/core/component/swag-first-monday/index.js" %}
 
 ```javascript
-import template from './swag-lunar-eclipse.html.twig';
+import template from './swag-first-monday.html.twig';
 
-Shopware.Component.extend('swag-lunar-eclipse', 'sw-condition-base', {
+Shopware.Component.extend('swag-first-monday', 'sw-condition-base', {
     template,
 
     computed: {
@@ -167,19 +191,19 @@ Shopware.Component.extend('swag-lunar-eclipse', 'sw-condition-base', {
             ];
         },
 
-        isLunarEclipse: {
+        isFirstMondayOfTheMonth: {
             get() {
                 this.ensureValueExist();
 
-                if (this.condition.value.isLunarEclipse == null) {
-                    this.condition.value.isLunarEclipse = false;
+                if (this.condition.value.isFirstMondayOfTheMonth == null) {
+                    this.condition.value.isFirstMondayOfTheMonth = false;
                 }
 
-                return this.condition.value.isLunarEclipse;
+                return this.condition.value.isFirstMondayOfTheMonth;
             },
-            set(isLunarEclipse) {
+            set(isFirstMondayOfTheMonth) {
                 this.ensureValueExist();
-                this.condition.value = { ...this.condition.value, isLunarEclipse };
+                this.condition.value = { ...this.condition.value, isFirstMondayOfTheMonth };
             }
         }
     }
@@ -188,24 +212,25 @@ Shopware.Component.extend('swag-lunar-eclipse', 'sw-condition-base', {
 
 {% endcode %}
 
-As you can see, our `swag-lunar-eclipse` has to extend from the `sw-condition-base` component and has to bring a custom template, which will be explained in the next step. Let's have a look at each property and method. The first computed property is `selectValues`, which returns an array containing the values "true" and "false". Those will be used in the template later on, as they will be the selectable options for the shop administrator. Do not get confused by the call this.$tc\('global.sw-condition.condition.yes'\), it's just loading a translation by its name, in this case "Yes" and "No". Note: When dealing with boolean values, make sure to always return strings here!
+As you can see, our `swag-first-monday` has to extend from the `sw-condition-base` component and has to bring a custom template, which will be explained in the next step. Let's have a look at each property and method. The first computed property is `selectValues`, which returns an array containing the values "true" and "false". Those will be used in the template later on, as they will be the selectable options for the shop administrator. Do not get confused by the call `this.$tc\('global.sw-condition.condition.yes'\)`; it's just loading a translation by its name, in this case, "Yes" and "No".
+{%hint style = "info"%} When dealing with boolean values, make sure to always return strings here.{%endhint%}
 
-The second and last computed property is `isLunarEclipse`, which uses a getter and setter to define the value of the condition.
+The second and last computed property is `isFirstMondayOfTheMonth`, which uses a getter and setter to define the value of the condition.
 
 ### Custom rule Administration template
 
-The last step is, creating a template for our condition. We will create a new file called `swag-lunar-eclipse.html.twig` in the same directory as the component. In our template, we have to overwrite the block `sw_condition_value_content`. In this example we define a `sw-single-select` in this block.
+The last step is, creating a template for our condition. We will create a new file called `swag-first-monday.html.twig` in the same directory as the component. In our template, we have to overwrite the block `sw_condition_value_content`. In this example we define a `sw-single-select` in this block.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/core/component/swag-lunar-eclipse/swag-lunar-eclipse.html.twig" %}
+{% code title="<plugin root>/src/Resources/app/administration/src/core/component/swag-first-monday/swag-first-monday.html.twig" %}
 {% raw %}
 
 ```text
 {% block sw_condition_value_content %}
-    <sw-single-select name="lunar-eclipse"
-                      id="lunar-eclipse"
+    <sw-single-select name="first-monday"
+                      id="first-monday"
                       size="medium"
                       :options="selectValues"
-                      v-model="isLunarEclipse"
+                      v-model="isFirstMondayOfTheMonth"
                       class="field--main">
     </sw-single-select>
 {% endblock %}
@@ -214,7 +239,7 @@ The last step is, creating a template for our condition. We will create a new fi
 {% endraw %}
 {% endcode %}
 
-As you can see, our `sw-single-select` uses the previously created computed property `selectValues` as the `options` prop, and the value is saved into the variable `isLunarEclipse`. That's it, your rule is now fully integrated.
+As you can see, our `sw-single-select` uses the previously created computed property `selectValues` as the `options` prop, and the value is saved into the variable `isFirstMondayOfTheMonth`. That's it; your rule is now fully integrated.
 
 ## Context awareness
 
@@ -226,7 +251,7 @@ Rules in the Shopware Administration are aware of where users assign them. That 
 
 ![Select component with disabled rules](../../../../../.gitbook/assets/rule-restrictions-rule-builder.png)
 
-It is possible to define where rules can be assigned inside the Administration. Let us see about it.
+It is possible to define where rules can be assigned inside the Administration.
 
 ### Defining restrictions
 
@@ -234,7 +259,7 @@ You have previously added the condition inside `ruleConditionDataProviderService
 
 First, get the existing definition for the rule relation as below:
 
-{% code title="<plugin root>src/Resources/app/administration/src/app/decorator/condition-type-data-provider.decorator.js" %}
+{% code title="<plugin root>src/Resources/app/administration/src/decorator/rule-condition-service-decoration.js" %}
 
 ```javascript
 // Inside the addServiceProviderDecorator method
@@ -247,9 +272,17 @@ const restrictions = ruleConditionService.getAwarenessConfigurationByAssignmentN
 You can find all possible relations in `Shopware\Core\Content\Rule\RuleDefinition`;
 {% endhint %}
 
-Now, add your configuration by importing the `merge` function from `Shopware.Utils.object`. Then call the `addAwarenessConfiguration` method.
+Now, add your `awarenessConfiguration` and call the `addAwarenessConfiguration` method.
 
-{% code title="<plugin root>src/Resources/app/administration/src/app/decorator/condition-type-data-provider.decorator.js" %}
+```javascript
+type awarenessConfiguration = {
+notEquals?: Array<string>,
+equalsAny?: Array<string>,
+snippet?: string,
+}
+```
+
+{% code title="<plugin root>src/Resources/app/administration/src/decorator/rule-condition-service-decoration.js" %}
 
 ```javascript
 Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderService', (ruleConditionService) => {
@@ -258,12 +291,13 @@ Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderServi
     const restrictions = ruleConditionService.getAwarenessConfigurationByAssignmentName('productPrices');
 
     ruleConditionService
-        .addAwarenessConfiguration('productPrices', merge(restrictions, {
+        .addAwarenessConfiguration('productPrices', {
             notEquals: [
-                'lunar_eclipse',
+                'first_monday'
             ],
-            equalsAny: [], // ignore property if not needed
-        }));
+            equalsAny: [ ], // ignore if not needed
+            snippet: 'sw-restricted-rules.restrictedAssignment.productPrices',
+        });
 });
 ```
 
@@ -272,7 +306,7 @@ Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderServi
 What do `notEquals` and `equalsAny` actually mean?
 With these two properties, you can define the rules you want to assign to a specific relation, i.e., `productPrices` need to have at least one condition inside `equalsAny` or should not have any condition inside of `notEquals`.
 
-Finally, you just need a new snippet. With that said, you successfully defined restrictions for your custom condition. If you now try to assign a rule with your condition to advanced prices, you should see that it is not possible, and the rule is disabled.
+Finally, you just need a snippet, and you can choose an existing one or create one yourself. With that said, you successfully defined restrictions for your custom condition. If you now try to assign a rule with your condition to advanced prices, you should see that it is not possible, and the rule is disabled.
 
 ### Restricting rule assignments
 
@@ -296,6 +330,10 @@ Refer to [customize administration components](../../administration/customizing-
 {% endcode %}
 
 That's it! The component automatically fetches rules and marks them as disabled.
+
+## Multi select and other components
+
+The above guide explains the integration of a boolean and no values. If you want to go more in-depth, for example, search your entity, you can extend and use the different components that Shopware comes with. The multi select example can be found in `shopware/administration/Resources/app/administration/src/app/component/form/select/entity/sw-entity-multi-select`.
 
 ## Further reading
 
