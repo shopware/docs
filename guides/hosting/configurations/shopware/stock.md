@@ -45,3 +45,5 @@ shopware:
 ```
 
 {% endcode %}
+
+For more detailed implementation refer to [Stock](../../../../guides/plugins/plugins/content/stock/README.md) guide section.
