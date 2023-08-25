@@ -20,7 +20,7 @@ You can use these commands to check your actual environment:
 
 ### PHP
 
-* Compatible version : 8.1 and 8.2
+* Compatible version: 8.1 and 8.2
 * `memory_limit` : 512M minimum
 * `max_execution_time` : 30 seconds minimum
 * Extensions:
@@ -63,12 +63,17 @@ You can use these commands to check your actual environment:
 
 The `media:delete-unused` command requires at least MariaDB 10.9 or MySQL 8.
 
-For optimal MySQL performance, it is advisable to have minimum of 32 MB.
+For optimal MySQL performance, it is advisable to have a minimum of 32 MB.
 
 ### JavaScript
 
 * Node.js 18.0.0 or higher
 * NPM 8.0.0 or higher
+
+## Redis
+
+* Version: 6.2 or higher
+* Recommended `maxmemory-policy`: `volatile-lfu`
 
 ## Webserver
 
@@ -221,6 +226,7 @@ We recommend the following stack:
 * Node: 18
 * Search: OpenSearch 2.8.0
 * Queue: RabbitMQ
+* Redis: 7.2
 
 Recommended PHP ini:
 {% page-ref page="../hosting/performance/performance-tweaks.md#php-config-tweaks" %}
