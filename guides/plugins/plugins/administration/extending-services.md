@@ -31,7 +31,7 @@ With Shopware you have to reset the providers before extending Service.
 Let's look at an example:
 
 ```javascript
-Shopware.Application.$container.resetProviders();
+Shopware.Application.$container.resetProviders(['acl']);
 
 Shopware.Application.addServiceProviderDecorator('acl', (aclService) => {
   aclService.foo = 'bar';
@@ -50,7 +50,7 @@ As mentioned before with Shopware you have to reset the providers, before extend
 Let's look at an Example:
 
 ```javascript
-Shopware.Application.$container.resetProviders();
+Shopware.Application.$container.resetProviders(['acl']);
 
 Shopware.Application.addServiceProviderMiddleware('acl', (service, next) => {
     console.log('ACL service gets called');
