@@ -162,6 +162,10 @@ opcache.enable_file_override=1
 # increase opcache string buffer as shopware has many files
 opcache.interned_strings_buffer=20
 
+# disables opcache validation for timestamp for reinvalidation of the cache
+# WARNING: you need to clear on deployments the opcache by reloadding php-fpm or cachetool (https://github.com/gordalina/cachetool)
+opcache.validate_timestamps=0
+
 # disable check for BOM
 zend.detect_unicode=0
 
