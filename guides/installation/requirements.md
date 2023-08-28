@@ -72,8 +72,9 @@ For optimal MySQL performance, it is advisable to have a minimum of 32 MB.
 
 ## Redis
 
-* Version: 6.2 or higher
-* Recommended `maxmemory-policy`: `volatile-lfu`
+* Compatible versions: 6.2 or higher
+* Recommended version: 7.2 or higher
+* Recommended configuration `maxmemory-policy`: `volatile-lfu`
 
 ## Webserver
 
