@@ -39,7 +39,6 @@ You can use these commands to check your actual environment:
   * ext-pdo\_mysql  
   * ext-phar  
   * ext-simplexml
-  * ext-sodium
   * ext-xml  
   * ext-zip  
   * ext-zlib
