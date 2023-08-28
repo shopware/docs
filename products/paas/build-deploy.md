@@ -92,6 +92,10 @@ shopware variable:create --level project --name env:COMPOSER_AUTH --json true --
 
 Make sure to replace `%place your key here%` with your actual token. You can find your token by clicking 'Install with Composer' in your Shopware Account.
 
+## Extending Shopware: Plugins & Apps
+
+The PaaS recipe uses the [Composer plugin loader](https://developer.shopware.com/docs/guides/hosting/installation-updates/cluster-setup#composer-plugin-loader).
+
 ## Manually trigger rebuilds
 
 Sometimes you might want to trigger a rebuild and deploy of your environment without pushing new code to your project.
@@ -109,4 +113,3 @@ shopware variable:update --environment main --value "$(date)" "env:REBUILD_DATE"
 ```
 
 This forces your application to be built even if no code has changed.
-
