@@ -91,3 +91,22 @@ shopware variable:create --level project --name env:COMPOSER_AUTH --json true --
 ```
 
 Make sure to replace `%place your key here%` with your actual token. You can find your token by clicking 'Install with Composer' in your Shopware Account.
+
+## Manually trigger rebuilds
+
+Sometimes you might want to trigger a rebuild and deploy of your environment without pushing new code to your project.
+
+Assuming you want to do this for your main environment, first create a REBUILD_DATE environment variable. This triggers a build right away to propagate the variable.
+
+```bash
+shopware variable:create --environment main --level environment --prefix env --name REBUILD_DATE --value "$(date)" --visible-build true
+```
+
+To force a rebuild at any time, update the variable with a new value:
+
+```bash
+shopware variable:update --environment main --value "$(date)" "env:REBUILD_DATE"
+```
+
+This forces your application to be built even if no code has changed.
+
