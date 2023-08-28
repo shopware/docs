@@ -1,10 +1,3 @@
-
-
-{% hint style="info" %}
-This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/code/core/domain-exceptions.md)
-{% endhint %}
-
 # Domain exceptions
 
 To ensure a consistent exception handling, we introduced domain exceptions. These domain exceptions are a separate exception class for each domain within shopware. These classes are used as a factory for all exceptions within the domain. The __construct of the DomainException is set to `private`, so that only the factory methods can create an instance.
