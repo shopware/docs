@@ -18,8 +18,8 @@ Shopware 6 provides certain rate limits by default that reduces the risk of brut
 
 ## SameSite cookies
 
-SameSite prevents the browser from sending cookies along with cross-site requests. For more information on this refer to [SameSite Protection](../../../guides/hosting/configurations/framework/samesite-protection.md)
+SameSite prevents the browser from sending cookies along with cross-site requests. For more information on this, refer to [SameSite Protection](../../../guides/hosting/configurations/framework/samesite-protection.md).
 
 ## Security plugin
 
-Obtaining security fixes, without version upgrades is possible through the [Security plugin](../../../guides/hosting/installation-updates/cluster-setup.md#security-plugin)
+Obtaining security fixes without version upgrades is possible through the [Security plugin](../../../guides/hosting/installation-updates/cluster-setup.md#security-plugin).
