@@ -22,4 +22,4 @@ SameSite prevents the browser from sending cookies along with cross-site request
 
 ## Security plugin
 
-Obtaining security fixes, without version upgrades is possible through the [Security plugin](../../../guides/hosting/installation-updates/cluster-setup#security-plugin)
+Obtaining security fixes, without version upgrades is possible through the [Security plugin](../../../guides/hosting/installation-updates/cluster-setup.md#security-plugin)
