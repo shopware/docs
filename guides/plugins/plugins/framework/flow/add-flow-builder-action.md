@@ -613,7 +613,6 @@ Component.register('sw-flow-create-tag-modal', {
 #### Twig template file
 
 {% code title="<plugin root>/src/Resources/app/administration/src/component/sw-flow-create-tag-modal/sw-flow-create-tag-modal.html.twig" %}
-{% raw %}
 
 ```html
 {% block create_tag_action_modal %}
