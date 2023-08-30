@@ -4,11 +4,11 @@ Normally all extensions installed by the Administration will be stored inside `c
 
 This way of extension management brings many problems:
 
-- It's hard to keep track of which extensions are installed and in which version
-- The extensions can be modified live in the Administration without version control
-- Extensions updates must be downloaded manually for each extension and installed
-- Extensions updates in the Administration can't be done together with Shopware updates
-- Composer class loader cannot be optimized, because we need to dynamically look up into `custom/plugins`
+* It is hard to keep track of which extensions are installed and in which version
+* The extensions can be modified live in the Administration without version control
+* Extension updates must be downloaded manually for each extension and installed
+* Extension updates in the Administration can't be done together with Shopware updates
+* Composer class loader cannot be optimized because we need to dynamically look up into `custom/plugins`
 
 ## Installing extensions with Composer
 
