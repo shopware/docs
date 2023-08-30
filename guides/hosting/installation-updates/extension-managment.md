@@ -14,10 +14,10 @@ This way of extension management brings many problems:
 
 To solve these problems, it is recommended to install all extensions (plugins and apps) with Composer. This way, you can manage all extensions in one place and update them along with Shopware. To get started with Composer, first, you need to authorize your local project with the Shopware Composer Registry. Below are the steps:
 
-- Login to [account.shopware.com](https://account.shopware.com) and go to your Shop (in Merchant or Account area)
-- Click on one extension
-- Click the button "Install via Composer"
-- Generate a token and save it
+* Login to [account.shopware.com](https://account.shopware.com) and go to your Shop (in Merchant or Account area)
+* Click on one extension
+* Click the button "Install via Composer"
+* Generate a token and save it
 
 Now you can add the Shopware Composer Registry to your project:
 
