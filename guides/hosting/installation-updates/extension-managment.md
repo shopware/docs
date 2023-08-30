@@ -53,7 +53,7 @@ composer require store.shopware.com/{extension-name}
 
 And then delete the source code from `custom/plugins/{extension-name}` or `custom/apps/{extension-name}`.
 
-After that, you need to run once `bin/console plugin:refresh` so that Shopware detects that know the extension is installed per Composer.
+After that, you need to run `bin/console plugin:refresh` so that Shopware detects the extension installed per Composer.
 
 ## Enabling Composer class map authoritative
 
