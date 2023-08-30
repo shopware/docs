@@ -164,7 +164,7 @@ You also need to register this action in the container as a service. Make sure t
 </service>
 ```
 
-Great, your own action is created completely. Let's go to the next step.
+Now your own action is created completely. Let's go to the next step.
 
 ### Define action scope
 
