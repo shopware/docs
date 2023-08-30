@@ -58,7 +58,7 @@ After that, you need to run `bin/console plugin:refresh` so that Shopware detect
 ## Enabling Composer class map authoritative
 
 When all extensions are installed with Composer, you can enable the Composer class map authoritative. This will improve the performance of the class loader and is recommended for production environments.
-[The class map authoritative disables the live class lookup when it cannot find the class in a dumped class map.](https://getcomposer.org/doc/articles/autoloader-optimization.md#optimization-level-2-a-authoritative-class-maps)
+[The class map authoritative, disables the live class lookup when it cannot find the class in a dumped class map.](https://getcomposer.org/doc/articles/autoloader-optimization.md#optimization-level-2-a-authoritative-class-maps)
 
 ```diff
 {
