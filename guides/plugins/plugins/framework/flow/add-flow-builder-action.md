@@ -148,7 +148,7 @@ As you can see, several methods are already implemented:
 - `requirements`: This defines which interfaces that the action belongs to.
 - `handle`: Use this method to handle your action stuff.
 
-And we also need to register this action in the container as a service, make sure you have defined a tag `<tag name="flow.action" priority="600">` at `<plugin root>/src/Resources/config/services.xml`, that your action would be added to response of *`/api/_info/flow-actions.json`* API and `priority` will decide the order of action of API response:
+You also need to register this action in the container as a service. Make sure to define a tag `<tag name="flow.action" priority="600">` at `<plugin root>/src/Resources/config/services.xml`, so that your action would be added to response of *`/api/_info/flow-actions.json`* API and `priority` will decide the order of action of API response:
 
 {% hint style="info" %}
   Available starting with Shopware 6.4.6.0
