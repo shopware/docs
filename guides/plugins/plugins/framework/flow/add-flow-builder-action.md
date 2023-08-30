@@ -168,7 +168,7 @@ Great, your own action is created completely. Let's go to the next step.
 
 ### Define action scope
 
-At this step, you will know how to define your action scope, for `CreateTagAction`.
+In this step, you will know how to define your action scope for `CreateTagAction`.
 There are three scopes for the `CreateTagAction`:
 
 - Available for all already Events.
