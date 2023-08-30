@@ -55,6 +55,7 @@ After that, you must run the below command for Shopware to detect the installed 
 
 ```bash
 bin/console plugin:refresh
+```
 
 ## Enabling Composer class map authoritative
 
@@ -78,5 +79,4 @@ And run the below command to re-generate the class loader.
 
 ```bash
 composer dump-autoload
-
-
+```
