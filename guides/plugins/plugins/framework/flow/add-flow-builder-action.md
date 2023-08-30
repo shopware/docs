@@ -223,7 +223,7 @@ That means when you define the requirements like the code above, all triggers in
 
 - For this case, you can define a new event and make the `CreateTagAction` available for this event.
 
-- Event mush be implements the `TagAware`
+- Event must implement the `TagAware`
 
 {% code title="<plugin root>/src/Core/Content/Event/BasicExampleEvent.php" %}
 
