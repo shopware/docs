@@ -22,7 +22,7 @@ You can refer to the [Flow reference](../../../../../resources/references/core-r
 
 ## Create custom flow action
 
-To create a custom flow action, firstly you have to make a plugin and install it, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md) to do it. I will create a plugin named `SwagCreateTagAction`. We have to implement both backend (PHP) code and a user interface in the Administration to manage it. Let's start with the PHP part first, which handles the main logic of our action. After that, there will be an example to show your new actions in the Administration.
+To create a custom flow action, firstly, you need to create a plugin and install it. Refer to the [Plugin Base Guide](../../plugin-base-guide.md) to do it. For instance, create a plugin named `SwagCreateTagAction`. You have to implement both backend (PHP) code and a user interface in the Administration to manage it. Let's start with the PHP part first, which handles the main logic of our action. Later, another example demonstrates to show your new actions in the Administration.
 
 ## Creating flow action in PHP
 
