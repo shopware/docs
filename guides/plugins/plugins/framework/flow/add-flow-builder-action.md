@@ -658,7 +658,6 @@ Component.register('sw-flow-create-tag-modal', {
 {% endblock %}
 ```
 
-{% endraw %}
 {% endcode %}
 
 {% code title="<plugin root>/src/Resources/app/administration/src/main.js" %}
