@@ -41,7 +41,7 @@ Now you can install extensions with Composer:
 composer require store.shopware.com/{extension-name}
 ```
 
-You can find also the Composer package name, when you click on the button "Install via Composer" in the Shopware Account.
+You can also find the Composer package name when you click "Install via Composer" in the Shopware Account.
 
 ## Migrating already installed extensions to Composer
 
