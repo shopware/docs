@@ -396,7 +396,7 @@ To see action list, we select a Trigger, for example [Example\Event] from the Tr
 
 ### Step 1: Show action label in action list
 
-First, we need to define an action name in `create-tag-action.constant.js`. To be consistent with the custom action defined in our PHP code, we also create a constant called `CREATE_TAG` to represent `action.create.tag` which get from the response of `/api/_info/flow-actions.json`.
+First, define an action name in `create-tag-action.constant.js`. To be consistent with the custom action defined in the PHP code, also create a constant called `CREATE_TAG` to represent `action.create.tag`, which gets from the response of `/api/_info/flow-actions.json`.
 
 ![Flow Builder action services list](../../../../../.gitbook/assets/flow-builder-action-sevices-list.png)
 
