@@ -162,6 +162,9 @@ You also need to register this action in the container as a service. Make sure t
     <tag name="kernel.event_subscriber"/>
     <tag name="flow.action" priority="600"/>
 </service>
+```
+
+{% endcode %}
 
 Now your own action is created completely. Let's go to the next step.
 
@@ -375,7 +378,7 @@ And don't forget to register your subscriber to the container at `<plugin root>/
 
 ![Flow Builder trigger](../../../../../.gitbook/assets/flow-builder-triggers-list.png)
 
-Well done, you are successfully created your custom action in Backend in PHP. Now we can choose the new event in the Flow Builder triggers list, see the new action after setting the trigger for new flow.
+Well done, you have successfully created your custom action in Backend in PHP. Now, you can choose the new event in the Flow Builder triggers list and see the new action after setting the trigger for the new flow.
 
 {% hint style="info" %}
   This functionality is available starting with Shopware 6.4.6.0
