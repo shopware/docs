@@ -73,6 +73,9 @@ When all extensions are installed with Composer, you can enable the Composer cla
 }
 ```
 
-And run `composer dump-autoload` to re-generate the class loader.
+And run the below command to re-generate the class loader.
+
+```bash
+composer dump-autoload
 
 
