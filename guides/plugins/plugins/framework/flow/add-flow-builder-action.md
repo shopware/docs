@@ -162,7 +162,6 @@ You also need to register this action in the container as a service. Make sure t
     <tag name="kernel.event_subscriber"/>
     <tag name="flow.action" priority="600"/>
 </service>
-```
 
 Now your own action is created completely. Let's go to the next step.
 
