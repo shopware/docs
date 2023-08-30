@@ -198,7 +198,7 @@ That means when you define the requirements like the code above, all triggers in
 
 ![Flow Builder trigger](../../../../../.gitbook/assets/flow-builder-action-available-all-events.png)
 
-- The action name is empty because we not yet define the action name snippet, we'll define in next progress.
+- The action name is empty as the action name snippet is not yet defined.
 
 #### The `CreateTagAction` available for only one or multiple already Events
 
