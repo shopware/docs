@@ -358,7 +358,7 @@
       * [Deployment with Deployer](guides/hosting/installation-updates/deployments/deployment-with-deployer.md)
       * [Building without Database](guides/hosting/installation-updates/deployments/build-w-o-db.md)
     * [Cluster Setup](guides/hosting/installation-updates/cluster-setup.md)
-    * [Versioning & Dependencies](guides/hosting/installation-updates/composer.md)
+    * [Extension Management](guides/hosting/installation-updates/extension-managment.md)
   * [Configurations](guides/hosting/configurations/README.md)
     * [Shopware](guides/hosting/configurations/shopware/README.md)
       * [HTML sanitizer](guides/hosting/configurations/shopware/html-sanitizer.md)
