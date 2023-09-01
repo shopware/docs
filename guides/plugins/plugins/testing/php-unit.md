@@ -166,51 +166,38 @@ In some cases you want a service to behave differently in the test run. Such a c
 In this test-only service config you can override arguments, aliases or parameters to change what the service container injects into your services during a test run.
 
 ## Executing the test
+To execute tests, you need a PHPUnit binary, which is most likely located in your `vendor/bin` folder. The command below will use the `phpunit.xml` file in the `custom/plugins/SwagBasicExample` folder and execute the testsuite with the name migration.
 
-All commands in this section will be executed in the root directory of our plugin.
+{% code title="<project root>" %}
 
-For easier usage, you could create a batch file called `phpunit.sh` into a `/bin` directory of your plugin. Its only purpose is the executing of the PHPUnit testsuite. Make sure the path in the following file actually fits.
-
-{% code title="<plugin root>/bin/phpunit.sh" %}
-
-```bash
-#!/usr/bin/env bash
-dir=`pwd`
-cd ./../../../
-./vendor/bin/phpunit --configuration="$dir" "$@"
+```shell
+./vendor/bin/phpunit --configuration="custom/plugins/SwagBasicExample" --testsuite "migration"
 ```
 
 {% endcode %}
 
 ### Executing all tests in the plugin
 
-Now we can execute the `phpunit.sh` to run all tests of our plugin.
+If no testsuite is passed it will execute all testsuites.
 
-```text
-./bin/phpunit.sh
+```shell
+./vendor/bin/phpunit --configuration="custom/plugins/SwagBasicExample"
 ```
 
-### Executing a single test
+### Executing a single class or method
 
-If we want to execute a specific test only, we have to pass the path to the test as argument.
+To execute a specific test class or method of a testsuite, we have to pass the argument `--filter` with the name of the class or method.
 
-```text
-./bin/phpunit.sh src/Migration/Test/Migration1611740369ExampleDescriptionTest.php
-```
-
-### Executing a single method
-
-To execute a specific method of a test, we have to pass the argument `--filter` with the name of the method and the path to test.
-
-```text
-./bin/phpunit.sh --filter testNoChanges src/Migration/Test/Migration1611740369ExampleDescriptionTest.php
+```shell
+./vendor/bin/phpunit --configuration="custom/plugins/SwagBasicExample" --filter testNoChanges
+./vendor/bin/phpunit --configuration="custom/plugins/SwagBasicExample" --filter Migration1611740369ExampleDescriptionTest
 ```
 
 ## Flex template
 
 In order to run PHPunit tests in your flex template install the [dev-tools](../../guides/installation/template.md#how-to-migrate-from-production-template-to-symfony-flex) package via composer.
 
-```markup
+```shell
 composer require --dev dev-tools
 ```
 
