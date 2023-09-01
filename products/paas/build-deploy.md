@@ -56,7 +56,7 @@ shopware variable:create --sensitive 1 --level project --name env:$(echo $line |
 done
 ```
 
-Run this command from your project directory so that the `shopware` command knows which project to update.
+Run this command from your project directory so the `shopware` command knows which project to update.
 
 The command connects to the application server to generate the JWT keys. It then sets the `JWT_PUBLIC_KEY` and `JWT_PRIVATE_KEY` as private environment variables.
 
@@ -64,7 +64,7 @@ Finally, execute the `shopware redeploy` command to proceed with the build- and 
 
 ##### Shopware Config
 
-By default, Shopware looks for the JWT keys on the file system. The configuration has to be updates to use the keys in the environment variables.
+By default, Shopware looks for the JWT keys on the file system. The configuration must be updated to use the keys in the environment variables.
 
 If you use the Shopware Flex Paas template, [the configuration](https://github.com/shopware/recipes/blob/main/shopware/paas-meta/6.4/config/packages/paas.yaml) will have been applied automatically.
 
@@ -100,8 +100,7 @@ The PaaS recipe uses the [Composer plugin loader](https://developer.shopware.com
 
 Sometimes you might want to trigger a rebuild and deploy of your environment without pushing new code to your project.
 
-Assuming you want to do this for your main environment, first create a REBUILD_DATE environment variable. This triggers a build right away to propagate the variable.
-
+If you want to do this for your main environment, create a REBUILD_DATE environment variable first. This triggers a build right away to propagate the variable.
 ```bash
 shopware variable:create --environment main --level environment --prefix env --name REBUILD_DATE --value "$(date)" --visible-build true
 ```
