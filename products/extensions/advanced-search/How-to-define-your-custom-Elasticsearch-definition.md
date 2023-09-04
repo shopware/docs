@@ -20,15 +20,13 @@ use Shopware\Core\Framework\DataAbstractionLayer\EntityDefinition;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\Uuid\Uuid;
 use Shopware\Elasticsearch\Framework\AbstractElasticsearchDefinition;
-use Shopware\Elasticsearch\Framework\ElasticsearchQueryHelper;
 
 class YourCustomElasticsearchDefinition extends AbstractElasticsearchDefinition
 {
     public function __construct(
         private readonly EntityDefinition $definition,
         private readonly Connection $connection,
-        private readonly AbstractSearchLogic $searchLogic,
-        private readonly array $languageAnalyzerMapping
+        private readonly AbstractSearchLogic $searchLogic
     ) {
     }
 
@@ -43,16 +41,27 @@ class YourCustomElasticsearchDefinition extends AbstractElasticsearchDefinition
              INNER JOIN locale ON locale_id = locale.id'
         );
 
-        $languageFields = ElasticsearchQueryHelper::mapTranslatedField(
-            $languages,
-            $this->languageAnalyzerMapping,
-            self::getTextFieldConfig()
-        );
+        $languageFields = [];
+
+        foreach ($languages as $languageId => $code) {
+            $parts = explode('-', $code);
+            $locale = $parts[0];
+
+            $languageFields[$languageId] = self::getTextFieldConfig();
+            if (\array_key_exists($locale, $this->languageAnalyzerMapping)) {
+                $fields = $languageFields[$languageId]['fields'];
+                $fields['search']['analyzer'] = $this->languageAnalyzerMapping[$locale];
+                $languageFields[$languageId]['fields'] = $fields;
+            }
+        }
 
         $properties = [
-            'id' => self::KEYWORD_FIELD,
-            'name' => $languageFields,
-            'description' => $languageFields,
+            'name' => [
+                'properties' => $languageFields,
+            ],
+            'description' => [
+                'properties' => $languageFields,
+            ],
         ];
 
         return [
@@ -79,15 +88,13 @@ class YourCustomElasticsearchDefinition extends AbstractElasticsearchDefinition
         $documents = [];
 
         foreach ($data as $id => $item) {
-            ['translation' => $translations] = ElasticsearchQueryHelper::parseJson($item, ['translation']);
+            $translations = (array) json_decode($item['translation'] ?? '[]', true, 512, \JSON_THROW_ON_ERROR);
 
-            $document = array_merge([
+            $document = [
                 'id' => $id,
-            ], ElasticsearchQueryHelper::mapTranslatedFieldsValue([
-                'keywords',
-                'packUnit',
-                'packUnitPlural',
-            ], true, ...$translations));
+                'name' => $this->mapTranslatedField('name', true, ...$translations),
+                'description' => $this->mapTranslatedField('description', true, ...$translations),
+            ];
 
             $documents[$id] = $document;
         }
@@ -104,15 +111,23 @@ class YourCustomElasticsearchDefinition extends AbstractElasticsearchDefinition
     {
         $sql = <<<'SQL'
 SELECT
-    LOWER(HEX(your_custom_table.id)) AS id,
-    #translation#
-FROM your_custom_table manufacturer
-    LEFT JOIN your_custom_table_translation ON your_custom_table_translation.your_custom_table_id = your_custom_table.id
-WHERE your_custom_table.id IN (:ids)
-GROUP BY your_custom_table.id
+    LOWER(HEX(custom_entity.id)) AS id,
+    CONCAT(
+        '[',
+            GROUP_CONCAT(DISTINCT
+                JSON_OBJECT(
+                    'description', your_custom_entity_translation.description,
+                    'name', your_custom_entity_translation.name,
+                    'languageId', LOWER(HEX(your_custom_entity_translation.language_id))
+                )
+            ),
+        ']'
+    ) as translation
+FROM your_custom_entity custom_entity
+    LEFT JOIN your_custom_entity_translation ON your_custom_entity_translation.your_custom_entity_id = custom_entity.id
+WHERE custom_entity.id IN (:ids)
+GROUP BY custom_entity.id
 SQL;
-
-        $sql = str_replace('#translation#', ElasticsearchQueryHelper::groupConcatSql('your_custom_table_translation', 'translation', ['name', 'description'], ['language_id']), $sql);
 
         $result = $this->connection->fetchAllAssociativeIndexed(
             $sql,
@@ -124,8 +139,7 @@ SQL;
             ]
         );
 
-        return $result;
-    }
+        return $result;    }
 }
 ```
 
@@ -138,7 +152,6 @@ And register it in the container with tag `shopware.es.definition` and `advanced
     <argument type="service" id="YourPluginNameSpace\YourCustomDefinition"/>
     <argument type="service" id="Doctrine\DBAL\Connection"/>
     <argument type="service" id="Shopware\Commercial\AdvancedSearch\Domain\Search\SearchLogic"/>
-    <argument>%advanced_search.language_analyzer_mapping%</argument>
 
     <tag name="shopware.es.definition"/>
     <tag name="advanced_search.supported_definition"/>
