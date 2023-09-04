@@ -232,7 +232,7 @@ If your `APP_URL` is correct, you can disable this behavior with an environment 
 
 ## Disable fine-grained caching
 
-Shopware has a fine-grained caching system for system config, translation and theme config. This allows to clear only the relevant pages when a translation or theme config is changed. This is done by adding per config element a cache tag to the response. This behavior generates a lot of Redis keys or entries in Varnish. To save this overhead, it is possible to disable this behavior and clear the hole cache instead on config changes using the following config:
+Shopware has a fine-grained caching system for system config, translation and theme config. This allows to clear only the relevant pages when a translation or theme config is changed. This is done by adding per config element a cache tag to the response. This behavior generates a lot of Redis keys or entries in Varnish. To save this overhead on config changes, it is possible to disable this behavior and clear the whole cache instead using the following config:
 
 ```yaml
 # config/packages/shopware.yaml
