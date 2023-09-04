@@ -25,10 +25,6 @@ First, we need to activate the reverse proxy support in Shopware. To enable it, 
 
 ```yaml
 storefront:
-    csrf:
-        enabled: true
-        # The internal Shopware HTTP cache replaces the CSRF token on the fly. This can't be done in reverse proxy. So we use AJAX to get a CSRF token
-        mode: ajax
     reverse_proxy:
         enabled: true
         ban_method: "BAN"
@@ -723,9 +719,6 @@ Fastly is supported since Shopware 6.4.11.0 is out-of-the-box with some configur
 
 ```yaml
 storefront:
-    csrf:
-        enabled: true
-        mode: ajax
     reverse_proxy:
         enabled: true
         fastly:
@@ -744,9 +737,6 @@ By default, the cache will be immediately purged and the next requesting user wi
 
 ```yaml
 storefront:
-  csrf:
-    enabled: true
-    mode: ajax
   http_cache:
     # Allow to serve the out-dated cache for 300 seconds
     stale_while_revalidate: 300
