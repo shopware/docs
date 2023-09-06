@@ -62,7 +62,7 @@ Run this command from your project directory so the `shopware` command knows whi
 
 The command connects to the application server to generate the JWT keys. It then sets the `JWT_PUBLIC_KEY` and `JWT_PRIVATE_KEY` as private environment variables.
 
-Finally, execute the `shopware redeploy` command to proceed with the build- and deploy process.
+Finally, execute the `shopware redeploy` command to proceed with the build-and-deploy process.
 
 ##### Shopware Config
 
