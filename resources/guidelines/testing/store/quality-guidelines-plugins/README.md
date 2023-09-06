@@ -1,6 +1,8 @@
 # Quality Guidelines for Apps based on Plugin System in Shopware Store
 
 > **Changelog**
+>> 06/09/23: [Added - Rules for own composer dependencies](../quality-guidelines-plguins/README.md#owncomposerdependencies)
+> 
 >> 26/07/23: [Added - Name preset according to new naming scheme](../quality-guidelines-plugins/README.md#every-app-based-on-the-plugin-system)
 >
 >> 18/07/23: [Compiled code](../quality-guidelines-plugins/README.md#checklist-for-app-testing)
@@ -229,6 +231,12 @@ When clicking on the "Install / Uninstall" option in the Extension Manager, the 
 ### Not allowed to extend the Extension Manager
 
 The *Extension Manager* must not be extended or overwritten.
+
+###Own composer dependencies
+
+Composer dependencies are possible as long as they are in the composer.json. With executeComposerCommands() === true in the plugin base class we provide a dynamic installation of the composer dependencies by default, so they don't have to be included. Everything that is delivered in code should be traceable either directly or via composer.json
+
+[Developer documentation article to add private dependencys](https://developer.shopware.com/docs/v/6.4/guides/plugins/plugins/plugin-fundamentals/using-composer-dependencies)
 
 ### Extension manager
 
