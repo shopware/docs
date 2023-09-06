@@ -100,12 +100,10 @@ The PaaS recipe uses the [Composer plugin loader](https://developer.shopware.com
 
 ## Manually trigger rebuilds
 
-Sometimes you might want to trigger a rebuild and deploy of your environment without pushing new code to your project.
+Sometimes, you might want to trigger a rebuild and deploy of your environment without pushing new code to your project. To do this for your main environment, create a `REBUILD_DATE` environment variable. This triggers a build right away to propagate the variable.
 
-If you want to do this for your main environment, create a REBUILD_DATE environment variable first. This triggers a build right away to propagate the variable.
 ```bash
 shopware variable:create --environment main --level environment --prefix env --name REBUILD_DATE --value "$(date)" --visible-build true
-```
 
 To force a rebuild at any time, update the variable with a new value:
 
