@@ -2,19 +2,19 @@
 
 ## Overview
 
-In this guide you'll learn how to create PHPUnit tests in Shopware 6. You can read more about PHP unit testing at the official PHPUnit documentation.
+This guide will cover the creation of PHPUnit tests in Shopware 6. Please visit the official PHPUnit documentation for a deep dive into PHP unit testing.
 <!-- markdown-link-check-disable-next-line -->
 {% embed url="https://phpunit.de/documentation.html" caption="" %}
 
 ## Prerequisites
 
-In order to create tests for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
+In order to create tests for a plugin, you need a plugin as a base. Please refer to the [Plugin Base Guide](../plugin-base-guide.md).
 
-Furthermore, you should have a look at our [Execute database queries/migrations](../plugin-fundamentals/database-migrations.md) guide since this guide will show you how to create a migration test for these example.
+Furthermore, have a look at our [Execute database queries/migrations](../plugin-fundamentals/database-migrations.md) guide since this guide will show you how to create a migration test for these examples.
 
 ## PHPUnit configuration
 
-First, to configure PHPUnit, create a file called `phpunit.xml` in the root directory of your plugin. To get more familiar with the configurable options, refer to the [PHPUnit documentation](https://phpunit.readthedocs.io/en/8.5/configuration.html). This example explains configuring PHPUnit to search in the directories `<plugin root>/src/Test` and `<plugin root>/src/Migration/Test` for your tests.
+First, to configure PHPUnit, create a file called `phpunit.xml` in the root directory of the plugin. To get more familiar with the configurable options, refer to the [PHPUnit documentation](https://phpunit.readthedocs.io/en/8.5/configuration.html). This example explains configuring PHPUnit to search in the directories `<plugin root>/src/Test` and `<plugin root>/src/Migration/Test` for your tests.
 
 The file below is automatically generated when using the `bin/console plugin:create` command.
 
@@ -57,8 +57,7 @@ The file below is automatically generated when using the `bin/console plugin:cre
 
 ### Integration test
 
-After having configured PHPUnit, you can start writing your first test. In this example, you have a test that simply tries to instantiate every `.php` class to see if any used core classes are missing. In your test, you use the `IntegrationTestBehaviour` trait, which comes with some handy features, such as automatically setting up a database transaction or clearing the cache before starting your tests.
-
+After PHPUnit is configured, a first test can be written. In this example, a test simply tries to instantiate every `.php` class to see if any used core classes are missing. In the test, you use the `IntegrationTestBehaviour` trait, which comes with some handy features, such as automatically setting up a database transaction or clearing the cache before starting tests.
 This is how your test could look like:
 
 {% code title="<plugin root>/src/Test/UsedClassesAvailableTest.php" %}
@@ -106,7 +105,7 @@ class UsedClassesAvailableTest extends TestCase
 
 ### Migration test
 
-In order to test the example migration `Migration1611740369ExampleDescription`, create a new test called `Migration1611740369ExampleDescriptionTest`, which extends from the PHPUnit `TestCase`. Use the `KernelTestBehaviour` trait since you need the database connection from the container.
+In order to test the example migration `Migration1611740369ExampleDescription`, create a new test called `Migration1611740369ExampleDescriptionTest`, which extends from the PHPUnit `TestCase`. Use the `KernelTestBehaviour` trait because a database connection from the container is needed.
 
 This is an example for a migration test:
 
@@ -161,12 +160,12 @@ class Migration1611740369ExampleDescriptionTest extends TestCase
 
 ## Mocking services
 
-In some cases you want a service to behave differently in the test run. Such a case could be where a service deletes a file or makes a critical api call. To avoid this in a test run it is possible to create a `<plugin root>/Resources/config/services_test.{xml|yml}` file which will override your `<plugin root>/Resources/config/services.{xml|yml}`. But only for the test environment.  
+In some cases a service should behave differently in a test run. Such a case could be where a service deletes a file or makes a critical api call. To avoid this in a test run it is possible to create a `<plugin root>/Resources/config/services_test.{xml|yml}` file which will override your `<plugin root>/Resources/config/services.{xml|yml}`. But only for the test environment.  
 
-In this test-only service config you can override arguments, aliases or parameters to change what the service container injects into your services during a test run.
+In this test-only service config you can override arguments, aliases or parameters to change what the service container injects into services during a test run.
 
 ## Executing the test
-To execute tests, you need a PHPUnit binary, which is most likely located in your `vendor/bin` folder. The command below will use the `phpunit.xml` file in the `custom/plugins/SwagBasicExample` folder and execute the testsuite with the name migration.
+To execute tests, a PHPUnit binary is necessary, which is most likely located in the `vendor/bin` folder. The command below will use the `phpunit.xml` file in the `custom/plugins/SwagBasicExample` folder and execute the testsuite with the name `migration`.
 
 {% code title="<project root>" %}
 
@@ -186,7 +185,7 @@ If no testsuite is passed, it will execute all testsuites.
 
 ### Executing a single class or method
 
-To execute a specific test class or method of a testsuite, we have to pass the argument `--filter` with the name of the class or method.
+To execute a specific test class or method of a testsuite, pass the argument `--filter` with the name of the class or method.
 
 ```shell
 ./vendor/bin/phpunit --configuration="custom/plugins/SwagBasicExample" --filter testNoChanges
@@ -195,7 +194,7 @@ To execute a specific test class or method of a testsuite, we have to pass the a
 
 ## Flex template
 
-In order to run PHPunit tests in your flex template install the [dev-tools](../../guides/installation/template.md#how-to-migrate-from-production-template-to-symfony-flex) package via composer.
+In order to run PHPunit tests install the flex template [dev-tools](../../guides/installation/template.md#how-to-migrate-from-production-template-to-symfony-flex) package via composer.
 
 ```shell
 composer require --dev dev-tools
@@ -203,7 +202,7 @@ composer require --dev dev-tools
 
 ## Next steps
 
-You've learned about PHPUnit tests here now. But what about unit testing your javascript code, either in the Storefront or the Administration?
+Running unit tests with javascript code is explained in the following two articles:
 
 * [Jest unit tests in Shopware's Administration](jest-admin.md)
 * [Jest unit tests in Shopware's Storefront](jest-storefront.md)
