@@ -8,7 +8,7 @@ This guide will cover the creation of PHPUnit tests in Shopware 6. Please visit 
 
 ## Prerequisites
 
-In order to create tests for a plugin, you need a plugin as a base. Please refer to the [Plugin Base Guide](../plugin-base-guide.md).
+In order to create tests for a plugin, you need a plugin as a base. Refer to the [Plugin Base Guide](../plugin-base-guide.md) for more information.
 
 Furthermore, have a look at our [Execute database queries/migrations](../plugin-fundamentals/database-migrations.md) guide since this guide will show you how to create a migration test for these examples.
 
