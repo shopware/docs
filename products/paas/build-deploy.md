@@ -44,7 +44,7 @@ Make sure to change this password immediately in your Administration account set
 
 After the first deploy, some steps must be done manually before the environment is entirely up and running.
 
-#### JWT Keys
+#### JWT keys
 
 The JWT keys, used for the Administration authentication, need to be generated for your project. The keys will be stored securely in the Shopware Paas environment variable storage and should not be committed to the Git repository or be available on the file system.
 
