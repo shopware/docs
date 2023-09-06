@@ -41,7 +41,8 @@ The installer will create an administrator account with the default credentials.
 Make sure to change this password immediately in your Administration account settings. Not doing so is a security risk.
 
 ### Manual steps
-After the first deploy, some steps have to be done manually once before the environment is up and running completely.
+
+After the first deploy, some steps must be done manually before the environment is entirely up and running.
 
 #### JWT Keys
 
