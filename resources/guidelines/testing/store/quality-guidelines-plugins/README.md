@@ -232,7 +232,7 @@ When clicking on the "Install / Uninstall" option in the Extension Manager, the 
 
 The *Extension Manager* must not be extended or overwritten.
 
-###Own composer dependencies
+### Own composer dependencies
 
 Composer dependencies are possible as long as they are in the composer.json. With executeComposerCommands() === true in the plugin base class we provide a dynamic installation of the composer dependencies by default, so they don't have to be included. Everything that is delivered in code should be traceable either directly or via composer.json
 
