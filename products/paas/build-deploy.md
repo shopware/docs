@@ -64,7 +64,7 @@ The command connects to the application server to generate the JWT keys. It then
 
 Finally, execute the `shopware redeploy` command to proceed with the build-and-deploy process.
 
-##### Shopware Config
+##### Shopware config
 
 By default, Shopware looks for the JWT keys on the file system. The configuration must be updated to use the keys in the environment variables.
 
