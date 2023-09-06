@@ -106,7 +106,7 @@ class UsedClassesAvailableTest extends TestCase
 
 ### Migration test
 
-In order to test our example migration `Migration1611740369ExampleDescription`, we create a new test called `Migration1611740369ExampleDescriptionTest` which extends from the PHPUnit `TestCase`. We use the `KernelTestBehaviour` trait since we need our database connection from the container.
+In order to test the example migration `Migration1611740369ExampleDescription`, create a new test called `Migration1611740369ExampleDescriptionTest`, which extends from the PHPUnit `TestCase`. Use the `KernelTestBehaviour` trait since you need the database connection from the container.
 
 This is an example for a migration test:
 
