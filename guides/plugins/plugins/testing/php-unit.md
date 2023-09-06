@@ -14,7 +14,7 @@ Furthermore, you should have a look at our [Execute database queries/migrations]
 
 ## PHPUnit configuration
 
-First of all we have to configure PHPUnit a bit. Therefore we have to create a file called `phpunit.xml` in the root directory of our plugin. To get more familiar with the configurable options, you can refer to the [PHPUnit documentation](https://phpunit.readthedocs.io/en/8.5/configuration.html). In this example we configure PHPUnit to search in the directories `<plugin root>/src/Test` and `<plugin root>/src/Migration/Test` for our tests.
+First, to configure PHPUnit, create a file called `phpunit.xml` in the root directory of your plugin. To get more familiar with the configurable options, refer to the [PHPUnit documentation](https://phpunit.readthedocs.io/en/8.5/configuration.html). This example explains configuring PHPUnit to search in the directories `<plugin root>/src/Test` and `<plugin root>/src/Migration/Test` for your tests.
 
 The file below is automatically generated when using the `bin/console plugin:create` command
 
