@@ -14,7 +14,7 @@ This will create a brand new Shopware 6 project in the given folder. Now, change
 
 Secondly, create a new Git repository and push it to your favourite Git hosting service.
 
-### Updating the PaaS Template recipe
+### Updating the PaaS template recipe
 
 You can update the recipe to the latest version using the `composer recipes:update` command: [a diff-powered, smart recipe-updating system](https://symfony.com/blog/fast-smart-flex-recipe-upgrades-with-recipes-update).
 
