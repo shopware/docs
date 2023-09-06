@@ -2,9 +2,7 @@
 
 ## Overview
 
-This guide will cover the creation of PHPUnit tests in Shopware 6. Please visit the official PHPUnit documentation for a deep dive into PHP unit testing.
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://phpunit.de/documentation.html" caption="" %}
+This guide will cover the creation of PHPUnit tests in Shopware 6. Refer to the [official PHPUnit documentation](https://phpunit.de/documentation.html) for a deep dive into PHP unit testing.
 
 ## Prerequisites
 
