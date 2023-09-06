@@ -49,6 +49,7 @@ After the first deploy, some steps must be done manually before the environment 
 The JWT keys, used for the Administration authentication, need to be generated for your project. The keys will be stored securely in the Shopware Paas environment variable storage and should not be committed to the Git repository or be available on the file system.
 
 To generate the keys and add them to the storage, run the following command:
+
 ```bash
 shopware ssh --app=app "bin/console system:generate-jwt-secret --use-env" |\
 grep -E "^JWT_(PUBLIC|PRIVATE)_KEY=" |\
