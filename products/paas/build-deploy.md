@@ -78,7 +78,7 @@ If you use the Shopware Flex Paas template, [the configuration](https://github.c
        public_key_path: '%env(base64:JWT_PUBLIC_KEY)%'  
 ```
 
-#### Theme Assets
+#### Theme assets
 
 It is a known issue that after the first deployment, theme assets are not compiled during the deployment. For that reason, your store will look unstyled. The [Theme Build](./theme-build.md) section explains how to resolve that issue.
 
