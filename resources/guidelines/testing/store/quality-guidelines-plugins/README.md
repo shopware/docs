@@ -1,8 +1,8 @@
 # Quality Guidelines for Apps based on Plugin System in Shopware Store
 
 > **Changelog**
->> 06/09/23: [Added - Rules for own composer dependencies](../quality-guidelines-plguins/README.md#owncomposerdependencies)
-> 
+>> 06/09/23: [Added - Rules for own composer dependencies](../quality-guidelines-plugins/README.md#own-composer-dependencies)
+>
 >> 26/07/23: [Added - Name preset according to new naming scheme](../quality-guidelines-plugins/README.md#every-app-based-on-the-plugin-system)
 >
 >> 18/07/23: [Compiled code](../quality-guidelines-plugins/README.md#checklist-for-app-testing)
