@@ -68,7 +68,7 @@ Finally, execute the `shopware redeploy` command to proceed with the build-and-d
 
 By default, Shopware looks for the JWT keys on the file system. The configuration must be updated to use the keys in the environment variables.
 
-If you use the Shopware Flex Paas template, [the configuration](https://github.com/shopware/recipes/blob/main/shopware/paas-meta/6.4/config/packages/paas.yaml) will have been applied automatically.
+If you use the Shopware Flex Paas template, [the configuration](https://github.com/shopware/recipes/blob/main/shopware/paas-meta/6.4/config/packages/paas.yaml) will be applied automatically.
 
 ```yaml
  shopware:
