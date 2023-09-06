@@ -178,7 +178,7 @@ To execute tests, you need a PHPUnit binary, which is most likely located in you
 
 ### Executing all tests in the plugin
 
-If no testsuite is passed it will execute all testsuites.
+If no testsuite is passed, it will execute all testsuites.
 
 ```shell
 ./vendor/bin/phpunit --configuration="custom/plugins/SwagBasicExample"
