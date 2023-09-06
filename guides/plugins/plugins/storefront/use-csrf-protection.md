@@ -2,7 +2,7 @@
 
 ## Overview
 
-One of the common security risks of your application could be a [Cross Site Request Forgery](https://owasp.org/www-community/attacks/csrf) (CSRF) attack, which is the shorthand for Cross Site Request Forgery. This short guide will teach you how to properly secure your forms in the Storefront by using Shopware's built-in tools.
+One of the common security risks of your application could be a [Cross Site Request Forgery](https://owasp.org/www-community/attacks/csrf) (CSRF) attack. This short guide will teach you how to properly secure your forms in the Storefront by using Shopware's built-in tools.
 
 ## Prerequisites
 
@@ -99,4 +99,4 @@ Be aware that this is not recommended and could create a security vulnerability!
 
 ## Caching and CSRF
 
-The default configuration for the `csrf` mode is `twig` and works fine with the shopware HTTP cache. If an external cache \(e.g. varnish\) is used, the mode needs to be `ajax`. A valid CRSF token is then fetched before a `POST` request and appended.
+The default configuration for the `csrf` mode is `twig` and works fine with the shopware HTTP cache. If an external cache \(e.g. varnish\) is used, the mode needs to be `ajax`. A valid CSRF token is then fetched and appended before a `POST` request.
