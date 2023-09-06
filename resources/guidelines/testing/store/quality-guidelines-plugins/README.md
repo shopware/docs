@@ -234,7 +234,7 @@ The *Extension Manager* must not be extended or overwritten.
 
 ### Own composer dependencies
 
-Composer dependencies are possible as long as they are in the composer.json. With executeComposerCommands() === true in the plugin base class we provide a dynamic installation of the composer dependencies by default, so they don't have to be included. Everything that is delivered in code should be traceable either directly or via composer.json
+Composer dependencies are possible as long as they are in the `composer.json`. With `executeComposerCommands() === true` in the plugin base class we provide a dynamic installation of the composer dependencies by default, so they don't have to be included. Everything that is delivered in code should be traceable either directly or via `composer.json`.
 
 [Developer documentation article to add private dependency](../../../../../guides/plugins/plugins/plugin-fundamentals/using-composer-dependencies.md)
 
