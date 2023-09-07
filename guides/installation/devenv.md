@@ -114,13 +114,6 @@ Before booting up your development environment, configure Cachix to use Shopware
 cachix use shopware
 ```
 
-By default, `shopware/platform` uses unfree software like Blackfire. To be able to use unfree software, you have to *allow* it:
-
-```bash
-mkdir -p ~/.config/nixpkgs
-echo '{ allowUnfree = true; }' > ~/.config/nixpkgs/config.nix
-```
-
 You can find the whole installation guide for devenv in their official documentation:
 
 <!-- markdown-link-check-disable-next-line -->
