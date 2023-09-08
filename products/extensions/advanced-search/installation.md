@@ -7,7 +7,7 @@ This module requires the following:
 * `Shopware\Elasticsearch\Elasticsearch` bundle is enabled in `config/bundles.php`.
 * On-prem environment configuration:
 
-```env
+```text
 OPENSEARCH_URL=http://localhost:9200
 ES_MULTILINGUAL_INDEX=1
 SHOPWARE_ES_ENABLED=1
