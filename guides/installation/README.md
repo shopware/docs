@@ -6,7 +6,7 @@ There are a couple of ways to get Shopware running on your system, together with
 
 ## Installation setups
 
-* Development setup
+### Development setup
 
     * [Devenv](devenv.md) installation manages all necessary services. A description file in the source code manages the versions of these services. This setup works for Linux, WSL and macOS.
 
