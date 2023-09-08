@@ -34,7 +34,9 @@ Choose ecommerce and technical terms from the pre-defined list of terminologies:
 * [Shopware terminologies](https://shopware.atlassian.net/wiki/spaces/pr/pages/19249037615/Shopware+terminology)
 * [General terms and abbreviations](https://shopware.atlassian.net/wiki/spaces/BGE/pages/735426953/Our+corporate+communications)
 
-{% hint style="info" %} These are internal resources visible to Shopware employees only. {% endhint %}
+{% hint style="info" %}
+These are internal resources visible to Shopware employees only.
+{% endhint %}
 
 ## Use of third-party sources
 
