@@ -47,6 +47,4 @@ This functionality is available starting with Shopware 6.4.8.0.
 This functionality is available starting with Shopware 6.4.12.0.
 {% endhint %}
 
-Your app may introduce custom conditions for use in the [Rule builder](../framework/rules.md).
-
-{% page-ref page="../../guides/plugins/apps/rule-builder/add-custom-rule-conditions.md" %}
+Your app may introduce custom conditions for use in the [Rule builder](../framework/rules.md). For additional information refer to [Add custom rule conditions](../../guides/plugins/apps/rule-builder/add-custom-rule-conditions.md) from the guides.

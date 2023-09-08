@@ -236,4 +236,4 @@ Styling of your blocks in the Storefront can then be done in `Resources/app/stor
 
 ## Further reading
 
-{% page-ref page="../../../../../resources/references/app-reference/cms-reference.md" %}
+You can further take a look at the [CMS references](../../../../../resources/references/app-reference/cms-reference.md).

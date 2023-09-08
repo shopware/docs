@@ -15,13 +15,9 @@ Starting with Shopware 6.4.0.0, we introduced a new way to extend Shopware using
 Plugins are executed within the Shopware Core process and can react to events, execute custom code or extend services. They have direct access to the database and guidelines are in place to ensure update-compatibility, such as a service facade or database migrations.
 
 {% hint style="warning" %}
-**Plugins and Shopware cloud**
-
-Due to their direct access to the Shopware process and the database, plugins are not supported by Shopware cloud.
+**Plugins and Shopware cloud** - Due to their direct access to the Shopware process and the database, plugins are not supported by Shopware cloud.
 {% endhint %}
 
 ## Start Coding
 
-Refer to our Guides section to learn how to use both extension systems and also how they differ:
-
-{% page-ref page="../../guides/plugins/" %}
+Refer to Guides section to get an [overview of both extension systems and how they differ](../../guides/plugins/overview.md).

@@ -186,6 +186,4 @@ If we instead want our filter to be placed before or after a specific filter in 
 
 ## Next steps
 
-Are you interested in adding custom sorting options to your listing in the Storefront as well? Head over to the corresponding guide to learn more about that:
-
-{% page-ref page="add-custom-sorting-product-listing.md" %}
+To add [custom sorting options](add-custom-sorting-product-listing.md) to your listing in the Storefront, head over to the corresponding guide.

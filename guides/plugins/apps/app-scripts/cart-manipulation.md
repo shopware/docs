@@ -385,4 +385,4 @@ Inside your cart script, you can check if the rule matches by checking if the co
 
 ## Further information
 
-{% page-ref page="../../../../resources/references/app-reference/script-reference/cart-manipulation-script-services-reference.md" %}
+Take a look at the [cart manipulation script service reference](../../../../resources/references/app-reference/script-reference/cart-manipulation-script-services-reference.md).

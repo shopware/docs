@@ -337,4 +337,4 @@ The above guide explains the integration of a boolean and no values. If you want
 
 ## Further reading
 
-{% page-ref page="../../administration/add-rule-assignment-configuration.md" %}
+For more other information you can refer to [Add rule assignment configuration](../../administration/add-rule-assignment-configuration.md) section of the guide.

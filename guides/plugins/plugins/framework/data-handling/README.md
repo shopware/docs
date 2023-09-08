@@ -10,6 +10,4 @@ Hence, here are some good starting topics:
 
 {% page-ref page="writing-data.md" %}
 
-Also, listening to events of the DAL will come in handy for sure, so here's that:
-
-{% page-ref page="using-database-events.md" %}
+Also, [listening to events](using-database-events.md) of the DAL will come in handy for sure.
