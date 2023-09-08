@@ -14,10 +14,6 @@ Using plugins, you can add custom routes to the Store API \(as well as any other
 
 ## What next?
 
-To start working with the Store API, check out our guide below and explore all endpoints in our reference guide:
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://shopware.stoplight.io/docs/store-api/docs/guides/quick-start/README.md" caption="Quickstart Guide" %}
+* To start working with the Store API, check out our [Quick Start guide](https://shopware.stoplight.io/docs/store-api/docs/guides/quick-start/README.md)  and explore all endpoints in our reference guide.
 
-An interesting project based \(almost\) solely on the Store API is Shopware PWA.
-
-{% page-ref page="../../products/pwa.md" %}
+* An interesting project based \(almost\) solely on the Store API is [Shopware PWA](../../products/pwa.md).

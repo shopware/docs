@@ -282,4 +282,4 @@ Beside the properties of a `one-to-many` type you have to define the `associatio
 
 ## Further reading
 
-{% page-ref page="../framework/rule/add-custom-rules.md" %}
+For more other information, refer to [Add custom rules](../framework/rule/add-custom-rules.md).

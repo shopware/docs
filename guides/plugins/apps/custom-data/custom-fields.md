@@ -60,6 +60,4 @@ When defining custom fields in the `<fields>` element, you can configure additio
 </float>
 ```
 
-Please refer to the custom field documentation for further details.
-
-{% page-ref page="../../plugins/framework/custom-field/" %}
+Refer to the [custom field](../../plugins/framework/custom-field/) documentation for further details.

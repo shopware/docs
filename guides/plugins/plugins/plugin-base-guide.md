@@ -202,13 +202,3 @@ There's many more things to discover when creating your first plugin. Hence, her
 * [Learning about the service container](plugin-fundamentals/dependency-injection.md)
 * [Adding a custom service](plugin-fundamentals/add-custom-service.md)
 * [Start listening to events](plugin-fundamentals/listening-to-events.md)
-
-Furthermore, you should definitely have a look into these sections:
-
-{% page-ref page="storefront/" %}
-
-{% page-ref page="administration/" %}
-
-{% page-ref page="framework/data-handling/" %}
-
-{% page-ref page="testing/" %}

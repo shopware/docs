@@ -14,4 +14,6 @@ Frontend applications usually provide interfaces for users \(customers\). These 
 
 These integrations are characterized by the exchange of structured data, synchronizations, imports, exports and notifications. Performance is also important in terms of high data loads rather than fast response times. Consistency, error handling, and transaction-safety are critical.
 <!-- markdown-link-check-disable-next-line -->
-{% embed url="https://shopware.stoplight.io/docs/admin-api/adminapi.json" caption="Endpoint Admin API Reference" %}
+{% embed url="https://shopware.stoplight.io/docs/admin-api/adminapi.json" caption="Admin API Endpoint Reference" %}
+
+Shopware's Store and Admin APIs offer essential technical resources for you to interact with and customize the platform's core functions, enabling tailored solutions and seamless integration.

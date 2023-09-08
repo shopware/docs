@@ -1,3 +1,3 @@
 # Config Reference
 
-This gives you a reference on server configuration.
+This section gives you a reference on server configuration.

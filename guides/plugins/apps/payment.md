@@ -807,4 +807,4 @@ The following lists are all possible refund state options:
 
 ## API docs
 
-{% page-ref page="../../../resources/references/app-reference/payment-reference.md" %}
+You can further take a look at [Payment references](../../../resources/references/app-reference/payment-reference.md).

@@ -166,11 +166,3 @@ By default, Shopware provides the server-side rendered Storefront as a default p
 {% hint style="info" %}
 All this comes at a price: The admin preview of your content is only as representative of your content presentation as your presentation channel resembles it. **A major implication for headless frontends.** For that reason, Shopware PWA has functionality built into the plugin, allowing you to preview content pages in the PWA.
 {% endhint %}
-
-## Further reading
-
-{% page-ref page="../../../guides/plugins/plugins/content/cms/add-cms-block.md" %}
-
-{% page-ref page="../../../guides/plugins/apps/content/cms/add-custom-cms-blocks.md" %}
-
-{% page-ref page="../../../guides/plugins/plugins/content/cms/add-cms-element.md" %}
