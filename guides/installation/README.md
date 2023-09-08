@@ -12,7 +12,7 @@ There are a couple of ways to get Shopware running on your system, together with
 
     * [Dockware](community/dockware.md) - This is a managed docker setup for Shopware 6 by Shopware agency [dasistweb](https://www.dasistweb.de/).
 
-* Production setup
+### Production setup
     
     * [Symfony Flex](../../guides/installation/template.md)
 
