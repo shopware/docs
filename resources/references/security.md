@@ -4,9 +4,29 @@
 
 This reference presents a comprehensive compilation of all security measures implemented in Shopware 6, along with instructions on how to configure them.
 
+## ACL in the Administration
+
+The Access Control List (ACL) in Shopware ensures that by default, data can only be created, read, updated, or deleted ( CRUD), once the user has specific privileges for a module. [ACL in the Administration](../concepts/framework/architecture/administration-concept.md#acl-in-the-administration)
+
 ## API aware fields
 
 The `ApiAware` flag allows you to control what fields of your entity are exposed to the Store API. For more information, refer to [Flags Reference](core-reference/dal-reference/flags-reference.md).
+
+## Captchas
+
+Captchas helps verify the user's humanity and prevents automated bots or scripts from gaining access. For more information, refer to [Captchas](https://docs.shopware.com/en/shopware-en/settings/basic-information#captcha)
+
+## CORS
+
+TBD
+
+## File access
+
+Shopware 6 stores and processes a wide variety of files. This goes from product images or videos to generated documents such as invoices or delivery notes. This data should be stored securely, and backups should be generated regularly. For more information, refer to [File system](/docs/guides/hosting/infrastructure/filesystem)
+
+## GDPR compliance
+
+GDPR (General Data Protection Regulation) is a comprehensive European Union (EU) regulation that enhances individuals' privacy rights by imposing strict rules on how organizations collect, process, and protect personal data. For more information, refer to [GDPR](https://docs.shopware.com/en/shopware-6-en/tutorials-and-faq/gdpr) guide.
 
 ## HTML sanitizer
 
@@ -16,6 +36,13 @@ HTML sanitizer improves security, reliability, and usability of the text editor 
 
 Shopware 6 provides certain rate limits by default that reduces the risk of brute-force attacks for pages like login or password reset. For more information, refer to [Rate Limiter](../../../guides/hosting/infrastructure/rate-limiter.md) guide.
 
+## Reset sessions when changing password
+
+As soon as a password is changed for a user or customer the session is invalid and the user or customer must log in again. For more information, refer to:
+
+- [User Changelog](https://github.com/shopware/platform/commit/5ea99ee5d7a12bab3a01a64c3948eee7c4188ede)
+- [Customer Changelog](https://github.com/shopware/platform/commit/47b4b094c13f62db860be2f431138bb45c0bd0b6)
+
 ## SameSite cookies
 
 SameSite prevents the browser from sending cookies along with cross-site requests. For more information on this, refer to [SameSite Protection](../../../guides/hosting/configurations/framework/samesite-protection.md).
@@ -23,3 +50,11 @@ SameSite prevents the browser from sending cookies along with cross-site request
 ## Security plugin
 
 Obtaining security fixes without version upgrades is possible through the [Security plugin](../../../guides/hosting/installation-updates/cluster-setup.md#security-plugin).
+
+## Storefront IP Whitelisting
+
+To enable access even during maintenance mode IP addresses can be added [Storefront IP whitelisting](https://docs.shopware.com/en/shopware-6-en/settings/saleschannel#status).
+
+## SQL injection
+
+SQL injection allows an attacker to execute new or modify existing SQL statements to access information that they are not allowed to access. [SQL injection](https://www.doctrine-project.org/projects/doctrine-dbal/en/current/reference/security.html)
