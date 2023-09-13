@@ -366,7 +366,7 @@
     * [Shopware](guides/hosting/configurations/shopware/README.md)
       * [HTML sanitizer](guides/hosting/configurations/shopware/html-sanitizer.md)
       * [Stock](guides/hosting/configurations/shopware/stock.md)
-    * [Framework](guides/hosting/configurations/framework.md)
+    * [Framework](guides/hosting/configurations/framework/README.md)
       * [SameSite protection](guides/hosting/configurations/framework/samesite-protection.md)
   * [Performance](guides/hosting/performance/README.md)
     * [Cache](guides/hosting/performance/caches.md)
