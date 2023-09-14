@@ -5,13 +5,6 @@ area: core
 tags: [event, context, sales-channel-context]
 --- 
 
-# Creating events in Shopware
-
-{% hint style="info" %}
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-11-06-creating-events.md)
-{% endhint %}
-
 ## Context
 
 Events throughout Shopware are quite inconsistent.

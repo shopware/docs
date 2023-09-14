@@ -5,13 +5,6 @@ area: core
 tags: [deprecation, annotations, trigger-deprecation]
 --- 
 
-# Consistent deprecation notices in Core
-
-{% hint style="info" %}
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-02-28-consistent-deprecation-notices-in-core.md)
-{% endhint %}
-
 ## Context
 
 Currently, we use `@deprecated` annotations to warn 3rd party developers that we will introduce some breaking change in the next major version.
