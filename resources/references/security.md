@@ -16,7 +16,11 @@ The `ApiAware` flag allows you to control what fields of your entity are exposed
 
 Captchas helps verify the user's humanity and prevents automated bots or scripts from gaining access. For more information, refer to [Captchas](https://docs.shopware.com/en/shopware-en/settings/basic-information#captcha)
 
-## CORS
+## CSP
+
+[Content Security Policies](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) are used to prevent Cross-Site-Scripting (XSS) attacks, as well as data injection attacks. The content security policy specify from which sources additional content (e.g. images, scripts, ...) can be included.
+
+The default policies are configured over the `shopware.security.csp_templates` symfony container parameter, and can be adjusted over the container configuration.
 
 TBD
 
