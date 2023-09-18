@@ -6,7 +6,7 @@ This reference presents a comprehensive compilation of all security measures imp
 
 ## ACL in the Administration
 
-The Access Control List (ACL) in Shopware ensures that by default, data can only be created, read, updated, or deleted ( CRUD), once the user has specific privileges for a module. [ACL in the Administration](../concepts/framework/architecture/administration-concept.md#acl-in-the-administration)
+The Access Control List (ACL) in Shopware ensures that by default, data can only be created, read, updated, or deleted (CRUD), once the user has specific privileges for a module. [ACL in the Administration](../concepts/framework/architecture/administration-concept.md#acl-in-the-administration)
 
 ## API aware fields
 
