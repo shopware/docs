@@ -12,7 +12,7 @@ This article explains the fundamental steps to deploy Shopware 6 to a certain in
 
 ## Prerequisites
 
-Please make sure you already have a working Shopware 6 instance running and that your repository is based on the [Symfony Flex template](../../installation/template.md) because this article relies on some scripts to exist in your repository.
+Please make sure you already have a working Shopware 6 instance running and that your repository is based on the [Symfony Flex template](../../../installation/template.md) because this article relies on some scripts to exist in your repository.
 
 ### Preparations before the first deployment
 
