@@ -57,7 +57,7 @@ Obtaining security fixes without version upgrades is possible through the [Secur
 
 ## Storefront IP Whitelisting
 
-To enable access even during maintenance mode IP addresses can be added [Storefront IP whitelisting](https://docs.shopware.com/en/shopware-6-en/settings/saleschannel#status).
+To enable access even during maintenance mode, IP addresses can be added to [Storefront IP whitelisting](https://docs.shopware.com/en/shopware-6-en/settings/saleschannel#status).
 
 ## SQL injection
 
