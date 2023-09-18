@@ -8,21 +8,19 @@ This reference presents a comprehensive compilation of all security measures imp
 
 The Access Control List (ACL) in Shopware ensures that by default, data can only be created, read, updated, or deleted (CRUD), once the user has specific privileges for a module. [ACL in the Administration](../../concepts/framework/architecture/administration-concept.md#acl-in-the-administration)
 
-## API aware fields
+## API aware field
 
 The `ApiAware` flag allows you to control what fields of your entity are exposed to the Store API. For more information, refer to [Flags Reference](core-reference/dal-reference/flags-reference.md).
 
-## Captchas
+## Captcha
 
-Captchas helps verify the user's humanity and prevents automated bots or scripts from gaining access. For more information, refer to [Captchas](https://docs.shopware.com/en/shopware-en/settings/basic-information#captcha)
+Captchas help to verify the user's humanity and prevent automated bots or scripts from gaining access. For more information, refer to [Captchas](https://docs.shopware.com/en/shopware-en/settings/basic-information#captcha)
 
 ## CSP
 
 [Content Security Policies](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) (CSPs) are used to prevent Cross-Site-Scripting (XSS) attacks, as well as data injection attacks. This policy specifies the sources from which additional content (e.g., images, scripts, etc.) can be included.
 
 The default policies are configured over the `shopware.security.csp_templates` symfony container parameter and can be adjusted over the container configuration.
-
-TBD
 
 ## File access
 
@@ -47,7 +45,7 @@ As soon as a password is changed for a user or customer the session is invalid a
 - [User Changelog](https://github.com/shopware/platform/commit/5ea99ee5d7a12bab3a01a64c3948eee7c4188ede)
 - [Customer Changelog](https://github.com/shopware/platform/commit/47b4b094c13f62db860be2f431138bb45c0bd0b6)
 
-## SameSite cookies
+## SameSite cookie
 
 SameSite prevents the browser from sending cookies along with cross-site requests. For more information on this, refer to [SameSite Protection](../../../guides/hosting/configurations/framework/samesite-protection.md).
 
