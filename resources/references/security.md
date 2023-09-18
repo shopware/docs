@@ -18,7 +18,7 @@ Captchas helps verify the user's humanity and prevents automated bots or scripts
 
 ## CSP
 
-[Content Security Policies](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) are used to prevent Cross-Site-Scripting (XSS) attacks, as well as data injection attacks. The content security policy specify from which sources additional content (e.g. images, scripts, ...) can be included.
+[Content Security Policies](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) (CSPs) are used to prevent Cross-Site-Scripting (XSS) attacks, as well as data injection attacks. This policy specifies the sources from which additional content (e.g., images, scripts, etc.) can be included.
 
 The default policies are configured over the `shopware.security.csp_templates` symfony container parameter, and can be adjusted over the container configuration.
 
