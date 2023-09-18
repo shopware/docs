@@ -4,6 +4,22 @@ The setup of high-scaling systems differs from a normal installation of Shopware
 
 This guide contains information for everyone who intends to start with such a project.
 
+## Shopware configuration
+
+{% hint style="info" %}
+This configuration is available starting with Shopware version 6.5.6.0
+{% endhint %}
+
+To configure Shopware for a cluster setup, you have to set the following configuration in your shopware.yaml file:
+
+```yaml
+shopware:
+    deployment:
+        cluster_setup: true
+```
+
+This option prevents shopware from running operations locally (meaning only on one node in a cluster), that potentially can corrupt the state of the cluster by having the state of the nodes diverge from each other, e.g. clearing symfony cache files at runtime.
+
 ## Symfony Flex template
 
 Use the [Symfony Flex template](../../installation/template.md) and pin the Shopware versions in the `composer.json` file. This prevents unwanted updates when deploying (without a composer.lock).
