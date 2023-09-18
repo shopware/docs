@@ -14,7 +14,7 @@ The `ApiAware` flag allows you to control what fields of your entity are exposed
 
 ## Captcha
 
-Captchas help to verify the user's humanity and prevent automated bots or scripts from gaining access. For more information, refer to [Captchas](https://docs.shopware.com/en/shopware-en/settings/basic-information#captcha)
+Captchas help to verify the user's humanity and prevent automated bots or scripts from gaining access. For more information, refer to [Captcha](https://docs.shopware.com/en/shopware-en/settings/basic-information#captcha) article.
 
 ## CSP
 
@@ -24,7 +24,7 @@ The default policies are configured over the `shopware.security.csp_templates` s
 
 ## File access
 
-Shopware 6 stores and processes a wide variety of files. This goes from product images or videos to generated documents such as invoices or delivery notes. This data should be stored securely, and backups should be generated regularly. For more information, refer to [File system](/docs/guides/hosting/infrastructure/filesystem)
+Shopware 6 stores and processes a wide variety of files. This goes from product images or videos to generated documents such as invoices or delivery notes. This data should be stored securely, and backups should be generated regularly. For more information, refer to [File system](../../guides/hosting/infrastructure/filesystem)
 
 ## GDPR compliance
 
@@ -40,7 +40,7 @@ Shopware 6 provides certain rate limits by default that reduces the risk of brut
 
 ## Reset sessions when changing password
 
-As soon as a password is changed for a user or customer the session is invalid and the user or customer must log in again. For more information, refer to:
+As soon as a password is changed for a user or customer, the session is invalid and the user or customer must log in again. For more information, refer to:
 
 - [User Changelog](https://github.com/shopware/platform/commit/5ea99ee5d7a12bab3a01a64c3948eee7c4188ede)
 - [Customer Changelog](https://github.com/shopware/platform/commit/47b4b094c13f62db860be2f431138bb45c0bd0b6)
