@@ -38,6 +38,65 @@ This function resolves out the corresponding media objects for the given IDs in 
 {% endblock %}
 ```
 
+```text
+//dump() output
+Shopware\Core\Content\Media\MediaEntity {#5302 ▼
+  #extensions: array:1 [▶]
+  #_uniqueIdentifier: "f69ab8ae42d04e17b2bab5ec2ff0a93c"
+  #versionId: null
+  #translated: array:3 [▶]
+  #createdAt: DateTimeImmutable @1691755154 {#7298 ▶}
+  #updatedAt: DateTimeImmutable @1691755154 {#6848 ▶}
+  -_entityName: "media"
+  -_fieldVisibility: Shopware\Core\Framework\DataAbstractionLayer\FieldVisibility {#4511 ▶}
+  #userId: "0189e47673a671198c21a14f15cf563e"
+  #mimeType: "image/jpeg"
+  #fileExtension: "jpg"
+  #fileSize: 21914
+  #title: null
+  #metaDataRaw: null
+  #mediaTypeRaw: "O:47:"Shopware\Core\Content\Media\MediaType\ImageType":3:{s:13:"\x00*\x00extensions";a:0:{}s:7:"\x00*\x00name";s:5:"IMAGE";s:8:"\x00*\x00flags";a:0:{}}"
+  #metaData: array:3 [▶]
+  #mediaType: Shopware\Core\Content\Media\MediaType\ImageType {#6626 ▶}
+  #uploadedAt: DateTimeImmutable @1691755154 {#7376 ▶}
+  #alt: null
+  #url: "http://YOUR_SHOP_URL.TEST/media/f5/d3/45/1691755154/shirt_red_600x600.jpg"
+  #fileName: "shirt_red_600x600"
+  #user: null
+  #translations: null
+  #categories: null
+  #productManufacturers: null
+  #productMedia: null
+  #avatarUsers: null
+  #thumbnails: Shopware\Core\Content\Media\Aggregate\MediaThumbnail\MediaThumbnailCollection {#7086 ▶}
+  #mediaFolderId: "0189e474eda5709fb8ef632219dd6fc0"
+  #mediaFolder: null
+  #hasFile: true
+  #private: false
+  #propertyGroupOptions: null
+  #mailTemplateMedia: null
+  #tags: null
+  #thumbnailsRo: "O:77:"Shopware\Core\Content\Media\Aggregate\MediaThumbnail\MediaThumbnailCollection":2:{s:13:"\x00*\x00extensions";a:0:{}s:11:"\x00*\x00elements";a:4:{s:32:"018 ▶"
+  #documentBaseConfigs: null
+  #shippingMethods: null
+  #paymentMethods: null
+  #productConfiguratorSettings: null
+  #orderLineItems: null
+  #cmsBlocks: null
+  #cmsSections: null
+  #cmsPages: null
+  #documents: null
+  #appPaymentMethods: null
+  #productDownloads: null
+  #orderLineItemDownloads: null
+  #customFields: null
+  #id: "f69ab8ae42d04e17b2bab5ec2ff0a93c"
+}
+```
+
+{% endraw %}
+{% endcode %}
+
 ## Avoid loops
 
 This function performs a query against the database on every invocation and should therefore not be used within a loop. To resolve multiple ID's at once just pass it an array of ID's instead.
@@ -73,4 +132,20 @@ To read the media objects within the product listing we recommend the following 
         {{ dump(sportsMedia) }}
     {% endfor %}
 {% endblock %}
+```
+
+## Display image
+
+Use a direct html `img` tag to load the original image.
+
+```twig
+<img src="{{ sportsMedia.url }}" alt="{{ sportsMedia.alt }}">
+```
+
+You can also use the `sw_thumbnails` twig function to load viewport specific images.
+
+```twig
+{% sw_thumbnails 'my-sportsMedia-thumbnails' with {
+media: sportsMedia
+} %}
 ```
