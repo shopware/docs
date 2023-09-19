@@ -89,7 +89,7 @@ class EntityWriteSubscriber implements EventSubscriberInterface
 
 {% endcode %}
 
-After creating the event subscriber, you have to register it. If you don't know how that's done, head over to our guide about [Listening to events](../../plugin-fundamentals/listening-to-events.md).
+After creating the event subscriber, you have to register it. If you don't know how it is done, then refer to the [Listening to events](../../plugin-fundamentals/listening-to-events.md) guide.
 
 ### `Shopware\Core\Framework\DataAbstractionLayer\Event\EntityDeleteEvent`
 
