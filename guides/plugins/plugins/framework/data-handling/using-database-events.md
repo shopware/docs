@@ -93,9 +93,9 @@ After creating the event subscriber, you have to register it. If you don't know 
 
 ### `Shopware\Core\Framework\DataAbstractionLayer\Event\EntityDeleteEvent`
 
-This event allows you to hook in to the process of removing an entity. You have the possibility to execute code before and after the entity is removed via the success and error callbacks. You can call the `addSuccess` or `addError` methods with a Closure.
+This event allows you to hook into the process of removing an entity. You have the possibility to execute the code before and after the entity is removed via the "success" and "error" callbacks. You can call the `addSuccess` or `addError` methods with a closure.
 
-You can use this event to capture state and perform actions after an entity is removed. For example, you could collect the entity name before it is deleted, then after it is deleted, use the name to remove the respective data from a third party system via an API call.
+You can use this event to capture state and perform actions after an entity is removed. For example, you could collect the entity name before it is deleted, then after it is deleted, use the name to remove the respective data from a third-party system via an API call.
 
 Below is an example subscriber listening to the generic entity delete event, filtering for CMS page deletions, and then performing a different action based on whether the delete was successful or not.
 
