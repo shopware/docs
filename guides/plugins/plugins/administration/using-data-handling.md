@@ -110,7 +110,6 @@ Shopware.Component.register('swag-basic-example', {
         criteria.getAssociation('categories')
             .addSorting(Criteria.sort('category.name', 'ASC'));
 
-
         this.productRepository.create('product');
 
         this.productRepository
@@ -585,7 +584,6 @@ Shopware.Component.register('swag-basic-example', {
             .get('some-id', Shopware.Context.api)
             .then(product => {
                 this.product = product;
-
 
             });
     },

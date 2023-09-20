@@ -9,4 +9,3 @@
 | `composer run e2e:prepare`            | Install dependencies and prepare database for Cypress usage      |
 | `composer run e2e:admin:run`          | Runs Cypress' admin e2e tests in CLI                             |
 | `composer run e2e:storefront:run`     | Runs Cypress' storefront e2e tests in CLI                        |
-

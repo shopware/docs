@@ -6,17 +6,17 @@ Check out the points that affect your extension and go through them before submi
 
 We assign three statuses when testing your extension:
 
-{% hint style="success" %}
+::: tip
 OK: This point was tested and passed
-{% endhint %}
+:::
 
-{% hint style="danger" %}
+::: danger
 Failed: This point was tested, and errors were found
-{% endhint %}
+:::
 
-{% hint style="warning" %}
+::: warning
 Not necessary: This point does not need to be tested
-{% endhint %}
+:::
 
 ## Test criteria
 

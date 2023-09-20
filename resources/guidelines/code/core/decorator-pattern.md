@@ -1,9 +1,9 @@
 
 
-{% hint style="info" %}
+::: info
 This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/code/core/decorator-pattern.md)
-{% endhint %}
+:::
 
 # Decorator pattern
 
@@ -31,6 +31,7 @@ When defining a service, which should be decorated, you have to follow these rul
 These rules are enforced by the `\Shopware\Core\DevOps\StaticAnalyze\PHPStan\Rules\DecorationPatternRule` class.
 
 ## Example
+
 ```php
 abstract class AbstractRuleLoader
 {

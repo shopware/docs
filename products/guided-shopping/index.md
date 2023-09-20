@@ -6,9 +6,9 @@ You can create interactive live video events for your customers straight from yo
 
 ![ ](../../.gitbook/assets/products-digitalSalesRooms.png)
 
-{% hint style="warning" %}
+::: warning
 *Digital Sales Rooms* is a commercial extension and is not available as open source.
-{% endhint %}
+:::
 
 ## Prerequisites
 
@@ -16,9 +16,9 @@ Review the below minimum operating requirements before you install the *Digital 
 
 * Instance of [Shopware 6](../../guides/installation/devenv.md) (version 6.4.18.0 and above).
 
-{% hint style="warning" %}
+::: warning
 The compliant Node.js version for PWA setup is v14.0.0 to v16.0.0.
-{% endhint %}
+:::
 
 * Instance of [Shopware PWA](https://github.com/vuestorefront/shopware-pwa)(version 1.2.0 and above).
 * Install and activate [PWA plugin](https://github.com/shopware/SwagShopwarePwa)(version 0.3.3 and above) in Shopware 6 instance.

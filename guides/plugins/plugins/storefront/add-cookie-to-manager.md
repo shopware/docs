@@ -16,9 +16,8 @@ Adding custom cookies basically requires you to decorate a service, the `CookieP
 
 Start with creating the `services.xml` entry and with decorating the `CookieProviderInterface`. The `CookieProvider` service was already built before we decided to use abstract classes for decorations, so don't be confused here.
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
-
-```markup
+```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -35,8 +34,6 @@ Start with creating the `services.xml` entry and with decorating the `CookieProv
 </container>
 ```
 
-{% endcode %}
-
 In the next step we'll create the actual decorated class.
 
 ### Creating the decorated service
@@ -47,9 +44,8 @@ The interface mentioned above requires you to implement a method called `getCook
 
 Let's have a look at an example:
 
-{% code title="<plugin root>/src/Service/CustomCookieProvider.php" %}
-
 ```php
+// <plugin root>/src/Service/CustomCookieProvider.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -105,8 +101,6 @@ class CustomCookieProvider implements CookieProviderInterface {
     }
 }
 ```
-
-{% endcode %}
 
 As already mentioned, we're overwriting the method `getCookieGroups` and in there we're calling the original method first. We then proceed to merge our own custom group into it, as well as a custom cookie.
 

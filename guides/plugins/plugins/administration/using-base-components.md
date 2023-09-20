@@ -16,14 +16,11 @@ As mentioned before in the introduction, all components used in the Shopware 6 A
 
 Using base components in your own Administration templates is rather simple. In the example below we will use the `sw-text-field` in our template, which simply renders a `text` input tag, but also supports some fancy functionality, like inheritance, etc:
 
-{% code title="<plugin-root>/src/Resources/app/administration/app/src/component/example-component/example.html.twig" %}
-
-```markup
+```html
+// <plugin-root>/src/Resources/app/administration/app/src/component/example-component/example.html.twig
 <div>
     <sw-text-field />
 </div>
 ```
-
-{% endcode %}
 
 That's basically it. To continue building beautiful custom components, learn how to write templates and how to include them in your components [here](writing-templates.md)

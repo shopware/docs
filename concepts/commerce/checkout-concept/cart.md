@@ -123,7 +123,7 @@ As you can see in the diagram above, the cart is modified during the enrichment 
 
 ## Cart storage
 
-Contrary to other entities in the system, the cart is not managed through the [Data Abstraction Layer](https://developer.shopware.com/docs/concepts/framework/data-abstraction-layer)\(DAL)\. The cart can only be written and retrieved as a whole. As discussed in the sections, the workload of Shopware 6 can only be performed on the whole object in memory.
+Contrary to other entities in the system, the cart is not managed through the [Data Abstraction Layer](/docs/concepts/framework/data-abstraction-layer)\(DAL)\. The cart can only be written and retrieved as a whole. As discussed in the sections, the workload of Shopware 6 can only be performed on the whole object in memory.
 
 ## Cart control
 

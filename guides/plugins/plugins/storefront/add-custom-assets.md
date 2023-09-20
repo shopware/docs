@@ -43,10 +43,8 @@ Afterwards, you need to make sure your plugin assets are copied over to the publ
 
 Let's think about a simple example, displaying our image right in the base template of the Storefront. In there we're able to link our assets by simply using the [asset](https://symfony.com/doc/current/templates.html#linking-to-css-javascript-and-image-assets) function Symfony provides:
 
-{% code title="<plugin root>/src/Resources/views/storefront/base.html.twig" %}
-{% raw %}
-
-```text
+```twig
+// <plugin root>/src/Resources/views/storefront/base.html.twig
 {% sw_extends '@Storefront/storefront/base.html.twig' %}
 
 {% block base_main %}
@@ -58,24 +56,18 @@ Let's think about a simple example, displaying our image right in the base templ
 {% endblock %}
 ```
 
-{% endraw %}
-{% endcode %}
-
 That's basically all you need to do to link your plugin's custom assets.
 
 ### Using custom assets in your CSS files
 
 There's one more interesting possibility though. If you want, you can use your custom asset in your CSS files. Look at the following example:
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/scss/base.scss" %}
-
 ```css
+// <plugin root>/src/Resources/app/storefront/src/scss/base.scss
 body {
     background-image: url("/bundles/swagbasicexample/image.png");
 }
 ```
-
-{% endcode %}
 
 You see, we can use our custom assets by using the asset path provided by the `bundle` directory.
 
@@ -83,7 +75,7 @@ You see, we can use our custom assets by using the asset path provided by the `b
 
 Of course, you're able to use custom assets in themes as well. In this context there's another way on integration custom assets into your theme. Please take a look on the guide about adding assets to a theme for further detail:
 
-{% page-ref page="../../themes/add-assets-to-theme.md" %}
+<PageRef page="../../themes/add-assets-to-theme" />
 
 ## Next steps
 

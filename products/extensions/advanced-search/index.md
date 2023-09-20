@@ -1,8 +1,8 @@
 # Advanced Search
 
-{% hint style="info" %}
+::: info
 Advanced Search is available starting with Commercial 5.5.0
-{% endhint %}
+:::
 
 Shopware Advanced Search is a part of the Commercial plugin available along with the Evolve and Beyond plan.
 

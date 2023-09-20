@@ -7,10 +7,10 @@ tags: [flow, app]
 
 # Integrate an app into the flow event
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-06-17-integrate-app-into-flow-event.md)
-{% endhint %}
+:::
 
 # 2022-10-11 - Integrate an app into the flow event
 
@@ -30,6 +30,7 @@ We define flow aware classes to detect which data will be available in the event
 * We create an interface CustomAppAware that will use as implementation for the custom event from the app.
 
 **Example pseudocode**
+
 ```php
 interface CustomAppAware
 {
@@ -50,6 +51,7 @@ Flow data storer saves the data from the event as the [StorableFlow](../../adr/a
 * When the API triggers a custom trigger, the data in the body will be stored in FlowStore by their keys.
 
 *Example to define data from the API:*
+
 ```json
     {
         "customerId": "d20e4d60e35e4afdb795c767eee08fec",
@@ -60,18 +62,21 @@ Flow data storer saves the data from the event as the [StorableFlow](../../adr/a
 ```
 
 *After that, at actions we can get data thought FlowStorer.*
+
 ```php
     $salesChanelId = $flow->getData(MailAware::SALES_CHANNEL_ID));
     $customer = $flow->getData(CustomerAware::CUSTOMER_ID));
 ```
 
 *Or we can use the data when defining the email template.*
+
 ```html
     <h3>Welcome to {{ shopName }}</h3>
     <h1>Visit us at: {{ url }} </h1>
 ```
 
 **Example pseudocode**
+
 ```php
 class CustomAppStore extends FlowStorer
 {
@@ -101,6 +106,7 @@ Events must implement FlowEventAware to be able to available in the flow builder
 * We create a new CustomAppEvent class that can be triggered by the App system.
 
 **Example pseudocode**
+
 ```php
 class CustomAppEvent extends Event implements CustomAppAware, FlowEventAware
 {
@@ -123,6 +129,7 @@ BusinessEventCollector collects events that implemented FlowEventAware and outpu
 * We will collect all `CustomAppEvent` events from activated apps.
 
 **Example pseudocode**
+
 ```php
 public function collect(Context $context): BusinessEventCollectorResponse
 {
@@ -152,6 +159,7 @@ We will provide an APIs to trigger CustomAppEvent.
 * We will provide an API. The app calls the API to trigger the custom event and needs to provide the event name and the data. The API will create a CustomAppEvent object and dispatch it with the information provided.
 
 **Example pseudocode**
+
 ```php
     /**
      * @Since("6.5.2.0")
@@ -171,7 +179,6 @@ We will provide an APIs to trigger CustomAppEvent.
         $this->eventDispatcher->dispatch(new CustomAppEvent($flowEvent->getName(), $data));
         //return http status code 200 and success message
     }
-
 ```
 
 ## Defining an App flow event in Xml
@@ -217,6 +224,7 @@ The flow events are configured in a `<appRoot>/src/Resources/flow.xml` file. We 
     - action.stop.flow
 
 A complete XML structure looks like this:
+
 ```xml
 <flow-extensions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://test-flow.com/flow-1.0.xsd">
     <flow-events>

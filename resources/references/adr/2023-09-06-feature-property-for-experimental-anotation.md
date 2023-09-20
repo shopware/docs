@@ -7,10 +7,10 @@ tags: [process, backwards compatibility]
 
 # Add Feature property to `@experimental` annotation
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2023-09-06-feature-property-for-experimental-anotation.md)
-{% endhint %}
+:::
 
 ## Context
 Our current development process uses ['Experimental features'](./2023-05-10-experimental-features.md) to publish features in an early state to gather feedback regarding those features.
@@ -45,6 +45,7 @@ Implementation of the new `feature` property for the `@experimental` annotation 
 
 Examples of usage:
 php
+
 ```php
 /**
  * @experimental stableVersion:v6.6.0 feature:wishlist
@@ -55,6 +56,7 @@ class testClass()
 }
 ```
 js
+
 ```js
 /**
  * @experimental stableVersion:v6.6.0 feature:wishlist
@@ -65,15 +67,16 @@ Component.register('sw-new-component', {
 ```
 
 In twig blocks can be wrapped as being experimental:
+
 ```twig
 {# @experimental stableVersion:v6.6.0 feature:wishlist #}
 {% block awesome_new_feature %}
    ...
 {% endblock %}
-
 ```
 
 In addition to that, we can also mark the whole template as experimental:
+
 ```twig
 {# @experimental stableVersion:v6.6.0 feature:wishlist #}
 {% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
@@ -91,6 +94,7 @@ To achieve this linkage, we recommend the following:
 Example:
 
 feature.yaml
+
 ```yaml
 shopware:
   feature:
@@ -101,6 +105,7 @@ shopware:
         description: "experimental stableVersion:v6.6.0 feature:wishList"
 ```
 New experimental class
+
 ```php
 /**
  * @experimental stableVersion:v6.6.0 feature:wishList
@@ -110,6 +115,7 @@ class Foo
 }
 ```
 Connection point
+
 ```php
 if (Feature.isActive('wishlist') {
         $obj = new Foo();

@@ -8,7 +8,7 @@ Users will have to specify a gateway for the connection. The gateway defines the
 
 The gateway defines how to communicate from Shopware 6 with your source system, like Shopware 5. Every profile needs to have at least one gateway. Gateways need to be defined in the corresponding service xml using the `shopware.migration.gateway` tag:
 
-```markup
+```html
 <!-- Shopware Profile Gateways -->
 <service id="SwagMigrationAssistant\Profile\Shopware\Gateway\Local\ShopwareLocalGateway">
     <argument type="service" id="SwagMigrationAssistant\Profile\Shopware\Gateway\Local\ReaderRegistry" />

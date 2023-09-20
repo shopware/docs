@@ -4,65 +4,65 @@
 
 When developing with Shopware, you will probably notice that changes in JavaScript require commands to build the Administration or Storefront, depending on your change using the following commands:
 
-{% tabs %}
-{% tab title="Administration (Composer)" %}
+<Tabs>
+<Tab title="Administration (Composer)">
 
 ```bash
 composer run build:js:admin
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Administration (Shell)" %}
+<Tab title="Administration (Shell)">
 
 ```bash
 ./bin/build-administration.sh
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Storefront (Composer)" %}
+<Tab title="Storefront (Composer)">
 
 ```bash
 composer run build:js:storefront
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Storefront (Shell)" %}
+<Tab title="Storefront (Shell)">
 
 ```bash
 ./bin/build-storefront.sh
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 This building process is always time-consuming. Alternatively, to speed up the process, Shopware's Production template offers composer commands to enable Hot Module Reloading/watchers to automatically reload and preview your changes.
 
-{% hint style="info" %}
+::: info
 This procedure doesn't replace the final build process when you finish developing your feature.
-{% endhint %}
+:::
 
 To enable Hot Module Reloading, use the following composer commands:
 
-{% tabs %}
-{% tab title="Administration" %}
+<Tabs>
+<Tab title="Administration">
 
 ```bash
 composer run watch:admin
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Storefront" %}
+<Tab title="Storefront">
 
 ```bash
 composer run watch:storefront
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ### Environment variables
 

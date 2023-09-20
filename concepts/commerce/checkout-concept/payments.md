@@ -2,9 +2,9 @@
 
 Shopware 6 payment system is an integral part of the checkout process. A payment is applied to a transaction of an order. As with any order change, this is done through the state machine. At its core, the payment system is composed of payment handlers. These extend Shopware to support multiple different payment types. A list of all payment handlers is stored in the database.
 
-{% hint style="info" %}
+::: info
 If you want to directly skip to implementation details, then head to the [Add payment plugin](../../../guides/plugins/plugins/checkout/payment/add-payment-plugin.md) section.
-{% endhint %}
+:::
 
 ## Payment flow
 
@@ -39,9 +39,9 @@ Some payment integrations already create a payment reservation or authorization 
 
 This step can only be executed after an order has been placed. It starts the payment by determining the correct payment handler for the selected payment method.
 
-{% hint style="info" %}
+::: info
 Although from a functional perspective, steps 2 and 3 are separated but in the default Storefront both are initiated in the same request.
-{% endhint %}
+:::
 
 #### 3.1 Payment handler
 
@@ -67,12 +67,12 @@ This step is only executed for asynchronous payments. After being redirected, th
 
 This step is only executed for asynchronous payments. It is triggered by the callback URL (which points to `/payment/finalize-transaction`) that has been provided to the payment gateway in step 3.1. Depending on the payment success, Shopware updates the transaction status and redirects the user to the corresponding finish page from step 3.
 
-{% hint style="warning" %}
+::: warning
 **Disclaimer**
 
 The actual implementation of payment integrations differs between providers. Therefore, our specification does not include any guidelines about payment states or specific API calls to be made. Some integrations share data between the steps or provide and call upon webhooks after the payment process has been finished. These implementations go beyond our standards.
-{% endhint %}
+:::
 
 ## Next steps
 
-{% page-ref page="../../../guides/plugins/plugins/checkout/payment/add-payment-plugin.md" %}
+<PageRef page="../../../guides/plugins/plugins/checkout/payment/add-payment-plugin" />

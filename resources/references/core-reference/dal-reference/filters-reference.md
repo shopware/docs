@@ -15,15 +15,17 @@
 
 The `Equals` filter allows you to check fields for an exact value. The following SQL statement is executed in the background: `WHERE stock = 10`.
 
-{% tabs %}
-{% tab title="PHP Criteria" %}
+<Tabs>
+<Tab title="PHP Criteria">
+
 ```php
 $criteria = new Criteria();
 $criteria->addFilter(new EqualsFilter('stock', 10));
 ```
-{% endtab %}
+</Tab>
 
-{% tab title="API Criteria" %}
+<Tab title="API Criteria">
+
 ```javascript
  {
     "filter": [
@@ -35,25 +37,27 @@ $criteria->addFilter(new EqualsFilter('stock', 10));
     ]
 }
 ```
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## EqualsAny
 
 The `EqualsAny` filter allows you to filter a field where at least one of the defined values matches exactly. The following SQL statement is executed in the background: `WHERE productNumber IN ('3fed029475fa4d4585f3a119886e0eb1', '77d26d011d914c3aa2c197c81241a45b')`.
 
-{% tabs %}
-{% tab title="PHP Criteria" %}
+<Tabs>
+<Tab title="PHP Criteria">
+
 ```php
 $criteria = new Criteria();
 $criteria->addFilter(
     new EqualsAnyFilter('productNumber', ['3fed029475fa4d4585f3a119886e0eb1', '77d26d011d914c3aa2c197c81241a45b'])
 );
 ```
-{% endtab %}
+</Tab>
 
-{% tab title="API Criteria" %}
-```javascript
+<Tab title="API Criteria">
+
+```json
 {
     "filter": [
         { 
@@ -67,23 +71,25 @@ $criteria->addFilter(
     ]
 }
 ```
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Contains
 
 The `Contains` Filter allows you to filter a field to an approximate value, where the passed value must be contained as a full value. The following SQL statement is executed in the background: `WHERE name LIKE '%Lightweight%'`.
 
-{% tabs %}
-{% tab title="PHP Criteria" %}
+<Tabs>
+<Tab title="PHP Criteria">
+
 ```php
 $criteria = new Criteria();
 $criteria->addFilter(new ContainsFilter('name', 'Lightweight'));
 ```
-{% endtab %}
+</Tab>
 
-{% tab title="API Criteria" %}
-```javascript
+<Tab title="API Criteria">
+
+```json
 {
     "filter": [
         { 
@@ -94,8 +100,8 @@ $criteria->addFilter(new ContainsFilter('name', 'Lightweight'));
     ]
 }
 ```
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Range
 
@@ -108,8 +114,9 @@ The `Range` filter allows you to filter a field to a value space. This can work 
 
 The following SQL statement is executed in the background: `WHERE stock >= 20 AND stock <= 30`.
 
-{% tabs %}
-{% tab title="PHP Criteria" %}
+<Tabs>
+<Tab title="PHP Criteria">
+
 ```php
 $criteria = new Criteria();
 $criteria->addFilter(
@@ -119,10 +126,11 @@ $criteria->addFilter(
     ])
 );
 ```
-{% endtab %}
+</Tab>
 
-{% tab title="API Criteria" %}
-```javascript
+<Tab title="API Criteria">
+
+```json
 {
     "filter": [
         { 
@@ -136,15 +144,16 @@ $criteria->addFilter(
     ]
 }
 ```
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Not
 
 The `Not` Filter is a container which allows to negate any kind of filter. The `operator` allows you to define the combination of queries within the NOT filter \(`OR` and `AND`\). The following SQL statement is executed in the background: `WHERE !(stock = 1 OR availableStock = 1) AND active = 1`:
 
-{% tabs %}
-{% tab title="PHP Criteria" %}
+<Tabs>
+<Tab title="PHP Criteria">
+
 ```php
 $criteria = new Criteria();
 $criteria->addFilter(new EqualsFilter('active', true));
@@ -159,10 +168,11 @@ $criteria->addFilter(
     )
 );
 ```
-{% endtab %}
+</Tab>
 
-{% tab title="API Criteria" %}
-```javascript
+<Tab title="API Criteria">
+
+```json
 {
     "filter": [
         { 
@@ -189,15 +199,16 @@ $criteria->addFilter(
     ]
 }
 ```
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Multi
 
 The `Multi` Filter is a container, which allows to set logical links between filters. The `operator` allows you to define the links between the queries within the `Multi` filter \(`OR` and `AND`\). The following SQL statement is executed in the background: `WHERE (stock = 1 OR availableStock = 1) AND active = 1`.
 
-{% tabs %}
-{% tab title="PHP Criteria" %}
+<Tabs>
+<Tab title="PHP Criteria">
+
 ```php
 $criteria = new Criteria();
 $criteria->addFilter(
@@ -213,9 +224,10 @@ $criteria->addFilter(
     new EqualsFilter('active', true)
 );
 ```
-{% endtab %}
+</Tab>
 
-{% tab title="API Criteria" %}
+<Tab title="API Criteria">
+
 ```javascript
  {
     "filter": [
@@ -243,23 +255,25 @@ $criteria->addFilter(
     ]
 }
 ```
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Prefix
 
 The `Prefix` Filter allows you to filter a field to an approximate value, where the passed value must be the start of a full value. The following SQL statement is executed in the background: `WHERE name LIKE 'Lightweight%'`.
 
-{% tabs %}
-{% tab title="PHP Criteria" %}
+<Tabs>
+<Tab title="PHP Criteria">
+
 ```php
 $criteria = new Criteria();
 $criteria->addFilter(new PrefixFilter('name', 'Lightweight'));
 ```
-{% endtab %}
+</Tab>
 
-{% tab title="API Criteria" %}
-```javascript
+<Tab title="API Criteria">
+
+```json
 {
     "filter": [
         {
@@ -270,23 +284,25 @@ $criteria->addFilter(new PrefixFilter('name', 'Lightweight'));
     ]
 }
 ```
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Suffix
 
 The `Suffix` Filter allows you to filter a field to an approximate value, where the passed value must be the end of a full value. The following SQL statement is executed in the background: `WHERE name LIKE '%Lightweight'`.
 
-{% tabs %}
-{% tab title="PHP Criteria" %}
+<Tabs>
+<Tab title="PHP Criteria">
+
 ```php
 $criteria = new Criteria();
 $criteria->addFilter(new SuffixFilter('name', 'Lightweight'));
 ```
-{% endtab %}
+</Tab>
 
-{% tab title="API Criteria" %}
-```javascript
+<Tab title="API Criteria">
+
+```json
 {
     "filter": [
         {
@@ -297,6 +313,5 @@ $criteria->addFilter(new SuffixFilter('name', 'Lightweight'));
     ]
 }
 ```
-{% endtab %}
-{% endtabs %}
-
+</Tab>
+</Tabs>

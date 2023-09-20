@@ -1,8 +1,8 @@
 # Add custom flow actions
 
-{% hint style="info" %}
+::: info
 Custom flow actions in Shopware Apps are available starting with Shopware 6.4.10.0 and are not supported in previous versions.
-{% endhint %}
+:::
 
 Besides the default actions, developers can add custom, predefined, and configurable web hook actions to the flow builder.
 
@@ -36,9 +36,9 @@ To get started with your app, create an `apps` folder inside the `custom` folder
     └── plugins
 ```
 
-{% hint style="info" %}
+::: info
 From 6.5.2.0, you can define the flow action in `flow.xml`. The `flow-action.xml` will be removed from 6.6.0.0.
-{% endhint %}
+:::
 
 | File name | Description |
 | :--- | :--- |
@@ -52,9 +52,8 @@ From 6.5.2.0, you can define the flow action in `flow.xml`. The `flow-action.xml
 
 The manifest file is the central point of your app. It defines the interface between your app and the Shopware instance. It provides all the information concerning your app, as seen in the minimal version below:
 
-{% code title="manifest.xml" %}
-
 ```xml
+// manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
@@ -72,19 +71,16 @@ The manifest file is the central point of your app. It defines the interface bet
 </manifest>
 ```
 
-{% endcode %}
-
-{% hint style="warning" %}
+::: warning
 The name of your app that you provide in the manifest file needs to match the folder name of your app.
-{% endhint %}
+:::
 
 ## Define the flow action
 
 To create a flow action, you need to define a `<flow-action>` block within a file called `flow-action.xml`. Each `<flow-action>` represents one action and you can define an arbitrary number of actions.
 
-{% code title="Resources/flow-action.xml" %}
-
 ```xml
+// Resources/flow-action.xml
 <flow-actions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/FlowAction/Schema/flow-action-1.0.xsd">
     <flow-action>
         ... # The first action
@@ -98,8 +94,6 @@ To create a flow action, you need to define a `<flow-action>` block within a fil
     ...
 </flow-actions>
 ```
-
-{% endcode %}
 
 From 6.5.2.0, to create a flow action, you must define a `<flow-actions>` block within a file called `flow.xml`. Each `<flow-action>` in `<flow-actions>` represents one action, and you can define an arbitrary number of actions.
 
@@ -119,8 +113,6 @@ From 6.5.2.0, to create a flow action, you must define a `<flow-actions>` block 
     ...
 </flow-extensions>
 ```
-
-{% endcode %}
 
 A single flow action would look like this:
 
@@ -273,9 +265,9 @@ Available input field attributes:
 
 You assemble your configuration from a variety of input fields.
 
-{% hint type="info" %}
+::: info
 To get more information on how to create configuration forms, see [Plugin Configurations](../../plugins/plugin-fundamentals/add-plugin-configuration.md#the-different-types-of-input-field).
-{% endhint %}
+:::
 
 | Type | Shopware component |
 | :--- | :--- |

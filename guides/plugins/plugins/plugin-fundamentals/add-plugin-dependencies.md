@@ -10,7 +10,7 @@ Since every plugin has to own a `composer.json` file, you can simply refer to th
 
 So, those are example lines of the `SwagBasicExample` plugin's `composer.json`:
 
-```javascript
+```json
 {
     "name": "swag/swag-basic-example",
     "description": "Plugin quick start plugin",
@@ -23,9 +23,8 @@ Important to note is the `name` as well as the `version` mentioned here, the res
 
 In order to require the `SwagBasicExample` plugin now, you simply have to add these two information to your own `composer.json` as a key value pair:
 
-{% code title="<plugin root>/composer.json" %}
-
-```javascript
+```js
+// <plugin root>/composer.jsonon
 {
     "name": "swag/plugin-dependency",
     "description": "Plugin requiring other plugins",
@@ -60,8 +59,6 @@ In order to require the `SwagBasicExample` plugin now, you simply have to add th
     }
 }
 ```
-
-{% endcode %}
 
 Have a detailed look at the `require` keyword, which now requires both the Shopware 6 version, which **always** has to be mentioned in your `composer.json`, as well as the previously mentioned plugin and its version. Just as in composer itself, you can also use version wildcards, such as `v1.0.*` to only require the other plugin's minor version to be 1.1, not taking the patch version into account when it comes to find the matching plugin version.
 

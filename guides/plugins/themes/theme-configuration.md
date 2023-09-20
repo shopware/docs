@@ -1,8 +1,8 @@
 # Theme Configuration
 
-{% hint style="info" %}
+::: info
 The `configInheritance` is available from Shopware Version 6.4.8.0
-{% endhint %}
+:::
 
 ## Overview
 
@@ -12,15 +12,14 @@ This guide shows you how the theme configuration works and explains the possibil
 
 This guide is built upon the guide on creating a first theme:
 
-{% page-ref page="create-a-theme.md" %}
+<PageRef page="create-a-theme" />
 
 ## Structure of theme configuration
 
 The theme configuration for a theme is located in the `theme.json` file `<plugin root>/src/Resources` folder. Open up the `<plugin root>/src/Resources/theme.json` file with your favorite code-editor. The configuration looks like this.
 
-{% code title="<plugin root>/src/Resources/theme.json" %}
-
-```javascript
+```js
+// <plugin root>/src/Resources/theme.jsonon
 {
   "name": "SwagBasicExampleTheme",
   "author": "Shopware AG",
@@ -49,17 +48,14 @@ The theme configuration for a theme is located in the `theme.json` file `<plugin
 }
 ```
 
-{% endcode %}
-
-{% hint style="info" %}
+::: info
 If you make changes or additions to the `theme.json` file, you must then execute the `theme:refresh` command to put them into effect. Run `bin/console theme:refresh` in order to update your theme.
-{% endhint %}
+:::
 
 Let's have a closer look at each section.
 
-{% code title="<plugin root>/src/Resources/theme.json" %}
-
-```javascript
+```js
+// <plugin root>/src/Resources/theme.jsonon
 {
   "name": "SwagBasicExampleTheme",
   "author": "Shopware AG",
@@ -71,15 +67,12 @@ Let's have a closer look at each section.
 }
 ```
 
-{% endcode %}
-
 Here change the `name` of your theme and the `author`. The `description` section is optional and as you notice it is also translatable.
 
 The `views` section controls the template inheritance. This will be covered in the [Theme inheritance](add-theme-inheritance.md) guide.
 
-{% code title="<plugin root>/src/Resources/theme.json" %}
-
-```javascript
+```js
+// <plugin root>/src/Resources/theme.jsonon
 {
   ...
   "views": [
@@ -91,13 +84,10 @@ The `views` section controls the template inheritance. This will be covered in t
 }
 ```
 
-{% endcode %}
-
 The `style` section determines the order of the CSS compilation. In the `<plugin root>/app/storefront/src/scss/base.scss` file you can apply your changes you want to make to the `@Storefront` standard styles or add other styles you need. The `<plugin root>/app/storefront/src/scss/overrides.scss` file is used for a special case. Maybe you need to override some defined `variables` or `functions` defined by Shopware or Bootstrap, you can implement your changes here. Checkout the [Override bootstrap variables in a theme](override-bootstrap-variables-in-a-theme.md) guide for further information.
 
-{% code title="<plugin root>/src/Resources/theme.json" %}
-
-```javascript
+```js
+// <plugin root>/src/Resources/theme.jsonon
 {
   ...
   "style": [
@@ -109,15 +99,12 @@ The `style` section determines the order of the CSS compilation. In the `<plugin
 }
 ```
 
-{% endcode %}
-
 ## Assets
 
 The `asset` option you can configure your paths to your assets like images, fonts, etc. The standard location to put your assets to is the `<plugin root>/app/storefront/src/assets` folder. Checkout the [Add assets to theme](add-assets-to-theme.md) guide for further information.
 
-{% code title="<plugin root>/src/Resources/theme.json" %}
-
-```javascript
+```js
+// <plugin root>/src/Resources/theme.jsonon
 {
   ...
   "asset": [
@@ -127,13 +114,10 @@ The `asset` option you can configure your paths to your assets like images, font
 }
 ```
 
-{% endcode %}
-
 If you need the assets from the default storefront theme for your custom theme, just add `@Storefront` as asset path
 
-{% code title="<plugin root>/src/Resources/theme.json" %}
-
-```javascript
+```js
+// <plugin root>/src/Resources/theme.jsonon
 {
   ...
   "asset": [
@@ -144,15 +128,12 @@ If you need the assets from the default storefront theme for your custom theme, 
 }
 ```
 
-{% endcode %}
-
 ## Config fields
 
 One of the benefits of creating a theme is that you can overwrite the theme configuration of the default theme or add your own configurations.
 
-{% code title="<plugin root>/src/Resources/theme.json" %}
-
-```javascript
+```js
+// <plugin root>/src/Resources/theme.jsonon
 {
   ... 
   "asset":[
@@ -168,13 +149,11 @@ One of the benefits of creating a theme is that you can overwrite the theme conf
 }
 ```
 
-{% endcode %}
-
 In the example above, we change the primary color to green. You always inherit from the storefront config and both configurations are merged. This also means that you only have to provide the values you actually want to change. You can find a more detailed explanation of the configuration inheritance in the section [Theme inheritance](add-theme-inheritance.md).
 
-{% hint style="warning" %}
+::: warning
 If you overwrite variables of another theme from a third party provider and these are renamed or removed at a later time, this can lead to issues and the theme can no longer be compiled. So be aware of it.
-{% endhint %}
+:::
 
 The `theme.json` contains a `config` property which contains a list of tabs, blocks, sections and fields.
 
@@ -200,9 +179,8 @@ You can use different field types in your theme manager:
 
 A text field example:
 
-{% code title="<plugin root>/src/Resources/theme.json" %}
-
-```javascript
+```js
+// <plugin root>/src/Resources/theme.jsonon
 {
   ...
   "config": {
@@ -221,13 +199,10 @@ A text field example:
 }
 ```
 
-{% endcode %}
-
 A number field example:
 
-{% code title="<plugin root>/src/Resources/theme.json" %}
-
-```javascript
+```js
+// <plugin root>/src/Resources/theme.jsonon
 {
   ...
   "config": {
@@ -251,13 +226,10 @@ A number field example:
 }
 ```
 
-{% endcode %}
-
 Two boolean field examples:
 
-{% code title="<plugin root>/src/Resources/theme.json" %}
-
-```javascript
+```js
+// <plugin root>/src/Resources/theme.jsonon
 {
   ...
   "config": {
@@ -276,13 +248,10 @@ Two boolean field examples:
 }
 ```
 
-{% endcode %}
-
 or
 
-{% code title="<plugin root>/src/Resources/theme.json" %}
-
-```javascript
+```js
+// <plugin root>/src/Resources/theme.jsonon
 {
   ...
   "config": {
@@ -301,15 +270,12 @@ or
 }
 ```
 
-{% endcode %}
-
 ## Examples for custom config fields
 
 A custom single-select field example
 
-{% code title="<plugin root>/src/Resources/theme.json" %}
-
-```javascript
+```js
+// <plugin root>/src/Resources/theme.jsonon
 {
   "name": "Just another theme",
   "author": "Just another author",
@@ -395,15 +361,12 @@ A custom single-select field example
 }
 ```
 
-{% endcode %}
-
 ![Example of a custom single-select field](../../../.gitbook/assets/example-single-select-config.png)
 
 A custom multi-select field example
 
-{% code title="<plugin root>/src/Resources/theme.json" %}
-
-```javascript
+```js
+// <plugin root>/src/Resources/theme.jsonon
 {
   "name": "Just another theme",
   "author": "Just another author",
@@ -499,8 +462,6 @@ A custom multi-select field example
 }
 ```
 
-{% endcode %}
-
 ![Example of a custom multi-select field](../../../.gitbook/assets/example-multi-select-config.png)
 
 ## Tabs, blocks and sections
@@ -511,9 +472,8 @@ You can use tabs, blocks and sections to structure and group the config options.
 
 In the picture above are four tabs. In the "Colours" tab there is one block "Theme colours" which contains two sections named "Important colors" and "Other". You can define the block and section individually for each item. Example:
 
-{% code title="<plugin root>/src/Resources/theme.json" %}
-
-```javascript
+```js
+// <plugin root>/src/Resources/theme.jsonon
 {
   "name": "Just another theme",
   "author": "Just another author",
@@ -537,15 +497,12 @@ In the picture above are four tabs. In the "Colours" tab there is one block "The
 }
 ```
 
-{% endcode %}
-
 The tab and section property is not required.
 
 You can extend the config to add translated labels for the tabs, blocks and sections:
 
-{% code title="<plugin root>/src/Resources/theme.json" %}
-
-```javascript
+```js
+// <plugin root>/src/Resources/theme.jsonon
 {
   "name": "Just another theme",
   "author": "Just another author",
@@ -593,15 +550,12 @@ You can extend the config to add translated labels for the tabs, blocks and sect
 }
 ```
 
-{% endcode %}
-
 ## Config inheritance
 
 The `configInheritance` option lets you configure additional themes from which your theme will inherit its fields configuration. Every theme will always inherit the fields from the `Storefront` standard theme. With this option you can add additional other themes. For example, you can have a basic theme for your corporate design and special themes for different sales channels with specific changes only needed for a single sales channel.  
 
-{% code title="<plugin root>/src/Resources/theme.json" %}
-
-```javascript
+```js
+// <plugin root>/src/Resources/theme.jsonon
 {
   ...
   "configInheritance": [
@@ -611,8 +565,6 @@ The `configInheritance` option lets you configure additional themes from which y
   ...
 }
 ```
-
-{% endcode %}
 
 In this example the `BasicTheme` is a theme that adds all the configurations you need for your corporate design. This configurations will be inherited in your new theme which can add or change some configurations only needed in a special sales channel or for a special time. See [Theme inheritance](./add-theme-inheritance.md) for a more detailed example.
 

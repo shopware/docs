@@ -4,10 +4,10 @@ As a Shopware developer, your main work will be to develop extensions that enhan
 
 Alternatively, if you want to dive straight in, take a look at our introduction guides:
 
-{% page-ref page="plugins/plugin-base-guide.md" %}
+<PageRef page="plugins/plugin-base-guide" />
 
-{% page-ref page="apps/app-base-guide.md" %}
+<PageRef page="apps/app-base-guide" />
 
-{% page-ref page="themes/theme-base-guide.md" %}
+<PageRef page="themes/theme-base-guide" />
 
 These guides are essential information on how to create, configure, and extend you store with Shopware extensions.

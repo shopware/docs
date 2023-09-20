@@ -4,9 +4,9 @@
 
 In this guide you will learn how to use the icon renderer component as well as adding custom icons.
 
-{% hint style="info" %}
+::: info
 Even if this is originally a plugin guide, everything will work perfectly in a theme as well. Actually, a theme even is a kind of plugin. So don't get confused by us talking about plugins here.
-{% endhint %}
+:::
 
 ## Prerequisites
 
@@ -31,7 +31,7 @@ You can also provide "solid" icons or any other custom pack names which can be c
 
 By default, Shopware looks inside the "default" folder.
 
-```text
+```twig
 {% raw %}
 {% sw_icon 'done-outline-24px' style {
     'namespace': 'TestPlugin'
@@ -39,17 +39,17 @@ By default, Shopware looks inside the "default" folder.
 {% endraw %}
 ```
 
-{% hint style="info" %}
+::: info
 When you want to see all icons available to the storefront by default, see [here](https://github.com/shopware/platform/tree/trunk/src/Storefront/Resources/app/storefront/dist/assets/icon). They are available as `default` and `solid` icon pack.
-{% endhint %}
+:::
 
 Imagine you want to use the default `checkmark` icon from the `solid` pack. In this case,
 
 You surely want to add your own custom icons. In this case, the `namespace` parameter is the most important one to configure. In there, you need to set the name of the theme in which the icon is searched for by its name.
 
-{% hint style="warning" %}
+::: warning
 If you configure no deviating namespace, Shopware will display the Storefront's default icons.
-{% endhint %}
+:::
 
 However, these are not all of your possibilities of configuration. As you see, you're able to configure even more things. Let's take a look at the `style` object's possible parameters:
 
@@ -63,7 +63,7 @@ However, these are not all of your possibilities of configuration. As you see, y
 
 A simple but fully functional example could look like below:
 
-```text
+```twig
 {% raw %}
 {% sw_extends '@Storefront/storefront/base.html.twig' %}
 
@@ -82,9 +82,9 @@ A simple but fully functional example could look like below:
 {% endraw %}
 ```
 
-{% hint style="danger" %}
+::: danger
 Icons or other custom assets are not included in the theme inheritance.
-{% endhint %}
+:::
 
 Inside your theme, you cannot put an icon in a directory corresponding the core folder structure and expect the core one to be automatically overwritten by it, as you're used to with themes in general.
 
@@ -104,7 +104,7 @@ You can define the name of the icon pack and the path to those icons under the `
 
 You can use your custom icons by specifying your icon pack:
 
-```text
+```twig
 {% raw %}
 {% sw_icon 'done-outline-24px' style {
     'pack': 'custom-icons'
@@ -112,6 +112,6 @@ You can use your custom icons by specifying your icon pack:
 {% endraw %}
 ```
 
-{% hint style="warning" %}
+::: warning
 This setup is mandatory if you ship your Theme as an App, because otherwise your custom icons can't be loaded.
-{% endhint %}
+:::

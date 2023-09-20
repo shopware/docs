@@ -20,9 +20,8 @@ To set up the inheritance we need to edit the theme configuration file called `t
 
 The content of the `theme.json` file looks like this:
 
-{% code title="<plugin root>/src/Resources/theme.json" %}
-
-```javascript
+```js
+// <plugin root>/src/Resources/theme.jsonon
 {
   "name": "SwagBasicExampleThemeExtend",
   "author": "Shopware AG",
@@ -47,17 +46,14 @@ The content of the `theme.json` file looks like this:
 }
 ```
 
-{% endcode %}
-
 As you can see each section `views`, `style`, `script` and `asset` contains the `@Storefront` placeholder. This means that inheritance is already taking place here. Every theme inherits the default theme of Shopware called `@Storefront`.
 
 Now it is easy to see how we can inherit from our base theme `SwagBasicExampleTheme`. We just need to add it in the inheritance chain.
 
 Here is an example:
 
-{% code title="<plugin root>/src/Resources/theme.json" %}
-
-```javascript
+```js
+// <plugin root>/src/Resources/theme.jsonon
 {
   "name": "SwagBasicExampleThemeExtend",
   "author": "Shopware AG",
@@ -89,8 +85,6 @@ Here is an example:
 ]
 }
 ```
-
-{% endcode %}
 
 Let's walk over each section and have a closer look.
 

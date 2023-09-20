@@ -7,10 +7,10 @@ tags: [theme, storefront, inheritance]
 
 # Refactor theme inheritance
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-09-22-refactor-theme-inheritance.md)
-{% endhint %}
+:::
 
 ## Context
 Currently the themes can only inherit config fields from the default Storefront theme.
@@ -19,6 +19,7 @@ The different possibilities to inherit different parts of a theme, like scripts,
 
 ## Decision
 To take this points into account we have decided to add a new inheritance key for the `configFields` in the `theme.json` which allow a theme to inherit its config from other themes in a given order:
+
 ```json
 "configInheritance": [
         "@Storefront",
@@ -174,6 +175,7 @@ The Consequences for the two approaches are described below:
 * The inhertiance will no longer be a snapshot, but a dynamic copy of the inherited themes (The changes of child themes will be considered by the new theme automaticaly)
 * The admin for the themes will get an inheritation mechanism which allows users to decide if a field will use its inherited or a new value (simmiliar to productvariant inherited fields)
 * Themes which are dependend on other themes than the default storefront theme, need to add the other themes into there composer.json as `required` to prevent incomplete setups.
+
 ```json
  "require": {
         "swag/previous-theme": "~1.1"

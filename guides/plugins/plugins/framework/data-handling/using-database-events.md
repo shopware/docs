@@ -29,9 +29,8 @@ You can use this event to capture state, perform actions, and sync data after an
 
 Below is an example subscriber listening to the generic entity write event and logging the ID's of the written entities.
 
-{% code title="<plugin root>/src/Subscriber/EntityWriteSubscriber.php" %}
-
 ```php
+// <plugin root>/src/Subscriber/EntityWriteSubscriber.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Subscriber;
@@ -48,7 +47,6 @@ class EntityWriteSubscriber implements EventSubscriberInterface
     public function __construct(private readonly LoggerInterface $logger)
     {
     }
-
 
     public static function getSubscribedEvents()
     {
@@ -87,8 +85,6 @@ class EntityWriteSubscriber implements EventSubscriberInterface
 }
 ```
 
-{% endcode %}
-
 After creating the event subscriber, you have to register it. If you don't know how it is done, then refer to the [Listening to events](../../plugin-fundamentals/listening-to-events.md) guide.
 
 ### `Shopware\Core\Framework\DataAbstractionLayer\Event\EntityDeleteEvent`
@@ -99,9 +95,8 @@ You can use this event to capture state and perform actions after an entity is r
 
 Below is an example subscriber listening to the generic entity delete event, filtering for CMS page deletions, and then performing a different action based on whether the delete was successful or not.
 
-{% code title="<plugin root>/src/Subscriber/DeleteSubscriber.php" %}
-
 ```php
+// <plugin root>/src/Subscriber/DeleteSubscriber.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Subscriber;
@@ -137,8 +132,6 @@ class DeleteSubscriber implements EventSubscriberInterface
     }
 }
 ```
-
-{% endcode %}
 
 After creating the event subscriber, you have to register it. If you don't know how it is done, then refer to the [Listening to events](../../plugin-fundamentals/listening-to-events.md) guide.
 
@@ -212,9 +205,8 @@ All of stock entities come with their own event class. To keep the example of th
 
 The example below shows you how to use the constants in your event subscriber:
 
-{% code title="<plugin root>/src/Subscriber/ProductSubscriber.php" %}
-
 ```php
+// <plugin root>/src/Subscriber/ProductSubscriber.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Subscriber;
@@ -245,15 +237,12 @@ class ProductSubscriber implements EventSubscriberInterface
     }
 ```
 
-{% endcode %}
-
 After creating the event subscriber, you have to register it. If you don't know how that's done, head over to our guide about [Listening to events](../../plugin-fundamentals/listening-to-events.md).
 
 Here's our `services.xml`:
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
-
-```markup
+```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -267,5 +256,3 @@ Here's our `services.xml`:
     </services>
 </container>
 ```
-
-{% endcode %}

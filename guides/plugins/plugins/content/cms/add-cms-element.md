@@ -10,7 +10,7 @@ You won't learn how to create a plugin in this guide, head over to our Plugin ba
 
 This guide will also not explain how a custom component can be created in general, so head over to the official guide about creating a custom component to learn this first.
 
-{% page-ref page="../../administration/add-custom-component.md" %}
+<PageRef page="../../administration/add-custom-component" />
 
 ## Creating your custom element
 
@@ -30,25 +30,19 @@ In there, you create a directory for each new element you want to create. In thi
 
 Now create a new file `index.js` inside the `dailymotion` directory, since it will be loaded when importing this element in your `main.js`. Speaking of that, right after having created the `index.js` file, you can actually import your new element's directory in the `main.js` file already:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/main.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/administration/src/main.js
 import './module/sw-cms/elements/dailymotion';
 ```
-
-{% endcode %}
 
 Now open up your empty `dailymotion/index.js` file. In order to register a new element to the system, you have to call the method `registerCmsElement` of the [cmsService](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/module/sw-cms/service/cms.service.js). Since it's available in the Dependency Injection Container, you can fetch it from there.
 
 First of all, access our `Application` wrapper, which will grant you access to the DI container. So go ahead and fetch the `cmsService` from it and call the mentioned `registerCmsElement` method.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/index.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/index.js
 Shopware.Service('cmsService').registerCmsElement();
 ```
-
-{% endcode %}
 
 The method `registerCmsElement` takes a configuration object, containing the following necessary data:
 
@@ -65,9 +59,8 @@ The method `registerCmsElement` takes a configuration object, containing the fol
 
 Go ahead and create this configuration object yourself. Here's what it should look like after having set all of those options:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/index.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/index.js
 Shopware.Service('cmsService').registerCmsElement({
     name: 'dailymotion',
     label: 'sw-cms.elements.customDailymotionElement.label',
@@ -83,13 +76,11 @@ Shopware.Service('cmsService').registerCmsElement({
 });
 ```
 
-{% endcode %}
-
 The property name does not require further explanation. However, you need to create a snippet file in your plugin directory for the label property.
 
 To do this, create a folder with the name snippet in your `sw-cms` folder. After that, create the files for the languages, e.g. `de-DE.json` and `en-GB.json`. The content of your snippet file should look something like this:
 
-```javascript
+```json
 {
   "sw-cms": {
     "elements": {
@@ -111,9 +102,8 @@ Now you have to create the three missing components, let's start with the previe
 
 Create a new directory preview in your element's directory dailymotion. In there, create a new file `index.js`, just like for all components. Then register your component, using the `Shopware.Component` wrapper:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/preview/index.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/preview/index.js
 import template from './sw-cms-el-preview-dailymotion.html.twig';
 import './sw-cms-el-preview-dailymotion.scss';
 
@@ -122,18 +112,14 @@ Shopware.Component.register('sw-cms-el-preview-dailymotion', {
 });
 ```
 
-{% endcode %}
-
 Just like most components, it has a custom template and some styles. Focus on the template first, create a new file `sw-cms-el-preview-dailymotion.html.twig`.
 
 So, for instance, if you want to show the default 'mountain' preview image as an example, then copy it from `<Shopware root>/public/bundles/administration/static/img/cms/preview_mountain_small.jpg` to your static folder. You can also replace it with something of your own. Additionally, you can place icons `multicolor-action-play`. Head over to [icon library](https://component-library.shopware.com/icons/) to access them.
 
 That means: You'll need a container to contain both the image and the icon. In there, you create an `img` tag and use the [sw-icon component](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/component/base/sw-icon/index.js) to display the icon.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/preview/sw-cms-el-preview-dailymotion.html.twig" %}
-{% raw %}
-
-```markup
+```twig
+// <plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/preview/sw-cms-el-preview-dailymotion.html.twig
 {% block sw_cms_element_dailymotion_preview %}
     <div class="sw-cms-el-preview-dailymotion">
         <img class="sw-cms-el-preview-dailymotion-img"
@@ -145,16 +131,12 @@ That means: You'll need a container to contain both the image and the icon. In t
 {% endblock %}
 ```
 
-{% endraw %}
-{% endcode %}
-
 The icon would now be displayed beneath the image, so let's add some styles for this by creating the file `sw-cms-el-preview-dailymotion.scss`.
 
 The container needs to have a `position: relative;` style. This is necessary, so the child can be positioned absolutely and will do so relative to the container's position. Thus, the icon receives a `position: absolute; style`, plus some top and left values to center it.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/preview/sw-cms-el-preview-dailymotion.scss" %}
-
 ```css
+// <plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/preview/sw-cms-el-preview-dailymotion.scss
 .sw-cms-el-preview-dailymotion {
     position: relative;
 
@@ -176,8 +158,6 @@ The container needs to have a `position: relative;` style. This is necessary, so
 }
 ```
 
-{% endcode %}
-
 The centered positioning will be done by translating the elements by 50% via `top` and `left` properties. Since that would be 50% from the upper left corner of the icon, this wouldn't really center the icon yet. Subtract the half of the icon's width and height and then you're fine.
 
 One last thing: Import your preview component in your element's `index.js` file, so it's loaded.
@@ -186,9 +166,8 @@ One last thing: Import your preview component in your element's `index.js` file,
 
 The next would be the main component `sw-cms-el-dailymotion`, the one to be rendered when the shop manager actually decided to use your element by clicking on the preview. Now, you want to show the actually configured video here now. Start with the basic again, create a new directory `component`, in there a new file `index.js` and then register your component `sw-cms-el-dailymotion`.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/component/index.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/component/index.js
 import template from './sw-cms-el-dailymotion.html.twig';
 import './sw-cms-el-dailymotion.scss';
 
@@ -197,16 +176,12 @@ Shopware.Component.register('sw-cms-el-dailymotion', {
 });
 ```
 
-{% endcode %}
-
 In addition, create the template file `sw-cms-el-dailymotion.html.twig` and the `.scss` file `sw-cms-el-dailymotion.scss`.
 
 The template doesn't have to include a lot. Having a look at how Dailymotion video embedding works, you just have to add an `iframe` with a src attribute pointing to the video.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/component/sw-cms-el-dailymotion.html.twig" %}
-{% raw %}
-
-```markup
+```twig
+// <plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/component/sw-cms-el-dailymotion.html.twig
 {% block sw_cms_element_dailymotion %}
     <div class="sw-cms-el-dailymotion">
         <div class="sw-cms-el-dailymotion-iframe-wrapper">
@@ -221,16 +196,12 @@ The template doesn't have to include a lot. Having a look at how Dailymotion vid
 {% endblock %}
 ```
 
-{% endraw %}
-{% endcode %}
-
 You can't just use a static `src` here, since the shop manager wants to configure the video he wants to show. Thus, we're fetching that link via VueJS now.
 
 Let's add the code to provide the src for the iframe. For this case you're going to use a [computed property](https://vuejs.org/v2/guide/computed.html).
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/component/index.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/component/index.js
 import template from './sw-cms-el-dailymotion.html.twig';
 import './sw-cms-el-dailymotion.scss';
 
@@ -245,15 +216,12 @@ Shopware.Component.register('sw-cms-el-dailymotion', {
 });
 ```
 
-{% endcode %}
-
 The link being used has to follow this pattern: `https://www.dailymotion.com/embed/video/<videoId>`, so the only variable you need from the shop manager is the video ID. That's what you're doing here - you're building the link like mentioned above and you add the value of `dailyUrl` from the config. This value will be provided by the config component, that you're going to create in the next step.
 
 In order for this to work though, you have to call the method `initElementConfig` from the `cms-element` mixin. This will take care of dealing with the `configComponent` and therefore providing the configured values.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/component/index.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/component/index.js
 import template from './sw-cms-el-dailymotion.html.twig';
 import './sw-cms-el-dailymotion.scss';
 
@@ -282,15 +250,12 @@ Shopware.Component.register('sw-cms-el-dailymotion', {
 });
 ```
 
-{% endcode %}
-
 Now, the method `initElementConfig` is immediately executed once this component is created.
 
 Time to add the last remaining part of this component: The styles to be applied. Since Dailymotion takes care of responsive layouts itself, you just have to scale the iFrame to 100% width and 100% height. Yet, there's a recommended `min-height` of 315px, so add that one as well.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/component/sw-cms-el-dailymotion.scss" %}
-
 ```css
+// <plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/component/sw-cms-el-dailymotion.scss
 .sw-cms-el-dailymotion {
     height: 100%;
     width: 100%;
@@ -314,17 +279,14 @@ Time to add the last remaining part of this component: The styles to be applied.
 }
 ```
 
-{% endcode %}
-
 That's it for this component! Import it in your element's `index.js` file.
 
 ## The configuration
 
 Let's head over to the last remaining component. Create a directory `config`, an `index.js` file in there and register your config component `sw-cms-el-config-dailymotion`.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/config/index.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/config/index.js
 import template from './sw-cms-el-config-dailymotion.html.twig';
 
 Shopware.Component.register('sw-cms-el-config-dailymotion', {
@@ -364,16 +326,12 @@ Shopware.Component.register('sw-cms-el-config-dailymotion', {
 });
 ```
 
-{% endcode %}
-
 Just like always, it comes with a template, no styles necessary here though. Create the template file now. Also, the `initElementConfig` method has to be called in here as well, just the same way you've done it in your main component. A little spoiler: This file will remain like this already, you can close it now.
 
 Open the template `sw-cms-el-config-dailymotion.html.twig` instead. To be displayed in the config, we just need a text element, so the shop manager can apply a Dailymotion video ID.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/config/sw-cms-el-config-dailymotion.html.twig" %}
-{% raw %}
-
-```markup
+```twig
+// <plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/config/sw-cms-el-config-dailymotion.html.twig
 {% block sw_cms_element_dailymotion_config %}
     <sw-text-field
           v-model="dailyUrl"
@@ -386,14 +344,10 @@ Open the template `sw-cms-el-config-dailymotion.html.twig` instead. To be displa
 {% endblock %}
 ```
 
-{% endraw %}
-{% endcode %}
-
 The `v-model` takes care of binding the field's values to the values from the config. Don't forget to include your config in your `index.js`:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/index.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/index.js
 import './component';
 import './config';
 import './preview';
@@ -403,26 +357,24 @@ Shopware.Service('cmsService').registerCmsElement({
 });
 ```
 
-{% endcode %}
-
 That's it! You could now go ahead and fully test your new element! Install this plugin via `bin/console plugin:install --activate SwagBasicExample`, rebuild the Administration using the following command and then start using your new element in the Administration.
 
-{% tabs %}
-{% tab title="Template" %}
+<Tabs>
+<Tab title="Template">
 
 ```bash
 ./bin/build-administration.sh
 ```
 
-{% endtab %}
-{% tab title="platform only (contribution setup)" %}
+</Tab>
+<Tab title="platform only (contribution setup)">
 
 ```bash
 composer run build:js:admin
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 Of course, the Storefront implementation is still missing, so your element wouldn't be rendered in the Storefront yet.
 
@@ -436,10 +388,8 @@ In there create a new twig template named after your element, so `cms-element-da
 
 The template for this is super easy though, just like it's been in your main component for the Administration. Just add an iFrame again. Simply apply the same styles like in the Administration, 100% to both height and width that is.
 
-{% code title="platform/src/Storefront/Resources/views/storefront/element/cms-element-dailymotion.html.twig" %}
-{% raw %}
-
-```markup
+```twig
+// platform/src/Storefront/Resources/views/storefront/element/cms-element-dailymotion.html.twig
 {% block element_dailymotion %}
     <div class="cms-element-dailymotion" style="height: 100%; width: 100%">
 
@@ -459,9 +409,6 @@ The template for this is super easy though, just like it's been in your main com
     </div>
 {% endblock %}
 ```
-
-{% endraw %}
-{% endcode %}
 
 The URL is parsed here using the twig variable element, which is automatically available in your element's template.
 

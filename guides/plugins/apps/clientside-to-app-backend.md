@@ -2,9 +2,9 @@
 
 Direct communication from the browser to the app backend involves generating a JWT token. This token contains session-specific information, as [claims](#the-jwt-token), and is securely signed by the shop. This mechanism ensures a secure exchange of data between the client and the app backend.
 
-{% hint style="warning" %}
+::: warning
 The JWT key can be only generated when in the browser the user is logged-in.
-{% endhint %}
+:::
 
 ## The Flow
 
@@ -36,9 +36,9 @@ The JWT token is signed with `SHA256-HMAC` and the secret is the `appSecret` fro
 
 The JWT key is generated with a POST request against `/store-api/app-system/{name}/generate-token` or `/app-system/{name}/generate-token`.
 
-{% tabs %}
+<Tabs>
 
-{% tab title="Storefront" %}
+<Tab title="Storefront">
 
 For the Storefront usage, there is an HTTP client helper, which handles the token generation and lets you directly call your app backend.
 
@@ -57,9 +57,9 @@ client.patch('https://my-app-backend.com/foo')
 client.delete('https://my-app-backend.com/foo')
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Custom" %}
+<Tab title="Custom">
 
 If you want to generate the JWT token yourself, you can use the following code snippet:
 
@@ -72,23 +72,23 @@ const response = await fetch('/store-api/app-system/{name}/generate-token', {
 const { token, shopId } = await response.json();
 ```
 
-{% endtab %}
+</Tab>
 
-{% endtabs %}
+</Tabs>
 
-{% hint style="info" %}
+::: info
 Requesting from the browser to the app backend is only possible when your app backend allows [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) requests. Example:
 
 - Access-Control-Allow-Origin: *
 - Access-Control-Allow-Methods: GET, POST, OPTIONS
 - Access-Control-Allow-Headers: shopware-app-shop-id, shopware-app-token
-{% endhint %}
+:::
 
 ## Validate the JWT token
 
-{% tabs %}
+<Tabs>
 
-{% tab title="App PHP SDK" %}
+<Tab title="App PHP SDK">
 
 ```php
 $shop = $shopResolver->resolveShop($serverRequest);
@@ -98,9 +98,9 @@ $storefront = $contextResolver->assembleStorefrontRequest($serverRequest, $shop)
 $storefront->claims->getCustomerId();
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Symfony Bundle" %}
+<Tab title="Symfony Bundle">
 
 The request from the Storefront to your app server will require that you set up CORS on your application.
 We recommend [NelmioCorsBundle](https://symfony.com/bundles/NelmioCorsBundle/current/index.html) for this with allowed headers:
@@ -124,12 +124,12 @@ class StorefrontController {
 }
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Custom" %}
+<Tab title="Custom">
 
 Fetch the shop by the `shopware-app-shop-id` header and create a JWT verifier with the app secret as `HMAC-SHA256` secret. Verify the JWT token (shopware-app-token) with the verifier.
 
-{% endtab %}
+</Tab>
 
-{% endtabs %}
+</Tabs>

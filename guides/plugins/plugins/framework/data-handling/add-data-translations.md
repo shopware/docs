@@ -10,10 +10,9 @@ This guide is built upon the [Plugin base guide](../../plugin-base-guide.md), bu
 
 In order to create data translations you need an existing entity, as this guide is based on the [Adding custom complex data](add-custom-complex-data.md) guide, you should have a look at it first.
 
-<!-- markdown-link-check-disable-next-line -->
-{% hint style="info" %}
+::: info
 Refer to this video on **[Translating your entity](https://www.youtube.com/watch?v=FfqxfQl3I4w)** that deals with data translations. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
-{% endhint %}
+:::
 
 ## Creating the migration
 
@@ -38,9 +37,8 @@ The translation table's columns should be the following:
 
 This is how your migration could look like:
 
-{% code title="<plugin root>/src/Migration/Migration1612863838ExampleTranslation.php" %}
-
 ```php
+// <plugin root>/src/Migration/Migration1612863838ExampleTranslation.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Migration;
@@ -83,8 +81,6 @@ SQL;
 }
 ```
 
-{% endcode %}
-
 ## Creating the translation entity
 
 The translation is an aggregation to the `ExampleEntity`. Therefore, you should place it into the `<plugin root>/src/Core/Content/Example/Aggregate` directory. In this directory we create a subdirectory called `ExampleTranslation` where we create a new definition for our translation which is called `ExampleTranslation`.
@@ -93,9 +89,8 @@ The translation is an aggregation to the `ExampleEntity`. Therefore, you should 
 
 Now we can start creating our `ExampleTranslationDefinition` which extends from `Shopware\Core\Framework\DataAbstractionLayer\EntityTranslationDefinition`. Special for entity translation is, that we have to override a method called `getParentDefinitionClass` which returns the definition class of our entity we want to translate. In this case it's `ExampleDefinition`.
 
-{% code title="<plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationDefinition.php" %}
-
 ```php
+// <plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationDefinition.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Example\Aggregate\ExampleTranslation;
@@ -129,17 +124,14 @@ class ExampleTranslationDefinition extends EntityTranslationDefinition
 }
 ```
 
-{% endcode %}
-
 As you can see, we've implemented a `StringField` for the `name` column, the other fields like the `language_id` will be automatically added by the `EntityTranslationDefinition` since they are base fields of it.
 
 All that's left to do now, is to introduce your `ExampleTranslationDefinition` to Shopware by registering your class in your `services.xml` file and by using the `shopware.entity.definition` tag, because Shopware 6 is looking for definitions this way. Note, that we have to register the translation after the entity we want to translate.
 
 Here's the `services.xml` as it should look like:
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
-
-```markup
+```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -157,17 +149,14 @@ Here's the `services.xml` as it should look like:
 </container>
 ```
 
-{% endcode %}
-
 ### Entity class
 
 So far we introduced our definition, we can create our `ExampleTranslationEntity`. Our entity has to extend from the `Shopware\Core\Framework\DataAbstractionLayer\TranslationEntity` which comes with some getters and setters for the the `language_id`. We only have to add three properties here, one for the `example_id`, one for the actual name and one for the association to the `ExampleEntity`. All of those properties need a getter and a setter again, so add those too.
 
 Here's our `ExampleTranslationEntity`:
 
-{% code title="<plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationEntity.php" %}
-
 ```php
+// <plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationEntity.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Example\Aggregate\ExampleTranslation;
@@ -215,13 +204,10 @@ class ExampleTranslationEntity extends TranslationEntity
 }
 ```
 
-{% endcode %}
-
 Now we need our translation definition to know its custom entity class. This is done by overriding the method `getEntityClass` in our `ExampleTranslationDefinition`.
 
-{% code title="<plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationDefinition.php" %}
-
 ```php
+// <plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationDefinition.php
 class ExampleTranslationDefinition extends EntityTranslationDefinition
 {
     [...]
@@ -233,17 +219,14 @@ class ExampleTranslationDefinition extends EntityTranslationDefinition
 }
 ```
 
-{% endcode %}
-
 ### EntityCollection
 
 As we already know, we should create an `EntityCollection` for our `Entity` too. For entity translations it is the same way as for normal entities.
 
 Our collection class could then look like this:
 
-{% code title="<plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationCollection.php" %}
-
 ```php
+// <plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationCollection.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Example\Aggregate\ExampleTranslation;
@@ -268,8 +251,6 @@ class ExampleTranslationCollection extends EntityCollection
 }
 ```
 
-{% endcode %}
-
 ### Main Entity Class
 
 The main entity class, that is the class with the field(s) we are going to translate, must define:
@@ -277,9 +258,8 @@ The main entity class, that is the class with the field(s) we are going to trans
 * a `TranslatedField` for the “name” field
 * a `TranslationsAssociationField`, with a reference to the ExampleTranslationDefinition
 
-{% code title="<plugin root>/src/Core/Content/Example/ExampleDefinition.php" %}
-
 ```php
+// <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Example;
@@ -310,5 +290,3 @@ class ExampleDefinition extends EntityDefinition
         ]);
     }
 }
-
-{% endcode %}

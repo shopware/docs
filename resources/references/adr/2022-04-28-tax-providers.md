@@ -7,10 +7,10 @@ tags: [tax, tax-provider, checkout]
 
 # Introducing tax providers
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-04-28-tax-providers.md)
-{% endhint %}
+:::
 
 ## Context
 In other countries like the USA, there are different tax rates for different states and counties you are shipping to, leading to thousands of different tax rates in the USA alone.

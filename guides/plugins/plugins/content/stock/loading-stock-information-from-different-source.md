@@ -12,11 +12,11 @@ Here again, you will be decorating a service; therefore, it will be helpful to f
 
 For example, to load stock from a third-party API, you need to decorate `\Shopware\Core\Content\Product\Stock\AbstractStockStorage` and implement the `load` method. When products are loaded in Shopware the `load` method will be invoked with the loaded product IDs.
 
-{% tabs %}
-{% tab title="StockStorageDecorator.php" %}
-{% code title="<plugin root>/src/Swag/Example/Service/StockStorageDecorator.php" %}
+<Tabs>
+<Tab title="StockStorageDecorator.php">
 
 ```php
+// <plugin root>/src/Swag/Example/Service/StockStorageDecorator.php
 <?php declare(strict_types=1);
 
 namespace Swag\Example\Service;
@@ -66,13 +66,12 @@ class StockStorageDecorator extends AbstractStockStorage
 }
 ```
 
-{% endcode %}
-{% endtab %}
+</Tab>
 
-{% tab title="services.xml" %}
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<Tab title="services.xml">
 
 ```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -86,9 +85,8 @@ class StockStorageDecorator extends AbstractStockStorage
 </container>
 ```
 
-{% endcode %}
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 In your `load` method, you can access the product IDs from the `StockLoadRequest` instance and perform a request to your system to retrieve the data.
 

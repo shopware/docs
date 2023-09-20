@@ -8,7 +8,7 @@ Your theme can include custom assets like images. This short guide will show you
 
 This guide is built upon the guide on creating a first theme:
 
-{% page-ref page="create-a-theme.md" %}
+<PageRef page="create-a-theme" />
 
 ## Using custom assets
 
@@ -18,9 +18,8 @@ There are basically two ways of adding custom assets to your theme. The first on
 
 While working with your own theme, you might have already come across the [Theme configuration](theme-configuration.md). In there, you have the possibility to configure your paths to your custom assets like images, fonts, etc. This way, please configure your asset path accordingly.
 
-{% code title="<plugin root>/src/Resources/theme.json" %}
-
 ```javascript
+// <plugin root>/src/Resources/theme.json
 # src/Resources/theme.json
 {
   ...
@@ -31,13 +30,10 @@ While working with your own theme, you might have already come across the [Theme
 }
 ```
 
-{% endcode %}
-
 Next, run the command `bin/console theme:compile`. The assets from the path defined in the `theme.json` file will be copied by the `theme:compile` command to `<shopware root>/public/theme/<theme-asset-uuid>` along with the compiled CSS and JS, which are stored in a separate folder.
 
-{% code title="<shopware root>/public" %}
-
 ```text
+// <shopware root>/public
 # 
 .
 └── theme
@@ -51,19 +47,17 @@ Next, run the command `bin/console theme:compile`. The assets from the path defi
             └── your-image.png <-- Your asset is copied here  
 ```
 
-{% endcode %}
-
 ### Adding assets the plugin way
 
 This way of adding custom assets refers to the default way of dealing with assets. For more details, please check out the article that specifically addresses this topic:
 
-{% page-ref page="../plugins/storefront/add-custom-assets.md" %}
+<PageRef page="../plugins/storefront/add-custom-assets" />
 
 ## Linking to assets
 
 You can link to the asset with the twig [asset](https://symfony.com/doc/current/templates.html#linking-to-css-javascript-and-image-assets) function:
 
-```markup
+```html
 <img src="{{ asset('/assets/your-image.png', 'theme') }}">
 ```
 

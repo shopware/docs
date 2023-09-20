@@ -7,10 +7,10 @@ tags: [core, feature-flag, workflow, major-version]
 
 # Feature flags for major versions
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-01-20-feature-flags-for-major-versions.md)
-{% endhint %}
+:::
 
 ## Context
 Feature flags enable the developer to create new code which is hidden behind the flag and merge it into the trunk branch, even when the code is not finalized.
@@ -25,6 +25,7 @@ We will use the static functions of the Feature class to check if a feature is a
 
 ### Activating the flag
 To switch flags on and off you can use the ***.env*** to configure each feature flag. Using dots inside an env variable are not allowed, so we use underscore instead:
+
 ```bash
 V6_5_0_0=1
 ```
@@ -34,6 +35,7 @@ The feature flag can be used in PHP to make specific code parts only executable 
 
 ### Using flags in methods
 When there is no option via the container you can use additional helper functions:
+
 ```php
 use Shopware\Core\Framework\Feature;
  
@@ -51,6 +53,7 @@ class ApiController
 ```
 
 And you can use it for conditions:
+
 ```php
 use Shopware\Core\Framework\Feature;
  
@@ -68,6 +71,7 @@ class ApiController
 ```
 
 And you can use it simply to throw exceptions:
+
 ```php
 use Shopware\Core\Framework\Feature;
  
@@ -85,6 +89,7 @@ class ApiController
 
 ### Using flags in tests
 You can flag a test by using the corresponding helper function. This can also be used in the `setUp()` method.
+
 ```php
 use Shopware\Core\Framework\Feature;
  
@@ -104,6 +109,7 @@ Also in the JavaScript code of the administration the flags can be used in vario
 
 ### Using flags for modules
 You can also hide complete admin modules behind a flag:
+
 ```javascript
  
 Module.register('sw-awesome', {
@@ -114,7 +120,6 @@ Module.register('sw-awesome', {
 
 ### Using flags in JavaScript
 To use a flag in a VueJS component you can inject the feature service and use it.
-
 ```
 inject: ['feature'],
 ...
@@ -125,6 +130,7 @@ featureIsActive(flag) {
 
 ### Using flags in templates
 When you want to toggle different parts of the template you can use the flag in a VueJs condition if you injected the service in the module:
+
 ```html
 <sw-field type="text" v-if="feature.isActive('v6.5.0.0')"></sw-field>
 ```
@@ -162,7 +168,6 @@ data() {
     <span>Feature is active</span>
 {% endif %}
 ```
-
 
 ### Using flags in plugins:
 Feature flags can also be used in plugins.

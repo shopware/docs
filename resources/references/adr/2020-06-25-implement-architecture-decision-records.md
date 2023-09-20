@@ -7,10 +7,10 @@ tags: [adr, workflow]
 
 # Implement architecture decision records
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-06-25-implement-architecture-decision-records.md)
-{% endhint %}
+:::
 
 ## Context
 We should document architecture and technical decisions for the shopware platform. The documentation should be easy to understand and easy to follow. The workflow for new decisions should add to our existing workflows and should not block the whole development process. One solution could be the form of architecture decision records (ADR) as described in the following articles:
@@ -60,7 +60,6 @@ Not specific, but if there is more than one possible solution, all options shoul
 
 **How does an ADR look like?**  
 You can use this first ADR as an orientation. The filename of the ADR should contain the date and a meaningful title. The content of the ADR should always use the following template:
-
 ```
 # [Date] - [Title]
 ## Context
@@ -73,4 +72,3 @@ The status of an ADR is symbolized by the directory. All ADR located in the main
 
 **Can an ADR be changed?**  
 When an ADR is accepted and merged in to the code, it can no longer be changed. If a decision is outdated or has to be changed, the ADR has to be superseded by a new ADR. Superseded ADRs have to be moved to the `/adr/_superseded` directory.
-

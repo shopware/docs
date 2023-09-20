@@ -8,7 +8,7 @@ Data gathered by `Reader` objects is transferred to `Converter` objects that put
 
 All converters are registered in service container like this:
 
-```markup
+```html
 <service id="SwagMigrationAssistant\Profile\Shopware\Converter\ProductConverter"
          parent="SwagMigrationAssistant\Profile\Shopware\Converter\ShopwareConverter" abstract="true">
     <argument type="service" id="SwagMigrationAssistant\Migration\Media\MediaFileService"/>

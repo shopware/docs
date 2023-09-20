@@ -7,10 +7,10 @@ tags: [app-script, product, pricing]
 
 # App script product pricing
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2023-02-01-app-script-product-pricing.md)
-{% endhint %}
+:::
 
 ## Context
 We want to provide the opportunity to manipulate the price of a product inside the cart and within the store.
@@ -20,6 +20,7 @@ Right now we are not allowing to manipulate prices directly just over creating d
 But there are different business cases which requires a directly price manipulation like `get an sample of the product for free`
 
 The following code can be used for manipulating the prices in the product-pricing hook:
+
 ```php
 {# allow resetting product prices #}
 {% do product.calculatedCheapestPrice.reset %}

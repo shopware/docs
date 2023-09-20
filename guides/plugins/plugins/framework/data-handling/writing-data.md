@@ -10,10 +10,9 @@ This guide is built upon the [Plugin base guide](../../plugin-base-guide.md), so
 
 You also might want to have a look at the concept behind the [Data abstraction layer](../../../../../concepts/framework/data-abstraction-layer.md) first to get a better grasp of how it works.
 
-<!-- markdown-link-check-disable-next-line -->
-{% hint style="info" %}
+::: info
 Refer to this video on **[Using repositories](https://www.youtube.com/watch?v=b3wOs_OWvP0)** that covers the basics of repositories. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
-{% endhint %}
+:::
 
 ## Writing data
 
@@ -26,7 +25,7 @@ Dealing with the Data Abstraction Layer is done by using the automatically gener
 The repository's service name follows this pattern: `entity_name.repository`  
 For products this then would be `product.repository`. Additional to that, you're going to need the `tax` repository later for this guide, so let's add this as well already.
 
-```markup
+```xml
 // SwagBasicExample/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
