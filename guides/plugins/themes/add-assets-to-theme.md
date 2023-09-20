@@ -16,7 +16,7 @@ There are basically two ways of adding custom assets to your theme. The first on
 
 ### Adding assets in theme.json file
 
-While working with your own theme, you might have already come across the [Theme configuration](theme-configuration.md). In there, you have the possibility to configure your paths to your custom assets like images, fonts, etc. This way, please configure your asset path accordingly.
+While working with your own theme, you might have already come across the [Theme configuration](theme-configuration). In there, you have the possibility to configure your paths to your custom assets like images, fonts, etc. This way, please configure your asset path accordingly.
 
 ```javascript
 // <plugin root>/src/Resources/theme.json
@@ -73,4 +73,4 @@ body {
 
 Now that you know how to use your assets in a theme, here is a list of other related topics where assets can be used.
 
-* [Customize templates](../plugins/storefront/customize-templates.md)
+* [Customize templates](../plugins/storefront/customize-templates)

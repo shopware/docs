@@ -20,7 +20,7 @@ Refer to this video on custom **[Creating a CLI command](https://www.youtube.com
 
 ## Registering your command
 
-From here on, everything works exactly like in Symfony itself. Commands are recognised by Shopware, once they're tagged with the `console.command` tag in the [dependency injection](dependency-injection.md) container. So to register a new command, just add it to your plugin's `services.xml` and specify the `console.command` tag:
+From here on, everything works exactly like in Symfony itself. Commands are recognised by Shopware, once they're tagged with the `console.command` tag in the [dependency injection](dependency-injection) container. So to register a new command, just add it to your plugin's `services.xml` and specify the `console.command` tag:
 
 ```html
 <services>
@@ -137,4 +137,4 @@ Each command usually has a namespace like `cache`, so to clear the cache you wou
 
 ## More interesting topics
 
-* [Adding a scheduled task](add-scheduled-task.md)
+* [Adding a scheduled task](add-scheduled-task)

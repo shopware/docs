@@ -8,4 +8,4 @@ The stock management system allows the allocation of stocks to products. Stock i
 
 In order to accommodate for the various use cases, the stock management system has been kept as simple as possible. The shop owner can deactivate it entirely if not required.
 
-To enable or disable this feature, refer to [stock configuration](../../../../../guides/hosting/configurations/shopware/stock.md) section.
+To enable or disable this feature, refer to [stock configuration](../../../../../guides/hosting/configurations/shopware/stock) section.

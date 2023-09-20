@@ -39,4 +39,4 @@ $webhook->payload; // the event data
 - [Payment Validate](https://github.com/shopware/app-php-sdk/blob/main/src/Context/Payment/PaymentValidateAction.php) - Payment validate action
 - [Payment Finalize](https://github.com/shopware/app-php-sdk/blob/main/src/Context/Payment/PaymentFinalizeAction.php) - Payment finalize action
 
-Next, we will look into the [Signing of responses](./04-signing.md).
+Next, we will look into the [Signing of responses](./04-signing).

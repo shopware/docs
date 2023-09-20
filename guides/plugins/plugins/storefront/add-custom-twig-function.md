@@ -8,7 +8,7 @@ Let us consider, for instance, you want to call a PHP script from the twig templ
 
 ## Prerequisites
 
-In order to create your own twig function for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
+In order to create your own twig function for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide).
 
 ## Creating twig function
 

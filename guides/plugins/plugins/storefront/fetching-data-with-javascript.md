@@ -6,9 +6,9 @@ When you develop your own plugin, you might want to fetch necessary data from th
 
 ## Prerequisites
 
-This guide requires you to already have a basic plugin running. If you don't know how to do this in the first place, have a look at our [Plugin base guide](../plugin-base-guide.md).
+This guide requires you to already have a basic plugin running. If you don't know how to do this in the first place, have a look at our [Plugin base guide](../plugin-base-guide).
 
-While this is not mandatory, having read the guide about [adding custom javascript](add-custom-javascript.md) plugins beforehand might help you understand this guide a bit further.
+While this is not mandatory, having read the guide about [adding custom javascript](add-custom-javascript) plugins beforehand might help you understand this guide a bit further.
 
 ## Fetching data
 

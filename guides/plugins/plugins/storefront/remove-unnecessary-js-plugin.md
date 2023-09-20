@@ -31,5 +31,5 @@ In our case, we shouldn't find `OffCanvasCart` in the listed plugins anymore.
 
 Did you already take a look at our other storefront guides? They can give you some neat starting points on how to extend and customize Shopware's storefront.
 
-* [Override existing Javascript in your plugin](override-existing-javascript.md)
-* [Reacting to Javascript events](reacting-to-javascript-events.md)
+* [Override existing Javascript in your plugin](override-existing-javascript)
+* [Reacting to Javascript events](reacting-to-javascript-events)

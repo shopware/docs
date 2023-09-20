@@ -172,4 +172,4 @@ If we instead want our filter to be placed before or after a specific filter in 
 
 ## Next steps
 
-To add [custom sorting options](add-custom-sorting-product-listing.md) to your listing in the Storefront, head over to the corresponding guide.
+To add [custom sorting options](add-custom-sorting-product-listing) to your listing in the Storefront, head over to the corresponding guide.

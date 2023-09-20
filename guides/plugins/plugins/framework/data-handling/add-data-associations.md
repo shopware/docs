@@ -10,13 +10,13 @@ They are **not** created in this guide though!
 
 ## Prerequisites
 
-This guide is built upon the [Plugin Base Guide](../../plugin-base-guide.md), but any plugin will work here. Just note that all examples are using the plugin mentioned above.
+This guide is built upon the [Plugin Base Guide](../../plugin-base-guide), but any plugin will work here. Just note that all examples are using the plugin mentioned above.
 
-In order to add data associations you need an existing entity, as this guide is based on the [Adding custom complex data](add-custom-complex-data.md) guide, you should have a look at it first.
+In order to add data associations you need an existing entity, as this guide is based on the [Adding custom complex data](add-custom-complex-data) guide, you should have a look at it first.
 
 ## Associations
 
-In the following paragraphs, there will be examples for each kind of association. Those are simplified, which means that this guide will not cover how to create entities in the first place. Head over to our guide regarding [Adding custom complex data](add-custom-complex-data.md).
+In the following paragraphs, there will be examples for each kind of association. Those are simplified, which means that this guide will not cover how to create entities in the first place. Head over to our guide regarding [Adding custom complex data](add-custom-complex-data).
 
 ## Example entity definitions
 
@@ -109,7 +109,7 @@ Note the new `FkField`, which basically is the mentioned `foo_id` column. Its pa
 Additional to that, we've got the `OneToOneAssociationField`. Here you supply the name of the property, which should contain the associated entity, in your respective definition, e.g. in this case we want the `FooDefinition` to appear in the `foo` property of our entity. Following are `foo_id`, which is the name of the column in the database, `id` as the ID column in the referenced database \(`foo` in this case\) and the referenced definition. The last parameter defines, if you want to automatically load this association every time you load a `bar` entity. We've set this to `false`.
 
 ::: warning
-Setting autoload to \`true\` on the \`EntityExtension\` and \`EntityDefinition\` will lead to a recursion / out of memory error. If you want to get the association on every load, set autoload to \`true\` only in the \`EntityExtension\`. See also [Add complex data to existing entities](../data-handling/add-complex-data-to-existing-entities.md#adding-a-field-with-database).
+Setting autoload to \`true\` on the \`EntityExtension\` and \`EntityDefinition\` will lead to a recursion / out of memory error. If you want to get the association on every load, set autoload to \`true\` only in the \`EntityExtension\`. See also [Add complex data to existing entities](../data-handling/add-complex-data-to-existing-entities#adding-a-field-with-database).
 :::
 
 For the sake of completion, here is the respective `defineFields` method of the `FooDefinition`:
@@ -275,6 +275,6 @@ And that's it, your `ManyToMany` association is now set up properly.
 
 ## Next steps
 
-One type of association you'll often stumble upon are translations. If you wonder how to add translations to your entity, [this is the place](add-data-translations.md) to go.
+One type of association you'll often stumble upon are translations. If you wonder how to add translations to your entity, [this is the place](add-data-translations) to go.
 
-Otherwise you may want to update some data, for this you can look at our [Writing data](writing-data.md) and [Replacing data](reading-data.md) guide. If you plan to remove associated data from entities, you can head over to our [Remove associated data](deleting-associated-data.md) guide.
+Otherwise you may want to update some data, for this you can look at our [Writing data](writing-data) and [Replacing data](reading-data) guide. If you plan to remove associated data from entities, you can head over to our [Remove associated data](deleting-associated-data) guide.

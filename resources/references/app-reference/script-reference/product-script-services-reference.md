@@ -68,7 +68,7 @@ but also wraps some data into helper facade classes like `PriceFacade` or `Price
 be wrapped into a `PriceFacade` object which allows to manipulate the price.
 
     
-* **Returns** [`Shopware\Core\Checkout\Cart\Facade\PriceFacade`](./cart-manipulation-script-services-reference.md#pricefacade) | `null`
+* **Returns** [`Shopware\Core\Checkout\Cart\Facade\PriceFacade`](./cart-manipulation-script-services-reference#pricefacade) | `null`
 
     Returns a `PriceFacade` if the product has a calculated cheapest price, otherwise `null`
 ### calculatedPrice()
@@ -77,7 +77,7 @@ be wrapped into a `PriceFacade` object which allows to manipulate the price.
 be wrapped into a `PriceFacade` object which allows to manipulate the price.
 
     
-* **Returns** [`Shopware\Core\Checkout\Cart\Facade\PriceFacade`](./cart-manipulation-script-services-reference.md#pricefacade) | `null`
+* **Returns** [`Shopware\Core\Checkout\Cart\Facade\PriceFacade`](./cart-manipulation-script-services-reference#pricefacade) | `null`
 
     Returns a `PriceFacade` if the product has a price, otherwise `null`
 ### calculatedPrices()
@@ -86,7 +86,7 @@ be wrapped into a `PriceFacade` object which allows to manipulate the price.
 be wrapped into a `PriceCollectionFacade` object which allows to manipulate the collection.
 
     
-* **Returns** [`Shopware\Core\Content\Product\Hook\Pricing\PriceCollectionFacade`](./product-script-services-reference.md#pricecollectionfacade) | `null`
+* **Returns** [`Shopware\Core\Content\Product\Hook\Pricing\PriceCollectionFacade`](./product-script-services-reference#pricecollectionfacade) | `null`
 
     Returns a `PriceCollectionFacade` if the product has graduated prices, otherwise `null`
 _________

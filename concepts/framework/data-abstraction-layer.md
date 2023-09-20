@@ -12,7 +12,7 @@ An EntityRepository is used to interact with the DAL. This is the recommended wa
 
 ### Provisioning code to use the repositories
 
-Before using the repositories, you will need to get them from the [Dependency Injection Container (DIC)](../../guides/plugins/plugins/plugin-fundamentals/dependency-injection.md). This is done with [Constructor injection](https://symfony.com/doc/current/service_container/injection_types.html#constructor-injection), so you will need to extend your services constructor by expecting an EntityRepository:
+Before using the repositories, you will need to get them from the [Dependency Injection Container (DIC)](../../guides/plugins/plugins/plugin-fundamentals/dependency-injection). This is done with [Constructor injection](https://symfony.com/doc/current/service_container/injection_types.html#constructor-injection), so you will need to extend your services constructor by expecting an EntityRepository:
 
 ```php
 // <plugin root>/src/Service/DalExampleService.php

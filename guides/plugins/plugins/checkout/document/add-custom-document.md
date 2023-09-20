@@ -6,9 +6,9 @@ Using the Shopware Administration, you can easily create new documents. This gui
 
 ## Prerequisites
 
-This guide is built upon the [plugin base guide](../../plugin-base-guide.md), but of course you can use those examples with any other plugin.
+This guide is built upon the [plugin base guide](../../plugin-base-guide), but of course you can use those examples with any other plugin.
 
-Furthermore adding a document via your plugin is done by using [plugin database migrations](../../plugin-fundamentals/database-migrations.md). Since this isn't explained in this guide, you'll have to know and understand the plugin database migrations first.
+Furthermore adding a document via your plugin is done by using [plugin database migrations](../../plugin-fundamentals/database-migrations). Since this isn't explained in this guide, you'll have to know and understand the plugin database migrations first.
 
 ## Adding a custom document
 
@@ -133,4 +133,4 @@ Basically, that's it already! You can now browse your Administration and use you
 
 ## Next steps
 
-You might wonder "But where do I define my custom template for my custom document?". This is done by adding a new document **type**, which is covered in [this guide](add-custom-document-type.md).
+You might wonder "But where do I define my custom template for my custom document?". This is done by adding a new document **type**, which is covered in [this guide](add-custom-document-type).

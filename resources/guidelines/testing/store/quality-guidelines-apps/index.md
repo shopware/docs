@@ -3,27 +3,27 @@
 > **Changelog**
 >> 26/07/23: [Added - Name preset according to new naming scheme](#every-app-based-on-the-app-system)
 >
->> 18/07/23: [Compiled code.](../quality-guidelines-apps/README.md#checklist-for-app-testing)
+>> 18/07/23: [Compiled code.](../quality-guidelines-apps/#checklist-for-app-testing)
 >
->> 12/04/23: [Check for a functional comparison with functions from the Rise or above edition.](../quality-guidelines-apps/README.md#every-app-based-on-the-app-system)
+>> 12/04/23: [Check for a functional comparison with functions from the Rise or above edition.](../quality-guidelines-apps/#every-app-based-on-the-app-system)
 >
->> 14/02/23: [Added new STP tracking - External technology apps/STP apps.](../quality-guidelines-apps/README.md#external-technology-shopware-technology-partner-stp-apps)
+>> 14/02/23: [Added new STP tracking - External technology apps/STP apps.](../quality-guidelines-apps/#external-technology-shopware-technology-partner-stp-apps)
 >
->> 28/10/21: [Added - Safe your app idea and get a preview in the store.](../quality-guidelines-apps/README.md#every-app-based-on-the-app-system)
+>> 28/10/21: [Added - Safe your app idea and get a preview in the store.](../quality-guidelines-apps/#every-app-based-on-the-app-system)
 >
->> 06/08/21: [Added - Useful links and tutorials for creating an app.](../quality-guidelines-apps/README.md#useful-links-and-tutorials-for-creating-an-app)
+>> 06/08/21: [Added - Useful links and tutorials for creating an app.](../quality-guidelines-apps/#useful-links-and-tutorials-for-creating-an-app)
 >
->> 08/06/21: [Added URL and info regarding the docker environment we use for testing SW6 apps.](../quality-guidelines-apps/README.md#the-way-we-test-apps-based-on-the-app-system)
+>> 08/06/21: [Added URL and info regarding the docker environment we use for testing SW6 apps.](../quality-guidelines-apps/#the-way-we-test-apps-based-on-the-app-system)
 >
->> 07/06/21: [Template Tests - Now using Scheme.org Structured Data Testing tool instead of Google Structured Testing tool.](../quality-guidelines-apps/README.md#theme-apps)
+>> 07/06/21: [Template Tests - Now using Scheme.org Structured Data Testing tool instead of Google Structured Testing tool.](../quality-guidelines-apps/#theme-apps)
 >
->> 07/06/21: [Account app description - Subprocessor and/or Further subprocessor information may be required for your app.](../quality-guidelines-apps/README.md#app-descriptions-in-your-shopware-account)
+>> 07/06/21: [Account app description - Subprocessor and/or Further subprocessor information may be required for your app.](../quality-guidelines-apps/#app-descriptions-in-your-shopware-account)
 >
 >> 17/04/21: Restructured the quality guidelines. No new content added.
 >
->> 12/05/20: [Added app checklist for your quality assurance.](../quality-guidelines-apps/README.md#checklist-for-app-testing)
+>> 12/05/20: [Added app checklist for your quality assurance.](../quality-guidelines-apps/#checklist-for-app-testing)
 >
->> 22/04/20: [Menu entries in the main menu of the Administration are not allowed anymore because of look and feel.](../quality-guidelines-apps/README.md#menu-entries-in-the-main-menu-not-allowed)
+>> 22/04/20: [Menu entries in the main menu of the Administration are not allowed anymore because of look and feel.](../quality-guidelines-apps/#menu-entries-in-the-main-menu-not-allowed)
 
 ## The way we test apps based on the app system
 
@@ -163,7 +163,7 @@ With SSA, you can offer API services for apps in the store. We recommend you dev
 
 * The STP (Shopware technology partner) contract must be additionally concluded with the technology.
 
-* Add the company logo and the manifest file. For more support, refer to our [App Base Guide](/docs/guides/plugins/apps/app-base-guide.md).
+* Add the company logo and the manifest file. For more support, refer to our [App Base Guide](/docs/guides/plugins/apps/app-base-guide).
 
 ::: warning
 The name of your app that you provide in the manifest file needs to match the folder name of your app.

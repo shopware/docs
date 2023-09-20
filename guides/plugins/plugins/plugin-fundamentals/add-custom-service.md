@@ -6,7 +6,7 @@ In this guide you'll learn how to create a custom service using the Symfony [DI 
 
 ## Prerequisites
 
-In order to add your own custom service for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
+In order to add your own custom service for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide).
 
 ## Adding service
 
@@ -53,6 +53,6 @@ By default, all services in Shopware 6 are marked as _private_. Read more about 
 
 ## Next steps
 
-You have now created your own custom service. In the same manner, you can create other important plugin classes, such as [commands](add-custom-commands.md), [scheduled tasks](add-scheduled-task.md) or a [subscriber to listen to events](listening-to-events.md).
+You have now created your own custom service. In the same manner, you can create other important plugin classes, such as [commands](add-custom-commands), [scheduled tasks](add-scheduled-task) or a [subscriber to listen to events](listening-to-events).
 
-Furthermore, we also have a guide explaining how to [customize an existing service](adjusting-service.md) instead.
+Furthermore, we also have a guide explaining how to [customize an existing service](adjusting-service) instead.

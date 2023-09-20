@@ -4,7 +4,7 @@ New in Shopware 6 is the possibility to properly require on other plugins to be 
 
 ## Setup
 
-Each plugin for Shopware 6 has to own a `composer.json` file for it to be a valid plugin. Creating a plugin is not explained here, make sure to read our [Plugin base guide](../plugin-base-guide.md) first.
+Each plugin for Shopware 6 has to own a `composer.json` file for it to be a valid plugin. Creating a plugin is not explained here, make sure to read our [Plugin base guide](../plugin-base-guide) first.
 
 Since every plugin has to own a `composer.json` file, you can simply refer to this plugin by its technical name and its version mentioned in the respective plugin's `composer.json`.
 
@@ -66,5 +66,5 @@ Now your plugin isn't installable anymore, until that requirement is fulfilled.
 
 ## More interesting topics
 
-* [Using Composer dependencies](using-composer-dependencies.md)
-* [Using NPM dependencies](using-npm-dependencies.md)
+* [Using Composer dependencies](using-composer-dependencies)
+* [Using NPM dependencies](using-npm-dependencies)

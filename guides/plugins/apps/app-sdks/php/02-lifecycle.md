@@ -23,7 +23,7 @@ The lifecycle registration in the `manifest.xml` would look like this:
 
 ## Usage
 
-The implementation is similar to [Registration](./01-getting_started.md)
+The implementation is similar to [Registration](./01-getting_started)
 and wraps the RegistrationService to inject only one controller for all lifecycle methods.
 
 ```php
@@ -52,4 +52,4 @@ $response = match ($_SERVER['REQUEST_URI']) {
 
 So, in this case, our backend gets notified of any app change, and we can track the state in our database.
 
-Next, we will look into the [Context resolving](./03-context.md).
+Next, we will look into the [Context resolving](./03-context).

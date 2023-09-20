@@ -13,7 +13,7 @@ You can find the original version [here](https://github.com/shopware/platform/bl
 :::
 
 ## Context
-Our current development process uses ['Experimental features'](./2023-05-10-experimental-features.md) to publish features in an early state to gather feedback regarding those features.
+Our current development process uses ['Experimental features'](./2023-05-10-experimental-features) to publish features in an early state to gather feedback regarding those features.
 During the implementation, developers may encounter challenges related to the effective management of extensive code scattered throughout the platform, particularly in connection with specific experimental features. This codebase fragmentation presents impediments to the tracking, maintenance, and comprehensive understanding of each feature's scope, thereby hindering our development progress.
  
 Potential problems:
@@ -21,7 +21,7 @@ Potential problems:
     * When a decision is made to extend an experiment, locating all relevant sections of code for updating the property `stableVersion` in `@experimental` annotation becomes a cumbersome task.
 * Deprecation of Killed Features
     * Identifying and marking as deprecated the components associated with a deprecated experimental feature is problematic, particularly when multiple experimental features coexist simultaneously within the platform.
-    * The ['Experimental features'](./2023-05-10-experimental-features.md) stipulates the "Killing Feature" rule, which mandates that a feature must remain within the platform's codebase until the next major version and be appropriately marked as deprecated. However, it is hardly possible to check with current annotation.
+    * The ['Experimental features'](./2023-05-10-experimental-features) stipulates the "Killing Feature" rule, which mandates that a feature must remain within the platform's codebase until the next major version and be appropriately marked as deprecated. However, it is hardly possible to check with current annotation.
 
 In all the above case main problem is detection to which feature belongs experimental code.
 

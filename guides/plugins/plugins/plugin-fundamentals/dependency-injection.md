@@ -6,9 +6,9 @@ In this guide you'll learn how to inject services into other services. You can r
 
 ## Prerequisites
 
-In order to add your own custom service for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
+In order to add your own custom service for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide).
 
-Furthermore, you need a working service. Therefore, you can refer to [Adding a custom service](add-custom-service.md) guide.
+Furthermore, you need a working service. Therefore, you can refer to [Adding a custom service](add-custom-service) guide.
 
 ::: info
 Refer to this video on **[Injecting services into a command](https://www.youtube.com/watch?v=Z4kyx9J1xaQ)** explaining DI based on the example of a custom CLI command. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).

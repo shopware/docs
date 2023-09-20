@@ -9,8 +9,8 @@ This guide will cover how you can find those events in the first place, in order
 
 ## DAL Events
 
-At first we will start with the [Data Abstraction Layer events](../data-handling/using-database-events.md).
-They're fired whenever a [DAL entity](../data-handling/add-custom-complex-data.md) is read, written, created, or deleted.
+At first we will start with the [Data Abstraction Layer events](../data-handling/using-database-events).
+They're fired whenever a [DAL entity](../data-handling/add-custom-complex-data) is read, written, created, or deleted.
 
 There usually is no need to find them, since the pattern for them is always the same.
 You can use them by following this pattern: `entity_name.event`.
@@ -24,7 +24,7 @@ This way you can also find out about all the possible DAL events available in Sh
 
 Finding those "event classes" can be done by searching for the term `@Event` in your project.
 
-You can use those events in a [subscriber](../../plugin-fundamentals/listening-to-events.md) like the following:
+You can use those events in a [subscriber](../../plugin-fundamentals/listening-to-events) like the following:
 
 ```php
 public static function getSubscribedEvents(): array
@@ -110,7 +110,7 @@ Use one of the following search terms:
 
 Every service, that wants to fire an event sooner or later, needs access to the `event_dispatcher` in order to do so.
 
-Hence, you can have a look at all the service definitions for the [Dependency injection container](../../plugin-fundamentals/dependency-injection.md)
+Hence, you can have a look at all the service definitions for the [Dependency injection container](../../plugin-fundamentals/dependency-injection)
 and therefore quickly figure out, which services and classes are having access to the said `event_dispatcher`:
 
 ```xml
@@ -152,7 +152,7 @@ There's a few more event "types" or classes that you may stumble upon, which are
 
 #### Page Loaded Events
 
-Usually when a [Storefront page](../../storefront/add-custom-page.md) is being loaded, a respective "page is being loaded" event is fired
+Usually when a [Storefront page](../../storefront/add-custom-page) is being loaded, a respective "page is being loaded" event is fired
 as well.
 
 You can find an example in the [GenericPageLoader](https://github.com/shopware/platform/blob/v6.4.0.0/src/Storefront/Page/GenericPageLoader.php), which is kinda a "default page" to be used pretty often.
@@ -164,7 +164,7 @@ You can find those events by searching for the term "PageLoadedEvent".
 
 #### Criteria Events
 
-You should be familiar with the `Criteria` class, at least if you've dealt with the [Data Abstraction Layer](../data-handling/README.md).
+You should be familiar with the `Criteria` class, at least if you've dealt with the [Data Abstraction Layer](../data-handling/).
 There are many methods, that will dispatch a "criteria" event whenever a given default Shopware entity is being loaded using
 a `Criteria` instance.
 
@@ -229,7 +229,7 @@ There you will find all events that were fired in the current request including 
 ## Storefront events
 
 We're also making use of events in our Storefront javascript plugins.
-We've already covered Storefront events in this [guide](../../storefront/reacting-to-javascript-events.md).
+We've already covered Storefront events in this [guide](../../storefront/reacting-to-javascript-events).
 
 However, it's not really explaining how you can find them in the first place.
 For this case, we're using the same plain method like before: Simply searching for them or by looking through the code.
@@ -282,4 +282,4 @@ There's a vue browser extension which can greatly help will development in gener
 
 ## Flow builder events
 
-From Shopware 6.5, all events data in the Flow Builder will be stored in the `StorableFlow`, hence the `getAvailableData` function can no more be used to get data from the Flow Builder. For more information on this refer to [Create a new trigger (event)](../../../../../guides/plugins/plugins/framework/flow/add-flow-builder-trigger.md#create-a-new-trigger-event) section of this guide.
+From Shopware 6.5, all events data in the Flow Builder will be stored in the `StorableFlow`, hence the `getAvailableData` function can no more be used to get data from the Flow Builder. For more information on this refer to [Create a new trigger (event)](../../../../../guides/plugins/plugins/framework/flow/add-flow-builder-trigger#create-a-new-trigger-event) section of this guide.

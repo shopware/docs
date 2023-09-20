@@ -6,9 +6,9 @@ In this guide you'll learn how to add translations to entities.
 
 ## Prerequisites
 
-This guide is built upon the [Plugin base guide](../../plugin-base-guide.md), but any plugin will work here. Just note that all examples are using the plugin mentioned above.
+This guide is built upon the [Plugin base guide](../../plugin-base-guide), but any plugin will work here. Just note that all examples are using the plugin mentioned above.
 
-In order to create data translations you need an existing entity, as this guide is based on the [Adding custom complex data](add-custom-complex-data.md) guide, you should have a look at it first.
+In order to create data translations you need an existing entity, as this guide is based on the [Adding custom complex data](add-custom-complex-data) guide, you should have a look at it first.
 
 ::: info
 Refer to this video on **[Translating your entity](https://www.youtube.com/watch?v=FfqxfQl3I4w)** that deals with data translations. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).

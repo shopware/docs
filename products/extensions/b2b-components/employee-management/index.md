@@ -12,4 +12,4 @@ A business partner is an employee of the partner company who manages the employe
 
 ## Role management
 
-Employees are assigned roles that define their permissions and settings. These permissions can restrict or allow employees to perform certain actions, like ordering without approval or managing roles and employees. Refer to the guides section on how permissions can be extended [via app](../employee-management/guides/creating-own-permissions-via-app.md) or [via plugin](../employee-management/guides/creating-own-permissions-via-plugin.md).
+Employees are assigned roles that define their permissions and settings. These permissions can restrict or allow employees to perform certain actions, like ordering without approval or managing roles and employees. Refer to the guides section on how permissions can be extended [via app](../employee-management/guides/creating-own-permissions-via-app) or [via plugin](../employee-management/guides/creating-own-permissions-via-plugin).

@@ -69,7 +69,7 @@ Let's have a closer look at each section.
 
 Here change the `name` of your theme and the `author`. The `description` section is optional and as you notice it is also translatable.
 
-The `views` section controls the template inheritance. This will be covered in the [Theme inheritance](add-theme-inheritance.md) guide.
+The `views` section controls the template inheritance. This will be covered in the [Theme inheritance](add-theme-inheritance) guide.
 
 ```js
 // <plugin root>/src/Resources/theme.jsonon
@@ -84,7 +84,7 @@ The `views` section controls the template inheritance. This will be covered in t
 }
 ```
 
-The `style` section determines the order of the CSS compilation. In the `<plugin root>/app/storefront/src/scss/base.scss` file you can apply your changes you want to make to the `@Storefront` standard styles or add other styles you need. The `<plugin root>/app/storefront/src/scss/overrides.scss` file is used for a special case. Maybe you need to override some defined `variables` or `functions` defined by Shopware or Bootstrap, you can implement your changes here. Checkout the [Override bootstrap variables in a theme](override-bootstrap-variables-in-a-theme.md) guide for further information.
+The `style` section determines the order of the CSS compilation. In the `<plugin root>/app/storefront/src/scss/base.scss` file you can apply your changes you want to make to the `@Storefront` standard styles or add other styles you need. The `<plugin root>/app/storefront/src/scss/overrides.scss` file is used for a special case. Maybe you need to override some defined `variables` or `functions` defined by Shopware or Bootstrap, you can implement your changes here. Checkout the [Override bootstrap variables in a theme](override-bootstrap-variables-in-a-theme) guide for further information.
 
 ```js
 // <plugin root>/src/Resources/theme.jsonon
@@ -101,7 +101,7 @@ The `style` section determines the order of the CSS compilation. In the `<plugin
 
 ## Assets
 
-The `asset` option you can configure your paths to your assets like images, fonts, etc. The standard location to put your assets to is the `<plugin root>/app/storefront/src/assets` folder. Checkout the [Add assets to theme](add-assets-to-theme.md) guide for further information.
+The `asset` option you can configure your paths to your assets like images, fonts, etc. The standard location to put your assets to is the `<plugin root>/app/storefront/src/assets` folder. Checkout the [Add assets to theme](add-assets-to-theme) guide for further information.
 
 ```js
 // <plugin root>/src/Resources/theme.jsonon
@@ -149,7 +149,7 @@ One of the benefits of creating a theme is that you can overwrite the theme conf
 }
 ```
 
-In the example above, we change the primary color to green. You always inherit from the storefront config and both configurations are merged. This also means that you only have to provide the values you actually want to change. You can find a more detailed explanation of the configuration inheritance in the section [Theme inheritance](add-theme-inheritance.md).
+In the example above, we change the primary color to green. You always inherit from the storefront config and both configurations are merged. This also means that you only have to provide the values you actually want to change. You can find a more detailed explanation of the configuration inheritance in the section [Theme inheritance](add-theme-inheritance).
 
 ::: warning
 If you overwrite variables of another theme from a third party provider and these are renamed or removed at a later time, this can lead to issues and the theme can no longer be compiled. So be aware of it.
@@ -566,7 +566,7 @@ The `configInheritance` option lets you configure additional themes from which y
 }
 ```
 
-In this example the `BasicTheme` is a theme that adds all the configurations you need for your corporate design. This configurations will be inherited in your new theme which can add or change some configurations only needed in a special sales channel or for a special time. See [Theme inheritance](./add-theme-inheritance.md) for a more detailed example.
+In this example the `BasicTheme` is a theme that adds all the configurations you need for your corporate design. This configurations will be inherited in your new theme which can add or change some configurations only needed in a special sales channel or for a special time. See [Theme inheritance](./add-theme-inheritance) for a more detailed example.
 
 All configuration fields and their values from the mentioned themes in `configInheritance` are available inside the current theme, unless they are explicitly overwritten. This way custom themes can be extended without copying their configuration inside the theme.json.
 
@@ -574,5 +574,5 @@ All configuration fields and their values from the mentioned themes in `configIn
 
 Now that you know how to configure your theme, here is a list of things you can do.
 
-* [Add SCSS Styling and JavaScript to a theme](add-css-js-to-theme.md)
-* [Customize Templates](../plugins/storefront/customize-templates.md)
+* [Add SCSS Styling and JavaScript to a theme](add-css-js-to-theme)
+* [Customize Templates](../plugins/storefront/customize-templates)

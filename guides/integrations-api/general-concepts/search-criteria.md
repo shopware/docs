@@ -2,7 +2,7 @@
 
 ## Overview
 
-Generally, we refer to the endpoints that use `POST` method and receive the criteria as a JSON object as **search criteria**. It takes the same arguments as a [DAL criteria](../../plugins/plugins/framework/data-handling/reading-data.md#filtering). Some endpoints expect more parameters than specified here. However, these differ from one endpoint to another, so we don't specify them here.
+Generally, we refer to the endpoints that use `POST` method and receive the criteria as a JSON object as **search criteria**. It takes the same arguments as a [DAL criteria](../../plugins/plugins/framework/data-handling/reading-data#filtering). Some endpoints expect more parameters than specified here. However, these differ from one endpoint to another, so we don't specify them here.
 
 A typical **search criteria** looks like this:
 

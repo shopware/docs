@@ -1,6 +1,6 @@
 # Setup Template
 
-The setup template is installed automatically using Symfony Flex when requiring the `paas` package as described in the [Repository](repository.md). It contains build and deployment logic for Shopware PaaS as well as configuration for the underlying infrastructure and services. In this chapter, we will have a look at these customizations.
+The setup template is installed automatically using Symfony Flex when requiring the `paas` package as described in the [Repository](repository). It contains build and deployment logic for Shopware PaaS as well as configuration for the underlying infrastructure and services. In this chapter, we will have a look at these customizations.
 
 Below is an overview of the files and directories added by the PaaS meta-package:
 
@@ -45,7 +45,7 @@ Variables in the `env` section are automatically injected as environment variabl
 
 ### hooks
 
-Lifecycle hooks are custom scripts that are called during your build and deploy processes. See more on the [deployment process](./build-deploy.md#push-main-branch).
+Lifecycle hooks are custom scripts that are called during your build and deploy processes. See more on the [deployment process](./build-deploy#push-main-branch).
 
 #### build hook
 
@@ -116,4 +116,4 @@ In our template there are 4 different services enabled by default:
 
 ## [files / theme-config](https://github.com/shopware/recipes/tree/main/shopware/paas-meta/6.4/files/theme-config)
 
-We suggest checking in your theme configuration to version control in this directory. Read more on the concept of [builds without database](../../guides/hosting/installation-updates/deployments/build-w-o-db.md) as described in [Theme Build](./theme-build.md).
+We suggest checking in your theme configuration to version control in this directory. Read more on the concept of [builds without database](../../guides/hosting/installation-updates/deployments/build-w-o-db) as described in [Theme Build](./theme-build).

@@ -2,17 +2,17 @@
 
 ## Overview
 
-In this guide you will learn how to add a cache layer to your custom Store API route. In this example, we will add a cache layer for the `ExampleRoute`, which is created in the [Add Store API route](./add-store-api-route.md) guide. For the cache invalidation we will write a invalidation subscriber.
+In this guide you will learn how to add a cache layer to your custom Store API route. In this example, we will add a cache layer for the `ExampleRoute`, which is created in the [Add Store API route](./add-store-api-route) guide. For the cache invalidation we will write a invalidation subscriber.
 
 ## Prerequisites
 
-In order to add a cache layer for the Store API route, you first need a Store API route as base. Therefore, you can refer to the [Add Store API route](./add-store-api-route.md) guide.
+In order to add a cache layer for the Store API route, you first need a Store API route as base. Therefore, you can refer to the [Add Store API route](./add-store-api-route) guide.
 
-You also should have a look at our [Adding custom complex data](../data-handling/add-custom-complex-data.md) guide, since this guide is built upon it.
+You also should have a look at our [Adding custom complex data](../data-handling/add-custom-complex-data) guide, since this guide is built upon it.
 
 ## Add cache layer
 
-As you might have learned already from the [Add Store API route](./add-store-api-route.md) guide, we use abstract classes to make our routes more decoratable.
+As you might have learned already from the [Add Store API route](./add-store-api-route) guide, we use abstract classes to make our routes more decoratable.
 
 This concept is very advantageous if we now want to include a cache layer for the route. There are of course different ways to do this - but in this guide we show how we implemented it in the core.
 

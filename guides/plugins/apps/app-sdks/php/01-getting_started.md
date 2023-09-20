@@ -36,4 +36,4 @@ $response = match($_SERVER['REQUEST_URI']) {
 
 With this code, you can register your app with our custom app backend.
 
-Next, we will look into the [lifecycle handling](./02-lifecycle.md).
+Next, we will look into the [lifecycle handling](./02-lifecycle).

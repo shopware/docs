@@ -32,6 +32,6 @@ If you want to build your theme only upon the Bootstrap SCSS you can use the `@S
 
 Here is a list of related topics which might be interesting for you.
 
-* [Theme configuration](theme-configuration.md)
-* [Add SCSS Styling and JavaScript to a theme](add-css-js-to-theme.md)
-* [Add assets to theme](add-assets-to-theme.md)
+* [Theme configuration](theme-configuration)
+* [Add SCSS Styling and JavaScript to a theme](add-css-js-to-theme)
+* [Add assets to theme](add-assets-to-theme)

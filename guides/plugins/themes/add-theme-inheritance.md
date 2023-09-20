@@ -12,7 +12,7 @@ All you need for this guide is a running Shopware 6 instance and full access to 
 
 ## Extending an existing theme with a new theme
 
-The first step is to create a new theme which will extend the existing `SwagBasicExampleTheme`. Checkout the [Create a first theme](create-a-theme.md) guide if you don't know how to create a new theme. In this guide we call the extending theme `SwagBasicExampleThemeExtend`. After `SwagBasicExampleTheme` was installed, activated and assigned to a sales channel we need to set up the inheritance.
+The first step is to create a new theme which will extend the existing `SwagBasicExampleTheme`. Checkout the [Create a first theme](create-a-theme) guide if you don't know how to create a new theme. In this guide we call the extending theme `SwagBasicExampleThemeExtend`. After `SwagBasicExampleTheme` was installed, activated and assigned to a sales channel we need to set up the inheritance.
 
 ## Set up the inheritance
 
@@ -98,7 +98,7 @@ The same applies to the JavaScript `script` section. The javascript of the Store
 
 ### `style` section
 
-The `style` section behaves similarly to the others. The only difference here is the `override.css` can affect SCSS variables e.g. `$border-radius`. That's why it's at the top of the list. To find out more about overriding variables check out the [Override Bootstrap variables in a theme](override-bootstrap-variables-in-a-theme.md) guide.
+The `style` section behaves similarly to the others. The only difference here is the `override.css` can affect SCSS variables e.g. `$border-radius`. That's why it's at the top of the list. To find out more about overriding variables check out the [Override Bootstrap variables in a theme](override-bootstrap-variables-in-a-theme) guide.
 
 ### `asset` section
 
@@ -106,11 +106,11 @@ If you want to use assets from the `@SwagBasicExampleTheme` you have add it to t
 
 ### `configInheritance` section
 
-Finally, the `configInheritance` section will use the field configuration from the given themes and defines the last of the themes, that is different from the current theme, as the parent theme. The configuration values are inherited from the themes mentioned in `configInheritance`. The Storefront theme configuration will always be inherited, even if no `configInheritance` is given. See [Theme inheritance configuration](theme-inheritance-configuration.md) for a more detailed example.
+Finally, the `configInheritance` section will use the field configuration from the given themes and defines the last of the themes, that is different from the current theme, as the parent theme. The configuration values are inherited from the themes mentioned in `configInheritance`. The Storefront theme configuration will always be inherited, even if no `configInheritance` is given. See [Theme inheritance configuration](theme-inheritance-configuration) for a more detailed example.
 
 ## Next steps
 
 Now that you know how the theme inheritance works you can start with own customizations. Here is a list of other related topics where assets can be used.
 
-* [Add SCSS Styling and JavaScript to a theme](add-css-js-to-theme.md)
-* [Customize templates](../plugins/storefront/customize-templates.md)
+* [Add SCSS Styling and JavaScript to a theme](add-css-js-to-theme)
+* [Customize templates](../plugins/storefront/customize-templates)

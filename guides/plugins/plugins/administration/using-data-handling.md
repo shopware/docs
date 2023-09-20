@@ -6,7 +6,7 @@ The Shopware 6 Administration allows you to fetch and write nearly everything in
 
 All you need for this guide is a running Shopware 6 instance and full access to both the files, as well as the command line and preferably registered module. Of course you'll have to understand JavaScript, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation.
 
-Considering that the data handling in the Administration is remotely operating the Data Abstraction Layer its highly encouraged to read the articles [Reading data with the DAL](../framework/data-handling/reading-data.md) and [Writing data with the DAL](../framework/data-handling/writing-data.md).
+Considering that the data handling in the Administration is remotely operating the Data Abstraction Layer its highly encouraged to read the articles [Reading data with the DAL](../framework/data-handling/reading-data) and [Writing data with the DAL](../framework/data-handling/writing-data).
 
 ## Relevant classes
 

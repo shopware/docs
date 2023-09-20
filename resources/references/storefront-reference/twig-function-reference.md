@@ -18,16 +18,16 @@ Furthermore, templates which are imported via \{\% use \%\} are not allowed to h
 | :--- | :--- | :--- |
 | `sw_extends` | Inherits from another file with support for multi inheritance. The API is the same like in twigs default `extends` | --- |
 | `sw_include` | Includes template partials with support for multi inheritance. The API is the same like in twigs default `include` | --- |
-| `sw_icon` | Displays an icon from a given icon set | See [Add custom icon](../../../guides/plugins/plugins/storefront/add-icons.md#adding-icon) guide for details. |
-| `sw_thumbnails` | Renders a  tag with correctly configured “srcset” and “sizes” attributes based on the provided parameters | See [Add thumbnail](../../../guides/plugins/plugins/storefront/use-media-thumbnails.md) guide for more information. |
-| `config` | Gets a value from the system config (used by plugins and global settings) for the given sales channel |  See [Reading the configuration values](../../../guides/plugins/apps/configuration.md) |
-| `theme_config` | Gets a value from the current theme |  See [Theme configuration](../../../guides/plugins/themes/theme-configuration.md) |
+| `sw_icon` | Displays an icon from a given icon set | See [Add custom icon](../../../guides/plugins/plugins/storefront/add-icons#adding-icon) guide for details. |
+| `sw_thumbnails` | Renders a  tag with correctly configured “srcset” and “sizes” attributes based on the provided parameters | See [Add thumbnail](../../../guides/plugins/plugins/storefront/use-media-thumbnails) guide for more information. |
+| `config` | Gets a value from the system config (used by plugins and global settings) for the given sales channel |  See [Reading the configuration values](../../../guides/plugins/apps/configuration) |
+| `theme_config` | Gets a value from the current theme |  See [Theme configuration](../../../guides/plugins/themes/theme-configuration) |
 
 ## Filter
 
 | Filter | Description | Notes |
 | :--- | :--- | :--- |
-| `replace_recursive` | Enables recursive replacement in addition to twig's default `replace` filter | To see an example, see the guide on [add custom JavaScript](../../../guides/plugins/plugins/storefront/add-custom-javascript.md) |
+| `replace_recursive` | Enables recursive replacement in addition to twig's default `replace` filter | To see an example, see the guide on [add custom JavaScript](../../../guides/plugins/plugins/storefront/add-custom-javascript) |
 | `currency` | Adopts currency formatting: The currency symbol and the comma setting. | --- |
 | `sw_sanitize` | Filters tags and attributes from a given string. By default, twig's auto escaping is on, so this filter explicitly allows basic HTML tags like <i>,<b>,... | --- |
 
@@ -40,5 +40,5 @@ Furthermore, templates which are imported via \{\% use \%\} are not allowed to h
 | `sw_breadcrumb_types()` | Yields the types of the categories within the breadcrumb | Deprecated in 6.5.0 |
 | `sw_breadcrumb_build_types()` | returns the same as sw\_breadcrumb\_types, only without another repository call | Deprecated in 6.5.0 |
 | `seoUrl()` | Returns seo URL of given route | --- |
-| `searchMedia()` | Resolves media ids to media objects | See [Add media](../../../guides/plugins/plugins/storefront/use-media-thumbnails.md) guide for details. |
+| `searchMedia()` | Resolves media ids to media objects | See [Add media](../../../guides/plugins/plugins/storefront/use-media-thumbnails) guide for details. |
 | `rawUrl()` | Returns full URL | --- |

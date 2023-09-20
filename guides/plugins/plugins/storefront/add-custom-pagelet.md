@@ -8,13 +8,13 @@ In short: Pages are exactly that, a fully functioning page of your store with a 
 
 ## Prerequisites
 
-In order to add your own custom pagelet for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md). Since a pagelet is just part of another page, we are going to use the page created in our guide about [adding a custom page](add-custom-page.md).
+In order to add your own custom pagelet for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide). Since a pagelet is just part of another page, we are going to use the page created in our guide about [adding a custom page](add-custom-page).
 
 ## Adding custom pagelet
 
 Bssically a pagelet is created exactly like a page: You need a pagelet loader, a pagelet struct to hold the data and a pagelet loaded event.
 
-Since creating this kind of classes is explained in detail in our guide about [adding a custom page](add-custom-page.md), it is not going to be explained here in detail again. Yet, there's some differences worth mentioning:
+Since creating this kind of classes is explained in detail in our guide about [adding a custom page](add-custom-page), it is not going to be explained here in detail again. Yet, there's some differences worth mentioning:
 
 * The struct to hold the data has to extend from the `Shopware\Storefront\Pagelet\Pagelet` class instead of `Shopware\Storefront\Page\Page`
 * A pagelet doesn't have to be bound to a controller, e.g. with an extra route. It can have a route though!
@@ -139,7 +139,7 @@ Note the different `extends`, which uses the `PageletLoadedEvent` class instead.
 
 Most times you want to load your pagelet as part of another page. This is simply done by calling the `load` method of your pagelet in another page's `load` method.
 
-Using the example from our [adding a custom page](add-custom-page.md) guide, this is what the `load` method could look like:
+Using the example from our [adding a custom page](add-custom-page) guide, this is what the `load` method could look like:
 
 ```php
 // <plugin root>/src/Storefront/Page/Example/ExamplePageLoader.php
