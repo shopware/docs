@@ -60,4 +60,4 @@ $clientFactory = new Shopware\App\SDK\HttpClient\ClientFactory();
 $httpClient = $clientFactory->createClient($shop, $myMockClient);
 ```
 
-Next, we will look into the [Events](./06-events.md).
+Next, we will look into the [Events](./06-events).

@@ -93,7 +93,7 @@ In this case the plugin just gets executed if the HTML document contains at leas
 
 ### Loading your plugin
 
-The following will create a new template with a very short explanation. If you're looking for more information on what's going on here, head over to our guide about [Customizing templates](customize-templates.md).
+The following will create a new template with a very short explanation. If you're looking for more information on what's going on here, head over to our guide about [Customizing templates](customize-templates).
 
 You bound your plugin to the css selector `[data-example-plugin]`, so you have to add DOM elements with this attribute on the pages you want your plugin to be active.
 
@@ -242,4 +242,4 @@ If you now scroll to the bottom of your page an alert should appear.
 
 ## Next steps
 
-You've got your own first javascript plugin running. You might want to start [listening to javascript events](reacting-to-javascript-events.md) now, or even [override other javascript plugins](override-existing-javascript.md) instead.
+You've got your own first javascript plugin running. You might want to start [listening to javascript events](reacting-to-javascript-events) now, or even [override other javascript plugins](override-existing-javascript) instead.

@@ -10,7 +10,7 @@ Sometimes it is necessary to adjust SCSS variables if you want to change the loo
 
 ## Prerequisites
 
-All you need for this guide is a running Shopware 6 instance and full access to both the files, as well as the command line. You also need to have an installed and activated theme which is assigned to a sales channel. Checkout the [Create a first theme](create-a-theme.md) guide if you have not yet a working theme setup.
+All you need for this guide is a running Shopware 6 instance and full access to both the files, as well as the command line. You also need to have an installed and activated theme which is assigned to a sales channel. Checkout the [Create a first theme](create-a-theme) guide if you have not yet a working theme setup.
 
 ## Override default SCSS variables
 
@@ -84,6 +84,6 @@ When running `composer run watch:storefront` in platform only setups or `./bin/w
 
 Now that you know how to override Bootstrap variables, here is a list of related topics which might be interesting for you.
 
-* [Theme configuration](theme-configuration.md)
-* [Add SCSS Styling and JavaScript to a theme](add-css-js-to-theme.md)
-* [Add assets to a theme](add-assets-to-theme.md)
+* [Theme configuration](theme-configuration)
+* [Add SCSS Styling and JavaScript to a theme](add-css-js-to-theme)
+* [Add assets to a theme](add-assets-to-theme)

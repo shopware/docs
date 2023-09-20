@@ -8,7 +8,7 @@ To index our own completion keywords, we need to inject `Shopware\Commercial\Adv
 
 Example:
 
-_The definition is from the [previous example](./How-to-define-your-custom-Elasticsearch-definition.md):_
+_The definition is from the [previous example](./How-to-define-your-custom-Elasticsearch-definition):_
 
 ```php
 <?php declare(strict_types=1);

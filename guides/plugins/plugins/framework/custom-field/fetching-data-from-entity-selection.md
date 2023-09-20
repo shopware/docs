@@ -6,7 +6,7 @@ If you set up a custom field with an entity selection in the Administration, you
 
 ## Prerequisites
 
-This guide will not explain how to create custom field in general, so head over to the official guide about [custom field](add-custom-field.md) to learn this first.
+This guide will not explain how to create custom field in general, so head over to the official guide about [custom field](add-custom-field) to learn this first.
 
 ## Fetching data
 

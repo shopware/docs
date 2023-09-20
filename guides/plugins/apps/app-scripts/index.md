@@ -11,7 +11,7 @@ Note that app scripts were introduced in Shopware 6.4.8.0 and are not supported 
 The entry point for each script is the so-called "Hooks". You can register one or more scripts inside your app that should be executed whenever a specific hook is triggered.
 Through the hook, your script gets access to the data of the current execution context and can react to or manipulate the data in some way.  
 
-See the [Hooks reference](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md) for a complete list of all available.
+See the [Hooks reference](../../../../resources/references/app-reference/script-reference/script-hooks-reference) for a complete list of all available.
 
 ## Scripts
 
@@ -97,11 +97,11 @@ That means you can omit that block in your script without an error (but caching 
 The `response` function is required, which means that if your script does not provide a `response` block, it will lead to an error.
 
 Note that for each function, you get access to different input data or services, so in the `cache_key` block, you don't necessarily have access to the same data and services as in the `response` block.
-The available data and services are described for each hook (or each function in InterfaceHooks) in the [reference documentation](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md).
+The available data and services are described for each hook (or each function in InterfaceHooks) in the [reference documentation](../../../../resources/references/app-reference/script-reference/script-hooks-reference).
 
 ### Translation
 
-Inside the app script, you have access to the [Storefront translation mechanism](../../plugins/storefront/add-translations.md) by using the `|trans`-filter.
+Inside the app script, you have access to the [Storefront translation mechanism](../../plugins/storefront/add-translations) by using the `|trans`-filter.
 
 ```twig
 {% set translated = 'my.snippet.key'|trans %}
@@ -205,7 +205,7 @@ You can use the `return` tag to return values from inside macros.
 ## Available services
 
 Depending on the hook that triggered the execution of your script, you get access to different services you can use inside your scripts, e.g. to access data inside Shopware or to manipulate the cart.
-Take a look at the [Hook reference](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md) to get a complete list of all available services per hook.
+Take a look at the [Hook reference](../../../../resources/references/app-reference/script-reference/script-hooks-reference) to get a complete list of all available services per hook.
 
 Additionally, we added a `ServiceStubs`class that can be used as typehint in your script, so you get auto-completion features of your IDE.
 
@@ -221,9 +221,9 @@ The stub class contains all services, but not all of them are available dependin
 
 ## Example Script - loading media entities
 
-Assuming your app adds a [custom field set](../custom-data/custom-fields.md) for the product entity with a custom media entity select field.
+Assuming your app adds a [custom field set](../custom-data/custom-fields) for the product entity with a custom media entity select field.
 
-When you want to display the file of the media entity in the [Storefront](../storefront/README.md), it is not easily possible because, in the template's data, you only get the id of the media entity, but not the URL of the media file itself.
+When you want to display the file of the media entity in the [Storefront](../storefront/), it is not easily possible because, in the template's data, you only get the id of the media entity, but not the URL of the media file itself.
 
 For this case, you can add an app script on the `product-page-loaded`
 hook, which loads the media entity by id and adds it to the page object so the data is available in templates.
@@ -248,9 +248,9 @@ hook, which loads the media entity by id and adds it to the page object so the d
 {% do page.addExtension('swagMyCustomMediaField', media) %}
 ```
 
-For a more detailed example of how to load additional data, refer to the [data loading guide](./data-loading.md).
+For a more detailed example of how to load additional data, refer to the [data loading guide](./data-loading).
 
-Alternatively, take a look at the [cart manipulation guide](./cart-manipulation.md) to get an in-depth explanation of how to manipulate the cart with scripts.
+Alternatively, take a look at the [cart manipulation guide](./cart-manipulation) to get an in-depth explanation of how to manipulate the cart with scripts.
 
 ## Developing/debugging scripts
 

@@ -33,7 +33,7 @@ Another solution could be to do the configuration of the log level directly in t
 
 We will add the `exceptions` configuration to the platform, that way the error logging in existing projects might change. But in general we assume that this change is for the better.
 
-Additionally we will need to extend on the default symfony configuration as that is not compatible with our new [domain exceptions](./2022-02-24-domain-exceptions.md) as there are multiple exception cases in one file/class. 
+Additionally we will need to extend on the default symfony configuration as that is not compatible with our new [domain exceptions](./2022-02-24-domain-exceptions) as there are multiple exception cases in one file/class. 
 Therefore we will add a similiar configuration option, that does not rely on the FQCN, but instead we will use the shopware specific `error code` from the shopware exception as that is unique to the exception case.
 
 On a side note we should be able to get rid of most the cloud specific configuration for the exception logging mapping.

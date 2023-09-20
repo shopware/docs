@@ -17,9 +17,9 @@ If you are developing an extension which references Media entities, and you cann
 
 ## Prerequisites
 
-As most of our plugin guides, this guide was also built upon our [Plugin base guide](../../plugin-base-guide.md).
-Furthermore, you'll have to know about adding classes to the [Dependency injection](../../plugin-fundamentals/dependency-injection.md) container
-and about using a subscriber in order to [Listen to events](../../plugin-fundamentals/listening-to-events.md).
+As most of our plugin guides, this guide was also built upon our [Plugin base guide](../../plugin-base-guide).
+Furthermore, you'll have to know about adding classes to the [Dependency injection](../../plugin-fundamentals/dependency-injection) container
+and about using a subscriber in order to [Listen to events](../../plugin-fundamentals/listening-to-events).
 
 ## The deletion process
 
@@ -110,7 +110,7 @@ We check if there are any references to the Media IDs from the event, in the `sl
 
 Finally, we return all the IDs of Media which are used in the slider config so that they are not deleted.
 
-Make sure to register your event subscriber to the [Dependency injection container](../../plugin-fundamentals/dependency-injection.md)
+Make sure to register your event subscriber to the [Dependency injection container](../../plugin-fundamentals/dependency-injection)
 by using the tag `kernel.event_subscriber`.
 
 <Tabs>

@@ -6,7 +6,7 @@ Shopware stores stock as simple integer values in the `product` table. If you ne
 
 ## Prerequisites
 
-Here you will be decorating a service; therefore, it will be helpful to familiarise yourself with the [Adjusting a Service](../../../../../guides/plugins/plugins/plugin-fundamentals/adjusting-service.md) guide.
+Here you will be decorating a service; therefore, it will be helpful to familiarise yourself with the [Adjusting a Service](../../../../../guides/plugins/plugins/plugin-fundamentals/adjusting-service) guide.
 
 ## Add a decorator to load the stock
 

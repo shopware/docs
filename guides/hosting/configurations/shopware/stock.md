@@ -1,6 +1,6 @@
 # Stock Configuration
 
-When running Shopware 6 there are various configuration options you can use to customize your installation. These configurations reside in the general [bundle configuration](../../../../guides/hosting/configurations/README.md).
+When running Shopware 6 there are various configuration options you can use to customize your installation. These configurations reside in the general [bundle configuration](../../../../guides/hosting/configurations/).
 
 Some features of Shopware are only activated when the corresponding feature flag is enabled. Feature flags can be enabled in your project's `.env` file:
 
@@ -37,4 +37,4 @@ shopware:
     enable_stock_management: false
 ```
 
-For more detailed implementation refer to [Stock](../../../../guides/plugins/plugins/content/stock/README.md) guide section.
+For more detailed implementation refer to [Stock](../../../../guides/plugins/plugins/content/stock/) guide section.

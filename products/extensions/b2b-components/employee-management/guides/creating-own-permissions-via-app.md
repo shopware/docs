@@ -2,7 +2,7 @@
 
 This article explains how to create custom permissions using an app.
 
-To add a new permission via an app, you need to use the app [script hook](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md) `b2b-role-permissions` in conjunction with app scripting:
+To add a new permission via an app, you need to use the app [script hook](../../../../resources/references/app-reference/script-reference/script-hooks-reference) `b2b-role-permissions` in conjunction with app scripting:
 
 ```twig
 // Resources/scripts/b2b-role-permissions/my-own-permissions.twig

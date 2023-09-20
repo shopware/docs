@@ -6,7 +6,7 @@ This guide will walk you through the process of adding your own app to Shopware 
 
 ## Prerequisites
 
-If you are not familiar with the app system, take a look at the [App concept](../../../concepts/extensions/apps-concept.md) first.
+If you are not familiar with the app system, take a look at the [App concept](../../../concepts/extensions/apps-concept) first.
 
 ## File structure
 
@@ -53,13 +53,13 @@ The app can now be installed and activated by running the following command:
 bin/console app:install --activate MyExampleApp
 ```
 
-By default, your app files will be [validated](app-base-guide.md#validation) before installation. To skip the validation, you may use the `--no-validate` flag.
+By default, your app files will be [validated](app-base-guide#validation) before installation. To skip the validation, you may use the `--no-validate` flag.
 
 ::: info
 Without the `--activate` flag the Apps get installed as inactive. By executing the `app:activate` command after installation this can be activated, too.
 :::
 
-For a complete reference of the structure of the manifest file, take a look at the [Manifest reference](../../../resources/references/app-reference/manifest-reference.md).
+For a complete reference of the structure of the manifest file, take a look at the [Manifest reference](../../../resources/references/app-reference/manifest-reference).
 
 ## Setup (optional)
 
@@ -83,8 +83,8 @@ The timeout for the requests against the app server is 5 seconds.
 
 Integrating apps into your application can be a daunting task, but with our PHP SDK, the process becomes much easier. Our SDK simplifies the registration flow and other typical tasks.
 
-* [Official PHP SDK](app-sdks/php/01-getting_started.md)
-* [Official Symfony Bundle](app-sdks/symfony-bundle/index.md)
+* [Official PHP SDK](app-sdks/php/01-getting_started)
+* [Official Symfony Bundle](app-sdks/symfony-bundle/index)
 
 If there is no SDK available for your language, you can implement the registration process by yourself.
 
@@ -235,7 +235,7 @@ A sample registration response looks like this:
 
 ### Confirmation request
 
-If the proof you provided in the [registration response](app-base-guide.md#registration-response) matches the one generated on the shop side, the registration is completed. As a result, your app will receive a `POST` request against the URL specified as the `confirmation_url` of the registration with the following parameters send in the request body:
+If the proof you provided in the [registration response](app-base-guide#registration-response) matches the one generated on the shop side, the registration is completed. As a result, your app will receive a `POST` request against the URL specified as the `confirmation_url` of the registration with the following parameters send in the request body:
 
 * `apiKey`: The API key used to authenticate against the Shopware Admin API.
 * `secretKey`: The secret key used to authenticate against the Shopware Admin API.
@@ -267,7 +267,7 @@ Starting from Shopware version 6.4.1.0, the current Shopware version will be sen
 Starting from Shopware version 6.4.5.0, the current language id of the Shopware context will be sent as a  `sw-context-language` header, and the locale of the user or locale of the context language is available under the `sw-user-language` header.
 :::
 
-The request is signed with the `shop-secret` that your app provided in the [registration response](app-base-guide.md#registration-response) and the signature can be found in the `shopware-shop-signature` header.  
+The request is signed with the `shop-secret` that your app provided in the [registration response](app-base-guide#registration-response) and the signature can be found in the `shopware-shop-signature` header.  
 You need to recalculate that signature and check that it matches the provided one to make sure that the request is really sent from the shop with that shopId.
 
 You can use the following code snippet to generate the signature:
@@ -287,7 +287,7 @@ $hmac = \hash_hmac('sha256', $request->getBody()->getContents(), $shopSecret);
 
 ## Permissions
 
-Shopware comes with the possibility to create fine-grained [Access Control Lists](../plugins/administration/add-acl-rules.md) \(ACLs\). It means you need to request permissions if your app needs to read or write data over the API or wants to receive webhooks. The permissions your app needs are defined in the manifest file and are composed of the privilege \(`read`, `create`, `update`, `delete`\) and the entity.
+Shopware comes with the possibility to create fine-grained [Access Control Lists](../plugins/administration/add-acl-rules) \(ACLs\). It means you need to request permissions if your app needs to read or write data over the API or wants to receive webhooks. The permissions your app needs are defined in the manifest file and are composed of the privilege \(`read`, `create`, `update`, `delete`\) and the entity.
 Since version 6.4.12.0, your app can also request additional non-CRUD privileges with the `<permission>` element.
 
 Sample permissions to read, create and update products, delete orders, as well as reading the cache configuration look like this:
@@ -312,10 +312,10 @@ Sample permissions to read, create and update products, delete orders, as well a
 </manifest>
 ```
 
-The permissions you request need to be accepted by the user during the installation of your app. After that, these permissions are granted for your app and your API access through the credentials from the [confirmation request](app-base-guide.md#confirmation-request) of the [setup workflow](app-base-guide.md#setup) are limited to those permissions.
+The permissions you request need to be accepted by the user during the installation of your app. After that, these permissions are granted for your app and your API access through the credentials from the [confirmation request](app-base-guide#confirmation-request) of the [setup workflow](app-base-guide#setup) are limited to those permissions.
 
 ::: warning
-Keep in mind that read permissions also extend to the data contained in the requests, so your app needs read permissions for the entities contained in the subscribed [webhooks](./webhook.md).
+Keep in mind that read permissions also extend to the data contained in the requests, so your app needs read permissions for the entities contained in the subscribed [webhooks](./webhook).
 :::
 
 ### App notification
@@ -409,10 +409,10 @@ function webhookController(RequestInterface $request): ResponseInterface
 
 #### App lifecycle events for app scripts
 
-Since Shopware 6.4.9.0, it is also possible to create [App scripts](./app-scripts/README.md) that are executed during the lifecycle of your app.
+Since Shopware 6.4.9.0, it is also possible to create [App scripts](./app-scripts/) that are executed during the lifecycle of your app.
 You get access to the database and can change or create some data, e.g., when your app is activated, without needing an external server.
 
-For a full list of the available hook points and the available services refer to the [reference documentation](../../../resources/references/app-reference/script-reference/script-hooks-reference.md#app-lifecycle).
+For a full list of the available hook points and the available services refer to the [reference documentation](../../../resources/references/app-reference/script-reference/script-hooks-reference#app-lifecycle).
 
 ## Validation
 

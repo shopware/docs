@@ -6,9 +6,9 @@ This guide will show you how to use custom fields, e.g., labels in the Storefron
 
 ## Prerequisites
 
-You won't learn to create a plugin in this guide, head over to our [Plugin base guide](../plugin-base-guide.md) to create a plugin first, if you don't know how it's done yet.
+You won't learn to create a plugin in this guide, head over to our [Plugin base guide](../plugin-base-guide) to create a plugin first, if you don't know how it's done yet.
 
-Needless to say, you need a custom field itself to add to the Storefront via your own plugin. Head over to the guide on [adding custom fields to Shopware](../framework/custom-field/add-custom-field.md) to be able to prepare your own custom field.
+Needless to say, you need a custom field itself to add to the Storefront via your own plugin. Head over to the guide on [adding custom fields to Shopware](../framework/custom-field/add-custom-field) to be able to prepare your own custom field.
 
 ## Use snippets of custom fields
 

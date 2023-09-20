@@ -221,4 +221,4 @@ By default, lazy loading is disabled for newly added `sw_thumbnail` elements. Yo
 
 ## More interesting topics
 
-* [Use custom assets in general](add-custom-assets.md)
+* [Use custom assets in general](add-custom-assets)

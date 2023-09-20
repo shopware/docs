@@ -1,33 +1,33 @@
 # Quality Guidelines for Apps based on Plugin System in Shopware Store
 
 > **Changelog**
->> 06/09/23: [Added - Rules for own composer dependencies](../quality-guidelines-plugins/README.md#own-composer-dependencies)
+>> 06/09/23: [Added - Rules for own composer dependencies](../quality-guidelines-plugins/#own-composer-dependencies)
 >
->> 26/07/23: [Added - Name preset according to new naming scheme](../quality-guidelines-plugins/README.md#every-app-based-on-the-plugin-system)
+>> 26/07/23: [Added - Name preset according to new naming scheme](../quality-guidelines-plugins/#every-app-based-on-the-plugin-system)
 >
->> 18/07/23: [Compiled code](../quality-guidelines-plugins/README.md#checklist-for-app-testing)
+>> 18/07/23: [Compiled code](../quality-guidelines-plugins/#checklist-for-app-testing)
 >
->> 12/04/23: [Check for a functional comparison with functions from the Rise or above edition.](../quality-guidelines-plugins/README.md#every-app-based-on-the-plugin-system)
+>> 12/04/23: [Check for a functional comparison with functions from the Rise or above edition.](../quality-guidelines-plugins/#every-app-based-on-the-plugin-system)
 >
->> 14/02/23: [Added new STP tracking - External technology apps/STP apps.](../quality-guidelines-plugins/README.md#external-technology-shopware-technology-partner-stp-apps)
+>> 14/02/23: [Added new STP tracking - External technology apps/STP apps.](../quality-guidelines-plugins/#external-technology-shopware-technology-partner-stp-apps)
 >
->> 11/07/22: [Added a list of all Blockers - Changes to the autom. codereview 1.st Oct. 2022](../quality-guidelines-plugins/README.md#sonarcube-rules-status-blocker)
+>> 11/07/22: [Added a list of all Blockers - Changes to the autom. codereview 1.st Oct. 2022](../quality-guidelines-plugins/#sonarcube-rules-status-blocker)
 >
->> 26/10/21: [Added safe your app idea and get a preview in the store.](../quality-guidelines-plugins/README.md#every-app-based-on-the-plugin-system)
+>> 26/10/21: [Added safe your app idea and get a preview in the store.](../quality-guidelines-plugins/#every-app-based-on-the-plugin-system)
 >
 >> 14/10/21: [How we test your extension for the Shopware Store (DE).](https://www.youtube.com/watch?v=gLb5CmOdi4g)
 >
->> 08/06/21: [Added URL and info regarding our docker environment we use for testing SW6 apps.](../quality-guidelines-plugins/README.md#the-way-we-test-apps-based-on-the-plugin-system)
+>> 08/06/21: [Added URL and info regarding our docker environment we use for testing SW6 apps.](../quality-guidelines-plugins/#the-way-we-test-apps-based-on-the-plugin-system)
 >
->> 07/06/21: [Template Tests - Now using Scheme.org Structured Data Testing Tool instead of Google Structured Testing Tool.](../quality-guidelines-plugins/README.md#template-tests)
+>> 07/06/21: [Template Tests - Now using Scheme.org Structured Data Testing Tool instead of Google Structured Testing Tool.](../quality-guidelines-plugins/#template-tests)
 >
->> 07/06/21: [Account app description - Subprocessor and/or Further subprocessors information may be required for your app.](../quality-guidelines-plugins/README.md#app-descriptions-in-your-shopware-account)
+>> 07/06/21: [Account app description - Subprocessor and/or Further subprocessors information may be required for your app.](../quality-guidelines-plugins/#app-descriptions-in-your-shopware-account)
 >
 >> 17/04/21: Restructured the quality guidelines. No new content added.
 >
->> 12/05/20: [Added app Checklist for your Quality assurance.](../quality-guidelines-plugins/README.md#checklist-for-app-testing)
+>> 12/05/20: [Added app Checklist for your Quality assurance.](../quality-guidelines-plugins/#checklist-for-app-testing)
 >
->> 22/04/20: [Menu entries in the main menu of the Administration are not allowed anymore because of the look and feel.](../quality-guidelines-plugins/README.md#menu-entries-in-the-main-menu-not-allowed)
+>> 22/04/20: [Menu entries in the main menu of the Administration are not allowed anymore because of the look and feel.](../quality-guidelines-plugins/#menu-entries-in-the-main-menu-not-allowed)
 
 ## The way we test apps based on the plugin system
 
@@ -236,7 +236,7 @@ The *Extension Manager* must not be extended or overwritten.
 
 Composer dependencies are possible as long as they are in the `composer.json`. With `executeComposerCommands() === true` in the plugin base class we provide a dynamic installation of the composer dependencies by default, so they don't have to be included. Everything that is delivered in code should be traceable either directly or via `composer.json`.
 
-[Developer documentation article to add private dependency](../../../../../guides/plugins/plugins/plugin-fundamentals/using-composer-dependencies.md)
+[Developer documentation article to add private dependency](../../../../../guides/plugins/plugins/plugin-fundamentals/using-composer-dependencies)
 
 ### Extension manager
 
@@ -346,7 +346,7 @@ The bootstrap cannot be found. The reasons could be that the folder structure in
 ### Class Shopware\Storefront\* not found
 
 Missing requirements in the composer.json (e.g. "require": {"shopware/frontend": "*"},)  
-See "[Shopware App Development: App Meta Information - Explanation of the properties](../../../../../guides/plugins/plugins/plugin-base-guide.md#the-composerjson-file) for more information.
+See "[Shopware App Development: App Meta Information - Explanation of the properties](../../../../../guides/plugins/plugins/plugin-base-guide#the-composerjson-file) for more information.
 
 ### Cookies are written safely
 

@@ -105,8 +105,8 @@ This is a [shorthand](https://alligator.io/js/object-property-shorthand-es6/), w
 
 You've now added a custom component, including a little template. However, there's more discover here.
 
-* [More about templates](writing-templates.md)
-* [Add some styling to your component](add-custom-styles.md)
-* [Use shortcuts for your component](add-shortcuts.md)
+* [More about templates](writing-templates)
+* [Add some styling to your component](add-custom-styles)
+* [Use shortcuts for your component](add-shortcuts)
 
-Furthermore, what about [customizing other components](customizing-components.md), instead of creating new ones.
+Furthermore, what about [customizing other components](customizing-components), instead of creating new ones.

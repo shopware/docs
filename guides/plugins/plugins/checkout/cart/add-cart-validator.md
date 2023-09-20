@@ -8,7 +8,7 @@ This guide will cover the subject on how to add your own custom cart validator.
 
 ## Prerequisites
 
-For this guide, you will need a working plugin, which you learn to create [here](../../plugin-base-guide.md). Also, you will have to know the [Dependency Injection container](../../plugin-fundamentals/dependency-injection.md), since that's going to be used in order to register your custom validator.
+For this guide, you will need a working plugin, which you learn to create [here](../../plugin-base-guide). Also, you will have to know the [Dependency Injection container](../../plugin-fundamentals/dependency-injection), since that's going to be used in order to register your custom validator.
 
 ## Adding a custom cart validator
 
@@ -65,7 +65,7 @@ Important to note is the `return` statement afterwards. If you wouldn't return h
 
 #### Registering the validator
 
-One more thing to do is to register your new validator to the [dependency injection container](../../plugin-fundamentals/dependency-injection.md).
+One more thing to do is to register your new validator to the [dependency injection container](../../plugin-fundamentals/dependency-injection).
 
 Your validator has to be registered using the tag `shopware.cart.validator`:
 
@@ -169,7 +169,7 @@ Only the snippets are missing.
 
 ### Adding the snippet
 
-First of all you should know our guide about [adding storefront snippets](../../storefront/add-translations.md), since that won't be explained in detail here.
+First of all you should know our guide about [adding storefront snippets](../../storefront/add-translations), since that won't be explained in detail here.
 
 You've defined the error key to be `custom-line-item-blocked` in your custom error class `CustomCartBlockedError`. Once your validator finds an invalid line item in your cart, Shopware is going to search for a respective snippet. In the cart, Shopware will be looking for the following snippet key: `checkout.custom-line-item-blocked`. Meanwhile it will be looking for a key `error.custom-line-item-blocked` in the checkout steps. This way you could technically define two different messages for the cart and the following checkout steps.
 
@@ -193,4 +193,4 @@ And that's it, you've now successfully added your own cart validator.
 
 ## Next steps
 
-In the examples mentioned above, we're asking for custom line item payloads. This subject is covered in our guide about [adding cart items](add-cart-items.md), so you might want to have a look at that.
+In the examples mentioned above, we're asking for custom line item payloads. This subject is covered in our guide about [adding cart items](add-cart-items), so you might want to have a look at that.

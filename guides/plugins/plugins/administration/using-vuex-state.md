@@ -42,7 +42,7 @@ export default {
 ## Registering the store
 
 The store can be registered in two scopes, on a module scope and on a per component scope.
-Both ways use the same functions from the [Shopware object](./the-shopware-object.md) to register and unregister the `namespaced store modules`.
+Both ways use the same functions from the [Shopware object](./the-shopware-object) to register and unregister the `namespaced store modules`.
 
 Registering in a module scope is done by simply calling the function `Shopware.State.registerModule` in the `main.js` file.
 
@@ -132,4 +132,4 @@ The component below displays the previously mapped state `content` in a `div` an
 
 ## More interesting topics
 
-* [The Shopware object](./the-shopware-object.md).
+* [The Shopware object](./the-shopware-object).

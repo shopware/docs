@@ -6,9 +6,9 @@ In this guide you'll learn how to create inherited fields for your entities. Fie
 
 ## Prerequisites
 
-This guide is built upon the [Plugin Base Guide](../../plugin-base-guide.md), but any plugin will work here. Just note that all examples are using the plugin mentioned above.
+This guide is built upon the [Plugin Base Guide](../../plugin-base-guide), but any plugin will work here. Just note that all examples are using the plugin mentioned above.
 
-You also should have a look at our [Adding custom complex data](add-custom-complex-data.md) guide, since this guide is built upon it.
+You also should have a look at our [Adding custom complex data](add-custom-complex-data) guide, since this guide is built upon it.
 
 ## Inherit a field
 
@@ -22,7 +22,7 @@ To start using inheritance, we have to update our definition and database.
 
 ### Make fields nullable
 
-The first thing we need to do is to make all our fields that we want to make inheritable nullable in our migration. If you lack knowledge about migrations, have a look at our [Database migrations](../../plugin-fundamentals/database-migrations.md) guide. We also need a 'parent_id' field for the parent reference.
+The first thing we need to do is to make all our fields that we want to make inheritable nullable in our migration. If you lack knowledge about migrations, have a look at our [Database migrations](../../plugin-fundamentals/database-migrations) guide. We also need a 'parent_id' field for the parent reference.
 
 ```sql
 ALTER TABLE `swag_example` ADD `parent_id` BINARY(16) NULL;

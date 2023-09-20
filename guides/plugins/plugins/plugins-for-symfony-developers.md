@@ -5,12 +5,12 @@
 This guide serves as an entry point for developers familiar with the concepts of `Symfony bundles`.
 
 ::: info
-Check out our [Shopware Toolbox PHPStorm extension](../../../resources/tooling/ide/shopware-toolbox.md) with useful features like autocompletion, code generation or guideline checks.
+Check out our [Shopware Toolbox PHPStorm extension](../../../resources/tooling/ide/shopware-toolbox) with useful features like autocompletion, code generation or guideline checks.
 :::
 
 ## Prerequisites
 
-This guide handles some base concepts of Shopware plugins. Therefore, you may want to have a look at [Plugin base guide](plugin-base-guide.md) first.
+This guide handles some base concepts of Shopware plugins. Therefore, you may want to have a look at [Plugin base guide](plugin-base-guide) first.
 
 As this guide also references the functionality of Symfony bundles, you should have at least a basic knowledge of it. You may want to have a look or refresh your knowledge on Symfony's [Bundle system](https://symfony.com/doc/current/bundles.html).
 
@@ -60,8 +60,8 @@ A Shopware plugin runs through a lifecycle. Your plugin's base class can impleme
 
 Now that you know about the differences between a Symfony bundle and a Shopware plugin, you might also want to have a look into the following Symfony-specific topics and how they are integrated in Shopware 6:
 
-* [Dependency Injection](plugin-fundamentals/dependency-injection.md)
-* [Listening to events](plugin-fundamentals/listening-to-events.md)
+* [Dependency Injection](plugin-fundamentals/dependency-injection)
+* [Listening to events](plugin-fundamentals/listening-to-events)
 
 ::: info
 Here are some useful videos explaining:

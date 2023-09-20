@@ -5,7 +5,7 @@ By default, Symfony will use a local lock store. This means in multi-machine (cl
 
 ## Using Redis as a lock store
 
-As Redis can already be used for [caching](./caches.md), [increment store](./increment.md), and [session storage](./session.md), you can also use that Redis host as a remote lock store.
+As Redis can already be used for [caching](./caches), [increment store](./increment), and [session storage](./session), you can also use that Redis host as a remote lock store.
 To use Redis, create a `config/packages/framework.yml` file with the following content:
 
 ```yaml

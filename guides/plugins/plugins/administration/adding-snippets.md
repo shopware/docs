@@ -81,5 +81,5 @@ If you provide `1` as the second parameter to `$tc()`, the text `One Product` wo
 
 ## More interesting topics
 
-* [Learning about the global Shopware object](the-shopware-object.md)
+* [Learning about the global Shopware object](the-shopware-object)
 * [Learning about the VueX state](https://github.com/shopware/docs/tree/575c2fa12ef272dc25744975e2f1e4d44721f0f1/guides/plugins/plugins/administration/using-vuex-state.md)

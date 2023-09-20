@@ -20,4 +20,4 @@ Plugins are executed within the Shopware Core process and can react to events, e
 
 ## Start Coding
 
-Refer to Guides section to get an [overview of both extension systems and how they differ](../../guides/plugins/overview.md).
+Refer to Guides section to get an [overview of both extension systems and how they differ](../../guides/plugins/overview).

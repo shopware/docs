@@ -32,7 +32,7 @@ The `.env` will be overwritten when the Shopware Web Installer is used for Shopw
 bin/console system:install --basic-setup
 ```
 
-This installs Shopware and creates a default [sales channel](../../concepts/commerce/catalog/sales-channels.md) with Shopware's default Administration credentials:
+This installs Shopware and creates a default [sales channel](../../concepts/commerce/catalog/sales-channels) with Shopware's default Administration credentials:
 
 | Username | Password   |
 |:---------|:-----------|

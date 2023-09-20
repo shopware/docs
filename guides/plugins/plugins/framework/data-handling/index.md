@@ -10,4 +10,4 @@ Hence, here are some good starting topics:
 
 <PageRef page="writing-data" />
 
-Also, [listening to events](using-database-events.md) of the DAL will come in handy for sure.
+Also, [listening to events](using-database-events) of the DAL will come in handy for sure.

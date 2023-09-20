@@ -8,9 +8,9 @@ All events are nested into one container event so that your subscriber should on
 
 ## Prerequisites
 
-This guide is built upon the [Plugin base guide](../../plugin-base-guide.md), but any plugin will work here. Just note that all examples are using the plugin mentioned above.
+This guide is built upon the [Plugin base guide](../../plugin-base-guide), but any plugin will work here. Just note that all examples are using the plugin mentioned above.
 
-Furthermore you should have a look at our [Listening to events](../../plugin-fundamentals/listening-to-events.md) guide since we are subscribing to events in this guide.
+Furthermore you should have a look at our [Listening to events](../../plugin-fundamentals/listening-to-events) guide since we are subscribing to events in this guide.
 
 ## General event overview
 
@@ -85,7 +85,7 @@ class EntityWriteSubscriber implements EventSubscriberInterface
 }
 ```
 
-After creating the event subscriber, you have to register it. If you don't know how it is done, then refer to the [Listening to events](../../plugin-fundamentals/listening-to-events.md) guide.
+After creating the event subscriber, you have to register it. If you don't know how it is done, then refer to the [Listening to events](../../plugin-fundamentals/listening-to-events) guide.
 
 ### `Shopware\Core\Framework\DataAbstractionLayer\Event\EntityDeleteEvent`
 
@@ -133,7 +133,7 @@ class DeleteSubscriber implements EventSubscriberInterface
 }
 ```
 
-After creating the event subscriber, you have to register it. If you don't know how it is done, then refer to the [Listening to events](../../plugin-fundamentals/listening-to-events.md) guide.
+After creating the event subscriber, you have to register it. If you don't know how it is done, then refer to the [Listening to events](../../plugin-fundamentals/listening-to-events) guide.
 
 ## Entity event overview
 
@@ -237,7 +237,7 @@ class ProductSubscriber implements EventSubscriberInterface
     }
 ```
 
-After creating the event subscriber, you have to register it. If you don't know how that's done, head over to our guide about [Listening to events](../../plugin-fundamentals/listening-to-events.md).
+After creating the event subscriber, you have to register it. If you don't know how that's done, head over to our guide about [Listening to events](../../plugin-fundamentals/listening-to-events).
 
 Here's our `services.xml`:
 

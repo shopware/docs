@@ -10,7 +10,7 @@ To enable this, set `SHOPWARE_HTTP_CACHE_ENABLED=1` in the `.env`
 
 ### Reverse proxy cache
 
-When you have many app servers, you should consider using a [reverse proxy cache](../infrastructure/reverse-http-cache.md) like Varnish. Shopware offers a default configuration for Varnish out-of-the-box.
+When you have many app servers, you should consider using a [reverse proxy cache](../infrastructure/reverse-http-cache) like Varnish. Shopware offers a default configuration for Varnish out-of-the-box.
 
 ### Logged-in / cart-filled
 
@@ -59,7 +59,7 @@ and then you can set `SQL_SET_DEFAULT_SESSION_VARIABLES=0` to your `.env` file
 
 We designed the DAL (Data Abstraction Layer) to provide developers a flexible and extensible data management. However, features in such a system come at the cost of performance. Therefore, using DBAL (plain SQL) is much faster than using the DAL in many scenarios, especially when it comes to internal processes, where often only one ID of an entity is needed.
 
-Refer to this article to know more on [when to use plain SQL and DAL](../../../resources/references/adr/2021-05-14-when-to-use-plain-sql-or-dal.md).
+Refer to this article to know more on [when to use plain SQL and DAL](../../../resources/references/adr/2021-05-14-when-to-use-plain-sql-or-dal).
 
 ## Elasticsearch/Opensearch
 
@@ -67,7 +67,7 @@ Elasticsearch/Opensearch is a great tool to reduce the load of the MySQL server.
 
 When using Elasticsearch, it is important to set the `SHOPWARE_ES_THROW_EXCEPTION=1` `.env` variable. This ensures that there is no fallback to the MySQL server if an error occurs when querying the data via Elasticsearch. In large projects, the failure of Elasticsearch leads to the MySQL server being completely overloaded otherwise.
 
-Read more on [Elasticsearch setup](../infrastructure/elasticsearch/elasticsearch-setup.md)
+Read more on [Elasticsearch setup](../infrastructure/elasticsearch/elasticsearch-setup)
 
 ## Prevent mail data updates
 
@@ -90,7 +90,7 @@ If you wonder, why it is in `prod`, have a look into the [Symfony configuration 
 
 ## Increment storage
 
-The [Increment storage](../performance/increment.md) is used to store the state and display it in the Administration.
+The [Increment storage](../performance/increment) is used to store the state and display it in the Administration.
 This storage increments or decrements a given key in a transaction-safe way, which causes locks upon the storage. Therefore, we recommend moving this source of server load to a separate Redis:
 
 ```yaml
@@ -113,7 +113,7 @@ If you don't need such functionality, it is highly recommended to disable this b
 ## Lock storage
 
 Shopware uses [Symfony's Lock component](https://symfony.com/doc/5.4/lock.html) to implement locking functionality.
-By default, Symfony will use a local file-based [lock store](../performance/lock-store.md), which breaks into multi-machine (cluster) setups. This is avoided using one of the [supported remote stores](https://symfony.com/doc/5.4/components/lock.html#available-stores).
+By default, Symfony will use a local file-based [lock store](../performance/lock-store), which breaks into multi-machine (cluster) setups. This is avoided using one of the [supported remote stores](https://symfony.com/doc/5.4/components/lock.html#available-stores).
 
 ```yaml
 # config/packages/prod/framework.yaml
@@ -123,7 +123,7 @@ framework:
 
 ## Number ranges
 
-[Number Ranges](../performance/number-ranges.md) provide a consistent way to generate a consecutive number sequence that is used for order numbers, invoice numbers, etc.
+[Number Ranges](../performance/number-ranges) provide a consistent way to generate a consecutive number sequence that is used for order numbers, invoice numbers, etc.
 The generation of the number ranges is an **atomic** operation, which guarantees that the sequence is consecutive and no number is generated twice.
 
 By default, the number range states are stored in the database.

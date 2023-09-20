@@ -46,9 +46,9 @@ The second keyboard shortcut defines that, upon the `ESCAPE` key being pressed, 
 
 The before mentioned `SYSTEMKEY` is `CTRL` on macOS and `ALT` on Windows, other system-keys like `CTRL` on Windows or `⌥` on macOS are not supported.
 
-Since ACL is used in the first keyboard shortcut you might want to learn more about ACL and how to add your own ACL rules [here](./add-acl-rules.md).
+Since ACL is used in the first keyboard shortcut you might want to learn more about ACL and how to add your own ACL rules [here](./add-acl-rules).
 
 ## More interesting topics
 
-* [Writing templates](./writing-templates.md)
-* [Adding styles](./add-custom-styles.md)
+* [Writing templates](./writing-templates)
+* [Adding styles](./add-custom-styles)

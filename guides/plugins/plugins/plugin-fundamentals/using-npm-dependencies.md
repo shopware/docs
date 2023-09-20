@@ -79,6 +79,6 @@ The final step in this process is to build your Storefront or Administration so 
 
 ## Next steps
 
-Now that you know how to include new `npm` dependencies you might want to create a service with them. Learn how to do that in this guide: [How to add a custom-service](../administration/add-custom-service.md)
+Now that you know how to include new `npm` dependencies you might want to create a service with them. Learn how to do that in this guide: [How to add a custom-service](../administration/add-custom-service)
 
-If you want to add [Composer dependencies](using-composer-dependencies.md), or even other [plugin dependencies](add-plugin-dependencies.md), we've got you covered as well.
+If you want to add [Composer dependencies](using-composer-dependencies), or even other [plugin dependencies](add-plugin-dependencies), we've got you covered as well.

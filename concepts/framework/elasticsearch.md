@@ -2,7 +2,7 @@
 
 Elasticsearch is a NoSQL Database focused on search capabilities to act as a search engine.
 The Shopware implementation of Elasticsearch provides an integrated way to improve the performance of product and category searches.
-To use Elasticsearch for your shop, take a look at our [Elasticsearch guide](../../guides/hosting/infrastructure/elasticsearch/elasticsearch-setup.md)
+To use Elasticsearch for your shop, take a look at our [Elasticsearch guide](../../guides/hosting/infrastructure/elasticsearch/elasticsearch-setup)
 
 ## Concept
 
@@ -82,4 +82,4 @@ The command `es:test:analyzer` runs an Elasticsearch analyzer on your indices. F
 
 ## Customize the Elasticsearch integration
 
-To customize the Elasticsearch integration or add your own fields and entities, refer to the [Elasticsearch extension guide](../../guides/plugins/plugins/elasticsearch/add-product-entity-extension-to-elasticsearch.md)
+To customize the Elasticsearch integration or add your own fields and entities, refer to the [Elasticsearch extension guide](../../guides/plugins/plugins/elasticsearch/add-product-entity-extension-to-elasticsearch)

@@ -23,7 +23,7 @@ This will trigger a new build with a subsequent deploy consisting of the followi
 | Configuration validation | Hold app requests |
 | Build container image | Unmount live containers |
 | Installing dependencies | Mount file systems |
-| Run [build hook](./setup-template.md#build-hook) | Run [deploy hook](./setup-template.md#deploy-hook) |
+| Run [build hook](./setup-template#build-hook) | Run [deploy hook](./setup-template#deploy-hook) |
 | Building app image | Serve requests |
 
 After both steps have been executed successfully (you will get extensive logging about the process), you will be able to see the deployed store on a link presented at the end of the deployment.
@@ -80,7 +80,7 @@ If you use the Shopware Flex Paas template, [the configuration](https://github.c
 
 #### Theme assets
 
-It is a known issue that after the first deployment, theme assets are not compiled during the deployment. For that reason, your store will look unstyled. The [Theme Build](./theme-build.md) section explains how to resolve that issue.
+It is a known issue that after the first deployment, theme assets are not compiled during the deployment. For that reason, your store will look unstyled. The [Theme Build](./theme-build) section explains how to resolve that issue.
 
 ## Composer authentication
 
@@ -96,7 +96,7 @@ Make sure to replace `%place your key here%` with your actual token. You can fin
 
 ## Extending Shopware - plugins and apps
 
-The PaaS recipe uses the [Composer plugin loader](../../guides/hosting/installation-updates/cluster-setup.md#composer-plugin-loader).
+The PaaS recipe uses the [Composer plugin loader](../../guides/hosting/installation-updates/cluster-setup#composer-plugin-loader).
 
 ## Manually trigger rebuilds
 

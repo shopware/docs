@@ -6,9 +6,9 @@ This guide explains with some examples on how to delete associated data or most 
 
 ## Prerequisites
 
-This example will be built upon the [Plugin base guide](../../plugin-base-guide.md), so having a look at it will come in handy.
+This example will be built upon the [Plugin base guide](../../plugin-base-guide), so having a look at it will come in handy.
 
-Also, the same subject was already mentioned in our guide about [Replacing associated data](replacing-associated-data.md).
+Also, the same subject was already mentioned in our guide about [Replacing associated data](replacing-associated-data).
 
 ## Deleting associated data
 
@@ -131,4 +131,4 @@ Note: This will **not** delete the media entity itself, just the association bet
 
 ## More interesting topics
 
-* [Replacing associated data](replacing-associated-data.md)
+* [Replacing associated data](replacing-associated-data)
