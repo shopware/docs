@@ -1,3 +1,10 @@
+---
+nav:
+  title: Message Queue
+  position: 20
+
+---
+
 # Message Queue
 
 ## Overview

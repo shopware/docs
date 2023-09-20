@@ -1,3 +1,10 @@
+---
+nav:
+  title: Entity based ACL
+  position: 100
+
+---
+
 # Entity based ACL
 
 ## Introduction

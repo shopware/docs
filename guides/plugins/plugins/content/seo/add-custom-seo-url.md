@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom SEO URLs
+  position: 10
+
+---
+
 # Add custom SEO URLs
 
 ## Overview

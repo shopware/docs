@@ -1,3 +1,10 @@
+---
+nav:
+  title: Conceptual Structure
+  position: 20
+
+---
+
 # Conceptual Outline
 
 Our documentation is categorized into the following sections - Concepts, Products, Guides, and Resources. This structure provides different levels of detail, abstraction, and focus.

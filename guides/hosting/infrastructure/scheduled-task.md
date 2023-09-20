@@ -1,3 +1,10 @@
+---
+nav:
+  title: Scheduled Task
+  position: 30
+
+---
+
 # Scheduled task
 
 ## What are scheduled tasks?

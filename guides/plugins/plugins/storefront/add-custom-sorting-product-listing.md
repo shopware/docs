@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom sorting for product listing
+  position: 220
+
+---
+
 # Add Custom Sorting for Product Listing
 
 ## Overview

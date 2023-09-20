@@ -2,7 +2,14 @@
 title: Disable the CSS autoprefixer in the Storefront by default
 date: 2023-04-03
 area: storefront
-tags: [css, autoprefixer, theme-compiler]
+tags:
+  - css
+  - autoprefixer
+  - theme-compiler
+nav:
+  title: Disable css autoprefixer
+  position: 900
+
 ---
 
 # Disable the CSS autoprefixer in the Storefront by default

@@ -2,7 +2,14 @@
 title: Admin text editor evaluation
 date: 2023-03-27
 area: admin
-tags: [admin, text-editor, evaluation]
+tags:
+  - admin
+  - text-editor
+  - evaluation
+nav:
+  title: Admin text editor evaluation
+  position: 880
+
 ---
 
 # Admin text editor evaluation

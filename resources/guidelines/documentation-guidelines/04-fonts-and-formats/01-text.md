@@ -1,3 +1,10 @@
+---
+nav:
+  title: Text
+  position: 10
+
+---
+
 # Fonts and Format for Text
 
 Follow the below textual formats for good content visualization.

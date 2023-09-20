@@ -1,3 +1,10 @@
+---
+nav:
+  title: API
+  position: 40
+
+---
+
 # API
 
 The Shopware API allows developers to interact with and integrate Shopware with other systems and applications. It provides a set of services that enable developers to perform various operations, such as managing products, customers, orders, and shopping carts.The API supports both read and write operations, allowing developers to retrieve information from Shopware and make modifications or additions to the e-commerce platform. By leveraging the Shopware API, developers can extend the functionality of Shopware, integrate it with external systems, and create seamless experiences for managing and operating online stores.

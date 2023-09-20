@@ -1,3 +1,10 @@
+---
+nav:
+  title: Shopware
+  position: 10
+
+---
+
 # Shopware configurations
 
 ## Overview

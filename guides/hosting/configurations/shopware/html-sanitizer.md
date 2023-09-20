@@ -1,3 +1,10 @@
+---
+nav:
+  title: HTML sanitizer
+  position: 10
+
+---
+
 # HTML Sanitizer
 
 ::: info

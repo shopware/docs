@@ -1,3 +1,10 @@
+---
+nav:
+  title: Directives
+  position: 30
+
+---
+
 # Directives reference
 
 This is an overview of all the directives registered globally to Vue.

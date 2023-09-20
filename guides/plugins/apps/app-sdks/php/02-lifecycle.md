@@ -1,3 +1,10 @@
+---
+nav:
+  title: Lifecycle
+  position: 20
+
+---
+
 # Lifecycle
 
 The Shopware App System manages the lifecycle of an app.

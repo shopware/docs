@@ -2,8 +2,15 @@
 title: Creating events in Shopware
 date: 2020-11-06
 area: core
-tags: [event, context, sales-channel-context]
---- 
+tags:
+  - event
+  - context
+  - sales-channel-context
+nav:
+  title: Creating events
+  position: 150
+
+---
 
 # Creating events in Shopware
 

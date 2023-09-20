@@ -1,3 +1,10 @@
+---
+nav:
+  title: Sales Channels
+  position: 30
+
+---
+
 # Sales Channels
 
 Sales channels allow you to operate multiple separate stores from a single Shopware instance.

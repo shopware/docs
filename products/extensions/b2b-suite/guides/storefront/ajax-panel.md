@@ -1,3 +1,10 @@
+---
+nav:
+  title: Ajax Panel
+  position: 10
+
+---
+
 # Ajax Panel
 
 `AjaxPanel` is a mini-framework based on Storefront plugins. It mimics `iFrame` behavior by integrating content from different controller actions through ajax into a single view and intercepting, usually page changing events and transforming them into XHR-Requests.

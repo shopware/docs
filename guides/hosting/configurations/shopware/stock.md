@@ -1,3 +1,10 @@
+---
+nav:
+  title: Stock
+  position: 20
+
+---
+
 # Stock Configuration
 
 When running Shopware 6 there are various configuration options you can use to customize your installation. These configurations reside in the general [bundle configuration](../../../../guides/hosting/configurations/).

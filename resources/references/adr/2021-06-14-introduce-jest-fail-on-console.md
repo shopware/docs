@@ -2,8 +2,17 @@
 title: Introduce jest-fail-on-console
 date: 2021-06-14
 area: administration
-tags: [jest, test, console, error, warning]
---- 
+tags:
+  - jest
+  - test
+  - console
+  - error
+  - warning
+nav:
+  title: Introduce jest fail on console
+  position: 240
+
+---
 
 # Introduce jest-fail-on-console
 

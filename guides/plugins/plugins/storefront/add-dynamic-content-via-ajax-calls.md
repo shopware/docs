@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add dynamic content via AJAX calls
+  position: 40
+
+---
+
 # Add Dynamic Content via AJAX Calls
 
 ## Overview

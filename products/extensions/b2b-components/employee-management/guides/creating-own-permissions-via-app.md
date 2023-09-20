@@ -1,3 +1,10 @@
+---
+nav:
+  title: Create permissions via app
+  position: 10
+
+---
+
 # Creating own permissions via app
 
 This article explains how to create custom permissions using an app.

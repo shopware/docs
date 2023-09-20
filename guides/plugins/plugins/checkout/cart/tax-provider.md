@@ -1,3 +1,10 @@
+---
+nav:
+  title: Tax provider
+  position: 70
+
+---
+
 # Tax provider
 
 ## Overview

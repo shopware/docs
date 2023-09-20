@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add assets to a Theme
+  position: 70
+
+---
+
 # Add Assets to a Theme
 
 ## Overview

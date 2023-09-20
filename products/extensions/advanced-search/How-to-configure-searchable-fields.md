@@ -1,3 +1,10 @@
+---
+nav:
+  title: Configure Searchable Fields
+  position: 40
+
+---
+
 # Configure Searchable Fields
 
 Search entities and their searhable fields are stored in `advanced_search_config` and `advanced_search_config_field` table respectively.

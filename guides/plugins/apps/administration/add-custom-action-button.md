@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom action button
+  position: 10
+
+---
+
 # Add custom action button
 
 One extension possibility in the Administration is the ability to add custom action buttons to the smartbar. For now, you can add them in the smartbar of detail and list views:

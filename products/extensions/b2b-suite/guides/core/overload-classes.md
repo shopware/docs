@@ -1,3 +1,10 @@
+---
+nav:
+  title: Overloading classes
+  position: 110
+
+---
+
 # Overloading Classes
 
 [Download](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bServiceExtension.zip) a plugin showcasing the topic.

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Premapping
+  position: 40
+
+---
+
 # Premapping
 
 The premapping will use the normal [Mapping](convert-and-mapping#mapping) to store the old identifier with the equivalent new one. All premapping readers provide the information for the mapping choices and are registered like this:

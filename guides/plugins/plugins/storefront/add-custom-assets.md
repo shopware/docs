@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom assets
+  position: 70
+
+---
+
 # Add Custom Assets
 
 ## Overview

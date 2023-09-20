@@ -1,3 +1,10 @@
+---
+nav:
+  title: Loading Stock Information from a different Source
+  position: 20
+
+---
+
 # Loading Stock Information from a Different Source
 
 ## Overview

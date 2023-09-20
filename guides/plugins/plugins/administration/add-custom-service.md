@@ -1,3 +1,10 @@
+---
+nav:
+  title: Adding Services
+  position: 90
+
+---
+
 # Adding Services
 
 ## Overview

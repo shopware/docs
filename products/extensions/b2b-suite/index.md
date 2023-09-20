@@ -1,3 +1,10 @@
+---
+nav:
+  title: B2B Suite
+  position: 20
+
+---
+
 # B2B Suite
 
 To build a robust B2B solution within the Shopware ecosystem, refer to this section which details every concept from scratch, including installation, system architecture, basic conventions, example plugins, Core, Administration, and Storefront component operations.

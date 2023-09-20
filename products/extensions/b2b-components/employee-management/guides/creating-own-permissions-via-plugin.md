@@ -1,3 +1,10 @@
+---
+nav:
+  title: Create permissions via plugin
+  position: 20
+
+---
+
 # Creating own permissions via plugin
 
 This article explains how to create custom permissions using a plugin.

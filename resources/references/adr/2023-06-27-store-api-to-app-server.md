@@ -2,7 +2,13 @@
 title: Client side communication to App Server
 date: 2023-06-27
 area: core
-tags: [core, app-system]
+tags:
+  - core
+  - app-system
+nav:
+  title: Store API to app server
+  position: 1000
+
 ---
 
 # Client side communication to App Server

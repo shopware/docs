@@ -1,3 +1,10 @@
+---
+nav:
+  title: Language & Grammar
+  position: 30
+
+---
+
 # Language and Grammar
 
 Basic guidelines for the apt use of language and grammar in the documentation are discussed in this section. In order to create a consistent product solution, Shopware maintains consistent documentation not just in terms of content but also style. A distinctive editorial voice helps create high-quality, readable, and consistent documentation.

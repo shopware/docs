@@ -1,3 +1,10 @@
+---
+nav:
+  title: Extending search template
+  position: 70
+
+---
+
 # Extend Search Template
 
 To show the results in the search overview, you have to extend the `search/index.html.twig` and then apply the results in your desired styling.

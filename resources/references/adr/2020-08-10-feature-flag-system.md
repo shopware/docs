@@ -2,7 +2,13 @@
 title: Feature flag system
 date: 2020-08-10
 area: core
-tags: [feature-flag, workflow]
+tags:
+  - feature-flag
+  - workflow
+nav:
+  title: Feature flag system
+  position: 50
+
 ---
 
 # Feature flag system

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Mail
+  position: 20
+
+---
+
 # Mail
 
 Shopware Mail offers the ability to add mail data and configure mail templates for various email communications within the e-commerce platform.	 You can add relevant mail data such as transactional emails, order notifications, customer communication, marketing campaigns, or newsletters. These emails can be tailored to specific events or triggers, ensuring timely and personalized communication with customers.

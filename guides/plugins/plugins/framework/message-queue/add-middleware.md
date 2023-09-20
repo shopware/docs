@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add middleware
+  position: 30
+
+---
+
 # Add Middleware
 
 ## Overview

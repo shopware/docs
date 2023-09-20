@@ -1,3 +1,10 @@
+---
+nav:
+  title: Define a custom Elasticsearch Definition
+  position: 20
+
+---
+
 # Define a custom Elasticsearch Definition
 
 In the previous implementation, the Elasticsearch index was language-based, meaning each system's language would be indexed in a separate index. With the introduction of the multilingual index:

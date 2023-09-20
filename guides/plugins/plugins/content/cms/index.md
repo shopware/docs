@@ -1,3 +1,10 @@
+---
+nav:
+  title: CMS
+  position: 10
+
+---
+
 # CMS
 
 In general, Shopware CMS creates and manages content using blocks and elements.

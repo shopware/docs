@@ -1,3 +1,10 @@
+---
+nav:
+  title: Extending Services
+  position: 100
+
+---
+
 # Extending services
 
 ## Overview

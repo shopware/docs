@@ -1,3 +1,10 @@
+---
+nav:
+  title: Modify search logic
+  position: 80
+
+---
+
 # Modify Search Logic
 
 @Refer: `\Shopware\Commercial\AdvancedSearch\Domain\Search\SearchLogic`

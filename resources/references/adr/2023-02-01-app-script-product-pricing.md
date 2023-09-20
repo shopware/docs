@@ -2,8 +2,15 @@
 title: App script product pricing
 date: 2023-02-01
 area: core
-tags: [app-script, product, pricing]
---- 
+tags:
+  - app-script
+  - product
+  - pricing
+nav:
+  title: App script product pricing
+  position: 820
+
+---
 
 # App script product pricing
 

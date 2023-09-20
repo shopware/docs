@@ -2,8 +2,14 @@
 title: The best-practice to always re-fetch the data after saving
 date: 2020-09-17
 area: administration
-tags: [administration, data-handling]
---- 
+tags:
+  - administration
+  - data-handling
+nav:
+  title: The best practice to always re fetch the data after saving
+  position: 140
+
+---
 
 # The best-practice to always re-fetch the data after saving
 

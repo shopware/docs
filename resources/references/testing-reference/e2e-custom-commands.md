@@ -1,3 +1,10 @@
+---
+nav:
+  title: Custom E2E Commands
+  position: 10
+
+---
+
 # Custom E2E Commands
 
 ## General commands

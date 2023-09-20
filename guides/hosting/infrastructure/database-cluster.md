@@ -1,3 +1,10 @@
+---
+nav:
+  title: Database Cluster
+  position: 20
+
+---
+
 # Database Cluster
 
 ::: info

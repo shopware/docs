@@ -1,3 +1,10 @@
+---
+nav:
+  title: Apps
+  position: 30
+
+---
+
 # Apps
 
 In Shopware, apps are custom-developed extensions that provide additional functionality and customization options to the e-commerce platform. These apps can be created using the Shopware app SDK, plugin system, or App scripts.

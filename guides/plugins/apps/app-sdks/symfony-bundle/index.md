@@ -1,3 +1,10 @@
+---
+nav:
+  title: Official Symfony bundle
+  position: 10
+
+---
+
 # App Bundle
 
 App Bundle integrates the PHP App SDK for Symfony. This can be accessed at [app-bundle-symfony](https://github.com/shopware/app-bundle-symfony).

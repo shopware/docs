@@ -1,3 +1,10 @@
+---
+nav:
+  title: Prevent Deletion of Media Files Referenced in your Plugins
+  position: 10
+
+---
+
 # Prevent Deletion of Media Files Referenced in your Plugins
 
 ::: info

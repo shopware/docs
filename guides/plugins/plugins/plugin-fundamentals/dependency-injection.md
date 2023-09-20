@@ -1,3 +1,10 @@
+---
+nav:
+  title: Dependency injection
+  position: 40
+
+---
+
 # Dependency Injection
 
 ## Overview

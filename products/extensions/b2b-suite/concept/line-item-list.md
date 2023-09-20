@@ -1,3 +1,10 @@
+---
+nav:
+  title: Line Item List
+  position: 40
+
+---
+
 # Line Item List
 
 ## Description

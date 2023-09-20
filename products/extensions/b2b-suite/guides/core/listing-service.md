@@ -1,3 +1,10 @@
+---
+nav:
+  title: Listing service
+  position: 40
+
+---
+
 # Listing Service
 
 [Download](../example-plugins/B2bAcl.zip) a plugin showcasing the topic.

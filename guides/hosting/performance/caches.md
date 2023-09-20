@@ -1,3 +1,10 @@
+---
+nav:
+  title: Cache
+  position: 10
+
+---
+
 # Cache
 
 There are several caches in Shopware that can be used to optimize performance. This page gives a brief overview and shows how to configure them.

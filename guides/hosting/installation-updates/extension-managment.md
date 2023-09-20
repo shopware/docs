@@ -1,3 +1,10 @@
+---
+nav:
+  title: Extension Management
+  position: 20
+
+---
+
 # Extension Management
 
 Normally all extensions installed by the Administration will be stored inside `custom/plugins` or `custom/apps`. When you want to update extensions, you have to re-upload the zip file or download the extension from the store using the Extension manager in the administration.

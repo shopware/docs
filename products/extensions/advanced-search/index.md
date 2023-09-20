@@ -1,3 +1,10 @@
+---
+nav:
+  title: Advanced Search
+  position: 40
+
+---
+
 # Advanced Search
 
 ::: info

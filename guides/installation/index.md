@@ -1,3 +1,10 @@
+---
+nav:
+  title: Installation
+  position: 10
+
+---
+
 # Installation Overview
 
 This section discusses ways to set up Shopware on local machines so you can use it as a foundation for your development.

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Adding responsive behavior
+  position: 260
+
+---
+
 # Adding responsive behavior
 
 ## Overview

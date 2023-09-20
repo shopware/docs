@@ -1,3 +1,10 @@
+---
+nav:
+  title: Media
+  position: 30
+
+---
+
 # Media
 
 Shopware Media offers the ability to add media file extensions and prevent the deletion of media files within the e-commerce platform.

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Customizing components
+  position: 170
+
+---
+
 # Customizing components
 
 The Shopware 6 Administration allows you to override twig blocks to change its content.

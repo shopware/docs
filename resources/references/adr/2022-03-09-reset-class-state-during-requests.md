@@ -2,8 +2,15 @@
 title: Use `ResetInterface` to reset instance state during requests
 date: 2022-03-09
 area: core
-tags: [php, architecture, performance]
---- 
+tags:
+  - php
+  - architecture
+  - performance
+nav:
+  title: Reset class state during requests
+  position: 480
+
+---
 
 # Use `ResetInterface` to reset instance state during requests
 

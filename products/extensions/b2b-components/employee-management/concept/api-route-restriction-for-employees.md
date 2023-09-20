@@ -1,3 +1,10 @@
+---
+nav:
+  title: API Route Restriction for Employees
+  position: 20
+
+---
+
 # API Route Restriction for Employees
 
 ## Overview

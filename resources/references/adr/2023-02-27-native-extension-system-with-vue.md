@@ -2,7 +2,15 @@
 title: Native extension system with vue
 date: 2023-02-27
 area: administration
-tags: [vue, extensibility, performance, administration]
+tags:
+  - vue
+  - extensibility
+  - performance
+  - administration
+nav:
+  title: Native extension system with vue
+  position: 870
+
 ---
 
 # Native extension system with vue

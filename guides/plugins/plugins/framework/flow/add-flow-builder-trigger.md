@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add Flow Builder trigger
+  position: 20
+
+---
+
 # Add customer flow action
 
 ::: info

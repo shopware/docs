@@ -2,7 +2,15 @@
 title: Base context factory
 date: 2022-03-25
 area: core
-tags: [core, sales-channel, performance, cache]
+tags:
+  - core
+  - sales-channel
+  - performance
+  - cache
+nav:
+  title: Base context factory
+  position: 520
+
 ---
 
 # Base context factory

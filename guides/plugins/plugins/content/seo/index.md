@@ -1,3 +1,10 @@
+---
+nav:
+  title: SEO
+  position: 40
+
+---
+
 # SEO
 
 The Shopware SEO feature offers the ability to add custom SEO URLs to optimize the search engine visibility of the e-commerce platform.

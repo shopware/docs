@@ -1,3 +1,10 @@
+---
+nav:
+  title: RabbitMQ
+  position: 70
+
+---
+
 # RabbitMQ
 
 RabbitMQ is enabled by default in the template. This service is optional but recommended. It can be disabled and replaced by an SQL-backed queue.

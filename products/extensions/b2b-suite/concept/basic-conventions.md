@@ -1,3 +1,10 @@
+---
+nav:
+  title: Basic conventions
+  position: 20
+
+---
+
 # Basic Conventions
 
 ## Codebase conventions

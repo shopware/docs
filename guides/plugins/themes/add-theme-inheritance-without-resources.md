@@ -1,3 +1,10 @@
+---
+nav:
+  title: Theme with Bootstrap styling
+  position: 100
+
+---
+
 # Theme with Bootstrap Styling
 
 ## Overview

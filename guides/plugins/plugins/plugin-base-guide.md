@@ -1,3 +1,10 @@
+---
+nav:
+  title: Plugin Base Guide
+  position: 10
+
+---
+
 # Plugin Base Guide
 
 ## Overview

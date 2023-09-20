@@ -2,8 +2,13 @@
 title: Implement new changelog
 date: 2020-08-03
 area: core
-tags: [changelog]
---- 
+tags:
+  - changelog
+nav:
+  title: Implement new changelog
+  position: 40
+
+---
 
 # Implement new changelog
 

@@ -2,7 +2,13 @@
 title: Experimental features
 date: 2023-05-10
 area: core, administration, storefront
-tags: [process, backwards compatibility]
+tags:
+  - process
+  - backwards compatibility
+nav:
+  title: Experimental features
+  position: 940
+
 ---
 
 # Experimental features

@@ -2,8 +2,17 @@
 title: Get control of association clone behavior as developer
 date: 2020-07-02
 area: core
-tags: [repository, entity, clone, flag, association]
---- 
+tags:
+  - repository
+  - entity
+  - clone
+  - flag
+  - association
+nav:
+  title: Control clone behavior
+  position: 20
+
+---
 
 # Get control of association clone behavior as developer
 

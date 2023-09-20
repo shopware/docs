@@ -1,3 +1,10 @@
+---
+nav:
+  title: Setup Template
+  position: 40
+
+---
+
 # Setup Template
 
 The setup template is installed automatically using Symfony Flex when requiring the `paas` package as described in the [Repository](repository). It contains build and deployment logic for Shopware PaaS as well as configuration for the underlying infrastructure and services. In this chapter, we will have a look at these customizations.

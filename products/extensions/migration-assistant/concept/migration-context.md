@@ -1,3 +1,10 @@
+---
+nav:
+  title: Migration Context
+  position: 30
+
+---
+
 # Migration Context
 
 The central data structure of Shopware Migration Assistant is the migration context. The migration context contains the following information:

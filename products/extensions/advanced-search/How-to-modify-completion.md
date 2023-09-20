@@ -1,3 +1,10 @@
+---
+nav:
+  title: Completion
+  position: 100
+
+---
+
 # Add / Modify Completion
 
 The Advanced Search does not use the default Elasticsearch completion because it only supports a fixed order and the storage size is high. As an alternative, Advanced Search uses aggregations to find the most important word combinations for your search input.

@@ -2,7 +2,15 @@
 title: Jest test files should be JavaScript only
 date: 2023-04-14
 area: admin
-tags: [admin, jest, javascript, typescript]
+tags:
+  - admin
+  - jest
+  - javascript
+  - typescript
+nav:
+  title: Jest test files should be javascript only
+  position: 920
+
 ---
 
 # Jest test files should be JavaScript only

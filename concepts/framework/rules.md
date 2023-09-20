@@ -1,3 +1,10 @@
+---
+nav:
+  title: Rules
+  position: 40
+
+---
+
 # Rules
 
 The rule system pervades Shopware 6. It solves the problem of calculating the cart differently based on the context \([`SalesChannel`](../commerce/catalog/sales-channels), `CustomerGroup`, etc\) and the current state \([`LineItems`](../commerce/checkout-concept/cart#line-items), `Amount`, etc\), but user controlled and decoupled from the [cart](../commerce/checkout-concept/cart) itself. In theory, [every part of Shopware 6](../../resources/references/core-reference/rules-reference) can contribute to the set of available rules.

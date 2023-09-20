@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add cart collector/processor
+  position: 10
+
+---
+
 # Add Cart Collector/Processor
 
 ## Overview

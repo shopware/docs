@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add mail templates
+  position: 20
+
+---
+
 # Add Mail Templates
 
 ## Overview

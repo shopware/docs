@@ -1,3 +1,10 @@
+---
+nav:
+  title: Digital Sales Rooms installation
+  position: 10
+
+---
+
 # Digital Sales Rooms Installation
 
 ::: warning

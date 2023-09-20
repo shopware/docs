@@ -1,3 +1,10 @@
+---
+nav:
+  title: Storefront
+  position: 70
+
+---
+
 # Storefront
 
 Storefront handles the e-commerce platform's front end, including the online store's visual presentation and user interface.

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Cluster Setup
+  position: 10
+
+---
+
 # Cluster Setup
 
 The setup of high-scaling systems differs from a normal installation of Shopware. They are completely customized stores with individual templates and extensions.

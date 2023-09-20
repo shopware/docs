@@ -2,7 +2,14 @@
 title: Symfony Dependency Management
 date: 2023-05-16
 area: core
-tags: [php, symfony, dependency]
+tags:
+  - php
+  - symfony
+  - dependency
+nav:
+  title: Symfony dependency management
+  position: 970
+
 ---
 
 # Symfony Dependency Management

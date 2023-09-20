@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add SCSS variables
+  position: 230
+
+---
+
 # Add SCSS variables
 
 ::: info
