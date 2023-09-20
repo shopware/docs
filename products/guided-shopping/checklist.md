@@ -1,3 +1,10 @@
+---
+nav:
+  title: Developers' checklist
+  position: 30
+
+---
+
 # Checklist
 
 ## Requirements

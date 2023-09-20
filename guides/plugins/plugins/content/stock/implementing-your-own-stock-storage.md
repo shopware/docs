@@ -1,3 +1,10 @@
+---
+nav:
+  title: Implementing your own stock storage
+  position: 10
+
+---
+
 # Implementing your own stock storage
 
 ## Overview

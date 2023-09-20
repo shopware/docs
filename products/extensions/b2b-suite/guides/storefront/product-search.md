@@ -1,3 +1,10 @@
+---
+nav:
+  title: Product Search
+  position: 20
+
+---
+
 # Product Search
 
 Our product search is a small Storefront plugin that allows you to create input fields with autocompletion for products.

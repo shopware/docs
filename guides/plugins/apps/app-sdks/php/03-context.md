@@ -1,3 +1,10 @@
+---
+nav:
+  title: Context
+  position: 30
+
+---
+
 # Context
 
 The ContextResolver helps you map the Shopware requests to struct classes to work with them more easily.

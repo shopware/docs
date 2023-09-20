@@ -1,3 +1,10 @@
+---
+nav:
+  title: Reading and Writing Stock
+  position: 30
+
+---
+
 # Reading and Writing Stock
 
 ## Overview

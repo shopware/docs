@@ -1,3 +1,10 @@
+---
+nav:
+  title: API Reference
+  position: 10
+
+---
+
 # API Reference
 
 The API references provide detailed information about the available endpoints, methods, parameters, request and response formats, and authentication mechanisms of an API. It provides essential information on how to interact with the API, what data can be sent or received, and how to handle different API responses.

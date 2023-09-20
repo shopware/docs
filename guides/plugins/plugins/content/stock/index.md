@@ -1,3 +1,10 @@
+---
+nav:
+  title: Stock
+  position: 60
+
+---
+
 # Stock
 
 ::: info

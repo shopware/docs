@@ -1,3 +1,10 @@
+---
+nav:
+  title: Employee management
+  position: 10
+
+---
+
 # Employee Management
 
 Employee management, a feature of the B2B component that includes employee, role, and permission management. It is implemented into both Storefront and Administration and supports their respective APIs.

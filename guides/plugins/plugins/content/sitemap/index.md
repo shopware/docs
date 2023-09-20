@@ -1,3 +1,10 @@
+---
+nav:
+  title: Sitemap
+  position: 50
+
+---
+
 # Sitemap
 
 Shopware Sitemap offers the ability to add sitemaps and modify sitemap entries within the e-commerce platform.

@@ -2,8 +2,17 @@
 title: Implement individual sorting
 date: 2020-08-14
 area: core
-tags: [repository, dal, entity, sort, product]
---- 
+tags:
+  - repository
+  - dal
+  - entity
+  - sort
+  - product
+nav:
+  title: Implement individual sorting
+  position: 80
+
+---
 
 # Implement individual sorting
 

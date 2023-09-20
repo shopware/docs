@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add data to storefront page
+  position: 150
+
+---
+
 # Add Data to Storefront Page
 
 ## Overview

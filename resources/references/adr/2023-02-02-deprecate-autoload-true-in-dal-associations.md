@@ -2,8 +2,16 @@
 title: Deprecate autoloading associations in DAL entity definitions
 date: 2023-02-02
 area: core
-tags: [dal, performance, api, core]
---- 
+tags:
+  - dal
+  - performance
+  - api
+  - core
+nav:
+  title: Deprecate autoload true in DAL associations
+  position: 830
+
+---
 
 # Deprecate autoloading associations in DAL entity definitions
 

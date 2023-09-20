@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom media extension
+  position: 20
+
+---
+
 # Add Custom Media File Extension
 
 ## Overview

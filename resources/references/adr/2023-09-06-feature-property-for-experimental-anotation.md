@@ -2,7 +2,13 @@
 title: Add Feature property to `@experimental` annotation
 date: 2023-09-06
 area: core, administration, storefront
-tags: [process, backwards compatibility]
+tags:
+  - process
+  - backwards compatibility
+nav:
+  title: Feature property for experimental anotation
+  position: 1030
+
 ---
 
 # Add Feature property to `@experimental` annotation

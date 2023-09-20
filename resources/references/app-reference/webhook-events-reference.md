@@ -1,3 +1,10 @@
+---
+nav:
+  title: Webhook Events Reference
+  position: 20
+
+---
+
 # Webhook Event Reference
 
 | Event | Description | Permissions needed | Payload

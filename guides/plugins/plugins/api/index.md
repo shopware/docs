@@ -1,3 +1,10 @@
+---
+nav:
+  title: API
+  position: 90
+
+---
+
 # API
 
 Commercial plugins are pre-built extensions developed by third-party vendors that offer specific features and integrations. In some cases, commercial plugins may expose their own APIs, which developers can use to interact with the plugin's functionalities allowing customization and integration with other systems.

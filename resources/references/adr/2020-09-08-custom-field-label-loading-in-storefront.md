@@ -2,8 +2,15 @@
 title: CustomField label loading in storefront
 date: 2020-09-08
 area: storefront
-tags: [custom-fields, storefront, snippets]
---- 
+tags:
+  - custom-fields
+  - storefront
+  - snippets
+nav:
+  title: Custom field label loading in storefront
+  position: 130
+
+---
 
 # CustomField label loading in storefront
 

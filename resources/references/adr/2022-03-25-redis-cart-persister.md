@@ -2,7 +2,15 @@
 title: Redis cart persister
 date: 2022-03-25
 area: checkout
-tags: [checkout, cart, redis, performance]
+tags:
+  - checkout
+  - cart
+  - redis
+  - performance
+nav:
+  title: Redis cart persister
+  position: 570
+
 ---
 
 # Redis cart persister

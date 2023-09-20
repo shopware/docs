@@ -1,3 +1,10 @@
+---
+nav:
+  title: Elasticsearch
+  position: 10
+
+---
+
 # Elasticsearch
 
 Elasticsearch is a robust search engine that can be integrated into Shopware to provide advanced search capabilities. It also supports AND/OR operations.

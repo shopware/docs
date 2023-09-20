@@ -1,3 +1,10 @@
+---
+nav:
+  title: Signing
+  position: 40
+
+---
+
 # Signing of responses
 
 The Shopware App System requires you to sign your responses to the Shopware server.

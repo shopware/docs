@@ -1,3 +1,10 @@
+---
+nav:
+  title: Installation
+  position: 10
+
+---
+
 # Installation
 
 ## General

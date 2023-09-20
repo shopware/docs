@@ -1,3 +1,10 @@
+---
+nav:
+  title: Entities & Schema
+  position: 10
+
+---
+
 # Entities and schema
 
 ## Entities

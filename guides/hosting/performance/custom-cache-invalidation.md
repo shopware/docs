@@ -1,3 +1,10 @@
+---
+nav:
+  title: Custom cache invalidation
+  position: 20
+
+---
+
 # Custom cache invalidation
 
 The current cache system of Shopware is based on a multi-layer system, in which the individual layers build on each other and whose tags are passed on to the upper layer for later invalidation.

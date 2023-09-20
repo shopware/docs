@@ -1,3 +1,10 @@
+---
+nav:
+  title: CMS Reference
+  position: 40
+
+---
+
 # CMS Reference
 
 ```xml

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Plugin lifecycle methods
+  position: 140
+
+---
+
 # Plugin Lifecycle Methods
 
 ## Overview

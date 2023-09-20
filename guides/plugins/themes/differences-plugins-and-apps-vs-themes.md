@@ -1,3 +1,10 @@
+---
+nav:
+  title: Differences Plugins and Apps vs Themes
+  position: 30
+
+---
+
 # Differences Plugins and Apps vs Themes
 
 A theme is a special type of Plugin or App, aimed at easily changing the visual appearance of the Storefront. If you want to get more information about plugins and apps you can check out the [Plugin Base Guide](../plugins/plugin-base-guide) and [App Base Guide](../apps/app-base-guide).

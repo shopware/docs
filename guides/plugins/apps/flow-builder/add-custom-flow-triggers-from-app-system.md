@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom flow trigger from app system
+  position: 20
+
+---
+
 # Add custom flow trigger
 
 ::: info

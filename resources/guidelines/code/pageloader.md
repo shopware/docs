@@ -1,3 +1,10 @@
+---
+nav:
+  title: Page Loader
+  position: 80
+
+---
+
 # Page Loader
 
 * Pageloaders must be divided into appropriate domains that represent the different sections of the Storefront - "products", "account", etc.

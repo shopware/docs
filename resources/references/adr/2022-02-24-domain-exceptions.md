@@ -2,8 +2,15 @@
 title: Domain exceptions
 date: 2022-02-24
 area: core
-tags: [architecture, exception, domain]
---- 
+tags:
+  - architecture
+  - exception
+  - domain
+nav:
+  title: Domain exceptions
+  position: 460
+
+---
 
 # Domain exceptions
 

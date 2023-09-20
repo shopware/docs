@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom rules
+  position: 10
+
+---
+
 # Add Custom Rules
 
 ## Overview

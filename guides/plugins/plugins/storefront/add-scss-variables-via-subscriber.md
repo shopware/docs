@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add SCSS variables via Subscriber
+  position: 240
+
+---
+
 # Add SCSS Variables
 
 ## Overview

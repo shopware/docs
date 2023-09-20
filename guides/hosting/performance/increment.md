@@ -1,3 +1,10 @@
+---
+nav:
+  title: Increment Storage
+  position: 40
+
+---
+
 # Increment Storage
 
 ::: info

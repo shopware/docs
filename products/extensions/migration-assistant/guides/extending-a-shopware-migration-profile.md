@@ -1,3 +1,10 @@
+---
+nav:
+  title: Extending a Shopware migration profile
+  position: 10
+
+---
+
 # Extending a Shopware Migration Profile
 
 ## Overview

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom rule conditions
+  position: 10
+
+---
+
 # Add custom rule conditions
 
 ## Overview

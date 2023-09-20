@@ -1,3 +1,10 @@
+---
+nav:
+  title: Assignment service
+  position: 60
+
+---
+
 # Assignment Service
 
 ## Pattern

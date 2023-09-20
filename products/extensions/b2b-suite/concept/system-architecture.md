@@ -1,3 +1,10 @@
+---
+nav:
+  title: System architecture
+  position: 10
+
+---
+
 # System Architecture
 
 The B2B Suite is a collection of loosely coupled, mostly uniform components packaged with a small example plugin and a common library.

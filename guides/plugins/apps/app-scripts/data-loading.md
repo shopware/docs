@@ -1,3 +1,10 @@
+---
+nav:
+  title: Data loading
+  position: 20
+
+---
+
 # Load additional data for the Storefront with App Scripts
 
 If your app needs additional data in your [customized Storefront templates](../../../plugins/plugins/storefront/customize-templates), you can load that data with app scripts and make it available to your template.

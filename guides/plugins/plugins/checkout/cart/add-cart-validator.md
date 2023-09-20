@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add cart validator
+  position: 40
+
+---
+
 # Add Cart Validator
 
 ## Overview

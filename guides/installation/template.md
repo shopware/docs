@@ -1,3 +1,10 @@
+---
+nav:
+  title: Template
+  position: 20
+
+---
+
 # Symfony Flex
 
 Symfony Flex is a Composer plugin that helps you to manage and keep your Shopware configuration files up-to-date.

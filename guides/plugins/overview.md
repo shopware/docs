@@ -1,3 +1,10 @@
+---
+nav:
+  title: Overview
+  position: 10
+
+---
+
 # Overview
 
 The variety of Shopware's extension interfaces can be overwhelming, so let us start with a simple overview comparing the three approaches **Plugins**, **Themes**, and **Apps**.

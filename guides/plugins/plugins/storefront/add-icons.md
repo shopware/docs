@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom icons
+  position: 90
+
+---
+
 # Add Custom Icons
 
 ## Overview

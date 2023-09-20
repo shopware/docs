@@ -2,8 +2,15 @@
 title: Npm packages pre-release versions
 date: 2023-01-16
 area: administration
-tags: [npm, package, pre-release]
---- 
+tags:
+  - npm
+  - package
+  - pre-release
+nav:
+  title: Npm packages pre release versions
+  position: 800
+
+---
 
 # Npm packages pre-release versions
 

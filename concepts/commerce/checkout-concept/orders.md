@@ -1,3 +1,10 @@
+---
+nav:
+  title: Orders
+  position: 20
+
+---
+
 # Orders
 
 From a cart instance, an `Order` can be created. The whole structure of the cart is stored in the database. Contrary to the cart, a structure that allows a great degree of freedom and is *calculation optimized*, the order is *workflow optimized*.

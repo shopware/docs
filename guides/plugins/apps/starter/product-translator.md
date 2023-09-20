@@ -1,3 +1,10 @@
+---
+nav:
+  title: Starter Guide - Read and write data
+  position: 10
+
+---
+
 # Starter Guide - Read and Write Data
 
 This guide will show you how to set up an app server with our [app template](https://github.com/shopware/AppTemplate).

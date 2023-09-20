@@ -1,3 +1,10 @@
+---
+nav:
+  title: CRUD service
+  position: 50
+
+---
+
 # CRUD Service
 
 [Download](../example-plugins/B2bAcl.zip) a plugin showcasing the topic.

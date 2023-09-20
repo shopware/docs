@@ -1,3 +1,10 @@
+---
+nav:
+  title: Payments
+  position: 30
+
+---
+
 # Payments
 
 Shopware 6 payment system is an integral part of the checkout process. A payment is applied to a transaction of an order. As with any order change, this is done through the state machine. At its core, the payment system is composed of payment handlers. These extend Shopware to support multiple different payment types. A list of all payment handlers is stored in the database.

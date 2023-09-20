@@ -1,3 +1,10 @@
+---
+nav:
+  title: Official PHP SDK
+  position: 10
+
+---
+
 # PHP
 
 The App SDK in PHP is a comprehensive software development kit provided by Shopware for creating custom applications and plugins. It offers a straightforward installation process, and once installed, developers can utilize its lifecycle management features to handle the activation, deactivation, and uninstallation of their applications.		

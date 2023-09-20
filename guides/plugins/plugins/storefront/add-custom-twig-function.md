@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom twig functions
+  position: 280
+
+---
+
 # Add Custom Twig Functions
 
 ## Overview

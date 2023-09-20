@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom controller
+  position: 20
+
+---
+
 # Add Custom Controller
 
 ## Overview

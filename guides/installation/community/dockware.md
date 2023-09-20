@@ -1,3 +1,10 @@
+---
+nav:
+  title: Dockware
+  position: 10
+
+---
+
 # Dockware
 
 Dockware is basically a managed Docker setup for Shopware 6. It makes it possible to start Shopware 6 very quickly using dockware.io. It comes with everything you need for a smooth development workflow. This includes all available Shopware 6 versions, MySQL, Adminer, Mailcatcher, easy PHP switching, XDebug, useful make commands, and more.

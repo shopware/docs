@@ -2,8 +2,15 @@
 title: Rule condition field abstraction
 date: 2022-05-23
 area: business-ops
-tags: [rule, abstraction, administration]
---- 
+tags:
+  - rule
+  - abstraction
+  - administration
+nav:
+  title: Rule condition field abstraction
+  position: 630
+
+---
 
 # Rule condition field abstraction
 

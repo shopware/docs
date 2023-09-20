@@ -1,3 +1,10 @@
+---
+nav:
+  title: Using custom fields
+  position: 300
+
+---
+
 # Using custom fields
 
 ## Prerequisites

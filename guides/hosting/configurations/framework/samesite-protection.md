@@ -1,3 +1,10 @@
+---
+nav:
+  title: SameSite protection
+  position: 10
+
+---
+
 # SameSite protection
 
 ::: info

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Flow
+  position: 80
+
+---
+
 # Flow
 
 The flow builder plugin allows businesses to create and manage custom workflows and automation within the e-commerce platform, enhancing efficiency and streamlining processes. The flow builder mainly comprises actions and triggers.

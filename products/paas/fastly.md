@@ -1,3 +1,10 @@
+---
+nav:
+  title: Fastly
+  position: 80
+
+---
+
 # Fastly
 
 Fastly allows Shopware to store the HTTP Cache at the nearest edge server to the end customer. This saves a lot of resources as the cached responses don't reach the actual application, and it decreases the response time drastically worldwide. Another benefit is that the Redis cache is not used anymore and will have less cache items.

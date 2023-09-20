@@ -2,7 +2,14 @@
 title: New language inheritance mechanism for opensearch
 date: 2023-04-11
 area: Core,Elasticsearch
-tags: [Elasticsearch,Opensearch,Multilingual search]
+tags:
+  - Elasticsearch
+  - Opensearch
+  - Multilingual search
+nav:
+  title: New language inheritance mechanism for opensearch
+  position: 910
+
 ---
 
 # New language inheritance mechanism for opensearch

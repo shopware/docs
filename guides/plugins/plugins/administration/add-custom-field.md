@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom input field to existing component
+  position: 200
+
+---
+
 # Add custom input field to existing component
 
 ## Overview

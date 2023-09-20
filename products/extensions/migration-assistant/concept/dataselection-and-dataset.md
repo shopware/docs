@@ -1,3 +1,10 @@
+---
+nav:
+  title: DataSelection and DataSet
+  position: 20
+
+---
+
 # DataSelection and DataSet
 
 These are the fundamental data structures for defining what to migrate. Each `DataSelection` consists of one or more `DataSets`:

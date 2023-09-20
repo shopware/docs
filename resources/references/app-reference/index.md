@@ -1,3 +1,10 @@
+---
+nav:
+  title: App Reference
+  position: 40
+
+---
+
 # App Reference
 
 The app reference document gives you an understanding of the app structure, functions, methods, events, variables, responses, and examples for building quality apps in Shopware.

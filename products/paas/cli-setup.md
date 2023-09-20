@@ -1,3 +1,10 @@
+---
+nav:
+  title: CLI Setup
+  position: 10
+
+---
+
 # CLI Setup
 
 The CLI is your tool to connect with your PaaS environment, push changes, trigger deployments, etc.

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add plugin dependencies
+  position: 80
+
+---
+
 # Add Plugin Dependencies
 
 New in Shopware 6 is the possibility to properly require on other plugins to be in the system. This is done using the `require` feature from composer. Further information about this can be found in the [official composer documentation](https://getcomposer.org/doc/04-schema.md#package-links).

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Customize payment provider
+  position: 20
+
+---
+
 # Customize Payment Provider
 
 ## Overview

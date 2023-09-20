@@ -1,3 +1,10 @@
+---
+nav:
+  title: Example Plugins
+  position: 30
+
+---
+
 # Example Plugins
 
 Here is a list of example plugins with descriptions to extend the B2B Suite:

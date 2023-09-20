@@ -1,3 +1,10 @@
+---
+nav:
+  title: Custom Fields
+  position: 20
+
+---
+
 # Custom Fields
 
 Custom fields in Shopware refer to additional data fields that can be added to entities such as products, customers, or orders. These fields allow businesses to store and manage extra information that may be specific to their operations.

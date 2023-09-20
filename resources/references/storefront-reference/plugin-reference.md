@@ -1,3 +1,10 @@
+---
+nav:
+  title: Storefront plugins
+  position: 20
+
+---
+
 # Storefront plugins and helper
 
 This is a list of available javascript plugins and helpers that can be used and extended.

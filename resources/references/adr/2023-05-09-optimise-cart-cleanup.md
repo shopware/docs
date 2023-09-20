@@ -2,7 +2,12 @@
 title: Optimize cart cleanup
 date: 2023-05-09
 area: core
-tags: [performance]
+tags:
+  - performance
+nav:
+  title: Optimise cart cleanup
+  position: 930
+
 ---
 
 # Optimize cart cleanup

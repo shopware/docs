@@ -1,3 +1,10 @@
+---
+nav:
+  title: Security
+  position: 10
+
+---
+
 # Security
 
 ## Overview

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Using a modal window
+  position: 250
+
+---
+
 # Using a Modal Window
 
 ## Overview

@@ -2,8 +2,15 @@
 title: Merchant registration
 date: 2020-08-14
 area: customer-order
-tags: [merchant, registration, customer-group]
---- 
+tags:
+  - merchant
+  - registration
+  - customer-group
+nav:
+  title: Merchant registration
+  position: 90
+
+---
 
 # Merchant registration
 

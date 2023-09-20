@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add filter
+  position: 280
+
+---
+
 # Add filter
 
 ## Overview

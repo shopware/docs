@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add cart discounts
+  position: 30
+
+---
+
 # Add Cart Discounts
 
 ## Overview

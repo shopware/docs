@@ -1,3 +1,10 @@
+---
+nav:
+  title: Tax provider
+  position: 10
+
+---
+
 # Tax provider
 
 Tax calculations differ from country to country. Especially in the US, the sales tax calculation can be tedious, as the laws and regulations differ from state to state, country-wise, or even based on cities. Therefore, most shops use a third-party service (so-called tax provider) to calculate sales taxes.

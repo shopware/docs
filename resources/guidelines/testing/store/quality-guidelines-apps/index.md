@@ -1,3 +1,10 @@
+---
+nav:
+  title: Quality guidelines for apps in app system
+  position: 10
+
+---
+
 # Quality Guidelines for Apps and Themes based on App System in Shopware Store
 
 > **Changelog**

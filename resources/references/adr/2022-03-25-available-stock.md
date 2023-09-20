@@ -2,7 +2,14 @@
 title: Available stock improvements
 date: 2022-03-25
 area: inventory
-tags: [inventory, performance, stock]
+tags:
+  - inventory
+  - performance
+  - stock
+nav:
+  title: Available stock
+  position: 510
+
 ---
 
 # Available stock improvements

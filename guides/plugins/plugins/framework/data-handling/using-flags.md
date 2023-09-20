@@ -1,3 +1,10 @@
+---
+nav:
+  title: Using flags
+  position: 100
+
+---
+
 # Using Flags
 
 ## Overview

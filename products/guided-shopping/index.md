@@ -1,3 +1,10 @@
+---
+nav:
+  title: Digital Sales Rooms
+  position: 30
+
+---
+
 # Digital Sales Rooms Overview
 
 *Digital Sales Rooms* is a state-of-the-art new feature that seamlessly integrates into your Shopware system landscape and co-operates with your existing ecommerce infrastructure.

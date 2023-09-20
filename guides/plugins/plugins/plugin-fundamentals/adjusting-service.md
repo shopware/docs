@@ -1,3 +1,10 @@
+---
+nav:
+  title: Adjusting a service
+  position: 70
+
+---
+
 # Adjusting a Service
 
 ## Overview

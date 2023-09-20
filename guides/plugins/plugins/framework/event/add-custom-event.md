@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom event
+  position: 10
+
+---
+
 # Add Custom Event
 
 ## Overview

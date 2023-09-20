@@ -1,3 +1,10 @@
+---
+nav:
+  title: Field inheritance
+  position: 110
+
+---
+
 # Field Inheritance
 
 ## Overview

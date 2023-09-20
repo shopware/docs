@@ -1,3 +1,10 @@
+---
+nav:
+  title: Plugins for Symfony developers
+  position: 20
+
+---
+
 # Plugins for Symfony Developers
 
 ## Overview

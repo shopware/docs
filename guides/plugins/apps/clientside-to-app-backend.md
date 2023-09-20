@@ -1,3 +1,10 @@
+---
+nav:
+  title: Client-side communication to the app backend
+  position: 30
+
+---
+
 # Client-App backend communication
 
 Direct communication from the browser to the app backend involves generating a JWT token. This token contains session-specific information, as [claims](#the-jwt-token), and is securely signed by the shop. This mechanism ensures a secure exchange of data between the client and the app backend.

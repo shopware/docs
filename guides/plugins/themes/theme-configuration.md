@@ -1,3 +1,10 @@
+---
+nav:
+  title: Theme configuration
+  position: 40
+
+---
+
 # Theme Configuration
 
 ::: info
