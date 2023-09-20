@@ -30,11 +30,11 @@ After both steps have been executed successfully (you will get extensive logging
 
 ## First deployment
 
-{% hint style="warning" %}
+::: warning
 **Theme Assets**
 
 It is a known issue that after the first deployment, theme assets are not compiled during the deployment. For that reason, your store will look unstyled. The [Theme Build](./theme-build.md) section explains how to resolve that issue.
-{% endhint %}
+:::
 
 The first time the site is deployed, Shopware's command line installer will run and initialize Shopware. It will not run again unless the `installer/installed` file is removed. **Do not remove that file unless you want the installer to run on the next deploy.**
 

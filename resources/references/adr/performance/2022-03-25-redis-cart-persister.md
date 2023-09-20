@@ -1,9 +1,9 @@
 # 2022-03-25 - Redis cart persister
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/performance/2022-03-25-redis-cart-persister.md)
-{% endhint %}
+:::
 
 With the last benchmarks it became clear how cost intensive the loading and saving of the shopping cart to and from the database is. A detailed analysis revealed two problems:
 
@@ -79,4 +79,3 @@ shopware:
 ```
 
 **Notice:** Currently there is no migration path to transfer shopping carts from one storage to the other.
-

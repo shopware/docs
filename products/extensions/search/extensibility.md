@@ -1,9 +1,9 @@
 # Extensibility
 
 <!-- markdown-link-check-disable -->
-{% hint style="warning" %}
+::: warning
 This article uses many Code-References to GitLab. Please contact the Shopware Sales department to get access to the private repository.
-{% endhint %}
+:::
 
 To implement the full search experience for your own entity, you have to implement multiple interfaces.
 
@@ -23,7 +23,7 @@ Or use the existing classes:
 
 E.g., for your definition, it means the following:
 
-```markup
+```html
 <service id="YourStuff" class="Swag\EnterpriseSearch\Suggest\SuggestGateway">
   <argument type="service" id="definition.repository"/>
   <argument type="service" id="Swag\EnterpriseSearch\Suggest\SuggestCriteriaBuilder"/>
@@ -97,7 +97,7 @@ For adding a new configuration while creating a sales channel, you have to creat
 
 For adding auto-completion of your definition, you have to add a [CompletionEsDefinitionDecorator](https://gitlab.com/shopware/shopware/enterprise/swagenterprisesearchplatform/-/blob/release/src/Completion/CompletionEsDefinitionDecorator.php) to it. See this example:
 
-```markup
+```html
  <service id="swag_completion.manufacturer_es_definition"
           class="Swag\EnterpriseSearch\Completion\CompletionEsDefinitionDecorator"
           decorates="Swag\EnterpriseSearch\Manufacturer\ManufacturerEsDefinition">

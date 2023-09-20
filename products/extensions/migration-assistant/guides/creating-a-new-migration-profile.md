@@ -72,7 +72,7 @@ class OwnProfile implements ProfileInterface
 
 The profile itself does not contain any logic and is used to bundle the executing classes. To use this profile, you have to register and tag it in the `service.xml` with `shopware.migration.profile`:
 
-```markup
+```html
 <service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\OwnProfile">
     <tag name="shopware.migration.profile"/>
 </service>
@@ -195,7 +195,7 @@ class OwnLocaleGateway implements GatewayInterface
 
 As you have seen above, the gateway uses the `ConnectionFactory` to test the connection to the source system. You can also implement your own way to check this, but using this factory is the simplest way for a gateway to connect to a local database. Like the profile, you have to register the new gateway in the `service.xml` and tag it with `shopware.migration.gateway`:
 
-```markup
+```html
 <service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\Gateway\OwnLocaleGateway">
     <argument type="service" id="SwagMigrationAssistant\Migration\Gateway\Reader\ReaderRegistry"/>
     <argument type="service" id="SwagMigrationAssistant\Profile\Shopware\Gateway\Connection\ConnectionFactory"/>
@@ -289,9 +289,7 @@ Component.register('swag-migration-profile-ownProfile-local-credential-form', {
 
 As you can see above, currently, the template does not exist and you have to create this file: `swag-migration-profile-ownProfile-local-credential-form.html.twig`
 
-{% raw %}
-
-```markup
+```html
 {% block own_profile_page_credentials %}
     <div class="swag-migration-wizard swag-migration-wizard-page-credentials"
          @keypress.enter="onKeyPressEnter">
@@ -359,8 +357,6 @@ As you can see above, currently, the template does not exist and you have to cre
     </div>
 {% endblock %}
 ```
-
-{% endraw %}
 
 Note that the component name isn't random and consists of:
 
@@ -468,13 +464,13 @@ class ProductDataSelection implements DataSelectionInterface
 }
 ```
 
-{% hint style="info" %}
+::: info
 The order in the `getDataSets` array is important as it determines the order in which the entities are processed. Because of that, the manufacturers, for example, have to be positioned before the products so that the products can use those later on.
-{% endhint %}
+:::
 
 To see the created `ProductDataSelection` in the Administration, you have to register it both in the `services.xml` and tag them with `shopware.migration.data_selection` and `shopware.migration.data_set`:
 
-```markup
+```html
 <service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\DataSelection\ProductDataSelection">
     <tag name="shopware.migration.data_selection"/>
 </service>
@@ -567,7 +563,7 @@ class ProductReader extends AbstractReader
 
 Then you have to register this in `services.xml` and tag it with `shopware.migration.reader`:
 
-```markup
+```html
 <service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\Gateway\Reader\ProductReader"
     parent="SwagMigrationAssistant\Profile\Shopware\Gateway\Local\Reader\AbstractReader">
     <argument type="service" id="SwagMigrationAssistant\Profile\Shopware\Gateway\Connection\ConnectionFactory"/>
@@ -837,7 +833,7 @@ If you don't know which properties or requirements your entity has in Shopware 6
 
 To use this converter, you must register it in the `services.xml`:
 
-```markup
+```html
 <service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\Converter\ProductConverter">
     <argument type="service" id="SwagMigrationAssistant\Migration\Mapping\MappingService"/>
     <argument type="service" id="SwagMigrationAssistant\Migration\Logging\LoggingService"/>

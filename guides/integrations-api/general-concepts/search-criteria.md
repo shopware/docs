@@ -6,7 +6,7 @@ Generally, we refer to the endpoints that use `POST` method and receive the crit
 
 A typical **search criteria** looks like this:
 
-```javascript
+```json
 {
   "limit": 10,
   "associations": {
@@ -72,7 +72,7 @@ In the following, we will go through different parameters that criteria can be a
 
 The `associations` parameter allows you to load additional data to the minimal data set of an entity without sending an extra request similar to a SQL Join. The parameter's key is the association's property name in the entity. You can pass nested criteria just for that association, e.g., to perform a sort to or apply filters within the association.
 
-```javascript
+```json
 {
     "associations": {
         "products": {
@@ -96,7 +96,7 @@ The `includes` parameter allows you to restrict the returned fields.
 * Easier to consume for client applications.
 * When debugging, the response is smaller, and you can concentrate on the essential fields.
 
-```javascript
+```json
 {
     "includes": {
         "product": ["id", "name"]
@@ -121,15 +121,15 @@ The `includes` parameter allows you to restrict the returned fields.
 }
 ```
 
-{% hint style="info" %}
+::: info
 All response types come with a `apiAlias` field which you can use to identify the type in your includes field. If you only want a categories id, add: `"category": ["id"]`. For entities, this is the entity name: `product`, `product_manufacturer`, `order_line_item`, ... For other non-entity types like a listing result or a line item, check the full response. This pattern applies not only to simple fields but also to associations.
-{% endhint %}
+:::
 
 ### `ids`
 
 If you want to perform a simple lookup using just the ids of records, you can pass a list of those using the `ids` field:
 
-```javascript
+```json
 {
     "ids": [
         "012cd563cf8e4f0384eed93b5201cc98", 
@@ -153,7 +153,7 @@ The `total-count-mode` parameter can be used to define whether the total for the
   * Advantage: Good performance, same as `0`.
   * Purpose: Can be used well for infinite scrolling because, with infinite scrolling, the information is enough to know if there is a next page to load.
 
-```javascript
+```json
 {
     "total-count-mode": 1
 }
@@ -163,7 +163,7 @@ The `total-count-mode` parameter can be used to define whether the total for the
 
 The `page` and `limit` parameters can be used to control pagination. The `page` parameter is 1-indexed.
 
-```javascript
+```json
 {
     "page": 1,
     "limit": 5
@@ -174,13 +174,13 @@ The `page` and `limit` parameters can be used to control pagination. The `page` 
 
 The `filter` parameter allows you to filter the result and aggregations using many filters and parameters. The filter types are equivalent to the filters available for the DAL.
 
-{% page-ref page="../../../resources/references/core-reference/dal-reference/filters-reference.md" %}
+<PageRef page="../../../resources/references/core-reference/dal-reference/filters-reference" />
 
-{% hint style="info" %}
+::: info
 When you are filtering for nested values - for example, you are filtering orders by their transaction state \(`order.transactions.stateMachineState`\) - make sure to fetch those in your `associations` field before.
-{% endhint %}
+:::
 
-```javascript
+```json
 {
   "associations": {
     "transactions": {
@@ -229,7 +229,7 @@ Work the same as `filter`; however, they don't apply to aggregations. This is gr
 
 Use this parameter to create a weighted search query that returns a `_score` for each found entity. Any filter type can be used for the `query`. A `score` has to be defined for each query. The sum of the matching queries then results in the total `_score` value.
 
-```javascript
+```json
 {
     "query": [
         {
@@ -254,7 +254,7 @@ Use this parameter to create a weighted search query that returns a `_score` for
 
 The resulting score is appended to every resulting record in the `extensions.search` field:
 
-```javascript
+```json
 {
     "total": 5,
     "data": [
@@ -299,11 +299,11 @@ The resulting score is appended to every resulting record in the `extensions.sea
 
 Using the `term` parameter, the server performs a text search on all records based on their data model and weighting as defined in the entity definition using the `SearchRanking` flag.
 
-{% hint style="info" %}
+::: info
 Don't use `term` parameters together with `query` parameters.
-{% endhint %}
+:::
 
-```javascript
+```json
 {
     "term": "Awesome Bronze"
 }
@@ -321,7 +321,7 @@ The `sort` parameter allows controlling the sorting of the result. Several sorts
 * The parameter `type` allows using divergent sorting behavior. Valid values are:
   * `count`: Sort by the count of associations via the given field. SQL representation: `ORDER BY COUNT({field}) {order}`
 
-```javascript
+```json
 {
     "limit": 5,
     "sort": [
@@ -336,11 +336,11 @@ The `sort` parameter allows controlling the sorting of the result. Several sorts
   
 For demonstration purposes, see the following request payload that additionally includes a `count` aggregation.
 
-{% hint style="info" %}
+::: info
 This `count` type was introduced with Shopware 6.4.12.0 and is not available in prior versions.
-{% endhint %}
+:::
 
-```javascript
+```json
 {
   "limit": 3,
   "includes": {
@@ -368,7 +368,7 @@ This `count` type was introduced with Shopware 6.4.12.0 and is not available in 
 
 In response, the order of the `product` elements is now equal to the order of the aggregated buckets:
 
-```javascript
+```json
 {
     "total": 3,
     "aggregations": {
@@ -406,9 +406,9 @@ The `aggregations` parameter can determine metadata for a search query. There ar
 
 The aggregation types are equivalent to the aggregations available in the DAL:
 
-{% page-ref page="../../../resources/references/core-reference/dal-reference/aggregations-reference.md" %}
+<PageRef page="../../../resources/references/core-reference/dal-reference/aggregations-reference" />
 
-```javascript
+```json
 {
     "limit": 1,
     "includes": {
@@ -431,7 +431,7 @@ The `grouping` parameter allows you to group the result over fields. It can be u
 * Fetch one product for each manufacturer.
 * Fetch one order per day and customer.
 
-```javascript
+```json
 {
     "limit": 5,
     "grouping": ["active"]

@@ -23,13 +23,11 @@ If you host Mercure yourself, the easiest way is to do it via docker. The image 
 
 The docker image allows you to use the following *env* variables to configure Mercure.
 
-{% hint style="warning" %}
+::: warning
 Use different publisher and subscriber keys for security reasons.
-{% endhint %}
+:::
 
-{% code %}
-
-```dockerfile
+```txt
 - MERCURE_PUBLISHER_JWT_KEY: your-256-bit-publisher-key
 - MERCURE_SUBSCRIBER_JWT_KEY: your-256-bit-subscriber-key
 - MERCURE_EXTRA_DIRECTIVES: |-  
@@ -38,13 +36,10 @@ Use different publisher and subscriber keys for security reasons.
    ui 1
 ```
 
-{% endcode %}
-
 You can also configure it like the self-installed version via the Caddyfile.
 
-{% code title="Sample Caddyfile" %}
-
-```dockerfile
+```txt
+// Sample Caddyfile
 {
     # Debug mode (disable it in production!)
     debug
@@ -74,17 +69,13 @@ route {
 }
 ```
 
-{% endcode %}
-
 ### 2. Self-installation
 
 The [installation guide](https://mercure.rocks/docs/hub/install) explains all steps that are required for installing the Mercure.
 
 #### Production configuration
 
-{% code %}
-
-```dockerfile
+```txt
 mercure {
 ...  
 publisher_jwt my-publisher-key HS256  
@@ -95,5 +86,3 @@ ui 0
 ...
 }
 ```
-
-{% endcode %}

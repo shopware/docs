@@ -38,9 +38,8 @@ You can also use setFlags to overwrite the Default Flags which could be set. Be 
 
 Below you can find an example implementation in an entity where we use flags.
 
-{% code title="<plugin root>/src/Core/Content/Example/ExampleDefinition.php" %}
-
 ```php
+// <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Example;
@@ -68,5 +67,3 @@ class ExampleDefinition extends EntityDefinition
     }
 }
 ```
-
-{% endcode %}

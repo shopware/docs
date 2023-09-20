@@ -22,7 +22,7 @@ It is important to consider the background of the potential audience reading you
 
 ## List of docs maintained by us
 
-* [Developer Guide](https://developer.shopware.com/docs/)
+* [Developer Guide](/docs/)
 * [API Reference Guide](https://shopware.stoplight.io/)
 * [PWA](https://shopware-pwa-docs.vuestorefront.io/)
 * [Admin Extension SDK](https://shopware.github.io/admin-extension-sdk/)
@@ -34,7 +34,7 @@ Choose ecommerce and technical terms from the pre-defined list of terminologies:
 * [Shopware terminologies](https://shopware.atlassian.net/wiki/spaces/pr/pages/19249037615/Shopware+terminology)
 * [General terms and abbreviations](https://shopware.atlassian.net/wiki/spaces/BGE/pages/735426953/Our+corporate+communications)
 
-{% hint style="info" %} These are internal resources visible to Shopware employees only. {% endhint %}
+::: info These are internal resources visible to Shopware employees only. :::
 
 ## Use of third-party sources
 

@@ -1,9 +1,9 @@
 # 2021-08-10 - Storefront coding standars
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/storefront/2021-08-10-storefront-coding-standards.md)
-{% endhint %}
+:::
 
 ## Context
 
@@ -52,10 +52,8 @@ The controller calls the pageloader, which collects the needed data for that pag
 The pageloader can call other pageletloaders to get the data for pagelets(subcontent for a page).
 The pageloader always returns a page-object.
 
-
 ## Consequences
 
 All dependencies in the controllers for routes which render a page have to be moved to the `Loaders` and if still missing, the `Loader` and `Page` has to be created.
 All direct DAL-dependencies inside the storefront have to be moved to Store-Api routes and respective calls.
 All other dependencies which are not allowed have to be checked for individual alternatives
-

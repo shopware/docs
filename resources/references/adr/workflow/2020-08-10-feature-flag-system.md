@@ -1,10 +1,9 @@
 # 2020-08-10 - Feature flag system
 # Superseded by [Feature flags for major versions](2022-01-20-feature-flags-for-major-versions.md)
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/workflow/2020-08-10-feature-flag-system.md)
-{% endhint %}
-
+:::
 
 ## Context
 To provide a way to toggle code from incomplete features, the feature flag system was implemented.
@@ -14,6 +13,7 @@ Also it is recommended that the system is safe to not breaking things when a fla
 ## Decision
 * A feature flag will be added to the system by adding it to the file 
   ```/Core/Framework/Resources/config/packages/feature.yaml```
+
 ```yaml
 shopware:
     ....

@@ -8,23 +8,20 @@ When you develop your own plugin, you might want to exclude Javascript plugins a
 
 While this is not mandatory, having read the guide about adding custom javascript plugins beforehand might help you understand this guide a bit further:
 
-{% page-ref page="add-custom-javascript.md" %}
+<PageRef page="add-custom-javascript" />
 
 Other than that, this guide just requires you to have a running plugin installed, e.g. our plugin from the plugin base guide:
 
-{% page-ref page="../plugin-base-guide.md" %}
+<PageRef page="../plugin-base-guide" />
 
 ## Unregistering Javascript Plugin
 
 Imagine we wanted to exclude the `OffCanvasCart` plugin, just to get a test case which can be inspected easily. In order to remove a Javascript plugin, you only need to add the following line to your `main.js` file:
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/main.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/storefront/src/main.js
 window.PluginManager.deregister('OffCanvasCart', '[data-offcanvas-cart]');
 ```
-
-{% endcode %}
 
 After building the Storefront anew, you shouldn't be able to open the offcanvas cart anymore. Another useful way of testing this is using your browser's devtools. Just open your devtool's console and type in `PluginManager.getPluginList()` in order to get a list of all registered plugins.
 

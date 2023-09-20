@@ -1,11 +1,11 @@
 # Payment Reference
 
-{% hint style="warning" %}
+::: warning
 This feature is only available starting with Shopware 6.4.1.0.
-{% endhint %}
+:::
 
 These two requests are executed against your API, the up to two endpoints you define per payment method. All bodies are JSON encoded.
-<!-- markdown-link-check-disable-next-line --><!-- markdown-link-check-disable-next-line -->
+
 {% api-method method="post" host="https://payment.app/" path="/pay" %}
 {% api-method-summary %}
 pay
@@ -80,7 +80,7 @@ See comments for different successful responses
 {% endapi-method-response %}
 {% endapi-method-spec %}
 {% endapi-method %}
-<!-- markdown-link-check-disable-next-line -->
+
 {% api-method method="post" host="https://payment.app/" path="/finalize" %}
 {% api-method-summary %}
 finalize
@@ -153,4 +153,3 @@ See comments for different successful responses
 {% endapi-method-response %}
 {% endapi-method-spec %}
 {% endapi-method %}
-

@@ -317,7 +317,7 @@ sw.privileges.${category}.${key}.${role_key}
 
 Just add the snippets to your snippets file:
 
-```javascript
+```json
 {
   "sw-privileges": {
     "permissions": {
@@ -371,14 +371,14 @@ Shopware.Component.register('your-plugin-component', {
 
 Below is an example to hide the element if the user has not the right privilege:
 
-```markup
+```html
 <button v-if="acl.can('review.editor')">
 </button>
 ```
 
 For example you could disable elements if the user has not the right privilege to use them and inform the user with a tooltip that a privilege is missing. To achieve this, you can use the global snippet path:
 
-```markup
+```html
 <button @click="saveProduct"
         :disabled="!acl.can('review.editor')"
         v-tooltip="{

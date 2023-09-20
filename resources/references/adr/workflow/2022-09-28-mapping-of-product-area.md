@@ -1,9 +1,9 @@
 # 2022-09-28 - Mapping of Product Area
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/workflow/2022-09-28-mapping-of-product-area.md)
-{% endhint %}
+:::
 
 ## Context
 

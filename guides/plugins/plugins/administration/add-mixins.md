@@ -16,9 +16,8 @@ Mixins in Shopware have to be registered in the mixin registry via the `Mixin.re
 
 Converting the Vue mixin to be used in Shopware looks like the example seen below:
 
-{% code title="<administration root>/mixins/swag-basic-example.js" %}
-
 ```javascript
+// <administration root>/mixins/swag-basic-example.js
 // get the Mixin property of the shopware object
 const { Mixin } = Shopware;
 
@@ -35,29 +34,23 @@ Mixin.register('swag-basic-mixin', {
 });
 ```
 
-{% endcode %}
-
 ## Importing the Mixin in the Plugin
 
 Now that we have registered the mixin, we need to import it *before importing our components* in the `main.js` file.
 
-{% code title="<administration root>/src/main.js" %}
-
 ```javascript
+// <administration root>/src/main.js
 import '<administration root>/mixins/swag-basic-example.js'
     
 // importing components...
 ```
 
-{% endcode %}
-
 ## Using the Mixin
 
 After registering our mixin under a name, we can get it from the registry with the `Mixin.getByName` function and inject it into our component as seen below.
 
-{% code title="<administration root>/components/swag-basic-example/index.js" %}
-
 ```javascript
+// <administration root>/components/swag-basic-example/index.js
 const { Component, Mixin } = Shopware;
 
 Component.register('swag-basic-example', {
@@ -67,8 +60,6 @@ Component.register('swag-basic-example', {
     ],
 });
 ```
-
-{% endcode %}
 
 This can also be done with Shopware provided mixins, learn more about them here: [Using Mixins](using-mixins.md)
 

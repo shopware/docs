@@ -10,4 +10,3 @@
 | `./psh.phar e2e:prepare-shopware` | Prepare shopware installation for Cypress usage |
 | `./psh.phar e2e:restore-db` | Restores shopware backup |
 | `./psh.phar e2e:run` | Runs Cypress' e2e tests in CLI |
-

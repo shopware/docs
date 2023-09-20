@@ -1,9 +1,9 @@
 # 2020-03-24 - Processing of nested line items
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/checkout/2021-03-24-nested-line-items.md)
-{% endhint %}
+:::
 
 ## Context
 
@@ -21,7 +21,6 @@ This way there will be no collisions in the processing of these line items. A pl
 easily call the other processors to handle the nested line items themselves.
 
 Example:
-
 ```
 <?php declare(strict_types=1);
 
@@ -102,7 +101,6 @@ class PluginCartProcessor implements CartProcessorInterface
     }
 }
 ```
-
 
 ## Consequences
 

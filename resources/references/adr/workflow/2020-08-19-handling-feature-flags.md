@@ -1,10 +1,9 @@
 # 2020-08-12 - Handling feature flags
 # Superseded by [Feature flags for major versions](2022-01-20-feature-flags-for-major-versions.md)
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/workflow/2020-08-19-handling-feature-flags.md)
-{% endhint %}
-
+:::
 
 ## Context
 
@@ -25,6 +24,7 @@ New Services have to be hidden behind the flag in the container.
 Changes inside current classes should be conditioned with the flag.
 ### Additions to current classes
 Access to new constants or public functions cannot be prevented by the feature flag system. In this case you have to annotate the not available part with an *@internal (flag:FEATURE_NEXT_1128)* comment
+
 ```php
 //@internal (flag:FEATURE_NEXT_1128)
 const NEW_FEATURE_CONST = true;

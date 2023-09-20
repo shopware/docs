@@ -4,9 +4,9 @@ Fastly allows Shopware to store the HTTP Cache at the nearest edge server to the
 
 ## Setup
 
-{% hint style="info" %}
+::: info
 Fastly is supported in Shopware versions 6.4.11 or newer.
-{% endhint %}
+:::
 
 1. Make sure `FASTLY_API_TOKEN` and `FASTLY_SERVICE_ID` are set in the environment or contact the support when they are missing.
 1. Install the Fastly Composer package using `composer req paas`.

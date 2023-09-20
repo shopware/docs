@@ -25,8 +25,8 @@ The DAL knows two types of aggregations:
 
 The `Avg` aggregation makes it possible to calculate the average value for a field. The following SQL statement is executed in the background: `AVG(price)`.
 
-{% tabs %}
-{% tab title="PHP Criteria" %}
+<Tabs>
+<Tab title="PHP Criteria">
 
 ```php
 $criteria = new Criteria();
@@ -44,9 +44,9 @@ $aggregation = $result->getAggregations()->get('avg-price');
 $aggregation->getAvg();
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="API Criteria" %}
+<Tab title="API Criteria">
 Request
 
 ```json
@@ -86,15 +86,15 @@ Response
 }
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Count aggregation
 
 The `count` aggregation makes it possible to determine the number of entries for a field that are filled with a value. The following SQL statement is executed in the background: `COUNT(DISTINCT(manufacturerId))`.
 
-{% tabs %}
-{% tab title="PHP Criteria" %}
+<Tabs>
+<Tab title="PHP Criteria">
 
 ```php
 $criteria = new Criteria();
@@ -112,9 +112,9 @@ $aggregation = $result->getAggregations()->get('count-manufacturers');
 $aggregation->getCount();
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="API Criteria" %}
+<Tab title="API Criteria">
 Request
 
 ```json
@@ -154,15 +154,15 @@ Response
 }
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Max aggregation
 
 The `max` aggregation allows you to determine the maximum value of a field. The following SQL statement is executed in the background: `MAX(price)`.
 
-{% tabs %}
-{% tab title="PHP Criteria" %}
+<Tabs>
+<Tab title="PHP Criteria">
 
 ```php
 $criteria = new Criteria();
@@ -180,9 +180,9 @@ $aggregation = $result->getAggregations()->get('max-price');
 $aggregation->getMax();
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="API Criteria" %}
+<Tab title="API Criteria">
 Request
 
 ```json
@@ -222,15 +222,15 @@ Response
 }
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Min aggregation
 
 The `min` aggregation makes it possible to determine the minimum value of a field. The following SQL statement is executed in the background: `MIN(price)`
 
-{% tabs %}
-{% tab title="PHP Criteria" %}
+<Tabs>
+<Tab title="PHP Criteria">
 
 ```php
 $criteria = new Criteria();
@@ -248,9 +248,9 @@ $aggregation = $result->getAggregations()->get('min-price');
 $aggregation->getMin();
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="API Criteria" %}
+<Tab title="API Criteria">
 Request
 
 ```json
@@ -290,15 +290,15 @@ Response
 }
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Sum aggregation
 
 The `sum` aggregation makes it possible to determine the total of a field. The following SQL statement is executed in the background: `SUM(price)`.[PHP](https://docs.shopware.com/en/shopware-platform-dev-en/references-internals/core/dal?category=shopware-platform-dev-en/references-internals/core#)[API](https://docs.shopware.com/en/shopware-platform-dev-en/references-internals/core/dal?category=shopware-platform-dev-en/references-internals/core#)
 
-{% tabs %}
-{% tab title="PHP Criteria" %}
+<Tabs>
+<Tab title="PHP Criteria">
 
 ```php
 $criteria = new Criteria();
@@ -316,9 +316,9 @@ $aggregation = $result->getAggregations()->get('sum-price');
 $aggregation->getSum();
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="API Criteria" %}
+<Tab title="API Criteria">
 Request
 
 ```json
@@ -358,15 +358,15 @@ Response
 }
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Stats aggregation
 
 The `stats` aggregation makes it possible to calculate several values at once for a field. This includes the previous `max`, `min`, `avg` and `sum` aggregation. The following SQL statement is executed in the background: `SELECT MAX(price), MIN(price), AVG(price), SUM(price)`.
 
-{% tabs %}
-{% tab title="PHP Criteria" %}
+<Tabs>
+<Tab title="PHP Criteria">
 
 ```php
 $criteria = new Criteria();
@@ -387,9 +387,9 @@ $aggregation->getAvg();
 $aggregation->getMin();
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="API Criteria" %}
+<Tab title="API Criteria">
 Request
 
 ```json
@@ -432,8 +432,8 @@ Response
 }
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Terms aggregation
 
@@ -445,8 +445,8 @@ The `terms` aggregation belongs to the bucket aggregations. This allows you to d
 
 The following SQL statement is executed in the background: `SELECT DISTINCT(manufacturerId) as key, COUNT(manufacturerId) as count`
 
-{% tabs %}
-{% tab title="PHP Criteria" %}
+<Tabs>
+<Tab title="PHP Criteria">
 
 ```php
 $criteria = new Criteria();
@@ -472,9 +472,9 @@ foreach ($aggregation->getBuckets() as $bucket) {
 }
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="API Criteria" %}
+<Tab title="API Criteria">
 Request
 
 ```json
@@ -532,15 +532,15 @@ Response
 }
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Filter aggregation
 
 The `filter` aggregation belongs to the bucket aggregations. Unlike all other aggregations, this aggregation does not determine any result. It can't be used alone. It is only used to further restrict the result of an aggregation in a criterion. Filters defined inside the `filter` property of this aggregation type are only used when calculating this aggregation. The filters have no effect on other aggregations or on the result of the search.
 
-{% tabs %}
-{% tab title="PHP Criteria" %}
+<Tabs>
+<Tab title="PHP Criteria">
 
 ```php
 $criteria = new Criteria();
@@ -564,9 +564,9 @@ $aggregation = $result->getAggregations()->get('avg-price');
 $aggregation->getAvg();
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="API Criteria" %}
+<Tab title="API Criteria">
 Request
 
 ```json
@@ -617,15 +617,15 @@ Response
 }
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Entity aggregation
 
 The `entity` aggregation is similar to the `terms` aggregation. It belongs to the bucket aggregations. As with `terms` aggregation, all unique values are determined for a field. The aggregation then uses the determined keys to load the defined entity. The keys are used here as ids.
 
-{% tabs %}
-{% tab title="PHP Criteria" %}
+<Tabs>
+<Tab title="PHP Criteria">
 
 ```php
 $criteria = new Criteria();
@@ -646,9 +646,9 @@ foreach ($aggregation->getEntities() as $entity) {
 }
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="API Criteria" %}
+<Tab title="API Criteria">
 Request
 
 ```json
@@ -701,15 +701,15 @@ Response
 }
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Histogram aggregation
 
 The histogram aggregation is used as soon as the data to be determined refers to a date field. With the histogram aggregation, one of the following date intervals can be given: `minute`, `hour`, `day`, `week`, `month`, `quarter`, `year`, `day`. This interval groups the result and calculates the corresponding count of hits.
 
-{% tabs %}
-{% tab title="PHP Criteria" %}
+<Tabs>
+<Tab title="PHP Criteria">
 
 ```php
 $criteria = new Criteria();
@@ -734,9 +734,9 @@ foreach ($aggregation->getBuckets() as $bucket) {
 }
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="API Criteria" %}
+<Tab title="API Criteria">
 Request
 
 ```json
@@ -793,8 +793,8 @@ Response
 }
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Range aggregations
 
@@ -804,8 +804,8 @@ Bound are computed in SQL as in the Elasticsearch native range aggregation:
 * `from` will be compared with greater than or equal to
 * `to` will be compared with lower than
 
-{% tabs %}
-{% tab title="PHP Criteria" %}
+<Tabs>
+<Tab title="PHP Criteria">
 
 ```php
 $criteria = new Criteria();
@@ -831,9 +831,9 @@ foreach ($aggregation->getRanges() as $key => $docCount) {
 }
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="API Criteria" %}
+<Tab title="API Criteria">
 Request
 
 ```json
@@ -884,8 +884,8 @@ Response
 }
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Nesting aggregations
 
@@ -893,8 +893,8 @@ A metric aggregation calculates the value for a specific field. This can be a to
 
 * Calculate the number of manufacturers per category that have a price over 500 Euro. \*
 
-{% tabs %}
-{% tab title="PHP Criteria" %}
+<Tabs>
+<Tab title="PHP Criteria">
 
 ```php
 $criteria = new Criteria();
@@ -936,9 +936,9 @@ foreach ($aggregation->getBuckets() as $bucket) {
 }
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="API Criteria" %}
+<Tab title="API Criteria">
 Request
 
 ```json
@@ -1032,5 +1032,5 @@ Response
 }
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>

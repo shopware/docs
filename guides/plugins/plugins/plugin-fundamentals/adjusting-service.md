@@ -8,10 +8,9 @@ In this guide you'll learn how to adjust a service. You can read more about serv
 
 In order to add your own custom service for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
 
-<!-- markdown-link-check-disable-next-line -->
-{% hint style="info" %}
+::: info
 Refer to this video on **[Decorating services](https://www.youtube.com/watch?v=Rgf4c9rd1kw)** explaining service decorations with an easy example. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
-{% endhint %}
+:::
 
 ## Decorating the service
 
@@ -19,9 +18,8 @@ First of all we have to create a new service for this example which gets decorat
 
 Here's our example `services.xml`:
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
-
-```markup
+```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -38,19 +36,16 @@ xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/sc
 </container>
 ```
 
-{% endcode %}
-
 Now we have to define an abstract class because it's more beautiful and not so strict like interfaces. With an abstract class we can add new functions easier, you can read more about this at the end of this article. The abstract class has to include an abstract function called `getDecorated()` which has the return type of our instance.
 
-{% hint style="info" %}
+::: info
 To avoid misunderstandings: The abstract service class and the implementation of it is not part of the decoration process itself and most of the times comes either from the Shopware core or from a plugin you want to extend. They are added here to have an example to decorate.
-{% endhint %}
+:::
 
 Therefore, this is how your abstract class could then look like:
 
-{% code title="<plugin root>/src/Service/AbstractExampleService.php" %}
-
 ```php
+// <plugin root>/src/Service/AbstractExampleService.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -63,15 +58,12 @@ abstract class AbstractExampleService
 }
 ```
 
-{% endcode %}
-
 Now we have our abstract class, but no service which uses it. So we create our `ExampleService` which extends from our `AbstractExampleService`. In our service the `getDecorated()` function has to throw an `DecorationPatternException` because it has no decoration yet.
 
 Therefore, your service could then look like this:
 
-{% code title="<plugin root>/src/Service/ExampleService.php" %}
-
 ```php
+// <plugin root>/src/Service/ExampleService.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -92,15 +84,12 @@ class ExampleService extends AbstractExampleService
 }
 ```
 
-{% endcode %}
-
 The last step is creating our decorated service called `ExampleServiceDecorator` in this example. Our decorated service has to extend from the `AbstractExampleService` and the constructor has to accept an instance of `AbstractExampleService`. Furthermore, the `getDecorated()` function has to return the decorated service passed into the constructor.
 
 Your service could then look like below:
 
-{% code title="<plugin root>/src/Service/ExampleServiceDecorator.php" %}
-
 ```php
+// <plugin root>/src/Service/ExampleServiceDecorator.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -128,17 +117,14 @@ class ExampleServiceDecorator extends AbstractExampleService
 }
 ```
 
-{% endcode %}
-
 ## Adding new functions to an existing service
 
 If you plan to add new functions to your service, it is recommended to add them as normal public functions due to backwards compatibility, if you decorate the service at several places. In this example we add a new function called `doSomethingNew()` which first calls the `getDecorated()` and then our new function `doSomethingNew()` because if our decorator does not implement it yet, it will call it from the parent. The advantage of adding it as normal public function is that you can implement it step by step into your other services without any issues. After you have implemented the function in every service decorator, you can make it abstract for the next release. If you add it directly as an abstract function, you will get errors because the function is required for every service decorator.
 
 Here's our example abstract class:
 
-{% code title="<plugin root>/src/Service/AbstractExampleService.php" %}
-
 ```php
+// <plugin root>/src/Service/AbstractExampleService.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -156,13 +142,10 @@ abstract class AbstractExampleService
 }
 ```
 
-{% endcode %}
-
 After we have implemented our new function in the abstract class, we implement it in our service too.
 
-{% code title="<plugin root>/src/Service/ExampleService.php" %}
-
 ```php
+// <plugin root>/src/Service/ExampleService.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -187,5 +170,3 @@ class ExampleService extends AbstractExampleService
     }
 }
 ```
-
-{% endcode %}

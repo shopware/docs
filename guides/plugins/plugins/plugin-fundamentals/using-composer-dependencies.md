@@ -16,23 +16,20 @@ Now we can simply install `exporter` by running `composer require sebastian/expo
 
 After that we have to add our dependency to shopware back in.
 
-{% hint style="warning" %}
+::: warning
 The `vendor` directory, where the Composer saves the dependencies, has to be included in the plugin bundle. The plugin bundle size is not allowed to exceed 5 MB.
-{% endhint %}
+:::
 
 ## Loading the `autoload.php`
 
 The `composer require` command created the `autoload.php` that we now need to require in our plugin.
 
-{% code title="<plugin root>/src/SwagBasicExample.php" %}
-
 ```php
+// <plugin root>/src/SwagBasicExample.php
 if (file_exists(dirname(__DIR__) . '/vendor/autoload.php')) {
     require_once dirname(__DIR__) . '/vendor/autoload.php';
 }
 ```
-
-{% endcode %}
 
 ## Using the Composer plugin
 
@@ -40,9 +37,8 @@ PHP doesn't require a build system, which means that we can just add `use` state
 
 The following code sample imports `SebastianBergmann\Exporter\Exporter` and logs `hello, world!` to the Symfony profiler logs whenever the `NavigationPageLoadedEvent` is fired. Learn how to [register this listener](listening-to-events.md).
 
-{% code title="<plugin root>/src/SwagBasicExample.php" %}
-
 ```php
+// <plugin root>/src/SwagBasicExample.php
 <?php
 namespace SwagBasicExample\Subscriber;
 
@@ -78,8 +74,6 @@ class MySubscriber implements EventSubscriberInterface
     }
 }
 ```
-
-{% endcode %}
 
 ## Adding private Composer dependencies
 

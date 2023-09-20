@@ -10,14 +10,14 @@ Whenever additional logic is added to Shopware, the method of the corresponding 
 
 Using plugins, you can add custom routes to the Store API \(as well as any other routes\) and also register custom services. We don't force developers to provide API coverage for their functionalities. However, if you want to support headless applications, ensure that your plugin provides its functionalities through dedicated routes.
 
-{% page-ref page="../../guides/plugins/plugins/framework/store-api" %}
+<PageRef page="../../guides/plugins/plugins/framework/store-api" />
 
 ## What next?
 
 To start working with the Store API, check out our guide below and explore all endpoints in our reference guide:
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://shopware.stoplight.io/docs/store-api/docs/guides/quick-start/README.md" caption="Quickstart Guide" %}
+
+<PageRef page="https://shopware.stoplight.io/docs/store-api/docs/guides/quick-start/README" title="Quickstart Guide" target="_blank" />
 
 An interesting project based \(almost\) solely on the Store API is Shopware PWA.
 
-{% page-ref page="../../products/pwa.md" %}
+<PageRef page="../../products/pwa" />

@@ -8,13 +8,13 @@ In an online shop, filters are an important feature. So you might use filters in
 
 Before you start reading this guide, make sure you got an own plugin installed to work with. If you need a starting point for that, see this guide:
 
-{% page-ref page="../plugin-base-guide.md" %}
+<PageRef page="../plugin-base-guide" />
 
 ## Create new Filter
 
 At first, you need to create a subscriber. In this example, we will call it `ExampleListingSubscriber`. If you are not sure on working with subscribers, please refer to the guide on working with events in Shopware:
 
-{% page-ref page="../plugin-fundamentals/listening-to-events.md" %}
+<PageRef page="../plugin-fundamentals/listening-to-events" />
 
 As usual, we will start by creating this new class in the same path as you're seeing in Shopware's core - `/src/Subscriber/ExampleListingSubscriber.php`.
 
@@ -63,9 +63,8 @@ $filter = new Filter(
 
 Inside the `ProductListingCollectFilterEvent`, you get the existing filters, can define your new custom filters and merge them into the existing ones. Here is a complete example implementation, adding a filter on the product information `isCloseout`. Please note the comments for explanation:
 
-{% code title="<plugin root>/src/Subscriber/ExampleListingSubscriber.php" %}
-
 ```php
+// <plugin root>/src/Subscriber/ExampleListingSubscriber.php
 class ExampleListingSubscriber implements EventSubscriberInterface
 {
     // register event
@@ -100,7 +99,6 @@ class ExampleListingSubscriber implements EventSubscriberInterface
                 ),
             ],
 
-
             // defines the DAL filter which should be added to the criteria   
             new EqualsFilter('product.isCloseout', true),
 
@@ -114,26 +112,22 @@ class ExampleListingSubscriber implements EventSubscriberInterface
 }
 ```
 
-{% endcode %}
-
 ## Add your filter to the Storefront UI
 
 Well, fine - you successfully created a filter via subscriber. However, you want to enable your shop customer to use it, right? Now you need to integrate your filter in the Storefront. Let's start by searching the template file you need to extend in Shopware's Storefront. It's this one - `src/Storefront/Resources/views/storefront/component/listing/filter-panel.html.twig`.
 
 In this template, the existing filters are contained in the block `component_filter_panel_items`. We are going to extend this block with our new filter. If you're not sure on how to customize templates in the Storefront, we got you covered with another guide:
 
-{% page-ref page="customize-templates.md" %}
+<PageRef page="customize-templates" />
 
-{% hint style="info" %}
+::: info
 The block `component_filter_panel_items` is available from Shopware Version 6.4.8.0
-{% endhint %}
+:::
 
 Including our filter will be done as seen below, please take the comments into account:
 
-{% code title="<plugin root>/src/Resources/views/storefront/component/listing/filter-panel.html.twig" %}
-{% raw %}
-
-```text
+```twig
+// <plugin root>/src/Resources/views/storefront/component/listing/filter-panel.html.twig
 {% sw_extends '@Storefront/storefront/component/listing/filter-panel.html.twig' %}
 
 {% block component_filter_panel_items %}
@@ -146,9 +140,6 @@ Including our filter will be done as seen below, please take the comments into a
     } %}
 {% endblock %}
 ```
-
-{% endraw %}
-{% endcode %}
 
 As we want to filter a boolean value, we choose the `filter-boolean` component here. Sure, there are some more you can use - dependent on your filter's values:
 
@@ -164,10 +155,8 @@ Extending  `component_filter_panel_items` as shown above puts our filter *after*
 
 If we instead want our filter to be placed before or after a specific filter in the middle of the list, we can instead extend the block for that filter. For example, if we want our filter to be displayed after the price filter, we would extend the block `component_filter_panel_item_price`:
 
-{% code title="<plugin root>/src/Resources/views/storefront/component/listing/filter-panel.html.twig" %}
-{% raw %}
-
-```text
+```twig
+// <plugin root>/src/Resources/views/storefront/component/listing/filter-panel.html.twig
 {% sw_extends '@Storefront/storefront/component/listing/filter-panel.html.twig' %}
 
 {% block component_filter_panel_item_price %}
@@ -181,11 +170,8 @@ If we instead want our filter to be placed before or after a specific filter in 
 {% endblock %}
 ```
 
-{% endraw %}
-{% endcode %}
-
 ## Next steps
 
 Are you interested in adding custom sorting options to your listing in the Storefront as well? Head over to the corresponding guide to learn more about that:
 
-{% page-ref page="add-custom-sorting-product-listing.md" %}
+<PageRef page="add-custom-sorting-product-listing" />

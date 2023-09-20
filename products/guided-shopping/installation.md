@@ -69,9 +69,9 @@ bin/console cache:clear
 
 Except for the self-hosted service, we recommend using any cloud-based service.
 
-{% hint style="info" %}
+::: info
 💡 We tested the service provided by [StackHero](https://www.stackhero.io/en/services/Mercure-Hub/pricing). Depending on the expected traffic, you can easily switch between the plans. For a small demo among a few people at the same time, the “Hobby” plan is sufficient.
-{% endhint %}
+:::
 
 Detailed below is the minimum configuration needed for a working stack apart from project specific CMS configurations.
 
@@ -193,13 +193,13 @@ In order to synchronize the installed `SwagGuidedShopping` plugin in the backend
 
 1. Check credentials in the `.env` file (ADMIN_USER and ADMIN_PASSWORD).
 
-    {% hint style="info" %}
+::: info
     💡 Alternatively, you can invoke the `plugins` command manually using:
     `npx @shopware-pwa/cli@canary plugins --user YOUR_ADMIN_USERNAME --password=YOUR_SECRET_PASS`
     Now, the application is ready for the rebuild process.
 
     Note that the admin credentials are required to connect to the installed plugin library through an Admin API.
-    {% endhint %}
+:::
 
 1. Run the build command.
 

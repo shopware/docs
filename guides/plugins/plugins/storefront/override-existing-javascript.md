@@ -12,9 +12,9 @@ While this is not mandatory, having read the guide about [adding custom javascri
 
 As JavaScript Storefront plugins are vanilla JavaScript classes, you can simply extend them.
 
-{% hint style="info" %}
+::: info
 Each JavaScript plugin can only be overridden once. If two Shopware plugins try to override the same plugin, only the last one of them will actually work.
-{% endhint %}
+:::
 
 So let's start with creating the proper directory structure. This example will be called `my-cookie-permission`, as it's extending the default `cookie-permission` plugin.
 
@@ -103,23 +103,23 @@ if (module.hot) {
 
 To see your changes you have to build the Storefront. Use the following command and reload your Storefront.
 
-{% tabs %}
-{% tab title="Development template" %}
+<Tabs>
+<Tab title="Development template">
 
 ```bash
 ./psh.phar storefront:build
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Production template" %}
+<Tab title="Production template">
 
 ```bash
 ./bin/build-storefront.sh
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 You should see the cookie notice at the bottom of the page. If you click the "Accept" or the "Deny" button you should be prompted to confirm hiding the bar.
 

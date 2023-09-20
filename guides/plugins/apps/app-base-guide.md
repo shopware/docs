@@ -24,9 +24,8 @@ To get started with your app, create an `apps` folder inside the `custom` folder
 
 The manifest file is the central point of your app. It defines the interface between your app and the Shopware instance. It provides all the information concerning your app, as seen in the minimal version below:
 
-{% code title="manifest.xml" %}
-
 ```xml
+// manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
@@ -44,11 +43,9 @@ The manifest file is the central point of your app. It defines the interface bet
 </manifest>
 ```
 
-{% endcode %}
-
-{% hint style="warning" %}
+::: warning
 The name of your app that you provide in the manifest file needs to match the folder name of your app.
-{% endhint %}
+:::
 
 The app can now be installed by running the following command:
 
@@ -58,9 +55,9 @@ bin/console app:install --activate MyExampleApp
 
 By default, your app files will be [validated](app-base-guide.md#validation) before installation. To skip the validation, you may use the `--no-validate` flag.
 
-{% hint style="info" %}
+::: info
 Apps get installed as inactive. You can activate them by passing the `--activate` flag to the `app:install` command or by executing the `app:activate` command after installation.
-{% endhint %}
+:::
 
 For a complete reference of the structure of the manifest file, take a look at the [Manifest reference](../../../resources/references/app-reference/manifest-reference.md).
 
@@ -75,17 +72,16 @@ The setup workflow is shown in the following schema. Each step will be explained
 
 ![Setup request workflow](../../../.gitbook/assets/shop-app-communication-1-.svg)
 
-{% hint style="info" %}
+::: info
 The timeout for the requests against the app server is 5 seconds.
-{% endhint %}
+:::
 
 ### Registration request
 
 The registration request is made as a `GET` request against a URL you provide in your app's manifest file.
 
-{% code title="manifest.xml" %}
-
 ```xml
+// manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
@@ -96,8 +92,6 @@ The registration request is made as a `GET` request against a URL you provide in
     </setup>
 </manifest>
 ```
-
-{% endcode %}
 
 The following query parameters will be sent with the request:
 
@@ -112,7 +106,7 @@ Additionally, the request has the following headers:
 
 An example request may look like this:
 
-```http request
+```txt
 GET https://my.example.com/registration?shop-id=KIPf0Fz6BUkN&shop-url=http%3A%2F%2Fmy.shop.com&timestamp=159239728
 shopware-app-signature: a8830aface4ac4a21be94844426e62c77078ca9a10f694737b75ca156b950a2d
 sw-version: 6.4.5.0
@@ -121,22 +115,22 @@ sw-version: 6.4.5.0
 Additionally, the `shopware-app-signature` header will be provided, which contains a cryptographic signature of the query string.  
 The secret used to generate this signature is the `app secret`, which is unique per app and will be provided by the Shopware Account if you upload your app to the store. This secret won't leave the Shopware Account, so it won't even be leaked to the shops installing your app.
 
-{% hint style="danger" %}
+::: danger
 You and the Shopware Account are the only parties that should know your `app-secret`. Therefore, make sure you never accidentally publish your `app-secret`.
-{% endhint %}
+:::
 
-{% hint style="warning" %}
+::: warning
 For **local development**, you can specify a `<secret>` in the manifest file that is used for signing the registration request. However, if an app uses a hard-coded secret in the manifest, it can't be uploaded to the store.
 
 If you are developing a **private app** not published in the Shopware Store, you **must** provide the `<secret>` in case of an external app server.
-{% endhint %}
+:::
 
 To verify that the registration can only be triggered by authenticated Shopware shops, you need to recalculate the signature and check that the signatures match. Thus you have verified that the sender of the request possesses the `app secret`.
 
 The following code snippet can be used to recalculate the signature:
 
-{% tabs %}
-{% tab title="PHP" %}
+<Tabs>
+<Tab title="PHP">
 
 ```php
 use Psr\Http\Message\RequestInterface;
@@ -146,8 +140,8 @@ $queryString = $request->getUri()->getQuery();
 $signature = hash_hmac('sha256', $queryString, $appSecret);
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ### Registration response
 
@@ -164,8 +158,8 @@ To verify that you are also in possession of the `app secret`, you need to provi
 
 The following code snippet can be used to calculate the proof:
 
-{% tabs %}
-{% tab title="PHP" %}
+<Tabs>
+<Tab title="PHP">
 
 ```php
 use Psr\Http\Message\RequestInterface;
@@ -180,14 +174,14 @@ $proof = \hash_hmac(
 );
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 Besides the proof, your app needs to provide a randomly generated secret that should be used to sign every further request from this shop. Make sure to save the `shopId`, `shopUrl`, and generated secret so that you can associate and use this information later.
 
-{% hint style="info" %}
+::: info
 This secret will be called `shop-secret` to distinguish it from the `app-secret`. The `app-secret` is unique to your app and is used to sign the registration request of every shop that installs your app. The `shop-secret` will be provided by your app during the registration and should be unique for every shop
-{% endhint %}
+:::
 
 The last thing needed in the registration response is a URL to which the confirmation request will be sent.
 
@@ -228,21 +222,20 @@ from the Admin API.
 
 You can find out more about how to use these credentials in our Admin API authentication guide:
 
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://shopware.stoplight.io/docs/admin-api/ZG9jOjEwODA3NjQx-authentication-and-authorisation#integration-client-credentials-grant-type" caption="Admin API Authentication & Authorisation" %}
+<PageRef page="https://shopware.stoplight.io/docs/admin-api/ZG9jOjEwODA3NjQx-authentication-and-authorisation#integration-client-credentials-grant-type" title="Admin API Authentication & Authorisation" target="_blank" />
 
-{% hint style="info" %}
+::: info
 Starting from Shopware version 6.4.1.0, the current Shopware version will be sent as a `sw-version` header.
 Starting from Shopware version 6.4.5.0, the current language id of the Shopware context will be sent as a  `sw-context-language` header, and the locale of the user or locale of the context language is available under the `sw-user-language` header.
-{% endhint %}
+:::
 
 The request is signed with the `shop-secret` that your app provided in the [registration response](app-base-guide.md#registration-response) and the signature can be found in the `shopware-shop-signature` header.  
 You need to recalculate that signature and check that it matches the provided one to make sure that the request is really sent from the shop with that shopId.
 
 You can use the following code snippet to generate the signature:
 
-{% tabs %}
-{% tab title="PHP" %}
+<Tabs>
+<Tab title="PHP">
 
 ```php
 use Psr\Http\Message\RequestInterface;
@@ -251,8 +244,8 @@ use Psr\Http\Message\RequestInterface;
 $hmac = \hash_hmac('sha256', $request->getBody()->getContents(), $shopSecret);
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Permissions
 
@@ -261,9 +254,8 @@ Since version 6.4.12.0, your app can also request additional non-CRUD privileges
 
 Sample permissions to read, create and update products, delete orders, as well as reading the cache configuration look like this:
 
-{% code title="manifest.xml" %}
-
 ```xml
+// manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
@@ -282,13 +274,11 @@ Sample permissions to read, create and update products, delete orders, as well a
 </manifest>
 ```
 
-{% endcode %}
-
 The permissions you request need to be accepted by the user during the installation of your app. After that, these permissions are granted for your app and your API access through the credentials from the [confirmation request](app-base-guide.md#confirmation-request) of the [setup workflow](app-base-guide.md#setup) are limited to those permissions.
 
-{% hint style="warning" %}
+::: warning
 Keep in mind that read permissions also extend to the data contained in the requests, so your app needs read permissions for the entities contained in the subscribed [webhooks](app-base-guide.md#webhooks).
-{% endhint %}
+:::
 
 ## Webhooks
 
@@ -296,9 +286,8 @@ With webhooks, you are able to subscribe to events occurring in Shopware. Whenev
 
 To use webhooks in your app, you need to implement a `<webhooks>` element in your manifest file like this:
 
-{% code title="manifest.xml" %}
-
 ```xml
+// manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
@@ -309,8 +298,6 @@ To use webhooks in your app, you need to implement a `<webhooks>` element in you
     </webhooks>
 </manifest>
 ```
-
-{% endcode %}
 
 This example illustrates to you how to define a webhook with the name `product-changed` and the URL `https://example.com/event/product-changed`, which will be triggered if the event `product.written` is fired. So every time a product is changed, your custom logic will get executed. Further down, you will find a list of the most important events you can hook into.
 
@@ -351,10 +338,10 @@ The next property, `data` contains the name of the event so that a single endpoi
 
 The next property, `timestamp` is the time at which the webhook was handled. This can be used to prevent replay attacks, as an attacker cannot change the timestamp without making the signature invalid. If the timestamp is too old, your app should reject the request. This property is only available from 6.4.1.0 onwards
 
-{% hint style="info" %}
+::: info
 Starting from Shopware version 6.4.1.0, the current Shopware version will be sent as a `sw-version` header.
 Starting from Shopware version 6.4.5.0, the current language id of the shopware context will be sent as a  `sw-context-language` header, and the locale of the user or locale of the context language is available under the `sw-user-language` header.
-{% endhint %}
+:::
 
 You can verify the authenticity of the incoming request by checking the `shopware-shop-signature` every request should have a SHA256 HMAC of the request body that is signed with the secret your app assigned the shop during the [registration](app-base-guide.md#setup). The mechanism to verify the request is exactly the same as the one used for the [confirmation request](app-base-guide.md#confirmation-request).
 
@@ -374,7 +361,7 @@ Examples request body:
 You need to pass the `status` property, the content of the notification as `message` property and you can restrict users who can read the notification by passing `requiredPrivileges` property and `adminOnly` property inside the payload.
 When `adminOnly` is true, only admins can read this notification. If you don't send the `adminOnly` or `adminOnly` is false, you can pass the `requiredPrivileges` property so that users with specific permissions can read the notification. Otherwise, it will be displayed to every user.
 
-```http request
+```txt
 POST /api/notification
 
 {
@@ -383,7 +370,6 @@ POST /api/notification
     "adminOnly": "true",
     "requiredPrivileges": []
 }
-
 ```
 
 * `status`: Notification status, one of `success`, `error`, `info`, `warning`.
@@ -461,9 +447,9 @@ The main reason that this is problematic is that two Shopware installations in t
 
 That is why we implemented a safeguard mechanism that detects such situations, stops communication with the apps to prevent data corruption, and then ultimately lets the user decide how to solve the situation.
 
-{% hint style="info" %}
+::: info
 This mechanism relies on the fact that the `APP_URL` environment variable will be set to the correct URL for the shop. It is especially assumed that the environment variable will be changed when a shop is migrated to a new domain or a staging shop is created as a duplicate of a production shop.
-{% endhint %}
+:::
 
 Remember that this is only relevant for apps that have their own backends and where communication between app backends and shopware is necessary. That is why simple themes are not affected by shop migrations, and they will continue to work.
 
@@ -489,7 +475,7 @@ As the new installation will get a new shopId, the installed apps will continue 
 * **UninstallApps**: This strategy will simply uninstall all apps on the new installation, thus keeping the old installation working like before.
 
 ## API Docs
-<!-- markdown-link-check-disable-next-line -->
+
 {% api-method method="get" host="https://my.example.com" path="" %}
 {% api-method-summary %}
 registration
@@ -547,7 +533,6 @@ The unique identifier of the shop, where the app was installed
 {% endapi-method-spec %}
 {% endapi-method %}
 
-<!-- markdown-link-check-disable-next-line -->
 {% api-method method="post" host="https://my.example.com" path="" %}
 {% api-method-summary %}
 confirmation
@@ -600,7 +585,6 @@ ApiKey used to authenticate against the Shopware API
 {% endapi-method-response-example-description %}
 
 ```text
-
 ```
 
 {% endapi-method-response-example %}

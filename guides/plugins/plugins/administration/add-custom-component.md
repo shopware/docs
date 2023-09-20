@@ -10,15 +10,15 @@ In this example, you will create a component, that will print a 'Hello world!' e
 
 This guide **does not** explain how to create a new plugin for Shopware 6. Head over to our Plugin base guide to learn how to create a plugin at first:
 
-{% page-ref page="../plugin-base-guide.md" %}
+<PageRef page="../plugin-base-guide" />
 
 If you want to work with entities in your custom component or page, it might be useful to take a look at how to create custom entity guide first:
 
-{% page-ref page="../framework/data-handling/add-custom-complex-data.md" %}
+<PageRef page="../framework/data-handling/add-custom-complex-data" />
 
 Especially if you want to add a new page for an own module, you should consider to look at the process on how to add a custom module first.
 
-{% page-ref page="add-custom-module.md" %}
+<PageRef page="add-custom-module" />
 
 This way, you're able to start building your own module in the right order.
 
@@ -34,9 +34,9 @@ Usually there's one question you have to ask yourself first: Will your new compo
 
 Otherwise, if it's going to be a general component to be used by other components, the following will be the proper path. For this example, this component scenario is used. `<plugin-root>/src/Resources/app/administration/src/component/<name of your plugin>/<name of your component>`
 
-{% hint style="info" %}
+::: info
 Using this path is **not** a hard requirement, but rather a recommendation. This way, third party developers having a glance at your code will get used to it real quick, because you stuck to Shopware 6's core conventions.
-{% endhint %}
+:::
 
 Since the latter example is being used, this is the path being created in the plugin now: `<plugin-root>/src/Resources/app/administration/src/component/custom-component/hello-world`
 
@@ -44,13 +44,10 @@ Since the latter example is being used, this is the path being created in the pl
 
 In the directory mentioned above, create a new file `index.js`. We will get you covered with more information about it later. Now import your custom component using your plugin's `main.js` file:
 
-{% code title="<plugin root>/src/Resources/app/administration/src" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/administration/src
 import './app/component/custom-component/hello-world';
 ```
-
-{% endcode %}
 
 ### Index.js as main entry point for this component
 
@@ -58,27 +55,21 @@ Head back to the `index.js` file, this one will be the most important for your c
 
 First you have to register your component using the `ComponentFactory`, which is available throughout our third party wrapper. This `Component` object provides a method `register`, which expects a name and a configuration for your component.
 
-{% code title="<plugin-root>/src/Resources/app/administration/src/component/custom-component/hello-world" %}
-
 ```javascript
+// <plugin-root>/src/Resources/app/administration/src/component/custom-component/hello-world
 Shopware.Component.register('hello-world', {
     // Configuration here
 });
 ```
 
-{% endcode %}
-
 A component's template is being defined by using the `template` property. For this short example, the template will be defined inline. An example for a bigger template will also be provided later on this page.
 
-{% code title="<plugin-root>/src/Resources/app/administration/src/component/custom-component/hello-world" %}
-
 ```javascript
+// <plugin-root>/src/Resources/app/administration/src/component/custom-component/hello-world
 Shopware.Component.register('hello-world', {
     template: '<h2>Hello world!</h2>'
 });
 ```
-
-{% endcode %}
 
 That's it. You can now use your component like this `<hello-world></hello-world>` in any other template in the Administration.
 
@@ -88,9 +79,8 @@ It's quite uncommon to have such a small template example and you don't want to 
 
 Now simply import this file in your component's JS file and use the variable for your property.
 
-{% code title="<plugin-root>/src/Resources/app/administration/src/component/custom-component/hello-world.html.twig" %}
-
 ```javascript
+// <plugin-root>/src/Resources/app/administration/src/component/custom-component/hello-world.html.twig
 import template from 'hello-world.html.twig';
 
 Shopware.Component.register('hello-world', {
@@ -98,21 +88,16 @@ Shopware.Component.register('hello-world', {
 });
 ```
 
-{% endcode %}
-
 In the core code, you will find another syntax for the same result though:
 
-{% code title="<plugin-root>/src/Resources/app/administration/src/component/custom-component/hello-world.html.twig" %}
-
 ```javascript
+// <plugin-root>/src/Resources/app/administration/src/component/custom-component/hello-world.html.twig
 import template from 'hello-world.html.twig';
 
 Shopware.Component.register('hello-world', {
     template
 });
 ```
-
-{% endcode %}
 
 This is a [shorthand](https://alligator.io/js/object-property-shorthand-es6/), which can only be used if the variable is named exactly like the property.
 

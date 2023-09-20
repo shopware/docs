@@ -23,11 +23,11 @@ the respective `UrlProvider`, e.g. the `Shopware\Core\Content\Sitemap\Provider\P
 Hence, let's start with creating the basic decorated class for the `ProductUrlProvider`. We'll call
 this class `DecoratedProductUrlProvider`:
 
-{% tabs %}
-{% tab title="DecoratedProductUrlProvider.php" %}
-{% code title="<plugin root>/src/Core/Content/Sitemap/Provider/DecoratedProductUrlProvider.php" %}
+<Tabs>
+<Tab title="DecoratedProductUrlProvider.php">
 
 ```php
+// <plugin root>/src/Core/Content/Sitemap/Provider/DecoratedProductUrlProvider.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Sitemap\Provider;
@@ -64,13 +64,12 @@ class DecoratedProductUrlProvider extends AbstractUrlProvider
 }
 ```
 
-{% endcode %}
-{% endtab %}
+</Tab>
 
-{% tab title="services.xml" %}
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<Tab title="services.xml">
 
 ```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -84,9 +83,8 @@ class DecoratedProductUrlProvider extends AbstractUrlProvider
 </container>
 ```
 
-{% endcode %}
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 Now let's get on to the two possible ways and its benefits.
 
@@ -96,9 +94,8 @@ By adjusting the `getUrls` method, you can execute the parent's `getUrls` method
 is an instance of the `UrlResult`.
 On this instance, you can use the method `getUrls` to actually get the `Url` instances and make adjustments to them - or even remove them.
 
-{% code title="<plugin root>/src/Core/Content/Sitemap/Provider/DecoratedProductUrlProvider.php" %}
-
 ```php
+// <plugin root>/src/Core/Content/Sitemap/Provider/DecoratedProductUrlProvider.php
 public function getUrls(SalesChannelContext $context, int $limit, ?int $offset = null): UrlResult
 {
     $urlResult = $this->getDecorated()->getUrls($context, $limit, $offset);
@@ -109,8 +106,6 @@ public function getUrls(SalesChannelContext $context, int $limit, ?int $offset =
     return new UrlResult($urls, $urlResult->getNextOffset());
 }
 ```
-
-{% endcode %}
 
 You could iterate over the `$urls` array and modify each entry - or even create a new array with less entries,
 if you want to fully remove some.
@@ -130,9 +125,8 @@ Since it's a protected method, you can override it and create a custom SQL in or
 For this you'll most likely want to copy the original method's code and paste it into your overridden method.
 You can then add new lines to the SQL statement in order to do the necessary filtering or customising.
 
-{% code title="<plugin root>/src/Core/Content/Sitemap/Provider/DecoratedProductUrlProvider.php" %}
-
 ```php
+// <plugin root>/src/Core/Content/Sitemap/Provider/DecoratedProductUrlProvider.php
 protected function getSeoUrls(array $ids, string $routeName, SalesChannelContext $context, Connection $connection): array
 {
     /* Make adjustments to this SQL */
@@ -158,8 +152,6 @@ protected function getSeoUrls(array $ids, string $routeName, SalesChannelContext
     );
 }
 ```
-
-{% endcode %}
 
 Now you could adjust the SQL statement to fit your needs, e.g. by adding a `JOIN` to the respective entities' table.
 

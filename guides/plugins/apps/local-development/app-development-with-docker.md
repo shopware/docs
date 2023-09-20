@@ -35,16 +35,13 @@ At first, you need to add two networks. One for your app system and another one 
 
 This is done by adding the networks `appSystem` and `development` to your existing ones:
 
-{% code title="" %}
-
 ```yaml
+// 
 networks:
     shopware:
     appSystem:
     development:
 ```
-
-{% endcode %}
 
 The `appSystem`-network is only for your app server and the app database.  
 The `development`-network is used to combine your app server with the Shopware server.
@@ -53,9 +50,8 @@ The `development`-network is used to combine your app server with the Shopware s
 
 Now you need to define the `services` in your `development/docker-compose.yml`. First insert the following to add your app server.
 
-{% code title="development/docker-compose.yml" %}
-
 ```yaml
+// development/docker-compose.yml
 services:
 [...]
   example_app_server:
@@ -76,8 +72,6 @@ services:
           - example
 ```
 
-{% endcode %}
-
 This adds a new container to your docker setup running your app server's code. The new container is available inside the networks `appSystem` and `development`.  
 In the `development`-network your app server has the alias `example`. This will be the url which your Shopware server needs to communicate with. This is also the url which you should use in your `manifest.xml` except for iframes.  
 `volumes` represents the relative path to your app.  
@@ -88,9 +82,8 @@ In the `development`-network your app server has the alias `example`. This will 
 The next step is to also add your mysql server to your docker setup. This is as easy as it was for your app server.  
 Simply add this to your `development/docker-compose.yml`.
 
-{% code title="development/docker-compose.yml" %}
-
 ```yaml
+// development/docker-compose.yml
 services:
 [...]
   example_mysql:
@@ -109,8 +102,6 @@ services:
           - appmysql
 ```
 
-{% endcode %}
-
 As you already know you connect your mysql server to the same network as your app server and give it the alias `appmysql`. Furthermore, you can now connect to your database on port `5506` from outside of the docker container.  
 Last but not least we define the credentials for the mysql server and you are done with setting up the database container.
 
@@ -118,9 +109,8 @@ Last but not least we define the credentials for the mysql server and you are do
 
 Now you need to add your Shopware server to your `development`-network and give him an alias as follows:
 
-{% code title="development/docker-composer.yml" %}
-
 ```yaml
+// development/docker-composer.yml
 services:
 [...]
   app_server:
@@ -140,31 +130,25 @@ services:
       - /tmp:mode=1777
 ```
 
-{% endcode %}
-
 Now your app server can communicate with the Shopware server and your app's database.
 
 ## Access your app server via ssh
 
 To easily access a terminal on your app server, you need to create this script `development/dev-ops/docker/actions/ssh-app-server.sh`.
 
-{% code title="development/dev-ops/docker/actions/ssh-app-server.sh" %}
-
-```shell script
+```sh
+// development/dev-ops/docker/actions/ssh-app-server.shell script
 #!/usr/bin/env bash
 TTY: docker exec -i --env COLUMNS=`tput cols` --env LINES=`tput lines` -u __USERKEY__ -t __EXAMPLE_APP_SERVER_ID__ bash
 ```
-
-{% endcode %}
 
 This script can be executed from your `development` folder with `./psh.phar docker:ssh-app-server`. Keep in mind that this is only possible when the app server has been started with `./psh.phar docker:start` from your development folder.  
 
 To make sure this script actually knows the ID of your app server which is running in the docker container, you need to define the `EXAMPLE_APP_SERVER_ID` in the `development/.psh.yaml.override`.  
 Your `development/.psh.yaml.override` should look like this:
 
-{% code title="development/.psh.yaml.override" %}
-
-```Yaml
+```yaml
+// development/.psh.yaml.override
 # ...
 dynamic:
  #  ...
@@ -172,8 +156,6 @@ dynamic:
  #  ...
 # ...
 ```
-
-{% endcode %}
 
 ## Initialising the app server
 
@@ -193,9 +175,8 @@ Then access your local Shopware instance with `./psh.phar docker:ssh` and execut
 For the sake of simplicity you need to change the `APP_URL` of your Shopware instance to match the network-alias you gave it.  
 This is done in your `development/.psh.yaml.override` which should look like this:
 
-{% code title="development/.psh.yaml.override" %}
-
 ```yaml
+// development/.psh.yaml.override
 # ...
 const:
   # ...
@@ -203,8 +184,6 @@ const:
   # ...
 # ...
 ```
-
-{% endcode %}
 
 To make sure your `APP_URL` changed you need to rerun `./psh.phar docker:ssh`. Now your `APP_URL` changed and you can register your app via `bin/console app:refresh --activate`. This can also be done by `bin/console app:install --activate yourAppName`.
 

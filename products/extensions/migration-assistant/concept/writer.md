@@ -4,7 +4,7 @@ The `Writer` objects will get the converted data from the `swag_migration_data` 
 
 When creating a writer, register it in a manner resembling the following:
 
-```markup
+```html
 <service id="SwagMigrationAssistant\Migration\Writer\ProductWriter"
          parent="SwagMigrationAssistant\Migration\Writer\AbstractWriter">
     <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Write\EntityWriter"/>

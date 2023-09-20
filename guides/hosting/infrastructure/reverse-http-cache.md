@@ -7,15 +7,15 @@ A reverse HTTP cache is a cache server placed before the web shop. If you are no
 * Able to differentiate the request with multiple cookies
 * Allow clearing the cache using a web request for a specific site or with `/` for all pages
 
-{% hint style="info" %}
+::: info
 In this guide, we will use Varnish as an example for HTTP cache.
-{% endhint %}
+:::
 
 ### The example Setup with Varnish
 
-{% hint style="warning" %}
+::: warning
 This setup is compatible from Shopware version 6.4.
-{% endhint %}
+:::
 
 ![](../../../.gitbook/assets/reverse_proxy_setup.svg)
 
@@ -462,9 +462,9 @@ Varnish XKey is a cache key module that allows you to use Varnish with surrogate
 
 The module is available for download on [GitHub](https://github.com/varnish/varnish-modules/blob/master/src/vmod_xkey.vcc)
 
-{% hint style="warning" %}
+::: warning
 This feature has been introduced with Shopware version 6.4.17.0
-{% endhint %}
+:::
 
 And also needs to be enabled in the `config/packages/shopware.yml` file:
 
@@ -479,7 +479,7 @@ storefront:
 
 Varnish Config:
 
-```vcl
+```txt
 vcl 4.0;
 
 import std;
@@ -691,7 +691,7 @@ The `X-Cache` and `X-Cache-Hits` headers are only meant to verify that Varnish i
 
 To disable these headers, comment out the lines by prefixing them with the `#` character. The lines in question are:
 
-```vcl
+```txt
 # Set a cache header to allow us to inspect the response headers during testing
 if (obj.hits > 0) {
     unset resp.http.set-cookie;
@@ -705,7 +705,7 @@ set resp.http.X-Cache-Hits = obj.hits;
 
 Make it so that the lines look like the following:
 
-```vcl
+```txt
 # Set a cache header to allow us to inspect the response headers during testing
 if (obj.hits > 0) {
     unset resp.http.set-cookie;
@@ -736,9 +736,9 @@ storefront:
 
 ### Fastly soft-purge
 
-{% hint style="warning" %}
+::: warning
 This feature has been introduced with Shopware version 6.4.15.0
-{% endhint %}
+:::
 
 By default, the cache will be immediately purged and the next requesting user will get a slow response as the cache has been deleted. On soft purge, the user still gets the cached response after the purge, but in the configured time interval, the cache will be refreshed. This makes sure that the client gets the fastest response possible.
 
@@ -765,12 +765,12 @@ storefront:
 
 Additionally, we need to set up some VCL Snippets in the Fastly interface:
 
-{% embed url="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/deliver.vcl" caption="vcl_deliver" %}
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/deliver.vcl" title="vcl_deliver" target="_blank" />
 
-{% embed url="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/fetch.vcl" caption="vcl_fetch" %}
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/fetch.vcl" title="vcl_fetch" target="_blank" />
 
-{% embed url="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/hash.vcl" caption="vcl_hash" %}
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/hash.vcl" title="vcl_hash" target="_blank" />
 
-{% embed url="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/hit.vcl" caption="vcl_hit" %}
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/hit.vcl" title="vcl_hit" target="_blank" />
 
-{% embed url="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/recv.vcl" caption="vcl_recv" %}
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/recv.vcl" title="vcl_recv" target="_blank" />

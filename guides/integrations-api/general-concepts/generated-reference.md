@@ -4,9 +4,9 @@ Shopware generates schemas for both HTTP APIs that can be interpreted by API cli
 
 These schemas are generated using PHP annotations based on the [swagger-php](https://github.com/zircote/swagger-php) library. When building API extensions, you can also leverage these annotations to let Shopware generate standardized endpoint documentation for your custom endpoints on-the-fly.
 
-{% hint style="warning" %}
+::: warning
 Due to security restrictions, your **`APP_ENV`** environment variable has to be set to **`dev`** to access any of the specifications described below.
-{% endhint %}
+:::
 
 ## Swagger UI
 

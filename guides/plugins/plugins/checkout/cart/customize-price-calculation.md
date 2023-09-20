@@ -20,9 +20,8 @@ So let's do that real quick. If you're looking for an in-depth explanation, head
 
 Here's an example decorated calculator:
 
-{% code title="<plugin root>/src/Service/CustomProductPriceCalculator.php" %}
-
 ```php
+// <plugin root>/src/Service/CustomProductPriceCalculator.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -65,8 +64,6 @@ class CustomProductPriceCalculator extends AbstractProductPriceCalculator
 }
 ```
 
-{% endcode %}
-
 So what is done here? The constructor gets passed the inner instance of `AbstractProductPriceCalculator`, most likely the `ProductPriceCalculator` itself. This will be used to call the original `calculate` method later on. You also have to return that instance in your `getDecorated` method.
 
 Inside the overridden `calculate` method, we're iterating over each product and we straight forward set new prices. Of course this is just an example to show how you can now manipulate a product's prices.
@@ -77,9 +74,8 @@ Most likely you also want to narrow down which product's prices you want to edit
 
 Do not forget to actually register your decoration to the service container, otherwise it will not have any effect.
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
-
-```markup
+```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -92,8 +88,6 @@ Do not forget to actually register your decoration to the service container, oth
     </services>
 </container>
 ```
-
-{% endcode %}
 
 ## Next steps
 

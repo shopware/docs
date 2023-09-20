@@ -106,4 +106,3 @@ This is an overview of all the utility functions bound to the shopware global ob
 | remove | Removes all elements from `array` that predicate returns truthy for and returns an array of the removed elements | [link](https://lodash.com/docs/4.17.15#remove) |
 | slice | Creates a slice of `array` from `start` up to, but not including, `end`. | [link](https://lodash.com/docs/4.17.15#slice) |
 | uniqBy | This method is like [`_.uniq`](https://lodash.com/docs/4.17.15#uniq) except that it accepts `iteratee` which is invoked for each element in `array` to generate the criterion by which uniqueness is computed. | [link](https://lodash.com/docs/4.17.15#uniqBy) |
-
