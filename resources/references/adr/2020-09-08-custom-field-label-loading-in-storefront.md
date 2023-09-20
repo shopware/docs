@@ -2,15 +2,22 @@
 title: CustomField label loading in storefront
 date: 2020-09-08
 area: storefront
-tags: [custom-fields, storefront, snippets]
---- 
+tags:
+  - custom-fields
+  - storefront
+  - snippets
+nav:
+  title: Custom field label loading in storefront
+  position: 130
+
+---
 
 # CustomField label loading in storefront
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-09-08-custom-field-label-loading-in-storefront.md)
-{% endhint %}
+:::
 
 ## Context
 

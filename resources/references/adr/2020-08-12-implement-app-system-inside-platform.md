@@ -2,15 +2,21 @@
 title: Implement app system inside platform
 date: 2020-08-12
 area: core
-tags: [app, cloud]
---- 
+tags:
+  - app
+  - cloud
+nav:
+  title: Implement app system inside platform
+  position: 70
+
+---
 
 # Implement app system inside platform
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-08-12-implement-app-system-inside-platform.md)
-{% endhint %}
+:::
 
 ## Context
 

@@ -2,15 +2,22 @@
 title: Add typescript support for storefront javascript
 date: 2022-06-24
 area: storefront
-tags: [storefront, typescript, javascript]
---- 
+tags:
+  - storefront
+  - typescript
+  - javascript
+nav:
+  title: Add typescript support for storefront js
+  position: 650
+
+---
 
 # Add typescript support for storefront javascript
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-06-24-add-typescript-support-for-storefront-js.md)
-{% endhint %}
+:::
 
 ## Context
 

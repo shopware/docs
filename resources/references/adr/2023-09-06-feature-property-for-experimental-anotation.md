@@ -2,18 +2,24 @@
 title: Add Feature property to `@experimental` annotation
 date: 2023-09-06
 area: core, administration, storefront
-tags: [process, backwards compatibility]
+tags:
+  - process
+  - backwards compatibility
+nav:
+  title: Feature property for experimental anotation
+  position: 1030
+
 ---
 
 # Add Feature property to `@experimental` annotation
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2023-09-06-feature-property-for-experimental-anotation.md)
-{% endhint %}
+:::
 
 ## Context
-Our current development process uses ['Experimental features'](./2023-05-10-experimental-features.md) to publish features in an early state to gather feedback regarding those features.
+Our current development process uses ['Experimental features'](./2023-05-10-experimental-features) to publish features in an early state to gather feedback regarding those features.
 During the implementation, developers may encounter challenges related to the effective management of extensive code scattered throughout the platform, particularly in connection with specific experimental features. This codebase fragmentation presents impediments to the tracking, maintenance, and comprehensive understanding of each feature's scope, thereby hindering our development progress.
  
 Potential problems:
@@ -21,7 +27,7 @@ Potential problems:
     * When a decision is made to extend an experiment, locating all relevant sections of code for updating the property `stableVersion` in `@experimental` annotation becomes a cumbersome task.
 * Deprecation of Killed Features
     * Identifying and marking as deprecated the components associated with a deprecated experimental feature is problematic, particularly when multiple experimental features coexist simultaneously within the platform.
-    * The ['Experimental features'](./2023-05-10-experimental-features.md) stipulates the "Killing Feature" rule, which mandates that a feature must remain within the platform's codebase until the next major version and be appropriately marked as deprecated. However, it is hardly possible to check with current annotation.
+    * The ['Experimental features'](./2023-05-10-experimental-features) stipulates the "Killing Feature" rule, which mandates that a feature must remain within the platform's codebase until the next major version and be appropriately marked as deprecated. However, it is hardly possible to check with current annotation.
 
 In all the above case main problem is detection to which feature belongs experimental code.
 
@@ -45,6 +51,7 @@ Implementation of the new `feature` property for the `@experimental` annotation 
 
 Examples of usage:
 php
+
 ```php
 /**
  * @experimental stableVersion:v6.6.0 feature:wishlist
@@ -55,6 +62,7 @@ class testClass()
 }
 ```
 js
+
 ```js
 /**
  * @experimental stableVersion:v6.6.0 feature:wishlist
@@ -65,15 +73,16 @@ Component.register('sw-new-component', {
 ```
 
 In twig blocks can be wrapped as being experimental:
+
 ```twig
 {# @experimental stableVersion:v6.6.0 feature:wishlist #}
 {% block awesome_new_feature %}
    ...
 {% endblock %}
-
 ```
 
 In addition to that, we can also mark the whole template as experimental:
+
 ```twig
 {# @experimental stableVersion:v6.6.0 feature:wishlist #}
 {% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
@@ -91,6 +100,7 @@ To achieve this linkage, we recommend the following:
 Example:
 
 feature.yaml
+
 ```yaml
 shopware:
   feature:
@@ -101,6 +111,7 @@ shopware:
         description: "experimental stableVersion:v6.6.0 feature:wishList"
 ```
 New experimental class
+
 ```php
 /**
  * @experimental stableVersion:v6.6.0 feature:wishList
@@ -110,6 +121,7 @@ class Foo
 }
 ```
 Connection point
+
 ```php
 if (Feature.isActive('wishlist') {
         $obj = new Foo();

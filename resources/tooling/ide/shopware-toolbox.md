@@ -1,3 +1,10 @@
+---
+nav:
+  title: Shopware Toolbox
+  position: 10
+
+---
+
 # Shopware 6 Toolbox
 
 Shopware 6 Toolbox is a helper plugin and productivity tool for common tasks for Shopware 6 development. It adds some live templates and scaffolding of common Shopware files.
@@ -39,5 +46,4 @@ Inspection to show an error when abstract class is used incorrectly in the const
 
 Either search for `Shopware 6 Toolbox` in the JetBrains Marketplace or get it on the marketplace website.
 
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://plugins.jetbrains.com/plugin/17632-shopware-6-toolbox" caption="Shopware 6 Toolbox on JetBrains Marketplace" %}
+<PageRef page="https://plugins.jetbrains.com/plugin/17632-shopware-6-toolbox" title="Shopware 6 Toolbox on JetBrains Marketplace" target="_blank" />

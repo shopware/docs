@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add payment plugin
+  position: 10
+
+---
+
 # Add Payment Plugin
 
 ## Overview
@@ -6,14 +13,13 @@ Payments are an essential part of the checkout process. That's the reason why Sh
 
 ## Prerequisites
 
-The examples mentioned in this guide are built upon our [Plugin base guide](../../plugin-base-guide.md).
+The examples mentioned in this guide are built upon our [Plugin base guide](../../plugin-base-guide).
 
-If you want to understand the payment process in detail, head to our [Payment Concept](../../../../../concepts/commerce/checkout-concept/payments.md).
+If you want to understand the payment process in detail, head to our [Payment Concept](../../../../../concepts/commerce/checkout-concept/payments).
 
-<!-- markdown-link-check-disable-next-line -->
-{% hint style="info" %}
+::: info
 Refer to this video on **[Introduction to payment handlers](https://www.youtube.com/watch?v=K58--Pxvudk)** that details you about payment extensions and payment handlers. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
-{% endhint %}
+:::
 
 ## Creating a custom payment handler
 
@@ -42,11 +48,10 @@ All payment handler methods have the `\Shopware\Core\System\SalesChannel\SalesCh
 
 ### Registering the service
 
-Before we're going to have a look at some examples, we need to register our new service to the [Dependency Injection](../../plugin-fundamentals/dependency-injection.md) container. We'll use a class called `ExamplePayment` here.
+Before we're going to have a look at some examples, we need to register our new service to the [Dependency Injection](../../plugin-fundamentals/dependency-injection) container. We'll use a class called `ExamplePayment` here.
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
-
-```markup
+```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -65,8 +70,6 @@ Before we're going to have a look at some examples, we need to register our new 
 </container>
 ```
 
-{% endcode %}
-
 We inject the `OrderTransactionStateHandler` in this example, as it is helpful for changing an order's transaction state, e.g. to `paid`. The payment handler has to be marked as such as well, hence the tag `shopware.payment.method.sync`, `shopware.payment.method.async` or `shopware.payment.method.prepared` respectively for a synchronous, an asynchronous or a prepared payment handler.
 
 Now let's start with the actual examples.
@@ -77,9 +80,8 @@ The following will be a synchronous example, so no redirect will happen and the 
 
 Therefore, changing the `stateId` of the order should already be done in the `pay` method, since there will be no `finalize` method. If you have to execute some logic which might fail, e.g. a call to an external API, you should throw a `SyncPaymentProcessException`. Shopware 6 will handle this exception and set the transaction to the `cancelled` state.
 
-{% code title="<plugin root>/src/Service/ExamplePayment.php" %}
-
 ```php
+// <plugin root>/src/Service/ExamplePayment.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -107,8 +109,6 @@ class ExamplePayment implements SynchronousPaymentHandlerInterface
 }
 ```
 
-{% endcode %}
-
 All it does now is to set the state of the order transaction to `paid`.
 
 ### Asynchronous example
@@ -119,9 +119,8 @@ Also you need a `finalize` method to properly handle your customer, when he was 
 
 Let's have a look at an example implementation of your custom asynchronous payment handler:
 
-{% code title="<plugin root>/src/Service/ExamplePayment.php" %}
-
 ```php
+// <plugin root>/src/Service/ExamplePayment.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -203,8 +202,6 @@ class ExamplePayment implements AsynchronousPaymentHandlerInterface
 }
 ```
 
-{% endcode %}
-
 Let's start with the `pay` method. You'll have to start with letting your external payment provider know, where he should redirect your customer in return when the payment was done. This is usually done by making an API call and transmitting the return URL, which you can fetch from the passed `AsyncPaymentTransactionStruct` by using the method `getReturnUrl`. Since this is just an example, the method `sendReturnUrlToExternalGateway` is empty. Fill in your logic in there in order to actually send the return URL to the external payment provider. The last thing you need to do, is to redirect your customer to the external payment provider via a `RedirectResponse`.
 
 Once your customer is done at the external payment provider, he will be redirected back to your shop. This is where the `finalize` method will be executed. In here you have to check whether or not the payment process was successful. If e.g. the customer cancelled the payment process, you'll have to throw a `CustomerCanceledAsyncPaymentException` exception.
@@ -219,9 +216,8 @@ This comes in two steps: The handler has to validate the payment beforehand, or 
 
 Let's have a look at a simple example:
 
-{% code title="<plugin root>/src/ExamplePayment.php" %}
-
 ```php
+// <plugin root>/src/ExamplePayment.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -297,10 +293,7 @@ class ExamplePayment implements PreparedPaymentHandlerInterface
         return [];
     }
 }
-
 ```
-
-{% endcode %}
 
 ### Refund example
 
@@ -310,9 +303,8 @@ For this, have your payment handler implement the `RefundPaymentHandlerInterface
 
 Let's have a look at a short example, on how to implement such payment handlers.
 
-{% code title="<plugin root>/src/ExamplePayment.php" %}
-
 ```php
+// <plugin root>/src/ExamplePayment.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -373,19 +365,16 @@ class ExamplePayment implements RefundPaymentHandlerInterface
 }
 ```
 
-{% endcode %}
-
 As you can see, you have full control on how to handle the refund request and which positions to refund.
 
 ### Recurring capture example
 
-{% hint style="info" %}
+::: info
 Recurring orders and payments require the Subscriptions feature, available exclusively in our [paid plans](https://www.shopware.com/en/pricing/).
-{% endhint %}
-
-{% code title="<plugin root>/src/ExamplePayment.php" %}
+:::
 
 ```php
+// <plugin root>/src/ExamplePayment.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -433,9 +422,8 @@ The handler itself is not used yet, since there is no payment method actually us
 
 An example for your plugin could look like this:
 
-{% code title="<plugin root>/src/SwagBasicExample.php" %}
-
 ```php
+// <plugin root>/src/SwagBasicExample.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample;
@@ -539,9 +527,7 @@ class SwagBasicExample extends Plugin
 }
 ```
 
-{% endcode %}
-
-In the `install` method, you actually start by creating a new payment method, if it doesn't exist yet. If you don't know what's happening in there, you might want to have a look at our guide regarding [Writing data](../../framework/data-handling/writing-data.md).
+In the `install` method, you actually start by creating a new payment method, if it doesn't exist yet. If you don't know what's happening in there, you might want to have a look at our guide regarding [Writing data](../../framework/data-handling/writing-data).
 
 However, **do not** do the opposite in the `uninstall` method and remove the payment method. This might lead to data inconsistency, if the payment method was used in some orders. Instead, only deactivate the method!
 

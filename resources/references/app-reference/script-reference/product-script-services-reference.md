@@ -6,7 +6,6 @@
 The PriceCollectionFacade is a wrapper around the calculated price collection of a product. It allows to manipulate the quantity
 prices by resetting or changing the price collection.
 
-
 ### reset()
 
 * The `reset()` functions allows to reset the complete price collection.
@@ -22,7 +21,6 @@ prices by resetting or changing the price collection.
 * **Examples:**
     * Overwrite the product prices with a new quantity price graduation
 
-        {% raw %}
         ```twig
         {% do debug.dump(product.calculatedPrice.unit, 'discount') %}
 		
@@ -30,7 +28,7 @@ prices by resetting or changing the price collection.
 		
 		{% do debug.dump(product.calculatedPrice.unit, 'surcharge') %}
         ```
-        {% endraw %}
+
 ### count()
 
 * The `count()` function returns the number of prices which are stored inside this collection.
@@ -45,7 +43,6 @@ _________
 The `ProductProxy` is a wrapper for the `SalesChannelProductEntity`. It provides access to all properties of the product,
 but also wraps some data into helper facade classes like `PriceFacade` or `PriceCollectionFacade`.
 
-
 ### __get()
 
 * The `__get()` function allows access to all properties of the [SalesChannelProductEntity](https://github.com/shopware/platform/blob/trunk/src/Core/Content/Product/SalesChannel/SalesChannelProductEntity.php)
@@ -59,20 +56,19 @@ but also wraps some data into helper facade classes like `PriceFacade` or `Price
 * **Examples:**
     * Access the product properties
 
-        {% raw %}
         ```twig
         { to: 30, price: services.price.create({ 'default': { 'gross': 10, 'net': 10} }) },
 		    { to: null, price: services.price.create({ 'default': { 'gross': 5, 'net': 5} }) },
 		]) %}
         ```
-        {% endraw %}
+
 ### calculatedCheapestPrice()
 
 * The `calculatedCheapestPrice` property returns the cheapest price of the product. The price object will
 be wrapped into a `PriceFacade` object which allows to manipulate the price.
 
     
-* **Returns** [`Shopware\Core\Checkout\Cart\Facade\PriceFacade`](./cart-manipulation-script-services-reference.md#pricefacade) | `null`
+* **Returns** [`Shopware\Core\Checkout\Cart\Facade\PriceFacade`](./cart-manipulation-script-services-reference#pricefacade) | `null`
 
     Returns a `PriceFacade` if the product has a calculated cheapest price, otherwise `null`
 ### calculatedPrice()
@@ -81,7 +77,7 @@ be wrapped into a `PriceFacade` object which allows to manipulate the price.
 be wrapped into a `PriceFacade` object which allows to manipulate the price.
 
     
-* **Returns** [`Shopware\Core\Checkout\Cart\Facade\PriceFacade`](./cart-manipulation-script-services-reference.md#pricefacade) | `null`
+* **Returns** [`Shopware\Core\Checkout\Cart\Facade\PriceFacade`](./cart-manipulation-script-services-reference#pricefacade) | `null`
 
     Returns a `PriceFacade` if the product has a price, otherwise `null`
 ### calculatedPrices()
@@ -90,7 +86,7 @@ be wrapped into a `PriceFacade` object which allows to manipulate the price.
 be wrapped into a `PriceCollectionFacade` object which allows to manipulate the collection.
 
     
-* **Returns** [`Shopware\Core\Content\Product\Hook\Pricing\PriceCollectionFacade`](./product-script-services-reference.md#pricecollectionfacade) | `null`
+* **Returns** [`Shopware\Core\Content\Product\Hook\Pricing\PriceCollectionFacade`](./product-script-services-reference#pricecollectionfacade) | `null`
 
     Returns a `PriceCollectionFacade` if the product has graduated prices, otherwise `null`
 _________

@@ -1,8 +1,15 @@
+---
+nav:
+  title: Elasticsearch
+  position: 60
+
+---
+
 # Elasticsearch
 
 Elasticsearch is a NoSQL Database focused on search capabilities to act as a search engine.
 The Shopware implementation of Elasticsearch provides an integrated way to improve the performance of product and category searches.
-To use Elasticsearch for your shop, take a look at our [Elasticsearch guide](../../guides/hosting/infrastructure/elasticsearch/elasticsearch-setup.md)
+To use Elasticsearch for your shop, take a look at our [Elasticsearch guide](../../guides/hosting/infrastructure/elasticsearch/elasticsearch-setup)
 
 ## Concept
 
@@ -12,9 +19,9 @@ Elasticsearch is only used in searches that are explicitly defined.
 This is by default set to the `ProductSearchRoute`, `ProductListingRoute`, and `ProductSuggestRoute`.
 To use Elasticsearch on your own searches, make sure to add the Elasticsearch aware state to your criteria.
 
-{% hint style="info" %}
+::: info
 If the Elasticsearch query fails, the data is loaded using MySQL. You can disable this behavior by setting the environment variable `SHOPWARE_ES_THROW_EXCEPTION=1`
-{% endhint %}
+:::
 
 ```php
 $criteria = new \Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria();
@@ -82,4 +89,4 @@ The command `es:test:analyzer` runs an Elasticsearch analyzer on your indices. F
 
 ## Customize the Elasticsearch integration
 
-To customize the Elasticsearch integration or add your own fields and entities, refer to the [Elasticsearch extension guide](../../guides/plugins/plugins/elasticsearch/add-product-entity-extension-to-elasticsearch.md)
+To customize the Elasticsearch integration or add your own fields and entities, refer to the [Elasticsearch extension guide](../../guides/plugins/plugins/elasticsearch/add-product-entity-extension-to-elasticsearch)

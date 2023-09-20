@@ -1,3 +1,10 @@
+---
+nav:
+  title: HTTP-client
+  position: 50
+
+---
+
 # Making HTTP requests to the Shop
 
 The SDK offers a simple HTTP client for sending requests to the Shopware server. To utilize it, you will require the Shop entity, which you can obtain by using the `shopResolver` from the current request. Alternatively, you can use the `ShopRepository` to obtain the Shop entity by its ID.
@@ -60,4 +67,4 @@ $clientFactory = new Shopware\App\SDK\HttpClient\ClientFactory();
 $httpClient = $clientFactory->createClient($shop, $myMockClient);
 ```
 
-Next, we will look into the [Events](./06-events.md).
+Next, we will look into the [Events](./06-events).

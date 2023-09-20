@@ -2,15 +2,22 @@
 title: Admin text editor evaluation
 date: 2023-03-27
 area: admin
-tags: [admin, text-editor, evaluation]
+tags:
+  - admin
+  - text-editor
+  - evaluation
+nav:
+  title: Admin text editor evaluation
+  position: 880
+
 ---
 
 # Admin text editor evaluation
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2023-03-27-admin-text-editor-evaluation.md)
-{% endhint %}
+:::
 
 ## Context
 The current sw-text-editor in the administration has numerous low-level bugs in basic WYSIWYG features. It is built in a

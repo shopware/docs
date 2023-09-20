@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add cart items
+  position: 20
+
+---
+
 # Add Cart Items
 
 ## Overview
@@ -6,23 +13,22 @@ This guide will show you how to create line items like products, promotion and o
 
 ## Prerequisites
 
-As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide.md), but you don't necessarily need that. It will use an example Storefront controller, so if you don't know how to add a custom Storefront controller yet, have a look at our guide about [Adding a custom page](../../storefront/add-custom-page.md). Furthermore, registering classes or services to the DI container is also not explained here, but it's covered in our guide about [Dependency injection](../../plugin-fundamentals/dependency-injection.md), so having this open in another tab won't hurt.
+As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide), but you don't necessarily need that. It will use an example Storefront controller, so if you don't know how to add a custom Storefront controller yet, have a look at our guide about [Adding a custom page](../../storefront/add-custom-page). Furthermore, registering classes or services to the DI container is also not explained here, but it's covered in our guide about [Dependency injection](../../plugin-fundamentals/dependency-injection), so having this open in another tab won't hurt.
 
 ## Adding a simple item
 
-For this guide, we will use an example controller, that is already registered. The process of creating such a controller is not explained here, for that case head over to our guide about [Adding a custom page](../../storefront/add-custom-page.md).
+For this guide, we will use an example controller, that is already registered. The process of creating such a controller is not explained here, for that case head over to our guide about [Adding a custom page](../../storefront/add-custom-page).
 
 However, having a controller is not a necessity here, it just comes with the advantage of fetching the current cart by adding `\Shopware\Core\Checkout\Cart\Cart` as a method argument, which will automatically be filled by our argument resolver.
 
 If you're planning to use this guide for something else but a controller, you can fetch the current cart with the `\Shopware\Core\Checkout\Cart\SalesChannel\CartService::getCart` method.
 
-So let's add an example product to the cart using code. For that case, you'll need to have access to both the services `\Shopware\Core\Checkout\Cart\LineItemFactoryRegistry` and `\Shopware\Core\Checkout\Cart\SalesChannel\CartService` supplied to your controller or service via [Dependency injection](../../plugin-fundamentals/dependency-injection.md).
+So let's add an example product to the cart using code. For that case, you'll need to have access to both the services `\Shopware\Core\Checkout\Cart\LineItemFactoryRegistry` and `\Shopware\Core\Checkout\Cart\SalesChannel\CartService` supplied to your controller or service via [Dependency injection](../../plugin-fundamentals/dependency-injection).
 
 Let's have a look at an example.
 
-{% code title="<plugin root>/src/Service/ExampleController.php" %}
-
 ```php
+// <plugin root>/src/Service/ExampleController.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -71,8 +77,6 @@ class ExampleController extends StorefrontController
 }
 ```
 
-{% endcode %}
-
 As mentioned earlier, you can just apply the `Cart` argument to your method and it will be automatically filled.
 
 Afterwards you create a line item using the `LineItemFactoryRegistry` and its `create` method. It is mandatory to supply the `type` property, which can be one of the following by default:
@@ -98,9 +102,8 @@ Sometimes you really want to have a custom line item handler, e.g. for your own 
 
 You need to create a new class which implements the interface `\Shopware\Core\Checkout\Cart\LineItemFactoryHandler\LineItemFactoryInterface` and it needs to be registered in the DI container with the tag `shopware.cart.line_item.factory`.
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
-
-```markup
+```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -114,13 +117,10 @@ You need to create a new class which implements the interface `\Shopware\Core\Ch
 </container>
 ```
 
-{% endcode %}
-
 Let's first have a look at an example handler:
 
-{% code title="<plugin root>/src/Service/ExampleHandler.php" %}
-
 ```php
+// <plugin root>/src/Service/ExampleHandler.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -152,8 +152,6 @@ class ExampleHandler implements LineItemFactoryInterface
 }
 ```
 
-{% endcode %}
-
 Implementing the `LineItemFactoryInterface` will force you to also implement three new methods:
 
 * `supports`: A method that is applied a string `$type`. This method has to return a bool whether or not it supports this type.
@@ -172,9 +170,8 @@ Implementing the `LineItemFactoryInterface` will force you to also implement thr
 
 Now you'll need to add a processor for your type. Otherwise your item won't be persisted in the cart. A simple processor for our ExampleHandler could look like this:
 
-{% code title="<plugin root>/Core/Checkout/Cart/ExampleProcessor.php" %}
-
 ```php
+// <plugin root>/Core/Checkout/Cart/ExampleProcessor.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Checkout\Cart;
@@ -200,17 +197,14 @@ class ExampleProcessor implements CartProcessorInterface
 }
 ```
 
-{% endcode %}
-
 As you can see, this processor takes an "original cart" as an input and adds all instances of our example type to a second cart, which will actually be persisted.
 
-Of course you can use processors to do much more than this. Have a look at [adding cart processors and collectors](./add-cart-processor-collector.md).
+Of course you can use processors to do much more than this. Have a look at [adding cart processors and collectors](./add-cart-processor-collector).
 
 Now register this processor in your `services.xml` like this:
 
-{% code title="<plugin root>/Resources/config/services.xml" %}
-
-```markup
+```html
+// <plugin root>/Resources/config/services.xml
 ...
 <services>
     ...
@@ -220,12 +214,10 @@ Now register this processor in your `services.xml` like this:
 </services>
 ```
 
-{% endcode %}
-
 And that's it. You should now be able to create line items of type `example`.
 
 ## Adding nested line item
 
 When implementing nested line items, the plugins have to implement their own processing logic or alternatively extend Shopware's cart processors.
 
-A plugin that reuses core line items can easily call the other processors to handle the nested line items themselves. Refer to [nested line items](../../../../../resources/references/adr/checkout/2021-03-24-nested-line-items.md) section of the guide for more information.
+A plugin that reuses core line items can easily call the other processors to handle the nested line items themselves. Refer to [nested line items](../../../../../resources/references/adr/checkout/2021-03-24-nested-line-items) section of the guide for more information.

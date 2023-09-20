@@ -2,15 +2,23 @@
 title: Deprecate autoloading associations in DAL entity definitions
 date: 2023-02-02
 area: core
-tags: [dal, performance, api, core]
---- 
+tags:
+  - dal
+  - performance
+  - api
+  - core
+nav:
+  title: Deprecate autoload true in DAL associations
+  position: 830
+
+---
 
 # Deprecate autoloading associations in DAL entity definitions
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2023-02-02-deprecate-autoload-true-in-dal-associations.md)
-{% endhint %}
+:::
 
 ## Context
 
@@ -32,8 +40,6 @@ In order to safely migrate core code away from using autoload === true, the foll
 2. All internal API's that rely on data that is autoloaded should now specify the association in the criteria objects.
 3. All entity definitions should be updated to add the association conditionally based on the 6.6 feature flag, see below for an example.
 4. In the run-up to the 6.6 release the feature conditional should be removed.
-
-
 ```
 public function defineFields(): FieldCollection
 {

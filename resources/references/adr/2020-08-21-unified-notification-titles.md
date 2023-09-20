@@ -2,15 +2,21 @@
 title: Notification titles are pre-defined and make use of the global namespace
 date: 2020-08-21
 area: administration
-tags: [administration, notification]
---- 
+tags:
+  - administration
+  - notification
+nav:
+  title: Unified notification titles
+  position: 110
+
+---
 
 # Notification titles are pre-defined and make use of the global namespace
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-08-21-unified-notification-titles.md)
-{% endhint %}
+:::
 
 ## Context
 
@@ -45,17 +51,20 @@ For more information on snippets deleted in this course see CHANGELOG-6.3.md
 ### Examples
 
 * Create error notification
+
 ```js
 this.createNotificationError({
     message: this.$tc('sw-module.messageError')
 });
 ```
 * Create error message snippets (DE/EN)
+
 ```json
     "messageError": "Meaningful error message.",
 ```
 
 * Avoid cheap solutions like 
+
 ```js
 this.createNotificationError({
     message: err
@@ -78,6 +87,3 @@ It would cross the design idea of unified titles though and should only be consi
 > *When creating notifications, just decide on the correct type of notification, 
  add a meaningful message, don't waste even a thought on creating a title...
  And you're done!*
-
-
-

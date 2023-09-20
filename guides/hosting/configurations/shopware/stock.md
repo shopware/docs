@@ -1,16 +1,20 @@
+---
+nav:
+  title: Stock
+  position: 20
+
+---
+
 # Stock Configuration
 
-When running Shopware 6 there are various configuration options you can use to customize your installation. These configurations reside in the general [bundle configuration](../../../../guides/hosting/configurations/README.md).
+When running Shopware 6 there are various configuration options you can use to customize your installation. These configurations reside in the general [bundle configuration](../../../../guides/hosting/configurations/).
 
 Some features of Shopware are only activated when the corresponding feature flag is enabled. Feature flags can be enabled in your project's `.env` file:
 
-{% code title="<project root>/.env" %}
-
-```shell
+```sh
+// <project root>/.envell
 STOCK_HANDLING=1
 ```
-
-{% endcode %}
 
 ## Enable stock management system
 
@@ -18,13 +22,10 @@ As of Shopware 6.5.5, the stock management system has been rewritten. The `produ
 
 The new system is not enabled by default. To enable it, set the `STOCK_HANDLING` feature flag to `1`.
 
-{% code title="<project root>/.env" %}
-
-```shell
+```sh
+// <project root>/.envell
 STOCK_HANDLING=1
 ```
-
-{% endcode %}
 
 In the next major version of Shopware, the new stock management system will become the default.
 
@@ -36,14 +37,11 @@ You can completely disable Shopware's default stock management system. When disa
 
 To disable, set `shopware.stock.enable_stock_management` to `false`:
 
-{% code title="<project root>/config/packages/shopware.yaml" %}
-
 ```yaml
+// <project root>/config/packages/shopware.yaml
 shopware:
   stock:
     enable_stock_management: false
 ```
 
-{% endcode %}
-
-For more detailed implementation refer to [Stock](../../../../guides/plugins/plugins/content/stock/README.md) guide section.
+For more detailed implementation refer to [Stock](../../../../guides/plugins/plugins/content/stock/) guide section.

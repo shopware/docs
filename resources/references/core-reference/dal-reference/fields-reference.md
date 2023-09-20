@@ -1,3 +1,10 @@
+---
+nav:
+  title: Fields Reference
+  position: 10
+
+---
+
 # Fields Reference
 
 | Name | Description |
@@ -50,4 +57,3 @@
 | VersionDataPayloadField | Stores a "VersionDataPayload" value |
 | VersionField | Stores a "Version" value |
 | WhitelistRuleField | Stores a "WhitelistRule" value |
-

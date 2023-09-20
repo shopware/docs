@@ -1,3 +1,10 @@
+---
+nav:
+  title: Contribution Guidelines
+  position: 10
+
+---
+
 # Contribution Guidelines
 
 ## Introduction
@@ -20,9 +27,9 @@ To avoid your pull request getting rejected, you should always check that you pr
 * Check if there is already an existing pull request tackling the same issue.
 * Write your commit messages in English, have them short and descriptive, and squash your commits meaningfully.
 
-{% hint style="danger" %}
+::: danger
 Pull requests which do not fulfill these requirements will never be accepted by our team. To avoid your changes going through unnecessary workflow cycles, make sure to check this list with every pull request.
-{% endhint %}
+:::
 
 ## The developing workflow on GitHub
 
@@ -37,7 +44,7 @@ When you create a new pull request on GitHub, it will normally get the first sig
 | ![GitHub label accepted](../../../.gitbook/assets/github-label-accepted.png) | Your changes are finally accepted. The pull request passed our internal workflow. Your changes will be released with one of the next releases. |
 | ![GitHub label feature request](../../../.gitbook/assets/github-label-feature.png) | Your pull request includes a new feature that needs an internal discussion by our developers. We have to decide if the new feature provides a good benefit for the product and at which point it should be scheduled on the roadmap. |
 | ![GitHub label refactoring](../../../.gitbook/assets/github-label-refactoring.png) | Your pull request includes a larger refactoring which needs an internal discussion by our developers. This label will mainly be set when larger chunks of code have been re-written, renamed, or moved to different directories. |
-| ![GitHub label missing tests](../../../.gitbook/assets/github-label-missing-tests.png) | Your pull request lacks the necessary tests for your changes. E.g. [Jest](../../../guides/plugins/plugins/testing/jest-admin.md) or [Cypress](../../../guides/plugins/plugins/testing/end-to-end-testing.md) tests for frontend changes or [PHPUnit](../../../guides/plugins/plugins/testing/php-unit.md) tests for backend changes. |
+| ![GitHub label missing tests](../../../.gitbook/assets/github-label-missing-tests.png) | Your pull request lacks the necessary tests for your changes. E.g. [Jest](../../../guides/plugins/plugins/testing/jest-admin) or [Cypress](../../../guides/plugins/plugins/testing/end-to-end-testing) tests for frontend changes or [PHPUnit](../../../guides/plugins/plugins/testing/php-unit) tests for backend changes. |
 
 ## Why a pull request gets declined
 

@@ -2,15 +2,22 @@
 title: New language inheritance mechanism for opensearch
 date: 2023-04-11
 area: Core,Elasticsearch
-tags: [Elasticsearch,Opensearch,Multilingual search]
+tags:
+  - Elasticsearch
+  - Opensearch
+  - Multilingual search
+nav:
+  title: New language inheritance mechanism for opensearch
+  position: 910
+
 ---
 
 # New language inheritance mechanism for opensearch
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2023-04-11-new-language-inheritance-mechanism-for-opensearch.md)
-{% endhint %}
+:::
 
 ## Context
 

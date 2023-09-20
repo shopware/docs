@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom sorting for product listing
+  position: 220
+
+---
+
 # Add Custom Sorting for Product Listing
 
 ## Overview
@@ -8,9 +15,9 @@ This guide will show you how to add individual sorting options using a migration
 
 ## Prerequisites
 
-In order to add your own custom sorting for product listings for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
+In order to add your own custom sorting for product listings for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide).
 
-You should also have a look at our [Database migrations](../plugin-fundamentals/database-migrations.md) guide, as we use one in this guide.
+You should also have a look at our [Database migrations](../plugin-fundamentals/database-migrations) guide, as we use one in this guide.
 
 ## Create individual sorting with migration
 
@@ -18,13 +25,12 @@ In order to make your sorting manageable in the Administration by the user, you 
 
 Create a new Migration in your plugin:
 
-{% hint style="info" %}
+::: info
 Note: Do not change an existing migration if your plugin is already in use by someone. In that case, create a new Migration instead! This also means, that you have to re-install or update your plugin if you adjust the migration.
-{% endhint %}
-
-{% code title="<plugin root>/src/Migration/Migration1615470599ExampleSorting.php" %}
+:::
 
 ```php
+// <plugin root>/src/Migration/Migration1615470599ExampleSorting.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Migration;
@@ -87,21 +93,18 @@ class Migration1615470599ExampleSorting extends MigrationStep
 }
 ```
 
-{% endcode %}
-
 ## Create individual sorting at runtime
 
-You can subscribe to the `ProductListingCriteriaEvent` to add a `ProductSortingEntity` as available sorting on the fly. If you don't know how to do this, head over to our [Listening to events](../plugin-fundamentals/listening-to-events.md) guide.
+You can subscribe to the `ProductListingCriteriaEvent` to add a `ProductSortingEntity` as available sorting on the fly. If you don't know how to do this, head over to our [Listening to events](../plugin-fundamentals/listening-to-events) guide.
 
-{% hint style="info" %}
+::: info
 While possible, it is not recommended adding an individual sorting at runtime. If you just wish for your individual sorting to be not editable by users in the Administration, create a migration and set the parameter `locked` to be `true`.
-{% endhint %}
+:::
 
 Here's an example how your subscriber could look like:
 
-{% code title="<plugin root>/src/Subscriber/ExampleListingSubscriber.php" %}
-
 ```php
+// <plugin root>/src/Subscriber/ExampleListingSubscriber.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Subscriber;
@@ -151,8 +154,6 @@ class ExampleListingSubscriber implements EventSubscriberInterface
 }
 ```
 
-{% endcode %}
-
 ## Next steps
 
-To [add a custom filter](add-listing-filters.md) to your listing in the Storefront head over to the corresponding guide.
+To [add a custom filter](add-listing-filters) to your listing in the Storefront head over to the corresponding guide.

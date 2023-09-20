@@ -1,3 +1,10 @@
+---
+nav:
+  title: Multi Inventory
+  position: 20
+
+---
+
 # Multi-Inventory
 
 ## Pre-requisites and setup
@@ -127,9 +134,9 @@ You can update `product_warehouse.stock` in batch via SyncApi, or patch a specif
 
 ## Concept
 
-{% hint style="info" %}
+::: info
 Every described behavior only applies to Products that are assigned to WarehouseGroups and every unrelated Product will use the default Shopware behavior.
-{% endhint %}
+:::
 
 ### ERP System as Single-Source-of-Truth
 

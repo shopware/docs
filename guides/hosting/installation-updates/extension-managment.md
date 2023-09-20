@@ -1,3 +1,10 @@
+---
+nav:
+  title: Extension Management
+  position: 20
+
+---
+
 # Extension Management
 
 Normally all extensions installed by the Administration will be stored inside `custom/plugins` or `custom/apps`. When you want to update extensions, you have to re-upload the zip file or download the extension from the store using the Extension manager in the administration.
@@ -29,9 +36,9 @@ composer config bearer.packages.shopware.com <your-token>
 
 After that, you should have a newly created file `auth.json`, in your project root. This file contains your token and is used by Composer to authenticate against the Shopware Composer Registry.
 
-{% hint style="info" %}
+::: info
 The `auth.json` should not be committed to the repository and should be ignored by default with the `.gitignore` file.
-{% endhint %}
+:::
 
 Now you can install extensions with Composer:
 

@@ -2,15 +2,22 @@
 title: Rule Scripting in apps
 date: 2022-02-21
 area: business-ops
-tags: [rule, app-system, app-scripts]
---- 
+tags:
+  - rule
+  - app-system
+  - app-scripts
+nav:
+  title: Rule scripting in apps
+  position: 450
+
+---
 
 # Rule Scripting in apps
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-02-21-rule-scripting-in-apps.md)
-{% endhint %}
+:::
 
 ## Context
 
@@ -64,7 +71,6 @@ There will be a generice extension of `Rule` named `ScriptRule` which will be us
 It has properties for the `script` and the `constraints`, both of which will be set from the corresponding values of `app_script_condition` when the rule's payload is indexed.
 
 The constraints will be used for the validation of the condition and the script is used for the evaluation of the condition. To evaluate the condition we use a Twig macro where the actual script of the app is inserted:
-
 ```
 {%% macro evaluate(%1$s) %%}
     %2$s
@@ -72,7 +78,6 @@ The constraints will be used for the validation of the condition and the script 
 ```
 
 We use a macro here because we want to allow the use of return statements. Even though return statements may be used outside of macros, Twig won't actually output the returned value. With the macro we can set the returned value to a variable and properly output the variable instead:
-
 ```
 {%% set var = _self.evaluate(%1$s) %%}
 {{ var }}
@@ -233,7 +238,6 @@ The syntax for defining the parameters of a condition follows the same schema of
 ```
 
 The following rule script is logically identical to the hard-coded rule condition for matching that a customer is in a customer group.
-
 ```
 {# ExampleApp/scripts/rule-conditions/customer-group-rule-script.twig #}
 
@@ -249,7 +253,6 @@ The following rule script is logically identical to the hard-coded rule conditio
 ```
 
 We also may offer Twig helper functions for evaluation of basic expressions for the more common use cases. So the above construct could be reduced to:
-
 ```
 {% comparison.compare(operator, scope.salesChannelContext.customer.groupId, customerGroupIds) %}
 ```

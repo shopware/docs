@@ -1,3 +1,10 @@
+---
+nav:
+  title: Doc Process
+  position: 20
+
+---
+
 # Documentation Process
 
 You have gone a long way in understanding audience types, language rules, grammar treatment on textual content, and Shopware documentation structure to managing assets.
@@ -58,8 +65,8 @@ All contents are based on Shopware Major versions, such as 6.3, 6.4, 6.5, etc. T
 
 If a documented feature or functionality is introduced within major versions (and also in cases where you think it is applicable), please include a hint showing the version constraints as below:
 
-{% hint style="info" %}
+::: info
 This functionality is available starting with Shopware 6.4.3.0.
-{% endhint %}
+:::
 
 **Your contribution is our pride!**

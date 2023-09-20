@@ -2,15 +2,22 @@
 title: Consistent deprecation notices in Core
 date: 2022-02-09
 area: core
-tags: [deprecation, annotations, trigger-deprecation]
---- 
+tags:
+  - deprecation
+  - annotations
+  - trigger-deprecation
+nav:
+  title: Consistent deprecation notices in core
+  position: 470
+
+---
 
 # Consistent deprecation notices in Core
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-02-28-consistent-deprecation-notices-in-core.md)
-{% endhint %}
+:::
 
 ## Context
 
@@ -50,6 +57,7 @@ The method will then trigger a deprecation notice if the major feature flag is n
 This ensures, that we inside the core don't rely on deprecated functionality as we have a test-pipeline where the major feature flag is set to true.
 
 A POC implementation in the `Feature`-class can look something like this:
+
 ```php
     public static function triggerDeprecationOrThrow(string $message, string $majorFlag): void
     {

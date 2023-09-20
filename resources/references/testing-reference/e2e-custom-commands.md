@@ -1,3 +1,10 @@
+---
+nav:
+  title: Custom E2E Commands
+  position: 10
+
+---
+
 # Custom E2E Commands
 
 ## General commands
@@ -65,4 +72,3 @@
 | createSnippetFixture | - | Create snippet fixture using Shopware API at the given endpoint |
 | createGuestOrder | `productId, userData)` | Create guest order fixture |
 | setProductFixtureVisibility | `(productName, categoryName)` | Sets category and visibility for a product in order to set it visible in the Storefront |
-

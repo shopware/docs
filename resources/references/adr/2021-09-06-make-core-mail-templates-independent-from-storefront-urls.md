@@ -2,15 +2,22 @@
 title: Make Core mail templates independent from Storefront urls
 date: 2021-09-06
 area: storefront
-tags: [mail, storefront, headless]
---- 
+tags:
+  - mail
+  - storefront
+  - headless
+nav:
+  title: Make core mail templates independent from storefront urls
+  position: 290
+
+---
 
 # Make Core mail templates independent from Storefront urls
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-09-06-make-core-mail-templates-independent-from-storefront-urls.md)
-{% endhint %}
+:::
 
 ## Context
 Some mail templates of the core component (Newsletter, Registration, Password Recovery, Order Status mails) depend on storefront Urls to be included in the mails.

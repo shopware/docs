@@ -1,3 +1,10 @@
+---
+nav:
+  title: Rules Reference
+  position: 30
+
+---
+
 # Rules Reference
 
 List of all rule classes across Shopware 6.

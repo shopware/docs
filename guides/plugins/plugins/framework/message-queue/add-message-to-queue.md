@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add message to queue
+  position: 10
+
+---
+
 # Add message to queue
 
 ## Overview
@@ -12,7 +19,7 @@ It will be wrapped in an [envelope](https://symfony.com/doc/current/components/m
 
 ## Prerequisites
 
-As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide.md), but you don't necessarily need that. It will use an example service, so if you don't know how to add a custom service yet, have a look at our guide about [Adding a custom service](../../plugin-fundamentals/add-custom-service.md). Furthermore, registering classes or services to the DI container is also not explained here, but it's covered in our guide about [Dependency injection](../../plugin-fundamentals/dependency-injection.md), so having this open in another tab won't hurt.
+As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide), but you don't necessarily need that. It will use an example service, so if you don't know how to add a custom service yet, have a look at our guide about [Adding a custom service](../../plugin-fundamentals/add-custom-service). Furthermore, registering classes or services to the DI container is also not explained here, but it's covered in our guide about [Dependency injection](../../plugin-fundamentals/dependency-injection), so having this open in another tab won't hurt.
 
 ## Create a message
 
@@ -20,9 +27,8 @@ First, we have to create a new message class in the directory `<plugin root>/Mes
 
 Here's an example:
 
-{% code title="<plugin root>/src/MessageQueue/Message/SmsNotification.php" %}
-
 ```php
+// <plugin root>/src/MessageQueue/Message/SmsNotification.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\MessageQueue\Message;
@@ -45,15 +51,12 @@ class SmsNotification implements AsyncMessageInterface
 }
 ```
 
-{% endcode %}
-
 ## Send a message
 
 After we've created our notification, we will create a service that will send our `SmsNotification`. We will name this service `ExampleSender`. In this service we need to inject the `Symfony\Component\Messenger\MessageBusInterface`, that is needed to send the message through the desired bus, which is called `messenger.bus.shopware`.
 
-{% code title="<plugin root>/src/Service/ExampleSender.php" %}
-
 ```php
+// <plugin root>/src/Service/ExampleSender.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -77,13 +80,10 @@ class ExampleSender
 }
 ```
 
-{% endcode %}
-
 If we want to add metadata to our message, we can dispatch an `Symfony\Component\Messenger\Envelope` in our service instead with the necessary [stamps](https://symfony.com/doc/current/components/messenger.html#adding-metadata-to-messages-envelopes). In this example below, we use the `Symfony\Component\Messenger\Stamp\DelayStamp`, which tells the queue to process the message later.
 
-{% code title="<plugin root>/src/Service/ExampleSender.php" %}
-
 ```php
+// <plugin root>/src/Service/ExampleSender.php
 public function sendMessage(string $message): void
 {
     $message = new SmsNotification($message);
@@ -94,22 +94,17 @@ public function sendMessage(string $message): void
 }
 ```
 
-{% endcode %}
-
 ## Encrypted messages
 
 As the sent messages may travel through some 3rd party services you may want to encrypt messages containing sensible information. To send encrypted messages simply use the `encrypted.messenger.bus.shopware` rather than the `messenger.bus.shopware` message bus. The encrypted bus will handle encryption and decryption for you.
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
-
-```markup
+```html
+// <plugin root>/src/Resources/config/services.xml
 <service id="Swag\BasicExample\Service\ExampleSender">
     <argument type="service" id="encrypted.messenger.bus.shopware"/>
 </service>
 ```
 
-{% endcode %}
-
 ## Next steps
 
-Now that you know how to create a message and add it to the queue, let's create a handler to process our message. To do this, head over to [Add message handler](add-message-handler.md) guide.
+Now that you know how to create a message and add it to the queue, let's create a handler to process our message. To do this, head over to [Add message handler](add-message-handler) guide.

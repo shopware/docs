@@ -1,3 +1,10 @@
+---
+nav:
+  title: REST API
+  position: 30
+
+---
+
 # REST API
 
 [Download](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bRestApi.zip) a plugin showcasing the topic.

@@ -2,15 +2,22 @@
 title: API version removal
 date: 2020-12-02
 area: core
-tags: [api, versioning, deprecation]
---- 
+tags:
+  - api
+  - versioning
+  - deprecation
+nav:
+  title: Removing API version
+  position: 190
+
+---
 
 # API version removal
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-12-02-removing-api-version.md)
-{% endhint %}
+:::
 
 ## Context
 

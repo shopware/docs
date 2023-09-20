@@ -2,15 +2,22 @@
 title: Move storefront script to head with defer
 date: 2021-07-22
 area: storefront
-tags: [storefront, javascript, performance]
---- 
+tags:
+  - storefront
+  - javascript
+  - performance
+nav:
+  title: Move storefront scripts to head
+  position: 250
+
+---
 
 # Move storefront script to head with defer
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-07-22-move-storefront-scripts-to-head.md)
-{% endhint %}
+:::
 
 ## Context
 

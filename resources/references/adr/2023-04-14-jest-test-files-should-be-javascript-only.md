@@ -2,15 +2,23 @@
 title: Jest test files should be JavaScript only
 date: 2023-04-14
 area: admin
-tags: [admin, jest, javascript, typescript]
+tags:
+  - admin
+  - jest
+  - javascript
+  - typescript
+nav:
+  title: Jest test files should be javascript only
+  position: 920
+
 ---
 
 # Jest test files should be JavaScript only
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2023-04-14-jest-test-files-should-be-javascript-only.md)
-{% endhint %}
+:::
 
 ## Context
 There is a mix of both JavaScript and TypeScript Jest test files in the Administration.

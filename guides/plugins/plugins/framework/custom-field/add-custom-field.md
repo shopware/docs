@@ -1,8 +1,15 @@
+---
+nav:
+  title: Add custom field
+  position: 10
+
+---
+
 # Add Custom Field
 
 ## Overview
 
-Shopware's custom field system allows you to extend entities, without writing a complete entity extension. This is possible by storing the additional data in a [JSON-Field](https://dev.mysql.com/doc/refman/8.0/en/json.html). Custom fields therefore can only be used to store scalar values. If you'd like to create associations between entities, you'll need to use an [Entity extension](../data-handling/add-complex-data-to-existing-entities.md).
+Shopware's custom field system allows you to extend entities, without writing a complete entity extension. This is possible by storing the additional data in a [JSON-Field](https://dev.mysql.com/doc/refman/8.0/en/json.html). Custom fields therefore can only be used to store scalar values. If you'd like to create associations between entities, you'll need to use an [Entity extension](../data-handling/add-complex-data-to-existing-entities).
 
 This guide will cover two similar subjects:
 
@@ -11,15 +18,15 @@ This guide will cover two similar subjects:
 
 ## Prerequisites
 
-This guide is built upon both the [Plugin base guide](../../plugin-base-guide.md) as well as the [Add custom complex data](../data-handling/add-custom-complex-data.md) guide. The latter explained how to create your very first entity, which is used in the following examples.
+This guide is built upon both the [Plugin base guide](../../plugin-base-guide) as well as the [Add custom complex data](../data-handling/add-custom-complex-data) guide. The latter explained how to create your very first entity, which is used in the following examples.
 
-Since migrations will also be used here, it won't hurt to have a look at our guide about [Executing database queries](../../plugin-fundamentals/database-migrations.md).
+Since migrations will also be used here, it won't hurt to have a look at our guide about [Executing database queries](../../plugin-fundamentals/database-migrations).
 
-Also, adding translatable custom fields is covered here in short as well, for which you'll need to understand how translatable entities work in general. This is covered in our guide about [Adding data translations](../data-handling/add-data-translations.md). This subject will **not** be covered in depth in this guide.
+Also, adding translatable custom fields is covered here in short as well, for which you'll need to understand how translatable entities work in general. This is covered in our guide about [Adding data translations](../data-handling/add-data-translations). This subject will **not** be covered in depth in this guide.
 
 ## Supporting custom fields with your entity
 
-This short section will cover how to add a custom field support for your custom entity. As previously mentioned, the example from our [Add custom complex data](../data-handling/add-custom-complex-data.md) guide is used and extended here.
+This short section will cover how to add a custom field support for your custom entity. As previously mentioned, the example from our [Add custom complex data](../data-handling/add-custom-complex-data) guide is used and extended here.
 
 In order to support custom fields with your custom entity, there are three necessary steps :
 
@@ -31,19 +38,17 @@ Also, you may want to add translatable custom fields, which is also covered in v
 
 ### Add custom field to entity
 
-{% hint style="info" %}
+::: info
   Available starting with Shopware 6.4.1.0.
-{% endhint %}
+:::
 
 Let's assume you already got a working and running entity definition. If you want to support custom fields with your custom entity, you may add the `EntityCustomFieldsTrait` to your entity class, so the methods `getCustomFields()` and `setCustomFields()` can be used.
 
-{% code title="<plugin root>/src/Core/Content/Example/ExampleEntity.php" %}
-
 ```php
+// <plugin root>/src/Core/Content/Example/ExampleEntity.php
 use Shopware\Core\Framework\DataAbstractionLayer\Entity;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityCustomFieldsTrait;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityIdTrait;
-
 
 [...]
 class ExampleEntity extends Entity
@@ -56,15 +61,12 @@ class ExampleEntity extends Entity
 }
 ```
 
-{% endcode %}
-
 ### Add custom field to entity definition
 
 Now follows the important part. For this to work, you have to add the Data Abstraction Layer \(DAL\) field `CustomFields` to your entity definition.
 
-{% code title="<plugin root>/src/Core/Content/Example/ExampleDefinition.php" %}
-
 ```php
+// <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 use Shopware\Core\Framework\DataAbstractionLayer\Field\CustomFields;                                                                    
 
 [...]
@@ -87,19 +89,16 @@ class ExampleDefinition extends EntityDefinition
 }
 ```
 
-{% endcode %}
-
 Note the new field that was added in the `FieldCollection`. That's already it for your custom entity definition. Now go ahead and add the column to the database.
 
 ### Add column in database table
 
-Once again, this example is built upon the [Add custom complex data](../data-handling/add-custom-complex-data.md) guide, which also comes with an example migration. This one will be used in this example here as well.
+Once again, this example is built upon the [Add custom complex data](../data-handling/add-custom-complex-data) guide, which also comes with an example migration. This one will be used in this example here as well.
 
 If you want to support custom fields now, you have to add a new column `custom_fields` of type `JSON` to your migration.
 
-{% code title="<plugin root>/src/Migration/Migration1611664789Example.php" %}
-
 ```php
+// <plugin root>/src/Migration/Migration1611664789Example.php
 public function update(Connection $connection): void
 {
     $sql = <<<SQL
@@ -123,17 +122,14 @@ public function update(Connection $connection): void
 }
 ```
 
-{% endcode %}
-
 Note the new `custom_fields` column here. It has to be a JSON field and should default to `NULL`, since it doesn't have to contain values.
 
 ### Add translatable custom field to entity definition
 
-Make sure to understand entity translations in general first, which is explained here [Add data translations](../data-handling/add-data-translations.md). If you want your custom fields to be translatable, you can simply work with a `TranslatedField` here as well.
-
-{% code title="<plugin root>/src/Core/Content/Example/ExampleDefinition.php" %}
+Make sure to understand entity translations in general first, which is explained here [Add data translations](../data-handling/add-data-translations). If you want your custom fields to be translatable, you can simply work with a `TranslatedField` here as well.
 
 ```php
+// <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 use Shopware\Core\Framework\DataAbstractionLayer\Field\TranslatedField;                                                               
 
 [...]
@@ -156,15 +152,12 @@ class ExampleDefinition extends EntityDefinition
 }
 ```
 
-{% endcode %}
-
 Just add the `TranslatedField` and apply `customFields` as a parameter.
 
 In your translated entity definition, you then add the `CustomFields` field instead.
 
-{% code title="<plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationDefinition.php" %}
-
 ```php
+// <plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationDefinition.php
 use Shopware\Core\Framework\DataAbstractionLayer\Field\CustomFields;                                                                    
 
 [...]
@@ -183,8 +176,6 @@ class ExampleTranslationDefinition extends EntityTranslationDefinition
 }
 ```
 
-{% endcode %}
-
 ## Add custom fields to an entity
 
 The previous section was about adding support for custom fields in your entity, but this section will cover how to add an actual custom field to an entity and how to fill it with data.
@@ -197,7 +188,7 @@ Because of that, we'll start with filling data to an actual entities' custom fie
 
 So let's assume you've got your own `example` entity up and running and now you want to add data to its custom fields via the DAL.
 
-For that case, you can simply use your entities' repository and start creating or updating entities with custom fields. If you don't understand what's going on here, head over to our guide about [Writing data](../data-handling/writing-data.md) first.
+For that case, you can simply use your entities' repository and start creating or updating entities with custom fields. If you don't understand what's going on here, head over to our guide about [Writing data](../data-handling/writing-data) first.
 
 ```php
 $this->swagExampleRepository->upsert([[
@@ -240,7 +231,7 @@ Only if you want your custom field to show up in the Administration and to be ed
 </container>
 ```
 
-If you need to learn how that is done in full, head to our guide regarding [Writing data](../data-handling/writing-data.md).
+If you need to learn how that is done in full, head to our guide regarding [Writing data](../data-handling/writing-data).
 
 Now use the `create` method of the repository to create a new custom field set.
 
@@ -284,16 +275,16 @@ The translated labels are added to both the field and the set, which are going t
   
 If you have several custom fields and want to order them within a specific order, you can do so with the `customFieldPosition` property.
 
-{% hint style="warning" %}
+::: warning
 Custom field sets are deletable by the shop administrator, so you cannot rely on their existence.
-{% endhint %}
+:::
 
 To update or delete a `custom_field_set`, you can use the standard repository methods like `update`, `upsert`, or `delete`.
 
 While theoretically your custom field is now properly defined for the Administration, you'll still have to do some work in your custom entities' Administration module. Head over to this guide to learn how to add your field to the Administration:
 
-{% page-ref page="../../administration/using-custom-fields.md" %}
+<PageRef page="../../administration/using-custom-fields" />
 
 ## Next steps
 
-If you want to extend an entity with new associations and non-scalar values, head over to our guide regarding [Extending existing entities](../data-handling/add-complex-data-to-existing-entities.md).
+If you want to extend an entity with new associations and non-scalar values, head over to our guide regarding [Extending existing entities](../data-handling/add-complex-data-to-existing-entities).

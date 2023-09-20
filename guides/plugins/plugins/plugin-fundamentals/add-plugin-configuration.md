@@ -1,18 +1,25 @@
+---
+nav:
+  title: Add plugin configuration
+  position: 10
+
+---
+
 # Add Plugin Configuration
 
 The `Shopware plugin system` provides you with the option to create a configuration page for your plugin without any knowledge of templating or the `Shopware Administration`.
 
 ## Prerequisites
 
-To build your own configuration page for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
+To build your own configuration page for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide).
 
 ## Create your plugin configuration
 
-{% embed url="https://www.youtube.com/watch?v=XXcmgKBRh-s" caption="" %}
+<YoutubeRef video="XXcmgKBRh-s" title="Backend Development - Adding a plugin configuration - YouTube" target="_blank" />
 
-{% hint style="info" %}
+::: info
 This video is part of the online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma) available on Shopware Academy for **free**.
-{% endhint %}
+:::
 
 All you need to do is creating a `config.xml` file inside of a `Resources/config` directory in your plugin root. The content of the `config.xml` will be dynamically rendered in the Administration. Below you'll find an example structure:
 
@@ -37,9 +44,8 @@ As we now know how to create your configuration, we can start to fill it with li
 
 The `config.xml` follows a simple syntax. You can organize the content in `<card>` elements. Every `config.xml` must contain a minimum of one `<card>` element and each `<card>` must contain one `<title>` and at least one `<input-field>`. See the minimum `config.xml` below:
 
-{% code title="<plugin root>/src/Resources/config/config.xml" %}
-
-```markup
+```xml
+// <plugin root>/src/Resources/config/config.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
@@ -52,15 +58,13 @@ The `config.xml` follows a simple syntax. You can organize the content in `<card
 </config>
 ```
 
-{% endcode %}
-
 Please make sure to specify the `xsi:noNamespaceSchemaLocation` as shown above and fetch the external resource into your IDE if possible. This enables auto-completion and suggestions for this XML file and will therefore help you to prevent issues and bugs.
 
 ### Card Titles
 
 A `<card>` `<title>` is translatable, this is managed via the `lang` attribute. By default the `lang` attribute is set to `en-GB`, to change the locale of a `<title>` just add the attribute as follows:
 
-```markup
+```html
     ...
     <card>
         <title>English Title</title>
@@ -79,11 +83,11 @@ Your `<input-field>` can be of different types, this is managed via the `type` a
 
 | Type | Configuration settings | Renders |
 | :--- | :--- | :--- |
-| text | [copyable](add-plugin-configuration.md#copyable), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text) | Text field |
-| textarea | [copyable](add-plugin-configuration.md#copyable), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text) | Text area |
-| text-editor | [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text) | HTML editor |
-| url | [copyable](add-plugin-configuration.md#copyable), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text) | URL field |
-| password | [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text) | Password field |
+| text | [copyable](add-plugin-configuration#copyable), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Text field |
+| textarea | [copyable](add-plugin-configuration#copyable), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Text area |
+| text-editor | [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | HTML editor |
+| url | [copyable](add-plugin-configuration#copyable), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | URL field |
+| password | [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Password field |
 | int |  | Integer field |
 | float |  | Float field |
 | bool |  | Switch |
@@ -92,12 +96,12 @@ Your `<input-field>` can be of different types, this is managed via the `type` a
 | date |  | Date picker |
 | time |  | Time picker |
 | colorpicker |  | Color picker |
-| single-select | [options](add-plugin-configuration.md#options), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text) | Single-Select box |
-| multi-select | [options](add-plugin-configuration.md#options), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text) | Multi-Select box |
+| single-select | [options](add-plugin-configuration#options), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Single-Select box |
+| multi-select | [options](add-plugin-configuration#options), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Multi-Select box |
 
 ### Input field settings
 
-These settings are used to configure your `<input-field>`. **Every `<input-field>` has to start with the `<name>` element.** After the `<name>` element you can configure any of the other settings mentioned above. Beside these settings, they have the following in common: [label](add-plugin-configuration.md#label-placeholder-and-help-text), [helpText](add-plugin-configuration.md#label-placeholder-and-help-text), [defaultValue](add-plugin-configuration.md#defaultvalue) and [disabled](add-plugin-configuration.md#disabled).
+These settings are used to configure your `<input-field>`. **Every `<input-field>` has to start with the `<name>` element.** After the `<name>` element you can configure any of the other settings mentioned above. Beside these settings, they have the following in common: [label](add-plugin-configuration#label-placeholder-and-help-text), [helpText](add-plugin-configuration#label-placeholder-and-help-text), [defaultValue](add-plugin-configuration#defaultvalue) and [disabled](add-plugin-configuration#disabled).
 
 #### Label, placeholder and help text
 
@@ -109,7 +113,7 @@ Add the `defaultValue` setting to your `<input-field>` to define a default value
 
 Below you'll find an example how to use this setting.
 
-```markup
+```html
 <input-field type="text">
     <name>textField</name>
     <label>Test field with default value</label>
@@ -123,7 +127,7 @@ You can add the `<disabled>` setting to any of your `<input-field>` elements to 
 
 Below you'll find an example how to use this setting.
 
-```markup
+```html
 <input-field>
     <name>email</name>
     <disabled>true</disabled>
@@ -138,7 +142,7 @@ You can add the `<copyable>` setting to your `<input-field>` which are of type `
 
 Below you'll find an example how to use this setting.
 
-```markup
+```html
 <input-field>
     <name>email</name>
     <copyable>true</copyable>
@@ -153,7 +157,7 @@ You can use `<options>` to add settings to a `<input-field>` of the types `singl
 
 Below you'll find an example.
 
-```markup
+```html
 <input-field type="single-select">
     <name>mailMethod</name>
     <options>
@@ -175,13 +179,13 @@ Each `<options>` element must contain at least one `<option>` element. Each `<op
 
 ### Advanced custom input fields
 
-For more complex and advanced configurations it is possible to declare a `<component name="componentName">` element. This element can render many admin components. It is also possible to render your own admin component which you could deliver with your plugin. The name of the component has to match the components name in the Administration, for example `sw-entity-single-select`. The component also needs a `<name>` element first. All other elements within the component element will be passed to the rendered admin component as properties. For some components you could also use [`label` and `placeholder`](add-plugin-configuration.md#label-placeholder-and-help-text).
+For more complex and advanced configurations it is possible to declare a `<component name="componentName">` element. This element can render many admin components. It is also possible to render your own admin component which you could deliver with your plugin. The name of the component has to match the components name in the Administration, for example `sw-entity-single-select`. The component also needs a `<name>` element first. All other elements within the component element will be passed to the rendered admin component as properties. For some components you could also use [`label` and `placeholder`](add-plugin-configuration#label-placeholder-and-help-text).
 
 Here are some examples:
 
 ### Entity single select for products
 
-```markup
+```html
 <component name="sw-entity-single-select">
     <name>exampleProduct</name>
     <entity>product</entity>
@@ -193,7 +197,7 @@ Stores the ID of the selected product into the system config.
 
 ### Entity multi ID select for products
 
-```markup
+```html
 <component name="sw-entity-multi-id-select">
     <name>exampleMultiProductIds</name>
     <entity>product</entity>
@@ -205,7 +209,7 @@ Stores an array with IDs of the selected products into the system config.
 
 ### Media selection
 
-```markup
+```html
 <component name="sw-media-field">
     <name>pluginMedia</name>
     <label>Upload media or choose one from the media manager</label>
@@ -214,7 +218,7 @@ Stores an array with IDs of the selected products into the system config.
 
 ### Text editor
 
-```markup
+```html
 <component name="sw-text-editor">
     <name>textEditor</name>
     <label>Write some nice text with WYSIWYG editor</label>
@@ -223,7 +227,7 @@ Stores an array with IDs of the selected products into the system config.
 
 ### Snippet field
 
-```markup
+```html
 <component name="sw-snippet-field">
     <name>snippetField</name>
     <label>Description</label>
@@ -247,9 +251,8 @@ Please Note: It is impossible to allow every component to the config.xml, due to
 
 Now all that's left to do is to present you a working example `config.xml` and show you the result.
 
-{% code title="<plugin root>/src/Resources/config/config.xml" %}
-
-```markup
+```xml
+// <plugin root>/src/Resources/config/config.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
@@ -304,8 +307,6 @@ Now all that's left to do is to present you a working example `config.xml` and s
 </config>
 ```
 
-{% endcode %}
-
 ## Next steps
 
-Now you've added your own plugin configuration. But how do you actually read which configurations the shop owner used? This will be covered in our guide about [Using the plugin configuration](use-plugin-configuration.md).
+Now you've added your own plugin configuration. But how do you actually read which configurations the shop owner used? This will be covered in our guide about [Using the plugin configuration](use-plugin-configuration).

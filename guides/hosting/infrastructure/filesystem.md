@@ -1,3 +1,10 @@
+---
+nav:
+  title: Filesystem
+  position: 10
+
+---
+
 # Filesystem
 
 ## Overview
@@ -29,9 +36,9 @@ The configuration for file storage of Shopware 6 resides in the general bundle c
 
 To set up a non-default filesystem for your shop, you need to add the `filesystem:` map to the `shopware.yml`. Under this key, you can separately define your storage for the public, private, theme, sitemap, and asset \(bundle assets\).
 
-{% hint style="info" %}
+::: info
 You can also change only the URL of the file systems. This is useful if you want to use a different domain for your files. For example, you can use a CDN for your public files.
-{% endhint %}
+:::
 
 ```yaml
 shopware:

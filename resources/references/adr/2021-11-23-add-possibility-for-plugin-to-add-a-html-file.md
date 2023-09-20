@@ -2,15 +2,22 @@
 title: Add possibility for plugins to add a HTML file
 date: 2021-11-23
 area: administration
-tags: [plugin, admin, extension-api]
---- 
+tags:
+  - plugin
+  - admin
+  - extension-api
+nav:
+  title: Add possibility for plugin to add a html file
+  position: 390
+
+---
 
 # Add possibility for plugins to add a HTML file
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-11-23-add-possibility-for-plugin-to-add-a-html-file.md)
-{% endhint %}
+:::
 
 ## Context
 The new ExtensionAPI is based on a iFrame communication architecture. The old App system for the admin relies on the XML

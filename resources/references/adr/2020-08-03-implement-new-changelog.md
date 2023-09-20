@@ -2,15 +2,20 @@
 title: Implement new changelog
 date: 2020-08-03
 area: core
-tags: [changelog]
---- 
+tags:
+  - changelog
+nav:
+  title: Implement new changelog
+  position: 40
+
+---
 
 # Implement new changelog
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-08-03-implement-new-changelog.md)
-{% endhint %}
+:::
 
 ## Context
 The current workflow for writing technical changelog is not very suited for a trunk based development and branching process. There are some major issues with the current workflow of using one file with a fixed version number:
@@ -118,4 +123,3 @@ If you just want to get the changes of a specific version or even just a special
 `bin/console changelog:change [<version>] [options]`
 
 Use the `--help` flag of the command to see all possible options.
-

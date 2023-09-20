@@ -1,3 +1,10 @@
+---
+nav:
+  title: Tax provider
+  position: 70
+
+---
+
 # Tax provider
 
 ## Overview
@@ -8,7 +15,7 @@ With version 6.5.0.0, Shopware allows plugins to integrate custom tax calculatio
 
 ## Prerequisites
 
-Refer to [plugin base guide](../../plugin-base-guide.md). It is not mandatory to use exactly the same plugin as a foundation.
+Refer to [plugin base guide](../../plugin-base-guide). It is not mandatory to use exactly the same plugin as a foundation.
 
 ## Creating a tax provider
 
@@ -16,9 +23,8 @@ Firstly you need to create a class which handles the tax calculation or calls yo
 
 You may then call a tax provider, which will calculate the taxes for you. For example, we simply apply a hefty 50% tax rate for all line-items in the cart.
 
-{% code title="<plugin root>/src/Checkout/Cart/Tax/TaxProvider.php" %}
-
 ```php
+// <plugin root>/src/Checkout/Cart/Tax/TaxProvider.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Checkout\Cart\Tax;
@@ -73,18 +79,14 @@ class TaxProvider extends AbstractTaxProvider
         );
     }
 }
-
 ```
-
-{% endcode %}
 
 ## Registering the tax provider in the DI container
 
 After you have created your tax provider, you need to register it in the DI container. To do so, you need to create a new service in the `services.xml` file and tag the service as `shopware.tax.provider`.
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
-
-```markup
+```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -98,19 +100,16 @@ After you have created your tax provider, you need to register it in the DI cont
     </services>
 ```
 
-{% endcode %}
-
 ## Migrate your tax provider to the database
 
 To let Shopware know of your new tax provider, you will have to persist it to the database. You can do so either via a migration or the entity repository.
 
 ### Via migration
 
-You may want to have a look at the [migration guide](../../plugin-fundamentals/database-migrations.md) to learn more about migrations.
-
-{% code title="<plugin root>/src/Migration/MigrationTaxProvider.php" %}
+You may want to have a look at the [migration guide](../../plugin-fundamentals/database-migrations) to learn more about migrations.
 
 ```php
+// <plugin root>/src/Migration/MigrationTaxProvider.php
 <?php declare(strict_types=1);
 
 namespace SwagTaxProviders\Migration;
@@ -154,19 +153,16 @@ class MigrationTaxProvider extends MigrationStep
 }
 ```
 
-{% endcode %}
-
 ### Via repository
 
 You may want to have a look at the [repository guide](../../../../../concepts/framework/data-abstraction-layer#crud-operations) to learn more on how to use the entity repository to manipulate data.
 
 A good place for persisting your tax provider to the database would be the `install` lifecycle method of your plugin.
 
-If you do not know of plugin lifecycle methods yet, please refer to our [plugin lifecycle guide](../../plugin-fundamentals/plugin-lifecycle.md).
-
-{% code title="<plugin root>/src/BasicExample.php" %}
+If you do not know of plugin lifecycle methods yet, please refer to our [plugin lifecycle guide](../../plugin-fundamentals/plugin-lifecycle).
 
 ```php
+// <plugin root>/src/BasicExample.php
 <?php declare(strict_types=1);
 
 namespace SwagBasicExample;
@@ -221,9 +217,6 @@ class SwagBasicExample extends Plugin
     // do not forget to add an `uninstall` method, which removes your tax providers, when the plugin is uninstalled
     // you also may want to add the `activate` and `deactivate` methods to activate and deactivate the tax providers
 }
-
 ```
-
-{% endcode %}
 
 You should now see the new tax provider showing up in the Administration in `Settings > Tax`, where you can change the active state, priority and availability rule manually.

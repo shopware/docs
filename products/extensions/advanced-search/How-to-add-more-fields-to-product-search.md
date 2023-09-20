@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add more fields to product search
+  position: 30
+
+---
+
 # Add more Fields to Product Search
 
 You can add more searchable fields into your product or any Elasticsearch definition. 

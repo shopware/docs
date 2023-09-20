@@ -2,15 +2,22 @@
 title: Adjust ADR approval rules for the new org structure
 date: 2021-11-05
 area: core
-tags: [architecture, adr, approval-rules]
---- 
+tags:
+  - architecture
+  - adr
+  - approval-rules
+nav:
+  title: Adjust adr approval rules
+  position: 360
+
+---
 
 # Adjust ADR approval rules for the new org structure
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-11-05-adjust-adr-approval-rules.md)
-{% endhint %}
+:::
 
 ## Context
 

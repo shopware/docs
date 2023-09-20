@@ -1,3 +1,10 @@
+---
+nav:
+  title: Decorating a Shopware Migration Assistant converter
+  position: 30
+
+---
+
 # Decorating a Shopware Migration Assistant Converter
 
 ## Overview
@@ -169,13 +176,13 @@ class ManufacturerReader extends AbstractPremappingReader
 }
 ```
 
-The created premapping reader fetches all manufacturers of the source system, gets all manufacturer choices out of the Shopware 6 database, and does a simple preselection via the manufacturer name. The `getPremapping` function returns the whole premapping structure. With this structure, the Administration creates a new premapping card and creates for each source system manufacturer a selectbox with all Shopware 6 manufacturers as choices. For more details, have a look at the [Premapping concept](../concept/premapping.md).
+The created premapping reader fetches all manufacturers of the source system, gets all manufacturer choices out of the Shopware 6 database, and does a simple preselection via the manufacturer name. The `getPremapping` function returns the whole premapping structure. With this structure, the Administration creates a new premapping card and creates for each source system manufacturer a selectbox with all Shopware 6 manufacturers as choices. For more details, have a look at the [Premapping concept](../concept/premapping).
 
 ## Adding snippets to premapping card
 
 Currently, the premapping card has no snippets at all, so you have to create a new snippet file for the title:
 
-```javascript
+```json
 {
      "swag-migration": {
          "index": {
@@ -296,7 +303,7 @@ Your new decorated product migration converter checks if a manufacturer is set a
 
 In the end, you have to register your decorated converter in your `services.xml`:
 
-```markup
+```html
 <service id="SwagMigrationExtendConverterExample\Profile\Shopware\Converter\Shopware55DecoratedProductConverter"
           decorates="SwagMigrationAssistant\Profile\Shopware55\Converter\Shopware55ProductConverter">
     <argument type="service" id="SwagMigrationExtendConverterExample\Profile\Shopware\Converter\Shopware55DecoratedProductConverter.inner"/>

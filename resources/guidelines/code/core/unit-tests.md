@@ -1,9 +1,14 @@
+---
+nav:
+  title: Unit tests
+  position: 90
 
+---
 
-{% hint style="info" %}
+::: info
 This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/code/core/unit-tests.md)
-{% endhint %}
+:::
 
 # Unit tests
 
@@ -62,20 +67,24 @@ For all other cases, use real implementations and rely as minimally as possible 
 
 Relying heavily on mocks creates a bad pattern in unit tests of testing `how` something is implemented and not `what` the implementation actually does. If tests are implemented in a mock-heavy way, they are tightly coupled to the implementation, meaning they rely on implementation details and may fail more often when the implementation details change than when the actual behavior of the class under test changes. Consider these two example changes to some classes:
 Before:
+
 ```php
 $id = $this->repository->search($criteria, $context)->first()?->getId();
 ```
 After:
+
 ```php
 $id = $this->repository->searchIds($criteria, $context)->firstId();
 ```
 Before
+
 ```php
 $values = $this->connection->fetchAllAssociative('SELECT first, second FROM foo ...');
 
 $values = $this->mapToKeyValue($values);
 ```
 After:
+
 ```php
 $values = $this->connection->fetchKeyValue('SELECT first, second FROM foo ...');
 ```

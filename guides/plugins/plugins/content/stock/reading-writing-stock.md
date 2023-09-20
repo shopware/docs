@@ -1,3 +1,10 @@
+---
+nav:
+  title: Reading and Writing Stock
+  position: 30
+
+---
+
 # Reading and Writing Stock
 
 ## Overview
@@ -8,9 +15,8 @@ Shopware stores the current stock level alongside the product, this guide will h
 
 The `product.stock` field should be used to read the current stock level. When building extensions that need to query a product's stock, use this field. It is always a real-time calculated value of the available product stock.
 
-{% code title="<plugin root>/src/Swag/Example/ServiceReadingData.php" %}
-
 ```php
+// <plugin root>/src/Swag/Example/ServiceReadingData.php
 <?php declare(strict_types=1);
 
 namespace Swag\Example\Service;
@@ -37,18 +43,14 @@ class ReadingStock
         $stock = $product->getStock();
     }
 }
-
 ```
-
-{% endcode %}
 
 ## Writing Stock
 
 The `product.stock` field should be used to write the current stock level.
 
-{% code title="<plugin root>/src/Swag/Example/ServiceReadingData.php" %}
-
 ```php
+// <plugin root>/src/Swag/Example/ServiceReadingData.php
 <?php declare(strict_types=1);
 
 namespace Swag\Example\Service;
@@ -79,7 +81,4 @@ class WritingStock
         );
     }
 }
-
 ```
-
-{% endcode %}

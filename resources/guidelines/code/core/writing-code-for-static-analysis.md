@@ -1,9 +1,14 @@
+---
+nav:
+  title: Writing code for static analysis
+  position: 100
 
+---
 
-{% hint style="info" %}
+::: info
 This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/code/core/writing-code-for-static-analysis.md)
-{% endhint %}
+:::
 
 # Writing code for static analysis
 
@@ -21,6 +26,7 @@ So this document mainly deals with issues on how to fix common phpstan erros lik
 
 To ensure the types at runtime, the most common approach is to use explicit type or null checks on the variables values that we wanna check.
 **Examples:**
+
 ```php
 $foo = $bar->getFoo(); // $foo is Foo|null, but we expect only Foo
 
@@ -30,6 +36,7 @@ if ($foo === null) {
 }
 ```
 or 
+
 ```php
 $foo = $bar->getFoo(); // $foo is mixed, but we expect only string
 
@@ -39,6 +46,7 @@ if (!is_string($foo)) {
 }
 ```
 or
+
 ```php
 $foo = $bar->getFoo(); // $foo is object, but we expect it to be Foo instance
 
@@ -62,6 +70,7 @@ Additionally, unexpected type casts can not be caught by static analysis tools, 
 This means you should only use type casts when you are sure what the possible inputs are and the the result of the cast is actually what we would expect.
 
 **Examples:**
+
 ```php
 $foo = $bar->getFoo(); // $foo is mixed, but we expect only string
 
@@ -73,18 +82,21 @@ $foo = (string) $foo; // this might hide unexpected conversions from non-string 
 In unit tests the type ensuring asserts from PhpUnit can be used to ensure that the types are correct. Those are also evaluated at (test) runtime, thus they guarantee have full type safety. 
 This is especially useful as the error case in unit tests does not have to be handled manually, as the error will simply lead to a test failure when a type is encountered that was not expected.
 **Examples:**
+
 ```php
 $foo = $bar->getFoo(); // $foo is Foo|null, but we expect only Foo
 
 static::assertNotNull($foo);
 ```
 or
+
 ```php
 $foo = $bar->getFoo(); // $foo is mixed, but we expect only string
 
 static::assertIsString($foo);
 ```
 or
+
 ```php
 $foo = $bar->getFoo(); // $foo is object, but we expect it to be Foo instance
 
@@ -101,18 +113,21 @@ This means that the `asserts` will only be evaluated in development and test env
 The upside of using `asserts` is that they will throw a generic `AssertionError` when the type is not as expected, which is a lot easier to handle than having to handle the error case manually.
 
 **Examples:**
+
 ```php
 $foo = $bar->getFoo(); // $foo is Foo|null, but we expect only Foo
 
 assert($foo !== null);
 ```
 or 
+
 ```php
 $foo = $bar->getFoo(); // $foo is mixed, but we expect only string
 
 assert(is_string($foo));
 ```
 or
+
 ```php
 $foo = $bar->getFoo(); // $foo is object, but we expect it to be Foo instance
 
@@ -128,16 +143,19 @@ Which also means that wrong `@var` annotations can actively hide type mismatches
 
 Thus `@var` annotations should only be used when the other approaches are not possible or not feasible as a last resort.
 **Examples:**
+
 ```php
 /** @var Foo $foo */
 $foo = $bar->getFoo(); // $foo is Foo|null, but we expect only Foo
 ```
 or 
+
 ```php
 /** @var string $foo */
 $foo = $bar->getFoo(); // $foo is mixed, but we expect only string
 ```
 or
+
 ```php
 /** @var Foo $foo */
 $foo = $bar->getFoo(); // $foo is object, but we expect it to be Foo instance

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Audit Log
+  position: 70
+
+---
+
 # Audit Log
 
 [Download](../../../../../products/extensions/b2b-suite/guides/example-plugins/B2bAcl.zip) a plugin showcasing the topic.

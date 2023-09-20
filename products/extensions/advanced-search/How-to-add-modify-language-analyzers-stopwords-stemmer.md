@@ -1,3 +1,10 @@
+---
+nav:
+  title: Language analyzers
+  position: 50
+
+---
+
 # Add / Modify language analyzers, stopwords, stemmer
 
 With the introduction of the multi-language index, support for built-in [Elasticsearch language analyzers]( https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-lang-analyzer.html) was also introduced.

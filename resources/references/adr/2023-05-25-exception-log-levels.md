@@ -2,15 +2,22 @@
 title: Exception Log Level configuration
 date: 2023-05-25
 area: core
-tags: [core, devops, observability]
+tags:
+  - core
+  - devops
+  - observability
+nav:
+  title: Exception log levels
+  position: 990
+
 ---
 
 # Exception Log Level configuration
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2023-05-25-exception-log-levels.md)
-{% endhint %}
+:::
 
 ## Context
 By default every exception that is thrown in the PHP stack and not catched will be logged by the `symfony/monolog-bridge` on `error` level.
@@ -33,7 +40,7 @@ Another solution could be to do the configuration of the log level directly in t
 
 We will add the `exceptions` configuration to the platform, that way the error logging in existing projects might change. But in general we assume that this change is for the better.
 
-Additionally we will need to extend on the default symfony configuration as that is not compatible with our new [domain exceptions](./2022-02-24-domain-exceptions.md) as there are multiple exception cases in one file/class. 
+Additionally we will need to extend on the default symfony configuration as that is not compatible with our new [domain exceptions](./2022-02-24-domain-exceptions) as there are multiple exception cases in one file/class. 
 Therefore we will add a similiar configuration option, that does not rely on the FQCN, but instead we will use the shopware specific `error code` from the shopware exception as that is unique to the exception case.
 
 On a side note we should be able to get rid of most the cloud specific configuration for the exception logging mapping.

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Security
+  position: 10
+
+---
+
 # Security
 
 ## Overview
@@ -6,11 +13,11 @@ This reference presents a comprehensive compilation of all security measures imp
 
 ## ACL in the Administration
 
-The Access Control List (ACL) in Shopware ensures that by default, data can only be created, read, updated, or deleted (CRUD), once the user has specific privileges for a module. [ACL in the Administration](../../concepts/framework/architecture/administration-concept.md#acl-in-the-administration)
+The Access Control List (ACL) in Shopware ensures that by default, data can only be created, read, updated, or deleted (CRUD), once the user has specific privileges for a module. [ACL in the Administration](../../concepts/framework/architecture/administration-concept#acl-in-the-administration)
 
 ## API aware field
 
-The `ApiAware` flag allows you to control what fields of your entity are exposed to the Store API. For more information, refer to [Flags Reference](core-reference/dal-reference/flags-reference.md).
+The `ApiAware` flag allows you to control what fields of your entity are exposed to the Store API. For more information, refer to [Flags Reference](core-reference/dal-reference/flags-reference).
 
 ## Captcha
 
@@ -32,11 +39,11 @@ General Data Protection Regulation (GDPR) is a comprehensive European Union (EU)
 
 ## HTML sanitizer
 
-HTML sanitizer improves security, reliability, and usability of the text editor by removing potentially unsafe or malicious HTML code. For more information, refer to [HTML Sanitizer](../../../guides/hosting/configurations/shopware/html-sanitizer.md) guide.
+HTML sanitizer improves security, reliability, and usability of the text editor by removing potentially unsafe or malicious HTML code. For more information, refer to [HTML Sanitizer](../../../guides/hosting/configurations/shopware/html-sanitizer) guide.
 
 ## Rate limiter
 
-Shopware 6 provides certain rate limits by default that reduces the risk of brute-force attacks for pages like login or password reset. For more information, refer to [Rate Limiter](../../../guides/hosting/infrastructure/rate-limiter.md) guide.
+Shopware 6 provides certain rate limits by default that reduces the risk of brute-force attacks for pages like login or password reset. For more information, refer to [Rate Limiter](../../../guides/hosting/infrastructure/rate-limiter) guide.
 
 ## Reset sessions when changing password
 
@@ -47,11 +54,11 @@ As soon as a password is changed for a user or customer, the session is invalid 
 
 ## SameSite cookie
 
-SameSite prevents the browser from sending cookies along with cross-site requests. For more information on this, refer to [SameSite Protection](../../../guides/hosting/configurations/framework/samesite-protection.md).
+SameSite prevents the browser from sending cookies along with cross-site requests. For more information on this, refer to [SameSite Protection](../../../guides/hosting/configurations/framework/samesite-protection).
 
 ## Security plugin
 
-Obtaining security fixes without version upgrades is possible through the [Security plugin](../../../guides/hosting/installation-updates/cluster-setup.md#security-plugin).
+Obtaining security fixes without version upgrades is possible through the [Security plugin](../../../guides/hosting/installation-updates/cluster-setup#security-plugin).
 
 ## Storefront IP Whitelisting
 
@@ -59,4 +66,4 @@ To enable access even during maintenance mode, IP addresses can be added to [Sto
 
 ## SQL injection
 
-SQL injection allows an attacker to execute new or modify existing SQL statements to access information that they are not allowed to access. By mainly using our own [Data Abstraction Layer](https://developer.shopware.com/docs/concepts/framework/data-abstraction-layer.html), that does not expose SQL directly, most of the SQL injection attack vectors are prevented. Whenever direct SQL is being used, the [best practices from Doctrine DBAL](https://www.doctrine-project.org/projects/doctrine-dbal/en/current/reference/security.html) are followed to ensure proper escaping of user input.
+SQL injection allows an attacker to execute new or modify existing SQL statements to access information that they are not allowed to access. By mainly using our own [Data Abstraction Layer](/docs/concepts/framework/data-abstraction-layer.html), that does not expose SQL directly, most of the SQL injection attack vectors are prevented. Whenever direct SQL is being used, the [best practices from Doctrine DBAL](https://www.doctrine-project.org/projects/doctrine-dbal/en/current/reference/security.html) are followed to ensure proper escaping of user input.

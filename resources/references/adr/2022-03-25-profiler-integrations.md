@@ -2,15 +2,24 @@
 title: Profiler integrations
 date: 2022-03-25
 area: core
-tags: [profile, performance, tideways, datadog, blackfire]
+tags:
+  - profile
+  - performance
+  - tideways
+  - datadog
+  - blackfire
+nav:
+  title: Profiler integrations
+  position: 560
+
 ---
 
 # Profiler integrations
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-03-25-profiler-integrations.md)
-{% endhint %}
+:::
 
 ## Context
 During the last performance benchmarks we have intensively dealt with profiling tools like Blackfire, Tideways and datadog. We often encountered the difficulty of getting detailed trace information when the server is under high load.
@@ -82,6 +91,7 @@ class Profiler
 ```
 
 The corresponding calls of this profiler can be found everywhere in the application and can also be used in plugins:
+
 ```php
 <?php declare(strict_types=1);
 
@@ -118,6 +128,7 @@ These spans are then displayed in the timeline of the corresponding profilers:
 ![](../../../.gitbook/assets/adr/tideways_benchmark.png "Tideways benchmark")
 
 Which profiler should be used in the system can be configured via `config/packages/*.yaml`:
+
 ```yaml
 shopware:
     profiler:

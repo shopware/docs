@@ -1,3 +1,10 @@
+---
+nav:
+  title: Override existing Javascript
+  position: 60
+
+---
+
 # Override Existing Javascript
 
 ## Overview
@@ -6,15 +13,15 @@ If you have to customize the logic of some core JavaScript Storefront plugins yo
 
 ## Prerequisites
 
-While this is not mandatory, having read the guide about [adding custom javascript plugins](add-custom-javascript.md) in the first place might help you understand this guide a bit further. Other than that, this guide just requires you to have a running plugin installed, e.g. our plugin from the [Plugin base guide](../plugin-base-guide.md).
+While this is not mandatory, having read the guide about [adding custom javascript plugins](add-custom-javascript) in the first place might help you understand this guide a bit further. Other than that, this guide just requires you to have a running plugin installed, e.g. our plugin from the [Plugin base guide](../plugin-base-guide).
 
 ## Extending an existing JavaScript plugin
 
 As JavaScript Storefront plugins are vanilla JavaScript classes, you can simply extend them.
 
-{% hint style="info" %}
+::: info
 Each JavaScript plugin can only be overridden once. If two Shopware plugins try to override the same plugin, only the last one of them will actually work.
-{% endhint %}
+:::
 
 So let's start with creating the proper directory structure. This example will be called `my-cookie-permission`, as it's extending the default `cookie-permission` plugin.
 
@@ -98,25 +105,25 @@ PluginManager.override('CookiePermission', MyCookiePermission, '[data-cookie-per
 
 To see your changes you have to build the Storefront. Use the following command and reload your Storefront.
 
-{% tabs %}
-{% tab title="Template" %}
+<Tabs>
+<Tab title="Template">
 
 ```bash
 ./bin/build-storefront.sh
 ```
 
-{% endtab %}
-{% tab title="platform only (contribution setup)" %}
+</Tab>
+<Tab title="platform only (contribution setup)">
 
 ```bash
 composer run build:js:storefront
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 You should see the cookie notice at the bottom of the page. If you click the "Accept" or the "Deny" button you should be prompted to confirm hiding the bar.
 
 ## Next steps
 
-Sometimes you don't have to actually override a javascript plugin, since sometimes you can simply use an event instead. Learn how this is done in our guide about [listening to events](../plugin-fundamentals/listening-to-events.md).
+Sometimes you don't have to actually override a javascript plugin, since sometimes you can simply use an event instead. Learn how this is done in our guide about [listening to events](../plugin-fundamentals/listening-to-events).

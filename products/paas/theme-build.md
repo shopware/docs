@@ -1,3 +1,10 @@
+---
+nav:
+  title: Theme Build
+  position: 50
+
+---
+
 # Theme Build
 
 The entire build process is performed without an active database connection. However, for theme builds, Shopware needs to access the theme configuration. We make it available by checking it into our VCS repository. This process must be performed **after** you first installed Shopware in your PaaS environment because it runs a command that requires an existing database that was not created on the first run.
