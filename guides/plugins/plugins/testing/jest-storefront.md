@@ -8,13 +8,13 @@ With a good test coverage you gain confidence to deploy a stable software withou
 
 We are using JestJS as our testing framework as it's a solid foundation and widely used by many developers.
 
-<PageRef page="https://jestjs.io" title="" target="_blank" />
+<PageRef page="https://jestjs.io" title="Jest · 🃏 Delightful JavaScript Testing" target="_blank" />
 
 ## Prerequisites
 
 Before you are reading this guide you have to make sure you understand the basics of unit tests and how Jest works. You can find a good source for best practices in this Github Repo:
 
-<PageRef page="https://github.com/goldbergyoni/javascript-testing-best-practices" title="" target="_blank" />
+<PageRef page="https://github.com/goldbergyoni/javascript-testing-best-practices" title="Javascript testing - best practices @ GitHub" target="_blank" />
 
 In addition, you need a running Shopware 6 installation. Your repository used for that should be based on development template, as we will to use some scripts provided by it.
 

@@ -99,7 +99,7 @@ With the `sizes` parameter you can control the `sizes` attribute of the `img` an
 
 You can find more information on those sizes here:
 
-<PageRef page="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img\#attr-srcset" title="" target="_blank" />
+<PageRef page="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img\#attr-srcset" title="&lt;img&gt;: The Image Embed element - HTML: HyperText Markup Language | MDN" target="_blank" />
 
 E.g. if the browser is in Bootstrap viewport `lg` \(which is 992px - 1199px\) use an image which is closest to 333px. If `sizes` is not set, Shopware will automatically use fallback values from global `shopware.theme.breakpoint`.
 

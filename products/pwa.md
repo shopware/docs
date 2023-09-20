@@ -4,4 +4,4 @@ If you think about providing a decoupled storefront for customers, you can use *
 
 Shopware PWA is based on the [Store API](../concepts/api/store-api.md).
 
-<PageRef page="https://shopware-pwa-docs.vuestorefront.io/" title="" target="_blank" />
+<PageRef page="https://shopware-pwa-docs.vuestorefront.io/" title="PWA" target="_blank" />

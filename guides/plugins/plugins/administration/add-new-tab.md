@@ -31,7 +31,7 @@ The main entry point to customize the Administration via plugin is the `main.js`
 
 For this guide, we'll think about the following example: The product detail page is extended by a new tab, which then only contains a 'Hello world!'. In order to refer to this example, let's have a look at the twig code of the product detail page found here:
 
-<PageRef page="https://github.com/shopware/platform/blob/552675ba24284dec2bb01c2107bf45f86b362550/src/Administration/Resources/app/administration/src/module/sw-product/page/sw-product-detail/sw-product-detail.html.twig\#L120" title="" target="_blank" />
+<PageRef page="https://github.com/shopware/platform/blob/552675ba24284dec2bb01c2107bf45f86b362550/src/Administration/Resources/app/administration/src/module/sw-product/page/sw-product-detail/sw-product-detail.html.twig\#L120" title="shopware/platform - sw-product-detailhtml.twig @ GitHub" target="_blank" />
 
 Let's imagine your first goal is to create a new tab on the product detail page. Having a look at the template, you might find the block `sw_product_detail_content_tabs`, which seems to contain all available tabs. It starts by creating a new `<sw-tabs>` element to contain all the tabs available. Here you can see excerpt of this block:
 
