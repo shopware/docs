@@ -8,7 +8,7 @@ This article explains the fundamental steps to deploy Shopware 6 to a certain in
 
 ## Video
 
-<PageRef page="https://www.youtube.com/watch?v=Oo-KvyxJvpo" title="" target="_blank" />
+<YoutubeRef video="Oo-KvyxJvpo" title="Continuous Deployment: Automizing Shopware 6 deployments (Developer Tutorial) - YouTube" target="_blank" />
 
 ## Prerequisites
 
