@@ -1,3 +1,10 @@
+---
+nav:
+  title: Dependency injection
+  position: 40
+
+---
+
 # Dependency injection
 
 ## Overview
@@ -6,9 +13,9 @@ In this guide you'll learn how to inject services into other services. You can r
 
 ## Prerequisites
 
-In order to add your own custom service for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
+In order to add your own custom service for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide).
 
-Furthermore, you need a working service. Therefore, you can refer to [Adding a custom service](add-custom-service.md) guide.
+Furthermore, you need a working service. Therefore, you can refer to [Adding a custom service](add-custom-service) guide.
 
 ## Injecting another service
 
@@ -16,8 +23,8 @@ Let's get started with an example how to inject a service. This example will be 
 
 Here's our example `services.xml`:
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
-```markup
+```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -31,14 +38,13 @@ xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/sc
     </services>
 </container>
 ```
-{% endcode %}
 
 Now we have to add the injected service as argument to our service constructor.
 
 In the following you can find our `ExampleService` where we injected the `SystemConfigService` with an example function `getShopname()` where we use it.
 
-{% code title="<plugin root>/src/Service/ExampleService.php" %}
 ```php
+// <plugin root>/src/Service/ExampleService.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -64,5 +70,3 @@ class ExampleService
     }
 }
 ```
-{% endcode %}
-

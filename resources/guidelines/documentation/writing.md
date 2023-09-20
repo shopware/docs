@@ -1,3 +1,10 @@
+---
+nav:
+  title: Writing
+  position: 20
+
+---
+
 # Writing
 
 Once you are assigned to a certain topic or area, consider yourself the "knowledge lead" for this particular area of our documentation. Prepare a rough outline containing the following points and prompt other maintainers for feedback.
@@ -35,4 +42,3 @@ When you started writing, there will be a new draft created with your changes. E
 ```
 
 After your draft has been reviewed a final time, it will be published once you notify one of the administrators.
-

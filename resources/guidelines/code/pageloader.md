@@ -1,3 +1,10 @@
+---
+nav:
+  title: Page Loader
+  position: 70
+
+---
+
 # Page Loader
 
 * Pageloaders must be divided into appropriate domains that represent the different sections of the storefront, "products", "account", etc.
@@ -6,4 +13,3 @@
 * At the end of each pageloader an individual `*PageLoaded` event is thrown. This event can be used to provide further data by third-party developers
 * Page loaders are not allowed to work directly with repositories, but are only allowed to load data via the store API. This is to ensure that all storefront functionalities can also be accessed via the store API.
 * A Page object must always extend from the base `\Shopware\Storefront\Page\Page` class
-

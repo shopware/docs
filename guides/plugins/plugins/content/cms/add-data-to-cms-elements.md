@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add data to CMS element
+  position: 30
+
+---
+
 # Add data to CMS element
 
 ## Overview
@@ -6,14 +13,14 @@ When creating custom CMS elements, you sometimes want to use more complex data t
 
 ## Prerequisites
 
-This guide will not explain how to create custom CMS elements in general, so head over to the official guide about [Adding a custom CMS element](add-cms-element.md) to learn this first.
+This guide will not explain how to create custom CMS elements in general, so head over to the official guide about [Adding a custom CMS element](add-cms-element) to learn this first.
 
 ## Create a data resolver
 
 To manipulate the data of these elements during the loading of the configuration, we create a `DailyMotionCmsElementResolver` resolver in our plugin.
 
-{% code title="<plugin root>/src/DataResolver/DailyMotionCmsElementResolver.php" %}
 ```php
+// <plugin root>/src/DataResolver/DailyMotionCmsElementResolver.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\DataResolver;
@@ -42,16 +49,15 @@ class DailyMotionCmsElementResolver extends AbstractCmsElementResolver
     }
 }
 ```
-{% endcode %}
 
 Our custom resolver extends from the `AbstractCmsElementResolver` which forces us to implement the methods `getType`, `collect` and `enrich`.
 
-In the previous [example](add-cms-element.md) we added a cms element with the name `dailymotion`. As you can see the `getType` method of our custom resolver reflects that name by returning the `dailymotion` string. This resolver is called every time for an element of the type `dailymotion`.
+In the previous [example](add-cms-element) we added a cms element with the name `dailymotion`. As you can see the `getType` method of our custom resolver reflects that name by returning the `dailymotion` string. This resolver is called every time for an element of the type `dailymotion`.
 
 To register our custom resolver to the service container we have to register it in the `services.xml` file in our plugin.
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
-```markup
+```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -65,14 +71,13 @@ To register our custom resolver to the service container we have to register it 
     </services>
 </container>
 ```
-{% endcode %}
 
 ### Collect data
 
 The `collect` method prepares the criteria object. This is useful if, for example, you have a media entity `ID` stored in your configuration. As in the following example, you can retrieve the configuration for the current cms element with the call `$slot->getFieldConfig()` and then have access to the individual fields. In this case we read out `myCustomMedia` field which may contain a mediaId. If a `mediaId` exists, we create a new `CriteriaCollection` for it. Now we are able to use this media-object later on.
 
-{% code title="<plugin root>/src/DataResolver/DailyMotionCmsElementResolver.php" %}
 ```php
+// <plugin root>/src/DataResolver/DailyMotionCmsElementResolver.php
 <?php declare(strict_types=1);
 
 // ...
@@ -101,7 +106,6 @@ use Shopware\Core\Content\Media\MediaEntity;
 
 // ...
 ```
-{% endcode %}
 
 ### Enrich data
 
@@ -109,8 +113,8 @@ Inside the `enrich` you can perform additional logic on the data that has been r
 
 This could be a possible solution for that:
 
-{% code title="<plugin root>/src/DataResolver/DailyMotionCmsElementResolver.php" %}
 ```php
+// <plugin root>/src/DataResolver/DailyMotionCmsElementResolver.php
 <?php declare(strict_types=1);
 // ...
 
@@ -131,5 +135,3 @@ This could be a possible solution for that:
 
 // ...
 ```
-{% endcode %}
-

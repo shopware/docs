@@ -1,3 +1,10 @@
+---
+nav:
+  title: Orders
+  position: 20
+
+---
+
 # Orders
 
 From a Cart instance an `Order` can be created. The whole structure of the cart is stored to the database. Contrary to the cart, a structure that allows a great degree of freedom and is _calculation optimized_ , the order is **workflow optimized**.
@@ -29,4 +36,3 @@ _Note: The state machines displayed in the following sections can actually be mo
 ![The transaction state machine](../../../.gitbook/assets/order-payment-state-machine.png)
 
 ![The delivery state machine](../../../.gitbook/assets/order-delivery-state-machine.png)
-

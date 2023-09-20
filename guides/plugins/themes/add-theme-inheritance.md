@@ -1,3 +1,10 @@
+---
+nav:
+  title: Theme inheritance
+  position: 90
+
+---
+
 # Theme inheritance
 
 ## Overview
@@ -12,7 +19,7 @@ All you need for this guide is a running Shopware 6 instance and full access to 
 
 ## Extending an existing theme with a new theme
 
-The first step is to create a new theme which will extend the existing `SwagBasicExampleTheme`. Checkout the [Create a first theme](create-a-theme.md) guide if you don't know how to create a new theme. In this guide we call the extending theme `SwagBasicExampleThemeExtend`. After `SwagBasicExampleTheme` was installed, activated and assigned to a sales channel we need to set up the inheritance.
+The first step is to create a new theme which will extend the existing `SwagBasicExampleTheme`. Checkout the [Create a first theme](create-a-theme) guide if you don't know how to create a new theme. In this guide we call the extending theme `SwagBasicExampleThemeExtend`. After `SwagBasicExampleTheme` was installed, activated and assigned to a sales channel we need to set up the inheritance.
 
 ## Set up the inheritance
 
@@ -20,8 +27,8 @@ To set up the inheritance we need to edit the theme configuration file called `t
 
 The content of the `theme.json` file looks like this:
 
-{% code title="<plugin root>/src/Resources/theme.json" %}
-```javascript
+```js
+// <plugin root>/src/Resources/theme.jsonon
 {
   "name": "SwagBasicExampleThemeExtend",
   "author": "Shopware AG",
@@ -45,7 +52,6 @@ The content of the `theme.json` file looks like this:
   ]
 }
 ```
-{% endcode %}
 
 As you can see each section `views`, `style`, `script` and `asset` contains the `@Storefront` placeholder. This means that inheritance is already taking place here. Every theme inherits the default theme of Shopware called `@Storefront`.
 
@@ -53,8 +59,8 @@ Now it is easy to see how we can inherit from our base theme `SwagBasicExampleTh
 
 Here is an example:
 
-{% code title="<plugin root>/src/Resources/theme.json" %}
-```javascript
+```js
+// <plugin root>/src/Resources/theme.jsonon
 {
   "name": "SwagBasicExampleThemeExtend",
   "author": "Shopware AG",
@@ -82,7 +88,6 @@ Here is an example:
   ]
 }
 ```
-{% endcode %}
 
 Let's walk over each section and have a closer look.
 
@@ -90,7 +95,7 @@ In the `views` section we added the placeholder `@SwagBasicExampleTheme` right b
 
 The same applies to the JavaScript `script` section. The javascript of the storefront serves as the basis. On top of this come the extensions of the theme `@SwagBasicExampleTheme`. Finally, the JavaScript that we can implement in the current theme is applied.
 
-The `style` section behaves similarly to the others. The only difference here is the `override.css` can affect SCSS variables e.g. `$border-radius`. That's why it's at the top of the list. To find out more about overriding variables check out the [Override Bootstrap variables in a theme](override-bootstrap-variables-in-a-theme.md) guide.
+The `style` section behaves similarly to the others. The only difference here is the `override.css` can affect SCSS variables e.g. `$border-radius`. That's why it's at the top of the list. To find out more about overriding variables check out the [Override Bootstrap variables in a theme](override-bootstrap-variables-in-a-theme) guide.
 
 Finally, the `asset` section. If you want to use assets from the `@SwagBasicExampleTheme` you have add it to the list here as well.
 
@@ -98,6 +103,5 @@ Finally, the `asset` section. If you want to use assets from the `@SwagBasicExam
 
 Now that you know how the theme inheritance works you can start with own customizations. Here is a list of other related topics where assets can be used.
 
-* [Add SCSS Styling and JavaScript to a theme](add-css-js-to-theme.md)
-* [Customize templates](../plugins/storefront/customize-templates.md)
-
+* [Add SCSS Styling and JavaScript to a theme](add-css-js-to-theme)
+* [Customize templates](../plugins/storefront/customize-templates)

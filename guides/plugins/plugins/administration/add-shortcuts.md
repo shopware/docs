@@ -13,8 +13,8 @@ Of course you'll have to understand JavaScript, but that's a prerequisite for Sh
 
 The following code sample will show you how to register shortcuts in your components with help of the `shortcuts` attribute.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
 ```javascript
+// <plugin root>/src/Resources/app/administration/src/module/swag-example/index.js
 const { Component } = Shopware;
 
 Component.register('swag-basic-example', {
@@ -40,16 +40,15 @@ Component.register('swag-basic-example', {
     }
 });
 ```
-{% endcode %}
 
 The first keyboard shortcut reacts to the key combination of `SYSTEMKEY+S`, only if the the user has the privilege `product.editor`, with the invocation of the component method with the name `myEditProductFunction`.
 The second keyboard shortcut defines that, upon the `ESCAPE` key being pressed, the function with the name `myCancelEditProductFunction` should be invoked.
 
 The before mentioned `SYSTEMKEY` is `CTRL` on macOS and `ALT` on windows, other system-keys like `CTRL` on windows or `⌥` on macOS are not supported.
 
-Since ACL is used in the first keyboard shortcut you might want to learn more about ACL and how to add your own ACL rules [here](./add-acl-rules.md).
+Since ACL is used in the first keyboard shortcut you might want to learn more about ACL and how to add your own ACL rules [here](./add-acl-rules).
 
 ## More interesting topics
 
-* [Writing templates](./writing-templates.md)
-* [Adding styles](./add-custom-styles.md)
+* [Writing templates](./writing-templates)
+* [Adding styles](./add-custom-styles)

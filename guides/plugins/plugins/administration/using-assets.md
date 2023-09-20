@@ -1,3 +1,10 @@
+---
+nav:
+  title: Using assets
+  position: 160
+
+---
+
 # Using assets
 
 ## Overview
@@ -8,7 +15,7 @@ When working with an own plugin, the usage of own custom images or other assets 
 
 In order to be able to start with this guide, you need to have an own plugin running. As to most guides, this guide is also built upon the Plugin base guide:
 
-{% page-ref page="../plugin-base-guide.md" %}
+<PageRef page="../plugin-base-guide" />
 
 Needless to say, you should have your image or another asset at hand to work with.
 
@@ -29,13 +36,12 @@ In order to add your own custom assets, you need to save your assets in the `Res
     └── SwagBasicExample.php
 ```
 
-Similar as in [using custom assets in Storefront](../storefront/add-custom-assets.md), you need to execute the following command:
+Similar as in [using custom assets in Storefront](../storefront/add-custom-assets), you need to execute the following command:
 
-{% code title="" %}
 ```bash
+// 
 bin/console assets:install
 ```
-{% endcode %}
 
 This way, your plugin assets are copied to the `public/bundles` folder:
 
@@ -53,9 +59,8 @@ This way, your plugin assets are copied to the `public/bundles` folder:
 
 After adding your assets to the `public/bundles` folder, you can start using your assets in the administration. Basically, you just need to use the Vue [filter](https://vuejs.org/v2/guide/filters.html) `asset`.
 
-```markup
+```html
 <img :src="'/<plugin root>/static/your-image.png' | asset">
 ```
 
 You're able to use this line in your `twig`/`html` files as you please and that's basically it. You successfully added your own asset to the administration.
-

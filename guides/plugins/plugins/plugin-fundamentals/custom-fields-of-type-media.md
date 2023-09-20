@@ -1,21 +1,27 @@
+---
+nav:
+  title: Using custom fields of type media
+  position: 110
+
+---
+
 # Using custom fields of type media
 
-After you have added a custom field of type media, with the administration or via plugin, you can assign media objects to the different entities. This is often used for products to add more images to the product detail page. If you want to learn more about custom fields you might want to take a look at this guide: [Adding custom fields](custom-fields-of-type-media.md).
+After you have added a custom field of type media, with the administration or via plugin, you can assign media objects to the different entities. This is often used for products to add more images to the product detail page. If you want to learn more about custom fields you might want to take a look at this guide: [Adding custom fields](custom-fields-of-type-media).
 
 ## Overview
 
 In the product detail page template, the key `page.product.translated.customFields.xxx` with the `xxx`, which is replaced with the corresponding custom field, contains the UUID of the media. Now the ID has just to be resolved with the function [searchMedia](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Framework/Adapter/Twig/Extension/MediaExtension.php#L31-L45):
 
-{% code title="platform/src/Core/Framework/Adapter/Twig/Extension/MediaExtension.php" %}
 ```php
+// platform/src/Core/Framework/Adapter/Twig/Extension/MediaExtension.php
 public function searchMedia(array $ids, Context $context): MediaCollection { ... }
 ```
-{% endcode %}
 
 This function resolves out the corresponding media objects for the given IDs in order to continue working with them afterwards. Here is an example with a custom field \(`custom_sports_media_id`\) on the product detail page:
 
-{% code title="<plugin root>/src/Resources/views/storefront/page/content/product-detail.html.twig" %}
 ```text
+// <plugin root>/src/Resources/views/storefront/page/content/product-detail.html.twig
 {% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
 
 {% block page_product_detail_media %}
@@ -31,7 +37,6 @@ This function resolves out the corresponding media objects for the given IDs in 
     {{ dump (sportsMedia) }}
 {% endblock %}
 ```
-{% endcode %}
 
 ## Avoid loops
 
@@ -39,8 +44,8 @@ This function performs a query against the database on every invocation and shou
 
 To read the media objects within the product listing we recommend the following procedure:
 
-{% code title="<plugin root>/src/Resources/views/storefront/component/product/listing.html.twig" %}
 ```text
+// <plugin root>/src/Resources/views/storefront/component/product/listing.html.twig
 {% sw_extends '@Storefront/storefront/component/product/listing.html.twig' %}
 
 {% block element_product_listing_col %}
@@ -69,5 +74,3 @@ To read the media objects within the product listing we recommend the following 
     {% endfor %}
 {% endblock %}
 ```
-{% endcode %}
-

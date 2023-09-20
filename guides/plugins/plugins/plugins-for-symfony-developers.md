@@ -1,3 +1,10 @@
+---
+nav:
+  title: Plugins for Symfony developers
+  position: 20
+
+---
+
 # Plugins for Symfony developers
 
 ## Overview
@@ -6,7 +13,7 @@ This guide serves as an entry point for developers familiar with the concepts of
 
 ## Prerequisites
 
-This guide handles some base concepts of Shopware plugins. Therefore, you may want to have a look at [plugin base guide](plugin-base-guide.md) first.
+This guide handles some base concepts of Shopware plugins. Therefore, you may want to have a look at [plugin base guide](plugin-base-guide) first.
 
 As this guide also references the functionality of Symfony bundles, you should have at least a basic knowledge of it. You may want to have a look or refresh your knowledge with help of Symfony's [bundle documentation](https://symfony.com/doc/current/bundles.html).
 
@@ -20,8 +27,8 @@ Shopware is building upon the `Symfony Bundle System` to extend its functionalit
 
 Whenever you create a Shopware plugin, you have to extend the `Shopware\Core\Framework\Plugin` class. If you investigate this class, you will see that this class extends `Shopware\Core\Framework\Bundle`, which in return extends the Symfony's `Bundle` class:
 
-{% code title="" %}
 ```php
+// 
 class YourNamespace\PluginName extends
 
     // plugin lifecycles
@@ -33,7 +40,6 @@ class YourNamespace\PluginName extends
             // Symfony base bundle
             abstract class Symfony\Component\HttpKernel\Bundle
 ```
-{% endcode %}
 
 As you can see, any Shopware plugin is also a Symfony bundle internally as well, and will be handled as such by Symfony. A plugin adds support for some cases, specific to the Shopware environment. These include, for example, handling plugin migrations and registering Shopware business events.
 
@@ -57,6 +63,5 @@ A Shopware plugin runs through a lifecycle. Your plugin's base class can impleme
 
 Now that you know about the differences between a Symfony bundle and a Shopware plugin, you might also want to have a look into the following Symfony-specific topics and how they are integrated in Shopware 6:
 
-* [Dependency Injection](plugin-fundamentals/dependency-injection.md)
-* [Listening to events](plugin-fundamentals/listening-to-events.md)
-
+* [Dependency Injection](plugin-fundamentals/dependency-injection)
+* [Listening to events](plugin-fundamentals/listening-to-events)

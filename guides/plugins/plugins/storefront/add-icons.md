@@ -1,16 +1,23 @@
+---
+nav:
+  title: Add custom icons
+  position: 70
+
+---
+
 # Add custom icons
 
 ## Overview
 
 In this guide you will learn how to use the icon renderer component as well as adding custom icons.
 
-{% hint style="info" %}
+::: info
 Even if this is originally a plugin guide, everything will work perfectly in a theme as well. Actually, a theme even is a kind of plugin. So don't get confused by us talking about plugins here.
-{% endhint %}
+:::
 
 ## Prerequisites
 
-In order to follow this guide easily, you first need to have a functioning plugin installed. Head over to our [plugin base guide](../plugin-base-guide.md) to create a plugin, if you don't know how it's done yet. Also knowing and understanding SCSS will be quite mandatory to fully understand what's going on here. Furthermore, it might be helpful to read the guide on how to [handle own assets](add-custom-assets.md) in your plugin before you start with this one.
+In order to follow this guide easily, you first need to have a functioning plugin installed. Head over to our [plugin base guide](../plugin-base-guide) to create a plugin, if you don't know how it's done yet. Also knowing and understanding SCSS will be quite mandatory to fully understand what's going on here. Furthermore, it might be helpful to read the guide on how to [handle own assets](add-custom-assets) in your plugin before you start with this one.
 
 ## Adding icon
 
@@ -37,17 +44,17 @@ By default, Shopware looks inside the "default" folder.
 } %}
 ```
 
-{% hint style="info" %}
+::: info
 When you want to see all icons available to the storefront by default, see [here](https://github.com/shopware/platform/tree/trunk/src/Storefront/Resources/app/storefront/dist/assets/icon). They are available as `default` and `solid` icon pack.
-{% endhint %}
+:::
 
 Imagine you want to use the default `checkmark` icon from the `solid` pack. In this case,
 
 You surely want to add your own custom icons. In this case, the `namespace` parameter is the most important one to configure. In there, you need to set the name of the theme in which the icon is searched for by its name.
 
-{% hint style="warning" %}
+::: warning
 If you configure no deviating namespace, Shopware will display the Storefront's default icons.
-{% endhint %}
+:::
 
 However, these are not all of your possibilities of configuration. As you see, you're able to configure even more things. Let's take a look at the `style` object's possible parameters:
 
@@ -78,9 +85,8 @@ A simple but fully functional example could look like below:
 {% endblock %}
 ```
 
-{% hint style="danger" %}
+::: danger
 Icons or other custom assets are not included in the theme inheritance.
-{% endhint %}
+:::
 
 Inside your theme, you cannot put an icon in a directory corresponding the core folder structure and expect the core one to be automatically overwritten by it, as you're used to with themes in general.
-

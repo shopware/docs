@@ -1,3 +1,10 @@
+---
+nav:
+  title: Reading data
+  position: 10
+
+---
+
 # Reading data
 
 ## Overview
@@ -6,8 +13,8 @@ In this guide you'll learn how to properly fetch data from the database in your 
 
 ## Prerequisites
 
-Since this guide is built upon the plugin base guide [plugin base guide](../../plugin-base-guide.md), you might want to have a look at it. Furthermore, the guide about [Dependency injection](../../plugin-fundamentals/dependency-injection.md) will come in handy, since you need to know how to inject a service using the DI container.  
-You also might want to have a look at the concept behind the [Data abstraction layer concept](../../../../../concepts/framework/data-abstraction-layer.md) first to get a better grasp of how it works.
+Since this guide is built upon the plugin base guide [plugin base guide](../../plugin-base-guide), you might want to have a look at it. Furthermore, the guide about [Dependency injection](../../plugin-fundamentals/dependency-injection) will come in handy, since you need to know how to inject a service using the DI container.  
+You also might want to have a look at the concept behind the [Data abstraction layer concept](../../../../../concepts/framework/data-abstraction-layer) first to get a better grasp of how it works.
 
 ## Reading data
 
@@ -20,7 +27,7 @@ Dealing with the Data Abstraction Layer is done by using the automatically gener
 The repository's service name follows this pattern: `entity_name.repository`  
 For products this then would be `product.repository`, so let's do this.
 
-```markup
+```xml
 // SwagBasicExample/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -147,7 +154,7 @@ public function readData(Context $context): void
 
 So now you'll find all products, that either have the mentioned `id` OR the mentioned `name`. The `OrFilter` can be found here: `Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\OrFilter`.
 
-You can find an example for each of the available filters in our [DAL reference about filters](../../../../../resources/references/core-reference/dal-reference/filters-reference.md).
+You can find an example for each of the available filters in our [DAL reference about filters](../../../../../resources/references/core-reference/dal-reference/filters-reference).
 
 #### Post filters
 
@@ -171,7 +178,7 @@ This example does not contain any aggregation, since they're only explained late
 
 **Other filters**
 
-There's more than just an `EqualsFilter`, which is the SQL equivalent of `WHERE fieldX = valueX`. You can find all other filters either on [GitHub](https://github.com/shopware/platform/tree/trunk/src/Core/Framework/DataAbstractionLayer/Search/Filter) or with an explanation in our [filters reference](../../../../../resources/references/core-reference/dal-reference/filters-reference.md).
+There's more than just an `EqualsFilter`, which is the SQL equivalent of `WHERE fieldX = valueX`. You can find all other filters either on [GitHub](https://github.com/shopware/platform/tree/trunk/src/Core/Framework/DataAbstractionLayer/Search/Filter) or with an explanation in our [filters reference](../../../../../resources/references/core-reference/dal-reference/filters-reference).
 
 #### Associations
 
@@ -286,7 +293,7 @@ public function readData(Context $context): void
 
 Important to note here is that you have to remove the `first()` call, because we do **not** need the entity itself but the `EntitySearchResult` here instead. The `AvgAggregation` class can be found here: `Shopware\Core\Framework\DataAbstractionLayer\Search\Aggregation\Metric\AvgAggregation`
 
-A list of all available aggregations can be found on [GitHub](https://github.com/shopware/platform/tree/trunk/src/Core/Framework/DataAbstractionLayer/Search/Aggregation) or in the [DAL aggregations reference](../../../../../resources/references/core-reference/dal-reference/aggregations-reference.md).
+A list of all available aggregations can be found on [GitHub](https://github.com/shopware/platform/tree/trunk/src/Core/Framework/DataAbstractionLayer/Search/Aggregation) or in the [DAL aggregations reference](../../../../../resources/references/core-reference/dal-reference/aggregations-reference).
 
 #### Limiting, paging and sorting
 
@@ -368,5 +375,4 @@ And that's basically it for this guide!
 
 ## Next steps
 
-Now that you know how to read data from the database using the Data Abstraction Layer, you can head over to our guide on [writing data](writing-data.md).
-
+Now that you know how to read data from the database using the Data Abstraction Layer, you can head over to our guide on [writing data](writing-data).

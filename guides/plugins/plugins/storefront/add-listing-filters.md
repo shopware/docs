@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom listing filters
+  position: 110
+
+---
+
 # Add custom listing filters
 
 ## Overview
@@ -8,13 +15,13 @@ In an online shop, filters are an important feature. So you might use filters in
 
 Before you start reading this guide, make sure you got an own plugin installed to work with. If you need a starting point for that, see this guide:
 
-{% page-ref page="../plugin-base-guide.md" %}
+<PageRef page="../plugin-base-guide" />
 
 ## Create new Filter
 
 At first, you need to create a subscriber - in this example we'll call it `ExampleListingSubscriber`. If you're not sure on working with subscribers, please refer to the guide on working with events in Shopware:
 
-{% page-ref page="../plugin-fundamentals/listening-to-events.md" %}
+<PageRef page="../plugin-fundamentals/listening-to-events" />
 
 As usual, we'll start by creating this new class in the same path as you're seeing in Shopware's core - `/src/Subscriber/ExampleListingSubscriber.php`.
 
@@ -63,8 +70,8 @@ $filter = new Filter(
 
 Inside the `ProductListingCollectFilterEvent`, you get the existing filters, can define your new custom filters and merge them into the existing ones. Here is a complete example implementation, adding a filter on the product information `isCloseout`. Please note the comments for explanation:
 
-{% code title="<plugin root>/src/Subscriber/ExampleListingSubscriber.php" %}
 ```php
+// <plugin root>/src/Subscriber/ExampleListingSubscriber.php
 class ExampleListingSubscriber implements EventSubscriberInterface
 {
     // register event
@@ -99,7 +106,6 @@ class ExampleListingSubscriber implements EventSubscriberInterface
                 ),
             ],
 
-
             // defines the DAL filter which should be added to the criteria   
             new EqualsFilter('product.isCloseout', true),
 
@@ -112,7 +118,6 @@ class ExampleListingSubscriber implements EventSubscriberInterface
     }
 }
 ```
-{% endcode %}
 
 ## Add your filter to the Storefront UI
 
@@ -120,12 +125,12 @@ Well, fine - you successfully created a filter via subscriber. However, you want
 
 Let's use the last filter to extend this template with our filter. If you're not sure on how to customize templates in the storefront, we got you covered with another guide:
 
-{% page-ref page="customize-templates.md" %}
+<PageRef page="customize-templates" />
 
 For example, let's use the last filter: It's the shipping free one, with the block `component_filter_panel_item_shipping_free`. Including our filter will be done as seen below, please take the comments into account:
 
-{% code title="<plugin root>/src/Subscriber/ExampleListingSubscriber.php" %}
 ```text
+// <plugin root>/src/Subscriber/ExampleListingSubscriber.php
 {% sw_extends '@Storefront/storefront/component/listing/filter-panel.html.twig' %}
 
 {% block component_filter_panel_item_shipping_free %}
@@ -138,7 +143,6 @@ For example, let's use the last filter: It's the shipping free one, with the blo
     } %}
 {% endblock %}
 ```
-{% endcode %}
 
 As we want to filter a boolean value, we choose the `filter-boolean` component here. Sure, there are some more you can use - dependent on your filter's values:
 
@@ -154,5 +158,4 @@ As we want to filter a boolean value, we choose the `filter-boolean` component h
 
 Are you interested in adding custom sorting options to your listing in the storefront as well? Head over to the corresponding guide to learn more about that:
 
-{% page-ref page="add-custom-sorting-product-listing.md" %}
-
+<PageRef page="add-custom-sorting-product-listing" />

@@ -1,12 +1,19 @@
+---
+nav:
+  title: Field Configuration
+  position: 20
+
+---
+
 # Field Configuration
 
-With the [relevance](relevance.md), the enterprise search offers the possibilities to customize the searched fields.
+With the [relevance](relevance), the enterprise search offers the possibilities to customize the searched fields.
 
 Here, we want to give you brief information about the internal usage of the different Elasticsearch functionalities, which are used for the full text search of the enterprise search.
 
 ## Filter
 
-The Enterprise Search adds some additional filters, which will be used by the [analyzer](field-config.md#analyzer).
+The Enterprise Search adds some additional filters, which will be used by the [analyzer](field-config#analyzer).
 
 1. **Numeric-Char-Filter \(`sesNumericCharFilter`\)**
 
@@ -44,7 +51,7 @@ When words are separated by one of these characters, the special character is re
 
 3. **Synonym \(`ses_synonym`\)**
 
-   In the Enterprise Search you can define synonyms, these [synonyms](synonyms.md) were used by the search analyzer.
+   In the Enterprise Search you can define synonyms, these [synonyms](synonyms) were used by the search analyzer.
 
 ## Analyzer
 
@@ -77,4 +84,3 @@ In addition to the Shopware Elasticsearch default analyzer, the Enterprise Searc
    Is the default [search analyzer](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-analyzer.html) for the search words.
 
    Filters which were used: `synonym`
-

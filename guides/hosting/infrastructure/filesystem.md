@@ -1,3 +1,10 @@
+---
+nav:
+  title: Filesystem
+  position: 10
+
+---
+
 # Filesystem
 
 ## Overview
@@ -123,4 +130,3 @@ class MyFlysystemAdapterFactory implements AdapterFactoryInterface
 ```
 
 This new class needs to be registered in the DI with the tag `shopware.filesystem.factory` to be useable.
-

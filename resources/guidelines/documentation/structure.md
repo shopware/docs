@@ -1,3 +1,10 @@
+---
+nav:
+  title: Structure
+  position: 10
+
+---
+
 # Structure
 
 Our documentation follows a structure which provides different levels of detail, abstraction and focus. In order to give our readers a good experience, we're also establishing guidelines for writing documentation in the different sections.
@@ -32,4 +39,3 @@ Example - A Guide _"How to create a custom cart processor"_ might contain terms 
 ### Resources
 
 Resources contain structured documentation, such as API references, tooling, links, SDKs, libraries but also guidelines for contribution, publishing.
-

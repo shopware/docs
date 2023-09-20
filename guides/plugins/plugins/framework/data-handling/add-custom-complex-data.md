@@ -1,3 +1,10 @@
+---
+nav:
+  title: Adding custom complex data
+  position: 30
+
+---
+
 # Adding custom complex data
 
 ## Overview
@@ -6,7 +13,7 @@ Quite often, your plugin has to save data into a custom database table. Shopware
 
 ## Prerequisites
 
-This guide is built upon the [plugin base guide](../../plugin-base-guide.md), but any plugin will work here. Just note that all examples are using the plugin mentioned above. In order to create a database table, you need to understand plugin migrations [Plugin migrations](../../plugin-fundamentals/database-migrations.md). Also, you'll have to understand how the [dependency injection](../../plugin-fundamentals/dependency-injection.md) works as well.
+This guide is built upon the [plugin base guide](../../plugin-base-guide), but any plugin will work here. Just note that all examples are using the plugin mentioned above. In order to create a database table, you need to understand plugin migrations [Plugin migrations](../../plugin-fundamentals/database-migrations). Also, you'll have to understand how the [dependency injection](../../plugin-fundamentals/dependency-injection) works as well.
 
 ## Creating the database
 
@@ -14,10 +21,10 @@ We'll start with creating a new database table. Make sure to always add your ind
 
 In this guide we'll name our table `swag_example`, you'll find this name a few more times in here, so make sure to remember that one.
 
-As already mentioned in the prerequisites, creating a database table is done via plugin migrations [Plugin migrations](../../plugin-fundamentals/database-migrations.md), head over to this guide to understand how this example works.
+As already mentioned in the prerequisites, creating a database table is done via plugin migrations [Plugin migrations](../../plugin-fundamentals/database-migrations), head over to this guide to understand how this example works.
 
-{% code title="<plugin root>/src/Migration/Migration1611664789Example.php" %}
 ```php
+// <plugin root>/src/Migration/Migration1611664789Example.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Migration;
@@ -56,7 +63,6 @@ SQL;
     }
 }
 ```
-{% endcode %}
 
 After reinstalling your plugin, you should see your new database table `swag_example`.
 
@@ -71,8 +77,8 @@ This will also be the case for the `Entity` class itself, as well as the `Entity
 
 Start of with creating a new file named `ExampleDefinition.php` in the directory `<plugin root>/src/Core/Content/Example/ExampleDefinition.php`. Below you'll see our example defininition, which is explained afterwards:
 
-{% code title="<plugin root>/src/Core/Content/Example/ExampleDefinition.php" %}
 ```php
+// <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Example;
@@ -95,7 +101,6 @@ class ExampleDefinition extends EntityDefinition
     }
 }
 ```
-{% endcode %}
 
 First of all, your own definition has to extend from the class `Shopware\Core\Framework\DataAbstractionLayer\EntityDefinition`, which enforces you to implement two methods: `getEntityName` and `defineFields`.
 
@@ -108,8 +113,8 @@ The method `defineFields` contains all the fields, that your entity or table con
 
 As you can see in your migration, your table consists of the following fields: You've got an `id` field, a `name` field, a `description` and an `active` field. Other than that, the other two columns `created_at` and `updated_at` don't have to be defined in your definition, since they're included by default. You're asked to return a `Shopware\Core\Framework\DataAbstractionLayer\FieldCollection` instance here, which then has to contain an array of your fields. There's several field classes, e.g. an `Shopware\Core\Framework\DataAbstractionLayer\Field\IdField` or a `Shopware\Core\Framework\DataAbstractionLayer\Field\StringField`, which you have to create and pass into the `FieldCollection`, so let's do that.
 
-{% code title="<plugin root>/src/Core/Content/Example/ExampleDefinition.php" %}
 ```php
+// <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Example;
@@ -142,7 +147,6 @@ class ExampleDefinition extends EntityDefinition
     }
 }
 ```
-{% endcode %}
 
 As you can see, we've implemented an `IdField` for the `id` column, a `StringField` for the `name` and the `description`, as well as a `BoolField` for the `active` column. Most `Field` classes ask for two parameters, such as the `IdField`:
 
@@ -153,13 +157,13 @@ The `storageName` is written in snake\_case, while the `propertyName` must be wr
 
 Another thing to note is the `addFlags` call on the `IdField`. Those flags are like attributes to fields, such a required field being marked by using the `Required` flag.
 
-If you want to know more about the flags and how to use them, head over to our guide on how to use flags [Using flags](using-flags.md).
+If you want to know more about the flags and how to use them, head over to our guide on how to use flags [Using flags](using-flags).
 
-All that's left to do now, is to introduce your `ExampleDefinition` to Shopware by registering your class in your `services.xml` file and by using the `shopware.entity.definition` tag, because Shopware is looking for definitions this way. If your plugin does not have a `services.xml` file yet or you don't know how that's done, head over to our guide about registering a custom service [Add a custom class / service](../../plugin-fundamentals/add-custom-service.md) or our guide about the [Dependency injection](../../plugin-fundamentals/dependency-injection.md).
+All that's left to do now, is to introduce your `ExampleDefinition` to Shopware by registering your class in your `services.xml` file and by using the `shopware.entity.definition` tag, because Shopware is looking for definitions this way. If your plugin does not have a `services.xml` file yet or you don't know how that's done, head over to our guide about registering a custom service [Add a custom class / service](../../plugin-fundamentals/add-custom-service) or our guide about the [Dependency injection](../../plugin-fundamentals/dependency-injection).
 
 Here's the `services.xml` as it should look like:
 
-```markup
+```xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -175,7 +179,7 @@ Here's the `services.xml` as it should look like:
 
 Please note the tag for your definition and the respective `entity` attribute, which has to contain the technical name of your entity, which you provided in your entity definition. In this case this must be `swag_example`.
 
-And basically that's it already for your definition class. Theoretically you could start using your entity now by injecting the `swag_example.repository` service to other services and start working with the repository, e.g. to [read data](reading-data.md) or to [write data](writing-data.md).
+And basically that's it already for your definition class. Theoretically you could start using your entity now by injecting the `swag_example.repository` service to other services and start working with the repository, e.g. to [read data](reading-data) or to [write data](writing-data).
 
 Yet, we highly recommend you to create a custom `Entity` class, as well as a custom `EntityCollection` class. This is not mandatory, but those will be replaced with generic classes otherwise.
 
@@ -183,8 +187,8 @@ Yet, we highly recommend you to create a custom `Entity` class, as well as a cus
 
 The entity class itself is a simple key-value object, like a struct, which contains as many properties as fields in the definition, ignoring the ID field, which is handled by the `EntityIdTrait`.
 
-{% code title="<plugin root>/src/Core/Content/Example/ExampleEntity.php" %}
 ```php
+// <plugin root>/src/Core/Content/Example/ExampleEntity.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Example;
@@ -241,14 +245,13 @@ class ExampleEntity extends Entity
     }
 }
 ```
-{% endcode %}
 
 As you can see, it only holds the properties and its respective getters and setters, for the fields mentioned in the `EntityDefinition` class.
 
 Now you need your definition to know its custom entity class. This is done by overriding the method `getEntityClass` in your `ExampleDefinition`.
 
-{% code title="<plugin root>/src/Core/Content/Example/ExampleDefinition.php" %}
 ```php
+// <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 class ExampleDefinition extends EntityDefinition
 {
     [...]
@@ -259,7 +262,6 @@ class ExampleDefinition extends EntityDefinition
     }
 }
 ```
-{% endcode %}
 
 That's it. Instead of generic `ArrayEntity` instances, you'll get `ExampleEntity` class instances now if you were to read your data using the repository.
 
@@ -271,8 +273,8 @@ So create a `ExampleCollection` class in the same directory as your `ExampleDefi
 
 This is how your collection class could then look like:
 
-{% code title="<plugin root>/src/Core/Content/Example/ExampleCollection.php" %}
 ```php
+// <plugin root>/src/Core/Content/Example/ExampleCollection.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Bundle;
@@ -296,14 +298,13 @@ class ExampleCollection extends EntityCollection
     }
 }
 ```
-{% endcode %}
 
 The class documentation is just another helper to have a proper auto-completion when working with your `ExampleCollection`.
 
 Now it's time to introduce your custom collection to your `ExampleDefinition` again. This is done by overriding its `getCollectionClass` method.
 
-{% code title="<plugin root>/src/Core/Content/Example/ExampleDefinition.php" %}
 ```php
+// <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 class ExampleDefinition extends EntityDefinition
 {
     [...]
@@ -314,7 +315,6 @@ class ExampleDefinition extends EntityDefinition
     }
 }
 ```
-{% endcode %}
 
 That's it, your definition is now completely registered to Shopware 6! From here on your custom entity is accessible throughout the API and you can fully use it for CRUD operations with its repository.
 
@@ -322,7 +322,6 @@ That's it, your definition is now completely registered to Shopware 6! From here
 
 You've now got a simple entity about a single database table. However, your entity will most likely be even more complex.
 
-For example we also have a guide about [associations](add-data-associations.md), since you most likely will have multiple tables that have a relation to each other. Furthermore, the fields in this example are already using flags, which are explained [here](using-flags.md). When dealing with products, you're also dealing with [inheritance](field-inheritance.md), which we also got covered.
+For example we also have a guide about [associations](add-data-associations), since you most likely will have multiple tables that have a relation to each other. Furthermore, the fields in this example are already using flags, which are explained [here](using-flags). When dealing with products, you're also dealing with [inheritance](field-inheritance), which we also got covered.
 
-One more thing: Maybe you want to connect your database table to an already existing database table, hence an already existing entity. This is done by [extending the said existing entity](add-complex-data-to-existing-entities.md).
-
+One more thing: Maybe you want to connect your database table to an already existing database table, hence an already existing entity. This is done by [extending the said existing entity](add-complex-data-to-existing-entities).

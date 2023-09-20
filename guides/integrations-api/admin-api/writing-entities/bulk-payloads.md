@@ -1,3 +1,10 @@
+---
+nav:
+  title: Bulk Payloads
+  position: 20
+
+---
+
 # Bulk Payloads
 
 ## Overview
@@ -220,4 +227,3 @@ You can control the behaviour using the following headers:
     }
 }
 ```
-

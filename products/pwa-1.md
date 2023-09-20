@@ -1,8 +1,14 @@
+---
+nav:
+  title: PWA
+  position: 20
+
+---
+
 # PWA
 
 If you think about providing a decoupled storefront for customers you can use **Shopware PWA** as a base to do that. It is a Single Page Application based on JavaScript and Vue.js, that already integrates a whole lot of the Shopware functionality you know into a very extensible frontend application.
 
-Shopware PWA is based on the [Store API](../concepts/api/store-api.md).
+Shopware PWA is based on the [Store API](../concepts/api/store-api).
 
-{% embed url="https://shopware-pwa-docs.vuestorefront.io" caption="" %}
-
+<PageRef page="https://shopware-pwa-docs.vuestorefront.io" title="PWA" target="_blank" />

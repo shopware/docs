@@ -1,3 +1,10 @@
+---
+nav:
+  title: Create a first theme
+  position: 20
+
+---
+
 # Create a first theme
 
 ## Overview
@@ -18,9 +25,9 @@ First, you need to find a name for your theme. We're talking about a technical n
 Shopware uses "Swag" as a prefix for that case.  
 For this example guide we'll use the theme name **SwagBasicExampleTheme.**
 
-{% hint style="info" %}
+::: info
 Notice: The name of a theme must begin with a capital letter too!
-{% endhint %}
+:::
 
 ### Create a plugin-based theme
 
@@ -130,7 +137,6 @@ Now your theme is fully installed, and you can start your customization.
 
 Now that you have created your own theme, the next step is to learn how to make settings and adjustments.
 
-* [Theme configuration](theme-configuration.md) 
-* [Add SCSS Styling and JavaScript to a theme](add-css-js-to-theme.md)
-* [Add assets to theme](add-assets-to-theme.md)
-
+* [Theme configuration](theme-configuration) 
+* [Add SCSS Styling and JavaScript to a theme](add-css-js-to-theme)
+* [Add assets to theme](add-assets-to-theme)

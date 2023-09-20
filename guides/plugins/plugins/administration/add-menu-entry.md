@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add menu entry
+  position: 40
+
+---
+
 # Add menu entry
 
 ## Overview
@@ -8,30 +15,29 @@ When it comes to the module configuration, the menu entry is one of the mos impo
 
 This guide **does not** explain how to create a new plugin for Shopware 6. Head over to our Plugin base guide to learn how to create a plugin at first:
 
-{% page-ref page="../plugin-base-guide.md" %}
+<PageRef page="../plugin-base-guide" />
 
 Especially if you want to add a new page for an own module, you should consider to look at the process on how to add a custom module first.
 
-{% page-ref page="add-custom-module.md" %}
+<PageRef page="add-custom-module" />
 
 ## Creating a simple menu entry
 
 This menu entry can be defined in your module configuration. Remember, your module configuration looks as seen below:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
 ```javascript
+// <plugin root>/src/Resources/app/administration/src/module/swag-example/index.js
 Shopware.Module.register('swag-plugin', {
     // configuration here
 });
 ```
-{% endcode %}
 
 In order to create your own menu entry, you need to use the `navigation` key: It takes an array of objects, each one configuring a route connected to your module.
 
 So let's define a menu entry using the `navigation` key in your module configuration. It takes an array of objects, each one configuring a route connected to your module:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
 ```javascript
+// <plugin root>/src/Resources/app/administration/src/module/swag-example/index.js
 navigation: [{
     label: 'CustomModule',
     color: '#ff3d58',
@@ -40,7 +46,6 @@ navigation: [{
     position: 100
 }]
 ```
-{% endcode %}
 
 As you see, you are able to configure several things in there:
 
@@ -58,8 +63,8 @@ Of course there's more to be configured here, but more's not necessary for this 
 
 Due to UX reasons, we're not supporting plugin modules to add new menu entries on the first level of the main menu. Please use the "parent" property inside your navigation object to define the category where you want your menu entry will be appended to:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
 ```javascript
+// <plugin root>/src/Resources/app/administration/src/module/swag-example/index.js
 navigation: [{
     label: 'CustomModule',
     color: '#ff3d58',
@@ -69,11 +74,9 @@ navigation: [{
     position: 100
 }]
 ```
-{% endcode %}
 
 If you're planning to publish your plugin to the Shopware Store keep in mind we're rejecting plugins which have created their own menu entry on the first level.
 
-{% hint style="info" %}
+::: info
 If you're planning to publish your plugin to the Shopware Store keep in mind we're rejecting plugins which have created their own menu entry on the first level.
-{% endhint %}
-
+:::

@@ -1,12 +1,19 @@
+---
+nav:
+  title: The Shopware object
+  position: 260
+
+---
+
 # The Shopware object
 
 ## Overview
 
 The global `Shopware` object is the bridge between the Shopware Administration and your plugin as third party code. It provides utility functions to interface to the rest of the Administration.
 
-{% hint style="warning" %}
+::: warning
 Don't try to access other parts of the administration directly, always use the `Shopware` object.
-{% endhint %}
+:::
 
 It is bound to a window object in order to be accessible everywhere and can therefore be inspected with the browser console in the developer tools. To take a look at it, open the `Administration` in your browser and run this in the dev-tools console:
 
@@ -29,7 +36,7 @@ Component.register('sw-dashboard-index', {
 });
 ```
 
-Learn more about them here: [Creating administration component](add-custom-component.md)
+Learn more about them here: [Creating administration component](add-custom-component)
 
 ## Module
 
@@ -41,7 +48,7 @@ const { Module } = Shopware;
 Module.register('your-module', {});
 ```
 
-Learn more about them here: [Creating administration module](add-custom-module.md)
+Learn more about them here: [Creating administration module](add-custom-module)
 
 ## A more general overview
 
@@ -67,5 +74,4 @@ We now have discussed the most commonly used parts of the `Shopware` object, but
 
 ## Next steps
 
-As you might have noticed, the `Shopware` object can be used in a lot of cases. Besides registering components and modules, here are some guides about [adding filters](add-filter.md), about [adding mixins](add-mixins.md) and about [using our utils](using-utils.md) - all by using the Shopware object.
-
+As you might have noticed, the `Shopware` object can be used in a lot of cases. Besides registering components and modules, here are some guides about [adding filters](add-filter), about [adding mixins](add-mixins) and about [using our utils](using-utils) - all by using the Shopware object.

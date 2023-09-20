@@ -1,3 +1,10 @@
+---
+nav:
+  title: Flags Reference
+  position: 20
+
+---
+
 # Flags Reference
 
 | Name | Description |
@@ -19,4 +26,3 @@
 | SetNullOnDeleteField | Flags "SetNullOnDelete" |
 | SinceField | Flags "Since" |
 | WriteProtectedField | Flags "WriteProtected" |
-

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Storefront Controller
+  position: 130
+
+---
+
 # Storefront Controller
 
 ## Controller
@@ -28,4 +35,3 @@
 
 * Write operations should create their response with the `createActionResponse` function to allow different forwards and redirects
 * Each write operation has to call a corresponding store-api route
-

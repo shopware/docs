@@ -1,10 +1,17 @@
+---
+nav:
+  title: Products
+  position: 20
+
+---
+
 # Products
 
 Products are sellable items within your shop. Depending on your setup, Shopware can handle up to 10.000s of products, with some tweaks even beyond that. However, it depends on other factors like the number of categories, sales channels or product properties.
 
 Let's start with the product data model
 
-![Condensed overview of the product data model](../../../.gitbook/assets/image%20%288%29.png)
+![Condensed overview of the product data model](../../../.gitbook/assets/image-8.png)
 
 You can see, that besides their relation to categories, products can also link to a set of _property group options_.
 
@@ -18,7 +25,7 @@ Exemplary property groups \(e.g. for garments\) are _Size_, _Color_ or _Material
 
 Different variations of a product can be modeled using _product variants_. Products are a self-referencing entity, which is interpreted as a parent-child relationship. This mechanism is also used to model variants. Nicely this also provides inheritance between field values from parent products to child products.
 
-![Variant model](../../../.gitbook/assets/image%20%2810%29.png)
+![Variant model](../../../.gitbook/assets/image-10.png)
 
 However, next to the field inheritance, it is also useful to attach some additional properties to be able to differ product variants. For that reason, it is critical to understand the difference between _properties_ and _options_:
 
@@ -38,5 +45,4 @@ It is important to understand the difference between those two, because both pro
 
 ### Configurator
 
-When a variant product is loaded for a [Store API](../../api/store-api.md)-scoped request, Shopware assembles a configurator object which includes all different property groups and the corresponding variants. This way client applications, such as the [Storefront](../../../guides/plugins/plugins/storefront/) or the [PWA](../../../products/pwa-1.md) can display the different variant options of the product.
-
+When a variant product is loaded for a [Store API](../../api/store-api)-scoped request, Shopware assembles a configurator object which includes all different property groups and the corresponding variants. This way client applications, such as the [Storefront](../../../guides/plugins/plugins/storefront/) or the [PWA](../../../products/pwa-1) can display the different variant options of the product.

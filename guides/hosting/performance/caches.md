@@ -1,3 +1,10 @@
+---
+nav:
+  title: HTTP Cache
+  position: 10
+
+---
+
 # HTTP Cache
 
 There are several caches in shopware which can be used to optimize the performance. This page gives a brief overview and shows how to configure them.
@@ -17,7 +24,7 @@ The HTTP cache configuration takes place completely in the .env file. The follow
 
 ### How to trigger the http cache warmer
 
-To warm up the HTTP cache you can simply use the console command `http:cache:warm:up`. This command sends a message to the message queue for each sales channel domain to warm it up as fast as possible. It is important that queue workers are started according to our [message queue](../infrastructure/message-queue.md).
+To warm up the HTTP cache you can simply use the console command `http:cache:warm:up`. This command sends a message to the message queue for each sales channel domain to warm it up as fast as possible. It is important that queue workers are started according to our [message queue](../infrastructure/message-queue).
 
 ### How to change the cache storage
 
@@ -98,4 +105,3 @@ twig:
 ```
 
 If you want to know more about caching in twig, take a look at the [Twig for Developers](https://twig.symfony.com/doc/3.x/api.html#) page in the twig documentation.
-

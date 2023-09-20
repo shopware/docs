@@ -1,3 +1,10 @@
+---
+nav:
+  title: Use CSRF protection
+  position: 170
+
+---
+
 # Use CSRF protection
 
 ## Overview
@@ -14,7 +21,7 @@ Knowing what exactly CSRF is and how the attack works may come in handy, so you 
 
 As already mentioned, this guide assumed you've already got a custom form running, which needs CSRF protection. The following will be the example form we're going to use:
 
-```markup
+```html
 <form action="{{ path('some.action') }}"
     method="post"
     class="some-form-class">
@@ -27,11 +34,11 @@ As already mentioned, this guide assumed you've already got a custom form runnin
 
 Just a basic form with a submit button and a hidden input, that must not be manipulated.
 
-Every storefront `POST` request is checked for a valid CSRF token to prevent [Cross Site Request Forgery attacks](https://owasp.org/www-community/attacks/csrf), since by default every Storefront route is automatically looking for a CSRF token. This also means, that the simple example form mentioned above will not work, since it's missing a CSRF token. You can make the form work, by [disabling the CSRF protection](use-csrf-protection.md#Exclude%20controller%20action%20from%20CSRF%20checks) on your route.
+Every storefront `POST` request is checked for a valid CSRF token to prevent [Cross Site Request Forgery attacks](https://owasp.org/www-community/attacks/csrf), since by default every Storefront route is automatically looking for a CSRF token. This also means, that the simple example form mentioned above will not work, since it's missing a CSRF token. You can make the form work, by [disabling the CSRF protection](use-csrf-protection#Exclude%20controller%20action%20from%20CSRF%20checks) on your route.
 
 Protecting it now with the built-in tools requires you to add two new lines, but let's have a look at a secure example first:
 
-```markup
+```html
 <form action="{{ path('some.action') }}"
     method="post"
     class="some-form-class">
@@ -69,14 +76,13 @@ Therefore, the two new lines are the following:
 
 CSRF protection can be configured via [Symfony configuration files](https://symfony.com/doc/current/configuration.html).
 
-{% code title="<platform root>/src/Storefront/Resources/config/packages/storefront.yaml" %}
 ```yaml
+// <platform root>/src/Storefront/Resources/config/packages/storefront.yaml
 storefront:
     csrf:
         enabled: true   // true/false to turn protection on/off
         mode: twig      // Valid modes are `twig` or `ajax`
 ```
-{% endcode %}
 
 ## Exclude controller action from CSRF checks
 
@@ -89,11 +95,10 @@ As previously said, each Storefront route is looking for a CSRF token by default
 public function exampleAction() {}
 ```
 
-{% hint style="danger" %}
+::: danger
 Be aware that this is not recommended and could create a security vulnerability!
-{% endhint %}
+:::
 
 ## Caching and CSRF
 
 The default configuration for the `csrf` mode is `twig` and works fine with the shopware http cache. If an external cache \(e.g. varnish\) is used, the mode needs to be `ajax`. A valid CRSF token is then fetched before a `POST` request and appended.
-

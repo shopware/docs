@@ -1,3 +1,10 @@
+---
+nav:
+  title: Best practises on writing end-to-end tests
+  position: 10
+
+---
+
 # Best practises on writing end-to-end tests
 
 A typical E2E test can be complex, with a large number of steps that take a lot of time to complete manually. Because of this complexity, E2E tests can be difficult to automate and slow to execute. The following tips can help reduce the cost and pain of E2E testing and still reap the benefits.
@@ -76,4 +83,3 @@ cy.wait('@getData').then((xhr) => {
     expect(xhr).to.have.property('status', 200);
 });
 ```
-

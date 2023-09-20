@@ -1,3 +1,10 @@
+---
+nav:
+  title: Product
+  position: 10
+
+---
+
 # Product
 
 ## Fetch a single product
@@ -13,25 +20,27 @@ Identifier of a product. If it points to a "parent" product, it returns the chea
 
 **Body**
 
-[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) \| Criteria \| optional
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria) \| Criteria \| optional
 
 ### Returns
 
 Returns a single product together with a configurator object that contains its variant options.
 
-{% tabs %}
-{% tab title="200 OK" %}
-```javascript
+<Tabs>
+<Tab title="200 OK">
+
+```json
 {
   "apiAlias": "product_detail",
   "product": { ... }
   "configurator": []
 }
 ```
-{% endtab %}
+</Tab>
 
-{% tab title="404 Not Found" %}
-```javascript
+<Tab title="404 Not Found">
+
+```json
 {
   "errors": [
     {
@@ -48,8 +57,8 @@ Returns a single product together with a configurator object that contains its v
   ]
 }
 ```
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Fetch a list of products by category
 
@@ -64,15 +73,16 @@ Identifier of a category.
 
 **Body**
 
-[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) \| Criteria \| optional
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria) \| Criteria \| optional
 
 ### Returns
 
 Returns a product listing containing all products and additional fields to display a listing.
 
-{% tabs %}
-{% tab title="200 OK" %}
-```javascript
+<Tabs>
+<Tab title="200 OK">
+
+```json
 {
   "sorting": "name-asc",
   "currentFilters": { ... },
@@ -86,8 +96,8 @@ Returns a product listing containing all products and additional fields to displ
   "apiAlias": "product_listing"
 }
 ```
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Fetch a list of products by criteria
 
@@ -97,15 +107,16 @@ Returns a product listing containing all products and additional fields to displ
 
 **Body**
 
-[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) \| Criteria \| optional
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria) \| Criteria \| optional
 
 ### Returns
 
 Returns a search result containing products, aggregations and pagination properties.
 
-{% tabs %}
-{% tab title="200 OK" %}
-```javascript
+<Tabs>
+<Tab title="200 OK">
+
+```json
 {
   "total": 1,
   "aggregations": [],
@@ -115,8 +126,8 @@ Returns a search result containing products, aggregations and pagination propert
   "apiAlias": "dal_entity_search_result"
 }
 ```
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Fetch cross-selling groups of a product
 
@@ -131,14 +142,15 @@ Identifier of a product.
 
 **Body**
 
-[`includes`](../../../../guides/integrations-api/general-concepts/search-criteria.md#includes-apialias) \| object \| optional
+[`includes`](../../../../guides/integrations-api/general-concepts/search-criteria#includes-apialias) \| object \| optional
 
 ### Returns
 
 Returns a list of cross-selling groups for the given product including their respective items.
 
-{% tabs %}
-{% tab title="200 OK" %}
+<Tabs>
+<Tab title="200 OK">
+
 ```javascript
 [
   {
@@ -172,8 +184,8 @@ Returns a list of cross-selling groups for the given product including their res
   }
 ]
 ```
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Search for products
 
@@ -188,7 +200,7 @@ Returns a list of cross-selling groups for the given product including their res
 **`search`** \| string \| required  
 Term to search after.
 
-[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) \| Criteria \| optional
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria) \| Criteria \| optional
 
 ### Returns
 
@@ -196,9 +208,10 @@ Returns a product listing including all products that match your search term. Ad
 
 When you're using the /search-suggest endpoint, aggregations, currentFilters and availableSortings are not included in the response.
 
-{% tabs %}
-{% tab title="200 OK" %}
-```javascript
+<Tabs>
+<Tab title="200 OK">
+
+```json
 {
   "sorting": "score",
   "currentFilters": { ... },
@@ -222,8 +235,8 @@ When you're using the /search-suggest endpoint, aggregations, currentFilters and
   "apiAlias": "product_listing"
 }
 ```
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Fetch product reviews
 
@@ -238,15 +251,16 @@ Identifier of a product.
 
 **Body**
 
-[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria.md) \| Criteria \| optional
+[`Search Criteria`](../../../../guides/integrations-api/general-concepts/search-criteria) \| Criteria \| optional
 
 ### Returns
 
 Returns a search result containing all reviews for the given product.
 
-{% tabs %}
-{% tab title="200 OK" %}
-```javascript
+<Tabs>
+<Tab title="200 OK">
+
+```json
 {
   "total": 1,
   "aggregations": [],
@@ -280,8 +294,8 @@ Returns a search result containing all reviews for the given product.
   "apiAlias": "dal_entity_search_result"
 }
 ```
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Save product reviews
 
@@ -292,7 +306,7 @@ Returns a search result containing all reviews for the given product.
 **Header**
 
 **`sw-context-token`** \| string \| required  
-Context token of a [logged in](../../../../guides/integrations-api/store-api-guide/register-a-customer.md#logging-in) user.
+Context token of a [logged in](../../../../guides/integrations-api/store-api-guide/register-a-customer#logging-in) user.
 
 **Path**
 
@@ -308,7 +322,7 @@ Identifier of a product.
 Identifier of a product.
 
 `id` \| uuid \| optional  
-Used for edits only. The review will be updated, if it's created by the [logged in](../../../../guides/integrations-api/store-api-guide/register-a-customer.md#logging-in) user.
+Used for edits only. The review will be updated, if it's created by the [logged in](../../../../guides/integrations-api/store-api-guide/register-a-customer#logging-in) user.
 
 `name` \| string \| optional  
 Name of the reviewer. If not set, it defaults to the customer's first name.
@@ -323,11 +337,11 @@ Identifier of a product.
 
 Returns an empty when the response was created or modified.
 
-{% tabs %}
-{% tab title="204 No Content" %}
+<Tabs>
+<Tab title="204 No Content">
+
 ```javascript
 // No Content
 ```
-{% endtab %}
-{% endtabs %}
-
+</Tab>
+</Tabs>

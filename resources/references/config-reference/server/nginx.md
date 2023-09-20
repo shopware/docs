@@ -1,8 +1,15 @@
+---
+nav:
+  title: Nginx
+  position: 20
+
+---
+
 # Nginx
 
-{% hint style="info" %}
+::: info
 The document root must always point to the public folder, to ensure all functionality works.
-{% endhint %}
+:::
 
 ```text
 server {
@@ -71,4 +78,3 @@ server {
     }
 }
 ```
-

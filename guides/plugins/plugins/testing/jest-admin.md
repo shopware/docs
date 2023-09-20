@@ -1,3 +1,10 @@
+---
+nav:
+  title: Jest unit tests in Shopware's administration
+  position: 20
+
+---
+
 # Jest unit tests in Shopware's administration
 
 ## Overview
@@ -12,13 +19,13 @@ We are using [Jest](https://jestjs.io) as our testing framework. It's a solid fo
 
 Did you know that there's a video available to this topic? Please take a look:
 
-{% embed url="https://www.youtube.com/watch?v=nWUBK3fjwVg" caption="" %}
+<YoutubeRef video="nWUBK3fjwVg" title="Writing unit tests with Jest (Developer Tutorial) - YouTube" target="_blank" />
 
 ## Prerequisites
 
 This tutorial will have a strong focus on how unit tests should be written when it comes to components in the administration. So please make sure you already know what a unit test is and why we are doing it. Furthermore, you should know what components tests are and what we want to achieve with them. You can find a good source for best practices in this Github repository:
 
-{% embed url="https://github.com/goldbergyoni/javascript-testing-best-practices" caption="" %}
+<PageRef page="https://github.com/goldbergyoni/javascript-testing-best-practices" title="Javascript testing - best practices @ GitHub" target="_blank" />
 
 In addition, you need a running Shopware 6 installation. Your repository used for that should be based on development template, as we need to use some scripts provided by it.
 
@@ -45,8 +52,8 @@ Services and isolated ECMAScript modules are well testable because you can impor
 
 Let's have a look at an example:
 
-{% code title="sanitizer.helper.spec.js" %}
 ```javascript
+// sanitizer.helper.spec.js
 import Sanitizer from 'src/core/helper/sanitizer.helper';
 
 describe('core/helper/sanitizer.helper.js', () => {
@@ -73,7 +80,6 @@ describe('core/helper/sanitizer.helper.js', () => {
     // ...more tests 
 });
 ```
-{% endcode %}
 
 You see, you are able to write the test the same way you're used to, writing Jest unit tests in general.
 
@@ -100,9 +106,9 @@ Before you are using the commands make sure that you installed all dependencies 
 
 In order to run jest unit tests of the administration, you can use the psh commands provided by our development template.
 
-{% hint style="info" %}
+::: info
 This only applies to the Shopware provided Administration! If you use unit tests in your plugin, you might need to write your own scripts for that.
-{% endhint %}
+:::
 
 This command executes all unit tests and shows you the complete code coverage.  
 `./psh.phar administration:unit`
@@ -116,33 +122,30 @@ For better understanding how to write component tests for Shopware 6 let's write
 
 When you want to mount your component it needs to be imported first:
 
-{% code title="test/app/component/form/select/base/sw-multi-select.spec.js" %}
 ```javascript
+// test/app/component/form/select/base/sw-multi-select.spec.js
 import 'src/app/component/form/select/base/sw-multi-select';
 ```
-{% endcode %}
 
 You see that we import the `sw-multi-select` without saving the return value. This blackbox import only executes code. However, this is important because this registers the component to the Shopware object:
 
-{% code title="test/app/component/form/select/base/sw-multi-select.spec.js" %}
 ```javascript
+// test/app/component/form/select/base/sw-multi-select.spec.js
 Shopware.Component.register('sw-multi-select', {
     // The vue component
 });
 ```
-{% endcode %}
 
 ### Mounting components
 
 In the next step we can mount our Vue component which we get from the global Shopware object:
 
-{% code title="test/app/component/form/select/base/sw-multi-select.spec.js" %}
 ```javascript
+// test/app/component/form/select/base/sw-multi-select.spec.js
 import 'src/app/component/form/select/base/sw-multi-select';
 
 shallowMount(Shopware.Component.build('sw-multi-select'));
 ```
-{% endcode %}
 
 When we’re testing our vue.js components, we need a way to mount and render the component. Therefore, we use the following methods:
 
@@ -157,8 +160,8 @@ This way, we create a new `wrapper` before each test. The `build` method resolve
 
 Now you can test the component like any other component. Let's try to write our first test:
 
-{% code title="test/app/component/form/select/base/sw-multi-select.spec.js" %}
 ```javascript
+// test/app/component/form/select/base/sw-multi-select.spec.js
 import { shallowMount } from '@vue/test-utils';
 import 'src/app/component/form/select/base/sw-multi-select';
 
@@ -178,7 +181,6 @@ describe('components/sw-multi-select', () => {
     });
 });
 ```
-{% endcode %}
 
 This contains our component. In our first test we only check if the wrapper is a Vue instance.
 
@@ -203,8 +205,8 @@ wrapper = shallowMount(Shopware.Component.build('sw-multi-select'), {
 
 Now you should only see the last warning with an unknown custom element. The reason for this is that most components contain other components. In our case the `sw-multi-select` needs the `sw-select-base` component. Now we have several solutions to solve this. The two most common ways are stubbing or using the component.
 
-{% code title="test/app/component/form/select/base/sw-multi-select.spec.js" %}
 ```javascript
+// test/app/component/form/select/base/sw-multi-select.spec.js
 import 'src/app/component/form/select/base/sw-select-base';
 
 wrapper = shallowMount(Shopware.Component.build('sw-multi-select'), {
@@ -217,12 +219,11 @@ wrapper = shallowMount(Shopware.Component.build('sw-multi-select'), {
     }
 });
 ```
-{% endcode %}
 
 You need to choose which way is needed: Many tests do not need the real component, but in our case we need the real implementation. You will see that if we import another component that they can create also warnings. Let's look at the code that solve all warnings, then we should have a code like this:
 
-{% code title="test/app/component/form/select/base/sw-multi-select.spec.js" %}
 ```javascript
+// test/app/component/form/select/base/sw-multi-select.spec.js
 import { shallowMount } from '@vue/test-utils';
 import 'src/app/component/form/select/base/sw-multi-select';
 import 'src/app/component/form/select/base/sw-select-base';
@@ -272,7 +273,6 @@ describe('components/sw-multi-select', () => {
     });
 });
 ```
-{% endcode %}
 
 ## Second example: Testing of message inside the sw-alert component
 
@@ -550,7 +550,6 @@ Do you want to see these examples in practise? Head over to our [video tutorial]
 
 Furthermore, you might want to have a look at one of the following guides as well:
 
-* [Jest tests for the storefront](jest-storefront.md)
-* [PHPUnit tests](php-unit.md)
-* [End-to-end tests](end-to-end-testing.md)
-
+* [Jest tests for the storefront](jest-storefront)
+* [PHPUnit tests](php-unit)
+* [End-to-end tests](end-to-end-testing)

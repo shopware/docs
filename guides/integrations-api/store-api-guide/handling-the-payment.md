@@ -1,10 +1,17 @@
+---
+nav:
+  title: Handling the payment
+  position: 40
+
+---
+
 # Handling the payment
 
 ## Overview
 
-{% hint style="info" %}
+::: info
 For understanding the general principles of payment, please head to our [Payment](https://github.com/shopware/docs/tree/4dd18decd18d812c20a9c2b9c224299c519af522/concepts/commerce/checkout-concept/payments.md) article in the concepts section
-{% endhint %}
+:::
 
 In this guide, we'll go through the headless payment process in Shopware. You'll learn about the following things:
 
@@ -25,9 +32,9 @@ The payment method for an order is part of the users context. You can obtain the
 }
 ```
 
-{% hint style="info" %}
-How to find the [list of available payment methods](work-with-the-cart.md#payment-methods)?
-{% endhint %}
+::: info
+How to find the [list of available payment methods](work-with-the-cart#payment-methods)?
+:::
 
 ## Initiate the payment
 
@@ -93,13 +100,13 @@ After the payment has been conducted \(or if it has been cancelled\), the paymen
 
 The endpoint called in this return URL is `/payment/finalize-transaction`. This method will internally decrypt the JWT \(which is still contained in the `_sw_payment_token` parameter\) and route the user depending on the outcome of the payment according to your `finishUrl` and `errorUrl`.
 
-{% hint style="warning" %}
+::: warning
 **Why does my payment status remain open after calling** `/handle-payment`**?**
 
 After handling the payment, the state of your payment transaction might still remain `open`. It depends on how your payment integration \(or the payment provider\) handles they payment.
 
 Some providers \(e.g. PayPal\) return immediate responses about the transactions' success. Some providers \(e.g. Stripe\) set up additional web hooks that allow the payment platform to asynchronously inform your store, that a payment has changed state. In those cases, please consult the documentation from these providers to get further details on their specific implementation.
-{% endhint %}
+:::
 
 ## Handle Exceptions
 
@@ -118,5 +125,4 @@ In order to alter the payment method for your order, call the **order payment** 
 }
 ```
 
-Calling this endpoint will cause Shopware to cancel all existing payment transactions an create a single new transaction with the `open` state. Think of it like a "reset payment transactions" endpoint. Now that you've resetted the order payment, you can re-initiate the payment using the flow [described above](handling-the-payment.md#introduction).
-
+Calling this endpoint will cause Shopware to cancel all existing payment transactions an create a single new transaction with the `open` state. Think of it like a "reset payment transactions" endpoint. Now that you've resetted the order payment, you can re-initiate the payment using the flow [described above](handling-the-payment#introduction).

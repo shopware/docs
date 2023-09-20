@@ -1,3 +1,10 @@
+---
+nav:
+  title: Using Mixins
+  position: 80
+
+---
+
 # Using Mixins
 
 ## Overview
@@ -10,16 +17,16 @@ All you need for this guide is a running Shopware 6 instance and full access to 
 
 ## Finding a mixin
 
-The Shopware 6 Administration comes with a few predefined mixins, you can find a list of all of them [here](../../../../resources/references/core-reference/administration-reference/mixins.md)
+The Shopware 6 Administration comes with a few predefined mixins, you can find a list of all of them [here](../../../../resources/references/core-reference/administration-reference/mixins)
 
-If you want to learn how to create your own mixin look at this guide: [Creating mixins](add-mixins.md)
+If you want to learn how to create your own mixin look at this guide: [Creating mixins](add-mixins)
 
 ## Using the Mixin
 
 After we've found the mixin we need, we can get it from the registry with the `Mixin.getByName` function and inject it into our component as seen below. In this example we'll use the notification mixin, which is useful for creating notifications visible to the user in the administration.
 
-{% code title="<administration root>/components/swag-basic-example/index.js" %}
 ```javascript
+// <administration root>/components/swag-basic-example/index.js
 const { Component, Mixin } = Shopware;
 
 Component.register('swag-basic-example', {
@@ -35,5 +42,3 @@ Component.register('swag-basic-example', {
     }
 });
 ```
-{% endcode %}
-

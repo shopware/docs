@@ -1,3 +1,10 @@
+---
+nav:
+  title: Context Rules & Rule Systems
+  position: 30
+
+---
+
 # Context Rules & Rule Systems
 
 * In a rule, there must never be a query against the database, because all configured rules are validated in a request.
@@ -5,4 +12,3 @@
 * Rules may only access data provided in the appropriate scopes.
 
   ​
-

@@ -1,3 +1,10 @@
+---
+nav:
+  title: HTTP Cache
+  position: 50
+
+---
+
 # HTTP Cache
 
 The http cache allows you to cache responses of the shop system. That means the next time the same page is requested, the answer can be returned much faster. While the general concept of a cache is quite simple, there are many details to think of in a complex system like a shopping cart. For that reason, the following overview might come in handy for you.
@@ -61,4 +68,3 @@ This cookie replaces the `sw-currency` cookie and contains the active rules and 
 This cookie describes the current session in simple tags like `cart-filled` and `logged-in`. When the client tags fit to the response `sw-invalidation-states` header the cache will be skipped.
 
 Example usage for this feature is to save the cache for logged in customers only.
-

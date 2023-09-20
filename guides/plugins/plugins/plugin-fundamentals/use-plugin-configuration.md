@@ -1,17 +1,24 @@
+---
+nav:
+  title: Use plugin configuration
+  position: 20
+
+---
+
 # Use plugin configuration
 
-In our guide on how to [add a plugin configuration](add-plugin-configuration.md), you can learn how to provide this possibility to use configuration options in your plugins. This guide will aid you on how to then use this configuration in your plugin.
+In our guide on how to [add a plugin configuration](add-plugin-configuration), you can learn how to provide this possibility to use configuration options in your plugins. This guide will aid you on how to then use this configuration in your plugin.
 
 ## Prerequisites
 
-In order to add a plugin configuration, you sure need to provide your plugin first. However, you won't learn to create a plugin in this guide. Head over to our [plugin base guide](../plugin-base-guide.md) to create your plugin first. It is also recommended to know how to setup a [plugin configuration](add-plugin-configuration.md) in the first instance. In this example, the configurations will be read inside of a subscriber, so knowing the [Listening to events](listening-to-events.md) guide will also be helpful.
+In order to add a plugin configuration, you sure need to provide your plugin first. However, you won't learn to create a plugin in this guide. Head over to our [plugin base guide](../plugin-base-guide) to create your plugin first. It is also recommended to know how to setup a [plugin configuration](add-plugin-configuration) in the first instance. In this example, the configurations will be read inside of a subscriber, so knowing the [Listening to events](listening-to-events) guide will also be helpful.
 
 ## Overview
 
 The plugin in this example already knows a subscriber, which listens to the `product.loaded` event and therefore will be called every time a product is loaded.
 
-{% code title="<plugin root>/src/Subscriber/MySubscriber.php" %}
 ```php
+// <plugin root>/src/Subscriber/MySubscriber.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Subscriber;
@@ -35,12 +42,11 @@ class MySubscriber implements EventSubscriberInterface
     }
 }
 ```
-{% endcode %}
 
 For this guide, a very small plugin configuration file is available as well:
 
-{% code title="<plugin root>/src/Resources/config/config.xml" %}
-```markup
+```xml
+// <plugin root>/src/Resources/config/config.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
@@ -53,7 +59,6 @@ For this guide, a very small plugin configuration file is available as well:
     </card>
 </config>
 ```
-{% endcode %}
 
 Just a simple input field with the technical name `example`. This will be necessary in the next step.
 
@@ -63,8 +68,8 @@ Let's get to the important part. Reading the plugin configuration is based on th
 
 Inject this service into your subscriber using the [DI container](https://symfony.com/doc/current/service_container.html).
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
-```markup
+```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -79,12 +84,11 @@ Inject this service into your subscriber using the [DI container](https://symfon
     </services>
 </container>
 ```
-{% endcode %}
 
 Note the new `argument` being provided to your subscriber. Now create a new field in your subscriber and pass in the `SystemConfigService`:
 
-{% code title="<plugin root>/src/Subscriber/MySubscriber.php" %}
 ```php
+// <plugin root>/src/Subscriber/MySubscriber.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Subscriber;
@@ -111,7 +115,6 @@ class MySubscriber implements EventSubscriberInterface
     ...
 }
 ```
-{% endcode %}
 
 So far, so good. The `SystemConfigService` is now available in your subscriber.
 
@@ -121,8 +124,8 @@ But what would happen, if there were more plugins providing the same technical n
 
 That's why the plugin configurations are always prefixed. By default, the pattern is the following: `<BundleName>.config.<configName>` Thus, it would be `SwagBasicExample.config.example` here.
 
-{% code title="<plugin root>/src/Subscriber/MySubscriber.php" %}
 ```php
+// <plugin root>/src/Subscriber/MySubscriber.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Subscriber;
@@ -138,5 +141,3 @@ class MySubscriber implements EventSubscriberInterface
     }
 }
 ```
-{% endcode %}
-

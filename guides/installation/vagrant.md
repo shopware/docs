@@ -1,8 +1,12 @@
+---
+nav:
+  title: Vagrant
+  position: 60
+
+---
+
 # Vagrant
 
-{% hint style="info" %}
+::: info
 Not officially supported installation method
-{% endhint %}
-
-
-
+:::

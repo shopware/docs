@@ -1,3 +1,10 @@
+---
+nav:
+  title: Fetching data from "entity selection" custom field
+  position: 20
+
+---
+
 # Fetching data from "entity selection" custom field
 
 ## Overview
@@ -6,7 +13,7 @@ If you set up a custom field with an entity selection in the administration, you
 
 ## Prerequisites
 
-This guide will not explain how to create custom field in general, so head over to the official guide about [custom field](add-custom-field.md) to learn this first.
+This guide will not explain how to create custom field in general, so head over to the official guide about [custom field](add-custom-field) to learn this first.
 
 ## Fetching data
 
@@ -18,8 +25,8 @@ To resolve the `id` and getting access to the product we have linked here, we ca
 
 Lets create a `ProductSubscriber` first which will listen to the `ProductEvents::PRODUCT_LOADED_EVENT`.
 
-{% code title="<plugin root>/src/Subscriber/ProductSubscriber.php" %}
 ```php
+// <plugin root>/src/Subscriber/ProductSubscriber.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Subscriber;
@@ -42,12 +49,11 @@ class ProductSubscriber implements EventSubscriberInterface
     }
 }
 ```
-{% endcode %}
 
 For this subscriber to work we need to register it in the service container via the `service.xml` file:
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
-```markup
+```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -61,12 +67,11 @@ For this subscriber to work we need to register it in the service container via 
     </services>
 </container>
 ```
-{% endcode %}
 
 Now our `ProductSubscriber` should be called every time a product is loaded, so we can resolve the custom field `custom_linked_product`.
 
-{% code title="<plugin root>/src/Subscriber/ProductSubscriber.php" %}
 ```php
+// <plugin root>/src/Subscriber/ProductSubscriber.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Subscriber;
@@ -106,7 +111,6 @@ class ProductSubscriber implements EventSubscriberInterface
     }
 }
 ```
-{% endcode %}
 
 Inside the `onProductLoaded` method we can get access to the loaded product entities by calling `$event->getEntities()`. Now for every product we look for our `custom_linked_product` custom field.
 
@@ -114,8 +118,8 @@ But, how we can load the linked product by its `id` if the custom field was set?
 
 First we update the `services.xml` and inject the product repository.
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
-```markup
+```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -130,12 +134,11 @@ First we update the `services.xml` and inject the product repository.
     </services>
 </container>
 ```
-{% endcode %}
 
 Now we can use the product repository in our subscriber.
 
-{% code title="<plugin root>/src/Subscriber/ProductSubscriber.php" %}
 ```php
+// <plugin root>/src/Subscriber/ProductSubscriber.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Subscriber;
@@ -163,14 +166,13 @@ class ProductSubscriber implements EventSubscriberInterface
    //...
 }
 ```
-{% endcode %}
 
 As you can see, the product repository was injected and is now available to the `ProductRepository`. The last step is to resolve the `custom_linked_product` value inside the `onProductLoaded` method.
 
 Let's have a look at the final implementation of the subscriber.
 
-{% code title="<plugin root>/src/Subscriber/ProductSubscriber.php" %}
 ```php
+// <plugin root>/src/Subscriber/ProductSubscriber.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Subscriber;
@@ -233,5 +235,3 @@ class ProductSubscriber implements EventSubscriberInterface
     }
 }
 ```
-{% endcode %}
-

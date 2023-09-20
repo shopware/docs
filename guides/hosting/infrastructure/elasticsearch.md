@@ -1,3 +1,10 @@
+---
+nav:
+  title: Elasticsearch
+  position: 30
+
+---
+
 # Elasticsearch
 
 ## Overview
@@ -7,7 +14,7 @@ As soon as several thousand data sets are used in a project, it makes sense to d
 ## Requirements
 
 * Elasticsearch 7.3 or newer
-* [Running message queue workers in background](message-queue.md)
+* [Running message queue workers in background](message-queue)
 
 ## Activating and first time Indexing
 
@@ -21,9 +28,9 @@ After changing the configuration, you should clear the cache using `bin/console 
 
 To start the indexing you have to execute the following command: `bin/console es:index`. Shopware creates the alias for the index by default when the expected alias is not there.
 
-{% hint style="info" %}
+::: info
 `./bin/console dal:refresh:index --use-queue` triggers both the elasticsearch indexing process, but also other indexers which may take a while.
-{% endhint %}
+:::
 
 To see the current state of the indexing, you can check the count of documents in the Elasticsearch index or the state of the queue by looking into the `enqueue` table.
 
@@ -36,4 +43,3 @@ The reindexing can be triggered by running `./bin/console es:index` again. The a
 ## Index cleanup
 
 On each indexing a new Elasticsearch index will be generated. To remove unused indices, you can execute the command: `./bin/console es:index:cleanup`.
-

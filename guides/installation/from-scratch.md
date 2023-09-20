@@ -1,14 +1,21 @@
+---
+nav:
+  title: Installation from scratch
+  position: 40
+
+---
+
 # Installation from scratch
 
 If it's impossible to get docker up and running on your development environment you can install Shopware 6 locally.
 
-{% hint style="info" %}
+::: info
 Be aware this will be by far the more complex solution since additional or changed system requirements need to be managed by you.
-{% endhint %}
+:::
 
 ## Prerequisites
 
-Once you set up all the required packages mentioned in the [Installation overview](overview.md), there are two main goals you need to accomplish.
+Once you set up all the required packages mentioned in the [Installation overview](overview), there are two main goals you need to accomplish.
 
 Please note that this guide is rather based on plugin development and contribution. If you need a template for full composer based shop projects, please refer to the [production template](https://github.com/shopware/production).
 
@@ -64,7 +71,7 @@ You also need to change the tag reference right below the DocumentRoot line. Thi
 
 ## Setting up Shopware
 
-Before you're able to set up Shopware, you need to checkout our Shopware's repositories. This is explained in the "Preparatory steps" paragraph of the [Installation overview](overview.md).
+Before you're able to set up Shopware, you need to checkout our Shopware's repositories. This is explained in the "Preparatory steps" paragraph of the [Installation overview](overview).
 
 ### Starting Shopware installation
 
@@ -74,9 +81,9 @@ A simple cli installation wizard can be invoked by executing:
 > bin/setup
 ```
 
-{% hint style="info" %}
+::: info
 One little note: If something goes wrong during installation check if `.psh.yaml.override` exists. If not restart setup, if yes execute `./psh.phar install` to restart the setup process.
-{% endhint %}
+:::
 
 Voila, Shopware 6 is installed. To be sure the installation succeeded, just open the configured host url in your favorite browser.
 
@@ -84,9 +91,9 @@ Voila, Shopware 6 is installed. To be sure the installation succeeded, just open
 
 It is important to keep the `platform` and the `development` repository in sync.
 
-{% hint style="danger" %}
+::: danger
 We highly discourage to update each without the other!
-{% endhint %}
+:::
 
 The following steps should always yield a positive result:
 
@@ -104,5 +111,4 @@ Please note that this will reset your database.
 
 ## Next steps
 
-You're all set now! Now that you got a running Shopware installation, why not start with your first very own plugin? Please refer to the [Plugin base guide](../plugins/plugins/plugin-base-guide.md) for a nice starting point.
-
+You're all set now! Now that you got a running Shopware installation, why not start with your first very own plugin? Please refer to the [Plugin base guide](../plugins/plugins/plugin-base-guide) for a nice starting point.

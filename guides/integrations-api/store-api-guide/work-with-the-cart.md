@@ -1,3 +1,10 @@
+---
+nav:
+  title: Working with the cart
+  position: 30
+
+---
+
 # Working with the cart
 
 ## Overiew
@@ -20,7 +27,7 @@ To create a new one, make sure to set a context token header. If you want to, yo
 
 **Response**
 
-```javascript
+```json
 {
   "name": "my-cart",
   "token": "nqVMbLr8Q1Vs5jFdz4xk4vkSXAEKiOMt",
@@ -241,7 +248,7 @@ Shopware's data model is capable of representing multiple deliveries or shipment
 
 ### `order.transactions`
 
-A transaction represents a payment for an order. It contains a payment method, an amount and a state. An order can have multiple payments \(for example, if a payment fails, you can [switch methods](handling-the-payment.md#handle-exceptions) and create a second transaction with an alternative payment method\).
+A transaction represents a payment for an order. It contains a payment method, an amount and a state. An order can have multiple payments \(for example, if a payment fails, you can [switch methods](handling-the-payment#handle-exceptions) and create a second transaction with an alternative payment method\).
 
 ### `order.addresses`
 
@@ -251,9 +258,9 @@ An order can have multipel associated addresses \(e.g. for shipping or deliverie
 
 This field contains all line items of the order. Line items may not only be products, but also discounts or virtual items, like bundles. Line items are stored as copies of their corresponding products, so when a product is deleted in your store, the line items from older orders remain available.
 
-{% hint style="info" %}
+::: info
 All the above also applies to the `/order` endpoint, which simply lists orders for the current customer.
-{% endhint %}
+:::
 
 ## Payment methods
 
@@ -315,4 +322,3 @@ Also here, the api basic parameters \(`filter`, `aggregations`, etc.\) can be us
     }
 ]
 ```
-

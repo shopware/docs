@@ -1,3 +1,10 @@
+---
+nav:
+  title: Customize templates
+  position: 10
+
+---
+
 # Customize templates
 
 ## Overview
@@ -6,7 +13,7 @@ This guide will cover customizing Storefront templates with a plugin.
 
 ## Prerequisites
 
-As most guides, this guide is built upon the [plugin base guide](../plugin-base-guide.md), so you might want to have a look at it. Other than that, knowing [Twig](https://twig.symfony.com/) is a big advantage for this guide, but that's not necessary.
+As most guides, this guide is built upon the [plugin base guide](../plugin-base-guide), so you might want to have a look at it. Other than that, knowing [Twig](https://twig.symfony.com/) is a big advantage for this guide, but that's not necessary.
 
 ## Getting started
 
@@ -22,9 +29,9 @@ As mentioned earlier, this guide is only trying to replace the 'demo' logo with 
 
 Overriding this file now requires you to copy the exact same directory structure starting from the `views` directory. In this case, the file `logo.html.twig` is located in a directory called `storefront/layout/header`, so make sure to remember this path.
 
-{% hint style="info" %}
+::: info
 There's a plugin out there called [FroshDevelopmentHelper](https://github.com/FriendsOfShopware/FroshDevelopmentHelper), that adds hints about template blocks and includes into the rendered HTML. This way it's easier to actually find the proper template.
-{% endhint %}
+:::
 
 ### Overriding the template
 
@@ -58,23 +65,25 @@ To override it now, just add the very same block into your custom file and repla
 {% endblock %}
 ```
 
-If you wanted to append your text to the logo instead of replacing it, you could add a line like this to your override: `{{ parent() }}`
+If you wanted to append your text to the logo instead of replacing it, you could add a line like this to your override: <code v-pre>{{ parent() }}</code>
 
 And that's it already, you're done already. You might have to clear the cache and refresh your storefront to see your changes in action. This can be done by using the command following command inside your command line.
 
-{% tabs %}
-{% tab title="Development template" %}
+<Tabs>
+<Tab title="Development template">
+
 ```bash
 ./psh.phar cache
 ```
-{% endtab %}
+</Tab>
 
-{% tab title="Production template" %}
+<Tab title="Production template">
+
 ```bash
 ./bin/console cache:clear
 ```
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ### Finding variables
 
@@ -88,16 +97,15 @@ But rather than that, how do you know which variables are available to use? For 
 
 This `dump()` call will print out all variables available on this page.
 
-{% hint style="info" %}
+::: info
 Once again, the plugin called [FroshDevelopmentHelper](https://github.com/FriendsOfShopware/FroshDevelopmentHelper) adds all available page data to the Twig tab in the profiler, when opening a request and its details. This might help here as well.
-{% endhint %}
+:::
 
 ## Next steps
 
 You're able to customize templates now, which is a good start. However, there's a few more things you should definitely learn here:
 
-* [Adding styles](add-custom-styling.md)
-* [Adding translations](add-translations.md)
+* [Adding styles](add-custom-styling)
+* [Adding translations](add-translations)
 * [Using icons]()
-* [Using custom assets](add-custom-assets.md)
-
+* [Using custom assets](add-custom-assets)

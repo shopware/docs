@@ -1,3 +1,10 @@
+---
+nav:
+  title: App development with platform.sh
+  position: 20
+
+---
+
 # App development with platform.sh
 
 ## Overview
@@ -35,4 +42,3 @@ const:
 
 And vice versa change it to `http://shopware` for development with Platform.sh.  
 After changing your `APP_URL` you need to execute `bin/console app:url-change:resolve`. More about this \[PLACEHOLDER-LINK: app-url-change documentation\].
-

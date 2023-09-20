@@ -1,8 +1,15 @@
+---
+nav:
+  title: MAMP
+  position: 70
+
+---
+
 # MAMP
 
-{% hint style="info" %}
+::: info
 This guide has been migrated from the old documentation and is subject to change. Feel free to give input using the "Edit page on Github" button.
-{% endhint %}
+:::
 
 ## Overview
 
@@ -48,9 +55,9 @@ export PATH=/Applications/MAMP/bin/php/php7.2.14/bin:$PATH
 source ~/.bash_profile
 ```
 
-{% hint style="info" %}
+::: info
 The folder used in `PATH` \(`PATH=/Applications/MAMP/bin/php/php7.2.14/bin:$PATH`\) may change. Please look in the `php` folder for its current name.
-{% endhint %}
+:::
 
 Then you need to make sure MAMP mysql binary is used globally on your CLI:
 
@@ -90,7 +97,7 @@ brew install composer
 
 ## Checkout shopware
 
-Before you're able to set up Shopware, you need to checkout Shopware's repositories. This is explained in the "Preparatory steps" paragraph of the [Installation overview guide](overview.md). Nevertheless, below you see a brief summary on this process:
+Before you're able to set up Shopware, you need to checkout Shopware's repositories. This is explained in the "Preparatory steps" paragraph of the [Installation overview guide](overview). Nevertheless, below you see a brief summary on this process:
 
 ```bash
 # Choose your own directory
@@ -169,9 +176,8 @@ The underlying problem is that Mac supports case-insensitive paths but not the t
 
 ## Next steps
 
-As you installed Shopware successfully, maybe you want to start writing your very own plugin. Head over to [Plugin base guide](../plugins/plugins/plugin-base-guide.md) to get a grip on that topic. Did you know you can install Shopware on Mac with the help of other tools? See the guides below:
+As you installed Shopware successfully, maybe you want to start writing your very own plugin. Head over to [Plugin base guide](../plugins/plugins/plugin-base-guide) to get a grip on that topic. Did you know you can install Shopware on Mac with the help of other tools? See the guides below:
 
-* [Docker](docker.md)
-* [Vagrant](vagrant.md)
-* [Dockware](dockware.md)
-
+* [Docker](docker)
+* [Vagrant](vagrant)
+* [Dockware](dockware)

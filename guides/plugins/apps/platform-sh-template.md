@@ -1,3 +1,10 @@
+---
+nav:
+  title: Platform.sh template
+  position: 20
+
+---
+
 # Platform.sh template
 
 ## Overview
@@ -15,8 +22,8 @@ You need to set both of them in your `manifest.xml` but also in the `.platform.a
 
 An example for the `manifest.xml` would be:
 
-{% code title="manifest.xml" %}
-```markup
+```html
+// manifest.xml
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/app-system/0.1.0/src/Core/Content/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
         <name>myAppName</name>
@@ -26,18 +33,16 @@ An example for the `manifest.xml` would be:
     </setup>
 </manifest>
 ```
-{% endcode %}
 
 An example for the [.platform.app.yaml](https://github.com/shopwareLabs/AppTemplate/blob/master/.platform.app.yaml) would be:
 
-{% code title=".platform.app.yaml" %}
 ```yaml
+// .platform.app.yaml
 variables:
     env:
         APP_NAME: myExampleApp
         APP_SECRET: myAppSecret
 ```
-{% endcode %}
 
 Also change them in the `.env` to develop locally.
 
@@ -53,8 +58,8 @@ This development template is symfony based. To register your app you only need t
 
 The `SwagAppsystem\Client` and `SwagAppsystem\Event` will be injected in each controller when you need them. For example:
 
-{% code title="AppExample/src/Controller/Order/OrderController.php" %}
 ```php
+// AppExample/src/Controller/Order/OrderController.php
 <?php declare(strict_types=1);
 namespace App\Controller;
 use App\SwagAppsystem\Client;
@@ -72,7 +77,6 @@ class OrderController
     }
 }
 ```
-{% endcode %}
 
 ## Testing
 
@@ -133,47 +137,42 @@ There are five app lifecycle events which can be triggered during the lifecycle 
 
 The `app.installed` event gets triggered each time the app gets installed. This will also trigger the `app.activated` event. At each of these events the shop is already installed and registered at your app. The webhook could look like this:
 
-{% code title="manifest.xml" %}
-```markup
+```html
+// manifest.xml
 <webhook name="appLifecycleInstalled" url="https://your-shop-url/applifecycle/installed" event="app.installed"/>
 ```
-{% endcode %}
 
 The `app.updated` event gets triggered each time a shop updated your app.  
 The webhook could look like this:
 
-{% code title="manifest.xml" %}
-```markup
+```html
+// manifest.xml
 <webhook name="appLifecycleUpdated" url="https://your-shop-url/applifecycle/updated" event="app.updated"/>
 ```
-{% endcode %}
 
 The `app.deleted` event gets triggered each time a shop deletes your app. At this point the shop is deleted using the [shopRepository](https://github.com/shopwareLabs/AppTemplate/blob/master/src/Repository/ShopRepository.php). You need to delete all the shop's data you have saved, and are not legally required to keep, then stop the communication with the shop.  
 The webhook could look like this:
 
-{% code title="manifest.xml" %}
-```markup
+```html
+// manifest.xml
 <webhook name="appLifecycleDeleted" url="https://your-shop-url/applifecycle/deleted" event="app.deleted"/>
 ```
-{% endcode %}
 
 The `app.activated` event gets triggered each time your app gets installed or activated. At this point you can start the communication with the shop.  
 The webhook could look like this:
 
-{% code title="manifest.xml" %}
-```markup
+```html
+// manifest.xml
 <webhook name="appLifecycleActivated" url="https://your-shop-url/applifecycle/activated" event="app.activated"/>
 ```
-{% endcode %}
 
 The `app.deactivated` event gets triggered each time your app gets deactivated. At this point you should stop the communication with the shop.  
 The webhook could look like this:
 
-{% code title="manifest.xml" %}
-```markup
+```html
+// manifest.xml
 <webhook name="appLifecycleDeactivated" url="https://your-shop-url/applifecycle/deactivated" event="app.deactivated"/>
 ```
-{% endcode %}
 
 ## Deployment on platform.sh
 
@@ -208,4 +207,3 @@ Another thing you can configure is the disk space of each application and servic
 The resources for the disc space are also shared between all container in the cluster. The key for this is the `disk` key. It is optional so if you don't set it platform-sh will handle it for you.  
 However if you need much storage for your database then you can change this key in your [services.yaml](https://github.com/shopwareLabs/AppTemplate/blob/master/.platform/services.yaml). The value of this key is always in MB. For our example we used 2GB or 2048MB for our application and another 2GB or 2048MB for our database.  
 The default storage you get with each plan is 5GB or 5120MB. In our case we only used 4GB or 4096MB so you have 1GB or 1024 left which you can give to your application or to your database. Whether you use it or not won't affect your costs.
-

@@ -1,14 +1,23 @@
+---
+nav:
+  title: Generated Reference
+  position: 30
+
+---
+
 # Generated Reference
 
 Shopware generates schemas for both HTTP APIs that can be interpreted by API client libraries or documentation tools, such as Swagger.io:.
 
-{% embed url="https://swagger.io/" caption="" %}
+<PageRef page="https://swagger.io/" title="
+	API Documentation &amp; Design Tools for Teams | Swagger
+" target="_blank" />
 
 These schemas are generated using PHP annotations based on the [swagger-php](https://github.com/zircote/swagger-php) library. When building API extensions, you can also leverage these annotations to let Shopware generate a standardised endpoint-documentation for your custom endpoints on-the-fly
 
-{% hint style="warning" %}
+::: warning
 Due to security restrictions, your **`APP_ENV`** environment variable has to be set to **`dev`** in order to be able to access any of the specifications described below.
-{% endhint %}
+:::
 
 ## Swagger UI
 
@@ -33,4 +42,3 @@ If you would like to access the schema definitions of all available entities ins
 ```text
 /(api|store-api)/v{version}/_info/open-api-schema.json
 ```
-

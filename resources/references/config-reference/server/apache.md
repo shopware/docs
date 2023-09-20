@@ -1,8 +1,15 @@
+---
+nav:
+  title: Apache
+  position: 10
+
+---
+
 # Apache
 
-{% hint style="info" %}
+::: info
 The document root must always point to the public folder, to ensure all functionality works.
-{% endhint %}
+:::
 
 ```text
 <VirtualHost *:80>
@@ -20,4 +27,3 @@ The document root must always point to the public folder, to ensure all function
    CustomLog ${APACHE_LOG_DIR}/shopware.access.log combined
 </VirtualHost>
 ```
-

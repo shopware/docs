@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom data to the search
+  position: 300
+
+---
+
 # Add custom data to the search
 
 ## Overview
@@ -11,19 +18,19 @@ There are two different ways how the global search works:
 
 They only differ in the API they use and get displayed in a slightly different way.
 
-{% hint style="warning" %}
+::: warning
 Think twice about adding this shortcut because if every plugin adds their own search tag it gets cluttered.
-{% endhint %}
+:::
 
 ## Prerequisites
 
 For this guide, it's necessary to have a running Shopware 6 instance and full access to both the files and a running plugin. See our plugin page guide to learn how to create your own plugins.
 
-{% page-ref page="../plugin-base-guide.md" %}
+<PageRef page="../plugin-base-guide" />
 
 In addition, you need a custom entity to add to the search to begin with. Head over to the following guide to learn how to achieve that:
 
-{% page-ref page="../plugin-base-guide.md" %}
+<PageRef page="../plugin-base-guide" />
 
 ## Support custom entity via search API
 
@@ -64,8 +71,8 @@ Let's take a closer look on how this decorator is used:
 
 By default, the search bar does not know how to display the result items, so a current search request will not show any result. In order to declare a search result view the `sw-search-bar-item` template has to be altered as seen below, starting with the template:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-bar-item/sw-search-bar-item.html.twig" %}
 ```text
+// <plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-bar-item/sw-search-bar-item.html.twig
 {% block sw_search_bar_item_cms_page %}
     {% parent %}
 
@@ -83,19 +90,17 @@ By default, the search bar does not know how to display the result items, so a c
     </router-link>
 {% endblock %}
 ```
-{% endcode %}
 
 Here you see the changes in the `index.js` file:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-bar-item/index.js" %}
 ```javascript
+// <plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-bar-item/index.js
 import template from './sw-search-bar-item.html.twig';
 
 Shopware.Component.override('sw-search-bar-item', {
     template
 })
 ```
-{% endcode %}
 
 The `sw_search_bar_item_cms_page` block is used as it is the last block, but it is not important which shopware type is extended as long as the vue else-if structure is kept working.
 
@@ -103,8 +108,8 @@ The `sw_search_bar_item_cms_page` block is used as it is the last block, but it 
 
 By default, the search bar tries to resolve to the registered listing route. If your entity can be searched externally you can edit the `sw-search-more-results` or `sw-search` components as well:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-more-results/sw-search-more-results.html.twig" %}
 ```text
+// <plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-more-results/sw-search-more-results.html.twig
 {% block sw_search_more_results %}
     <template v-if="result.entity === 'foo_bar'">
         There are so many hits.
@@ -120,25 +125,23 @@ By default, the search bar tries to resolve to the registered listing route. If 
     </template>
 {% endblock %}
 ```
-{% endcode %}
 
 See for the changes in the `index.js` file below:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-more-results/index.js" %}
 ```javascript
+// <plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-more-results/index.js
 import template from './sw-search-more-results.html.twig';
 
 Shopware.Component.override('sw-search-more-results', {
     template
 })
 ```
-{% endcode %}
 
 ### Potential pitfalls
 
 In case of a tag with a technical name with a missing translation, proceed like this:
 
-```javascript
+```json
 {
     "global": {
         "entities": {
@@ -157,4 +160,3 @@ Shopware.Module.register('any-name', {
     entity: 'my_entity',
 })
 ```
-

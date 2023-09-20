@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom module
+  position: 20
+
+---
+
 # Add custom module
 
 In your app, you are able to add your own module to the administration, that can be accessed via the `My Extensions` listing. Your custom module consists of an iframe that is embedded in the Shopware administration and within this iframe, your website will be loaded and shown.
@@ -7,8 +14,8 @@ In order to create a custom module, you need to define an admin element to defin
 * Here you're able to define the technical name of your module and the source: Please insert the link to your website there.
 * To define the module's title and its translation, you can add a label as child element.
 
-{% code title="manifest.xml" %}
-```markup
+```xml
+// manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
@@ -22,9 +29,8 @@ In order to create a custom module, you need to define an admin element to defin
     </admin>
 </manifest>
 ```
-{% endcode %}
 
-For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference.md).
+For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference).
 
 If the user opens the module in the administration your app will receive a request to the given source url. Your app can determine the shop that has opened the module through query parameters added to the url:
 
@@ -39,7 +45,7 @@ A sample request may look like this:
 https://example.com//promotion/view/promotion-config?shop-id=HKTOOpH9nUQ2&shop-url=http%3A%2F%2Fmy.shop.com&timestamp=1592406102&shopware-shop-signature=3621fffa80187f6d43ce6cb25760340ab9ba2ea2f601e6a78a002e601579f415
 ```
 
-In this case the `shopware-shop-signature` parameter contains an sha256 hmac of the rest of the query string, signed again with the secret your app assigned the shop during the [registration](../app-base-guide.md#setup). The signature can be used to verify the authenticity of the request.
+In this case the `shopware-shop-signature` parameter contains an sha256 hmac of the rest of the query string, signed again with the secret your app assigned the shop during the [registration](../app-base-guide#setup). The signature can be used to verify the authenticity of the request.
 
 ## Leave loading state
 
@@ -52,4 +58,3 @@ function sendReadyState() {
 ```
 
 This has to be done as soon as everything is loaded so that the loading spinner disappears. If your view is not fully loaded after 5 seconds, it will be aborted.
-

@@ -6,7 +6,7 @@ Shopware 6's payment system is an integral Part of the Checkout process. A payme
 
 Payment handlers get executed after an order was placed. Per default this happens during the checkout.
 
-![Asynchronous payment](../../../.gitbook/assets/payment-async.png)
+<!-- ![Asynchronous payment](../../../.gitbook/assets/payment-async.png) -->
 
 As illustrated in the diagram above, the payment handler is invoked to redirect to the foreign system handling the payment. This foreign system then notifies the Platform and the successful payment is stored. This is achieved by a handler implementing `\Shopware\Core\Checkout\Payment\Cart\PaymentHandler\AsynchronousPaymentHandlerInterface`
 
@@ -25,4 +25,3 @@ Will only be called if you returned a RedirectResponse in your pay method and th
 The order module provides a useful interface to simplify state changes on a transaction.
 
 `\Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler` contains the state change methods as a pragmatical interface.
-

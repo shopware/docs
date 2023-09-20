@@ -1,3 +1,10 @@
+---
+nav:
+  title: Message Queue
+  position: 20
+
+---
+
 # Message Queue
 
 ## What is the Message Queue
@@ -17,6 +24,7 @@ The recommended method for consuming messages is using the cli worker.
 You can configure the command just to run a certain amount of time or to stop if it exceeds a certain memory limit like: \`\`\`shell script bin/console messenger:consume-messages default --time-limit=60
 
 ```text
+
 ```shell script
 bin/console messenger:consume-messages default --memory-limit=128M
 ```
@@ -26,6 +34,7 @@ For more information about the command and its configuration use the -h option: 
 ```text
 You should use the limit option to periodically restart the worker processes, because of the memory leak issues of long-running php processes. To automatically start the processes again after they stopped because of exceeding the given limits you can use something like [upstart](http://upstart.ubuntu.com/getting-started.html) or [supervisor](http://supervisord.org/running.html). Alternatively you can configure a cron job that runs the command again shortly after the time limit exceeds.
 If you have configured the cli-worker, you can turn off the admin worker in the shopware configuration file, therefore create or edit the configuration `shopware.yaml`.
+
 ```yaml
 # config/packages/shopware.yaml
 shopware:
@@ -71,4 +80,3 @@ framework:
 ```
 
 Notice that `shopware-queue` is the name of the previously created queue in RabbitMQ. Also `rabbitmq` matches the name of the new transport in the previously created `enqueue.yaml`.
-

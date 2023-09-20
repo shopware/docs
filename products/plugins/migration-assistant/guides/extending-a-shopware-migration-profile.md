@@ -1,3 +1,10 @@
+---
+nav:
+  title: Extending a Shopware migration profile
+  position: 10
+
+---
+
 # Extending a Shopware migration profile
 
 ## Overview
@@ -6,11 +13,11 @@ In this guide you will see an example on how you can extend a Shopware migration
 
 ## Setup
 
-It is required to already have a basic plugin running and you have installed the [SwagAdvDevBundle](https://github.com/shopwareLabs/SwagAdvDevBundle) plugin in Shopware 5, an own [plugin](../../../../guides/plugins/plugins/plugin-base-guide.md) and [Shopware Migration Assistant](https://store.shopware.com/search?sSearch=Swag257162657297f) in Shopware 6.
+It is required to already have a basic plugin running and you have installed the [SwagAdvDevBundle](https://github.com/shopwareLabs/SwagAdvDevBundle) plugin in Shopware 5, an own [plugin](../../../../guides/plugins/plugins/plugin-base-guide) and [Shopware Migration Assistant](https://store.shopware.com/search?sSearch=Swag257162657297f) in Shopware 6.
 
 ## Enrich existing plugin with migration features
 
-Instead of creating a new plugin for the migration, you might want to add migration features to your existing plugin. Of course, your plugin should then also be installable without the Migration Assistant plugin. So we have an optional requirement. Have a look at this [guide](../../../../guides/plugins/plugins/plugin-fundamentals/database-migrations.md) on how to inject the needed migration services only if the Migration Assistant plugin is available. You could also have a look at the example plugin, to see how the conditional loading is managed in the plugin base class.
+Instead of creating a new plugin for the migration, you might want to add migration features to your existing plugin. Of course, your plugin should then also be installable without the Migration Assistant plugin. So we have an optional requirement. Have a look at this [guide](../../../../guides/plugins/plugins/plugin-fundamentals/database-migrations) on how to inject the needed migration services only if the Migration Assistant plugin is available. You could also have a look at the example plugin, to see how the conditional loading is managed in the plugin base class.
 
 ## Creating a new DataSet
 
@@ -110,7 +117,7 @@ To insert the bundle entity to this `DataSelection`, you have to add this entity
 
 Both classes have to be registered in the `migration_assistant_extension.xml`:
 
-```markup
+```html
 <service id="SwagMigrationBundleExample\Profile\Shopware\DataSelection\ProductDataSelection"
          decorates="SwagMigrationAssistant\Profile\Shopware\DataSelection\ProductDataSelection">
     <argument type="service" id="SwagMigrationBundleExample\Profile\Shopware\DataSelection\ProductDataSelection.inner"/>
@@ -129,7 +136,7 @@ If you check your current progress in the data selection table of Shopware Migra
 
 First of all you create a new snippet file e.g. `en-GB.json`:
 
-```javascript
+```json
 {
     "swag-migration": {
         "index": {
@@ -271,7 +278,7 @@ class LocalBundleReader extends AbstractReader
 
 In this local reader, you fetch all bundles with associated products and return this in the `read` method. Like the `DataSelection` and `DataSet`, you have to register the local reader and tag it with `shopware.migration.reader` in your `migration_assistant_extension.xml`. Also, you have to set the parent property of your local reader to `AbstractReader` to inherit from this class:
 
-```markup
+```html
 <service id="SwagMigrationBundleExample\Profile\Shopware\Gateway\Local\Reader\LocalBundleReader"
          parent="SwagMigrationAssistant\Profile\Shopware\Gateway\Local\Reader\AbstractReader">
     <tag name="shopware.migration.reader"/>
@@ -446,7 +453,7 @@ class BundleDefinition extends EntityDefinition
 
 In the `BundleDefinition` you can see which fields the entity has and which are required. \(Hint: Always use the property name of the field.\) In the end of this step, you have to register your new converter in the `migration_assistant_extension.xml` and tag it with `shopware.migration.converter`:
 
-```markup
+```html
 <service id="SwagMigrationBundleExample\Profile\Shopware\Converter\BundleConverter">
     <argument type="service" id="SwagMigrationAssistant\Migration\Mapping\MappingService"/>
     <argument type="service" id="SwagMigrationAssistant\Migration\Logging\LoggingService"/>
@@ -454,7 +461,7 @@ In the `BundleDefinition` you can see which fields the entity has and which are 
 </service>
 ```
 
-If you need more information on the converter and mapping in general, take a look at [converter, mapping and deltas concept](../concept/convert-and-mapping.md).
+If you need more information on the converter and mapping in general, take a look at [converter, mapping and deltas concept](../concept/convert-and-mapping).
 
 ## Adding a writer
 
@@ -475,7 +482,7 @@ class BundleWriter extends AbstractWriter
 }
 ```
 
-```markup
+```html
 <service id="SwagMigrationBundleExample\Migration\Writer\BundleWriter"
          parent="SwagMigrationAssistant\Migration\Writer\AbstractWriter">
     <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Write\EntityWriter"/>
@@ -484,11 +491,10 @@ class BundleWriter extends AbstractWriter
 </service>
 ```
 
-You only need to implement the `supports` method and specify the right `Definition` in `migration_assistant_extension.xml`. The logic to write the data is defined in the `AbstractWriter` class and should almost always be the same. Take a look at [writer concept](../concept/writer.md) for more information.
+You only need to implement the `supports` method and specify the right `Definition` in `migration_assistant_extension.xml`. The logic to write the data is defined in the `AbstractWriter` class and should almost always be the same. Take a look at [writer concept](../concept/writer) for more information.
 
 And that's it, you're done and have already implemented your first plugin migration. Install your plugin, clear the cache and build the administration anew to see the migration of your bundle entities.
 
 ## Source
 
 There's a GitHub repository available, containing a full example source. Check it out [here](https://github.com/shopware/swag-docs-extending-shopware-migration-profile).
-

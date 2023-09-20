@@ -1,6 +1,13 @@
+---
+nav:
+  title: Storefront
+  position: 10
+
+---
+
 # Storefront
 
-You can modify the whole appearance of the storefront within your app. This includes [customizing templates](../plugins/storefront/customize-templates.md), [adding custom Javascript](../plugins/storefront/add-custom-javascript.md) and [custom styling](../plugins/storefront/add-custom-styling.md).
+You can modify the whole appearance of the storefront within your app. This includes [customizing templates](../plugins/storefront/customize-templates), [adding custom Javascript](../plugins/storefront/add-custom-javascript) and [custom styling](../plugins/storefront/add-custom-styling).
 
 As the storefront will be build on the Shopware server you don't have to set up any external servers for this. All you have to do is including your modifications \(in form of `.html.twig`, `.js` or `.scss` files\) inside the `Resources` folder of your app. The base folder structure of your app my look like this:
 
@@ -31,4 +38,3 @@ If your app provides a `theme.json` file it is considered to be a theme. All the
 ### Migrating existing themes
 
 If you already created a Shopware 6 theme via Plugin, it is very simple to migrate it to the app system. So don't worry - you don't need to do all work twice. Instead of providing a `composer.json` and plugin base class, you provide a `manifest.xml` file with the metadata for your app. After you have created a new folder for your app and added the `manifest.xml` you can copy the `YourThemePlugin/src/Resources` folder from your plugin to your app as `YourThemeApp/Resources`. It should not be necessary to change anything inside your template or Javascript code at all.
-

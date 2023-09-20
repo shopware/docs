@@ -1,3 +1,10 @@
+---
+nav:
+  title: Media Processing
+  position: 90
+
+---
+
 # Media Processing
 
 To import files to Shopware 6 using the migration, two steps are necessary. First create a media file object  \(`MediaDefinition` / `media` table, for more details take a look at the `MediaConverter`\) and create an entry in the `SwagMigrationMediaFileDefinition` / `swag_migration_media_file` table.
@@ -149,4 +156,3 @@ class HttpMediaDownloadService implements MediaFileProcessorInterface
 ```
 
 First, the service fetches all media files associated with the given media IDs and downloads these media files from the source system. After this, it handles the response, saves the media files in a temporary folder and copies them to Shopware 6 filesystem. In the end the service sets a `processed` status to these media files, saves all warnings that may have occurred and returns the status of the processed files.
-

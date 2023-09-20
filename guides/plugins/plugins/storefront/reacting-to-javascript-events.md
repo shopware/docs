@@ -1,3 +1,10 @@
+---
+nav:
+  title: Reacting to javascript events
+  position: 160
+
+---
+
 # Reacting to javascript events
 
 ## Overview
@@ -6,14 +13,14 @@ Just like in PHP, there may be useful events in our JavaScript plugins, which yo
 
 ## Prerequisites
 
-As most guides, this one is built upon our [plugin base guide](../plugin-base-guide.md), but that one is not necessary, you do need a running plugin though! Also this guide will **not** explain how to create a JavaScript plugin in general, head over to our guide [adding custom javascript](add-custom-javascript.md) to understand how that's done in the first place.
+As most guides, this one is built upon our [plugin base guide](../plugin-base-guide), but that one is not necessary, you do need a running plugin though! Also this guide will **not** explain how to create a JavaScript plugin in general, head over to our guide [adding custom javascript](add-custom-javascript) to understand how that's done in the first place.
 
 ## JavaScript base class
 
 As already mentioned, this guide will not explain how to create a JavaScript plugin in the first place. For this guide, we'll use the following example JavaScript plugin:
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/events-plugin/events-plugin.plugin.js" %}
 ```javascript
+// <plugin root>/src/Resources/app/storefront/src/events-plugin/events-plugin.plugin.js
 import Plugin from 'src/plugin-system/plugin.class';
 
 export default class EventsPlugin extends Plugin {
@@ -21,7 +28,6 @@ export default class EventsPlugin extends Plugin {
     }
 }
 ```
-{% endcode %}
 
 This one will be used from now on.
 
@@ -35,8 +41,8 @@ Instead, rather search for `this.$emitter.publish` in the directory `platform/sr
 
 Now that you possibly found your event, it's time to register to it and execute code once it is fired. For this example, we will listen to the event when the cookie bar is hidden. The respective event can be found via the name [hideCookieBar](https://github.com/shopware/platform/blob/v6.3.4.1/src/Storefront/Resources/app/storefront/src/plugin/cookie/cookie-permission.plugin.js#L71).
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/events-plugin/events-plugin.plugin.js" %}
 ```javascript
+// <plugin root>/src/Resources/app/storefront/src/events-plugin/events-plugin.plugin.js
 import Plugin from 'src/plugin-system/plugin.class';
 
 export default class EventsPlugin extends Plugin {
@@ -50,7 +56,6 @@ export default class EventsPlugin extends Plugin {
     }
 }
 ```
-{% endcode %}
 
 Let's have a look at the code. There's one thing you have to understand first. When a plugin calls `this.$emitter.publish`, this event is fired on the plugin's own `$emitter` instance. This means: Every plugin has its own instance of the emitter. Therefore, you cannot just use `this.$emitter.subscribe` to listen to other plugin's events.
 
@@ -58,11 +63,10 @@ Rather, you have to fetch the respective plugin instance using the `PluginManage
 
 And this is done here. We're fetching the instance of the `CookiePermission` plugin by its [selector](https://github.com/shopware/platform/blob/v6.3.4.1/src/Storefront/Resources/app/storefront/src/main.js#L103) via the `PluginManager` and using that instance to register to the event. Once the event is then fired, our own method `onHideCookieBar` is executed and the `alert` will be shown.
 
-{% hint style="warning" %}
+::: warning
 This does **not** prevent the execution of the original method. Consider those events to be "notifications".
-{% endhint %}
+:::
 
 ## Next steps
 
-Everytime you don't find an event to implement the changes you need, you may have to override the plugin itself. For this case, head over to our guide about [Override existing javascript](override-existing-javascript.md).
-
+Everytime you don't find an event to implement the changes you need, you may have to override the plugin itself. For this case, head over to our guide about [Override existing javascript](override-existing-javascript).

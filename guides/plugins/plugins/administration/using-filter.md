@@ -1,3 +1,10 @@
+---
+nav:
+  title: Using filter
+  position: 280
+
+---
+
 # Using filter
 
 ## Overview
@@ -6,9 +13,9 @@ In this guide you'll learn how to use filters in the Shopware administration.
 
 ## Prerequisites
 
-This guide requires you to already have a basic plugin running. If you don't know how to do this in the first place, have a look at our [Plugin base guide](../plugin-base-guide.md).
+This guide requires you to already have a basic plugin running. If you don't know how to do this in the first place, have a look at our [Plugin base guide](../plugin-base-guide).
 
-Furthermore you should have a look at our [add filter](add-filter.md) guide, since this guide is built upon it.
+Furthermore you should have a look at our [add filter](add-filter) guide, since this guide is built upon it.
 
 ## Using the filter
 
@@ -53,4 +60,3 @@ When using multiple arguments, we can pass them as shown below.
 ```text
 <example-component :title="$tc('swag-example.general.myCustomText')|example('secondArgument', 'thirdArgument')"></example-component>
 ```
-

@@ -1,8 +1,15 @@
+---
+nav:
+  title: Mixins
+  position: 20
+
+---
+
 # Mixins
 
 This is an overview of all the mixins provided by the Shopware 6 Administration. Mixins in the Shopware 6 Administration are essentially the same in default Vue. They behave generally the same as they do in Vue normally, differing only in the registration and the way mixins are included in a component. Learn more about them in the official [Vue documentation](https://vuejs.org/v2/guide/mixins.html).
 
-If you want to learn how to use them in your plugin, take a look at this guide [here](../../../../guides/plugins/plugins/administration/using-mixins.md) or if you want to register your own mixin take a look at this [guide](../../../../guides/plugins/plugins/administration/add-mixins.md)
+If you want to learn how to use them in your plugin, take a look at this guide [here](../../../../guides/plugins/plugins/administration/using-mixins) or if you want to register your own mixin take a look at this [guide](../../../../guides/plugins/plugins/administration/add-mixins)
 
 ## Overview of all the mixins
 
@@ -19,4 +26,3 @@ If you want to learn how to use them in your plugin, take a look at this guide [
 | `sw-form-field` | This mixin is used to provide common functionality between form fields | [link](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/mixin/form-field.mixin.js) |
 | `sw-inline-snippet` | Makes it possible to use snippets inline | [link](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/mixin/sw-inline-snippet.mixin.js) |
 | `validation` | Is used to validate inputs in various form fields | [link](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/mixin/validation.mixin.js) |
-

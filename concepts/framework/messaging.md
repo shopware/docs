@@ -1,3 +1,10 @@
+---
+nav:
+  title: Messaging
+  position: 20
+
+---
+
 # Messaging
 
 Shopware integrates with the [Symfony Messenger](https://symfony.com/doc/current/components/messenger.html) component and [Enqueue](https://enqueue.forma-pro.com/). This gives you the possibility to send and handle asynchronous messages.
@@ -18,7 +25,7 @@ A [handler](https://symfony.com/doc/current/messenger.html#registering-handlers)
 
 ### Message
 
-A [message](https://symfony.com/doc/current/messenger.html#message) is a simple PHP class that you want to dispatch over the MessageQueue. It must be serializable and should contain all the necessary information that a [handler](messaging.md#handler) needs to process the message.
+A [message](https://symfony.com/doc/current/messenger.html#message) is a simple PHP class that you want to dispatch over the MessageQueue. It must be serializable and should contain all the necessary information that a [handler](messaging#handler) needs to process the message.
 
 ### Envelope
 
@@ -38,5 +45,4 @@ To send messages the Shopware messenger bus is used which can be injected throug
 
 ### Consuming Messages
 
-Consuming messages can be done via both a [console command](../../guides/hosting/infrastructure/message-queue.md#cli-worker), and via an API endpoint. The Console command starts a worker that will receive incoming messages from your transport and dispatch them. The API can be communicated with via a POST, which will consume messages for 2 seconds and then you get the count of the handled messages in the response.
-
+Consuming messages can be done via both a [console command](../../guides/hosting/infrastructure/message-queue#cli-worker), and via an API endpoint. The Console command starts a worker that will receive incoming messages from your transport and dispatch them. The API can be communicated with via a POST, which will consume messages for 2 seconds and then you get the count of the handled messages in the response.
