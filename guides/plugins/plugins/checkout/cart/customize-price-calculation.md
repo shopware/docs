@@ -8,15 +8,15 @@ This guide will cover this subject with a short example.
 
 ## Prerequisites
 
-As most guides, this guide is also built upon our [plugin base guide](../../plugin-base-guide.md), but it's not mandatory to use exactly that plugin as a foundation. The examples in this guide use the namespace however.
+As most guides, this guide is also built upon our [plugin base guide](../../plugin-base-guide), but it's not mandatory to use exactly that plugin as a foundation. The examples in this guide use the namespace however.
 
-Furthermore, you'll have to understand service decoration for this guide, so if you're not familiar with that, head over to our guide regarding [adjusting a service](../../plugin-fundamentals/adjusting-service.md).
+Furthermore, you'll have to understand service decoration for this guide, so if you're not familiar with that, head over to our guide regarding [adjusting a service](../../plugin-fundamentals/adjusting-service).
 
 ## Decorating the calculator
 
 In order to customize the price calculation for products as a whole, you'll have to decorate the service [ProductPriceCalculator](https://github.com/shopware/platform/blob/trunk/src/Core/Content/Product/SalesChannel/Price/ProductPriceCalculator.php). It comes with a `calculate` method, which you can decorate and therefore customize.
 
-So let's do that real quick. If you're looking for an in-depth explanation, head over to our guide about [adjusting a service](../../plugin-fundamentals/adjusting-service.md).
+So let's do that real quick. If you're looking for an in-depth explanation, head over to our guide about [adjusting a service](../../plugin-fundamentals/adjusting-service).
 
 Here's an example decorated calculator:
 
@@ -91,4 +91,4 @@ Do not forget to actually register your decoration to the service container, oth
 
 ## Next steps
 
-Instead of manipulating a product's price, you can also try to add a discount or a surcharge to the cart. This is explained in our guide about [adding cart discounts](add-cart-discounts.md).
+Instead of manipulating a product's price, you can also try to add a discount or a surcharge to the cart. This is explained in our guide about [adding cart discounts](add-cart-discounts).

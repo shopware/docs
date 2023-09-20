@@ -13,17 +13,17 @@ In this article, you will get to know the Administration component and learn a l
 
 ## Introduction
 
-The Administration component is a Symfony bundle that contains a Single Page Application \(SPA\) written in JavaScript. It conceptually sits on top of the Core - similar to the [Storefront](storefront-concept.md) component. The SPA itself provides a rich user interface on top of REST-API-based communication. It communicates with the Core component through the Admin API and is an headless application build on custom components written in [Vue.js](https://vuejs.org/). Similar to the frameworks being used in the Storefront component, the Administration component uses SASS for styling purposes and [Twig.js](https://github.com/twigjs/twig.js/wiki) to offer templating functionalities. By default, Shopware 6 uses the [Vue I18n plugin](https://kazupon.github.io/vue-i18n/) in the Administration to deal with translation. Furthermore, [Webpack](https://webpack.js.org/) is being used to bundle and compile the SPA.
+The Administration component is a Symfony bundle that contains a Single Page Application \(SPA\) written in JavaScript. It conceptually sits on top of the Core - similar to the [Storefront](storefront-concept) component. The SPA itself provides a rich user interface on top of REST-API-based communication. It communicates with the Core component through the Admin API and is an headless application build on custom components written in [Vue.js](https://vuejs.org/). Similar to the frameworks being used in the Storefront component, the Administration component uses SASS for styling purposes and [Twig.js](https://github.com/twigjs/twig.js/wiki) to offer templating functionalities. By default, Shopware 6 uses the [Vue I18n plugin](https://kazupon.github.io/vue-i18n/) in the Administration to deal with translation. Furthermore, [Webpack](https://webpack.js.org/) is being used to bundle and compile the SPA.
 
 ## Main concerns
 
-As mentioned previously, the Administration component provides a SPA that communicates with the Core through the [Admin API](../../../concepts/api/admin-api.md). To summarize, its main concern is to provide a UI for all administrative tasks for a shop owner in Shopware. To be more precise, it does not contain any business logic. Therefore, there is no functional layering but a flat list of modules structured along the Core component and containing Vue.js web components. Every single communication with the Core can, e.g., be inspected throughout the network activities of your browser's developer tools.
+As mentioned previously, the Administration component provides a SPA that communicates with the Core through the [Admin API](../../../concepts/api/admin-api). To summarize, its main concern is to provide a UI for all administrative tasks for a shop owner in Shopware. To be more precise, it does not contain any business logic. Therefore, there is no functional layering but a flat list of modules structured along the Core component and containing Vue.js web components. Every single communication with the Core can, e.g., be inspected throughout the network activities of your browser's developer tools.
 
 Apart from the arguably most central responsibility of creating the UI itself, which can be reached through `/admin`. The Administration components implement a number of cross-cutting concerns. The most important are:
 
-* **Providing inheritance**: As Shopware 6 offers a flexible extension system to develop own apps, plugins, or themes,  one can override or extend the Administration to fit needs. More information can be found in the [inheritance](administration-concept.md#inheritance) chapter of this article.
+* **Providing inheritance**: As Shopware 6 offers a flexible extension system to develop own apps, plugins, or themes,  one can override or extend the Administration to fit needs. More information can be found in the [inheritance](administration-concept#inheritance) chapter of this article.
 
-* **Data management**: The Administration displays entities of the Core component and handles the management of this data. So, of course, REST-API access is an important concern of [Pages and views](administration-concept.md#modules-and-their-components) where necessary. You will find many components working with in-memory representations of API-Data.
+* **Data management**: The Administration displays entities of the Core component and handles the management of this data. So, of course, REST-API access is an important concern of [Pages and views](administration-concept#modules-and-their-components) where necessary. You will find many components working with in-memory representations of API-Data.
 
 * **State management**: In contrast to the Core \(Backend\), the Administration is a long-running process contained in the browser. Proper state management is key here. There is a router present handling the current page selection. View and component rendering is done locally in relation to their parents. Therefore, each component manages the state of its subcomponents.
 
@@ -70,7 +70,7 @@ At least one `page` is mandatory in each module. Though views and components can
 
 ### Order module
 
-Having a look at a more practical example, one can look closer at the order module. Typically, you will find this structure alongside other modules, especially when creating pages or views for creating/editing, listing, or viewing a specific entity. Refer to the [Add custom module](../../../guides/plugins/plugins/administration/add-custom-module.md) article if you want to learn more about adding your custom module with a Shopware plugin.
+Having a look at a more practical example, one can look closer at the order module. Typically, you will find this structure alongside other modules, especially when creating pages or views for creating/editing, listing, or viewing a specific entity. Refer to the [Add custom module](../../../guides/plugins/plugins/administration/add-custom-module) article if you want to learn more about adding your custom module with a Shopware plugin.
 
 ```bash
 <platform/src/Administration/Resources/app/administration/src/module/sw-order/>

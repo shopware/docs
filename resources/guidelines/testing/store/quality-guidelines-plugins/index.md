@@ -318,7 +318,7 @@ The bootstrap cannot be found. The reasons could be that the folder structure in
 ### Class Shopware\Storefront\* not found
 
 Missing requirements in the composer.json (e.g. "require": {"shopware/frontend": "*"},)  
-See "[Shopware App Development: App Meta Information - Explanation of the properties](../../../../../guides/plugins/plugins/plugin-base-guide.md#the-composerjson-file) for more information.
+See "[Shopware App Development: App Meta Information - Explanation of the properties](../../../../../guides/plugins/plugins/plugin-base-guide#the-composerjson-file) for more information.
 
 ### Cookies are written safely
 

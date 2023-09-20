@@ -1,6 +1,6 @@
 # Using utility functions
 
-Utility functions in the Shopware 6 Administration are registered to [the Shopware object](the-shopware-object.md) and are therefore accessible everywhere in the Administration. They provide many useful [shortcuts](../../../../resources/references/core-reference/administration-reference/utils.md) for common tasks.
+Utility functions in the Shopware 6 Administration are registered to [the Shopware object](the-shopware-object) and are therefore accessible everywhere in the Administration. They provide many useful [shortcuts](../../../../resources/references/core-reference/administration-reference/utils) for common tasks.
 
 ## Prerequisites
 
@@ -36,5 +36,5 @@ Component.register('swag-basic-example', {
 
 ## More, interesting topics
 
-* [Adding filters](add-filter.md)
-* [Adding mixins](add-mixins.md)
+* [Adding filters](add-filter)
+* [Adding mixins](add-mixins)

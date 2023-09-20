@@ -6,7 +6,7 @@ Just like in PHP, there may be useful events in our JavaScript plugins, which yo
 
 ## Prerequisites
 
-As most guides, this one is built upon our [Plugin base guide](../plugin-base-guide.md), but that one is not necessary, you do need a running plugin though! Also this guide will **not** explain how to create a JavaScript plugin in general, head over to our guide [adding custom javascript](add-custom-javascript.md) to understand how that's done in the first place.
+As most guides, this one is built upon our [Plugin base guide](../plugin-base-guide), but that one is not necessary, you do need a running plugin though! Also this guide will **not** explain how to create a JavaScript plugin in general, head over to our guide [adding custom javascript](add-custom-javascript) to understand how that's done in the first place.
 
 ## JavaScript base class
 
@@ -62,4 +62,4 @@ This does **not** prevent the execution of the original method. Consider those e
 
 ## Next steps
 
-Everytime you don't find an event to implement the changes you need, you may have to override the plugin itself. For this case, head over to our guide about [Override existing javascript](override-existing-javascript.md).
+Everytime you don't find an event to implement the changes you need, you may have to override the plugin itself. For this case, head over to our guide about [Override existing javascript](override-existing-javascript).

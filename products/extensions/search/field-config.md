@@ -1,12 +1,12 @@
 # Field Configuration
 
-With the [relevance](relevance.md), the Advanced Search offers the possibility to customize the searched fields.
+With the [relevance](relevance), the Advanced Search offers the possibility to customize the searched fields.
 
 Here, we want to give you brief information about the internal usage of the different Elasticsearch functionalities used for the full text search of the Advanced Search.
 
 ## Filter
 
-The Advanced Search adds some additional filters, which will be used by the [Analyzer](field-config.md#analyzer).
+The Advanced Search adds some additional filters, which will be used by the [Analyzer](field-config#analyzer).
 
 1. **Numeric-Char-Filter \(`sesNumericCharFilter`\)** - The *numeric char filter* separates strings and numbers, and it normalizes the different spelling issues mostly found in shops.
 
@@ -32,7 +32,7 @@ When words are separated by one of these characters, the special character is re
        * Maximum shingle size -&gt; 3
        * Output Unigrams -&gt; false
 
-    3. **Synonym \(`ses_synonym`\)** - In the Advanced Search you can define synonyms. These [synonyms](synonyms.md) are used by the search analyzer.
+    3. **Synonym \(`ses_synonym`\)** - In the Advanced Search you can define synonyms. These [synonyms](synonyms) are used by the search analyzer.
 
 ## Analyzer
 

@@ -6,7 +6,7 @@ In this guide you will learn how to create a custom Storefront controller.
 
 ## Prerequisites
 
-In order to add your own controller for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
+In order to add your own controller for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide).
 
 ::: info
 Refer to this video on **[Common Storefront controller tasks](https://www.youtube.com/watch?v=5eXXNh4cQG0)** explaining the basics about Storefront controllers. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
@@ -150,7 +150,7 @@ Once we‘ve registered our new controller, we have to tell Shopware how we want
 
 Now we registered our controller and Shopware indexes the route, but the template file, that is supposed to be rendered, is still missing. Let's change that now.
 
-As previously mentioned, the code will try to render an `index.html.twig` file. Thus we have to create an `index.html.twig` in the `<plugin root>/src/Resources/views/storefront/page/example` directory, as defined in our controller. Below you can find an example, where we extend from the template `base.html.twig` and override the block `base_content`. In our [Customize templates](customize-templates.md) guide, you can learn more about customizing templates.
+As previously mentioned, the code will try to render an `index.html.twig` file. Thus we have to create an `index.html.twig` in the `<plugin root>/src/Resources/views/storefront/page/example` directory, as defined in our controller. Below you can find an example, where we extend from the template `base.html.twig` and override the block `base_content`. In our [Customize templates](customize-templates) guide, you can learn more about customizing templates.
 
 ```twig
 // <plugin root>/src/Resources/views/storefront/page/example.html.twig
@@ -196,4 +196,4 @@ class ExampleController extends StorefrontController
 
 ## Next steps
 
-Since you've already created a controller now, which is also part of creating a so called "page" in Shopware, you might want to head over to our guide about [creating a page](add-custom-page.md).
+Since you've already created a controller now, which is also part of creating a so called "page" in Shopware, you might want to head over to our guide about [creating a page](add-custom-page).

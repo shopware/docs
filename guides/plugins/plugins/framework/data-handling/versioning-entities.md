@@ -6,9 +6,9 @@ In this guide you will learn how to version your entities. The entity versioning
 
 ## Prerequisites
 
-In order to add your own versioned entities for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md).
+In order to add your own versioned entities for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide).
 
-Furthermore you should have a look at our [Adding custom complex data](add-custom-complex-data.md) guide, since this guide is built upon it.
+Furthermore you should have a look at our [Adding custom complex data](add-custom-complex-data) guide, since this guide is built upon it.
 
 ## Adjust migration
 
@@ -94,7 +94,7 @@ Lastly, we used the repository method `merge` with our versionId, which deletes 
 
 ## Versioning with foreign keys
 
-If you have an entity with foreign keys, your foreign keys also need to be versioned. In this example we're using an inherited field. If you are not familiar with inheritance, head over to our [Field inheritance](field-inheritance.md) guide.
+If you have an entity with foreign keys, your foreign keys also need to be versioned. In this example we're using an inherited field. If you are not familiar with inheritance, head over to our [Field inheritance](field-inheritance) guide.
 
 ### Migration
 

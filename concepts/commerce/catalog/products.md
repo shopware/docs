@@ -2,7 +2,7 @@
 
 Products are sellable entities (physical and digital products) within your shop.
 
-Depending on your setup, Shopware can easily handle thousands of products. However, an upsurge in the product quantity (in millions) needs some tweaks for robust running of the environment as it depends on factors like the number of [categories](../../../../docs/concepts/commerce/catalog/categories.md), [sales channels](../../../../docs/concepts/commerce/catalog/sales-channels.md), [product properties](../../../../docs/concepts/commerce/catalog/products.md#property-groups--options), etc. Every product added to your shop can be made available on one or more [sales channels](../../../../docs/concepts/commerce/catalog/sales-channels.md).
+Depending on your setup, Shopware can easily handle thousands of products. However, an upsurge in the product quantity (in millions) needs some tweaks for robust running of the environment as it depends on factors like the number of [categories](../../../../docs/concepts/commerce/catalog/categories), [sales channels](../../../../docs/concepts/commerce/catalog/sales-channels), [product properties](../../../../docs/concepts/commerce/catalog/products#property-groups--options), etc. Every product added to your shop can be made available on one or more [sales channels](../../../../docs/concepts/commerce/catalog/sales-channels).
 
 Let us start understanding about product more in detail:
 
@@ -47,6 +47,6 @@ It is important to understand the difference between those two because both prov
 
 ### Configurator
 
-When a variant product is loaded for a [Store API](../../api/store-api.md)-scoped request, Shopware assembles a configurator object which includes all different property groups and the corresponding variants. This way client applications, such as the [Storefront](../../../guides/plugins/plugins/storefront/) or the [PWA](../../../products/pwa.md) can display the different variant options of the product.
+When a variant product is loaded for a [Store API](../../api/store-api)-scoped request, Shopware assembles a configurator object which includes all different property groups and the corresponding variants. This way client applications, such as the [Storefront](../../../guides/plugins/plugins/storefront/) or the [PWA](../../../products/pwa) can display the different variant options of the product.
 
 The following section is a detailed understanding on category.

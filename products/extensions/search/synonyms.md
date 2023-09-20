@@ -1,6 +1,6 @@
 # Synonyms
 
-The Synonyms are defined in the `%PLUGIN_DIR%/Resources/config/Synonyms.php`. The path to this file is saved in the `swag_ses_synonym_dir` parameter of the container and can be overridden with the default [Dependency Injection](../../../guides/plugins/plugins/plugin-fundamentals/add-plugin-dependencies.md). See [how to override](synonyms.md#how-to-override) for more information.
+The Synonyms are defined in the `%PLUGIN_DIR%/Resources/config/Synonyms.php`. The path to this file is saved in the `swag_ses_synonym_dir` parameter of the container and can be overridden with the default [Dependency Injection](../../../guides/plugins/plugins/plugin-fundamentals/add-plugin-dependencies). See [how to override](synonyms#how-to-override) for more information.
 
 ::: info
 The syntax in the association is the [Solr syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-synonym-tokenfilter.html#_solr_synonyms).
@@ -50,9 +50,9 @@ return [
    1. Shopware is based on Symfony, so it is possible to [override](https://symfony.com/doc/2.0/cookbook/bundles/override.html#services-configuration) the Service parameters in Symfony style.
    1. Parametername `swag_ses_synonym_dir`
 1. Own plugin
-   1. [Create a plugin](../../../guides/plugins/plugins/plugin-base-guide.md)
-   1. Add a [Dependency Injection](../../../guides/plugins/plugins/plugin-fundamentals/dependency-injection.md#injecting-another-service) file
-   1. Create a file with your [Synonyms](synonyms.md#example)
+   1. [Create a plugin](../../../guides/plugins/plugins/plugin-base-guide)
+   1. Add a [Dependency Injection](../../../guides/plugins/plugins/plugin-fundamentals/dependency-injection#injecting-another-service) file
+   1. Create a file with your [Synonyms](synonyms#example)
    1. [Add a parameter](https://symfony.com/doc/2.0/cookbook/bundles/override.html#services-configuration) to the Dependency Injection file.
 
 ```html

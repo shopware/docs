@@ -22,7 +22,7 @@ The tasks that execute when the trigger happens or the certain conditions are me
 		
 Pre-created [flows](#flow) built are designated as flow templates.
 
-The flow library contains the flow template listing that is shipped with Shopware. Two main ways to create a flow template in the template library are by [apps](../../guides/plugins/plugins/framework/flow/README.md) and [plugins](../../guides/plugins/apps/flow-builder/README.md).
+The flow library contains the flow template listing that is shipped with Shopware. Two main ways to create a flow template in the template library are by [apps](../../guides/plugins/plugins/framework/flow/) and [plugins](../../guides/plugins/apps/flow-builder/).
 
 We can help merchants reduce the complexity of creating an automation process in their business by using a flow template rather than building a flow. As a merchant, you may design a flow more easily by using the flow templates. So you don't have to create complicated flows on your own.
 

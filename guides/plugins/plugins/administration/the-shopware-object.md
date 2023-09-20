@@ -29,7 +29,7 @@ Component.register('sw-dashboard-index', {
 });
 ```
 
-Learn more about them here: [Creating administration component](add-custom-component.md)
+Learn more about them here: [Creating administration component](add-custom-component)
 
 ## Module
 
@@ -41,7 +41,7 @@ const { Module } = Shopware;
 Module.register('your-module', {});
 ```
 
-Learn more about them here: [Creating administration module](add-custom-module.md)
+Learn more about them here: [Creating administration module](add-custom-module)
 
 ## A more general overview
 
@@ -79,4 +79,4 @@ In the example above you can see how the TypeScript declarations are helping you
 
 ## Next steps
 
-As you might have noticed, the `Shopware` object can be used in a lot of cases. Besides registering components and modules, here are some guides about [adding filters](add-filter.md), about [adding mixins](add-mixins.md) and about [using our utils](using-utils.md) - all by using the Shopware object.
+As you might have noticed, the `Shopware` object can be used in a lot of cases. Besides registering components and modules, here are some guides about [adding filters](add-filter), about [adding mixins](add-mixins) and about [using our utils](using-utils) - all by using the Shopware object.

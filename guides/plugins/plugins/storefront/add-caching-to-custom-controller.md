@@ -6,7 +6,7 @@ In this guide you will learn how to define a controller route as cacheable for t
 
 ## Prerequisites
 
-In order to add a cache to an own controller route, you first need a plugin with a controller. Therefore, you can refer to the [Add custom controller guide](./add-custom-controller.md).
+In order to add a cache to an own controller route, you first need a plugin with a controller. Therefore, you can refer to the [Add custom controller guide](./add-custom-controller).
 
 ## Define the controller as cacheable
 
@@ -53,6 +53,6 @@ class ExampleController extends StorefrontController
 
 As soon as a controller route has been defined as cacheable, and the corresponding response is written to the cache, it is tagged accordingly. For this purpose, the core uses all cache tags generated during the request or loaded from existing cache entries. The cache invalidation of the Storefront controller routes is controlled by the cache invalidation of the store API routes.
 
-For more information about Store API cache invalidation, you can refer to the [Add Cache for Store Api Route Guide](../framework/store-api/add-caching-for-store-api-route.md).
+For more information about Store API cache invalidation, you can refer to the [Add Cache for Store Api Route Guide](../framework/store-api/add-caching-for-store-api-route).
 
 This is because all data loaded in a controller route, is loaded in the core via the corresponding Store API routes and provided with corresponding cache tags. So the tags of the HTTP cache entries we have in the core consists of the sum of all store api tags generated or loaded during the request. Therefore the invalidation of a controller route that loads all data via the store API, no additional invalidation needs to be written.

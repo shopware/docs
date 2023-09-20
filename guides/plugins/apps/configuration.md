@@ -1,7 +1,7 @@
 # Configuration
 
 ::: info
-Configurations for apps adhere to the same schema as [Plugin Configurations](../plugins/plugin-fundamentals/add-plugin-configuration.md).
+Configurations for apps adhere to the same schema as [Plugin Configurations](../plugins/plugin-fundamentals/add-plugin-configuration).
 :::
 
 To offer configuration possibilities to your users you can provide a `config.xml` file that describes your configuration options. You can find detailed information about the possibilities and the structure of the `config.xml` in the according documentation page. To include a `config.xml` file in your app put it into the `Resources/config` folder:
@@ -41,7 +41,7 @@ Keep in mind that your app needs the `system_config:read` permission to access t
 
 ### Reading the config in templates
 
-Inside twig templates you can use the twig function `config` (see [Shopware Twig functions](../../../resources/references/storefront-reference/twig-function-reference.md)). An example twig template could look like this:
+Inside twig templates you can use the twig function `config` (see [Shopware Twig functions](../../../resources/references/storefront-reference/twig-function-reference)). An example twig template could look like this:
 
 ```twig
 {{ config('DemoApp.config.field1') }}
@@ -49,7 +49,7 @@ Inside twig templates you can use the twig function `config` (see [Shopware Twig
 
 ### Reading the config in app scripts
 
-In app scripts you have access to the [`config` service](../../../resources/references/app-reference/script-reference/miscellaneous-script-services-reference.md#SystemConfigFacade), that can be used to access config values.
+In app scripts you have access to the [`config` service](../../../resources/references/app-reference/script-reference/miscellaneous-script-services-reference#SystemConfigFacade), that can be used to access config values.
 
 ::: info
 Note that app scripts were introduced in Shopware 6.4.8.0, and are not supported in previous versions.
@@ -71,6 +71,6 @@ Keep in mind that your app needs the `system_config:read` permission to use the 
 {% set configValue = services.config.get('core.listing.productsPerPage') %}
 ```
 
-For a detailed description about app scripts refer to this [guide](./app-scripts/README.md).
+For a detailed description about app scripts refer to this [guide](./app-scripts/).
 
-For a full description of the `config` service take a look at the [service's reference](../../../resources/references/app-reference/script-reference/miscellaneous-script-services-reference.md#servicesconfig-shopwarecoresystemsystemconfigfacadesystemconfigfacade).
+For a full description of the `config` service take a look at the [service's reference](../../../resources/references/app-reference/script-reference/miscellaneous-script-services-reference#servicesconfig-shopwarecoresystemsystemconfigfacadesystemconfigfacade).

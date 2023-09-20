@@ -11,7 +11,7 @@ You can use the cart service to add line-items, change prices, add discounts, et
 * The `items()` method returns all line-items of the current cart for further manipulation.
 
     
-* **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemsFacade`](./cart-manipulation-script-services-reference.md#itemsfacade)
+* **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemsFacade`](./cart-manipulation-script-services-reference#itemsfacade)
 
     A `ItemsFacade` containing all line-items in the current cart as a collection.
 ### products()
@@ -19,7 +19,7 @@ You can use the cart service to add line-items, change prices, add discounts, et
 * The `product()` method returns all products of the current cart for further manipulation.
 
     Similar to the `items()` method, but the line-items are filtered, to only contain product line items.
-* **Returns** [`Shopware\Core\Checkout\Cart\Facade\ProductsFacade`](./cart-manipulation-script-services-reference.md#productsfacade)
+* **Returns** [`Shopware\Core\Checkout\Cart\Facade\ProductsFacade`](./cart-manipulation-script-services-reference#productsfacade)
 
     A `ProductsFacade` containing all product line-items in the current cart as a collection.
 ### calculate()
@@ -37,7 +37,7 @@ You can use the cart service to add line-items, change prices, add discounts, et
 
     Note that this price may be outdated, if you changed something inside the cart in your script.
 	Use the `calculate()` method to recalculate the cart and update the price.
-* **Returns** [`Shopware\Core\Checkout\Cart\Facade\CartPriceFacade`](./cart-manipulation-script-services-reference.md#cartpricefacade)
+* **Returns** [`Shopware\Core\Checkout\Cart\Facade\CartPriceFacade`](./cart-manipulation-script-services-reference#cartpricefacade)
 
     The calculated price of the cart.
 ### errors()
@@ -45,7 +45,7 @@ You can use the cart service to add line-items, change prices, add discounts, et
 * The `errors()` method returns the current errors of the cart.
 
     You can use it to add new errors or warning or to remove existing ones.
-* **Returns** [`Shopware\Core\Checkout\Cart\Facade\ErrorsFacade`](./cart-manipulation-script-services-reference.md#errorsfacade)
+* **Returns** [`Shopware\Core\Checkout\Cart\Facade\ErrorsFacade`](./cart-manipulation-script-services-reference#errorsfacade)
 
     A `ErrorsFacade` containing all cart errors as a collection (may be an empty collection if there are no errors)
 ### states()
@@ -53,7 +53,7 @@ You can use the cart service to add line-items, change prices, add discounts, et
 * `states()` allows you to access the state functions of the current cart.
 
     
-* **Returns** [`Shopware\Core\Checkout\Cart\Facade\StatesFacade`](./cart-manipulation-script-services-reference.md#statesfacade)
+* **Returns** [`Shopware\Core\Checkout\Cart\Facade\StatesFacade`](./cart-manipulation-script-services-reference#statesfacade)
 
     A `StatesFacade` containing all cart states as a collection (maybe an empty collection if there are no states)
 ### discount()
@@ -61,7 +61,7 @@ You can use the cart service to add line-items, change prices, add discounts, et
 * The `discount()` methods creates a new discount line-item with the given type and value.
 
     
-* **Returns** [`Shopware\Core\Checkout\Cart\Facade\DiscountFacade`](./cart-manipulation-script-services-reference.md#discountfacade)
+* **Returns** [`Shopware\Core\Checkout\Cart\Facade\DiscountFacade`](./cart-manipulation-script-services-reference#discountfacade)
 
     Returns the newly created discount line-item.
 * **Arguments:**
@@ -110,7 +110,7 @@ You can use the cart service to add line-items, change prices, add discounts, et
 * The `surcharge()` methods creates a new surcharge line-item with the given type and value.
 
     
-* **Returns** [`Shopware\Core\Checkout\Cart\Facade\DiscountFacade`](./cart-manipulation-script-services-reference.md#discountfacade)
+* **Returns** [`Shopware\Core\Checkout\Cart\Facade\DiscountFacade`](./cart-manipulation-script-services-reference#discountfacade)
 
     Returns the newly created surcharge line-item.
 * **Arguments:**
@@ -151,7 +151,7 @@ You can use the cart service to add line-items, change prices, add discounts, et
 * `get()` returns the line-item with the given id from this collection.
 
     
-* **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference.md#itemfacade) | `null`
+* **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference#itemfacade) | `null`
 
     The line-item with the given id, or null if it does not exist.
 * **Arguments:**
@@ -396,7 +396,7 @@ The ItemFacade is a wrapper around one line-item.
 * `getPrice()` returns the calculated price of the line-item.
 
     
-* **Returns** [`Shopware\Core\Checkout\Cart\Facade\PriceFacade`](./cart-manipulation-script-services-reference.md#pricefacade) | `null`
+* **Returns** [`Shopware\Core\Checkout\Cart\Facade\PriceFacade`](./cart-manipulation-script-services-reference#pricefacade) | `null`
 
     Returns the price of the line-item as a `PriceFacade` or null if the line-item has no calculated price.
 ### take()
@@ -404,7 +404,7 @@ The ItemFacade is a wrapper around one line-item.
 * `take()` splits an existing line-item by a given quantity.
 
     It removes the given quantity from the existing line-item and returns a new line-item with exactly that quantity.
-* **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference.md#itemfacade) | `null`
+* **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference#itemfacade) | `null`
 
     Returns the new line-item as an `ItemFacade` or null if taking is not possible because the line-item has no sufficient quantity.
 * **Arguments:**
@@ -464,7 +464,7 @@ The ItemFacade is a wrapper around one line-item.
 * `getPayload()` returns the payload of this line-item.
 
     
-* **Returns** [`Shopware\Core\Framework\Script\Facade\ArrayFacade`](./miscellaneous-script-services-reference.md#arrayfacade)
+* **Returns** [`Shopware\Core\Framework\Script\Facade\ArrayFacade`](./miscellaneous-script-services-reference#arrayfacade)
 
     Returns the payload as `ArrayFacade`.
 ### getChildren()
@@ -472,7 +472,7 @@ The ItemFacade is a wrapper around one line-item.
 * `getChildren()` returns the child line-items of this line-item.
 
     
-* **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemsFacade`](./cart-manipulation-script-services-reference.md#itemsfacade)
+* **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemsFacade`](./cart-manipulation-script-services-reference#itemsfacade)
 
     Returns the children as a `ItemsFacade`, that may be empty if no children exist.
 ### getType()
@@ -493,11 +493,11 @@ The ItemsFacade is a wrapper around a collection of line-items.
 * `add()` adds a line-item to this collection.
 
     
-* **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference.md#itemfacade)
+* **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference#itemfacade)
 
     Returns the added line-item.
 * **Arguments:**
-    * *[`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference.md#itemfacade)* **item**: The line-item that should be added.
+    * *[`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference#itemfacade)* **item**: The line-item that should be added.
 * **Examples:**
     * Add an absolute discount to the cart.
 
@@ -525,7 +525,7 @@ The ItemsFacade is a wrapper around a collection of line-items.
 * `get()` returns the line-item with the given id from this collection.
 
     
-* **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference.md#itemfacade) | `null`
+* **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference#itemfacade) | `null`
 
     The line-item with the given id, or null if it does not exist.
 * **Arguments:**
@@ -622,7 +622,7 @@ The ProductsFacade is a wrapper around a collection of product line-items.
 * `get()` returns the product line-item with the given product id.
 
     
-* **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference.md#itemfacade) | `null`
+* **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference#itemfacade) | `null`
 
     The line-item associated with the given product id, or null if it does not exist.
 * **Arguments:**
@@ -639,7 +639,7 @@ The ProductsFacade is a wrapper around a collection of product line-items.
 * `add()` adds a new product  line-item to this collection.
 
     In the case only a product id is provided it will create a new line-item from type product for the given product id.
-* **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference.md#itemfacade)
+* **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference#itemfacade)
 
     The newly added product line-item.
 * **Arguments:**
@@ -659,7 +659,7 @@ The ProductsFacade is a wrapper around a collection of product line-items.
 * `create()` creates a new product line-item for the product with the given id in the given quantity.
 
     Note that the created line-item will not be added automatically to this collection, use `add()` for that.
-* **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference.md#itemfacade)
+* **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference#itemfacade)
 
     The newly created product line-item.
 * **Arguments:**

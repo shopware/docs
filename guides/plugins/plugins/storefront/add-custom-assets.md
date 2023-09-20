@@ -6,7 +6,7 @@ When working with an own plugin, the usage of own custom images or other assets 
 
 ## Prerequisites
 
-In order to be able to start with this guide, you need to have an own plugin running. As to most guides, this guide is also built upon the [Plugin base guide](../plugin-base-guide.md)
+In order to be able to start with this guide, you need to have an own plugin running. As to most guides, this guide is also built upon the [Plugin base guide](../plugin-base-guide)
 
 Needless to say, you should have your image or another asset at hand to work with.
 
@@ -79,4 +79,4 @@ Of course, you're able to use custom assets in themes as well. In this context t
 
 ## Next steps
 
-One of the said custom assets are medias. For more information on that, refer to [Media and thumbnails](use-media-thumbnails.md).
+One of the said custom assets are medias. For more information on that, refer to [Media and thumbnails](use-media-thumbnails).

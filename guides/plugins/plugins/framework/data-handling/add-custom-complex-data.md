@@ -6,7 +6,7 @@ Quite often, your plugin has to save data into a custom database table. Shopware
 
 ## Prerequisites
 
-This guide is built upon the [Plugin base guide](../../plugin-base-guide.md), but any plugin will work here. Just note that all examples are using the plugin mentioned above. In order to create a database table, you need to understand plugin migrations [Plugin migrations](../../plugin-fundamentals/database-migrations.md). Also, you'll have to understand how the [Dependency injection](../../plugin-fundamentals/dependency-injection.md) works as well.
+This guide is built upon the [Plugin base guide](../../plugin-base-guide), but any plugin will work here. Just note that all examples are using the plugin mentioned above. In order to create a database table, you need to understand plugin migrations [Plugin migrations](../../plugin-fundamentals/database-migrations). Also, you'll have to understand how the [Dependency injection](../../plugin-fundamentals/dependency-injection) works as well.
 
 ::: info
 Refer to this video on **[Creating a custom entity](https://www.youtube.com/watch?v=mTHTyof4gPk)**. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
@@ -18,7 +18,7 @@ We'll start with creating a new database table. Make sure to always add your ind
 
 In this guide we'll name our table `swag_example`, you'll find this name a few more times in here, so make sure to remember that one.
 
-As already mentioned in the prerequisites, creating a database table is done via plugin migrations [Plugin migrations](../../plugin-fundamentals/database-migrations.md), head over to this guide to understand how this example works.
+As already mentioned in the prerequisites, creating a database table is done via plugin migrations [Plugin migrations](../../plugin-fundamentals/database-migrations), head over to this guide to understand how this example works.
 
 ```php
 // <plugin root>/src/Migration/Migration1611664789Example.php
@@ -154,9 +154,9 @@ The `storageName` is written in snake\_case, while the `propertyName` must be wr
 
 Another thing to note is the `addFlags` call on the `IdField`. Those flags are like attributes to fields, such a required field being marked by using the `Required` flag.
 
-If you want to know more about the flags and how to use them, head over to our guide on how to use flags [Using flags](using-flags.md).
+If you want to know more about the flags and how to use them, head over to our guide on how to use flags [Using flags](using-flags).
 
-All that's left to do now, is to introduce your `ExampleDefinition` to Shopware by registering your class in your `services.xml` file and by using the `shopware.entity.definition` tag, because Shopware is looking for definitions this way. If your plugin does not have a `services.xml` file yet or you don't know how that's done, head over to our guide about registering a custom service [Add a custom class / service](../../plugin-fundamentals/add-custom-service.md) or our guide about the [Dependency injection](../../plugin-fundamentals/dependency-injection.md).
+All that's left to do now, is to introduce your `ExampleDefinition` to Shopware by registering your class in your `services.xml` file and by using the `shopware.entity.definition` tag, because Shopware is looking for definitions this way. If your plugin does not have a `services.xml` file yet or you don't know how that's done, head over to our guide about registering a custom service [Add a custom class / service](../../plugin-fundamentals/add-custom-service) or our guide about the [Dependency injection](../../plugin-fundamentals/dependency-injection).
 
 Here's the `services.xml` as it should look like:
 
@@ -176,7 +176,7 @@ Here's the `services.xml` as it should look like:
 
 Please note the tag for your definition and the respective `entity` attribute, which has to contain the technical name of your entity, which you provided in your entity definition. In this case this must be `swag_example`.
 
-And basically that's it already for your definition class. Theoretically you could start using your entity now by injecting the `swag_example.repository` service to other services and start working with the repository, e.g. to [read data](reading-data.md) or to [write data](writing-data.md).
+And basically that's it already for your definition class. Theoretically you could start using your entity now by injecting the `swag_example.repository` service to other services and start working with the repository, e.g. to [read data](reading-data) or to [write data](writing-data).
 
 Yet, we highly recommend you to create a custom `Entity` class, as well as a custom `EntityCollection` class. This is not mandatory, but those will be replaced with generic classes otherwise.
 
@@ -310,6 +310,6 @@ That's it, your definition is now completely registered to Shopware 6! From here
 
 You've now got a simple entity about a single database table. However, your entity will most likely be even more complex.
 
-For example we also have a guide about [Associations](add-data-associations.md), since you most likely will have multiple tables that have a relation to each other. Furthermore, the fields in this example are already [Using flags](using-flags.md). When dealing with products, you are also dealing with [Inheritance](field-inheritance.md), which we also got covered.
+For example we also have a guide about [Associations](add-data-associations), since you most likely will have multiple tables that have a relation to each other. Furthermore, the fields in this example are already [Using flags](using-flags). When dealing with products, you are also dealing with [Inheritance](field-inheritance), which we also got covered.
 
-One more thing: Maybe you want to connect your database table to an already existing database table, hence an already existing entity. This is done by [extending the said existing entity](add-complex-data-to-existing-entities.md).
+One more thing: Maybe you want to connect your database table to an already existing database table, hence an already existing entity. This is done by [extending the said existing entity](add-complex-data-to-existing-entities).

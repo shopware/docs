@@ -1,7 +1,7 @@
 # Versioning and Dependencies
 
 ::: danger
-This setup is no longer the recomended way to manage a Shopware installation. Please refer to our [Flex-guide](../../installation/flex.md#How-do-I-migrate-from-Production-Template-to-Symfony-Flex?) on how to migrate to a symfony flex based setup.
+This setup is no longer the recomended way to manage a Shopware installation. Please refer to our [Flex-guide](../../installation/flex#How-do-I-migrate-from-Production-Template-to-Symfony-Flex?) on how to migrate to a symfony flex based setup.
 :::
 
 ## Overview
@@ -262,4 +262,4 @@ rw shared - read and write access, it should be shared across the app servers
 rw local - locale read and write access
 ```
 
-Some of these directories, like `public`, can also be changed to a different [Flysystem](../infrastructure/filesystem.md#flysystem-overview) to host the files on S3.
+Some of these directories, like `public`, can also be changed to a different [Flysystem](../infrastructure/filesystem#flysystem-overview) to host the files on S3.

@@ -10,14 +10,14 @@ This guide will show you how to achieve this, by adding the total number of acti
 
 ## Prerequisites
 
-This guide is built upon our [Plugin base guide](../plugin-base-guide.md), so keep that in mind.
+This guide is built upon our [Plugin base guide](../plugin-base-guide), so keep that in mind.
 
 Also the following knowledge is necessary, even though some of them are covered here as well:
 
-* Knowing how to [listen to events by using a subscriber](../plugin-fundamentals/listening-to-events.md)
-* Knowing how to [customize storefront templates](customize-templates.md)
-* Knowing how to [read data using our data abstraction layer](../framework/data-handling/reading-data.md)
-* Knowing how to [add a store-api route](../framework/store-api/add-store-api-route.md)
+* Knowing how to [listen to events by using a subscriber](../plugin-fundamentals/listening-to-events)
+* Knowing how to [customize storefront templates](customize-templates)
+* Knowing how to [read data using our data abstraction layer](../framework/data-handling/reading-data)
+* Knowing how to [add a store-api route](../framework/store-api/add-store-api-route)
 
 ## Adding data to the Storefront
 
@@ -151,7 +151,7 @@ class ProductCountRoute extends AbstractProductCountRoute
 }
 ```
 
-So you should know and understand the first few lines if you have read our guide about [Reading data](../framework/data-handling/reading-data.md) first.
+So you should know and understand the first few lines if you have read our guide about [Reading data](../framework/data-handling/reading-data) first.
 Make sure to also understand the usage of aggregations, since this is what is done here.
 The only main difference you might notice is, that we're using the `aggregate()` method instead of the `search()` method.
 This will not actually search for any products and return the whole products dataset, but rather just the aggregated data, nothing else.
@@ -220,7 +220,7 @@ Now you only have to adjust your service definition to inject the productCountRo
 ### Displaying the data in the Storefront
 
 To display the additional data we need to override the footer template and render the data.
-Refer to the respective section of this guide for detailed information on how to [extend templates and override blocks](customize-templates.md).
+Refer to the respective section of this guide for detailed information on how to [extend templates and override blocks](customize-templates).
 
 For our case we extend the footer template and add a new column to the navigation block:
 

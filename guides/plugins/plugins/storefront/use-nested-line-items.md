@@ -6,7 +6,7 @@ This guide will show you how to use the nested line items in the Storefront.
 
 ## Prerequisites
 
-As most guides, this guide is also built upon the [Plugin base guide](../plugin-base-guide.md), but you don't necessarily need that. This guide will only extend views and shows how the Custom Product plugin handles this.
+As most guides, this guide is also built upon the [Plugin base guide](../plugin-base-guide), but you don't necessarily need that. This guide will only extend views and shows how the Custom Product plugin handles this.
 
 ## Make nested line item removable
 

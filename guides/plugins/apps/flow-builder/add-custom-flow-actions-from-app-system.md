@@ -18,7 +18,7 @@ After reading, you will be able to
 
 Please make sure you already have a working Shopware 6 store running (either cloud or self-hosted). Prior knowledge about the Flow Builder feature of Shopware 6 is useful.
 
-Please see the [Flow Builder Concept](../../../../concepts/framework/flow-concept.md) for more information.
+Please see the [Flow Builder Concept](../../../../concepts/framework/flow-concept) for more information.
 
 ## Create the app wrapper
 
@@ -187,7 +187,7 @@ Define the `parameter` for the URL body based on your URL webhook services.
 | name | The body key for your URL. |
 | value | The content message for your URL; free to design your content message here. |
 | {{ message }} | The variable from your `<input-field>` defined in `flow-action.xml`. |
-| {{ order.orderNumber }} | For each trigger event, the action will have the variables suitable. [Read more variables here](../../../../resources/references/app-reference/flow-action-reference.md). |
+| {{ order.orderNumber }} | For each trigger event, the action will have the variables suitable. [Read more variables here](../../../../resources/references/app-reference/flow-action-reference). |
 
 With the parameters configured like described above, an exemplary call of your Webhook Action could look like this:
 
@@ -202,7 +202,7 @@ With the parameters configured like described above, an exemplary call of your W
 
 ### Action configuration
 
-You can make your flow action configurable in the Administration by adding input fields. Based on your configuration - similar to the [app configurations](../../plugins/plugin-fundamentals/add-plugin-configuration.md) - you can later on use these configuration values within flow parameters.
+You can make your flow action configurable in the Administration by adding input fields. Based on your configuration - similar to the [app configurations](../../plugins/plugin-fundamentals/add-plugin-configuration) - you can later on use these configuration values within flow parameters.
 
 ```xml
 <flow-action>
@@ -243,7 +243,7 @@ Available input field field attributes:
 You assemble your configuration from a variety of input fields.
 
 ::: info
-To get more information on how to create configuration forms, see [Plugin Configurations](../../plugins/plugin-fundamentals/add-plugin-configuration.md#the-different-types-of-input-field).
+To get more information on how to create configuration forms, see [Plugin Configurations](../../plugins/plugin-fundamentals/add-plugin-configuration#the-different-types-of-input-field).
 :::
 
 | Type | Shopware component |
@@ -274,5 +274,5 @@ bin/console app:install --activate FlowBuilderActionApp
 
 ## Further steps
 
-* [Flow action example configuration](../../../../resources/references/app-reference/flow-action-reference.md) page
+* [Flow action example configuration](../../../../resources/references/app-reference/flow-action-reference) page
 * [Schema definiton for flow actions (GitHub)](https://github.com/shopware/platform/blob/trunk/src/Core/Framework/App/FlowAction/Schema/flow-action-1.0.xsd)`

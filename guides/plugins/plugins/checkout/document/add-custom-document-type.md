@@ -6,9 +6,9 @@ Using the Shopware Administration, you can easily create new documents. This gui
 
 ## Prerequisites
 
-This guide is built upon the [plugin base guide](../../plugin-base-guide.md), but of course you can use those examples with any other plugin.
+This guide is built upon the [plugin base guide](../../plugin-base-guide), but of course you can use those examples with any other plugin.
 
-Furthermore adding a custom document type via your plugin is done by using [plugin database migrations](../../plugin-fundamentals/database-migrations.md). Since this isn't explained in this guide, you'll have to know and understand the plugin database migrations first.
+Furthermore adding a custom document type via your plugin is done by using [plugin database migrations](../../plugin-fundamentals/database-migrations). Since this isn't explained in this guide, you'll have to know and understand the plugin database migrations first.
 
 ## Adding a custom document type to the database
 
@@ -108,7 +108,7 @@ Your custom document generator has to implement the `Shopware\Core\Checkout\Docu
 
   with the file name, this is the place to go.
 
-Furthermore your generator has to be registered to the [service container](../../plugin-fundamentals/dependency-injection.md) using the tag `document.generator`.
+Furthermore your generator has to be registered to the [service container](../../plugin-fundamentals/dependency-injection) using the tag `document.generator`.
 
 Let's have a look at an example generator:
 
@@ -189,13 +189,13 @@ In there you should extend from the default document base template:
 {% sw_extends '@Framework/documents/base.html.twig' %}
 ```
 
-This could be it already. The [base.html.twig](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Framework/Resources/views/documents/base.html.twig) template comes with a lot of default templating, which you can now override by using blocks. If you don't know how that's done, have a look at our guide regarding [customizing templates](../../storefront/customize-templates.md).
+This could be it already. The [base.html.twig](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Framework/Resources/views/documents/base.html.twig) template comes with a lot of default templating, which you can now override by using blocks. If you don't know how that's done, have a look at our guide regarding [customizing templates](../../storefront/customize-templates).
 
 ## Adding a number range
 
 You're almost done here. You've got a new document type in the database, a generator for your new document type and it even uses a custom template. However, you also need to add a new number range for your documents, otherwise a new number for your documents wouldn't be generated.
 
-Adding a new number range is also done by using a [plugin database migration](../../plugin-fundamentals/database-migrations.md).
+Adding a new number range is also done by using a [plugin database migration](../../plugin-fundamentals/database-migrations).
 
 For this we need a few more things:
 
@@ -343,4 +343,4 @@ And that's it now! You've just created:
 
 ## Next steps
 
-With your custom document type, you also might want to add a new actual document configuration, which is making use of your new type. Creating a custom document is explained in [this guide](add-custom-document.md).
+With your custom document type, you also might want to add a new actual document configuration, which is making use of your new type. Creating a custom document is explained in [this guide](add-custom-document).

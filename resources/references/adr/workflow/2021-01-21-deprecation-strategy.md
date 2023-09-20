@@ -1,5 +1,5 @@
 # 2021-01-21 - Deprecation Strategy
-# Superseded by [Feature flags for major versions](2022-01-20-feature-flags-for-major-versions.md)
+# Superseded by [Feature flags for major versions](2022-01-20-feature-flags-for-major-versions)
 ::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/workflow/2021-01-21-deprecation-strategy.md)

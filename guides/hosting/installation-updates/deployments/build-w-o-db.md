@@ -15,7 +15,7 @@ Using this, you can dump the plugins for the Administration with the new file wi
 
 ## Compiling the Storefront without database
 
-To compile the Storefront theme, you will need the theme variables from the database. To allow compiling it without a database, it is possible to dump the variables to the private file system of Shopware. This file system interacts with the local folder `files` by default, but to compile it, it should be shared such that settings are shared across deployments. This can be achieved, for example, by using a [storage adapter like s3](../../infrastructure/filesystem.md). The configuration can be dumped using the command `bin/console theme:dump`, or it happens automatically when changing theme settings or assigning a new theme.
+To compile the Storefront theme, you will need the theme variables from the database. To allow compiling it without a database, it is possible to dump the variables to the private file system of Shopware. This file system interacts with the local folder `files` by default, but to compile it, it should be shared such that settings are shared across deployments. This can be achieved, for example, by using a [storage adapter like s3](../../infrastructure/filesystem). The configuration can be dumped using the command `bin/console theme:dump`, or it happens automatically when changing theme settings or assigning a new theme.
 
 By default, Shopware still tries to load configurations from the database. In the next step, you will need to change the loader to `StaticFileConfigLoader`. To change that, you will need to create a new file, `config/packages/storefront.yaml` with the following content:
 

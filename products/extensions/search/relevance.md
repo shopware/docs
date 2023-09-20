@@ -4,7 +4,7 @@ The relevance is calculated per [Dis max query​](https://www.elastic.co/guide/
 
 ## Indexing
 
-In addition to the default indexing, the Advanced Search indexes every field of the Entity definition with additional [Sub-fields](field-config.md) to Elasticsearch by default. This is done because it is possible to [define in the Administration](https://docs.shopware.com/en/shopware-6-en/enterprise-extensions/enterprise-search) which field should be searched and how searches on that field should perform. On the one hand, indexing everything supports usability. You can make changes to the configuration and you don't need to reindex everything. But on the other hand, the created index could be huge.
+In addition to the default indexing, the Advanced Search indexes every field of the Entity definition with additional [Sub-fields](field-config) to Elasticsearch by default. This is done because it is possible to [define in the Administration](https://docs.shopware.com/en/shopware-6-en/enterprise-extensions/enterprise-search) which field should be searched and how searches on that field should perform. On the one hand, indexing everything supports usability. You can make changes to the configuration and you don't need to reindex everything. But on the other hand, the created index could be huge.
 
 ## Fuzziness
 

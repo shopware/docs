@@ -6,9 +6,9 @@ In this guide you will learn how to override existing Store API routes to add ad
 
 ## Prerequisites
 
-As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide.md), but you don't necessarily need that.
+As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide), but you don't necessarily need that.
 
-Furthermore you should have a look at our guide about [Adding a Store API route](add-store-api-route.md), since this guide is built upon it.
+Furthermore you should have a look at our guide about [Adding a Store API route](add-store-api-route), since this guide is built upon it.
 
 ## Decorating our route
 

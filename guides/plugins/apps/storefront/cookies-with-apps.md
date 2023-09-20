@@ -39,7 +39,7 @@ Cookie elements can be configured by adding the following child elements:
 * `expiration` (optional): Cookie lifetime in days. **If unset, the cookie expires with the session.**
 * `snippet-description` (optional): A string that represents the description of the cookie in the cookie consent manager. To provide translations, this should be the key of a Storefront snippet.
 
-For a complete reference of the structure of the manifest file, take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference.md).
+For a complete reference of the structure of the manifest file, take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference).
 
 ## Create a cookie group
 
@@ -80,7 +80,7 @@ A `group` element consists of three child elements to configure the cookie group
 * `entries` (required): Contains the grouped cookies. It is a collection of `cookie` elements described in the previous section.
 * `snippet-description` (optional): A string that represents the description of the cookie group in the cookie consent manager. To provide translations this should be the key of a Storefront snippet.
 
-For a complete reference of the structure of the manifest file, take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference.md).
+For a complete reference of the structure of the manifest file, take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference).
 
 ## Snippet handling
 

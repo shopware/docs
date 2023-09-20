@@ -18,7 +18,7 @@ Before you are reading this guide you have to make sure you understand the basic
 
 In addition, you need a running Shopware 6 installation. Your repository used for that should be based on development template, as we will to use some scripts provided by it.
 
-For one example, we use a Javascript plugin. In oder to follow this example, you need to know how to build a Javascript plugin in the first place. You can learn about it in the corresponding [guide](../storefront/add-custom-javascript.md).
+For one example, we use a Javascript plugin. In oder to follow this example, you need to know how to build a Javascript plugin in the first place. You can learn about it in the corresponding [guide](../storefront/add-custom-javascript).
 
 ## Test structure
 
@@ -46,7 +46,7 @@ Please note that in this example, `<environment>` is a placeholder for the envir
 
 ## Writing a basic test
 
-When writing jest unit tests in the Storefront, you will soon realize that it's not that much different from writing jest unit tests in general. Unlike the [Jest unit tests in the Administration](jest-admin.md), you basically don't need to go an extra mile to write your unit tests. Services, helper and isolated ECMAScript modules are well testable because you can import them directly without mocking or stubbing dependencies. They can be used isolated and therefore are easy to test.
+When writing jest unit tests in the Storefront, you will soon realize that it's not that much different from writing jest unit tests in general. Unlike the [Jest unit tests in the Administration](jest-admin), you basically don't need to go an extra mile to write your unit tests. Services, helper and isolated ECMAScript modules are well testable because you can import them directly without mocking or stubbing dependencies. They can be used isolated and therefore are easy to test.
 
 Let's start from scratch with a simple example: Imagine we want to write a test for a helper class, e.g. the `feature.helper` of our Storefront, handling the feature flag usage. We want to test, if our feature helper can indeed handle active feature flags.
 
@@ -177,7 +177,7 @@ export default class HelloWorldPlugin extends Plugin {
 }
 ```
 
-Of course, you need to make sure that your plugin is registered, more details in the guide on [Javascript plugins](../storefront/add-custom-javascript.md).
+Of course, you need to make sure that your plugin is registered, more details in the guide on [Javascript plugins](../storefront/add-custom-javascript).
 
 In the beginning, writing plugin tests is still similar to other jest unit tests: You import your plugin's class and use the familiar test structure:
 
@@ -405,5 +405,5 @@ describe('HelloWorldPlugin tests', () => {
 
 ## More interesting topics
 
-* [PHPUnit tests](php-unit.md)
-* [End-to-end tests](end-to-end-testing.md)
+* [PHPUnit tests](php-unit)
+* [End-to-end tests](end-to-end-testing)
