@@ -20,7 +20,7 @@ When it comes to dividing test types, selecting and prioritizing test cases, and
 
 At [Shopware Community Day](https://scd.shopware.com/en/) 2020, we gave a talk on how we approach automated testing in Shopware, how far we have come on this journey, and what we have gained so far:
 
-<PageRef page="https://www.youtube.com/watch?v=sxvQoWF4KS0" title="" target="_blank" />
+<YoutubeRef video="sxvQoWF4KS0" title="A matter of trust – test - #SCD20 (ENG) - YouTube" target="_blank" />
 
 To sum it up briefly, the end-to-end tests are slow and thus expensive to maintain. That is why we need a way to prioritize our test cases.
 
