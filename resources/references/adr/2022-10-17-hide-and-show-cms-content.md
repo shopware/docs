@@ -7,10 +7,10 @@ tags: [cms, storefront, admin]
 
 # Hide and show CMS content
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-10-17-hide-and-show-cms-content.md)
-{% endhint %}
+:::
 
 ## Context
 Many merchants reached out to us, that the possibility to customize content per device is important for them. Therefore, we would like to provide a solution to allow merchants to hide and show cms sections or blocks per devices.

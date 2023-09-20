@@ -1,8 +1,8 @@
 # SameSite protection
 
-{% hint style="info" %}
+::: info
 This feature has been introduced with Shopware version 6.4.3.1
-{% endhint %}
+:::
 
 ## Overview
 
@@ -15,7 +15,7 @@ For more information, refer to [SameSite cookies site](https://web.dev/i18n/en/s
 
 Changes to the `cookie_samesite` attribute can be applied to your `framework.yaml`. The `cookie_secure` ensures that cookies are sent via HTTP or HTTPS, depending on the request's origin.
 
-```yml
+```yaml
 
 framework:
   session:

@@ -4,9 +4,8 @@ With webhooks, you can subscribe to events occurring in Shopware. Whenever such 
 
 To use webhooks in your app, you need to implement a `<webhooks>` element in your manifest file as shown below:
 
-{% code title="manifest.xml" %}
-
 ```xml
+// manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
@@ -18,15 +17,13 @@ To use webhooks in your app, you need to implement a `<webhooks>` element in you
 </manifest>
 ```
 
-{% endcode %}
-
 This example illustrates how to define a webhook with the name `product-changed` and the URL `https://example.com/event/product-changed`, which will be triggered if the event `product.written` is fired. So every time a product is changed, your custom logic will get executed. Further down, you will find a list of the most important events you can hook into.
 
 An event contains as much data as is needed to react to that event. The data is sent as JSON in the request body:
 
-{% tabs %}
+<Tabs>
 
-{% tab title="HTTP" %}
+<Tab title="HTTP">
 
 ```json
 {
@@ -52,9 +49,9 @@ An event contains as much data as is needed to react to that event. The data is 
 }
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="App PHP SDK" %}
+<Tab title="App PHP SDK">
 
 ```php
 use Psr\Http\Message\RequestInterface;
@@ -75,9 +72,9 @@ function webhookController(RequestInterface $request): ResponseInterface
 }
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Symfony Bundle" %}
+<Tab title="Symfony Bundle">
 
 ```php
 use Shopware\App\SDK\Context\Webhook\WebhookAction;
@@ -97,9 +94,9 @@ class WebhookController {
 }
 ```
 
-{% endtab %}
+</Tab>
 
-{% endtabs %}
+</Tabs>
 
 The `source` property contains all necessary information about the Shopware instance that sent the request:
 
@@ -112,10 +109,10 @@ The next property, `data` contains the name of the event so that a single endpoi
 
 The next property, `timestamp` is the time at which the webhook was handled. This can be used to prevent replay attacks, as an attacker cannot change the timestamp without making the signature invalid. If the timestamp is too old, your app should reject the request. This property is only available from 6.4.1.0 onwards
 
-{% hint style="info" %}
+::: info
 Starting from Shopware version 6.4.1.0, the current Shopware version will be sent as a `sw-version` header.
 Starting from Shopware version 6.4.5.0, the current language id of the shopware context will be sent as a  `sw-context-language` header, and the locale of the user or locale of the context language is available under the `sw-user-language` header.
-{% endhint %}
+:::
 
 You can verify the authenticity of the incoming request by checking the `shopware-shop-signature` every request should have a SHA256 HMAC of the request body that is signed with the secret your app assigned the shop during the [registration](app-base-guide.md#setup). The mechanism to verify the request is exactly the same as the one used for the [confirmation request](app-base-guide.md#confirmation-request).
 

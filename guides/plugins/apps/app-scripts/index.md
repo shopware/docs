@@ -2,9 +2,9 @@
 
 App Scripts allow your app to include logic that is executed inside the Shopware execution stack. It allows you to build richer extensions that integrate more deeply with Shopware.
 
-{% hint style="info" %}
+::: info
 Note that app scripts were introduced in Shopware 6.4.8.0 and are not supported in previous versions.
-{% endhint %}
+:::
 
 ## Script hooks
 
@@ -58,10 +58,8 @@ Note that app scripts can use the `return` keyword to return values to the calle
 
 A basic example may look like this:
 
-{% code title="Resources/scripts/include/media-repository.twig" %}
-{% raw %}
-
 ```twig
+// Resources/scripts/include/media-repository.twig
 {% macro getById(mediaId) %}
     {% set criteria = {
         'ids': [ mediaId ]
@@ -71,28 +69,18 @@ A basic example may look like this:
 {% endmacro %}
 ```
 
-{% endraw %}
-{% endcode %}
-
-{% code title="Resources/scripts/cart/first-cart-script.twig" %}
-{% raw %}
-
 ```twig
+// Resources/scripts/cart/first-cart-script.twig
 {% import "include/media-repository.twig" as mediaRepository %}
 
 {% set mediaEntity = mediaRepository.getById(myMediaId) %}
 ```
-
-{% endraw %}
-{% endcode %}
 
 ### Interface Hooks
 
 Some "Hooks" describe interfaces this means that your scripts for that hook need to implement one or more functions.
 E.g., the `store-api-hook` defines a `cache_key` and a `response` function. Those functions are closely related but are executed separately.
 To implement the different functions, you use different twig blocks with the name of the function:
-
-{% raw %}
 
 ```twig
 {% block cache_key %}
@@ -103,8 +91,6 @@ To implement the different functions, you use different twig blocks with the nam
     // produce the response for the request
 {% endblock %}
 ```
-
-{% endraw %}
 
 Some functions are optional, whereas others are required. In the above example the `cache_key` function is optional.
 That means you can omit that block in your script without an error (but caching for the endpoint won't work in that case).
@@ -117,15 +103,11 @@ The available data and services are described for each hook (or each function in
 
 Inside the app script, you have access to the [Storefront translation mechanism](../../plugins/storefront/add-translations.md) by using the `|trans`-filter.
 
-{% raw %}
-
 ```twig
 {% set translated = 'my.snippet.key'|trans %}
 
 {% do call.something('my.snippet.key'|trans) %}
 ```
-
-{% endraw %}
 
 ### Extended syntax
 
@@ -135,19 +117,13 @@ In addition to the default twig syntax, app scripts can also use a more PHP-flav
 
 Instead of using the rather verbose `{% if var is same as(1) %}`, you can use the more dense `===` equality checks.
 
-{% raw %}
-
 ```twig
 {% if var === 1 %}
     ...
 {% endif %}
 ```
 
-{% endraw %}
-
 Additionally, you can also use the `!==` not equals operator as well.
-
-{% raw %}
 
 ```twig
 {% if var !== 1 %}
@@ -155,13 +131,9 @@ Additionally, you can also use the `!==` not equals operator as well.
 {% endif %}
 ```
 
-{% endraw %}
-
 #### Loops with `foreach`
 
 Instead of the `for...in` syntax for loops, you can also use a `foreach` tag.
-
-{% raw %}
 
 ```twig
 {% foreach list as entry %}
@@ -170,21 +142,15 @@ Instead of the `for...in` syntax for loops, you can also use a `foreach` tag.
 {% endforeach %}
 ```
 
-{% endraw %}
-
 #### Instance of checks with `is`
 
 You can use a `is` check to check the type of a variable.
-
-{% raw %}
 
 ```twig
 {% if var is string %}
     ...
 {% endif %}
 ```
-
-{% endraw %}
 
 The following types are supported:
 
@@ -203,15 +169,11 @@ The following types are supported:
 
 You can cast variables into different types with the `intval` filter.
 
-{% raw %}
-
 ```twig
 {% if '5'|intval === 5 %}
     {# always evaluates to true #}
 {% endif %}
 ```
-
-{% endraw %}
 
 The following type casts are supported:
 
@@ -224,29 +186,21 @@ The following type casts are supported:
 
 Instead of using `AND` or `OR` in if-conditions, you can use the `&&` or `||` shorthands.
 
-{% raw %}
-
 ```twig
 {% if condition === true && condition2 === true %}
     ...
 {% endif %}
 ```
 
-{% endraw %}
-
 #### `return` tag
 
 You can use the `return` tag to return values from inside macros.
-
-{% raw %}
 
 ```twig
 {% macro foo() %} 
      {% return 'bar' %}
 {% endmacro %}
 ```
-
-{% endraw %}
 
 ## Available services
 
@@ -255,19 +209,15 @@ Take a look at the [Hook reference](../../../../resources/references/app-referen
 
 Additionally, we added a `ServiceStubs`class that can be used as typehint in your script, so you get auto-completion features of your IDE.
 
-{% raw %}
-
 ```twig
 {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
 
 {% set configValue = services.config.app('my-app-config') %}
 ```
 
-{% endraw %}
-
-{% hint style="info" %}
+::: info
 The stub class contains all services, but not all of them are available depending on the hook.
-{% endhint %}
+:::
 
 ## Example Script - loading media entities
 
@@ -278,10 +228,8 @@ When you want to display the file of the media entity in the [Storefront](../sto
 For this case, you can add an app script on the `product-page-loaded`
 hook, which loads the media entity by id and adds it to the page object so the data is available in templates.
 
-{% code title="Resources/scripts/product-page-loaded/add-custom-media.twig" %}
-{% raw %}
-
 ```twig
+// Resources/scripts/product-page-loaded/add-custom-media.twig
 {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
 
 {% set page = hook.page %}
@@ -300,9 +248,6 @@ hook, which loads the media entity by id and adds it to the page object so the d
 {% do page.addExtension('swagMyCustomMediaField', media) %}
 ```
 
-{% endraw %}
-{% endcode %}
-
 For a more detailed example of how to load additional data, refer to the [data loading guide](./data-loading.md).
 
 Alternatively, take a look at the [cart manipulation guide](./cart-manipulation.md) to get an in-depth explanation of how to manipulate the cart with scripts.
@@ -311,9 +256,9 @@ Alternatively, take a look at the [cart manipulation guide](./cart-manipulation.
 
 You can get information about what scripts were triggered on a specific Storefront page inside the [Symfony debug toolbar](https://symfony.com/doc/current/the-fast-track/en/5-debug.html#discovering-the-symfony-debugging-tools).
 
-{% hint style="info" %}
+::: info
 The debug toolbar is only visible if your Shopware installation is in `APP_ENV = dev`. Ensure to set the correct env, e.g., in your `.env` file, when developing app scripts.
-{% endhint %}
+:::
 
 You can find all hooks that are triggered and the scripts that are executed for each by clicking on the `script` icon.
 
@@ -325,13 +270,11 @@ That will open the Symfony profiler in the script detail view, where you can see
 
 Additionally, you can use the `debug.dump()` function inside your scripts to dump data to the debug view.
 A script like this:
-{% raw %}
 
 ```twig
 {% do debug.dump(hook.page) %}
 ```
 
-{% endraw %}
 Will dump the page object to the debug view.
 
 ![Output of debug.dump()](../../../../.gitbook/assets/script-debug-dump.png)

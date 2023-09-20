@@ -2,9 +2,9 @@
 
 If your app needs additional data in your [customized Storefront templates](../../../plugins/plugins/storefront/customize-templates.md), you can load that data with app scripts and make it available to your template.
 
-{% hint style="info" %}
+::: info
 Note that app scripts were introduced in Shopware 6.4.8.0 and are not supported in previous versions.
-{% endhint %}
+:::
 
 ## Overview
 
@@ -13,17 +13,15 @@ For each page that is rendered, a hook is triggered, giving access to the curren
 
 For a list of all available script hooks that can be used to load additional data, take a look at the [script hook reference](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#data-loading).
 
-{% hint style="info" %}
+::: info
 Note that all hooks that were triggered during a page rendering are also shown in the [Symfony toolbar](./README.md#developing--debugging-scripts).
 This may come in handy if you are searching for the right hook for your script.
-{% endhint %}
+:::
 
 For example, if you want to enrich a storefront detail page with additional data, you just set it within a custom app script and attach it to the `page` object.
 
-{% code title="Resources/scripts/product-page-loaded/my-example-script.twig" %}
-{% raw %}
-
 ```twig
+// Resources/scripts/product-page-loaded/my-example-script.twig
 {% set page = hook.page %}
 {# @var page \Shopware\Storefront\Page\Product\ProductPage #}
 
@@ -38,15 +36,10 @@ For example, if you want to enrich a storefront detail page with additional data
 {% do page.addArrayExtension('swagMyAdditionalData', myAdditionalData) %}
 ```
 
-{% endraw %}
-{% endcode %}
-
 In your Storefront templates, you can read the data again from the `page` object:
 
-{% code title="Resources/views/storefront/page/product-detail/index.html.twig" %}
-{% raw %}
-
 ```twig
+// Resources/views/storefront/page/product-detail/index.html.twig
 {% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
 
 {% block page_product_detail %}
@@ -55,9 +48,6 @@ In your Storefront templates, you can read the data again from the `page` object
     {{ parent() }}
 {% endblock %}
 ```
-
-{% endraw %}
-{% endcode %}
 
 ## Loading data
 
@@ -72,13 +62,9 @@ The `repository` service provides methods to load exactly the data you need:
 
 All those methods can be used in the same way. First, you pass the entity name the search should be performed on. Next, you pass the criteria that should be used.
 
-{% raw %}
-
 ```twig
 {% set mediaEntities = services.repository.search('media', criteria) %}
 ```
-
-{% endraw %}
 
 ### Search criteria
 
@@ -87,10 +73,9 @@ The criteria object that is used inside the app scripts behaves and looks the sa
 
 So please refer to that documentation to get an overview of what features can be used inside a criteria object.
 
-{% page-ref page="../../../integrations-api/general-concepts/search-criteria.md" %}
+<PageRef page="../../../integrations-api/general-concepts/search-criteria" />
 
 The criteria object can be assembled inside scripts as follows:
-{% raw %}
 
 ```twig
 {% set criteria = {
@@ -107,8 +92,6 @@ The criteria object can be assembled inside scripts as follows:
 {% set matchedProducts = services.repository.search('product', criteria) %}
 ```
 
-{% endraw %}
-
 ### `repository` and `store` services
 
 Besides the `repository` service, a separate `store` service is also available that provides the same basic functionality and the same interface.
@@ -117,9 +100,9 @@ The `store` service is available for all "public" entities (e.g. `product` and `
 This means that, for example, SEO related data is resolved for `products` and `categories`, loaded over the `store` service, but not over the `repository` service.
 Additionally, product prices are only calculated using the `store` service.
 
-{% hint style="info" %}
+::: info
 The `store` service only loads "public" entities. This means that the entities only include ones that are active and visible for the current sales channel.
-{% endhint %}
+:::
 
 One major difference is that when using the `repository` service, your app needs `read` permissions for every entity it reads, whereas you don't need additional permissions for using the `store` service (as that service only searches for "public" data).
 
@@ -134,16 +117,14 @@ For a full description of the `repository` and `store` service, take a look at t
 There are two ways to add data to the page object, either with the `addExtension()` or the `addArrayExtension()` methods.
 Both methods expect the name under which the extension should be added as the first parameter. Under that name, you can later access the extension in your Storefront template with the `page.getExtension('extensionName')` call.
 
-{% hint style="warning" %}
+::: warning
 Note that the extension names need to be unique. Therefore always use your vendor prefix as a prefix for the extension name.
-{% endhint %}
+:::
 
 The second argument for both methods is the data you want to add as an extension. The `addExtension` method needs to be a `Struct`, meaning you can only add PHP objects (e.g., the collection or entities returned by the `repository` service) directly as extensions.
 If you want to add scalar values or add more than one struct in your extension, you can wrap your data in a JSON-like twig object and use the `addArrayExtension` method.
 
 In your **scripts** that would look something like this:
-
-{% raw %}
 
 ```twig
 {% set products = services.repository.search('product', criteria) %}
@@ -161,11 +142,7 @@ In your **scripts** that would look something like this:
 {% do page.addArrayExtension('swagArrayExtension', arrayExtension) %}
 ```
 
-{% endraw %}
-
 You can access the extensions again in your **Storefront templates** like this:
-
-{% raw %}
 
 ```twig
 {# via addExtension #}
@@ -185,8 +162,6 @@ You can access the extensions again in your **Storefront templates** like this:
 <h1>{{ page.getExtension('swagArrayExtension').scalar }}</h1>
 ```
 
-{% endraw %}
-
-{% hint style="info" %}
+::: info
 Note that you can add extensions not only to the page object but to every struct. Therefore you can also add an extension, e.g., to every product inside the page.
-{% endhint %}
+:::

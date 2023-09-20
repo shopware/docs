@@ -3,8 +3,8 @@
 ## Overview
 
 The storefront theme is implemented as a skin on top of Bootstrap:
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://getbootstrap.com/" caption="" %}
+
+<PageRef page="https://getbootstrap.com/" title="" target="_blank" />
 
 Sometimes it is necessary to adjust SCSS variables if you want to change the look of the Storefront for example default variables like `$border-radius` which is defined by Bootstrap. This guide will show how you can override those SCSS variables.
 
@@ -22,9 +22,8 @@ To be able to override Bootstrap variables there is an additional SCSS entry poi
 
 This entry point is called `overrides.scss`:
 
-{% code title="<plugin root>/src/Resources/theme.json" %}
-
-```javascript
+```js
+// <plugin root>/src/Resources/theme.jsonon
 {
   "name": "SwagBasicExampleTheme",
   "author": "Shopware AG",
@@ -48,13 +47,10 @@ This entry point is called `overrides.scss`:
 }
 ```
 
-{% endcode %}
-
 In the `<plugin root>/src/Resources/app/storefront/src/scss/overrides.scss` you can now override default variables like `$border-radius` globally and set its value to `0` to reset it in this case:
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/scss/overrides.scss" %}
-
 ```css
+// <plugin root>/src/Resources/app/storefront/src/scss/overrides.scss
 /*
 Override variable defaults
 ==================================================
@@ -74,17 +70,15 @@ $disabled-btn-border-color: #fc8;
 $font-weight-semibold: 300;
 ```
 
-{% endcode %}
-
 After saving the `overrides.scss` file and running `bin/console theme:compile` go and check out the Storefront in the browser. The `border-radius` should be removed for every element.
 
-{% hint style="warning" %}
+::: warning
 Please only add variable overrides in this file. You should not write CSS code like `.container { background: #f00 }` in this file.
-{% endhint %}
+:::
 
-{% hint style="info" %}
+::: info
 When running `composer run watch:storefront` in platform only setups or `./bin/watch-storefront.sh` in the production template, SCSS variables will be injected dynamically by webpack. When writing selectors and properties in the `overrides.scss` the code can appear multiple times in your built CSS.
-{% endhint %}
+:::
 
 ## Next steps
 

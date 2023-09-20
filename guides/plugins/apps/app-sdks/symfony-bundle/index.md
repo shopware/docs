@@ -86,7 +86,7 @@ After choosing your database engine, create your first migration using `./bin/co
 
 ### 5. Implement first ActionButtons, Webhooks, Payment
 
-[Check out the official app documentation to learn more about the different integration points with this SDK](https://developer.shopware.com/docs/guides/plugins/apps).
+[Check out the official app documentation to learn more about the different integration points with this SDK](/docs/guides/plugins/apps).
 
 You can also check out the [APP SDK](https://github.com/shopware/app-php-sdk) documentation.
 

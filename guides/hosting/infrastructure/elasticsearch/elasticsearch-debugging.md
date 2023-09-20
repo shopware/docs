@@ -46,7 +46,7 @@ bin/console es:create:alias
 
 `dal:refresh:index --use-queue` creates a complete reindex from the Shopware DAL (ES/SEO/Media/Sitemap...) **ALWAYS** "`--use-queue`" since big request can outperform the server!
 
-```bash​
+```bash
 bin/console dal:refresh:index --use-queue
 ```
 
@@ -75,7 +75,7 @@ bin/console dal:refresh:index --use-queue
 
 `messenger:consume -vv` starts a message consumer working on all tasks. This could be started *X* times. When using more than 3 message consumers, you will need something like RabbitMq to handle the data.
 
-```bash​
+```bash
 bin/console messenger:consume -vv
 ```
 
@@ -97,7 +97,7 @@ bin/console messenger:consume -vv
 
 `es:index:cleanup` to remove unused indices, because each indexing will generate a new Elasticsearch index.
 
-```bash​
+```bash
 bin/console es:index:cleanup
 ```
 

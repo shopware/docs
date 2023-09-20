@@ -7,10 +7,10 @@ tags: [plugin, admin, extension-api]
 
 # Admin extension API standards
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-12-07-admin-extension-api-standards.md)
-{% endhint %}
+:::
 
 ## Context
 We need to provide ways for extension developers to add custom components and views to different places in the administration. Multiple solutions where discussed and tested, this ADR contains a summary of the final solution.
@@ -28,6 +28,7 @@ Extensions can render custom views with the Admin-Extension-API via iFrames. To 
 An app wants to render a custom iFrame in a card on the dashboard. The "location" of the iFrame has then a specific "locationID" like `sw-dashboard-example-app-dashboard-card`. The app can also render another iFrames which also get "locationIDs". In our example it is a iFrame in a custom modal: `example-app-example-modal-content`.
 
 The app want to render different views depending on the "location" of the iFrame. So the app developer can render the correct view depending on the "locationID":
+
 ```js
 if (sw.location.is('sw-dashboard-example-app-dashboard-card')) {
     renderDashboardCard();
@@ -44,6 +45,7 @@ Developers can extend existing areas or create new areas in the administration w
 *Example:*
 
 An app wants to add a new tab item to a tab-bar. In the administration are many tab-bars available. So the developer needs to choose the correct "positionID" to determine which tab-bar should be extended. In this example the developer adds a new tab item to the tab-bar in the product detail page.
+
 ```js
 sw.ui.tabs('sw-product-detail').addTabItem({ ... })
 ```

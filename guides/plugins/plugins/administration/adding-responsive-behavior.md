@@ -4,7 +4,7 @@
 
 The Shopware 6 Administration provides two ways of adding classes to elements based on their size, the device helper and the `v-responsive` directive. Alternatively you can use `css` media queries to make your plugin responsive. Learn how to use `css` here:
 
-{% page-ref page="add-custom-styles.md" %}
+<PageRef page="add-custom-styles" />
 
 ## DeviceHelper
 
@@ -44,7 +44,7 @@ It also provides many helper functions e.g. to get the screen dimensions. Althou
 
 The `v-responsive` directive can be used to dynamically apply classes based on an element's dimensions.
 
-```markup
+```html
 <input v-responsive="{ 'is--compact': el => el.width <= 1620, timeout: 200 }">
 ```
 

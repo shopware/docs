@@ -8,13 +8,13 @@ By default Shopware 6 uses the [Vue I18n](https://kazupon.github.io/vue-i18n/sta
 
 Normally you use snippets in your custom module. To keep things organized, create a new directory named `snippet` inside module directory `<plugin root>/src/Resources/app/administration/src/module/<your-module>/snippet`. For each language you want to support, you need a JSON file inside it, e.g., `de-DE.json`, `en-GB.json`.
 
-{% hint style="info" %}
+::: info
 Providing snippets for apps works the same as in plugins but it has a more simplistic file structure. Also, unlike plugins, App-Snippets **are not allowed** to override existing snippet keys. So, use the following path for vendor-prefixed app snippet files: `<app root>/Resources/app/administration/snippet`
-{% endhint %}
+:::
 
 Each language then receives a nested object of translations, so let's have a look at an example `snippet/en-GB.json`:
 
-```javascript
+```json
 {
     "swag-example": {
         "nested": {
@@ -30,9 +30,9 @@ In this example you would have access the two translations by the following path
 
 By default, Shopware 6 will collect those files automatically when your plugin is activated.
 
-{% hint style="info" %}
+::: info
 When you do not build a module and therefore do not fit into the suggested directory structure, you can still place the translation files anywhere in `<plugin root>/src/Resources/app/administration/`.
-{% endhint %}
+:::
 
 ## Using the snippets in JavaScript
 
@@ -58,8 +58,6 @@ Component.register('my-custom-page', {
 
 The same `$tc` helper function can be used in the templates to access translations.
 
-{% raw %}
-
 ```twig
 {% block my_custom_block %}
     <p>
@@ -68,12 +66,8 @@ The same `$tc` helper function can be used in the templates to access translatio
 {% endblock %}
 ```
 
-{% endraw %}
-
 Another feature of `$tc` is pluralization. Use a `|` in snippets to provide translations depending on the number. The first part shows singular expression, while the second takes care of plural cases.
 Let's have a look at this example of `"examplePluralization": "One Product | {n} Products"` with the following implementation:
-
-{% raw %}
 
 ```twig
 {% block my_custom_block %}
@@ -82,8 +76,6 @@ Let's have a look at this example of `"examplePluralization": "One Product | {n}
     </p>
 {% endblock %}
 ```
-
-{% endraw %}
 
 If you provide `1` as the second parameter to `$tc()`, the text `One Product` would be rendered. For any other value greater than 1, the number itself is shown — for example, `4 Products`.
 

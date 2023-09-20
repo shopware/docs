@@ -7,10 +7,10 @@ tags: [performance, state-machine, cache]
 
 # Initial state id loader
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-03-25-initial-state-id-loader.md)
-{% endhint %}
+:::
 During the performance optimizations, it was noticed that the determination of the initial state, for a state machine, is currently associated with a quite high database load, although only one ID must be determined. This has the consequence that during the checkout unnecessarily much load on the database is caused, in order to determine the initial state id, because this must be determined for the `order.state`, `order_delivery.state` as well as the `order_transaction.state` machine. Responsible for the load were the `\Shopware\Core\System\StateMachine\StateMachineRegistry::getInitialState` method, which is usually used as follows:
 
 ```php
@@ -23,7 +23,6 @@ $this->stateMachineRegistry->getInitialState(OrderTransactionStates::STATE_MACHI
 ```
 
 Inside the `getInitialState`, the complete `StateMachine` object is loaded, including all `transitions` and their `from` and `to` states:
-
 ```
 $criteria = new Criteria();
 $criteria

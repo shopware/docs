@@ -7,10 +7,10 @@ tags: [process, backwards compatibility]
 
 # Experimental features
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2023-05-10-experimental-features.md)
-{% endhint %}
+:::
 
 ## Context
 
@@ -121,15 +121,16 @@ Component.register('sw-new-component', {
 Blocks, SCSS classes, JS plugins etc. can be marked as experimental, meaning that they are not covered by the backwards compatibility promise.
 
 In twig blocks can be wrapped as being experimental:
+
 ```twig
 {# @experimental stableVersion:v6.6.0 #}
 {% block awesome_new_feature %}
    ...
 {% endblock %}
-
 ```
 
 In addition to that, we can also mark the whole template as experimental:
+
 ```twig
 {# @experimental stableVersion:v6.6.0 #}
 {% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}

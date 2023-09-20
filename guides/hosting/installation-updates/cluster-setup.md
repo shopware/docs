@@ -6,9 +6,9 @@ This guide contains information for everyone who intends to start with such a pr
 
 ## Shopware configuration
 
-{% hint style="info" %}
+::: info
 This configuration is available starting with Shopware version 6.5.6.0
-{% endhint %}
+:::
 
 To configure Shopware for a cluster setup, you have to set the following configuration in your shopware.yaml file:
 
@@ -60,7 +60,7 @@ When a Redis cluster is in usage, the `php.ini` setting `redis.clusters.cache_sl
 
 We have compiled some best practices and configurations to allow you to operate Shopware in a clustered database environment. Please refer to the guide below.
 
-{% page-ref page="../infrastructure/database-cluster.md" %}
+<PageRef page="../infrastructure/database-cluster" />
 
 ## Filesystem
 
@@ -136,9 +136,9 @@ For the server setup, pay special attention to CPU speed. This applies to all se
 
 ## Health Check
 
-{% hint style="info" %}
+::: info
 This feature is available starting with Shopware version 6.5.5.0
-{% endhint %}
+:::
 
 Use the Shopware-provided Health Check API (`/api/_info/health-check`) to monitor the health of your Shopware app server. It runs HTTP status `200` when the Shopware Application is working and `50x` when it is not.
 For docker, you can use: `HEALTHCHECK CMD curl --fail http://localhost/api/_info/health-check || exit 1`

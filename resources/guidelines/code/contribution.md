@@ -20,9 +20,9 @@ To avoid your pull request getting rejected, you should always check that you pr
 * Check if there is already an existing pull request tackling the same issue.
 * Write your commit messages in English, have them short and descriptive, and squash your commits meaningfully.
 
-{% hint style="danger" %}
+::: danger
 Pull requests which do not fulfill these requirements will never be accepted by our team. To avoid your changes going through unnecessary workflow cycles, make sure to check this list with every pull request.
-{% endhint %}
+:::
 
 ## The developing workflow on GitHub
 

@@ -23,9 +23,9 @@ For this to work, all you have to do is to register to the `MediaFileExtensionWh
 This is of course done via a [subscriber](../../plugin-fundamentals/listening-to-events.md).
 
 Have a look at the following code example:
-{% code title="<plugin root>/src/Service/Subscriber.php" %}
 
 ```php
+// <plugin root>/src/Service/Subscriber.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -52,8 +52,6 @@ class Subscriber implements EventSubscriberInterface
 }
 ```
 
-{% endcode %}
-
 You can use the method `getWhitelist` of the `$event` variable to get the current whitelist, which is just a plain array of extensions.
 Therefore you can add new array entries and then set the array back to the `$event` instance by using the respective setter method
 `setWhitelist`.
@@ -75,11 +73,11 @@ about it.
 What we'll be doing now, is to add a custom `TypeDetector` class which returns an `ImageType` if the extension of the file to be checked matches our type detector.
 Have a look at the following example:
 
-{% tabs %}
-{% tab title="CustomImageTypeDetector.php" %}
-{% code title="<plugin root>/src/Core/Content/Media/TypeDetector/CustomImageTypeDetector.php" %}
+<Tabs>
+<Tab title="CustomImageTypeDetector.php">
 
 ```php
+// <plugin root>/src/Core/Content/Media/TypeDetector/CustomImageTypeDetector.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Media\TypeDetector;
@@ -113,13 +111,12 @@ class CustomImageTypeDetector implements TypeDetectorInterface
 }
 ```
 
-{% endcode %}
-{% endtab %}
+</Tab>
 
-{% tab title="services.xml" %}
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<Tab title="services.xml">
 
 ```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -133,8 +130,8 @@ class CustomImageTypeDetector implements TypeDetectorInterface
 </container>
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 You will have to create a new class which implements from the interface `TypeDetectorInterface`.
 This will come with the requirement of having a `detect` method, which will return the respective media type.

@@ -7,10 +7,10 @@ tags: [checkout, payment, flow]
 
 # Payment Flow
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-10-01-payment-flow.md)
-{% endhint %}
+:::
 
 ## Context
 
@@ -57,4 +57,3 @@ When the charge was successful the payment will be set to paid and the user will
 Both possible options can produce failed payments. In failure case the after order payment process begins. The client can choose a new payment method and retry the payment and the entire payment loop of a synchronous / asynchronous payment starts again.
 
 ![After order payment](../../../.gitbook/assets/adr/payment-flow/after-order-payment.svg)
-

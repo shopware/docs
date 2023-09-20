@@ -7,10 +7,10 @@ tags: [composer, plugin, web-updater]
 
 # Composer-based web updater
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-11-09-composer-based-web-updater.md)
-{% endhint %}
+:::
 
 ## Context
 

@@ -50,4 +50,3 @@
 | VersionDataPayloadField | Stores a "VersionDataPayload" value |
 | VersionField | Stores a "Version" value |
 | WhitelistRuleField | Stores a "WhitelistRule" value |
-

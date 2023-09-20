@@ -16,9 +16,8 @@ To configure your module you can set it up with with some additional attributes.
 
 Additionally you can define `label` elements inside of your `module` element, to set up how your module will be displayed in the admin menu.
 
-{% code title="manifest.xml" %}
-
 ```xml
+// manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
@@ -37,8 +36,6 @@ Additionally you can define `label` elements inside of your `module` element, to
 </manifest>
 ```
 
-{% endcode %}
-
 For a complete reference of the structure of the manifest file, take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference.md).
 
 If the user opens the module in the Administration your app will receive a request to the URL defined in the `source` attribute of your `module` element. Your app can determine the shop that has opened the module through query parameters added to the url:
@@ -48,9 +45,9 @@ If the user opens the module in the Administration your app will receive a reque
 * `timestamp`: The Unix timestamp when the request was created
 * `shopware-shop-signature`: SHA256 HMAC of the rest of the query string, signed with the `shop-secret`
 
-{% tabs %}
+<Tabs>
 
-{% tab title="HTTP" %}
+<Tab title="HTTP">
 
 A sample request may look like this:
 
@@ -60,9 +57,9 @@ https://example.com/promotion/view/promotion-config?shop-id=HKTOOpH9nUQ2&shop-ur
 
 In this case the `shopware-shop-signature` parameter contains an SHA256 HMAC of the rest of the query string, signed again with the secret your app assigned the shop during the [registration](../app-base-guide.md#setup). The signature can be used to verify the authenticity of the request.
 
-{% endtab %}
+</Tab>
 
-{% tab title="App PHP SDK" %}
+<Tab title="App PHP SDK">
 
 ```php
 // injected or build by yourself
@@ -73,9 +70,9 @@ $shop = $shopResolver->resolveShop($serverRequest);
 $module = $contextResolver->assembleModule($serverRequest, $shop);
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Symfony Bundle" %}
+<Tab title="Symfony Bundle">
 
 ```php
 use Shopware\App\SDK\Context\Module\ModuleAction;
@@ -95,9 +92,9 @@ class ModuleController {
 }
 ```
 
-{% endtab %}
+</Tab>
 
-{% endtabs %}
+</Tabs>
 
 ## Leave loading state
 
@@ -119,9 +116,8 @@ When you define a module, it gets automatically loaded by the Administration. Ad
 
 The navigation id of your modules always uses the pattern `app-<appName>-<moduleName>`. So, within your manifest you can add a reference to modules that you just created:
 
-{% code title="manifest.xml" %}
-
 ```xml
+// manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
@@ -150,8 +146,6 @@ The navigation id of your modules always uses the pattern `app-<appName>-<module
 </manifest>
 ```
 
-{% endcode %}
-
 Modules that are used as a parent for other modules do not need the `source` attribute to be set, although they can.
 
 ## Add main module to your app
@@ -162,9 +156,8 @@ Your main module can be defined by adding a `main-module` element within your `a
 
 To avoid mixing other modules with your main module, we decided to separate the main module from modules with navigation entries. You can still use the same URL on both, a module that is available through the menu and your main module.
 
-{% code title="manifest.xml" %}
-
 ```xml
+// manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
@@ -186,8 +179,6 @@ To avoid mixing other modules with your main module, we decided to separate the 
     </admin>
 </manifest>
 ```
-
-{% endcode %}
 
 This feature is not compatible with themes as they will always open the theme config by default.
 

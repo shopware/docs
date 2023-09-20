@@ -7,10 +7,10 @@ tags: [annotation, login, customer, api, store-api]
 
 # Add the login required annotation
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-11-20-add-login-required-annotation.md)
-{% endhint %}
+:::
 
 ## Context
 Some routes for the `sales-channel-api` and the `store-api/storefront` depend on `SalesChannelContext` to identify whether the Customer is logged or not.
@@ -26,6 +26,7 @@ This annotation to the following:
     * This annotation is validating the `SalesChannelContext` has Customer and allow Guest admits, otherwise throw `CustomerNotLoggedInException`
 
 An example looks like the following:
+
 ```php
 /**
  * @Since("6.0.0.0")

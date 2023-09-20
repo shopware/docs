@@ -1,8 +1,8 @@
 # Prevent Deletion of Media Files Referenced in your Plugins
 
-{% hint style="info" %}
+::: info
 The ability to prevent Media entities from being deleted is available since Shopware 6.5.1.0.
-{% endhint %}
+:::
 
 ## Overview
 
@@ -36,9 +36,9 @@ Please note that this process is completed in small batches to maintain stabilit
 In this section, we're going to register a subscriber for the `\Shopware\Core\Content\Media\Event\UnusedMediaSearchEvent` event.
 
 Have a look at the following code example:
-{% code title="<plugin root>/src/Subscriber/UnusedMediaSubscriber.php" %}
 
 ```php
+// <plugin root>/src/Subscriber/UnusedMediaSubscriber.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Subscriber;
@@ -72,8 +72,6 @@ class UnusedMediaSubscriber implements EventSubscriberInterface
 }
 ```
 
-{% endcode %}
-
 You can use the method `getUnusedIds` of the `$event` variable to get the current an array of Media IDs scheduled for removal.
 
 You can use these IDs to query whatever storage your plugin uses to store references to Media entities, to check if they are currently used.
@@ -84,9 +82,8 @@ If your storage is a relational database such as MySQL you should, when possible
 
 Imagine an extension which provides an image slider feature. An implementation of `getUsedMediaIds` might look something like the following:
 
-{% code title="<plugin root>/src/Subscriber/UnusedMediaSubscriber.php" %}
-
 ```php
+// <plugin root>/src/Subscriber/UnusedMediaSubscriber.php
 private function getUsedMediaIds(array $idsToBeDeleted): array
 {
     $sql = <<<SQL
@@ -107,8 +104,6 @@ private function getUsedMediaIds(array $idsToBeDeleted): array
 }
 ```
 
-{% endcode %}
-
 In the above example, `$this->connection` is an instance of `\Doctrine\DBAL\Connection` which can be injected in to your subscriber.
 We use the MySQL JSON functions to query the table `my_slider_table`.
 We check if there are any references to the Media IDs from the event, in the `slider_config` column which is a JSON blob. The `JSON_EXTRACT` function looks into the `images` key of the data. We use the where condition in combination with the `JSON_OVERLAPS` function to only query rows that have references to the Media IDs we are interested in.
@@ -118,11 +113,11 @@ Finally, we return all the IDs of Media which are used in the slider config so t
 Make sure to register your event subscriber to the [Dependency injection container](../../plugin-fundamentals/dependency-injection.md)
 by using the tag `kernel.event_subscriber`.
 
-{% tabs %}
-{% tab title="services.xml" %}
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<Tabs>
+<Tab title="services.xml">
 
 ```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -136,7 +131,5 @@ by using the tag `kernel.event_subscriber`.
 </container>
 ```
 
-{% endcode %}
-
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>

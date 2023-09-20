@@ -16,9 +16,8 @@ To add a discount to the cart, you should use the processor pattern. For this yo
 
 Let's start with the actual example code:
 
-{% code title="<plugin root>/src/Core/Checkout/ExampleProcessor.php" %}
-
 ```php
+// <plugin root>/src/Core/Checkout/ExampleProcessor.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Checkout;
@@ -102,8 +101,6 @@ class ExampleProcessor implements CartProcessorInterface
     }
 }
 ```
-
-{% endcode %}
 
 As you can see, all line items of type product containing the string 'example' in their name are fetched. Also, a few information are saved into variables, since we'll need them several times. If no product in the cart matches your condition, we can early return in the `process` method. Afterwards we create a new line item for the new discount. For the latter, we don't want that the line item is stackable and it shouldn't be removable either.
 

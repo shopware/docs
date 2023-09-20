@@ -1,8 +1,8 @@
 # Database Cluster
 
-{% hint style="info" %}
+::: info
 This functionality is available starting with Shopware 6.4.12.0.
-{% endhint %}
+:::
 
 To scale Shopware even further, we recommend using a database cluster. A database cluster consists of multiple read-only servers managed by a single primary instance.
 
@@ -30,7 +30,7 @@ After this change, you can set also `SQL_SET_DEFAULT_SESSION_VARIABLES=0` in the
 As we learned in the beginning, Shopware queries a read-only MySQL server until the first write attempt. To maximize this behavior, it is highly recommended to outsource as many write operations as possible from the database. One of the easiest solutions is to use the Redis as storage for store carts.
 To use Redis, add the following snippet to `config/packages/cart.yml`
 
-```yml
+```yaml
 shopware:
     cart:
         redis_url: 'redis://localhost:6379/0?persistent=1'

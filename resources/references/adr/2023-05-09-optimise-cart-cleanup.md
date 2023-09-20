@@ -7,10 +7,10 @@ tags: [performance]
 
 # Optimize cart cleanup
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2023-05-09-optimise-cart-cleanup.md)
-{% endhint %}
+:::
 
 ## Context
 
@@ -36,7 +36,6 @@ EXPLAIN DELETE FROM cart
           AND (updated_at IS NULL OR updated_at <= '2023-02-01') LIMIT 1000;
 ```
 shows that the new query uses an index (`possible_keys` = `idx.cart.created_at`).
-
 
 ## Consequences
 

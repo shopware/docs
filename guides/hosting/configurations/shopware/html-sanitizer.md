@@ -1,8 +1,8 @@
 # HTML Sanitizer
 
-{% hint style="info" %}
+::: info
 This feature has been introduced with Shopware version 6.5. This is exclusively intended for self-hosted shops. However, it's important to note that the implementation is currently not available for cloud stores.
-{% endhint %}
+:::
 
 ## Overview
 
@@ -18,7 +18,7 @@ In the copied `shopware.yaml` file (z-shopware.yaml), you should include an addi
 
 In this example, the `<img>` tag, as well as the CSS attributes `src`, `alt` and `style` are added to the whitelist:
 
-```yml
+```yaml
 
 shopware:
     html_sanitizer:
@@ -31,15 +31,13 @@ shopware:
                       value: true
                     - key: CSS.Trusted
                       value: true
-
 ```
 
 If you want to deactivate the sanitizer despite security risks, you can also do this in the `z-shopware.yaml` using the following code:
 
-```yml
+```yaml
 
 shopware:
     html_sanitizer:
         enabled: false
-
 ```

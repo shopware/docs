@@ -2,9 +2,9 @@
 
 ## Requirements
 
-{% hint style="info" %}
+::: info
 💡 This checklist does not cover project specific configurations like cms pages, specific presentations, etc. The only intention of the checklist is to provide a fully working plugin at every step and make it ready to use in terms of administration and end-user experience.
-{% endhint %}
+:::
 
 ### Shopware fundamentals
 

@@ -18,9 +18,9 @@ First, you need to find a name for your theme. We're talking about a technical n
 Shopware uses "Swag" as a prefix for that case.  
 For this example guide we'll use the theme name **SwagBasicExampleTheme.**
 
-{% hint style="info" %}
+::: info
 Notice: The name of a theme must begin with a capital letter too!
-{% endhint %}
+:::
 
 ### Create a plugin-based theme
 

@@ -10,23 +10,23 @@ On a production system, the message queue should be processed via the CLI instea
 It is recommended to run one or more `messenger:consume` workers. To automatically start the processes again after they stopped because of exceeding the given limits you can use a process control system like [systemd](https://www.freedesktop.org/wiki/Software/systemd/) or [supervisor](http://supervisord.org/running.html).
 Alternatively, you can configure a cron job that runs the command periodically.
 
-{% hint style="info" %}
+::: info
 Using cron jobs won't take care of maximum running worker, like supervisor can do. They don't wait for another worker to stop. So there is a risk of starting an unwanted amount of workers when you have messages running longer than the set time limit. If the time limit has been exceeded worker will wait for the current message to be finished.
-{% endhint %}
+:::
 
 Find here the docs of Symfony: <https://symfony.com/doc/current/messenger.html#deploying-to-production>  
 
-{% hint style="info" %}
+::: info
 It is recommended to use a third-party message queue to support multiple consumers and/or a greater amount of data to index.
-{% endhint %}
+:::
 
 ## Execution methods
 
 ### CLI worker
 
-{% hint style="info" %}
+::: info
 The CLI worker is the recommended way to consume messages.
-{% endhint %}
+:::
 
 You can configure the command just to run a certain amount of time and to stop if it exceeds a certain memory limit like:
 
@@ -49,9 +49,9 @@ shopware:
         enable_admin_worker: false
 ```
 
-{% hint style="warning" %}
+::: warning
 Make sure to set up the CLI worker also for the failed queue. Otherwise, failed messages will not be processed.
-{% endhint %}
+:::
 
 #### systemd example
 

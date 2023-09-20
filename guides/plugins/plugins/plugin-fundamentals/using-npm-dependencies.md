@@ -9,8 +9,8 @@ All you need for this guide is a running Shopware 6 instance and full access to 
 ## Video
 
 This guide is also available as a video:
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://www.youtube.com/watch?v=wfBuWdff35c" caption="" %}
+
+<PageRef page="https://www.youtube.com/watch?v=wfBuWdff35c" title="" target="_blank" />
 
 ## Adding a npm package to the Administration or the Storefront
 
@@ -24,9 +24,8 @@ Shopware's storefront as well as administration is based on the build system [We
 
 To do this we create a new folder called "build" under either `Resources/app/storefront` or `Resources/app/administration`. In this build folder we create a new file with the name `webpack.config.js`. We thereby make it possible to extend the Webpack configuration of Shopware.
 
-{% code title="<plugin root>/src/Resources/app/storefront/build/webpack.config.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/storefront/build/webpack.config.js
 const { join, resolve } = require('path'); 
 module.exports = () => { 
     return { 
@@ -41,8 +40,6 @@ module.exports = () => {
 }
 ```
 
-{% endcode %}
-
 Let us take a closer look at the code. In the first line, we import the two functions `join` and `resolve` for the path module of Node.js. In the second line, we export a so-called arrow function. The build system from Shopware calls this function when either the Administration or Storefront is being built.
 
 After that, there comes the exciting part for us: registering the alias. The alias for `missionlog` is given the prefix `@`, so it is possible to recognize later on in the source files. We will use the result of the two functions of the path module previously imported as a value.
@@ -53,9 +50,8 @@ We proceed from the inside to the outside. We use [`join`](https://nodejs.org/ap
 
 Once we have installed all the dependencies and registered the package in the build system with an alias, we can use the package in our own code.
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/main.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/storefront/src/main.js
 import Plugin from 'src/plugin-system/plugin.class';
 
 // Import logger
@@ -76,8 +72,6 @@ export default class ExamplePlugin extends Plugin {
     }
 }
 ```
-
-{% endcode %}
 
 We import the function log as well as the constants tag via `destructuring` in the specified code. Through the use of the alias, we keep the paths short and recognize that this is an alias at first glance via the prefix.
 

@@ -8,11 +8,11 @@ To build your own configuration page for your plugin, you first need a plugin as
 
 ## Create your plugin configuration
 
-{% embed url="https://www.youtube.com/watch?v=XXcmgKBRh-s" caption="" %}
+<PageRef page="https://www.youtube.com/watch?v=XXcmgKBRh-s" title="" target="_blank" />
 
-{% hint style="info" %}
+::: info
 This video is part of the online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma) available on Shopware Academy for **free**.
-{% endhint %}
+:::
 
 All you need to do is creating a `config.xml` file inside of a `Resources/config` directory in your plugin root. The content of the `config.xml` will be dynamically rendered in the Administration. Below you'll find an example structure:
 
@@ -37,9 +37,8 @@ As we now know how to create your configuration, we can start to fill it with li
 
 The `config.xml` follows a simple syntax. You can organize the content in `<card>` elements. Every `config.xml` must contain a minimum of one `<card>` element and each `<card>` must contain one `<title>` and at least one `<input-field>`. See the minimum `config.xml` below:
 
-{% code title="<plugin root>/src/Resources/config/config.xml" %}
-
-```markup
+```xml
+// <plugin root>/src/Resources/config/config.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
@@ -52,15 +51,13 @@ The `config.xml` follows a simple syntax. You can organize the content in `<card
 </config>
 ```
 
-{% endcode %}
-
 Please make sure to specify the `xsi:noNamespaceSchemaLocation` as shown above and fetch the external resource into your IDE if possible. This enables auto-completion and suggestions for this XML file and will therefore help you to prevent issues and bugs.
 
 ### Card Titles
 
 A `<card>` `<title>` is translatable, this is managed via the `lang` attribute. By default the `lang` attribute is set to `en-GB`, to change the locale of a `<title>` just add the attribute as follows:
 
-```markup
+```html
     ...
     <card>
         <title>English Title</title>
@@ -109,7 +106,7 @@ Add the `defaultValue` setting to your `<input-field>` to define a default value
 
 Below you'll find an example how to use this setting.
 
-```markup
+```html
 <input-field type="text">
     <name>textField</name>
     <label>Test field with default value</label>
@@ -123,7 +120,7 @@ You can add the `<disabled>` setting to any of your `<input-field>` elements to 
 
 Below you'll find an example how to use this setting.
 
-```markup
+```html
 <input-field>
     <name>email</name>
     <disabled>true</disabled>
@@ -138,7 +135,7 @@ You can add the `<copyable>` setting to your `<input-field>` which are of type `
 
 Below you'll find an example how to use this setting.
 
-```markup
+```html
 <input-field>
     <name>email</name>
     <copyable>true</copyable>
@@ -153,7 +150,7 @@ You can use `<options>` to add settings to a `<input-field>` of the types `singl
 
 Below you'll find an example.
 
-```markup
+```html
 <input-field type="single-select">
     <name>mailMethod</name>
     <options>
@@ -181,7 +178,7 @@ Here are some examples:
 
 ### Entity single select for products
 
-```markup
+```html
 <component name="sw-entity-single-select">
     <name>exampleProduct</name>
     <entity>product</entity>
@@ -193,7 +190,7 @@ Stores the ID of the selected product into the system config.
 
 ### Entity multi ID select for products
 
-```markup
+```html
 <component name="sw-entity-multi-id-select">
     <name>exampleMultiProductIds</name>
     <entity>product</entity>
@@ -205,7 +202,7 @@ Stores an array with IDs of the selected products into the system config.
 
 ### Media selection
 
-```markup
+```html
 <component name="sw-media-field">
     <name>pluginMedia</name>
     <label>Upload media or choose one from the media manager</label>
@@ -214,7 +211,7 @@ Stores an array with IDs of the selected products into the system config.
 
 ### Text editor
 
-```markup
+```html
 <component name="sw-text-editor">
     <name>textEditor</name>
     <label>Write some nice text with WYSIWYG editor</label>
@@ -223,7 +220,7 @@ Stores an array with IDs of the selected products into the system config.
 
 ### Snippet field
 
-```markup
+```html
 <component name="sw-snippet-field">
     <name>snippetField</name>
     <label>Description</label>
@@ -247,9 +244,8 @@ Please Note: It is impossible to allow every component to the config.xml, due to
 
 Now all that's left to do is to present you a working example `config.xml` and show you the result.
 
-{% code title="<plugin root>/src/Resources/config/config.xml" %}
-
-```markup
+```xml
+// <plugin root>/src/Resources/config/config.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
@@ -303,8 +299,6 @@ Now all that's left to do is to present you a working example `config.xml` and s
     </card>
 </config>
 ```
-
-{% endcode %}
 
 ## Next steps
 

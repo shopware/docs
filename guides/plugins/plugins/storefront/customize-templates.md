@@ -22,9 +22,9 @@ As mentioned earlier, this guide is only trying to replace the 'demo' logo with 
 
 Overriding this file now requires you to copy the exact same directory structure starting from the `views` directory. In this case, the file `logo.html.twig` is located in a directory called `storefront/layout/header`, so make sure to remember this path.
 
-{% hint style="info" %}
+::: info
 There's a plugin out there called [FroshDevelopmentHelper](https://github.com/FriendsOfShopware/FroshDevelopmentHelper), that adds hints about template blocks and includes into the rendered HTML. This way it's easier to actually find the proper template.
-{% endhint %}
+:::
 
 ### Overriding the template
 
@@ -40,21 +40,15 @@ It's time to fill your custom `logo.html.twig` file. First of all you want to ex
 
 Put this line at the very beginning of your file:
 
-{% raw %}
-
 ```text
 {% sw_extends '@Storefront/storefront/layout/header/logo.html.twig' %}
 ```
-
-{% endraw %}
 
 This is simply extending the `logo.html.twig` file from the Storefront bundle. If you would leave the file like that, it wouldn't change anything, as you're currently just extending from the original file with no overrides.
 
 You want to replace the logo with some custom text though, so let's have a look at the original file. In there you'll find a block called `layout_header_logo_link`. Its contents then would create an anchor tag, which is not necessary for our case anymore, so this seems to be a great block to override.
 
 To override it now, just add the very same block into your custom file and replace its contents:
-
-{% raw %}
 
 ```text
 {% sw_extends '@Storefront/storefront/layout/header/logo.html.twig' %}
@@ -64,8 +58,6 @@ To override it now, just add the very same block into your custom file and repla
 {% endblock %}
 ```
 
-{% endraw %}
-
 If you wanted to append your text to the logo instead of replacing it, you could add a line like this to your override: `{{ parent() }}`
 
 And that's it already, you're done. You might have to clear the cache and refresh your storefront to see your changes in action. This can be done by using the command following command inside your command line:
@@ -74,9 +66,9 @@ And that's it already, you're done. You might have to clear the cache and refres
 ./bin/console cache:clear
 ```
 
-{% hint style="info" %}
+::: info
 Also remember to not only activate your plugin but also to assign your theme to the correct sales channel by clicking on it in the sidebar, going to the tab Theme and selecting your theme.
-{% endhint %}
+:::
 
 ### Finding variables
 
@@ -90,9 +82,9 @@ But rather than that, how do you know which variables are available to use? For 
 
 This `dump()` call will print out all variables available on this page.
 
-{% hint style="info" %}
+::: info
 Once again, the plugin called [FroshDevelopmentHelper](https://github.com/FriendsOfShopware/FroshDevelopmentHelper) adds all available page data to the Twig tab in the profiler, when opening a request and its details. This might help here as well.
-{% endhint %}
+:::
 
 ## Next steps
 

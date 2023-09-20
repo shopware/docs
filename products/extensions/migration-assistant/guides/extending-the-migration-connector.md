@@ -73,7 +73,7 @@ The repository has to inherit from the `AbstractRepository` of the Migration Con
 
 You have to register the repository in your `service.xml` with the parent property like this:
 
-```markup
+```html
 <service id="swag_migration_bundle_api_example.bundle_repository"
          class="SwagMigrationBundleApiExample\Repository\BundleRepository"
          parent="SwagMigrationConnector\Repository\AbstractRepository"
@@ -138,7 +138,7 @@ class BundleService extends AbstractApiService
 
 You have to register the `BundleService` in your `service.xml`:
 
-```markup
+```html
 <service class="SwagMigrationBundleApiExample\Service\BundleService" id="swag_migration_bundle_api_example.bundle_service">
     <argument type="service" id="swag_migration_bundle_api_example.bundle_repository"/>
 </service>
@@ -208,7 +208,7 @@ class BundleReader extends ApiReader
 
 After this, you have to register the reader in the Symfony container:
 
-```markup
+```html
 <service id="SwagMigrationBundleExample\Profile\Shopware\Gateway\Api\BundleReader"
          parent="SwagMigrationAssistant\Profile\Shopware\Gateway\Api\Reader\ApiReader">
     <tag name="shopware.migration.reader"/>

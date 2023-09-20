@@ -27,9 +27,8 @@ However, every plugin/bundle gets an own namespace that should be used for priva
 
 To make use of the filesystem we register a new service, which helps to read and write files to the filesystem.
 
-{% code title="<plugin root>/src/Service/ExampleFilesystemService.php" %}
-
 ```php
+// <plugin root>/src/Service/ExampleFilesystemService.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -74,9 +73,8 @@ class ExampleFilesystemService
 
 This service makes use of the private und public filesystem of the plugin. As you already know, this php class has to be registered as a service in the dependency injection container. This is also the place where we define which filesystem will be handed over to the constructor. To make use of the plugin private and public files, the service definition could look like this:
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
-
 ```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

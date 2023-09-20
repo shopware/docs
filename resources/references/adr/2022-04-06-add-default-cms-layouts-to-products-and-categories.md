@@ -7,10 +7,10 @@ tags: [cms, product, category]
 
 # Add default cms pages to products and categories
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-04-06-add-default-cms-layouts-to-products-and-categories.md)
-{% endhint %}
+:::
 
 ## Context
 

@@ -8,10 +8,9 @@ Quite often one might want to run any type of code on a regular basis, e.g. to c
 
 This guide is built upon our [plugin base guide](../plugin-base-guide.md), but that one is not mandatory. Knowing how the `services.xml` file in a plugin works is also helpful, which will be taught in our guides about [Dependency Injection](dependency-injection.md) and [Creating a service](add-custom-service.md). It is shortly explained here as well though, so no worries!
 
-<!-- markdown-link-check-disable-next-line -->
-{% hint style="info" %}
+::: info
 Refer to this video on **[Adding scheduled tasks](https://www.youtube.com/watch?v=88S9P3x6wYE)**. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
-{% endhint %}
+:::
 
 ## Registering scheduled task in the DI container
 
@@ -19,9 +18,8 @@ A `ScheduledTask` and its respective `ScheduledTaskHandler` are registered in a 
 
 Here's an example `services.xml` containing a new `ScheduledTask` as well as a new `ScheduledTaskHandler`:
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
-
-```markup
+```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -38,8 +36,6 @@ Here's an example `services.xml` containing a new `ScheduledTask` as well as a n
 </container>
 ```
 
-{% endcode %}
-
 Note the tags required for both the task and its respective handler, `shopware.scheduled.task` and `messenger.message_handler`. Your custom task will now be saved into the database once your plugin is activated.
 
 ## ScheduledTask and its handler
@@ -48,9 +44,8 @@ As you might have noticed, the `services.xml` file tries to find both the task i
 
 Here's the an example `ScheduledTask`:
 
-{% code title="<plugin root>/src/Service/ScheduledTask/ExampleTask.php" %}
-
 ```php
+// <plugin root>/src/Service/ScheduledTask/ExampleTask.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service\ScheduledTask;
@@ -71,8 +66,6 @@ class ExampleTask extends ScheduledTask
 }
 ```
 
-{% endcode %}
-
 Your `ExampleTask` class has to extend from the `Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTask` class, which will force you to implement two methods:
 
 * `getTaskName`: The technical name of your task. Make sure to add a vendor prefix to your custom task, to prevent collisions with other plugin's scheduled tasks. In this example this is `swag`.
@@ -82,9 +75,8 @@ And that's it for the `ExampleTask` class.
 
 Following will be the respective task handler:
 
-{% code title="<plugin root>/src/Service/ScheduledTask/ExampleTaskHandler.php" %}
-
 ```php
+// <plugin root>/src/Service/ScheduledTask/ExampleTaskHandler.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service\ScheduledTask;
@@ -104,8 +96,6 @@ class ExampleTaskHandler extends ScheduledTaskHandler
     }
 }
 ```
-
-{% endcode %}
 
 The respective task handler, `ExampleTaskHandler` as defined previously in your `services.xml`, has to extend from the class `Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTaskHandler`. This also comes with two methods, that you need to implement first:
 

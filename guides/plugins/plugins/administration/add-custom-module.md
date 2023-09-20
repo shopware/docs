@@ -8,29 +8,26 @@ Inside the `module` directory lies the list of several modules, each having thei
 This guide **does not** explain how to create a new plugin for Shopware 6.
 Head over to our Plugin base guide to learn how to create a plugin at first:
 
-{% page-ref page="../plugin-base-guide.md" %}
+<PageRef page="../plugin-base-guide" />
 
 ## Creating the index.js file
 
 The first step is creating a new directory `<plugin root>/src/Resources/app/administration/src/module/swag-example`, so you can store your own modules files in there.
 Right afterwards, create a new file called `index.js` in there. Consider it to be the main file for your custom module.
 
-{% hint style="warning" %}
+::: warning
 This is necessary, because Shopware 6 is automatically requiring an `index.js` file for each module.
-{% endhint %}
+:::
 
 Your custom module directory isn't known to Shopware 6 yet.
 The entry point of your plugin is the `main.js` file.
 That's the file you need to change now, so that it loads your new module.
 For this, simply add the following line to your `main.js` file:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/main.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/administration/src/main.js
 import './module/swag-example';
 ```
-
-{% endcode %}
 
 Now your module's `index.js` will be executed.
 
@@ -46,15 +43,12 @@ It is mainly the bridge between the Shopware Administration and our plugin.
 The `Module` object comes with a `register` helper method to easily register your module.
 The method needs two parameters to be set, the first one being the module's name, the second being a javascript object, which contains your module's configuration.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/administration/src/module/swag-example/index.js
 Shopware.Module.register('swag-example', {
     // configuration here
 });
 ```
-
-{% endcode %}
 
 ## Configuring the module
 
@@ -66,10 +60,10 @@ In this example `#ff3d58` is used as a color, which is a soft red.
 Also, each module has their own icon. You can see here [here](https://component-library.shopware.com/icons/) which icons are available in Shopware 6 by default.
 In our case here, let's say we use the icon `default-shopping-paper-bag-product`, which will also be used for the module.
 
-{% hint style="danger" %}
+::: danger
 This is not the icon being used for a menu entry! The icon for that needs to be configured separately.
 Please refer to the [Add a menu entry](add-menu-entry.md) guide for more information on this topic.
-{% endhint %}
+:::
 
 In addition, you're able to configure a title here, which will be used for the actual browser title.
 Just add a string for the key `title`.
@@ -86,11 +80,11 @@ Those routes are configured as an object in a property named `routes`. We will c
 
 The next steps are covered in their own guides. The first one would be adding a menu entry, so please take a look at the guide regarding:
 
-{% page-ref page="add-menu-entry.md" %}
+<PageRef page="add-menu-entry" />
 
 The second one refers to setting up custom routes, its guide can be found in the guide on adding custom routes:
 
-{% page-ref page="add-custom-route.md" %}
+<PageRef page="add-custom-route" />
 
 ## Set up additional meta info
 
@@ -99,9 +93,8 @@ The related routes are also set up already and linked to components, which will 
 There's a few more things we need to change in the configurations though that you should add to your module, such as a unique `name` and a `type`.
 For reference, see this example:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/administration/src/module/swag-example/index.js
 Shopware.Module.register('swag-example', {
     type: 'plugin',
     name: 'Example',
@@ -111,8 +104,6 @@ Shopware.Module.register('swag-example', {
     icon: 'default-shopping-paper-bag-product',
 ...
 ```
-
-{% endcode %}
 
 The `name` should be a technical unique one, the `type` would be 'plugin' here. When it comes to this `type`, there are basically two options in Shopware: `core` and `plugin`.
 So every third-party module should use `plugin`.
@@ -132,7 +123,7 @@ In this example `de-DE` and of course `en-GB` will be supported.
 
 Each language then contains a nested object of translations, so let's have a look at an example:
 
-```javascript
+```json
 {
     "swag-example": {
         "nested": {
@@ -151,9 +142,8 @@ For this purpose, create a new directory `snippet` in your module's directory an
 
 Then, when each file contains your translations as an object, you only have to import them into your module again.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/administration/src/module/swag-example/index.js
 [...]
 
 import deDE from './snippet/de-DE';
@@ -168,8 +158,6 @@ Shopware.Module.register('swag-example', {
 });
 ```
 
-{% endcode %}
-
 Let's also create the first translation, which is for your menu's label.
 It's key should be something like this: `swag-example.general.mainMenuItemGeneral`
 
@@ -182,7 +170,7 @@ The title will be the same as the main menu entry by default.
 
 This should be your snippet file now:
 
-```javascript
+```json
 {
     "swag-example": {
         "general": {
@@ -199,27 +187,27 @@ As mentioned above, Shopware 6 is looking for a `main.js` file in your plugin.
 Its contents get minified into a new file named after your plugin and will be moved to the `public` directory of Shopware 6 root directory.
 Given this plugin would be named "AdministrationNewModule", the bundled and minified javascript code for this example would be located under `<plugin root>/src/Resources/public/administration/js/administration-new-module.js`, once you run the command following command in your shopware root directory:
 
-{% tabs %}
-{% tab title="Template" %}
+<Tabs>
+<Tab title="Template">
 
 ```bash
 ./bin/build-administration.sh
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="platform only (contribution setup)" %}
+<Tab title="platform only (contribution setup)">
 
 ```bash
 composer run build:js:admin
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
-{% hint style="info" %}
+::: info
 Your plugin has to be activated for this to work.
-{% endhint %}
+:::
 
 Make sure to also include that file when publishing your plugin!
 A copy of this file will then be put into the directory `<shopware root>/public/bundles/administration/administrationnewmodule/administration/js/administration-new-module.js`.
@@ -233,9 +221,8 @@ Your minified javascript file will now be loaded in production environments.
 If you think about creating a module concerning settings, you might want to link your module in the `settings` section of the Administration.
 You can add the `settingsItem` option to the module configuration as seen below:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/administration/src/module/swag-example/index.js
 import './page/swag-plugin-list';
 import './page/swag-plugin-detail';
 Shopware.Module.register('swag-plugin', {
@@ -248,8 +235,6 @@ Shopware.Module.register('swag-plugin', {
     }]
 });
 ```
-
-{% endcode %}
 
 The `group` property targets to the group section, the item will be displayed in 'shop', 'system' and 'plugins' sections.
 The `to` gets the link path of the route. The `icon` contains the icon name which will be display.
@@ -275,9 +260,8 @@ settingsItem: [{ // this can be a single object if no collection is needed
 
 Here's your final module:
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/swag-example/index.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/administration/src/module/swag-example/index.js
 import './page/swag-example-list';
 import './page/swag-example-detail';
 import './page/swag-example-create';
@@ -327,8 +311,6 @@ Shopware.Module.register('swag-example', {
     }]
 });
 ```
-
-{% endcode %}
 
 ## Next steps
 

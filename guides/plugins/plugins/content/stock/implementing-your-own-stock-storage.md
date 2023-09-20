@@ -16,11 +16,11 @@ First, to communicate stock alterations to a third-party service, you will have 
 * the old quantity and 
 * the new quantity.
 
-{% tabs %}
-{% tab title="StockStorageDecorator.php" %}
-{% code title="<plugin root>/src/Swag/Example/Service/StockStorageDecorator.php" %}
+<Tabs>
+<Tab title="StockStorageDecorator.php">
 
 ```php
+// <plugin root>/src/Swag/Example/Service/StockStorageDecorator.php
 <?php declare(strict_types=1);
 
 namespace Swag\Example\Service;
@@ -68,13 +68,12 @@ class StockStorageDecorator extends AbstractStockStorage
 }
 ```
 
-{% endcode %}
-{% endtab %}
+</Tab>
 
-{% tab title="services.xml" %}
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<Tab title="services.xml">
 
 ```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -88,9 +87,8 @@ class StockStorageDecorator extends AbstractStockStorage
 </container>
 ```
 
-{% endcode %}
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 The alter method will be called when the stock of a product should be updated. The `$changes` array contains a list of `StockAlteration` instances. These objects contain the following properties/methods:
 

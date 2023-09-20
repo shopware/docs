@@ -2,9 +2,9 @@
 
 The source code of your project will reside in a git-based VCS repository. You can start with a plain project. However, we suggest starting with a new Composer create-project. You will learn more about the setup template in the [Setup Template](setup-template.md) section.
 
-{% hint style="info" %}
+::: info
 This guide explains the repository setup using **GitHub**. You can also integrate Bitbucket or GitLab-based version control environments with Shopware PaaS. Refer to [Source Integrations](https://docs.platform.sh/integrations/source.html) for more information.
-{% endhint %}
+:::
 
 ## Create a Shopware project
 

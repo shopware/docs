@@ -48,7 +48,7 @@ In order to delete it, we once again need its repository. The name for the entit
 
 So let's inject this repository into our class called `ReplacingData`:
 
-```markup
+```xml
 // SwagBasicExample/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"

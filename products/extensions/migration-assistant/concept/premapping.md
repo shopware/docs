@@ -2,7 +2,7 @@
 
 The premapping will use the normal [Mapping](convert-and-mapping.md#mapping) to store the old identifier with the equivalent new one. All premapping readers provide the information for the mapping choices and are registered like this:
 
-```markup
+```html
 <service id="SwagMigrationAssistant\Profile\Shopware\Premapping\SalutationReader">
     <argument type="service" id="salutation.repository" />
     <argument type="service" id="SwagMigrationAssistant\Migration\Gateway\GatewayRegistry"/>
@@ -18,7 +18,7 @@ The service will return a `PremappingStruct`, which consists of:
 
 Here is an example of how the final `PremappingStruct` looks like in the `generate-premapping` json response:
 
-```javascript
+```json
 {
    "entity":"salutation",
    "choices":[

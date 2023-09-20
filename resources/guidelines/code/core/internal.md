@@ -1,9 +1,9 @@
 
 
-{% hint style="info" %}
+::: info
 This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/code/core/internal.md)
-{% endhint %}
+:::
 
 # Internal
 

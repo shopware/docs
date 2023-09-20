@@ -81,8 +81,8 @@ To run Shopware in a development context, the [Symfony CLI](https://symfony.com/
 
 Below you will find the default configuration using either Caddy, Nginx or Apache as a webserver.
 
-{% tabs %}
-{% tab title="Caddy" %}
+<Tabs>
+<Tab title="Caddy">
 
 ```text
 mydomain.com {
@@ -109,9 +109,9 @@ mydomain.com {
 }
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Nginx" %}
+<Tab title="Nginx">
 
 ```text
 server {
@@ -181,14 +181,13 @@ server {
         try_files $uri /index.php$is_args$args;
     }
 }
-
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Apache" %}
+<Tab title="Apache">
 
-{% hint style="info" %}
+::: info
 The following modules are required:
 
 * mod_negotiation
@@ -196,7 +195,7 @@ The following modules are required:
 * mod_headers
 * mod_deflate
 
-{% endhint %}
+:::
 
 ```text
 <VirtualHost *:80>
@@ -213,8 +212,8 @@ The following modules are required:
 </VirtualHost>
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Recommended stack
 
@@ -229,7 +228,7 @@ We recommend the following stack:
 * Redis: 7.2
 
 Recommended PHP ini:
-{% page-ref page="../hosting/performance/performance-tweaks.md#php-config-tweaks" %}
+<PageRef page="../hosting/performance/performance-tweaks#php-config-tweaks" />
 
 ## Setup
 

@@ -7,10 +7,10 @@ tags: [core, devops, observability]
 
 # Exception Log Level configuration
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2023-05-25-exception-log-levels.md)
-{% endhint %}
+:::
 
 ## Context
 By default every exception that is thrown in the PHP stack and not catched will be logged by the `symfony/monolog-bridge` on `error` level.

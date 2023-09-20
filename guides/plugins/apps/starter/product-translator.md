@@ -29,9 +29,8 @@ composer require shopware/app-bundle
 Modify the `SHOPWARE_APP_NAME` and `SHOPWARE_APP_SECRET` in the env to your app name`./.env` to ensure the app can be installed in a store later.
 Also, configure the `DATABASE_URL` to point to your database:
 
-{% code title=".env" %}
-
 ```sh
+// .env
 ....
 
 ###> shopware/app-bundle ###
@@ -40,15 +39,13 @@ SHOPWARE_APP_SECRET=TestSecret
 ###< shopware/app-bundle ###
 ```
 
-{% endcode %}
-
 You can now start the application with `symfony server:start -v`.
 
 For now, your app server is currently only available locally.
 
-{% hint style="info" %}
+::: info
 When you are using a local Shopware environment, you can skip to the [next chapter](#creating-the-manifest)
-{% endhint %}
+:::
 
 We need to expose your local app server to the internet. The easiest way to achieve that is using a tunneling service like [ngrok](https://ngrok.com/).
 
@@ -66,9 +63,8 @@ The `manifest.xml` is the main interface definition between stores and your app 
 It contains all the required information about your app.
 Let's start by filling in all the meta information:
 
-{% code title="release/manifest.xml" %}
-
 ```xml
+// release/manifest.xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
@@ -83,19 +79,16 @@ Let's start by filling in all the meta information:
    </manifest>
 ```
 
-{% endcode %}
-
-{% hint style="warning" %}
+::: warning
 Take care to use the same `<name>` as in the `.env` file. Otherwise, stores can't install the app.
-{% endhint %}
+:::
 
 ### Setup hook
 
 Next, we will define the `<setup>` part of the manifest. This part describes how the store will connect itself with the app server.
 
-{% code title="release/manifest.xml" %}
-
 ```xml
+// release/manifest.xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
@@ -108,8 +101,6 @@ Next, we will define the `<setup>` part of the manifest. This part describes how
 </manifest>
 ```
 
-{% endcode %}
-
 The `<registraionUrl>` is already implemented by the app template and is always `/app/lifecycle/register`, unless you modify `config/routes/shopware_app.yaml`.
 The `<secret>` element is only present in development versions of the app. In production, the extension store will provide the secret to authenticate your app buyers.
 
@@ -117,9 +108,8 @@ The `<secret>` element is only present in development versions of the app. In pr
 
 Permissions are needed as this app will need to read product descriptions and translate them:
 
-{% code title="release/manifest.xml" %}
-
 ```xml
+// release/manifest.xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
@@ -140,17 +130,14 @@ Permissions are needed as this app will need to read product descriptions and tr
 </manifest>
 ```
 
-{% endcode %}
-
 ### Webhooks
 
 Finally, your app needs to be notified every time a product description is modified.
 The app system provides webhooks to subscribe your app server to any changes in the data
 in its shops:
 
-{% code title="release/manifest.xml" %}
-
 ```xml
+// release/manifest.xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
@@ -171,11 +158,9 @@ in its shops:
 </manifest>
 ```
 
-{% endcode %}
-
-{% hint style="info" %}
+::: info
 The timeout for the requests against the app server is 5 seconds.
-{% endhint %}
+:::
 
 These four webhooks are provided by the App Bundle,
 so the Bundle does for you the complete lifecycle and handling of Webhooks.
@@ -184,9 +169,8 @@ so the Bundle does for you the complete lifecycle and handling of Webhooks.
 
 To get started, let's write a simple Symfony event listener:
 
-{% code title="src/EventListener/ProductWrittenWebhookListener.php" %}
-
 ```php
+// src/EventListener/ProductWrittenWebhookListener.php
 #[AsEventListener(event: 'webhook.product.written')]
 class ProductWrittenWebhookListener
 {
@@ -200,30 +184,24 @@ class ProductWrittenWebhookListener
 }
 ```
 
-{% endcode %}
-
 ### Creating a shop client
 
 The Bundle verifies for you the Request and provides you the Webhook parsed together with the Shop it has requested it.
 With the Shop, we can create a pre-authenticated PSR-18 Client to communicate with the Shop.
 In this example, we will use the SimpleHttpClient which simples the usage of the PSR-18 Client.
 
-{% code title="src/EventListener/ProductWrittenWebhookListener.php" %}
-
 ```php
+// src/EventListener/ProductWrittenWebhookListener.php
     public function __invoke(WebhookAction $action): void
     {
         $client = $this->clientFactory->createSimpleClient($action->shop);
     }
 ```
 
-{% endcode %}
-
 Now we can inspect the event payload:
 
-{% code title="src/EventListener/ProductWrittenWebhookListener.php" %}
-
 ```php
+// src/EventListener/ProductWrittenWebhookListener.php
     public function __invoke(WebhookAction $action): void
     {
         //...
@@ -237,8 +215,6 @@ Now we can inspect the event payload:
     }
 ```
 
-{% endcode %}
-
 ### Fetching data from the shop
 
 All `$entity.written` events contain a list of fields that a written event has changed.
@@ -247,9 +223,8 @@ If the change did not affect the description, the listener early returns because
 
 Now that it is certain that the description of the product was changed, we fetch the description through the API of the shop:
 
-{% code title="src/EventListener/ProductWrittenWebhookListener.php" %}
-
 ```php
+// src/EventListener/ProductWrittenWebhookListener.php
     public function __invoke(WebhookAction $action): void
     {
         //...
@@ -278,13 +253,10 @@ Now that it is certain that the description of the product was changed, we fetch
     }
 ```
 
-{% endcode %}
-
 The request contains a criteria that fetches the product for which we received the event `'ids' => [$id]` and all translations and their associated languages `'associations' => 'language'`. Now we can retrieve the English description from the API response:
 
-{% code title="src/EventListener/ProductWrittenWebhookListener.php" %}
-
 ```php
+// src/EventListener/ProductWrittenWebhookListener.php
     public function __invoke(WebhookAction $action): void
     {
         //...
@@ -300,19 +272,16 @@ The request contains a criteria that fetches the product for which we received t
     }
 ```
 
-{% endcode %}
-
-{% hint style="info" %}
+::: info
 A common gotcha with `entity.written` webhooks is that they trigger themselves when you're performing write operations. Updating the description triggers another `entity.written` event. This again calls the webhook, which updates the description, and so on.
-{% endhint %}
+:::
 
 Because our goal is to write a French translation of the product, the app needs to take care to avoid endless loops.
 To determine if the app has already written a translation once, it saves a hash of the original description.
 We will get to the generation of the hash later, but we need to check it first:
 
-{% code title="src/EventListener/ProductWrittenWebhookListener.php" %}
-
 ```php
+// src/EventListener/ProductWrittenWebhookListener.php
     public function __invoke(WebhookAction $action): void
     {
         //...
@@ -323,15 +292,12 @@ We will get to the generation of the hash later, but we need to check it first:
     }
 ```
 
-{% endcode %}
-
 ### Writing a translated description
 
 Now that the app can be sure the description has not been translated before it can write the new description like so:
 
-{% code title="src/EventListener/ProductWrittenWebhookListener.php" %}
-
 ```php
+// src/EventListener/ProductWrittenWebhookListener.php
     public function __invoke(WebhookAction $action): void
     {
         //...
@@ -353,8 +319,6 @@ Now that the app can be sure the description has not been translated before it c
     }
 ```
 
-{% endcode %}
-
 Note that the hash of the original description gets saved as a value in the
 custom fields of the product entity. This is possible without any further config since all custom fields are schema-less.
 
@@ -364,9 +328,9 @@ The implementation of the `translate` method is disregarded in this example. You
 
 In this last step, we will install the app using the Shopware CLI tools.
 
-{% hint style="info" %}
+::: info
 If this is your first time using the Shopware CLI, you have to [install](https://sw-cli.fos.gg/install/) it first. Next, configure it using the `shopware-cli project config init` command.
-{% endhint %}
+:::
 
 ```sh
 shopware-cli project extension upload ProductTranslator/release --activate --increase-version

@@ -1,8 +1,8 @@
 # Add custom flow trigger
 
-{% hint style="info" %}
+::: info
 The Shopware app custom flow triggers are only accessible from 6.5.3.0 and later versions.
-{% endhint %}
+:::
 
 In addition to the default triggers, you have the option to incorporate custom, pre-defined, and adjustable triggers into the flow builder.
 
@@ -51,9 +51,8 @@ To get started with your app, create an `apps` folder inside the `custom` folder
 
 The manifest file is the central point of your app. It defines the interface between your app and the Shopware instance. It provides all the information concerning your app, as seen in the minimal version below:
 
-{% code title="manifest.xml" %}
-
 ```xml
+// manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
@@ -71,19 +70,16 @@ The manifest file is the central point of your app. It defines the interface bet
 </manifest>
 ```
 
-{% endcode %}
-
-{% hint style="warning" %}
+::: warning
 The name of your app that you provide in the manifest file needs to match the folder name of your app.
-{% endhint %}
+:::
 
 ## Define the flow trigger
 
 To create a flow trigger, you need to define a `<flow-event>` block within a file called `flow.xml`. Each `<flow-event>` represents one trigger, and you can define an arbitrary number of events.
 
-{% code title="Resources/flow.xml" %}
-
 ```xml
+// Resources/flow.xml
 <flow-extensions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd">
     <flow-events>
         <flow-event>
@@ -96,8 +92,6 @@ To create a flow trigger, you need to define a `<flow-event>` block within a fil
     ...
 </flow-extensions>
 ```
-
-{% endcode %}
 
 A single flow trigger would look like this:
 
@@ -203,9 +197,8 @@ Snippet keys should be defined based on your trigger name defined at `<name>` in
 
 ***Example***
 
-{% code title="Resources/flow.xml" %}
-
 ```xml
+// Resources/flow.xml
 <flow-extensions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd">
     <flow-events>
         <flow-event>
@@ -216,11 +209,8 @@ Snippet keys should be defined based on your trigger name defined at `<name>` in
 </flow-extensions>
 ```
 
-{% endcode %}
-
-{% code title="custom/apps/FlowBuilderTriggerApp/Resources/app/administration/snippet/en-GB.json" %}
-
-```json
+```js
+// custom/apps/FlowBuilderTriggerApp/Resources/app/administration/snippet/en-GB.jsonon
 {
   "sw-flow-custom-event": {
     "event-tree": {
@@ -234,8 +224,6 @@ Snippet keys should be defined based on your trigger name defined at `<name>` in
   }
 }
 ```
-
-{% endcode %}
 
 ## Install the App
 

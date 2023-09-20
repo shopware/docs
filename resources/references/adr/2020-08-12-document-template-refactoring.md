@@ -7,10 +7,10 @@ tags: [document, template, twig]
 
 # Document template refactoring
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-08-12-document-template-refactoring.md)
-{% endhint %}
+:::
 
 ## Context
 Our document templates did not support nested line items. To make this possible, we had to split the document templates into smaller templates.
@@ -26,6 +26,7 @@ There are now two ways how we make the overwrite possible again:
 1. set a block around each include and then overwrite the includes in the corresponding templates and include a separate template
 
 * **base.html.twig**
+
 ```twig
 {% block include_header %}
     {% sw_include '@Framework/documents/header.html.twig' %}
@@ -33,6 +34,7 @@ There are now two ways how we make the overwrite possible again:
 ```
 
 * **invoice.html.twig**
+
 ```twig
 {% sw_extends '@Framework/documents/base.html.twig' %}
 
@@ -59,6 +61,7 @@ A developer can still overwrite any template defined by us via `sw_extends`
 ```
 
 * `invoice.html.twig`
+
 ```twig
 {% sw_extends '@Framework/documents/base.html.twig' %}
 
@@ -80,7 +83,6 @@ To keep the extensibility of the document templates simple, we will work with th
 
 * https://twig.symfony.com/doc/3.x/tags/use.html
 * https://twig.symfony.com/doc/3.x/functions/block.html
-
 ```
 {% use '@Framework/documents/includes/logo.html.twig' %}
 

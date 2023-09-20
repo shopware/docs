@@ -14,9 +14,8 @@ As most guides, this guide is also built upon the [Plugin base guide](../../plug
 
 First we need to create a new service that implements the `MiddlewareInterface`. This interface comes with a method `handle`, which should always call the next middleware.
 
-{% code title="<plugin root>/src/MessageQueue/Middleware/ExampleMiddleware.php" %}
-
 ```php
+// <plugin root>/src/MessageQueue/Middleware/ExampleMiddleware.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\MessageQueue\Middleware;
@@ -37,17 +36,14 @@ class ExampleMiddleware implements MiddlewareInterface
 }
 ```
 
-{% endcode %}
-
 ## Configure middleware
 
 After we've created our middleware, we have to add that middleware to the message bus through configuration.
 
 For each defined bus in our `framework.yaml`, we can define the middleware that this bus should use. To add middleware, we simply specify our custom middleware as follows:
 
-{% code title="<platform root>/src/Core/Framework/Resources/config/packages/framework.yaml" %}
-
 ```yaml
+// <platform root>/src/Core/Framework/Resources/config/packages/framework.yaml
 framework:
     messenger:
         default_bus: messenger.bus.shopware
@@ -57,8 +53,6 @@ framework:
                 - 'Swag\BasicExample\MessageQueue\Middleware\ExampleMiddleware'
                 - 'Swag\BasicExample\MessageQueue\Middleware\AnotherExampleMiddleware'
 ```
-
-{% endcode %}
 
 ## More interesting topics
 

@@ -1,8 +1,8 @@
 # Stock
 
-{% hint style="info" %}
+::: info
 The stock management system is available from Shopware 6.5.5.0. It is only enabled if the shop owner has enabled the `\STOCK_HANDLING\` feature flag.
-{% endhint %}
+:::
 
 The stock management system allows the allocation of stocks to products. Stock is incremented and decremented as orders are placed, modified, canceled, and refunded.
 

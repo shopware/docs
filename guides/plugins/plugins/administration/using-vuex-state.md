@@ -18,9 +18,8 @@ Creating a store works the same way as it would in standard Vuex with the only l
 The following code snippet is the `namespaced` store we will register later through Shopware to the underlying Vuex.
 It is admittedly rather short and has only one variable called `content` and a setter for it, but again this all the same as in Vuex. Beware of the property `namespaced`, though.
 
-{% code title="<plugin-root>/src/Resources/app/administration/app/src/component/store-example/store.js" %}
-
 ```javascript
+// <plugin-root>/src/Resources/app/administration/app/src/component/store-example/store.js
 export default {
     namespaced: true,
 
@@ -40,8 +39,6 @@ export default {
 };
 ```
 
-{% endcode %}
-
 ## Registering the store
 
 The store can be registered in two scopes, on a module scope and on a per component scope.
@@ -49,15 +46,12 @@ Both ways use the same functions from the [Shopware object](./the-shopware-objec
 
 Registering in a module scope is done by simply calling the function `Shopware.State.registerModule` in the `main.js` file.
 
-{% code title="<administration root>/src/main.js" %}
-
 ```javascript
+// <administration root>/src/main.js
 import swagBasicState from './store';
 
 Shopware.State.registerModule('swagBasicState', swagBasicState);
 ```
-
-{% endcode %}
 
 In the component scope `Namespaced` store modules can be registered in the `beforeCreate` [Vue lifecycle hook](https://vuejs.org/v2/guide/instance.html#Lifecycle-Diagram),
 with the previously mentioned `Shopware.State.registerModule` function.
@@ -66,9 +60,8 @@ in order to not leave unused stores behind after a component has been destroyed.
 
 All of this can be seen in the following code sample:
 
-{% code title="<plugin-root>/src/Resources/app/administration/app/src/component/store-example/index.js" %}
-
 ```javascript
+// <plugin-root>/src/Resources/app/administration/app/src/component/store-example/index.js
     beforeCreate() {
         // registering the store to vuex through the Shopware objects helper function
         // the first argument is the name the second the imported namespaced store
@@ -81,8 +74,6 @@ All of this can be seen in the following code sample:
     },
 ```
 
-{% endcode %}
-
 Both methods make the store on the given name everywhere available, regardless of where it has been registered.
 
 ## Using the store in a component
@@ -90,9 +81,8 @@ Both methods make the store on the given name everywhere available, regardless o
 The Shopware object also makes the native Vuex helper functions available, like [`mapState`](https://vuex.vuejs.org/guide/state.html#the-mapstate-helper), [`mapGetters`](https://vuex.vuejs.org/guide/getters.html#the-mapgetters-helper), [`mapMutations`](https://vuex.vuejs.org/guide/mutations.html#committing-mutations-in-components) and [`mapActions`](https://vuex.vuejs.org/guide/actions.html#dispatching-actions-in-components).
 The `namespaced` store itself can be accessed through the `Shopware.State.get()` function.
 
-{% code title="<plugin-root>/src/Resources/app/administration/app/src/component/store-example/index.js" %}
-
 ```javascript
+// <plugin-root>/src/Resources/app/administration/app/src/component/store-example/index.js
 // import the template
 import template from './store-example.html.twig';
 
@@ -123,16 +113,13 @@ Component.register('swag-basic-state', {
 });
 ```
 
-{% endcode %}
-
 ## Adding a template
 
 After we have registered our `namespaced` store, mapped state and mutations, we can now use them in our components or templates.
 The component below displays the previously mapped state `content` in a `div` and a `sw-text-field`, mutating the state on the `changed` event of the `sw-text-field`.
 
-{% code title="<plugin-root>/src/Resources/app/administration/app/src/component/store-example/store-example.html.twig" %}
-
 ```html
+// <plugin-root>/src/Resources/app/administration/app/src/component/store-example/store-example.html.twig
 <div>
     <h1>SW-6 State</h1>
     <sw-text-field @change="value => setContent(value)" :value="content">
@@ -142,8 +129,6 @@ The component below displays the previously mapped state `content` in a `div` an
     </div>
 </div>
 ```
-
-{% endcode %}
 
 ## More interesting topics
 

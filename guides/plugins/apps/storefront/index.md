@@ -23,24 +23,23 @@ As the Shopware server will build the Storefront, you don't have to set up any e
 
 ## Custom Assets in Apps
 
-{% hint style="info" %}
+::: info
 Note that this feature was introduced in Shopware 6.4.8.0, and is not supported in previous versions.
-{% endhint %}
+:::
 
 You may want to include custom assets inside your app, like custom fonts, etc.
 Therefore, place the assets you need in the `/Resources/public` folder. All files inside this folder are available over the [asset-system](../../plugins/storefront/add-custom-assets.md#adding-custom-assets-to-your-plugin).
 
 ## Custom Template Priority
 
-{% hint style="info" %}
+::: info
 Note that this feature was introduced in Shopware 6.4.12.0, and is not supported in previous versions.
-{% endhint %}
+:::
 
 You may want your templates loaded before or after other extensions. To do so, you can define a `load-priority` inside your `manifest.xml`. The default value to this is 0, with positive numbers your template will be loaded earlier, and with negative numbers later.
 
-{% code title="manifest.xml" %}
-
 ```xml
+// manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
@@ -51,5 +50,3 @@ You may want your templates loaded before or after other extensions. To do so, y
     </storefront>    
 </manifest>
 ```
-
-{% endcode %}
