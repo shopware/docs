@@ -6,7 +6,7 @@ Directives in the Shopware 6 Administration are essentially the same as in any o
 
 Learn more about Vue Directives in their documentation:
 
-<PageRef page="https://vuejs.org/v2/guide/custom-directive.html" title="" target="_blank" />
+<PageRef page="https://vuejs.org/v2/guide/custom-directive.html" title="Custom Directives | Vue.js" target="_blank" />
 
 ## Prerequisites
 

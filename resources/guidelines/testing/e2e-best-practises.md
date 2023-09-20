@@ -6,7 +6,7 @@ A typical E2E test can be complex, with many steps that take a lot of time to co
 
 Cypress got you covered with their best practices as well: So please also look at their best practices to get to know their patterns:
 
-<PageRef page="https://docs.cypress.io/guides/references/best-practices.html" title="" target="_blank" />
+<PageRef page="https://docs.cypress.io/guides/references/best-practices.html" title="Best Practices | Cypress Documentation" target="_blank" />
 
 ::: warning
 We strongly recommend following Cypress own best practices as well.

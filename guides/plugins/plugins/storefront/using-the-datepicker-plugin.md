@@ -7,7 +7,7 @@ To provide an input field for date and time values, you can use the datepicker p
 The datepicker plugin uses the `flatpickr` implementation under the hood. So, check out the `flatpickr` documentation,
 if you need more information about the date picker configuration itself.
 
-<PageRef page="https://flatpickr.js.org" title="" target="_blank" />
+<PageRef page="https://flatpickr.js.org" title="Introduction" target="_blank" />
 
 ## Prerequisites
 

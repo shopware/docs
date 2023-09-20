@@ -4,7 +4,7 @@
 
 The storefront theme is implemented as a skin on top of Bootstrap:
 
-<PageRef page="https://getbootstrap.com/" title="" target="_blank" />
+<PageRef page="https://getbootstrap.com/" title="Bootstrap · The most popular HTML, CSS, and JS library in the world." target="_blank" />
 
 Sometimes it is necessary to adjust SCSS variables if you want to change the look of the Storefront for example default variables like `$border-radius` which is defined by Bootstrap. This guide will show how you can override those SCSS variables.
 
