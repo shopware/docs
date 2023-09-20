@@ -1,3 +1,10 @@
+---
+nav:
+  title: The best practice to always re fetch the data after saving
+  position: 30
+
+---
+
 # 2020-09-17 - The best-practice to always re-fetch the data after saving
 
 ::: info

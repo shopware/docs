@@ -1,3 +1,10 @@
+---
+nav:
+  title: Move storefront scripts to head
+  position: 10
+
+---
+
 # 2021-07-22 - Move storefront script to head with defer
 
 ::: info

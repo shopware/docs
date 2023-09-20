@@ -1,3 +1,10 @@
+---
+nav:
+  title: Installation
+  position: 10
+
+---
+
 # Installation
 
 Similar to the Shopware Core production and development templates, it is possible to set up SESP as a `dependency/composer` requirement and as a development environment allowing you to contribute to the plugin on its own.

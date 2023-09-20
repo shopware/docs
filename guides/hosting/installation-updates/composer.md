@@ -1,3 +1,10 @@
+---
+nav:
+  title: Versioning & Dependencies
+  position: 20
+
+---
+
 # Versioning and Dependencies
 
 ::: danger

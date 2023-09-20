@@ -1,3 +1,10 @@
+---
+nav:
+  title: Storefront
+  position: 10
+
+---
+
 # Storefront
 
 You can modify the whole appearance of the Storefront within your app. This includes [customizing templates](../../plugins/storefront/customize-templates), [adding custom Javascript](../../plugins/storefront/add-custom-javascript) and [custom styling](../../plugins/storefront/add-custom-styling).

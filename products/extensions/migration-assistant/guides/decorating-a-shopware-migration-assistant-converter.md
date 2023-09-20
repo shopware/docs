@@ -1,3 +1,10 @@
+---
+nav:
+  title: Decorating a Shopware Migration Assistant converter
+  position: 30
+
+---
+
 # Decorating a Shopware Migration Assistant Converter
 
 ## Overview

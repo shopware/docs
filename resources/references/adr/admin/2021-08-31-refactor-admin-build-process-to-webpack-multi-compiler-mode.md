@@ -1,3 +1,10 @@
+---
+nav:
+  title: Refactor admin build process to webpack multi compiler mode
+  position: 60
+
+---
+
 # 2021-08-31 - Refactor admin build process to webpack-multi-compiler mode
 
 ::: info

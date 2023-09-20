@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom field
+  position: 10
+
+---
+
 # Add Custom Field
 
 ## Overview

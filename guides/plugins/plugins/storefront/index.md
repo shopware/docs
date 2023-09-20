@@ -1,3 +1,10 @@
+---
+nav:
+  title: Storefront
+  position: 10
+
+---
+
 # Storefront
 
 Following is a list of important Storefront topics, that you might want to have a look at.

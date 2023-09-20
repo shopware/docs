@@ -1,3 +1,10 @@
+---
+nav:
+  title: Store API
+  position: 20
+
+---
+
 # Store API
 
 We use swagger.io for the documentation of our B2B Suite endpoints. The created [swagger.json](https://gitlab.com/shopware/shopware/enterprise/b2b/-/blob/minor/swagger.json) file can be displayed with [Swagger UI](http://swagger.io/swagger-ui/).

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Decoration pattern
+  position: 30
+
+---
+
 # 2020-11-25 - Decoration pattern
 
 ::: info

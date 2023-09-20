@@ -1,3 +1,10 @@
+---
+nav:
+  title: Increment pattern
+  position: 10
+
+---
+
 ## 2021-11-09 - Introduce increment pattern
 
 ::: info

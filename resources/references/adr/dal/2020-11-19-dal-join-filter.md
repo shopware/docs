@@ -1,3 +1,10 @@
+---
+nav:
+  title: DAL join filter
+  position: 20
+
+---
+
 # 2020-11-19 - DAL join filter
 
 ::: info

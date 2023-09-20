@@ -1,3 +1,10 @@
+---
+nav:
+  title: YYYY MM DD template
+  position: 30
+
+---
+
 # [YYYY-MM-DD] - [Title]
 
 ::: info

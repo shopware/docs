@@ -1,3 +1,10 @@
+---
+nav:
+  title: Flow
+  position: 70
+
+---
+
 # Flow Builder
 
 Flow Builder is a Shopware automation solution for shop owners with great adaptability and flexibility. With Flow Builder, you can build workflows to automate tasks tailored to your business needs without programming knowledge.

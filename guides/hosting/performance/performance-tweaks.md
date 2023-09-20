@@ -1,3 +1,10 @@
+---
+nav:
+  title: Performance Tweaks
+  position: 60
+
+---
+
 # Performance Tweaks
 
 Shopware is a platform for many different projects. It needs to handle a broad range of load characteristics and environments. That means that the default configuration is optimized for the best out-of-the-box experience. But there are many opportunities to increase the performance by fitting the configuration to your needs.

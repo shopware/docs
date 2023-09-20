@@ -1,3 +1,10 @@
+---
+nav:
+  title: Deprecation handling during phpunit test execution
+  position: 10
+
+---
+
 # 2022-10-20 - Deprecation Handling during PHPUnit Test Execution
 
 ::: info

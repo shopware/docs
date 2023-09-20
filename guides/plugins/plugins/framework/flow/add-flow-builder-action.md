@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add Flow Builder action
+  position: 10
+
+---
+
 # Add custom flow Action
 
 ::: info

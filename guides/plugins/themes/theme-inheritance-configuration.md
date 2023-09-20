@@ -1,3 +1,10 @@
+---
+nav:
+  title: Theme inheritance configuration
+  position: 110
+
+---
+
 # Theme Inheritance Configuration
 
 ::: info

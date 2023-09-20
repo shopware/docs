@@ -1,3 +1,10 @@
+---
+nav:
+  title: Quality guidelines for apps in plugin system
+  position: 20
+
+---
+
 # Quality Guidelines for Apps based on Plugin System in Shopware Store
 
 > **Changelog**

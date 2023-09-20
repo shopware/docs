@@ -1,3 +1,10 @@
+---
+nav:
+  title: Introduce jest fail on console
+  position: 50
+
+---
+
 # 2021-06-14 - Introduce jest-fail-on-console
 
 ::: info

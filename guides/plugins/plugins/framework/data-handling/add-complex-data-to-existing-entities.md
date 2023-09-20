@@ -1,3 +1,10 @@
+---
+nav:
+  title: Adding complex data to existing entities
+  position: 40
+
+---
+
 # Adding Complex Data to Existing Entities
 
 ## Overview

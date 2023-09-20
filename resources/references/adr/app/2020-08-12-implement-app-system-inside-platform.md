@@ -1,3 +1,10 @@
+---
+nav:
+  title: Implement app system inside platform
+  position: 10
+
+---
+
 # 2020-08-12 - Implement app system inside platform
 
 ::: info

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Technical concept custom entities
+  position: 20
+
+---
+
 # 2021-08-31 - Technical concept custom entities
 
 ::: info

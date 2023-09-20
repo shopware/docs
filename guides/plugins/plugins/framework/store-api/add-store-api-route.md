@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add store API route
+  position: 10
+
+---
+
 # Add Store API route
 
 ## Overview

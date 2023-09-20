@@ -1,3 +1,10 @@
+---
+nav:
+  title: Test structure
+  position: 130
+
+---
+
 # 2022-10-20 - Test structure
 
 ::: info

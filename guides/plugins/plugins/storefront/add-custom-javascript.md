@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom Javascript
+  position: 50
+
+---
+
 # Add Custom Javascript
 
 ## Overview

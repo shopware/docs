@@ -1,3 +1,10 @@
+---
+nav:
+  title: Adjust ADR approval rules
+  position: 60
+
+---
+
 # 2021-11-05 - Adjust ADR approval rules for the new org structure
 
 ::: info

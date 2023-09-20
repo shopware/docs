@@ -1,3 +1,10 @@
+---
+nav:
+  title: Using custom fields of type media
+  position: 110
+
+---
+
 # Using Custom Fields of Type Media
 
 After you have added a custom field of type media, with the Administration or via plugin, you can assign media objects to the different entities. This is often used for products to add more images to the product detail page. If you want to learn more about custom fields you might want to take a look at this guide: [Adding custom fields](../framework/custom-field/add-custom-field).

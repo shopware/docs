@@ -1,3 +1,10 @@
+---
+nav:
+  title: Merchant registration
+  position: 20
+
+---
+
 # 2020-08-14 - Merchant Registration
 
 ::: info

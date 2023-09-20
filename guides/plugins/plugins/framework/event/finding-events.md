@@ -1,3 +1,10 @@
+---
+nav:
+  title: Finding events
+  position: 20
+
+---
+
 # Finding Events
 
 ## Overview

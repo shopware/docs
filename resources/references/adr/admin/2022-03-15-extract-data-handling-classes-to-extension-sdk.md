@@ -1,3 +1,10 @@
+---
+nav:
+  title: Extract data handling classes to extension sdk
+  position: 100
+
+---
+
 # 2022-03-15 - Extract data handling classes to extension sdk
 
 ::: info

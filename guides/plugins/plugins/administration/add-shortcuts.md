@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add shortcuts
+  position: 320
+
+---
+
 # Adding Shortcuts
 
 ## Overview

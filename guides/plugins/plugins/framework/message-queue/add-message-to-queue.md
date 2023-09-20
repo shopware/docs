@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add message to queue
+  position: 10
+
+---
+
 # Add message to queue
 
 ## Overview

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add feature flag support for storefront scss
+  position: 40
+
+---
+
 # 2022-01-05 - Add feature flag support for Storefront SCSS
 
 ::: info

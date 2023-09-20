@@ -1,3 +1,10 @@
+---
+nav:
+  title: Make platform stand alone
+  position: 10
+
+---
+
 # 2021-08-11 - Make shopware/platform stand-alone for development and testing
 
 ::: info

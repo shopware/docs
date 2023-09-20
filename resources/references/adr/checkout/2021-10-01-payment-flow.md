@@ -1,3 +1,10 @@
+---
+nav:
+  title: Payment flow
+  position: 50
+
+---
+
 # 2021-10-01 - Payment Flow
 
 ::: info

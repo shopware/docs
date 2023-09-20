@@ -1,3 +1,10 @@
+---
+nav:
+  title: Introduce eslint on vue admin
+  position: 40
+
+---
+
 # 2021-05-28 - Vue Administration App has ESLint support
 
 ::: info

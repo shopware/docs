@@ -1,3 +1,10 @@
+---
+nav:
+  title: Atomic theme compilation
+  position: 80
+
+---
+
 # 2023-01-10 - Atomic Theme Compilation
 
 ::: info

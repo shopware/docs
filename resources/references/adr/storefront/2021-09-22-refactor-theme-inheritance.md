@@ -1,3 +1,10 @@
+---
+nav:
+  title: Refactor theme inheritance
+  position: 30
+
+---
+
 # 2021-09-22 - Refactor theme inheritance
 
 ::: info

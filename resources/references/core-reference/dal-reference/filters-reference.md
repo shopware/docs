@@ -1,3 +1,10 @@
+---
+nav:
+  title: Filters Reference
+  position: 30
+
+---
+
 # Filters Reference
 
 | Name | Notes |

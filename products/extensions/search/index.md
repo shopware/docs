@@ -1,3 +1,10 @@
+---
+nav:
+  title: Advanced Search
+  position: 10
+
+---
+
 # Search
 
 Shopware Advanced Search \(SESP in short\) is an Advanced Search module based on Elasticsearch. In addition to a high performance product search, it also offers you the possibilities to customize the search experience depending on your needs. So you could also search for manufacturers and categories. The simple Administration module allows quick and easy configuration of the search.

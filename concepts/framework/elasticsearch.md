@@ -1,3 +1,10 @@
+---
+nav:
+  title: Elasticsearch
+  position: 60
+
+---
+
 # Elasticsearch
 
 Elasticsearch is a NoSQL Database focused on search capabilities to act as a search engine.

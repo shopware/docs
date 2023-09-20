@@ -1,3 +1,10 @@
+---
+nav:
+  title: B2B Suite
+  position: 10
+
+---
+
 # B2B Suite
 
 * [B2B Suite](b2b-suite)

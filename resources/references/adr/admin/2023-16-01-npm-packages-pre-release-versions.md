@@ -1,3 +1,10 @@
+---
+nav:
+  title: Npm packages pre release versions
+  position: 170
+
+---
+
 # 2023-16-01 - Npm packages pre-release versions
 
 ::: info

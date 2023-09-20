@@ -1,3 +1,10 @@
+---
+nav:
+  title: App Scripts
+  position: 20
+
+---
+
 # App Scripts
 
 App Scripts allow your app to include logic that is executed inside the Shopware execution stack. It allows you to build richer extensions that integrate more deeply with Shopware.

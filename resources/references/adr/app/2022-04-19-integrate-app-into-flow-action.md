@@ -1,3 +1,10 @@
+---
+nav:
+  title: Integrate app into flow action
+  position: 60
+
+---
+
 # 2022-04-19 - Integrate an app into flow action
 
 ::: info

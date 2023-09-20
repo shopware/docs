@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add CMS block
+  position: 10
+
+---
+
 # Add CMS Block
 
 ## Overview

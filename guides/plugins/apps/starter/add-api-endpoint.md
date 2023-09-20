@@ -1,3 +1,10 @@
+---
+nav:
+  title: Starter Guide - Add an API endpoint
+  position: 20
+
+---
+
 # Starter Guide - Add an API Endpoint
 
 ::: info

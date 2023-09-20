@@ -1,3 +1,10 @@
+---
+nav:
+  title: Adding data translations
+  position: 80
+
+---
+
 # Adding Data Translations
 
 ## Overview

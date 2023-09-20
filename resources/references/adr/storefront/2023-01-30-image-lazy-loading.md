@@ -1,3 +1,10 @@
+---
+nav:
+  title: Image lazy loading
+  position: 90
+
+---
+
 # 2023-01-30 - Add native lazy loading for images to the Storefront
 
 ::: info

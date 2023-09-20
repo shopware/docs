@@ -1,3 +1,10 @@
+---
+nav:
+  title: Deprecate csrf
+  position: 70
+
+---
+
 # 2022-11-16 - Deprecate the Storefront CSRF implementation
 
 ::: info

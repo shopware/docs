@@ -1,3 +1,10 @@
+---
+nav:
+  title: Blog concept
+  position: 10
+
+---
+
 # 2022-07-18 - Concept for blogs using Shopping Experiences
 
 ::: info

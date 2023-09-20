@@ -1,3 +1,10 @@
+---
+nav:
+  title: Custom field label loading in storefront
+  position: 10
+
+---
+
 # 2020-09-08 - CustomField label loading in storefront
 
 ::: info

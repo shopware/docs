@@ -1,3 +1,10 @@
+---
+nav:
+  title: Initial state id loader
+  position: 30
+
+---
+
 # 2022-03-25 - Initial state id loader
 
 ::: info

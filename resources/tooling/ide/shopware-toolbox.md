@@ -1,3 +1,10 @@
+---
+nav:
+  title: Shopware Toolbox
+  position: 10
+
+---
+
 # Shopware 6 Toolbox
 
 Shopware 6 Toolbox is a helper plugin and productivity tool for common tasks for Shopware 6 development. It adds some live templates and scaffolding of common Shopware files.

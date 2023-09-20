@@ -1,3 +1,10 @@
+---
+nav:
+  title: Control clone behavior
+  position: 10
+
+---
+
 # 2020-07-02 - Get control of association clone behavior as developer
 
 ::: info

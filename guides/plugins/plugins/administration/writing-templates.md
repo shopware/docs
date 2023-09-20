@@ -1,3 +1,10 @@
+---
+nav:
+  title: Writing templates
+  position: 50
+
+---
+
 # Writing templates
 
 ## Overview

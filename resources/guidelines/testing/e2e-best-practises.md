@@ -1,3 +1,10 @@
+---
+nav:
+  title: Best practices on writing end-to-end tests
+  position: 10
+
+---
+
 # Best practices for writing end-to-end tests
 
 ## Overview

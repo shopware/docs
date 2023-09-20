@@ -1,3 +1,10 @@
+---
+nav:
+  title: Removing associated data
+  position: 60
+
+---
+
 # Removing Associated Data
 
 ## Overview

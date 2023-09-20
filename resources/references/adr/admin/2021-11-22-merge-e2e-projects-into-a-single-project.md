@@ -1,3 +1,10 @@
+---
+nav:
+  title: Merge e2e projects into a single project
+  position: 70
+
+---
+
 # 2021-11-22 - Merge E2E projects into a single project
 
 ::: info

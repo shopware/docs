@@ -1,3 +1,10 @@
+---
+nav:
+  title: Removing API version
+  position: 30
+
+---
+
 # 2020-12-02 - API version removal
 
 ::: info

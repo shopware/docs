@@ -1,3 +1,10 @@
+---
+nav:
+  title: Mixins
+  position: 20
+
+---
+
 # Mixins
 
 This is an overview of all the mixins provided by the Shopware 6 Administration. Mixins in the Shopware 6 Administration are essentially the same in default Vue. They behave generally the same as they do in Vue normally, differing only in the registration and the way mixins are included in a component. Learn more about them in the official [Vue documentation](https://vuejs.org/v2/guide/mixins.html).

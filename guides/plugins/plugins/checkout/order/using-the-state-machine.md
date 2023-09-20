@@ -1,3 +1,10 @@
+---
+nav:
+  title: Using the state machine
+  position: 10
+
+---
+
 # Using the State Machine
 
 ## Overview

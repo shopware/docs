@@ -1,3 +1,10 @@
+---
+nav:
+  title: Cart
+  position: 10
+
+---
+
 # Cart
 
 Shopping cart management is a central feature of Shopware 6. The shopping cart resides in the checkout bundle and is a central part of the checkout process.

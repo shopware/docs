@@ -1,3 +1,10 @@
+---
+nav:
+  title: Apps
+  position: 10
+
+---
+
 # Apps
 
 The app system allows you to extend and modify the functionality and appearance of Shopware. It leverages well defined extension points you can hook into to implement your specific use case.

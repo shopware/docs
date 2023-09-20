@@ -1,3 +1,10 @@
+---
+nav:
+  title: Remove static analysis with psalm
+  position: 90
+
+---
+
 # 2022-05-12 - Remove static analysis with psalm
 
 ::: info

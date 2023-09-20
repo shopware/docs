@@ -1,3 +1,10 @@
+---
+nav:
+  title: Custom app API endpoints
+  position: 40
+
+---
+
 # 2022-01-06 - Allow apps to define custom api endpoints
 
 ::: info

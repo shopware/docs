@@ -1,3 +1,10 @@
+---
+nav:
+  title: Profiler integrations
+  position: 50
+
+---
+
 # 2022-03-25 Profiler integrations
 
 ::: info

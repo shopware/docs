@@ -1,3 +1,10 @@
+---
+nav:
+  title: Store API
+  position: 130
+
+---
+
 # Store API
 
 ## Routes

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Setup Template
+  position: 40
+
+---
+
 # Setup Template
 
 The setup template is a derivation from the [shopware/production](https://github.com/shopware/production) template. It contains build and deployment logic for Shopware PaaS as well as configuration for the underlying infrastructure and services. In this chapter, we will have a look at these customizations.

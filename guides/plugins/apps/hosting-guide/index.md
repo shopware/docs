@@ -1,3 +1,10 @@
+---
+nav:
+  title: Hosting Guide
+  position: 10
+
+---
+
 # Hosting your App
 
 When you plan to build an app, there will come a point when you have to consider which kinds of server infrastructure you will need. This article is a starting point, so you can investigate further and make an informed decision.

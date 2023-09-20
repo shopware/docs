@@ -1,3 +1,10 @@
+---
+nav:
+  title: Implement architecture decision records
+  position: 10
+
+---
+
 # 2020-06-25 - Implement architecture decision records
 
 ::: info

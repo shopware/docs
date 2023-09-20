@@ -1,3 +1,10 @@
+---
+nav:
+  title: Feature flags for major versions
+  position: 70
+
+---
+
 # 2022-01-20 - Feature flags for major versions
 
 ::: info

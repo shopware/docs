@@ -1,3 +1,10 @@
+---
+nav:
+  title: Controller configuration route defaults
+  position: 40
+
+---
+
 # 2022-02-09 - Move controller level annotation into Symfony route annotation
 
 ::: info

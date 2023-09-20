@@ -1,3 +1,10 @@
+---
+nav:
+  title: Domain exceptions
+  position: 10
+
+---
+
 # 2022-02-24 - Domain exceptions
 
 ::: info

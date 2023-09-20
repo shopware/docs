@@ -1,3 +1,10 @@
+---
+nav:
+  title: Providing the admin extension sdk
+  position: 110
+
+---
+
 # 15.06.2022 - providing the Admin Extension SDK
 
 ::: info

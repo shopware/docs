@@ -1,3 +1,10 @@
+---
+nav:
+  title: Mapping of product area
+  position: 100
+
+---
+
 # 2022-09-28 - Mapping of Product Area
 
 ::: info

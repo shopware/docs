@@ -1,3 +1,10 @@
+---
+nav:
+  title: When to use plain sql or DAL
+  position: 30
+
+---
+
 # 2021-05-14 - When to use plain SQL or the DAL
 
 ::: info

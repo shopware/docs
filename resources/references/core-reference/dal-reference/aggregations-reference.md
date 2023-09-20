@@ -1,3 +1,10 @@
+---
+nav:
+  title: Aggregations Reference
+  position: 40
+
+---
+
 # Aggregations Reference
 
 Aggregations allow you to determine further information about the overall result in addition to the actual search results. These include totals, unique values, or the average of a field.

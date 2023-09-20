@@ -1,3 +1,10 @@
+---
+nav:
+  title: Rule scripting in apps
+  position: 50
+
+---
+
 # 2022-02-21 - Rule Scripting in apps
 
 ::: info

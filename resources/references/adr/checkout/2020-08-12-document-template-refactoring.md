@@ -1,3 +1,10 @@
+---
+nav:
+  title: Document template refactoring
+  position: 10
+
+---
+
 # 2020-08-12 - Document template refactoring
 
 ::: info

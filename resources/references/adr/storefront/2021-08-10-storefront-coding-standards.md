@@ -1,3 +1,10 @@
+---
+nav:
+  title: Storefront coding standards
+  position: 20
+
+---
+
 # 2021-08-10 - Storefront coding standars
 
 ::: info

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Composer based web updater
+  position: 20
+
+---
+
 # 2022-11-09 - Composer-based web updater
 
 ::: info

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add bootstrap util
+  position: 60
+
+---
+
 # 2022-09-23 - Add Bootstrap JS-plugin initialization utility to Storefront JS
 
 ::: info

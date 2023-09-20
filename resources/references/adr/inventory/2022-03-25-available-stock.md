@@ -1,3 +1,10 @@
+---
+nav:
+  title: Available stock
+  position: 20
+
+---
+
 # 2022-03-25 - Available stock improvements
 
 ::: info

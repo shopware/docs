@@ -1,3 +1,10 @@
+---
+nav:
+  title: Replace drop shadow with box shadow
+  position: 140
+
+---
+
 # 2022-21-11 - Replace drop-shadow with box-shadow
 
 ::: info

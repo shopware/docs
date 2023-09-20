@@ -1,3 +1,10 @@
+---
+nav:
+  title: Deprecate autoload true in DAL associations
+  position: 50
+
+---
+
 # 2023-02-02 - Deprecate autoloading associations in DAL entity definitions
 
 ::: info

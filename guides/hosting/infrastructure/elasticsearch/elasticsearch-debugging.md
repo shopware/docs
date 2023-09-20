@@ -1,3 +1,10 @@
+---
+nav:
+  title: Debugging Elasticsearch
+  position: 20
+
+---
+
 # Debugging Elasticsearch
 
 ## Overview

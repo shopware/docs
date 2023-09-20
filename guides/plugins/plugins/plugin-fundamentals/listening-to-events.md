@@ -1,3 +1,10 @@
+---
+nav:
+  title: Listening to events
+  position: 50
+
+---
+
 # Listening to Events
 
 A way to listen to events in Symfony projects is via an [event subscriber,](https://symfony.com/doc/current/event_dispatcher.html#creating-an-event-subscriber) which is a class that defines one or more methods that listen to one or various events. It is thus the same in Shopware, so this article will guide you on how to create event subscriber in your Shopware extension.

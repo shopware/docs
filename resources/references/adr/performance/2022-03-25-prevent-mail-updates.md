@@ -1,3 +1,10 @@
+---
+nav:
+  title: Prevent mail updates
+  position: 40
+
+---
+
 # 2022-03-25 - Prevent mail updates 
 
 ::: info

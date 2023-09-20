@@ -1,3 +1,10 @@
+---
+nav:
+  title: Handling feature flags
+  position: 40
+
+---
+
 # 2020-08-12 - Handling feature flags
 # Superseded by [Feature flags for major versions](2022-01-20-feature-flags-for-major-versions)
 ::: info

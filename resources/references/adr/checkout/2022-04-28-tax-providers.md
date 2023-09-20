@@ -1,3 +1,10 @@
+---
+nav:
+  title: Tax providers
+  position: 80
+
+---
+
 # 2022-04-28 - Introducing tax providers
 
 ::: info

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Platform.sh Deployment
+  position: 10
+
+---
+
 # Platform.sh Deployment
 
 ## Overview

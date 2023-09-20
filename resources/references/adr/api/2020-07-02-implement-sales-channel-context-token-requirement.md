@@ -1,3 +1,10 @@
+---
+nav:
+  title: Implement sales channel context token requirement
+  position: 10
+
+---
+
 # 2020-07-02 - Implement sales channel context token requirement for store-api and sales-channel-api
 
 ::: info

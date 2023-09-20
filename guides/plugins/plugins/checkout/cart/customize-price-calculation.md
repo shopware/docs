@@ -1,3 +1,10 @@
+---
+nav:
+  title: Customize price calculation
+  position: 60
+
+---
+
 # Customize Price Calculation
 
 ## Overview

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Deprecation strategy
+  position: 50
+
+---
+
 # 2021-01-21 - Deprecation Strategy
 # Superseded by [Feature flags for major versions](2022-01-20-feature-flags-for-major-versions)
 ::: info

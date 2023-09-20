@@ -1,3 +1,10 @@
+---
+nav:
+  title: Self-hosted Mercure installation
+  position: 20
+
+---
+
 # Self-hosted Mercure Installation for Guided Shopping
 
 ## Mercure general settings

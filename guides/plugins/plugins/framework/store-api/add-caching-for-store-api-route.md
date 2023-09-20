@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add caching for Store API route
+  position: 20
+
+---
+
 # Add caching for Store API route
 
 ## Overview

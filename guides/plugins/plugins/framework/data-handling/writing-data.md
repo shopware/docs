@@ -1,3 +1,10 @@
+---
+nav:
+  title: Writing data
+  position: 20
+
+---
+
 # Writing Data
 
 ## Overview

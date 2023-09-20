@@ -1,3 +1,10 @@
+---
+nav:
+  title: Cache stampede protection
+  position: 20
+
+---
+
 # 2022-03-25 - Cache stampede protection
 
 ::: info

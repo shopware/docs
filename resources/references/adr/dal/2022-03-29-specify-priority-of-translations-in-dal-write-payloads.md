@@ -1,3 +1,10 @@
+---
+nav:
+  title: Specify priority of translations in DAL write payloads
+  position: 40
+
+---
+
 # 2022-03-29 - Specify priority of translations in DAL write payloads
 
 ::: info

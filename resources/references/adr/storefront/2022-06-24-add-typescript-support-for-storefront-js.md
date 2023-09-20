@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add typescript support for storefront js
+  position: 50
+
+---
+
 # 2022-06-24 - Add TypeScript support for Storefront JavaScript
 
 ::: info

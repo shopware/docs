@@ -1,3 +1,10 @@
+---
+nav:
+  title: Custom endpoints
+  position: 30
+
+---
+
 # Custom Endpoints with App Scripts
 
 If you want to execute some logic in Shopware and trigger the execution over an HTTP request or need some special data from Shopware over the API, you can create custom API endpoints in your app that allow you to execute a script when a request to that endpoint is made.

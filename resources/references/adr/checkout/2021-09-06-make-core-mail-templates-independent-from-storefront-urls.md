@@ -1,3 +1,10 @@
+---
+nav:
+  title: Make core mail templates independent from storefront urls
+  position: 40
+
+---
+
 # 2021-09-06 - Make Core mail templates independent from Storefront urls
 
 ::: info

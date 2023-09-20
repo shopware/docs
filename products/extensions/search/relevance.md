@@ -1,3 +1,10 @@
+---
+nav:
+  title: Relevance
+  position: 60
+
+---
+
 # Relevance
 
 The relevance is calculated per [Dis max query​](https://www.elastic.co/guide/en/elasticsearch/reference/6.8/query-dsl-dis-max-query.html). The [Tie break](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-multi-match-query.html#tie-breaker) is constant and set to `0.4`, which is the recommended value by Elasticsearch.

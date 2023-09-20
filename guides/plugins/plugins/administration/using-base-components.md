@@ -1,3 +1,10 @@
+---
+nav:
+  title: Using base components
+  position: 210
+
+---
+
 # Using base components
 
 The Shopware 6 Administration comes with a bunch of tailored Vue components, already accessible in all of your templates via the `component registry`. This guide will show you how you can use Shopware-made components in your templates, if you want to learn more about the `component registry` and how you can register your own components to it have a look at the [corresponding guide](add-custom-component)

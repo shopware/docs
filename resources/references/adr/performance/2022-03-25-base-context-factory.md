@@ -1,3 +1,10 @@
+---
+nav:
+  title: Base context factory
+  position: 20
+
+---
+
 # 2022-03-25 - Base context factory
 
 ::: info

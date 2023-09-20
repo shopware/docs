@@ -1,3 +1,10 @@
+---
+nav:
+  title: Implement individual sorting
+  position: 10
+
+---
+
 # 2020-08-14 - Implement Individual Sorting
 
 ::: info

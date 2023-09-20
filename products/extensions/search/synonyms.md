@@ -1,3 +1,10 @@
+---
+nav:
+  title: Synonyms
+  position: 70
+
+---
+
 # Synonyms
 
 The Synonyms are defined in the `%PLUGIN_DIR%/Resources/config/Synonyms.php`. The path to this file is saved in the `swag_ses_synonym_dir` parameter of the container and can be overridden with the default [Dependency Injection](../../../guides/plugins/plugins/plugin-fundamentals/add-plugin-dependencies). See [how to override](synonyms#how-to-override) for more information.

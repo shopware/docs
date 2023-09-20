@@ -1,3 +1,10 @@
+---
+nav:
+  title: Extensions
+  position: 10
+
+---
+
 # Extensions
 
 As a Shopware developer, your main work will be to develop extensions that enhance or modify the functionality of Shopware in a specific way. Shopware offers different ways of extensions, each with its own benefits and implications. To make sure you don't get lost in all the options, look at the next [overview](overview) article which compares the approaches.

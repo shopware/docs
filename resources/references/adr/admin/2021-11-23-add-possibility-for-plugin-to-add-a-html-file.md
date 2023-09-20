@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add possibility for plugin to add a html file
+  position: 80
+
+---
+
 # 2021-11-23 - Add possibility for plugins to add a HTML file
 
 ::: info

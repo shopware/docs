@@ -1,3 +1,10 @@
+---
+nav:
+  title: Preparing data for rule evaluation
+  position: 10
+
+---
+
 # 2021-11-02 - Preparing data for rule evaluation
 
 ::: info

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Run lighthouse test ine2e env
+  position: 150
+
+---
+
 # 2022-21-11 - Run Lighthouse tests in E2E env
 
 ::: info

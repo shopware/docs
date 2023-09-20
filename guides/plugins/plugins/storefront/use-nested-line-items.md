@@ -1,3 +1,10 @@
+---
+nav:
+  title: Use nested line items
+  position: 280
+
+---
+
 # Use Nested Line Items
 
 ## Overview

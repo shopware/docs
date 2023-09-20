@@ -1,3 +1,10 @@
+---
+nav:
+  title: App scripting
+  position: 30
+
+---
+
 # 2021-10-21 - (App-) Scripts
 
 ::: info

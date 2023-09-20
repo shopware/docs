@@ -1,3 +1,10 @@
+---
+nav:
+  title: Reset class state during requests
+  position: 10
+
+---
+
 # 2022-03-09 - Use `ResetInterface` to reset instance state during requests
 
 ::: info

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Theme inheritance
+  position: 90
+
+---
+
 # Theme Inheritance
 
 ## Overview

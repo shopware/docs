@@ -1,3 +1,10 @@
+---
+nav:
+  title: Using filter
+  position: 290
+
+---
+
 # Using filter
 
 ## Overview

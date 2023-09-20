@@ -1,3 +1,10 @@
+---
+nav:
+  title: Rule condition field abstraction
+  position: 20
+
+---
+
 # 2022-05-23 - Rule condition field abstraction
 
 ::: info

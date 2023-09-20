@@ -1,3 +1,10 @@
+---
+nav:
+  title: Doc Process
+  position: 20
+
+---
+
 # Documentation Process
 
 You have gone a long way in understanding audience types, language rules, grammar treatment on textual content, and Shopware documentation structure to managing assets.

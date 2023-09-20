@@ -1,3 +1,10 @@
+---
+nav:
+  title: Testing guidelines for extensions
+  position: 20
+
+---
+
 # Testing Guidelines for Shopware Extensions
 
 This section guides you with the criteria used to test your extension. Detailed information is available on [quality guidelines for apps](../store/quality-guidelines-apps/) and [quality guidelines for plugins](../store/quality-guidelines-plugins/).

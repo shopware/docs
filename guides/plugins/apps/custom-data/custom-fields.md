@@ -1,3 +1,10 @@
+---
+nav:
+  title: Custom fields
+  position: 10
+
+---
+
 # Custom Data
 
 You can add custom fields to Shopware and thus add your own fields to extending data records. The user is able to modify this fields from within the Shopware Administration.  

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Adding NPM dependencies
+  position: 120
+
+---
+
 # Adding NPM Dependencies
 
 In this guide you'll learn how add NPM dependencies to your project.

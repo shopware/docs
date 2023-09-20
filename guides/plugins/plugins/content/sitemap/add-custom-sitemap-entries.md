@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom sitemap entries
+  position: 10
+
+---
+
 # Add Custom Sitemap Entries
 
 ## Overview

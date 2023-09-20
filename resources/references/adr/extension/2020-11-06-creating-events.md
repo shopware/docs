@@ -1,3 +1,10 @@
+---
+nav:
+  title: Creating events
+  position: 20
+
+---
+
 # 2020-11-06 - Creating events in Shopware
 
 ::: info

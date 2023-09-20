@@ -1,3 +1,10 @@
+---
+nav:
+  title: Repository
+  position: 20
+
+---
+
 # Repository
 
 The source code of your project will reside in a git-based VCS repository. You can start with a plain project. However, we suggest starting with a new Composer create-project. You will learn more about the setup template in the [Setup Template](setup-template) section.

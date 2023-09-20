@@ -1,3 +1,10 @@
+---
+nav:
+  title: Redis cart persister
+  position: 60
+
+---
+
 # 2022-03-25 - Redis cart persister
 
 ::: info

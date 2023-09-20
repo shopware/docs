@@ -1,3 +1,10 @@
+---
+nav:
+  title: Entities Reference
+  position: 50
+
+---
+
 # Entities Reference
 
 ```xml

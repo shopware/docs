@@ -1,3 +1,10 @@
+---
+nav:
+  title: Hide and show cms content
+  position: 120
+
+---
+
 # 17.10.2022 - Hide and Show CMS Content
 
 ::: info

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Storefront
+  position: 10
+
+---
+
 # Storefront
 
 In this article, you will get to know the Storefront component and learn a lot of its main concepts. Along the way, you will find answers to the following questions:

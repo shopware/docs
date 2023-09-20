@@ -1,3 +1,10 @@
+---
+nav:
+  title: Generated Reference
+  position: 30
+
+---
+
 # Generated Reference
 
 Shopware generates schemas for both HTTP APIs that can be interpreted by API client libraries and documentation tools, such as [Swagger.io](https://swagger.io/).

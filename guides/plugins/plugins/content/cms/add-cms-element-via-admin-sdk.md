@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add CMS element via AdminExtensionSDK
+  position: 30
+
+---
+
 # Add CMS Element via Admin Extension SDK
 
 ## Overview

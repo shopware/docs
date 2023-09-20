@@ -1,3 +1,10 @@
+---
+nav:
+  title: Consistent deprecation notices in core
+  position: 80
+
+---
+
 # 2022-02-09 - Consistent deprecation notices in Core
 
 ::: info

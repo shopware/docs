@@ -1,3 +1,10 @@
+---
+nav:
+  title: Nested line items
+  position: 30
+
+---
+
 # 2020-03-24 - Processing of nested line items
 
 ::: info

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add login required annotation
+  position: 20
+
+---
+
 # 2020-11-20 - Add the login required annotation
 
 ::: info

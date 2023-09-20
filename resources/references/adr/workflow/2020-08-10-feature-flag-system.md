@@ -1,3 +1,10 @@
+---
+nav:
+  title: Feature flag system
+  position: 30
+
+---
+
 # 2020-08-10 - Feature flag system
 # Superseded by [Feature flags for major versions](2022-01-20-feature-flags-for-major-versions)
 ::: info

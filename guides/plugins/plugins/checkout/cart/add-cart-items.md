@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add cart items
+  position: 20
+
+---
+
 # Add Cart Items
 
 ## Overview

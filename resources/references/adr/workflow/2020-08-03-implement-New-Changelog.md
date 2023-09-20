@@ -1,3 +1,10 @@
+---
+nav:
+  title: Implement New Changelog
+  position: 20
+
+---
+
 # 2020-08-03 - Implement New Changelog
 
 ::: info

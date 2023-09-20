@@ -1,3 +1,10 @@
+---
+nav:
+  title: New nested line items
+  position: 70
+
+---
+
 # 2022-03-17 - New templates for line items and nested line items
 
 ::: info

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Method structure
+  position: 30
+
+---
+
 # Method Structure
 
 ## Replaceable functions

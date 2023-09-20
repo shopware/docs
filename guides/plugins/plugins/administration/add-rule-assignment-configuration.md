@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add rule assignment configuration
+  position: 330
+
+---
+
 # Add rule assignment configuration
 
 ::: info

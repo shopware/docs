@@ -1,3 +1,10 @@
+---
+nav:
+  title: Import acl privileges from other roles
+  position: 20
+
+---
+
 # 2020-08-28 - Import ACL privileges from other roles
 
 ::: info

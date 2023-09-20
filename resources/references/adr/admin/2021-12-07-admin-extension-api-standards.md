@@ -1,3 +1,10 @@
+---
+nav:
+  title: Admin extension API standards
+  position: 90
+
+---
+
 # 2021-12-07 - Admin-Extension-API standards
 
 ::: info
