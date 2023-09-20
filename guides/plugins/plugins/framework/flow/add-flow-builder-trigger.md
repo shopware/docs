@@ -39,7 +39,7 @@ To create a custom flow trigger, firstly you have to create a plugin and install
 
 ### Create a new trigger (event)
 
-In this example, we will name it ExampleEvent to some actions related to customers when dispatching this event. It will be placed in the directory <plugin root>/src/Core/Checkout/Customer/Event. Our new event has to implement Shopware\Core\Framework\Event\CustomerAware interface to enable actions requiring this Aware.
+In this example, we will name it ExampleEvent to some actions related to customers when dispatching this event. It will be placed in the directory `<plugin root>/src/Core/Checkout/Customer/Event`. Our new event has to implement Shopware\Core\Framework\Event\CustomerAware interface to enable actions requiring this Aware.
 
 Currently, you will need to also implement `Shopware\Core\Framework\Event\BusinessEventInterface;` in case the feature flag `FEATURE_NEXT_17858` is inactive. Please take note that this interface will be removed in `v6.5` .
 
@@ -336,7 +336,7 @@ Take a look at the [Add Flow Builder Action](/guides/plugins/plugins/framework/f
 
 ### Add your new event to the flow trigger list
 
- At this step you need to add your new event to the flow trigger list, let see the code below:
+At this step you need to add your new event to the flow trigger list, let see the code below:
 
 ```php
 // <plugin root>/src/Core/Checkout/Customer/Subscriber/BusinessEventCollectorSubscriber.php
