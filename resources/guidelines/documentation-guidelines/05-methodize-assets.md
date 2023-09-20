@@ -1,9 +1,16 @@
+---
+nav:
+  title: Methodize Assets
+  position: 10
+
+---
+
 # Methodize Assets
 
 It is essential to organize and keep all the assets (images, files, videos, etc) used in our documentation. This section briefs you about how the assets are represented, managed and what naming conventions are followed.
 
-{% hint style="info" %} To create a pictorial illustration, reach out to the Shopware design team.
-{% endhint %}
+::: info To create a pictorial illustration, reach out to the Shopware design team.
+:::
 
 ## Images
 

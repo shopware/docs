@@ -1,3 +1,10 @@
+---
+nav:
+  title: Public APIs
+  position: 100
+
+---
+
 # Public APIs
 
 * Services not intended for decoration or direct use must be marked with `@internal` and have an appropriate comment in the docblock why they should not be used or decorated directly.

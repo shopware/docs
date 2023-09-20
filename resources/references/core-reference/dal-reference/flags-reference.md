@@ -1,3 +1,10 @@
+---
+nav:
+  title: Flags Reference
+  position: 20
+
+---
+
 # Flags Reference
 
 | Classname | Description |

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Set up Elasticsearch
+  position: 10
+
+---
+
 # Set up Elasticsearch
 
 ## Overview
@@ -7,7 +14,7 @@ As soon as several thousand data sets are used in a project, it makes sense to d
 ## Requirements
 
 * Opensearch >= 1.0 or Elasticsearch >= 7.8
-* [Running message queue workers in background](../message-queue.md)
+* [Running message queue workers in background](../message-queue)
 
 ## Server basics
 
@@ -117,11 +124,11 @@ SHOPWARE_ES_THROW_EXCEPTION=1
 
 Shopware will use by default 3 shards and 3 replicas for the created index. This configuration can be overwritten with a new config file in `config/packages/elasticsearch.yml`
 
-{% hint style="info" %}
+::: info
 This configuration is available since Shopware version 6.4.12.0
-{% endhint %}
+:::
 
-```yml
+```yaml
 elasticsearch:
   index_settings:
     number_of_shards: 1

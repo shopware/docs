@@ -1,3 +1,10 @@
+---
+nav:
+  title: Using the data grid component
+  position: 230
+
+---
+
 # Using the data grid component
 
 ## Overview
@@ -12,26 +19,22 @@ All you need for this guide is a running Shopware 6 instance and full access to 
 
 Let's create the simplest template we need in order to use the [`sw-data-grid`](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/component/data-grid/sw-data-grid/index.js).
 
-{% code title="<plugin-root>/src/Resources/app/administration/app/src/component/swag-example/swag-example.html.twig" %}
-
-```markup
+```html
+// <plugin-root>/src/Resources/app/administration/app/src/component/swag-example/swag-example.html.twig
 <div>
     <sw-data-grid :dataSource="dataSource" :columns="columns">
     </sw-data-grid>
 </div>
 ```
 
-{% endcode %}
-
-This template will be used in a new component. Learn how to override existing components [here](customizing-components.md) .
+This template will be used in a new component. Learn how to override existing components [here](customizing-components) .
 
 ## Declaring the data
 
-Since this is a very basic example the following code will just statically assign data to the `dataSource` and `columns` data attribute. If you want to load data and render that instead, please consult the guide [How to use the data handling](using-data-handling.md)
-
-{% code title="<plugin-root>/src/Resources/app/administration/app/src/component/swag-example/index.js" %}
+Since this is a very basic example the following code will just statically assign data to the `dataSource` and `columns` data attribute. If you want to load data and render that instead, please consult the guide [How to use the data handling](using-data-handling)
 
 ```javascript
+// <plugin-root>/src/Resources/app/administration/app/src/component/swag-example/index.js
 import template from 'swag-example.html.twig';
 
 Shopware.Component.register('swag-basic-example', {
@@ -55,8 +58,6 @@ Shopware.Component.register('swag-basic-example', {
 });
 ```
 
-{% endcode %}
-
 ## More interesting topics
 
-* [Using base components](using-base-components.md)
+* [Using base components](using-base-components)

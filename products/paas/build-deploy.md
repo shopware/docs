@@ -1,3 +1,10 @@
+---
+nav:
+  title: Build & Deploy
+  position: 30
+
+---
+
 # Build and Deploy
 
 Now that we have set up the repository, we are ready to push changes to your PaaS environment.
@@ -23,18 +30,18 @@ This will trigger a new build with a subsequent deploy consisting of the followi
 | Configuration validation | Hold app requests |
 | Build container image | Unmount live containers |
 | Installing dependecies | Mount file systems |
-| Run [build hook](./setup-template.md#build-hook) | Run [deploy hook](./setup-template.md#deploy-hook) |
+| Run [build hook](./setup-template#build-hook) | Run [deploy hook](./setup-template#deploy-hook) |
 | Building app image | Serve requests |
 
 After both steps have been executed successfully (you will get extensive logging about the process), you will be able to see the deployed store on a link presented at the end of the deployment.
 
 ## First deployment
 
-{% hint style="warning" %}
+::: warning
 **Theme Assets**
 
-It is a known issue that after the first deployment, theme assets are not compiled during the deployment. For that reason, your store will look unstyled. The [Theme Build](./theme-build.md) section explains how to resolve that issue.
-{% endhint %}
+It is a known issue that after the first deployment, theme assets are not compiled during the deployment. For that reason, your store will look unstyled. The [Theme Build](./theme-build) section explains how to resolve that issue.
+:::
 
 The first time the site is deployed, Shopware's command line installer will run and initialize Shopware. It will not run again unless the `installer/installed` file is removed. **Do not remove that file unless you want the installer to run on the next deploy.**
 

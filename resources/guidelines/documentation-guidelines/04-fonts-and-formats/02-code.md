@@ -1,3 +1,10 @@
+---
+nav:
+  title: Code
+  position: 20
+
+---
+
 # Fonts and Format for Code
 
 Fonts and formats for inline code, code blocks, non-code items, API referece, classes and methods are detailed below:
@@ -88,7 +95,7 @@ Below are a few more instances:
 
 * When using code blocks within lists, use correct indention to avoid breaking the list. For example,
 
-{% hint style="success" %}
+::: tip
 
 * Payment
 
@@ -98,9 +105,9 @@ Below are a few more instances:
 
 * Transaction
 
-{% endhint %}
+:::
 
-{% hint style="danger" %}
+::: danger
 
 * Payment
 
@@ -110,7 +117,7 @@ const pay_type = <Payment type=COD />;
 
 * Transaction
 
-{% endhint %}
+:::
 
 * Don't use tabs to indent text within a code block; use two spaces.
 
@@ -156,10 +163,10 @@ The following list includes items that should not be in code font:
 
 When something is deprecated, tell the user what to use as a replacement or what to do to make their code work. For example,
 
-{% hint style="warning" %}
+::: warning
 
 **Deprecated** - Access it using this getProd() method instead.
 
-{% endhint %}
+:::
 
 The following section deals with asset (files, images, and videos) management.

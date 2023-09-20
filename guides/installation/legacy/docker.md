@@ -1,12 +1,19 @@
+---
+nav:
+  title: Docker
+  position: 10
+
+---
+
 # Docker
 
-{% hint style="danger" %}
+::: danger
 This approach is no longer recomended. It is kept here as a reference.
-{% endhint %}
+:::
 
 Docker is **not** the recommended way to install Shopware 6 on a Mac when it comes to the default way, due to performance issues. You can still have a look at other possibilities below.
 
-When using Windows, it is recommended to use [Dockware](../community/dockware.md) or other ways to install Shopware.
+When using Windows, it is recommended to use [Dockware](../community/dockware) or other ways to install Shopware.
 
 ## Default way
 
@@ -31,7 +38,7 @@ On Linux OS, Docker installation is the easiest way to get a running Shopware 6.
 ```
 
 This may take a while since many caches need to be generated on the first execution.
-<!-- markdown-link-check-disable-next-line -->
+
 To be sure the installation succeeded, just open the following URL in your browser: [http://localhost:8000/](http://localhost:8000/)
 
 After exploring Shopware 6, you can terminate it with these two commands:
@@ -95,10 +102,10 @@ This command creates and starts the containers, watchers, and the sync itself. R
 ./psh.phar install
 ```
 
-For more information, look at Shopware [Installation Overview](overview.md).
+For more information, look at Shopware [Installation Overview](overview).
 
 ## Next steps
 
-As the next step, you might want to start writing your very own plugin. Refer to [Plugin base guide](../../plugins/plugins/plugin-base-guide.md) to learn about that topic.
+As the next step, you might want to start writing your very own plugin. Refer to [Plugin base guide](../../plugins/plugins/plugin-base-guide) to learn about that topic.
 
-Would you like to explore alternative ways to install Shopware? You can install Shopware on Mac with the help of [Dockware](../community/dockware.md).
+Would you like to explore alternative ways to install Shopware? You can install Shopware on Mac with the help of [Dockware](../community/dockware).

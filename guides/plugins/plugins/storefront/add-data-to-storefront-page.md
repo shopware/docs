@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add data to storefront page
+  position: 150
+
+---
+
 # Add Data to Storefront Page
 
 ## Overview
@@ -10,14 +17,14 @@ This guide will show you how to achieve this, by adding the total number of acti
 
 ## Prerequisites
 
-This guide is built upon our [Plugin base guide](../plugin-base-guide.md), so keep that in mind.
+This guide is built upon our [Plugin base guide](../plugin-base-guide), so keep that in mind.
 
 Also the following knowledge is necessary, even though some of them are covered here as well:
 
-* Knowing how to [listen to events by using a subscriber](../plugin-fundamentals/listening-to-events.md)
-* Knowing how to [customize storefront templates](customize-templates.md)
-* Knowing how to [read data using our data abstraction layer](../framework/data-handling/reading-data.md)
-* Knowing how to [add a store-api route](../framework/store-api/add-store-api-route.md)
+* Knowing how to [listen to events by using a subscriber](../plugin-fundamentals/listening-to-events)
+* Knowing how to [customize storefront templates](customize-templates)
+* Knowing how to [read data using our data abstraction layer](../framework/data-handling/reading-data)
+* Knowing how to [add a store-api route](../framework/store-api/add-store-api-route)
 
 ## Adding data to the Storefront
 
@@ -63,8 +70,9 @@ class AddDataToPage implements EventSubscriberInterface
 
 The next thing we need to do is register our subscriber in the DI-Container and tag it as an event subscriber:
 
-```markup
-<!-- in Resources/config/services.xml -->
+```xml
+// Resources/config/services.xml
+<?xml version="1.0" ?>
 <service id="Swag\BasicExample\Service\AddDataToPage" >
     <tag name="kernel.event_subscriber" />
 </service>
@@ -150,7 +158,7 @@ class ProductCountRoute extends AbstractProductCountRoute
 }
 ```
 
-So you should know and understand the first few lines if you have read our guide about [Reading data](../framework/data-handling/reading-data.md) first.
+So you should know and understand the first few lines if you have read our guide about [Reading data](../framework/data-handling/reading-data) first.
 Make sure to also understand the usage of aggregations, since this is what is done here.
 The only main difference you might notice is, that we're using the `aggregate()` method instead of the `search()` method.
 This will not actually search for any products and return the whole products dataset, but rather just the aggregated data, nothing else.
@@ -201,7 +209,7 @@ This data will then be available via the name `product_count`, but we'll get to 
 
 Now you only have to adjust your service definition to inject the productCountRoute:
 
-```markup
+```xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -219,14 +227,12 @@ Now you only have to adjust your service definition to inject the productCountRo
 ### Displaying the data in the Storefront
 
 To display the additional data we need to override the footer template and render the data.
-Refer to the respective section of this guide for detailed information on how to [extend templates and override blocks](customize-templates.md).
+Refer to the respective section of this guide for detailed information on how to [extend templates and override blocks](customize-templates).
 
 For our case we extend the footer template and add a new column to the navigation block:
 
-{% raw %}
-
-```text
-<!-- in Resources/views/storefront/layout/footer/footer.html.twig -->
+```twig
+// Resources/views/storefront/layout/footer/footer.html.twig
 {% sw_extends '@Storefront/storefront/layout/footer/footer.html.twig' %}
 
 {% block layout_footer_navigation_columns %}
@@ -239,8 +245,6 @@ For our case we extend the footer template and add a new column to the navigatio
     {% endif %}
 {% endblock %}
 ```
-
-{% endraw %}
 
 Note the usage of the variable here. You're accessing the footer object, in which you can now find the path `extensions.product_count.count`.
 

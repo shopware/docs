@@ -1,3 +1,10 @@
+---
+nav:
+  title: Performance Tweaks
+  position: 60
+
+---
+
 # Performance Tweaks
 
 Shopware is a platform for many different projects. It needs to handle a broad range of load characteristics and environments. That means that the default configuration is optimized for the best out-of-the-box experience. But there are many opportunities to increase the performance by fitting the configuration to your needs.
@@ -10,7 +17,7 @@ To enable this, set `SHOPWARE_HTTP_CACHE_ENABLED=1` in the `.env`
 
 ### Reverse proxy cache
 
-When you have many app servers, you should consider using a [reverse proxy cache](../infrastructure/reverse-http-cache.md) like Varnish. Shopware offers a default configuration for Varnish out-of-the-box.
+When you have many app servers, you should consider using a [reverse proxy cache](../infrastructure/reverse-http-cache) like Varnish. Shopware offers a default configuration for Varnish out-of-the-box.
 
 ### Logged-in / cart-filled
 
@@ -39,9 +46,9 @@ shopware:
 
 ## MySQL instead of MariaDB
 
-{% hint style="info" %}
+::: info
 If you use Elasticsearch/Opensearch as a search engine, you can ignore this section. All filtering, sorting, and aggregations are done in Elasticsearch/Opensearch.
-{% endhint %}
+:::
 
 In some places in the code, we use JSON fields. As soon as it comes to filtering, sorting, or aggregating JSON fields, MySQL is ahead of the MariaDB fork. Therefore, we strongly recommend the use of MySQL.
 
@@ -57,7 +64,7 @@ and then you can set `SQL_SET_DEFAULT_SESSION_VARIABLES=0` to your `.env` file
 
 We designed the DAL (Data Abstraction Layer) to provide developers a flexible and extensible data management. However, features in such a system come at the cost of performance. Therefore, using DBAL (plain SQL) is much faster than using the DAL in many scenarios, especially when it comes to internal processes, where often only one ID of an entity is needed.
 
-Refer to this article to know more on [when to use plain SQL and DAL](../../../resources/references/adr/dal/2021-05-14-when-to-use-plain-sql-or-dal.md).
+Refer to this article to know more on [when to use plain SQL and DAL](../../../resources/references/adr/dal/2021-05-14-when-to-use-plain-sql-or-dal).
 
 ## Elasticsearch/Opensearch
 
@@ -65,13 +72,13 @@ Elasticsearch/Opensearch is a great tool to reduce the load of the MySQL server.
 
 When using Elasticsearch, it is important to set the `SHOPWARE_ES_THROW_EXCEPTION=1` `.env` variable. This ensures that there is no fallback to the MySQL server if an error occurs when querying the data via Elasticsearch. In large projects, the failure of Elasticsearch leads to the MySQL server being completely overloaded otherwise.
 
-Read more on [Elasticsearch setup](../infrastructure/elasticsearch/elasticsearch-setup.md)
+Read more on [Elasticsearch setup](../infrastructure/elasticsearch/elasticsearch-setup)
 
 ## Prevent mail data updates
 
-{% hint style="info" %}
-[Prevent mail updates](../../../resources/references/adr/performance/2022-03-25-prevent-mail-updates.md) feature is available starting with Shopware 6.4.11.0.
-{% endhint %}
+::: info
+[Prevent mail updates](../../../resources/references/adr/performance/2022-03-25-prevent-mail-updates) feature is available starting with Shopware 6.4.11.0.
+:::
 
 To provide auto-completion for different mail templates in the Administration UI, Shopware has a mechanism that writes an example mail into the database when sending the mail.
 
@@ -85,7 +92,7 @@ shopware:
 
 ## Increment storage
 
-The [Increment storage](../performance/increment.md) is used to store the state and display it in the Administration.
+The [Increment storage](../performance/increment) is used to store the state and display it in the Administration.
 This storage increments or decrements a given key in a transaction-safe way, which causes locks upon the storage. Therefore, we recommend moving this source of server load to a separate Redis:
 
 ```yaml
@@ -107,7 +114,7 @@ If you don't need such functionality, it is highly recommended to disable this b
 ## Lock storage
 
 Shopware uses [Symfony's Lock component](https://symfony.com/doc/5.4/lock.html) to implement locking functionality.
-By default, Symfony will use a local file-based [lock store](../performance/lock-store.md), which breaks into multi-machine (cluster) setups. This is avoided using one of the [supported remote stores](https://symfony.com/doc/5.4/components/lock.html#available-stores).
+By default, Symfony will use a local file-based [lock store](../performance/lock-store), which breaks into multi-machine (cluster) setups. This is avoided using one of the [supported remote stores](https://symfony.com/doc/5.4/components/lock.html#available-stores).
 
 ```yaml
 framework:
@@ -116,7 +123,7 @@ framework:
 
 ## Number ranges
 
-[Number Ranges](../performance/number-ranges.md) provide a consistent way to generate a consecutive number sequence that is used for order numbers, invoice numbers, etc.
+[Number Ranges](../performance/number-ranges) provide a consistent way to generate a consecutive number sequence that is used for order numbers, invoice numbers, etc.
 The generation of the number ranges is an **atomic** operation, which guarantees that the sequence is consecutive and no number is generated twice.
 
 By default, the number range states are stored in the database.
@@ -159,9 +166,9 @@ zend.detect_unicode=0
 realpath_cache_ttl=3600
 ```
 
-{% hint style="info" %}
+::: info
 The web updater is not compatible with opcache, as updates require an opcache clear.
-{% endhint %}
+:::
 
 Also, PHP PCRE Jit Target should be enabled. This can be checked using `php -i | grep 'PCRE JIT Target'` or looking into the *phpinfo* page.
 

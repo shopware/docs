@@ -14,4 +14,4 @@ mkdir -p ./.gitbook/assets/adr
 mv ./resources/references/adr/assets/* .gitbook/assets/adr/ 
 find resources/references/adr -type f -name '*md' -not -name '_*' -exec sed -i 's#(\.\./assets#(../../../../.gitbook/assets/adr#' {} \;
 
-find resources/references/adr/ -type d -exec touch '{}'/README.md \;
+find resources/references/adr/ -type d -exec touch '{}'/index.md \;

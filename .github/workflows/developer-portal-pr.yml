@@ -1,0 +1,12 @@
+name: Notify developer-portal
+
+on: push
+
+jobs:
+  create-pr:
+    uses: shopware/developer-portal/.github/workflows/self-trigger.yml@main
+    with:
+      branch: ${{ github.ref_name }}
+      repository: ${{ github.repository }}
+    secrets:
+      access_token: ${{ secrets.DEVELOPER_PORTAL_WORKFLOW_TOKEN }}

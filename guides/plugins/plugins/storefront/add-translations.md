@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add translations
+  position: 120
+
+---
+
 # Add Translations
 
 ## Overview
@@ -6,7 +13,7 @@ In this guide you'll learn how to add translations to the Storefront and how to 
 
 ## Prerequisites
 
-To add your own custom translations for your plugin or app, you first need a base. Refer to either the [Plugin Base Guide](../plugin-base-guide.md) or the [App Base Guide](../../apps/app-base-guide.md) to create one.
+To add your own custom translations for your plugin or app, you first need a base. Refer to either the [Plugin Base Guide](../plugin-base-guide) or the [App Base Guide](../../apps/app-base-guide) to create one.
 
 ## Snippet file structure
 
@@ -34,9 +41,8 @@ Now that we know how the structure of snippets should be, we can create a new sn
 
 Here's an example of an English translation file:
 
-{% code title="<extension root>/src/Resources/snippet/en\_GB/example.en-GB.json" %}
-
-```javascript
+```js
+// <extension root>/src/Resources/snippet/en\_GB/example.en-GB.jsonon
 {
   "header": {
     "example": "Our example header"
@@ -44,8 +50,6 @@ Here's an example of an English translation file:
   "soldProducts": "Sold about %count% products in %country%"
 }
 ```
-
-{% endcode %}
 
 ## Using the translation in templates
 
@@ -85,7 +89,7 @@ $this->trans('soldProducts', ['%count%' => 3, '%country%' => 'Germany']);
 
 ## Using translation generally in PHP
 
-If we need to use a snippet elsewhere in PHP, we can use [Dependency Injection](../plugin-fundamentals/dependency-injection.md) to inject the `translator`, which implements Symfony's `Symfony\Contracts\Translation\TranslatorInterface`:
+If we need to use a snippet elsewhere in PHP, we can use [Dependency Injection](../plugin-fundamentals/dependency-injection) to inject the `translator`, which implements Symfony's `Symfony\Contracts\Translation\TranslatorInterface`:
 
 ```xml
 <service id="Swag\Example\Service\SwagService" public="true" >

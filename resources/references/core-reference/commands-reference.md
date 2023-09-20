@@ -1,3 +1,10 @@
+---
+nav:
+  title: Commands Reference
+  position: 10
+
+---
+
 # Commands Reference
 
 These commands can be executed using the Shopware command line interface \(CLI\), located within your Shopware project

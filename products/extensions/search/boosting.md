@@ -1,11 +1,18 @@
+---
+nav:
+  title: Boosting
+  position: 40
+
+---
+
 # Boosting
 
 ## Overview
 
 With the Advanced Search there are two types of boosting:
 
-* [Field Boosting](boosting.md#field-boosting)
-* [Explicit Boosting](boosting.md#explicit-boosting)
+* [Field Boosting](boosting#field-boosting)
+* [Explicit Boosting](boosting#explicit-boosting)
 
 These configurations allow boosting of specific search results.
 

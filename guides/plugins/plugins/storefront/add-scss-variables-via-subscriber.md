@@ -1,28 +1,34 @@
+---
+nav:
+  title: Add SCSS variables via Subscriber
+  position: 250
+
+---
+
 # Add SCSS Variables
 
 ## Overview
 
 In order to add SCSS variables to your plugin, you can configure fields in your `config.xml` to be exposed as scss variables.
 
-We recommend to use the declaration of [SCSS variables](./add-scss-variables.md) via the `config.xml` but you can still use a subscriber if you need to be more flexible as described below.
+We recommend to use the declaration of [SCSS variables](./add-scss-variables) via the `config.xml` but you can still use a subscriber if you need to be more flexible as described below.
 
 ## Prerequisites
 
 You won't learn how to create a plugin in this guide, head over to our Plugin base guide to create your first plugin:
 
-{% page-ref page="../plugin-base-guide.md" %}
+<PageRef page="../plugin-base-guide" />
 
 You should also know how to listen to events:
 
-{% page-ref page="../plugin-fundamentals/listening-to-events.md" %}
+<PageRef page="../plugin-fundamentals/listening-to-events" />
 
 ## Setup a default value for a custom SCSS variable
 
 Before you start adding your subscriber, you should provide a fallback value for your custom SCSS variable in your plugin `base.scss`:
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/scss/base.scss" %}
-
 ```css
+// <plugin root>/src/Resources/app/storefront/src/scss/base.scss
 // The value will be overwritten by the subscriber when the plugin is installed and activated
 $sass-plugin-header-bg-color: #ffcc00 !default;
 
@@ -31,14 +37,12 @@ $sass-plugin-header-bg-color: #ffcc00 !default;
 }
 ```
 
-{% endcode %}
-
 ## Theme variables subscriber
 
-You can add a new subscriber according to the [Listening to events](../plugin-fundamentals/listening-to-events.md) guide. In this example we name the subscriber `ThemeVariableSubscriber`. The subscriber listens to the `ThemeCompilerEnrichScssVariablesEvent`.
+You can add a new subscriber according to the [Listening to events](../plugin-fundamentals/listening-to-events) guide. In this example we name the subscriber `ThemeVariableSubscriber`. The subscriber listens to the `ThemeCompilerEnrichScssVariablesEvent`.
 
-{% tabs %}
-{% tab title="<plugin root>/src/Subscriber/ThemeVariableSubscriber.php" %}
+<Tabs>
+<Tab title="<plugin root>/src/Subscriber/ThemeVariableSubscriber.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -65,11 +69,11 @@ class ThemeVariableSubscriber implements EventSubscriberInterface
 }
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="<plugin root>/src/Resources/config/services.xml" %}
+<Tab title="<plugin root>/src/Resources/config/services.xml">
 
-```markup
+```xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -84,8 +88,8 @@ class ThemeVariableSubscriber implements EventSubscriberInterface
 </container>
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 The `ThemeCompilerEnrichScssVariablesEvent` provides the `addVariable()` method which takes the following parameters:
 
@@ -93,19 +97,18 @@ The `ThemeCompilerEnrichScssVariablesEvent` provides the `addVariable()` method 
 * `$value:` \(string\): The value which should be assigned to the SCSS variable.
 * `$sanitize` \(bool - optional\): Optional parameter to remove special characters from the variables value. The parameter will also add quotes around the variables value. In most cases quotes are not needed e.g. for color hex values. However, there may be situations where you want to pass individual strings to your SCSS variable.
 
-{% hint style="warning" %}
+::: warning
 Please note that plugins are not sales channel specific. Your SCSS variables are directly added in the SCSS compilation process and will be globally available throughout all themes and Storefront sales channels. If you want to change a variables value for each sales channel you should use plugin config fields and follow the next example.
-{% endhint %}
+:::
 
 ## Plugin config values as SCSS variables
 
 Inside your `ThemeVariableSubscriber` you can also read values from the plugin configuration and assign those to a SCSS variable. This makes it also possible to have different values for each sales channel. Depending on the selected sales channel inside the plugin configuration in the Administration.
 
-First, lets add a new plugin configuration field according to the [Plugin Configurations](../plugin-fundamentals/add-plugin-configuration.md):
+First, lets add a new plugin configuration field according to the [Plugin Configurations](../plugin-fundamentals/add-plugin-configuration):
 
-{% code title="<plugin root>/src/Resources/config/config.xml" %}
-
-```markup
+```xml
+// <plugin root>/src/Resources/config/config.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
@@ -120,13 +123,10 @@ First, lets add a new plugin configuration field according to the [Plugin Config
 </config>
 ```
 
-{% endcode %}
-
 As you can see in the example, we add an input field of the type colorpicker for our plugin. In the Administration, the component 'sw-colorpicker' will later be displayed for the selection of the value. You also can set a `defaultValue` which will be pre-selected like the following:
 
-{% code title="<plugin root>/src/Resources/config/config.xml" %}
-
-```markup
+```xml
+// <plugin root>/src/Resources/config/config.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
@@ -142,12 +142,10 @@ As you can see in the example, we add an input field of the type colorpicker for
 </config>
 ```
 
-{% endcode %}
-
 In order to be able to read this config, you have to inject the `SystemConfigService` to your subscriber:
 
-{% tabs %}
-{% tab title="<plugin root>/src/Subscriber/ThemeVariableSubscriber.php" %}
+<Tabs>
+<Tab title="<plugin root>/src/Subscriber/ThemeVariableSubscriber.php">
 
 ```php
 <?php declare(strict_types=1);
@@ -188,11 +186,11 @@ class ThemeVariableSubscriber implements EventSubscriberInterface
 }
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="<plugin root>/src/Resources/config/services.xml" %}
+<Tab title="<plugin root>/src/Resources/config/services.xml">
 
-```markup
+```xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -209,8 +207,8 @@ class ThemeVariableSubscriber implements EventSubscriberInterface
 </container>
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 * The `SystemConfigService` provides a `get()` method where you can access the configuration structure in the first parameter with a dot notation syntax like `SwagBasicExample.config.fieldName`. The second parameter is the sales channel `id`. With this `id` the config fields can be accessed for each sales channel.
 * You can get the sales channel id through the getter `getSalesChannelId()` of the `ThemeCompilerEnrichScssVariablesEvent`.
@@ -220,9 +218,8 @@ class ThemeVariableSubscriber implements EventSubscriberInterface
 
 Adding config fields via `$event->addVariable()` for every field individually may be a bit cumbersome in some cases. You could also loop over all config fields and call `addVariable()` for each one. However, this depends on your use case.
 
-{% code title="<plugin root>/src/Subscriber/ThemeVariableSubscriber.php" %}
-
 ```php
+// <plugin root>/src/Subscriber/ThemeVariableSubscriber.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Subscriber;
@@ -247,7 +244,5 @@ class ThemeVariableSubscriber implements EventSubscriberInterface
     }
 }
 ```
-
-{% endcode %}
 
 To avoid camelCase variable names when reading from the `config.xml`, we recommend using the `CamelCaseToSnakeCaseNameConverter` to format the variable before adding it.

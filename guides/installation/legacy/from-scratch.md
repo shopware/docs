@@ -1,20 +1,27 @@
+---
+nav:
+  title: Installation from scratch
+  position: 20
+
+---
+
 # Installation from Scratch
 
-{% hint style="danger" %}
+::: danger
 This approach is no longer recomended. It is kept here as a reference.
-{% endhint %}
+:::
 
 If it is *impossible* to get Docker up and running on your development environment, you can install Shopware 6 locally.
 
-{% hint style="info" %}
+::: info
 Be aware that this will be a vastly more complex solution since additional system requirements then need to be managed by you. However, you may experience better control over your local setup configuration.
-{% endhint %}
+:::
 
 ## Prerequisites
 
 - A Linux-based operating system (Windows installation is not covered here, but notes are provided about installing within a WSL instance).
 - An [Apache2 server installation](https://httpd.apache.org/docs/2.4/install.html) within the Linux-based operating system you have selected.
-- Installation of all the required packages mentioned in the [Installation overview](overview.md). There are two main goals you need to accomplish.
+- Installation of all the required packages mentioned in the [Installation overview](overview). There are two main goals you need to accomplish.
 
 Please note that this guide is based on plugin development and contribution. If you need a template for full composer-based shop projects, refer to the [production template](https://github.com/shopware/production).
 
@@ -74,9 +81,9 @@ localhostForwarding=true # set this setting to true to be forwarded to WSL
 processors=4
 ```
 
-{% hint style="info" %}
+::: info
 If your WSL instance is already running after making changes to your *.wslconfig* file, you will need to restart your WSL service with `wsl --shutdown`, then `wsl` for the config settings to take effect.
-{% endhint %}
+:::
 
 Once `localhostForwarding` is enabled, you should update your local development domain name in you Apache2 `sites-available` config file as follows:
 
@@ -86,9 +93,9 @@ xxxxxx.dev.localhost
 
 ...where 'xxxxxx' should be replaced with a 'hyphen/underscore separated' string.
 
-{% hint style="info" %}
+::: info
 Make sure the `APP_URL` variable defined within your `[PROJECT_ROOT]/.env` file matches the `ServerName` value within your Apache2 Vhost configuration
-{% endhint %}
+:::
 
 ### Apache2 server configuration
 
@@ -98,19 +105,19 @@ Make sure the following Apache modules are enabled:
 - mod\_headers
 - mod\_negotiation
 
-{% hint style="info" %}
+::: info
 Checking if these modules are installed on Apache is possible with the command `apachectl -M | grep [module_name]`. When searching for a specific module with `grep` make sure only to use the name suffix, such as "rewrite"
-{% endhint %}
+:::
 
 After a quick restart of Apache, you are done.
 
-{% hint style="info" %}
+::: info
 For Mac (OSX) operating systems:
 
 In your Apache config, it is recommended to move the document root folder to the user's `$HOME` folder to avoid permission issues. This is the folder which Apache looks to serve a file from. By default, the document root is configured as `/usr/local/var/www`.
 
 As this is a development machine, let's assume you want to change the document root to point to a folder in your home directory. Search for the term "DocumentRoot" in your `httpd.conf` apache configuration, and you should see the following line:
-{% endhint %}
+:::
 
 ```bash
 DocumentRoot "/usr/local/var/www"
@@ -132,7 +139,7 @@ Within your Apache configuration, you must set your `DocumentRoot` and `Director
 
 ## Setting up Shopware
 
-Before you set up Shopware, you need to clone our Shopware repositories from version control. This is explained in the "Preparatory steps" paragraph of the [Installation overview](overview.md).
+Before you set up Shopware, you need to clone our Shopware repositories from version control. This is explained in the "Preparatory steps" paragraph of the [Installation overview](overview).
 
 ### Starting Shopware installation
 
@@ -160,10 +167,10 @@ rm -R var/cache/*
 ./psh.phar install
 ```
 
-{% hint style="warning" %}
+::: warning
 Note that this will reset your database.
-{% endhint %}
+:::
 
 ## Next steps
 
-Now that you got a running Shopware installation, why not start with your first very own plugin? Refer to the [Plugin base guide](../../plugins/plugins/plugin-base-guide.md) for a good starting point.
+Now that you got a running Shopware installation, why not start with your first very own plugin? Refer to the [Plugin base guide](../../plugins/plugins/plugin-base-guide) for a good starting point.

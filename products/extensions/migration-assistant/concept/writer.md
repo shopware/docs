@@ -1,10 +1,17 @@
+---
+nav:
+  title: Writer
+  position: 80
+
+---
+
 # Writer
 
 The `Writer` objects will get the converted data from the `swag_migration_data` table and write it to the right Shopware 6 table. Each `Writer` supports only one entity, which is most likely the target table.
 
 When creating a writer, register it in a manner resembling the following:
 
-```markup
+```html
 <service id="SwagMigrationAssistant\Migration\Writer\ProductWriter"
          parent="SwagMigrationAssistant\Migration\Writer\AbstractWriter">
     <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Write\EntityWriter"/>

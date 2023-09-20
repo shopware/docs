@@ -1,3 +1,10 @@
+---
+nav:
+  title: Cache
+  position: 10
+
+---
+
 # Cache
 
 There are several caches in Shopware that can be used to optimize performance. This page gives a brief overview and shows how to configure them.
@@ -17,7 +24,7 @@ The HTTP cache configuration takes place completely in the `.env file.` The foll
 
 ### How to trigger the HTTP cache warmer
 
-To warm up the HTTP cache, you can simply use the console command `http:cache:warm:up`. This command sends a message to the message queue for each sales channel domain to warm it up as fast as possible. It is important that queue workers are started according to our [message queue](../infrastructure/message-queue.md).
+To warm up the HTTP cache, you can simply use the console command `http:cache:warm:up`. This command sends a message to the message queue for each sales channel domain to warm it up as fast as possible. It is important that queue workers are started according to our [message queue](../infrastructure/message-queue).
 
 ### How to change the cache storage
 

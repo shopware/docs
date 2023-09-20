@@ -1,3 +1,10 @@
+---
+nav:
+  title: Backward Compatibility
+  position: 20
+
+---
+
 # Backward Compatibility
 
 ## Introduction
@@ -58,10 +65,10 @@ When developing new features, the goal should always be to do this in a backward
 
 | Case                    | During development                                                                                                                                                                                                                                                                                                                                       | On feature release                                                                                                                                       | Next major release                          |
 | ---                     | ---                                                                                                                                                                                                                                                                                                                                                      | ---                                                                                                                                                      | ---                                         |
-| 🚩 **Feature Flag**     | Hide code behind normal [feature flag](../../references/adr/workflow/2020-08-10-feature-flag-system.md).                                                                                                                                                                                                                                                                                            | Remove the feature flag.                                                                                                                                     |                                             |
+| 🚩 **Feature Flag**     | Hide code behind normal [feature flag](../../references/adr/workflow/2020-08-10-feature-flag-system).                                                                                                                                                                                                                                                                                            | Remove the feature flag.                                                                                                                                     |                                             |
 | ➕ **New code**         | Add `@internal annotation` for new public API.                                                                                                                                                                                                                                                                                                           | Remove `@internal` annotation.                                                                                                                           |                                             |
 | ⚪ **Obsolete code**    | Add `@feature-deprecated` annotation.                                                                                                                                                                                                                                                                                                                    | Replace @feature-deprecated with normal `@deprecated` annotation.                                                                                        | Remove old code.                            |
-| 🔴 **Breaking change**  | Add `@major-deprecated` annotation. Hide breaking code behind additional major [feature flag](../../references/adr/workflow/2020-08-10-feature-flag-system.md). Also, create a separate [changelog](../../references/adr/workflow/2020-08-03-implement-New-Changelog.md) for the change with the major flag. |                                                                                                                                                          | Remove old code. Remove the major feature flag. |
+| 🔴 **Breaking change**  | Add `@major-deprecated` annotation. Hide breaking code behind additional major [feature flag](../../references/adr/workflow/2020-08-10-feature-flag-system). Also, create a separate [changelog](../../references/adr/workflow/2020-08-03-implement-New-Changelog) for the change with the major flag. |                                                                                                                                                          | Remove old code. Remove the major feature flag. |
 | 🔍 **Tests**            | Add new tests behind a feature flag.                                                                                                                                                                                                                                                                                                                       | Remove feature flags from new tests. Declare old tests as [legacy](https://symfony.com/doc/current/components/phpunit_bridge.html#mark-tests-as-legacy). | Remove legacy tests.                        |
 
 You can also find more detailed information and code examples in the corresponding **[ADR](https://github.com/shopware/platform/blob/trunk/adr/)** for the deprecation strategy.
@@ -274,35 +281,25 @@ abstract class AbstractProductRoute
 
 **Storefront**: Use the `deprecated` tag from TWIG, including a comment with the normal annotation.
 
-{% raw %}
-
-```HTML
+```html
 {% block the_block_name %}
     {% deprecated '@deprecated tag:v6.5.0 - Block will be removed completely including the content' %}
     <div>Content</div>
 {% endblock %}
 ```
 
-{% endraw %}
-
 **Administration**: Use normal TWIG comments for the annotation, as the other syntax is not supported.
 
-{% raw %}
-
-```HTML
+```html
 {% block the_block_name %}
     {# @deprecated tag:v6.5.0 - Block will be removed completely including the content #}
     <div>Content</div>
 {% endblock %}
 ```
 
-{% endraw %}
-
 #### Rename TWIG block
 
-{% raw %}
-
-```HTML
+```html
 {% block new_block_name %}
     {% block old_block_name %}
     {% deprecated '@deprecated tag:v6.5.0 - Use `new_block_name` instead' %}
@@ -311,11 +308,9 @@ abstract class AbstractProductRoute
 {% endblock %}
 ```
 
-{% endraw %}
-
 #### Deprecate CSS selectors
 
-```HTML
+```html
 {# @deprecated tag:v6.5.0 - CSS class "card-primary" is deprecated, use "card-major" instead #}
 <div class="card card-major card-primary">
     ...
@@ -384,7 +379,7 @@ Shopware.Component.register('sw-old', {
 
 #### Deprecate admin component properties
 
-```javascript
+```json
 {
     name: 'example-component',
     props: {
@@ -404,7 +399,7 @@ Shopware.Component.register('sw-old', {
 
 #### Adding required properties to components
 
-```javascript
+```json
 {
     createdComponent() {
         /** @deprecated tag:v6.5.0 - Warning will be removed when prop is requirerd */

@@ -1,9 +1,16 @@
+---
+nav:
+  title: DAL join filter
+  position: 20
+
+---
+
 # 2020-11-19 - DAL join filter
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/dal/2020-11-19-dal-join-filter.md)
-{% endhint %}
+:::
 
 ## Context
 Currently, there are various difficulties with the current implementation of the `anti-join-filter`. 
@@ -31,6 +38,7 @@ FROM product
 
 WHERE size_filter.product_id IS NULL
 AND color_filter.product_id IS NULL
+
 ``` 
 
 ### Join filter concept
@@ -53,6 +61,7 @@ FROM product
 
 WHERE size_filter.product_id IS NOT NULL
 AND color_filter.product_id IS NOT NULL
+
 ``` 
 
 ## Decision
@@ -89,7 +98,6 @@ $criteria->addFilter(
 $criteria->addFilter(
     new EqualsFilter('product.categories.active', true)
 );
-
 ```
 
 1: Returns all products assigned to the `test-category` category where `test-category` is also active.

@@ -1,20 +1,27 @@
+---
+nav:
+  title: PHP unit testing
+  position: 40
+
+---
+
 # PHP Unit Testing
 
 ## Overview
 
 In this guide you'll learn how to create PHPUnit tests in Shopware 6. You can read more about PHP unit testing at the official PHPUnit documentation.
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://phpunit.de/documentation.html" caption="" %}
 
-{% hint style="info" %}
+<PageRef page="https://phpunit.de/documentation.html" title="Documentation for PHPUnit &#x2013; The PHP Testing Framework" target="_blank" />
+
+::: info
 Throughout this guide, you will find the `$` symbol representing your command line.
-{% endhint %}
+:::
 
 ## Prerequisites
 
-In order to create tests for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
+In order to create tests for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide).
 
-Furthermore, you should have a look at our [Execute database queries/migrations](../plugin-fundamentals/database-migrations.md) guide since this guide will show you how to create a migration test for these example.
+Furthermore, you should have a look at our [Execute database queries/migrations](../plugin-fundamentals/database-migrations) guide since this guide will show you how to create a migration test for these example.
 
 ## PHPUnit configuration
 
@@ -22,9 +29,8 @@ First of all we have to configure PHPUnit a bit. Therefore we have to create a f
 
 Here's an example configuration for the development template:
 
-{% code title="<plugin root>/phpunit.xml.dist" %}
-
-```markup
+```xml
+// <plugin root>/phpunit.xml.dist
 <?xml version="1.0" encoding="UTF-8"?>
 
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -60,8 +66,6 @@ Here's an example configuration for the development template:
 </phpunit>
 ```
 
-{% endcode %}
-
 ## Example Tests
 
 ### Integration test
@@ -70,9 +74,8 @@ After we've configured PHPUnit, we can start writing our first test. In this exa
 
 Therefore, this is how your service could then look like:
 
-{% code title="<plugin root>/src/Test/UsedClassesAvailableTest.php" %}
-
 ```php
+// <plugin root>/src/Test/UsedClassesAvailableTest.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Test;
@@ -111,17 +114,14 @@ class UsedClassesAvailableTest extends TestCase
 }
 ```
 
-{% endcode %}
-
 ### Migration test
 
 In order to test our example migration `Migration1611740369ExampleDescription`, we create a new test called `Migration1611740369ExampleDescriptionTest` which extends from the PHPUnit `TestCase`. Furthermore we use the `KernelTestBehaviour` trait since we need our database connection from the container.
 
 Here's an example for a migration test:
 
-{% code title="<plugin root>/src/Migration/Test/Migration1611740369ExampleDescriptionTest.php" %}
-
 ```php
+// <plugin root>/src/Migration/Test/Migration1611740369ExampleDescriptionTest.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Migration\Test;
@@ -166,8 +166,6 @@ class Migration1611740369ExampleDescriptionTest extends TestCase
 }
 ```
 
-{% endcode %}
-
 ## Database setup
 
 Once we've created our tests, we have to initialize the test databases for our migration test. This can be done with the following command:
@@ -188,16 +186,13 @@ All commands in this section will be executed in the root directory of our plugi
 
 For easier usage, you could create a batch file called `phpunit.sh` into a `/bin` directory of your plugin. Its only purpose then would be executing the PHPUnit testsuite. Make sure the path in the following file actually fits.
 
-{% code title="<plugin root>/bin/phpunit.sh" %}
-
 ```bash
+// <plugin root>/bin/phpunit.sh
 #!/usr/bin/env bash
 dir=`pwd`
 cd ./../../../
 ./vendor/bin/phpunit --configuration="$dir" "$@"
 ```
-
-{% endcode %}
 
 ### Executing all tests in the plugin
 
@@ -231,9 +226,8 @@ We also need to change the `KERNEL_CLASS` from `Shopware\Development\Kernel` to 
 
 Therefore, this is how your configuration could then look like:
 
-{% code title="<plugin root>/phpunit.xml.dist" %}
-
-```markup
+```xml
+// <plugin root>/phpunit.xml.dist
 <?xml version="1.0" encoding="UTF-8"?>
 
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -268,11 +262,9 @@ Therefore, this is how your configuration could then look like:
 </phpunit>
 ```
 
-{% endcode %}
-
 ## Next steps
 
 You've learned about PHPUnit tests here now. But what about unit testing your javascript code, either in the Storefront or the Administration?
 
-* [Jest unit tests in Shopware's Administration](jest-admin.md)
-* [Jest unit tests in Shopware's Storefront](jest-storefront.md)
+* [Jest unit tests in Shopware's Administration](jest-admin)
+* [Jest unit tests in Shopware's Storefront](jest-storefront)

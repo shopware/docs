@@ -1,3 +1,10 @@
+---
+nav:
+  title: Apps as themes
+  position: 10
+
+---
+
 # Apps as themes
 
 It is absolutely possible to ship whole [themes](../../themes/) inside an app. All you have to do is include your theme configuration \(in the form of a `theme.json` file\) inside your apps Resources folder.  

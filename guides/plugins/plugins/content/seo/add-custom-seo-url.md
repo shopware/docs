@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom SEO URLs
+  position: 10
+
+---
+
 # Add custom SEO URLs
 
 ## Overview
@@ -10,12 +17,12 @@ This guide however will cover the question on how you can define your own SEO UR
 
 As every almost every guide in the plugins section, this guide as well is built upon the plugin base guide.
 
-{% page-ref page="../../plugin-base-guide.md" %}
+<PageRef page="../../plugin-base-guide" />
 
-Furthermore, we're going to use a [Custom storefront controller](../../storefront/add-custom-controller.md) for the static SEO URL example, as well as [Custom entities](../../framework/data-handling/add-custom-complex-data.md) for the dynamic SEO URLs. Make sure you know and understand those two as well before diving deeper into this guide. Those come with two different solutions:
+Furthermore, we're going to use a [Custom storefront controller](../../storefront/add-custom-controller) for the static SEO URL example, as well as [Custom entities](../../framework/data-handling/add-custom-complex-data) for the dynamic SEO URLs. Make sure you know and understand those two as well before diving deeper into this guide. Those come with two different solutions:
 
-* Using [plugin migrations](../../plugin-fundamentals/database-migrations.md) for static SEO URLs
-* Using [DAL events](../../framework/data-handling/using-database-events.md) to react on entity changes and therefore generating a dynamic SEO URL
+* Using [plugin migrations](../../plugin-fundamentals/database-migrations) for static SEO URLs
+* Using [DAL events](../../framework/data-handling/using-database-events) to react on entity changes and therefore generating a dynamic SEO URL
 
 ## Custom SEO URLs
 
@@ -29,13 +36,12 @@ Now if you want this URL to be translatable, you'll have to add a custom SEO URL
 
 #### Example controller
 
-For this example, the controller from the [Add custom controller guide](../../storefront/add-custom-controller.md) is being used. It creates a controller with a route like the example mentioned above: `/example`
+For this example, the controller from the [Add custom controller guide](../../storefront/add-custom-controller) is being used. It creates a controller with a route like the example mentioned above: `/example`
 
 Let's now have a look at our example controller:
 
-{% code title="<plugin root>/src/Storefront/Controller/ExampleController.php" %}
-
 ```php
+// <plugin root>/src/Storefront/Controller/ExampleController.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Storefront\Controller;
@@ -63,13 +69,11 @@ class ExampleController extends StorefrontController
 }
 ```
 
-{% endcode %}
-
 The important information you'll need here is the route name, `frontend.example.example`, as well as the route itself: `/example`. Make sure to remember those for the next step.
 
 #### Example migration
 
-Creating a SEO URL in this scenario can be achieved by creating a [plugin migration](../../plugin-fundamentals/database-migrations.md).
+Creating a SEO URL in this scenario can be achieved by creating a [plugin migration](../../plugin-fundamentals/database-migrations).
 
 The migration has to insert an entry for each sales channel and language into the `seo_url` table. For thise case, we're making use of the `ImportTranslationsTrait`, which comes with a helper method `importTranslation`.
 
@@ -77,9 +81,8 @@ Don't be confused here, we'll just treat the `seo_url` table like a translation 
 
 Let's have a look at an example:
 
-{% code title="<plugin root>/src/Migration/Migration1619094740AddStaticSeoUrl.php" %}
-
 ```php
+// <plugin root>/src/Migration/Migration1619094740AddStaticSeoUrl.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Migration;
@@ -149,27 +152,25 @@ SQL;
 }
 ```
 
-{% endcode %}
-
 You might want to have a look at the `getSeoMetaArray` method, that we implemented here. Most important for you are the columns `route_name` and `path_info` here, which represent the values you've defined in your controller's route annotation.
 
 By using the default PHP method `array_merge`, we're then also adding our translated SEO URL to the column `seo_path_info`.
 
 And that's it! After installing our plugin, you should now be able to access your controller's route with the given SEO URLs.
 
-{% hint style="info" %}
+::: info
 You can only access the German SEO URL if you've configured a German domain in your respective sales channel first.
-{% endhint %}
+:::
 
 ### Dynamic SEO URLs
 
 Dynamic SEO URLs are URLs, that have to change every now and then. Yet, there's another separation necessary.
 
-If you're going to generate custom SEO URLs for your custom entities, you'll have to follow the section about [Dynamic SEO URLs for entities](add-custom-seo-url.md#dynamic-seo-urls-for-entities). For all other kinds of dynamic content, that are not DAL entities, the section about [Dynamic SEO URLs for other content](add-custom-seo-url.md#dynamic-seo-urls-for-custom-content) is your way to go.
+If you're going to generate custom SEO URLs for your custom entities, you'll have to follow the section about [Dynamic SEO URLs for entities](add-custom-seo-url#dynamic-seo-urls-for-entities). For all other kinds of dynamic content, that are not DAL entities, the section about [Dynamic SEO URLs for other content](add-custom-seo-url#dynamic-seo-urls-for-custom-content) is your way to go.
 
 #### Dynamic SEO URLs for entities
 
-This scenario will be about a custom entity, to be specific we're going to use the entity from our guide about [adding custom complex data](../../framework/data-handling/add-custom-complex-data.md), which then would have a custom Storefront route for each entity.
+This scenario will be about a custom entity, to be specific we're going to use the entity from our guide about [adding custom complex data](../../framework/data-handling/add-custom-complex-data), which then would have a custom Storefront route for each entity.
 
 Each entity comes with a name, which eventually should be the SEO URL. Thus, your entity named `Foo` should be accessible using the route `yourShop.com/Foo` or `yourShop.com/Entities/Foo` or whatever you'd like. Now, everytime you create a new entity, a SEO URL has to be automatically created as well. When you update your entities' name, guess what, you'll have to change the SEO URL as well.
 
@@ -177,11 +178,11 @@ For this scenario, you can make use of the Shopware built-in `SeoUrlRoute` class
 
 Let's first have a look at such an example class:
 
-{% tabs %}
-{% tab title="ExamplePageSeoUrlRoute.php" %}
-{% code title="<plugin root>/src/Storefront/Framework/Seo/SeoUrlRoute/ExamplePageSeoUrlRoute.php" %}
+<Tabs>
+<Tab title="ExamplePageSeoUrlRoute.php">
 
 ```php
+// <plugin root>/src/Storefront/Framework/Seo/SeoUrlRoute/ExamplePageSeoUrlRoute.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Storefront\Framework\Seo\SeoUrlRoute;
@@ -240,13 +241,12 @@ class ExamplePageSeoUrlRoute implements SeoUrlRouteInterface
 }
 ```
 
-{% endcode %}
-{% endtab %}
+</Tab>
 
-{% tab title="services.xml" %}
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<Tab title="services.xml">
 
-```markup
+```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -262,9 +262,8 @@ class ExamplePageSeoUrlRoute implements SeoUrlRouteInterface
 </container>
 ```
 
-{% endcode %}
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 Okay, so let's look through this step by step.
 
@@ -296,15 +295,15 @@ Now that you've set up this class, there are two more things to be done, which a
 
 **Example subscriber**
 
-Every time your entity is written now, you have to let Shopware know, that you want to generate the SEO URLs for those entities now. This is done by reacting to the [DAL events](../../framework/data-handling/using-database-events.md) of your custom entity, to be specific we're going to use the `written` event. Everytime your entity is written, you then have to execute the `update` method of the `Shopware\Core\Content\Seo\SeoUrlUpdater` class.
+Every time your entity is written now, you have to let Shopware know, that you want to generate the SEO URLs for those entities now. This is done by reacting to the [DAL events](../../framework/data-handling/using-database-events) of your custom entity, to be specific we're going to use the `written` event. Everytime your entity is written, you then have to execute the `update` method of the `Shopware\Core\Content\Seo\SeoUrlUpdater` class.
 
 Once again, let's have a look at an example subscriber here:
 
-{% tabs %}
-{% tab title="DynamicSeoUrlPageSubscriber.php" %}
-{% code title="<plugin root>/src/Service/DynamicSeoUrlPageSubscriber.php" %}
+<Tabs>
+<Tab title="DynamicSeoUrlPageSubscriber.php">
 
 ```php
+// <plugin root>/src/Service/DynamicSeoUrlPageSubscriber.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -336,13 +335,12 @@ class DynamicSeoUrlPageSubscriber implements EventSubscriberInterface
 }
 ```
 
-{% endcode %}
-{% endtab %}
+</Tab>
 
-{% tab title="services.xml" %}
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<Tab title="services.xml">
 
-```markup
+```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -359,9 +357,8 @@ class DynamicSeoUrlPageSubscriber implements EventSubscriberInterface
 </container>
 ```
 
-{% endcode %}
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 As already said, we're using the `written` event of our custom entity by providing the entities' technical name with the `.written` suffix. Everytime it is executed, we're just using the said `update` method of the `SeoUrlUpdater`. Here you'll have to provide the technical route name and the IDs of the entities, that need to be updated. And that's it for the subscriber.
 
@@ -369,7 +366,7 @@ The `SeoUrlUpdater` will need one more thing in order to work properly: An entry
 
 **Example SeoUrlTemplate migration**
 
-Now we need to add an entry to the `seo_url_template` table for our new dynamic SEO URL template. This is done by adding a [database migration](../../plugin-fundamentals/database-migrations.md) to our plugin.
+Now we need to add an entry to the `seo_url_template` table for our new dynamic SEO URL template. This is done by adding a [database migration](../../plugin-fundamentals/database-migrations) to our plugin.
 
 The most important values you'll have to set in the migration are:
 
@@ -379,9 +376,8 @@ The most important values you'll have to set in the migration are:
 
 Now here is the said example migration:
 
-{% code title="<plugin root>/src/Migration/Migration1619514731AddExampleSeoUrlTemplate.php" %}
-
 ```php
+// <plugin root>/src/Migration/Migration1619514731AddExampleSeoUrlTemplate.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Migration;
@@ -417,13 +413,11 @@ class Migration1619514731AddExampleSeoUrlTemplate extends MigrationStep
 }
 ```
 
-{% endcode %}
-
 And that's it! Every time your entity is written now, you'll automatically generate a SEO URL for it.
 
-{% hint style="info" %}
-This guide will not cover creating an actual controller with the used example route. Learn how that is done in our guide about [creating a storefront controller](../../storefront/add-custom-controller.md).
-{% endhint %}
+::: info
+This guide will not cover creating an actual controller with the used example route. Learn how that is done in our guide about [creating a storefront controller](../../storefront/add-custom-controller).
+:::
 
 **Reacting to entity deletion**
 
@@ -431,9 +425,8 @@ If your entity is deleted, you want the SEO URL to be updated as well. In detail
 
 This can be achieved by using the DAL event `.deleted` and then executing the `update` method again.
 
-{% code title="<plugin root>/src/Service/DynamicSeoUrlPageSubscriber.php" %}
-
 ```php
+// <plugin root>/src/Service/DynamicSeoUrlPageSubscriber.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -465,8 +458,6 @@ class DynamicSeoUrlPageSubscriber implements EventSubscriberInterface
 }
 ```
 
-{% endcode %}
-
 #### Dynamic SEO URLs for custom content
 
 This section is specifically about dynamic content other than custom entities. This could be e.g. data from an external resource, maybe external APIs.
@@ -481,9 +472,8 @@ This method will then use the `SeoUrlPersister` and its method `updateSeoUrls` i
 
 Here's an example of such a class:
 
-{% code title="<plugin root>/src/Service/DynamicSeoUrlsService.php" %}
-
 ```php
+// <plugin root>/src/Service/DynamicSeoUrlsService.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -563,17 +553,15 @@ class DynamicSeoUrlsService
 }
 ```
 
-{% endcode %}
-
 The method `writeSeoEntries` will look for a Storefront sales channel and return its ID. It's then iterating over each provided entry, which in this example will need a method called `getId` and method called `getName`. Using this data, an array of URLs to be written is created. Make sure to change the values of the following keys:
 
 * `routeName`: The technical name of your route, configured in your controller
 * `pathInfo`: The technical, non-SEO, path of your route, also configured in your controller
 * `seoPathInfo`: The actual SEO path you want to use - in this case the name of the said content
 
-{% hint style="info" %}
-This guide will not cover creating an actual controller with the used example route. Learn how that is done in our guide about [creating a storefront controller](../../storefront/add-custom-controller.md).
-{% endhint %}
+::: info
+This guide will not cover creating an actual controller with the used example route. Learn how that is done in our guide about [creating a storefront controller](../../storefront/add-custom-controller).
+:::
 
 It will then use the built array and all of the other information like the context, the route name and an array of foreign keys for the method `updateSeoUrls` of the `SeoUrlPersister`. And that's it for your dynamic content.
 

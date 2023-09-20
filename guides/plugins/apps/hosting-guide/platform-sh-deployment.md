@@ -1,3 +1,10 @@
+---
+nav:
+  title: Platform.sh Deployment
+  position: 10
+
+---
+
 # Platform.sh Deployment
 
 ## Overview
@@ -6,7 +13,7 @@
 
 Keep in mind, though, that this is **not** the only way to go for apps. You can, of course, use different services, providers or host everything on a dedicated machine. This guide explains to you how to get started for hosting an app on Platform.sh.
 
-Read more about why this kind of hosting could be useful [here](README.md) or in there [official documentation](https://docs.platform.sh/).
+Read more about why this kind of hosting could be useful [here](README) or in there [official documentation](https://docs.platform.sh/).
 
 ## Getting started
 
@@ -50,9 +57,8 @@ This way your commands will be executed every time it deploys a new build _(e.g.
 
 Your file could than look like this _(with the default [AppTemplate](https://github.com/shopware/AppTemplate))_:
 
-{% code title=".platform.app.yaml" %}
-
 ```yaml
+// .platform.app.yaml
 hooks:
     build: |
         set -e
@@ -62,8 +68,6 @@ hooks:
         php bin/console cache:clear
         php bin/console doctrine:migrations:migrate --no-interaction
 ```
-
-{% endcode %}
 
 By default, PHP images already run a `composer install` command, so we don't need that in our hooks.
 Learn more about that [here](https://docs.platform.sh/languages/php.html#build-flavor).

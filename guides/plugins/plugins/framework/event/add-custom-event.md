@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom event
+  position: 10
+
+---
+
 # Add Custom Event
 
 ## Overview
@@ -6,12 +13,11 @@ In this guide you will learn how to create your own event. You can read more abo
 
 ## Prerequisites
 
-In order to create your own event for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md).
+In order to create your own event for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide).
 
-<!-- markdown-link-check-disable-next-line -->
-{% hint style="info" %}
+::: info
 Refer to this video on **[Event dispatching and handling](https://www.youtube.com/watch?v=JBpa5nBoC78)** which is a live coding example on custom events. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
-{% endhint %}
+:::
 
 ## Event interfaces and classes
 
@@ -30,9 +36,8 @@ First, we create a new class for our event, which we name `ExampleEvent`. In thi
 
 Therefore, this is how your event class could look like:
 
-{% code title="<plugin root>/src/Core/Content/Example/Event/ExampleEvent.php" %}
-
 ```php
+// <plugin root>/src/Core/Content/Example/Event/ExampleEvent.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Example\Event;
@@ -71,15 +76,12 @@ class ExampleEvent implements ShopwareSalesChannelEvent
 }
 ```
 
-{% endcode %}
-
 ## Fire the event
 
 After we've created our entity class, we need to fire our new event. For this we need the service `event_dispatcher` which provides a method called `dispatch`. In this example we created a service `ExampleEventService` which fires our event. Below you can find the example implementation.
 
-{% code title="<plugin root>/src/Service/ExampleEventService.php" %}
-
 ```php
+// <plugin root>/src/Service/ExampleEventService.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -105,8 +107,6 @@ class ExampleEventService
 }
 ```
 
-{% endcode %}
-
 ## Next steps
 
-Now that you know how to create your own event, you may want to act on it. To get a grip on this, head over to our [Listening to events](../../plugin-fundamentals/listening-to-events.md) guide.
+Now that you know how to create your own event, you may want to act on it. To get a grip on this, head over to our [Listening to events](../../plugin-fundamentals/listening-to-events) guide.

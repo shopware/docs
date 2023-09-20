@@ -1,3 +1,10 @@
+---
+nav:
+  title: Template
+  position: 20
+
+---
+
 # Symfony Flex
 
 Symfony Flex is a Composer plugin that helps you to manage and keep your Shopware configuration files up-to-date.
@@ -28,7 +35,7 @@ After you have created the project via Composer, you have to adjust the generate
 bin/console system:install --basic-setup
 ```
 
-This installs Shopware and creates a default [sales channel](../../concepts/commerce/catalog/sales-channels.md) with Shopware's default Administration credentials:
+This installs Shopware and creates a default [sales channel](../../concepts/commerce/catalog/sales-channels) with Shopware's default Administration credentials:
 
 | Username | Password   |
 |:---------|:-----------|
@@ -46,9 +53,9 @@ The Symfony CLI is a developer tool that helps to build, run, and manage your Sy
 
 1. As Symfony CLI uses local PHP, ensure to have PHP installed. Below are the commands to install it:
 
-{% tabs %}
+<Tabs>
 
-{% tab title="Ubuntu" %}
+<Tab title="Ubuntu">
 
 Add a new software repository to your system to have the latest PHP version.
 
@@ -58,9 +65,9 @@ sudo add-apt-repository ppa:ondrej/php
 sudo apt-get install -y php8.1-fpm php8.1-mysql php8.1-curl php8.1-gd php8.1-xml php8.1-zip php8.1-opcache php8.1-mbstring php8.1-intl php8.1-cli
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Debian" %}
+<Tab title="Debian">
 
 Add a new software repository to your system to have the latest PHP version:
 
@@ -70,9 +77,9 @@ curl https://packages.sury.org/php/README.txt | bash
 sudo apt-get install -y php8.1-fpm php8.1-mysql php8.1-curl php8.1-gd php8.1-xml php8.1-zip php8.1-opcache php8.1-mbstring php8.1-intl php8.1-cli
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="macOS" %}
+<Tab title="macOS">
 
 The easiest way is to use [Homebrew](https://brew.sh/):
 
@@ -80,9 +87,9 @@ The easiest way is to use [Homebrew](https://brew.sh/):
 brew install php@8.1
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Nix / NixOS" %}
+<Tab title="Nix / NixOS">
 
 ```bash
 # Nix
@@ -92,9 +99,9 @@ nix-env -iA nixpkgs.php81 nixpkgs.symfony-cli
 nix-env -iA nixos.php81 nixpkgs.symfony-cli
 ```
 
-{% endtab %}
+</Tab>
 
-{% endtabs %}
+</Tabs>
 
 ### Optional packages
 
