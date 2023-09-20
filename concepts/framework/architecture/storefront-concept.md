@@ -99,7 +99,7 @@ Once we have set all the necessary information to our page \(`AccountOrderPage`\
 
 To summarize the composition of a page, have a look at this diagram:
 
-![Composition of a Storefront page](../../../.gitbook/assets/concepts-storefront-composite-data-loading.png)
+![Composition of a Storefront page](../../../assets/concepts-storefront-composite-data-loading.png)
 
 ## Translations
 

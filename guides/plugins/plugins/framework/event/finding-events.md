@@ -229,7 +229,7 @@ Since Shopware is built upon the Symfony framework, it also grants access to the
 Using the profiler, you can easily find all fired events in the current request.
 You can do so by opening up the profiler and clicking on the "Events" tab on the left.
 
-![](../../../../../.gitbook/assets/profiler_events.png)
+![](../../../../../assets/profiler_events.png)
 
 There you will find all events that were fired in the current request including their respective name to be used.
 

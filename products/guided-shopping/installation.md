@@ -50,15 +50,15 @@ You can install the plugin via the admin panel or terminal server.
 1. Log in to the admin panel.
 1. Go to Extensions > My extensions
 
-   ![ ](../../.gitbook/assets/products-digitalSalesRooms-extensionsMenu.png)
+   ![ ](../../assets/products-digitalSalesRooms-extensionsMenu.png)
 
 1. Click on the “Upload extension” button and choose the zip file containing the plugin from your device.
 
-   ![ ](../../.gitbook/assets/products-digitalSalesRooms-uploadExtension.png)
+   ![ ](../../assets/products-digitalSalesRooms-uploadExtension.png)
 
 1. Once it is uploaded and listed, click “Install”.
 
-    ![ ](../../.gitbook/assets/products-digitalSalesRooms-installExtension.png)
+    ![ ](../../assets/products-digitalSalesRooms-installExtension.png)
 
 1. On successful installation, activate the plugin by clicking on the switch button on the left.
 
@@ -100,7 +100,7 @@ Detailed below is the minimum configuration needed for a working stack apart fro
 
 * **Other settings** - Take a look at the below sample Mercure configuration on StackHero (Default settings is recommended).
 
-![ ](../../.gitbook/assets/products-digitalSalesRooms-mercureConfiguration.png)
+![ ](../../assets/products-digitalSalesRooms-mercureConfiguration.png)
 
 ### Daily service access
 
@@ -126,14 +126,14 @@ To do so,
       * You can leave the **API Base URL** as it is `https://api.daily.co/v1/` if not necessary.
       * Insert your **API KEY**.
 
-    ![ ](../../.gitbook/assets/products-digitalSalesRooms-videoConfig.png)
+    ![ ](../../assets/products-digitalSalesRooms-videoConfig.png)
 
     * **Mercure**
 
       * Replace *Mercure Hub Url* and *Mercure Hub Public Url* with your domain’s URL where the Mercure service is working and accessible from your stack. For instance, for the URL `https://fcoxpx.stackhero-network.com`, it would be `https://fcoxpx.stackhero-network.com/.well-known/mercure`.
       * Input the secret tokens that were set up in your Mercure service configuration.
 
-    ![ ](../../.gitbook/assets/products-digitalSalesRooms-mercureConfigExample.png)
+    ![ ](../../assets/products-digitalSalesRooms-mercureConfigExample.png)
 
 Daily and Mercure are two external services that are crucial for working with the Guided Shopping plugin.
 

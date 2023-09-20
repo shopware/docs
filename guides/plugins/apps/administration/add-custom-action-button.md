@@ -9,7 +9,7 @@ nav:
 
 One extension possibility in the Administration is the ability to add custom action buttons to the smartbar. For now, you can add them in the smartbar of detail and list views:
 
-![Custom action buttons in the Administration](../../../../.gitbook/assets/custom-buttons.png)
+![Custom action buttons in the Administration](../../../../assets/custom-buttons.png)
 
 To get those buttons, you start in the `admin` section of your manifest file. There you can define `<action-button>` elements in order to add your button, as seen as below:
 

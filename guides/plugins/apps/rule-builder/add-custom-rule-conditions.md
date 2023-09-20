@@ -90,7 +90,7 @@ Constraints are a collection of [custom fields](../custom-data/), which allows y
 
 The above example will add the condition shown below for selection in the Administration:
 
-![App Rule Condition](../../../../.gitbook/assets/app-rule-condition.png)
+![App Rule Condition](../../../../assets/app-rule-condition.png)
 
 ## Scripts
 

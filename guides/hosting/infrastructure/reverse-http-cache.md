@@ -24,7 +24,7 @@ In this guide, we will use Varnish as an example for HTTP cache.
 This setup is compatible from Shopware version 6.4.
 :::
 
-![](../../../.gitbook/assets/reverse_proxy_setup.svg)
+![](../../../assets/reverse_proxy_setup.svg)
 
 ### Configure Shopware
 
