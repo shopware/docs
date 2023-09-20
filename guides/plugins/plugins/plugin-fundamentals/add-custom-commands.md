@@ -118,11 +118,11 @@ Available commands:
   help                                    Displays help for a command
   list                                    Lists commands
  feature
-  feature:dump                            [administration:dump:features] Creating json file with feature config for js testing and hot reloading capabilities.
+  feature:dump                            Creating json file with feature config for js testing and hot reloading capabilities.
  assets
   assets:install                          
  bundle
-  bundle:dump                              [administration:dump:plugins|administration:dump:bundles] Creates a json file with the configuration for each active Shopware bundle.
+  bundle:dump                             Creates a json file with the configuration for each active Shopware bundle.
  cache
   cache:clear                             Clears the cache
   cache:pool:clear                        Clears cache pools

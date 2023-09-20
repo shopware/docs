@@ -20,7 +20,6 @@ While working with your own theme, you might have already come across the [Theme
 
 ```javascript
 // <plugin root>/src/Resources/theme.json
-# src/Resources/theme.json
 {
   ...
   "asset": [
