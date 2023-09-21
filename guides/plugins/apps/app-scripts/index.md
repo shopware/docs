@@ -269,11 +269,11 @@ The debug toolbar is only visible if your Shopware installation is in `APP_ENV =
 
 You can find all hooks that are triggered and the scripts that are executed for each by clicking on the `script` icon.
 
-![Symfony Debug Toolbar](../../../../.gitbook/assets/script-debug-toolbar.png)
+![Symfony Debug Toolbar](../../../../assets/script-debug-toolbar.png)
 
 That will open the Symfony profiler in the script detail view, where you can see all triggered hooks and the count of the scripts executed for each script at the top.
 
-![Script Debug Toolbar](../../../../.gitbook/assets/script-debug-detail.png)
+![Script Debug Toolbar](../../../../assets/script-debug-detail.png)
 
 Additionally, you can use the `debug.dump()` function inside your scripts to dump data to the debug view.
 A script like this:
@@ -284,4 +284,4 @@ A script like this:
 
 Will dump the page object to the debug view.
 
-![Output of debug.dump()](../../../../.gitbook/assets/script-debug-dump.png)
+![Output of debug.dump()](../../../../assets/script-debug-dump.png)

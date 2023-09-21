@@ -13,7 +13,7 @@ In this guide, you will learn how to set up an extension for the Administration 
 When you are using a self-hosted Shopware version, make sure to set the feature flag `FEATURE_NEXT_17950=1` to enable the Admin Extension API.
 :::
 
-![An admin notification](../../../../.gitbook/assets/extension-api-notification.png)
+![An admin notification](../../../../assets/extension-api-notification.png)
 
 ## Prerequisites
 
@@ -64,7 +64,7 @@ Next, we will put our basic configuration into the file we just created.
 
 Next, we need to set up an entry point, so Shopware and your app can communicate. The entry point is a static `.html` file, which includes the Extension SDK script and defines our extension.
 
-![Communication between the admin panel and your entry point](../../../../.gitbook/assets/extension-api-communication.png)
+![Communication between the admin panel and your entry point](../../../../assets/extension-api-communication.png)
 
 The file will be rendered as a hidden iFrame within your admin panel. Using `postMessage` requests, the iFrame and your admin panel can communicate and exchange data.
 

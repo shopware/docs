@@ -241,7 +241,7 @@ So, now you need a simple input field to get a `dailyUrl` for the Dailymotion vi
 
 With these small additions to typical CMS element behavior, you have already done with the config modal.
 
-![Dailymotion config modal](../../../../../.gitbook/assets/add-cms-element-via-admin-sdk-config.png)
+![Dailymotion config modal](../../../../../assets/add-cms-element-via-admin-sdk-config.png)
 
 ### The element file
 
@@ -305,7 +305,7 @@ Here, you have the main rendering logic for the Administration's CMS element. Th
 
 It initially fetches the `element` data, as you've already seen it in the config file. After that, using `data.subscribe(id, method)` it subscribes to the publishing key, which will update the element data automatically if something changes. It doesn't matter if the changes originate from our config modal outside Shopware or from somewhere else inside Shopware.
 
-![Dailymotion CMS element](../../../../../.gitbook/assets/add-cms-element-via-admin-sdk-element.png)
+![Dailymotion CMS element](../../../../../assets/add-cms-element-via-admin-sdk-element.png)
 
 ### The preview file
 
@@ -323,7 +323,7 @@ export default Vue.extend({
 });
 ```
 
-![Dailymotion element preview](../../../../../.gitbook/assets/add-cms-element-via-admin-sdk-preview.png)
+![Dailymotion element preview](../../../../../assets/add-cms-element-via-admin-sdk-preview.png)
 
 ## Storefront implementation
 

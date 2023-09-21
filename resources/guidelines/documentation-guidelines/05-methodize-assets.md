@@ -19,7 +19,7 @@ To create a pictorial illustration, reach out to the Shopware design team.
 
 * Prefer to add SVG over PNG images as SVGs stay sharp when you zoom in on the image. This applies to all created images. However, snipped images can be in PNG format.
 
-* Add all the images to the .gitbook/assets/ directory and give them a meaningful name.
+* Add all the images to the `assets/` directory and give them a meaningful name.
 
 * Use the below-naming convention for the images:
 
@@ -44,6 +44,8 @@ To create a pictorial illustration, reach out to the Shopware design team.
 * Use `alt text` and figure captions. This details what an image is trying to convey.
 
 * An introductory sentence should precede most images.
+
+* For UML diagrams use [Mermaid](https://mermaid.live/) to create one and add the diagram code in code block.
 
 ## File
 

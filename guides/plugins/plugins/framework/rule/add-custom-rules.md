@@ -242,7 +242,7 @@ This feature is available in version 6.5.0.0 or above.
 
 Rules in the Shopware Administration are aware of where users assign them. That means that a user can't add a rule to a promotion when the rule contains the condition "Cart amount". That also works the other way around. If the rule is assigned to a promotion, the user can't use the "Cart amount" condition.
 
-![Select component with disabled rules](../../../../../.gitbook/assets/rule-restrictions-rule-builder.png)
+![Select component with disabled rules](../../../../../assets/rule-restrictions-rule-builder.png)
 
 It is possible to define where rules can be assigned inside the Administration.
 

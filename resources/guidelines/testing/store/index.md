@@ -70,7 +70,7 @@ The end customer should not receive any misleading error messages. It does not m
 
 * **[API validation](../store/quality-guidelines-apps/#api-or-payment-apps)** - If access data is required for the app - for example, an API key; a button must be implemented with which the customer can check the data if this is technically possible.
 
-![api access](../../../../.gitbook/assets/guidelines-test-store-apiValidation.png)
+![api access](../../../../assets/guidelines-test-store-apiValidation.png)
 
 * **[Uninstallation process](../store/quality-guidelines-apps/#extension-manager)** - During the uninstallation process, the app should be able to uninstall and install without any problems. It is also important to check whether the app depends on other apps and whether they must be uninstalled first.
 

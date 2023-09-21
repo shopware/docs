@@ -13,7 +13,7 @@ Custom flow actions in Shopware Apps are available starting with Shopware 6.4.10
 
 Besides the default actions, developers can add custom, predefined, and configurable web hook actions to the flow builder.
 
-![Custom flow action in Administration](../../../../.gitbook/assets/flow-builder-app-action-preview.png)
+![Custom flow action in Administration](../../../../assets/flow-builder-app-action-preview.png)
 
 After reading, you will be able to
 

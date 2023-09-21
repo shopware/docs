@@ -414,4 +414,4 @@ Well done, you have successfully created your own flow trigger.
 
 Go to Administration page -> Settings -> Flow Builder, then click Add flow to create a new flow, search for Example Event. You could see your event is available and having actions related to the Customer likes to Add tag, Remove tag, etc...
 
-![Flow Builder Action Example](../../../../../.gitbook/assets/flow-builder-action.png)
+![Flow Builder Action Example](../../../../../assets/flow-builder-action.png)

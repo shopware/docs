@@ -123,7 +123,17 @@ const pay_type = <Payment type=COD />;
 
 * Use three dots (...) on a separate line to indicate that more lines of output are omitted from the sample output.
 
-* Refer to [Syntax & Guidelines](https://handbook.shopware.com/Product/Guides/Development/DeveloperDocumentation#syntax--guidelines) for more examples.
+## Blockquote
+
+* Blockquotes are represented by `>`
+
+    ```text
+    
+    > Added A Name preset according to new naming scheme.
+    
+    ``````
+
+* To add blockquotes within a blockquote, use `>>`
 
 ## Items to put in ordinary (non-code) font
 
