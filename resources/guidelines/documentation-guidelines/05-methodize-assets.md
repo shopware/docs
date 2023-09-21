@@ -45,6 +45,8 @@ To create a pictorial illustration, reach out to the Shopware design team.
 
 * An introductory sentence should precede most images.
 
+* For UML diagrams use [Mermaid](https://mermaid.live/) to create one and add the diagram code in code block.
+
 ## File
 
 Every file added to a folder can have a naming convention as:

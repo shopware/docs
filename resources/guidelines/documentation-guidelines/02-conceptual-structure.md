@@ -13,23 +13,7 @@ To give our readers a good experience, we have established writing guidelines fo
 
 ## Concepts
 
-This section articulates the core concepts of Shopware. It is an entry point to learn about how the platform is organized. This section rather **explains** than **shows** how things work; therefore, please follow the guidelines below when writing *Concepts*.
-
-* **Introduction** - Introduce the concept by its purpose — for example, *This article discusses the Shopware cart. Along the way, you will find answers to the following questions:*
-  * *What is the cart?*
-  * *What can it contain?*
-  * *How does it relate to users and orders?*
-
-* **Description** - Give a short description of the concept within 2-3 sentences — for example,  *"The cart is a collection of items a user wants to buy within the shop. It might contain products, discounts, or virtual products like bundles or configurable products. Eventually, a cart gets converted into an order. This process is called checkout."*
-
-Use cross-references to help users fully understand the text — for example, provide a link to *configurable products* or *checkout* articles. Don't use terms like *"custom products"* as these are Shopware-specific, and newcomers may find it difficult to understand.
-
-* **Comprehensive explanation** - Explain the concept in detail with examples, illustrations, tables, graphs, or pseudo-code.
-
-  Don't use any Shopware-specific source code. Using source code within a conceptual article has the following drawbacks:
-  * It introduces another dependency that has to be maintained.
-  * It builds on the presumption that readers know the given language and context.
-  * People tend to copy & paste without context.
+This section articulates the core concepts of Shopware. It is an entry point to learn about how the platform is organized. This section rather **explains** than **shows** how things work
 
 ## Products
 

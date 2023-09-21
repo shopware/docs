@@ -41,13 +41,13 @@ Follow the below steps to start your project:
 1. Create a docker-compose.yml file
 2. Start the Docker
 3. Prepare Development
-...
+4. ...
 ```
 
 * **Regular bulleted list** - Use this for general enlisting with an asterisk `*` in Markdown to signify bulleted lists.
 
 ```text
-You can install Shopware on Mac with the help of other tools:
+You can install Shopware on Mac with the help of tools like:
 
 * Docker
 ```

@@ -27,12 +27,15 @@ It is important to consider the background of the potential audience reading you
 | Product owner/ Manager | <ul><li>Responsibilities pertaining to the product life cycle</li></ul> |
 | Tech writers | <ul><li>Document all product details</li></ul> |
 
-## List of docs maintained by us
+## Applicable documents: style guide coverage
 
-* [Developer Guide](/docs/)
+* [Developer docs](https://developer.shopware.com/docs/)
 * [API Reference Guide](https://shopware.stoplight.io/)
 * [PWA](https://shopware-pwa-docs.vuestorefront.io/)
 * [Admin Extension SDK](https://shopware.github.io/admin-extension-sdk/)
+* [Meteor icon kit](https://shopware.github.io/meteor-icon-kit/)
+* [Frontend docs](https://frontends.shopware.com/)
+* [Component library](https://component-library.shopware.com/)
 
 ## Word list
 
