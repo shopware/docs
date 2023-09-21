@@ -22,7 +22,7 @@ The payment and checkout flow consist of two essential steps:
 
 These steps are outlined in the diagram below:
 
-![Headless payment flow](../../../.gitbook/assets/payment-flow-headless.png)
+![Headless payment flow](../../../assets/payment-flow-headless.png)
 
 The diagram above shows the payment flow for headless environments; however, for the single-stack scenario (i.e., when the default Storefront is used) the differences are minor and described in the section below.
 

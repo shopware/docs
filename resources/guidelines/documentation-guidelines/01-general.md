@@ -27,12 +27,15 @@ It is important to consider the background of the potential audience reading you
 | Product owner/ Manager | <ul><li>Responsibilities pertaining to the product life cycle</li></ul> |
 | Tech writers | <ul><li>Document all product details</li></ul> |
 
-## List of docs maintained by us
+## Applicable documents: style guide coverage
 
-* [Developer Guide](/docs/)
+* [Developer docs](https://developer.shopware.com/docs/)
 * [API Reference Guide](https://shopware.stoplight.io/)
 * [PWA](https://shopware-pwa-docs.vuestorefront.io/)
 * [Admin Extension SDK](https://shopware.github.io/admin-extension-sdk/)
+* [Meteor icon kit](https://shopware.github.io/meteor-icon-kit/)
+* [Frontend docs](https://frontends.shopware.com/)
+* [Component library](https://component-library.shopware.com/)
 
 ## Word list
 
@@ -53,7 +56,7 @@ Third-party sources include websites, books, blogs, videos, images, and more. En
 
 Adhere to the [Markdown cheat sheet](https://www.markdownguide.org/cheat-sheet/) while creating the document.
 
-Refer to [GitBook syntax](https://gitbook.gitbook.io/git-sync/) for features like hint block, emoji, API blocks, etc.
+Refer to [Vitepress syntax](https://vitepress.dev/guide/markdown) for features like hint block, emoji, API blocks, etc.
 
 Symbols in Markdown sometimes serve multi-purpose. For example, `*` or `-` can be used to create bulleted lists. However, follow a single pattern to maintain uniformity throughout. Further sections describe the usage of these patterns and let us comply with them.
 

@@ -20,7 +20,7 @@ The central interface between your app and Shopware is defined by a dedicated ma
 
 Shopware communicates with your app only exclusively via HTTP-Requests. Therefore you are free to choose a tech stack for your app, as long as you can serve HTTP-Requests. Shopware will notify you of events happening in the shop that your app is interested in by posting to HTTP-Endpoints that you define in the manifest file. While processing these events, your app can use the Shopware API to get additional data that your app needs. A schematic overview of the communication may look like this:
 
-![Communication between Shopware and your app](../../.gitbook/assets/shop-app-communication.svg)
+![Communication between Shopware and your app](../../assets/shop-app-communication.svg)
 
 To secure this communication, a registration handshake is performed during the installation of your app. During this registration, it is verified that Shopware talks to the right app backend server, and your app gets credentials used to authenticate against the API. You can read more on the registration workflow in the [App base guide](../../guides/plugins/apps/app-base-guide).
 

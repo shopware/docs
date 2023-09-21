@@ -119,7 +119,7 @@ open -a XQuartz
 
 Got to `XQuartz > Preferences` (`⌘ + ,`) and enable `Allow connections from network clients`:
 
-![XQuartz Preferences](../../../../.gitbook/assets/xquartz-allow-connections-from-network-clients.png)
+![XQuartz Preferences](../../../../assets/xquartz-allow-connections-from-network-clients.png)
 
 ::: warning
 Restart your Mac before proceeding with the following steps.

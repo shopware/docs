@@ -11,7 +11,7 @@ nav:
 
 You can create interactive live video events for your customers straight from your Shopware website without having to switch between a presentation tool, video conferencing system, and store system. It is one sophisticated solution to highlight your products, engage your customers and reinforce brand loyalty.
 
-![ ](../../.gitbook/assets/products-digitalSalesRooms.png)
+![ ](../../assets/products-digitalSalesRooms.png)
 
 ::: warning
 *Digital Sales Rooms* is a commercial extension and is not available as open source.

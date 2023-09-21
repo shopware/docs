@@ -43,8 +43,8 @@ In Shopware, you have multiple interfaces and classes for different types of eve
 
 Once the action on the Storefront or from the app happens, the FlowDispatcher will dispatch FlowEventAware to the FlowExecutor. From here, the FlowExecutor will check the condition to decide whether to execute the action.
 
-![Flow builder concept for flow sequence](../../.gitbook/assets/flow-concept-1.png)
+![Flow builder concept for flow sequence](../../assets/flow-concept-1.png)
 
 Here is an example flow of what happens in the system when an order is placed on the Storefront.
 
-![Flow builder concept for order placed](../../.gitbook/assets/flow-concept-2.png)
+![Flow builder concept for order placed](../../assets/flow-concept-2.png)

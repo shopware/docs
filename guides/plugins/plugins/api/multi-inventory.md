@@ -35,7 +35,7 @@ Meanwhile, refer to the following links regarding the general use of the Admin A
 
 The Multi-Inventory feature implements a specific data structure for its internal stock handling. The following entity-relationship model visually represents the new entities, as well as the relationships between them and platform entities.
 
-![multi-inventory_data-structure](../../../../.gitbook/assets/multi-inventory-data-structure.png)
+![multi-inventory_data-structure](../../../../assets/multi-inventory-data-structure.png)
 
 ## Working with the API
 

@@ -318,17 +318,17 @@ After we are done with the PHP code, `action.create.tag` is received from the re
 
 To see action list, we select a Trigger, for example [Example\Event] from the Trigger drop-down in the Flow tab. After that, we choose option `ACTION (THEN)`. A action component appears with action list.
 
-![Flow Builder trigger](../../../../../.gitbook/assets/flow-builder-trigger-drop.png)
+![Flow Builder trigger](../../../../../assets/flow-builder-trigger-drop.png)
 
-![Flow Builder action then](../../../../../.gitbook/assets/flow-builder-action-then.png)
+![Flow Builder action then](../../../../../assets/flow-builder-action-then.png)
 
-![Flow Builder trigger](../../../../../.gitbook/assets/flow-builder-action-no-label.png)
+![Flow Builder trigger](../../../../../assets/flow-builder-action-no-label.png)
 
 ### Step 1: Show action label in action list
 
 First, we need to define some information like `icon`, `label`, `actionName` of action in `main.js`. To be consistent with the custom action defined in our PHP code, also create an action name called `CREATE_TAG` to represent `action.create.tag`, which gets from the response of `/api/_info/flow-actions.json`.
 
-![Flow Builder action services list](../../../../../.gitbook/assets/flow-builder-action-sevices-list.png)
+![Flow Builder action services list](../../../../../assets/flow-builder-action-sevices-list.png)
 
 ```jsx
 // <plugin root>/src/Resources/app/administration/src/main.js
@@ -382,7 +382,7 @@ Otherwise, by default, it will be on the General group.
 
 Here is the result for the after the **Step 1**.
 
-![Choose a Flow Builder Action](../../../../../.gitbook/assets/flow-builder-trigger-action.png)
+![Choose a Flow Builder Action](../../../../../assets/flow-builder-trigger-action.png)
 
 ### Step 2: Add configuration for action
 
@@ -523,11 +523,11 @@ Component.register('swag-example-plugin-modal', {
 
 Here is the final result
 
-![Flow Builder create tag](../../../../../.gitbook/assets/flow-builder-tag.png)
+![Flow Builder create tag](../../../../../assets/flow-builder-tag.png)
 
 Click on [Save action] and we will get the result as below screenshot.
 
-![Flow Builder create tag result](../../../../../.gitbook/assets/flow-builder-tag-result.png)
+![Flow Builder create tag result](../../../../../assets/flow-builder-tag-result.png)
 
 #### Custom configuration for action without the modal
 
@@ -535,7 +535,7 @@ You don't need a modal for the configuration. It can be added automatically.
 
 Imagine, your action is already in the action list after [the first step](#step-1-show-action-label-in-action-list)
 
-![Choose a Flow Builder Action](../../../../../.gitbook/assets/flow-builder-trigger-action.png)
+![Choose a Flow Builder Action](../../../../../assets/flow-builder-trigger-action.png)
 
 First, override the `openDynamicModal` method in the plugin to check if the value matches the desired action. Then, call the `onSaveActionSuccess` directly with the configuration. After the check, call `return`.
 
@@ -575,10 +575,10 @@ Component.register('sw-flow-sequence-action', {
 
 Now, after you click on the action, the new sequence will automatically be added to the action list like this:
 
-![Flow Builder create tag result](../../../../../.gitbook/assets/flow-builder-tag-result.png)
+![Flow Builder create tag result](../../../../../assets/flow-builder-tag-result.png)
 
 ### Demo
 
 You can view the whole demo for this custom Flow Builder trigger and action below:
 
-![Flow Builder demo](../../../../../.gitbook/assets/flow-builder-demo.gif)
+![Flow Builder demo](../../../../../assets/flow-builder-demo.gif)

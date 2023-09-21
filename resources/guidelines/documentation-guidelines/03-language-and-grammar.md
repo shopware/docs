@@ -47,7 +47,7 @@ It is okay to use passive voice in the following cases:
 
 * In general, use the second-person instead of the first-person, such as *you* instead of *we* or *I*. However, first-person usage is an exception for FAQs.
 
-* If you are guiding the reader to perform something, use an imperative form with an implicit you. For example:
+* If you are guiding the reader to perform something, use an imperative form with an implicit *you*. For example:
 
 ::: tip
   **Recommended** - Create a PDF file.
