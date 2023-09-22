@@ -81,3 +81,23 @@ nav:
 | state_leave.order.state.cancelled                      | Triggers when an order leaves status "Cancelled"                                                  | Add/remove tag, send mail, generate document, set order status |
 | state_enter.order_transaction.state.unconfirmed        | Triggers when an order payment enters status "Unconfirmed"                                        | Add/remove tag, send mail, generate document, set order status |
 | state_leave.order_transaction.state.unconfirmed        | Triggers when an order payment leaves status "Unconfirmed"                                        | Add/remove tag, send mail, generate document, set order status |
+
+## B2B
+
+### Trigger interfaces
+
+| Name          | Provided   |
+|:--------------|:-----------|
+| EmployeeAware | employeeId |
+
+### Events
+
+| Class                     | Description                                            | Component           |
+|:--------------------------|:-------------------------------------------------------|:--------------------|
+| collect.permission-events | Triggers when base permissions are created             | Employee Management |
+| employee.invite.sent      | Triggers when an employee invitation has been sent     | Employee Management |
+| employee.invite.accepted  | Triggers when an employee invitation has been accepted | Employee Management |
+| employee.recovery.request | Triggers when an employee requests password recovery   | Employee Management |
+| employee.status.changed   | Triggers when the status of an employee changes        | Employee Management |
+| employee.role.changed     | Triggers when the role of an employee changes          | Employee Management |
+| employee.order.placed     | Triggers when an employee places an order              | Employee Management |
