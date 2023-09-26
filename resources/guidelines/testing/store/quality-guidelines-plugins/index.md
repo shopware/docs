@@ -84,7 +84,7 @@ Be sure to use the most recent testing checklist from Shopware and not from any 
 
 * **Cookie check in the browser console**: If the app sets cookies in any way in the checkout, these cookies must be registered to the cookie configuration box in the frontend.
 
-* Every external link in the Administration or Storefront must be marked as *rel="no opener" AND target="_blank"*.
+* Every external link in the Administration or Storefront must be marked as *rel="noopener" AND target="_blank"*.
 
 * We check for styling errors on every viewport.
 
