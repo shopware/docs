@@ -17,4 +17,4 @@ redirects:
     guides/integrations-api/admin-api/writing-entities/product-data.html: guides/integrations-api/
     resources/references/api-reference/admin-api-reference.html: guides/integrations-api/
     concepts/extensions/elasticsearch-concept.html: concepts/framework/elasticsearch.html
-    guides/plugins/plugins/storefront/use-csrf-protection.html: guides/security/samesite-protection.html
+    guides/plugins/plugins/storefront/use-csrf-protection.html: guides/hosting/configurations/framework/samesite-protection.html
