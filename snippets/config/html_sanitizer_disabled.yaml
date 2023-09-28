@@ -1,0 +1,3 @@
+shopware:
+  html_sanitizer:
+    enabled: false
