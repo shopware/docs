@@ -11,10 +11,7 @@ When running Shopware 6 there are various configuration options you can use to c
 
 Some features of Shopware are only activated when the corresponding feature flag is enabled. Feature flags can be enabled in your project's `.env` file:
 
-```sh
-// <project root>/.envell
-STOCK_HANDLING=1
-```
+<<< @/docs/snippets/config/stock.sh
 
 ## Enable stock management system
 
@@ -22,10 +19,7 @@ As of Shopware 6.5.5, the stock management system has been rewritten. The `produ
 
 The new system is not enabled by default. To enable it, set the `STOCK_HANDLING` feature flag to `1`.
 
-```sh
-// <project root>/.envell
-STOCK_HANDLING=1
-```
+<<< @/docs/snippets/config/stock.sh
 
 In the next major version of Shopware, the new stock management system will become the default.
 
@@ -37,11 +31,6 @@ You can completely disable Shopware's default stock management system. When disa
 
 To disable, set `shopware.stock.enable_stock_management` to `false`:
 
-```yaml
-// <project root>/config/packages/shopware.yaml
-shopware:
-  stock:
-    enable_stock_management: false
-```
+<<< @/docs/snippets/config/stock_disabled.yaml
 
 For more detailed implementation refer to [Stock](../../../../guides/plugins/plugins/content/stock/) guide section.

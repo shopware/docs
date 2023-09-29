@@ -25,26 +25,8 @@ In the copied `shopware.yaml` file (z-shopware.yaml), you should include an addi
 
 In this example, the `<img>` tag, as well as the CSS attributes `src`, `alt` and `style` are added to the whitelist:
 
-```yaml
-
-shopware:
-    html_sanitizer:
-        sets:
-            -   name: basic
-                tags: [ "img" ]
-                attributes: [ "src", "alt", "style" ]
-                options:
-                    - key: HTML.Trusted
-                      value: true
-                    - key: CSS.Trusted
-                      value: true
-```
+<<< @/docs/snippets/config/html_sanitizer.yaml
 
 If you want to deactivate the sanitizer despite security risks, you can also do this in the `z-shopware.yaml` using the following code:
 
-```yaml
-
-shopware:
-    html_sanitizer:
-        enabled: false
-```
+<<< @/docs/snippets/config/html_sanitizer_disabled.yaml
