@@ -8,6 +8,8 @@ nav:
 # Quality Guidelines for Apps and Themes based on App System in Shopware Store
 
 > **Changelog**
+>> 27/09/23: [Added - Identical name rule](#every-app-based-on-the-app-system)
+> 
 >> 26/07/23: [Added - Name preset according to new naming scheme](#every-app-based-on-the-app-system)
 >
 >> 18/07/23: [Compiled code.](../quality-guidelines-apps/#checklist-for-app-testing)
@@ -102,7 +104,7 @@ To ensure that the code remains accessible to all developers, the uncompiled ver
 
 ### App descriptions in your Shopware account
 
-* **Display name:** According to the new naming scheme, the word "plugin" is no longer allowed in the display name of extensions. Instead of "Plugin" use "Extension" or "App".
+* **Display name:** According to the new naming scheme, the word "plugin" is no longer allowed in the display name of extensions. Instead of "Plugin" use "Extension" or "App". An extension with a name that directly reflects its functional purpose is permissible, even if it shares the same name as another extension.
 
 * **Short description:** (Min. 150 - max. 185 characters) - The app's short description must have at least 150 characters long and unique. Use the short description wisely, as the text will be used to tease your app in the overview along with the "Customers also bought" and "Customers also viewed" recommendations. The short description is also published as a meta-description.
 
