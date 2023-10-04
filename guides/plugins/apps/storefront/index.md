@@ -43,7 +43,7 @@ Therefore, place the assets you need in the `/Resources/public` folder. All file
 Note that this feature was introduced in Shopware 6.4.12.0, and is not supported in previous versions.
 :::
 
-You may want your templates loaded before or after other extensions. To do so, you can define a `load-priority` inside your `manifest.xml`. The default value to this is 0, with positive numbers your template will be loaded earlier, and with negative numbers later.
+You may want your templates loaded before or after other extensions. To do so, you can define a `template-load-priority` inside your `manifest.xml`. The default value to this is 0, with positive numbers your template will be loaded earlier, and with negative numbers later.
 
 ```xml
 // manifest.xml
@@ -53,7 +53,7 @@ You may want your templates loaded before or after other extensions. To do so, y
         ....
     </meta>
     <storefront>
-        <load-priority>100</load-priority>
+        <template-load-priority>100</template-load-priority>
     </storefront>    
 </manifest>
 ```
