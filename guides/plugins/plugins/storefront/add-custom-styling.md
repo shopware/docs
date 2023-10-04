@@ -57,6 +57,10 @@ body {
 
 This comes with the advantage that when you want to change this color for all occurrences, you only have to change this variable once and the hard coded values are not cluttered all over the codebase.
 
+::: info
+Refer to the theme guide **[Override Bootstrap Variables in a Theme](../../themes/override-bootstrap-variables-in-a-theme.md)** if you want to override some of the default Shopware variables.
+:::
+
 ### Testing its functionality
 
 Now you want to test if your custom styles actually apply to the Storefront. For this, you have to execute the compiling and building of the `.scss` files first. This is done by using the following command:
