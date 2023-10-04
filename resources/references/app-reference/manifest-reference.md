@@ -50,6 +50,10 @@ nav:
         <!-- Dev only, the secret that is used to sign the registration request -->
         <secret>mysecret</secret>
     </setup>
+    <!-- Optional, can be omitted if your app template needs higher load priority then other plugins/apps -->
+    <storefront>
+        <template-load-priority>100</template-load-priority>
+    </storefront>
     <!-- Optional, can be omitted if your app does not need permissions -->
     <permissions>
         <!-- request each permission your app needs -->
