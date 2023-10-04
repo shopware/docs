@@ -28,7 +28,7 @@ Create the two themes like described in [Theme inheritance](./add-theme-inherita
 Add some configuration fields you need in your basic theme inside the `theme.json` of the `SwagBasicExampleTheme`
 
 ```js
-// <plugin root>/src/Resources/theme.jsonon
+// <plugin root>/src/Resources/theme.json
 {
   "name": "SwagBasicExampleTheme",
   .....
@@ -89,7 +89,7 @@ Add some configuration fields you need in your basic theme inside the `theme.jso
 Add configurations to your extended theme
 
 ```js
-// <plugin root>/src/Resources/theme.jsonon
+// <plugin root>/src/Resources/theme.json
 {
   "name": "SwagBasicExampleThemeExtend",
   .....
