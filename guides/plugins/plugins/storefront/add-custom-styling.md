@@ -58,7 +58,7 @@ body {
 This comes with the advantage that when you want to change this color for all occurrences, you only have to change this variable once and the hard coded values are not cluttered all over the codebase.
 
 ::: info
-Refer to the theme guide **[Override Bootstrap Variables in a Theme](../../themes/override-bootstrap-variables-in-a-theme.md)** if you want to override some of the default Shopware variables.
+Refer to the theme guide **[Override Bootstrap Variables in a Theme](../../themes/override-bootstrap-variables-in-a-theme.html)** if you want to override some of the default Shopware variables.
 :::
 
 ### Testing its functionality
