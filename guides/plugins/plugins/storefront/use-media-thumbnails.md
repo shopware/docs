@@ -33,7 +33,7 @@ public function searchMedia (array $ids, Context $context): MediaCollection {
 
 This `searchMedia` function reads out the corresponding media objects for the given IDs in order to continue working with them afterwards. Here is an example with a custom field \(`custom_sports_media_id`\) on the product detail page:
 
-```text
+```twig
 {% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
 
 {% block page_product_detail_media %}
@@ -56,7 +56,7 @@ Please note that this function performs a query against the database and should 
 
 The function is already structured in a way that several IDs can be passed. To read the media objects within the product listing we recommend the following procedure:
 
-```text
+```twig
 {% sw_extends '@Storefront/storefront/component/product/listing.html.twig' %}
 
 {% block element_product_listing_col %}
@@ -92,7 +92,7 @@ A common issue when developing responsive web pages is resizing images properly 
 
 Fortunately, you do not need to define these attributes on your own - For that, Shopware introduced the `sw_thumbnails` Twig function: `sw_thumbnails` automatically generates the `img` and `srcset` code. This is the minimal configuration:
 
-```text
+```twig
 {% sw_thumbnails 'my-thumbnails' with {
     media: cover
 } %}
@@ -112,7 +112,7 @@ E.g. if the browser is in Bootstrap viewport `lg` \(which is 992px - 1199px\) us
 
 Let's think about the snippet below:
 
-```text
+```twig
 {% sw_thumbnails 'my-thumbnails' with {
     media: cover,
     sizes: {
@@ -143,7 +143,7 @@ This example will print out the following output:
 
 By giving the `default` size you can override the media queries and always refer to a single image source for all viewports. To give an example, think about always using a small thumbnail closest to 100px regardless of the current viewport:
 
-```text
+```twig
 {% sw_thumbnails 'my-thumbnails' with {
     media: cover,
     sizes: {
@@ -177,7 +177,7 @@ Please note that those sizes only work with bootstrap viewports, like xs, sm, md
 
 With the `attributes` param, additional attributes can be applied. Imagine the following example:
 
-```text
+```twig
 {% sw_thumbnails 'my-thumbnails' with {
     media: cover,
     attributes: {
@@ -203,7 +203,7 @@ This will generate the output below:
 
 With the `attributes` param, it is also possible to enable native lazy loading on the thumbnail element:
 
-```text
+```twig
 {% sw_thumbnails 'my-thumbnails' with {
     media: cover,
     attributes: {

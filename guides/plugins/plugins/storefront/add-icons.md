@@ -38,7 +38,7 @@ You can also provide "solid" icons or any other custom pack names which can be c
 
 By default, Shopware looks inside the "default" folder.
 
-```text
+```twig
 {% sw_icon 'done-outline-24px' style {
     'namespace': 'TestPlugin'
 } %}
@@ -68,7 +68,7 @@ However, these are not all of your possibilities of configuration. As you see, y
 
 A simple but fully functional example could look like below:
 
-```text
+```twig
 {% sw_extends '@Storefront/storefront/base.html.twig' %}
 
 {% block base_body %}
