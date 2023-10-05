@@ -29,8 +29,8 @@ In the snippet settings in the Administration you're able to edit and translate 
 
 Adding custom fields in the Storefront is quite simple. You basically use Twig this way:
 
-```text
-{{ "customFields.my_test_field"|trans|sw_sanitize }}: {{ page.product.translated.customFields.my_test_field }}
+```twig
+{% "customFields.my_test_field"|trans|sw_sanitize }}: {{ page.product.translated.customFields.my_test_field }}
 ```
 
 ::: info

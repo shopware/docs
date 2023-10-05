@@ -47,7 +47,7 @@ It's time to fill your custom `logo.html.twig` file. First of all you want to ex
 
 Put this line at the very beginning of your file:
 
-```text
+```twig
 {% sw_extends '@Storefront/storefront/layout/header/logo.html.twig' %}
 ```
 
@@ -57,7 +57,7 @@ You want to replace the logo with some custom text though, so let's have a look 
 
 To override it now, just add the very same block into your custom file and replace its contents:
 
-```text
+```twig
 {% sw_extends '@Storefront/storefront/layout/header/logo.html.twig' %}
 
 {% block layout_header_logo_link %}
@@ -83,8 +83,8 @@ Of course this example is very simplified and does not use any variables, even t
 
 But rather than that, how do you know which variables are available to use? For this case, you can just dump all available variables:
 
-```text
-{{ dump() }}
+```twig
+{% dump() }}
 ```
 
 This `dump()` call will print out all variables available on this page.

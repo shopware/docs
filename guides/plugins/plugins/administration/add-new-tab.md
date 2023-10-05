@@ -242,7 +242,7 @@ This file mainly registers a new component with a custom title and a custom temp
 
 Here's what this new template could look like:
 
-```text
+```html
 // <plugin root>/src/Resources/app/administration/src/view/sw-product-detail-custom/sw-product-detail-custom.html.twig
 <sw-card title="Custom">
     Hello world!

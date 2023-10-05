@@ -57,7 +57,7 @@ Now we want to use our previously created snippet in our twig template, we can d
 
 Translation without placeholders:
 
-```text
+```twig
 <div class="product-detail-headline">
     {{ 'header.example' | trans }}
 </div>
@@ -65,7 +65,7 @@ Translation without placeholders:
 
 Translation with placeholders:
 
-```text
+```twig
 <div class="product-detail-headline">
     {{ 'soldProducts' | trans({'%count%': 3, '%country%': 'Germany'}) }}
 </div>

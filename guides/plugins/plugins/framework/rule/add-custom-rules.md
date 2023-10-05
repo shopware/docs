@@ -304,7 +304,7 @@ For that, we need to write some twig code. The important property here is the `r
 Refer to [customize administration components](../../administration/customizing-components) to know more about it.
 :::
 
-```text
+```twig
 {% block example_twig_blog %}
     <sw-select-rule-create
         rule-aware-group-key="productPrices"

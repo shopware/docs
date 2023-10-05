@@ -181,7 +181,7 @@ You can use the `replace_recursive` Twig filter for this case.
 
 Imagine the following example can be found in the core:
 
-```text
+```twig
 {% set productSliderOptions = {
     productboxMinWidth: sliderConfig.elMinWidth.value ? sliderConfig.elMinWidth.value : '',
     slider: {
@@ -204,7 +204,7 @@ Imagine the following example can be found in the core:
 
 Now you want to overwrite the value `slider.mouseDrag` with your plugin. The variable can be overwritten with `replace_recursive`:
 
-```text
+```twig
 {% block element_product_slider_slider %}
     {% set productSliderOptions = productSliderOptions|replace_recursive({
         slider: {

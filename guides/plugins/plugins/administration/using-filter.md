@@ -35,7 +35,7 @@ If we want to use our filter in Twig templates, we can easily use it by using a 
 
 Below you can see two example implementations, how it could be done with single argument filters.
 
-```text
+```twig
 {% block my_custom_block %}
     <p>
        {{ $tc('swag-example.general.myCustomText')|example }}
@@ -43,13 +43,13 @@ Below you can see two example implementations, how it could be done with single 
 {% endblock %}
 ```
 
-```text
+```html
 <example-component :name="$tc('swag-example.general.myCustomText')|example"></example-component>
 ```
 
 When using multiple arguments, we can pass them as shown below.
 
-```text
+```twig
 {% block my_custom_block %}
     <p>
        {{ $tc('swag-example.general.myCustomText')|example('secondArgument', 'thirdArgument') }}
@@ -57,6 +57,6 @@ When using multiple arguments, we can pass them as shown below.
 {% endblock %}
 ```
 
-```text
+```html
 <example-component :title="$tc('swag-example.general.myCustomText')|example('secondArgument', 'thirdArgument')"></example-component>
 ```
