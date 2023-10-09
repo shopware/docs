@@ -36,12 +36,12 @@ Apart from the arguably most central responsibility of creating the UI itself, w
 
 ## Structure
 
-The main Vue.js application is wrapped inside a Symfony bundle. You will find the specific SPA sources inside the Administration component in a specific sub-directory of `platform/src/Administration`. Therefore, the SPA's main entry point is: `./Resources/app/administration`. Everything else inside `platform/src/Administration` can be seen as a wrapped configuration around the SPA. This bundle's main concern is to set up the initial Routing \(`/admin`\) and the Administration's main template file, which initializes the SPA \(`./Resources/views/administration/index.html.twig`\) and to provide translation handling.
+The main Vue.js application is wrapped inside a Symfony bundle. You will find the specific SPA sources inside the Administration component in a specific sub-directory of `shopware/src/Administration`. Therefore, the SPA's main entry point is: `./Resources/app/administration`. Everything else inside `shopware/src/Administration` can be seen as a wrapped configuration around the SPA. This bundle's main concern is to set up the initial Routing \(`/admin`\) and the Administration's main template file, which initializes the SPA \(`./Resources/views/administration/index.html.twig`\) and to provide translation handling.
 
 The `src` directory of the SPA below is structured along the three different use cases the Administration faces - provide common functionality, an application skeleton, and modules.
 
 ```bash
-<platform/src/Administration/Resources/app/administration/src/>
+<shopware/src/Administration/Resources/app/administration/src/>
 |- app
 |- core
 |- module
@@ -80,7 +80,7 @@ At least one `page` is mandatory in each module. Though views and components can
 Having a look at a more practical example, one can look closer at the order module. Typically, you will find this structure alongside other modules, especially when creating pages or views for creating/editing, listing, or viewing a specific entity. Refer to the [Add custom module](../../../guides/plugins/plugins/administration/add-custom-module) article if you want to learn more about adding your custom module with a Shopware plugin.
 
 ```bash
-<platform/src/Administration/Resources/app/administration/src/module/sw-order/>
+<shopware/src/Administration/Resources/app/administration/src/module/sw-order/>
 |- acl
 |- component
   |- sw-order-address-modal

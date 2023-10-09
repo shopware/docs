@@ -15,7 +15,7 @@ nav:
 
 ::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-08-21-unified-notification-titles.md)
+You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2020-08-21-unified-notification-titles.md)
 :::
 
 ## Context
@@ -36,7 +36,7 @@ it is just logical to make use of the global namespace and manage notification t
 
 * Implement a global default title for all notifications types in
 
-`/platform/src/Administration/Resources/app/administration/src/app/mixin/notification.mixin.js` 
+`/shopware/src/Administration/Resources/app/administration/src/app/mixin/notification.mixin.js` 
 
 * Remove the superfluous title definitions and snippets
 

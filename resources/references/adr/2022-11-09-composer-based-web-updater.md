@@ -16,7 +16,7 @@ nav:
 
 ::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2022-11-09-composer-based-web-updater.md)
+You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2022-11-09-composer-based-web-updater.md)
 :::
 
 ## Context
@@ -70,7 +70,7 @@ For updating config files Symfony Flex requires the `git` binary to be installed
 This is a requirement for reviewing all the changes that have been made to the config files.
 To avoid this we will backup the `.env` and the `.htaccess` file and overwrite all config files from a fresh installation and restore the backup.
 
-To merge the upcoming changes of the `.htaccess` file we will use our already existing [UpdateHtaccess](https://github.com/shopware/platform/blob/6.4.17.0/src/Core/Framework/Update/Services/UpdateHtaccess.php) which is using the Markers to update only our own changes.
+To merge the upcoming changes of the `.htaccess` file we will use our already existing [UpdateHtaccess](https://github.com/shopware/shopware/blob/6.4.17.0/src/Core/Framework/Update/Services/UpdateHtaccess.php) which is using the Markers to update only our own changes.
 For the `.env` files we will make use of `.env.local` to be able to update the normal `.env` file. 
 
 The normal CLI update way will require a git repository to be initialised and uses the normal Symfony update flow.

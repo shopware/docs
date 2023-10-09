@@ -49,7 +49,7 @@ Well, this is **not** how it works. Using a write operation will **not** delete 
 
 The right way to do it is to delete the category association first, only to then re-assign a new category. Let's take a look at the deletion part first, since this is where most people struggle.
 
-The product categories are a `ManyToMany` association and thus come with a mapping table, and a custom entity. You can find the entity definition for the association [here](https://github.com/shopware/platform/blob/trunk/src/Core/Content/Product/Aggregate/ProductCategory/ProductCategoryDefinition.php).
+The product categories are a `ManyToMany` association and thus come with a mapping table, and a custom entity. You can find the entity definition for the association [here](https://github.com/shopware/shopware/blob/trunk/src/Core/Content/Product/Aggregate/ProductCategory/ProductCategoryDefinition.php).
 
 In order to delete it, we once again need its repository. The name for the entity can be found in the definition, to be precise inside of the `getEntityName` method.
 

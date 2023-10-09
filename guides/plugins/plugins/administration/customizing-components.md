@@ -22,7 +22,7 @@ In this guide we want to change the heading of the Shopware 6 dashboard to be `W
 To do this we first need to find an appropriate twig block to override.
 We don't want to replace too much but also to not override too little of the Administration.
 In this case we only want to override the headline and not links or anything else on the page.
-Looking at the twig markup for the dashboard [here](https://github.com/shopware/platform/blob/trunk/src/Administration/Resources/app/administration/src/module/sw-dashboard/page/sw-dashboard-index/sw-dashboard-index.html.twig),
+Looking at the twig markup for the dashboard [here](https://github.com/shopware/shopware/blob/trunk/src/Administration/Resources/app/administration/src/module/sw-dashboard/page/sw-dashboard-index/sw-dashboard-index.html.twig),
 suggests that we only need to override the Twig block with the name `sw_dashboard_index_content_intro_content_headline` to achieve our goal.
 
 ## Preparing the override

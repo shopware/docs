@@ -14,7 +14,7 @@ To make use of the custom entities register your entities in your `entities.xml`
 ```xml
 // <app root>/Resources/entities.xml
 <?xml version="1.0" encoding="utf-8" ?>
-<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/CustomEntity/Xml/entity-1.0.xsd">
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/CustomEntity/Xml/entity-1.0.xsd">
     <entity name="custom_entity_bundle">
         <fields>
             <string name="name" required="true" translatable="true" store-api-aware="true" />
@@ -52,7 +52,7 @@ By default, it is not possible to create a custom field of type "Entity Select",
 ```xml
 // Resources/entities.xml
 <?xml version="1.0" encoding="utf-8" ?>
-<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/CustomEntity/Xml/entity-1.0.xsd">
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/CustomEntity/Xml/entity-1.0.xsd">
     <entity name="custom_entity_bundle" custom-fields-aware="true" label-property="name">
         <fields>
             <string name="name" required="true" translatable="true" store-api-aware="true" />
@@ -84,7 +84,7 @@ you need the appropriate [permissions](../../../../resources/references/app-refe
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
         <!-- ... -->
     </meta>
@@ -101,7 +101,7 @@ Since v6.4.15.0 it is possible to also use the `ce_` shorthand prefix for your c
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
-<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/CustomEntity/Xml/entity-1.0.xsd">
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/CustomEntity/Xml/entity-1.0.xsd">
     <entity name="ce_bundle">
         <fields>
             ...

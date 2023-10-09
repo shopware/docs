@@ -40,7 +40,7 @@ The Shopware HTTP cache has a variety of mechanisms to answer these questions.
 
 ## When will the page be cached?
 
-The called route needs an `@HttpCache` annotation. Examples for this can be found in the [ProductController](https://github.com/shopware/platform/blob/v6.3.4.1/src/Storefront/Controller/ProductController.php#L86).
+The called route needs an `@HttpCache` annotation. Examples for this can be found in the [ProductController](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Storefront/Controller/ProductController.php#L86).
 
 ```php
 /**

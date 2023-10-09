@@ -26,7 +26,7 @@ For products, this could be e.g. `product.written` or `product.deleted`. For you
 
 However, some default Shopware entities come with special "Event classes", which are basically a class, which contains all
 possible kinds of events as constants.
-Have a look at the [product event class](https://github.com/shopware/platform/blob/v6.4.0.0/src/Core/Content/Product/ProductEvents.php) for example.
+Have a look at the [product event class](https://github.com/shopware/shopware/blob/v6.4.0.0/src/Core/Content/Product/ProductEvents.php) for example.
 This way you can also find out about all the possible DAL events available in Shopware.
 
 Finding those "event classes" can be done by searching for the term `@Event` in your project.
@@ -45,7 +45,7 @@ public static function getSubscribedEvents(): array
 
 As you can see, you can either use the event class constants, if available, or the string itself.
 
-You'll then have access to several event specific information, e.g. your listener method will have access to an [EntityWrittenEvent](https://github.com/shopware/platform/blob/v6.4.0.0/src/Core/Framework/DataAbstractionLayer/Event/EntityWrittenEvent.php)
+You'll then have access to several event specific information, e.g. your listener method will have access to an [EntityWrittenEvent](https://github.com/shopware/shopware/blob/v6.4.0.0/src/Core/Framework/DataAbstractionLayer/Event/EntityWrittenEvent.php)
 instance when subscribing to the `written` event.
 
 ```php
@@ -54,7 +54,7 @@ public function onCustomEntityWritten(EntityWrittenEvent $event): void
 }
 ```
 
-You can find all of those DAL event classes [here](https://github.com/shopware/platform/tree/v6.4.0.0/src/Core/Framework/DataAbstractionLayer/Event).
+You can find all of those DAL event classes [here](https://github.com/shopware/shopware/tree/v6.4.0.0/src/Core/Framework/DataAbstractionLayer/Event).
 
 ## General PHP events
 
@@ -105,7 +105,7 @@ The [next section](#Specifically searching for events) will cover how to find th
 ### Specifically searching for events
 
 If you're really looking for a fitting event for your purpose, you might want to directly search for them.
-This can be done by searching through the `<shopware root>/platform/src` or the `<shopware root>/vendor/shopware/platform/src` directory,
+This can be done by searching through the `<shopware root>/platform/src` or the `<shopware root>/vendor/shopware/shopware/src` directory,
 depending on whether you are using the [development](https://github.com/shopware/development) or the [production template](https://github.com/shopware/production).
 Use one of the following search terms:
 
@@ -162,7 +162,7 @@ There's a few more event "types" or classes that you may stumble upon, which are
 Usually when a [Storefront page](../../storefront/add-custom-page) is being loaded, a respective "page is being loaded" event is fired
 as well.
 
-You can find an example in the [GenericPageLoader](https://github.com/shopware/platform/blob/v6.4.0.0/src/Storefront/Page/GenericPageLoader.php), which is kinda a "default page" to be used pretty often.
+You can find an example in the [GenericPageLoader](https://github.com/shopware/shopware/blob/v6.4.0.0/src/Storefront/Page/GenericPageLoader.php), which is kinda a "default page" to be used pretty often.
 It dispatches an `GenericPageLoadedEvent` every time the page is being loaded.
 
 This way, you can react to this and e.g. add more meta information to the said page.
@@ -175,7 +175,7 @@ You should be familiar with the `Criteria` class, at least if you've dealt with 
 There are many methods, that will dispatch a "criteria" event whenever a given default Shopware entity is being loaded using
 a `Criteria` instance.
 
-Let's have a look at an [example code](https://github.com/shopware/platform/blob/v6.4.0.0/src/Core/Content/Product/SalesChannel/Listing/ResolveCriteriaProductListingRoute.php#L55-L59):
+Let's have a look at an [example code](https://github.com/shopware/shopware/blob/v6.4.0.0/src/Core/Content/Product/SalesChannel/Listing/ResolveCriteriaProductListingRoute.php#L55-L59):
 
 ```php
 /**
@@ -212,8 +212,8 @@ Business events are fired everytime an important business / ecommerce action occ
 Therefore, you can use them to react on those events, most times there even is an event fired **before** an action happened.
 Have a look at those two example events:
 
-- [CustomerBeforeLoginEvent](https://github.com/shopware/platform/blob/v6.4.0.0/src/Core/Checkout/Customer/SalesChannel/AccountService.php#L97-L98)
-- [CustomerLoginEvent](https://github.com/shopware/platform/blob/v6.4.0.0/src/Core/Checkout/Customer/SalesChannel/AccountService.php#L109-L110)
+- [CustomerBeforeLoginEvent](https://github.com/shopware/shopware/blob/v6.4.0.0/src/Core/Checkout/Customer/SalesChannel/AccountService.php#L97-L98)
+- [CustomerLoginEvent](https://github.com/shopware/shopware/blob/v6.4.0.0/src/Core/Checkout/Customer/SalesChannel/AccountService.php#L109-L110)
 
 The kind of information they contain and which you can modify is different for each event, so you'll have to have a look at the respective
 event classes to find out about it.
@@ -260,7 +260,7 @@ this.$emitter.subscribe('someEvent', (additionalData) => {
 ### Searching for javascript events
 
 Searching for the said javascript events is done by searching for the following term in either the `<shopware root>/platform/src/Storefront/Resources/app/storefront/src` directory for
-the [development template](https://github.com/shopware/development) or the `<shopware root>/vendor/shopware/platform/src/Storefront/Resources/app/storefront/src` directory
+the [development template](https://github.com/shopware/development) or the `<shopware root>/vendor/shopware/shopware/src/Storefront/Resources/app/storefront/src` directory
 for the [production template](https://github.com/shopware/production):
 `$emitter.publish`.
 This way, you'll find all occurrences of plugins actually firing a custom event.
@@ -276,7 +276,7 @@ this.$emit('some-event', additionalData);
 ```
 
 Therefore you can also find those occurrences by searching for `$emit` in the `<shopware root>/platform/src/Administration/Resources/app/administration/src` directory for
-the [development template](https://github.com/shopware/development) or the `<shopware root>/vendor/shopware/platform/src/Administration/Resources/app/administration/src` directory
+the [development template](https://github.com/shopware/development) or the `<shopware root>/vendor/shopware/shopware/src/Administration/Resources/app/administration/src` directory
 for the [production template](https://github.com/shopware/production).
 
 ### Vue extension

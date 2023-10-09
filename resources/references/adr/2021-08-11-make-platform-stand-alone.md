@@ -1,5 +1,5 @@
 ---
-title: Make shopware/platform stand-alone for development and testing
+title: Make shopware/shopware stand-alone for development and testing
 date: 2021-08-11
 area: product-operations
 tags:
@@ -13,11 +13,11 @@ nav:
 
 ---
 
-# Make shopware/platform stand-alone for development and testing
+# Make shopware/shopware stand-alone for development and testing
 
 ::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-08-11-make-platform-stand-alone.md)
+You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2021-08-11-make-platform-stand-alone.md)
 :::
 
 ## Context
@@ -25,7 +25,7 @@ You can find the original version [here](https://github.com/shopware/platform/bl
 The platform requires some additional config, a console and web entrypoint and additional development tooling for development, tests and
 running the application. In practice this is provided by one of the templates: `shopware/development` or `shopware/production`. 
 This creates a cyclic dependency, which brings some problems:
-- `shopware/development` and `shopware/platform` need to be updated in lockstep, which makes updating them individually sometimes impossible 
+- `shopware/development` and `shopware/shopware` need to be updated in lockstep, which makes updating them individually sometimes impossible 
 - some IDEs have trouble with multi repository projects
 - updating development tooling breaks everything
 - auto-detection of git revision and diff is broken, because the development template is the root
@@ -33,9 +33,9 @@ This creates a cyclic dependency, which brings some problems:
 
 ## Decision
 
-- use shopware/platform directly in the pipeline
+- use shopware/shopware directly in the pipeline
 - allow development without a template, by moving the development tooling into platform
-- only advertise this as `shopware/platform` development setup. Projects should still start with `shopware/production` as a template
+- only advertise this as `shopware/shopware` development setup. Projects should still start with `shopware/production` as a template
 - `shopware/development` should continue to work
 - allow testing by adding entrypoints for cli and web
 - add scripts to composer to ease common tasks
@@ -56,5 +56,5 @@ This creates a cyclic dependency, which brings some problems:
 - simplified CI, which also makes errors easier to reproduce locally
 - simplified local setup  
 - no custom scripts, that are not available in all setups
-- projects may try to use shopware/platform directly
+- projects may try to use shopware/shopware directly
 - yet another shopware setup to choose from

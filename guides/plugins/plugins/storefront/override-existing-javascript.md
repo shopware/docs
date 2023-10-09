@@ -42,7 +42,7 @@ Now you can override the functions from the parent class.
 
 ### Always show the cookie bar
 
-Let's start with the function, that the cookie bar should _always_ show up, no matter if the user already configured his cookie preferences or not. By having a look at the [original cookie permission plugin](https://github.com/shopware/platform/blob/v6.3.4.0/src/Storefront/Resources/app/storefront/src/plugin/cookie/cookie-permission.plugin.js#L46-L53), we can see that it's only shown when the item `this.options.cookieName` is set in the `CookieStorage`. The latter is just a neat helper from Shopware 6 itself to simplify dealing with cookies in JavaScript.
+Let's start with the function, that the cookie bar should _always_ show up, no matter if the user already configured his cookie preferences or not. By having a look at the [original cookie permission plugin](https://github.com/shopware/shopware/blob/v6.3.4.0/src/Storefront/Resources/app/storefront/src/plugin/cookie/cookie-permission.plugin.js#L46-L53), we can see that it's only shown when the item `this.options.cookieName` is set in the `CookieStorage`. The latter is just a neat helper from Shopware 6 itself to simplify dealing with cookies in JavaScript.
 
 So we'll just override the `init()` method and make sure this value is always set to an empty string, which will evaluate to `false`.
 

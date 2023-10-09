@@ -7,7 +7,7 @@ nav:
 
 ::: info
 This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/code/core/decorator-pattern.md)
+You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/code/core/decorator-pattern.md)
 :::
 
 # Decorator pattern
@@ -22,7 +22,7 @@ https://symfony.com/doc/current/service_container/service_decoration.html
 
 ## How to use the decorator pattern
 
-Instead of interfaces, we use abstract classes to define the base functionality of a service. This allows us to add more functions without breaking existing code. This decision was made in this [ADR](https://github.com/shopware/platform/71ef1dffc97a131069cd4649f71ba35d04771e24/trunk/adr/2020-11-25-decoration-pattern.md).
+Instead of interfaces, we use abstract classes to define the base functionality of a service. This allows us to add more functions without breaking existing code. This decision was made in this [ADR](https://github.com/shopware/shopware/71ef1dffc97a131069cd4649f71ba35d04771e24/trunk/adr/2020-11-25-decoration-pattern.md).
 
 ## Rules for the decorator pattern
 
@@ -81,7 +81,7 @@ abstract class AbstractRuleLoader
 
     abstract public function load(Context $context): RuleCollection;
 
-    // introduced with shopware/platform v6.6
+    // introduced with shopware/shopware v6.6
     public function create(Context $context): RuleCollection 
     {
         return $this->getDecorated()->create($context);

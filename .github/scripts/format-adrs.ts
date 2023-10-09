@@ -72,5 +72,5 @@ async function formatADR(filePath: string): Promise<void> {
 
 function adrPathToGithubLink(adrPath: string): string {
 	const urlPath = adrPath.replace('resources/references/', '');
-	return `https://github.com/shopware/platform/blob/trunk/${urlPath}`
+	return `https://github.com/shopware/shopware/blob/trunk/${urlPath}`
 }

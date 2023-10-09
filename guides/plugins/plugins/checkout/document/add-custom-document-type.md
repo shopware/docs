@@ -350,7 +350,7 @@ In there you should extend from the default document base template:
 {% sw_extends '@Framework/documents/base.html.twig' %}
 ```
 
-This could be it already. The [base.html.twig](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Framework/Resources/views/documents/base.html.twig) template comes with a lot of default templating, which you can now override by using blocks. If you don't know how that's done, have a look at our guide regarding [customizing templates](../../storefront/customize-templates).
+This could be it already. The [base.html.twig](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Framework/Resources/views/documents/base.html.twig) template comes with a lot of default templating, which you can now override by using blocks. If you don't know how that's done, have a look at our guide regarding [customizing templates](../../storefront/customize-templates).
 
 ## Adding a number range
 

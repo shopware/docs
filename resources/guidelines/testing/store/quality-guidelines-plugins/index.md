@@ -322,7 +322,7 @@ The following statements will be blocked as of 1st Oct. 2022:
 There are Cypress tests for Shopware 6 on GitHub. The project is driven by the *Friends of Shopware* group. You can contribute at any time:
 
 * [Developer Documentation Cypress Tests for Shopware 6](/docs/guides/plugins/plugins/testing/end-to-end-testing)
-* [Cypress Tests for Shopware 6](https://github.com/shopware/platform/tree/trunk/src/Administration/Resources)
+* [Cypress Tests for Shopware 6](https://github.com/shopware/shopware/tree/trunk/src/Administration/Resources)
 
 ### Helpful tools for app developers
 

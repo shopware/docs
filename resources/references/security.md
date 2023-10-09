@@ -49,8 +49,8 @@ Shopware 6 provides certain rate limits by default that reduces the risk of brut
 
 As soon as a password is changed for a user or customer, the session is invalid and the user or customer must log in again. For more information, refer to:
 
-- [User Changelog](https://github.com/shopware/platform/commit/5ea99ee5d7a12bab3a01a64c3948eee7c4188ede)
-- [Customer Changelog](https://github.com/shopware/platform/commit/47b4b094c13f62db860be2f431138bb45c0bd0b6)
+- [User Changelog](https://github.com/shopware/shopware/commit/5ea99ee5d7a12bab3a01a64c3948eee7c4188ede)
+- [Customer Changelog](https://github.com/shopware/shopware/commit/47b4b094c13f62db860be2f431138bb45c0bd0b6)
 
 ## SameSite cookie
 

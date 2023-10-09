@@ -16,7 +16,7 @@ nav:
 
 ::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2020-08-12-document-template-refactoring.md)
+You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2020-08-12-document-template-refactoring.md)
 :::
 
 ## Context
@@ -97,6 +97,6 @@ To keep the extensibility of the document templates simple, we will work with th
 ```
 
 ## Consequences
-* Templates from the folder `/platform/src/Core/Framework/Resources/views/documents/includes` cannot be extended by the developers via `sw_extends`
+* Templates from the folder `/shopware/src/Core/Framework/Resources/views/documents/includes` cannot be extended by the developers via `sw_extends`
 * We wrote a new how-to guide, which explains the new behavior
 * We have placed a note/comment in the corresponding templates which points out the new behavior.

@@ -21,7 +21,7 @@ Furthermore, you'll have to understand service decoration for this guide, so if 
 
 ## Decorating the calculator
 
-In order to customize the price calculation for products as a whole, you'll have to decorate the service [ProductPriceCalculator](https://github.com/shopware/platform/blob/trunk/src/Core/Content/Product/SalesChannel/Price/ProductPriceCalculator.php). It comes with a `calculate` method, which you can decorate and therefore customize.
+In order to customize the price calculation for products as a whole, you'll have to decorate the service [ProductPriceCalculator](https://github.com/shopware/shopware/blob/trunk/src/Core/Content/Product/SalesChannel/Price/ProductPriceCalculator.php). It comes with a `calculate` method, which you can decorate and therefore customize.
 
 So let's do that real quick. If you're looking for an in-depth explanation, head over to our guide about [adjusting a service](../../plugin-fundamentals/adjusting-service).
 
@@ -75,7 +75,7 @@ So what is done here? The constructor gets passed the inner instance of `Abstrac
 
 Inside the overridden `calculate` method, we're iterating over each product and we straight forward set new prices. Of course this is just an example to show how you can now manipulate a product's prices.
 
-Most likely you also want to narrow down which product's prices you want to edit, as in this example we're adjusting every single product and setting them all to the same price. You might want to have a look at the original [calculate method](https://github.com/shopware/platform/blob/trunk/src/Core/Content/Product/SalesChannel/Price/ProductPriceCalculator.php#L45-L58) to see how calculating a price is done in the core code.
+Most likely you also want to narrow down which product's prices you want to edit, as in this example we're adjusting every single product and setting them all to the same price. You might want to have a look at the original [calculate method](https://github.com/shopware/shopware/blob/trunk/src/Core/Content/Product/SalesChannel/Price/ProductPriceCalculator.php#L45-L58) to see how calculating a price is done in the core code.
 
 ### Registering the decorator
 

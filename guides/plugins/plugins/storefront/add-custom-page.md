@@ -112,7 +112,7 @@ The `EventDispatcherInterface` is of course necessary in order to fire an event 
 
 Every page loader should implement a `load` method, which is not mandatory, but convention. You want your page loader to work like all the other page loaders, right? It should return an instance of your example page, in this case `ExamplePage`. Don't worry, we haven't created that one yet, it will be created in the next sections. So, the first thing it does is basically creating a `Page` instance, containing all necessary basic data, such as the footer etc.
 
-Afterwards you're creating your own page instance by using the method `createFrom`. This method is available, since your `ExamplePage` has to extend from the `Page` struct, which in return extends from the `Struct` class. The latter implements the [CreateFromTrait](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Framework/Struct/CreateFromTrait.php) containing this method. In short, this will create an instance of your `ExamplePage`, containing all the data from the generic `Page` object.
+Afterwards you're creating your own page instance by using the method `createFrom`. This method is available, since your `ExamplePage` has to extend from the `Page` struct, which in return extends from the `Struct` class. The latter implements the [CreateFromTrait](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Framework/Struct/CreateFromTrait.php) containing this method. In short, this will create an instance of your `ExamplePage`, containing all the data from the generic `Page` object.
 
 Afterwards, you can add more data to your page instance by using a setter. Of course, your example page class then has to have such a setter method, as well as a getter.
 

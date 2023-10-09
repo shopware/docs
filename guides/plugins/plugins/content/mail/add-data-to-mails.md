@@ -21,7 +21,7 @@ Furthermore, you should know how to [decorate a service](../../plugin-fundamenta
 
 ## Adding data via decorator
 
-In order to add new data to the mail templates, you'll have to decorate the [MailService](https://github.com/shopware/platform/blob/trunk/src/Core/Content/Mail/Service/MailService.php).
+In order to add new data to the mail templates, you'll have to decorate the [MailService](https://github.com/shopware/shopware/blob/trunk/src/Core/Content/Mail/Service/MailService.php).
 
 To be precise, you have to extend the `send` method, whose last parameter is the `$templateData`, that we want to enrich.
 
