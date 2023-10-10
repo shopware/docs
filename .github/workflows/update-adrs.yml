@@ -24,7 +24,7 @@ jobs:
         with:
           image: php:8.0
           options: -v ${{ github.workspace }}:/www --name docs-php
-          run: docker exec --workdir /www docs-php find ./resources/references/adr/ -name '*.md' -exec php ./.github/scripts/migrate.php {} +
+          run: cd /www && find ./resources/references/adr/ -name '*.md' -exec php ./.github/scripts/migrate.php {} +
 
       - uses: peter-evans/create-pull-request@v4
         with:
@@ -58,7 +58,7 @@ jobs:
         with:
           image: php:8.0
           options: -v ${{ github.workspace }}:/www --name docs-php
-          run: docker exec --workdir /www docs-php find ./resources/guidelines/code/core/ -name '*.md' -exec php ./.github/scripts/migrate.php {} +
+          run: cd /www && find ./resources/guidelines/code/core/ -name '*.md' -exec php ./.github/scripts/migrate.php {} +
 
       - uses: peter-evans/create-pull-request@v4
         with:
