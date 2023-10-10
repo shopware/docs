@@ -23,8 +23,8 @@ jobs:
         uses: addnab/docker-run-action@v3
         with:
           image: php:8.0
-          options: -v ${{ github.workspace }}:/var/www
-          run: find ./resources/references/adr/ -name '*.md' -exec php ./.github/scripts/migrate.php {} +
+          options: -v ${{ github.workspace }}:/www --name docs-php
+          run: docker exec --workdir /www docs-php find ./resources/references/adr/ -name '*.md' -exec php ./.github/scripts/migrate.php {} +
 
       - uses: peter-evans/create-pull-request@v4
         with:
@@ -57,8 +57,8 @@ jobs:
         uses: addnab/docker-run-action@v3
         with:
           image: php:8.0
-          options: -v ${{ github.workspace }}:/var/www
-          run: find /resources/guidelines/code/core/ -name '*.md' -exec php ./.github/scripts/migrate.php {} +
+          options: -v ${{ github.workspace }}:/www --name docs-php
+          run: docker exec --workdir /www docs-php find ./resources/guidelines/code/core/ -name '*.md' -exec php ./.github/scripts/migrate.php {} +
 
       - uses: peter-evans/create-pull-request@v4
         with:
