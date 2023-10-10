@@ -9,7 +9,7 @@ nav:
 
 ## Overview
 
-Payments are an essential part of the checkout process. That's the reason why Shopware 6 offers an easy platform on which you can build payment plugins.
+Payments are an essential part of the checkout process. That's why Shopware 6 offers an easy platform on which you can build payment plugins.
 
 ## Prerequisites
 
@@ -23,9 +23,9 @@ Refer to this video on **[Introduction to payment handlers](https://www.youtube.
 
 ## Creating a custom payment handler
 
-In order to create your own payment method with your plugin, you have to add a custom payment handler.
+To create a payment method with your plugin, you have to add a custom payment handler.
 
-You can create your own payment handler by implementing one of the following interfaces:
+You can create your payment handler by implementing one of the following interfaces:
 
 | Interface                           | DI container tag                    | Usage                                                                                              |
 |:------------------------------------|:------------------------------------|:---------------------------------------------------------------------------------------------------|
@@ -37,14 +37,14 @@ You can create your own payment handler by implementing one of the following int
 
 Depending on the interface, those methods are required:
 
-* `pay`: This method will be called after an order has been placed. You receive a `Shopware\Core\Checkout\Payment\Cart\AsyncPaymentTransactionStruct` or a `Shopware\Core\Checkout\Payment\Cart\SyncPaymentTransactionStruct` which contains the transactionId, order details, the amount of the transaction, a return URL, payment method information and language information. Please be aware, Shopware 6 supports multiple transactions, and you have to use the amount provided and not the total order amount. If you're using the `AsynchronousPaymentHandlerInterface`, the `pay` method has to return a `RedirectResponse` to redirect the customer to an external payment provider. Note: The [AsyncPaymentTransactionStruct](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/Payment/Cart/AsyncPaymentTransactionStruct.php) contains a return URL. This represents the URL that the external payment provider needs to know, so they can also redirect your customer back to your shop. If an error occurs while e.g. calling the API of your external payment provider, you should throw an `AsyncPaymentProcessException`. Shopware 6 will handle this exception and set the transaction to the `cancelled` state. The same happens if you are using the `SynchronousPaymentHandlerInterface`: throw a `SyncPaymentProcessException` in an error case.
-* `finalize`: The `finalize` method is only required if you implemented the `AsynchronousPaymentHandlerInterface`, returned a `RedirectResponse` in your `pay` method and the customer has been redirected from the payment provider back to Shopware 6. You must check here if the payment was successful or not and update the order transaction state accordingly. Similar to the pay action you are able to throw exceptions if some error cases occur. Throw the `CustomerCanceledAsyncPaymentException` if the customer canceled the payment process on the payment provider site. If another general error occurs throw the `AsyncPaymentFinalizeException` e.g. if your call to the payment provider API fails. Shopware 6 will handle these exceptions and will set the transaction to the `cancelled` state.
-* `validate`: This method will be called before an order was placed and should check, if a given prepared payment is valid. The payment handler has to verify the given payload with the payment service, because Shopware cannot ensure that the transaction created by the frontend is valid for the current cart. Throw an `ValidatePreparedPaymentException` to fail the validation in your implementation.
-* `capture`: This method will be called after an order was placed, but only if the validation did not fail and stop the payment flow before. At this point, the order was created and the payment handler will be called again to charge the payment. When the charge was successful, the payment handler should update the transaction state to `paid`. The user will be forwarded to the finish page. Throw an `CapturePreparedPaymentException` on any errors to fail the capture process and the after order process will be active, so the customer can complete the payment again.
-* `refund`: This method is called, whenever a successful transaction is claimed to be refunded. The implementation of the refund handler should validate the legitimacy of the refund and call the PSP to refund the given transaction. Throw a `RefundException` to let the refund fail.
-* `captureRecurring`: This method is called whenever a recurring payment is charged. At this point, a valid billing agreement with the payment provider should exist. Use some of the other payment methods for handling the initial order and billing agreement. Use this interface only for handling all recurring captures afterwards.
+* `pay`: This method will be called after an order has been placed. You receive a `Shopware\Core\Checkout\Payment\Cart\AsyncPaymentTransactionStruct` or a `Shopware\Core\Checkout\Payment\Cart\SyncPaymentTransactionStruct` which contains the transactionId, order details, the amount of the transaction, a return URL, payment method information and language information. Please be aware, Shopware 6 supports multiple transactions, and you have to use the amount provided and not the total order amount. If you're using the `AsynchronousPaymentHandlerInterface`, the `pay` method has to return a `RedirectResponse` to redirect the customer to an external payment provider. Note: The [AsyncPaymentTransactionStruct](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/Payment/Cart/AsyncPaymentTransactionStruct.php) contains a return URL. This represents the URL the external payment provider needs to know to redirect your customer back to your shop. If an error occurs while, e.g., calling the API of your external payment provider, you should throw an `AsyncPaymentProcessException`. Shopware 6 will handle this exception and set the transaction to the `cancelled` state. The same happens if you use the `SynchronousPaymentHandlerInterface`: throw a `SyncPaymentProcessException` in an error case.
+* `finalize`: The `finalize` method is only required if you implemented the `AsynchronousPaymentHandlerInterface`, returned a `RedirectResponse` in your `pay` method, and the customer has been redirected from the payment provider back to Shopware 6. You must check here if the payment was successful and update the order transaction state accordingly. Similar to the pay action, you can throw exceptions if some error cases occur. Throw the `CustomerCanceledAsyncPaymentException` if the customer canceled the payment process on the payment provider site. If another general error occurs, throw the `AsyncPaymentFinalizeException` e.g., if your call to the payment provider API fails. Shopware 6 will handle these exceptions and set the transaction to the `cancelled` state.
+* `validate`: This method will be called before an order was placed and should check if a given prepared payment is valid. The payment handler has to verify the given payload with the payment service because Shopware cannot ensure that the transaction created by the frontend is valid for the current cart. Throw a `ValidatePreparedPaymentException` to fail the validation in your implementation.
+* `capture`: This method will be called after an order was placed, but only if the validation did not fail and stop the payment flow before. At this point, the order was created, and the payment handler will be called again to charge the payment. When the charge was successful, the payment handler should update the transaction state to `paid`. The user will be forwarded to the finish page. Throw a `CapturePreparedPaymentException` on any errors to fail the capture process and, the after-order process will be active so that the customer can complete the payment again.
+* `refund`: This method is called whenever a successful transaction is claimed to be refunded. The implementation of the refund handler should validate the legitimacy of the refund and call the PSP to refund the given transaction. Throw a `RefundException` to let the refund fail.
+* `captureRecurring`: This method is called whenever a recurring payment is charged. At this point, a valid billing agreement with the payment provider should exist. Use some of the other payment methods for handling the initial order and billing agreement. Use this interface only for handling all recurring captures afterward.
 
-All payment handler methods have the `\Shopware\Core\System\SalesChannel\SalesChannelContext` injected, except for the new  `captureRecurring`  method. Note that this class contains properties that are nullable. If you want to use this information, you have to ensure in your code that they are set and not `NULL`.
+All payment handler methods have the `\Shopware\Core\System\SalesChannel\SalesChannelContext` injected, except for the new  `captureRecurring`  method. Note that this class contains nullable properties. If you want to use this information, you must ensure in your code that they are set and not `NULL`.
 
 ### Registering the service
 
@@ -70,15 +70,15 @@ Before we're going to have a look at some examples, we need to register our new 
 </container>
 ```
 
-We inject the `OrderTransactionStateHandler` in this example, as it is helpful for changing an order's transaction state, e.g. to `paid`. The payment handler has to be marked as such as well, hence the tag `shopware.payment.method.sync`, `shopware.payment.method.async` or `shopware.payment.method.prepared` respectively for a synchronous, an asynchronous or a prepared payment handler.
+We inject the `OrderTransactionStateHandler` in this example, as it helps change an order's transaction state, e.g. to `paid`. The payment handler has to be marked as such as well; hence the tag `shopware.payment.method.sync`, `shopware.payment.method.async` or `shopware.payment.method.prepared` respectively for a synchronous, an asynchronous or a prepared payment handler.
 
-Now let's start with the actual examples.
+Now, let's start with the actual examples.
 
 ### Synchronous example
 
-The following will be a synchronous example, so no redirect will happen and the payment can be handled in the shop itself. Therefore, you don't have to return a `RedirectResponse` in the `pay` method and no `finalize` method is necessary either.
+The following will be a synchronous example, so that no redirect will happen, and the payment can be handled in the shop. Therefore, you don't have to return a `RedirectResponse` in the `pay` method; no `finalize` method is necessary either.
 
-Therefore, changing the `stateId` of the order should already be done in the `pay` method, since there will be no `finalize` method. If you have to execute some logic which might fail, e.g. a call to an external API, you should throw a `SyncPaymentProcessException`. Shopware 6 will handle this exception and set the transaction to the `cancelled` state.
+Therefore, changing the `stateId` of the order should already be done in the `pay` method since there will be no `finalize` method. If you have to execute some logic that might fail, e.g., a call to an external API, you should throw a `SyncPaymentProcessException`. Shopware 6 will handle this exception and set the transaction to the `cancelled` state.
 
 ```php
 // <plugin root>/src/Service/ExamplePayment.php
@@ -113,9 +113,9 @@ All it does now is to set the state of the order transaction to `paid`.
 
 ### Asynchronous example
 
-In the asynchronous example, the customer gets redirected to an external payment provider, which then in return has to redirect your customer back to your shop. Therefore, you first need to redirect your customer to the payment provider by returning a `RedirectResponse`.
+In the asynchronous example, the customer gets redirected to an external payment provider, which then, in return, has to redirect your customer back to your shop. Therefore, you must first redirect your customer to the payment provider by returning a `RedirectResponse`.
 
-Also you need a `finalize` method to properly handle your customer, when he was returned back to your shop. This is where you check the payment state and set the order transaction state accordingly.
+Also, you need a `finalize` method to properly handle your customer when he was returned to your shop. This is where you check the payment state and set the order transaction state accordingly.
 
 Let's have a look at an example implementation of your custom asynchronous payment handler:
 
@@ -170,7 +170,7 @@ class ExamplePayment implements AsynchronousPaymentHandlerInterface
     {
         $transactionId = $transaction->getOrderTransaction()->getId();
 
-        // Example check if the user cancelled. Might differ for each payment provider
+        // Example check if the user canceled. Might differ for each payment provider
         if ($request->query->getBoolean('cancel')) {
             throw PaymentException::asyncCustomerCanceled(
                 $transactionId,
@@ -202,17 +202,17 @@ class ExamplePayment implements AsynchronousPaymentHandlerInterface
 }
 ```
 
-Let's start with the `pay` method. You'll have to start with letting your external payment provider know, where he should redirect your customer in return when the payment was done. This is usually done by making an API call and transmitting the return URL, which you can fetch from the passed `AsyncPaymentTransactionStruct` by using the method `getReturnUrl`. Since this is just an example, the method `sendReturnUrlToExternalGateway` is empty. Fill in your logic in there in order to actually send the return URL to the external payment provider. The last thing you need to do, is to redirect your customer to the external payment provider via a `RedirectResponse`.
+Let's start with the `pay` method. You'll have to start by letting your external payment provider know where he should redirect your customer in return when the payment is done. This is usually done by making an API call and transmitting the return URL, which you can fetch from the passed `AsyncPaymentTransactionStruct` using the method `getReturnUrl`. Since this is just an example, the method `sendReturnUrlToExternalGateway` is empty. Fill in your logic in there in order to actually send the return URL to the external payment provider. The last thing you need to do, is to redirect your customer to the external payment provider via a `RedirectResponse`.
 
-Once your customer is done at the external payment provider, he will be redirected back to your shop. This is where the `finalize` method will be executed. In here you have to check whether or not the payment process was successful. If e.g. the customer cancelled the payment process, you'll have to throw a `CustomerCanceledAsyncPaymentException` exception.
+Once your customer is done at the external payment provider, he will be redirected back to your shop. This is where the `finalize` method will be executed. In here, you have to check whether or not the payment process was successful. If e.g., the customer canceled the payment process, you'll have to throw a `CustomerCanceledAsyncPaymentException` exception.
 
-Otherwise, you can proceed to check if the payment status was successful. If that's the case, set the order's transaction state to `paid`. If not, you could e.g. reopen the order's transaction.
+Otherwise, you can proceed to check if the payment status was successful. If so, set the order's transaction state to `paid`. If not, you could, e.g. reopen the order's transaction.
 
 ### Prepared payments example
 
-To improve the payment workflow on headless systems or reduce orders without payment, payment handlers can implement an additional interface to support pre-created payments. The client (e.g. a single page application) can prepare the payment directly with the payment service (not through Shopware) and pass a transaction reference (token) to Shopware to complete the payment.
+To improve the payment workflow on headless systems or reduce orders without payment, payment handlers can implement an additional interface to support pre-created payments. The client (e.g. a single-page application) can prepare the payment directly with the payment service (not through Shopware) and pass a transaction reference (token) to Shopware to complete the payment.
 
-This comes in two steps: The handler has to validate the payment beforehand, or throw an exception, if the validation fails. After completing the checkout, Shopware calls the handler again, to actually charge the payment.
+Two steps are necessary: The handler has to validate the payment beforehand, or throw an exception, if the validation fails. After completing the checkout, Shopware calls the handler again to charge the payment.
 
 Let's have a look at a simple example:
 
@@ -301,7 +301,7 @@ To allow easy refund handling, Shopware introduced a centralized way of handling
 
 For this, have your payment handler implement the `RefundPaymentHandlerInterface`.
 
-Let's have a look at a short example, on how to implement such payment handlers.
+Let's look at a short example of how to implement such payment handlers.
 
 ```php
 // <plugin root>/src/ExamplePayment.php
@@ -365,7 +365,7 @@ class ExamplePayment implements RefundPaymentHandlerInterface
 }
 ```
 
-As you can see, you have full control on how to handle the refund request and which positions to refund.
+As you can see, you have complete control over handling the refund request and which positions to refund.
 
 ### Recurring capture example
 
@@ -527,11 +527,13 @@ class SwagBasicExample extends Plugin
 }
 ```
 
-In the `install` method, you actually start by creating a new payment method, if it doesn't exist yet. If you don't know what's happening in there, you might want to have a look at our guide regarding [Writing data](../../framework/data-handling/writing-data).
+In the `install` method, you start by creating a new payment method, if it doesn't exist yet. If you need to know what's happening in there, you might want to have a look at our guide regarding [Writing data](../../framework/data-handling/writing-data).
 
-However, **do not** do the opposite in the `uninstall` method and remove the payment method. This might lead to data inconsistency, if the payment method was used in some orders. Instead, only deactivate the method!
+::: warning
+**Do not** do the opposite in the `uninstall` method and remove the payment method. This might lead to data inconsistency if the payment method was used in some orders. Instead, only deactivate the method!
+:::
 
-The `activate` method and `deactivate` method just do that, activating and deactivating the payment method respectively.
+The `activate` method and `deactivate` method just do that, activating and deactivating the payment method, respectively.
 
 ### Identify your payment
 
