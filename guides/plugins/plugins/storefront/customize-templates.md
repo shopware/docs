@@ -25,7 +25,7 @@ First of all you need to register your plugin's own view path, which basically r
 
 ### Finding the proper template
 
-As mentioned earlier, this guide is only trying to replace the 'demo' logo with a 'Hello world!' text. In order to find the proper template, you can simply search for the term 'logo' inside of the `<shopware root>/src/Storefront` directory. This will eventually lead you to [this file](https://github.com/shopware/platform/blob/v6.3.4.1/src/Storefront/Resources/views/storefront/layout/header/logo.html.twig).
+As mentioned earlier, this guide is only trying to replace the 'demo' logo with a 'Hello world!' text. In order to find the proper template, you can simply search for the term 'logo' inside of the `<shopware root>/src/Storefront` directory. This will eventually lead you to [this file](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Storefront/Resources/views/storefront/layout/header/logo.html.twig).
 
 Overriding this file now requires you to copy the exact same directory structure starting from the `views` directory. In this case, the file `logo.html.twig` is located in a directory called `storefront/layout/header`, so make sure to remember this path.
 

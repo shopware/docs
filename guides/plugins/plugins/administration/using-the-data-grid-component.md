@@ -17,7 +17,7 @@ All you need for this guide is a running Shopware 6 instance and full access to 
 
 ## Creating a template for the data grid component
 
-Let's create the simplest template we need in order to use the [`sw-data-grid`](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/component/data-grid/sw-data-grid/index.js).
+Let's create the simplest template we need in order to use the [`sw-data-grid`](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/component/data-grid/sw-data-grid/index.js).
 
 ```html
 // <plugin-root>/src/Resources/app/administration/app/src/component/swag-example/swag-example.html.twig

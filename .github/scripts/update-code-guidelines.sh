@@ -1,14 +1,14 @@
 #! /usr/bin/env bash
 
-git clone --depth 1 https://github.com/shopware/platform.git
+git clone --depth 1 https://github.com/shopware/shopware.git
 
 # delete dirs
 rm -r ./resources/guidelines/code/core
 
 # copy contents
-cp -r ./platform/coding-guidelines/core ./resources/guidelines/code/core
+cp -r ./shopware/coding-guidelines/core ./resources/guidelines/code/core
 
-rm -rf ./platform
+rm -rf ./shopware
 
 deno run --allow-read --allow-write ./.github/scripts/update-code-guidelines-summary.ts
 deno run --allow-read --allow-write ./.github/scripts/format-code-guidelines.ts

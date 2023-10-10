@@ -19,7 +19,7 @@ This plugin is built upon our plugin from the [Plugin base guide](../../plugin-b
 
 Let's get started with adding your first custom block. By default, Shopware 6 comes with several blocks, such as a block called `image_text`. It renders an image element on the left side and a simple text element on the right side. In this guide, you're going to create a new block to swap those two elements, so the text is on the left side and the image on the right side.
 
-All blocks can be found in the directory [/src/Administration/Resources/app/administration/src/module/sw-cms/blocks](https://github.com/shopware/platform/tree/v6.3.4.1/src/Administration/Resources/app/administration/src/module/sw-cms/blocks). In there, they are divided into the categories `commerce`, `form`, `image`, `sidebar`, `text-image`, `text` and `video`.
+All blocks can be found in the directory [/src/Administration/Resources/app/administration/src/module/sw-cms/blocks](https://github.com/shopware/shopware/tree/v6.3.4.1/src/Administration/Resources/app/administration/src/module/sw-cms/blocks). In there, they are divided into the categories `commerce`, `form`, `image`, `sidebar`, `text-image`, `text` and `video`.
 
 `commerce` : Blocks using a special template can be found here, e.g. a product slider block.
 
@@ -54,7 +54,7 @@ Now create a new file `index.js` inside the `my-image-text-reversed` directory, 
 import './module/sw-cms/blocks/text-image/my-image-text-reversed';
 ```
 
-Back to your `index.js`, which is still empty. In order to register a new block, you have to call the `registerCmsBlock` method of the [cmsService](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/module/sw-cms/service/cms.service.js). Since it's available in the Dependency Injection Container, you can fetch it from there.
+Back to your `index.js`, which is still empty. In order to register a new block, you have to call the `registerCmsBlock` method of the [cmsService](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/module/sw-cms/service/cms.service.js). Since it's available in the Dependency Injection Container, you can fetch it from there.
 
 First of all, access our `Application` wrapper, which will grant you access to the DI container. This `Application` wrapper has access to the DI container, so go ahead and fetch the `cmsService` from it and call the mentioned `registerCmsBlock` method.
 
@@ -105,7 +105,7 @@ Shopware.Service('cmsService').registerCmsBlock({
 });
 ```
 
-The `component` and `previewComponent` do not exist yet, but they are created later in this guide. The `defaultConfig` just gets some minor margins and the sizing mode 'boxed', which will result in a CSS class [is--boxed](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/module/sw-cms/component/sw-cms-block/sw-cms-block.scss) being applied to that block later. The slots are defined by an object, where the key represents the slot's name and the value being the technical name of the element to be used in this slot. This will be easier to understand when having a look at the respective template in a few minutes. Also you might want to have a look at the [Vue documentation regarding slots](https://vuejs.org/v2/guide/components-slots.html).
+The `component` and `previewComponent` do not exist yet, but they are created later in this guide. The `defaultConfig` just gets some minor margins and the sizing mode 'boxed', which will result in a CSS class [is--boxed](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/module/sw-cms/component/sw-cms-block/sw-cms-block.scss) being applied to that block later. The slots are defined by an object, where the key represents the slot's name and the value being the technical name of the element to be used in this slot. This will be easier to understand when having a look at the respective template in a few minutes. Also you might want to have a look at the [Vue documentation regarding slots](https://vuejs.org/v2/guide/components-slots.html).
 
 ### Rendering the block
 
@@ -264,13 +264,13 @@ You should now be able to use your new block in the "Shopping Experiences" modul
 
 While your new block is fully functional in the Administration already, you've never defined a template for it for the Storefront.
 
-A block's Storefront representation is always expected in the directory [platform/src/Storefront/Resources/views/storefront/block](https://github.com/shopware/platform/tree/v6.3.4.1/src/Storefront/Resources/views/storefront/block). In there, a twig template named after your block is expected.
+A block's Storefront representation is always expected in the directory [platform/src/Storefront/Resources/views/storefront/block](https://github.com/shopware/shopware/tree/v6.3.4.1/src/Storefront/Resources/views/storefront/block). In there, a twig template named after your block is expected.
 
 So go ahead and re-create that structure in your plugin: `<plugin root>/src/Resources/views/storefront/block/`
 
 In there create a new twig template named after your block, so `cms-block-my-image-text-reversed.html.twig` it is.
 
-Since the [original 'image\_text' file](https://github.com/shopware/platform/blob/v6.3.4.1/src/Storefront/Resources/views/storefront/block/cms-block-image-text.html.twig) is already perfectly fine, you can go ahead and extend from it in your storefront template.
+Since the [original 'image\_text' file](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Storefront/Resources/views/storefront/block/cms-block-image-text.html.twig) is already perfectly fine, you can go ahead and extend from it in your storefront template.
 
 ```twig
 // <plugin root>/src/Resources/views/storefront/block/cms-block-my-image-text-reversed.html.twig

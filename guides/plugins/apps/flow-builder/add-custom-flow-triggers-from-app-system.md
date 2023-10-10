@@ -61,7 +61,7 @@ The manifest file is the central point of your app. It defines the interface bet
 ```xml
 // manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
         <name>FlowBuilderTriggerApp</name>
         <label>Flow Builder Trigger App</label>
@@ -87,7 +87,7 @@ To create a flow trigger, you need to define a `<flow-event>` block within a fil
 
 ```xml
 // Resources/flow.xml
-<flow-extensions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd">
+<flow-extensions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd">
     <flow-events>
         <flow-event>
             ... # The first trigger
@@ -155,7 +155,7 @@ To fulfill the `aware`, refer to a subset of action triggers aware:
 | salesChannelAware  | Shopware\Core\Framework\Event\SalesChannelAware  |
 | userAware          | Shopware\Core\Framework\Event\UserAware          |
 
-Please refer to the [Schema definition for flow events (GitHub)](https://github.com/shopware/platform/blob/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd) for more information.
+Please refer to the [Schema definition for flow events (GitHub)](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd) for more information.
 
 ## Trigger API
 
@@ -206,7 +206,7 @@ Snippet keys should be defined based on your trigger name defined at `<name>` in
 
 ```xml
 // Resources/flow.xml
-<flow-extensions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd">
+<flow-extensions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd">
     <flow-events>
         <flow-event>
             <name>swag.before.open_the_doors</name>

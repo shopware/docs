@@ -39,7 +39,7 @@ Instead, rather search for `this.$emitter.publish` in the directory `platform/sr
 
 ## Registering to events
 
-Now that you possibly found your event, it's time to register to it and execute code once it is fired. For this example, we will listen to the event when the cookie bar is hidden. The respective event can be found via the name [hideCookieBar](https://github.com/shopware/platform/blob/v6.3.4.1/src/Storefront/Resources/app/storefront/src/plugin/cookie/cookie-permission.plugin.js#L71).
+Now that you possibly found your event, it's time to register to it and execute code once it is fired. For this example, we will listen to the event when the cookie bar is hidden. The respective event can be found via the name [hideCookieBar](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Storefront/Resources/app/storefront/src/plugin/cookie/cookie-permission.plugin.js#L71).
 
 ```javascript
 // <plugin root>/src/Resources/app/storefront/src/events-plugin/events-plugin.plugin.js
@@ -61,7 +61,7 @@ Let's have a look at the code. There's one thing you have to understand first. W
 
 Rather, you have to fetch the respective plugin instance using the `PluginManager` and then you have to use `subscribe` on their `$emitter` instance: `plugin.$emitter.subscribe`
 
-And this is done here. We're fetching the instance of the `CookiePermission` plugin by its [selector](https://github.com/shopware/platform/blob/v6.3.4.1/src/Storefront/Resources/app/storefront/src/main.js#L103) via the `PluginManager` and using that instance to register to the event. Once the event is then fired, our own method `onHideCookieBar` is executed and the `alert` will be shown.
+And this is done here. We're fetching the instance of the `CookiePermission` plugin by its [selector](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Storefront/Resources/app/storefront/src/main.js#L103) via the `PluginManager` and using that instance to register to the event. Once the event is then fired, our own method `onHideCookieBar` is executed and the `alert` will be shown.
 
 ::: warning
 This does **not** prevent the execution of the original method. Consider those events to be "notifications".

@@ -7,7 +7,7 @@ nav:
 
 ::: info
 This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/code/core/unit-tests.md)
+You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/code/core/unit-tests.md)
 :::
 
 # Unit tests
@@ -31,17 +31,17 @@ When writing unit tests, the following is important:
 
 ## Examples
 Here are some good examples of shopware unit tests:
-- [CriteriaTest](https://github.com/shopware/platform/blob/trunk/tests/unit/php/Core/Framework/DataAbstractionLayer/Search/CriteriaTest.php)
+- [CriteriaTest](https://github.com/shopware/shopware/blob/trunk/tests/unit/php/Core/Framework/DataAbstractionLayer/Search/CriteriaTest.php)
   - Good example for simple DTO tests
-- [CashRounding](https://github.com/shopware/platform/blob/trunk/tests/unit/php/Core/Checkout/Cart/Price/CashRoundingTest.php)
+- [CashRounding](https://github.com/shopware/shopware/blob/trunk/tests/unit/php/Core/Checkout/Cart/Price/CashRoundingTest.php)
   - Nice test matrix for single service coverage
-- [AddCustomerTagActionTest](https://github.com/shopware/platform/blob/trunk/tests/unit/php/Core/Content/Flow/Dispatching/Action/AddCustomerTagActionTest.php)
+- [AddCustomerTagActionTest](https://github.com/shopware/shopware/blob/trunk/tests/unit/php/Core/Content/Flow/Dispatching/Action/AddCustomerTagActionTest.php)
   - A good example of how to test flow actions and use mocks for repositories
 
 Here are some good examples of integration tests:
-- [ProductCartTest](https://github.com/shopware/platform/blob/trunk/src/Core/Content/Test/Product/Cart/ProductCartTest.php)
+- [ProductCartTest](https://github.com/shopware/shopware/blob/trunk/src/Core/Content/Test/Product/Cart/ProductCartTest.php)
   - Slim product cart test with good helper function integrations
-- [CachedProductListingRouteTest](https://github.com/shopware/platform/blob/trunk/src/Core/Content/Test/Product/SalesChannel/Listing/CachedProductListingRouteTest.php)
+- [CachedProductListingRouteTest](https://github.com/shopware/shopware/blob/trunk/src/Core/Content/Test/Product/SalesChannel/Listing/CachedProductListingRouteTest.php)
   - This test is a little complex, but has a very good test case matrix with good descriptions and reusable test code.
 
 # Mocks and its influence on software design
@@ -105,7 +105,7 @@ In a well-designed and testable system, it is relatively easy to isolate individ
 
 This kind of abstraction follows when you apply the principles of [Domain Driven Design](https://martinfowler.com/bliki/DomainDrivenDesign.html) and [Hexagonal Architecture](https://alistair.cockburn.us/hexagonal-architecture/) (aka Ports & Adapters)
 
-The absence of such abstraction in the existing `shopware/platform` codebase is one of the reasons why it is so hard to write "good" unit tests for shopware, but that does not mean that we should keep designing our code as we used and keep writing "bad" (meaning unit tests tightly coupled to the implementation) unit tests.
+The absence of such abstraction in the existing `shopware/shopware` codebase is one of the reasons why it is so hard to write "good" unit tests for shopware, but that does not mean that we should keep designing our code as we used and keep writing "bad" (meaning unit tests tightly coupled to the implementation) unit tests.
 However, it's the opposite; we start designing our code in a way that makes it easy to write "good" unit test that does not rely that much on a "magic" mock framework.
 
 So, a heavy reliance on mocks when writing unit tests can indicate a potential issue with the software design, suggesting insufficient encapsulation. Hence designing code to promote better encapsulation and reduce the need for extensive mocking is advisable. This can lead to improved testability and overall software quality.

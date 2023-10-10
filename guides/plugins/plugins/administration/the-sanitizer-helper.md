@@ -12,7 +12,7 @@ The Sanitizer Helper is registered to the [Shopware Global Object](./the-shopwar
 const sanitizer = Shopware.Helper.SanitizerHelper; 
 ```
 
-It also is registered in the Vue prototype as seen [here](https://github.com/shopware/platform/blob/trunk/src/Administration/Resources/app/administration/src/app/plugin/sanitize.plugin.js).
+It also is registered in the Vue prototype as seen [here](https://github.com/shopware/shopware/blob/trunk/src/Administration/Resources/app/administration/src/app/plugin/sanitize.plugin.js).
 This means it can also be accessed in your components like this:
 
 ```javascript

@@ -13,7 +13,7 @@ function get_page_title($url)
     $custom = [
         'https://github.com/shopware/production' => 'shopware/production @ GitHub',
         'https://getcomposer.org/doc/05-repositories.md\\#using-private-repositories' => 'Using private repositories @ getcomposer.org',
-        'https://github.com/shopware/platform/blob/552675ba24284dec2bb01c2107bf45f86b362550/src/Administration/Resources/app/administration/src/module/sw-product/page/sw-product-detail/sw-product-detail.html.twig\\#L120' => 'shopware/platform - sw-product-detailhtml.twig @ GitHub',
+        'https://github.com/shopware/shopware/blob/552675ba24284dec2bb01c2107bf45f86b362550/src/Administration/Resources/app/administration/src/module/sw-product/page/sw-product-detail/sw-product-detail.html.twig\\#L120' => 'shopware/shopware - sw-product-detailhtml.twig @ GitHub',
         'https://github.com/goldbergyoni/javascript-testing-best-practices' => 'Javascript testing - best practices @ GitHub',
     ];
     if ($custom[$url]) {

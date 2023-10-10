@@ -42,7 +42,7 @@ Now create a new file `index.js` inside the `dailymotion` directory, since it wi
 import './module/sw-cms/elements/dailymotion';
 ```
 
-Now open up your empty `dailymotion/index.js` file. In order to register a new element to the system, you have to call the method `registerCmsElement` of the [cmsService](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/module/sw-cms/service/cms.service.js). Since it's available in the Dependency Injection Container, you can fetch it from there.
+Now open up your empty `dailymotion/index.js` file. In order to register a new element to the system, you have to call the method `registerCmsElement` of the [cmsService](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/module/sw-cms/service/cms.service.js). Since it's available in the Dependency Injection Container, you can fetch it from there.
 
 First of all, access our `Application` wrapper, which will grant you access to the DI container. So go ahead and fetch the `cmsService` from it and call the mentioned `registerCmsElement` method.
 
@@ -123,7 +123,7 @@ Just like most components, it has a custom template and some styles. Focus on th
 
 So, for instance, if you want to show the default 'mountain' preview image as an example, then copy it from `<Shopware root>/public/bundles/administration/static/img/cms/preview_mountain_small.jpg` to your static folder. You can also replace it with something of your own. Additionally, you can place icons `multicolor-action-play`. Head over to [icon library](https://component-library.shopware.com/icons/) to access them.
 
-That means: You'll need a container to contain both the image and the icon. In there, you create an `img` tag and use the [sw-icon component](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/component/base/sw-icon/index.js) to display the icon.
+That means: You'll need a container to contain both the image and the icon. In there, you create an `img` tag and use the [sw-icon component](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/component/base/sw-icon/index.js) to display the icon.
 
 ```twig
 // <plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/preview/sw-cms-el-preview-dailymotion.html.twig

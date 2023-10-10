@@ -47,7 +47,7 @@ By default, Shopware looks inside the "default" folder.
 ```
 
 ::: info
-When you want to see all icons available to the storefront by default, see [here](https://github.com/shopware/platform/tree/trunk/src/Storefront/Resources/app/storefront/dist/assets/icon). They are available as `default` and `solid` icon pack.
+When you want to see all icons available to the storefront by default, see [here](https://github.com/shopware/shopware/tree/trunk/src/Storefront/Resources/app/storefront/dist/assets/icon). They are available as `default` and `solid` icon pack.
 :::
 
 Imagine you want to use the default `checkmark` icon from the `solid` pack. In this case,

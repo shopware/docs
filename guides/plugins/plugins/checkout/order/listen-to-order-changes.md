@@ -17,7 +17,7 @@ This guide is built upon our [plugin base guide](../../plugin-base-guide) and us
 
 ## Listening to the event
 
-First of all you need to know about the several possible order events in order to find your right order. You can find them in the [OrderEvents](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Checkout/Order/OrderEvents.php) class.
+First of all you need to know about the several possible order events in order to find your right order. You can find them in the [OrderEvents](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/Order/OrderEvents.php) class.
 
 Let's assume you want to react to general changes to the order itself, then the event `ORDER_WRITTEN_EVENT` is the one to choose.
 
@@ -51,7 +51,7 @@ class ListenToOrderChanges implements EventSubscriberInterface
 
 Due to performance reasons, a changeset of the write operation is not automatically added to the event parameter. In order to force Shopware to generate a changeset, we need to listen to another event.
 
-For this we're going to use the [PreWriteValidationEvent](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Framework/DataAbstractionLayer/Write/Validation/PreWriteValidationEvent.php), which is triggered **before** the write result set is generated.
+For this we're going to use the [PreWriteValidationEvent](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Framework/DataAbstractionLayer/Write/Validation/PreWriteValidationEvent.php), which is triggered **before** the write result set is generated.
 
 ```php
 // <plugin root>/src/Service/ListenToOrderChanges.php

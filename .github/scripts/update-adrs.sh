@@ -1,11 +1,11 @@
 #! /usr/bin/env bash
 
-git clone --depth 1 https://github.com/shopware/platform.git
+git clone --depth 1 https://github.com/shopware/shopware.git
 
 rm -r ./resources/references/adr
 rm -r ./assets/adr
-cp -r ./platform/adr ./resources/references
-rm -rf ./platform
+cp -r ./shopware/adr ./resources/references
+rm -rf ./shopware
 
 deno run --allow-read --allow-write ./.github/scripts/update-summary.ts
 deno run --allow-read --allow-write ./.github/scripts/format-adrs.ts

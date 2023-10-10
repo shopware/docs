@@ -65,7 +65,7 @@ In this example we will define a custom CMS block that will extend the default b
 ```xml
 // <app root>/Resources/cms.xml
 <?xml version="1.0" encoding="utf-8" ?>
-<cms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Cms/Schema/cms-1.0.xsd">
+<cms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Cms/Schema/cms-1.0.xsd">
     <blocks>
         <block>
             <!-- A unique technical name for your block. We recommend to use a shorthand prefix for your company, e.g. "Swag" for shopware AG. -->
@@ -202,11 +202,11 @@ The DOM structure of the block in the CMS editor will look like this:
 ## Defining slots
 
 Each slot has a **unique** `name` and a `type` that refers to which element it shows.
-All available elements can be found in [src/Administration/Resources/app/administration/src/module/sw-cms/elements](https://github.com/shopware/platform/tree/trunk/src/Administration/Resources/app/administration/src/module/sw-cms/elements).
+All available elements can be found in [src/Administration/Resources/app/administration/src/module/sw-cms/elements](https://github.com/shopware/shopware/tree/trunk/src/Administration/Resources/app/administration/src/module/sw-cms/elements).
 At a later point you will also be able to define custom elements but for now you can use the elements shipped by Shopware.
 
 The `config` of a slot is very dynamic as it highly depends on which `type` you have chosen.
-A good starting point to find out which elements require which configuration is each element's `index.js` in the corresponding directory in [src/Administration/Resources/app/administration/src/module/sw-cms/blocks](https://github.com/shopware/platform/tree/trunk/src/Administration/Resources/app/administration/src/module/sw-cms/blocks).
+A good starting point to find out which elements require which configuration is each element's `index.js` in the corresponding directory in [src/Administration/Resources/app/administration/src/module/sw-cms/blocks](https://github.com/shopware/shopware/tree/trunk/src/Administration/Resources/app/administration/src/module/sw-cms/blocks).
 
 ## Registering blocks
 

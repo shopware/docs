@@ -175,7 +175,7 @@ This example does not contain any aggregation, since they're only explained late
 
 **Other filters**
 
-There is more than just an `EqualsFilter`, which is the SQL equivalent of `WHERE fieldX = valueX`. You can find all other filters either on [GitHub](https://github.com/shopware/platform/tree/trunk/src/Core/Framework/DataAbstractionLayer/Search/Filter) or in our [filters reference](../../../../../resources/references/core-reference/dal-reference/filters-reference) with explanation.
+There is more than just an `EqualsFilter`, which is the SQL equivalent of `WHERE fieldX = valueX`. You can find all other filters either on [GitHub](https://github.com/shopware/shopware/tree/trunk/src/Core/Framework/DataAbstractionLayer/Search/Filter) or in our [filters reference](../../../../../resources/references/core-reference/dal-reference/filters-reference) with explanation.
 
 #### Associations
 
@@ -290,7 +290,7 @@ public function readData(Context $context): void
 
 Important to note here is that you have to remove the `first()` call, because we do **not** need the entity itself but the `EntitySearchResult` here instead. The `AvgAggregation` class can be found here: `Shopware\Core\Framework\DataAbstractionLayer\Search\Aggregation\Metric\AvgAggregation`
 
-A list of all available aggregations can be found on [GitHub](https://github.com/shopware/platform/tree/trunk/src/Core/Framework/DataAbstractionLayer/Search/Aggregation) or in the [DAL aggregations reference](../../../../../resources/references/core-reference/dal-reference/aggregations-reference).
+A list of all available aggregations can be found on [GitHub](https://github.com/shopware/shopware/tree/trunk/src/Core/Framework/DataAbstractionLayer/Search/Aggregation) or in the [DAL aggregations reference](../../../../../resources/references/core-reference/dal-reference/aggregations-reference).
 
 #### Limiting, paging and sorting
 
@@ -342,7 +342,7 @@ Now you've added an ascending sort by the `createdAt` field, so the result becom
 
 ### Using the RepositoryIterator
 
-Another special way to read data in Shopware is by using the [RepositoryIterator](https://github.com/shopware/platform/blob/trunk/src/Core/Framework/DataAbstractionLayer/Dbal/Common/RepositoryIterator.php).
+Another special way to read data in Shopware is by using the [RepositoryIterator](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/DataAbstractionLayer/Dbal/Common/RepositoryIterator.php).
 
 But what does it do? Basically it's a little helper class that helps you deal with big data sets by being iterable and returning a batch of data with each iteration, but never all data at once.
 

@@ -9,8 +9,8 @@ nav:
 
 ## Overview
 
-In order to change the cart at runtime, you can use a custom [collector](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Checkout/Cart/CartDataCollectorInterface.php)
-or a custom [processor](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Checkout/Cart/CartProcessorInterface.php).
+In order to change the cart at runtime, you can use a custom [collector](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/Cart/CartDataCollectorInterface.php)
+or a custom [processor](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/Cart/CartProcessorInterface.php).
 
 Their main purpose is explained in their respective section.
 
@@ -54,7 +54,7 @@ The `collect` method's parameters are the following:
 a unique key and its value. This object will be available in all processors.
 - `Cart`: The current cart and its line items.
 - `SalesChannelContext`: The current sales channel context, containing information about the currency, the country, etc.
-- `CartBehavior`: It contains a cart state, which describes which actions are allowed. E.g. in the [product processor](https://github.com/shopware/platform/blob/trunk/src/Core/Content/Product/Cart/ProductCartProcessor.php#L33), there's
+- `CartBehavior`: It contains a cart state, which describes which actions are allowed. E.g. in the [product processor](https://github.com/shopware/shopware/blob/trunk/src/Core/Content/Product/Cart/ProductCartProcessor.php#L33), there's
 a permission to check if the product stock validation should be skipped.
 
 Your collector has to be defined in the service container using the tag `shopware.cart.collector`.

@@ -8,8 +8,8 @@ $files = $_SERVER['argv'];
 array_shift($files);
 
 $examples = [
-    '[here](https://github.com/shopware/platform/blob/trunk/adr/workflow/2020-08-19-handling-feature-flags.md)' => '[here](https://github.com/shopware/platform/blob/trunk/adr/workflow/2020-08-19-handling-feature-flags.md)',
-    '[here](http://github.com/shopware/platform/blob/trunk/adr/workflow/2020-08-19-handling-feature-flags.md)' => '[here](http://github.com/shopware/platform/blob/trunk/adr/workflow/2020-08-19-handling-feature-flags.md)',
+    '[here](https://github.com/shopware/shopware/blob/trunk/adr/workflow/2020-08-19-handling-feature-flags.md)' => '[here](https://github.com/shopware/shopware/blob/trunk/adr/workflow/2020-08-19-handling-feature-flags.md)',
+    '[here](http://github.com/shopware/shopware/blob/trunk/adr/workflow/2020-08-19-handling-feature-flags.md)' => '[here](http://github.com/shopware/shopware/blob/trunk/adr/workflow/2020-08-19-handling-feature-flags.md)',
     '[here](http/2020-08-19-handling-feature-flags)' => '[here](http/2020-08-19-handling-feature-flags)',
     '[here](https/2020-08-19-handling-feature-flags)' => '[here](https/2020-08-19-handling-feature-flags)',
     '[here](workflow/2020-08-19-handling-feature-flags)' => '[here](workflow/2020-08-19-handling-feature-flags)',

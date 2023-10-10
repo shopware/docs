@@ -26,7 +26,7 @@ In this section, we're going to take care of allowing a new extension to Shopwar
 exactly what kind of file this new extension represents (Images, videos, documents, ...).
 
 For this to work, all you have to do is to register to the `MediaFileExtensionWhitelistEvent` event, which can be found
-[here](https://github.com/shopware/platform/blob/v6.4.0.0/src/Core/Content/Media/File/FileSaver.php#L397-L398).
+[here](https://github.com/shopware/shopware/blob/v6.4.0.0/src/Core/Content/Media/File/FileSaver.php#L397-L398).
 This is of course done via a [subscriber](../../plugin-fundamentals/listening-to-events).
 
 Have a look at the following code example:
@@ -152,7 +152,7 @@ If the extension does indeed match, we're for sure going to return `ImageType` h
 Make sure to add flags to your media type, e.g. the `transparent` flag, or if it's an animated image.
 
 You can find all available flags in their respective media type classes,
-e.g. [here](https://github.com/shopware/platform/blob/v6.4.0.0/src/Core/Content/Media/MediaType/ImageType.php#L7-L10) for the image media type.
+e.g. [here](https://github.com/shopware/shopware/blob/v6.4.0.0/src/Core/Content/Media/MediaType/ImageType.php#L7-L10) for the image media type.
 
 Make sure to register your new type detector to the [Dependency injection container](../../plugin-fundamentals/dependency-injection)
 by using the tag `shopware.media_type.detector`.

@@ -41,7 +41,7 @@ Now your module's `index.js` will be executed.
 ## Registering the module
 
 Your `index.js` is still empty now, so let's get going to actually create a new module.
-This is technically done by calling the method `registerModule` method of our [ModuleFactory](https://github.com/shopware/platform/blob/trunk/src/Administration/Resources/app/administration/src/core/factory/module.factory.ts), but you're not going to use this directly.
+This is technically done by calling the method `registerModule` method of our [ModuleFactory](https://github.com/shopware/shopware/blob/trunk/src/Administration/Resources/app/administration/src/core/factory/module.factory.ts), but you're not going to use this directly.
 
 Instead, you're using the `Shopware.Module.register()` method, but why is that?
 

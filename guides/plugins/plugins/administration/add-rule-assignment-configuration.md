@@ -44,7 +44,7 @@ Now your module's `index.js` will be executed.
 ## Override the component
 
 Your `index.js` is still empty now, so let's override the `sw-settings-rule-detail-assignments` component.
-This is technically done by calling the method `override` method of our [ComponentFactory](https://github.com/shopware/platform/blob/trunk/src/Administration/Resources/app/administration/src/core/factory/component.factory.ts), which is available through our third party wrapper.
+This is technically done by calling the method `override` method of our [ComponentFactory](https://github.com/shopware/shopware/blob/trunk/src/Administration/Resources/app/administration/src/core/factory/component.factory.ts), which is available through our third party wrapper.
 This method expects a name, and a configuration for the component you want to override.
 
 ```javascript

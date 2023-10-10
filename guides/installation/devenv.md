@@ -140,11 +140,11 @@ composer require devenv
 This will create a basic `devenv.nix` file to enable devenv support for Shopware.
 </Tab>
 
-<Tab title="shopware/platform (Contribute)">
-Clone [shopware/platform](https://github.com/shopware/platform) and change into the project directory:
+<Tab title="shopware/shopware (Contribute)">
+Clone [shopware/shopware](https://github.com/shopware/shopware) and change into the project directory:
 
 ```shell
-git clone git@github.com:shopware/platform.git
+git clone git@github.com:shopware/shopware.git
 ```
 
 </Tab>

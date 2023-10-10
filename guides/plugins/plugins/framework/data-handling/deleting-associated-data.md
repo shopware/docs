@@ -69,7 +69,7 @@ public function removeAssocData(Context $context): void
 When using the `delete` method, you always need to provide the entities' primary keys in the data array.
 Usually, this is just one `id` field, but since we're dealing with a mapping entity here, it owns two primary keys.
 This piece of information can be found by looking into the respective entity definition.
-Have a look at the [ProductCategoryDefinition](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Content/Product/Aggregate/ProductCategory/ProductCategoryDefinition.php#L37-L41) that we're dealing with here.
+Have a look at the [ProductCategoryDefinition](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Content/Product/Aggregate/ProductCategory/ProductCategoryDefinition.php#L37-L41) that we're dealing with here.
 It owns two primary keys, `productId` and `categoryId`, and you need to provide both to precisely delete this association.
 
 ### Deleting OneToMany associations
@@ -81,7 +81,7 @@ You need to figure out which kind of `OneToMany` association you're facing here:
 
 Let's start with the normal one. Usually, a `OneToMany` association is just the other side of a `ManyToOne` association, whose deletion was already explained in the section about deleting associated data.
 
-Assume you're looking into the [ProductManufacturerDefinition](https://github.com/shopware/platform/blob/trunk/src/Core/Content/Product/Aggregate/ProductManufacturer/ProductManufacturerDefinition.php), which has a `OneToMany` association to the products.
+Assume you're looking into the [ProductManufacturerDefinition](https://github.com/shopware/shopware/blob/trunk/src/Core/Content/Product/Aggregate/ProductManufacturer/ProductManufacturerDefinition.php), which has a `OneToMany` association to the products.
 Deleting this kind of association was already explained in the section about `ToOne` associations.
 Instead of working with the repository of the `ProductManufacturerDefinition`, you would be working with the repository from the `ProductDefinition` to remove this association.
 
@@ -102,7 +102,7 @@ It's the very same code example again.
 
 Unfortunately, it's not always that simple.
 As explained above, sometimes `OneToMany` associations are hidden `ManyToMany` associations.
-To understand what we mean, have a look at the `media` field in the [Product definition](https://github.com/shopware/platform/blob/v6.3.4.0/src/Core/Content/Product/ProductDefinition.php#L210-L211).
+To understand what we mean, have a look at the `media` field in the [Product definition](https://github.com/shopware/shopware/blob/v6.3.4.0/src/Core/Content/Product/ProductDefinition.php#L210-L211).
 Technically a product can have multiple medias, and a media can be assigned to multiple products, so this should have been a `ManyToMany` association, right?
 Yet, looking at the `media` field in the `ProductDefinition`, you can see that it's a `OneToMany` association.
 The second case, that we described earlier in this section, fits here: Technically a `ManyToMany` association, hidden by a `OneToMany` association for the reason mentioned above: There's more data needed for the mapping entity.
@@ -131,7 +131,7 @@ public function removeAssocData(Context $context): void
 }
 ```
 
-By having a look at the [ProductMediaDefinition](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Content/Product/Aggregate/ProductMedia/ProductMediaDefinition.php), we know that it only has one primary key, which is `id` - and as always when using the `delete` method, this is all you need to provide in the data array.
+By having a look at the [ProductMediaDefinition](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Content/Product/Aggregate/ProductMedia/ProductMediaDefinition.php), we know that it only has one primary key, which is `id` - and as always when using the `delete` method, this is all you need to provide in the data array.
 
 This way the product will now lose the association to the media entity.
 Note: This will **not** delete the media entity itself, just the association between the product and the media entity.
