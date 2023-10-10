@@ -80,6 +80,14 @@ This step is only executed for asynchronous payments. It is triggered by the cal
 The actual implementation of payment integrations differs between providers. Therefore, our specification does not include any guidelines about payment states or specific API calls to be made. Some integrations share data between the steps or provide and call upon webhooks after the payment process has been finished. These implementations go beyond our standards.
 :::
 
+### Session and state
+
+The session should not be used in headless payment integrations. Read more about Session usage [here](../../../resources/guidelines/code/session-and-state)
+
+### Controllers and API
+
+Do not add any logic inside your controllers and remember to add your Store API routes to the payment, so it can be used in headless scenarios. For Storefront and Store API route integration see the [Add store-api route guide](../../../guides/plugins/plugins/framework/store-api/add-store-api-route)
+
 ## Next steps
 
 <PageRef page="../../../guides/plugins/plugins/checkout/payment/add-payment-plugin" />
