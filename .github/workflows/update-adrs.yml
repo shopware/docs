@@ -19,6 +19,13 @@ jobs:
       - run: ./.github/scripts/update-adrs.sh
       - run: ./.github/scripts/migrate.sh ./resources/references/adr/
 
+      - name: Migrate links
+        uses: addnab/docker-run-action@v3
+        with:
+          image: php:8.0
+          options: -v ${{ github.workspace }}:/var/www
+          run: find ./resources/references/adr/ -name '*.md' -exec php ./.github/scripts/migrate.php {} +
+
       - uses: peter-evans/create-pull-request@v4
         with:
           add-paths: |
@@ -45,6 +52,13 @@ jobs:
 
       - run: ./.github/scripts/update-code-guidelines.sh
       - run: ./.github/scripts/migrate.sh ./resources/guidelines/code/core/
+
+      - name: Migrate links
+        uses: addnab/docker-run-action@v3
+        with:
+          image: php:8.0
+          options: -v ${{ github.workspace }}:/var/www
+          run: find /resources/guidelines/code/core/ -name '*.md' -exec php ./.github/scripts/migrate.php {} +
 
       - uses: peter-evans/create-pull-request@v4
         with:
