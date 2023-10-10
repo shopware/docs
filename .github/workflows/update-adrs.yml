@@ -17,6 +17,7 @@ jobs:
           deno-version: "~1.32"
 
       - run: ./.github/scripts/update-adrs.sh
+      - run: ./.github/scripts/migrate.sh ./resources/references/adr/
 
       - uses: peter-evans/create-pull-request@v4
         with:
@@ -43,6 +44,7 @@ jobs:
           deno-version: "~1.32"
 
       - run: ./.github/scripts/update-code-guidelines.sh
+      - run: ./.github/scripts/migrate.sh ./resources/guidelines/code/core/
 
       - uses: peter-evans/create-pull-request@v4
         with:
