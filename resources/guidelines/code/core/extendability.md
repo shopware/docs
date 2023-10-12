@@ -1,9 +1,4 @@
----
-nav:
-  title: Extendability
-  position: 60
 
----
 
 ::: info
 This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
