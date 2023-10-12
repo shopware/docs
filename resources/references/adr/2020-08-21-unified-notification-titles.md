@@ -2,14 +2,8 @@
 title: Notification titles are pre-defined and make use of the global namespace
 date: 2020-08-21
 area: administration
-tags:
-  - administration
-  - notification
-nav:
-  title: Unified notification titles
-  position: 110
-
----
+tags: [administration, notification]
+--- 
 
 # Notification titles are pre-defined and make use of the global namespace
 
@@ -87,3 +81,4 @@ It would cross the design idea of unified titles though and should only be consi
 > *When creating notifications, just decide on the correct type of notification, 
  add a meaningful message, don't waste even a thought on creating a title...
  And you're done!*
+

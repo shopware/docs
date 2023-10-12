@@ -2,15 +2,8 @@
 title: Add typescript support for storefront javascript
 date: 2022-06-24
 area: storefront
-tags:
-  - storefront
-  - typescript
-  - javascript
-nav:
-  title: Add typescript support for storefront js
-  position: 650
-
----
+tags: [storefront, typescript, javascript]
+--- 
 
 # Add typescript support for storefront javascript
 

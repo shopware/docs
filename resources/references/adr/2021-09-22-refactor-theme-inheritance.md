@@ -2,15 +2,8 @@
 title: Refactor theme inheritance
 date: 2021-09-22
 area: storefront
-tags:
-  - theme
-  - storefront
-  - inheritance
-nav:
-  title: Refactor theme inheritance
-  position: 310
-
----
+tags: [theme, storefront, inheritance]
+--- 
 
 # Refactor theme inheritance
 

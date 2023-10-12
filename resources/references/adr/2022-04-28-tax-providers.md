@@ -2,15 +2,8 @@
 title: Introducing tax providers
 date: 2022-04-28
 area: checkout
-tags:
-  - tax
-  - tax-provider
-  - checkout
-nav:
-  title: Tax providers
-  position: 610
-
----
+tags: [tax, tax-provider, checkout]
+--- 
 
 # Introducing tax providers
 

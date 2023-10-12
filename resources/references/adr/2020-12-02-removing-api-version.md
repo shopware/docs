@@ -2,15 +2,8 @@
 title: API version removal
 date: 2020-12-02
 area: core
-tags:
-  - api
-  - versioning
-  - deprecation
-nav:
-  title: Removing API version
-  position: 190
-
----
+tags: [api, versioning, deprecation]
+--- 
 
 # API version removal
 

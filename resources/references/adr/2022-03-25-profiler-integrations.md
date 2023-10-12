@@ -2,16 +2,7 @@
 title: Profiler integrations
 date: 2022-03-25
 area: core
-tags:
-  - profile
-  - performance
-  - tideways
-  - datadog
-  - blackfire
-nav:
-  title: Profiler integrations
-  position: 560
-
+tags: [profile, performance, tideways, datadog, blackfire]
 ---
 
 # Profiler integrations

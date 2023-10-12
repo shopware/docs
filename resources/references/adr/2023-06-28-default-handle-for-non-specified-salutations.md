@@ -2,13 +2,7 @@
 title: Default handling for non specified salutations
 date: 2023-06-28
 area: core
-tags:
-  - adr
-  - salutation
-nav:
-  title: Default handle for non specified salutations
-  position: 1010
-
+tags: [adr, salutation]
 ---
 
 # Default handling for non specified salutations

@@ -2,15 +2,8 @@
 title: New templates for line items and nested line items
 date: 2022-03-17
 area: storefront
-tags:
-  - storefront
-  - line-items
-  - checkout
-nav:
-  title: New nested line items
-  position: 500
-
----
+tags: [storefront, line-items, checkout]
+--- 
 
 # New templates for line items and nested line items
 

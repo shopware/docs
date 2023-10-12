@@ -2,13 +2,7 @@
 title: Providing the admin extension SDK
 date: 2022-06-15
 area: administration
-tags:
-  - admin-extension-sdk
-  - vue
-nav:
-  title: Providing the admin extension sdk
-  position: 660
-
+tags: [admin-extension-sdk, vue]
 ---
 
 # Providing the admin extension SDK
@@ -48,3 +42,4 @@ Monorepos have several advantages over multi repos. But in the case of the SDK a
 
 ## Consequences
 If you want to add something to the SDK you need to checkout the GitHub repository and publish the changes to this repository. If the change is also relevant for the administration side - then this version also needs to be bumped up there.
+

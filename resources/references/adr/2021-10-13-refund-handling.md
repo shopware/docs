@@ -2,15 +2,8 @@
 title: Refund handling
 date: 2021-10-13
 area: checkout
-tags:
-  - payment
-  - refund
-  - capture
-nav:
-  title: Refund handling
-  position: 330
-
----
+tags: [payment, refund, capture]
+--- 
 
 # Refund handling
 

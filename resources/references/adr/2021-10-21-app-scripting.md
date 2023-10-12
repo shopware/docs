@@ -2,13 +2,7 @@
 title: App scripts
 date: 2021-10-21
 area: core
-tags:
-  - app-system
-  - app-scripts
-nav:
-  title: App scripting
-  position: 340
-
+tags: [app-system, app-scripts]
 ---
 
 # App scripts

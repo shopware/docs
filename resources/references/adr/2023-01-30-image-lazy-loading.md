@@ -2,15 +2,8 @@
 title: Add native lazy loading for images to the storefront
 date: 2023-01-30
 area: storefront
-tags:
-  - image
-  - lazy-loading
-  - storefront
-nav:
-  title: Image lazy loading
-  position: 810
-
----
+tags: [image, lazy-loading, storefront]
+--- 
 
 # Add native lazy loading for images to the storefront
 

@@ -1,16 +1,8 @@
 ---
-title: Adding the `StorableFlow` instead of the `FlowEvent` for implementing the
-  flow DelayAction in flow builder
+title: Adding the `StorableFlow` instead of the `FlowEvent` for implementing the flow DelayAction in flow builder
 date: 2022-07-21
 area: business-ops
-tags:
-  - flow
-  - event
-  - refactoring
-nav:
-  title: Adding the storable flow to implement delay action in flow builder
-  position: 680
-
+tags: [flow, event, refactoring]
 ---
 
 # Adding the `StorableFlow` instead of the `FlowEvent` for implementing the flow DelayAction in flow builder

@@ -2,15 +2,8 @@
 title: Consistent deprecation notices in Core
 date: 2022-02-09
 area: core
-tags:
-  - deprecation
-  - annotations
-  - trigger-deprecation
-nav:
-  title: Consistent deprecation notices in core
-  position: 470
-
----
+tags: [deprecation, annotations, trigger-deprecation]
+--- 
 
 # Consistent deprecation notices in Core
 

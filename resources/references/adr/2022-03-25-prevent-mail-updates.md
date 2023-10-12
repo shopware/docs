@@ -1,14 +1,8 @@
 ---
-title: Prevent mail updates
+title: Prevent mail updates 
 date: 2022-03-25
 area: system-settings
-tags:
-  - mail
-  - flow
-nav:
-  title: Prevent mail updates
-  position: 550
-
+tags: [mail, flow]
 ---
 
 # Prevent mail updates 

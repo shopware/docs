@@ -2,14 +2,8 @@
 title: Add feature flag support for Storefront SCSS
 date: 2022-01-05
 area: storefront
-tags:
-  - feature-flag
-  - scss
-nav:
-  title: Add feature flag support for storefront scss
-  position: 410
-
----
+tags: [feature-flag, scss]
+--- 
 
 # Add feature flag support for Storefront SCSS
 
