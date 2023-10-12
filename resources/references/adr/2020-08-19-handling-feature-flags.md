@@ -2,14 +2,7 @@
 title: Handling feature flags
 date: 2020-08-12
 area: core
-tags:
-  - feature-flag
-  - workflow
-  - major
-nav:
-  title: Handling feature flags
-  position: 100
-
+tags: [feature-flag, workflow, major]
 ---
 
 # Handling feature flags

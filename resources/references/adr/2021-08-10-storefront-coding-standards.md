@@ -2,15 +2,8 @@
 title: Storefront coding standards
 date: 2021-08-10
 area: storefront
-tags:
-  - storefront
-  - coding-standards
-  - architecture
-nav:
-  title: Storefront coding standards
-  position: 260
-
----
+tags: [storefront, coding-standards, architecture]
+--- 
 
 # Storefront coding standards
 

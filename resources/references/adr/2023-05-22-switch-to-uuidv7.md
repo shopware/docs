@@ -1,13 +1,8 @@
 ---
 title: Switch to UUIDv7
 date: 2023-05-22
-area: core
-tags:
-  - DAL
-nav:
-  title: Switch to uuidv7
-  position: 980
-
+area:  core
+tags: [DAL]
 ---
 
 # Switch to UUIDv7

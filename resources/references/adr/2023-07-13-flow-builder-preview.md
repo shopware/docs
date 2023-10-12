@@ -2,13 +2,7 @@
 title: Flow Builder Preview
 date: 2023-07-13
 area: Business Ops
-tags:
-  - business-ops
-  - flow
-nav:
-  title: Flow builder preview
-  position: 1020
-
+tags: [business-ops, flow]
 ---
 
 # Flow Builder Preview

@@ -2,14 +2,7 @@
 title: Exception Log Level configuration
 date: 2023-05-25
 area: core
-tags:
-  - core
-  - devops
-  - observability
-nav:
-  title: Exception log levels
-  position: 990
-
+tags: [core, devops, observability]
 ---
 
 # Exception Log Level configuration

@@ -2,15 +2,8 @@
 title: Composer-based web updater
 date: 2022-11-09
 area: core
-tags:
-  - composer
-  - plugin
-  - web-updater
-nav:
-  title: Composer based web updater
-  position: 740
-
----
+tags: [composer, plugin, web-updater]
+--- 
 
 # Composer-based web updater
 

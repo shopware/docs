@@ -2,15 +2,8 @@
 title: Adjust ADR approval rules for the new org structure
 date: 2021-11-05
 area: core
-tags:
-  - architecture
-  - adr
-  - approval-rules
-nav:
-  title: Adjust adr approval rules
-  position: 360
-
----
+tags: [architecture, adr, approval-rules]
+--- 
 
 # Adjust ADR approval rules for the new org structure
 

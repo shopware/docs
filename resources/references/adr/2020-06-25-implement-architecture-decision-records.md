@@ -2,14 +2,8 @@
 title: Implement architecture decision records
 date: 2020-06-25
 area: core
-tags:
-  - adr
-  - workflow
-nav:
-  title: Implement architecture decision records
-  position: 10
-
----
+tags: [adr, workflow]
+--- 
 
 # Implement architecture decision records
 

@@ -2,15 +2,8 @@
 title: Payment Flow
 date: 2021-10-01
 area: checkout
-tags:
-  - checkout
-  - payment
-  - flow
-nav:
-  title: Payment flow
-  position: 320
-
----
+tags: [checkout, payment, flow]
+--- 
 
 # Payment Flow
 

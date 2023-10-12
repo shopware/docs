@@ -2,16 +2,8 @@
 title: Feature flags for major versions
 date: 2022-01-20
 area: core
-tags:
-  - core
-  - feature-flag
-  - workflow
-  - major-version
-nav:
-  title: Feature flags for major versions
-  position: 430
-
----
+tags: [core, feature-flag, workflow, major-version]
+--- 
 
 # Feature flags for major versions
 

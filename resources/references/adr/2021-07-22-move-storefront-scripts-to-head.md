@@ -2,15 +2,8 @@
 title: Move storefront script to head with defer
 date: 2021-07-22
 area: storefront
-tags:
-  - storefront
-  - javascript
-  - performance
-nav:
-  title: Move storefront scripts to head
-  position: 250
-
----
+tags: [storefront, javascript, performance]
+--- 
 
 # Move storefront script to head with defer
 

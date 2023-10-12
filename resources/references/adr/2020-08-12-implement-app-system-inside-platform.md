@@ -2,14 +2,8 @@
 title: Implement app system inside platform
 date: 2020-08-12
 area: core
-tags:
-  - app
-  - cloud
-nav:
-  title: Implement app system inside platform
-  position: 70
-
----
+tags: [app, cloud]
+--- 
 
 # Implement app system inside platform
 

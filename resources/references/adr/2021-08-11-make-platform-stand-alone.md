@@ -2,16 +2,8 @@
 title: Make shopware/shopware stand-alone for development and testing
 date: 2021-08-11
 area: product-operations
-tags:
-  - shopware
-  - platform
-  - development
-  - testing
-nav:
-  title: Make platform stand alone
-  position: 270
-
----
+tags: [shopware, platform, development, testing]
+--- 
 
 # Make shopware/shopware stand-alone for development and testing
 

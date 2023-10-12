@@ -2,14 +2,8 @@
 title: Merge E2E projects into a single project
 date: 2021-11-22
 area: core
-tags:
-  - e2e
-  - cypress
-nav:
-  title: Merge e2e projects into a single project
-  position: 380
-
----
+tags: [e2e, cypress]
+--- 
 
 # Merge E2E projects into a single project
 

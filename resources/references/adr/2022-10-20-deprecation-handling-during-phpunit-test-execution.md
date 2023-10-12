@@ -2,15 +2,8 @@
 title: Deprecation handling during PHPUnit test execution
 date: 2022-10-20
 area: core
-tags:
-  - phpunit
-  - deprecation
-  - test
-nav:
-  title: Deprecation handling during phpunit test execution
-  position: 720
-
----
+tags: [phpunit, deprecation, test]
+--- 
 
 # Deprecation handling during PHPUnit test execution
 

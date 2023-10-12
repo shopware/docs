@@ -2,15 +2,8 @@
 title: Mocking repositories
 date: 2023-01-04
 area: core
-tags:
-  - testing
-  - core
-  - repository
-nav:
-  title: Mocking repositories
-  position: 890
-
----
+tags: [testing, core, repository]
+--- 
 
 # Mocking repositories
 

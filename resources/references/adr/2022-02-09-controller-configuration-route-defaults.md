@@ -2,16 +2,8 @@
 title: Move controller level annotation into Symfony route annotation
 date: 2022-02-09
 area: core
-tags:
-  - annotations
-  - controller
-  - route
-  - defaults
-nav:
-  title: Controller configuration route defaults
-  position: 440
-
----
+tags: [annotations, controller, route, defaults]
+--- 
 
 # Move controller level annotation into Symfony route annotation
 
