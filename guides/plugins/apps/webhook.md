@@ -127,6 +127,10 @@ You can use a variety of events to react to changes in Shopware that way. See th
 
 ## Webhooks for live version only
 
+::: info
+This feature has been introduced with Shopware version 6.5.7.0
+:::
+
 There might be cases when you only want to call the webhook when an entry is written to the database with live version ID (`Shopware\Core\Defaults::LIVE_VERSION`). For example when orders are created, you want to filter out drafts and only call your webhook when an order is actually placed. See more on versioning entities [here](../plugins/framework/data-handling/versioning-entities.md).
 
 You can achieve this by adding the option `onlyLiveVersion` to your webhook definition in the manifest file:
