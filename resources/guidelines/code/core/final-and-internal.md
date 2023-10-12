@@ -1,9 +1,4 @@
----
-nav:
-  title: Final and internal
-  position: 70
 
----
 
 ::: info
 This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
