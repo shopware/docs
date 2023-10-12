@@ -16,9 +16,13 @@ jobs:
         with:
           deno-version: "~1.32"
 
+      # sync from shopware/shopware
       - run: ./.github/scripts/update-adrs.sh
+
+      # run gitbook -> vitepress migration script
       - run: ./.github/scripts/migrate.sh ./resources/references/adr/
 
+      # migrate links (.md -> .html)
       - name: Migrate links
         uses: addnab/docker-run-action@v3
         with:
@@ -50,9 +54,13 @@ jobs:
         with:
           deno-version: "~1.32"
 
+      # sync from shopware/shopware
       - run: ./.github/scripts/update-code-guidelines.sh
+
+      # run gitbook -> vitepress migration script
       - run: ./.github/scripts/migrate.sh ./resources/guidelines/code/core/
 
+      # migrate links (.md -> .html)
       - name: Migrate links
         uses: addnab/docker-run-action@v3
         with:

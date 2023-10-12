@@ -206,6 +206,10 @@ find $SOURCEDIR . -name '*.md' -exec sed -i 's/{% code %}//g' {} +
 # endcode
 find $SOURCEDIR . -name '*.md' -exec sed -i 's/{% endcode %}//g' {} +
 
+# rename shopware/platform to shopware/shopware
+find $SOURCEDIR . -name '*.md' -exec sed -i 's/{shopware\/platform/shopware\/shopware/g' {} +
+find $SOURCEDIR . -name '*.md' -exec sed -i 's/{\/shopware\/src/\/platform\/src/g' {} +
+
 # add new line to the end of the file
 find $SOURCEDIR . -name '*.md' -exec sed -i -e '$a\' {} +
 find $SOURCEDIR . -name '*.md' -exec sed -i -e '$a\' {} +
