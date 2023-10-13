@@ -18,3 +18,5 @@ redirects:
     resources/references/api-reference/admin-api-reference.html: guides/integrations-api/
     concepts/extensions/elasticsearch-concept.html: concepts/framework/elasticsearch.html
     guides/plugins/plugins/storefront/use-csrf-protection.html: guides/hosting/configurations/framework/samesite-protection.html
+    products/extensions/b2b-suite/: products/extensions/b2b/b2b-suite/
+    products/extensions/b2b-components/: products/extensions/b2b/b2b-components/
