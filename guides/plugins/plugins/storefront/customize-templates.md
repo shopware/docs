@@ -84,7 +84,7 @@ Of course this example is very simplified and does not use any variables, even t
 But rather than that, how do you know which variables are available to use? For this case, you can just dump all available variables:
 
 ```twig
-{% dump() }}
+{{ dump() }}
 ```
 
 This `dump()` call will print out all variables available on this page.
