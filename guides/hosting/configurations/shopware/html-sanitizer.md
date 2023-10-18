@@ -13,7 +13,7 @@ This feature has been introduced with Shopware version 6.5. This is exclusively 
 
 ## Overview
 
-HTML sanitizer improves security, reliability and usability of the text editor by removing potentially unsafe or malicious HTML code. It also sanitizes styles and attributes for consistent and correct code rendering regardless of platform and browser. For example, if the `<img>` tag  is added, it is automatically removed by the editor after a few seconds and an additional notice appears that some of your inputs have been sanitized.
+HTML sanitizer improves security, reliability and usability of the text editor by removing potentially unsafe or malicious HTML code. It also sanitizes styles and attributes for consistent and correct code rendering regardless of platform and browser. For example, if the `<img>` tag is added, it is automatically removed by the editor after a few seconds and an additional notice appears that some of your inputs have been sanitized.
 
 ## Configuration
 
@@ -30,3 +30,7 @@ In this example, the `<img>` tag, as well as the CSS attributes `src`, `alt` and
 If you want to deactivate the sanitizer despite security risks, you can also do this in the `z-shopware.yaml` using the following code:
 
 <<< @/docs/snippets/config/html_sanitizer_disabled.yaml
+
+::: warning
+Disabling the HTML sanitizer will allow potentially unsafe or malicious HTML code to be inserted.
+:::
