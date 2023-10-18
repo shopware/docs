@@ -30,3 +30,12 @@ Shopware 6 allows developers to define inheritance \(parent-child\) relationship
 POST /api/search/product
 --header 'sw-inheritance: 1'
 ```
+
+## sw-skip-trigger-flow
+
+Flows are an essential part of Shopware and are triggered by events like the creation of a customer. When migrating from another ecommerce platform to shopware, you might import hundreds of thousands of customers via the sync API. In that case, you don't want to trigger the `send email on customer creation` flow. To avoid this behavior, you can pass the `sw-skip-trigger-flow` header.
+
+```bash
+POST /api/_action/sync
+--header 'sw-skip-trigger-flow: 1'
+```
