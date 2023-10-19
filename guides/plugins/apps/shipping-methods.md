@@ -40,7 +40,7 @@ Ensure that the `<identifier>` of your shipping method remains unchanged, as Sho
     <shipping-methods>
 
         <shipping-method>
-            <!-- The identifier should not change after first release -->
+            <!-- The identifier should not change after the first release -->
             <identifier>NameOfYourFirstShippingMethod</identifier>
             <name>First shipping method</name>
 
@@ -59,13 +59,13 @@ Ensure that the `<identifier>` of your shipping method remains unchanged, as Sho
 ```
 
 ### Delivery Time
-The app manufacturer should initially display the standard delivery time to the shop manager, who can subsequently adjust it as needed.
-The delivery time includes some configurations that are required. 
+The app manufacturer should initially display the standard delivery time to the shop manager, who can subsequently adjust it as needed. The delivery time requires some configurations.
+
 #### Id
 The ID should only be generated initially and should remain unchanged thereafter. Changing it will result in the creation of a new one.
 
 ::: info
-Please note that the ID of the shipping time should not be modified. 
+Please note that you should not modify the ID of the shipping time.
 :::
 #### Name
 The name should describe the delivery time simply, briefly and comprehensibly.
@@ -111,9 +111,9 @@ The following values are possible units
 ```
 
 ### Extended configuration
-The functionality of course offers more than one identifier name. The following examples represents all possible configurations.
+The functionality offers more than one identifier name. The following examples represent all possible configurations.
 
-* Translation of field that are visible to the customer and requires a translation
+* Translation of fields that are visible to the customer and requires a translation
 * Shipping method description
 * Shipping method icon
 * Shipping method active (expects true or false). Default value is `false`
@@ -130,7 +130,7 @@ The functionality of course offers more than one identifier name. The following 
     <shipping-methods>
 
         <shipping-method>
-            <!-- Identifier should not change after first release -->
+            <!-- Identifier should not change after the first release -->
             <identifier>NameOfYourFirstShippingMethod</identifier>
             <name>First shipping method</name>
             <name lang="de-DE">Erste Versandmethode</name>
@@ -157,7 +157,7 @@ The functionality of course offers more than one identifier name. The following 
 You can initially add a description for the customer.
 
 ::: info
-Please note that the description cannot be modified by the manifest once the app is installed, as the merchant can change it.
+Please note that the manifest cannot modify the description once you install the app, as the merchant can change it.
 :::
 ```xml
 // manifest.xml
@@ -185,8 +185,7 @@ Please note that the description cannot be modified by the manifest once the app
 ```
 
 ### Icon
-You can initially add an icon.
-The path to this icon must be specified as relative to the manifest.xml file. For example, you have the following directory structure:
+You can initially add a shipping method icon. You must specify the path to this icon as relative to the manifest.xml file. For example, you have the following directory structure:
 ```
 - YourPluginDirectory
     - assets
@@ -197,7 +196,7 @@ The path to this icon must be specified as relative to the manifest.xml file. Fo
 The path should be: `assets/icons/yourIcon.png`
 
 ::: info
-Please note that the icon cannot be modified by the manifest once the app is installed, as the merchant can change it.
+Please note that the manifest cannot modify the icon once you install the app, as the merchant can change it.
 :::
 ```xml
 // manifest.xml
@@ -225,7 +224,7 @@ Please note that the icon cannot be modified by the manifest once the app is ins
 You can activate the shipping method by default. Possible values for active are `true` or `false`
 
 - true: Activates the shipping method
-- false: The shipping method is deactivated. Alternatively, you can simply leave out active
+- false: Deactivates the shipping method. Alternatively, you can leave out active
 
 ```xml
 // manifest.xml
@@ -277,7 +276,7 @@ It is possible to add a tracking URL for customers to monitor the delivery statu
 ```
 
 ### Position
-Here, you can set the display order of the shipping methods in the checkout. If the tag is omitted, the position of the shipping method is 1 by default.
+Here, you can set the display order of the shipping methods in the checkout. If you omit the tag, the position of the shipping method is 1 by default.
 
 ```xml
 // manifest.xml
