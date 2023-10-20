@@ -10,3 +10,4 @@ jobs:
         with:
           reporter: github-pr-review
           level: info
+          enabled_rules: PASSIVE_VOICE,SENTENCE_WHITESPACE
