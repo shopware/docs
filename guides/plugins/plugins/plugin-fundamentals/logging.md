@@ -6,15 +6,15 @@ As a plugin developer, you may want to log certain actions or errors to a log fi
 
 ## Prerequisites
 
-This guide is built upon our [plugin base guide](../plugin-base-guide.md), which explains the basics of a plugin as a whole. Make sure to have a look at it to get started on building your first plugin.
+This guide is built upon our [plugin base guide](../plugin-base-guide), which explains the basics of a plugin as a whole. Make sure to have a look at it to get started on building your first plugin.
 
 ## Configuring Monolog
 
 First, you must make sure that your plugin loads package configuration from the `/Resources/config/packages` folder:
 
-{% code title="<plugin root>/src/SwagBasicExample.php" %}
+::: code-group
 
-```php
+```php [<plugin root>/src/SwagBasicExample.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample;
@@ -49,30 +49,31 @@ class SwagBasicExample extends Plugin
         $configLoader->load($confDir . '/{packages}/*.yaml', 'glob');
     }
 }
-
 ```
 
-{% endcode %}
+:::
+
+This is a Symfony Bundle requirement, the same can also be achieved using Bundle Extensions. Please refer to the [Symfony Documentation](https://symfony.com/doc/current/bundles/extension.html). 
 
 
-We will use monolog to create a channel for your log messages; the channel should be a unique name identifying your plugin. See below for an example:
+We will now use monolog configuration to create a channel for your log messages; the channel should be a unique name identifying your plugin. See below for an example:
 
-{% code title="<plugin root>/src/Resources/config/packages/monolog.yaml" %}
 
-```yaml
+::: code-group
+
+```yaml [<plugin root>/src/Resources/config/packages/monolog.yaml]
+
 monolog:
   channels: ['my_plugin_channel']
 ```
 
-{% endcode %}
+:::
 
 Monolog automatically registers a logger service that you can inject in to your services, which is scoped to your channel. You can access the logger with the service ID: `monolog.logger.my_plugin_channel`.
 
 With your newly created channel, you can create a handler, directing your new channel to it.
 
-{% code title="<plugin root>/src/Resources/config/packages/monolog.yaml" %}
-
-```yaml
+```yaml [<plugin root>/src/Resources/config/packages/monolog.yaml]
 monolog:
   channels: ['my_plugin_channel']
 
@@ -84,7 +85,7 @@ monolog:
         channels: [ "my_plugin_channel"]
 ```
 
-{% endcode %}
+:::
 
 Following this approach allows project owners to redirect your channel to a different one to better suit their needs.
 
