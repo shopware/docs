@@ -9,20 +9,20 @@ nav:
 
 ## Overview
 
-In many cases you want to add your JavaScript to your main entry point `<plugin root>/src/Resources/app/storefront/src/main.js` in order to automatically compile it alongside with the Storefront JavScript. 
-For more information, please refer to [Add custom Javascript](add-custom-javascript.md).
+You often want to add your JavaScript to your main entry point `<plugin root>/src/Resources/app/storefront/src/main.js` to automatically compile it alongside the Storefront JavaScript.
+Please refer to [Add custom Javascript](add-custom-javascript.md) for more information.
 
-However, you might want to add JavaScript as a separate `<script>` tag in the HTML. For example to load a script from an external CDN.
-You will learn how you can extend the template in order to add a `<script>` tag.
+However, you might want to add JavaScript as a separate `<script>` tag in the HTML. For example, to load a script from an external CDN.
+You will learn how to extend the template to add a `<script>` tag.
 
 ## Prerequisites
 
-For this guide you need a running plugin and therefore a running Shopware 6 instance, with full access to all files. You will also need a brief understanding how a [template extension](customize-templates.md) works.
+For this guide, you need a running plugin, Shopware 6 instance, and full access to all files. You also need a brief understanding of how a [template extension](customize-templates.md) works.
 
 ## Adding JavaScript as a separate script tag
 
-You can extend the default template that is including the `<head>` section of the page: `src/Storefront/Resources/views/storefront/layout/meta.html.twig`.
-While it is possible to add a `<script>` anywhere in the HTML via template extensions, it is recommended to include your script alongside with the default scripts by extending the block `layout_head_javascript_hmr_mode`.
+You can extend the default template that includes the `<head>` section of the page: `src/Storefront/Resources/views/storefront/layout/meta.html.twig`.
+While it is possible to add a `<script>` anywhere in the HTML via template extensions, it is recommended to include your script alongside the default scripts by extending the block `layout_head_javascript_hmr_mode`.
 
 ```twig
 {# <plugin root>/src/Resources/views/storefront/layout/meta.html.twig #}
@@ -49,13 +49,13 @@ This will render:
 ```
 
 ::: danger
-If you are extending the block `layout_head_javascript_hmr_mode` in order to add your script, you must always use the `{{ parent() }}` function to render the Storefront JavaScript as well.
+If you are extending the block `layout_head_javascript_hmr_mode` to add your script, you must always use the `{{ parent() }}` function to render the Storefront JavaScript as well.
 Otherwise, the core JS functionalities of the Storefront will be overwritten and will stop working. This should only happen when you **explicitly** want this.
 :::
 
 ### Conditional scripts
 
-Instead of always rendering your `<script>`, you can also put it behind a condition in Twig.
+Instead of continually rendering your `<script>`, you can also put it behind a condition in Twig.
 Then the script will only be rendered when the Twig condition is met.
 
 ```twig
@@ -84,22 +84,22 @@ Please consider that non-async `<script src="#">` that are added before the Stor
 Too many scripts can have a negative effect on the shop's performance.
 :::
 
-### Script loading behaviour
+### Script loading behavior
 
-It is recommended to use the `defer` attribute to tell the browser that the script is meant to be executed after the document has been parsed.
-However, in case you are adding a library as `<script>`, please consult the library documentation. Some libraries are supposed to be loaded with `async` attribute.
+Using the `defer` attribute is recommended to tell the browser that the script is meant to be executed after the document has been parsed.
+However, if you add a library as `<script>`, please consult the library documentation. Some libraries are supposed to be loaded with `async` attribute.
 
 ::: warning
-It should be avoided to add external `<script src="#">` without `defer` or `async` because it will block rendering of the site until the script is executed. 
+It should be avoided to add external `<script src="#">` without `defer` or `async` because it will block rendering of the site until the script is executed.
 This can have a negative effect on the shop's performance.
 :::
 
 ### Alternative script locations
 
 You can also add a `<script>` near the body using block `base_body_script` in `src/Storefront/Resources/views/storefront/base.html.twig`.
-Technically, it is possible to add `<script>` at every location the Twig blocks are offering.
+It is possible to add `<script>` at every location the Twig blocks offer.
 
 ::: info
-Alternative script locations should only be used when there is a technical reason to do so. 
-For example when the documentation of an external library is recommending a specific script location inside the HTML.
+Alternative script locations should only be used when there is a technical reason.
+For example, when the documentation of an external library recommends a specific script location inside the HTML.
 :::
