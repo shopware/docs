@@ -30,18 +30,18 @@ In most cases, these line items will be products but may include other types (e.
 To make this work with the Shopware cart, order, and product listing, the `LineItemReferences` themselves can be set up by different entities.
 Schematically a list that is not yet ordered looks like this:
 
-![image](../../../../assets/line-item-list-with-listing.svg)
+![image](../../../../../assets/line-item-list-with-listing.svg)
 
 Whereas an ordered list looks like this:
 
-![image](../../../../assets/line-item-list-with-order.svg)
+![image](../../../../../assets/line-item-list-with-order.svg)
 
 As you can see, each `LineItemReference` borrows data from Shopware data structures, but a user of these objects can solely
 depend on the `LineItemReference` and `LineItemList` objects for unified access.
 
 This basic pattern revolves against other data structures in the component as well.
 
-![image](../../../../assets/line-item-list-with-order-context.svg)
+![image](../../../../../assets/line-item-list-with-order-context.svg)
 
 As you can see, the specific data is abstracted away through the order context object.
 An object that can either be generated during the Shopware checkout process or be created dynamically through the API.
