@@ -5,7 +5,7 @@ nav:
 
 ---
 
-# Add customer flow action
+# Add custom flow trigger
 
 ::: info
   This functionality is available starting with Shopware 6.4.6.0
@@ -248,7 +248,7 @@ class ShopNameStorer extends FlowStorer
 }
 ```
 
-We already have Aware interfaces, but if you want to use the custom data that is not available, you can define a new Aware interface and a Storer respective.
+We already have Aware interfaces, but if you want to use the custom data that is not available, you can define a new Aware interface and a Storer respectively.
 
 ```php
 <?php declare(strict_types=1);
@@ -343,7 +343,7 @@ Take a look at the [Add Flow Builder Action](/guides/plugins/plugins/framework/f
 
 ### Add your new event to the flow trigger list
 
-At this step you need to add your new event to the flow trigger list, let see the code below:
+At this step, you need to add your new event to the flow trigger list, let us see the code below:
 
 ```php
 // <plugin root>/src/Core/Checkout/Customer/Subscriber/BusinessEventCollectorSubscriber.php
@@ -398,7 +398,7 @@ public static function getSubscribedEvents()
 }
 ```
 
-And don't forget to register your subscriber to the container at `<plugin root>/src/Resources/config/services.xml`
+And remember to register your subscriber to the container at `<plugin root>/src/Resources/config/services.xml`
 
 ```xml
 // <plugin root>/src/Resources/config/services.xml
