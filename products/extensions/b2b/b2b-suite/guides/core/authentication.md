@@ -20,7 +20,7 @@ It extends the Shopware default authentication component and provides several be
 
 A schematic overview of the central usage of the Authentication component looks like this:
 
-![image](../../../../../assets/authentication-overview.svg)
+![image](../../../../../../assets/authentication-overview.svg)
 
 | Color  |   Type   |                                                                                  Description                                                                                  |
 |--------|:--------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|

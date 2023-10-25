@@ -11,7 +11,7 @@ nav:
 
 The diagram below shows how this schematically behaves:
 
-![image](../../../../../assets/ajax-panel-abstract.svg)
+![image](../../../../../../assets/ajax-panel-abstract.svg)
 
 ## Basic usage
 
@@ -65,7 +65,7 @@ One panel can influence another one by defining and linking to an id.
 
 The B2B Suite comes with a library of simple helper plugins to add behavior to the ajax panels.
 
-![image](../../../../../assets/ajax-panel-structure.svg)
+![image](../../../../../../assets/ajax-panel-structure.svg)
 
 As you can see, there is the `AjaxPanelPluginLoader` responsible for initializing and reinitializing plugins inside b2b-panels.
 Let's take our last example and extend it with a form plugin:

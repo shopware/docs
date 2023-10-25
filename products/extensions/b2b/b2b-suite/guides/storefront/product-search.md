@@ -22,4 +22,4 @@ A small example is shown below. The plugin deactivates the default autocompletio
 
 While using Elasticsearch, you have to enable the variants filter in the filter menu of the basic settings to show all variants in the product search.
 
-![ProductSearchOptions](../../../../../assets/product-search-options.png)
+![ProductSearchOptions](../../../../../../assets/product-search-options.png)

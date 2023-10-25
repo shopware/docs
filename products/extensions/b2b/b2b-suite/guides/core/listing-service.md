@@ -17,7 +17,7 @@ To reduce the necessary duplications, there are common implementations for this.
 
 The diagram below shows the usually implemented objects with their outside dependencies.
 
-![image](../../../../../assets/listing-service.svg)
+![image](../../../../../../assets/listing-service.svg)
 
 ## Search struct
 
