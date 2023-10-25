@@ -81,3 +81,13 @@ List of all rule classes across Shopware 6.
 | Class | Description |
 | :--- | :--- |
 | [Shopware\Core\System\Currency\Rule\CurrencyRule](https://github.com/shopware/shopware/blob/trunk/src/Core/System/Currency/Rule/CurrencyRule.php) | Match a specific currency to the current context. |
+
+## B2B
+
+| Class                         | Description                                                           | Component           |
+|:------------------------------|:----------------------------------------------------------------------|:--------------------|
+| EmployeeOrderRule             | Matches if the order was placed by an employee                        | Employee Management |
+| EmployeeOfBusinessPartnerRule | Matches if the customer is an employee of a specific business partner | Employee Management |
+| EmployeeRoleRule              | Matches if a specific role is assigned to an employee                 | Employee Management |
+| EmployeeStatusRule            | Matches if the employee as a specific status                          | Employee Management |
+| IsEmployeeRule                | Matches if the customer is an employee                                | Employee Management |
