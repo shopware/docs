@@ -438,7 +438,7 @@ class ProductUpdatedListener
 
 ## Connecting Doctrine to a Database
 
-<<< @/docs/snippets/guide/app_database_setup.md
+<!--@include: @/docs/snippets/guide/app_database_setup.md-->
 
 ## Install the app
 
