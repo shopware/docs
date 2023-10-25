@@ -9,6 +9,10 @@ nav:
 
 ## Overview
 
+::: warning
+This guide contains the `async_low_priority` queue which is only available in version 6.5.7.0 and above. You must not configure this queue in older versions as the messenger:consume command will fail.
+:::
+
 In this guide you'll learn how to create a message handler.
 
 A [handler](https://symfony.com/doc/current/messenger.html#creating-a-message-handler) gets called once the message is dispatched by the `handle_messages` middleware. Handlers do the actual processing of the message.
@@ -49,7 +53,7 @@ There is a console command to start a worker that will receive incoming messages
 bin/console messenger:consume async
 ```
 
-You can also append more transports to the command, so the worker will consume messages from multiple transports:
+You can also append more transports to the command, so the worker will consume messages from multiple transports which will result in prioritisation as mentioned in [Prioritized Transports](https://symfony.com/doc/current/messenger.html#prioritized-transports):
 
 ```bash
 // 
@@ -170,6 +174,10 @@ framework:
 You can route messages by their classname and use the asterisk as a fallback for all other messages. If you specify a list of transports the messages will be routed to all of them. For more information on this check the [Symfony docs](https://symfony.com/doc/current/messenger.html#routing-messages-to-a-transport).
 
 ### Admin worker
+
+::: warning
+The `transports` option can only be configured with the `async_low_priority` transport if you are on version 6.5.7.0 or above. You must not the `async_low_priority` in lower versions as the admin worker will fail.
+:::
 
 The admin-worker can be configured or disabled in the general `shopware.yml` configuration. If you want to use the admin worker you have to specify each transport, that previously was configured. The poll interval is the time in seconds that the admin-worker polls messages from the queue. After the poll-interval is over the request terminates and the Administration initiates a new request.
 
