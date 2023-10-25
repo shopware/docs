@@ -49,7 +49,14 @@ There is a console command to start a worker that will receive incoming messages
 bin/console messenger:consume async
 ```
 
-Where `async` is the transport you want to consume message from. There is also an API-Route that lets you consume messages for a given transport. Just post to the route `/api/_action/message-queue/consume` and define the transport from which you want to consume:
+You can also append more transports to the command, so the worker will consume messages from multiple transports:
+
+```bash
+// 
+bin/console messenger:consume async async_low_priority
+```
+
+Where `async` and `async_low_priority` are the transports you want to consume messages from. There is also an API-Route that lets you consume messages for a given transport. Just post to the route `/api/_action/message-queue/consume` and define the transport from which you want to consume:
 
 ```js
 // on
@@ -77,12 +84,12 @@ The recommended way to consume messages is through the cli command. You can conf
 
 ```bash
 // 
-bin/console messenger:consume async --time-limit=60
+bin/console messenger:consume async async_low_priority --time-limit=60
 ```
 
 ```bash
 // 
-bin/console messenger:consume async --memory-limit=128M
+bin/console messenger:consume async async_low_priority --memory-limit=128M
 ```
 
 For more information about the command and its configuration use the `-h` option:
@@ -172,7 +179,7 @@ shopware:
     admin_worker:
         enable_admin_worker: true
         poll_interval: 30
-        transports: ["async"]
+        transports: ["async", "async_low_priority"]
 ```
 
 ## Next steps

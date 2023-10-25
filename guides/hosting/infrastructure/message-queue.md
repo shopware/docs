@@ -41,6 +41,12 @@ You can configure the command just to run a certain amount of time and to stop i
 bin/console messenger:consume async --time-limit=60 --memory-limit=128M
 ```
 
+You can also configure the command to consume messages from multiple transports as it is recommended:
+
+```bash
+bin/console messenger:consume async async_low_priority
+```
+
 For more information about the command and its configuration, use the -h option:
 
 ```bash
@@ -77,7 +83,7 @@ User=www-data # Change this to webserver's user name
 Restart=always
 # Change the path to your shop path
 WorkingDirectory=/var/www/html
-ExecStart=php /var/www/html/bin/console messenger:consume --time-limit=60 --memory-limit=512M async
+ExecStart=php /var/www/html/bin/console messenger:consume --time-limit=60 --memory-limit=512M async async_low_priority
 
 [Install]
 WantedBy=shopware_consumer.target
@@ -116,7 +122,7 @@ shopware:
     admin_worker:
         enable_admin_worker: true
         poll_interval: 30
-        transports: ["async"]
+        transports: ["async", "async_low_priority"]
 ```
 
 ## Sending mails over the message queue
@@ -143,6 +149,7 @@ You can find all available transport options in the Symfony Messenger documentat
 Following environment variables are in use out of the box:
 
 * `MESSENGER_TRANSPORT_DSN` - The DSN to the transport to use (e.g. `doctrine://default`).
+* `MESSENGER_TRANSPORT_LOW_PRIORITY_DSN` - The DSN to the transport to use for low priority messages (e.g. `doctrine://default?queue_name=async_low_priority`).
 * `MESSENGER_TRANSPORT_FAILURE_DSN` - The DSN to the transport to use for failed messages (e.g. `doctrine://default?queue_name=failed`).
 
 ## Worker count for efficient message processing

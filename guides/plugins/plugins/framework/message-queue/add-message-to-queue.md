@@ -23,7 +23,7 @@ As most guides, this guide is also built upon the [Plugin base guide](../../plug
 
 ## Create a message
 
-First, we have to create a new message class in the directory `<plugin root>/MessageQueue/Message`. In this example, we create a `SmsNotification` that contains a string with content. By default, all messages are handled synchronously, to change the behavior to asynchronously we have to implement the `AsyncMessageInterface` interface.  
+First, we have to create a new message class in the directory `<plugin root>/MessageQueue/Message`. In this example, we create a `SmsNotification` that contains a string with content. By default, all messages are handled synchronously, to change the behavior to asynchronously we have to implement the `AsyncMessageInterface` interface. For more information about asynchronous messages, have a look at our guide about [Handling asynchronous messages](handle-asynchronous-messages.md). 
 
 Here's an example:
 
