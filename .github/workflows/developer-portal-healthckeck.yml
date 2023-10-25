@@ -1,0 +1,30 @@
+name: Healthcheck
+
+on: push
+
+jobs:
+  trigger-healthckeck:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Create Check
+        run: |
+          npm i @octokit/rest
+          export CHECK_ID=$(node .github/scripts/create-check.js)
+          
+          if [[ $CHECK_ID =~ ^[0-9]+$ ]]; then
+            node .github/scripts/trigger-workflow.js
+          else
+            echo "Check ID is not a numeric string."
+            echo $CHECK_ID
+            exit 1
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PERSONAL_ACCESS_TOKEN: ${{ secrets.DEV_HUB_PERSONAL_ACCESS_TOKEN }}
+          DEV_HUB_BRANCH: ${{ github.ref_name }}
+          DEV_HUB_REPO: ${{ github.repository }}
+          DEV_HUB_SHA: ${{ github.sha }}
