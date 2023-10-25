@@ -49,7 +49,7 @@ This will render:
 ```
 
 ::: danger
-If you are extending the block `layout_head_javascript_hmr_mode` to add your script, you must always use the `{{ parent() }}` function to render the Storefront JavaScript as well.
+If you are extending the block `layout_head_javascript_hmr_mode` to add your script, you must always use the <code v-pre>{{ parent() }}</code> function to render the Storefront JavaScript as well.
 Otherwise, the core JS functionalities of the Storefront will be overwritten and will stop working. This should only happen when you **explicitly** want this.
 :::
 

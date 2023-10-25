@@ -14,7 +14,7 @@ First, you must make sure that your plugin loads package configuration from the 
 
 ::: code-group
 
-```php [<plugin root>/src/SwagBasicExample.php]
+```php [[plugin root]/src/SwagBasicExample.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample;
@@ -61,7 +61,7 @@ We will now use monolog configuration to create a channel for your log messages;
 
 ::: code-group
 
-```yaml [<plugin root>/src/Resources/config/packages/monolog.yaml]
+```yaml [[plugin root]/src/Resources/config/packages/monolog.yaml]
 
 monolog:
   channels: ['my_plugin_channel']
@@ -73,7 +73,9 @@ Monolog automatically registers a logger service that you can inject in to your 
 
 With your newly created channel, you can create a handler, directing your new channel to it.
 
-```yaml [<plugin root>/src/Resources/config/packages/monolog.yaml]
+::: code-group
+
+```yaml [[plugin root]/src/Resources/config/packages/monolog.yaml]
 monolog:
   channels: ['my_plugin_channel']
 
