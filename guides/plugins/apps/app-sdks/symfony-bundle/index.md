@@ -83,7 +83,7 @@ The registration also dispatches events to react to the different lifecycle even
 
 ### 4. Connecting Doctrine to a Database
 
-<<< @/docs/snippets/guide/app_database_setup.md
+<!--@include: @/docs/snippets/guide/app_database_setup.md-->
 
 ### 5. Implement first ActionButtons, Webhooks, Payment
 
