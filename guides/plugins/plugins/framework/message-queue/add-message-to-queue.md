@@ -9,6 +9,10 @@ nav:
 
 ## Overview
 
+::: warning
+Parts of this guide refer to the `async_low_priority` queue and the corresponding `AsyncLowPriorityMessageInterface` which is only available in version 6.5.7.0 and above. Configuring the messenger to consume this queue will fail, if it does not exist.
+:::
+
 In this guide you'll learn how to create a message and add it to the queue.
 
 Shopware integrates with the [Symfony Messenger](https://symfony.com/doc/current/components/messenger.html) component and [Enqueue](https://enqueue.forma-pro.com/). This gives you the possibility to send and handle asynchronous messages.
@@ -23,7 +27,7 @@ As most guides, this guide is also built upon the [Plugin base guide](../../plug
 
 ## Create a message
 
-First, we have to create a new message class in the directory `<plugin root>/MessageQueue/Message`. In this example, we create a `SmsNotification` that contains a string with content. By default, all messages are handled synchronously, to change the behavior to asynchronously we have to implement the `AsyncMessageInterface` interface. For more information about asynchronous messages, have a look at our guide about [Handling asynchronous messages](handle-asynchronous-messages.md). 
+First, we have to create a new message class in the directory `<plugin root>/MessageQueue/Message`. In this example, we create a `SmsNotification` that contains a string with content. By default, all messages are handled synchronously, to change the behavior to asynchronously we have to implement the `AsyncMessageInterface` interface. For messages which should also be handled asynchronously but with a lower priority, you have to implement the `AsyncLowPriorityMessageInterface` interface.
 
 Here's an example:
 
