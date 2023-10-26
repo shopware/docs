@@ -1,3 +1,10 @@
+---
+nav:
+  title: Employee Management
+  position: 10
+
+---
+
 # Employee Management
 
 A feature of the B2B components includes employee, role, and permission management. It is implemented into both Storefront and Administration and supports their respective APIs.

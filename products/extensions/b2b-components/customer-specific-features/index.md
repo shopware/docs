@@ -7,4 +7,4 @@ nav:
 
 # Guides
 
-The following articles will guide you in creating custom toggles via a plugin for the b2b components (Customer Specific Features).
+The following articles will guide you how to create custom toggles via a plugin for b2b components (Customer-specific features).

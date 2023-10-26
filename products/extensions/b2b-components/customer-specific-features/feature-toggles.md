@@ -6,14 +6,14 @@ nav:
 ---
 
 ## Introduction
-A new "Customer Specific Features" section on the Customer detail page allows the shop merchant to turn B2B features on or off for a specific customer. This section aims to provide each customer with their own set of specific features, granting them access to certain B2B components within the shop.
+A new "Customer-specific features" section on the Customer detail page allows the shop merchant to turn B2B features on or off for a specific customer. This section aims to provide each customer with their own set of specific features, granting them access to certain B2B components within the shop.
 
 ![Feature Toggles](../../../../assets/b2b-feature-toggles.png)
 
 To achieve this, ACL (Access Control List) and address the following cases where functionality may be hidden:
 
 1. If the merchant has not activated a feature for a particular customer, it should be hidden.
-2. If the b2b admin has not granted an employee access to a specific feature, it should not be visible.
+2. If the B2B admin has not granted an employee access to a specific feature, it should not be visible.
 
 Considering these scenarios, we can ensure that the appropriate B2B features are displayed and accessible based on feature toggles and admin-granted permissions.
 
@@ -31,7 +31,7 @@ To improve organization and maintain a clear structure, it is advisable to reloc
 
 To ensure consistency and clarity, it is recommended to make your B2B Component extend CommercialB2BBundle instead of CommercialBundle as usual and add the type => 'B2B' attribute inside the describeFeatures() method of each B2B Component. This attribute will help identify and categorize the features specifically related to B2B functionality.
 
-By including `type => 'B2B'` in the `describeFeatures()` method, you can easily distinguish B2B features from other types of features within your application. This will facilitate easier maintenance, organization, and identification of B2B-related functionalities, ensuring a streamlined development process.
+By including `type => 'B2B'` in the `describeFeatures()` method, you can distinguish B2B features from other types of features within your application. This will facilitate easier maintenance, organization, and identification of B2B-related functionalities, ensuring a streamlined development process.
 
 For example, consider the following code snippet:
 
@@ -118,11 +118,10 @@ class CustomerSpecificFeatureTwigExtension extends AbstractExtension
 }
 ```
 
-Then, use it to check if a specific feature is allowed for a given customer in Twig.
+Use it to check if a specific feature is allowed for a given customer in Twig.
 
 ```html
 {% if customerHasFeature('QUICK_ORDER') %}
     ...
 {% endif %}
 ```
-

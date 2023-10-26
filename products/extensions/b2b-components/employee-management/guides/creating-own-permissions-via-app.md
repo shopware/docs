@@ -1,3 +1,10 @@
+---
+nav:
+  title: Create permissions via App
+  position: 40
+
+---
+
 # Create Permissions via App
 
 App needs to use the API to extend and create permissions. Therefore, the apps can send a request to the Store API and pass the required parameters to [`/store-api/permission`]() route.
