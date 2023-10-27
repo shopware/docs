@@ -13,7 +13,7 @@ The B2B Suite is a collection of loosely coupled, mostly uniform components pack
 
 A single component with all layers and the maximum of allowed dependencies looks like this:
 
-![image](../../../../../assets/b2b-architecture-component.png)
+![image](../../../../assets/b2b-architecture-component.png)
 
 The responsibilities from bottom to top:
 
@@ -39,19 +39,19 @@ There is a small library of shared functionality. It contains a few commonly use
 
 The user management is based on the `StoreFrontAuthentication` component and then provides `Contact` and `Debtor` entities which have `Address`es and `Role`s. These entities are mostly informational and CRUD based. Other parts of the system only depend on the `StoreFrontAuthentication` component but not the specific implementations as *Debtor* or *Contact*.
 
-![image](../../../../../assets/b2b-architecture-users.png)
+![image](../../../../assets/b2b-architecture-users.png)
 
 ### ACL
 
 The `acl` implementation is connected to most other entities provided by the B2B Suite.
 
-![image](../../../../../assets/b2b-architecture-acl.png)
+![image](../../../../assets/b2b-architecture-acl.png)
 
 ### Order and contingent management
 
 `ContingentGroups`s are connected to `Debtor`s and can have `acl` settings based on `Role`s or `Contact`s. `Order`s are personalized through the `StoreFrontAuthentication`.
 
-![image](../../../../../assets/b2b-architecture-order.png)
+![image](../../../../assets/b2b-architecture-order.png)
 
 ### The whole picture
 
@@ -62,6 +62,6 @@ Most dependencies are directly derived from requirements. So, the dependency flo
 
 So, for the sake of completeness, this is the whole picture:
 
-![image](../../../../../assets/b2b-architecture-components-complete.png)
+![image](../../../../assets/b2b-architecture-components-complete.png)
 
 Everything you should get from that is that there is a left to right propagation of dependencies. The components on the left side can be useful entirely without the components on the right side.
