@@ -9,7 +9,6 @@ async function createCheck() {
     try {
         const createCheckResponse = await octokit.checks.create({
             owner: process.env.GITHUB_REPOSITORY_OWNER,
-            //repo: process.env.GITHUB_REPOSITORY,
             repo: 'docs',
             name: 'DevHub',
             head_sha: process.env.GITHUB_SHA,
