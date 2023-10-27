@@ -28,3 +28,4 @@ jobs:
           DEV_HUB_BRANCH: ${{ github.ref_name }}
           DEV_HUB_REPO: ${{ github.repository }}
           DEV_HUB_SHA: ${{ github.sha }}
+          WORKFLOW: "external-healthcheck.yml"

@@ -10,8 +10,10 @@ async function triggerWorkflow() {
             owner: 'shopware',
             repo: 'developer-portal',
             ref: `main`,
-            workflow_id: 'external-healthcheck.yml',
-            inputs: {
+            workflow_id: process.env.WORKFLOW,
+            inputs: process.env.WORKFLOW === 'checkout-test-build-deploy.yml'
+                ? {}
+                : {
                 branch: process.env.DEV_HUB_BRANCH,
                 repo: process.env.DEV_HUB_REPO,
                 sha: process.env.DEV_HUB_SHA,

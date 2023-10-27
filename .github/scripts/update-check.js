@@ -2,8 +2,6 @@ const { Octokit } = require('@octokit/rest');
 
 const octokit = new Octokit({
     auth: process.env.GITHUB_TOKEN,
-    //auth: process.env.PERSONAL_ACCESS_TOKEN,
-    //auth: process.env.ADDITIONAL_ACCESS_TOKEN,
 });
 
 async function createCheck() {
