@@ -9,7 +9,6 @@ async function triggerWorkflow() {
         const response = await octokit.rest.actions.createWorkflowDispatch({
             owner: 'shopware',
             repo: 'developer-portal',
-            //event_type: 'trigger-workflow',
             ref: `main`,
             workflow_id: 'external-healthcheck.yml',
             inputs: {

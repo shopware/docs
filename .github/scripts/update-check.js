@@ -13,7 +13,7 @@ async function createCheck() {
         check_run_id: process.env.DEV_HUB_CHECK,
         name: 'DevHub',
         status: 'completed',
-        conclusion: 'success',
+        conclusion: process.env.DEV_HUB_CONCLUSION,
         completed_at: new Date().toISOString(),
         output: {
             title: 'Developer Portal healthcheck',

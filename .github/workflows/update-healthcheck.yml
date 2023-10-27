@@ -19,6 +19,10 @@ on:
         description: "Check ID"
         required: true
         type: string
+      conclusion:
+        description: "Healthcheck conclusion"
+        required: true
+        type: string
 
 jobs:
   update-healthckeck:
@@ -39,3 +43,4 @@ jobs:
           DEV_HUB_REPO: ${{ inputs.repo }}
           DEV_HUB_SHA: ${{ inputs.sha }}
           DEV_HUB_CHECK: ${{ inputs.check }}
+          DEV_HUB_CONCLUSION: ${{ inputs.conclusion }}
