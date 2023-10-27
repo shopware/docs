@@ -70,7 +70,7 @@ You probably won't be able to use the commands below. Use the following steps to
  ```
 
 * Copy these lines and delete them from this file.
-* Open `~/.zshrc` and add the above copied lines to the end of this file.
+* Open `~/.zshrc` and add the above-copied lines to the end of this file.
 * Initiate the terminal with `source ~/.zshrc` or reboot your terminal for nix to work.
 
 [Credits: "nixos installation issue,'command not found: nix'", StackOverflow](https://stackoverflow.com/a/70822086/982278)
@@ -131,9 +131,10 @@ Depending on whether you want to set up a fresh Shopware project or contribute t
 
 <Tabs>
 <Tab title="Symfony Flex">
-If you are already using Symfony Flex, you require a Composer package to get a basic devenv configuration:
+If you are already using our [Symfony Flex template](template), you require a Composer package to get a basic devenv configuration:
 
-```bash
+```shell
+// cd <YOUR_FLEX_PROJECT_ROOT>
 composer require devenv
 ```
 
@@ -212,7 +213,7 @@ The installation instructions for other OS are available on direnv's [official d
 </Tab>
 </Tabs>
 
-Afterwards, add the following hook to your shell:
+Afterward, add the following hook to your shell:
 
 <Tabs>
 
@@ -261,13 +262,27 @@ direnv allow
 
 Here is an overview of services Shopware provides by default and how you can access them:
 
-| Service          | Access                                         |
-|------------------|------------------------------------------------|
-| MySQL            | `mysql://shopware:shopware@127.0.0.1:3306`     |
-| Caddy            | [http://localhost:8000](http://localhost:8000) |
-| Adminer          | [http://localhost:9080](http://localhost:9080) |
-| Mailhog (SMTP)   | `smtp://127.0.0.1:1025`                        |
-| Mailhog (Web UI) | [http://localhost:8025](http://localhost:8025) |
+| Service        | Access                                          |
+|----------------|-------------------------------------------------|
+| MySQL          | `mysql://shopware:shopware@127.0.0.1:3306`      |
+| Mailhog (SMTP) | `smtp://127.0.0.1:1025`                         |
+| Redis (TCP)    | `tcp://127.0.0.1:6379`                          |
+
+### Caddy
+Caddy is a powerful, enterprise-ready, open-source web server with automatic HTTPS written in Go.
+
+[http://localhost:8000](http://localhost:8000)
+
+### Adminer
+Adminer is a full-featured database management tool written in PHP.
+
+[http://localhost:9080](http://localhost:9080)
+
+### Mailhog
+MailHog is an email testing tool for developers.
+
+[http://localhost:8025](http://localhost:8025)
+
 
 ## Customize your setup
 
@@ -417,8 +432,8 @@ devenv shell
 
 ### Direnv slow in big projects
 
-The bigger your project directory is getting over time (e.g. cache files piling up), the slower direnv will be.
-This is a known issue and the devenv developers are working on a solution.
+The bigger your project directory is getting over time (e.g., cache files piling up), the slower direnv will be.
+This is a known issue, and the devenv developers are working on a solution.
 
 <PageRef page="https://github.com/cachix/devenv/issues/257" title="Devenv slows down with big code repositories #257" target="_blank" />
 
@@ -426,7 +441,7 @@ This is a known issue and the devenv developers are working on a solution.
 
 ### How do I clean up devenv?
 
-Periodically run `devenv gc` to remove orphaned services, packages and processes and free up disk space.
+Periodically run `devenv gc` to remove orphaned services, packages and processes and free-up disk space.
 
 ### How do I access the database?
 
