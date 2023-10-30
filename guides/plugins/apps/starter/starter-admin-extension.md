@@ -82,7 +82,7 @@ SimpleNotification/
 <!doctype html>
 <html>
     <head>
-        <script src="https://unpkg.com/@shopware-ag/admin-extension-sdk@0.0.52/cdn"></script>
+        <script src="https://unpkg.com/@shopware-ag/admin-extension-sdk/cdn"></script>
     </head>
     <script>
         sw.notification.dispatch({
