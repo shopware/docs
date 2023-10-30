@@ -10,7 +10,7 @@ nav:
 ## Overview
 
 ::: warning
-Parts of this guide refer to the `async_low_priority` queue and the corresponding `AsyncLowPriorityMessageInterface` which is only available in version 6.5.7.0 and above. Configuring the messenger to consume this queue will fail, if it does not exist.
+Parts of this guide refer to the `low_priority` queue and the corresponding `AsyncLowPriorityMessageInterface` which is only available in version 6.5.7.0 and above. Configuring the messenger to consume this queue will fail, if it does not exist.
 :::
 
 In this guide you'll learn how to create a message and add it to the queue.

@@ -10,7 +10,7 @@ nav:
 ## Overview
 
 ::: warning
-Parts of this guide refer to the `async_low_priority` queue which is only available in version 6.5.7.0 and above. Configuring the messenger to consume this queue will fail, if it does not exist.
+Parts of this guide refer to the `low_priority` queue which is only available in version 6.5.7.0 and above. Configuring the messenger to consume this queue will fail, if it does not exist.
 :::
 
 In this guide you'll learn how to create a message handler.
@@ -57,10 +57,10 @@ You can also append more transports to the command, so the worker will consume m
 
 ```bash
 // 
-bin/console messenger:consume async async_low_priority
+bin/console messenger:consume async low_priority
 ```
 
-Where `async` and `async_low_priority` are the transports you want to consume messages from. There is also an API route that lets you consume messages for a given transport. send a `POST` request to the route `/api/_action/message-queue/consume` and define the transport which you want to consume:
+Where `async` and `low_priority` are the transports you want to consume messages from. There is also an API route that lets you consume messages for a given transport. send a `POST` request to the route `/api/_action/message-queue/consume` and define the transport which you want to consume:
 
 ```js
 // on
@@ -88,12 +88,12 @@ The recommended way to consume messages is through the cli command. You can conf
 
 ```bash
 // 
-bin/console messenger:consume async async_low_priority --time-limit=60
+bin/console messenger:consume async low_priority --time-limit=60
 ```
 
 ```bash
 // 
-bin/console messenger:consume async async_low_priority --memory-limit=128M
+bin/console messenger:consume async low_priority --memory-limit=128M
 ```
 
 For more information about the command and its configuration use the `-h` option:
@@ -176,7 +176,7 @@ You can route messages by their classname and use the asterisk as a fallback for
 ### Admin worker
 
 ::: warning
-The `transports` option can only be configured with the `async_low_priority` transport if you are on version 6.5.7.0 or above. You must not add the `async_low_priority` transport in lower versions as the admin worker will fail when it tries to consume a non-existent transport.
+The `transports` option can only be configured with the `low_priority` transport if you are on version 6.5.7.0 or above. You must not add the `low_priority` transport in lower versions as the admin worker will fail when it tries to consume a non-existent transport.
 :::
 
 The admin-worker can be configured or disabled in the general `shopware.yml` configuration. If you want to use the admin worker you have to specify each transport, that previously was configured. The poll interval is the time in seconds that the admin-worker polls messages from the queue. After the poll-interval is over the request terminates and the Administration initiates a new request.
@@ -187,7 +187,7 @@ shopware:
     admin_worker:
         enable_admin_worker: true
         poll_interval: 30
-        transports: ["async", "async_low_priority"]
+        transports: ["async", "low_priority"]
 ```
 
 ## Next steps
