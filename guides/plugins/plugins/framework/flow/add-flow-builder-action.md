@@ -244,7 +244,6 @@ And we also need to register this action in the container as a service, make sur
 // <plugin root>/src/Resources/config/services.xml
 <service id="Swag\ExamplePlugin\Core\Content\Flow\Dispatching\Action\CreateTagAction">
     <argument type="service" id="tag.repository" />
-    <tag name="kernel.event_subscriber"/>
     <tag name="flow.action" priority="600"/>
 </service>
 ```
@@ -257,7 +256,6 @@ And we also need to register this action in the container as a service, make sur
 // <plugin root>/src/Resources/config/services.xml
 <service id="Swag\ExamplePlugin\Core\Content\Flow\Dispatching\Action\CreateTagAction">
     <argument type="service" id="tag.repository" />
-    <tag name="kernel.event_subscriber"/>
     <tag name="flow.action" priority="600" key="action.create.tag"/>
 </service>
 ```
