@@ -10,7 +10,7 @@ nav:
 ## Overview
 
 ::: warning
-Parts of this guide refer to the `low_priority` queue which is only available in version 6.5.7.0 and above. Configuring the messenger to consume this queue will fail, if it does not exist.
+Parts of this guide refer to the `low_priority` queue, which is only available in version 6.5.7.0 and above. Configuring the messenger to consume this queue will fail if it does not exist.
 :::
 
 Shopware uses the Symfony Messenger component and Enqueue to handle asynchronous messages. This allows tasks to be processed in the background. Thus, tasks can be processed independently of timeouts or system crashes. By default, tasks in Shopware are stored in the database and processed via the browser as long as you are logged into the Administration. This is a simple and fast method for the development process, but not recommended for production systems. With multiple users logged into the Administration, this can lead to a high CPU load and interfere with the smooth execution of PHP FPM.
@@ -45,7 +45,7 @@ You can configure the command just to run a certain amount of time and to stop i
 bin/console messenger:consume async --time-limit=60 --memory-limit=128M
 ```
 
-You can also configure the command to consume messages from multiple transports, in order to prioritize them to your needs, as it is recommended by the [Symfony documentation](https://symfony.com/doc/current/messenger.html#prioritized-transports):
+You can also configure the command to consume messages from multiple transports to prioritize them to your needs, as it is recommended by the [Symfony documentation](https://symfony.com/doc/current/messenger.html#prioritized-transports):
 
 ```bash
 
@@ -121,7 +121,7 @@ Please refer to the [Symfony documentation](https://symfony.com/doc/current/mess
 ### Admin worker
 
 ::: warning
-The `transports` option can only be configured with the `low_priority` transport if you are on version 6.5.7.0 or above. You must not add the `low_priority` transport in lower versions as the admin worker will fail when it tries to consume a non-existent transport.
+The `transports` option can only be configured with the `low_priority` transport if you are on version 6.5.7.0 or above. You can't add the `low_priority` transport in lower versions as the admin worker will fail when it tries to consume a non-existent transport.
 :::
 
 The admin worker, if used, can be configured in the general `shopware.yml` configuration. If you want to use the admin worker, you have to specify each transport that was previously configured. The poll interval is the time in seconds that the admin worker polls messages from the queue. After the poll interval is over, the request terminates, and the Administration initiates a new request.

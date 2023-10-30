@@ -10,7 +10,7 @@ nav:
 ## Overview
 
 ::: warning
-Parts of this guide refer to the `low_priority` queue which is only available in version 6.5.7.0 and above. Configuring the messenger to consume this queue will fail, if it does not exist.
+Parts of this guide refer to the `low_priority` queue, which is only available in version 6.5.7.0 and above. Configuring the messenger to consume this queue will fail if it does not exist.
 :::
 
 In this guide you'll learn how to create a message handler.
@@ -53,7 +53,7 @@ There is a console command to start a worker that will receive incoming messages
 bin/console messenger:consume async
 ```
 
-You can also append more transports to the command, so the worker will consume messages from multiple transports which will result in prioritisation as mentioned in [Prioritized Transports](https://symfony.com/doc/current/messenger.html#prioritized-transports):
+You can also append more transports to the command, so the worker will consume messages from multiple transports which will result in prioritization as mentioned in [Prioritized Transports](https://symfony.com/doc/current/messenger.html#prioritized-transports):
 
 ```bash
 // 
@@ -176,7 +176,7 @@ You can route messages by their classname and use the asterisk as a fallback for
 ### Admin worker
 
 ::: warning
-The `transports` option can only be configured with the `low_priority` transport if you are on version 6.5.7.0 or above. You must not add the `low_priority` transport in lower versions as the admin worker will fail when it tries to consume a non-existent transport.
+The `transports` option can only be configured with the `low_priority` transport if you are on version 6.5.7.0 or above. You must not add the `low_priority` transport in lower versions, as the admin worker will fail when it tries to consume a non-existent transport.
 :::
 
 The admin-worker can be configured or disabled in the general `shopware.yml` configuration. If you want to use the admin worker you have to specify each transport, that previously was configured. The poll interval is the time in seconds that the admin-worker polls messages from the queue. After the poll-interval is over the request terminates and the Administration initiates a new request.
