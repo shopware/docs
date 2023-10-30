@@ -9,6 +9,10 @@ nav:
 
 ## Overview
 
+::: warning
+Parts of this guide refer to the `low_priority` queue, which is only available in version 6.5.7.0 and above. Configuring the messenger to consume this queue will fail if it does not exist.
+:::
+
 Shopware uses the Symfony Messenger component and Enqueue to handle asynchronous messages. This allows tasks to be processed in the background. Thus, tasks can be processed independently of timeouts or system crashes. By default, tasks in Shopware are stored in the database and processed via the browser as long as you are logged into the Administration. This is a simple and fast method for the development process, but not recommended for production systems. With multiple users logged into the Administration, this can lead to a high CPU load and interfere with the smooth execution of PHP FPM.
 
 ## Message queue on production systems
@@ -39,6 +43,14 @@ You can configure the command just to run a certain amount of time and to stop i
 
 ```bash
 bin/console messenger:consume async --time-limit=60 --memory-limit=128M
+```
+
+You can also configure the command to consume messages from multiple transports to prioritize them to your needs, as it is recommended by the [Symfony documentation](https://symfony.com/doc/current/messenger.html#prioritized-transports):
+
+```bash
+
+```bash
+bin/console messenger:consume async low_priority
 ```
 
 For more information about the command and its configuration, use the -h option:
@@ -77,7 +89,7 @@ User=www-data # Change this to webserver's user name
 Restart=always
 # Change the path to your shop path
 WorkingDirectory=/var/www/html
-ExecStart=php /var/www/html/bin/console messenger:consume --time-limit=60 --memory-limit=512M async
+ExecStart=php /var/www/html/bin/console messenger:consume --time-limit=60 --memory-limit=512M async low_priority
 
 [Install]
 WantedBy=shopware_consumer.target
@@ -108,6 +120,10 @@ Please refer to the [Symfony documentation](https://symfony.com/doc/current/mess
 
 ### Admin worker
 
+::: warning
+The `transports` option can only be configured with the `low_priority` transport if you are on version 6.5.7.0 or above. You can't add the `low_priority` transport in lower versions as the admin worker will fail when it tries to consume a non-existent transport.
+:::
+
 The admin worker, if used, can be configured in the general `shopware.yml` configuration. If you want to use the admin worker, you have to specify each transport that was previously configured. The poll interval is the time in seconds that the admin worker polls messages from the queue. After the poll interval is over, the request terminates, and the Administration initiates a new request.
 
 ```yaml
@@ -116,7 +132,7 @@ shopware:
     admin_worker:
         enable_admin_worker: true
         poll_interval: 30
-        transports: ["async"]
+        transports: ["async", "low_priority"]
 ```
 
 ## Sending mails over the message queue
@@ -143,6 +159,7 @@ You can find all available transport options in the Symfony Messenger documentat
 Following environment variables are in use out of the box:
 
 * `MESSENGER_TRANSPORT_DSN` - The DSN to the transport to use (e.g. `doctrine://default`).
+* `MESSENGER_TRANSPORT_LOW_PRIORITY_DSN` - The DSN to the transport to use for low priority messages (e.g. `doctrine://default?queue_name=low_priority`).
 * `MESSENGER_TRANSPORT_FAILURE_DSN` - The DSN to the transport to use for failed messages (e.g. `doctrine://default?queue_name=failed`).
 
 ## Worker count for efficient message processing

@@ -9,6 +9,10 @@ nav:
 
 ## Overview
 
+::: warning
+Parts of this guide refer to the `low_priority` queue and the corresponding `LowPriorityMessageInterface`, which is only available in version 6.5.7.0 and above. Configuring the messenger to consume this queue will fail if it does not exist.
+:::
+
 In this guide you'll learn how to create a message and add it to the queue.
 
 Shopware integrates with the [Symfony Messenger](https://symfony.com/doc/current/components/messenger.html) component and [Enqueue](https://enqueue.forma-pro.com/). This gives you the possibility to send and handle asynchronous messages.
@@ -23,7 +27,7 @@ As most guides, this guide is also built upon the [Plugin base guide](../../plug
 
 ## Create a message
 
-First, we have to create a new message class in the directory `<plugin root>/MessageQueue/Message`. In this example, we create a `SmsNotification` that contains a string with content. By default, all messages are handled synchronously, to change the behavior to asynchronously we have to implement the `AsyncMessageInterface` interface.  
+First, we have to create a new message class in the directory `<plugin root>/MessageQueue/Message`. In this example, we create a `SmsNotification` that contains a string with content. By default, all messages are handled synchronously. To change the behavior to asynchronously, we have to implement the `AsyncMessageInterface` interface. For messages which should also be handled asynchronously but with a lower priority, implement the `LowPriorityMessageInterface` interface.
 
 Here's an example:
 
@@ -92,6 +96,45 @@ public function sendMessage(string $message): void
             ->with(new DelayStamp(5000))
     );
 }
+```
+
+## Lower the priority for specific async messages
+
+You might consider using the new `low_priority` queue if you are dispatching messages that do not need to be handled immediately. To configure specific messages to be transported via the `low_priority` queue, you need to either adjust the routing or implement the `LowPriorityMessageInterface` as already mentioned:
+
+```yaml
+# config/packages/framework.yaml
+framework:
+    messenger:
+        routing:
+            'Your\Custom\Message': low_priority
+```
+
+## Override transport for specific messages
+
+If you explicitly configure a message to be transported via the `async` (default) queue, even though it implements the `LowPriorityMessageInterface`, which would usually be transported via the `low_priority` queue, the transport is overridden for this specific message.
+
+Example:
+```php
+// <plugin root>/src/MessageQueue/Message/LowPriorityMessage.php
+<?php declare(strict_types=1);
+
+namespace Your\Custom;
+
+use Shopware\Core\Framework\MessageQueue\LowPriorityMessageInterface;
+
+class LowPriorityMessage implements LowPriorityMessageInterface
+{
+}
+```
+
+```yaml
+# config/packages/framework.yaml
+framework:
+    messenger:
+        routing:
+            'Shopware\Core\Framework\MessageQueue\LowPriorityMessageInterface': low_priority
+            'Your\Custom\LowPriorityMessage': async
 ```
 
 ## Encrypted messages
