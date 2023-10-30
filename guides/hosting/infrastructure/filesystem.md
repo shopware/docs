@@ -97,7 +97,7 @@ shopware:
 ```
 
 ::: info
-Be aware of the **prod** in the config path. CDNs are typically for production environments, but you can also set them for all environments in `config/packackes/shopware.yml`.
+Be aware of the **prod** in the config path. CDNs are typically for production environments, but you can also set them for all environments in `config/packages/shopware.yml`.
 :::
 
 ## Integrated adapter configurations
