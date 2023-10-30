@@ -114,7 +114,7 @@ Now the file should be available on [http://127.0.0.1:8080](http://127.0.0.1:808
 
 The final step of the setup is to configure your app to use that file as an entry point.
 
-In order to do that, we have to add an `admin` section to our `manifest.xml` file and pass it into the `base-app-url` tag:
+To do that, we have to add an `admin` section to our `manifest.xml` file and pass it into the `base-app-url` tag:
 
 ```xml
 // manifest.xml
@@ -123,6 +123,10 @@ In order to do that, we have to add an `admin` section to our `manifest.xml` fil
     <meta>
         <!-- ... -->
     </meta>
+  <setup>
+    <registrationUrl>http://127.0.0.1:8000/app/lifecycle/register</registrationUrl>
+    <secret>TestSecret</secret>
+  </setup>
     <admin>
         <base-app-url>http://127.0.0.1:8080</base-app-url>
     </admin>
