@@ -134,7 +134,7 @@ Depending on whether you want to set up a fresh Shopware project or contribute t
 If you are already using our [Symfony Flex template](template), you require a Composer package to get a basic devenv configuration:
 
 ```shell
-// cd <YOUR_FLEX_PROJECT_ROOT>
+// cd <YOUR_SHOPWARE_FLEX_PROJECT_ROOT>
 composer require devenv
 ```
 
@@ -160,6 +160,26 @@ devenv up
 ::: warning
 Make sure that the ports for the services are not already in use, or else the command will fail.
 :::
+
+Check your default web services with the following commands:
+
+<Tabs>
+<Tab title="macOS">
+
+```bash
+???
+```
+
+</Tab>
+
+<Tab title="Ubuntu">
+
+```bash
+sudo ss -tulpn | grep ':80\|:3306\|:6379'
+```
+
+</Tab>
+</Tabs>
 
 Ensure to change your `.env` file to have the database connect using localhost's IP address instead of the default MySQL socket:
 
@@ -271,7 +291,7 @@ Here is an overview of services Shopware provides by default and how you can acc
 ### Caddy
 Caddy is a powerful, enterprise-ready, open-source web server with automatic HTTPS written in Go.
 
-[http://localhost:8000](http://localhost:8000)
+[http://127.0.0.1:8000](http://localhost:8000)
 
 ### Adminer
 Adminer is a full-featured database management tool written in PHP.
