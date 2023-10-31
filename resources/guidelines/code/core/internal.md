@@ -1,10 +1,3 @@
-
-
-::: info
-This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/code/core/internal.md)
-:::
-
 # Internal
 
 All classes and elements (methods, properties, constants) that are defined as protected or public are initially Public API for third party developers.

@@ -1,10 +1,3 @@
-
-
-::: info
-This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/code/core/benchmarks.md)
-:::
-
 # Benchmarks
 
 Since the 6.4.11 version, we have run continuous performance benchmarks via [locust.io](https://locust.io/). We want to extend these benchmarks continuously. You can find the sources in the [src/Core/Devops/Locust](https://github.com/shopware/shopware/tree/trunk/src/Core/DevOps/Locust) folder. You can find all the information on setting up and running these tests in the [README.md](https://github.com/shopware/shopware/blob/trunk/src/Core/DevOps/Locust/README.md).
