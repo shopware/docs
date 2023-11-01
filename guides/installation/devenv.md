@@ -296,7 +296,7 @@ Caddy is a powerful, enterprise-ready, open-source web server with automatic HTT
 ### Adminer
 Adminer is a full-featured database management tool written in PHP.
 
-[http://localhost:9080](http://localhost:9080)
+[http://localhost:8010](http://localhost:8010)
 
 ### Mailhog
 MailHog is an email testing tool for developers.
