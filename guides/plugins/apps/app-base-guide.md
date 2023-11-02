@@ -99,18 +99,7 @@ If there is no SDK available for your language, you can implement the registrati
 
 The registration request is made as a `GET` request against a URL you provide in your app's manifest file.
 
-```xml
-// manifest.xml
-<?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        ...
-    </meta>
-    <setup>
-        <registrationUrl>https://my.example.com/registration</registrationUrl>
-    </setup>
-</manifest>
-```
+<<< @/docs/snippets/config/app/setup.xml
 
 The following query parameters will be sent with the request:
 

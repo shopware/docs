@@ -1,0 +1,3 @@
+<allowed-hosts>
+    <host>example.com</host>
+</allowed-hosts>

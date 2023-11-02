@@ -1,0 +1,33 @@
+<admin>
+    <!-- Optional, entry point for the Admin Extension API (since 6.4.12.0) -->
+    <base-app-url>https://app.example.com</base-app-url>
+    <!-- Register a custom module that is used as a parent menu entry for other modules -->
+    <module name="myAdminModules"
+            parent="sw-marketing"
+            position="50"
+    >
+        <label>My modules</label>
+        <label lang="de-DE">Meine Module</label>
+    </module>
+    <!-- Register a custom module (iframe), that should be loaded from the given source -->
+    <module name="exampleModule"
+            source="https://example.com/promotion/view/promotion-module"
+            parent="app-MyExampleApp-myAdminModules"
+    >
+        <label>Example Module</label>
+        <label lang="de-DE">Beispiel Modul</label>
+    </module>
+    <!-- Register a module that is opened from the app store and your list of installed apps -->
+    <main-module source="https://example.com/main-module"/>
+    <!-- Register action buttons that should be displayed in the detail and listing pages of the Administration -->
+    <!-- view is one of: "list", "detail" -->
+    <action-button action="setPromotion" entity="promotion" view="detail" url="https://example.com/promotion/set-promotion">
+        <label>set Promotion</label>
+    </action-button>
+    <action-button action="deletePromotion" entity="promotion" view="detail" url="https://example.com/promotion/delete-promotion">
+        <label>delete Promotion</label>
+    </action-button>
+    <action-button action="restockProduct" entity="product" view="list" url="https://example.com/restock">
+        <label>restock</label>
+    </action-button>
+</admin>

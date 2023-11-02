@@ -30,7 +30,7 @@ Ensure that the `<identifier>` of your shipping method remains unchanged, as Sho
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
         <!-- Make sure that the name of your app does not change anymore, otherwise there will be duplicates of your shipping methods -->
         <name>NameOfYourShippingMethodApp</name>

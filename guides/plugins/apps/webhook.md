@@ -11,18 +11,7 @@ With webhooks, you can subscribe to events occurring in Shopware. Whenever such 
 
 To use webhooks in your app, you need to implement a `<webhooks>` element in your manifest file as shown below:
 
-```xml
-// manifest.xml
-<?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        ...
-    </meta>
-    <webhooks>
-        <webhook name="product-changed" url="https://example.com/event/product-changed" event="product.written"/>
-    </webhooks>
-</manifest>
-```
+<<< @/docs/snippets/config/app/webhooks.xml
 
 This example illustrates how to define a webhook with the name `product-changed` and the URL `https://example.com/event/product-changed`, which will be triggered if the event `product.written` is fired. So every time a product is changed, your custom logic will get executed. Further down, you will find a list of the most important events you can hook into.
 
