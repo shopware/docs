@@ -5,7 +5,7 @@ nav:
 
 ---
 
-# Quality Guidelines for Apps based on Plugin System in Shopware Store
+# Quality Guidelines for the Plugin System in the Shopware Store
 
 > **Changelog**
 >> 26/07/23: [Added - Identical name rule](../quality-guidelines-plugins/#every-app-based-on-the-plugin-system)
