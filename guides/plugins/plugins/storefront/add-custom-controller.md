@@ -130,6 +130,9 @@ Next, we need to register our controller in the DI-container and make it public.
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
+            <call method="setTwig">
+                <argument type="service" id="twig"/>
+            </call>
         </service>
     </services>
 </container>
