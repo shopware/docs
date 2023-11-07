@@ -1,3 +1,4 @@
+# This workflow is triggered whenever the main branch is updated
 name: Deploy to DevHub
 
 on:
