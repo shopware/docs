@@ -167,7 +167,7 @@ Check your default web services with the following commands:
 <Tab title="macOS">
 
 ```bash
-???
+netstat -p tcp -van | grep '^Proto\|LISTEN'
 ```
 
 </Tab>
@@ -175,7 +175,7 @@ Check your default web services with the following commands:
 <Tab title="Ubuntu">
 
 ```bash
-sudo ss -tulpn | grep ':80\|:3306\|:6379'
+ss -tulpn | grep ':80\|:3306\|:6379'
 ```
 
 </Tab>
@@ -336,7 +336,7 @@ After changing `devenv.local.nix`, please [reload your environment](#manually-re
   };
 
   # Override an environment variable
-  env.APP_URL = "http://shopware.swag";
+  env.APP_URL = "http://shopware.swag:YOUR_CADDY_PORT";
 }
 ```
 
@@ -405,6 +405,9 @@ Refer to the official devenv documentation to get a complete list of all availab
 
 ### Use customized VirtualHosts port for Caddy
 
+<Tabs>
+<Tab title="Port">
+
 ```nix
 // <PROJECT_ROOT>/devenv.local.nix
 { pkgs, config, lib, ... }:
@@ -428,6 +431,28 @@ Refer to the official devenv documentation to get a complete list of all availab
   
 }
 ```
+
+</Tab>
+
+<Tab title="Port and virtual host">
+
+```nix
+// <PROJECT_ROOT>/devenv.local.nix
+{ pkgs, config, lib, ... }:
+
+{
+  services.caddy.virtualHosts."http://shopware.swag:8029" = {
+    extraConfig = ''
+      root * public
+      php_fastcgi unix/${config.languages.php.fpm.pools.web.socket}
+      file_server
+    '';
+  };
+```
+
+</Tab>
+</Tabs>
+
 
 ### Use customized Adminer port
 
@@ -456,6 +481,18 @@ The bigger your project directory is getting over time (e.g., cache files piling
 This is a known issue, and the devenv developers are working on a solution.
 
 <PageRef page="https://github.com/cachix/devenv/issues/257" title="Devenv slows down with big code repositories #257" target="_blank" />
+
+### Fail to start Redis with locale other than en_US
+
+```shell
+14:04:52 redis.1           | 364812:M 07 Nov 2023 14:04:52.999 # Failed to configure LOCALE for invalid locale name.
+```
+
+You can export a different locale to your shell with the following command:
+
+```shell
+export LANG=en_US.UTF8;
+```
 
 ## FAQ
 
