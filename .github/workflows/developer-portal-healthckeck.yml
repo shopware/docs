@@ -8,9 +8,9 @@ jobs:
     uses: shopware/developer-portal/.github/workflows/healthcheck.yml@main
     with:
       owner: ${{ github.repository_owner }}
-      sha: ${{ github.sha }}
-      branch: ${{ github.ref_name }}
       repo: ${{ github.event.repository.name }}
+      branch: ${{ github.ref_name }}
+      sha: ${{ github.sha }}
     secrets:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       PERSONAL_TOKEN: ${{ secrets.DEV_HUB_PERSONAL_ACCESS_TOKEN }}
