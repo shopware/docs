@@ -291,7 +291,7 @@ Here is an overview of services Shopware provides by default and how you can acc
 ### Caddy
 Caddy is a powerful, enterprise-ready, open-source web server with automatic HTTPS written in Go.
 
-[http://127.0.0.1:8000](http://localhost:8000)
+[http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 ### Adminer
 Adminer is a full-featured database management tool written in PHP.
