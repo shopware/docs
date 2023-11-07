@@ -1,18 +1,15 @@
+# This workflow is triggered from developer-portal
 name: Update healthcheck
 
 on:
   workflow_dispatch:
     inputs:
-      branch:
-        description: "Branch to checkout"
+      owner:
+        description: "Owner to checkout"
         required: true
         type: string
       repo:
         description: "Repo to checkout"
-        required: true
-        type: string
-      sha:
-        description: "Commit to checkout"
         required: true
         type: string
       check:
@@ -25,22 +22,13 @@ on:
         type: string
 
 jobs:
-  update-healthckeck:
-    runs-on: ubuntu-latest
-    steps:
 
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Update check
-        run: |
-          npm i @octokit/rest
-          node .github/scripts/update-check.js
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PERSONAL_ACCESS_TOKEN: ${{ secrets.DEV_HUB_PERSONAL_ACCESS_TOKEN }}
-          DEV_HUB_BRANCH: ${{ inputs.branch }}
-          DEV_HUB_REPO: ${{ inputs.repo }}
-          DEV_HUB_SHA: ${{ inputs.sha }}
-          DEV_HUB_CHECK: ${{ inputs.check }}
-          DEV_HUB_CONCLUSION: ${{ inputs.conclusion }}
+  update-healthcheck:
+    uses: shopware/developer-portal/.github/workflows/update-healthcheck.yml@main
+    with:
+      owner: ${{ inputs.owner }}
+      repo: ${{ inputs.repo }}
+      check: ${{ inputs.check }}
+      conclusion: ${{ inputs.conclusion }}
+    secrets:
+      TOKEN: ${{ secrets.DEV_HUB_PERSONAL_ACCESS_TOKEN }}
