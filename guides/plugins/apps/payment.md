@@ -7,7 +7,7 @@ nav:
 
 # Payment
 
-Starting with version 6.4.1.0, Shopware also provides functionality for your app to be able to integrate payment providers. You can choose between just a simple request for approval in the background \(synchronous payment\) and the user being forwarded to a provider for payment \(asynchronous payment\). You provide one or two endpoints, one for starting the payment and providing a redirect URL and one for finalization to check for the resulting status of the payment. The requests and responses of all of your endpoints will be signed and feature JSON content.
+Starting with version `6.4.1.0`, Shopware also provides functionality for your app to be able to integrate payment providers. You can choose between just a simple request for approval in the background \(synchronous payment\) and the user being forwarded to a provider for payment \(asynchronous payment\). You provide one or two endpoints, one for starting the payment and providing a redirect URL and one for finalization to check for the resulting status of the payment. The requests and responses of all of your endpoints will be signed and feature JSON content.
 
 ## Prerequisites
 
@@ -24,88 +24,11 @@ If your app should provide one or multiple payment methods, you need to define t
 
 You may choose between a synchronous and an asynchronous payment method. These two types are differentiated by defining a `finalize-url` or not. If no `finalize-url` is defined, the internal Shopware payment handler will default to a synchronous payment. If you do not want or need any communication during the payment process with your app, you can also choose not to provide a `pay-url`, then the payment will remain on open on checkout.
 
-Below you can see different definitions of payment methods.
+Below, you can see different definitions of payment methods.
 
 Depending on the URLs you provide, Shopware knows which kind of payment flow your payment method supports.
 
-```xml
-// manifest.xml
-<?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        <!-- The name of the app should not change. Otherwise, all payment methods are created as duplicates. -->
-        <name>PaymentApp</name>
-        <!-- ... -->
-    </meta>
-
-    <payments>
-        <payment-method>
-            <!-- The identifier of the payment method should not change. Otherwise, a separate method is created. -->
-            <identifier>asynchronousPayment</identifier>
-            <name>Asynchronous payment</name>
-            <name lang="de-DE">Asynchrone Zahlung</name>
-            <description>This payment method requires forwarding to payment provider.</description>
-            <description lang="de-DE">Diese Zahlungsmethode erfordert eine Weiterleitung zu einem Zahlungsanbieter.</description>
-            <pay-url>https://payment.app/async/pay</pay-url>
-            <finalize-url>https://payment.app/async/finalize</finalize-url>
-            <!-- This optional path to this icon must be relative to the manifest.xml -->
-            <icon>Resources/paymentLogo.png</icon>
-        </payment-method>
-
-        <payment-method>
-            <!-- The identifier of the payment method should not change. Otherwise a separate method is created. -->
-            <identifier>synchronousPayment</identifier>
-            <name>Synchronous payment</name>
-            <name lang="de-DE">Synchrone Zahlung</name>
-            <description>This payment method does everything in one request.</description>
-            <description lang="de-DE">Diese Zahlungsmethode arbeitet in einem Request.</description>
-            <!-- This URL is optional for synchronous payments (see below). -->
-            <pay-url>https://payment.app/sync/process</pay-url>
-        </payment-method>
-
-        <payment-method>
-            <!-- The identifier of the payment method should not change. Otherwise a separate method is created. -->
-            <identifier>simpleSynchronousPayment</identifier>
-            <name>Simple Synchronous payment</name>
-            <name lang="de-DE">Einfache synchrone Zahlung</name>
-            <description>This payment will not do anything and stay on 'open' after order.</description>
-            <description lang="de-DE">Diese Zahlungsmethode wird die Transaktion auf 'offen' belassen.</description>
-            <!-- No URL is provided. -->
-        </payment-method>
-
-        <payment-method>
-            <!-- The identifier of the payment method should not change. Otherwise a separate method is created. -->
-            <identifier>preparedPayment</identifier>
-            <name>Payment, that offers everything</name>
-            <name lang="de-DE">Eine Zahlungsart, die alles kann</name>
-            <validate-url>https://payment.app/prepared/validate</validate-url>
-            <capture-url>https://payment.app/prepared/capture</capture-url>
-            <!-- This optional path to this icon must be relative to the manifest.xml -->
-            <icon>Resources/paymentLogo.png</icon>
-        </payment-method>
-
-        <payment-method>
-            <!-- The identifier of the payment method should not change. Otherwise a separate method is created. -->
-            <identifier>refundPayment</identifier>
-            <name>Refund payments</name>
-            <name lang="de-DE">Einfache Erstattungen</name>
-            <refund-url>https://payment.app/refund</refund-url>
-            <!-- This optional path to this icon must be relative to the manifest.xml -->
-            <icon>Resources/paymentLogo.png</icon>
-        </payment-method>
-
-        <payment-method>
-            <!-- The identifier of the payment method should not change. Otherwise a separate method is created. -->
-            <identifier>recurringPayment</identifier>
-            <name>Recurring payments</name>
-            <name lang="de-DE">Einfache wiederkehrende Zahlungen</name>
-            <recurring-url>https://payment.app/recurring</recurring-url>
-            <!-- This optional path to this icon must be relative to the manifest.xml -->
-            <icon>Resources/paymentLogo.png</icon>
-        </payment-method>
-    </payments>
-</manifest>
-```
+<<< @/docs/snippets/config/app/payments.xml
 
 ## Synchronous payments
 

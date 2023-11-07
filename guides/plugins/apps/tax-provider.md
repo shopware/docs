@@ -26,26 +26,7 @@ To indicate to Shopware that your app uses a custom tax calculation, you must pr
 
 Below, you can see an example definition of a working tax provider.
 
-```xml
-// manifest.xml
-<?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        <!-- The name of the app should not change. Otherwise all payment methods are created as duplicates. -->
-        <name>PaymentApp</name>
-        <!-- ... -->
-    </meta>
-    
-    <tax>
-        <tax-provider>
-            <identifier>myCustomTaxProvider</identifier>                        <!-- Unique identifier of the tax provider -->
-            <name>My custom tax provider</name>                                 <!-- Display name of the tax provider -->    
-            <priority>1</priority>                                              <!-- Priority of the tax provider - can be changed in the administration as well -->
-            <process-url>https://tax-provider.app/provide-taxes</process-url>     <!-- Url of your implementation - is called during checkout to provide taxes -->
-        </tax-provider>
-    </tax>
-</manifest>
-```
+<<< @/docs/snippets/config/app/tax.xml
 
 After successful installation of your app, the tax provider will already be used during checkout to provide taxes. You should also see the new tax provider showing up in the administration in `Settings > Tax`.
 
