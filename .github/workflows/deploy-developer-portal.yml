@@ -10,21 +10,14 @@ jobs:
     name: Trigger deployment
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: |
-          npm i @octokit/rest
-
-      - name: Trigger deployment
-        run: |
-          node .github/scripts/trigger-workflow.js
+      - uses: octokit/request-action@v2.x
+        name: Trigger deployment
+        with:
+          route: POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches
+          owner: shopware
+          repo: developer-portal
+          ref: main
+          workflow_id: checkout-test-build-deploy.yml
         env:
-          WORKFLOW: "checkout-test-build-deploy.yml"
-          PERSONAL_ACCESS_TOKEN: ${{ secrets.DEV_HUB_PERSONAL_ACCESS_TOKEN }}
-          DEV_HUB_BRANCH: ${{ inputs.branch }}
-          DEV_HUB_REPO: ${{ inputs.repo }}
-          DEV_HUB_SHA: ${{ inputs.sha }}
-          DEV_HUB_CHECK: ${{ inputs.check }}
-          DEV_HUB_CONCLUSION: ${{ steps.status.outputs.success == 'true' && 'success' || 'failure' }}
+          GITHUB_TOKEN: ${{ secrets.DEV_HUB_PERSONAL_ACCESS_TOKEN }}
