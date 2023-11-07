@@ -1,3 +1,4 @@
+# This workflow is triggered from developer-portal
 name: Update healthcheck
 
 on:
