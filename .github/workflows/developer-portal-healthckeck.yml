@@ -25,6 +25,10 @@ jobs:
 #      - name: Checkout Repository
 #        uses: actions/checkout@v2
 
+      - name: Validate check run
+        if: ${{ !fromJson(steps.create_check_run.outputs.data).id }}
+        run: exit 1
+
       - uses: octokit/request-action@v2.x
         name: Trigger workflow
         id: trigger_workflow
@@ -42,10 +46,6 @@ jobs:
             check: ${{ fromJson(steps.create_check_run.outputs.data).id }}
         env:
           GITHUB_TOKEN: ${{ secrets.DEV_HUB_PERSONAL_ACCESS_TOKEN }}
-
-      - name: Trigger failed
-        if: ${{ !fromJson(steps.create_check_run.outputs.data).id }}
-        run: exit 1
 
 #      - name: Create Check
 #        run: |
