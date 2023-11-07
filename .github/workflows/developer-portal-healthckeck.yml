@@ -40,10 +40,10 @@ jobs:
           ref: main
           workflow_id: external-healthcheck.yml
           inputs: |
-            branch=${{ github.ref_name }}
-            repo=${{ github.repository }}
-            sha=${{ github.sha }}
-            check=${{ fromJson(steps.create_check_run.outputs.data).id }}
+            branch: ${{ github.ref_name }}
+            repo: ${{ github.repository }}
+            sha: ${{ github.sha }}
+            check: 123
         env:
           GITHUB_TOKEN: ${{ secrets.DEV_HUB_PERSONAL_ACCESS_TOKEN }}
 
