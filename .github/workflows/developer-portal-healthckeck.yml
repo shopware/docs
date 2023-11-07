@@ -7,25 +7,62 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Create Check
-        run: |
-          npm i @octokit/rest
-          export CHECK_ID=$(node .github/scripts/create-check.js)
-          
-          if [[ $CHECK_ID =~ ^[0-9]+$ ]]; then
-            node .github/scripts/trigger-workflow.js
-          else
-            echo "Check ID is not a numeric string."
-            echo $CHECK_ID
-            exit 1
-          fi
+      - uses: octokit/request-action@v2.x
+        name: Create check run
+        id: create_check_run
+        with:
+          route: POST /repos/{owner}/{repo}/check-runs
+          owner: ${{ github.repository_owner }}
+          repo: docs
+          name: DevHub
+          head_sha: ${{ github.sha }}
+          output: |
+            title: Developer Portal healthcheck
+            summary: Building the project in DevHub (Developer Portal)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PERSONAL_ACCESS_TOKEN: ${{ secrets.DEV_HUB_PERSONAL_ACCESS_TOKEN }}
-          DEV_HUB_BRANCH: ${{ github.ref_name }}
-          DEV_HUB_REPO: ${{ github.repository }}
-          DEV_HUB_SHA: ${{ github.sha }}
-          WORKFLOW: "external-healthcheck.yml"
+
+#      - name: Checkout Repository
+#        uses: actions/checkout@v2
+
+      - uses: octokit/request-action@v2.x
+        name: Trigger workflow
+        id: trigger_workflow
+        if: ${{ fromJson(steps.create_check_run.outputs.data).id }}
+        with:
+          route: POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches
+          owner: shopware
+          repo: developer-portal
+          ref: main
+          workflow_id: external-healthcheck.yml
+          inputs: |
+            branch: ${{ github.ref_name }}
+            repo: ${{ github.repository }}
+            sha: ${{ github.sha }}
+            check: ${{ fromJson(steps.create_check_run.outputs.data).id }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Trigger failed
+        if: ${{ !fromJson(steps.create_check_run.outputs.data).id }}
+        run: exit 1
+
+#      - name: Create Check
+#        run: |
+#          npm i @octokit/rest
+#          export CHECK_ID=$(node .github/scripts/create-check.js)
+          
+#          if [[ $CHECK_ID =~ ^[0-9]+$ ]]; then
+#            node .github/scripts/trigger-workflow.js
+#          else
+#            echo "Check ID is not a numeric string."
+#            echo $CHECK_ID
+#            exit 1
+#          fi
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         PERSONAL_ACCESS_TOKEN: ${{ secrets.DEV_HUB_PERSONAL_ACCESS_TOKEN }}
+#          DEV_HUB_BRANCH: ${{ github.ref_name }}
+#          DEV_HUB_REPO: ${{ github.repository }}
+#          DEV_HUB_SHA: ${{ github.sha }}
+#          WORKFLOW: "external-healthcheck.yml"
