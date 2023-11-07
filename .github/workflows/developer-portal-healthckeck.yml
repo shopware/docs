@@ -43,7 +43,7 @@ jobs:
             branch: ${{ github.ref_name }}
             repo: ${{ github.repository }}
             sha: ${{ github.sha }}
-            check: 123
+            check: "123"
         env:
           GITHUB_TOKEN: ${{ secrets.DEV_HUB_PERSONAL_ACCESS_TOKEN }}
 
