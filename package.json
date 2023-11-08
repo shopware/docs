@@ -1,0 +1,8 @@
+{
+  "name": "shopware/docs",
+  "version": "0.0.1",
+  "scripts": {
+    "docs:link": "../developer-portal/docs-cli.cjs link --src . --dst docs --symlink",
+    "docs:preview": "../developer-portal/docs-cli.cjs preview"
+  }
+}
