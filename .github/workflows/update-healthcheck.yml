@@ -31,4 +31,4 @@ jobs:
       check: ${{ inputs.check }}
       conclusion: ${{ inputs.conclusion }}
     secrets:
-      TOKEN: ${{ secrets.DEV_HUB_PERSONAL_ACCESS_TOKEN }}
+      TOKEN: ${{ secrets.GITHUB_TOKEN }}
