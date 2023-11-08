@@ -416,22 +416,13 @@ Refer to the official devenv documentation to get a complete list of all availab
 { pkgs, config, lib, ... }:
 
 {
-  services.caddy.virtualHosts = lib.mkForce {
-      ":8029" = lib.mkDefault {
-          extraConfig = lib.mkDefault ''
-              @default {
-                not path /theme/* /media/* /thumbnail/* /bundles/* /css/* /fonts/* /js/* /sitemap/*
-              }
-
-              root * public
-              php_fastcgi @default unix/${config.languages.php.fpm.pools.web.socket} {
-                  trusted_proxies private_ranges
-              }
-              file_server
-          '';
-      };
-  };
-  
+  services.caddy.virtualHosts.":8029" = {
+    extraConfig = ''
+      root * public
+      php_fastcgi unix/${config.languages.php.fpm.pools.web.socket}
+      file_server
+    '';
+ };
 }
 ```
 
