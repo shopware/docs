@@ -127,14 +127,17 @@ You can find the whole installation guide for devenv in their official documenta
 
 ### Shopware
 
-Depending on whether you want to set up a fresh Shopware project or contribute to the Shopware core, choose between:
+Depending on whether you want to set up a fresh Shopware project or contribute to the Shopware core, you have to choose between the [Symfony Flex template](template) or the Shopware project.
 
 <Tabs>
 <Tab title="Symfony Flex">
-If you are already using our [Symfony Flex template](template), you require a Composer package to get a basic devenv configuration:
+If you are already using our Symfony Flex template, you require a Composer package to get a basic devenv configuration:
 
 ```shell
-// cd <YOUR_SHOPWARE_FLEX_PROJECT_ROOT>
+cd <YOUR_SHOPWARE_FLEX_PROJECT_ROOT>
+```
+
+```shell
 composer require devenv
 ```
 
