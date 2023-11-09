@@ -48,8 +48,6 @@ bin/console messenger:consume async --time-limit=60 --memory-limit=128M
 You can also configure the command to consume messages from multiple transports to prioritize them to your needs, as it is recommended by the [Symfony documentation](https://symfony.com/doc/current/messenger.html#prioritized-transports):
 
 ```bash
-
-```bash
 bin/console messenger:consume async low_priority
 ```
 
