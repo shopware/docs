@@ -26,7 +26,7 @@ The following sections gives you a very short example on how you can extend a st
 
 ### Setting up app's view directory
 
-First of all, in your app's root, register your app's own view path, which basically represents a path in which Shopware 6 is looking for template-files. By default, Shopware 6 is looking for a directory called `views` in your app's `Resources` directory, so the path could look like this: `<app root>/YourAppName/src/Resources/views`
+First of all, in your app's root, register your app's own view path, which basically represents a path in which Shopware 6 is looking for template-files. By default, Shopware 6 is looking for a directory called `views` in your app's `Resources` directory, so the path could look like this: `<app root>/src/Resources/views`
 
 ### Locating the template
 
@@ -42,7 +42,7 @@ Now that you have found the proper template for the logo, you can override it.
 
 Overriding this file now requires you to copy the exact same directory structure starting from the `views` directory for your custom file. In this case, the file `logo.html.twig` is located in a directory called `storefront/layout/header`, so make sure to remember this path.
 
-Finally, you have to set up the following directory path in your app: `<app root>/YourAppName/src/Resources/views/storefront/layout/header`. Next, create a new file called `logo.html.twig`, just like the original file. Once more to understand what's going on here: In the Storefront code, the path to the logo file looks like this: `Storefront/Resources/views/storefront/layout/header/logo.html.twig`. Now have a look at the path being used in your app: `<app root>/YourAppName/src/Resources/views/storefront/layout/header/logo.html.twig`
+Finally, you have to set up the following directory path in your app: `<app root>/src/Resources/views/storefront/layout/header`. Next, create a new file called `logo.html.twig`, just like the original file. Once more to understand what's going on here: In the Storefront code, the path to the logo file looks like this: `Storefront/Resources/views/storefront/layout/header/logo.html.twig`. Now have a look at the path being used in your app: `<app root>/src/Resources/views/storefront/layout/header/logo.html.twig`
 
 Starting from the `views` directory, the path is **exactly the same**, and that's the important part for your custom template to be loaded automatically.
 
