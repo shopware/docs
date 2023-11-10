@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Vue 3 update
+  title: Vue 3 upgrade
   position: 10
 
 ---
 
-# Vue 3 update
+# Vue 3 upgrade
 
 ## Introduction
 
@@ -13,15 +13,15 @@ The Shopware administration uses Vue.js `2`, which will reach its end of life (E
 
 ## FAQ
 
-Let's start with some frequently asked questions. These will also help you figure out if this update affects you.
+Let's start with some frequently asked questions. These will also help you figure out if this upgrade affects you.
 
-### Which extensions are affected by the Vue 3 update?
+### Which extensions are affected by the Vue 3 upgrade?
 App-based extensions aren't affected by these changes. However, if your extension is plugin-based and contains custom administration code, you likely need to do some refactoring.
 
 ### Are there any breaking changes I should be aware of?
 Yes, Vue 3 introduced breaking changes. It's crucial to review the migration guide provided by Vue.js and this document for detailed information.
 
-### What steps should I follow to update my Shopware plugin to Vue 3?
+### What steps should I follow to upgrade my Shopware plugin to Vue 3?
 Typically, the process involves updating your project dependencies and modifying your code to adhere to Vue 3's API changes. Consult the Vue 3 documentation and this document's step-by-step instructions.
 
 ### Can one plugin version be compatible with Shopware 6.5 and 6.6?
@@ -30,11 +30,11 @@ No, your plugin requires a new version in the Store. For instance, version `1.x`
 ### How can I check if my Shopware extension is compatible with Vue 3?
 You can verify compatibility by reviewing the extension's functionality and updating test suites according to this document.
 
-### Do I need to rewrite my extension to update to Vue 3?
+### Do I need to rewrite my extension to upgrade to Vue 3?
 While some changes are required, a complete rewrite is not necessary. The amount of effort is dictated by your use of Vue's internal API.
 
 ### Are tools or libraries available to facilitate the migration to Vue 3?
-Yes, there are tools and migration helpers that can automate certain aspects of the update process. You could start by enabling the Vue 3 rule set of `eslint`.
+Yes, there are tools and migration helpers that can automate certain aspects of the upgrade process. You could start by enabling the Vue 3 rule set of `eslint`.
 
 ### Where can I find support and community discussions about updating Shopware plugin to Vue 3?
 You can participate in discussions and seek help on the Shopware community Slack. There is a dedicated channel for this topic called `#vue3-update`.
@@ -84,9 +84,9 @@ For your templates to work correctly, perform the following in no specific order
 
 ### Check your code
 
-Most of your code should be unaffected by the update. You can start by searching for `this.$`. The usage of `this.$` is an indicator of Vue's internal API. These calls are very likely to break except for `this.$tc`.
+Most of your code should be unaffected by the upgrade. You can start by searching for `this.$`. The usage of `this.$` is an indicator of Vue's internal API. These calls are very likely to break except for `this.$tc`.
 
-If you have a lot of Vue internal API calls, check out the (Known issues section)[#known-issues].
+If you have a lot of Vue internal API calls, check out the [Known issues section](#known-issues).
 The best way to find errors is to test your application thoroughly, either by hand or automated.
 
 ## Known issues
@@ -119,12 +119,12 @@ Prop default functions no longer have access to the component's `this` scope. Yo
 
 ## Conclusion
 
-This document emphasizes the crucial need to update your Shopware extensions to Vue.js 3 as Vue.js 2 reaches its end of life on December 31st 2023. Here's a concise recap of the key points:
+This document emphasizes the crucial need to upgrade your Shopware extensions to Vue.js 3 as Vue.js 2 reaches its end of life on December 31st 2023. Here's a concise recap of the key points:
 
 - **Transition to Vue 3**: Shopware will adopt Vue.js 3 from version 6.6 onwards.
 - **FAQ**: Addressing frequently asked questions:
   - **Extension Compatibility**: Plugin-based extensions with custom administration code are primarily affected. App-based extensions remain unaffected.
   - **Breaking Changes**: Vue 3 introduces significant modifications, necessitating review through the Vue.js migration guide.
   - **Migration Steps**: Adapting your Shopware plugin to Vue 3 involves aligning dependencies and adhering to Vue 3's API changes, following the Vue 3 documentation.
- - **Dual Compatibility**: For plugins serving both Shopware 6.5 and 6.6, separate versions are required. 
-  - **Support**: Find support in the Shopware community Slack channel #vue3-update.
+- **Dual Compatibility**: For plugins serving both Shopware 6.5 and 6.6, separate versions are required.
+- **Support**: Find support in the Shopware community Slack channel #vue3-update.
