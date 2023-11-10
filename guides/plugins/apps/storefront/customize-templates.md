@@ -22,7 +22,7 @@ Before you begin, make sure you have:
 
 This guide assumes you have already set up your Shopware app. If not, refer to the [app base guide](../app-base-guide) for the initial setup.
 
-The following sections gives you a very short example on how you can extend a storefront block. For simplicity sake, only the page logo is replaced with a 'Hello world!' text.
+The following sections give you a very short example of how you can extend a storefront block. For simplicity's sake, only the page logo is replaced with a 'Hello world!' text.
 
 ### Setting up app's view directory
 
