@@ -84,7 +84,7 @@ Also remember to not only activate your app but also to assign your theme to the
 
 ### Finding variables
 
-Of course this example is very simplified and does not use any variables, even though you most likely want to do that. Using variables is exactly the same like in [Twig](https://twig.symfony.com/doc/3.x/templates.html#variables) in general, so this won't be explained here in detail. However, this is how you use a variable: <code v-pre>{{ variableName }}</code>
+Of course, this example is very simplified and does not use any variables, even though you most likely want to do that. Using variables is exactly the same as in [Twig](https://twig.symfony.com/doc/3.x/templates.html#variables) in general, so this won't be explained here in detail. However, this is how you use a variable: <code v-pre>{{ variableName }}</code>
 
 But how do you know which variables are available to use? For this, you can just dump all available variables:
 
