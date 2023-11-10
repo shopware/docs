@@ -58,7 +58,7 @@ Put this line at the very beginning of your file:
 
 This is simply extending the `logo.html.twig` file from the Storefront bundle. If you would leave the file like that, it wouldn't change anything, as you are currently just extending from the original file with no overrides.
 
-To replace the logo with some custom text, take a look at the block called `layout_header_logo_link` in the original file. Its contents creates an anchor tag, which is not necessary for our case anymore, so this seems to be a great block to override.
+To replace the logo with some custom text, take a look at the block called `layout_header_logo_link` in the original file. Its contents create an anchor tag, which is not necessary for our case anymore, so this seems to be a great block to override.
 
 To override it now, just add the very same block into your custom file and replace its contents:
 
