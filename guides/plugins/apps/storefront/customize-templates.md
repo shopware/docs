@@ -9,7 +9,7 @@ nav:
 
 ## Overview
 
-This guide will cover customizing Storefront templates using app.
+This guide will cover customizing Storefront templates using an app.
 
 ## Prerequisites
 
