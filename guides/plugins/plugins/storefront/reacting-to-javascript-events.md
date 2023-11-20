@@ -5,7 +5,7 @@ nav:
 
 ---
 
-# Reacting to Javascript Events
+# Reacting to Javascript Events on Storefront
 
 ## Overview
 
