@@ -51,11 +51,11 @@ POST /api/_action/sync
 
 ## sw-access-token
 
-Any request to the StoreAPI needs an Authentication with a sw-access-token. Refer to [Authentication & Authorization](https://shopware.stoplight.io/docs/store-api/8e1d78252fa6f-authentication-and-authorisation) section of Store API for more details on this
+Any request to the Store API needs an Authentication with a `sw-access-token`. Refer to [Authentication & Authorization](https://shopware.stoplight.io/docs/store-api/8e1d78252fa6f-authentication-and-authorisation) section of Store API for more details on this.
 
 ## sw-context-token
 
-The `sw-context-token`` is used to recognize your customers in the context of the StoreAPI. Refer to [Authentication & Authorization](https://shopware.stoplight.io/docs/store-api/8e1d78252fa6f-authentication-and-authorisation) section of Store API for more details on this
+The `sw-context-token` is used to recognize your customers in the context of the Store API. Refer to [Authentication & Authorization](https://shopware.stoplight.io/docs/store-api/8e1d78252fa6f-authentication-and-authorisation) section of Store API for more details on this.
 
 ## sw-currency-id
 
