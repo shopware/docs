@@ -55,7 +55,7 @@ framework:
     messenger:
         default_bus: messenger.bus.shopware
         buses:
-            messenger.bus.shopware:
+            messenger.bus.default:
               middleware:
                 - 'Swag\BasicExample\MessageQueue\Middleware\ExampleMiddleware'
                 - 'Swag\BasicExample\MessageQueue\Middleware\AnotherExampleMiddleware'
