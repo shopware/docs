@@ -58,7 +58,7 @@ Refer to [Authentication & Authorization](https://shopware.stoplight.io/docs/sto
 When making a request to the API, a client can include the `sw-currency-id` header to indicate the currency in which it wants to receive prices. For example, if the header is set to "USD," the API might respond with prices converted to U.S. dollars. This header is associated with the currency settings in the admin panel. It allows clients to dynamically switch between different currencies based on their preferences.
 
 ```bash
-POST /api/_action/order/orderId
+POST /api/search/order
 --header 'sw-currency-id'
 ```
 
@@ -67,10 +67,10 @@ POST /api/_action/order/orderId
 This header indicates whether SEO-friendly URLs for products or categories should be included in the API response. If an API request is made and the `sw-include-seo-urls` header is set, the API response will include all the configured SEO URLs for the specified product. This can provide additional information to the client about the various SEO-friendly paths associated with the product, allowing for better SEO management or customization.
 
 ```bash
-POST /store-api/product-listing/categoryId
+POST /api/search/product
 --header 'sw-include-seo-urls'
 ```
 
 ## sw-app-integration-id
 
-App integration enable seamless connection and data exchange between different software components. This header is required for correct permission checks performed by the backend when fetching or manipulating data. It overrides the default behavior and uses the privileges provided by the app. This is used in the Admin Extension SDK for the Repository Data Handling (https://shopware.github.io/admin-extension-sdk/docs/guide/api-reference/data/repository). But the developer itself doesn’t need to care about it because it is handled automatically by the admin.
+App integration enable seamless connection and data exchange between different software components. This header is required for correct permission checks performed by the backend when fetching or manipulating data. It overrides the default behavior and uses the privileges provided by the app. This is used in the Admin Extension SDK for the [Repository Data Handling](https://shopware.github.io/admin-extension-sdk/docs/guide/api-reference/data/repository). But the developer itself doesn’t need to care about it because it is handled automatically by the admin.
