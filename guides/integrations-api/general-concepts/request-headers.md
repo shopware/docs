@@ -55,7 +55,7 @@ Refer to [Authentication & Authorization](https://shopware.stoplight.io/docs/sto
 
 ## sw-currency-id
 
-When making a request to the API, a client can include the `sw-currency-id` header to indicate the currency in which it wants to receive prices. For example, if the header is set to "USD," the API might respond with prices converted to U.S. dollars. This header is associated with the currency settings in the admin panel. It allows clients to dynamically switch between different currencies based on their preferences.
+When calling the API, a client can include the `sw-currency-id` header to indicate the currency in which it wants to receive prices. For example, if the header is set to "USD," the API might respond with prices converted to U.S. dollars. This header is associated with the currency settings in the admin panel. It allows clients to dynamically switch between different currencies based on their preferences.
 
 ```bash
 POST /api/search/order
