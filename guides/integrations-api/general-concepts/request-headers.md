@@ -49,9 +49,13 @@ POST /api/_action/sync
 --header 'sw-skip-trigger-flow: 1'
 ```
 
-## sw-access-token & sw-context-token
+## sw-access-token
 
-Refer to [Authentication & Authorization](https://shopware.stoplight.io/docs/store-api/8e1d78252fa6f-authentication-and-authorisation) section of Store API for more details on these headers.
+Any request to the StoreAPI needs an Authentication with a sw-access-token. Refer to [Authentication & Authorization](https://shopware.stoplight.io/docs/store-api/8e1d78252fa6f-authentication-and-authorisation) section of Store API for more details on this
+
+## sw-context-token
+
+The `sw-context-token`` is used to recognize your customers in the context of the StoreAPI. Refer to [Authentication & Authorization](https://shopware.stoplight.io/docs/store-api/8e1d78252fa6f-authentication-and-authorisation) section of Store API for more details on this
 
 ## sw-currency-id
 
@@ -59,7 +63,7 @@ When calling the API, a client can include the `sw-currency-id` header to indica
 
 ```bash
 POST /api/search/order
---header 'sw-currency-id'
+--header 'sw-currency-id: 1987f5c352434028802556e065cd5b1e'
 ```
 
 ## sw-include-seo-urls
@@ -68,7 +72,7 @@ This header indicates whether SEO-friendly URLs for products or categories shoul
 
 ```bash
 POST /api/search/product
---header 'sw-include-seo-urls'
+--header 'sw-include-seo-urls: 1'
 ```
 
 ## sw-app-integration-id
