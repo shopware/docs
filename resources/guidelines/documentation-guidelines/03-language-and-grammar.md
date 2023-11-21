@@ -189,7 +189,7 @@ New cart features:
 
 Don't add important information in parentheses to describe it in detail.
 
-## Do's and dont's
+## Dos and don'ts
 
 * Don't use informal internet slang.
 

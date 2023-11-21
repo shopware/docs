@@ -13,7 +13,7 @@ In your app, you are able to add your own modules to the Administration. Your cu
 
 Creating custom modules takes place at the `<admin>` section of your `manifest.xml`. Take a look at the [Manifest Reference](../../../../resources/references/app-reference/manifest-reference) You can add any amount of custom modules by adding new `<module>` elements to your manifest.
 
-To configure your module you can set it up with with some additional attributes.
+To configure your module, you can set it up with with some additional attributes.
 
 * `name` \(required\): The technical name of the module. This is the name your module is referenced with.
 * `parent` \(required\): The Administration navigation id of the menu item that serves as the parent menu item.
@@ -195,4 +195,4 @@ As your module page is integrated as an iframe you are not able to use the style
 Having the stylesheets that are used in the Administration can be beneficial for the app module to seamlessly integrate into the Administration.
 You can use the shop version that is passed as `sw-version` within the request query to determine what stylesheets you want to load.
 The compiled Administration stylesheets for each version can be found within the tagged releases of the `shopware/administration` package within the `Resources/public/static` folder.
-Combining these information enables your app the look exactly like the Administration although it is encapsuled within an iframe.
+Combining this information enables your app to look exactly like the Administration, although it is encapsulated within an iframe.

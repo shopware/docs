@@ -19,7 +19,7 @@ In order to add your own custom pagelet for your plugin, you first need a plugin
 
 ## Adding custom pagelet
 
-Bssically a pagelet is created exactly like a page: You need a pagelet loader, a pagelet struct to hold the data and a pagelet loaded event.
+Basically a pagelet is created exactly like a page: You need a pagelet loader, a pagelet struct to hold the data and a pagelet loaded event.
 
 Since creating this kind of classes is explained in detail in our guide about [adding a custom page](add-custom-page), it is not going to be explained here in detail again. Yet, there's some differences worth mentioning:
 
