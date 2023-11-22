@@ -20,7 +20,7 @@ You can use these commands to check your actual environment:
 
 ### PHP
 
-* Compatible version: 8.1 and 8.2
+* Compatible version: 8.2 and 8.3
 * `memory_limit` : 512M minimum
 * `max_execution_time` : 30 seconds minimum
 * Extensions:
@@ -54,24 +54,20 @@ You can use these commands to check your actual environment:
 
 * MariaDB
 
-  * Compatible versions : at least 10.3
+  * Compatible version : at least 10.11
 
-  * Recommended version : at least 10.11
-
-  * Problematic versions: 10.3.29, 10.4.19, 10.5.10, [10.5.22, 10.6.15, 10.9.8, 10.10.6, 10.11.5, 11.0.3](https://jira.mariadb.org/browse/MDEV-31931)
-
-The `media:delete-unused` command requires at least MariaDB 10.9 or MySQL 8.
+  * Problematic versions: [10.11.5, 11.0.3](https://jira.mariadb.org/browse/MDEV-31931)
 
 For optimal MySQL performance, it is advisable to have a minimum of 32 MB.
 
 ### JavaScript
 
-* Node.js 18.0.0 or higher
+* Node.js 20.0.0 or higher
 * NPM 8.0.0 or higher
 
 ## Redis
 
-* Compatible versions: 6.2 or higher
+* Compatible versions: 7.0 or higher
 * Recommended version: 7.2 or higher
 * Recommended configuration `maxmemory-policy`: `volatile-lfu`
 
@@ -223,7 +219,7 @@ We recommend the following stack:
 * Webserver: Caddy
 * PHP: 8.2
 * SQL: MySQL 8 or Percona MySQL 8
-* Node: 18
+* Node: 20
 * Search: OpenSearch 2.8.0
 * Queue: RabbitMQ
 * Redis: 7.2
