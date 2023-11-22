@@ -13,13 +13,13 @@ For static analysis to work properly, it is important that the code is written i
 A main challenge is to narrow down the types when part of the code is implemented in a generic way and uses the dynamics that PHP offers.
 This document will explain some of the approaches that can be used in those cases. They are presented in the order in which they should be used, the first one being the preferred one.
 
-So this document mainly deals with issues on how to fix common phpstan erros like:
+So this document mainly deals with issues on how to fix common phpstan errors like:
 `Can not call method getFoo() on Foo\\Bar|null.`
 `Method Foo\\Bar::getFoo() expected first parameter to be string, but string|int|null given.`
 
 ## 1. Ensure the types at runtime with explicit checks
 
-To ensure the types at runtime, the most common approach is to use explicit type or null checks on the variables values that we wanna check.
+To ensure the types at runtime, the most common approach is to use explicit types or null checks on the variables values that we want to check.
 **Examples:**
 
 ```php

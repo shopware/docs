@@ -71,7 +71,7 @@ For a complete reference of the structure of the manifest file, take a look at t
 ## Setup (optional)
 
 ::: info
-Only if your app backend server and Shopware need to communicate it is necessary that registration is performed during the installation of your app. This process is called setup.
+Only if your app backend server and Shopware need to communicate, it is necessary that registration is performed during the installation of your app. This process is called setup.
 :::
 
 During the setup, it is verified that Shopware connects to the right backend server and keys are exchanged to secure all further communications.
@@ -133,7 +133,7 @@ For **local development**, you can specify a `<secret>` in the manifest file tha
 If you are developing a **private app** not published in the Shopware Store, you **must** provide the `<secret>` in case of an external app server.
 :::
 
-To verify that the registration can only be triggered by authenticated Shopware shops, you need to recalculate the signature and check that the signatures match. Thus you have verified that the sender of the request possesses the `app secret`.
+To verify that the registration can only be triggered by authenticated Shopware shops, you need to recalculate the signature and check that the signatures match. Thus, you have verified that the sender of the request possesses the `app secret`.
 
 The following code snippet can be used to recalculate the signature:
 
@@ -320,8 +320,8 @@ Starting from Shopware version 6.4.7.0, if you want to send notifications to the
 Your app can request 10 times before being delayed by the system.
 
 After 10 attempts, you need to wait 10 seconds before trying to make requests again.
-After 15 attempts it's 30 seconds.
-After 20 attempts it's 60 seconds.
+After 15 attempts, it's 30 seconds.
+After 20 attempts, it's 60 seconds.
 After 24 hours without a failed request, the limit is reset.
 
 Examples request body:
@@ -408,7 +408,7 @@ function webhookController(RequestInterface $request): ResponseInterface
 Since Shopware 6.4.9.0, it is also possible to create [App scripts](./app-scripts/) that are executed during the lifecycle of your app.
 You get access to the database and can change or create some data, e.g., when your app is activated, without needing an external server.
 
-For a full list of the available hook points and the available services refer to the [reference documentation](../../../resources/references/app-reference/script-reference/script-hooks-reference#app-lifecycle).
+For a full list of the available hook points and the available services, refer to the [reference documentation](../../../resources/references/app-reference/script-reference/script-hooks-reference#app-lifecycle).
 
 ## Validation
 
@@ -458,13 +458,13 @@ The user can either run a strategy with the `bin/console app:url-change:resolve`
 
 * **MoveShopPermanently**: This strategy should be used if the live production shop is migrated from one URL to another one. This strategy will ultimately notify all apps about the change of the APP_URL and the apps will continue working like before, including all the data the apps may already have associated with the given shop. It is important to notice that in this case, the apps in the old installation on the old URL (if it is still running) will stop working.
 
-Technically this is achieved by rerunning the registration process for all apps. During the registration, the same shopId is used as before, but now with a different shop-url and a different key pair used to communicate over the Shopware API. Also, you must generate a new communication secret during this registration process that is subsequently used to communicate between Shopware and the app backend.
+Technically, this is achieved by rerunning the registration process for all apps. During the registration, the same shopId is used as before, but now with a different shop-url and a different key pair used to communicate over the Shopware API. Also, you must generate a new communication secret during this registration process that is subsequently used to communicate between Shopware and the app backend.
 
 This way, it is ensured that the apps are notified about the new URL and the integration with the old installation stops working because a new communication secret is associated with the given shopId that the old installation does not know.
 
 * **ReinstallApps**: This strategy makes sense to use in the case of the staging shop. By running this strategy, all installed apps will be reinstalled. This means that this installation will get a new shopId, that is used during registration.
 
-As the new installation will get a new shopId, the installed apps will continue working on the old installation as before, but as a consequence, the data on the apps side that was associated with the old shopId can not be accessed on the new installation.
+As the new installation will get a new shopId, the installed apps will continue working on the old installation as before, but as a consequence, the data on the app's side that was associated with the old shopId cannot be accessed on the new installation.
 
 * **UninstallApps**: This strategy will simply uninstall all apps on the new installation, thus keeping the old installation working like before.
 
@@ -515,7 +515,7 @@ As the new installation will get a new shopId, the installed apps will continue 
 | shopware-shop-signature* | string  | The hmac-signature of the body content, signed with the shop secret returned from the registration request                                                                                                                                                                                                                                                         |
 | sw-version*              | string  | Starting from Shopware version 6.4.1.0, the current Shopware version will be sent as a `sw-version` header. Starting from Shopware version 6.4.5.0, the current language id of the Shopware context will be sent as a `sw-context-language` header, and the locale of the user or locale of the context language is available under the `sw-user-language` header. |
 | **Body**                 |         |                                                                                                                                                                                                                                                                                                                                                                    |
-| shopId*                  | string  | The unique udentifier of the shop                                                                                                                                                                                                                                                                                                                                  |
+| shopId*                  | string  | The unique identifier of the shop                                                                                                                                                                                                                                                                                                                                  |
 | shopUrl*                 | string  | The URL of the shop                                                                                                                                                                                                                                                                                                                                                |
 | timestamp*               | integer | The current nix timestamp when the request was created                                                                                                                                                                                                                                                                                                             |
 | secretKey*               | string  | SecretKey used to authenticate against the Shopware API                                                                                                                                                                                                                                                                                                            |
