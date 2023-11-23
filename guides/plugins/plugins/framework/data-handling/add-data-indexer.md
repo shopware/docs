@@ -167,7 +167,7 @@ public function update(EntityWrittenContainerEvent $event): ?EntityIndexingMessa
     }
 
     $context = $event->getContext();
-    $context->addExtension(EntityIndexerRegistry::DISABLE_INDEXING, new ArrayEntity());
+    $context->addState(EntityIndexerRegistry::DISABLE_INDEXING);
 
     return new EntityIndexingMessage(array_values($updates), null, $context);
 }
