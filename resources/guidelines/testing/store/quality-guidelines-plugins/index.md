@@ -225,10 +225,6 @@ Error or informational messages can only be recorded in the event log of Shopwar
 Avoid 400/500 errors at any time unless the 400 errors are related to an API call.
 :::
 
-### Untrusted content should not be included
-
-See [Untrusted content should not be included in SonarQube rules](https://rules.sonarsource.com/javascript/RSPEC-2611).
-
 ### Own media folder
 
 Customers must create own media folders or use existing ones to upload images.
