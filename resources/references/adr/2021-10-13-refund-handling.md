@@ -3,7 +3,7 @@ title: Refund handling
 date: 2021-10-13
 area: checkout
 tags: [payment, refund, capture]
---- 
+---
 
 # Refund handling
 

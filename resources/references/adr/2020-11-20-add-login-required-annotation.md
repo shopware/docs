@@ -3,7 +3,7 @@ title: Add the login required annotation
 date: 2020-11-20
 area: core
 tags: [annotation, login, customer, api, store-api]
---- 
+---
 
 # Add the login required annotation
 

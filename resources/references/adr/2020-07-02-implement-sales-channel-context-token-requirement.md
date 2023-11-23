@@ -3,7 +3,7 @@ title: Implement sales channel context token requirement for store-api and sales
 date: 2020-07-02
 area: core
 tags: [context, token, sales-channel, store-api, sales-channel-api, api]
---- 
+---
 
 # Implement sales channel context token requirement for store-api and sales-channel-api
 
