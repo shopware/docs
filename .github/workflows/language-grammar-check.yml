@@ -1,5 +1,5 @@
 name: reviewdog
-on: [pull_request]
+on: push
 jobs:
   linter_name:
     name: Check grammar and language
