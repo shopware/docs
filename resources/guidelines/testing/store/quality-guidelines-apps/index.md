@@ -8,6 +8,8 @@ nav:
 # Quality Guidelines for Apps and Themes based on App System in Shopware Store
 
 > **Changelog**
+>> 23/11/23: [Added - New rules for Checklist for app testing](#every-app-based-on-the-plugin-system)
+> 
 >> 27/09/23: [Added - Identical name rule](#every-app-based-on-the-app-system)
 > 
 >> 26/07/23: [Added - Name preset according to new naming scheme](#every-app-based-on-the-app-system)
