@@ -1,5 +1,9 @@
 name: External link validation
-on: push
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 0 11 * * *
 
 jobs:
   linkvalidator:
