@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: bojanrajh/action-languagetool@54090e970ccc74954fd751683311213354609954
+      - uses: bojanrajh/action-languagetool@ef909d962a8663341525e9da365649ba36cbd0bf
         with:
           reporter: github-pr-review
           level: info
