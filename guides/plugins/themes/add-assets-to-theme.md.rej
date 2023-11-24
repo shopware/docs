@@ -1,0 +1,12 @@
+diff a/guides/plugins/themes/add-assets-to-theme.md b/guides/plugins/themes/add-assets-to-theme.md	(rejected hunks)
+@@ -53,8 +52,8 @@ This way of adding custom assets refers to the default way of dealing with asset
+ 
+ You can link to the asset with the twig [asset](https://symfony.com/doc/current/templates.html#linking-to-css-javascript-and-image-assets) function:
+ 
+-```html
+-<img src="{{ asset('bundles/swagbasicexampletheme/your-image.png', 'asset') }}">
++```twig
++{{ asset('bundles/swagbasicexampletheme/your-image.png', 'asset') }}
+ ```
+ 
+ In SCSS you can link to the asset like the following:
