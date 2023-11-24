@@ -269,10 +269,6 @@ Error or informational messages can only be recorded in the event log of Shopwar
 Avoid 400/500 errors at any time unless the 400 errors are related to an API call.
 :::
 
-### Untrusted content should not be included
-
-See [Untrusted content should not be included in SonarQube rules](https://rules.sonarsource.com/javascript/RSPEC-2611)
-
 ### Extension manager
 
 The Debug Console controls the app's installation, uninstallation, reinstallation, and deletion. No 400 errors or exceptions are allowed to appear.
