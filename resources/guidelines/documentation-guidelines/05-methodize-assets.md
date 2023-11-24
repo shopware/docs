@@ -13,7 +13,7 @@ Maintaining a well-organized repository for all documentation assets, including 
 For the creation of a visual representation, either contact the Shopware design team directly or submit a request through the [Issues](https://github.com/shopware/docs/issues) section.
 :::
 
-## Visual diagrams guidelines
+## Visual diagram guidelines
 
 In our documentation, we categorize visuals into different types, including screenshots, diagrams (such as UML and flowcharts), and GIFs. Each of these visual elements shares common quality standards. This section outlines the specific requirements that must be met by all visuals used in technical documentation.
 
@@ -30,47 +30,11 @@ Use the following standards:
 |Alt tags| `![Alt](/path/to/img.jpg “image title”)` | Make sure to include alt text for every image. The text is used in situations where the image isn’t visible and image SEOs.|
 |Borders|-|No borders are added to the images|
 
-## Images and diagrams
+What needs to be considered for visual diagrams:
 
-Consider using images or diagrams when you need to:
-
-* Show configurations and settings, such as the architecture
-* Define a complex workflow
 * If you add images to illustrate items in a list (typically, steps in a procedure), align these images accordingly:
     * If there is only one image that illustrates the entire procedure, place the image at the end of the procedure or align it with the lead-in paragraph.
     * If you need to provide an image for each step in the procedure, place each image at the end of each step it follows.
-
-Use the following standards for images and diagrams:
-
-Limit the contents of an image to the relevant portion. Do not include distracting or unnecessary content and whitespace.
-
-## Screenshot
-
-Consider using screenshots when you want to:
-
-* Provide an example of a visualization
-* Show panels populated with query and settings
-* Show complex relationships
-* Emphasize a new feature
-
-What needs to be considered for taking screenshots :
-
-* If the screenshot shows a desktop application interface, you must use the latest OS version supported by the solution to take the screenshot.
-* The screenshot must be in focus and show an active window, wizard or dialog box.
-* Avoid both horizontal and vertical scrollbars whenever possible.
-* The screenshot must show real-world data or at least data that is close to realistic use cases.
-* All screenshots you take must be consistent with each other.
-
-When not to use screenshots
-
-* Code samples (show code samples in code blocks)
-* A page that is likely to change frequently
-
-## General guidelines
-
-* Screenshots can be taken using GIMP, Snipping tools, or any tool you have already worked on.
-
-* Add all the images to the `assets/` directory and give them a meaningful name.
 
 * Use the below naming convention for the images:
 
@@ -94,9 +58,36 @@ When not to use screenshots
 
 * An introductory sentence should precede most images.
 
-* For UML diagrams, use [Mermaid](https://mermaid.live/) to create one and add the diagram code in codeblock.
-
 * Store all the media in the [assets directory]( https://github.com/shopware/docs/tree/main/assets). Once it is loaded, copy the reference to the Markdown file. Test images in a local build.
+
+## Images and diagrams
+
+Consider using images or diagrams when you need to:
+
+* Show configurations and settings, such as the architecture
+* Define a complex workflow
+* For UML diagrams, use [Mermaid](https://mermaid.live/) to create one and add the diagram code in codeblock.
+* Limit the contents of an image to the relevant portion. Do not include distracting or unnecessary content and whitespace.
+
+## Screenshot
+
+Consider using screenshots when you want to:
+
+* Provide an example of a visualization
+* Show panels populated with query and settings
+* Show complex relationships
+* Emphasize a new feature
+
+What needs to be considered for taking screenshots :
+
+* If the screenshot shows a desktop application interface, you must use the latest OS version supported by the solution to take the screenshot.
+* The screenshot must be in focus and show an active window, wizard or dialog box.
+* Avoid both horizontal and vertical scrollbars whenever possible.
+* The screenshot must show real-world data or at least data that is close to realistic use cases.
+* All screenshots you take must be consistent with each other.
+* Screenshots can be taken using GIMP, Snipping tools, or any tool you have already worked on.
+* Do not use screenshots for Code samples (show code samples in codeblocks).
+* Do not take screenshots for a page that is likely to change frequently.
 
 ## File
 
