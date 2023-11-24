@@ -1,4 +1,0 @@
-# <project root>/config/packages/shopware.yaml
-shopware:
-  stock:
-    enable_stock_management: false
