@@ -39,13 +39,13 @@ What needs to be considered for visual diagrams:
 
 * When images is to be embedded in files/nested files, then use the below naming convention for the images:
 
-  * *<topic_name>-<meaningful_image_name>.svg*. For example,
+  * *<topicName>-<meaningful_image_name>.svg*. For example,
 
     ```markdown
         storefront-pages.svg
     ```
 
-  * If sub-topic exists, *<topic_name>-<sub_topic_name>-<meaningful_image_name>.svg*. For example,
+  * If sub-topic exists, *<topicName>-<subtopicName>-<meaningful_image_name>.svg*. For example,
 
     ```markdown
         storefront-dataHandling-pages.svg 
@@ -68,7 +68,7 @@ Consider using diagrams when you need to:
 * Show architecture
 * Show complex relationships
 * Define a complex workflow
-* For UML diagrams, use [Mermaid](https://mermaid.live/) to create one and add the diagram code in codeblock.
+* For flowcharts, sequence diagram, state machine diagram, class diagram, etc use [Mermaid](https://mermaid.live/) to create one and add the diagram code in codeblock.
 
 ## Screenshots
 
