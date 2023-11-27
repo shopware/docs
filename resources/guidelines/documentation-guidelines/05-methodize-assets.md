@@ -39,13 +39,13 @@ What needs to be considered for visual diagrams:
 
 * When images is to be embedded in files/nested files, then use the below naming convention for the images:
 
-  * *<topicName>-<meaningfulImageName>.svg*. For example,
+  * *`<topicName>-<meaningfulImageName>.svg`*. For example,
 
     ```markdown
         storefront-pages.svg
     ```
 
-  * If sub-topic exists, *<topicName>-<subtopicName>-<meaningfulImageName>.svg*. For example,
+  * If sub-topic exists, *`<topicName>-<subtopicName>-<meaningfulImageName>.svg`*. For example,
 
     ```markdown
         storefront-dataHandling-pages.svg 
@@ -103,7 +103,7 @@ Consider using GIFs when you want to:
 
 Every file added to a folder can have a naming convention as:
 
-*<two_digit_number>-<meaningful_image_name>.md.* For example,
+*`<two_digit_number>-<meaningful_image_name>.md`.* For example,
 
 ```markdown
 01-doc-process.md
