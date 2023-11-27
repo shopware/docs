@@ -22,12 +22,13 @@ Use the following standards:
 | Image attributes | Specification | Notes|
 |------------------|---------------|---------|
 | File type| Only .png, .svg and .gif| Use a lossless image format for screenshots (i.e., PNG) and vector format (i.e., SVG) for drawings (diagram, chart, logos, ...).|
-|File size | max. 10 MB | |
-|File name | Only use letters and hyphens `<related-filename>-<related-filename>-<meaningful-image-name>.md.` | Use the naming convention documented below in naming conventions for images.|
+|File size | max. 5 MB | It is best to upload high-quality images. |
+|File name | Only use letters and hyphens `<topic_name>-<sub_topic_name>-<meaningful_image_name>.md.` | Use the naming convention documented below in naming conventions for images.|
 |Image size | Width: max 768px, Height: max 576px | This is automatically taken care by the inbuilt functions in our docs.|
+|Aspect ratio | 4:3 | This is automatically taken care by the inbuilt functions in our docs. |
 |Copyright| - |Determine if an image or diagram is protected by copyright. If it is, you must obtain permission and acknowledge credit.|
 |Personal identifiable information (PII) | - | Make sure to mask, modify, or remove any PII such as passwords, logins, account details, or other information that could compromise security.|
-|Alt tags| `![Alt](/path/to/img.jpg “image title”)` | Make sure to include alt text for every image. The text is used in situations where the image isn’t visible and for image SEOs.|
+|Alt tags| `![Alt](/path/to/img.jpg “image title”)` | Make sure to include alt text for every image. The text is used in situations where the image isn’t visible and image SEOs.|
 |Borders|-|No borders are added to the images|
 
 What needs to be considered for visual diagrams:
