@@ -27,7 +27,7 @@ Use the following standards:
 |Image size | Width: max 768px, Height: max 576px | This is automatically taken care by the inbuilt functions in our docs.|
 |Copyright| - |Determine if an image or diagram is protected by copyright. If it is, you must obtain permission and acknowledge credit.|
 |Personal identifiable information (PII) | - | Make sure to mask, modify, or remove any PII such as passwords, logins, account details, or other information that could compromise security.|
-|Alt tags| `![Alt](/path/to/img.jpg “image title”)` | Make sure to include alt text for every image. The text is used in situations where the image isn’t visible and image SEOs.|
+|Alt tags| `![Alt](/path/to/img.jpg “image title”)` | Make sure to include alt text for every image. The text is used in situations where the image isn’t visible and for image SEOs.|
 |Borders|-|No borders are added to the images|
 
 What needs to be considered for visual diagrams:
