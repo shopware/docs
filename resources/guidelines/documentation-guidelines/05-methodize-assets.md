@@ -77,6 +77,7 @@ Consider using screenshots when you want to:
 * Show panels populated with query and settings
 * Show configurations and settings
 * Emphasize a new feature
+* Limit the contents of an image to the relevant portion. Do not include distracting or unnecessary content and whitespace.
 
 What needs to be considered for taking screenshots :
 
