@@ -23,7 +23,7 @@ Use the following standards:
 |------------------|---------------|---------|
 | File type| Only .png, .svg and .gif| Use a lossless image format for screenshots (i.e., PNG) and vector format (i.e., SVG) for drawings (diagram, chart, logos, ...).|
 |File size | max. 5 MB | It is best to upload high-quality images. |
-|File name | Only use letters and hyphens `<topic_name>-<sub_topic_name>-<meaningful_image_name>.md.` | Use the naming convention documented below in naming conventions for images.|
+|File name | Only use letters and hyphens `<topicName>-<subtopicName>-<meaningfulImageName>.md.` | Use the naming convention documented below in naming conventions for images.|
 |Image size | Width: max 768px, Height: max 576px | This is automatically taken care by the inbuilt functions in our docs.|
 |Aspect ratio | 4:3 | This is automatically taken care by the inbuilt functions in our docs. |
 |Copyright| - |Determine if an image or diagram is protected by copyright. If it is, you must obtain permission and acknowledge credit.|
@@ -39,13 +39,13 @@ What needs to be considered for visual diagrams:
 
 * When images is to be embedded in files/nested files, then use the below naming convention for the images:
 
-  * *<topicName>-<meaningful_image_name>.svg*. For example,
+  * *<topicName>-<meaningfulImageName>.svg*. For example,
 
     ```markdown
         storefront-pages.svg
     ```
 
-  * If sub-topic exists, *<topicName>-<subtopicName>-<meaningful_image_name>.svg*. For example,
+  * If sub-topic exists, *<topicName>-<subtopicName>-<meaningfulImageName>.svg*. For example,
 
     ```markdown
         storefront-dataHandling-pages.svg 
