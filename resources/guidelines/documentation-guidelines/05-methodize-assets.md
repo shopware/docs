@@ -15,7 +15,7 @@ For the creation of a visual representation, either contact the Shopware design 
 
 ## Visual diagram guidelines
 
-In our documentation, we categorize visuals into different types, including screenshots, diagrams (such as UML and flowcharts), and GIFs. Each of these visual elements shares common quality standards. This section outlines the specific requirements that must be met by all visuals used in technical documentation.
+Our documentation categorizes visuals into different types, including screenshots, diagrams (such as UML and flowcharts), and GIFs. Each of these visual elements shares common quality standards. This section outlines the specific requirements that must be met by all visuals used in technical documentation.
 
 Use the following standards:
 
