@@ -39,13 +39,13 @@ What needs to be considered for visual diagrams:
 
 * When images is to be embedded in files/nested files, then use the below naming convention for the images:
 
-  * *<toc_topic_name>-<meaningful_image_name>.svg*. For example,
+  * *<topic_name>-<meaningful_image_name>.svg*. For example,
 
     ```markdown
         storefront-pages.svg
     ```
 
-  * If sub-topic exists, *<toc_topic_name>-<sub_topic_name>-<meaningful_image_name>.svg*. For example,
+  * If sub-topic exists, *<topic_name>-<sub_topic_name>-<meaningful_image_name>.svg*. For example,
 
     ```markdown
         storefront-dataHandling-pages.svg 
@@ -84,7 +84,7 @@ What needs to be considered for taking screenshots :
 
 * If the screenshot shows a desktop application interface, you must use the latest OS version supported by the solution to take the screenshot.
 * The screenshot must be in focus and show an active window, wizard or dialog box.
-* Avoid both horizontal and vertical scrollbars whenever possible.
+* Avoid both horizontal and vertical scroll bars whenever possible.
 * The screenshot must show real-world data or at least data that is close to realistic use cases.
 * All screenshots you take must be consistent with each other.
 * Screenshots can be taken using GIMP, Snipping tools, or any tool you have already worked on.
