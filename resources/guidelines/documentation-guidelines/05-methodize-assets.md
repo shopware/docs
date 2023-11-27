@@ -60,7 +60,7 @@ What needs to be considered for visual diagrams:
 
 * Store all the media in the [assets directory]( https://github.com/shopware/docs/tree/main/assets). Once it is loaded, copy the reference to the Markdown file. Test images in a local build.
 
-## Images and diagrams
+## Diagrams
 
 Consider using images or diagrams when you need to:
 
