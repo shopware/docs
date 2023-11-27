@@ -46,7 +46,7 @@ We perform the *first test*, and if successful, we do the *follow-up test* again
 
 The Shopware installation is located in a subfolder. It has a language sub-shop/sales channel with a virtual URL as well as an independent sub-shop/sales channel with its own URL, also located in a subfolder. E.g. `myshop.com/subfolder/backend` or `myshop.com/public/admin`. The app must neither produce any error messages in the backend nor in the frontend.
 
-The app is tested with the latest official Shopware 6 CE Version. Our testing environment is built with the following components: Nginx Webserver, PHP 7.4 as FPM, MariaDB latest, Shopware installed in subfolder `/shop/public`, default Shopware language Netherland.
+The app is tested with the latest official Shopware 6 CE Version. Our testing environment is built with the following components: Nginx Webserver, PHP 7.4 as FPM, MariaDB latest, Shopware installed in subfolder `/shop/public`, default Shopware language Dutch.
 The environment is built using Docker and is published on Docker Hub. You can use the following command to run it on your system:
 
 ```markdown
@@ -211,7 +211,7 @@ The chosen license can't be changed after adding your app to your account. If yo
 
 ### Fallback language
 
-The installation is not always in English or German. So make sure that your app works in other languages as well. For example, if the customer has his installation in Spanish and your app is not yet available in this language, you should use the English translation as a fallback. Our test environment includes Netherland as the standard language.
+The installation is not always in English or German. So make sure that your app works in other languages as well. For example, if the customer has his installation in Spanish and your app is not yet available in this language, you should use the English translation as a fallback. Our test environment includes Dutch as the standard language.
 
 ### Translations
 
