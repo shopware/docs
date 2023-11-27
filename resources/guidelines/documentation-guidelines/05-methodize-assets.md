@@ -63,7 +63,7 @@ What needs to be considered for visual diagrams:
 
 ## Diagrams
 
-Consider using images or diagrams when you need to:
+Consider using diagrams when you need to:
 
 * Show architecture
 * Show complex relationships
@@ -90,6 +90,14 @@ What needs to be considered for taking screenshots :
 * Screenshots can be taken using GIMP, Snipping tools, or any tool you have already worked on.
 * Do not use screenshots for Code samples (show code samples in codeblocks).
 * Do not take screenshots for a page that is likely to change frequently.
+
+## GIFs
+
+Consider using GIFs when you want to:
+
+* Demonstrate procedures.
+* Highlight functionalities visually.
+* Aid setup and initial tasks with visual guides.
 
 ## File
 
