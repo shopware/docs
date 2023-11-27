@@ -37,7 +37,7 @@ What needs to be considered for visual diagrams:
     * If there is only one image that illustrates the entire procedure, place the image at the end of the procedure or align it with the lead-in paragraph.
     * If you need to provide an image for each step in the procedure, place each image at the end of each step it follows.
 
-* Use the below naming convention for the images:
+* When images is to be embedded in files/nested files, then use the below naming convention for the images:
 
   * *<toc_topic_name>-<meaningful_image_name>.svg*. For example,
 
