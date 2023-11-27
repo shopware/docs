@@ -75,7 +75,7 @@ Consider using screenshots when you want to:
 
 * Provide an example of a visualization
 * Show panels populated with query and settings
-* Show complex relationships
+* Show configurations and settings
 * Emphasize a new feature
 
 What needs to be considered for taking screenshots :
