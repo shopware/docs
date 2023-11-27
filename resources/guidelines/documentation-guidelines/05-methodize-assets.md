@@ -69,7 +69,7 @@ Consider using images or diagrams when you need to:
 * For UML diagrams, use [Mermaid](https://mermaid.live/) to create one and add the diagram code in codeblock.
 * Limit the contents of an image to the relevant portion. Do not include distracting or unnecessary content and whitespace.
 
-## Screenshot
+## Screenshots
 
 Consider using screenshots when you want to:
 
