@@ -1,0 +1,13 @@
+name: Reviewdog
+on: pull_request
+
+jobs:
+  reviewdog:
+    name: Runner
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: reviewdog/action-languagetool@v1
+        with:
+          language: en-US
+          reporter: github-pr-review
