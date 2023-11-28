@@ -10,4 +10,4 @@ jobs:
       - uses: reviewdog/action-languagetool@v1
         with:
           language: en-US
-          reporter: github-pr-review
+          reporter: github-pr-check
