@@ -116,9 +116,9 @@ To ensure that the code remains accessible to all developers, the uncompiled ver
 
   * Inline styles will be stripped. The following HTML tags are allowed:
 
-    ```markdown
-    <a> <p> <br> <b> <strong> <i> <ul> <ol> <li> <h2> <h3> <h4> <h5>
-    ```
+```markdown
+<a> <p> <br> <b> <strong> <i> <ul> <ol> <li> <h2> <h3> <h4> <h5>
+```
 
   * **Tips:**
 

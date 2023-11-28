@@ -41,21 +41,21 @@ What needs to be considered for visual diagrams:
 
   * *`<topicName>-<meaningfulImageName>.svg`*. For example,
 
-    ```markdown
-        storefront-pages.svg
-    ```
+```markdown
+storefront-pages.svg
+```
 
   * If sub-topic exists, *`<topicName>-<subtopicName>-<meaningfulImageName>.svg`*. For example,
 
-    ```markdown
-        storefront-dataHandling-pages.svg 
-    ```
+```markdown
+storefront-dataHandling-pages.svg 
+```
 
   * The image names can be serialized if multiple images are under the same topic. For example,
 
-    ```markdown
-        storefront-dataHandling-pages_01.svg
-    ```
+```markdown
+storefront-dataHandling-pages_01.svg
+```
 
 * An introductory sentence should precede most images.
 

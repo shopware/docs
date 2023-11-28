@@ -127,11 +127,9 @@ const pay_type = <Payment type=COD />;
 
 * Blockquotes are represented by `>`
 
-    ```text
-    
-    > Added A Name preset according to new naming scheme.
-    
-    ``````
+```text
+> Added A Name preset according to new naming scheme.
+```
 
 * To add blockquotes within a blockquote, use `>>`
 
