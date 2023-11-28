@@ -11,3 +11,4 @@ jobs:
         with:
           language: en-US
           reporter: github-pr-check
+          enabled_rules: 'PASSIVE_VOICE,SENTENCE_WHITESPACE,GOD_COMMA'
