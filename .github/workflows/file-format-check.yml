@@ -5,7 +5,7 @@ jobs:
   Filenamecheck:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - shell: bash
         run: |
           find assets | grep "\.[A-Z]" && echo "Upper case characters found in file endings" && exit 1
