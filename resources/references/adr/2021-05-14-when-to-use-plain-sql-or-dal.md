@@ -3,7 +3,7 @@ title: When to use plain SQL or the DAL
 date: 2021-05-14
 area: core
 tags: [sql, dal, store-api, storefront, admin-api, entity-indexer]
---- 
+---
 
 # When to use plain SQL or the DAL
 

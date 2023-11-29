@@ -3,7 +3,7 @@ title: DAL join filter
 date: 2020-11-19
 area: core
 tags: [dal, join-filter, negated-filter, criteria]
---- 
+---
 
 # DAL join filter
 

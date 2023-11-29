@@ -8,6 +8,8 @@ nav:
 # Quality Guidelines for Apps and Themes based on App System in Shopware Store
 
 > **Changelog**
+>> 23/11/23: [Added - New rules for Checklist for app testing](#every-app-based-on-the-app-system)
+> 
 >> 27/09/23: [Added - Identical name rule](#every-app-based-on-the-app-system)
 > 
 >> 26/07/23: [Added - Name preset according to new naming scheme](#every-app-based-on-the-app-system)
@@ -95,6 +97,8 @@ Be sure to use the most recent testing checklist from Shopware and not from any 
 
 * New XML requests in the storefront must be accompanied by an `X-Robots-Tag` in the header request with the directive "noindex, nofollow." For further details, please refer to the [robots meta tag](https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag?hl=de#xrobotstag) article.
 
+* The utilization of H-tags is not permissible, as these tags are reserved exclusively for content purposes. However, you may employ `<span class="h2">`, for instance.
+
 * Compiled JavaScript offers many benefits such as improved performance and code optimization. However, it is difficult to read and understand the compiled code.
 To ensure that the code remains accessible to all developers, the uncompiled version of the JavaScript code must be placed in a separate folder. This allows other developers to review and understand the code in its original, readable form.
 
@@ -114,9 +118,9 @@ To ensure that the code remains accessible to all developers, the uncompiled ver
 
   * Inline styles will be stripped. The following HTML tags are allowed:
 
-    ```markdown
-    <a> <p> <br> <b> <strong> <i> <ul> <ol> <li> <h2> <h3> <h4> <h5>
-    ```
+```markdown
+<a> <p> <br> <b> <strong> <i> <ul> <ol> <li> <h2> <h3> <h4> <h5>
+```
 
   * **Tips:**
 
@@ -270,10 +274,6 @@ Error or informational messages can only be recorded in the event log of Shopwar
 ::: danger
 Avoid 400/500 errors at any time unless the 400 errors are related to an API call.
 :::
-
-### Untrusted content should not be included
-
-See [Untrusted content should not be included in SonarQube rules](https://rules.sonarsource.com/javascript/RSPEC-2611)
 
 ### Extension manager
 
