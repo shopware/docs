@@ -9,5 +9,5 @@ jobs:
       - shell: bash
         run: |
           find assets | grep "\.[A-Z]" && echo "ERROR: Ensure file extensions are in lowercase" && exit 1
-          find assets -type f -printf '%f\n' | grep "[_+ ]" && echo "ERROR: No special characters, except hyphen, are allowed in file names" && exit 1
+          find assets -type f -printf '%f\n' | grep "[_+& ]" && echo "ERROR: No special characters, except hyphen, are allowed in file names" && exit 1
           find assets -type f -printf '%f\n' | grep -v "[-]" && echo "ERROR: No hyphen found in file names. Include hyphens to separate words e.g. storefront-checkbox.png" && exit 1
