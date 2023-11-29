@@ -444,11 +444,11 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### country-sate-data-pagelet-loaded
+#### country-state-data-pagelet-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
-| **Name**               | country-sate-data-pagelet-loaded                         |
+| **Name**               | country-state-data-pagelet-loaded                         |
 | **Since**              | 6.4.8.0                        |
 | **Class**              | `Shopware\Storefront\Pagelet\Country\CountryStateDataPageletLoadedHook`                      |
 | **Description**        | Triggered when the CountryStateDataPagelet is loaded<br>                  |
