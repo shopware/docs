@@ -92,6 +92,8 @@ Be sure to use the most recent testing checklist from Shopware and not from any 
 
 * We check the complete functionality of the app (including the uninstallation and reinstallation procedure).
 
+* New XML requests in the storefront must be accompanied by an `X-Robots-Tag` in the header request with the directive "noindex, nofollow." For further details, please refer to the [robots meta tag](https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag?hl=de#xrobotstag) article.
+
 * The utilization of H-tags is not permissible, as these tags are reserved exclusively for content purposes. However, you may employ `<span class="h2">`, for instance.
 
 * Compiled JavaScript offers many benefits such as improved performance and code optimization. However, it is difficult to read and understand the compiled code.
