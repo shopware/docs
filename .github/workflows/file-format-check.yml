@@ -9,5 +9,5 @@ jobs:
       - shell: bash
         run: |
           find assets | grep "\.[A-Z]" && echo "Upper case characters found in file endings" && exit 1
-          find assets -type f -mtime -14 -printf '%f\n' | grep "[_+ ]" && echo "Underscore, plus or space found in file names" && exit 1
-          find assets -type f -mtime -14 -printf '%f\n' | grep -v "[-]" && echo "No dash found in file names" && exit 1
+          find assets -type f -printf '%f\n' | grep "[_+ ]" && echo "Underscore, plus or space found in file names" && exit 1
+          find assets -type f -printf '%f\n' | grep -v "[-]" && echo "No dash found in file names" && exit 1
