@@ -25,7 +25,7 @@ We strongly recommend following Cypress own best practices as well.
 
 When it comes to dividing test types, selecting and prioritizing test cases, and thus designing tests, things get a bit more complicated. We have generally aligned our test strategy with the test pyramid, although not 100%. The pyramid states that end-to-end tests should be written in a few but well chosen test cases because end-to-end tests are slow and expensive.
 
-At [Shopware Community Day](https://scd.shopware.com/en/) 2020, we gave a talk on how we approach automated testing in Shopware, how far we have come on this journey, and what we have gained so far:
+At [Shopware Community Day](https://scd.shopware.com/en-US/) 2020, we gave a talk on how we approach automated testing in Shopware, how far we have come on this journey, and what we have gained so far:
 
 <YoutubeRef video="sxvQoWF4KS0" title="A matter of trust – test - #SCD20 (ENG) - YouTube" target="_blank" />
 

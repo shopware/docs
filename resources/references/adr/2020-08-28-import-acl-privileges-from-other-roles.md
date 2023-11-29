@@ -3,7 +3,7 @@ title: Import ACL privileges from other roles
 date: 2020-08-28
 area: administration
 tags: [acl, privileges, dependency, administration]
---- 
+---
 
 # Import ACL privileges from other roles
 

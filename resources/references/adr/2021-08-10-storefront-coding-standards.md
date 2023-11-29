@@ -3,7 +3,7 @@ title: Storefront coding standards
 date: 2021-08-10
 area: storefront
 tags: [storefront, coding-standards, architecture]
---- 
+---
 
 # Storefront coding standards
 
@@ -64,7 +64,7 @@ A storefront controller should never use a repository directly, It should be inj
 
 Routes which should load a full storefront page, should use a PageLoader class to load all corresponding data that returns a Page-Object.
 
-Pages which contains data which are the same for all customers, should have the _httpCache=true defaults parameter in the Routes annoation.
+Pages which contains data which are the same for all customers, should have the _httpCache=true defaults parameter in the Routes annotation.
 
 #### Write operations inside Storefront controllers
 Write operations should create their response with the createActionResponse function to allow different forwards and redirects.

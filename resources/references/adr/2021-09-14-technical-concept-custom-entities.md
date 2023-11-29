@@ -3,7 +3,7 @@ title: Technical concept custom entities
 date: 2021-08-31
 area: core
 tags: [app, custom-entities, store-api, dal, admin-api]
---- 
+---
 
 # Technical concept custom entities
 

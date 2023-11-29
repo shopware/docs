@@ -3,7 +3,7 @@ title: Make Core mail templates independent from Storefront urls
 date: 2021-09-06
 area: storefront
 tags: [mail, storefront, headless]
---- 
+---
 
 # Make Core mail templates independent from Storefront urls
 

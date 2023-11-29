@@ -24,7 +24,7 @@ As you can see in the graphic below, access control is basically a concern of ev
 ![acl addresses](../../../../../assets/acl-architecture.svg)
 
 The base ACL component described in this document provides functionality for repository filtering and service checks.
-The [Authentication component](https://docs.enterprise.shopware.com/b2b-suite/technical/store-front-authentication/) provides the context for the currently logged-in user and the [ACL route](https://docs.enterprise.shopware.com/b2b-suite/technical/acl-routes/) component then provides the ability to secure routes and means of inspection for allowed routes.
+The [Authentication component](authentication) provides the context for the currently logged-in user and the [ACL route](../storefront/acl-routing) component then provides the ability to secure routes and means of inspection for allowed routes.
 
 ## Naming
 
