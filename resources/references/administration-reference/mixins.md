@@ -9,7 +9,7 @@ nav:
 
 This is an overview of all the mixins provided by the Shopware 6 Administration. Mixins in the Shopware 6 Administration are essentially the same in default Vue. They behave generally the same as they do in Vue normally, differing only in the registration and the way mixins are included in a component. Learn more about them in the official [Vue documentation](https://vuejs.org/v2/guide/mixins.html).
 
-If you want to learn how to use them in your plugin, take a look at this guide [here](../../../../guides/plugins/plugins/administration/using-mixins) or if you want to register your own mixin take a look at this [guide](../../../../guides/plugins/plugins/administration/add-mixins)
+Also take a look at [how to use them in your plugin](../../../guides/plugins/plugins/administration/using-mixins.md) and [how to register your own mixin](../../../guides/plugins/plugins/administration/add-mixins.md).
 
 ## Overview of all the mixins
 

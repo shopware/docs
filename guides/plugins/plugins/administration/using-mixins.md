@@ -17,7 +17,7 @@ All you need for this guide is a running Shopware 6 instance and full access to 
 
 ## Finding a mixin
 
-The Shopware 6 Administration comes with a few predefined mixins, you can find a list of all of them [here](../../../../resources/references/core-reference/administration-reference/mixins)
+The Shopware 6 Administration comes with a few predefined [mixins](../../../../resources/references/administration-reference/mixins.md)
 
 If you want to learn how to create your own mixin look at this guide: [Creating mixins](add-mixins)
 

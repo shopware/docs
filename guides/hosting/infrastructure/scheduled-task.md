@@ -53,7 +53,7 @@ You can list all scheduled tasks with `bin/console scheduled-task:list` command.
 
 ## Running scheduled tasks
 
-To run the scheduled tasks, you must set up a background worker like the [Message Queue](../message-queue) and run the command `bin/console scheduled-task:run`. The command schedules all tasks to the queue and waits until a task needs to be scheduled. It consumes little CPU time or memory.
+To run the scheduled tasks, you must set up a background worker like the [Message Queue](message-queue.md) and run the command `bin/console scheduled-task:run`. The command schedules all tasks to the queue and waits until a task needs to be scheduled. It consumes little CPU time or memory.
 
 You can use the flag `--no-wait` and run the command from an operating system scheduler like cron. Check your scheduled task interval to determine the best interval to trigger the command. Example:
 ```

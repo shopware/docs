@@ -155,7 +155,7 @@ By default, all messages which are returned by the `public function update()` fu
 
 ### Use DAL functionalities in the indexer
 
-By default, indexing is also active while working with an indexer, which means, that entities that are written over the DAL also trigger `EntityWrittenContainerEvent` events. So the indexers are triggered again. This can lead to an infinite loop. Therefore, the connection should be used directly to alter data in the database. You can find more information about this in the corresponding ADR [when to use plain SQL or the DAL](../../../../../resources/references/adr/dal/2021-05-14-when-to-use-plain-sql-or-dal). However, if you want to use the DAL for manipulation data in a data indexer, indexing can be disabled. This can be done by passing adding a flag to the context, as shown in the example below:
+By default, indexing is also active while working with an indexer, which means, that entities that are written over the DAL also trigger `EntityWrittenContainerEvent` events. So the indexers are triggered again. This can lead to an infinite loop. Therefore, the connection should be used directly to alter data in the database. You can find more information about this in the corresponding ADR [when to use plain SQL or the DAL](../../../../../resources/references/adr/2021-05-14-when-to-use-plain-sql-or-dal.md). However, if you want to use the DAL for manipulation data in a data indexer, indexing can be disabled. This can be done by passing adding a flag to the context, as shown in the example below:
 
 ```php
 public function update(EntityWrittenContainerEvent $event): ?EntityIndexingMessage
