@@ -2,14 +2,7 @@
 title: Remove static analysis with psalm
 date: 2022-05-12
 area: core
-tags:
-  - phpstan
-  - psalm
-  - static-analyse
-nav:
-  title: Remove static analysis with psalm
-  position: 620
-
+tags: [phpstan, psalm, static-analyse]
 ---
 
 # Remove static analysis with psalm

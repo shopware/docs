@@ -9,7 +9,7 @@ nav:
 
 ## Overview
 
-In this guide you'll learn how to make your app introduce custom conditions for use in the [Rule Builder](../../../../concepts/framework/rules). Custom conditions can be defined with fields to be rendered in the Administration and with their own logic, using the same approach as [App Scripts](../app-scripts/).
+In this guide, you'll learn how to make your app introduce custom conditions for use in the [Rule Builder](../../../../concepts/framework/rules). Custom conditions can be defined with fields to be rendered in the Administration and with their own logic, using the same approach as [App Scripts](../app-scripts/).
 
 ::: info
 Note that app rule conditions were introduced in Shopware 6.4.12.0, and are not supported in previous versions.
@@ -25,7 +25,7 @@ You should also be familiar with the general concept of the Rule Builder.
 
 <PageRef page="../../../../concepts/framework/rules" />
 
-For the attached logic of your custom conditions you'll use [twig files](https://twig.symfony.com/). Please refer to the App Scripts guide for a general introduction.
+For the attached logic of your custom conditions, you'll use [twig files](https://twig.symfony.com/). Please refer to the App Scripts guide for a general introduction.
 
 <PageRef page="../app-scripts/" />
 
@@ -33,50 +33,11 @@ For the attached logic of your custom conditions you'll use [twig files](https:/
 
 App Rule Conditions are defined in the `manifest.xml` file of your app:
 
-```xml
-// manifest.xml
-<?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        ...
-    </meta>
-    <rule-conditions>
-        <rule-condition>
-            <identifier>my_custom_condition</identifier>
-            <name>Custom condition</name>
-            <name lang="de-DE">Eigene Bedingung</name>
-            <group>misc</group>
-            <script>custom-condition.twig</script>
-            <constraints>
-                <single-select name="operator">
-                    <placeholder>Choose an operator...</placeholder>
-                    <placeholder lang="de-DE">Bitte Operatoren wählen</placeholder>
-                    <options>
-                        <option value="=">
-                            <name>Is equal to</name>
-                            <name lang="de-DE">Ist gleich</name>
-                        </option>
-                        <option value="!=">
-                            <name>Is not equal to</name>
-                            <name lang="de-DE">Ist nicht gleich</name>
-                        </option>
-                    </options>
-                    <required>true</required>
-                </single-select>
-                <text name="firstName">
-                    <placeholder>Enter first name</placeholder>
-                    <placeholder lang="de-DE">Bitte Vornamen eingeben</placeholder>
-                    <required>true</required>
-                </text>
-            </constraints>
-        </rule-condition>
-    </rule-conditions>
-</manifest>
-```
+<<< @/docs/snippets/config/app/rule-conditions.xml
 
-For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference).
+For a complete reference of the structure of the manifest file, take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference).
 
-Following fields are required:
+The following fields are required:
 
 * `identifier`: A technical name for the condition that should be unique within the scope of the app. The name is being used to identify existing conditions when updating the app, so it should not be changed.
 * `name`: A descriptive and translatable name for the condition. The name will be shown within the Rule Builder's selection of conditions in the Administration.
@@ -139,7 +100,7 @@ If either one or both of `value` and `comparable` are an array, then only `=` an
 
 In the example above, we first check whether we can retrieve the current customer from the instance of `RuleScope` and return `false` otherwise.
 
-We then use the variables `operator` and `firstName`, provided by the constraints of the condition, to evaluate whether the first name in question matches the first name of the current customer. To do so we make use of the `compare` helper function.
+We then use the variables `operator` and `firstName`, provided by the constraints of the condition, to evaluate whether the first name in question matches the first name of the current customer. To do so, we make use of the `compare` helper function.
 
 ### Line item condition example
 
@@ -193,7 +154,7 @@ We then use the variables `operator` and `firstName`, provided by the constraint
 {% return false %}
 ```
 
-In this example we first check if the current scope is `LineItemScope` and refers to a specific line item. If so we compare that specific line item. Otherwise we check if the scope has a cart and return false if it doesn't. We have a multi select for product selection in the Administration which provides an array of product IDs in the script. We iterate the current cart's line items to check if the product is included and return `true` if that is the case.
+In this example we first check if the current scope is `LineItemScope` and refers to a specific line item. If so, we compare that specific line item. Otherwise we check if the scope has a cart and return false if it doesn't. We have a multi select for product selection in the Administration which provides an array of product IDs in the script. We iterate the current cart's line items to check if the product is included and return `true` if that is the case.
 
 ### Date condition example
 
@@ -214,4 +175,4 @@ In this example we first check if the current scope is `LineItemScope` and refer
 {% return compare('=', scope.getCurrentTime()|date_modify('first day of this month')|date_modify('second wednesday of this month')|date('Y-m-d'), scope.getCurrentTime()|date('Y-m-d')) %}
 ```
 
-For this example we don't have to define constraints. We retrieve the current date from the scope, calling `getCurrentTime`. We modify the date to set it to the first day of the month, then modify it again to set it to the second wednesday from that point in time. We then compare that date against the current date for a condition that matches only on the second wednesday of each month.
+For this example, we don't have to define constraints. We retrieve the current date from the scope, calling `getCurrentTime`. We modify the date to set it to the first day of the month, then modify it again to set it to the second wednesday from that point in time. We then compare that date against the current date for a condition that matches only on the second wednesday of each month.

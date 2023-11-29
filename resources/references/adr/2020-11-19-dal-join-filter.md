@@ -2,15 +2,7 @@
 title: DAL join filter
 date: 2020-11-19
 area: core
-tags:
-  - dal
-  - join-filter
-  - negated-filter
-  - criteria
-nav:
-  title: DAL join filter
-  position: 160
-
+tags: [dal, join-filter, negated-filter, criteria]
 ---
 
 # DAL join filter

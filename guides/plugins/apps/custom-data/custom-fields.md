@@ -8,35 +8,11 @@ nav:
 # Custom Data
 
 You can add custom fields to Shopware and thus add your own fields to extending data records. The user is able to modify this fields from within the Shopware Administration.  
-To make use of the custom fields register your custom field sets in your manifest file:
+To make use of the custom fields, register your custom field sets in your manifest file:
 
-```xml
-// manifest.xml
-<?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        ...
-    </meta>
-    <custom-fields>
-        <custom-field-set>
-            <name>swag_example_set</name>
-            <label>Example Set</label>
-            <label lang="de-DE">Beispiel-Set</label>
-            <related-entities>
-                <order/>
-            </related-entities>
-            <fields>
-                <text name="swag_code">
-                    <position>1</position>
-                    <label>Example field</label>
-                </text>
-            </fields>
-        </custom-field-set>
-    </custom-fields>
-</manifest>
-```
+<<< @/docs/snippets/config/app/custom-fields-simple.xml
 
-For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference).
+For a complete reference of the structure of the manifest file, take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference).
 
 For the data needed, please refer to the custom fields in general: At first, you need a custom field set, as [custom fields](../../plugins/framework/custom-field/) in Shopware are organised in sets. Here you need to consider some important fields:
 

@@ -34,7 +34,7 @@ The main entry point to deploy your SCSS code is defined in the `theme.json` fil
  }
 ```
 
-When the Storefront gets compiled the PHP SASS compiler will look up the files declared in the `style` section of the theme configuration. You can define the SCSS entry-points individually if you want to.
+When the Storefront gets compiled the PHP SASS compiler will look up the files declared in the `style` section of the theme configuration. You can define the SCSS entrypoints individually if you want to.
 
 In order to add some custom SCSS in your theme, you just need to edit the `base.scss` file which in located in `<plugin root>/src/Resources/app/storefront/src/scss` directory.
 
@@ -91,7 +91,7 @@ Add some test code in order to see if it works out:
 console.log('SwagBasicExampleTheme JS loaded');
 ```
 
-In the end, by running the command `bin/console theme:compile` your custom JS plugin is loaded. By default, the compiled JavaScript file is saved as `<plugin root>/src/resources/app/storefront/dist/storefront/js/swag-basic-example-theme.js`. It is detected by Shopware automatically and included in the Storefront. So you do not need to embed the JavaScript file yourself.
+In the end, by running the command `bin/build-storefront.sh` your custom JS plugin is loaded. By default, the compiled JavaScript file is saved as `<plugin root>/src/resources/app/storefront/dist/storefront/js/swag-basic-example-theme.js`. It is detected by Shopware automatically and included in the Storefront. So you do not need to embed the JavaScript file yourself.
 
 ## Using the hot-proxy \(live reload\)
 

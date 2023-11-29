@@ -1,10 +1,15 @@
 ---
 nav:
-  title: Concept
+  title: Concepts
   position: 10
 
 ---
 
-# Concept
+# Concepts
 
-This section covers all the general concepts related to employee management component.
+This section includes the concepts related to Employee Management.
+
+## Additional info
+
+It's important to keep in mind that employees are uniquely identified via their email address.
+When a new employee gets invited, a check will be performed to ensure that the email address is in use only once.

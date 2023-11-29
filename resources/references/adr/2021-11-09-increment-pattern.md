@@ -2,14 +2,7 @@
 title: Introduce increment pattern
 date: 2021-11-09
 area: system-settings
-tags:
-  - architecture
-  - increment
-  - message-queue-stats
-nav:
-  title: Increment pattern
-  position: 370
-
+tags: [architecture, increment, message-queue-stats]
 ---
 
 # Introduce increment pattern

@@ -2,14 +2,7 @@
 title: Symfony Dependency Management
 date: 2023-05-16
 area: core
-tags:
-  - php
-  - symfony
-  - dependency
-nav:
-  title: Symfony dependency management
-  position: 970
-
+tags: [php, symfony, dependency]
 ---
 
 # Symfony Dependency Management
@@ -35,10 +28,10 @@ We would like to utilise new features such as:
 2. Support will be added to load service configuration from PHP files (as well as XML for backwards compatibility)
 3. Where services need a particular non default service, for example a different implementation, or scalar values, we can use attributes.
 
-Note: Attributes should only be used in framework glue code, for example in Controllers and commands. We do not want to couple our domain code too close to Symfony.
+Note: Attributes should only be used in framework glue code, for example, in Controllers and commands. We do not want to couple our domain code too close to Symfony.
 
-With Aurowiring enabled we can greatly reduce the amount of configuration in the XML files since most of the configuration is unnecessary. Most dependency graphs can be automatically resolved by Symfony using type hints.
-There are no runtime performance implications because the container with its definitions are compiled.
+With autowiring enabled, we can greatly reduce the amount of configuration in the XML files since most of the configuration is unnecessary. Most dependency graphs can be automatically resolved by Symfony using type hints.
+There are no runtime performance implications because the container with its definitions is compiled.
 
 Advantages:
 
@@ -48,7 +41,7 @@ Advantages:
 
 ## Backwards Compatibility / Migration Strategy
 
-To migrate our current XML dependency configurations we can follow the below steps:
+To migrate our current XML dependency configurations, we can follow the below steps:
 
 Step 1: Add support for loading service definitions from PHP files as well as XML files.
 

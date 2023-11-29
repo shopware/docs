@@ -1,7 +1,7 @@
 ---
 nav:
   title: Create permissions via plugin
-  position: 20
+  position: 50
 
 ---
 

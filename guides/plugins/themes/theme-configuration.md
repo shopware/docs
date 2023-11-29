@@ -559,7 +559,7 @@ You can extend the config to add translated labels for the tabs, blocks and sect
 
 ## Config inheritance
 
-The `configInheritance` option lets you configure additional themes from which your theme will inherit its fields configuration. Every theme will always inherit the fields from the `Storefront` standard theme. With this option you can add additional other themes. For example, you can have a basic theme for your corporate design and special themes for different sales channels with specific changes only needed for a single sales channel.  
+The `configInheritance` option lets you configure additional themes from which your theme will inherit its fields configuration and snippets. Every theme will always inherit the fields from the `Storefront` standard theme. With this option you can add additional other themes. For example, you can have a basic theme for your corporate design and special themes for different sales channels with specific changes only needed for a single sales channel.  
 
 ```js
 // <plugin root>/src/Resources/theme.json
@@ -575,7 +575,7 @@ The `configInheritance` option lets you configure additional themes from which y
 
 In this example the `BasicTheme` is a theme that adds all the configurations you need for your corporate design. This configurations will be inherited in your new theme which can add or change some configurations only needed in a special sales channel or for a special time. See [Theme inheritance](./add-theme-inheritance) for a more detailed example.
 
-All configuration fields and their values from the mentioned themes in `configInheritance` are available inside the current theme, unless they are explicitly overwritten. This way custom themes can be extended without copying their configuration inside the theme.json.
+All configuration fields and their values from the mentioned themes in `configInheritance` are available inside the current theme, unless they are explicitly overwritten. This way custom themes can be extended without copying their configuration inside the theme.json. The relationship of the inheritance is only created while installing the theme. For updating the relationship later on, the command `theme:refresh` can be used.
 
 ## Next steps
 

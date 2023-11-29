@@ -1,13 +1,8 @@
----
-nav:
-  title: Unit tests
-  position: 90
 
----
 
 ::: info
 This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/code/core/unit-tests.md)
+You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/coding-guidelines/core/unit-tests.md)
 :::
 
 # Unit tests
@@ -31,11 +26,11 @@ When writing unit tests, the following is important:
 
 ## Examples
 Here are some good examples of shopware unit tests:
-- [CriteriaTest](https://github.com/shopware/shopware/blob/trunk/tests/unit/php/Core/Framework/DataAbstractionLayer/Search/CriteriaTest.php)
+- [CriteriaTest](https://github.com/shopware/shopware/blob/trunk/tests/unit/Core/Framework/DataAbstractionLayer/Search/CriteriaTest.php)
   - Good example for simple DTO tests
-- [CashRounding](https://github.com/shopware/shopware/blob/trunk/tests/unit/php/Core/Checkout/Cart/Price/CashRoundingTest.php)
+- [CashRounding](https://github.com/shopware/shopware/blob/trunk/tests/unit/Core/Checkout/Cart/Price/CashRoundingTest.php)
   - Nice test matrix for single service coverage
-- [AddCustomerTagActionTest](https://github.com/shopware/shopware/blob/trunk/tests/unit/php/Core/Content/Flow/Dispatching/Action/AddCustomerTagActionTest.php)
+- [AddCustomerTagActionTest](https://github.com/shopware/shopware/blob/trunk/tests/unit/Core/Content/Flow/Dispatching/Action/AddCustomerTagActionTest.php)
   - A good example of how to test flow actions and use mocks for repositories
 
 Here are some good examples of integration tests:

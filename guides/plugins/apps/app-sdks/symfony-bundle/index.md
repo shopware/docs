@@ -83,13 +83,7 @@ The registration also dispatches events to react to the different lifecycle even
 
 ### 4. Connecting Doctrine to a Database
 
-The App Bundle brings, by default, a basic Shop entity to store the shop information.
-You can extend this entity to store more information about your app if needed.
-
-Doctrine is, by default, configured to use PostgreSQL. If you want to use MySQL, change the `DATABASE_URL` environment variable in your `.env` file.
-For development, you can also use SQLite by setting the `DATABASE_URL` to `sqlite:///%kernel.project_dir%/var/app.db`.
-
-After choosing your database engine, create your first migration using `./bin/console make:migration` (Requires Migration Bundle `composer req migrations`) and apply it with the command: `bin/console doctrine:migrations:migrate`.
+<!--@include: @/docs/snippets/guide/app_database_setup.md-->
 
 ### 5. Implement first ActionButtons, Webhooks, Payment
 

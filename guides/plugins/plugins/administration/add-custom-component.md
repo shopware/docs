@@ -11,7 +11,7 @@ nav:
 
 Since the Shopware 6 Administration is using [VueJS](https://vuejs.org/) as its framework, it also supports creating custom components. This guide will teach you how to register your own custom component with your plugin.
 
-In this example, you will create a component, that will print a 'Hello world!' everywhere it's being used.
+In this example, you will create a component that will print a 'Hello world!' everywhere it's being used.
 
 ## Prerequisites
 
@@ -19,11 +19,11 @@ This guide **does not** explain how to create a new plugin for Shopware 6. Head 
 
 <PageRef page="../plugin-base-guide" />
 
-If you want to work with entities in your custom component or page, it might be useful to take a look at how to create custom entity guide first:
+If you want to work with entities in your custom component or page, it might be useful to take a look at how to create a custom entity guide first:
 
 <PageRef page="../framework/data-handling/add-custom-complex-data" />
 
-Especially if you want to add a new page for an own module, you should consider to look at the process on how to add a custom module first.
+Especially if you want to add a new page for an own module, you should consider looking at the process on how to add a custom module first.
 
 <PageRef page="add-custom-module" />
 
@@ -106,14 +106,14 @@ Shopware.Component.register('hello-world', {
 });
 ```
 
-This is a [shorthand](https://alligator.io/js/object-property-shorthand-es6/), which can only be used if the variable is named exactly like the property.
+This is a [shorthand](https://eslint.org/docs/latest/rules/object-shorthand), which can only be used if the variable is named exactly like the property.
 
 ## Next steps
 
-You've now added a custom component, including a little template. However, there's more discover here.
+You've now added a custom component, including a little template. However, there's more to discover here.
 
 * [More about templates](writing-templates)
 * [Add some styling to your component](add-custom-styles)
 * [Use shortcuts for your component](add-shortcuts)
 
-Furthermore, what about [customizing other components](customizing-components), instead of creating new ones.
+Furthermore, what about [customizing other components](customizing-components), instead of creating new ones?

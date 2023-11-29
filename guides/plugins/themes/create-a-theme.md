@@ -9,7 +9,7 @@ nav:
 
 ## Overview
 
-This guide will show you how to create a theme fom the scratch. You will also learn how to install and activate your theme.
+This guide will show you how to create a theme from scratch. You will also learn how to install and activate your theme.
 
 ## Prerequisites
 

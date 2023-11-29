@@ -2,13 +2,7 @@
 title: Specify priority of translations in DAL write payloads
 date: 2022-03-29
 area: core
-tags:
-  - dal
-  - translations
-nav:
-  title: Specify priority of translations in DAL write payloads
-  position: 580
-
+tags: [dal, translations]
 ---
 
 # Specify priority of translations in DAL write payloads

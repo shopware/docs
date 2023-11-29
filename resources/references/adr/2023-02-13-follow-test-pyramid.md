@@ -2,15 +2,7 @@
 title: Follow test pyramid
 date: 2023-02-16
 area: product-operations
-tags:
-  - test
-  - structure
-  - performance
-  - flakiness
-nav:
-  title: Follow test pyramid
-  position: 850
-
+tags: [test, structure, performance, flakiness]
 ---
 
 # Follow test pyramid

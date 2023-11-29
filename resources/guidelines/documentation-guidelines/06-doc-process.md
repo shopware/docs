@@ -47,7 +47,7 @@ In your first draft:
 
 ### Guidelines to writing concepts
 
-* **Introduction** - Introduce the concept (for example, cart) by its purpose in such a way that it answers folowing general questions:
+* **Introduction** - Introduce the concept (for example, cart) by its purpose in such a way that it answers the following general questions:
   * *What is a cart?*
   * *What can it contain?*
   * *How does it relate to users and orders?*

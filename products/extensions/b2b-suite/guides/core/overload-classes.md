@@ -7,7 +7,7 @@ nav:
 
 # Overloading Classes
 
-[Download](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bServiceExtension.zip) a plugin showcasing the topic.
+[Download](../../../../../../products/extensions/b2b/b2b-suite/guides/example-plugins/B2bServiceExtension.zip) a plugin showcasing the topic.
 
 ## Description
 

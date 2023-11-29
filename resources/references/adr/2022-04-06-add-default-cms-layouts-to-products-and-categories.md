@@ -2,14 +2,7 @@
 title: Add default cms pages to products and categories
 date: 2022-04-06
 area: content
-tags:
-  - cms
-  - product
-  - category
-nav:
-  title: Add default cms layouts to products and categories
-  position: 590
-
+tags: [cms, product, category]
 ---
 
 # Add default cms pages to products and categories

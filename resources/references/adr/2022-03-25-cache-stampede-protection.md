@@ -2,14 +2,7 @@
 title: Cache stampede protection
 date: 2022-03-25
 area: core
-tags:
-  - core
-  - cache
-  - performance
-nav:
-  title: Cache stampede protection
-  position: 530
-
+tags: [core, cache, performance]
 ---
 
 # Cache stampede protection

@@ -145,60 +145,60 @@ Daily and Mercure are two external services that are crucial for working with th
 
 1. Link the guided-shopping plugin to PWA using the below command:
 
-    ```text
-    ln -s <your-path-to-guidedShoppingRepo>/src/Resources/app/pwa <your-path-to-shopware-pwa-repo>/sw-plugins/guided-shopping
-    ```
+```text
+ln -s <your-path-to-guidedShoppingRepo>/src/Resources/app/pwa <your-path-to-shopware-pwa-repo>/sw-plugins/guided-shopping
+```
 
 1. Navigate to the folder `pwa` > `sw-plugins` and open `local-plugins.json` file to add `"guided-shopping": true`.
 1. Edit `PWA_PATH` in makefile in guided-shopping folder with your current pwa folder path.
 1. Install additional dependencies using the below command:
 
-    ```text
-    make install-pwa
-    ```
+```text
+make install-pwa
+```
 
 1. Update `jest.config.ts` with the following example file:
 
-    ```js
-    module.exports = {
-      preset: "ts-jest",
-      testEnvironment: "jsdom",
-      moduleNameMapper: {
-        "^@/(.*)$": "<rootDir>/$1",
-        "^~/(.*)$": "<rootDir>/$1",
-        "^vue$": "vue/dist/vue.common.js",
-      },
-      verbose: true,
-      testMatch: [
-        "<rootDir>/sw-plugins/guided-shopping/**/__tests__/**/*.spec.{js,ts}",
-      ],
-      moduleFileExtensions: ["ts", "tsx", "js", "json"],
-      transform: {
-        "^.+\\.js$": "babel-jest",
-        "^.+\\.ts$": "ts-jest",
-        ".*\\.(vue)$": "vue-jest",
-      },
-      coverageDirectory: "coverage",
-      coverageReporters: ["html", "lcov", "text", "cobertura"],
-      collectCoverage: true,
-      watchPathIgnorePatterns: ["/node_modules/", "/dist/", "/.git/"],
-      modulePathIgnorePatterns: [".yalc"],
-      roots: [
-        "<rootDir>/sw-plugins",
-      ],
-      coveragePathIgnorePatterns: [
-        '/node_modules/',
-        '/.nuxt/',
-        '/.shopware-pwa/'
-      ],
-      transformIgnorePatterns: [
-        "/node_modules/(?!@shopware-pwa)"
-      ],
-      collectCoverageFrom: [
-        "sw-plugins/guided-shopping/logic/**/*.{js,ts}",
-      ],
-    }
-    ```
+```js
+module.exports = {
+   preset: "ts-jest",
+   testEnvironment: "jsdom",
+   moduleNameMapper: {
+     "^@/(.*)$": "<rootDir>/$1",
+     "^~/(.*)$": "<rootDir>/$1",
+     "^vue$": "vue/dist/vue.common.js",
+   },
+   verbose: true,
+   testMatch: [
+     "<rootDir>/sw-plugins/guided-shopping/**/__tests__/**/*.spec.{js,ts}",
+   ],
+   moduleFileExtensions: ["ts", "tsx", "js", "json"],
+   transform: {
+     "^.+\\.js$": "babel-jest",
+     "^.+\\.ts$": "ts-jest",
+     ".*\\.(vue)$": "vue-jest",
+   },
+   coverageDirectory: "coverage",
+   coverageReporters: ["html", "lcov", "text", "cobertura"],
+   collectCoverage: true,
+   watchPathIgnorePatterns: ["/node_modules/", "/dist/", "/.git/"],
+   modulePathIgnorePatterns: [".yalc"],
+   roots: [
+     "<rootDir>/sw-plugins",
+   ],
+   coveragePathIgnorePatterns: [
+     '/node_modules/',
+     '/.nuxt/',
+     '/.shopware-pwa/'
+   ],
+   transformIgnorePatterns: [
+     "/node_modules/(?!@shopware-pwa)"
+   ],
+   collectCoverageFrom: [
+     "sw-plugins/guided-shopping/logic/**/*.{js,ts}",
+   ],
+}
+```
 
 1. Open `tsconfig.json` file to add `@types/jest` into `compilerOptions.types` array and save it.
 
@@ -209,20 +209,18 @@ In order to synchronize the installed `SwagGuidedShopping` plugin in the backend
 1. Check credentials in the `.env` file (ADMIN_USER and ADMIN_PASSWORD).
 
 ::: info
-    💡 Alternatively, you can invoke the `plugins` command manually using:
-    `npx @shopware-pwa/cli@canary plugins --user YOUR_ADMIN_USERNAME --password=YOUR_SECRET_PASS`
-    Now, the application is ready for the rebuild process.
-
-    Note that the admin credentials are required to connect to the installed plugin library through an Admin API.
+Alternatively, you can invoke the `plugins` command manually using: `npx @shopware-pwa/cli@canary plugins --user YOUR_ADMIN_USERNAME --password=YOUR_SECRET_PASS`
+Now, the application is ready for the rebuild process.
+Note that the admin credentials are required to connect to the installed plugin library through an Admin API.
 :::
 
 1. Run the build command.
 
-    ```bash
-    # being in the root directory of your Shopware PWA project:
-    yarn build
-    # under the hood, plugins synchronization will be processed at the same time
-    ```
+```bash
+# being in the root directory of your Shopware PWA project:
+yarn build
+# under the hood, plugins synchronization will be processed at the same time
+```
 
 1. Re-deploy Shopware PWA.
 

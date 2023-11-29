@@ -2,14 +2,7 @@
 title: Admin extension API standards
 date: 2021-12-07
 area: administration
-tags:
-  - plugin
-  - admin
-  - extension-api
-nav:
-  title: Admin extension API standards
-  position: 400
-
+tags: [plugin, admin, extension-api]
 ---
 
 # Admin extension API standards

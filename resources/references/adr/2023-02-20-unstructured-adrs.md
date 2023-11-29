@@ -2,14 +2,7 @@
 title: Unstructured ADRs
 date: 2023-02-23
 area: core
-tags:
-  - adr
-  - file-structure
-  - workflow
-nav:
-  title: Unstructured adrs
-  position: 860
-
+tags: [adr, file-structure, workflow]
 ---
 
 # Unstructured ADRs

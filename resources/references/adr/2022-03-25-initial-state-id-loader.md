@@ -2,14 +2,7 @@
 title: Initial state id loader
 date: 2022-03-25
 area: customer-order
-tags:
-  - performance
-  - state-machine
-  - cache
-nav:
-  title: Initial state id loader
-  position: 540
-
+tags: [performance, state-machine, cache]
 ---
 
 # Initial state id loader

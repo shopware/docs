@@ -2,15 +2,7 @@
 title: Decoration pattern
 date: 2020-11-25
 area: core
-tags:
-  - decoration
-  - plugin
-  - interface
-  - abstraction
-nav:
-  title: Decoration pattern
-  position: 180
-
+tags: [decoration, plugin, interface, abstraction]
 ---
 
 # Decoration pattern

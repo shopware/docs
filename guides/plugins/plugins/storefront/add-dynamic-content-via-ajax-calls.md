@@ -63,6 +63,9 @@ The following `services.xml` and `routes.xml` are identical as in the before men
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
+            <call method="setTwig">
+              <argument type="service" id="twig"/>
+            </call>
         </service>
     </services>
 </container>

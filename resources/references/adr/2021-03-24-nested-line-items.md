@@ -2,14 +2,7 @@
 title: Processing of nested line items
 date: 2020-03-24
 area: checkout
-tags:
-  - checkout
-  - cart
-  - line-items
-nav:
-  title: Nested line items
-  position: 210
-
+tags: [checkout, cart, line-items]
 ---
 
 # Processing of nested line items

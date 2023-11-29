@@ -2,15 +2,7 @@
 title: Import ACL privileges from other roles
 date: 2020-08-28
 area: administration
-tags:
-  - acl
-  - privileges
-  - dependency
-  - administration
-nav:
-  title: Import acl privileges from other roles
-  position: 120
-
+tags: [acl, privileges, dependency, administration]
 ---
 
 # Import ACL privileges from other roles

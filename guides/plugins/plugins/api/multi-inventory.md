@@ -28,8 +28,7 @@ To create, modify or delete Warehouses, WarehouseGroups etc., related to Multi-I
 Meanwhile, refer to the following links regarding the general use of the Admin API:
 
 * [Authentication & Authorization](https://shopware.stoplight.io/docs/admin-api/ZG9jOjEwODA3NjQx-authentication)
-* [Request & Response Structure](https://shopware.stoplight.io/docs/admin-api/ZG9jOjEyMzAzNDU1-request-and-response-structure)
-* [Endpoint Structure](https://shopware.stoplight.io/docs/admin-api/ZG9jOjEyMzA1ODA5-endpoint-structure)
+* [Request,Response and Endpoint Structure](https://shopware.stoplight.io/docs/admin-api/9a4d773bd3665-request-and-response-structure)
 
 ## Data structure
 

@@ -1,13 +1,8 @@
----
-nav:
-  title: Domain exceptions
-  position: 50
 
----
 
 ::: info
 This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/code/core/domain-exceptions.md)
+You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/coding-guidelines/core/domain-exceptions.md)
 :::
 
 # Domain exceptions

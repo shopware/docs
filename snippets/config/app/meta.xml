@@ -1,0 +1,33 @@
+<meta>
+    <!-- This is the element for the technical name of your app and must equal the name of the folder your app is contained in -->
+    <name>MyExampleApp</name>
+    <!-- In this element, you can set a label for your app. To include translations use the `lang` attribute -->
+    <label>Label</label>
+    <label lang="de-DE">Name</label>
+    <!-- Translatable, a description of your app -->
+    <description>A description</description>
+    <description lang="de-DE">Eine Beschreibung</description>
+    
+    <author>Your Company Ltd.</author>
+    <copyright>(c) by Your Company Ltd.</copyright>
+    <version>1.0.0</version>
+    <license>MIT</license>
+    <compatibility>~6.5.0</compatibility>
+    <!-- Optional, you can set the path to an icon that should be shown for your app, the icon needs to a `png` file -->
+    <icon>icon.png</icon>
+    <!-- Optional, in this element you can link to your privacy policy -->
+    <privacy>https://your-company.com/privacy</privacy>
+    <!-- Optional, Translatable, in this element you can describe the changes the shop owner needs to apply to his shops privacy policy, e.g. because you process personal information on an external server -->
+    <privacyPolicyExtensions>
+        This app processes following personal information on servers based in the U.S.:
+        - Address information
+        - Order positions
+        - Order value
+    </privacyPolicyExtensions>
+    <privacyPolicyExtensions lang="de-DE">
+        Diese App verarbeitet folgende personenbezogene Daten auf Servern in den USA:
+        - Adress-Informationen
+        - Bestellpositionen
+        - Bestellsumme
+    </privacyPolicyExtensions>
+</meta>

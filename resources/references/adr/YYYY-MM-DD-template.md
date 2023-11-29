@@ -1,16 +1,8 @@
 ---
-title:
-  "{ title }": null
-date:
-  "{ date }": null
-area:
-  "{ area }": null
-tags:
-  - "{ tags }": null
-nav:
-  title: YYYY MM DD template
-  position: 1040
-
+title: {{ title }}
+date: {{ date }}
+area: {{ area }}
+tags: [{{ tags }}]
 ---
 
 # {{ title }}

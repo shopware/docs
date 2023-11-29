@@ -2,15 +2,7 @@
 title: Refactor admin build process to webpack-multi-compiler mode
 date: 2021-08-31
 area: administration
-tags:
-  - administration
-  - webpack
-  - plugin
-  - build
-nav:
-  title: Refactor admin build process to webpack multi compiler mode
-  position: 280
-
+tags: [administration, webpack, plugin, build]
 ---
 
 # Refactor admin build process to webpack-multi-compiler mode

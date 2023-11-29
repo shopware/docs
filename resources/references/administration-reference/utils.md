@@ -89,7 +89,7 @@ This is an overview of all the utility functions bound to the shopware global ob
 | isNumber | Checks if `value` is classified as a Number primitive or object. | [link](https://lodash.com/docs/4.17.15#isNumber) |
 | isUndefined | Checks if `value` is `undefined`. | [link](https://lodash.com/docs/4.17.15#isUndefined) |
 
-## Filereader
+## FileReader
 
 | Function | Description | Link |
 | :--- | :--- | :--- |
