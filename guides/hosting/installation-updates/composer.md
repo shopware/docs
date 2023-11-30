@@ -8,7 +8,7 @@ nav:
 # Versioning and Dependencies
 
 ::: danger
-This setup is no longer the recomended way to manage a Shopware installation. Please refer to our [Flex-guide](../../installation/flex#How-do-I-migrate-from-Production-Template-to-Symfony-Flex?) on how to migrate to a symfony flex based setup.
+This setup is no longer the recomended way to manage a Shopware installation. Please refer to our [Flex-guide](../../installation/template.md#how-do-i-migrate-from-production-template-to-symfony-flex) on how to migrate to a symfony flex based setup.
 :::
 
 ## Overview

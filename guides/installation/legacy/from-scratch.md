@@ -8,7 +8,7 @@ nav:
 # Installation from Scratch
 
 ::: danger
-This approach is no longer recomended. It is kept here as a reference.
+This approach is no longer recommended. It is kept here as a reference.
 :::
 
 If it is *impossible* to get Docker up and running on your development environment, you can install Shopware 6 locally.
@@ -21,7 +21,7 @@ Be aware that this will be a vastly more complex solution since additional syste
 
 - A Linux-based operating system (Windows installation is not covered here, but notes are provided about installing within a WSL instance).
 - An [Apache2 server installation](https://httpd.apache.org/docs/2.4/install.html) within the Linux-based operating system you have selected.
-- Installation of all the required packages mentioned in the [Installation overview](overview). There are two main goals you need to accomplish.
+- Installation of all the required packages mentioned in the [Installation overview](../index.md#installation-overview). There are two main goals you need to accomplish.
 
 Please note that this guide is based on plugin development and contribution. If you need a template for full composer-based shop projects, refer to the [production template](https://github.com/shopware/production).
 
@@ -139,7 +139,7 @@ Within your Apache configuration, you must set your `DocumentRoot` and `Director
 
 ## Setting up Shopware
 
-Before you set up Shopware, you need to clone our Shopware repositories from version control. This is explained in the "Preparatory steps" paragraph of the [Installation overview](overview).
+Before you set up Shopware, you need to clone our Shopware repositories from version control. This is explained in the "Preparatory steps" paragraph of the [Installation overview](../index.md#installation-overview).
 
 ### Starting Shopware installation
 

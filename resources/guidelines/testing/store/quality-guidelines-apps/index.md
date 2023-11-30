@@ -58,8 +58,8 @@ We always test with the [actual SW6 version](https://www.shopware.com/de/downloa
 
 * [Sample app development template](https://github.com/shopwareLabs/AppExample)
 * [App base guide](/docs/guides/plugins/apps/app-base-guide)
-* [Storefront](/docs/guides/plugins/apps/storefront)
-* [Admin](/docs/guides/plugins/apps/administration)
+* [Storefront](/docs/guides/plugins/apps/storefront/index.md)
+* [Admin](/docs/guides/plugins/apps/administration/index.md)
 
 ## Checklist for app testing
 
