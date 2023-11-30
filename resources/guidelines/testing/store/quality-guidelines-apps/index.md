@@ -44,7 +44,7 @@ We perform the *first test*, and if successful, we do the *follow-up test* again
 
 The Shopware installation is located in a subfolder. It has a language sub-shop/sales channel with a virtual URL as well as an independent sub-shop/sales channel with its own URL, also located in a subfolder. E.g. `myshop.com/subfolder/backend` or `myshop.com/public/admin`. The app must neither produce any error messages in the backend nor in the frontend.
 
-The app is tested with the latest official Shopware 6 CE Version. Our testing environment is built with the following components: Nginx Webserver, PHP 7.4 as FPM, MariaDB latest, Shopware installed in subfolder `/shop/public`, default Shopware language *Netherland*.
+The app is tested with the latest official Shopware 6 CE Version. Our testing environment is built with the following components: Nginx Webserver, PHP 7.4 as FPM, MariaDB latest, Shopware installed in subfolder `/shop/public`, default Shopware language *Dutch*.
 The environment is built using Docker and is published on Docker Hub. You can use the following command to run it on your system:
 
 ```markdown
@@ -95,6 +95,8 @@ Be sure to use the most recent testing checklist from Shopware and not from any 
 
 * We check the complete functionality of the app (including the uninstallation and reinstallation procedure).
 
+* New XML requests in the storefront must be accompanied by an `X-Robots-Tag` in the header request with the directive "noindex, nofollow." For further details, please refer to the [robots meta tag](https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag?hl=de#xrobotstag) article.
+
 * The utilization of H-tags is not permissible, as these tags are reserved exclusively for content purposes. However, you may employ `<span class="h2">`, for instance.
 
 * Compiled JavaScript offers many benefits such as improved performance and code optimization. However, it is difficult to read and understand the compiled code.
@@ -116,9 +118,9 @@ To ensure that the code remains accessible to all developers, the uncompiled ver
 
   * Inline styles will be stripped. The following HTML tags are allowed:
 
-    ```markdown
-    <a> <p> <br> <b> <strong> <i> <ul> <ol> <li> <h2> <h3> <h4> <h5>
-    ```
+```markdown
+<a> <p> <br> <b> <strong> <i> <ul> <ol> <li> <h2> <h3> <h4> <h5>
+```
 
   * **Tips:**
 
@@ -255,7 +257,7 @@ The chosen license can't be changed after adding your app to your account. If yo
 
 ### Fallback language
 
-The installation is not always in English or German. So make sure that your app works in other languages as well. For example, if the customer has the installation in Spanish and your app is not yet available in this language, you should use the English translation as a fallback. Our test environment includes Netherland as the standard language.
+The installation is not always in English or German. So make sure that your app works in other languages as well. For example, if the customer has the installation in Spanish and your app is not yet available in this language, you should use the English translation as a fallback. Our test environment includes Dutch as the standard language.
 
 ### Translations
 

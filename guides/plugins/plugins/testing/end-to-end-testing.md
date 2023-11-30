@@ -383,7 +383,7 @@ It's important and necessary the E2E tests are isolated. This means that the tes
 
 One test should only test one workflow, the one it's written for. For example, if you want to test the creation of products, you should not include the creation of categories in your test, although its creation is needed to test the product properly. As best practise we recommend handling everything not related to the test using the [lifecycle hooks](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Hooks) provided by Cypress.
 
-In Shopware platform, we use Shopware's REST API to create the data we need. As a result, our tests are able to focus on one single workflow without having to test the workflows which normaly need to be done to provide the data we need. Another aspect of handling it this way is, that creating test data via API is faster than doing it inside the test.
+In Shopware platform, we use Shopware's REST API to create the data we need. As a result, our tests are able to focus on one single workflow without having to test the workflows which normally need to be done to provide the data we need. Another aspect of handling it this way is, that creating test data via API is faster than doing it inside the test.
 
 ### Cypress' fixtures
 

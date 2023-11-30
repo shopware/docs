@@ -26,7 +26,7 @@ There are lots of things bound to this object. So here is a short overview of th
 
 ## Component
 
-The `Component` property of the global `Shopware` contains the component registry, wich is responsible for handling the VueJS components. If you want to write your own components you have to register them with the `Component.register()` method. Those components are small reusable building blocks which you can use to implement your features.
+The `Component` property of the global `Shopware` contains the component registry, which is responsible for handling the VueJS components. If you want to write your own components you have to register them with the `Component.register()` method. Those components are small reusable building blocks which you can use to implement your features.
 
 ```javascript
 const { Component } = Shopware;
