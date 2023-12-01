@@ -93,3 +93,4 @@ One of the best-known hooks is the [`product page loaded hook`](https://github.c
 The adapter pattern is perfectly designed for **Functional exchange market**. We often realize this by allowing the user to do some configuration and select a corresponding adapter. These adapters are usually registered inside a registry, and third-party developers can easily add new adapters via events or via tagged services.
 
 A good example is the captcha implementation. The store owner can configure a [captcha type](https://docs.shopware.com/en/shopware-en/settings/basic-information#captcha), and we then use the [corresponding adapter](https://github.com/shopware/shopware/blob/v6.4.12.0/src/Storefront/Framework/Captcha/HoneypotCaptcha.php#L11) in the code for the configured captcha.
+
