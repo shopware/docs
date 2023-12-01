@@ -7,7 +7,7 @@ rm -r ./assets/adr
 cp -r ./shopware/adr ./resources/references
 rm -rf ./shopware
 
-deno run --allow-read --allow-write ./.github/scripts/update-summary.ts
+#deno run --allow-read --allow-write ./.github/scripts/update-summary.ts || true
 deno run --allow-read --allow-write ./.github/scripts/format-adrs.ts
 
 mkdir -p ./assets/adr
