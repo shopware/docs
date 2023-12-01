@@ -9,18 +9,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: main
 
       - uses: denoland/setup-deno@v1
         with:
           deno-version: "~1.32"
 
       # sync from shopware/shopware
-      - run: ./.github/scripts/update-adrs.sh
+      - run: |
+          ./.github/scripts/update-adrs.sh
+          git status
 
       # run gitbook -> vitepress migration script
-      - run: ./.github/scripts/migrate.sh ./resources/references/adr/
+      - run: |
+          git status
+          ./.github/scripts/migrate.sh ./resources/references/adr/
+          git status
 
       # migrate links (.md -> .html)
       - name: Migrate links
@@ -30,10 +33,14 @@ jobs:
           options: -v ${{ github.workspace }}:/www --name docs-php
           run: cd /www && find ./resources/references/adr/ -name '*.md' -exec php ./.github/scripts/migrate.php {} +
 
+      - run: |
+          git status
+          rm semicolon_delimited_script
+          git status
+
       - uses: peter-evans/create-pull-request@v4
         with:
           add-paths: |
-            resources/references/adr/**/*
             resources/references/adr/*.md
             index.md
           author: shopwareBot <example@example.com>
