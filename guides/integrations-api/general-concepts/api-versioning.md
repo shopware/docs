@@ -45,17 +45,17 @@ Also, deprecated fields and routes are now shown in the Swagger documentation. H
 
 The Swagger API reference now includes the necessary information about the route and field availability. For routes, this can look like this:
 
-![Availability route](../../../assets/availability_route.png)
+![Availability route](../../../assets/availability-route.png)
 
 Note the availability information.
 
 Same for fields, here is an example of how it would look like:
 
-![Availability field](../../../assets/availability_field.png)
+![Availability field](../../../assets/availability-field.png)
 
 ### API expectations
 
-API expectations can be used as a request header to define necessary conditions for the server side. Example conditions could be the Shopware version, the existence of plugins, or the version of a plugin. There are some examples:
+API expectations can be used as a request header to define the necessary conditions for the server side. Example conditions could be the Shopware version, the existence of plugins, or the version of a plugin. There are some examples:
 
 ```text
 GET /api/test
