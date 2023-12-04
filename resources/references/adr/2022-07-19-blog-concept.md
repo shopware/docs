@@ -13,6 +13,7 @@ You can find the original version [here](https://github.com/shopware/shopware/bl
 :::
 
 ## Context
+
 A highly requested feature & expected for the CMS of Shopware 6 is the blog. In addition, this is an ideal use case and example for the use of [Custom Entities](../../references/adr/2021-09-14-technical-concept-custom-entities.md).
 
 ## Decision

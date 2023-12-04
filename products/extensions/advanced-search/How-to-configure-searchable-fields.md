@@ -7,7 +7,7 @@ nav:
 
 # Configure Searchable Fields
 
-Search entities and their searhable fields are stored in `advanced_search_config` and `advanced_search_config_field` table respectively.
+Search entities and their searchable fields are stored in `advanced_search_config` and `advanced_search_config_field` table respectively.
 
 These configured fields help to build the search query when a search/suggest request is sent from the client.
 

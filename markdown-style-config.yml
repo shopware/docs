@@ -121,7 +121,7 @@ MD043: false
 MD044: false
 
 # Images should have alternate text (alt text) <https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md045>
-MD045: false
+MD045: true
 
 # Code block style <https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md046>
 MD046: false
