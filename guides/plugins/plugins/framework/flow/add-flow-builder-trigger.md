@@ -339,7 +339,7 @@ class SendMailAction
 }
 ```
 
-Take a look at the [Add Flow Builder Action](/guides/plugins/plugins/framework/flow/add-flow-builder-action) section of the guide for how to use data in Flow Actions.
+Take a look at the [Add Flow Builder Action](../../../../../guides/plugins/plugins/framework/flow/add-flow-builder-action.md) section of the guide for how to use data in Flow Actions.
 
 ### Add your new event to the flow trigger list
 

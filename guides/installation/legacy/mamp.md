@@ -97,7 +97,7 @@ brew install composer
 
 ## Checkout Shopware
 
-Before you are able to set up Shopware, you need to checkout Shopware's repositories. This is explained in the "Preparatory steps" of the [Installation overview](overview)  guide. Nevertheless, below you see a brief summary of this process:
+Before you are able to set up Shopware, you need to checkout Shopware's repositories. This is explained in the "Preparatory steps" of the [Installation overview](../index.md#installation-overview).  guide. Nevertheless, below you see a brief summary of this process:
 
 ```bash
 # Choose your own directory

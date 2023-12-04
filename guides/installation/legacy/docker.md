@@ -102,7 +102,7 @@ This command creates and starts the containers, watchers, and the sync itself. R
 ./psh.phar install
 ```
 
-For more information, look at Shopware [Installation Overview](overview).
+For more information, look at Shopware [Installation Overview](../index.md#installation-overview).
 
 ## Next steps
 
