@@ -27,7 +27,7 @@ Categories can be globally hidden from store navigations based on a hide in navi
 
 ## CMS layouts
 
-Every category has a [CMS layout](../core/shopping-experiences-cms) assigned to it. The layout dictates in which way the category will be displayed. It is very useful to centralize the management of CMS pages and hydrate it based on the category configuration.
+Every category has a [CMS layout](../content/shopping-experiences-cms.md) assigned to it. The layout dictates in which way the category will be displayed. It is very useful to centralize the management of CMS pages and hydrate it based on the category configuration.
 
 ## Types
 

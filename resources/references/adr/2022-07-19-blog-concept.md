@@ -13,7 +13,8 @@ You can find the original version [here](https://github.com/shopware/shopware/bl
 :::
 
 ## Context
-A highly requested feature & expected for the CMS of Shopware 6 is the blog. In addition, this is an ideal use case and example for the use of [Custom Entities](../adr/2021-09-14-technical-concept-custom-entities).
+
+A highly requested feature & expected for the CMS of Shopware 6 is the blog. In addition, this is an ideal use case and example for the use of [Custom Entities](../../references/adr/2021-09-14-technical-concept-custom-entities.md).
 
 ## Decision
 We want to implement blogs as part of the CMS. Since Custom Entities offers a good chance to implement such a feature, the blog is supposed to show the community how to handle Custom Entities in the Shopping Experiences.

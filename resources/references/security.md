@@ -39,11 +39,11 @@ General Data Protection Regulation (GDPR) is a comprehensive European Union (EU)
 
 ## HTML sanitizer
 
-HTML sanitizer improves security, reliability, and usability of the text editor by removing potentially unsafe or malicious HTML code. For more information, refer to [HTML Sanitizer](../../../guides/hosting/configurations/shopware/html-sanitizer) guide.
+HTML sanitizer improves security, reliability, and usability of the text editor by removing potentially unsafe or malicious HTML code. For more information, refer to [HTML Sanitizer](../../guides/hosting/configurations/shopware/html-sanitizer.md) guide.
 
 ## Rate limiter
 
-Shopware 6 provides certain rate limits by default that reduces the risk of brute-force attacks for pages like login or password reset. For more information, refer to [Rate Limiter](../../../guides/hosting/infrastructure/rate-limiter) guide.
+Shopware 6 provides certain rate limits by default that reduces the risk of brute-force attacks for pages like login or password reset. For more information, refer to [Rate Limiter](../../guides/hosting/infrastructure/rate-limiter.md) guide.
 
 ## Reset sessions when changing password
 
@@ -54,11 +54,11 @@ As soon as a password is changed for a user or customer, the session is invalid 
 
 ## SameSite cookie
 
-SameSite prevents the browser from sending cookies along with cross-site requests. For more information on this, refer to [SameSite Protection](../../../guides/hosting/configurations/framework/samesite-protection).
+SameSite prevents the browser from sending cookies along with cross-site requests. For more information on this, refer to [SameSite Protection](../../guides/hosting/configurations/framework/samesite-protection.md).
 
 ## Security plugin
 
-Obtaining security fixes without version upgrades is possible through the [Security plugin](../../../guides/hosting/installation-updates/cluster-setup#security-plugin).
+Obtaining security fixes without version upgrades is possible through the [Security plugin](../../guides/hosting/installation-updates/cluster-setup.md#security-plugin).
 
 ## Storefront IP Whitelisting
 

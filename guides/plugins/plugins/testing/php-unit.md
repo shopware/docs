@@ -180,6 +180,7 @@ In some cases a service should behave differently in a test run. Such a case cou
 In this test-only service config you can override arguments, aliases or parameters to change what the service container injects into services during a test run.
 
 ## Executing the test
+
 To execute tests, a PHPUnit binary is necessary, which is most likely located in the `vendor/bin` folder. The command below will use the `phpunit.xml` file in the `custom/plugins/SwagBasicExample` folder and execute the testsuite with the name `migration`.
 
 ```sh
@@ -206,7 +207,7 @@ To execute a specific test class or method of a testsuite, pass the argument `--
 
 ## Flex template
 
-In order to run PHPunit tests install the flex template [dev-tools](../../guides/installation/template#how-to-migrate-from-production-template-to-symfony-flex) package via composer.
+In order to run PHPunit tests install the flex template [dev-tools](../../../../guides/installation/template.md#how-do-i-migrate-from-production-template-to-symfony-flex) package via composer.
 
 ```shell
 composer require --dev dev-tools
