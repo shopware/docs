@@ -154,11 +154,6 @@ In there, use a grid to display your elements next to each other. You've set a C
 
 That's it for this component! Make sure to import your `component` directory in your `index.js` file, so your new component actually gets loaded.
 
-{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/image-text-reversed/index.js" %}
-```
-
-```
-
 ```javascript
 import './component';
 
