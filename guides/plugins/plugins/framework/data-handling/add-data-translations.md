@@ -34,6 +34,7 @@ The translation table's columns should be the following:
     <dd>The actual translated value, the translated name of the `swag_example.created_atNot` much explanation required here.</dd>
     <dt>updated_at</dt>
     <dd> Not much explanation required here.</dd>
+</dl>
 
 Therefore, this is how your migration could then look like:
 
