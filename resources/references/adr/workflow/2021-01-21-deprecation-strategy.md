@@ -44,7 +44,6 @@ Concrete Examples and further explanation follow below.
 Feature and changes tend to be released in a minor release. Don't cause breaks. Simple additions, refactorings, etc
 * Put all your changes behind a feature flag, to be sure that nothing you have changed is called while developing is in progress.
 * When Development is completed, remove the feature flag and all the old code that is not used anymore
-* Detailed description here [Detailed Rules](DetailedRules)
 
 #### Only Minor Changes (with deprecating code)
 Feature and Changes tend to be released in a minor release and are developed in a backward compatible manner, but deprecate old code. For example a class is replaced by a new one.
@@ -53,7 +52,6 @@ Feature and Changes tend to be released in a minor release and are developed in 
 * Mark old code as deprecated and make sure it is not called anywhere else
 * Make sure everything you removed has a working alternative implemented.
 * Annotate everything in a manner that the removal of the deprecated code will be a no-brainer on the next major release
-* Detailed description here [Detailed Rules](DetailedRules)
 
 #### Major Changes (Breaks)
 Parts of a major feature or refactoring which breaks current behaviour. Removal of classes, methods or properties, change of signatures, business logic changes...
@@ -64,7 +62,6 @@ Parts of a major feature or refactoring which breaks current behaviour. Removal 
 * Annotate everything in a manner that the removal of the deprecated code will be a no-brainer on the next major release
 * only difference between the case above is, that you have to take care about the fact, that the whole old behaviour needs to be fully functional until the next major.
 * Write specific tests for the major flag which tests the new behaviour.
-* Detailed description here [Detailed Rules](DetailedRules)
 
 ## Summary Deprecations:
 
