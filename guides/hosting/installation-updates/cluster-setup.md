@@ -79,8 +79,6 @@ For more information, refer to the [filesystems](../infrastructure/filesystem) s
 
 Besides the S3 bucket, it is also necessary to create certain directories for the app servers as shared filesystem.
 
-For more information, refer to the [Storage and caches](./composer#storage-and-caches) section of this guide.
-
 ## Shopware updates + security
 
 To update your project, we always recommend using a staging environment. However, updates for a project should only be obtained if there are critical problems with the system or if essential features have been provided by Shopware.
