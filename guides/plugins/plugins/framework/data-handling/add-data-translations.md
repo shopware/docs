@@ -25,7 +25,16 @@ In this guide we'll name our table `swag_example_translation` since our entity i
 
 The translation table's columns should be the following:
 
-swag\_example\_idThis will refer to the swag\_example this translation belongs to. This is also a foreign key.language\_idThis will contain the ID of the language for this translation. This is also a foreign key.nameThe actual translated value, the translated name of the swag\_example.created\_atNot much explanation required here.updated\_atNot much explanation required here.
+<dl>
+    <dt>`swag_example_id`</dt>
+    <dd>This will refer to the `swag_example` entity this translation belongs to. This is also a foreign key.</dd>
+    <dt>`language_id`</dt>
+    <dd>This will contain the ID of the language for this translation. This is also a foreign key.</dd>
+    <dt>`name`</dt>
+    <dd>The actual translated value, the translated name of the `swag_example.created_atNot` much explanation required here.</dd>
+    <dt>updated_at</dt>
+    <dd> Not much explanation required here.</dd>
+</dl>
 
 Therefore, this is how your migration could then look like:
 
@@ -207,12 +216,10 @@ class ExampleTranslationEntity extends TranslationEntity
 
 Now we need our translation definition to know its custom entity class. This is done by overriding the method `getEntityClass` in our `ExampleTranslationDefinition`.
 
-{% code title="<plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationDefinition.php" %}
-```
-
-```
-
 ```php
+
+// "<plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationDefinition.php"
+
 class ExampleTranslationDefinition extends EntityTranslationDefinition
 {
     [...]

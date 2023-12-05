@@ -127,7 +127,7 @@ Just like most components, it has a custom template and also some styles. Focus 
 
 This template now has to define the basic structure of your custom block. In this simple case, you only need a parent container and two sub-elements, whatever those are. That's also were the slots come into play: You've used two slots in your block's configuration, `left` and `right`. Make sure to create those slots in the template as well now.
 
-```text
+```twig
 // <plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/image-text-reversed/component/sw-cms-block-image-text-reversed.html.twig
 {% block sw_cms_block_image_text_reversed %}
     <div class="sw-cms-block-image-text-reversed">
@@ -153,11 +153,6 @@ In there, use a grid to display your elements next to each other. You've set a C
 ```
 
 That's it for this component! Make sure to import your `component` directory in your `index.js` file, so your new component actually gets loaded.
-
-{% code title="<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/image-text-reversed/index.js" %}
-```
-
-```
 
 ```javascript
 import './component';
@@ -185,7 +180,7 @@ Shopware.Component.register('sw-cms-preview-image-text-reversed', {
 
 The preview element doesn't have to deal with mobile viewports or anything alike, it's just a simplified preview of your block. Thus, create a template containing a text and an image and use the styles to place them next to each other. Create a `sw-cms-preview-image-text-reversed.html` file in your `preview` directory with the following content.
 
-```text
+```twig
 // <plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/image-text-reversed/preview/sw-cms-preview-image-text-reversed.html.twig
 {% block sw_cms_block_image_text_reversed_preview %}
     <div class="sw-cms-preview-image-text-reversed">
@@ -273,7 +268,7 @@ In there create a new twig template named after your block, so `cms-block-image-
 
 Since the [original 'image\_text' file](https://github.com/shopware/platform/blob/v6.3.4.1/src/Storefront/Resources/views/storefront/block/cms-block-image-text.html.twig) is already perfectly fine, you can go ahead and extend from it in your storefront template.
 
-```text
+```twig
 // <plugin root>/src/Resources/views/storefront/block/cms-block-image-text-reversed.html.twig
 {% sw_extends '@Storefront/storefront/block/cms-block-image-text.html.twig' %}
 ```

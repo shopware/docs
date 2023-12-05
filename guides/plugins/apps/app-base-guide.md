@@ -13,9 +13,7 @@ This guide will walk you through the process of adding your own app to Shopware 
 
 ## Prerequisites
 
-If your're not familiar with the app system, please take a look at the concept first.
-
-<PageRef page="../../../concepts/extensions/apps-concept" />
+If your are not familiar with the app system, take a look at the [App concept](../../../concepts/extensions/apps-concept.md) first.
 
 ## File structure
 
@@ -322,7 +320,7 @@ You can use a variety of events to react to changes in Shopware that way. See th
 | `product_price.written` | Triggers if product price is written | `product_price:read` |
 | `category.written` | Triggers if a category is written | `category:read` |
 
-### **App lifecycle events**
+### App lifecycle events
 
 Apps can also register to lifecycle events of its own lifecycle, namely its installation, updates and deletion. For example they maybe used to delete user relevant data from your data stores once somebody removes your app from their shop.
 
@@ -373,108 +371,3 @@ Additionally, you can specify which app should be validated by providing the app
 ```bash
 bin/console app:validate MyExampleApp
 ```
-
-## API Docs
-
-{% api-method method="get" host="https://my.example.com" path="" %}
-{% api-method-summary %}
-registration
-{% endapi-method-summary %}
-
-{% api-method-description %}
-
-{% endapi-method-description %}
-
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-headers %}
-{% api-method-parameter name="shopware-app-signature" type="string" required=true %}
-The hmac-signature of the query string, signed with the app secret
-{% endapi-method-parameter %}
-{% endapi-method-headers %}
-
-{% api-method-query-parameters %}
-{% api-method-parameter name="timestamp" type="integer" required=true %}
-The current Unix timestamp when the request was created
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="shop-url" type="string" required=true %}
-The URL of the shop, where the app was installed, can be used to access to the Shopware API
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="shop-id" type="string" required=true %}
-The unique identifier of the shop, where the app was installed
-{% endapi-method-parameter %}
-{% endapi-method-query-parameters %}
-{% endapi-method-request %}
-
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-
-{% endapi-method-response-example-description %}
-
-```text
-{
-  "proof": "94b42d39280141de84bd6fc8e538946ccdd182e4558f1e690eabb94f924e7bc7",
-  "secret": "random secret string",
-  "confirmation_url": "https://my.example.com/registration/confirm"
-}
-```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
-
-{% api-method method="post" host="https://my.example.com" path="" %}
-{% api-method-summary %}
-confirmation
-{% endapi-method-summary %}
-
-{% api-method-description %}
-
-{% endapi-method-description %}
-
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-headers %}
-{% api-method-parameter name="shopware-shop-signature" type="string" required=true %}
-The hmac-signature of the body content, signed with the shop secret returned from the registration request
-{% endapi-method-parameter %}
-{% endapi-method-headers %}
-
-{% api-method-body-parameters %}
-{% api-method-parameter name="shopId" type="string" required=true %}
-The unique identifier of the shop
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="shopUrl" type="string" required=true %}
-The URL of the shop
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="timestamp" type="integer" required=true %}
-The current Unix timestamp when the request was created
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="secretKey" type="string" required=true %}
-SecretKey used to authenticate against the Shopware API
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="apiKey" type="string" required=true %}
-ApiKey used to authenticate against the Shopware API
-{% endapi-method-parameter %}
-{% endapi-method-body-parameters %}
-{% endapi-method-request %}
-
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-
-{% endapi-method-response-example-description %}
-
-```text
-```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
