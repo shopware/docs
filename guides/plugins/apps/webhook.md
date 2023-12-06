@@ -113,3 +113,23 @@ Starting from Shopware version 6.4.5.0, the current language id of the shopware 
 You can verify the authenticity of the incoming request by checking the `shopware-shop-signature` every request should have a SHA256 HMAC of the request body that is signed with the secret your app assigned the shop during the [registration](app-base-guide#setup). The mechanism to verify the request is exactly the same as the one used for the [confirmation request](app-base-guide#confirmation-request).
 
 You can use a variety of events to react to changes in Shopware that way. See that table [Webhook-Events-Reference](../../../resources/references/app-reference/webhook-events-reference) for an overview.
+
+## Webhooks for live version only
+
+::: info
+This feature has been introduced with Shopware version 6.5.7.0
+:::
+
+There might be cases when you only want to call the webhook when an entry is written to the database with live version ID (`Shopware\Core\Defaults::LIVE_VERSION`). For example when orders are created, you want to filter out drafts and only call your webhook when an order is actually placed. See more on versioning entities [here](../plugins/framework/data-handling/versioning-entities.md).
+
+You can achieve this by adding the option `onlyLiveVersion` to your webhook definition in the manifest file:
+
+```xml 
+<webhook name="order-created" url="https://example.com/event/order-created" event="order.written" onlyLiveVersion="true"/>
+```
+
+By default, this option is set to `false` and the webhook will be called for every version of the entity.
+
+This option is only checked for instances of `HookableEntityWrittenEvent`. For other events, the option is ignored.
+
+If this option is enabled the payload of your webhook will also be filtered to only contain entries that have live version id.
