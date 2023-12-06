@@ -13,4 +13,6 @@ rm -rf ./shopware
 deno run --allow-read --allow-write ./.github/scripts/update-code-guidelines-summary.ts
 deno run --allow-read --allow-write ./.github/scripts/format-code-guidelines.ts
 
+find resources/guidelines/code/core -type f -name '*md' -not -name '_*' -exec sed -i 's#(../../adr/#(../../../references/adr/#' {} \;
+
 find resources/guidelines/code/ -type d -exec touch '{}'/README.md \;
