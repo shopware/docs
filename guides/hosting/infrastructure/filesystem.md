@@ -100,7 +100,7 @@ shopware:
 Be aware of the **prod** in the config path. CDNs are typically for production environments, but you can also set them for all environments in `config/packages/shopware.yml`.
 :::
 
-## Integrated adapter configurations
+## Supported adapter configurations
 
 ### Local
 
@@ -114,6 +114,14 @@ shopware:
 ```
 
 ### Amazon S3
+
+In order to use the S3 adapter you need to install the `league/flysystem-async-aws-s3` package.
+
+```bash
+composer require league/flysystem-async-aws-s3
+```
+
+Example configuration:
 
 ```yaml
 shopware:
@@ -137,7 +145,13 @@ If your S3 provider does not use buckets as subdomain like Minio in default conf
 
 ### Google Cloud Platform
 
-The bucket needs to use the "Fine-grained" [ACL mode](https://cloud.google.com/storage/docs/access-control#choose_between_uniform_and_fine-grained_access). This is required so that Shopware can manage the ACL of the objects.
+In order to use the Google Cloud Platform adapter you need to install the `league/flysystem-google-cloud-storage` package.
+
+```bash
+composer require league/flysystem-google-cloud-storage
+```
+
+Example configuration:
 
 ```yaml
 shopware:
@@ -151,6 +165,9 @@ shopware:
             projectId: "{your-project-id}"
             keyFilePath: "{path-to-your-keyfile}"
 ```
+
+The bucket needs to use the "Fine-grained" [ACL mode](https://cloud.google.com/storage/docs/access-control#choose_between_uniform_and_fine-grained_access). This is required so that Shopware can manage the ACL of the objects.
+
 
 ## Add your own adapter
 
