@@ -3,6 +3,7 @@ nav:
   title: Search Criteria
   position: 10
 
+# {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/store-api-reference/37fb4382af17d88cc50dfbe549752339dec01837/docs/concepts/search-queries.md","WATCHER_HASH":"5a95741bd3bf9d4b900f27a90e87f77b"}
 ---
 
 # Search Criteria

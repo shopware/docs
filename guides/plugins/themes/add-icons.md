@@ -9,7 +9,7 @@ nav:
 
 ## Overview
 
-In this guide you will learn how to use the icon renderer component as well as adding custom icons.
+In this guide, you will learn how to use the icon renderer component as well as adding custom icons.
 
 ::: info
 Even if this is originally a plugin guide, everything will work perfectly in a theme as well. Actually, a theme even is a kind of plugin. So don't get confused by us talking about plugins here.
@@ -17,11 +17,11 @@ Even if this is originally a plugin guide, everything will work perfectly in a t
 
 ## Prerequisites
 
-In order to follow this guide easily, you first need to have a functioning plugin installed. Head over to our [Plugin base guide](../plugins/plugin-base-guide) to create a plugin, if you don't know how it's done yet. Also knowing and understanding SCSS will be quite mandatory to fully understand what's going on here. Furthermore, it might be helpful to read the guide on how to [handle own assets](../plugins/storefront/add-custom-assets) in your plugin before you start with this one.
+To follow this guide easily, you first need to have a functioning plugin installed. Head over to our [Plugin base guide](../plugins/plugin-base-guide) to create a plugin, if you don't know how it's done yet. Also, knowing and understanding SCSS will be quite mandatory to fully understand what's going on here. Furthermore, it might be helpful to read the guide on how to [handle own assets](../plugins/storefront/add-custom-assets) in your plugin before you start with this one.
 
 ## Adding icon
 
-In order to add any icons to the Storefront, you use our `sw_icon` twig action. This way, an icon of choice is displayed in the Storefront.
+To add any icons to the Storefront, you use our `sw_icon` twig action. This way, an icon of choice is displayed in the Storefront.
 
 Needless to say, the first step is saving your image somewhere in your plugin where Shopware can find it. The default path for icons is the following:
 
@@ -30,7 +30,7 @@ Needless to say, the first step is saving your image somewhere in your plugin wh
 `
 ```
 
-You can also provide "solid" icons or any other custom pack names which can be configured later with the `pack` parameter. You can do that by creating a folder with the pack name:
+You can also provide "solid" icons or any other custom pack names that can be configured later with the `pack` parameter. You can do that by creating a folder with the pack name:
 
 ```text
 <YourPlugin>/src/Resources/app/storefront/dist/assets/icon/<pack-name>
@@ -89,7 +89,7 @@ A simple but fully functional example could look like below:
 Icons or other custom assets are not included in the theme inheritance.
 :::
 
-Inside your theme, you cannot put an icon in a directory corresponding the core folder structure and expect the core one to be automatically overwritten by it, as you're used to with themes in general.
+Inside your theme, you cannot put an icon in a directory corresponding to the core folder structure and expect the core one to be automatically overwritten by it, as you're used to with themes in general.
 
 ## Load icons from custom locations
 

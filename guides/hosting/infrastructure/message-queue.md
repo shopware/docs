@@ -64,6 +64,7 @@ If you have configured the cli-worker, you should turn off the admin worker in t
 shopware:
     admin_worker:
         enable_admin_worker: false
+# {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/Resources/config/packages/shopware.yaml","WATCHER_HASH":"183f85ba8f15e8e7d0006b70be20940f","WATCHER_CONTAINS":"enable_admin_worker"}
 ```
 
 ::: warning

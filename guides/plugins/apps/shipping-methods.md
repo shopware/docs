@@ -2,7 +2,8 @@
 nav:
   title: Shipping methods
   position: 25
-
+  
+# {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Xml/ShippingMethod/ShippingMethod.php","WATCHER_HASH":"cafda2eb40608199c21a229e46d5a32e"}
 ---
 
 # Shipping methods

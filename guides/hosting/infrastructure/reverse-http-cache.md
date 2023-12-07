@@ -3,6 +3,7 @@ nav:
   title: Reverse HTTP Cache
   position: 40
 
+# {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Storefront/Resources/config/packages/storefront.yaml","WATCHER_HASH":"77c7d65c6c87a91d2971e770dae10bd2"}
 ---
 
 # Reverse HTTP Cache

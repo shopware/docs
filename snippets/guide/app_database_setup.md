@@ -6,6 +6,7 @@ You can also use SQLite by setting the `DATABASE_URL` to `sqlite:///%kernel.proj
 After choosing your database engine, you need to require two extra composer packages.
 
 ```shell
+# {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/Resources/config/packages/shopware.yaml","WATCHER_HASH":"183f85ba8f15e8e7d0006b70be20940f","WATCHER_CONTAINS":"html_sanitizer"}
 composer req symfony/maker-bundle migrations
 ```
 
