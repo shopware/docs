@@ -20,6 +20,7 @@ find $WATCHER_PATH -type f -print0 | while IFS= read -r -d '' file; do
   WATCHER_CONTAINS=$(echo $JSON | jq -r '.WATCHER_CONTAINS')   
   
   # Get the hash of the URL
+  echo $WATCHER_URL
   EVAL_HASH="curl -sl $WATCHER_URL | md5sum | cut -d ' ' -f 1"    
   CALLED_HASH="$(eval $EVAL_HASH)"
     
