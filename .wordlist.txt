@@ -1084,6 +1084,7 @@ ProductListRoute
 ProductManufacturerDefinition
 ProductMediaDefinition
 ProductNumber
+productNumber
 ProductOptionRelationDataSet
 ProductPage
 ProductPriceAttributeDataSet
