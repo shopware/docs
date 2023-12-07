@@ -21,13 +21,6 @@ while IFS= read -r -d '' file; do
   WATCHER_HASH=$(echo $JSON | jq -r '.WATCHER_HASH')
   WATCHER_CONTAINS=$(echo $JSON | jq -r '.WATCHER_CONTAINS')
   
-  echo '#####'
-  echo $file
-  echo $WATCHER_URL
-  echo $WATCHER_HASH
-  echo $WATCHER_CONTAINS
-  echo '#####'
-  
   # Get the hash of the URL
   EVAL_HASH="curl -sl $WATCHER_URL | md5sum | cut -d ' ' -f 1"    
   CALLED_HASH="$(eval $EVAL_HASH)"
