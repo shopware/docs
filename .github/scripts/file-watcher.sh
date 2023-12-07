@@ -2,13 +2,15 @@
 
 # Set the path to the snippets folder
 WATCHER_PATH=$1
-echo 0 > error.txt
+COUNTER=0
+ERROR_FOUND=0
+
 
 # Find all files in the snippets folder
-find $WATCHER_PATH -type f -print0 | while IFS= read -r -d '' file; do
-  
+while IFS= read -r -d '' file; do  
   # Check if the file contains the string "WATCHER_URL" and is therefore a watcher file
   cat "$file" | grep 'WATCHER_URL' >> /dev/null || continue 
+  ((COUNTER++))
   
   # Get the JSON from the first line of the file
   HEAD=$(cat "$file" | grep 'WATCHER_URL')
@@ -17,10 +19,16 @@ find $WATCHER_PATH -type f -print0 | while IFS= read -r -d '' file; do
   # Get the values from the JSON
   WATCHER_URL=$(echo $JSON | jq -r '.WATCHER_URL')
   WATCHER_HASH=$(echo $JSON | jq -r '.WATCHER_HASH')
-  WATCHER_CONTAINS=$(echo $JSON | jq -r '.WATCHER_CONTAINS')   
+  WATCHER_CONTAINS=$(echo $JSON | jq -r '.WATCHER_CONTAINS')
+  
+  echo '#####'
+  echo $file
+  echo $WATCHER_URL
+  echo $WATCHER_HASH
+  echo $WATCHER_CONTAINS
+  echo '#####'
   
   # Get the hash of the URL
-  echo $WATCHER_URL
   EVAL_HASH="curl -sl $WATCHER_URL | md5sum | cut -d ' ' -f 1"    
   CALLED_HASH="$(eval $EVAL_HASH)"
     
@@ -34,7 +42,8 @@ find $WATCHER_PATH -type f -print0 | while IFS= read -r -d '' file; do
           
       # Check if $WATCHER_CONTAINS contains the string "null" and is therefore empty or not set
       if [[ $WATCHER_CONTAINS == "null" ]]; then
-        echo 1 > error.txt
+        ERROR_FOUND=1
+        echo "Sourcefile: https://github.com/shopware/docs/blob/main/$file"
       fi
       # Check if $WATCHER_CONTAINS contains the string $WATCHER_CONTAINS and if not call the Slack webhook
       if [[ $FILE_CONTENT == *"$WATCHER_CONTAINS"* ]]; then
@@ -42,18 +51,18 @@ find $WATCHER_PATH -type f -print0 | while IFS= read -r -d '' file; do
       else
         echo "String not found! Please check $WATCHER_URL"
         echo "Sourcefile: https://github.com/shopware/docs/blob/main/$file"
-        echo 1 > error.txt
+        ERROR_FOUND=1
       fi
   fi
-done
+done < <(find $WATCHER_PATH -type f -regex '.*\.\(md\|yaml\)$' -print0)
 
-ERROR_FOUND=$(cat error.txt)
+echo "Found $COUNTER files with a watcher tag."
 
 if [ "$ERROR_FOUND" -eq 1 ]
   then
     echo "Error found, exiting..."
     exit 1
   else
-    echo "$ERROR_FOUND No error found, exiting..."
+    echo "No error found, exiting..."
     exit 0
   fi
