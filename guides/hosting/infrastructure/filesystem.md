@@ -58,7 +58,9 @@ shopware:
     sitemap:
       url: "{url-to-your-sitemap-files}"
       # The Adapter Configuration
+
 ```
+<!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/Resources/config/packages/shopware.yaml","WATCHER_HASH":"183f85ba8f15e8e7d0006b70be20940f","WATCHER_CONTAINS":"filesystem"} -->
 
 If you want to regulate the uploaded file types, then you could add the keys `allowed_extensions`for the public filesystem or `private_local_download_strategy` for the private filesystem.
 With the `private_local_download_strategy` key you could choose the download strategy for private files (e.g., the downloadable products):
