@@ -34,3 +34,5 @@ To disable, set `shopware.stock.enable_stock_management` to `false`:
 <<< @/docs/snippets/config/stock_disabled.yaml
 
 For more detailed implementation refer to [Stock](../../../../guides/plugins/plugins/content/stock/) guide section.
+
+<!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/Resources/config/packages/shopware.yaml","WATCHER_HASH":"183f85ba8f15e8e7d0006b70be20940f","WATCHER_CONTAINS":"enable_stock_management"} -->

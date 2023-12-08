@@ -15,6 +15,18 @@ matrix:
           ignores:
             - code
             - pre
+      - pyspelling.filters.context:
+          context_visible_first: true
+          escapes: \\[\\`~]
+          delimiters:
+            - open: '(?s)^(?P<open> *`{3,})$'
+              close: '^(?P=open)$'
+            - open: '(?P<open>`+)'
+              close: '(?P=open)'
+            - open: '(?P<open># {"+)'
+              close: '(?P=open)'
+            - open: '# {'
+              close: '}'
     sources:
       - '**/*.md|!resources/references/adr/*|!resources/guidelines/code/core/*'
     default_encoding: utf-8

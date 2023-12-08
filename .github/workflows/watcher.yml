@@ -1,0 +1,35 @@
+name: Check shopware files for changes
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check-files:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4   
+      - run: |
+          ./.github/scripts/file-watcher.sh
+        id: watcher
+        continue-on-error: true
+      - name: Send custom JSON data to Slack workflow
+        if: steps.watcher.outcome != 'success'
+        id: slack
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          payload: |
+            {
+              "text": "Text: GitHub Action build result: ${{ job.status }}",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": ":ladybug: Failed file watcher with status '${{ steps.watcher.outcome }}': Please check ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_NOTIFICATIONS_WEBHOOK }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
