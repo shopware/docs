@@ -14,13 +14,13 @@ while IFS= read -r -d '' file; do
   
   # Get the JSON from the first line of the file
   HEAD=$(cat "$file" | grep 'WATCHER_URL')
-  JSON=$(sed "s/# //g" <<< "$HEAD")
+  JSON=$(sed "s/<!-- //;s/ -->//" <<< "$HEAD")
   
   # Get the values from the JSON
   WATCHER_URL=$(echo $JSON | jq -r '.WATCHER_URL')
   WATCHER_HASH=$(echo $JSON | jq -r '.WATCHER_HASH')
   WATCHER_CONTAINS=$(echo $JSON | jq -r '.WATCHER_CONTAINS')
-  
+
   # Get the hash of the URL
   EVAL_HASH="curl -sl $WATCHER_URL | md5sum | cut -d ' ' -f 1"    
   CALLED_HASH="$(eval $EVAL_HASH)"
