@@ -23,9 +23,9 @@ The order state changes in a defined, predictable and configurable way - other s
 
 During the order placement, at least three distinct state machines are started as described in the below diagrams:
 
-![The order state machine](../../../assets/order-state-machine.png)
-![The transaction state machine](../../../assets/order-payment-state-machine.png)
-![The delivery state machine](../../../assets/order-delivery-state-machine.png)
+![The order state machine](../../../assets/checkout-orderState.svg)
+![The order payment state machine](../../../assets/checkout-orderPaymentState.svg)
+![The order delivery state machine](../../../assets/checkout-orderDeliveryState.svg)
 
 ::: tip
 The state machines displayed in the following sections can actually be modified through the API, this is just the default setup.
