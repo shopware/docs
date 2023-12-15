@@ -82,7 +82,7 @@ monolog:
   handlers:
     myPluginLogHandler:
         type: rotating_file
-        path: %kernel.logs_dir%/my_plugin_%kernel.environment%.log"
+        path: "%kernel.logs_dir%/my_plugin_%kernel.environment%.log"
         level: error
         channels: [ "my_plugin_channel"]
 ```
