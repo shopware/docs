@@ -11,7 +11,14 @@ In order to provide users \(i.e., developers\) with a clear abstraction, Shopwar
 
 ## Apps
 
-![](../../assets/app-extension-model.png)
+```mermaid
+flowchart LR
+    subgraph Shopware PHP Process 
+    A(Core)
+    end
+    A(Core) -->|Notification webhook| B(App)
+    B(App) --> | REST API| A(Core)
+```
 
 Starting with Shopware 6.4.0.0, we introduced a new way to extend Shopware using the newly created app system. Apps are not executed within the process of the Shopware Core but are notified about events via webhooks, which they can register. They can modify and interact with Shopware resources through the [Admin REST API](https://shopware.stoplight.io/docs/admin-api/twpxvnspkg3yu-quick-start-guide).
 

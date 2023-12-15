@@ -20,7 +20,24 @@ Let us start understanding about product more in detail:
 
 Look at the below condensed overview of the product data model:
 
-![Condensed overview of the product data model](../../../assets/concept-catalog-products-datamodel.png)
+```mermaid
+erDiagram
+    Product}|--|{ Category : has
+    Product {
+        Example Levis_Ocean_Hoodie
+    }
+    Category {
+        Example Hoodies
+    }
+    Product ||--|{ Product-Group-Option : has
+    Product-Group-Option{
+        Example Leather
+    }
+    Product-Group ||--|{ Product-Group-Option : belongs
+    Product-Group{
+        Example Material
+    }
+```
 
 Besides their relation to categories, products can also link to a set of *property group options*.
 
@@ -34,7 +51,21 @@ Examples of property group garments are *Size*, *Color* or *Material*. The corre
 
 Different variations of a product can be modeled using *product variants*. Products are a self-referencing entity, which is interpreted as a parent-child relationship. This mechanism is also used to model variants. This also provides inheritance between field values from parent products to child products.
 
-![Variant model](../../../assets/concept-catalog-products-variantModel.png)
+```mermaid
+erDiagram
+    Product||--|| Product : is
+    Product {
+        Example Levis_Ocean_Hoodie
+    }
+    Product ||--|{ Product-Group-Option : has
+    Product-Group-Option{
+        Example Leather
+    }
+    Product-Group ||--|{ Product-Group-Option : belongs
+    Product-Group{
+        Example Material
+    }
+```
 
 However, it is also useful to attach some additional properties to differentiate product variants next to the field inheritance. For that reason, it is critical to understand the difference between *properties* and *options*:
 
