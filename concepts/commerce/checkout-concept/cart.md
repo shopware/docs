@@ -97,13 +97,64 @@ The price of all line items, including tax, delivery costs, voucher discounts, a
 
 Shopware 6 manages the cart's state through different services. The diagram below illustrates the different states the cart can have and the state changes it can go through.
 
-![Cart state](../../../assets/cart-state.png)
+```mermaid
+---
+title: Cart State
+---
+stateDiagram-v2
+    [*] --> Empty
+    note left of Empty
+            An empty cart
+            > default shipping
+            > defauly payment
+        end note
+    Empty --> Dirty : add line item
+    note left of Dirty
+        A modified cart but
+        > invalid prices
+        > raw line items
+        > unknown delivery validity
+
+        calculation required
+    end note
+    Dirty --> Calculated : calculate
+    note left of Calculated
+    This cart can either br ordered or has errors that must be resolved
+
+    end note
+    Calculated --> Dirty : Modify line item/shipping/payment
+    Calculated --> Calculated : order invalid
+    Calculated --> [*] : order
+```
 
 ## Calculation
 
 Calculating a cart is one of the more costly operations an ecommerce system must support. Therefore the interfaces of the cart are designed as precise and as quick as possible. The calculation is a multi-stage process that revolves around the mutation of the data structure of the cart struct shown in the diagram below:
 
-![Cart calculation](../../../assets/cart-calculation-steps.png)
+```mermaid
+---
+title: Cart Calculation
+---
+stateDiagram-v2
+    [*] --> Enrich
+    note left of Enrich
+            Process line items
+            > add images and descriptions
+            > determine prices
+        end note
+    Enrich --> Process
+    note left of Process
+        Update price, shipping and payment
+    end note
+    Process --> Validate : calculate
+    note left of Validate
+    Validate through the rule system and 
+    check plausibility change cart accordingly
+    end note
+    Validate --> Validate : Repeat until no changes occur
+    Validate --> Persist
+    Persist --> [*]
+```
 
 ### Cart enrichment
 
@@ -134,7 +185,32 @@ A default set of collectors is implemented in Shopware 6, which has a set call o
 | Shopware\Core\Checkout\Promotion\Cart\CartPromotionsCollector | Enrich add, remove and validate promotions |
 | Shopware\Core\Checkout\Shipping\Cart\ShippingMethodPriceCollector | Handle shipping prices |
 
-![Cart enrichment steps](../../../assets/cart-enrichtment-steps.png)
+```mermaid
+---
+title: Enrichment
+---
+sequenceDiagram
+Enrichment->>Enrichment : 
+box
+    participant Enrichment
+    participant ProductCollector
+    participant PromotionCollector
+    participant DiscountCollector
+    end
+    Note over Enrichment,DiscountCollector: Preparation
+    Enrichment->>ProductCollector: prepare
+    Enrichment->>PromotionCollector: prepare
+    Enrichment->>DiscountCollector: prepare
+    Note over Enrichment,DiscountCollector: Collect
+    Enrichment->>ProductCollector: collect
+    Enrichment->>PromotionCollector: collect
+    Enrichment->>DiscountCollector: collect
+    Note over Enrichment,DiscountCollector: Enrichment
+    Enrichment->>ProductCollector: enrich
+    Enrichment->>PromotionCollector: enrich
+    Enrichment->>DiscountCollector: enrich
+    Enrichment->>Enrichment : 
+```
 
 ## Cart processors - price calculation and validation
 
@@ -153,7 +229,16 @@ After the cart has been processed, it is validated against the rules, which can 
 * Everybody buying a car gets a pair of sunglasses for free.
 * Every cart containing two products gets a discount of 2%.
 
-![Cart validation](../../../assets/cart-validation.png)
+```mermaid
+stateDiagram-v2
+    [*] --> Empty_cart : checkout started
+    Empty_cart --> Cart_with_lineitem(car) : User orders a car
+        state Enrichment {
+    Cart_with_lineitem(car) --> Cart_with_lineitem(car+sunglasses) : Iteration 1 - Cart automatically adds sunglasses
+    Cart_with_lineitem(car+sunglasses) --> Cart_with_lineitem(car+sunglasses+2%discount) : Iteration 2 - Cart automatically adds discount
+    }
+    Cart_with_lineitem(car+sunglasses+2%discount) --> [*] : valid
+```
 
 As you can see in the diagram above, the cart is modified during the enrichment process. The sunglasses are added in the first iteration, and in the second iteration, the discount is added as the cart contains two products. This results in the expected state of one car, one pair of sunglasses, and a two-percent discount.
 

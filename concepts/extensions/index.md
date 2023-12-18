@@ -24,7 +24,14 @@ Starting with Shopware 6.4.0.0, we introduced a new way to extend Shopware using
 
 ## Plugins
 
-![](../../assets/plugin-extension-model.png)
+```mermaid
+flowchart LR
+subgraph Shopware PHP Process
+    A(Core)--PHP API-->B(Plugins)
+end
+    A-->C[Database]
+    B-->C
+```
 
 Plugins are executed within the Shopware Core process and can react to events, execute custom code or extend services. They have direct access to the database and guidelines are in place to ensure update-compatibility, such as a service facade or database migrations.
 
