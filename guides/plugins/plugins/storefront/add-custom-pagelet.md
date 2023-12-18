@@ -175,9 +175,7 @@ Of course, in this example your `ExamplePage` struct needs a method `setExampleP
 As already mentioned, a pagelet can be loaded via a route if you want it to. For that case, you can simply add a new route to your controller and load the pagelet via the `ExamplePageletLoader`:
 
 ```php
-/**
- * @Route("/example-pagelet", name="frontend.example.pagelet", methods={"POST"}, defaults={"XmlHttpRequest"=true})
- */
+#[Route(path: '/example-pagelet', name: 'frontend.example.pagelet', methods: ['POST'], defaults: ['XmlHttpRequest' => 'true'])]
 public function examplePagelet(Request $request, SalesChannelContext $context): Response
 {
     $pagelet = $this->examplePageletLoader->load($request, $context);

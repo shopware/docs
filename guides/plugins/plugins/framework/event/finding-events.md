@@ -178,11 +178,7 @@ a `Criteria` instance.
 Let's have a look at an [example code](https://github.com/shopware/shopware/blob/v6.4.0.0/src/Core/Content/Product/SalesChannel/Listing/ResolveCriteriaProductListingRoute.php#L55-L59):
 
 ```php
-/**
- * @Since("6.2.0.0")
- * @Entity("product")
- * @Route("/store-api/product-listing/{categoryId}", name="store-api.product.listing", methods={"POST"})
- */
+#[Route(path: '/store-api/product-listing/{categoryId}', name: 'store-api.product.listing', methods: ['POST'], defaults: ['_entity' => 'product'])]
 public function load(string $categoryId, Request $request, SalesChannelContext $context, Criteria $criteria): ProductListingRouteResponse
 {
     $this->eventDispatcher->dispatch(
