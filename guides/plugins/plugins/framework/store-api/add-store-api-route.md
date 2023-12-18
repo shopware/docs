@@ -80,10 +80,7 @@ class ExampleRoute extends AbstractExampleRoute
         throw new DecorationPatternException(self::class);
     }
 
-    /**
-     * @Entity("swag_example")
-     * @Route("/store-api/example", name="store-api.example.search", methods={"GET", "POST"})
-     */
+    #[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET','POST'], defaults: ['_entity' => 'swag_example'])]
     public function load(Criteria $criteria, SalesChannelContext $context): ExampleRouteResponse
     {
         return new ExampleRouteResponse($this->exampleRepository->search($criteria, $context->getContext()));
@@ -330,9 +327,7 @@ class ExampleController extends StorefrontController
         $this->route = $route;
     }
 
-    /**
-     * @Route("/example", name="frontend.example.search", methods={"GET", "POST"}, defaults={"XmlHttpRequest"=true})
-     */
+    #[Route(path: '/example', name: 'frontend.example.search', methods: ['GET', 'POST'], defaults: ['XmlHttpRequest' => 'true'])
     public function load(Criteria $criteria, SalesChannelContext $context): Response
     {
         return $this->route->load($criteria, $context);

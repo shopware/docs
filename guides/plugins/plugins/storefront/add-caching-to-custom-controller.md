@@ -45,7 +45,7 @@ class ExampleController extends StorefrontController
 {
    /**
     * @HttpCache()
-    * @Route("/example", name="frontend.example.example", methods={"GET"})
+    * #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'])]
     */
     public function showExample(): Response
     {

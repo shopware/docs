@@ -52,11 +52,8 @@ class ExampleRouteDecorator extends AbstractExampleRoute
     {
         return $this->decorated;
     }
-
-    /**
-     * @Entity("swag_example")
-     * @Route("/store-api/example", name="store-api.example.search", methods={"GET", "POST"})
-     */
+    
+    #[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET', 'POST'], defaults: ['_entity' => 'category'])]
     public function load(Criteria $criteria, SalesChannelContext $context): ExampleRouteResponse
     {
         // We must call this function when using the decorator approach

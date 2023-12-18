@@ -43,11 +43,7 @@ The Shopware HTTP cache has a variety of mechanisms to answer these questions.
 The called route needs an `@HttpCache` annotation. Examples for this can be found in the [ProductController](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Storefront/Controller/ProductController.php#L86).
 
 ```php
-/**
- * @Since("6.3.3.0")
- * @HttpCache()
- * @Route("/detail/{productId}", name="frontend.detail.page", methods={"GET"})
- */
+#[Route(path: '/detail/{productId}', name: 'frontend.detail.page', methods: ['GET'])]
 public function index(SalesChannelContext $context, Request $request): Response
 ```
 

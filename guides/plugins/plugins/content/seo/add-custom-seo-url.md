@@ -58,7 +58,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ExampleController extends StorefrontController
 {
     /**
-    * @Route("/example", name="frontend.example.example", methods={"GET"})
+    * #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'])]
     */
     public function showExample(): Response
     {

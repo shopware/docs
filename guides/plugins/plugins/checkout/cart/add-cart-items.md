@@ -57,9 +57,7 @@ class ExampleController extends StorefrontController
         $this->cartService = $cartService;
     }
 
-    /**
-     * @Route("/cartAdd", name="frontend.example", methods={"GET"})
-     */
+    #[Route(path: '/cartAdd', name: 'frontend.example', methods: ['GET'])]
     public function add(Cart $cart, SalesChannelContext $context): StorefrontResponse
     {
         // Create product line item

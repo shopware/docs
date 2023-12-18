@@ -69,7 +69,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ExampleController extends StorefrontController
 {
     /**
-    * @Route("/example", name="frontend.example.example", methods={"GET"})
+    * #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'])]
     */
     public function showExample(): Response
     {
@@ -103,9 +103,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ExampleController extends StorefrontController
 {
-    /**
-    * @Route("/example", name="frontend.example.example", methods={"GET"}, defaults={"_routeScope"={"storefront"}})
-    */
+    #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'], defaults: ['_routeScope' => 'storefront'])]
     public function showExample(): Response
     {
         ...
@@ -195,7 +193,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ExampleController extends StorefrontController
 {
     /**
-    * @Route("/example", name="frontend.example.example", methods={"GET"})
+    * #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'])]
     */
     public function showExample(Request $request, SalesChannelContext $context): Response
     {

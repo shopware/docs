@@ -38,9 +38,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ExampleController extends StorefrontController
 {
-    /**
-     * @Route("/example-page", name="frontend.example.page", methods={"GET"})
-     */
+    #[Route(path: '/example-page', name: 'frontend.example.page', methods: ['GET'])]
     public function examplePage(): Response
     {
     }
@@ -152,7 +150,7 @@ class ExampleController extends StorefrontController
     }
 
     /**
-     * @Route("/example-page", name="frontend.example.page", methods={"GET"})
+     * #[Route(path: '/example-page', name: 'frontend.example.page', methods: ['GET'])]
      */
     public function examplePage(Request $request, SalesChannelContext $context): Response
     {

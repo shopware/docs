@@ -36,9 +36,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ExampleController extends StorefrontController
 {
-   /**
-    * @Route("/example", name="frontend.example.example", defaults={"XmlHttpRequest"=true}, methods={"GET"})
-    */
+    #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'], defaults: ['XmlHttpRequest' => 'true'])]
     public function showExample(): JsonResponse
     {
         return new JsonResponse(['timestamp' => (new \DateTime())->format(\DateTimeInterface::W3C)]);
