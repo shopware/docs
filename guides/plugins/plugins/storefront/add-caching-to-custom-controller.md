@@ -43,10 +43,8 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ExampleController extends StorefrontController
 {
-   /**
-    * @HttpCache()
-    * #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'])]
-    */
+
+    #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'], defaults: ['_httpCache' => true])]
     public function showExample(): Response
     {
         return $this->renderStorefront('@SwagBasicExample/storefront/page/example/index.html.twig', [

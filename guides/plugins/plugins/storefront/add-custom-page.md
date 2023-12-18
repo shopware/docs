@@ -149,9 +149,7 @@ class ExampleController extends StorefrontController
         $this->examplePageLoader = $examplePageLoader;
     }
 
-    /**
-     * #[Route(path: '/example-page', name: 'frontend.example.page', methods: ['GET'])]
-     */
+    #[Route(path: '/example-page', name: 'frontend.example.page', methods: ['GET'])]
     public function examplePage(Request $request, SalesChannelContext $context): Response
     {
         $page = $this->examplePageLoader->load($request, $context);

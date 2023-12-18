@@ -68,9 +68,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ExampleController extends StorefrontController
 {
-    /**
-    * #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'])]
-    */
+    #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'])]
     public function showExample(): Response
     {
         return $this->renderStorefront('@SwagBasicExample/storefront/page/example.html.twig', [
@@ -191,10 +189,8 @@ use Symfony\Component\Routing\Annotation\Route;
  * @Route(defaults={"_routeScope"={"storefront"}})
  */
 class ExampleController extends StorefrontController
-{
-    /**
-    * #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'])]
-    */
+{    
+    #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'])]
     public function showExample(Request $request, SalesChannelContext $context): Response
     {
         ...

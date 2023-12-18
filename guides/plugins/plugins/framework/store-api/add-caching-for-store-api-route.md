@@ -90,10 +90,7 @@ class CachedExampleRoute extends AbstractExampleRoute
         return $this->decorated;
     }
 
-    /**
-     * @Entity("swag_example")
-     * #[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET','POST'])]
-     */
+    #[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET','POST'], defaults: ['_entity' => 'swag_example'])]
     public function load(Criteria $criteria, SalesChannelContext $context): ExampleRouteResponse
     {
         // The context is provided with a state where the route cannot be cached

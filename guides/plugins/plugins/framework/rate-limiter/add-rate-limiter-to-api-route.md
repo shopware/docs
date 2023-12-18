@@ -150,9 +150,8 @@ If the limit has been exceeded, it throws `Shopware\Core\Framework\RateLimiter\E
 
 ```php
 // <plugin root>/src/Core/Content/Example/SalesChannel/ExampleRoute.php
-/**
- * #[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET','POST'])]
-*/
+
+#[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET','POST'])]
 public function load(Request $request, SalesChannelContext $context): ExampleRouteResponse
 {
     // Limit ip address
@@ -169,9 +168,8 @@ We just have to call the `reset` method as you can see below.
 
 ```php
 // <plugin root>/src/Core/Content/Example/SalesChannel/ExampleRoute.php
-/**
- * #[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET','POST'])]
-*/
+
+#[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET','POST'])]
 public function load(Request $request, SalesChannelContext $context): ExampleRouteResponse
 {
     // Limit ip address for example
