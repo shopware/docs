@@ -40,10 +40,10 @@ The Shopware HTTP cache has a variety of mechanisms to answer these questions.
 
 ## When will the page be cached?
 
-The called route needs an `@HttpCache` annotation. Examples for this can be found in the [ProductController](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Storefront/Controller/ProductController.php#L86).
+Set the defaults value of the `_httpCache` key to `true`. Examples for this can be found in the [ProductController](https://github.com/shopware/shopware/blob/trunk/src/Storefront/Controller/ProductController.php#L62).
 
 ```php
-#[Route(path: '/detail/{productId}', name: 'frontend.detail.page', methods: ['GET'])]
+#[Route(path: '/detail/{productId}', name: 'frontend.detail.page', methods: ['GET'], defaults: ['_httpCache' => true])]
 public function index(SalesChannelContext $context, Request $request): Response
 ```
 
