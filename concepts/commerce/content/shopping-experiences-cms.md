@@ -143,7 +143,15 @@ Whereas the structure of a CMS page remains somewhat static, its content can be 
 
 The following diagram illustrates how that works using the example of a category:
 
-![Flow of resolving CMS page content](../../../assets/concept-commerce-shoppingExperiences-resolvingCmsPage.png).
+```mermaid
+flowchart TD
+    A[Load category A] --> B[Load CMS layout associated with category A]
+    B --> C[Build resolver context containing context information of category A]
+    C --> D[For every element in the CMS layout]
+    D --> E[Element resolver - Assemble criteria to fetch data based on resolver context]
+    E --> F[Fetch dynamic configuration and use it to override existing slot configuration]
+    F --> G[Respond with dynamically hyderated CMS page]
+```
 
 Let's go through the steps one by one.
 
