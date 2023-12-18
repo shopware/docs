@@ -42,9 +42,7 @@ use Shopware\Storefront\Framework\Routing\StorefrontResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Shopware\Core\Checkout\Cart\Cart;
 
-/**
- * @Route(defaults={"_routeScope"={"storefront"}})
- */
+#[Route(defaults: ['_routeScope' => ['storefront']])]
 class ExampleController extends StorefrontController
 {
     private LineItemFactoryRegistry $factory;

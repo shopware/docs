@@ -33,9 +33,7 @@ use Shopware\Core\Framework\Routing\Annotation\Entity;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route(defaults={"_routeScope"={"store-api"}})
- */
+#[Route(defaults: ['_routeScope' => ['store-api']])]
 class ExampleRouteDecorator extends AbstractExampleRoute
 {
     protected EntityRepository $exampleRepository;

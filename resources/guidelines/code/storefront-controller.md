@@ -9,8 +9,7 @@ nav:
 
 ## Controller
 
-* Each controller action has to be declared with a `@Since` tag.
-* Each controller action requires a `@Route` annotation.
+* Each controller action requires a `#Route` attribute.
 * The name of the route should start with "frontend".
 * Each route should define the corresponding HTTP Method \(GET, POST, DELETE, PATCH\).
 * The function name should be concise.
@@ -19,7 +18,7 @@ nav:
 * Use Symfony flash bags for error reporting.
 * Each storefront functionality has to be available inside the Store API too.
 * A Storefront controller should never contain business logic.
-* The class requires the annotation: `@Route(defaults={"_routeScope"={"storefront"}})`.
+* The class requires the attribute: `#[Route(defaults: ['_routeScope' => ['storefront']])]`.
 * Depending services have to be injected over the class constructor.
 * Depending services have to be defined in the DI-Container service definition.
 * Depending services have to be assigned to a private class property.
@@ -29,7 +28,7 @@ nav:
 
 * A Storefront controller should never use a repository directly. The data should be fetched over a route or page loader.
 * Routes that load a full Storefront page should use a page loader class to load all corresponding data.
-* Pages that contain data that are the same for all customers should have the `@HttpCache` annotation.
+* Pages that contain data that are the same for all customers should have the `_httpCache` annotation.
 
 ## Write operations inside Storefront controllers
 

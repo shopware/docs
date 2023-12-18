@@ -120,9 +120,7 @@ namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
 use Shopware\Core\Framework\RateLimiter\RateLimiter;
 ...
 
-/**
- * @Route(defaults={"_routeScope"={"store-api"}})
- */
+#[Route(defaults: ['_routeScope' => ['store-api']])]
 class ExampleRoute extends AbstractExampleRoute
 {
     private RateLimiter $rateLimiter;
