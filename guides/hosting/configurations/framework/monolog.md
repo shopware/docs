@@ -9,18 +9,18 @@ nav:
 
 ## Overview
 
-MonoLog is a logging library for PHP. It is used by Shopware to log errors and debug information. The log files are located in the `var/log` directory of your Shopware installation.
+Monolog is a logging library for PHP. It is used by Shopware to log errors and debug information. The log files are located in the `var/log` directory of your Shopware installation.
 
 ## Configuration
 
-Configuration of MonoLog is done in the `config/packages/prod/monolog.yaml` file. The following example shows the default configuration:
+Configuration of Monolog is done in the `config/packages/prod/monolog.yaml` file. The following example shows the default configuration:
 
 <<< @/docs/snippets/config/monolog.yaml
 
 
 ## Log levels
 
-MonoLog supports the following log levels:
+Monolog supports the following log levels:
 
 - `DEBUG`: Detailed debug information.
 - `INFO`: Interesting events. Examples: User logs in, SQL logs.

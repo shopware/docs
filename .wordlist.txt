@@ -1291,6 +1291,7 @@ slowlog
 sm
 smartbar
 SMTP
+SMS
 snakeCase
 SnippetFileInterface
 SomeCoreClassTest
