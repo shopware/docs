@@ -11,7 +11,14 @@ nav:
 
 The Currency component provides the means for currency calculation in the B2B Suite. The following graph shows components depending on this component:
 
-![image](../../../../../assets/currency-usage.svg)
+```mermaid
+flowchart-elk TD
+    A[Currency] -->B[LineItemListEntity]--> C[LineItemList]
+    A-->D[BudgetEntity]-->E[BudgetTransactionEntity] --> F[Budget]
+    A-->G[ProductPriceType]-->H[TimeRestrictionType]-->I[ContingentType]
+    A-->J[ShopOrder]-->K[Cart]
+    A-->L[OfferEntity]-->l[AuditLogDiscountEntity]-->M[AuditLogValueItemPriceEntity]-->N[ContigentRule]
+```
 
 ## Context
 

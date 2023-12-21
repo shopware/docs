@@ -18,9 +18,32 @@ The LineItemList component is the central representation of product lists in the
 
 The component is used across multiple different child components throughout the B2B Suite.
 
-![image](../../../../assets/line-item-list-outer-dependencies.svg)
+```mermaid
+flowchart TD
+flowchart TD
+   style A fill:#0000
+    A[LineItemList]
+    A-->B[FastOrderItem Struct]
+    A-->C[OrderListEntity]
+    A-->D[OrderContext]
+    A-->E[OrderContext]
+    A-->F[OrderContext]
+    A-->G[OrderContext]
+    style H fill:#ffd702
+    B-->H[FastOrder]
+    style I fill:#ffd702
+    C-->I[OrderList]
+    style J fill:#ffd702
+    D-->J[OrderClearance]
+    style K fill:#ffd702
+    E--ShopOrder-->K[Order]
+    style L fill:#ffd702
+    F--BudgetTransaction-->L[Budget]
+    style M fill:#ffd702
+    G--OfferEntity-->M[Offer]
+```
 
-The yellow colored blocks represent components, while the smaller green ones are context objects that contain the component specific information.
+The yellow colored blocks represent components, while the smaller purple ones are context objects that contain the component specific information.
 
 ## Internal data structure
 
@@ -30,18 +53,50 @@ In most cases, these line items will be products but may include other types (e.
 To make this work with the Shopware cart, order, and product listing, the `LineItemReferences` themselves can be set up by different entities.
 Schematically a list that is not yet ordered looks like this:
 
-![image](../../../../assets/line-item-list-with-listing.svg)
+```mermaid
+flowchart RL
+    A[LineItemList]
+    B[LineItemReference: SW101010]-->A
+    C[LineItemReference: SW202020]-->A
+    D[LineItemReference: SW303030]-->A
+    E[ListProductStruct: SW101010]-->B
+    F[ListProductStruct: SW202020]-->C
+    G[ListProductStruct: SW303030]-->D
+```
 
 Whereas an ordered list looks like this:
 
-![image](../../../../assets/line-item-list-with-order.svg)
+```mermaid
+flowchart RL
+    A[LineItemList]
+    B[LineItemReference: SW101010]-->A
+    C[LineItemReference: SW202020]-->A
+    D[LineItemReference: SW303030]-->A
+    E[OrderDetail: SW101010]-->B
+    F[OrderDetail: SW202020]-->C
+    G[OrderDetail: SW303030]-->D
+```
 
 As you can see, each `LineItemReference` borrows data from Shopware data structures, but a user of these objects can solely
 depend on the `LineItemReference` and `LineItemList` objects for unified access.
 
 This basic pattern revolves against other data structures in the component as well.
 
-![image](../../../../assets/line-item-list-with-order-context.svg)
+```mermaid
+flowchart-elk RL
+    A[LineItemList]
+    B[LineItemReference: SW303030]-->A
+    C[LineItemReference: SW202020]-->A
+    D[LineItemReference: SW101010]-->A
+    A-->E[OrderContext]
+    F[Shopware Order]-->E
+    Z[...]-->E
+    H[ShippingMean]-->E
+    G[PaymentInstance]-->E
+    G-->F
+    H-->F
+    Z-->F
+```
 
 As you can see, the specific data is abstracted away through the order context object.
 An object that can either be generated during the Shopware checkout process or be created dynamically through the API.

@@ -14,7 +14,14 @@ The B2B Suite ships with many new entities and therefore provides the means to c
 
 The diagram below shows the usually implemented objects with their outside dependencies.
 
-![image](../../../../../assets/assignment-service.svg)
+```mermaid
+flowchart-elk TD
+subgraph .
+    A[Repository]
+    A-->E[AssignmentService]    
+end
+    C[Doctrine\DBAL\Connection]-->A 
+```
 
 ## Repository
 
