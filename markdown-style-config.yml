@@ -1,6 +1,5 @@
 default: false # includes/excludes all rules by default
 
-
 # Heading levels should only increment by one level at a time <https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md001>
 MD001: true
 
