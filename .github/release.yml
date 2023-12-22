@@ -1,11 +1,21 @@
 changelog:
+  exclude:
+    labels:
+      - ignore-for-release
+    authors:
+      - octocat
   categories:
-    - title: 🏕 Features
+    - title: Layout and Design 🎨
       labels:
-        - '*'
-      exclude:
-        labels:
-          - dependencies
-    - title: 👒 Dependencies
+        - layout
+    - title: Exciting New Features 🎉
       labels:
-        - dependencies
+        - feature
+        - enhancement
+    - title: Bug fixes 🐛
+      labels:
+        - bugfix
+        - patch
+    - title: Other Changes
+      labels:
+        - "*"
