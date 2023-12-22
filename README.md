@@ -2,7 +2,7 @@
 description: Welcome to the official Shopware 6 Developer Documentation.
 ---
 
-# Home
+# Home 2
 
 We Let us help you guide through the landscape of knowledge for Shopware 6. This documentation is organised in order to facilitate knowledge for different **products**, **topics** and **depths** of interest.
 
