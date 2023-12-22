@@ -1,4 +1,5 @@
-# .github/release.yml
+
+on: pull_request
 
 changelog:
   categories:
