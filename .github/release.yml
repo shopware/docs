@@ -1,6 +1,3 @@
-
-on: pull_request
-
 changelog:
   categories:
     - title: 🏕 Features
