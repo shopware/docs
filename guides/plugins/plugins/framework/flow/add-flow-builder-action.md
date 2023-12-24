@@ -314,7 +314,7 @@ Well done, you are successfully created your custom action in Backend in PHP.
 
 After we are done with the PHP code, `action.create.tag` is received from the response of `/api/_info/flow-actions.json`. However, the custom action displays in the action list without label. These further steps in Administration will help you show the action label and add configuration for it.
 
-To see action list, we select a Trigger, for example [Example\Event] from the Trigger drop-down in the Flow tab. After that, we choose option `ACTION (THEN)`. A action component appears with action list.
+To see the action list, we select a Trigger, for example [example\event], from the Trigger drop-down in the Flow tab. After that, we choose option `ACTION (THEN)`. An action component appears with an action list.
 
 ![Flow Builder trigger](../../../../../assets/flow-builder-trigger-drop.png)
 
@@ -323,53 +323,125 @@ To see action list, we select a Trigger, for example [Example\Event] from the Tr
 ![Flow Builder trigger](../../../../../assets/flow-builder-action-no-label.png)
 
 ### Step 1: Show action label in action list
-
-First, we need to define some information like `icon`, `label`, `actionName` of action in `main.js`. To be consistent with the custom action defined in our PHP code, also create an action name called `CREATE_TAG` to represent `action.create.tag`, which gets from the response of `/api/_info/flow-actions.json`.
+First, we need to define information like `constants`, `snippets` to show on the action list. To be consistent with the custom action defined in our PHP code, create an action name called `CREATE_TAG` to represent `action.create.tag`, which gets from the response of `/api/_info/flow-actions.json`.
 
 ![Flow Builder action services list](../../../../../assets/flow-builder-action-sevices-list.png)
 
-```jsx
-// <plugin root>/src/Resources/app/administration/src/main.js
-Shopware.Service('flowBuilderService').addIcons({
-    addEntityTag: 'regular-tag',
+```JS
+// <plugin root>src/Resources/app/administration/src/constant/create-tag-action.constant.js
+export const ACTION = Object.freeze({
+    CREATE_TAG: 'action.create.tag',
 });
 
-Shopware.Service('flowBuilderService').addLabels({
-    addEntityTag: 'sw-flow.actions.addTag',
-});
+export const GROUP = 'customer'
 
-Shopware.Service('flowBuilderService').addActionNames({
-    ADD_TAG: 'action.create.tag',
-});
+export default {
+    ACTION, GROUP
+};
 ```
 
 And then add snippets for labels:
 
-```jsx
-// /src/Resources/app/administration/src/snippet/en-GB.json
+```JS
+// src/Resources/app/administration/src/snippet/en-GB.json
 {
-    "sw-flow": {
-        "actions": {
-            "addTag": 'Create tag'
-        }
+    "create-tag-action": {
+        "titleCreateTag": "Create tag",
+        "labelTags": "Tags",
+        "placeholderTags": "Enter tags",
+        "buttonSaveAction": "Save action",
+        "buttonAddAction": "Add action",
+        "descriptionTags": "Tags: {tags}"
     }
 }
 ```
 
 Do it as the same with `de-DE.json` file for translation of DE language.
 
-**Grouping Actions**
+After that, we also need to override the `sw-flow-sequence-action` component in the core:
 
-If you want your action on the Tag group, add this line to the `main.js` file above.
+```JS
+// <plugin root>/src/Resources/app/administration/src/extension/sw-flow-sequence-action/index.js
+import { ACTION, GROUP } from '../../constant/create-tag-action.constant';
 
-```jsx
+const { Component } = Shopware;
 
-Shopware.Service('flowBuilderService').addActionGroupMapping({
-    'action.create.tag': 'tag',
+Component.override('sw-flow-sequence-action', {
+    computed: {
+        // Not necessary if you use an existing group
+        // Push the `groups` method in computed if you are defining a new group
+        groups() {
+            this.actionGroups.unshift(GROUP);
+
+            return this.$super('groups');
+        },
+
+        modalName() {
+            if (this.selectedAction === ACTION.CREATE_TAG) {
+                return 'sw-flow-create-tag-modal';
+            }
+
+            return this.$super('modalName');
+        },
+
+        actionDescription() {
+            const actionDescriptionList = this.$super('actionDescription');
+
+            return {
+                ...actionDescriptionList,
+                [ACTION.CREATE_TAG] : (config) => this.getCreateTagDescription(config),
+            };
+        },
+    },
+
+    methods: {
+        getCreateTagDescription(config) {
+            const tags = config.tags.join(', ');
+
+            return this.$tc('create-tag-action.descriptionTags', 0, {
+                tags
+            });
+        },
+
+        getActionTitle(actionName) {
+            if (actionName === ACTION.CREATE_TAG) {
+                return {
+                    value: actionName,
+                    icon: 'regular-tag',
+                    label: this.$tc('create-tag-action.titleCreateTag'),
+                    group: GROUP,
+                }
+            }
+
+            return this.$super('getActionTitle', actionName);
+        },
+    },
 });
+
 ```
 
-Otherwise, by default, it will be on the General group.
+Do not forget to import the file to the entry file `main.js`:
+
+```JS
+// <plugin root>/src/Resources/app/administration/src/main.js
+import './extension/sw-flow-sequence-action';
+```
+
+**Grouping Actions**
+
+As you can see, we already defined the constant for the group in `create-tag-action.constant.js`
+
+```JS
+export const GROUP = 'customer'
+```
+
+The new action `action.create.tag` will be shown on the Customer group.
+
+![Choose a Flow Builder Action](../../../../../assets/flow-builder-action-customer-group.png)
+
+It will default on the General group if it is not defined.
+
+Here is a list of group names you should take a look at:
 
 | Group Name | Group Headline |
 | :--- | :--- |
@@ -378,58 +450,42 @@ Otherwise, by default, it will be on the General group.
 | customer | Customer |
 | order | Order |
 
-Here is the result for the after the **Step 1**.
-
-![Choose a Flow Builder Action](../../../../../assets/flow-builder-trigger-action.png)
 
 ### Step 2: Add configuration for action
 
-First, we need to customize `modalName` computed for the configuration modal to ensure your selected action matches your new action. After that, the description should be generated from your custom description. In the core, we had `getActionDescriptions` method, which handles description generation, so you have to override that method to show the action in the configuration description.
+If you click the Create tag action, the below error will be shown on the console. That means we're going the right way.
 
-```jsx
-// <plugin root>/src/Resources/app/administration/src/extension/sw-flow-sequence-action/index.js
-const { Component } = Shopware;
+![Choose a Flow Builder Action](../../../../../assets/flow-builder-action-error.png)
 
-Component.override('sw-flow-sequence-action', {
-    computed: {
-        modalName() {
-            if (this.selectedAction === this.flowBuilderService.getActionName('ADD_TAG')) {
-                return 'swag-example-plugin-modal';
-            }
+Because in `sw-flow-sequence-action`, we expect that the new modal has the name `sw-flow-create-tag-modal`.
 
-            return this.$super('modalName');
-        },
-    },
+```JS
+modalName() {
+    if (this.selectedAction === ACTION.CREATE_TAG) {
+        return 'sw-flow-create-tag-modal';
+    }
 
-    methods: {
-        getActionDescriptions(sequence) {
-            if (sequence.actionName === this.flowBuilderService.getActionName('ADD_TAG')) {
-                const tags = config.tags.join(', ');
-
-                // The description of new action will be show here.
-                return this.$tc('swag-example-plugin.descriptionTags', 0, {
-                    tags
-                });
-            }
-
-            return this.$super('getActionDescriptions', sequence);
-            
-        },
-    },
-});
+    return this.$super('modalName');
+},
 ```
 
-Then, we need a modal to save your action config. For example, we create a component `swag-example-plugin-modal`.
+To define the modal, just create a new folder `sw-flow-create-tag-modal` in `src/Resources/app/administration/src/component` and create some files following:
 
 #### JavaScript file
 
-```jsx
-// <plugin root>/src/Resources/app/administration/src/component/swag-example-plugin-modal/index.js
-import template from './swag-example-plugin-modal.html.twig';
-const { Component } = Shopware;
+```JS
+// <plugin root>/src/Resources/app/administration/src/component/sw-flow-create-tag-modal/index.js
+import template from './sw-flow-create-tag-modal.html.twig';
 
-Component.register('swag-example-plugin-modal', {
+const { Data: { Criteria, EntityCollection } } = Shopware;
+const { Component, Context } = Shopware;
+
+Component.register('sw-flow-create-tag-modal', {
     template,
+
+    inject: [
+        'repositoryFactory',
+    ],
 
     props: {
         sequence: {
@@ -440,8 +496,25 @@ Component.register('swag-example-plugin-modal', {
 
     data() {
         return {
-            tags: [],
+            tagCollection: [],
         };
+    },
+
+    computed: {
+        tagRepository() {
+            return this.repositoryFactory.create('tag');
+        },
+
+        tagCriteria() {
+            const criteria = new Criteria(1, 25);
+            const { config } = this.sequence;
+            const tagIds = Object.keys(config.tagIds);
+            if (tagIds.length) {
+                criteria.addFilter(Criteria.equalsAny('id', tagIds));
+            }
+
+            return criteria;
+        },
     },
 
     created() {
@@ -450,23 +523,65 @@ Component.register('swag-example-plugin-modal', {
 
     methods: {
         createdComponent() {
-            this.tags = this.sequence?.config?.tags || [];
+            this.tagCollection = this.createTagCollection();
+
+            const { config } = this.sequence;
+            if (this.sequence.id && config?.tagIds) {
+                this.getTagCollection();
+            }
+        },
+
+        getTagCollection() {
+            return this.tagRepository.search(this.tagCriteria)
+                .then(tags => {
+                    this.tagCollection = tags;
+                })
+                .catch(() => {
+                    this.tagCollection = [];
+                });
+        },
+
+        createTagCollection() {
+            return new EntityCollection(
+                this.tagRepository.route,
+                this.tagRepository.entityName,
+                Context.api,
+            );
         },
 
         onClose() {
             this.$emit('modal-close');
         },
 
+        onAddTag(data) {
+            this.tagCollection.add(data);
+        },
+
+        onRemoveTag(data) {
+            this.tagCollection.remove(data);
+        },
+
+        getConfig() {
+            const tagIds = {};
+            this.tagCollection.forEach(tag => {
+                Object.assign(tagIds, {
+                    [tag.id]: tag.name,
+                });
+            });
+
+            return {
+                tagIds,
+            };
+        },
+
         onAddAction() {
-            const sequence = {
+            const config = this.getConfig();
+            const data = {
                 ...this.sequence,
-                config: {
-                    ...this.config,
-                    tags: this.tags
-                },
+                config,
             };
 
-            this.$emit('process-finish', sequence);
+            this.$emit('process-finish', data);
         },
     },
 });
@@ -475,48 +590,59 @@ Component.register('swag-example-plugin-modal', {
 #### Twig template file
 
 ```twig
-// <plugin root>/src/Resources/app/administration/src/component/swag-example-plugin-modal/swag-example-plugin-modal.html.twig
-{% block swag_example_plugin_modal %}
-    <sw-modal
-        class="swag-example-plugin-modal"
-        :title="$tc('swag-example-plugin.titleCreateTag')"
-        @modal-close="onClose"
-    >
-        {% block swag_example_plugin_modal_content %}
-            <sw-multi-tag-select
-                v-model="tags"
-                :label="$tc('swag-example-plugin.labelTags')"
-            />
-        {% endblock %}
+// <plugin root>/src/Resources/app/administration/src/component/sw-flow-create-tag-modal/sw-flow-create-tag-modal.html.twig
+{% block create_tag_action_modal %}
+<sw-modal
+    class="create-tag-action-modal"
+    :title="$tc('create-tag-action.titleCreateTag')"
+    @modal-close="onClose"
+>
+    {% block create_tag_action_modal_content %}
+        <sw-entity-tag-select
+            v-model="tagCollection"
+            class="sw-flow-create-tag-modal__tags-field"
+            required
+            :label="$tc('create-tag-action.labelTags')"
+            :placeholder="$tc('create-tag-action.placeholderTags')"
+            @item-add="onAddTag"
+            @item-remove="onRemoveTag"
+        />
+    {% endblock %}
 
-        {% block swag_example_plugin_modal_footer %}
-            <template #modal-footer>
-                {% block swag_example_plugin_modal_footer_cancel_button %}
-                    <sw-button
-                        class="swag-example-plugin-modal__cancel-button"
-                        size="small"
-                        @click="onClose"
-                    >
-                        {{ $tc('global.default.cancel') }}
-                    </sw-button>
-                {% endblock %}
+    {% block create_tag_action_modall_footer %}
+        <template #modal-footer>
+            {% block create_tag_action_modal_footer_cancel_button %}
+                <sw-button
+                    class="create-tag-action-modal__cancel-button"
+                    size="small"
+                    @click="onClose"
+                >
+                    {{ $tc('global.default.cancel') }}
+                </sw-button>
+            {% endblock %}
 
-                {% block swag_example_plugin_modal_footer_save_button %}
-                    <sw-button
-                        class="swag-example-plugin-modal__save-button"
-                        variant="primary"
-                        size="small"
-                        @click="onAddAction"
-                    >
-                        {{ sequence.id
-                        ? $tc('swag-example-plugin.buttonSaveAction')
-                        : $tc('swag-example-plugin.buttonAddAction') }}
-                    </sw-button>
-                {% endblock %}
-            </template>
-        {% endblock %}
-    </sw-modal>
+            {% block create_tag_action_modal_footer_save_button %}
+                <sw-button
+                    class="create-tag-action-modal__save-button"
+                    variant="primary"
+                    size="small"
+                    @click="onAddAction"
+                >
+                    {{ $tc('create-tag-action.buttonSaveAction') }}
+                </sw-button>
+            {% endblock %}
+        </template>
+    {% endblock %}
+</sw-modal>
 {% endblock %}
+```
+
+Please update the file `main.js` like this:
+
+```JS
+// <plugin root>/src/Resources/app/administration/src/main.js
+import './extension/sw-flow-sequence-action';
+import './component/sw-flow-create-tag-modal';
 ```
 
 Here is the final result
@@ -539,7 +665,7 @@ First, override the `openDynamicModal` method in the plugin to check if the valu
 
 #### JavaScript
 
-```jsx
+```JS
 // <plugin root>/src/Resources/app/administration/src/extension/sw-flow-sequence-action/index.js
 import template from './sw-flow-sequence-action.html.twig';
 const { Component } = Shopware;
@@ -551,16 +677,18 @@ Component.register('sw-flow-sequence-action', {
                 return;
             }
 
-            const actionName = this.flowBuilderService.getActionName('ADD_TAG')
+            const actionName = this.flowBuilderService.getActionName('CREATE_TAG');
 
             if (value === actionName) {
                 this.selectedAction = actionName;
                 const config = {
-                    tags: 'VIP, New customer'
+                    tagIds: {
+                        'tag_id_1': 'Vip',
+                        'tag_id_2': 'New Customer',
+                    },
                 };
 
                 // Config can be a result from an API.
-
                 this.onSaveActionSuccess({ config });
                 return;
             }
