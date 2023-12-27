@@ -77,7 +77,7 @@ The command `es:index` re-indexes all configured entities to Elasticsearch.
 
 ### es:reset
 
-The command `es:reset` resets all active indices and clears the queue. This command should be used only if an index is corrupted or needs to be set up completely from scratch.
+The `es:reset` command resets all active indices with their respective prefix (`SHOPWARE_ES_INDEX_PREFIX`) in the .env file and clears the queue. This command should only be used if an index is corrupted or needs to be set up from scratch. If multiple Shopware instances are accessing the same Elasticsearch Host, you should consider changing the prefix.
 
 ### es:status
 
