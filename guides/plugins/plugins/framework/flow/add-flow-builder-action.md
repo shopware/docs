@@ -7,10 +7,6 @@ nav:
 
 # Add custom flow Action
 
-::: info
-  This functionality is available starting with Shopware 6.4.6.0
-:::
-
 ## Overview
 
 In this guide, you'll learn how to create custom flow action in Shopware. The flow builder uses actions to perform business tasks. This example will introduce a new custom action called `create tags`.
@@ -29,7 +25,7 @@ You can refer to the [Flow reference](../../../../../resources/references/core-r
 
 ## Create custom flow action
 
-To create a custom flow action, firstly you have to make a plugin and install it, you can refer to the [Plugin Base Guide](../../plugin-base-guide) to do it. I will create a plugin named `ExamplePlugin`. We have to implement both backend (PHP) code and a user interface in the Administration to manage it. Let's start with the PHP part first, which handles the main logic of our action. After that, there will be an example to show your new actions in the Administration.
+To create a custom flow action, firstly you have to make a plugin and install it, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md) to do it. I will create a plugin named `CreateTagAction`. We have to implement both backend (PHP) code and a user interface in the Administration to manage it. Let's start with the PHP part first, which handles the main logic of our action. After that, there will be an example to show your new actions in the Administration.
 
 ## Creating flow action in PHP
 
@@ -59,113 +55,19 @@ interface TagAware extends FlowEventAware
 
 ### Create new action
 
-::: warning
-Starting with the next major version (6.5.0.0), we are introducing changes in how to create new flow actions, please follow the instructions corresponding to your current version.
-:::
-
 In this example, we will name it `CreateTagAction`. It will be placed in the directory `<plugin root>/src/Core/Content/Flow/Dispatching/Action`. Below you can find an example implementation:
 
-::: info
-  Available starting with Shopware 6.4.6.0
-:::
-
-Our new class has to extend from the abstract class `Shopware\Core\Framework\Event\FLowEvent`.
-
 ```php
 // <plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
 <?php declare(strict_types=1);
 
-namespace Swag\ExamplePlugin\Core\Content\Flow\Dispatching\Action;
+namespace Swag\CreateTagAction\Core\Content\Flow\Dispatching\Action;
 
 use Shopware\Core\Content\Flow\Dispatching\Action\FlowAction;
-use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
-use Shopware\Core\Framework\Uuid\Uuid;
-use Swag\ExamplePlugin\Core\Framework\Event\TagAware;
-use Shopware\Core\Framework\Event\FlowEvent;
-
-class CreateTagAction extends FlowAction
-{
-    private EntityRepository $tagRepository;
-
-    public function __construct(EntityRepository $tagRepository)
-    {
-        // you would need this repository to create a tag
-        $this->tagRepository = $tagRepository;
-    }
-
-    public static function getName(): string
-    {
-        // your own action name
-        return 'action.create.tag';
-    }
-
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            self::getName() => 'handle',
-        ];
-    }
-
-    public function requirements(): array
-    {
-        return [TagAware::class];
-    }
-
-    public function handle(FlowEvent $event): void
-    {
-        // config is the "Configuration data" you get after you create a flow sequence
-        $config = $event->getConfig();
-
-        // make sure your "tags" data exists
-        if (!\array_key_exists('tags', $config)) {
-            return;
-        }
-
-        $baseEvent = $event->getEvent();
-
-        $tags = $config['tags'];
-
-        // just a step to make sure you are dispatching the correct action
-        if (!$baseEvent instanceof TagAware || empty($tags)) {
-            return;
-        }
-
-        $tagData = [];
-        foreach ($tags as $tag) {
-            $tagData[] = [
-                'id' => Uuid::randomHex(),
-                'name' => $tag,
-            ];
-        }
-
-        // simply create tags
-        $this->tagRepository->create($tagData, $baseEvent->getContext());
-    }
-}
-```
-
-As you can see, several methods are already implemented:
-
-- `__constructor`: This only defines the default expected value. This is overwritten at runtime with the actual value, that the shop owner set in the Administration.
-- `getName`: Returns a unique technical name for your action.
-- `requirements`: This defines which interfaces that the action belongs to.
-- `handle`: Use this method to handle your action stuff.
-
-::: info
-  Available starting with Shopware 6.5.0.0
-:::
-
-```php
-// <plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
-<?php declare(strict_types=1);
-
-namespace Swag\ExamplePlugin\Core\Content\Flow\Dispatching\Action;
-
-use Shopware\Core\Content\Flow\Dispatching\Action\FlowAction;
-use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
-use Shopware\Core\Framework\Uuid\Uuid;
-use Swag\ExamplePlugin\Core\Framework\Event\TagAware;
 use Shopware\Core\Content\Flow\Dispatching\StorableFlow;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
+use Shopware\Core\Framework\Uuid\Uuid;
+use Swag\CreateTagAction\Core\Framework\Event\TagAware;
 
 class CreateTagAction extends FlowAction
 {
@@ -193,7 +95,7 @@ class CreateTagAction extends FlowAction
         // config is the config data when created a flow sequence
         $config = $flow->getConfig();
 
-        // make sure your tags data is exist
+        // make sure your tags data exists
         if (!\array_key_exists('tags', $config)) {
             return;
         }
@@ -220,7 +122,7 @@ class CreateTagAction extends FlowAction
         }
 
         // simply create tags
-        $this->tagRepository->create($tagData, $baseEvent->getContext());
+        $this->tagRepository->create($tagData, $flow->getContext());
     }
 }
 ```
@@ -234,27 +136,12 @@ As you can see, several methods are already implemented:
     - Use `$flow->getStore($key)` if you want to get the data from aware interfaces. E.g: `tag_id` in `TagAware`, `customer_id` from `CustomerAware` and so on.
     - Use `$flow->getData($key)` if you want to get the data from original events or additional data. E.g: `tag`, `customer`, `contactFormData` and so on.
 
-And we also need to register this action in the container as a service, make sure you have defined a tag `<tag name="flow.action" priority="600">` at `<plugin root>/src/Resources/config/services.xml`, that your action would be added to response of *`/api/_info/flow-actions.json`* API and `priority` will decide the order of action of API response:
+You also need to register this action in the container as a service. Make sure to define a tag `<tag name="flow.action" priority="600">` at `<plugin root>/src/Resources/config/services.xml`, that your action would be added to response of *`/api/_info/flow-actions.json`* API and `priority` will decide the order of action of API response:
 
-::: info
-  Available starting with Shopware 6.4.6.0
-:::
 
-```xml
+```XML
 // <plugin root>/src/Resources/config/services.xml
-<service id="Swag\ExamplePlugin\Core\Content\Flow\Dispatching\Action\CreateTagAction">
-    <argument type="service" id="tag.repository" />
-    <tag name="flow.action" priority="600"/>
-</service>
-```
-
-::: info
-  Available starting with Shopware 6.5.0.0
-:::
-
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<service id="Swag\ExamplePlugin\Core\Content\Flow\Dispatching\Action\CreateTagAction">
+<service id="Swag\CreateTagAction\Core\Content\Flow\Dispatching\Action\CreateTagAction">
     <argument type="service" id="tag.repository" />
     <tag name="flow.action" priority="600" key="action.create.tag"/>
 </service>
@@ -264,33 +151,161 @@ Great, your own action is created completely. Let's go to the next step.
 
 ### Define action scope
 
- At this step, you will know how to define your action scope, for `CreateTagAction`, I intended it would be available for all events. Let's see the code below:
+In this step, you will know how to define your action scope for `CreateTagAction`.
+There are three scopes for the `CreateTagAction`:
 
-```php
+- Available for all already Events.
+- Available for only one or multiple already Events.
+- Available for new event (new event from this plugin).
+
+#### The `CreateTagAction` available for all already Events
+
+- Just define the empty array in `CreateTagAction::requirements`
+
+
+```PHP
+    // plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
+    ...
+
+    public function requirements(): array
+    {
+        return [];
+    }
+
+    ...
+```
+
+That means when you define the requirements like the code above, all triggers in the flow builder can define the action `CreateTagAction` for the next progress.
+
+![Flow Builder trigger](../../../../../.gitbook/assets/flow-builder-action-available-all-events.png)
+- The action name is empty as the action name snippet is not yet defined.
+
+#### The `CreateTagAction` available for only one or multiple already Events
+
+- Make the `CreateTagAction` available for all events relate to Order, Customer
+
+```PHP
+    // <plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
+    ...
+
+    public function requirements(): array
+    {
+        return [OrderAware::class, CustomerAware::class];
+    }
+
+    ...
+```
+
+#### The `CreateTagAction` available for new event
+
+- For this case, you can define a new event and make the `CreateTagAction` available for this event.
+
+- Event must implement the `TagAware`
+
+```PHP
 // <plugin root>/src/Core/Content/Flow/Subscriber/BusinessEventCollectorSubscriber.php
 <?php declare(strict_types=1);
 
-namespace Swag\ExamplePlugin\Core\Content\Flow\Subscriber;
+namespace Swag\CreateTagAction\Core\Content\Event;
 
+use Shopware\Core\Framework\Context;
+use Shopware\Core\Framework\Event\EventData\EntityType;
+use Shopware\Core\Framework\Event\EventData\EventDataCollection;
+use Shopware\Core\System\Tag\TagDefinition;
+use Shopware\Core\System\Tag\TagEntity;
+use Swag\CreateTagAction\Core\Framework\Event\TagAware;
+use Symfony\Contracts\EventDispatcher\Event;
+
+class BasicExampleEvent extends Event implements TagAware
+{
+    public const EVENT_NAME = 'example.event';
+
+    private TagEntity $tag;
+
+    private Context $context;
+
+    public function __construct(Context $context, TagEntity $tag)
+    {
+        $this->tag = $tag;
+        $this->context = $context;
+    }
+
+    public function getName(): string
+    {
+        return self::EVENT_NAME;
+    }
+
+    public static function getAvailableData(): EventDataCollection
+    {
+        return (new EventDataCollection())
+            ->add('tag', new EntityType(TagDefinition::class));
+    }
+
+    public function getContext(): Context
+    {
+        return $this->context;
+    }
+
+    public function getTag(): TagEntity
+    {
+        return $this->tag;
+    }
+}
+```
+
+- Define the `TagAware` in `CreateTagAction::requirements`
+
+```PHP
+    // <plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
+    ...
+
+    public function requirements(): array
+    {
+        return [TagAware::class];
+    }
+
+    ...
+```
+
+- To show the new event in Flow Builder Triggers list
+
+```php
+// <plugin root>/src/Core/Content/Subscriber/BusinessEventCollectorSubscriber.php
+<?php declare(strict_types=1);
+namespace Swag\CreateTagAction\Core\Content\Subscriber;
+
+use Shopware\Core\Framework\Event\BusinessEventCollector;
 use Shopware\Core\Framework\Event\BusinessEventCollectorEvent;
-use Swag\ExamplePlugin\Core\Framework\Event\TagAware;
+use Swag\CreateTagAction\Core\Content\Event\BasicExampleEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class BusinessEventCollectorSubscriber implements EventSubscriberInterface
 {
+    private BusinessEventCollector $businessEventCollector;
+
+    public function __construct(BusinessEventCollector $businessEventCollector)
+    {
+        $this->businessEventCollector = $businessEventCollector;
+    }
+
     public static function getSubscribedEvents()
     {
         return [
-            BusinessEventCollectorEvent::NAME => 'addTagAware',
+            BusinessEventCollectorEvent::NAME => 'onAddExampleEvent',
         ];
     }
 
-    public function addTagAware(BusinessEventCollectorEvent $event): void
+    public function onAddExampleEvent(BusinessEventCollectorEvent $event): void
     {
-        foreach ($event->getCollection()->getElements() as $definition) {
-            $className = \explode('\\', TagAware::class);
-            $definition->addAware(\lcfirst(\end($className)));
+        $collection = $event->getCollection();
+
+        $definition = $this->businessEventCollector->define(BasicExampleEvent::class);
+
+        if (!$definition) {
+            return;
         }
+
+        $collection->set($definition->getName(), $definition);
     }
 }
 ```
@@ -298,17 +313,29 @@ class BusinessEventCollectorSubscriber implements EventSubscriberInterface
 And don't forget to register your subscriber to the container at `<plugin root>/src/Resources/config/services.xml`.
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<service id="Swag\ExamplePlugin\Core\Content\Flow\Subscriber\BusinessEventCollectorSubscriber">
+<service id="Swag\CreateTagAction\Core\Content\Subscriber\BusinessEventCollectorSubscriber">
+    <argument type="service" id="Shopware\Core\Framework\Event\BusinessEventCollector"/>
     <tag name="kernel.event_subscriber"/>
 </service>
 ```
 
-Well done, you are successfully created your custom action in Backend in PHP.
+- Define the Event snippet
 
-::: info
-  This functionality is available starting with Shopware 6.4.6.0
-:::
+```json
+// <plugin root>/src/Resources/app/administration/src/module/sw-flow/snippet/en-GB.json
+{
+  "sw-flow": {
+    "triggers": {
+      "example": "Example",
+      "event": "Event"
+    }
+  }
+}
+```
+
+![Flow Builder trigger](../../../../../.gitbook/assets/flow-builder-triggers-list.png)
+
+Well done, you are successfully created your custom action in Backend in PHP.
 
 ## Add custom action in Administration
 
@@ -589,7 +616,7 @@ Component.register('sw-flow-create-tag-modal', {
 
 #### Twig template file
 
-```twig
+```
 // <plugin root>/src/Resources/app/administration/src/component/sw-flow-create-tag-modal/sw-flow-create-tag-modal.html.twig
 {% block create_tag_action_modal %}
 <sw-modal
