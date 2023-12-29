@@ -53,7 +53,7 @@ classDiagram
         class LineItem3
         class Promotion
         class Cart {
-        Central_in_memory_representation_of_a_single_cart_state
+        Central_in_memory_representation_of_a_single_cart's_state
     }
 }
     namespace CONTENT {
@@ -106,7 +106,7 @@ stateDiagram-v2
     note left of Empty
             An empty cart
             > default shipping
-            > defauly payment
+            > default payment
         end note
     Empty --> Dirty : add line item
     note left of Dirty
@@ -119,10 +119,10 @@ stateDiagram-v2
     end note
     Dirty --> Calculated : calculate
     note left of Calculated
-    This cart can either br ordered or has errors that must be resolved
+    This cart can either be ordered or has errors that must be resolved
 
     end note
-    Calculated --> Dirty : Modify line item/shipping/payment
+    Calculated --> Dirty : modify line item/shipping/payment
     Calculated --> Calculated : order invalid
     Calculated --> [*] : order
 ```
@@ -149,10 +149,13 @@ stateDiagram-v2
     Process --> Validate : calculate
     note left of Validate
     Validate through the rule system and 
-    check plausibility change cart accordingly
+    check plausibility change in cart accordingly
     end note
-    Validate --> Validate : Repeat until no changes occur
+    Validate --> Validate : repeat until no changes occur
     Validate --> Persist
+    note left of Persist
+    Update storage
+    end note
     Persist --> [*]
 ```
 

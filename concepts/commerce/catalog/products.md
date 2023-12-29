@@ -33,7 +33,7 @@ erDiagram
     Product-Group-Option{
         Example Leather
     }
-    Product-Group ||--|{ Product-Group-Option : belongs
+    Product-Group-Option ||--|| Product-Group : belongs
     Product-Group{
         Example Material
     }
@@ -61,7 +61,7 @@ erDiagram
     Product-Group-Option{
         Example Leather
     }
-    Product-Group ||--|{ Product-Group-Option : belongs
+    Product-Group-Option ||--|| Product-Group : belongs
     Product-Group{
         Example Material
     }

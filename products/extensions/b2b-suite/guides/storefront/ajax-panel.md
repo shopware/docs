@@ -11,46 +11,7 @@ nav:
 
 The diagram below shows how this schematically behaves:
 
-```mermaid
-classDiagram
-    AjaxPanel .. AjaxPanelPluginLoader
-    AjaxPanel ..> Model
-    AjaxPanel ..> TriggerReload
-    AjaxPanelPluginLoader ..> ACLForm
-    AjaxPanelPluginLoader ..> ACLGrid
-    AjaxPanelPluginLoader ..> FormDisable
-    AjaxPanelPluginLoader ..> Tab
-    AjaxPanelPluginLoader ..> TreeSelect
-    class AjaxPanel{
-      Core Implementation
-      - Defalult CSS-Class binding
-      - Event System
-    }
-    class AjaxPanelPluginLoader{
-        Per panel plugin state handling
-    }
-    class Model{
-        Open content in model dialog box
-    }
-    class TriggerReload{
-        Trigger reload of other panels
-    }
-    class ACLForm{
-        Dsiables form elements and removes submit buttons, if user has only details access
-    }
-    class ACLGrid{
-        Disablesrow clicks, if user has only listing access
-    }
-    class FormDisable{
-        Prevent form editing on penidng load
-    }
-    class Tab{
-        Handle active statte in tab navigation
-    }
-    class TreeSelect{
-        Tree view with enabled drag and drop to move nodes
-    }
-```
+![image](../../../../../assets/ajax-panel-abstract.svg)
 
 ## Basic usage
 
@@ -104,7 +65,46 @@ One panel can influence another one by defining and linking to an id.
 
 The B2B Suite comes with a library of simple helper plugins to add behavior to the ajax panels.
 
-![image](../../../../../assets/ajax-panel-structure.svg)
+```mermaid
+classDiagram
+    AjaxPanel ..> AjaxPanelPluginLoader
+    AjaxPanel ..> Model
+    AjaxPanel ..> TriggerReload
+    AjaxPanelPluginLoader ..> ACLForm
+    AjaxPanelPluginLoader ..> ACLGrid
+    AjaxPanelPluginLoader ..> FormDisable
+    AjaxPanelPluginLoader ..> Tab
+    AjaxPanelPluginLoader ..> TreeSelect
+    class AjaxPanel{
+      Core Implementation
+      - Defalult CSS-Class binding
+      - Event System
+    }
+    class AjaxPanelPluginLoader{
+        Per panel plugin state handling
+    }
+    class Model{
+        Open content in modal dialog box
+    }
+    class TriggerReload{
+        Trigger reload of other panels
+    }
+    class ACLForm{
+        Disables form elements and removes submit buttons, if user has only details access
+    }
+    class ACLGrid{
+        Disables row clicks, if user has only listing access
+    }
+    class FormDisable{
+        Prevent form editing on pending load
+    }
+    class Tab{
+        Handle active state in tab navigation
+    }
+    class TreeSelect{
+        Tree-view with enabled drag and drop to move nodes
+    }
+```
 
 As you can see, there is the `AjaxPanelPluginLoader` responsible for initializing and reinitializing plugins inside b2b-panels.
 Let's take our last example and extend it with a form plugin:

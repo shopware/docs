@@ -20,7 +20,6 @@ The component is used across multiple different child components throughout the 
 
 ```mermaid
 flowchart TD
-flowchart TD
    style A fill:#0000
     A[LineItemList]
     A-->B[FastOrderItem Struct]

@@ -25,7 +25,7 @@ Starting with Shopware 6.4.0.0, we introduced a new way to extend Shopware using
 ## Plugins
 
 ```mermaid
-flowchart LR
+flowchart-elk LR
 subgraph Shopware PHP Process
     A(Core)--PHP API-->B(Plugins)
 end

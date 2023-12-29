@@ -11,10 +11,10 @@ The company component acts as a container for role related entities by providing
 
 ```mermaid
 flowchart TD
-    A[Company] -->B[ContactEntity]
-    A --> C[AddressEntity]
-    A --> D[BudgetEntity]
-    A --> E[ContingentGroupEntity]
+    A[Company] -->B{{ContactEntity}}
+    A --> C{{AddressEntity}}
+    A --> D{{BudgetEntity}}
+    A --> E{{ContingentGroupEntity}}
     B --> F[Contact]
     C --> G[Address]
     D --> H[Budget]

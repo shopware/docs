@@ -27,10 +27,10 @@ This setup is compatible from Shopware version 6.4.
 ```mermaid
 flowchart LR
     A(Brower) -->B("`TLS Termination
-    _Ngnix_`")
+    _(Ngnix)_`")
     B --> C(Varnish)
     C -->D("`App Server
-    _Shopware_`")
+    _(Shopware)_`")
 ```
 
 ### Configure Shopware

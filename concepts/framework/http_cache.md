@@ -23,7 +23,7 @@ So whenever a user requests a page, Shopware will create a result page individua
 * The web application generates a result
 
 ```mermaid
-flowchart LR
+flowchart-elk LR
     A[User]--GET-->B[Reverse proxy]
     B[Reverse proxy]--Response-->A
     B--GET-->C[Shopware]

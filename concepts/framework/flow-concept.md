@@ -44,28 +44,30 @@ In Shopware, you have multiple interfaces and classes for different types of eve
 Once the action on the Storefront or from the app happens, the FlowDispatcher will dispatch FlowEventAware to the FlowExecutor. From here, the FlowExecutor will check the condition to decide whether to execute the action.
 
 ```mermaid
-flowchart TD
+flowchart-elk TD
     A([Start])-->B[FlowDispatcher]
-    B--dispatches flowEventAware-->C[FlowExecutor]
+    B--dispatches FlowEventAware-->C[FlowExecutor]
     C-->D{Condition}
     C-->E[Execute Action]
     D--Yes-->E    
     E-->F[StopFlow]
     F-->G([End])
-    D--No-->H[Execute Action]
+    D--No -->H[Execute Action]
     H-->F
 ```
 
 Here is an example flow of what happens in the system when an order is placed on the Storefront.
 
 ```mermaid
-flowchart TD
+flowchart-elk TD
+    A([Start])
 subgraph Storefront
-    A([Start])-->B[User]
+    B[User]
 end
+A-->Storefront
+Storefront --Place an order--> Core
 subgraph Core
-    B--Place an order-->C[CartOrderRoute]
-    C--dispatch [checkout.order.place]-->D[FlowDispatcher]
+    C[CartOrderRoute]--dispatch [checkout.order.place]-->D[FlowDispatcher]
     D-->E[FlowExecutor]
     E-->F[Execute Action]
     F-->G[Stop Flow]

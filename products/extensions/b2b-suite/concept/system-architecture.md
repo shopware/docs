@@ -69,11 +69,11 @@ flowchart-elk LR
 `ContingentGroups`s are connected to `Debtor`s and can have `acl` settings based on `Role`s or `Contact`s. `Order`s are personalized through the `StoreFrontAuthentication`.
 
 ```mermaid
-flowchart-elk LR
+flowchart LR
     A[LineItemList]-->B[Order]-->C[OrderClearance]-->D[Cart]
     A-->E[OrderList]
     F[ContigentGroup]-->G[ContigentRule]-->H[ContigentGroupContact]
-    G[ContigentRule]-->H[ContigentGroupRole]
+    G[ContigentRule]-->I[ContigentGroupRole]
     G[ContigentRule]-->C
 ```
 
