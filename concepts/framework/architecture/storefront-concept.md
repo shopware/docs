@@ -100,7 +100,6 @@ Once we have set all the necessary information to our page \(`AccountOrderPage`\
 To summarize the composition of a page, have a look at this diagram:
 
 ```mermaid
-
 flowchart TD
     A["`**Account Order Controlled**
     _Storefront Controller_`"]

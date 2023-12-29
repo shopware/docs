@@ -41,9 +41,9 @@ As well as a Specification class, a Rule class represents a condition to fulfill
 
 ```mermaid
 classDiagram
-    root_OrRule .. lineItemCount - LineItemsInCartCountRule
-    root_OrRule .. cartPrice - GoodsPriceRule
-    class root_OrRule{
+    root-OrRule .. lineItemCount - LineItemsInCartCountRule
+    root-OrRule .. cartPrice - GoodsPriceRule
+    class root-OrRule{
         rules=[lineItemCount, cartPrice]
     }
     class lineItemCount - LineItemsInCartCountRule{
