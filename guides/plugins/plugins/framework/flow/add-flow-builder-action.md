@@ -177,7 +177,8 @@ There are three scopes for the `CreateTagAction`:
 
 That means when you define the requirements like the code above, all triggers in the flow builder can define the action `CreateTagAction` for the next progress.
 
-![Flow Builder trigger](../../../../../.gitbook/assets/flow-builder-action-available-all-events.png)
+![Flow Builder trigger](../../../../../assets/flow-builder-action-available-all-events.png)
+
 Here, the action name is empty as the action name snippet is not yet defined.
 
 #### `CreateTagAction` available for only one or multiple *already Events*
@@ -333,7 +334,7 @@ And don't forget to register your subscriber to the container at `<plugin root>/
 }
 ```
 
-![Flow Builder trigger](../../../../../.gitbook/assets/flow-builder-triggers-list.png)
+![Flow Builder trigger](../../../../../assets/flow-builder-triggers-list.png)
 
 Well, you have successfully created your custom action in Backend in PHP.
 
