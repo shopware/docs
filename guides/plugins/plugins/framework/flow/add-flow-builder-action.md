@@ -25,7 +25,7 @@ You can refer to the [Flow reference](../../../../../resources/references/core-r
 
 ## Create custom flow action
 
-To create a custom flow action, firstly you have to make a plugin and install it, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md) to do it. I will create a plugin named `CreateTagAction`. We have to implement both backend (PHP) code and a user interface in the Administration to manage it. Let's start with the PHP part first, which handles the main logic of our action. After that, there will be an example to show your new actions in the Administration.
+To create a custom flow action, firstly you have to make a plugin and install it. Refer to the [Plugin Base Guide](../../plugin-base-guide.md) to do it. For instance, lets create a plugin named `CreateTagAction`. You must implement both backend (PHP) code and a user interface in the Administration to manage it. Let's start with the PHP part first, which handles the main logic of our action. After that, there will be an example to show your new actions in the Administration.
 
 ## Creating flow action in PHP
 
@@ -136,7 +136,7 @@ As you can see, several methods are already implemented:
     - Use `$flow->getStore($key)` if you want to get the data from aware interfaces. E.g: `tag_id` in `TagAware`, `customer_id` from `CustomerAware` and so on.
     - Use `$flow->getData($key)` if you want to get the data from original events or additional data. E.g: `tag`, `customer`, `contactFormData` and so on.
 
-You also need to register this action in the container as a service. Make sure to define a tag `<tag name="flow.action" priority="600">` at `<plugin root>/src/Resources/config/services.xml`, that your action would be added to response of *`/api/_info/flow-actions.json`* API and `priority` will decide the order of action of API response:
+You also need to register this action in the container as a service. Make sure to define a tag `<tag name="flow.action" priority="600">` at `<plugin root>/src/Resources/config/services.xml`. This tag will ensure that your action is included in the response of the *`/api/_info/flow-actions.json`* API. The priority attribute will determine the order of the action in the API response.
 
 
 ```XML
@@ -154,11 +154,11 @@ Great, your own action is created completely. Let's go to the next step.
 In this step, you will know how to define your action scope for `CreateTagAction`.
 There are three scopes for the `CreateTagAction`:
 
-- Available for all already Events.
-- Available for only one or multiple already Events.
+- Available for all *already Events*.
+- Available for only one or multiple *already Events.*
 - Available for new event (new event from this plugin).
 
-#### The `CreateTagAction` available for all already Events
+#### `CreateTagAction` available for all *already Events*
 
 - Just define the empty array in `CreateTagAction::requirements`
 
@@ -178,11 +178,11 @@ There are three scopes for the `CreateTagAction`:
 That means when you define the requirements like the code above, all triggers in the flow builder can define the action `CreateTagAction` for the next progress.
 
 ![Flow Builder trigger](../../../../../.gitbook/assets/flow-builder-action-available-all-events.png)
-- The action name is empty as the action name snippet is not yet defined.
+Here, the action name is empty as the action name snippet is not yet defined.
 
-#### The `CreateTagAction` available for only one or multiple already Events
+#### `CreateTagAction` available for only one or multiple *already Events*
 
-- Make the `CreateTagAction` available for all events relate to Order, Customer
+Make the `CreateTagAction` available for all events related to Order and Customer.
 
 ```PHP
     // <plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
@@ -196,7 +196,7 @@ That means when you define the requirements like the code above, all triggers in
     ...
 ```
 
-#### The `CreateTagAction` available for new event
+#### `CreateTagAction` available for new event
 
 - For this case, you can define a new event and make the `CreateTagAction` available for this event.
 
@@ -335,7 +335,7 @@ And don't forget to register your subscriber to the container at `<plugin root>/
 
 ![Flow Builder trigger](../../../../../.gitbook/assets/flow-builder-triggers-list.png)
 
-Well done, you are successfully created your custom action in Backend in PHP.
+Well, you have successfully created your custom action in Backend in PHP.
 
 ## Add custom action in Administration
 
@@ -616,7 +616,7 @@ Component.register('sw-flow-create-tag-modal', {
 
 #### Twig template file
 
-```
+```twig
 // <plugin root>/src/Resources/app/administration/src/component/sw-flow-create-tag-modal/sw-flow-create-tag-modal.html.twig
 {% block create_tag_action_modal %}
 <sw-modal
