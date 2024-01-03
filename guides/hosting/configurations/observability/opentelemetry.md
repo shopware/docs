@@ -57,7 +57,7 @@ OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4317
 
 If you use gRPC with OTLP, you will need to install also `open-telemetry/transport-grpc open-telemetry/exporter-otlp` as composer packages.
 
-You can find more about the exporters [here](https://opentelemetry.io/docs/instrumentation/php/exporters/).
+Refer to this docs for more information about the [exporters](https://opentelemetry.io/docs/instrumentation/php/exporters/).
 
 ## Available instrumentation
 
