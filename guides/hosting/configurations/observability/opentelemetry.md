@@ -41,7 +41,7 @@ OTEL_PHP_AUTOLOAD_ENABLED=true
 OTEL_SERVICE_NAME=shopware
 ```
 
-You can find all possible environment variables [here](https://opentelemetry.io/docs/instrumentation/php/sdk/#configuration).
+Refer to all possible [environment variables](https://opentelemetry.io/docs/instrumentation/php/sdk/#configuration) for better understanding.
 
 ### Exporter configuration
 
