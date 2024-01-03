@@ -7,7 +7,7 @@ nav:
 
 # OpenTelemetry
 
-OpenTelemetry is a standard to collect distributed traces, metrics and logs from the application. It's similar to tools like NewRelic, Datadog, Blackfire Monitoring and Tideways, but it's completely open source and vendor neutral. That means you can use OpenTelemetry to collect the data and push it to one of the vendors mentioned above, or you can use it to collect the data and push it to your own infrastructure with tools like Grafana Stack (Tempo, Loki, Prometheus, Grafana) or other tools.
+OpenTelemetry is a standard to collect distributed traces, metrics and logs from the application. It is similar to tools like NewRelic, Datadog, Blackfire Monitoring and Tideways, but it is completely open source and vendor neutral. That means you can use OpenTelemetry to collect the data and push it to one of the vendors mentioned above, or you can use it to collect the data and push it to your own infrastructure with tools like Grafana Stack (Tempo, Loki, Prometheus, Grafana) or other tools.
 
 ## Requirements
 
