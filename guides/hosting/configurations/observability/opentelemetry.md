@@ -71,7 +71,7 @@ The OpenTelemetry instrumentation collects following traces:
 
 ## Example Grafana Stack
 
-You can find an example Stack [here](https://github.com/shopwareLabs/opentelemetry/tree/main/docker) with:
+You can find an example [Stack](https://github.com/shopwareLabs/opentelemetry/tree/main/docker) with:
 
 - Grafana (Dashboard)
 - Loki (Log storage)
