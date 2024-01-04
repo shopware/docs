@@ -26,7 +26,7 @@ composer require shopware/opentelemetry
 
 This will install the OpenTelemetry Shopware bundle and create new configuration file `config/packages/prod/opentelemetry.yaml` with Symfony Flex plugin.
 
-This file configures in production that the Shopware Profiler integration with OpenTelemetry is enabled and also configures that the Monolog output will be sent to OpenTelemetry.
+This configuration file enables the Shopware Profiler integration with OpenTelemetry in a production environment. Additionally, it specifies that the Monolog output will be directed to OpenTelemetry.
 
 ## Configuration
 
