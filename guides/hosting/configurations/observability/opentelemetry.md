@@ -36,10 +36,9 @@ After the installation, you will need to set some environment variables to confi
 
 The following configuration enables the OpenTelemetry auto-instrumentation and sets the service name.
 
-```
+```text
 OTEL_PHP_AUTOLOAD_ENABLED=true
 OTEL_SERVICE_NAME=shopware
-```
 
 Refer to all possible [environment variables](https://opentelemetry.io/docs/instrumentation/php/sdk/#configuration) for better understanding.
 
