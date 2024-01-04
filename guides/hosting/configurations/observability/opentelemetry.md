@@ -46,13 +46,12 @@ Refer to all possible [environment variables](https://opentelemetry.io/docs/inst
 
 The OpenTelemetry extension needs to be configured to export the data to your collector. Here is an example configuration for the OpenTelemetry Collector using gRPC:
 
-```
+```text
 OTEL_TRACES_EXPORTER=otlp
 OTEL_LOGS_EXPORTER=otlp
 OTEL_METRICS_EXPORTER=otlp
 OTEL_EXPORTER_OTLP_PROTOCOL=grpc
 OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4317
-```
 
 If you use gRPC with OTLP, you will need to install also `open-telemetry/transport-grpc open-telemetry/exporter-otlp` as composer packages.
 
