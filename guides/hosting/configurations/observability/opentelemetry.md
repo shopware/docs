@@ -34,7 +34,7 @@ After the installation, you will need to set some environment variables to confi
 
 ### Basic configuration
 
-Enables the OpenTelemetry auto-instrumentation and sets the service name.
+The following configuration enables the OpenTelemetry auto-instrumentation and sets the service name.
 
 ```
 OTEL_PHP_AUTOLOAD_ENABLED=true
