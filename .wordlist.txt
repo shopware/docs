@@ -1604,3 +1604,7 @@ OTLP
 gRPC
 Datadog
 NewRelic
+OTEL
+otel
+otlp
+grpc
