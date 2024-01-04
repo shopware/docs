@@ -79,7 +79,7 @@ You can find an example [Stack](https://github.com/shopwareLabs/opentelemetry/tr
 
 You will need to have the following environment variables in Shopware:
 
-```
+```text
 OTEL_PHP_AUTOLOAD_ENABLED=true
 OTEL_SERVICE_NAME=shopware
 OTEL_TRACES_EXPORTER=otlp
@@ -87,7 +87,6 @@ OTEL_LOGS_EXPORTER=otlp
 OTEL_METRICS_EXPORTER=otlp
 OTEL_EXPORTER_OTLP_PROTOCOL=grpc
 OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4317
-```
 
 And following two composer packages installed: `open-telemetry/transport-grpc open-telemetry/exporter-otlp`.
 
