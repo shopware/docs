@@ -30,7 +30,7 @@ This configuration file enables the Shopware Profiler integration with OpenTelem
 
 ## Configuration
 
-After the installation, you will need to set some environment variables to configure the OpenTelemetry itself and exporter.
+After the installation, you will need to set some environment variables to configure both, the OpenTelemetry and its exporter.
 
 ### Basic configuration
 
