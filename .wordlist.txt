@@ -1598,3 +1598,13 @@ YYYY
 zlib
 zsh
 ZSH
+Grafana
+OpenTelemetry
+OTLP
+gRPC
+Datadog
+NewRelic
+OTEL
+otel
+otlp
+grpc
