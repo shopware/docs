@@ -39,6 +39,7 @@ The following configuration enables the OpenTelemetry auto-instrumentation and s
 ```text
 OTEL_PHP_AUTOLOAD_ENABLED=true
 OTEL_SERVICE_NAME=shopware
+```
 
 Refer to all possible [environment variables](https://opentelemetry.io/docs/instrumentation/php/sdk/#configuration) for better understanding.
 
@@ -52,6 +53,7 @@ OTEL_LOGS_EXPORTER=otlp
 OTEL_METRICS_EXPORTER=otlp
 OTEL_EXPORTER_OTLP_PROTOCOL=grpc
 OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4317
+```
 
 If you use gRPC with OpenTelemetry Protocol (OTLP) , you will need to install `open-telemetry/transport-grpc open-telemetry/exporter-otlp` as composer packages.
 
@@ -87,6 +89,7 @@ OTEL_LOGS_EXPORTER=otlp
 OTEL_METRICS_EXPORTER=otlp
 OTEL_EXPORTER_OTLP_PROTOCOL=grpc
 OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4317
+```
 
 And following two composer packages installed: `open-telemetry/transport-grpc open-telemetry/exporter-otlp`.
 
