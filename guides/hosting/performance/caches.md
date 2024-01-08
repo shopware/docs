@@ -79,7 +79,7 @@ framework:
         default_redis_provider: 'redis://host:port'
         pools:
             cache.http:
-                adapter: cache.adapter.redis
+                adapter: cache.adapter.redis_tag_aware
                 tags: cache.tags
 ```
 
@@ -88,7 +88,7 @@ Replace the `host` and `port` with your Redis instance. It is also possible to c
 ```yaml
 framework:
     cache:
-        app: cache.adapter.redis
+        app: cache.adapter.redis_tag_aware
         default_redis_provider: 'redis://host:port'
 ```
 
