@@ -74,7 +74,10 @@ You can run scheduled tasks as part of your queue workers with the help of the s
 
 ``` bash
 bin/console messenger:consume scheduler_shopware
+```
 
+On startup of this command reads the `scheduled_task` database table and applies the stored intervals, an entry in this table is optional.
+To deactivate tasks, set status to `Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTaskDefinition::STATUS_INACTIVE` in this table, and restart the `consume` command.
 
 ## Debugging scheduled tasks
 
