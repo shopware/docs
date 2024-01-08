@@ -1,0 +1,19 @@
+name: "Notify release to Slack"
+on:
+  release:
+    types: [published]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          echo "${{ github.event.release.tag_name }}"
+          echo "${{ github.event.release.name }}"
+          echo "${{ github.event.release.body }}"
+      - name: Notify release to Slack
+        uses: lizefield/notify-release-to-slack@v1.0
+        with:
+          slackWebhookUrl: ${{ secrets.SLACK_NOTIFICATIONS_WEBHOOK }}
+          releaseMessage: ${{ github.event.release.body }}
