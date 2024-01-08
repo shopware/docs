@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          echo 1
+          echo ${{ github.event.release.body }}
       - name: Send custom JSON data to Slack workflow
         id: slack
         uses: slackapi/slack-github-action@v1.24.0
