@@ -1,4 +1,4 @@
-name: Check shopware files for changes
+name: Send slack message
 on:
   release: { types: [published] }
 
@@ -13,7 +13,6 @@ jobs:
           text: ${{ github.event.release.body }}
       - uses: actions/checkout@v4
       - run: |
-          echo "${{ github.event.release.tag_name }}"
       - name: Send custom JSON data to Slack workflow
         id: slack
         uses: slackapi/slack-github-action@v1.24.0
