@@ -7,6 +7,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Slack Markdown Converter
+        uses: LoveToKnow/slackify-markdown-action@v1.0.2
+        id: slackify
+        with:
+          text: ${{ github.event.release.body }}
       - uses: actions/checkout@v2
       - run: |
           echo "${{ github.event.release.tag_name }}"
@@ -16,4 +21,5 @@ jobs:
         uses: lizefield/notify-release-to-slack@v1.0
         with:
           slackWebhookUrl: ${{ secrets.SLACK_NOTIFICATIONS_WEBHOOK }}
-          releaseMessage: ${{ github.event.release.body }}
+          releaseMessage: ${{ steps.slackify.outputs.text }}
+          #releaseMessage: ${{ github.event.release.body }}
