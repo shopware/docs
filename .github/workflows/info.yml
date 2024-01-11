@@ -6,26 +6,20 @@ jobs:
   check-files:
     runs-on: ubuntu-latest
     steps:
+      - name: Slack Markdown Converter
+        uses: LoveToKnow/slackify-markdown-action@v1.0.2
+        id: slackify
+        with:
+          text: ${{ github.event.release.body }}
       - uses: actions/checkout@v4
       - run: |
-          echo ${{ github.event.release.body }}
+          echo "${{ github.event.release.tag_name }}"
       - name: Send custom JSON data to Slack workflow
         id: slack
         uses: slackapi/slack-github-action@v1.24.0
         with:
           payload: |
-            {
-              "text": "Release ${{ github.event.release.name }}",
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": ":${{ github.event.release.body }}"
-                  }
-                }
-              ]
-            }
+            ${{ steps.slackify.outputs.text }}
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_NOTIFICATIONS_WEBHOOK }}
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
