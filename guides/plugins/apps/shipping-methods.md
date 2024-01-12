@@ -135,6 +135,7 @@ The functionality offers more than one identifier name. The following examples r
             <name>First shipping method</name>
             <name lang="de-DE">Erste Versandmethode</name>
             <delivery-time>
+                <!-- Remember to remove the dashes from generated UUID -->
                 <id>c8864e36a4d84bd4a16cc31b5953431b</id>
                 <name>From 2 to 4 days</name>
                 <min>2</min>
