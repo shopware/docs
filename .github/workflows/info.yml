@@ -12,13 +12,16 @@ jobs:
         with:
           text: ${{ github.event.release.body }}
       - uses: actions/checkout@v4
-      - run: |
+      - name: Replace \n with \\n
+        id: replace
+        run: |
+          echo "text=${{ steps.slackify.outputs.text }}" | sed 's/\\n/\\\\n/g' > $GITHUB_ENV          
       - name: Send custom JSON data to Slack workflow
         id: slack
         uses: slackapi/slack-github-action@v1.24.0
         with:
           payload: |
-            ${{ steps.slackify.outputs.text }}
+            ${{ env.text }}
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_NOTIFICATIONS_WEBHOOK }}
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
