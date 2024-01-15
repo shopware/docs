@@ -21,15 +21,15 @@ jobs:
         uses: Isengo1989/notify-release-to-slack@v1.0.0
         with:
           slackWebhookUrl: ${{ secrets.SLACK_NOTIFICATIONS_WEBHOOK }}
-          releaseMessage: ${{ env.text }}
+          releaseMessage: ${{ steps.slackify.outputs.text }}
           #releaseMessage: ${{ github.event.release.body }}
 
 
 #  <!-- Release notes generated using configuration in .github/release.yml at v1.0.8 -->
-#  
+#
 #  ## What's Changed
 #  ### Exciting New Features 🎉
 #  * Add readme infssss by @Isengo1989 in https://github.com/Isengo1989/docs-1/pull/10
-#  
-#  
+#
+#
 #  **Full Changelog**: https://github.com/Isengo1989/docs-1/compare/v1.0.6...v1.0.8
