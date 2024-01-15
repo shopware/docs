@@ -16,6 +16,7 @@ jobs:
         uses: actions/checkout@v4
       - run: |
           echo "${{ github.event.release.tag_name }}"
+          echo "${{ steps.slackify.outputs.text }}"
           echo "text=${{ steps.slackify.outputs.text }}" | sed 's/\\n/%0A/g' > $GITHUB_ENV
       - name: Notify release to Slack
         uses: Isengo1989/notify-release-to-slack@v1.0.0
