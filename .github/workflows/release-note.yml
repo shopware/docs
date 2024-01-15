@@ -19,7 +19,7 @@ jobs:
           echo "${{ steps.slackify.outputs.text }}"
           echo "text=${{ steps.slackify.outputs.text }}" | sed 's/\\n/%0A/g' > $GITHUB_ENV
       - name: Notify release to Slack
-        uses: Isengo1989/notify-release-to-slack@v1.0.0
+        uses: Isengo1989/notify-release-to-slack@v1.0.1
         with:
           slackWebhookUrl: ${{ secrets.SLACK_NOTIFICATIONS_WEBHOOK }}
           releaseMessage: ${{ steps.slackify.outputs.text }}
