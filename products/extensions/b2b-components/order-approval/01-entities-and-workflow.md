@@ -45,6 +45,6 @@ flowchart TD
 
 ## Who can approve or decline pending orders?
 
-- Employees with the "Can approve/decline all pending orders" permission can approve/decline all pending orders.
-- Employees with the "Can approve/decline pending orders" permission can approve/decline pending orders that assigned to him.
-- Business Partners can approve/decline all pending orders of their employees.
+- Employees with the "Can approve/decline all pending orders" permission can approve or decline all pending orders.
+- Employees with the "Can approve/decline pending orders" permission can approve or decline pending orders that assigned to them.
+- Business Partners can approve or decline all pending orders of their employees.
