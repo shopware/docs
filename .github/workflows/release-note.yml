@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
       - run: |
           echo "${{ github.event.release.tag_name }}"
-          echo "text=${{ steps.slackify.outputs.text }}" | sed 's/\\\n/\\\n/g' > $GITHUB_ENV
+          echo "text=${{ steps.slackify.outputs.text }}" | sed 's/\\n/%0A/g' > $GITHUB_ENV
       - name: Notify release to Slack
         uses: lizefield/notify-release-to-slack@v1.0
         with:
