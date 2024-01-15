@@ -12,14 +12,14 @@ jobs:
         id: slackify
         with:
           text: ${{ github.event.release.body }}
-      - uses: actions/checkout@v2
+      - name: Replace \n with \\n
+        uses: actions/checkout@v4
       - run: |
           echo "${{ github.event.release.tag_name }}"
-          echo "${{ github.event.release.name }}"
-          echo "${{ github.event.release.body }}"
+          echo "text=${{ steps.slackify.outputs.text }}" | sed 's/\\n/\\\\n/g' > $GITHUB_ENV
       - name: Notify release to Slack
         uses: lizefield/notify-release-to-slack@v1.0
         with:
           slackWebhookUrl: ${{ secrets.SLACK_NOTIFICATIONS_WEBHOOK }}
-          releaseMessage: ${{ steps.slackify.outputs.text }}
+          releaseMessage: ${{ env.text }}
           #releaseMessage: ${{ github.event.release.body }}
