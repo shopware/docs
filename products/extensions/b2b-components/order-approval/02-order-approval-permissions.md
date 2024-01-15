@@ -14,10 +14,10 @@ Below you can find a list of all the order approval rules that are available in 
 
 | Permission                  | Description                                   |
 |-----------------------------|-----------------------------------------------|
-| `Can create approval rules` | Allows the employee to create approval rules. |
-| `Can update approval rules` | Allows the employee to update approval rules. |
-| `Can delete approval rules` | Allows the employee to delete approval rules. |
-| `Can read approval rules`   | Allows the employee to view approval rules.   |
+| `Can create approval rules` | Allows the employee to create approval rules |
+| `Can update approval rules` | Allows the employee to update approval rules |
+| `Can delete approval rules` | Allows the employee to delete approval rules |
+| `Can read approval rules`   | Allows the employee to view approval rules  |
 
 ### Pending order Permissions
 
