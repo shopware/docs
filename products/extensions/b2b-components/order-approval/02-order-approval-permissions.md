@@ -10,7 +10,7 @@ nav:
 
 Below you can find a list of all the order approval rules that are available in the order approval component, which you can use to assign to the roles of your employees.
 
-### Approval rule Permissions
+### Approval rule permissions
 
 | Permission                  | Description                                   |
 |-----------------------------|-----------------------------------------------|
