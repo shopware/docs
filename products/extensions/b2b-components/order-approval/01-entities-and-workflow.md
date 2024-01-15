@@ -40,7 +40,7 @@ flowchart TD
 ## Who can view pending orders?
 
 - Employees with the "Can view all pending orders" permission can view all pending orders.
-- Employees which requested approval for the order can view his pending orders.
+- Employees who requested approval for the order can view their pending orders.
 - Business Partners can view all pending orders of their employees.
 
 ## Who can approve or decline pending orders?
