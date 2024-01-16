@@ -6,9 +6,8 @@ nav:
 ---
 
 # Order approval permissions
-## Introduction
 
-Below you can find a list of all the order approval rules that are available in the order approval component, which you can use to assign to the roles of your employees.
+Below you can find a list of all the order approval rules that are available in the order approval component. You can utilize these rules for assigning roles to your employees.
 
 ### Approval rule permissions
 
@@ -21,8 +20,8 @@ Below you can find a list of all the order approval rules that are available in 
 
 ### Pending order Permissions
 
-| Permission                               | Description                                                                    |
-|------------------------------------------|--------------------------------------------------------------------------------|
-| `Can approve/decline all pending orders` | Allows the employee to approve or decline all pending orders.                  |
-| `Can approve/decline pending orders`     | Allows the employee to approve or decline pending orders that assigned to him. |
-| `Can view all pending orders`            | Allows the employee to view all pending orders.                                |
+| Permission                               | Description                                                         |
+|------------------------------------------|---------------------------------------------------------------------|
+| `Can approve/decline all pending orders` | Allows the employee to approve or decline all pending orders        |
+| `Can approve/decline pending orders`     | Allows the employee to approve or decline assigned pending orders   |
+| `Can view all pending orders`            | Allows the employee to view all pending orders                      |

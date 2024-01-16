@@ -5,7 +5,7 @@ nav:
 
 ---
 
-# Order Approval Component
+# Order approval component
 
 Order approval component is a part of the B2B Employee Management. It allows you to define rules that determine which orders require approval and which employees can approve them. It also allows you to view all pending orders and approve or decline them.
 

@@ -7,11 +7,11 @@ nav:
 
 # How to add a new approval condition
 
-The order approval component provides a set of conditions that you can use to define your approval rules. However, if you need to add a new condition, you can do so via app or plugin.
+The order approval component provides a set of conditions for defining your approval rules. However, if you need to add a new condition, you can do so via an app or a plugin.
 
 ## Plugin
 
-Each condition is represented by a class that extends the abstract class `Shopware\Commercial\B2B\OrderApproval\Domain\ApprovalRule\Rule\OrderApprovalRule` class. To add a new condition, you need to create a new class that extends the `OrderApprovalRule` class and implements the `match` and `getConstraints` methods. The `match` method is used to determine if the condition is met, and the `getConstraints` method is used to define the field, value or operator constraints that can be used in the condition.
+Each condition is represented by a class that extends the abstract class `Shopware\Commercial\B2B\OrderApproval\Domain\ApprovalRule\Rule\OrderApprovalRule`. To add a new condition, you need to create a new class that extends the `OrderApprovalRule` class and implements the `match` and `getConstraints` methods. The `match` method is used to determine if the condition is met, and the `getConstraints` method is used to define the field, value or operator constraints that can be used in the condition.
 
 Example:
 

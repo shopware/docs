@@ -12,7 +12,7 @@ nav:
 
 ### Approval Rule
 
-The approval rule entity represents a set of conditions that need to be met in order for an order to be approved. These conditions can be based on the order's total value, the order's currency or for all orders placed by employees with a specific role. Each approval rule can be assigned the reviewer to a specific role, which means that only employees with that role can approve orders that match the rule's conditions, and it can be assigned to specific role, which means that only employees with that role will need to request approval for orders that match the rule's conditions; and a priority, which is used to determine the order in which the rules are evaluated.
+The approval rule entity represents a set of conditions that need to be met for an order to be approved. These conditions might be based on the order's total value, the order's currency or orders placed by employees with a specific role. Each approval rule can be assigned to a reviewer with specific role, which means that only employees that only employees possessing that role are authorized to approve orders meeting the rule's conditions. Additionally, it can be assigned to a particular role, requiring employees with that role to seek approval for orders meeting the rule's criteria. The rule also includes a priority, dictating the sequence in which the rules are evaluated.
 
 ### Pending Order
 
@@ -32,10 +32,9 @@ flowchart TD
     E-->|Yes| G[Event: Order Approved & Event: Order placed]
 ```
 
-
 ## Who can request approval?
 
-- Employees which have the role that is assigned as the "Effective role" of the approval rule that matched the order.
+* Employees holding the role designated as the "Effective role" in the approval rule corresponding to the order are authorized to request approval.
 
 ## Who can view pending orders?
 

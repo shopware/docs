@@ -5,11 +5,9 @@ nav:
 
 ---
 
-# Order approval's Payment Process
+# Order approval's payment process
 
-## Introduction
-
-The payment process of the order approval component is the same as the payment process of the order component, you can select the payment method that you want to use for your orders, with the exception that if this is the online payment method (Visa, PayPal, etc.), the payment process will be executed only after the order has been approved.
+The payment process of the order approval component is the same as the payment process of the order component. You can select the payment method that you want to use for your orders; however unlike the standard order component, the payment process will be executed only after the order has been approved in case of the online payment method (Visa, PayPal, etc.).
 
 ## Customization
 
