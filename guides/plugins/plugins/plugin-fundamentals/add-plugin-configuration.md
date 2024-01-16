@@ -36,9 +36,7 @@ All you need to do is creating a `config.xml` file inside of a `Resources/config
 
 ## Fill your plugin configuration with settings
 
-As we now know how to create your configuration, we can start to fill it with life
-
-* or options to configure, in this case.
+As you now know how to create configurations, you can start to fill it with life using various configuration options.
 
 ### Cards in your configuration
 
