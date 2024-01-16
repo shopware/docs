@@ -82,7 +82,7 @@ The actual implementation of payment integrations differs between providers. The
 
 ### Session and state
 
-The session should not be used in headless payment integrations. Read more about these [guidelines](../../../resources/guidelines/code/session-and-state).
+The session should not be used in headless payment integrations. Read more about [session guidelines](../../../resources/guidelines/code/session-and-state).
 
 ### Controllers and API
 
