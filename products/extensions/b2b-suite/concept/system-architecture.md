@@ -39,43 +39,19 @@ There is a small library of shared functionality. It contains a few commonly use
 
 The user management is based on the `StoreFrontAuthentication` component and then provides `Contact` and `Debtor` entities which have `Address`es and `Role`s. These entities are mostly informational and CRUD based. Other parts of the system only depend on the `StoreFrontAuthentication` component but not the specific implementations as *Debtor* or *Contact*.
 
-```mermaid
-flowchart-elk LR
-    A[StoreFrontAuthentication]
-    B[Debtor]
-    C[Address]
-    D[Contact]
-    E[Role]
-    F[RoleContact]
-    A-->B
-    B-->E 
-    B-->D 
-    B-->C 
-    D-->F 
-    E-->F
-```
+![image](../../../../assets/b2b-architecture-users.png)
 
 ### ACL
 
 The `acl` implementation is connected to most other entities provided by the B2B Suite.
 
-```mermaid
-flowchart-elk LR
-    A[ACL]-->B[ACLRoute]
-```
+![image](../../../../assets/b2b-architecture-acl.png)
 
 ### Order and contingent management
 
 `ContingentGroups`s are connected to `Debtor`s and can have `acl` settings based on `Role`s or `Contact`s. `Order`s are personalized through the `StoreFrontAuthentication`.
 
-```mermaid
-flowchart LR
-    A[LineItemList]-->B[Order]-->C[OrderClearance]-->D[Cart]
-    A-->E[OrderList]
-    F[ContigentGroup]-->G[ContigentRule]-->H[ContigentGroupContact]
-    G[ContigentRule]-->I[ContigentGroupRole]
-    G[ContigentRule]-->C
-```
+![image](../../../../assets/b2b-architecture-order.png)
 
 ### The whole picture
 
@@ -86,38 +62,6 @@ Most dependencies are directly derived from requirements. So, the dependency flo
 
 So, for the sake of completeness, this is the whole picture:
 
-```mermaid
-flowchart-elk LR
-    A[Role]-->B[RoleContact]
-    A-->C[RoleContigentGroup]
-    D[Debtor]-->A
-    E[StoreFrontAuthenrication]-->D 
-    F[Contact]-->G[ContingentGroupContact]
-    D-->F 
-    G[ACL]-->F 
-    G-->H[Address]
-    H-->F 
-    F-->B 
-    E-->F 
-    E-->I[ContingentGroup]
-    E-->J[LineItemList]
-    K[ContingentRule]-->G 
-    G-->I 
-    G-->L[OrderList]
-    K-->C 
-    I-->K 
-    K-->C 
-    K-->G 
-    M[OrderClearance]-->K 
-    J-->N[Order]
-    J-->L 
-    O[Shop]-->J 
-    N-->M 
-    M-->P[CART] 
-    O-->M
-    Q[FastOrder]-->P 
-    O-->Q 
-    Q-->L 
-```
+![image](../../../../assets/b2b-architecture-components-complete.png)
 
 Everything you should get from that is that there is a left to right propagation of dependencies. The components on the left side can be useful entirely without the components on the right side.

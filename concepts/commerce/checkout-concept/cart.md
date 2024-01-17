@@ -31,36 +31,7 @@ The cart has very few hard dependencies on other core entities in Shopware 6. En
 
 An instance of this class represents one single cart. As shown in the diagram below, relations to central Entities of the system are omitted. This allows Shopware 6 to manage multiple carts per user, per sales channel, or across all sales channels. The only identification is a token hash.
 
-```mermaid
-classDiagram
-    Cart .. Price
-    Cart .. Error
-    Cart .. Transaction
-    Cart .. Delivery
-    Cart .. LineItem3
-    Cart .. LineItem1
-    Cart .. LineItem2
-    LineItem3 .. Promotion
-    LineItem1 .. Product1
-    LineItem2 .. Product2
-    namespace CART {
-        class Error
-        class Price
-        class Transaction
-        class Delivery
-        class LineItem1
-        class LineItem2
-        class LineItem3
-        class Promotion
-        class Cart {
-        Central_in_memory_representation_of_a_single_cart's_state
-    }
-}
-    namespace CONTENT {
-    class Product1
-    class Product2
-    }
-```
+![Representation of the cart struct](../../../assets/cart-struct.png)
 
 This highly mutable data structure is acted upon from requests and calculated and validated through services. It contains:
 
@@ -103,29 +74,18 @@ title: Cart State
 ---
 stateDiagram-v2
     [*] --> Empty
-    note left of Empty
-            An empty cart
-            > default shipping
-            > default payment
-        end note
     Empty --> Dirty : add line item
-    note left of Dirty
-        A modified cart but
-        > invalid prices
-        > raw line items
-        > unknown delivery validity
-
-        calculation required
-    end note
     Dirty --> Calculated : calculate
-    note left of Calculated
-    This cart can either be ordered or has errors that must be resolved
-
-    end note
     Calculated --> Dirty : modify line item/shipping/payment
     Calculated --> Calculated : order invalid
     Calculated --> [*] : order
 ```
+
+|Cart state | Description|
+|------|------------|
+|Empty | A cart with no items will have default shipping and payment settings. |
+|Dirty | On adding a new line item, the cart undergoes modifications with invalid prices, raw line items, and uncertain delivery validity. Consequently, calculations are necessary.|
+|Calculated | After accurate calculations, the cart can be either submitted as an order or may contain errors that need to be addressed. |
 
 ## Calculation
 
@@ -137,27 +97,19 @@ title: Cart Calculation
 ---
 stateDiagram-v2
     [*] --> Enrich
-    note left of Enrich
-            Process line items
-            > add images and descriptions
-            > determine prices
-        end note
     Enrich --> Process
-    note left of Process
-        Update price, shipping and payment
-    end note
-    Process --> Validate : calculate
-    note left of Validate
-    Validate through the rule system and 
-    check plausibility change in cart accordingly
-    end note
+    Process --> Validate
     Validate --> Validate : repeat until no changes occur
     Validate --> Persist
-    note left of Persist
-    Update storage
-    end note
     Persist --> [*]
 ```
+
+|Cart calculation state | Description|
+|------|------------|
+|Enrich | The calculation process in the "enrich" state for line items involves adding images, its descriptions and determining prices|
+|Process | During the process state, price updates occur, adjustments to shipping and payment are made|
+|Validate | In the validate state, validation is performed using the rule system and cart changes based on plausibility checks. |
+|Persist | The persist state is responsible for updating the storage. |
 
 ### Cart enrichment
 
@@ -196,22 +148,18 @@ sequenceDiagram
 Enrichment->>Enrichment : 
 box
     participant Enrichment
-    participant ProductCollector
-    participant PromotionCollector
-    participant DiscountCollector
+    participant ProductCartProcessor
+    participant CartPromotionsCollector
+    participant CartDiscountCollector
     end
-    Note over Enrichment,DiscountCollector: Preparation
-    Enrichment->>ProductCollector: prepare
-    Enrichment->>PromotionCollector: prepare
-    Enrichment->>DiscountCollector: prepare
-    Note over Enrichment,DiscountCollector: Collect
-    Enrichment->>ProductCollector: collect
-    Enrichment->>PromotionCollector: collect
-    Enrichment->>DiscountCollector: collect
-    Note over Enrichment,DiscountCollector: Enrichment
-    Enrichment->>ProductCollector: enrich
-    Enrichment->>PromotionCollector: enrich
-    Enrichment->>DiscountCollector: enrich
+    Note over Enrichment,CartDiscountCollector: Collect
+    Enrichment->>ProductCartProcessor: collect
+    Enrichment->>CartPromotionsCollector: collect
+    Enrichment->>CartDiscountCollector: collect
+    Note over Enrichment,CartDiscountCollector: Enrichment
+    Enrichment->>ProductCartProcessor: enrich
+    Enrichment->>CartPromotionsCollector: enrich
+    Enrichment->>CartDiscountCollector: enrich
     Enrichment->>Enrichment : 
 ```
 
@@ -235,7 +183,7 @@ After the cart has been processed, it is validated against the rules, which can 
 ```mermaid
 stateDiagram-v2
     [*] --> Empty_cart : checkout started
-    Empty_cart --> Cart_with_lineitem(car) : User orders a car
+    Empty_cart --> Enrichment : User orders a car
         state Enrichment {
     Cart_with_lineitem(car) --> Cart_with_lineitem(car+sunglasses) : Iteration 1 - Cart automatically adds sunglasses
     Cart_with_lineitem(car+sunglasses) --> Cart_with_lineitem(car+sunglasses+2%discount) : Iteration 2 - Cart automatically adds discount

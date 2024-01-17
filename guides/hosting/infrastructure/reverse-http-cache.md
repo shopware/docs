@@ -24,14 +24,7 @@ In this guide, we will use Varnish as an example for HTTP cache.
 This setup is compatible from Shopware version 6.4.
 :::
 
-```mermaid
-flowchart LR
-    A(Brower) -->B("`TLS Termination
-    _(Ngnix)_`")
-    B --> C(Varnish)
-    C -->D("`App Server
-    _(Shopware)_`")
-```
+![](../../../assets/reverseProxy-setup.svg)
 
 ### Configure Shopware
 

@@ -17,19 +17,7 @@ To reduce the necessary duplications, there are common implementations for this.
 
 The diagram below shows the usually implemented objects with their outside dependencies.
 
-```mermaid
-flowchart-elk TD
-subgraph .
-    A[Repository]
-    A-->E[Shopware\B2B\Common\Controller\GridHelper]    
-    G-->A
-end
-    B[Shopware\B2B\Common\Controller\GridRepository]-->A 
-    C[Doctrine\DBAL\Connection]-->A 
-    D[Acl\Framework\AclRepository]-->A  
-    G[SearchStruct]-->E 
-    F[Enlight_Controller_Request_Request]-->E 
-```
+![image](../../../../../assets/listing-service.svg)
 
 ## Search struct
 

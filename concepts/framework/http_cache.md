@@ -22,13 +22,7 @@ So whenever a user requests a page, Shopware will create a result page individua
 * A reverse proxy cache
 * The web application generates a result
 
-```mermaid
-flowchart-elk LR
-    A[User]--GET-->B[Reverse proxy]
-    B[Reverse proxy]--Response-->A
-    B--GET-->C[Shopware]
-    C--Response-->B
-```
+![](../../assets/reverse-proxy.svg)
 
 The reverse proxy is located between the user and the web application and takes care of any requests to the web application. If a user requests a page that has been requested before, chances are that the reverse proxy can just hand out the same result as before, so the web application will not even be asked.
 

@@ -11,59 +11,75 @@ Products are sellable entities (physical and digital products) within your shop.
 
 Depending on your setup, Shopware can easily handle thousands of products. However, an upsurge in the product quantity (in millions) needs some tweaks for robust running of the environment as it depends on factors like the number of [categories](../../../../docs/concepts/commerce/catalog/categories), [sales channels](../../../../docs/concepts/commerce/catalog/sales-channels), [product properties](../../../../docs/concepts/commerce/catalog/products#property-groups--options), etc. Every product added to your shop can be made available on one or more [sales channels](../../../../docs/concepts/commerce/catalog/sales-channels).
 
-Let us start understanding about product more in detail:
+Let's delve into a more detailed understanding of products using the example of garments:
 
-* **Product details**: General information about a Product - for example, title, manufacturer, prices, media, etc.
-* **Product properties**: Product properties encapsulates property groups and options.
-* **Product variant**: A sellable good. Product Variants are generally mapped to products. Inventory is modeled per variant.
-* **Category**: Products in Shopware are organised in categories. It is a grouping of products based on characteristics, marketing or search concerns. Categories are represented as a hierarchical tree to form a navigation menu. A product can be contained in multiple categories.
+* **Product details**: General information about a Product.
+
+| Title | Product Id| Manufacturer | Prices | more.... |
+|-------|-----------|--------------|--------|----------|
+|levis Ocean Hoodie| SW1001 | CA | 40 | ... |
+
+* **Product properties**: Product properties encapsulates property groups and options. They can be displayed in a table on your product detail pages, in listings, or even be used for filtering.A product can have arbitrarily many property group options.
+
+|Property Group| Property Group options|
+|--------------|-----------------------|
+|Size          |  *S*, *M*, *L*, *XL*, etc |
+|Color         | *Red*, *Blue*, *Green*, *Black* |
+|Material      | *Leather*, *Cotton*, *Jeans* |
+
+* **Category**: Products in Shopware are organized in categories. It is a grouping of products based on characteristics, marketing or search concerns. Categories are represented as a hierarchical tree to form a navigation menu. A product can be contained in multiple categories.
 
 Look at the below condensed overview of the product data model:
 
 ```mermaid
 erDiagram
-    Product}|--|{ Category : has
+    Product||--|{ ProductCategory : "m:1"
+    ProductCategory}|--|| Category : "1:m"
     Product {
-        Example Levis_Ocean_Hoodie
+        uuid product_id
+    }
+    ProductCategory {
+        uuid product_id 
+        uuid category_id 
     }
     Category {
-        Example Hoodies
+        uuid category_id
     }
-    Product ||--|{ Product-Group-Option : has
-    Product-Group-Option{
-        Example Leather
+    Product ||--|{ ProductOption : "1:m"
+    ProductOption{
+        uuid product_id
+        uuid property_group_option_id
     }
-    Product-Group-Option ||--|| Product-Group : belongs
-    Product-Group{
-        Example Material
+    ProductOption }|--|| PropertyGroupOption : "m:1"
+    PropertyGroupOption{
+        uuid property_group_option_id
+        uuid property_group_id
+    }
+        PropertyGroupOption }|--|| PropertyGroup : "m:1"
+    PropertyGroup{
+        uuid property_group_id
     }
 ```
 
 Besides their relation to categories, products can also link to a set of *property group options*.
 
-## Property groups and options
-
-Product properties can be modeled using property groups and -options. They can be displayed in a table on your product detail pages, in listings, or even be used for filtering.
-
-Examples of property group garments are *Size*, *Color* or *Material*. The corresponding values of each group are referred to as *property group options*. A product can have arbitrarily many property group options.
-
-## Product variants
-
-Different variations of a product can be modeled using *product variants*. Products are a self-referencing entity, which is interpreted as a parent-child relationship. This mechanism is also used to model variants. This also provides inheritance between field values from parent products to child products.
+* **Product variant**: A sellable product. Products are a self-referencing entity, which is interpreted as a parent-child relationship. Similarly, product variants are also generally mapped to products. This mechanism is used to model variants. This also provides inheritance between field values from parent products to child products.
 
 ```mermaid
 erDiagram
-    Product||--|| Product : is
+    Product||--|| Product : "uuid=variant"
     Product {
-        Example Levis_Ocean_Hoodie
+        uuid product_id
+        uuid parent_id
     }
-    Product ||--|{ Product-Group-Option : has
-    Product-Group-Option{
-        Example Leather
+    Product ||--|{ PropertyGroupOption : "1:m"
+    PropertyGroupOption{
+        uuid property_group_option_id
+        uuid property_group_id
     }
-    Product-Group-Option ||--|| Product-Group : belongs
-    Product-Group{
-        Example Material
+    PropertyGroupOption }|--|| PropertyGroup : "m:1"
+    PropertyGroup{
+        uuid property_group_id
     }
 ```
 
@@ -83,7 +99,12 @@ Opposed to that **options** are considered variant defining, as they are the fac
 
 It is important to understand the difference between those two because both provide a relation between the product and the property group option entity. However only one constitutes to product variants.
 
-### Configurator
+| Variant | Product | Category | Product group | Product group option |
+|---------|---------|----------|---------------|----------------------|
+|Variant 1| Levis Ocean Hoodie | Hoodie & Sweaters | Color | Red |
+|Variant 2| Levis Ocean Hoodie | Hoodie & Sweaters | Color | Black |
+
+## Configurator
 
 When a variant product is loaded for a [Store API](../../api/store-api)-scoped request, Shopware assembles a configurator object which includes all different property groups and the corresponding variants. This way client applications, such as the [Storefront](../../../guides/plugins/plugins/storefront/) or the [PWA](../../../products/pwa) can display the different variant options of the product.
 

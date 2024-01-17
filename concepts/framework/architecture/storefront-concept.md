@@ -99,37 +99,7 @@ Once we have set all the necessary information to our page \(`AccountOrderPage`\
 
 To summarize the composition of a page, have a look at this diagram:
 
-```mermaid
-flowchart TD
-    A["`**Account Order Controlled**
-    _Storefront Controller_`"]
-    B["`**Account Order Page Loader**
-    _Page Loader_`"]
-    A --> |calls|B
-    B--> |receives Page & throws LoadedEvent|A
-    C["`**Account Order Page**
-    _Page_`"]
-    B-->|creates|C
-    C-->|receives|B
-    D["`**OrderRoute**
-    _store-api/v(version)/order_`"]
-    C-->|calls|D
-    D-->|receives|C
-    E["`**Twig Template**
-    _render Storefront_`"]
-    A-->|sends Page|E
-    F["`**Generic Page Loader**
-    _Generic Page_`"]
-    G["`**Header, Footer, etc**
-    _Pagelets_`"]
-    C-->|calls|F
-    F-->|receives|C
-    G-->|receives|F
-    H["`**Ordinary repository**
-    _Entity Repository_`"]
-    D-->|calls|H
-    H-->|receives|D
-```
+![Composition of a Storefront page](../../../assets/concepts-storefront-composite-data-loading.png)
 
 ## Translations
 

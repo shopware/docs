@@ -45,15 +45,16 @@ Once the action on the Storefront or from the app happens, the FlowDispatcher wi
 
 ```mermaid
 flowchart-elk TD
-    A([Start])-->B[FlowDispatcher]
-    B--dispatches FlowEventAware-->C[FlowExecutor]
-    C-->D{Condition}
-    C-->E[Execute Action]
-    D--Yes-->E    
-    E-->F[StopFlow]
+    A([Start])-->B["`FlowDispatcher::dispatch()`"]
+    B--dispatches (FlowEventAware)-->C["`FlowExecutor::execute()`"]
+    C-->D{"`FlowExecutor::sequenceRuleMatches()`"}
+    C--no condition-->E["`FlowExecutor::executeAction3()`"]
+    D--Yes-->I["`FlowExecutor::executeAction2()`"]    
+    E-->F["`StopFlowAction::handleFlow()`"]
     F-->G([End])
-    D--No -->H[Execute Action]
+    D--No -->H["`FlowExecutor::executeAction1()`"]
     H-->F
+    I-->F
 ```
 
 Here is an example flow of what happens in the system when an order is placed on the Storefront.
@@ -65,12 +66,12 @@ subgraph Storefront
     B[User]
 end
 A-->Storefront
-Storefront --Place an order--> Core
+Storefront--Place an order-->Core
 subgraph Core
-    C[CartOrderRoute]--dispatch [checkout.order.place]-->D[FlowDispatcher]
-    D-->E[FlowExecutor]
-    E-->F[Execute Action]
-    F-->G[Stop Flow]
+    C["`CartOrderRoute::Order()`"]--dispatch [checkout.order.place]-->D["`FlowDispatcher::dispatch()`"]
+    D-->E["`FlowExecutor::execute()`"]
+    E-->F["`FlowExecutor::executeAction()`"]
+    F-->G["`StopFlowAction::handleFlow()`"]
 end
     G-->H([End])
 ```

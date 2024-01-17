@@ -9,17 +9,7 @@ nav:
 
 The company component acts as a container for role related entities by providing a minimalistic interface to the different components. This ensures shared functionality. The following graph shows components that are managed in this component:
 
-```mermaid
-flowchart TD
-    A[Company] -->B{{ContactEntity}}
-    A --> C{{AddressEntity}}
-    A --> D{{BudgetEntity}}
-    A --> E{{ContingentGroupEntity}}
-    B --> F[Contact]
-    C --> G[Address]
-    D --> H[Budget]
-    E --> I[Contingent group]
-```
+![image](../../../../../assets/company-management.svg)
 
 ## Context
 

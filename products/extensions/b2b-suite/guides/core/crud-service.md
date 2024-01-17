@@ -17,22 +17,7 @@ Although these entities may have special requirements, an exclusively used namin
 
 The diagram below shows the usually implemented objects with their outside dependencies:
 
-```mermaid
-flowchart-elk TD
-subgraph .
-    A[Repository]
-    A-->E[CrudService]    
-    I[Validation Service]-->E
-    G-->A
-end
-    B[Common\Repository\DbalHelper]-->A 
-    C[Doctrine\DBAL\Connection]-->A 
-    D[Common\Validator\Validator]-->I  
-    H[Common\Validator\ValidatorBuilder]-->I 
-    J[Validator\Validator\ValidatorInterface]-->I 
-    F[Acl\Framework\AclRepository]-->E
-    G[Entity]-->E
-```
+![image](../../../../../assets/crud-service.svg)
 
 ## Entity
 
