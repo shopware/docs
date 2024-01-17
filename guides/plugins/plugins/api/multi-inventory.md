@@ -34,7 +34,22 @@ Meanwhile, refer to the following links regarding the general use of the Admin A
 
 The Multi-Inventory feature implements a specific data structure for its internal stock handling. The following entity-relationship model visually represents the new entities, as well as the relationships between them and platform entities.
 
-![multi-inventory_data-structure](../../../../assets/multi-inventory-data-structure.png)
+```mermaid
+erDiagram
+    order_warehouse_group }|..|| order : has
+    order_warehouse_group }|..|| warehouse_group : has
+    order_product_warehouse }|..|| order : has
+    order_product_warehouse }|..|| warehouse : has
+    warehouse_group }|..|| rule : has
+    warehouse_group }|..|| product_warehouse_group : has
+    warehouse_group }|..|| warehouse_group_warehouse : has
+    product_warehouse_group }|..|| product : has
+    order_product_warehouse }|..|| product : has
+    product_warehouse }|..|| product : has
+    warehouse_group_warehouse }|..|| warehouse_group : has
+    warehouse_group_warehouse }|..|| warehouse : has
+    product_warehouse }|..|| warehouse : has
+```
 
 ## Working with the API
 
