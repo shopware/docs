@@ -76,7 +76,7 @@ erDiagram
     ProductWarehouseGroup }|..|| Product : "M:1"
     OrderProductWarehouse }|..|| Product : "M:1"
     Product {
-        uuid produtc_id
+        uuid produtct_id
     }
     ProductWarehouse }|..|| Product : "M:1"
     WarehouseGroupWarehouse }|..|{ Warehouse : "M:N"
