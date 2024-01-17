@@ -43,35 +43,8 @@ In Shopware, you have multiple interfaces and classes for different types of eve
 
 Once the action on the Storefront or from the app happens, the FlowDispatcher will dispatch FlowEventAware to the FlowExecutor. From here, the FlowExecutor will check the condition to decide whether to execute the action.
 
-```mermaid
-flowchart-elk TD
-    A([Start])-->B["`FlowDispatcher::dispatch()`"]
-    B--dispatches (FlowEventAware)-->C["`FlowExecutor::execute()`"]
-    C-->D{"`FlowExecutor::sequenceRuleMatches()`"}
-    C--no condition-->E["`FlowExecutor::executeAction3()`"]
-    D--Yes-->I["`FlowExecutor::executeAction2()`"]    
-    E-->F["`StopFlowAction::handleFlow()`"]
-    F-->G([End])
-    D--No -->H["`FlowExecutor::executeAction1()`"]
-    H-->F
-    I-->F
-```
+![Flow builder concept for flow sequence](../../assets/flow-concept-1.png)
 
 Here is an example flow of what happens in the system when an order is placed on the Storefront.
 
-```mermaid
-flowchart-elk TD
-    A([Start])
-subgraph Storefront
-    B[User]
-end
-A-->Storefront
-Storefront--Place an order-->Core
-subgraph Core
-    C["`CartOrderRoute::Order()`"]--dispatch [checkout.order.place]-->D["`FlowDispatcher::dispatch()`"]
-    D-->E["`FlowExecutor::execute()`"]
-    E-->F["`FlowExecutor::executeAction()`"]
-    F-->G["`StopFlowAction::handleFlow()`"]
-end
-    G-->H([End])
-```
+![Flow builder concept for order placed](../../assets/flow-concept-2.png)
