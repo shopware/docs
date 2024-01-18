@@ -15,6 +15,8 @@ In the world of digital B2B commerce, where businesses engage with other compani
 
 * **Quote Managements** covers Sales Representative related jobs around negotiating quotes with customers.
 
+* **Order Approval** allows for a more controlled buying process by introducing an approval workflow.
+
 * **Quick Order and Order List** takes care of distinctive B2B buying behaviors.
 
 * **Digital Sales Composables** aims to provide a set of composable frontends to cover more complex Sales Representative jobs.

@@ -160,7 +160,7 @@ framework:
 
 ```ini
 # don't evaluate assert()
-assert.active=0
+zend.assertions=-1
 
 # cache file_exists,is_file
 # WARNING: this will lead to thrown errors after clearing cache, while it tries to access cached Shopware_Core_KernelProdDebugContainer.php

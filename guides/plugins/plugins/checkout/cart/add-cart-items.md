@@ -42,9 +42,7 @@ use Shopware\Storefront\Framework\Routing\StorefrontResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Shopware\Core\Checkout\Cart\Cart;
 
-/**
- * @Route(defaults={"_routeScope"={"storefront"}})
- */
+#[Route(defaults: ['_routeScope' => ['storefront']])]
 class ExampleController extends StorefrontController
 {
     private LineItemFactoryRegistry $factory;
@@ -57,9 +55,7 @@ class ExampleController extends StorefrontController
         $this->cartService = $cartService;
     }
 
-    /**
-     * @Route("/cartAdd", name="frontend.example", methods={"GET"})
-     */
+    #[Route(path: '/cartAdd', name: 'frontend.example', methods: ['GET'])]
     public function add(Cart $cart, SalesChannelContext $context): StorefrontResponse
     {
         // Create product line item

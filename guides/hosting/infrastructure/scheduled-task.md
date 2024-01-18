@@ -41,7 +41,7 @@ Some tasks like `shopware.elasticsearch.create.alias` and `shopware.invalidate_c
 
 ## Creating a scheduled task
 
-<PageRef page="guides/plugins/plugins/plugin-fundamentals/add-scheduled-task/" />
+<PageRef page="../../plugins/plugins/plugin-fundamentals/add-scheduled-task" />
 
 ::: info
 The following commands or flags (--no-wait) are available starting with Shopware 6.5.5.0.
