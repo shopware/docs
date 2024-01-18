@@ -36,19 +36,56 @@ The Multi-Inventory feature implements a specific data structure for its interna
 
 ```mermaid
 erDiagram
-    order_warehouse_group }|..|| order : has
-    order_warehouse_group }|..|| warehouse_group : has
-    order_product_warehouse }|..|| order : has
-    order_product_warehouse }|..|| warehouse : has
-    warehouse_group }|..|| rule : has
-    warehouse_group }|..|| product_warehouse_group : has
-    warehouse_group }|..|| warehouse_group_warehouse : has
-    product_warehouse_group }|..|| product : has
-    order_product_warehouse }|..|| product : has
-    product_warehouse }|..|| product : has
-    warehouse_group_warehouse }|..|| warehouse_group : has
-    warehouse_group_warehouse }|..|| warehouse : has
-    product_warehouse }|..|| warehouse : has
+    OrderWarehouseGroup }|..|| Order : "M:1"
+    OrderWarehouseGroup {
+        uuid order_id
+        uuid warehouse_group_id
+    }
+    OrderWarehouseGroup }|..|| WarehouseGroup : "M:1"
+    OrderProductWarehouse }|..|| Order : "1:M"
+    OrderProductWarehouse{
+        uuid order_id
+        uuid product_id
+        uuid warehouse_id
+    }
+    Order {
+        uuid order_id
+    }
+    OrderProductWarehouse }|..|{ WarehouseGroupWarehouse : "M:N"
+    Warehouse {
+        uuid warehouse_id
+    }
+    WarehouseGroup }|..|| Rule : "M:1"
+    Rule{
+        uuid rule_id
+    }
+    WarehouseGroup {
+        uuid rule_id
+        uuid warehouse_group_id
+    }
+    WarehouseGroup }|..|{ ProductWarehouseGroup : "M:N"
+    ProductWarehouseGroup {
+        uuid product_id
+        uuid warehouse_group_id
+    }
+    WarehouseGroup }|..|{ WarehouseGroupWarehouse : "M:N"
+    WarehouseGroupWarehouse {
+        uuid warehouse_id
+        uuid warehouse_group_id
+    }
+    ProductWarehouseGroup }|..|| Product : "M:1"
+    OrderProductWarehouse }|..|| Product : "M:1"
+    Product {
+        uuid produtc_id
+    }
+    ProductWarehouse }|..|| Product : "M:1"
+    WarehouseGroupWarehouse }|..|{ Warehouse : "M:N"
+    ProductWarehouse }|..|| Warehouse : "1:M"
+    ProductWarehouse {
+        uuid product_id
+        uuid warehouse_id
+    }
+    Warehouse ||..|{ OrderProductWarehouse : "1:M"
 ```
 
 ## Working with the API
