@@ -13,6 +13,6 @@ These references guide you to use the correct syntax, understand the expected in
 
 There are two dedicated API reference documents for your reference:
 
-* [Store API reference](https://shopware.stoplight.io/docs/store-api/38777d33d92dc-quick-start-guide) - Primarily focused on providing functionalities related to customer-facing aspects of an online platform. You can access and manipulate data associated with products, customer interactions, shopping carts, etc, directly impacting the user experience on the frontend. It caters to both anonymous users and authenticated users.
+* [Store API reference](https://shopware.stoplight.io/docs/store-api/38777d33d92dc-quick-start-guide) - Focused on customer-facing aspects, the Store API allows you to access and manipulate data related to products, customer interactions, shopping carts, and others that significantly impact the frontend user experience. It caters to both anonymous and authenticated users.
 
-* [Admin API reference](https://shopware.stoplight.io/docs/admin-api/twpxvnspkg3yu-quick-start-guide) - Primarily designed to manage and configure the backend or administrative aspects of an online platform. You can structure data exchanges, handle bulk operations, synchronize data between components, import-export data, and more to handle related tasks to backend operations.
+* [Admin API reference](https://shopware.stoplight.io/docs/admin-api/twpxvnspkg3yu-quick-start-guide) - Primarily for backend and administrative functions, the Admin API enables structured data exchanges, bulk operations, data synchronization, and import-export tasks, addressing the backend needs of the Shopware platform.
