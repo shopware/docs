@@ -55,21 +55,21 @@ shopware project:set-remote 7xasjkyld189e # Replace with your project ID
 
 ## Conclusion
 
-Now your repository is configured - you should have three remotes
+Now your repository is configured - you should have two remotes
 
 ```sh
 $ git remote -v
 
 origin	git@github.com:<project-repository>.git (fetch)
 origin	git@github.com:<project-repository>.git (push)
-platform	<paas-url>.git (fetch)
-platform	<paas-url>.git (push)
+shopware	<paas-url>.git (fetch)
+shopware	<paas-url>.git (push)
 ```
 
 | Remote     | Function          | Description                                                             |
 |------------|-------------------|-------------------------------------------------------------------------|
 | `origin`   | Project Code      | This remote contains all your project specific source code              |
-| `platform` | PaaS Environment  | Changes pushed to this remote will be synced with your PaaS environment |
+| `shopware` | PaaS Environment  | Changes pushed to this remote will be synced with your PaaS environment |
 
 ## Migrating from the old template to the new template
 
