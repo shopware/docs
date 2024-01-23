@@ -119,29 +119,16 @@ We have created many Aware interfaces. These Aware are the conditions to restore
 
 | Aware interface | Storer respective |
 | :--- | :--- |
-| Shopware\Core\Content\Flow\Dispatching\Aware\ConfirmUrlAware | Shopware\Core\Content\Flow\Dispatching\Storer\ConfirmUrlStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\ContactFormDataAware | Shopware\Core\Content\Flow\Dispatching\Storer\ContactFormDataStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\ContentsAware | Shopware\Core\Content\Flow\Dispatching\Storer\ContentsStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\ContextTokenAware | Shopware\Core\Content\Flow\Dispatching\Storer\ContextTokenStorer |
+| Shopware\Core\Content\Flow\Dispatching\Aware\ScalarValuesAware | Shopware\Core\Content\Flow\Dispatching\Storer\ScalarValuesStorer |
 | Shopware\Core\Content\Flow\Dispatching\Aware\CustomerGroupAware | Shopware\Core\Content\Flow\Dispatching\Storer\CustomerGroupStorer |
 | Shopware\Core\Content\Flow\Dispatching\Aware\CustomerRecoveryAware | Shopware\Core\Content\Flow\Dispatching\Storer\CustomerRecoveryStorer |
 | Shopware\Core\Framework\Event\CustomerAware | Shopware\Core\Content\Flow\Dispatching\Storer\CustomerStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\DataAware | Shopware\Core\Content\Flow\Dispatching\Storer\DataStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\EmailAware | Shopware\Core\Content\Flow\Dispatching\Storer\EmailStorer |
 | Shopware\Core\Framework\Event\MailAware | Shopware\Core\Content\Flow\Dispatching\Storer\MailStorer |
 | Shopware\Core\Content\Flow\Dispatching\Aware\MessageAware | Shopware\Core\Content\Flow\Dispatching\Storer\MessageStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\NameAware | Shopware\Core\Content\Flow\Dispatching\Storer\NameStorer |
 | Shopware\Core\Content\Flow\Dispatching\Aware\NewsletterRecipientAware | Shopware\Core\Content\Flow\Dispatching\Storer\NewsletterRecipientStorer |
 | Shopware\Core\Framework\Event\OrderAware | Shopware\Core\Content\Flow\Dispatching\Storer\OrderStorer |
 | Shopware\Core\Content\Flow\Dispatching\Aware\OrderTransactionAware | Shopware\Core\Content\Flow\Dispatching\Storer\OrderTransactionStorer |
 | Shopware\Core\Framework\Event\ProductAware | Shopware\Core\Content\Flow\Dispatching\Storer\ProductStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\RecipientsAware | Shopware\Core\Content\Flow\Dispatching\Storer\RecipientsStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\ResetUrlAware | Shopware\Core\Content\Flow\Dispatching\Storer\ResetUrlStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\ReviewFormDataAware | Shopware\Core\Content\Flow\Dispatching\Storer\ReviewFormDataStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\ShopNameAware | Shopware\Core\Content\Flow\Dispatching\Storer\ShopNameStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\SubjectAware | Shopware\Core\Content\Flow\Dispatching\Storer\SubjectStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\TemplateDataAware | Shopware\Core\Content\Flow\Dispatching\Storer\TemplateDataStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\UrlAware | Shopware\Core\Content\Flow\Dispatching\Storer\UrlStorer |
 | Shopware\Core\Framework\Event\UserAware | Shopware\Core\Content\Flow\Dispatching\Storer\UserStorer |
 
 ```php
