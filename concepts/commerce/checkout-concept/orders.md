@@ -21,7 +21,13 @@ The order state changes in a defined, predictable and configurable way - other s
 
 ## State management
 
-During the order placement, at least three distinct state machines are started as described in the below diagrams:
+::: tip
+The state machines displayed in the following sections can actually be modified through the API, this is just the default setup.
+:::
+
+During the order placement, at least three distinct state machines are started as described in the below diagrams.
+
+These can be used to track the progress during the order process and notify the customer about the current state of the order.
 
 **The order state machine**
 
@@ -166,9 +172,3 @@ START_STATE[Start state] --> 018c4a0eeb3872679d76fd8c1d89ef09
 018c4a0eeb3872679d76fd8c1fd26398 -- reopen --> 018c4a0eeb3872679d76fd8c1d89ef09
 018c4a0eeb3872679d76fd8c1fd26398 -- retour --> 018c4a0eeb3872679d76fd8c1f8af9a3
 ```
-
-::: tip
-The state machines displayed in the following sections can actually be modified through the API, this is just the default setup.
-:::
-
-These can be used to track the progress during the order process and notify the customer about the current state of the order.
