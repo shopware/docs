@@ -8,9 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - run: |
-          sed -i '/```/,//d' concepts/commerce/checkout-concept/orders.md
-
       - uses: reviewdog/action-languagetool@v1
         with:
           language: en-US
