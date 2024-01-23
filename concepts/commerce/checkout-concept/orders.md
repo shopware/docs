@@ -28,12 +28,14 @@ During the order placement, at least three distinct state machines are started a
 ```mermaid
 flowchart TD
 START_STATE[Start state] --> 018c4a0eeaec71b7a0415b572e1a07f5
+
 018c4a0eeaec71b7a0415b572e1a07f5(Open)
 018c4a0eeaec71b7a0415b572e8c7a86(Done)
 018c4a0eeaec71b7a0415b572e8c7a86 --> FINAL_STATE[Final state]
 018c4a0eeaec71b7a0415b572f6990c5(In Progress)
 018c4a0eeaec71b7a0415b572fa73aa1(Cancelled)
 018c4a0eeaec71b7a0415b572fa73aa1 --> FINAL_STATE[Final state]
+
 018c4a0eeaec71b7a0415b572e1a07f5 -- process --> 018c4a0eeaec71b7a0415b572f6990c5
 018c4a0eeaec71b7a0415b572e1a07f5 -- cancel --> 018c4a0eeaec71b7a0415b572fa73aa1
 018c4a0eeaec71b7a0415b572f6990c5 -- cancel --> 018c4a0eeaec71b7a0415b572fa73aa1
@@ -47,6 +49,7 @@ START_STATE[Start state] --> 018c4a0eeaec71b7a0415b572e1a07f5
 ```mermaid
 flowchart TD
 START_STATE[Start state] --> 018c4a0eeba171db8f885b1b74f5895f
+
 018c4a0eeba171db8f885b1b74f5895f(Open)
 018c4a0eeba171db8f885b1b75b3a3e3(Paid)
 018c4a0eeba171db8f885b1b760cc537(Paid partially)
@@ -60,6 +63,7 @@ START_STATE[Start state] --> 018c4a0eeba171db8f885b1b74f5895f
 018c4a0f109d7034995df01ceddd9b6a(Authorized)
 018c4a0f10bc7230939f1a53ffc3ad22(Chargeback)
 018c4a0f2f00710bb4227243818b33ad(Unconfirmed)
+
 018c4a0eeba171db8f885b1b74f5895f -- pay --> 018c4a0eeba171db8f885b1b75b3a3e3
 018c4a0eeba171db8f885b1b74f5895f -- pay_partially --> 018c4a0eeba171db8f885b1b760cc537
 018c4a0eeba171db8f885b1b74f5895f -- cancel --> 018c4a0eeba171db8f885b1b76166310
@@ -134,13 +138,16 @@ START_STATE[Start state] --> 018c4a0eeba171db8f885b1b74f5895f
 ```mermaid
 flowchart TD
 START_STATE[Start state] --> 018c4a0eeb3872679d76fd8c1d89ef09
+
 018c4a0eeb3872679d76fd8c1d89ef09(Open)
 018c4a0eeb3872679d76fd8c1df019d8(Cancelled)
 018c4a0eeb3872679d76fd8c1df019d8 --> FINAL_STATE[Final state]
+
 018c4a0eeb3872679d76fd8c1eceaecb(Shipped)
 018c4a0eeb3872679d76fd8c1ef13dd7(Shipped partially)
 018c4a0eeb3872679d76fd8c1f8af9a3(Returned)
 018c4a0eeb3872679d76fd8c1f8af9a3 --> FINAL_STATE[Final state]
+
 018c4a0eeb3872679d76fd8c1fd26398(Returned partially)
 018c4a0eeb3872679d76fd8c1d89ef09 -- ship --> 018c4a0eeb3872679d76fd8c1eceaecb
 018c4a0eeb3872679d76fd8c1d89ef09 -- ship_partially --> 018c4a0eeb3872679d76fd8c1ef13dd7
