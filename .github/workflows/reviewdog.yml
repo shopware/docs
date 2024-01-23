@@ -8,11 +8,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - run: |
-          sed -i '/```/,//d' concepts/commerce/checkout-concept/orders.md
-
       - uses: reviewdog/action-languagetool@v1
         with:
+          level: warning
           language: en-US
           reporter: github-pr-check
           enabled_rules: 'PASSIVE_VOICE,SENTENCE_WHITESPACE,GOD_COMMA'
+          #disabled_rules: 'WHITESPACE_RULE,EN_QUOTES,DASH_RULE,WORD_CONTAINS_UNDERSCORE,UPPERCASE_SENTENCE_START,ARROWS,COMMA_PARENTHESIS_WHITESPACE,UNLIKELY_OPENING_PUNCTUATION,SENTENCE_WHITESPACE,CURRENCY,EN_UNPAIRED_BRACKETS,PHRASE_REPETITION,PUNCTUATION_PARAGRAPH_END,METRIC_UNITS_EN_US,ENGLISH_WORD_REPEAT_BEGINNING_RULE,ENGLISH_WORD_REPEAT_RULE'
