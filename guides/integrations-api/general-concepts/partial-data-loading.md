@@ -17,7 +17,7 @@ Partial Data Loading is different from the [includes](./search-criteria.md#inclu
 
 ```http
 POST /api/search/currency
-Authorization: Bearer .....
+Authorization: Bearer YOUR_ACCESS_TOKEN
 Content-Type: application/json
 Accept: application/json
 
