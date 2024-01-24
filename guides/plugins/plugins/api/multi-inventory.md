@@ -63,12 +63,12 @@ erDiagram
         uuid rule_id
         uuid warehouse_group_id
     }
-    WarehouseGroup }|..|{ ProductWarehouseGroup : "M:N"
+    WarehouseGroup ||..|{ ProductWarehouseGroup : "1:M"
     ProductWarehouseGroup {
         uuid product_id
         uuid warehouse_group_id
     }
-    WarehouseGroup }|..|{ WarehouseGroupWarehouse : "M:N"
+    WarehouseGroup ||..|{ WarehouseGroupWarehouse : "1:M"
     WarehouseGroupWarehouse {
         uuid warehouse_id
         uuid warehouse_group_id
@@ -76,10 +76,10 @@ erDiagram
     ProductWarehouseGroup }|..|| Product : "M:1"
     OrderProductWarehouse }|..|| Product : "M:1"
     Product {
-        uuid produtct_id
+        uuid produtc_id
     }
     ProductWarehouse }|..|| Product : "M:1"
-    WarehouseGroupWarehouse }|..|{ Warehouse : "M:N"
+    WarehouseGroupWarehouse }|..|| Warehouse : "M:1"
     ProductWarehouse }|..|| Warehouse : "1:M"
     ProductWarehouse {
         uuid product_id
