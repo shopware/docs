@@ -49,7 +49,7 @@ Accept: application/json
 }
 ```
 
-Fields can reference also fields of associations like in this example the assigned salesChannel names of the currency. The API adds the necessary associations automatically for you.
+Fields can also reference fields of associations like in this example the assigned salesChannel names of the currency. The API adds the necessary associations automatically.
 
 ```http
 POST /api/search/currency
