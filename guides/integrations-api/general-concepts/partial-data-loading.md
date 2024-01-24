@@ -7,7 +7,7 @@ nav:
 
 # Partial Data Loading
 
-Partial Data Loading allows you to select specific fields of an entity to be returned by the API. This can be useful if you only need a few fields of an entity and don't want to load the whole entity. This can reduce the response size and improve the performance of your application.
+`Partial data loading` allows you to select specific fields of an entity to be returned by the API. This can be useful if you only need a few fields of an entity and don't want to load the whole entity. This can reduce the response size and improve the performance of your application.
 
 ### Partial Data Loading vs Includes
 
