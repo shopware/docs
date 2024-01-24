@@ -49,7 +49,7 @@ class SearchStruct
 }
 ```
 
-A more special `SearchStruct` is the `CompanyFilterStruct`. See the [Company](../../../../../../docs/products/extensions/b2b-suite/guides/storefront/company) module for more details.
+A more special `SearchStruct` is the `CompanyFilterStruct`. See the [Company](../../../../../products/extensions/b2b-suite/guides/storefront/company) module for more details.
 
 ## Repository
 
