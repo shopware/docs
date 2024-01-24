@@ -106,7 +106,7 @@ Some fields are always loaded like the `id` or join relevant fields like foreign
 
 Some fields in the API are generated at runtime like `isSystemDefault` of the currency. These fields are loaded by default when the depending on data is available, otherwise they can be referenced in the `fields` parameter to force the API to load them.
 
-For custom entity definitions with Runtime flag, the depending on fields needs to be specified inside the constructor. See an example from the core:
+For custom entity definitions with runtime flag, the depending on fields needs to be specified inside the constructor. See an example from the core:
 
 ```php
 protected function defineFields(): FieldCollection
