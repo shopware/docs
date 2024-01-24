@@ -9,9 +9,9 @@ nav:
 
 `Partial data loading` allows you to select specific fields of an entity to be returned by the API. This can be useful if you only need a few fields of an entity and don't want to load the whole entity. This can reduce the response size and improve the performance of your application.
 
-### Partial Data Loading vs Includes
+### Partial data loading vs Includes
 
-Partial Data Loading is different from the [includes](./search-criteria.md#includes-apialias) feature. While includes works as post output processing, so the complete entity or data is loaded in the backend side and then filtered, partial data loading works already on Database level. This means that the database only loads the requested fields and not the whole entity.
+`Partial data loading` is different from the [includes](./search-criteria.md#includes-apialias) feature. The `includes` works as post-output processing, so the complete entity or data is loaded in the backend side and then filtered, while `partial data loading` works already on database level. This means that the database only loads the requested fields and not the whole entity.
 
 ## Usage
 
