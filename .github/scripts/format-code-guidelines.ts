@@ -72,6 +72,6 @@ async function formatCode(filePath: string): Promise<void> {
 }
 
 function codePathToGithubLink(codePath: string): string {
-	const urlPath = codePath.replace('resources/guidelines/', '');
+	const urlPath = codePath.replace('resources/guidelines/code', 'coding-guidelines');
 	return `https://github.com/shopware/shopware/blob/trunk/${urlPath}`
 }

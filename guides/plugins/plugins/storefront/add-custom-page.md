@@ -33,14 +33,10 @@ use Shopware\Storefront\Controller\StorefrontController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route(defaults={"_routeScope"={"storefront"}})
- */
+#[Route(defaults: ['_routeScope' => ['storefront']])]
 class ExampleController extends StorefrontController
 {
-    /**
-     * @Route("/example-page", name="frontend.example.page", methods={"GET"})
-     */
+    #[Route(path: '/example-page', name: 'frontend.example.page', methods: ['GET'])]
     public function examplePage(): Response
     {
     }
@@ -151,9 +147,7 @@ class ExampleController extends StorefrontController
         $this->examplePageLoader = $examplePageLoader;
     }
 
-    /**
-     * @Route("/example-page", name="frontend.example.page", methods={"GET"})
-     */
+    #[Route(path: '/example-page', name: 'frontend.example.page', methods: ['GET'])]
     public function examplePage(Request $request, SalesChannelContext $context): Response
     {
         $page = $this->examplePageLoader->load($request, $context);

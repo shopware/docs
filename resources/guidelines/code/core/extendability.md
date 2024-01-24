@@ -2,7 +2,7 @@
 
 ::: info
 This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/code/core/extendability.md)
+You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/coding-guidelines/core/extendability.md)
 :::
 
 # Extendability
@@ -85,7 +85,7 @@ We often use this pattern to realize **functional extensibility** and **function
 The best-known example is the [`checkout.order.placed`](https://github.com/shopware/shopware/blob/v6.4.12.0/src/Core/Checkout/Cart/Event/CheckoutOrderPlacedEvent.php) event. This event is [dispatched](https://github.com/shopware/shopware/blob/v6.4.12.0/src/Core/Checkout/Cart/SalesChannel/CartOrderRoute.php#L151) as soon as an order is created in the system. However, over time, it has been shown that it is best practice not to pass objects or entities around in events, but only a corresponding primary key so that the connected listeners can determine the data for themselves. Furthermore, possible asynchronous processing of the underlying processes is easier to realize this way. An optimized variant of this event would not contain the `private OrderEntity $order;` but only the primary key for the order `private string $orderId;`.
 
 #### Hooks
-Hooks are another good example of the observer pattern. Hooks are entry points for apps in which the so-called [**App scripts**](/docs/guides/plugins/apps/app-scripts) is enabled. Since apps do not have the permission to execute code on the server directly, hooks are a way to execute more complex business logic within the request without having to address the own app server via HTTP. Hooks are the equivalent of **events**.
+Hooks are another good example of the observer pattern. Hooks are entry points for apps in which the so-called [**App scripts**](/docs/guides/plugins/apps/app-scripts/) is enabled. Since apps do not have the permission to execute code on the server directly, hooks are a way to execute more complex business logic within the request without having to address the own app server via HTTP. Hooks are the equivalent of **events**.
 
 One of the best-known hooks is the [`product page loaded hook`](https://github.com/shopware/shopware/blob/v6.4.12.0/src/Storefront/Page/Product/ProductPageLoadedHook.php). This hook allows apps to load additional data on the product detail page. The hook is instantiated and dispatched [at controller level](https://github.com/shopware/shopware/blob/v6.4.12.0/src/Storefront/Controller/ProductController.php#L100). Each app script, which is registered to the hook, is executed.
 
@@ -93,3 +93,4 @@ One of the best-known hooks is the [`product page loaded hook`](https://github.c
 The adapter pattern is perfectly designed for **Functional exchange market**. We often realize this by allowing the user to do some configuration and select a corresponding adapter. These adapters are usually registered inside a registry, and third-party developers can easily add new adapters via events or via tagged services.
 
 A good example is the captcha implementation. The store owner can configure a [captcha type](https://docs.shopware.com/en/shopware-en/settings/basic-information#captcha), and we then use the [corresponding adapter](https://github.com/shopware/shopware/blob/v6.4.12.0/src/Storefront/Framework/Captcha/HoneypotCaptcha.php#L11) in the code for the configured captcha.
+

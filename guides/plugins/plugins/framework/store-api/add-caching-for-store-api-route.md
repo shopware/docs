@@ -51,9 +51,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
-/**
- * @Route(defaults={"_routeScope"={"store-api"}})
- */
+#[Route(defaults: ['_routeScope' => ['store-api']])]
 class CachedExampleRoute extends AbstractExampleRoute
 {
     private AbstractExampleRoute $decorated;
@@ -90,10 +88,7 @@ class CachedExampleRoute extends AbstractExampleRoute
         return $this->decorated;
     }
 
-    /**
-     * @Entity("swag_example")
-     * @Route("/store-api/example", name="store-api.example.search", methods={"GET", "POST"})
-     */
+    #[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET','POST'], defaults: ['_entity' => 'swag_example'])]
     public function load(Criteria $criteria, SalesChannelContext $context): ExampleRouteResponse
     {
         // The context is provided with a state where the route cannot be cached

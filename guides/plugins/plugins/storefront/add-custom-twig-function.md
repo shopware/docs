@@ -11,7 +11,9 @@ nav:
 
 Let us consider, for instance, you want to call a PHP script from the twig template during the theme development to create a `MD5-hash`. In such a case, you can create your own twig functions. For this example, pass a string to the `TwigFunction` and return a `MD5-Hash`.
 
-::: infoIt is not recommended to use twig functions in order to retrieve data from the database. In such a case, DataResolver could come in handy.:::
+::: info
+It is not recommended to use twig functions in order to retrieve data from the database. In such a case, DataResolver could come in handy.
+:::
 
 ## Prerequisites
 

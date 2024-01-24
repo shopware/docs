@@ -3,7 +3,7 @@ title: Document template refactoring
 date: 2020-08-12
 area: customer-order
 tags: [document, template, twig]
---- 
+---
 
 # Document template refactoring
 

@@ -5,7 +5,9 @@ nav:
 
 ---
 
-# What is devenv?
+# Devenv
+
+## What is devenv?
 
 Imagine [devenv](https://devenv.sh) to function as a dependency manager for the services and packages that you need to run your application for local development or even in a CI/CD context.
 
@@ -520,4 +522,16 @@ In case you can't find and stop running devenv processes, you can use the follow
 
 ```shell
 kill $(ps -ax | grep /nix/store  | awk '{print $1}')
+```
+
+### Are you unable to access http://127.0.0.1:8000 in your Browser?
+
+Try using http://localhost:8000 instead. This mostly applies to when using WSL2.
+
+### Are you looking for a full test setup with demo data?
+
+Run the below command:
+
+```shell
+composer setup && APP_ENV=prod bin/console framework:demodata && APP_ENV=prod bin/console dal:refresh:index
 ```

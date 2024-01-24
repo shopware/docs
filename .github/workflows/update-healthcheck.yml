@@ -20,6 +20,10 @@ on:
         description: "Healthcheck conclusion"
         required: true
         type: string
+      run_id:
+        description: "Workflow run ID"
+        required: true
+        type: string
 
 jobs:
 
@@ -30,5 +34,6 @@ jobs:
       repo: ${{ inputs.repo }}
       check: ${{ inputs.check }}
       conclusion: ${{ inputs.conclusion }}
+      run_id: ${{ inputs.run_id }}
     secrets:
       TOKEN: ${{ secrets.GITHUB_TOKEN }}

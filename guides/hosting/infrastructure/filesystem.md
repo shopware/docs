@@ -58,7 +58,9 @@ shopware:
     sitemap:
       url: "{url-to-your-sitemap-files}"
       # The Adapter Configuration
+
 ```
+<!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/Resources/config/packages/shopware.yaml","WATCHER_HASH":"183f85ba8f15e8e7d0006b70be20940f","WATCHER_CONTAINS":"filesystem"} -->
 
 If you want to regulate the uploaded file types, then you could add the keys `allowed_extensions`for the public filesystem or `private_local_download_strategy` for the private filesystem.
 With the `private_local_download_strategy` key you could choose the download strategy for private files (e.g., the downloadable products):
@@ -100,7 +102,7 @@ shopware:
 Be aware of the **prod** in the config path. CDNs are typically for production environments, but you can also set them for all environments in `config/packages/shopware.yml`.
 :::
 
-## Integrated adapter configurations
+## Supported adapter configurations
 
 ### Local
 
@@ -114,6 +116,14 @@ shopware:
 ```
 
 ### Amazon S3
+
+In order to use the S3 adapter you need to install the `league/flysystem-async-aws-s3` package.
+
+```bash
+composer require league/flysystem-async-aws-s3
+```
+
+Example configuration:
 
 ```yaml
 shopware:
@@ -137,7 +147,13 @@ If your S3 provider does not use buckets as subdomain like Minio in default conf
 
 ### Google Cloud Platform
 
-The bucket needs to use the "Fine-grained" [ACL mode](https://cloud.google.com/storage/docs/access-control#choose_between_uniform_and_fine-grained_access). This is required so that Shopware can manage the ACL of the objects.
+In order to use the Google Cloud Platform adapter you need to install the `league/flysystem-google-cloud-storage` package.
+
+```bash
+composer require league/flysystem-google-cloud-storage
+```
+
+Example configuration:
 
 ```yaml
 shopware:
@@ -151,6 +167,9 @@ shopware:
             projectId: "{your-project-id}"
             keyFilePath: "{path-to-your-keyfile}"
 ```
+
+The bucket needs to use the "Fine-grained" [ACL mode](https://cloud.google.com/storage/docs/access-control#choose_between_uniform_and_fine-grained_access). This is required so that Shopware can manage the ACL of the objects.
+
 
 ## Add your own adapter
 

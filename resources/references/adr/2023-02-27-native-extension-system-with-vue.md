@@ -70,3 +70,4 @@ Therefore, we decided to stick with our current plugin system for the administra
 
 ## Consequences
 We will continue to use the current plugin system for the administration and not switch to a native Vue solution.
+

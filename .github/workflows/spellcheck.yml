@@ -1,0 +1,19 @@
+name: Spellcheck
+
+on:
+  pull_request:
+    branches: [ main, next-6.6, v6.4 ]
+  workflow_dispatch:
+
+jobs:
+  spellcheck:
+    name: Spellcheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: rojopolis/spellcheck-github-actions@0.35.0
+        name: Spellcheck
+        with:
+          config_path: .spellcheck.yml
+          task_name: Markdown
+          # sort words in .wordlist.txt with "sort .wordlist.txt -o .wordlist.txt"

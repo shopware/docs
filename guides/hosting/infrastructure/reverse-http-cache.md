@@ -24,7 +24,7 @@ In this guide, we will use Varnish as an example for HTTP cache.
 This setup is compatible from Shopware version 6.4.
 :::
 
-![](../../../assets/reverse_proxy_setup.svg)
+![](../../../assets/reverseProxy-setup.svg)
 
 ### Configure Shopware
 
@@ -776,3 +776,5 @@ Additionally, we need to set up some VCL Snippets in the Fastly interface:
 <PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/hit.vcl" title="vcl_hit" target="_blank" />
 
 <PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/recv.vcl" title="vcl_recv" target="_blank" />
+
+<!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Storefront/Resources/config/packages/storefront.yaml","WATCHER_HASH":"caead56ad257ecec0e10a62dd3121bb6"} -->

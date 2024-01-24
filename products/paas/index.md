@@ -8,7 +8,7 @@ nav:
 # PaaS
 
 ::: info
-Shopware PaaS is available at request for Shopware merchants. Please approach the Shopware Sales to get more information on Shopware PaaS
+Shopware PaaS is available at request for Shopware merchants. Please approach the [Shopware Sales](https://www.shopware.com/en/#contact-sales) to get more information on Shopware PaaS
 :::
 
 Shopware PaaS is a platform-as-a-service to host, deploy and scale for your individual Shopware project.

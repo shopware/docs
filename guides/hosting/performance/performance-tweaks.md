@@ -79,7 +79,7 @@ Read more on [Elasticsearch setup](../infrastructure/elasticsearch/elasticsearch
 ## Prevent mail data updates
 
 ::: info
-[Prevent mail updates](/docs/v/6.4/resources/references/adr/performance/2022-03-25-prevent-mail-updates) feature is available starting with Shopware 6.4.11.0.
+[Prevent mail updates](../../../resources/references/adr/2022-03-25-prevent-mail-updates.md) feature is available starting with Shopware 6.4.11.0.
 :::
 
 To provide auto-completion for different mail templates in the Administration UI, Shopware has a mechanism that writes an example mail into the database when sending the mail.
@@ -160,7 +160,7 @@ framework:
 
 ```ini
 # don't evaluate assert()
-assert.active=0
+zend.assertions=-1
 
 # cache file_exists,is_file
 # WARNING: this will lead to thrown errors after clearing cache, while it tries to access cached Shopware_Core_KernelProdDebugContainer.php

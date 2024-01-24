@@ -52,14 +52,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route(defaults={"_routeScope"={"storefront"}})
- */
+#[Route(defaults: ['_routeScope' => ['storefront']])]
 class ExampleController extends StorefrontController
 {
-    /**
-    * @Route("/example", name="frontend.example.example", methods={"GET"})
-    */
+    #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'])]
     public function showExample(): Response
     {
         return $this->renderStorefront('@SwagBasicExample/storefront/page/example/index.html.twig', [

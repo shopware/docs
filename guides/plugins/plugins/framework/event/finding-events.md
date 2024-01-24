@@ -178,11 +178,7 @@ a `Criteria` instance.
 Let's have a look at an [example code](https://github.com/shopware/shopware/blob/v6.4.0.0/src/Core/Content/Product/SalesChannel/Listing/ResolveCriteriaProductListingRoute.php#L55-L59):
 
 ```php
-/**
- * @Since("6.2.0.0")
- * @Entity("product")
- * @Route("/store-api/product-listing/{categoryId}", name="store-api.product.listing", methods={"POST"})
- */
+#[Route(path: '/store-api/product-listing/{categoryId}', name: 'store-api.product.listing', methods: ['POST'], defaults: ['_entity' => 'product'])]
 public function load(string $categoryId, Request $request, SalesChannelContext $context, Criteria $criteria): ProductListingRouteResponse
 {
     $this->eventDispatcher->dispatch(
@@ -229,7 +225,7 @@ Since Shopware is built upon the Symfony framework, it also grants access to the
 Using the profiler, you can easily find all fired events in the current request.
 You can do so by opening up the profiler and clicking on the "Events" tab on the left.
 
-![](../../../../../assets/profiler_events.png)
+![](../../../../../assets/profiler-events.png)
 
 There you will find all events that were fired in the current request including their respective name to be used.
 

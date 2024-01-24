@@ -87,7 +87,7 @@ The registration also dispatches events to react to the different lifecycle even
 
 ### 5. Implement first ActionButtons, Webhooks, Payment
 
-[Check out the official app documentation to learn more about the different integration points with this SDK](/docs/guides/plugins/apps).
+[Check out the official app documentation to learn more about the different integration points with this SDK](/docs/guides/plugins/apps/app-base-guide.md#sdk-integration).
 
 You can also check out the [APP SDK](https://github.com/shopware/app-php-sdk) documentation.
 
