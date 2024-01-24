@@ -27,7 +27,7 @@ AddressBookWidget
 AddressDetailPage
 AddressListingPage
 Adminer
-AdminExtensionSDK
+MeteorAdminSDK
 AdministrationNewField
 AdministrationNewModule
 AdminQueueWorker
