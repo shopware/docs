@@ -123,4 +123,4 @@ protected function defineFields(): FieldCollection
 
 ## Limitations
 
-The current limitation of the `partial data loading` is that it only works on the Entity level. Any custom responses like a product detail page or CMS in the Store API can't be used with this feature, as the Store API needs the whole entity to generate the response. If you need a small response, we recommend to use the [includes](./search-criteria.md#includes-apialias) feature of the Search API.
+The current limitation of the `partial data loading` is that it only works on the Entity level. Any custom responses like a product detail page or CMS in the Store API can't be used with this feature, as the Store API needs the whole entity to generate the response. If you need a small response, we recommend using the [includes](./search-criteria.md#includes-apialias) feature of the Search API.
