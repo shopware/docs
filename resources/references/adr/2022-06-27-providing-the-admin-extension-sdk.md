@@ -2,10 +2,14 @@
 title: Providing the admin extension SDK
 date: 2022-06-15
 area: administration
-tags: [admin-extension-sdk, vue]
+tags: [admin-extension-sdk, meteor-admin-sdk, vue]
 ---
 
 # Providing the admin extension SDK
+
+::: warning
+The Admin Extension SDK has been renamed to Meteor Admin SDK.
+:::
 
 ::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
