@@ -53,7 +53,7 @@ Fields can also reference fields of associations like in this example the assign
 
 ```http
 POST /api/search/currency
-Authorization: Bearer .....
+Authorization: Bearer YOUR_ACCESS_TOKEN
 Content-Type: application/json
 Accept: application/json
 
