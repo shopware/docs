@@ -11,4 +11,4 @@ Order approval component is a part of the B2B Employee Management. It allows you
 
 ## Requirements
 
-* You need to have Employee Management component installed and activated (see [Employee Management](../employee-management/README.md)).
+* You need to have Employee Management component installed and activated (see [Employee Management](../employee-management/)).
