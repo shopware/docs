@@ -27,7 +27,7 @@ AddressBookWidget
 AddressDetailPage
 AddressListingPage
 Adminer
-AdminExtensionSDK
+MeteorAdminSDK
 AdministrationNewField
 AdministrationNewModule
 AdminQueueWorker
@@ -1217,6 +1217,8 @@ sandboxed
 sarven
 scalability
 scalable
+ScalarValuesAware
+ScalarValuesStorer
 ScheduledTask
 schemas
 ScriptEventRegistry
@@ -1608,3 +1610,6 @@ OTEL
 otel
 otlp
 grpc
+B2B Component 
+B2B Suite 
+B2B Components 
