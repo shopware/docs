@@ -7,7 +7,7 @@ nav:
 
 # B2B Components
 
-The B2B Components allow merchants to selectively choose and configure B2B capabilities according to their needs. They offer merchants the ability to craft a tailored B2B ecommerce experience for their business partners while also allowing agencies to fine-tune Shopware to meet specific requirements. This means that B2B components can be individually activated or deactivated for each business partner.
+The B2B Components allow merchants to selectively choose and configure B2B capabilities according to their needs. They offer merchants the ability to craft a tailored B2B ecommerce experience for their business partners while also allowing agencies to fine-tune Shopware to meet specific requirements. This means that B2B Components can be individually activated or deactivated for each business partner.
 
 In the world of digital B2B commerce, where businesses engage with other companies, we emphasize this vital distinction through these specific features :
 
