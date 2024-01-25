@@ -201,13 +201,13 @@ composer run e2e:open
 If you want to run the tests in CLI, please use the following command outside your container:
 
 ```bash
-composer run e2e:admin:run
+composer e2e:cypress -- run --spec="cypress/e2e/administration/**/*.cy.js"
 ```
 
 or
 
 ```bash
-composer run e2e:storefront:run
+composer e2e:cypress -- run --spec="cypress/e2e/storefront/**/*.cy.js"
 ```
 
 To see a complete overview on all psh scripts for e2e tests, feel free to refer to our [e2e command reference](../../../../resources/references/testing-reference/e2e-commands).
