@@ -81,11 +81,11 @@ stateDiagram-v2
     Calculated --> [*] : order
 ```
 
-|Cart state | Description|
+| Cart state | Description|
 |------|------------|
-|Empty | A cart with no items will have default shipping and payment settings. |
-|Dirty | On adding a new line item, the cart undergoes modifications with invalid prices, raw line items, and uncertain delivery validity. Consequently, calculations are necessary.|
-|Calculated | After accurate calculations, the cart can be either submitted as an order or may contain errors that need to be addressed. |
+| Empty | A cart with no items will have default shipping and payment settings. |
+| Dirty | On adding a new line item, the cart undergoes modifications with invalid prices, raw line items, and uncertain delivery validity. Consequently, calculations are necessary.|
+| Calculated | After accurate calculations, the cart can be either submitted as an order or may contain errors that need to be addressed. |
 
 ## Calculation
 
@@ -104,12 +104,12 @@ stateDiagram-v2
     Persist --> [*]
 ```
 
-|Cart calculation state | Description|
+| Cart calculation state | Description|
 |------|------------|
-|Enrich | The calculation process in the "enrich" state for line items involves adding images, its descriptions and determining prices|
-|Process | During the process state, price updates occur, adjustments to shipping and payment are made|
-|Validate | In the validate state, validation is performed using the rule system and cart changes based on plausibility checks. |
-|Persist | The persist state is responsible for updating the storage. |
+| Enrich | The calculation process in the **enrich state** for line items involves adding images, its descriptions and determining prices |
+| Process | During the **process state**, price updates occur, adjustments to shipping and payment are made|
+| Validate | In the **validate state**, validation is performed using the rule system and cart changes based on plausibility checks. |
+| Persist | The **persist state** is responsible for updating the storage. |
 
 ### Cart enrichment
 

@@ -16,7 +16,7 @@ The audit log component can save different log types and author information like
 
 ```mermaid
 classDiagram 
-    b2b_audit_log_index o--> b2b_audit_log : n to 1
+    b2b_audit_log_index <--o b2b_audit_log : n to 1
     b2b_audit_log o--> b2b_audit_log_author : n to 1
     class b2b_audit_log_index{
         id 
