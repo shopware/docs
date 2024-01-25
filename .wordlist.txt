@@ -1217,6 +1217,8 @@ sandboxed
 sarven
 scalability
 scalable
+ScalarValuesAware
+ScalarValuesStorer
 ScheduledTask
 schemas
 ScriptEventRegistry
