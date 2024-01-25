@@ -1610,3 +1610,6 @@ OTEL
 otel
 otlp
 grpc
+B2B Component 
+B2B Suite 
+B2B Components 
