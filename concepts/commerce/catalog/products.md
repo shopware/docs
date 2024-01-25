@@ -33,8 +33,8 @@ Look at the below condensed overview of relationships between entities - product
 
 ```mermaid
 erDiagram
-    Product||--|{ ProductCategory : "m:1"
-    ProductCategory}|--|| Category : "1:m"
+    Product||--|{ ProductCategory : "M:1"
+    ProductCategory}|--|| Category : "1:M"
     Product {
         uuid product_id
     }
@@ -45,17 +45,17 @@ erDiagram
     Category {
         uuid category_id
     }
-    Product ||--|{ ProductOption : "1:m"
+    Product ||--|{ ProductOption : "1:M"
     ProductOption{
         uuid product_id
         uuid property_group_option_id
     }
-    ProductOption }|--|| PropertyGroupOption : "m:1"
+    ProductOption }|--|| PropertyGroupOption : "M:1"
     PropertyGroupOption{
         uuid property_group_option_id
         uuid property_group_id
     }
-        PropertyGroupOption }|--|| PropertyGroup : "m:1"
+        PropertyGroupOption }|--|| PropertyGroup : "M:1"
     PropertyGroup{
         uuid property_group_id
     }
@@ -70,12 +70,12 @@ erDiagram
         uuid product_id
         uuid parent_id
     }
-    Product ||--|{ PropertyGroupOption : "1:m"
+    Product ||--|{ PropertyGroupOption : "1:M"
     PropertyGroupOption{
         uuid property_group_option_id
         uuid property_group_id
     }
-    PropertyGroupOption }|--|| PropertyGroup : "m:1"
+    PropertyGroupOption }|--|| PropertyGroup : "M:1"
     PropertyGroup{
         uuid property_group_id
     }
