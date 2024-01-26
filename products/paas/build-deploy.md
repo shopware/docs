@@ -111,6 +111,7 @@ Sometimes, you might want to trigger a rebuild and deploy of your environment wi
 
 ```bash
 shopware variable:create --environment main --level environment --prefix env --name REBUILD_DATE --value "$(date)" --visible-build true
+```
 
 To force a rebuild at any time, update the variable with a new value:
 
