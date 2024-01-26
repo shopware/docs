@@ -78,7 +78,7 @@ If this is the first deployment, the following operations are performed:
 * Setup script is executed
 * Theme is set
 * Secrets are generated
-* `installer/installed` file is created
+* `install.lock` file is created
 
 You can also customize this script, however, make sure to keep operations to a minimum, as your store will not be exposed to web traffic during the execution. Connections made during the meantime will be queued in a suspended state and not necessarily fail but will take longer than usual (i.e., until the deployment has finished).
 
