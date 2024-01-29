@@ -37,7 +37,7 @@ After both steps have been executed successfully (you will get extensive logging
 
 ## First deployment
 
-The first time the site is deployed, Shopware's command line installer will run and initialize Shopware. It will not run again unless the `installer/installed` file is removed. **Do not remove that file unless you want the installer to run on the next deploy.**
+The first time the site is deployed, Shopware's command line installer will run and initialize Shopware. It will not run again unless the `install.lock` file is removed. **Do not remove that file unless you want the installer to run on the next deploy.**
 
 The installer will create an administrator account with the default credentials.
 
