@@ -40,7 +40,7 @@ You can use these commands to check your actual environment:
   * ext-json  
   * ext-libxml  
   * ext-mbstring  
-  * ext-openssl  
+  * ext-openssl (there is an [issue](https://github.com/shopware/shopware/issues/3543) with OpenSSL 3.0.7)
   * ext-pcre  
   * ext-pdo  
   * ext-pdo\_mysql  
