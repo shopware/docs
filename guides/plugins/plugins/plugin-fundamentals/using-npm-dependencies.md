@@ -19,9 +19,9 @@ This guide is also available as a video:
 
 <YoutubeRef video="wfBuWdff35c" title="Shopware 6: Your custom NPM dependencies (Developer Tutorial) - YouTube" target="_blank" />
 
-{% hint style="warning" %}
+::: warning
 This video shows how to resolve the NPM package name as an alias. We recommend resolving all node_modules instead like shown in the code example below.
-{% endhint %}
+:::
 
 ## Adding a npm package to the Administration or the Storefront
 
