@@ -47,8 +47,6 @@ module.exports = (params) => {
 }
 ```
 
-{% endcode %}
-
 Let us take a closer look at the code. In the first line, we export a so-called arrow function. The build system from Shopware calls this function when either the Administration or Storefront is being built.
 
 Now we add the `node_modules` folder from our extension. `resolve.modules` tells webpack what directories should be searched when resolving modules. By default, the shopware webpack config only considers the `node_modules` folder of the platform. By accessing `params.basePath` we get the absolute path to our extension. We then add the rest of the path to our extensions `node_modules`. Now webpack will also search for modules in our `node_modules` folder.
