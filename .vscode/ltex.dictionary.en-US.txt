@@ -1,2 +1,7 @@
 Symfony
 Fastly
+Monolog
+OpenTelemetry
+Blackfire
+gRPC
+OTLP

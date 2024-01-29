@@ -1,3 +1,10 @@
+---
+nav:
+  title: Doc Process
+  position: 20
+
+---
+
 # Documentation Process
 
 You have gone a long way in understanding audience types, language rules, grammar treatment on textual content, and Shopware documentation structure to managing assets.
@@ -38,6 +45,25 @@ In your first draft:
 * Work with cross-references \(knowledge is a network, not a one-way street \).
 * Try to use non-Shopware-specific language when possible or provide a link to its description (e.g., "DAL").
 
+### Guidelines to writing concepts
+
+* **Introduction** - Introduce the concept (for example, cart) by its purpose in such a way that it answers the following general questions:
+  * *What is a cart?*
+  * *What can it contain?*
+  * *How does it relate to users and orders?*
+  * *What can the readers expect in the further connected articles?*
+
+Use cross-references to help users fully understand the text — for example, provide a link to *configurable products* or *checkout* articles. Don't use terms like *"custom products"* as these are Shopware-specific, and newcomers may find it difficult to understand.
+
+* **Comprehensive explanation** - Explain the concept in detail with examples, illustrations, tables, graphs, or pseudo-code.
+
+  Don't use any Shopware-specific source code. Using source code within a conceptual article has the following drawbacks:
+  * It introduces another dependency that has to be maintained.
+  * It builds on the presumption that readers know the given language and context.
+  * People tend to copy & paste without context.
+
+* **Conclusions** - If possible add a connective statement to the next article that follows.
+
 ## Review
 
 After writing the first 30%, consult a reviewer to give some initial feedback. Discuss the current progress and re-arrange some parts if needed.
@@ -58,8 +84,10 @@ All contents are based on Shopware Major versions, such as 6.3, 6.4, 6.5, etc. T
 
 If a documented feature or functionality is introduced within major versions (and also in cases where you think it is applicable), please include a hint showing the version constraints as below:
 
-{% hint style="info" %}
+::: info
 This functionality is available starting with Shopware 6.4.3.0.
-{% endhint %}
+:::
+
+
 
 **Your contribution is our pride!**

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Context
+  position: 30
+
+---
+
 # Context
 
 The ContextResolver helps you map the Shopware requests to struct classes to work with them more easily.
@@ -39,4 +46,4 @@ $webhook->payload; // the event data
 - [Payment Validate](https://github.com/shopware/app-php-sdk/blob/main/src/Context/Payment/PaymentValidateAction.php) - Payment validate action
 - [Payment Finalize](https://github.com/shopware/app-php-sdk/blob/main/src/Context/Payment/PaymentFinalizeAction.php) - Payment finalize action
 
-Next, we will look into the [Signing of responses](./04-signing.md).
+Next, we will look into the [Signing of responses](./04-signing).

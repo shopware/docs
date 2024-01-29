@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom route
+  position: 30
+
+---
+
 # Add custom route
 
 Routes in the Shopware 6 Administration are essentially the same as in any other [Vue Router](https://router.vuejs.org). This guide will teach you the basics of creating your very first route from scratch.
@@ -27,7 +34,7 @@ routes: {
 },
 ```
 
-Routes can be matched by name and path. This configuration results in this route's full name being `custom.module.overview` and the URL being `/overview` relative to the Administration's default URL. Usually you want to render your custom component here, which is explained [here](add-custom-component.md). But that is not all! Routes can have parameters, to then be handed to the components being rendered and much more. Learn more about what the Vue Router can do in its official [Documentation](https://router.vuejs.org/guide/essentials/dynamic-matching.html#reacting-to-params-changes).
+Routes can be matched by name and path. This configuration results in this route's full name being `custom.module.overview` and the URL being `/overview` relative to the Administration's default URL. Usually you want to render your custom component here, which is explained [here](add-custom-component). But that is not all! Routes can have parameters, to then be handed to the components being rendered and much more. Learn more about what the Vue Router can do in its official [Documentation](https://router.vuejs.org/guide/essentials/dynamic-matching.html#reacting-to-params-changes).
 
 ## Meta data and dynamic parameters
 
@@ -81,6 +88,6 @@ The `bundle-name` is separated by dots instead of dashes here though. The second
 
 ## More interesting topics
 
-* [Adding a custom service](add-custom-service.md)
-* [Customizing a module](customizing-modules.md)
-* [Adding permissions](add-acl-rules.md)
+* [Adding a custom service](add-custom-service)
+* [Customizing a module](customizing-modules)
+* [Adding permissions](add-acl-rules)

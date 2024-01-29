@@ -17,7 +17,7 @@ Of course you'll have to understand JavaScript, but that's a prerequisite for Sh
 ## Definition of an Administration service
 
 Shopware 6 uses [bottleJS](https://github.com/young-steveo/bottlejs) to inject services.
-Services are small self-contained utility classes, like the [repositoryFactory](https://github.com/shopware/platform/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/core/data-new/repository-factory.data.js), which provides a way to talk to the API.
+Services are small self-contained utility classes, like the [repositoryFactory](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/core/data-new/repository-factory.data.js), which provides a way to talk to the API.
 
 ## Injection of a service
 

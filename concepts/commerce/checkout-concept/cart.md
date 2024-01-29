@@ -1,3 +1,10 @@
+---
+nav:
+  title: Cart
+  position: 10
+
+---
+
 # Cart
 
 Shopping cart management is a central feature of Shopware 6. The shopping cart resides in the checkout bundle and is a central part of the checkout process.
@@ -24,7 +31,7 @@ The cart has very few hard dependencies on other core entities in Shopware 6. En
 
 An instance of this class represents one single cart. As shown in the diagram below, relations to central Entities of the system are omitted. This allows Shopware 6 to manage multiple carts per user, per sales channel, or across all sales channels. The only identification is a token hash.
 
-![Representation of the cart struct](../../../.gitbook/assets/cart-struct.png)
+![Representation of the cart struct](../../../assets/cart-struct.png)
 
 This highly mutable data structure is acted upon from requests and calculated and validated through services. It contains:
 
@@ -61,13 +68,13 @@ The price of all line items, including tax, delivery costs, voucher discounts, a
 
 Shopware 6 manages the cart's state through different services. The diagram below illustrates the different states the cart can have and the state changes it can go through.
 
-![Cart state](../../../.gitbook/assets/cart-state.png)
+![Cart state](../../../assets/cart-state.png)
 
 ## Calculation
 
 Calculating a cart is one of the more costly operations an ecommerce system must support. Therefore the interfaces of the cart are designed as precise and as quick as possible. The calculation is a multi-stage process that revolves around the mutation of the data structure of the cart struct shown in the diagram below:
 
-![Cart calculation](../../../.gitbook/assets/cart-calculation-steps.png)
+![Cart calculation](../../../assets/cart-calculation-steps.png)
 
 ### Cart enrichment
 
@@ -98,7 +105,7 @@ A default set of collectors is implemented in Shopware 6, which has a set call o
 | Shopware\Core\Checkout\Promotion\Cart\CartPromotionsCollector | Enrich add, remove and validate promotions |
 | Shopware\Core\Checkout\Shipping\Cart\ShippingMethodPriceCollector | Handle shipping prices |
 
-![Cart enrichment steps](../../../.gitbook/assets/cart-enrichtment-steps.png)
+![Cart enrichment steps](../../../assets/cart-enrichtment-steps.png)
 
 ## Cart processors - price calculation and validation
 
@@ -117,13 +124,13 @@ After the cart has been processed, it is validated against the rules, which can 
 * Everybody buying a car gets a pair of sunglasses for free.
 * Every cart containing two products gets a discount of 2%.
 
-![Cart validation](../../../.gitbook/assets/cart-validation.png)
+![Cart validation](../../../assets/cart-validation.png)
 
 As you can see in the diagram above, the cart is modified during the enrichment process. The sunglasses are added in the first iteration, and in the second iteration, the discount is added as the cart contains two products. This results in the expected state of one car, one pair of sunglasses, and a two-percent discount.
 
 ## Cart storage
 
-Contrary to other entities in the system, the cart is not managed through the [Data Abstraction Layer](https://developer.shopware.com/docs/concepts/framework/data-abstraction-layer)\(DAL)\. The cart can only be written and retrieved as a whole. As discussed in the sections, the workload of Shopware 6 can only be performed on the whole object in memory.
+Contrary to other entities in the system, the cart is not managed through the [Data Abstraction Layer](/docs/concepts/framework/data-abstraction-layer)\(DAL)\. The cart can only be written and retrieved as a whole. As discussed in the sections, the workload of Shopware 6 can only be performed on the whole object in memory.
 
 ## Cart control
 

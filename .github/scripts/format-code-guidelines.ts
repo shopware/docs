@@ -6,6 +6,7 @@ const formattingPromises = [];
 for await (const entry of walk("./resources/guidelines/code/core")) {
 	if (entry.isDirectory) continue;
 	if (path.basename(entry.path).startsWith('_')) continue;
+	if (path.basename(entry.path) === 'index.md') continue;
 	if (path.basename(entry.path) === 'README.md') continue;
 	formattingPromises.push(formatCode(entry.path));
 }
@@ -14,10 +15,10 @@ await Promise.allSettled(formattingPromises);
 
 function addHint(buffer, filePath) {
 	buffer += '\n';
-	buffer += '{% hint style="info" %}\n';
+	buffer += '::: info\n';
 	buffer += 'This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.\n';
 	buffer += `You can find the original version [here](${codePathToGithubLink(filePath)})\n`;
-	buffer += '{% endhint %}\n';
+	buffer += ':::\n';
 
 	return buffer;
 }
@@ -71,6 +72,6 @@ async function formatCode(filePath: string): Promise<void> {
 }
 
 function codePathToGithubLink(codePath: string): string {
-	const urlPath = codePath.replace('resources/guidelines/', '');
-	return `https://github.com/shopware/platform/blob/trunk/${urlPath}`
+	const urlPath = codePath.replace('resources/guidelines/code', 'coding-guidelines');
+	return `https://github.com/shopware/shopware/blob/trunk/${urlPath}`
 }

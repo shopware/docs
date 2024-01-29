@@ -7,10 +7,10 @@ tags: [process, backwards compatibility]
 
 # Experimental features
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2023-05-10-experimental-features.md)
-{% endhint %}
+You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2023-05-10-experimental-features.md)
+:::
 
 ## Context
 
@@ -121,15 +121,16 @@ Component.register('sw-new-component', {
 Blocks, SCSS classes, JS plugins etc. can be marked as experimental, meaning that they are not covered by the backwards compatibility promise.
 
 In twig blocks can be wrapped as being experimental:
+
 ```twig
 {# @experimental stableVersion:v6.6.0 #}
 {% block awesome_new_feature %}
    ...
 {% endblock %}
-
 ```
 
 In addition to that, we can also mark the whole template as experimental:
+
 ```twig
 {# @experimental stableVersion:v6.6.0 #}
 {% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
@@ -168,3 +169,5 @@ We will add the following automated checks to ensure that the `@experimental` an
 * The BC checker will be adapted to handle the `@experimental` annotation in the same way as it handles `@internal`.
 * The API schema generator will be adapted to add the `Experimental` tag to all auto-generated CRUD-routes if the entity definition is marked as experimental.
 * The test that checks that all API routes have OpenApi specification also checks that the route is marked as experimental in the documentation when the route or controller method is marked as experimental.
+
+this ADR was supplemented in [Add Feature property to \`@experimental\` annotation](./2023-09-06-feature-property-for-experimental-anotation)

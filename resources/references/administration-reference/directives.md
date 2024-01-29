@@ -1,8 +1,15 @@
+---
+nav:
+  title: Directives
+  position: 30
+
+---
+
 # Directives reference
 
 This is an overview of all the directives registered globally to Vue.
-Directives are the same as normally in Vue, learn how to use them [here](./../../../../guides/plugins/plugins/administration/adding-directives.md)
-Or see all of them in the folder [here](https://github.com/shopware/platform/tree/trunk/src/Administration/Resources/app/administration/src/app/directive)
+Directives are the same as normally in Vue. Checkout the [Using directives](../../../guides/plugins/plugins/administration/adding-directives.md) article
+or refer to the [directives](https://github.com/shopware/shopware/tree/trunk/src/Administration/Resources/app/administration/src/app/directive) folder in the GIT repository.
 
 ## Overview of directives
 

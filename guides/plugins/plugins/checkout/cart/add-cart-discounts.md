@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add cart discounts
+  position: 30
+
+---
+
 # Add Cart Discounts
 
 ## Overview
@@ -6,9 +13,9 @@ In this guide you'll learn how to create discounts for your cart. In this exampl
 
 ## Prerequisites
 
-In order to create cart discounts for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md).
+In order to create cart discounts for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide).
 
-Furthermore you should be familiar with the service registration in Shopware, otherwise head over to our [Add custom service](../../plugin-fundamentals/add-custom-service.md) guide.
+Furthermore you should be familiar with the service registration in Shopware, otherwise head over to our [Add custom service](../../plugin-fundamentals/add-custom-service) guide.
 
 ## Creating the processor
 
@@ -16,9 +23,8 @@ To add a discount to the cart, you should use the processor pattern. For this yo
 
 Let's start with the actual example code:
 
-{% code title="<plugin root>/src/Core/Checkout/ExampleProcessor.php" %}
-
 ```php
+// <plugin root>/src/Core/Checkout/ExampleProcessor.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Checkout;
@@ -103,8 +109,6 @@ class ExampleProcessor implements CartProcessorInterface
 }
 ```
 
-{% endcode %}
-
 As you can see, all line items of type product containing the string 'example' in their name are fetched. Also, a few information are saved into variables, since we'll need them several times. If no product in the cart matches your condition, we can early return in the `process` method. Afterwards we create a new line item for the new discount. For the latter, we don't want that the line item is stackable and it shouldn't be removable either.
 
 So let's get to the important part, which is the price. For a percentage discount, we have to use the `PercentagePriceDefinition`. It consists of an actual value, the currency precision and, if necessary, some rules to apply to. This definition is required for the cart to tell the core how this price can be recalculated even if the plugin would be uninstalled.
@@ -116,4 +120,4 @@ Shopware comes with a called `LineItemRule`, which requires two parameters:
 
 After adding the definition to the line item, we have to calculate the current price of the discount. Therefore we can use the `PercentagePriceCalculator` of the core. The last step is to add the discount to the new cart which is provided as `Cart $toCalculate`.
 
-That's it for the main code of our custom `CartProcessor`. Now we only have to register it in our `services.xml` using the tag `shopware.cart.processor` and priority `4500`, which is used to get access to the calculation after the [product processor](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Checkout/DependencyInjection/cart.xml#L223-L231) handled the products.
+That's it for the main code of our custom `CartProcessor`. Now we only have to register it in our `services.xml` using the tag `shopware.cart.processor` and priority `4500`, which is used to get access to the calculation after the [product processor](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/DependencyInjection/cart.xml#L223-L231) handled the products.

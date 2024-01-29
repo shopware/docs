@@ -1,3 +1,10 @@
+---
+nav:
+  title: Adding permissions
+  position: 110
+
+---
+
 # Adding permissions
 
 ## Overview
@@ -29,7 +36,7 @@ A distinction is made here between normal `permissions` and `additional_permissi
 
 ### Normal permissions
 
-![Permissions GUI](../../../../.gitbook/assets/permissions-gui.png)
+![Permissions GUI](../../../../assets/permissions-gui.png)
 
 `permissions`:
 
@@ -54,7 +61,7 @@ For each admin privilege, the needed entity privileges need to be assigned. Depe
 
 In addition to the normal `permissions`, which represent CRUD functionality, there are also `additional_permissions`. These are intended for all functions that cannot be represented by CRUD.
 
-![Additional permissions GUI](../../../../.gitbook/assets/additional_permissions-gui.png)
+![Additional permissions GUI](../../../../assets/additionalPermissions-gui.png)
 
 The `additional_permissions` have their own card below the normal permissions grid. An example for `additional_permissions` would be: "clearing the cache". This is an individual action without CRUD functionalities. The key is still used for grouping. Therefore the role can be individual and does not have to follow the scheme.
 
@@ -317,7 +324,7 @@ sw.privileges.${category}.${key}.${role_key}
 
 Just add the snippets to your snippets file:
 
-```javascript
+```json
 {
   "sw-privileges": {
     "permissions": {
@@ -371,14 +378,14 @@ Shopware.Component.register('your-plugin-component', {
 
 Below is an example to hide the element if the user has not the right privilege:
 
-```markup
+```html
 <button v-if="acl.can('review.editor')">
 </button>
 ```
 
 For example you could disable elements if the user has not the right privilege to use them and inform the user with a tooltip that a privilege is missing. To achieve this, you can use the global snippet path:
 
-```markup
+```html
 <button @click="saveProduct"
         :disabled="!acl.can('review.editor')"
         v-tooltip="{

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Using the state machine
+  position: 10
+
+---
+
 # Using the State Machine
 
 ## Overview
@@ -10,13 +17,13 @@ An order in Shopware consists of three states:
 
 Each of those comes with several possible values, e.g. for the transactions some of those are: "open", "reopen", "cancel", etc. States are connected in a way, that you cannot just jump from each state to each other state, e.g. you can't set the order transaction state to "refunded" when the state was not "paid" yet. Those connections are called `transitions`.
 
-Each of those states can be changed using the [StateMachineRegistry](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/System/StateMachine/StateMachineRegistry.php). This guide will cover how to use the state machine and show some examples.
+Each of those states can be changed using the [StateMachineRegistry](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/System/StateMachine/StateMachineRegistry.php). This guide will cover how to use the state machine and show some examples.
 
 ## Transitioning
 
 This section will cover an example for each kind of order state, for the order itself, the transaction \(aka payment\) and delivery.
 
-For each example you have to inject the `Shopware\Core\System\StateMachine\StateMachineRegistry` into your service using the [Dependency Injection container](../../plugin-fundamentals/dependency-injection.md).
+For each example you have to inject the `Shopware\Core\System\StateMachine\StateMachineRegistry` into your service using the [Dependency Injection container](../../plugin-fundamentals/dependency-injection).
 
 You then execute the method `transition` on the said `StateMachineRegistry`. It expects two parameters:
 
@@ -27,10 +34,10 @@ You then execute the method `transition` on the said `StateMachineRegistry`. It 
 
 Let's have a look at the constructor parameters for the `Transition`:
 
-* The first parameter is the name of the state. As already mentioned in the Overview, possible values here are [order](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Checkout/Order/OrderDefinition.php#L49), [order\_transaction](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Checkout/Order/Aggregate/OrderTransaction/OrderTransactionDefinition.php#L23) or [order\_delivery](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Checkout/Order/Aggregate/OrderDelivery/OrderDeliveryDefinition.php#L31). Since those are basically the name of their respective entity, you can use the constant of those definitions. This ensures, that if Shopware would ever change a state's name, your changes would keep working.
-* The second parameter is the ID of the entity. This means the ID of the order, the order transaction or the order delivery entity. You can find those using the respective entities' repositories, find out more about those in general in our guide about [reading data](../../framework/data-handling/reading-data.md). There will a full example at the end of this guide as well.
+* The first parameter is the name of the state. As already mentioned in the Overview, possible values here are [order](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/Order/OrderDefinition.php#L49), [order\_transaction](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/Order/Aggregate/OrderTransaction/OrderTransactionDefinition.php#L23) or [order\_delivery](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/Order/Aggregate/OrderDelivery/OrderDeliveryDefinition.php#L31). Since those are basically the name of their respective entity, you can use the constant of those definitions. This ensures, that if Shopware would ever change a state's name, your changes would keep working.
+* The second parameter is the ID of the entity. This means the ID of the order, the order transaction or the order delivery entity. You can find those using the respective entities' repositories, find out more about those in general in our guide about [reading data](../../framework/data-handling/reading-data). There will a full example at the end of this guide as well.
 * The third parameter is the new state to be transitioned to. E.g. this could be `paid`, if the order is still `open`.
-* The last parameter is the name of the `StateMachineStateField`. If you have a look at the [order definition](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Checkout/Order/OrderDefinition.php#L106), you will find the respective field. This is the case for each of those definitions, the [order definition](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Checkout/Order/OrderDefinition.php#L106), the [order transaction](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Checkout/Order/Aggregate/OrderTransaction/OrderTransactionDefinition.php#L60) and the [order delivery](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Checkout/Order/Aggregate/OrderDelivery/OrderDeliveryDefinition.php#L79). Thankfully, this field is always called `stateId` in our default definitions.
+* The last parameter is the name of the `StateMachineStateField`. If you have a look at the [order definition](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/Order/OrderDefinition.php#L106), you will find the respective field. This is the case for each of those definitions, the [order definition](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/Order/OrderDefinition.php#L106), the [order transaction](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/Order/Aggregate/OrderTransaction/OrderTransactionDefinition.php#L60) and the [order delivery](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/Order/Aggregate/OrderDelivery/OrderDeliveryDefinition.php#L79). Thankfully, this field is always called `stateId` in our default definitions.
 
 So now let's start with the explanations for each state.
 
@@ -131,7 +138,7 @@ In this example, it is fetching all available order state transitions for the or
 
 ## Full example
 
-The following will show an example how to set the order delivery state to "shipped" by just knowing the order ID. For this section, we're going to deal with entity repositories, like explained in our guide about [reading data](../../framework/data-handling/reading-data.md).
+The following will show an example how to set the order delivery state to "shipped" by just knowing the order ID. For this section, we're going to deal with entity repositories, like explained in our guide about [reading data](../../framework/data-handling/reading-data).
 
 ```php
 public function setOrderDeliveryToShipped(string $orderId, $context): void
@@ -150,7 +157,7 @@ public function setOrderDeliveryToShipped(string $orderId, $context): void
 }
 ```
 
-So this example is making use of the repository for the `order_delivery` entity. It was injected previous using the [Dependency injection container](../../plugin-fundamentals/dependency-injection.md) and its respective ID `order_delivery.repository`.
+So this example is making use of the repository for the `order_delivery` entity. It was injected previous using the [Dependency injection container](../../plugin-fundamentals/dependency-injection) and its respective ID `order_delivery.repository`.
 
 Then it's creating a new `Criteria` object and adds a filter in order to only search for `order_delivery` entities, whose order ID equals our given order ID.
 
@@ -184,15 +191,15 @@ In this case we're using the `Criteria` constructor parameter, which is an array
 
 After searching for the order, we're using the `getDeliveries` method on the order entity and this way receive the ID of the delivery, which we can then continue to use with the state machine.
 
-{% hint style="warning" %}
+::: warning
 In those examples, we're using the method `first` on the deliveries. Yet, it's important to note, that there may be more than one delivery or even transaction and using `first` may not always return the right delivery or transaction. In that case, you'll definitely need more filters to find the proper delivery or transaction, e.g. if you want to change the very last delivery, you could use a sorting for this.
-{% endhint %}
+:::
 
 And that's it. You should now be able to change all kinds of order states!
 
 ## Using the helper
 
-Just one more thing worth noting. There's a [helper class](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Checkout/Order/Aggregate/OrderTransaction/OrderTransactionStateHandler.php) in Shopware, which can take of order transaction states for you.
+Just one more thing worth noting. There's a [helper class](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/Order/Aggregate/OrderTransaction/OrderTransactionStateHandler.php) in Shopware, which can take of order transaction states for you.
 
 It comes with a helper method for each of the possible order transaction states and only needs the respective transaction ID and the context.
 

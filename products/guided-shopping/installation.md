@@ -1,8 +1,15 @@
+---
+nav:
+  title: Digital Sales Rooms installation
+  position: 10
+
+---
+
 # Digital Sales Rooms Installation
 
-{% hint style="warning" %}
+::: warning
 To access the *Digital Sales Rooms* source code, please create a support ticket in your Shopware Account and share your GitLab (not GitHub) username. You will then be granted access to the private repository.
-{% endhint %}
+:::
 
 ## Installation and usage
 
@@ -10,9 +17,9 @@ To install and use the *Digital Sales Rooms* feature, follow the below steps:
 
 ### Get the plugin
 
-{% hint style="warning" %}
+::: warning
 The term "Guided Shopping" has been rebranded as "Digital Sales Rooms", though no modifications have been implemented in the source code at this point.
-{% endhint %}
+:::
 
 1. Clone or download the [SwagGuidedShopping repository](https://gitlab.com/shopware/shopware/6/services/swagguidedshopping).
 1. Extract the plugin, including the outer folder `SwagGuidedShopping`, to `platform/custom/plugins` directory of Shopware repository.
@@ -43,15 +50,15 @@ You can install the plugin via the admin panel or terminal server.
 1. Log in to the admin panel.
 1. Go to Extensions > My extensions
 
-   ![ ](../../.gitbook/assets/products-digitalSalesRooms-extensionsMenu.png)
+   ![ ](../../assets/products-digitalSalesRooms-extensionsMenu.png)
 
 1. Click on the “Upload extension” button and choose the zip file containing the plugin from your device.
 
-   ![ ](../../.gitbook/assets/products-digitalSalesRooms-uploadExtension.png)
+   ![ ](../../assets/products-digitalSalesRooms-uploadExtension.png)
 
 1. Once it is uploaded and listed, click “Install”.
 
-    ![ ](../../.gitbook/assets/products-digitalSalesRooms-installExtension.png)
+    ![ ](../../assets/products-digitalSalesRooms-installExtension.png)
 
 1. On successful installation, activate the plugin by clicking on the switch button on the left.
 
@@ -77,9 +84,9 @@ bin/console cache:clear
 
 Except for the self-hosted service, we recommend using any cloud-based service.
 
-{% hint style="info" %}
+::: info
 💡 We tested the service provided by [StackHero](https://www.stackhero.io/en/services/Mercure-Hub/pricing). Depending on the expected traffic, you can easily switch between the plans. For a small demo among a few people at the same time, the “Hobby” plan is sufficient.
-{% endhint %}
+:::
 
 Detailed below is the minimum configuration needed for a working stack apart from project specific CMS configurations.
 
@@ -93,7 +100,7 @@ Detailed below is the minimum configuration needed for a working stack apart fro
 
 * **Other settings** - Take a look at the below sample Mercure configuration on StackHero (Default settings is recommended).
 
-![ ](../../.gitbook/assets/products-digitalSalesRooms-mercureConfiguration.png)
+![ ](../../assets/products-digitalSalesRooms-mercureConfiguration.png)
 
 ### Daily service access
 
@@ -119,14 +126,14 @@ To do so,
       * You can leave the **API Base URL** as it is `https://api.daily.co/v1/` if not necessary.
       * Insert your **API KEY**.
 
-    ![ ](../../.gitbook/assets/products-digitalSalesRooms-videoConfig.png)
+    ![ ](../../assets/products-digitalSalesRooms-videoConfig.png)
 
     * **Mercure**
 
       * Replace *Mercure Hub Url* and *Mercure Hub Public Url* with your domain’s URL where the Mercure service is working and accessible from your stack. For instance, for the URL `https://fcoxpx.stackhero-network.com`, it would be `https://fcoxpx.stackhero-network.com/.well-known/mercure`.
       * Input the secret tokens that were set up in your Mercure service configuration.
 
-    ![ ](../../.gitbook/assets/products-digitalSalesRooms-mercureConfigExample.png)
+    ![ ](../../assets/products-digitalSalesRooms-mercureConfigExample.png)
 
 Daily and Mercure are two external services that are crucial for working with the Guided Shopping plugin.
 
@@ -138,60 +145,60 @@ Daily and Mercure are two external services that are crucial for working with th
 
 1. Link the guided-shopping plugin to PWA using the below command:
 
-    ```text
-    ln -s <your-path-to-guidedShoppingRepo>/src/Resources/app/pwa <your-path-to-shopware-pwa-repo>/sw-plugins/guided-shopping
-    ```
+```text
+ln -s <your-path-to-guidedShoppingRepo>/src/Resources/app/pwa <your-path-to-shopware-pwa-repo>/sw-plugins/guided-shopping
+```
 
 1. Navigate to the folder `pwa` > `sw-plugins` and open `local-plugins.json` file to add `"guided-shopping": true`.
 1. Edit `PWA_PATH` in makefile in guided-shopping folder with your current pwa folder path.
 1. Install additional dependencies using the below command:
 
-    ```text
-    make install-pwa
-    ```
+```text
+make install-pwa
+```
 
 1. Update `jest.config.ts` with the following example file:
 
-    ```js
-    module.exports = {
-      preset: "ts-jest",
-      testEnvironment: "jsdom",
-      moduleNameMapper: {
-        "^@/(.*)$": "<rootDir>/$1",
-        "^~/(.*)$": "<rootDir>/$1",
-        "^vue$": "vue/dist/vue.common.js",
-      },
-      verbose: true,
-      testMatch: [
-        "<rootDir>/sw-plugins/guided-shopping/**/__tests__/**/*.spec.{js,ts}",
-      ],
-      moduleFileExtensions: ["ts", "tsx", "js", "json"],
-      transform: {
-        "^.+\\.js$": "babel-jest",
-        "^.+\\.ts$": "ts-jest",
-        ".*\\.(vue)$": "vue-jest",
-      },
-      coverageDirectory: "coverage",
-      coverageReporters: ["html", "lcov", "text", "cobertura"],
-      collectCoverage: true,
-      watchPathIgnorePatterns: ["/node_modules/", "/dist/", "/.git/"],
-      modulePathIgnorePatterns: [".yalc"],
-      roots: [
-        "<rootDir>/sw-plugins",
-      ],
-      coveragePathIgnorePatterns: [
-        '/node_modules/',
-        '/.nuxt/',
-        '/.shopware-pwa/'
-      ],
-      transformIgnorePatterns: [
-        "/node_modules/(?!@shopware-pwa)"
-      ],
-      collectCoverageFrom: [
-        "sw-plugins/guided-shopping/logic/**/*.{js,ts}",
-      ],
-    }
-    ```
+```js
+module.exports = {
+   preset: "ts-jest",
+   testEnvironment: "jsdom",
+   moduleNameMapper: {
+     "^@/(.*)$": "<rootDir>/$1",
+     "^~/(.*)$": "<rootDir>/$1",
+     "^vue$": "vue/dist/vue.common.js",
+   },
+   verbose: true,
+   testMatch: [
+     "<rootDir>/sw-plugins/guided-shopping/**/__tests__/**/*.spec.{js,ts}",
+   ],
+   moduleFileExtensions: ["ts", "tsx", "js", "json"],
+   transform: {
+     "^.+\\.js$": "babel-jest",
+     "^.+\\.ts$": "ts-jest",
+     ".*\\.(vue)$": "vue-jest",
+   },
+   coverageDirectory: "coverage",
+   coverageReporters: ["html", "lcov", "text", "cobertura"],
+   collectCoverage: true,
+   watchPathIgnorePatterns: ["/node_modules/", "/dist/", "/.git/"],
+   modulePathIgnorePatterns: [".yalc"],
+   roots: [
+     "<rootDir>/sw-plugins",
+   ],
+   coveragePathIgnorePatterns: [
+     '/node_modules/',
+     '/.nuxt/',
+     '/.shopware-pwa/'
+   ],
+   transformIgnorePatterns: [
+     "/node_modules/(?!@shopware-pwa)"
+   ],
+   collectCoverageFrom: [
+     "sw-plugins/guided-shopping/logic/**/*.{js,ts}",
+   ],
+}
+```
 
 1. Open `tsconfig.json` file to add `@types/jest` into `compilerOptions.types` array and save it.
 
@@ -201,24 +208,22 @@ In order to synchronize the installed `SwagGuidedShopping` plugin in the backend
 
 1. Check credentials in the `.env` file (ADMIN_USER and ADMIN_PASSWORD).
 
-    {% hint style="info" %}
-    💡 Alternatively, you can invoke the `plugins` command manually using:
-    `npx @shopware-pwa/cli@canary plugins --user YOUR_ADMIN_USERNAME --password=YOUR_SECRET_PASS`
-    Now, the application is ready for the rebuild process.
-
-    Note that the admin credentials are required to connect to the installed plugin library through an Admin API.
-    {% endhint %}
+::: info
+Alternatively, you can invoke the `plugins` command manually using: `npx @shopware-pwa/cli@canary plugins --user YOUR_ADMIN_USERNAME --password=YOUR_SECRET_PASS`
+Now, the application is ready for the rebuild process.
+Note that the admin credentials are required to connect to the installed plugin library through an Admin API.
+:::
 
 1. Run the build command.
 
-    ```bash
-    # being in the root directory of your Shopware PWA project:
-    yarn build
-    # under the hood, plugins synchronization will be processed at the same time
-    ```
+```bash
+# being in the root directory of your Shopware PWA project:
+yarn build
+# under the hood, plugins synchronization will be processed at the same time
+```
 
 1. Re-deploy Shopware PWA.
 
 With this, the PWA will contain the Guided Shopping plugin and be ready to use.
 
-Now let us rehearse the steps before deployment by going through the [Checklist](./checklist.md).
+Now let us rehearse the steps before deployment by going through the [Checklist](./checklist).

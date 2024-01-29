@@ -1,6 +1,13 @@
+---
+nav:
+  title: Using utility functions
+  position: 250
+
+---
+
 # Using utility functions
 
-Utility functions in the Shopware 6 Administration are registered to [the Shopware object](the-shopware-object.md) and are therefore accessible everywhere in the Administration. They provide many useful [shortcuts](../../../../resources/references/core-reference/administration-reference/utils.md) for common tasks.
+Utility functions in the Shopware 6 Administration are registered to [the Shopware object](the-shopware-object) and are therefore accessible everywhere in the Administration. They provide many useful [shortcuts](../../../../resources/references/administration-reference/utils.md) for common tasks.
 
 ## Prerequisites
 
@@ -10,9 +17,8 @@ All you need for this guide is a running Shopware 6 instance, the files, a regis
 
 Let us see how to use one of the utility functions — for example, `capitalizeString` function. As the name implies, the `capitalizeString` function capitalizes strings by calling the [`lodash capitalize`](https://lodash.com/docs/4.17.15#capitalize) function.
 
-{% code title="<extension root>/src/Resources/app/administration/app/src/component/swag-basic-example/index.js" %}
-
 ```javascript
+// <extension root>/src/Resources/app/administration/app/src/component/swag-basic-example/index.js
 const { Component, Utils } = Shopware;
 
 Component.register('swag-basic-example', {
@@ -35,9 +41,7 @@ Component.register('swag-basic-example', {
 });
 ```
 
-{% endcode %}
-
 ## More, interesting topics
 
-* [Adding filters](add-filter.md)
-* [Adding mixins](add-mixins.md)
+* [Adding filters](add-filter)
+* [Adding mixins](add-mixins)

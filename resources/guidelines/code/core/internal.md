@@ -1,9 +1,9 @@
 
 
-{% hint style="info" %}
+::: info
 This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/code/core/internal.md)
-{% endhint %}
+You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/coding-guidelines/core/internal.md)
+:::
 
 # Internal
 
@@ -21,12 +21,12 @@ However, if all classes and properties had to be considered public api by us, we
 Therefore, we mark the elements that we do not consider to be public API. To do this, we have the following tools at our disposal.
 
 ## Decoration pattern
-Classes that are intended for **service decoration** are provided with an abstract class. This class is then provided with a `getDecorated` function to pass unimplemented functions directly to the core classes. [Read more](https://github.com/shopware/platform/blob/trunk/adr/2020-11-25-decoration-pattern.md)
+Classes that are intended for **service decoration** are provided with an abstract class. This class is then provided with a `getDecorated` function to pass unimplemented functions directly to the core classes. [Read more](https://github.com/shopware/shopware/blob/trunk/adr/2020-11-25-decoration-pattern.md)
 
 ## Final classes
 Tendentiously, just about all classes in Shopware should be declared as `final`. We do this for the following reasons:
 - We declare a DI container service as `final` so that it will not be extended. All services that can be exchanged via DI-Container have an `abstract class` implementation. Per `extends` from core services is not intended.
-- We declare **DTO classes** as `final` to indicate that we do not intend thrid party developers to derive from these classes. To append more data to DTO's we use the base `Struct` class which allows **Extensions**.
+- We declare **DTO classes** as `final` to indicate that we do not intend third party developers to derive from these classes. To append more data to DTO's we use the base `Struct` class which allows **Extensions**.
 - We declare **Event Subscriber** as `final` as we do not foresee deriving from them in order to leverage the events or extend their functionality.
 
 Classes that we declare as `final` are still Public API, because **Third Party Developers are consumers** of these classes. That means they access the public methods and functions of the classes.

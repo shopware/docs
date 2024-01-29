@@ -1,3 +1,10 @@
+---
+nav:
+  title: Requirements
+  position: 10
+
+---
+
 # Requirements
 
 Before installing Shopware 6, take a quick look at the requirements below to check if your local environment is capable of running it.
@@ -20,7 +27,7 @@ You can use these commands to check your actual environment:
 
 ### PHP
 
-* Compatible version : 8.1 and 8.2
+* Compatible version: 8.2 and 8.3
 * `memory_limit` : 512M minimum
 * `max_execution_time` : 30 seconds minimum
 * Extensions:
@@ -39,7 +46,6 @@ You can use these commands to check your actual environment:
   * ext-pdo\_mysql  
   * ext-phar  
   * ext-simplexml
-  * ext-sodium
   * ext-xml  
   * ext-zip  
   * ext-zlib
@@ -55,20 +61,22 @@ You can use these commands to check your actual environment:
 
 * MariaDB
 
-  * Compatible versions : at least 10.3
+  * Compatible version : at least 10.11
 
-  * Recommended version : at least 10.11
+  * Problematic versions: [10.11.5, 11.0.3](https://jira.mariadb.org/browse/MDEV-31931)
 
-  * Problematic versions: 10.3.29, 10.4.19, 10.5.10, [10.5.22, 10.6.15, 10.9.8, 10.10.6, 10.11.5, 11.0.3](https://jira.mariadb.org/browse/MDEV-31931)
-
-The `media:delete-unused` command requires at least MariaDB 10.9 or MySQL 8.
-
-For optimal MySQL performance, it is advisable to have minimum of 32 MB.
+For optimal MySQL performance, it is advisable to have a minimum of 32 MB.
 
 ### JavaScript
 
-* Node.js 18.0.0 or higher
+* Node.js 20.0.0 or higher
 * NPM 8.0.0 or higher
+
+## Redis
+
+* Compatible versions: 7.0 or higher
+* Recommended version: 7.2 or higher
+* Recommended configuration `maxmemory-policy`: `volatile-lfu`
 
 ## Webserver
 
@@ -76,8 +84,8 @@ To run Shopware in a development context, the [Symfony CLI](https://symfony.com/
 
 Below you will find the default configuration using either Caddy, Nginx or Apache as a webserver.
 
-{% tabs %}
-{% tab title="Caddy" %}
+<Tabs>
+<Tab title="Caddy">
 
 ```text
 mydomain.com {
@@ -104,9 +112,9 @@ mydomain.com {
 }
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Nginx" %}
+<Tab title="Nginx">
 
 ```text
 server {
@@ -176,14 +184,13 @@ server {
         try_files $uri /index.php$is_args$args;
     }
 }
-
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Apache" %}
+<Tab title="Apache">
 
-{% hint style="info" %}
+::: info
 The following modules are required:
 
 * mod_negotiation
@@ -191,7 +198,7 @@ The following modules are required:
 * mod_headers
 * mod_deflate
 
-{% endhint %}
+:::
 
 ```text
 <VirtualHost *:80>
@@ -208,8 +215,8 @@ The following modules are required:
 </VirtualHost>
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 ## Recommended stack
 
@@ -218,13 +225,14 @@ We recommend the following stack:
 * Webserver: Caddy
 * PHP: 8.2
 * SQL: MySQL 8 or Percona MySQL 8
-* Node: 18
+* Node: 20
 * Search: OpenSearch 2.8.0
 * Queue: RabbitMQ
+* Redis: 7.2
 
 Recommended PHP ini:
-{% page-ref page="../hosting/performance/performance-tweaks.md#php-config-tweaks" %}
+<PageRef page="../hosting/performance/performance-tweaks#php-config-tweaks" />
 
 ## Setup
 
-Once the requirements are fulfilled, follow up with the [Template](template.md) guide to set up Shopware.
+Once the requirements are fulfilled, follow up with the [Template](template) guide to set up Shopware.

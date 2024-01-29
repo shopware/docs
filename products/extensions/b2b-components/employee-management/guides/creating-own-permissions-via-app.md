@@ -1,29 +1,18 @@
-# Creating own permissions via app
+---
+nav:
+  title: Create permissions via App
+  position: 40
 
-This article explains how to create custom permissions using an app.
+---
 
-To add a new permission via an app, you need to use the app [script hook](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md) `b2b-role-permissions` in conjunction with app scripting:
+# Create Permissions via App
 
-{% code title="Resources/scripts/b2b-role-permissions/my-own-permissions.twig" %}
+App needs to use the API to extend and create permissions. Therefore, the apps can send a request to the Store API and pass the required parameters to [`/store-api/permission`]() route.
 
-```twig
-{% do hook.collection.addPermission('own_entity.read', 'own_entity', []) %}
-{% do hook.collection.addPermission('own_entity.edit', 'own_entity', ['own_entity.read']) %}
-{% do hook.collection.addPermission('own_entity.create', 'own_entity', ['own_entity.read', 'own_entity.edit']) %}
-{% do hook.collection.addPermission('own_entity.delete', 'own_entity', ['own_entity.read', 'own_entity.edit']) %}
-```
+After doing that, the already existing permissions created by Shopware or added by plugin, will be merged with the permission created by apps.
 
-{% endcode %}
+It is important to note that permissions have a unique name. So a permission named `employee.read` can neither be added by apps nor by plugins, because this name is already in use. So a new name can better be added by making use of snippets.
 
-The `PermissionCollector` collects the permissions of all app scripts and then passes them to the storefront, where they can be attached to the role by the user.
-If you want to check in the template if the user has this permission, the Twig function `isB2bAllowed` can be used:
+## Snippets
 
-```twig
-{% sw_extends '@Storefront/storefront/page/checkout/checkout-item.html.twig' %}
-
-{{ parent() }}
-
-{% if isB2bAllowed('own_entity.read') %}
-...
-{% endif  %}
-```
+The Snippet for the new permissions have to be added to the following namespace: `b2b.role-edit.permissions.[name]`. The placeholder has to be replaced by the name of the new permission, e.g., `b2b.role-edit.permissions.order.delete`.

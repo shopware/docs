@@ -1,3 +1,10 @@
+---
+nav:
+  title: Events
+  position: 60
+
+---
+
 # Events
 
 The `Shopware\App\SDK\AppLifecycle` and `Shopware\App\SDK\Registration\RegistrationService` class accepts a PSR event dispatcher.

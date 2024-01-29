@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add cookie to manager
+  position: 160
+
+---
+
 # Add Cookie to Manager
 
 ## Overview
@@ -6,7 +13,7 @@ Since the GDPR was introduced, every website has to be shipped with some sort of
 
 ## Prerequisites
 
-This guide is built upon the [Plugin base guide](../plugin-base-guide.md), so have a look at that first if you're lacking a running plugin. Also you will have to know how to [create your own service](../plugin-fundamentals/add-custom-service.md) and [decorations](../plugin-fundamentals/adjusting-service.md#decorating-the-service), so you might want to have a look at those guides as well.
+This guide is built upon the [Plugin base guide](../plugin-base-guide), so have a look at that first if you're lacking a running plugin. Also you will have to know how to [create your own service](../plugin-fundamentals/add-custom-service) and [decorations](../plugin-fundamentals/adjusting-service#decorating-the-service), so you might want to have a look at those guides as well.
 
 ## Extend the cookie consent manager
 
@@ -16,9 +23,8 @@ Adding custom cookies basically requires you to decorate a service, the `CookieP
 
 Start with creating the `services.xml` entry and with decorating the `CookieProviderInterface`. The `CookieProvider` service was already built before we decided to use abstract classes for decorations, so don't be confused here.
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
-
-```markup
+```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -35,8 +41,6 @@ Start with creating the `services.xml` entry and with decorating the `CookieProv
 </container>
 ```
 
-{% endcode %}
-
 In the next step we'll create the actual decorated class.
 
 ### Creating the decorated service
@@ -47,9 +51,8 @@ The interface mentioned above requires you to implement a method called `getCook
 
 Let's have a look at an example:
 
-{% code title="<plugin root>/src/Service/CustomCookieProvider.php" %}
-
 ```php
+// <plugin root>/src/Service/CustomCookieProvider.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -106,8 +109,6 @@ class CustomCookieProvider implements CookieProviderInterface {
 }
 ```
 
-{% endcode %}
-
 As already mentioned, we're overwriting the method `getCookieGroups` and in there we're calling the original method first. We then proceed to merge our own custom group into it, as well as a custom cookie.
 
 This will eventually lead to a new group being created, containing two new cookies, as well as a new cookie without a group.
@@ -129,4 +130,4 @@ Here's a list of attributes, that you can apply to a cookie array:
 
 ## Next steps
 
-Those changes will mainly just show your new cookies in the cookie consent manager, but without much function. Head over to our guide about [Reacting to cookie consent changes](reacting-to-cookie-consent-changes.md) to see how you can implement your custom logic once your cookie got accepted or declined.
+Those changes will mainly just show your new cookies in the cookie consent manager, but without much function. Head over to our guide about [Reacting to cookie consent changes](reacting-to-cookie-consent-changes) to see how you can implement your custom logic once your cookie got accepted or declined.

@@ -1,9 +1,9 @@
 
 
-{% hint style="info" %}
+::: info
 This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/code/core/adr.md)
-{% endhint %}
+You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/coding-guidelines/core/adr.md)
+:::
 
 # ADR
 
@@ -33,4 +33,3 @@ Everyone takes a different approach to create ADRs and meeting the expectations 
 - Describe the "solution" of each domain... write in each domain how you want to extend the above logic to solve your "problems."
 - Add a new section about extendability and write down how developers should be able to extend your system and which business cases you see
 - Last, add some pseudocode at the end to visualize your solutions and ideas.
-

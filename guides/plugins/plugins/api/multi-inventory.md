@@ -1,3 +1,10 @@
+---
+nav:
+  title: Multi Inventory
+  position: 20
+
+---
+
 # Multi-Inventory
 
 ## Pre-requisites and setup
@@ -21,14 +28,13 @@ To create, modify or delete Warehouses, WarehouseGroups etc., related to Multi-I
 Meanwhile, refer to the following links regarding the general use of the Admin API:
 
 * [Authentication & Authorization](https://shopware.stoplight.io/docs/admin-api/ZG9jOjEwODA3NjQx-authentication)
-* [Request & Response Structure](https://shopware.stoplight.io/docs/admin-api/ZG9jOjEyMzAzNDU1-request-and-response-structure)
-* [Endpoint Structure](https://shopware.stoplight.io/docs/admin-api/ZG9jOjEyMzA1ODA5-endpoint-structure)
+* [Request,Response and Endpoint Structure](https://shopware.stoplight.io/docs/admin-api/9a4d773bd3665-request-and-response-structure)
 
 ## Data structure
 
 The Multi-Inventory feature implements a specific data structure for its internal stock handling. The following entity-relationship model visually represents the new entities, as well as the relationships between them and platform entities.
 
-![multi-inventory_data-structure](../../../../.gitbook/assets/multi-inventory-data-structure.png)
+![multi-inventory_data-structure](../../../../assets/multi-inventory-data-structure.png)
 
 ## Working with the API
 
@@ -127,9 +133,9 @@ You can update `product_warehouse.stock` in batch via SyncApi, or patch a specif
 
 ## Concept
 
-{% hint style="info" %}
+::: info
 Every described behavior only applies to Products that are assigned to WarehouseGroups and every unrelated Product will use the default Shopware behavior.
-{% endhint %}
+:::
 
 ### ERP System as Single-Source-of-Truth
 

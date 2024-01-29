@@ -1,3 +1,10 @@
+---
+nav:
+  title: Listen to order changes
+  position: 20
+
+---
+
 # Listen to Order Changes
 
 ## Overview
@@ -6,17 +13,16 @@ This guide will teach you how to react to order changes, e.g. changes to the ord
 
 ## Prerequisites
 
-This guide is built upon our [plugin base guide](../../plugin-base-guide.md) and uses the same namespaces as the said plugin. Also, since we're trying to listen to an event in this guide, you need to know about [subscribers](../../plugin-fundamentals/listening-to-events.md).
+This guide is built upon our [plugin base guide](../../plugin-base-guide) and uses the same namespaces as the said plugin. Also, since we're trying to listen to an event in this guide, you need to know about [subscribers](../../plugin-fundamentals/listening-to-events).
 
 ## Listening to the event
 
-First of all you need to know about the several possible order events in order to find your right order. You can find them in the [OrderEvents](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Checkout/Order/OrderEvents.php) class.
+First of all you need to know about the several possible order events in order to find your right order. You can find them in the [OrderEvents](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/Order/OrderEvents.php) class.
 
 Let's assume you want to react to general changes to the order itself, then the event `ORDER_WRITTEN_EVENT` is the one to choose.
 
-{% code title="<plugin root>/src/Service/ListenToOrderChanges.php" %}
-
 ```php
+// <plugin root>/src/Service/ListenToOrderChanges.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -41,17 +47,14 @@ class ListenToOrderChanges implements EventSubscriberInterface
 }
 ```
 
-{% endcode %}
-
 ## Reading changeset
 
 Due to performance reasons, a changeset of the write operation is not automatically added to the event parameter. In order to force Shopware to generate a changeset, we need to listen to another event.
 
-For this we're going to use the [PreWriteValidationEvent](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Framework/DataAbstractionLayer/Write/Validation/PreWriteValidationEvent.php), which is triggered **before** the write result set is generated.
-
-{% code title="<plugin root>/src/Service/ListenToOrderChanges.php" %}
+For this we're going to use the [PreWriteValidationEvent](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Framework/DataAbstractionLayer/Write/Validation/PreWriteValidationEvent.php), which is triggered **before** the write result set is generated.
 
 ```php
+// <plugin root>/src/Service/ListenToOrderChanges.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -102,8 +105,6 @@ class ListenToOrderChanges implements EventSubscriberInterface
     }
 }
 ```
-
-{% endcode %}
 
 So the `PreWriteValidationEvent` is triggered before the write set is generated. In its respective listener `triggerChangeSet`, we're first checking if the current command is even able to generate a changeset. E.g. an "insert" command cannot generate a changeset, because nothing has changed - a whole new entity is generated.
 

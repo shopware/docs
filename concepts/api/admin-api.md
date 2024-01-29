@@ -1,7 +1,12 @@
+---
+nav:
+  title: Admin API
+  position: 20
+
+---
+
 # Admin API
 
 The Admin API provides CRUD operations for every entity within Shopware and is used to build integrations with external systems.
 
-For more information, please head to the Guides section:
-
-{% page-ref page="../../guides/integrations-api" %}  
+For more information, refer to the [Guides section](../../guides/integrations-api/index.md).

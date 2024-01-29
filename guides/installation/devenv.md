@@ -1,4 +1,13 @@
-# What is devenv?
+---
+nav:
+  title: Devenv
+  position: 30
+
+---
+
+# Devenv
+
+## What is devenv?
 
 Imagine [devenv](https://devenv.sh) to function as a dependency manager for the services and packages that you need to run your application for local development or even in a CI/CD context.
 
@@ -14,39 +23,39 @@ The main difference to other tools like Docker or a VM is that it neither uses c
 
 As devenv is built on top of Nix, first install Nix with the following command based on your OS:
 
-{% tabs %}
-{% tab title="macOS" %}
+<Tabs>
+<Tab title="macOS">
 
 ```shell
 sh <(curl -L https://nixos.org/nix/install)
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Linux" %}
+<Tab title="Linux">
 
 ```shell
 sh <(curl -L https://nixos.org/nix/install) --daemon
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Windows (WSL2)" %}
+<Tab title="Windows (WSL2)">
 
 ```shell
 sh <(curl -L https://nixos.org/nix/install) --no-daemon
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Docker" %}
+<Tab title="Docker">
 
 ```shell
 docker run -it nixos/nix
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 #### Using Oh My ZSH?
 
@@ -63,7 +72,7 @@ You probably won't be able to use the commands below. Use the following steps to
  ```
 
 * Copy these lines and delete them from this file.
-* Open `~/.zshrc` and add the above copied lines to the end of this file.
+* Open `~/.zshrc` and add the above-copied lines to the end of this file.
 * Initiate the terminal with `source ~/.zshrc` or reboot your terminal for nix to work.
 
 [Credits: "nixos installation issue,'command not found: nix'", StackOverflow](https://stackoverflow.com/a/70822086/982278)
@@ -82,9 +91,9 @@ Before installing devenv, instruct Cachix to use the devenv cache:
 cachix use devenv
 ```
 
-{% hint style="info %}
+::: info
 The first time you run `cachix use`, you will be prompted a warning that you are not a trusted user.
-{% endhint %}
+:::
 
 > This user doesn't have permission to configure binary caches.
 >
@@ -114,42 +123,38 @@ Before booting up your development environment, configure Cachix to use Shopware
 cachix use shopware
 ```
 
-By default, `shopware/platform` uses unfree software like Blackfire. To be able to use unfree software, you have to *allow* it:
-
-```bash
-mkdir -p ~/.config/nixpkgs
-echo '{ allowUnfree = true; }' > ~/.config/nixpkgs/config.nix
-```
-
 You can find the whole installation guide for devenv in their official documentation:
 
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://devenv.sh/getting-started/" caption="Getting started - devenv.sh" %}
+<PageRef page="https://devenv.sh/getting-started/" title="Getting started - devenv.sh" target="_blank" />
 
 ### Shopware
 
-Depending on whether you want to set up a fresh Shopware project or contribute to the Shopware core, choose between:
+Depending on whether you want to set up a fresh Shopware project or contribute to the Shopware core, you have to choose between the [Symfony Flex template](template) or the Shopware project.
 
-{% tabs %}
-{% tab title="Symfony Flex" %}
-If you are already using Symfony Flex, you require a Composer package to get a basic devenv configuration:
+<Tabs>
+<Tab title="Symfony Flex">
+If you are already using our Symfony Flex template, you require a Composer package to get a basic devenv configuration:
 
-```bash
+```shell
+cd <YOUR_SHOPWARE_FLEX_PROJECT_ROOT>
+```
+
+```shell
 composer require devenv
 ```
 
 This will create a basic `devenv.nix` file to enable devenv support for Shopware.
-{% endtab %}
+</Tab>
 
-{% tab title="shopware/platform (Contribute)" %}
-Clone [shopware/platform](https://github.com/shopware/platform) and change into the project directory:
+<Tab title="shopware/shopware (Contribute)">
+Clone [shopware/shopware](https://github.com/shopware/shopware) and change into the project directory:
 
 ```shell
-git clone git@github.com:shopware/platform.git
+git clone git@github.com:shopware/shopware.git
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 Since the environment is described via a `devenv.nix` file committed to version control, you can now boot up the environment:
 
@@ -157,19 +162,36 @@ Since the environment is described via a `devenv.nix` file committed to version 
 devenv up
 ```
 
-{% hint style="warning" %}
+::: warning
 Make sure that the ports for the services are not already in use, or else the command will fail.
-{% endhint %}
+:::
+
+Check your default web services with the following commands:
+
+<Tabs>
+<Tab title="macOS">
+
+```bash
+netstat -p tcp -van | grep '^Proto\|LISTEN'
+```
+
+</Tab>
+
+<Tab title="Ubuntu">
+
+```bash
+ss -tulpn | grep ':80\|:3306\|:6379'
+```
+
+</Tab>
+</Tabs>
 
 Ensure to change your `.env` file to have the database connect using localhost's IP address instead of the default MySQL socket:
 
-{% code title="<PROJECT_ROOT>/.env" %}
-
-```dotenv
+```txt
+// <PROJECT_ROOT>/.env
 DATABASE_URL="mysql://shopware:shopware@127.0.0.1:3306/shopware?sslmode=disable&charset=utf8mb4"
 ```
-
-{% endcode %}
 
 With a new terminal, go to the project directory and run the following command to launch a devenv shell.
 This shell includes all needed programs (php, composer, npm, node, etc.) to initialize Shopware:
@@ -193,68 +215,65 @@ This means you can use the binaries without having to run `devenv shell` manuall
 
 First, install direnv:
 
-{% tabs %}
-{% tab title="macOS" %}
+<Tabs>
+<Tab title="macOS">
 The preferred way to install direnv on macOS is using Homebrew:
 
 ```bash
 brew install direnv
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Ubuntu" %}
+<Tab title="Ubuntu">
 
 ```bash
 apt install direnv
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Other" %}
+<Tab title="Other">
 The installation instructions for other OS are available on direnv's [official documentation](https://direnv.net/docs/hook.html).
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
-Afterwards, add the following hook to your shell:
+Afterward, add the following hook to your shell:
 
-{% tabs %}
+<Tabs>
 
-{% tab title="Bash" %}
-{% code title="~/.bashrc" %}
+<Tab title="Bash">
 
 ```bash
+// ~/.bashrc
 eval "$(direnv hook bash)"
 ```
 
-{% endcode %}
-{% endtab %}
+</Tab>
 
-{% tab title="Zsh" %}
-{% code title="~/.zshrc" %}
+<Tab title="Zsh">
 
 ```bash
+// ~/.zshrc
 eval "$(direnv hook zsh)"
 ```
 
-{% endcode %}
-{% endtab %}
+</Tab>
 
-{% tab title="Fish" %}
-{% code title="~/.config/fish/config.fish" %}
+<Tab title="Fish">
 
 ```bash
+// ~/.config/fish/config.fish
 direnv hook fish | source
 ```
 
-{% endcode %}
-{% endtab %}
+</Tab>
 
-{% tab title="Other" %}
+<Tab title="Other">
 The installation instructions for other OS are available on direnv's [official documentation](https://direnv.net/docs/hook.html).
-{% endtab %}
+</Tab>
 
-{% endtabs %}
+</Tabs>
 
 After you change into a project directory using devenv for the first time, you need to allow direnv to load the environment:
 
@@ -262,33 +281,45 @@ After you change into a project directory using devenv for the first time, you n
 direnv allow
 ```
 
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://devenv.sh/automatic-shell-activation/" caption="Automatic Shell Activation - devenv.sh" %}
+<PageRef page="https://devenv.sh/automatic-shell-activation/" title="Automatic Shell Activation - devenv.sh" target="_blank" />
 
 ## Default services
 
 Here is an overview of services Shopware provides by default and how you can access them:
 
-| Service          | Access                                         |
-|------------------|------------------------------------------------|
-| MySQL            | `mysql://shopware:shopware@127.0.0.1:3306`     |
-| Caddy            | [http://localhost:8000](http://localhost:8000) |
-| Adminer          | [http://localhost:9080](http://localhost:9080) |
-| Mailhog (SMTP)   | `smtp://127.0.0.1:1025`                        |
-| Mailhog (Web UI) | [http://localhost:8025](http://localhost:8025) |
+| Service        | Access                                          |
+|----------------|-------------------------------------------------|
+| MySQL          | `mysql://shopware:shopware@127.0.0.1:3306`      |
+| Mailhog (SMTP) | `smtp://127.0.0.1:1025`                         |
+| Redis (TCP)    | `tcp://127.0.0.1:6379`                          |
+
+### Caddy
+Caddy is a powerful, enterprise-ready, open-source web server with automatic HTTPS written in Go.
+
+[http://127.0.0.1:8000](http://127.0.0.1:8000)
+
+### Adminer
+Adminer is a full-featured database management tool written in PHP.
+
+[http://localhost:8010](http://localhost:8010)
+
+### Mailhog
+MailHog is an email testing tool for developers.
+
+[http://localhost:8025](http://localhost:8025)
+
 
 ## Customize your setup
 
 To customize the predefined services to match your needs, e.g., changing the virtual host, database name, or environment variables, you can create `devenv.local.nix` to override the service definitions.
 It also allows you to add and configure additional services you might require for your local development.
 
-{% hint style="warning" %}
+::: warning
 After changing `devenv.local.nix`, please [reload your environment](#manually-reloading-devenv).
-{% endhint %}
-
-{% code title="<PROJECT_ROOT>/devenv.local.nix" %}
+:::
 
 ```nix
+// <PROJECT_ROOT>/devenv.local.nix
 { pkgs, config, lib, ... }:
 
 {
@@ -310,22 +341,18 @@ After changing `devenv.local.nix`, please [reload your environment](#manually-re
   };
 
   # Override an environment variable
-  env.APP_URL = "http://shopware.swag";
+  env.APP_URL = "http://shopware.swag:YOUR_CADDY_PORT";
 }
 ```
 
-{% endcode %}
-
 Refer to the official devenv documentation to get a complete list of all available services and their configuration possibilities:
 
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://devenv.sh/reference/options/" caption="devenv.nix Reference - devenv.sh" %}
+<PageRef page="https://devenv.sh/reference/options/" title="devenv.nix Reference - devenv.sh" target="_blank" />
 
 ### Enable Blackfire
 
-{% code title="<PROJECT_ROOT>/devenv.local.nix" %}
-
 ```nix
+// <PROJECT_ROOT>/devenv.local.nix
 { pkgs, config, lib, ... }:
 
 {
@@ -337,13 +364,10 @@ Refer to the official devenv documentation to get a complete list of all availab
 }
 ```
 
-{% endcode %}
-
 ### Enable XDebug
 
-{% code title="<PROJECT_ROOT>/devenv.local.nix" %}
-
 ```nix
+// <PROJECT_ROOT>/devenv.local.nix
 { pkgs, config, lib, ... }:
 
 {
@@ -357,13 +381,10 @@ Refer to the official devenv documentation to get a complete list of all availab
 }
 ```
 
-{% endcode %}
-
 ### Use MariaDB instead of MySQL
 
-{% code title="<PROJECT_ROOT>/devenv.local.nix" %}
-
 ```nix
+// <PROJECT_ROOT>/devenv.local.nix
 { pkgs, config, lib, ... }:
 
 {
@@ -371,13 +392,10 @@ Refer to the official devenv documentation to get a complete list of all availab
 }
 ```
 
-{% endcode %}
-
 ### Use customized MySQL port
 
-{% code title="<PROJECT_ROOT>/devenv.local.nix" %}
-
 ```nix
+// <PROJECT_ROOT>/devenv.local.nix
 { pkgs, config, lib, ... }:
 
 {
@@ -390,50 +408,58 @@ Refer to the official devenv documentation to get a complete list of all availab
 }
 ```
 
-{% endcode %}
-
 ### Use customized VirtualHosts port for Caddy
 
-{% code title="<PROJECT_ROOT>/devenv.local.nix" %}
+<Tabs>
+<Tab title="Port">
 
 ```nix
+// <PROJECT_ROOT>/devenv.local.nix
 { pkgs, config, lib, ... }:
 
 {
-  services.caddy.virtualHosts = lib.mkForce {
-      ":8029" = lib.mkDefault {
-          extraConfig = lib.mkDefault ''
-              @default {
-                not path /theme/* /media/* /thumbnail/* /bundles/* /css/* /fonts/* /js/* /sitemap/*
-              }
-
-              root * public
-              php_fastcgi @default unix/${config.languages.php.fpm.pools.web.socket} {
-                  trusted_proxies private_ranges
-              }
-              file_server
-          '';
-      };
-  };
-  
+  services.caddy.virtualHosts.":8029" = {
+    extraConfig = ''
+      root * public
+      php_fastcgi unix/${config.languages.php.fpm.pools.web.socket}
+      file_server
+    '';
+ };
 }
 ```
 
-{% endcode %}
+</Tab>
+
+<Tab title="Port and virtual host">
+
+```nix
+// <PROJECT_ROOT>/devenv.local.nix
+{ pkgs, config, lib, ... }:
+
+{
+  services.caddy.virtualHosts."http://shopware.swag:8029" = {
+    extraConfig = ''
+      root * public
+      php_fastcgi unix/${config.languages.php.fpm.pools.web.socket}
+      file_server
+    '';
+  };
+```
+
+</Tab>
+</Tabs>
+
 
 ### Use customized Adminer port
 
-{% code title="<PROJECT_ROOT>/devenv.local.nix" %}
-
 ```nix
+// <PROJECT_ROOT>/devenv.local.nix
 { pkgs, config, lib, ... }:
 
 {
   services.adminer.listen = "127.0.0.1:9084";
 }
 ```
-
-{% endcode %}
 
 ## Known issues
 
@@ -447,17 +473,28 @@ devenv shell
 
 ### Direnv slow in big projects
 
-The bigger your project directory is getting over time (e.g. cache files piling up), the slower direnv will be.
-This is a known issue and the devenv developers are working on a solution.
+The bigger your project directory is getting over time (e.g., cache files piling up), the slower direnv will be.
+This is a known issue, and the devenv developers are working on a solution.
 
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://github.com/cachix/devenv/issues/257" caption="Devenv slows down with big code repositories #257" %}
+<PageRef page="https://github.com/cachix/devenv/issues/257" title="Devenv slows down with big code repositories #257" target="_blank" />
+
+### Fail to start Redis with locale other than en_US
+
+```shell
+14:04:52 redis.1           | 364812:M 07 Nov 2023 14:04:52.999 # Failed to configure LOCALE for invalid locale name.
+```
+
+You can export a different locale to your shell with the following command:
+
+```shell
+export LANG=en_US.UTF8;
+```
 
 ## FAQ
 
 ### How do I clean up devenv?
 
-Periodically run `devenv gc` to remove orphaned services, packages and processes and free up disk space.
+Periodically run `devenv gc` to remove orphaned services, packages and processes and free-up disk space.
 
 ### How do I access the database?
 
@@ -485,4 +522,16 @@ In case you can't find and stop running devenv processes, you can use the follow
 
 ```shell
 kill $(ps -ax | grep /nix/store  | awk '{print $1}')
+```
+
+### Are you unable to access http://127.0.0.1:8000 in your Browser?
+
+Try using http://localhost:8000 instead. This mostly applies to when using WSL2.
+
+### Are you looking for a full test setup with demo data?
+
+Run the below command:
+
+```shell
+composer setup && APP_ENV=prod bin/console framework:demodata && APP_ENV=prod bin/console dal:refresh:index
 ```

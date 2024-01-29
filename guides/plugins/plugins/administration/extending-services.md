@@ -1,10 +1,17 @@
+---
+nav:
+  title: Extending Services
+  position: 100
+
+---
+
 # Extending services
 
 ## Overview
 
 This guide will teach you how to extend a Shopware provided service with middleware and decorators.
 The Shopware 6 Administration uses [BottleJS](https://github.com/young-steveo/bottlejs) to provide the framework for services.
-If you want to learn how to create your own services, look at [this guide](./add-custom-service.md).
+If you want to learn how to create your own services, look at [this guide](./add-custom-service).
 
 ## Prerequisites
 
@@ -31,7 +38,7 @@ With Shopware you have to reset the providers before extending Service.
 Let's look at an example:
 
 ```javascript
-Shopware.Application.$container.resetProviders();
+Shopware.Application.$container.resetProviders(['acl']);
 
 Shopware.Application.addServiceProviderDecorator('acl', (aclService) => {
   aclService.foo = 'bar';
@@ -50,7 +57,7 @@ As mentioned before with Shopware you have to reset the providers, before extend
 Let's look at an Example:
 
 ```javascript
-Shopware.Application.$container.resetProviders();
+Shopware.Application.$container.resetProviders(['acl']);
 
 Shopware.Application.addServiceProviderMiddleware('acl', (service, next) => {
     console.log('ACL service gets called');

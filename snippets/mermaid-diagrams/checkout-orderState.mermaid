@@ -1,0 +1,14 @@
+flowchart TD
+START_STATE[Start state] --> 018c4a0eeaec71b7a0415b572e1a07f5
+018c4a0eeaec71b7a0415b572e1a07f5(Open)
+018c4a0eeaec71b7a0415b572e8c7a86(Done)
+018c4a0eeaec71b7a0415b572e8c7a86 --> FINAL_STATE[Final state]
+018c4a0eeaec71b7a0415b572f6990c5(In Progress)
+018c4a0eeaec71b7a0415b572fa73aa1(Cancelled)
+018c4a0eeaec71b7a0415b572fa73aa1 --> FINAL_STATE[Final state]
+018c4a0eeaec71b7a0415b572e1a07f5 -- process --> 018c4a0eeaec71b7a0415b572f6990c5
+018c4a0eeaec71b7a0415b572e1a07f5 -- cancel --> 018c4a0eeaec71b7a0415b572fa73aa1
+018c4a0eeaec71b7a0415b572f6990c5 -- cancel --> 018c4a0eeaec71b7a0415b572fa73aa1
+018c4a0eeaec71b7a0415b572f6990c5 -- complete --> 018c4a0eeaec71b7a0415b572e8c7a86
+018c4a0eeaec71b7a0415b572fa73aa1 -- reopen --> 018c4a0eeaec71b7a0415b572e1a07f5
+018c4a0eeaec71b7a0415b572e8c7a86 -- reopen --> 018c4a0eeaec71b7a0415b572e1a07f5

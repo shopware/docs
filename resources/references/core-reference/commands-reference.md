@@ -1,3 +1,10 @@
+---
+nav:
+  title: Commands Reference
+  position: 10
+
+---
+
 # Commands Reference
 
 These commands can be executed using the Shopware command line interface \(CLI\), located within your Shopware project.
@@ -251,10 +258,12 @@ $ bin/console [command] [parameters]
 
 ### Scheduled-task
 
-| Command | Description |
-| :--- | :--- |
+| Command | Description | Version |
+| :--- | :--- | :--- |
 | `scheduled-task:register` | Registers all scheduled tasks |
 | `scheduled-task:run` | Runs scheduled tasks |
+| `scheduled-task:run-single` | Runs single scheduled tasks | 6.5.5.0 |
+| `scheduled-task:list` | Lists all scheduled tasks | 6.5.5.0 |
 
 ### Secrets
 

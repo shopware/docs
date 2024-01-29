@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+    <meta>
+        ...
+    </meta>
+    <custom-fields>
+        <custom-field-set>
+            <name>swag_example_set</name>
+            <label>Example Set</label>
+            <label lang="de-DE">Beispiel-Set</label>
+            <related-entities>
+                <order/>
+            </related-entities>
+            <fields>
+                <text name="swag_code">
+                    <position>1</position>
+                    <label>Example field</label>
+                </text>
+            </fields>
+        </custom-field-set>
+    </custom-fields>
+</manifest>

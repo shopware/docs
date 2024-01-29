@@ -1,3 +1,10 @@
+---
+nav:
+  title: Adding NPM dependencies
+  position: 120
+
+---
+
 # Adding NPM Dependencies
 
 In this guide you'll learn how add NPM dependencies to your project.
@@ -9,8 +16,8 @@ All you need for this guide is a running Shopware 6 instance and full access to 
 ## Video
 
 This guide is also available as a video:
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://www.youtube.com/watch?v=wfBuWdff35c" caption="" %}
+
+<YoutubeRef video="wfBuWdff35c" title="Shopware 6: Your custom NPM dependencies (Developer Tutorial) - YouTube" target="_blank" />
 
 {% hint style="warning" %}
 This video shows how to resolve the NPM package name as an alias. We recommend resolving all node_modules instead like shown in the code example below.
@@ -28,10 +35,8 @@ Shopware's storefront as well as administration is based on the build system [We
 
 To do this we create a new folder called "build" under either `Resources/app/storefront` or `Resources/app/administration`. In this build folder we create a new file with the name `webpack.config.js`. We thereby make it possible to extend the Webpack configuration of Shopware.
 
-{% code title="<plugin root>/src/Resources/app/storefront/build/webpack.config.js" %}
-
 ```javascript
-module.exports = (params) => { 
+module.exports = (params) => {
     return { 
         resolve: { 
             modules: [
@@ -54,9 +59,8 @@ rest of the path to our extensions `node_modules`. Now webpack will also search 
 
 Once we have installed all the dependencies and registered the package in the build system, we can use the package in our own code.
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/main.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/storefront/src/main.js
 import Plugin from 'src/plugin-system/plugin.class';
 
 // Import logger
@@ -78,14 +82,12 @@ export default class ExamplePlugin extends Plugin {
 }
 ```
 
-{% endcode %}
-
 We import the function log as well as the constants tag via `destructuring` in the specified code. Through the use of the alias, we keep the paths short and recognize that this is an alias at first glance via the prefix.
 
 The final step in this process is to build your Storefront or Administration so that your changes are processed by Webpack.
 
 ## Next steps
 
-Now that you know how to include new `npm` dependencies you might want to create a service with them. Learn how to do that in this guide: [How to add a custom-service](../administration/add-custom-service.md)
+Now that you know how to include new `npm` dependencies you might want to create a service with them. Learn how to do that in this guide: [How to add a custom-service](../administration/add-custom-service)
 
-If you want to add [Composer dependencies](using-composer-dependencies.md), or even other [plugin dependencies](add-plugin-dependencies.md), we've got you covered as well.
+If you want to add [Composer dependencies](using-composer-dependencies), or even other [plugin dependencies](add-plugin-dependencies), we've got you covered as well.

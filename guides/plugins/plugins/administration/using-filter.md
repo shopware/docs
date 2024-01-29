@@ -1,3 +1,10 @@
+---
+nav:
+  title: Using filter
+  position: 290
+
+---
+
 # Using filter
 
 ## Overview
@@ -6,9 +13,9 @@ In this guide you'll learn how to use filters in the Shopware Administration.
 
 ## Prerequisites
 
-This guide requires you to already have a basic plugin running. If you don't know how to do this in the first place, have a look at our [Plugin base guide](../plugin-base-guide.md).
+This guide requires you to already have a basic plugin running. If you don't know how to do this in the first place, have a look at our [Plugin base guide](../plugin-base-guide).
 
-Furthermore you should have a look at our [add filter](add-filter.md) guide, since this guide is built upon it.
+Furthermore you should have a look at our [add filter](add-filter) guide, since this guide is built upon it.
 
 ## Using the filter
 
@@ -28,9 +35,7 @@ If we want to use our filter in Twig templates, we can easily use it by using a 
 
 Below you can see two example implementations, how it could be done with single argument filters.
 
-{% raw %}
-
-```text
+```twig
 {% block my_custom_block %}
     <p>
        {{ $tc('swag-example.general.myCustomText')|example }}
@@ -38,17 +43,13 @@ Below you can see two example implementations, how it could be done with single 
 {% endblock %}
 ```
 
-{% endraw %}
-
-```text
+```html
 <example-component :name="$tc('swag-example.general.myCustomText')|example"></example-component>
 ```
 
 When using multiple arguments, we can pass them as shown below.
 
-{% raw %}
-
-```text
+```twig
 {% block my_custom_block %}
     <p>
        {{ $tc('swag-example.general.myCustomText')|example('secondArgument', 'thirdArgument') }}
@@ -56,8 +57,6 @@ When using multiple arguments, we can pass them as shown below.
 {% endblock %}
 ```
 
-{% endraw %}
-
-```text
+```html
 <example-component :title="$tc('swag-example.general.myCustomText')|example('secondArgument', 'thirdArgument')"></example-component>
 ```

@@ -3,14 +3,14 @@ title: Refund handling
 date: 2021-10-13
 area: checkout
 tags: [payment, refund, capture]
---- 
+---
 
 # Refund handling
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-10-13-refund-handling.md)
-{% endhint %}
+You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2021-10-13-refund-handling.md)
+:::
 
 ## Context
 Shopware offers no way of unified refund handling. This results in every payment extension either implementing it themselves or not at all.

@@ -1,3 +1,10 @@
+---
+nav:
+  title: ACL and Routing
+  position: 60
+
+---
+
 # ACL and Routing
 
 The ACL Routing component allows you to block Controller Actions for B2B users. It relies on and extends the technologies already defined by the ACL component. To accomplish this, the component directly maps an `action` in a given `controller` to a `resource` (= entity type) and `privilege` (= class of actions). There are two core actions you should know: `index` and `detail`, as you can see in the following acl-config example below.
@@ -81,15 +88,9 @@ the action is new, and you must update the file to add the correct privilege nam
 
 The ACL implementation is safe at the PHP level. Any route you have no access to will automatically be blocked, but for a better user experience, you should also extend the template to hide inaccessible actions.
 
-{% code %}
-{% raw %}
-
 ```twig
 <a href="{{ url("frontend.b2b." ~ page.route ~ ".assign") }}" class="{{ b2b_acl('b2broleaddress', 'assign') }}">
 ```
-
-{% endraw %}
-{% endcode %}
 
 This will add a few vital CSS classes:
 
@@ -114,4 +115,4 @@ But there are certain specials to this:
 
 ## Download
 
-Refer here for [simple example plugin](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bAcl.zip).
+Refer here for [simple example plugin](../../../../../../products/extensions/b2b/b2b-suite/guides/example-plugins/B2bAcl.zip).

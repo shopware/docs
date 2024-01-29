@@ -1,12 +1,19 @@
+---
+nav:
+  title: Add custom flow action from app system
+  position: 10
+
+---
+
 # Add custom flow actions
 
-{% hint style="info" %}
+::: info
 Custom flow actions in Shopware Apps are available starting with Shopware 6.4.10.0 and are not supported in previous versions.
-{% endhint %}
+:::
 
 Besides the default actions, developers can add custom, predefined, and configurable web hook actions to the flow builder.
 
-![Custom flow action in Administration](../../../../.gitbook/assets/flow-builder-app-action-preview.png)
+![Custom flow action in Administration](../../../../assets/flow-builder-app-action-preview.png)
 
 After reading, you will be able to
 
@@ -18,7 +25,7 @@ After reading, you will be able to
 
 Please make sure you already have a working Shopware 6 store running (either cloud or self-hosted). Prior knowledge about the Flow Builder feature of Shopware 6 is useful.
 
-Please see the [Flow Builder Concept](../../../../concepts/framework/flow-concept.md) for more information.
+Please see the [Flow Builder Concept](../../../../concepts/framework/flow-concept) for more information.
 
 ## Create the app wrapper
 
@@ -36,9 +43,9 @@ To get started with your app, create an `apps` folder inside the `custom` folder
     └── plugins
 ```
 
-{% hint style="info" %}
+::: info
 From 6.5.2.0, you can define the flow action in `flow.xml`. The `flow-action.xml` will be removed from 6.6.0.0.
-{% endhint %}
+:::
 
 | File name | Description |
 | :--- | :--- |
@@ -52,11 +59,10 @@ From 6.5.2.0, you can define the flow action in `flow.xml`. The `flow-action.xml
 
 The manifest file is the central point of your app. It defines the interface between your app and the Shopware instance. It provides all the information concerning your app, as seen in the minimal version below:
 
-{% code title="manifest.xml" %}
-
 ```xml
+// manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
         <name>FlowBuilderActionApp</name>
         <label>Flow Builder Action App</label>
@@ -72,20 +78,17 @@ The manifest file is the central point of your app. It defines the interface bet
 </manifest>
 ```
 
-{% endcode %}
-
-{% hint style="warning" %}
+::: warning
 The name of your app that you provide in the manifest file needs to match the folder name of your app.
-{% endhint %}
+:::
 
 ## Define the flow action
 
 To create a flow action, you need to define a `<flow-action>` block within a file called `flow-action.xml`. Each `<flow-action>` represents one action and you can define an arbitrary number of actions.
 
-{% code title="Resources/flow-action.xml" %}
-
 ```xml
-<flow-actions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/FlowAction/Schema/flow-action-1.0.xsd">
+// Resources/flow-action.xml
+<flow-actions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/FlowAction/Schema/flow-action-1.0.xsd">
     <flow-action>
         ... # The first action
     </flow-action>
@@ -99,12 +102,10 @@ To create a flow action, you need to define a `<flow-action>` block within a fil
 </flow-actions>
 ```
 
-{% endcode %}
-
 From 6.5.2.0, to create a flow action, you must define a `<flow-actions>` block within a file called `flow.xml`. Each `<flow-action>` in `<flow-actions>` represents one action, and you can define an arbitrary number of actions.
 
 ```xml
-<flow-extensions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd">
+<flow-extensions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd">
     <flow-actions>
         <flow-action>
             ... # The first action
@@ -119,8 +120,6 @@ From 6.5.2.0, to create a flow action, you must define a `<flow-actions>` block 
     ...
 </flow-extensions>
 ```
-
-{% endcode %}
 
 A single flow action would look like this:
 
@@ -217,8 +216,8 @@ Define the `parameter` for the URL body based on your URL webhook services.
 | type | Type of parameter, only support `string` type. |
 | name | The body key for your URL. |
 | value | The content message for your URL; free to design your content message here. |
-| {{ message }} | The variable from your `<input-field>` defined in `flow-action.xml`. |
-| {{ order.orderNumber }} | For each trigger event, the action will have the variables suitable. [Read more variables here](../../../../resources/references/app-reference/flow-action-reference.md). |
+| <code v-pre>{{ message }}</code> | The variable from your `<input-field>` defined in `flow-action.xml`. |
+| <code v-pre>{{ order.orderNumber }}</code> | For each trigger event, the action will have the variables suitable. [Read more variables here](../../../../resources/references/app-reference/flow-action-reference). |
 
 With the parameters configured like described above, an exemplary call of your Webhook Action could look like this:
 
@@ -233,7 +232,7 @@ With the parameters configured like described above, an exemplary call of your W
 
 ### Action configuration
 
-You can make your flow action configurable in the Administration by adding input fields. Based on your configuration - similar to the [app configurations](../../plugins/plugin-fundamentals/add-plugin-configuration.md) - you can later on use these configuration values within flow parameters.
+You can make your flow action configurable in the Administration by adding input fields. Based on your configuration - similar to the [app configurations](../../plugins/plugin-fundamentals/add-plugin-configuration) - you can later on use these configuration values within flow parameters.
 
 ```xml
 <flow-action>
@@ -273,9 +272,9 @@ Available input field attributes:
 
 You assemble your configuration from a variety of input fields.
 
-{% hint type="info" %}
-To get more information on how to create configuration forms, see [Plugin Configurations](../../plugins/plugin-fundamentals/add-plugin-configuration.md#the-different-types-of-input-field).
-{% endhint %}
+::: info
+To get more information on how to create configuration forms, see [Plugin Configurations](../../plugins/plugin-fundamentals/add-plugin-configuration#the-different-types-of-input-field).
+:::
 
 | Type | Shopware component |
 | :--- | :--- |
@@ -305,5 +304,5 @@ bin/console app:install --activate FlowBuilderActionApp
 
 ## Further steps
 
-* [Flow action example configuration](../../../../resources/references/app-reference/flow-action-reference.md) page
-* [Schema definition for flow actions (GitHub)](https://github.com/shopware/platform/blob/trunk/src/Core/Framework/App/FlowAction/Schema/flow-action-1.0.xsd)`
+* [Flow action example configuration](../../../../resources/references/app-reference/flow-action-reference) page
+* [Schema definition for flow actions (GitHub)](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/App/FlowAction/Schema/flow-action-1.0.xsd)`

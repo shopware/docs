@@ -1,9 +1,16 @@
+---
+nav:
+  title: Add cart collector/processor
+  position: 10
+
+---
+
 # Add Cart Collector/Processor
 
 ## Overview
 
-In order to change the cart at runtime, you can use a custom [collector](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Checkout/Cart/CartDataCollectorInterface.php)
-or a custom [processor](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Checkout/Cart/CartProcessorInterface.php).
+In order to change the cart at runtime, you can use a custom [collector](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/Cart/CartDataCollectorInterface.php)
+or a custom [processor](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/Cart/CartProcessorInterface.php).
 
 Their main purpose is explained in their respective section.
 
@@ -47,7 +54,7 @@ The `collect` method's parameters are the following:
 a unique key and its value. This object will be available in all processors.
 - `Cart`: The current cart and its line items.
 - `SalesChannelContext`: The current sales channel context, containing information about the currency, the country, etc.
-- `CartBehavior`: It contains a cart state, which describes which actions are allowed. E.g. in the [product processor](https://github.com/shopware/platform/blob/trunk/src/Core/Content/Product/Cart/ProductCartProcessor.php#L33), there's
+- `CartBehavior`: It contains a cart state, which describes which actions are allowed. E.g. in the [product processor](https://github.com/shopware/shopware/blob/trunk/src/Core/Content/Product/Cart/ProductCartProcessor.php#L33), there's
 a permission to check if the product stock validation should be skipped.
 
 Your collector has to be defined in the service container using the tag `shopware.cart.collector`.
@@ -57,9 +64,9 @@ Your collector has to be defined in the service container using the tag `shopwar
 A processor is the class that will actually process the cart and is supposed to apply changes to the cart.
 It will most likely use data, that was previously fetched by a collector.
 
-{% hint style="warning" %}
+::: warning
 Do not query data in the process method, since it may be executed a lot of times. Always use the collect method of a collector for this case!
-{% endhint %}
+:::
 
 Your processor class has to implement the interface `Shopware\Core\Checkout\Cart\CartProcessorInterface` and its `process` method.
 
@@ -100,4 +107,4 @@ Your processor has to be defined in the service container using the tag `shopwar
 ## Next steps
 
 If you want to see a better example on what can be done with a collector and a processor, you might want to have a look at our guide
-regarding [Changing the price of an item in the cart](./change-price-of-item.md).
+regarding [Changing the price of an item in the cart](./change-price-of-item).

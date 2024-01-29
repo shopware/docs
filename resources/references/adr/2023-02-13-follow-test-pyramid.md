@@ -3,14 +3,14 @@ title: Follow test pyramid
 date: 2023-02-16
 area: product-operations
 tags: [test, structure, performance, flakiness]
---- 
+---
 
 # Follow test pyramid
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2023-02-13-follow-test-pyramid.md)
-{% endhint %}
+You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2023-02-13-follow-test-pyramid.md)
+:::
 
 ## Context
 
@@ -60,6 +60,5 @@ tests or are better implemented as php integration tests/api tests.
 - we'll refactor tests to not require a database reset after each test case. We'll also reconsider moving to playwright
 - we'll reduce or disable test retries in e2e, to fight performance creep
 - we'll move tests into quarantine as fast as possible
-
 
 [test pyramid]: https://martinfowler.com/articles/practical-test-pyramid.html
