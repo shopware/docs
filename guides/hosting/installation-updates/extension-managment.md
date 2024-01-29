@@ -46,6 +46,12 @@ Now you can install extensions with Composer:
 composer require store.shopware.com/{extension-name}
 ```
 
+This downloads and extracts the extension package into the `vendor` directory. To install and activate the extension in Shopware, execute the following console command:
+
+```bash
+bin/console plugin:install --activate <extension-name>
+```
+
 You can also find the Composer package name when you click "Install via Composer" in the Shopware Account.
 
 ## Migrating already installed extensions to Composer
