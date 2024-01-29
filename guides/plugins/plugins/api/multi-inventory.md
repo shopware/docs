@@ -69,6 +69,7 @@ erDiagram
         uuid warehouse_group_id
     }
     WarehouseGroup ||..|{ WarehouseGroupWarehouse : "1:M"
+    WarehouseGroup }|..|{ WarehouseGroupWarehouse : "M:N"
     WarehouseGroupWarehouse {
         uuid warehouse_id
         uuid warehouse_group_id
@@ -80,6 +81,7 @@ erDiagram
     }
     ProductWarehouse }|..|| Product : "M:1"
     WarehouseGroupWarehouse }|..|| Warehouse : "M:1"
+    WarehouseGroupWarehouse }|..|{ Warehouse : "M:N"
     ProductWarehouse }|..|| Warehouse : "1:M"
     ProductWarehouse {
         uuid product_id
