@@ -18,10 +18,10 @@ To push your latest changes, run the following commands from your terminal:
 ```bash{3}
 git add .
 git commit -m "Applied new configuration"
-git push -u platform main
+git push -u shopware main
 ```
 
-First, we stage all changes and then add them as a new commit. Then, we push them to our `platform` origin (remember, the one for our PaaS environment) on the `main` branch.
+First, we stage all changes and then add them as a new commit. Then, we push them to our `shopware` origin (remember, the one for our PaaS environment) on the `main` branch.
 
 This will trigger a new build with a subsequent deploy consisting of the following steps:
 
