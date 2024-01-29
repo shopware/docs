@@ -191,6 +191,10 @@ Yet, we highly recommend you to create a custom `Entity` class, as well as a cus
 
 The entity class itself is a simple key-value object, like a struct, which contains as many properties as fields in the definition, ignoring the ID field, which is handled by the `EntityIdTrait`.
 
+::: warning
+The properties of your entity class have to be at least `protected`, otherwise the data abstraction layer won't be able to set the values.
+:::
+
 ```php
 // <plugin root>/src/Core/Content/Example/ExampleEntity.php
 <?php declare(strict_types=1);
