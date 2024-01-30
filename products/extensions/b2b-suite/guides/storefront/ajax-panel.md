@@ -21,7 +21,7 @@ The most basic ajax panel looks like this:
 ```twig
 <div
     class="b2b--ajax-panel"
-    data-url="{{ path('frontend.b2b.b2bcontact.grid' }}"
+    data-url="{{ path('frontend.b2b.b2bcontact.grid') }}"
 >
     <!-- will load content here -->
 </div>

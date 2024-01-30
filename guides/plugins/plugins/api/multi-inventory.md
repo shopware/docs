@@ -34,7 +34,61 @@ Meanwhile, refer to the following links regarding the general use of the Admin A
 
 The Multi-Inventory feature implements a specific data structure for its internal stock handling. The following entity-relationship model visually represents the new entities, as well as the relationships between them and platform entities.
 
-![multi-inventory_data-structure](../../../../assets/multi-inventory-data-structure.png)
+```mermaid
+erDiagram
+    OrderWarehouseGroup }|..|| Order : "M:1"
+    OrderWarehouseGroup {
+        uuid order_id
+        uuid warehouse_group_id
+    }
+    OrderWarehouseGroup }|..|| WarehouseGroup : "M:1"
+    OrderProductWarehouse }|..|| Order : "1:M"
+    OrderProductWarehouse{
+        uuid order_id
+        uuid product_id
+        uuid warehouse_id
+    }
+    Order {
+        uuid order_id
+    }
+    OrderProductWarehouse }|..|{ WarehouseGroupWarehouse : "M:N"
+    Warehouse {
+        uuid warehouse_id
+    }
+    WarehouseGroup }|..|| Rule : "M:1"
+    Rule{
+        uuid rule_id
+    }
+    WarehouseGroup {
+        uuid rule_id
+        uuid warehouse_group_id
+    }
+    WarehouseGroup ||..|{ ProductWarehouseGroup : "1:M"
+    ProductWarehouseGroup {
+        uuid product_id
+        uuid warehouse_group_id
+    }
+    WarehouseGroup ||..|{ WarehouseGroupWarehouse : "1:M"
+    WarehouseGroup }|..|{ WarehouseGroupWarehouse : "M:N"
+    WarehouseGroupWarehouse {
+        uuid warehouse_id
+        uuid warehouse_group_id
+    }
+    ProductWarehouseGroup }|..|| Product : "M:1"
+    OrderProductWarehouse }|..|| Product : "M:1"
+    Product {
+        uuid produtc_id
+    }
+    ProductWarehouse }|..|| Product : "M:1"
+    WarehouseGroupWarehouse }|..|| Warehouse : "M:1"
+    WarehouseGroupWarehouse }|..|{ Warehouse : "M:N"
+    ProductWarehouse }|..|| Warehouse : "1:M"
+    ProductWarehouse {
+        uuid product_id
+        uuid warehouse_id
+    }
+    Warehouse ||..|{ OrderProductWarehouse : "1:M"
+```
 
 ## Working with the API
 
