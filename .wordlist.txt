@@ -938,6 +938,7 @@ OPENSEARCH
 Opensearch's
 OpenSSH
 openssl
+OpenSSL
 openUserActionMenu
 orderAware
 OrderAware
