@@ -240,3 +240,34 @@ Recommended PHP ini:
 ## Setup
 
 Once the requirements are fulfilled, follow up with the [Template](template) guide to set up Shopware.
+
+
+## Directories and permissions
+
+The following directories and files need to be writable by the webserver user:
+
+* `public/`
+* `public/bundles/`
+* `public/theme/`
+* `public/media/`
+* `public/thumbnail/`
+* `public/recovery/`
+* `public/update-assets/`
+* `public/install-assets/`
+* `var/`
+* `var/log/`
+* `var/cache/`
+* `var/sessions/`
+* `config/jwt/`
+* `config/packages/`
+
+The following directories should be shared between deployments:
+
+* `files/`
+* `public/media/`
+* `public/thumbnail/`
+* `public/bundles/`
+* `public/theme/`
+* `public/sitemap/`
+* `auth.json`
+* `config/jwt/`
