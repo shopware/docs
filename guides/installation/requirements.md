@@ -28,8 +28,8 @@ You can use these commands to check your actual environment:
 ### PHP
 
 * Compatible version: 8.1 and 8.2
-* `memory_limit` : 512M minimum
-* `max_execution_time` : 30 seconds minimum
+* `memory_limit`: 512M minimum
+* `max_execution_time`: 30 seconds minimum
 * Extensions:
   * ext-curl
   * ext-dom  
@@ -49,21 +49,21 @@ You can use these commands to check your actual environment:
   * ext-xml  
   * ext-zip  
   * ext-zlib
-* Composer recommended version : 2.0 or higher
+* Composer recommended version: 2.0 or higher
 
 ### SQL
 
 * MySQL
 
-  * Recommended version : 8.0
+  * Recommended version: 8.0
 
   * Problematic versions: 8.0.20
 
 * MariaDB
 
-  * Compatible versions : at least 10.3
+  * Compatible versions: at least 10.3
 
-  * Recommended version : at least 10.11
+  * Recommended version: at least 10.11
 
   * Problematic versions: 10.3.29, 10.4.19, 10.5.10, [10.5.22, 10.6.15, 10.9.8, 10.10.6, 10.11.5, 11.0.3](https://jira.mariadb.org/browse/MDEV-31931)
 
@@ -86,7 +86,7 @@ For optimal MySQL performance, it is advisable to have a minimum of 32 MB.
 
 To run Shopware in a development context, the [Symfony CLI](https://symfony.com/doc/current/setup/symfony_server.html) will work nicely.
 
-Below you will find the default configuration using either Caddy, Nginx or Apache as a webserver.
+Below, you will find the default configuration using either Caddy, Nginx or Apache as a webserver.
 
 <Tabs>
 <Tab title="Caddy">
