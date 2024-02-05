@@ -19,6 +19,10 @@ The LineItemList component is the central representation of product lists in the
 The component is used across multiple different child components throughout the B2B Suite.
 ![image](../../../../assets/b2bSuite-concept-lineItemListComponents.svg)
 
+|Symbol|Description|
+|------|------------|
+|<SwagIcon icon="bar-square/solid" />| Component |
+
 The yellow colored blocks represent components, while the smaller green ones are context objects that contain the component specific information.
 
 ## Internal data structure
