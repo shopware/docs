@@ -1,4 +1,4 @@
-# Shopware Docs
+# Shopware developer docs
 
 [![Build and deploy](https://github.com/shopware/docs/actions/workflows/deploy-developer-portal.yml/badge.svg)](https://github.com/shopware/docs/actions/workflows/deploy-developer-portal.yml)
 [![Issues](https://img.shields.io/github/issues/shopware/docs)](https://github.com/shopware/docs/issues)
@@ -10,6 +10,9 @@
 - provides general **developer** documentation for shopware 6
 - is one of the sources for our [developer portal](https://github.com/shopware/developer-portal)
 - represents the content of https://developer.shopware.com/docs/
+
+
+![Developer docs](./assets/developer-docs.png)
 
 
 ## Workflows
