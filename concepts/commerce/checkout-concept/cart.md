@@ -31,7 +31,7 @@ The cart has very few hard dependencies on other core entities in Shopware 6. En
 
 An instance of this class represents one single cart. As shown in the diagram below, relations to central Entities of the system are omitted. This allows Shopware 6 to manage multiple carts per user, per sales channel, or across all sales channels. The only identification is a token hash.
 
-![Representation of the cart struct](../../../assets/cart-struct.png)
+![Representation of the cart struct](../../../assets/commerce-checkout-cartStruct.svg)
 
 This highly mutable data structure is acted upon from requests and calculated and validated through services. It contains:
 
