@@ -46,6 +46,7 @@ AllowHtml
 AlwaysValidRule
 amqp
 AndRule
+antipattern
 api
 ApiAware
 ApiController
