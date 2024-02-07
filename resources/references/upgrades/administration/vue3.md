@@ -120,7 +120,7 @@ Fields in the administration no longer have the previous ID almost exclusively u
 Prop default functions no longer have access to the component's `this` scope. You can no longer call `this.$tc` in default functions. Use `Shopware.Snippet.tc` instead.
 
 ### Mutating props
-This is an antipattern also for Vue 2. In Vue 2 however, those mutations were not always detected. In Vue 3, this will fail with hard errors. Take a look at this [example](https://eslint.vuejs.org/rules/no-mutating-props.html) to get a basic understanding of how to avoid mutating props directly.
+This is an antipattern also for Vue 2. In Vue 2, however, those mutations were not always detected. In Vue 3, this will fail with hard errors. Take a look at this [example](https://eslint.vuejs.org/rules/no-mutating-props.html) to get a basic understanding of how to avoid mutating props directly.
 
 ## Conclusion
 
