@@ -1,3 +1,8 @@
+---
+nav:
+  hidden: true
+---
+
 # Shopware Developer Documentation
 
 [![Build and deploy](https://github.com/shopware/docs/actions/workflows/deploy-developer-portal.yml/badge.svg)](https://github.com/shopware/docs/actions/workflows/deploy-developer-portal.yml)
