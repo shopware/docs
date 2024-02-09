@@ -27,7 +27,7 @@ They are defined in the [`.github/workflows`](./.github/workflows) folder and he
 
 All changed content is checked with Reviewdog for grammar and language. The configuration for Reviewdog can be found in [`.reviewdog.yml`](./.github/workflows/reviewdog.yml). It will create warnings in the pull request if the language or grammar is not correct. A more in-depth explanation can be found in [Language and Grammar](./resources/guidelines/documentation-guidelines/03-language-and-grammar.md) section.
 
-### Markdown
+### Markdown check
 
 The markdown files are checked with [markdown-lint](https://github.com/avto-dev/markdown-lint) to identify issues such as formatting errors, style inconsistencies, etc. By doing so, it facilitates the creation of well-structured and consistent Markdown documents.. The configuration for markdown-lint can be found in [`markdown-style-check.yml`](./.github/workflows/markdown-style-check.yml).
 
@@ -39,16 +39,16 @@ The markdown files are checked with [py-spelling](https://facelessuser.github.io
 sort .wordlist.txt -o .wordlist.txt
 ```
 
-### Media file formats check
+### Media file format check
 
 The `/docs/assets` folder stores images, videos, and other files linked in markdown. They follow the naming convention outlined in [Methodize Assets](./resources/guidelines/documentation-guidelines/05-methodize-assets.md#visual-diagram-guidelines). The [`file-format-check.yml`](.github/workflows/file-format-check.yml) ensures adherence to these naming guidelines.
 
-### Validate external links
+### External link check
 
 [Lychee](https://github.com/lycheeverse/lychee) is used to check if external links are working properly or broken. The configuration for lychee can be found in [`validate-external-links.yml`](./.github/workflows/validate-external-links.yml).
 
 
-### Synced files check
+### Synced files
 
 Certain files within the `shopware/shopware` repository are duplicated in the `shopware/docs` repository for reference purposes. Any modifications made to the former files will automatically synchronize with the corresponding files in the latter repository by the [`update-adrs`](./.github/workflows/update-adrs.yml) workflow.
 
