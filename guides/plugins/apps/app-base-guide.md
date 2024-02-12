@@ -80,7 +80,7 @@ Additionally, your app will provide a secret that Shopware will use to sign all 
 
 The setup workflow is shown in the following schema. Each step will be explained in detail.
 
-![Setup request workflow](../../../assets/shop-app-communication-1-.svg)
+![Setup request workflow](../../../assets/plugins-apps-appBaseGuide.svg)
 
 ::: info
 The timeout for the requests against the app server is 5 seconds.
