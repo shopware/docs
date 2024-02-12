@@ -49,11 +49,6 @@ Here is a handpicked selection of external resources. This list provides a handy
 - [Vue test utils migration guide](https://test-utils.vuejs.org/migration/)
 
 ## Step-by-step guide
-::: warning
-Depending on when you read this document, you still need to enable the `VUE3` feature flag.
-To be safe, enable the `VUE3` feature flag and restart your watcher.
-:::
-
 To follow along, you should have the following:
 
 - the latest Shopware `trunk` or an official release candidate
@@ -64,19 +59,11 @@ To follow along, you should have the following:
 
 Make sure to align your `package.json` dependencies with the [administration](https://github.com/shopware/shopware/blob/trunk/src/Administration/Resources/app/administration/package.json).
 
-### Verify the Admin is using Vue 3
-
-If you evaluate the following expression in the browser dev tools, the value `true` must be returned.
-
-```javascript
-Shopware.Application.view.vue3
-```
-
 ### Check your templates
 
 For your templates to work correctly, perform the following in no specific order:
 
-- Replace all `sw-field` usages with the corresponding [components](https://github.com/shopware/shopware/blob/trunk/src/Administration/Resources/app/administration/src/app/component/form/sw-field/index.js#L16).
+- Replace all `sw-field` usages with the corresponding [components](https://github.com/shopware/shopware/blob/6.5.x/src/Administration/Resources/app/administration/src/app/component/form/sw-field/index.js#L16).
 - [Check all v-models](https://v3-migration.vuejs.org/breaking-changes/v-model.html)
 - [Check event listeners](https://v3-migration.vuejs.org/breaking-changes/v-model.html#_3-x-syntax)
 - [Check for deprecated slot syntax](https://eslint.vuejs.org/rules/no-deprecated-slot-attribute.html)
