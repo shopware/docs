@@ -13,6 +13,12 @@ The Currency component provides the means for currency calculation in the B2B Su
 
 ![image](../../../../../assets/b2bSuite-core-currencyComponent.svg)
 
+| Icon                                      |Description|
+|---------------------------------------------|------------|
+| <SwagIcon icon="layer-group" type="solid" /> | Represents component |
+| <SwagIcon icon="database" type="solid" /> | Represent context objects that contain the component specific information |
+| <SwagIcon icon="bars-square" type="solid" /> | Represents child components |
+
 ## Context
 
 The Currency component provides an additional Context object (`Shopware\B2B\Currency\Framework\CurrencyContext`) containing a currency factor.

@@ -60,9 +60,8 @@ For example, let's look at the schema part responsible for storing the address a
 
 ![acl addresses](../../../../../assets/b2bSuite-core-entityAcl.svg)
 
-As you can see, the addresses (subject) can be allowed in two distinct contexts.
-Either through a *role* or through a *contact*. So between these entities are two ACL tables holding the M:N relations.
-On the left, you see the *ContactRole* table. This table holds the information on which contact is assigned to what roles.
+As you can see, the addresses (subject) can be allowed in two distinct contexts, either through a *role* or through a *contact*. Inbetween these entities are two *ACL* tables holding the M:N relations.
+On the left, you see the *ContactRole* table. This table holds the information of which contact is assigned to what roles.
 
 This allows for a single query to select all allowed addresses of a particular user combined from the role and direct assignments.
 
