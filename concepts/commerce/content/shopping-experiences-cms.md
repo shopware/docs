@@ -143,7 +143,7 @@ Whereas the structure of a CMS page remains somewhat static, its content can be 
 
 The following diagram illustrates how that works using the example of a category:
 
-![Flow of resolving CMS page content](../../../assets/concept-commerce-shoppingExperiences-resolvingCmsPage.png).
+![Flow of resolving CMS page content](../../../assets/commerce-content-cms.svg)
 
 Let's go through the steps one by one.
 

@@ -9,7 +9,14 @@ nav:
 
 The company component acts as a container for role related entities by providing a minimalistic interface to the different components. This ensures shared functionality. The following graph shows components that are managed in this component:
 
-![image](../../../../../assets/company-management.svg)
+![image](../../../../../assets/b2bSuite-storefront-companyComponents.svg)
+
+| Icon                                      |Description|
+|---------------------------------------------|------------|
+| <SwagIcon icon="layer-group" type="solid" /> | Represents component |
+| <SwagIcon icon="database" type="solid" /> | Represent context objects that contain the component specific information |
+| <SwagIcon icon="bars-square" type="solid" /> | Represents child components |
+
 
 ## Context
 

@@ -14,7 +14,7 @@ The B2B Suite ships with many new entities and therefore provides the means to c
 
 The diagram below shows the usually implemented objects with their outside dependencies.
 
-![image](../../../../../assets/assignment-service.svg)
+![image](../../../../../assets/b2bSuite-core-assignmentService.svg)
 
 ## Repository
 

@@ -27,7 +27,6 @@ AddressBookWidget
 AddressDetailPage
 AddressListingPage
 Adminer
-MeteorAdminSDK
 AdministrationNewField
 AdministrationNewModule
 AdminQueueWorker
@@ -46,6 +45,7 @@ AllowHtml
 AlwaysValidRule
 amqp
 AndRule
+antipattern
 api
 ApiAware
 ApiController
@@ -84,6 +84,9 @@ AvailableCombinationLoader
 AvgResult
 awaitAndCheckNotification
 axios
+B2B Component 
+B2B Components
+B2B Suite 
 backend
 Backend
 backends
@@ -341,6 +344,7 @@ DataAbstractionLayer
 DataAware
 datadog
 Datadog
+Datadog
 DataResolver
 dataSelection
 DataSelection
@@ -435,6 +439,7 @@ DTO
 DTOs
 dunglas
 duplications
+DX
 EcmaScript
 ecommerce
 eg
@@ -608,12 +613,15 @@ GoodsCountRule
 GoodsPriceRule
 GoogleReCaptchaV
 goto
+Grafana
 grantable
 Grantable
 graphviz
 gridActions
 gridColumns
 GridHelper
+grpc
+gRPC
 GuestWishlistPage
 GuestWishlistPagelet
 guid
@@ -787,6 +795,8 @@ LONGTEXT
 LongTextField
 lookups
 lowerCamelCase
+lychee
+Lychee
 macOS
 mailAware
 MailAware
@@ -832,6 +842,7 @@ mergeWith
 MessageAware
 MessageQueue
 MessageStorer
+MeteorAdminSDK
 Methodize
 middleware
 Middleware
@@ -883,6 +894,7 @@ nd
 NelmioCorsBundle
 NewFeature
 newQuantity
+NewRelic
 newsletterRecipient
 NewsletterRecipientAware
 NewsletterRecipientStorer
@@ -939,6 +951,7 @@ Opensearch's
 OpenSSH
 openssl
 OpenSSL
+OpenTelemetry
 openUserActionMenu
 orderAware
 OrderAware
@@ -967,6 +980,10 @@ org's
 ORM
 ORMs
 OrRule
+otel
+OTEL
+otlp
+OTLP
 oversales
 paas
 Paas
@@ -1187,6 +1204,7 @@ resubmittable
 returnUrl
 revalidation
 ReverseInherited
+Reviewdog
 ReviewFormDataAware
 ReviewFormDataStorer
 rfc
@@ -1298,8 +1316,8 @@ sku
 slowlog
 sm
 smartbar
-SMTP
 SMS
+SMTP
 snakeCase
 SnippetFileInterface
 SomeCoreClassTest
@@ -1601,16 +1619,3 @@ YYYY
 zlib
 zsh
 ZSH
-Grafana
-OpenTelemetry
-OTLP
-gRPC
-Datadog
-NewRelic
-OTEL
-otel
-otlp
-grpc
-B2B Component 
-B2B Suite 
-B2B Components 

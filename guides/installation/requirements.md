@@ -49,13 +49,13 @@ You can use these commands to check your actual environment:
   * ext-xml  
   * ext-zip  
   * ext-zlib
-* Composer recommended version : 2.0 or higher
+* Composer recommended version: 2.0 or higher
 
 ### SQL
 
 * MySQL
 
-  * Recommended version : 8.0
+  * Recommended version: 8.0
 
   * Problematic versions: 8.0.20
 
@@ -82,7 +82,7 @@ For optimal MySQL performance, it is advisable to have a minimum of 32 MB.
 
 To run Shopware in a development context, the [Symfony CLI](https://symfony.com/doc/current/setup/symfony_server.html) will work nicely.
 
-Below you will find the default configuration using either Caddy, Nginx or Apache as a webserver.
+Below, you will find the default configuration using either Caddy, Nginx or Apache as a webserver.
 
 <Tabs>
 <Tab title="Caddy">

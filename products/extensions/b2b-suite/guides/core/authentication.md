@@ -20,13 +20,13 @@ It extends the Shopware default authentication component and provides several be
 
 A schematic overview of the central usage of the Authentication component looks like this:
 
-![image](../../../../../assets/authentication-overview.svg)
+![image](../../../../../assets/b2bSuite-core-authenticationComponent.svg)
 
-| Color  |   Type   |                                                                                  Description                                                                                  |
+| Icon  |   Type   |                                                                                  Description                                                                                  |
 |--------|:--------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| Green  | Provider | Provides user identities. For example, a contact and a debtor are both valid B2B-Accounts that log in through the same user interface but do not share a common storage table |
-| Yellow | Context  |                            Uses the `Identity` as a context to determine what data should be shown. Usually, a simple debtor or tenant-like filter                             |
-| Blue |  Owner   |                                                          Uses the `Identity` to store the specific owner of a record                                                          |
+| <SwagIcon icon="book-user" type="solid" />  | Provider | Provides user identities. For example, a contact and a debtor are both valid B2B-Accounts that log in through the same user interface but do not share a common storage table |
+| <SwagIcon icon="database" type="solid" /> | Context  |                            Uses the `Identity` as a context to determine what data should be shown. Usually, a simple debtor or tenant-like filter                             |
+| <SwagIcon icon="user-shield" type="solid" /> |  Owner   |                                                          Uses the `Identity` to store the specific owner of a record                                                          |
 
 ## Working with the identity as a context
 
