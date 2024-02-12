@@ -11,6 +11,13 @@ The company component acts as a container for role related entities by providing
 
 ![image](../../../../../assets/b2bSuite-storefront-companyComponents.svg)
 
+| Icon                                      |Description|
+|---------------------------------------------|------------|
+| <SwagIcon icon="layer-group" type="solid" /> | Represents component |
+| <SwagIcon icon="database" type="solid" /> | Represent context objects that contain the component specific information |
+| <SwagIcon icon="bars-square" type="solid" /> | Represents child components |
+
+
 ## Context
 
 A shared context for entity creation and update is provided via the `AclGrantContext` concept. Therefore the components do not have to depend on roles directly but rather on the company context.
