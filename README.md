@@ -13,10 +13,10 @@ nav:
 This repository contains general **developer** documentation for Shopware 6 which is served on [developer.shopware.com/docs](https://developer.shopware.com/docs/). However, the primary hub for all our [developer resources](https://developer.shopware.com/) is managed through the [developer portal](https://github.com/shopware/developer-portal) repository.
 The developer documentation is organized into sections covering :
 
-- [Concepts](./concepts)
-- [Guides](./guides)
-- [Products](./products)
-- [Resources](./resources)
+- [Concepts](./concepts/)
+- [Guides](./guides/)
+- [Products](./products/)
+- [Resources](./resources/)
 
 Refer to its [structure](./index.md) to understand better. Contributions to improve the content are welcome, following the outlined [contribution guidelines](./resources/guidelines/documentation-guidelines/06-doc-process.md). The markdown content undergoes workflow checks for easier maintenance. Further details are outlined below. 
 
@@ -26,7 +26,7 @@ Refer to its [structure](./index.md) to understand better. Contributions to impr
 
 ## Workflows
 
-They are defined in the [`.github/workflows`](./.github/workflows) folder and help the DX team to maintain the documentation. The workflows are triggered by events like `push`, `pull_request`, `schedule` and `workflow_dispatch`. The workflows are used to build, test, and deploy the documentation. If a PR pipeline fails, the PR will be marked as failed, and it won't be possible to merge it. In this case, check the below-mentioned workflows to see what went wrong and where to fix it.
+They are defined in the [`.github/workflows`](./.github/workflows/) folder and help the DX team to maintain the documentation. The workflows are triggered by events like `push`, `pull_request`, `schedule` and `workflow_dispatch`. The workflows are used to build, test, and deploy the documentation. If a PR pipeline fails, the PR will be marked as failed, and it won't be possible to merge it. In this case, check the below-mentioned workflows to see what went wrong and where to fix it.
 
 ### Grammar and language check
 
@@ -57,10 +57,10 @@ The `/docs/assets` folder stores images, videos, and other files linked in markd
 
 Certain files within the `shopware/shopware` repository are duplicated in the `shopware/docs` repository for reference purposes. Any modifications made to the former files will automatically synchronize with the corresponding files in the latter repository by the [`update-adrs`](./.github/workflows/update-adrs.yml) workflow.
 
-| `shopware/shopware` files |  `shopware/docs` files |
-|-----------------------|-----------------------------|
-| [shopware's adr](https://github.com/shopware/shopware/tree/trunk/adr) | [adr folder](./resources/references/adr) |
-| [adr assets](https://github.com/shopware/shopware/tree/trunk/adr/assets) | [assets adr folder](./assets/adr) |
-| [coding guideline](https://github.com/shopware/shopware/tree/trunk/coding-guidelines/core) | [core](./resources/guidelines/code/core) |
+| `shopware/shopware` files | `shopware/docs` files                     |
+|-----------------------|-------------------------------------------|
+| [shopware's adr](https://github.com/shopware/shopware/tree/trunk/adr) | [adr folder](./resources/references/adr/) |
+| [adr assets](https://github.com/shopware/shopware/tree/trunk/adr/assets) | [assets adr folder](./assets/adr/)        |
+| [coding guideline](https://github.com/shopware/shopware/tree/trunk/coding-guidelines/core) | [core](./resources/guidelines/code/core)  |
 
 > Please create a PR in the [shopware](https://github.com/shopware/shopware/pulls) repository if you want to change something in the above folders.
