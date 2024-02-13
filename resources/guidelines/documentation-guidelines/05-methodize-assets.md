@@ -17,7 +17,7 @@ For the creation of a visual representation, either contact the Shopware design 
 
 Our documentation categorizes visuals into different types, including screenshots, diagrams (such as UML and flowcharts), and GIFs. Each of these visual elements shares common quality standards. This section outlines the specific requirements that must be met by all visuals used in technical documentation.
 
-Use the following standards:
+### Diagram specifications
 
 | Image attributes | Specification | Notes|
 |------------------|---------------|---------|
@@ -31,13 +31,13 @@ Use the following standards:
 |Alt tags| `![Alt](/path/to/img.jpg “image title”)` | Make sure to include alt text for every image. The text is used in situations where the image isn’t visible and image SEOs.|
 |Borders|-|No borders are added to the images|
 
-What needs to be considered for visual diagrams:
+### Considerations for Visual Diagrams
 
 * If you add images to illustrate items in a list (typically, steps in a procedure), align these images accordingly:
     * If there is only one image that illustrates the entire procedure, place the image at the end of the procedure or align it with the lead-in paragraph.
     * If you need to provide an image for each step in the procedure, place each image at the end of each step it follows.
 
-* When images is to be embedded in files/nested files, then use the below naming convention for the images:
+* Use the below naming convention for the images:
 
   * *`<topicName>-<meaningfulImageName>.svg`*. For example,
 
@@ -63,16 +63,25 @@ storefront-dataHandling-pages_01.svg
 
 ## Diagrams
 
-Consider using diagrams when you need to:
+### Considerations for Diagrams
+
+Consider creating diagrams to :
 
 * Show architecture
 * Show complex relationships
 * Define a complex workflow
-* For flowcharts, sequence diagram, state machine diagram, class diagram, etc use [Mermaid](https://mermaid.live/) to create one and add the diagram code in codeblock.
+
+### Diagram creation tools
+
+* [Mermaid](https://mermaid.live/) - Use Mermaid for generating Flowcharts, Sequence Diagrams, State Machine Diagrams, Class Diagrams, etc. Embed the diagram code within a codeblock named `mermaid`.
+
+* [Meteor Diagram Kit](https://www.figma.com/community/file/1339141765099471739) - Apart from UML diagrams, utilize *Meteor Diagram Kit* to create other diagrams. This follows Shopware design and quality standards.
 
 ## Screenshots
 
-Consider using screenshots when you want to:
+### Considerations for Diagrams
+
+Consider creating screenshots to :
 
 * Provide an example of a visualization
 * Show panels populated with query and settings
@@ -80,7 +89,7 @@ Consider using screenshots when you want to:
 * Emphasize a new feature
 * Limit the contents of an image to the relevant portion. Do not include distracting or unnecessary content and whitespace.
 
-What needs to be considered for taking screenshots :
+### Aspects for Capturing Screenshots
 
 * If the screenshot shows a desktop application interface, you must use the latest OS version supported by the solution to take the screenshot.
 * The screenshot must be in focus and show an active window, wizard or dialog box.
@@ -93,9 +102,11 @@ What needs to be considered for taking screenshots :
 
 ## GIFs
 
+### Considerations for GIFs
+
 Consider using GIFs when you want to:
 
-* Demonstrate procedures.
+* Demonstrate flow of procedures.
 * Highlight functionalities visually.
 * Aid setup and initial tasks with visual guides.
 
