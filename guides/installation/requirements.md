@@ -56,8 +56,8 @@ You can use these commands to check your actual environment:
 * MySQL
 
   * Recommended version: 8.0
-
-  * Problematic versions: 8.0.20
+  * Minimum version: 8.0.17
+  * Problematic versions: 8.0.20, 8.0.21
 
 * MariaDB
 
