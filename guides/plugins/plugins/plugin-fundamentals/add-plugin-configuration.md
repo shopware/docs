@@ -60,7 +60,7 @@ Please make sure to specify the `xsi:noNamespaceSchemaLocation` as shown above a
 
 ### Card Titles
 
-A `<card>` `<title>` is translatable, this is managed via the `lang` attribute. By default the `lang` attribute is set to `en-GB`, to change the locale of a `<title>` just add the attribute as follows:
+A `<card>` `<title>` is translatable, this is managed via the `lang` attribute. By default, the `lang` attribute is set to `en-GB`, to change the locale of a `<title>` just add the attribute as follows:
 
 ```html
     ...
@@ -109,7 +109,7 @@ The settings `<label>`, `<placeholder>` and `<helpText>` are used to label and e
 
 Add the `defaultValue` setting to your `<input-field>` to define a default value for it. This value will be imported into the database on installing and updating the plugin. We use [Symfony\Component\Config\Util\XmlUtils](https://github.com/symfony/config/blob/master/Util/XmlUtils.php#L215) for casting the values into the correct PHP types.
 
-Below you'll find an example how to use this setting.
+Below, you'll find an example of how to use this setting.
 
 ```html
 <input-field type="text">
@@ -123,7 +123,7 @@ Below you'll find an example how to use this setting.
 
 You can add the `<disabled>` setting to any of your `<input-field>` elements to disable it.
 
-Below you'll find an example how to use this setting.
+Below, you'll find an example of how to use this setting.
 
 ```html
 <input-field>
@@ -138,7 +138,7 @@ _Please note, `<disabled>` only takes boolean values._
 
 You can add the `<copyable>` setting to your `<input-field>` which are of type `text` or extensions of it. This will add a button at the right, which on click copies the content of your `<input-field>` into the clipboard.
 
-Below you'll find an example how to use this setting.
+Below, you'll find an example of how to use this setting.
 
 ```html
 <input-field>
@@ -304,6 +304,10 @@ Now all that's left to do is to present you a working example `config.xml` and s
     </card>
 </config>
 ```
+
+## Add values to your configuration
+
+After adding your input fields to the `config.xml`, you can add values to your configuration. To do so, navigate from the sidebar to the `Extensions` > `My extensions` > `Apps` tab and click on your plugin's `...` button. Now you can see the `Configuration` tab and fill in the values for your input fields.
 
 ## Next steps
 
