@@ -88,7 +88,7 @@ To create a flow action, you need to define a `<flow-action>` block within a fil
 
 ```xml
 // Resources/flow-action.xml
-<flow-actions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/FlowAction/Schema/flow-action-1.0.xsd">
+<flow-actions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/6.5.x/src/Core/Framework/App/FlowAction/Schema/flow-action-1.0.xsd">
     <flow-action>
         ... # The first action
     </flow-action>
@@ -305,4 +305,4 @@ bin/console app:install --activate FlowBuilderActionApp
 ## Further steps
 
 * [Flow action example configuration](../../../../resources/references/app-reference/flow-action-reference) page
-* [Schema definition for flow actions (GitHub)](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/App/FlowAction/Schema/flow-action-1.0.xsd)`
+* [Schema definition for flow actions (GitHub)](https://github.com/shopware/shopware/blob/6.5.x/src/Core/Framework/App/FlowAction/Schema/flow-action-1.0.xsd)`
