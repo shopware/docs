@@ -767,14 +767,14 @@ shopware:
 
 Additionally, we need to set up some VCL Snippets in the Fastly interface:
 
-<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/deliver.vcl" title="vcl_deliver" target="_blank" />
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/deliver/default.vcl" title="vcl_deliver" target="_blank" />
 
-<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/fetch.vcl" title="vcl_fetch" target="_blank" />
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/fetch/default.vcl" title="vcl_fetch" target="_blank" />
 
-<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/hash.vcl" title="vcl_hash" target="_blank" />
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/hash/default.vcl" title="vcl_hash" target="_blank" />
 
-<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/hit.vcl" title="vcl_hit" target="_blank" />
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/hit/default.vcl" title="vcl_hit" target="_blank" />
 
-<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/recv.vcl" title="vcl_recv" target="_blank" />
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/recv/default.vcl" title="vcl_recv" target="_blank" />
 
 <!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Storefront/Resources/config/packages/storefront.yaml","WATCHER_HASH":"caead56ad257ecec0e10a62dd3121bb6"} -->

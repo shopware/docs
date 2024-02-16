@@ -7,7 +7,7 @@ nav:
 
 [![Build and deploy](https://github.com/shopware/docs/actions/workflows/deploy-developer-portal.yml/badge.svg)](https://github.com/shopware/docs/actions/workflows/deploy-developer-portal.yml)
 [![Issues](https://img.shields.io/github/issues/shopware/docs)](https://github.com/shopware/docs/issues)
-[![Pull Requests](https://img.shields.io/github/issues-pr/shopware/docs)](https://github.com/shopware/docs/pull-requests)
+[![Pull Requests](https://img.shields.io/github/issues-pr/shopware/docs)](https://github.com/shopware/docs/pulls)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fdeveloper.shopware.com)](https://developer.shopware.com)
 
 This repository contains general **developer** documentation for Shopware 6 which is served on [developer.shopware.com/docs](https://developer.shopware.com/docs/). However, the primary hub for all our [developer resources](https://developer.shopware.com/) is managed through the [developer portal](https://github.com/shopware/developer-portal) repository.
