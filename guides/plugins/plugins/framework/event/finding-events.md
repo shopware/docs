@@ -281,7 +281,7 @@ One more note here:
 There's a vue browser extension which can greatly help will development in general, but also with finding events.
 
 [Vue.js devtools for Firefox](https://addons.mozilla.org/de/firefox/addon/vue-js-devtools/)
-[Vue.js devtools for Google Chrome](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
+[Vue.js devtools for Google Chrome](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
 
 ## Flow builder events
 
