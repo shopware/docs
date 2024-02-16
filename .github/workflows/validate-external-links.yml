@@ -17,5 +17,4 @@ jobs:
         with:
           args: --accept=200,403,429 -s "https"  "**/*.html" "**/*.md" "**/*.txt" "**/*.json" --exclude "https://github.com/\[your*" --exclude "https://localhost:9200" --exclude-mail
       - name: Fail if there were link errors
-        continue-on-error: true # to be removed after fixes from platform are applied
         run: exit ${{ steps.lychee.outputs.exit_code }}
