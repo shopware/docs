@@ -280,8 +280,6 @@ acl purgers {
 }
 
 sub vcl_recv {
-    set req.http.host = "sw6.dev.localhost";
-
     # Mitigate httpoxy application vulnerability, see: https://httpoxy.org/
     unset req.http.Proxy;
 
