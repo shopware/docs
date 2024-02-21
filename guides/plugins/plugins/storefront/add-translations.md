@@ -5,7 +5,7 @@ nav:
 
 ---
 
-# Add Translations
+# Add translations
 
 ## Overview
 
@@ -41,7 +41,7 @@ Now that we know how the structure of snippets should be, we can create a new sn
 
 Here's an example of an English translation file:
 
-```js
+```json
 // <extension root>/src/Resources/snippet/en\_GB/example.en-GB.json
 {
   "header": {
