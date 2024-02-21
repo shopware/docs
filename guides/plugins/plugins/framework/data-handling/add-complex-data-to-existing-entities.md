@@ -172,7 +172,7 @@ So let's have a look at the `defineFields` method. There's the default `IdField`
 
 Now we're getting to the actual new data, in this example, this is just a new string field. It is called `customString` and can now be used in order to store new string data for the product in the database.
 
-The last field is the inverse side of the `OneToOneAssociationField`. The first parameter defines the name of the property again, which will contain the `ProductEntity`. Now have a look at the second and third parameters. Those are the same as in the `ProductDefinition`, but the other way around. This is important, remember to do that!
+The last field is the inverse side of the `OneToOneAssociationField`. The first parameter defines the name of the property again, which will contain the `ProductEntity`. Now take a look at the second and third parameters. Those are the same as in the `ProductDefinition`, but the other way around. This order is important.
 
 The fourth parameter is the class of the associated definition, the `ProductDefinition` in this case. The last parameter, once again, defines the autoloading. In this example, the product definition will **not** be loaded, when you're just trying to load this extension entity. Yet, the extension entity will always automatically be loaded when the product entity is loaded, just like we defined earlier.
 
@@ -322,4 +322,4 @@ After we've created our subscriber, we have to adjust our `services.xml` to regi
 
 ## Entity extension vs. Custom fields
 
-[Custom fields](../custom-field/add-custom-field) are by default configurable by the admin user in the Administration and they mostly support scalar types, e.g. a text-field, a number field, or the likes. If you'd like to create associations between entities, you'll need to use an entity extension, just like we did here. Of course, you can also add scalar values without an association to an entity via an extension.
+[Custom fields](../custom-field/add-custom-field) are by default configurable by the admin user in the Administration, and they mostly support scalar types, e.g. a text-field, a number field, or the likes. If you'd like to create associations between entities, you'll need to use an entity extension, just like we did here. Of course, you can also add scalar values without an association to an entity via an extension.
