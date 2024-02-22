@@ -32,7 +32,7 @@ The theme configuration for a theme is located in the `theme.json` file `<plugin
   "author": "Shopware AG",
   "description": {
     "en-GB": "My custom theme",
-    "de-DE": "Standard Theme von Shopware 6"
+    "de-DE": "Mein custom thema"
   },
   "views": [
      "@Storefront",
