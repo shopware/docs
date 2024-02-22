@@ -1,8 +1,6 @@
 name: External link validation
 
 on:
-  pull_request:
-    types: [opened, edited]
   schedule:
     - cron: 0 11 * * *
 
