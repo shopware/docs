@@ -31,7 +31,7 @@ The theme configuration for a theme is located in the `theme.json` file `<plugin
   "name": "SwagBasicExampleTheme",
   "author": "Shopware AG",
   "description": {
-    "en-GB": "Default theme of Shopware 6",
+    "en-GB": "My custom theme",
     "de-DE": "Standard Theme von Shopware 6"
   },
   "views": [
