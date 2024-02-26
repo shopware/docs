@@ -127,3 +127,5 @@ nav:
     </custom-fields>
 </manifest>
 ```
+
+For more information on this refer to [App Base Guide](../../../guides/plugins/apps/app-base-guide.md#file-structure).
