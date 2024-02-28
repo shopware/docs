@@ -323,4 +323,4 @@ $criteria->addFilter(new SuffixFilter('name', 'Lightweight'));
 </Tab>
 </Tabs>
 
-In general, the storage systems are **case insensitive**, meaning that when filtering values to search for a string, the casing of the filter values doesn't affect their handling.
+In general, the storage systems are **case-insensitive**, meaning that when filtering values to search for a string, the casing of the filter values doesn't affect their handling.
