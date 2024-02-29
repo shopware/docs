@@ -142,7 +142,7 @@ Once we‘ve registered our new controller, we have to tell Shopware how we want
         xsi:schemaLocation="http://symfony.com/schema/routing
         https://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <import resource="../../Storefront/Controller/**/*Controller.php" type="annotation" />
+    <import resource="../../Storefront/Controller/**/*Controller.php" type="attribute" />
 </routes>
 ```
 
