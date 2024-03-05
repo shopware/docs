@@ -25,13 +25,18 @@ You should ensure that the `mysqldump` and `mysql` binary are from the same majo
 :::
 
 To have the Staging environment similar as possible to the live environment, it's recommended to duplicate the database. You can use the `mysqldump` command to export the database and import it into the staging environment. 
+
+::: info
+`shopware-cli` is a separate Go command line application that contains a lot of useful commands for Shopware. [Checkout the docs](https://sw-cli.fos.gg/install/) to learn how to install it.
+:::
+
 We recommend using `shopware-cli project dump` to create a dump of the database and import it with the regular mysql command. Shopware cli also has a flag to anonymize the data, so you can be sure that no personal data is in the staging environment.
 
 ```bash
 # creating a regular dump, the clean parameter will not dump the data of cart table
 shopware-cli project dump --clean --host localhost --username db_user --password db_pass --output shop.sql shopware
 
-# create a dump with anonymized data
+# create a dump with anonymize data
 shopware-cli project dump --clean --anonymize --host localhost --username db_user --password db_pass --output shop.sql shopware
 ```
 
@@ -151,7 +156,7 @@ This will use the regex to replace the URL. The match and replace are regular ex
 
 ### Usage of Apps
 
-The staging command will delete all apps that have an active connection to an external service and the integrations in Shopware. This means that the apps are not available in the staging environment. This is done to avoid data corruption or leaks to the live environment. After executing the command, you can install the apps again in the staging environment. This will not affect the live environment, as the instance id is different.
+The staging command will delete all apps with an active connection to an external service. This will be done to avoid data corruption or leaks in the live environment, as the staging environment is a copy of the live environment, so they keep a connection. After executing the command, you can install the App again, creating a new instance ID so the app will think it's an entirely different shop. In that way, the app installation is completely isolated from the live environment.
 
 ## Integration into Plugins
 
