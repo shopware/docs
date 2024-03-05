@@ -7,27 +7,25 @@ nav:
 
 # Staging
 
-Since Shopware 6.6.1.0, Shopware has a integrated Staging Mode. This mode prepares the Shop to be used in a staging environment. This means that the shop is prepared to be used in a test environment, where changes can be made without affecting the live shop.
+Since Shopware 6.6.1.0, Shopware has an integrated Staging Mode. This mode prepares the Shop to be used in a staging environment. This means the shop is prepared to be used in a test environment, where changes can be made without affecting the live shop.
 
 ## The workflow
 
-The staging mode is designed, to only modify data inside the Shopware instance. This means, the Staging mode does not duplicate the current Installation, copy Database or Files. It only modifies the data inside the Shopware instance.
+The staging mode is designed to modify data only inside the Shopware instance. This means the Staging mode does not duplicate the current Installation, copy the Database, or copy Files. It only changes the data inside the Shopware instance.
 
-So the real world use-case would be kinda like this:
+So, the real-world use case would be kind of like this:
 
 ### Creating the second Shopware instance
 
-The recommanded way would to deploy from your Git repository to the new environment. This way, you make sure that the codebase is equal to the live environment. The alternative way would be to copy the files from the live environment to the staging environment.
+The recommended way would be to deploy from your Git repository to the new environment. This way, you ensure the codebase is equal to the live environment. The alternative way would be to copy the files from the live environment to the staging environment.
 
 ### Copying the Database
-
 ::: info
-You should make sure that the `mysqldump` and the `mysql` binary is from the same major version and vendor. This means, if you use `mysqldump` from MariaDB, you should also use `mysql` from MariaDB. The same applies to MySQL.
+You should ensure that the `mysqldump` and `mysql` binary are from the same major version and vendor. If you use `mysqldump` from MariaDB, you should also use `mysql` from MariaDB. The same applies to MySQL.
 :::
 
-To have the Staging environment similar as possible to the live environment, it's recommanded to duplicate the database. For this you can use the `mysqldump` command to export the database and import it into the staging environment. 
-
-Our recommandation would be to use `shopware-cli project dump` to create a dump of the database and import it with the regular mysql command. Shopware cli does also have a flag to anonymize the data, so you can be sure that no personal data is in the staging environment.
+To have the Staging environment similar as possible to the live environment, it's recommended to duplicate the database. You can use the `mysqldump` command to export the database and import it into the staging environment. 
+We recommend using `shopware-cli project dump` to create a dump of the database and import it with the regular mysql command. Shopware cli also has a flag to anonymize the data, so you can be sure that no personal data is in the staging environment.
 
 ```bash
 # creating a regular dump, the clean parameter will not dump the data of cart table
@@ -37,15 +35,14 @@ shopware-cli project dump --clean --host localhost --username db_user --password
 shopware-cli project dump --clean --anonymize --host localhost --username db_user --password db_pass --output shop.sql shopware
 ```
 
-You can configure the dump command with a `.shopware-project.yml` which tables should be skipped, which additional fields should be anonymized and more. Checkout the [CLI documentation](https://sw-cli.fos.gg/commands/project/#shopware-cli-project-dump-database) for more information.
+You can configure the dump command with a `.shopware-project.yml`, which tables should be skipped, which additional fields should be anonymized, and more. Check out the [CLI](https://sw-cli.fos.gg/commands/project/#shopware-cli-project-dump-database) for more information.
 
 ### Configuration
-
 ::: info
-Generally it's not recommanded to share any resources like MySQL, Redis, ElasticSearch/OpenSearch between the live and staging environment. This could lead to data corruption when the configuration is not done correctly. Also the performance of the live environment could be affected by the staging environment.
+Generally, sharing resources like MySQL, Redis, ElasticSearch/OpenSearch between the live and staging environments is not recommended. This could lead to data corruption when the configuration is not done correctly. The staging environment could also affect the performance of the live environment.
 :::
 
-After the database is imported, you should modify the `.env` to use the staging database. If you use ElasticSearch/OpenSearch, you should set a `SHOPWARE_ES_INDEX_PREFIX` to avoid conflicts with the live environment.
+After importing the database, you should modify the `.env` to use the staging database. If you use ElasticSearch/OpenSearch, you should set a `SHOPWARE_ES_INDEX_PREFIX` to avoid conflicts with the live environment.
 
 ### Activate the Staging Mode
 
@@ -53,17 +50,17 @@ After the database is imported and the configuration is done, you can activate t
 
 ## Staging Mode
 
-The Staging Mode is designed to be used in a test environment. This means, that the shop is prepared to be used in a test environment, where changes can be made without affecting the live shop.
+The Staging Mode is designed to be used in a test environment. This means the shop is prepared to be used in a test environment, where changes can be made without affecting the live shop.
 
-### What does the staging mode?
+### What is the staging mode?
 
 The staging mode does the following:
 
-- Deletes all apps which have an active connection to an external service and the integrations in Shopware
-- Reset the instance id used for registration of Apps
-- It disables the sending of mails
+- Deletes all apps that have an active connection to an external service and the integrations in Shopware
+- Resets the instance ID used for registration of Apps
+- It turns off the sending of emails
 - Rewrites the URLs to the staging domain (if configured)
-- Checks that the ElasticSearch/OpenSearch indices are not existing yet
+- Checks that the ElasticSearch/OpenSearch indices do not existing yet
 - Shows a banner in the administration and storefront to indicate that the shop is in staging mode
 
 ### What does the staging mode not?
@@ -76,7 +73,7 @@ The staging mode does not:
 
 ### Configuration
 
-The staging mode is fully configureable with a `config/packages/staging.yaml`. You can configure the following options:
+The staging mode is fully configurable with a `config/packages/staging.yaml`. You can configure the following options:
 
 ```yaml
 # <shopware-root>/config/packages/staging.yaml
@@ -103,6 +100,7 @@ One of the most important options is the `domain_rewrite`. This option allows yo
 
 Using direct match (`equal`)
 
+
 ```yaml
 # <shopware-root>/config/packages/staging.yaml
 shopware:
@@ -115,7 +113,7 @@ shopware:
                 - # ... second rule
 ```
 
-This goes and compares the Sales Channel URL and when it's equal to `https://my-live-store.com` it will be replaced with `https://my-staging-store.com`.
+This compares the Sales Channel URL, and when it's equal to `https://my-live-store.com`, it will be replaced with `https://my-staging-store.com`.
 
 Replace using prefix (`prefix`)
 
@@ -131,7 +129,7 @@ shopware:
                 - # ... second rule
 ```
 
-The difference here to the `equal` type is, that it will only replace the URL when it starts with `https://my-live-store.com`, so all paths to that beginning will be replaced.
+The difference here to the `equal` type is that it will only replace the URL when it starts with `https://my-live-store.com`, so all paths to that beginning will be replaced.
 
 `https://my-live-store.com/en` will be replaced with `https://my-staging-store.com/en`
 
@@ -153,11 +151,11 @@ This will use the regex to replace the URL. The match and replace are regular ex
 
 ### Usage of Apps
 
-The staging command will delete all apps which have an active connection to an external service and the integrations in Shopware. This means, that the apps are not available in the staging environment. This is done to avoid any data corruption or data leaks to the live environment. After the execution of the command, you can install the apps again in the staging environment. This will not affect the live environment, as the instance id is different.
+The staging command will delete all apps that have an active connection to an external service and the integrations in Shopware. This means that the apps are not available in the staging environment. This is done to avoid data corruption or leaks to the live environment. After executing the command, you can install the apps again in the staging environment. This will not affect the live environment, as the instance id is different.
 
 ## Integration into Plugins
 
-The `system:setup:staging` is dispatching a Event which all plugins can subscribe to `Shopware\Core\Maintenance\Staging\Event\SetupStagingEvent` and modify the database for them to be in staging mode.
+The `system:setup:staging` is dispatching an Event which all plugins can subscribe to `Shopware\Core\Maintenance\Staging\Event\SetupStagingEvent` and modify the database to be in staging mode.
 
 Example of a subscriber for a payment provider to turn on the test mode:
 
