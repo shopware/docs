@@ -25,7 +25,7 @@ When your action implements the interface the Flow Dispatcher will wrap your act
 
 ::: code-group
 
-```PHP [<plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php]
+```php [{plugin root}/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php]
 <?php declare(strict_types=1);
 
 namespace Swag\CreateTagAction\Core\Content\Flow\Dispatching\Action;
@@ -50,7 +50,7 @@ You can also force the Flow Dispatcher to roll back the transaction by throwing 
 
 ::: code-group
 
-```PHP [<plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php]
+```php [{plugin root}/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php]
 <?php declare(strict_types=1);
 
 namespace Swag\CreateTagAction\Core\Content\Flow\Dispatching\Action;
