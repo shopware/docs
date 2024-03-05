@@ -53,6 +53,30 @@ After importing the database, you should modify the `.env` to use the staging da
 
 After the database is imported and the configuration is done, you can activate the Staging Mode. This can be done using the command `./bin/console system:setup:staging`. This command will modify the database to be used in a staging environment. You can pass `--no-interaction` to the command to avoid the interactive questions.
 
+### Protecting the Staging Environment
+
+The Staging environment should be protected from unauthorized access. It would help if you covered the staging environment with a password / IP restriction / oauth authentification.
+
+The simplest way to protect the staging environment is to use the `.htaccess` if you use Apache or `auth_basic` if you use Nginx. You can also use a firewall to restrict access to the staging environment based on IP addresses.
+
+Example configuration for Apache:
+
+```apache
+# <project-root>/public/.htaccess
+SetEnvIf Request_URI /api noauth=1
+<RequireAny>
+Require env noauth
+Require env REDIRECT_noauth
+Require valid-user
+</RequireAny>
+```
+
+An alternative way could be to use an Application Proxy before the staging environment like:
+
+- [Cloudflare Access](https://www.cloudflare.com/teams/access/)
+- [Azure Application Gateway](https://azure.microsoft.com/en-us/services/application-gateway/)
+- [Generic oauth2 proxy](https://oauth2-proxy.github.io/oauth2-proxy/)
+
 ## Staging Mode
 
 The Staging Mode is designed to be used in a test environment. This means the shop is prepared to be used in a test environment, where changes can be made without affecting the live shop.
