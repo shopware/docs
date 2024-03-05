@@ -700,7 +700,7 @@ Shopware.Component.register('swag-basic-example', {
 
 The following example shows how to pass on and save data of entity extensions.
 
-```javascript
+```javascript{134,164}
 import template from './swag-paypal-pos-wizard.html.twig';
 import './swag-paypal-pos-wizard.scss';
 import {
@@ -755,28 +755,6 @@ Component.extend('swag-paypal-pos-wizard', 'sw-first-run-wizard-modal', {
     },
 
     computed: {
-        displayStepperPages() {
-            return this.stepperPages.filter((item) => {
-                return item !== 'connectionDisconnect';
-            });
-        },
-
-        stepInitialItemVariants() {
-            const maxNavigationIndex = this.stepperPages.length;
-            const { navigationIndex } = this.currentStep;
-            const navigationSteps = [];
-
-            for (let i = 1; i <= maxNavigationIndex; i += 1) {
-                if (i < navigationIndex) {
-                    navigationSteps.push('success');
-                } else if (i === navigationIndex) {
-                    navigationSteps.push('info');
-                } else {
-                    navigationSteps.push('disabled');
-                }
-            }
-            return navigationSteps;
-        },
 
         paypalPosSalesChannelRepository() {
             return this.repositoryFactory.create('swag_paypal_pos_sales_channel');
@@ -794,16 +772,6 @@ Component.extend('swag-paypal-pos-wizard', 'sw-first-run-wizard-modal', {
                 .addAssociation('domains')
                 .addAssociation('languages');
         },
-
-        wizardTitle() {
-            const params = [
-                this.$tc('global.sw-admin-menu.textShopwareAdmin'),
-                this.$tc('swag-paypal-pos.general.moduleTitle'),
-                this.title,
-            ];
-
-            return params.reverse().join(' | ');
-        },
     },
 
     watch: {
@@ -817,86 +785,11 @@ Component.extend('swag-paypal-pos-wizard', 'sw-first-run-wizard-modal', {
     },
 
     methods: {
-        handleRouteUpdate(to) {
-            const toName = to.name.replace('swag.paypal.pos.wizard.', '');
-
-            this.currentStep = this.stepper[toName];
-        },
-
+        //...
+        
         createdComponent() {
-            this.generateStepper();
-
-            const salesChannelId = this.$route.params.id;
-            if (salesChannelId) {
-                this.loadSalesChannel();
-                return;
-            }
-
+            //...
             this.createNewSalesChannel();
-        },
-
-        mountedComponent() {
-            const step = this.$route.name.replace('swag.paypal.pos.wizard.', '');
-            this.currentStep = this.stepper[step];
-        },
-
-        generateStepper() {
-            let index = 1;
-            this.stepper = this.stepperPages.reduce((accumulator, pageName) => {
-                if (pageName === 'connectionDisconnect') {
-                    index -= 1;
-                }
-
-                accumulator[pageName] = {
-                    name: `swag.paypal.pos.wizard.${pageName}`,
-                    variant: 'large',
-                    navigationIndex: index,
-                };
-
-                if (index === 1) {
-                    this.currentStep = accumulator[pageName];
-                }
-                index += 1;
-
-                return accumulator;
-            }, {});
-        },
-
-        onCloseModal() {
-            if (!this.salesChannel._isNew && (this.$route.params.id || this.salesChannel.id)) {
-                this.routeToDetailOverview();
-
-                return;
-            }
-
-            this.routeToDashboard();
-        },
-
-        onFinishWizard() {
-            this.routeToDetailOverview(true);
-        },
-
-        routeToDashboard() {
-            this.showModal = false;
-
-            this.$nextTick(() => {
-                this.$router.push({ name: 'sw.dashboard.index' });
-            });
-        },
-
-        routeToDetailOverview(finished = false) {
-            this.showModal = false;
-
-            this.save(finished).then(() => {
-                if (finished) {
-                    this.SwagPayPalPosApiService.startCompleteSync(this.salesChannel.id);
-                }
-
-                this.$router.push({
-                    name: 'swag.paypal.pos.detail.overview',
-                    params: { id: this.salesChannel.id },
-                });
-            });
         },
 
         save(activateSalesChannel = false, silentWebhook = false) {
@@ -922,33 +815,6 @@ Component.extend('swag-paypal-pos-wizard', 'sw-first-run-wizard-modal', {
                         name: this.salesChannel.name || this.placeholder(this.salesChannel, 'name'),
                     }),
                 });
-            });
-        },
-
-        registerWebhook(silent = false) {
-            const webhookPromise = this.SwagPayPalPosWebhookRegisterService.registerWebhook(this.salesChannel.id);
-
-            if (!silent) {
-                return webhookPromise.catch(this.catchError.bind(this, 'swag-paypal-pos.messageWebhookRegisterError'));
-            }
-
-            return webhookPromise;
-        },
-
-        cloneProductVisibility() {
-            if (this.cloneSalesChannelId === null) {
-                return;
-            }
-
-            this.SwagPayPalPosSettingApiService.cloneProductVisibility(
-                this.cloneSalesChannelId,
-                this.salesChannel.id,
-            ).catch((errorResponse) => {
-                if (errorResponse.response.data && errorResponse.response.data.errors) {
-                    this.createNotificationError({
-                        message: this.$tc('swag-paypal-pos.messageCloneError'),
-                    });
-                }
             });
         },
 
@@ -997,18 +863,11 @@ Component.extend('swag-paypal-pos-wizard', 'sw-first-run-wizard-modal', {
             return this.salesChannelRepository.get(salesChannelId, Shopware.Context.api, this.salesChannelCriteria)
                 .then((entity) => {
                     this.salesChannel = entity;
-                    this.previousApiKey = entity.extensions.paypalPosSalesChannel.apiKey;
+                 this.previousApiKey = entity.extensions.paypalPosSalesChannel.apiKey;
                     this.isLoading = false;
                 });
         },
-
-        updateCloneSalesChannel(cloneSalesChannelId) {
-            this.cloneSalesChannelId = cloneSalesChannelId;
-        },
-
-        toggleLoading(state) {
-            this.isLoading = state;
-        },
+        //...
     },
 });
 ```
