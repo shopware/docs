@@ -44,7 +44,7 @@ You can configure the dump command with a `.shopware-project.yml`, which tables 
 
 ### Configuration
 ::: info
-Generally, sharing resources like MySQL, Redis, ElasticSearch/OpenSearch between the live and staging environments is not recommended. This could lead to data corruption when the configuration is not done correctly. The staging environment could also affect the performance of the live environment.
+It's not recommended to share resources like MySQL, Redis, ElasticSearch/OpenSearch between the live and staging environments. This could lead to data corruption when the configuration is not done correctly. Also, the performance of the live environment could be affected by the staging environment.
 :::
 
 After importing the database, you should modify the `.env` to use the staging database. If you use ElasticSearch/OpenSearch, you should set a `SHOPWARE_ES_INDEX_PREFIX` to avoid conflicts with the live environment.
@@ -184,7 +184,7 @@ The staging command will delete all apps with an active connection to an externa
 
 ## Integration into Plugins
 
-The `system:setup:staging` is dispatching an Event which all plugins can subscribe to `Shopware\Core\Maintenance\Staging\Event\SetupStagingEvent` and modify the database to be in staging mode.
+The `system:setup:staging` is dispatching an Event which all plugins can subscribe to `Shopware\Core\Maintenance\Staging\Event\SetupStagingEvent` and modify the database for them to be in staging mode.
 
 Example of a subscriber for a payment provider to turn on the test mode:
 

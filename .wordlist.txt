@@ -1633,3 +1633,6 @@ YYYY
 zlib
 zsh
 ZSH
+anonymize
+anonymized
+Cloudflare
