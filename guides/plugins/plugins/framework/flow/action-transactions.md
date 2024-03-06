@@ -9,7 +9,7 @@ nav:
 
 ## Overview
 
-In this guide, you'll learn how to run your action code inside a transaction. This may be important for you if you want to graciously handle rollbacks in certain scenarios. We have implemented various abstractions to ease this process; however, you need to opt in.
+In this guide, you will learn how to run your action code inside a transaction. This may be important for you if you want to graciously handle rollbacks in certain scenarios. We have implemented various abstractions to ease this process; however, you need to opt in.
 
 For some more background, please see the ADR [Action Transactions](../../../../../resources/references/adr/2024-02-11-transactional-flow-actions).
 
