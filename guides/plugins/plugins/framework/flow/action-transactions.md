@@ -21,7 +21,7 @@ In order to make your action run inside a database transaction, you will need an
 
 All you have to do is to implement the `Shopware\Core\Content\Flow\Dispatching\TransactionalAction` interface. It does not have any methods to implement.
 
-When your action implements the interface the Flow Dispatcher will wrap your action in a transaction. If an exception is thrown, it will be caught, the transaction will be rolled back, and an error logged.
+When your action implements the interface the Flow Dispatcher will wrap your action in a transaction. If an exception is thrown, it will be caught, the transaction will be rolled back, and an error is logged.
 
 ::: code-group
 
