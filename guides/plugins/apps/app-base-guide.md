@@ -19,7 +19,7 @@ If you are not familiar with the app system, take a look at the [App concept](..
 
 Choose a technical name for your application that accurately reflects its plugin functionality. Specify the name using UpperCamelCase. For instance: "PaymentGatewayApp".
 
-However, throught this section "MyExampleApp" is used as it serves as an illustrative example of the plugin.
+However, through out this section "MyExampleApp" is used as it serves as an illustrative example of the plugin.
 
 ## File structure
 
