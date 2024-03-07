@@ -287,6 +287,7 @@ createPropertyFixture
 createSalesChannelFixture
 createShippingFixture
 createSnippetFixture
+CreateTagAction
 createValidatorDefinition
 CredentialsBuilder
 CredentialsEntity
@@ -536,6 +537,7 @@ filesystems
 firstname
 Fk
 FkField
+FlowAction
 flattenDeep
 FloatField
 FlowBuilder
@@ -625,6 +627,7 @@ gRPC
 GuestWishlistPage
 GuestWishlistPagelet
 guid
+handleFlow
 hardcoded
 hasError
 hasOwnProperty
@@ -1207,6 +1210,7 @@ ReverseInherited
 Reviewdog
 ReviewFormDataAware
 ReviewFormDataStorer
+rethrown
 rfc
 roadmap
 Roadmap
@@ -1452,6 +1456,7 @@ tradeoff
 transactional
 transactionCapture
 transactionId
+TransactionalAction
 TranslatedField
 TranslationDataSet
 TranslationsAssociation
