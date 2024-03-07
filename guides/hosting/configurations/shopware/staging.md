@@ -55,7 +55,7 @@ After the database is imported and the configuration is done, you can activate t
 
 ### Protecting the Staging Environment
 
-The Staging environment should be protected from unauthorized access. It would help if you covered the staging environment with a password / IP restriction / oauth authentification.
+The Staging environment should be protected from unauthorized access. It would help if you covered the staging environment with a password / IP restriction / oauth authentication.
 
 The simplest way to protect the staging environment is to use the `.htaccess` if you use Apache or `auth_basic` if you use Nginx. You can also use a firewall to restrict access to the staging environment based on IP addresses.
 
@@ -89,7 +89,7 @@ The staging mode does the following:
 - Resets the instance ID used for registration of Apps
 - It turns off the sending of emails
 - Rewrites the URLs to the staging domain (if configured)
-- Checks that the ElasticSearch/OpenSearch indices do not existing yet
+- Checks that the ElasticSearch/OpenSearch indices do not exist yet
 - Shows a banner in the administration and storefront to indicate that the shop is in staging mode
 
 ### What does the staging mode not?
@@ -180,7 +180,7 @@ This will use the regex to replace the URL. The match and replace are regular ex
 
 ### Usage of Apps
 
-The staging command will delete all apps with an active connection to an external service. This will be done to avoid data corruption or leaks in the live environment, as the staging environment is a copy of the live environment, so they keep a connection. After executing the command, you can install the App again, creating a new instance ID so the app will think it's an entirely different shop. In that way, the app installation is completely isolated from the live environment.
+The staging command will delete all apps with an active connection to an external service. This will be done to avoid data corruption or leaks in the live environment, as the staging environment is a copy of the live environment, so they keep a connection. After executing the command, you can install the App again, creating a new instance ID, so the app will think it's an entirely different shop. In that way, the app installation is completely isolated from the live environment.
 
 ## Integration into Plugins
 
