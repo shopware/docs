@@ -878,6 +878,7 @@ mr
 MRs
 MultiWarehouse
 MVC
+MyExampleApp
 myNewMethod
 MyPlugin
 myPluginLogHandler
@@ -1018,6 +1019,7 @@ ParentFk
 ParentFkField
 parsers
 PasswordField
+PaymentGatewayApp
 PaymentHandlerIdentifierSubscriber
 PaymentMethod
 PaymentMethodRoute

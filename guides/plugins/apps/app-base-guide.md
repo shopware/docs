@@ -17,8 +17,9 @@ If you are not familiar with the app system, take a look at the [App concept](..
 
 ## Name your app
 
-First, you need to find a name for your app. We're talking about a technical name here, so it needs to describe your plugins functionality as short as possible, written in UpperCamelCase.
-For this example guide we'll use the app name "MyExampleApp".
+Choose a technical name for your application that accurately reflects its plugin functionality. Specify the name using UpperCamelCase. For instance: "PaymentGatewayApp".
+
+However, throught this section "MyExampleApp" is used as it serves as an illustrative example of the plugin.
 
 ## File structure
 
