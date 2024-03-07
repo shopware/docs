@@ -248,7 +248,7 @@ $this->customFieldSetRepository->create([
             'label' => [
                 'en-GB' => 'English custom field set label',
                 'de-DE' => 'German custom field set label',
-                Defaults::SYSTEM_LANGUAGE => "Mention the fallback label here"
+                Defaults::LANGUAGE_SYSTEM => "Mention the fallback label here"
             ]
         ],
         'customFields' => [
@@ -259,7 +259,7 @@ $this->customFieldSetRepository->create([
                     'label' => [
                         'en-GB' => 'English custom field label',
                         'de-DE' => 'German custom field label',
-                        Defaults::SYSTEM_LANGUAGE => "Mention the fallback label here"
+                        Defaults::LANGUAGE_SYSTEM => "Mention the fallback label here"
                     ],
                     'customFieldPosition' => 1
                 ]

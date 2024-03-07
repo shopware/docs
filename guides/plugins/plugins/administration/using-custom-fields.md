@@ -49,7 +49,7 @@ The next step is loading your custom fields. First things first, create a variab
     data() {
         return {
             ...
-            yourCustomFields: null
+            customFieldSets: null
         };
     }
 ```
@@ -87,6 +87,6 @@ Now you can access your custom fields, e.g. within a `method`. In order to achie
     // this will fetch the customFieldSets
     this.customFieldSetRepository.search(this.customFieldSetCriteria, Shopware.Context.api)
         .then((customFieldSets) => {
-            this.currencyCustomFields = customFieldSets;
+            this.customFieldSets = customFieldSets;
         });
 ```

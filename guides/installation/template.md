@@ -113,7 +113,10 @@ The template is small and does not contain any dev-tooling or integrations like 
 
 ```bash
 # Install profiler and other dev tools, eg Faker for demo data generation
-composer require --dev dev-tools
+composer require --dev shopware/dev-tools
+
+# Or Install symfony dev tools
+composer require --dev symfony/profiler-pack
 
 # Install PaaS integration
 composer require paas
