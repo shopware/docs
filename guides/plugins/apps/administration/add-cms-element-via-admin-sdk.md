@@ -305,7 +305,7 @@ Here, you have the main rendering logic for the Administration's CMS element. Th
 
 It initially fetches the `element` data, as you've already seen it in the config file. After that, using `data.subscribe(id, method)` it subscribes to the publishing key, which will update the element data automatically if something changes. It doesn't matter if the changes originate from our config modal outside Shopware or from somewhere else inside Shopware.
 
-![Dailymotion CMS element](../../../../../assets/add-cms-element-via-admin-sdk-element.png)
+![Dailymotion CMS element](../../../../assets/add-cms-element-via-admin-sdk-element.png)
 
 ### The preview file
 
@@ -323,7 +323,7 @@ export default Vue.extend({
 });
 ```
 
-![Dailymotion element preview](../../../../../assets/add-cms-element-via-admin-sdk-preview.png)
+![Dailymotion element preview](../../../../assets/add-cms-element-via-admin-sdk-preview.png)
 
 ## Storefront implementation
 
