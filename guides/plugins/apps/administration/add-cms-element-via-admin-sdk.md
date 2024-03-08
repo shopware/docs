@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Add CMS element via MeteorAdminSDK
-  position: 30
+  title: Add CMS element
+  position: 25
 
 ---
 
-# Add CMS Element via Meteor Admin SDK
+# Add CMS Element
 
 ## Overview
 

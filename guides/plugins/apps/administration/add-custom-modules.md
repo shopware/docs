@@ -7,6 +7,12 @@ nav:
 
 # Add custom module
 
+:::info
+This guide will show you how to add custom modules to the Shopware Administration using your manifest file. This works for simple applications. But if you want to write more advanced applications, we recommend you use the [Meteor Admin SDK](https://shopware.github.io/meteor-admin-sdk/) instead. It has many more features and is more flexible.
+
+The documentation for custom modules in the SDK can be found [here](https://shopware.github.io/meteor-admin-sdk/docs/guide/api-reference/ui/mainModule).
+:::
+
 ## Overview
 
 In your app, you are able to add your own modules to the Administration. Your custom modules are loaded as iframes which are embedded in the Shopware Administration and within this iframe, your website will be loaded and shown.
