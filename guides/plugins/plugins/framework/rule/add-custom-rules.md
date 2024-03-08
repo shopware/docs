@@ -129,19 +129,39 @@ $context->getRuleIds();
 
 ### Showing rule in the Administration
 
-Now we want to implement our new rule in the Administration so that we can manage it. To achieve this, we have to call the `addCondition` method of the [RuleConditionService](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/service/rule-condition.service.js), by decorating this service. The decoration of services in the Administration will be covered in our [Adding services](../../administration/add-custom-service#Decorating%20a%20service) guide.
+Now we want to implement our new rule in the Administration so that we can manage it. If we would like our rule to be shown in a new group in the rule builder, we can create a new group using the `upsertGroup` method of the [RuleConditionService](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/service/rule-condition.service.js), by decorating this service. The decoration of services in the Administration will be covered in our [Adding services](../../administration/add-custom-service#Decorating%20a%20service) guide.
 
 Create a new directory called `<plugin root>/src/Resources/app/administration/src/decorator`. In this directory we create a new file called `rule-condition-service-decoration.js`.
+
+```javascript
+  // <plugin root>src/Resources/app/administration/src/decorator/rule-condition-service-decoration.js
+  Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderService', (ruleConditionService) => {
+      ruleConditionService.upsertGroup('days_of_the_month', {
+        id: 'days_of_the_month',
+        name: 'Days of the month',
+      });
+  
+      return ruleConditionService;
+  });
+```
+
+Now that we have our group, we have to create our condition. To achieve this, we have to call the `addCondition` method of the [RuleConditionService](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/service/rule-condition.service.js), by adding this to our decorated service.
 
 ```javascript
 // <plugin root>src/Resources/app/administration/src/decorator/rule-condition-service-decoration.js
 import '../../core/component/swag-first-monday';
 
 Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderService', (ruleConditionService) => {
+    ruleConditionService.upsertGroup('days_of_the_month', {
+        id: 'days_of_the_month',
+        name: 'Days of the month',
+    });
+  
     ruleConditionService.addCondition('first_monday', {
         component: 'swag-first-monday',
         label: 'Is first monday of the month',
-        scopes: ['global']
+        scopes: ['global'],
+        group: 'days_of_the_month',
     });
 
     return ruleConditionService;
