@@ -8,9 +8,9 @@ nav:
 # Add custom action button
 
 :::info
-This guide will show you how to add custom action buttons to the Shopware Administration using your manifest file. This works for simple applications. But if you want to write more advanced applications, we recommend you use the [Meteor Admin SDK](https://shopware.github.io/meteor-admin-sdk/) instead. It has many more features and is more flexible.
+This guide will show you how to add custom action buttons to the Shopware Administration using your manifest file. This works for simple applications; however, if you want to write more advanced applications, the [Meteor Admin SDK](https://shopware.github.io/meteor-admin-sdk/) is recommended. It has many more features and is more flexible.
 
-The documentation for the action button in the SDK can be found [here](https://shopware.github.io/meteor-admin-sdk/docs/guide/api-reference/ui/actionButton).
+For further details and guidance on custom action buttons, refer to the documentation provided on the Meteor Admin SDK's [action button](https://shopware.github.io/meteor-admin-sdk/docs/guide/api-reference/ui/actionButton) section.
 :::
 
 One extension possibility in the Administration is the ability to add custom action buttons to the smartbar. For now, you can add them in the smartbar of detail and list views:

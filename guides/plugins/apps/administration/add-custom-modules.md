@@ -8,9 +8,9 @@ nav:
 # Add custom module
 
 :::info
-This guide will show you how to add custom modules to the Shopware Administration using your manifest file. This works for simple applications. But if you want to write more advanced applications, we recommend you use the [Meteor Admin SDK](https://shopware.github.io/meteor-admin-sdk/) instead. It has many more features and is more flexible.
+This guide will show you how to add custom modules to the Shopware Administration using your manifest file. This works for simple applications; however, if you want to write more advanced applications, the [Meteor Admin SDK](https://shopware.github.io/meteor-admin-sdk/) is recommended. It has many more features and is more flexible.
 
-The documentation for custom modules in the SDK can be found [here](https://shopware.github.io/meteor-admin-sdk/docs/guide/api-reference/ui/mainModule).
+For further details and guidance on custom modules, refer to the documentation provided on the Meteor Admin SDK's [custom modules](https://shopware.github.io/meteor-admin-sdk/docs/guide/api-reference/ui/mainModule) section.
 :::
 
 ## Overview
