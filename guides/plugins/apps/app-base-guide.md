@@ -15,6 +15,12 @@ This guide will walk you through the process of adding your own app to Shopware 
 
 If you are not familiar with the app system, take a look at the [App concept](../../../concepts/extensions/apps-concept) first.
 
+## Name your app
+
+Choose a technical name for your application that accurately reflects its plugin functionality. Specify the name using UpperCamelCase. For instance: "PaymentGatewayApp".
+
+However, through out this section "MyExampleApp" is used as it serves as an illustrative example of the plugin.
+
 ## File structure
 
 To get started with your app, create an `apps` folder inside the `custom` folder of your Shopware dev installation. In there, create another folder for your application and provide a manifest file in it.
