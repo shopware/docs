@@ -241,7 +241,7 @@ So, now you need a simple input field to get a `dailyUrl` for the Dailymotion vi
 
 With these small additions to typical CMS element behavior, you have already done with the config modal.
 
-![Dailymotion config modal](../../../../../assets/add-cms-element-via-admin-sdk-config.png)
+![Dailymotion config modal](../../../../assets/add-cms-element-via-admin-sdk-config.png)
 
 ### The element file
 
