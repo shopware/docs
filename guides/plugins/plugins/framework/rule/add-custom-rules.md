@@ -119,6 +119,18 @@ $customer = $scope->getSalesChannelContext()->getCustomer();
 $loggedIn = $customer !== null;
 ```
 
+It is possible to add config to our rule. This makes it possible to skip the [Custom rule component](https://developer.shopware.com/docs/guides/plugins/plugins/framework/rule/add-custom-rules.html#custom-rule-component) and the [Custom rule Administration template](https://developer.shopware.com/docs/guides/plugins/plugins/framework/rule/add-custom-rules.html#custom-rule-administration-template) parts.
+
+```php
+    public function getConfig(): RuleConfig
+    {
+        return (new RuleConfig())->booleanField('isFirstMondayOfTheMonth');
+    }
+```
+
+when [Showing rule in the Administration](https://developer.shopware.com/docs/guides/plugins/plugins/framework/rule/add-custom-rules.html#showing-rule-in-the-administration) we would not use a custom component but we would render the `sw-condition-generic` component.
+
+
 ### Active rules
 
 You can access all active rules by using the `getRuleIds` method of the context.
