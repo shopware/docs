@@ -88,15 +88,34 @@ You can also bind your plugin to a DOM element by providing a css selector:
 
 ```javascript
 // <plugin root>/src/Resources/app/storefront/src/main.js
- // Import all necessary Storefront plugins
- import ExamplePlugin from './example-plugin/example-plugin.plugin';
+// Import all necessary Storefront plugins
+import ExamplePlugin from './example-plugin/example-plugin.plugin';
 
- // Register your plugin via the existing PluginManager
- const PluginManager = window.PluginManager;
- PluginManager.register('ExamplePlugin', ExamplePlugin, '[data-example-plugin]');
+// Register your plugin via the existing PluginManager
+const PluginManager = window.PluginManager;
+PluginManager.register('ExamplePlugin', ExamplePlugin, '[data-example-plugin]');
 ```
 
 In this case the plugin just gets executed if the HTML document contains at least one element with the `data-example-plugin` attribute. You can then use `this.el` inside your plugin to access the DOM element your plugin is bound to.
+
+## Registering an async plugin
+
+You can also register an async JS-plugin. Instead of importing a JS-plugin file at the top of your `main.js` you can provide a dynamic import inside `PluginManager.register()`.
+The import path itself can remain the same as for the synchronous import.
+
+```javascript
+// <plugin root>/src/Resources/app/storefront/src/main.js
+
+// Register your plugin via the existing PluginManager using a dynamic import
+const PluginManager = window.PluginManager;
+PluginManager.register('ExamplePlugin', () => import('./example-plugin/example-plugin.plugin'), '[data-example-plugin]');
+```
+
+If an async/dynamic import is provided, the JS-plugin will be recocnized as async by the PluginManager automatically. 
+This means that the registered JS-plugin will not be included in the main bundled JavaScipt (storefront.js) by default. The JS-plugin will only be downloaded on-demand if the plugin selector (`[data-example-plugin]`) is found on the current page, see [Loading your plugin](#loading-your-plugin).
+
+Using an async JS-plugin can be helpful when the plugin is not supposed to be loaded on every page and should only be loaded when it is actually needed. This can reduce the size of the initially loaded JavaScript in the browser.
+When using the "normal" import (`import ExamplePlugin from './example-plugin/example-plugin.plugin';`) in comparison, the JS-plugin will always be included in the JavaScript on all pages.
 
 ### Loading your plugin
 
@@ -220,7 +239,7 @@ Now you want to overwrite the value `slider.mouseDrag` with your plugin. The var
 
 For JavaScript you normally would have two locations where your `*.js` files are located. You have your `main.js` as an entry point inside of the following directory: `<plugin root>/src/Resources/app/storefront/src`.
 
-Shopware will then compile the JavaScript and save the compiled version at `<plugin root>/src/Resources/app/storefront/dist/storefront/js/<plugin-name>.js`. This file will be recognized automatically by Shopware.
+Shopware will then compile the JavaScript and save the compiled version at `<plugin root>/src/Resources/app/storefront/dist/storefront/js/<plugin-name>/<plugin-name>.js`. This files will be recognized automatically by Shopware.
 
 Make sure to ship the compiled file with your plugin as well.
 
