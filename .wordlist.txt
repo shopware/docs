@@ -712,6 +712,7 @@ iterable
 iteratively
 jargons
 javascript
+JavaScript
 JestJS
 JetBrains
 Jira
