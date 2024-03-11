@@ -618,6 +618,7 @@ goto
 Grafana
 grantable
 Grantable
+granularly
 graphviz
 gridActions
 gridColumns
@@ -1287,6 +1288,7 @@ setToInitialState
 SFTP
 sha
 SHA
+shakable
 shallowMount
 shippable
 ShippingCountryRule
