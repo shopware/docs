@@ -102,7 +102,7 @@ PluginManager.override('CookiePermission', MyCookiePermission, '[data-cookie-per
 ```
 
 ::: info
-If the plugin you want to override is an async plugin, the import of your override plugin has to be a async as well. See also [Registering an async plugin](./add-custom-javascript.md#registering-an-async-plugin)
+If the plugin you want to override is an async plugin, the import of your override plugin has to be async as well. See also [Registering an async plugin](./add-custom-javascript.md#registering-an-async-plugin)
 :::
 
 ```javascript
