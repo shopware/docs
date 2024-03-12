@@ -112,7 +112,7 @@ PluginManager.register('ExamplePlugin', () => import('./example-plugin/example-p
 ```
 
 If an async/dynamic import is provided, the JS-plugin will be recognized as async by the PluginManager automatically. 
-This means that the registered JS-plugin will not be included in the main bundled JavaScipt (storefront.js) by default. The JS-plugin will only be downloaded on-demand if the plugin selector (`[data-example-plugin]`) is found on the current page, see [Loading your plugin](#loading-your-plugin).
+This means that the registered JS-plugin will not be included in the main bundled JavaScript (storefront.js) by default. The JS-plugin will only be downloaded on-demand if the plugin selector (`[data-example-plugin]`) is found on the current page, see [Loading your plugin](#loading-your-plugin).
 
 Using an async JS-plugin can be helpful when the plugin is not supposed to be loaded on every page and should only be loaded when it is actually needed. This can reduce the size of the initially loaded JavaScript in the browser.
 When using the "normal" import (`import ExamplePlugin from './example-plugin/example-plugin.plugin';`) in comparison, the JS-plugin will always be included in the JavaScript on all pages.
