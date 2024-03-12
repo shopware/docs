@@ -65,7 +65,7 @@ Shopware.Component.register('hello-world', () => import('./component/custom-comp
 </Tab>
 
 <Tab title="Synchronous loading">
-This way you can import the file synchronously. It will directly be loaded when the Administration is being loaded. In most cases this just slows down the loading time of the Administration and may not needed. Hence, the asynchronous loading is preferred instead.
+This way you can import the file synchronously. In most cases this just slows down the loading time of the Administration and may not be needed. Hence, the asynchronous loading is preferred instead.
 
 To import your component synchronously, you need to import it directly in the `main.js` file. The component registration
 will be done in the `index.js` file of your component.
@@ -81,7 +81,7 @@ import './component/custom-component/hello-world';
 
 Head back to the `index.js` file, this one will be the most important for your component.
 
-The structure of this file is depending of the type of your component. If it will load synchronously, you need to register your component directly in this file. If it will load asynchronously, you can just export the component and register it in the `main.js` file.
+The structure of this file depends on the type of your component. If it loads synchronously, you need to register your component directly in this file. If it loads asynchronously, you can just export the component and register it in the `main.js` file.
 
 <Tabs>
 <Tab title="Asynchronous loading">
