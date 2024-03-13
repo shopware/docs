@@ -9,10 +9,6 @@ nav:
 
 In this guide, you will learn how to set up an extension for the Administration UI.
 
-::: info
-When you are using a self-hosted Shopware version, make sure to set the feature flag `FEATURE_NEXT_17950=1` to enable the Admin Extension API.
-:::
-
 ![An admin notification](../../../../assets/extension-api-notification.png)
 
 ## Prerequisites

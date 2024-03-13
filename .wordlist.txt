@@ -46,6 +46,7 @@ AlwaysValidRule
 amqp
 AndRule
 antipattern
+Analytics
 api
 ApiAware
 ApiController
@@ -201,6 +202,7 @@ CheckoutFinishPage
 CheckoutInfoWidget
 CheckoutOffcanvasWidget
 CheckoutRegisterPage
+checkboxes
 ChildCount
 ChildCountField
 ChildrenAssociation
@@ -554,6 +556,7 @@ focussed
 focussing
 fontFamily
 FooterPagelet
+formatters
 FPM
 FQCN
 FrameworkBundle
@@ -618,6 +621,7 @@ goto
 Grafana
 grantable
 Grantable
+granularly
 graphviz
 gridActions
 gridColumns
@@ -879,6 +883,7 @@ mr
 MRs
 MultiWarehouse
 MVC
+MyExampleApp
 myNewMethod
 MyPlugin
 myPluginLogHandler
@@ -930,6 +935,7 @@ observability
 oder
 offcanvas
 OffCanvas
+offCanvasCart
 og
 ok
 OldFeature
@@ -1019,6 +1025,7 @@ ParentFk
 ParentFkField
 parsers
 PasswordField
+PaymentGatewayApp
 PaymentHandlerIdentifierSubscriber
 PaymentMethod
 PaymentMethodRoute
@@ -1286,6 +1293,7 @@ setToInitialState
 SFTP
 sha
 SHA
+shakable
 shallowMount
 shippable
 ShippingCountryRule
