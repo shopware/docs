@@ -46,6 +46,7 @@ AlwaysValidRule
 amqp
 AndRule
 antipattern
+Analytics
 api
 ApiAware
 ApiController
@@ -201,6 +202,7 @@ CheckoutFinishPage
 CheckoutInfoWidget
 CheckoutOffcanvasWidget
 CheckoutRegisterPage
+checkboxes
 ChildCount
 ChildCountField
 ChildrenAssociation
@@ -554,6 +556,7 @@ focussed
 focussing
 fontFamily
 FooterPagelet
+formatters
 FPM
 FQCN
 FrameworkBundle
@@ -931,6 +934,7 @@ observability
 oder
 offcanvas
 OffCanvas
+offCanvasCart
 og
 ok
 OldFeature
