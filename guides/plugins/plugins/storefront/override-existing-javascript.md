@@ -101,6 +101,17 @@ const PluginManager = window.PluginManager;
 PluginManager.override('CookiePermission', MyCookiePermission, '[data-cookie-permission]');
 ```
 
+::: info
+If the plugin you want to override is an async plugin, the import of your override plugin has to be async as well. See also [Registering an async plugin](./add-custom-javascript.md#registering-an-async-plugin)
+:::
+
+```javascript
+const PluginManager = window.PluginManager;
+
+// If the plugin "CookiePermission" is registered async, you also override it with an async/dynamic import
+PluginManager.override('CookiePermission', () => import('./my-cookie-permission/my-cookie-permission.plugin'), '[data-cookie-permission]');
+```
+
 ### Testing your changes
 
 To see your changes you have to build the Storefront. Use the following command and reload your Storefront.
