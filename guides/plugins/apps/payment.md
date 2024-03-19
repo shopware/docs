@@ -661,7 +661,7 @@ Recurring payments are a special case of payment that is used for handling recur
 The request and response payloads are similar to the synchronous payment flow.
 At this point, a valid running billing agreement between the customer and the PSP should exist.
 Use any of the other payment flows to capture the initial order and create such an agreement during the checkout.
-Afterwards, the payment can be captured via this flow for every recurring payment order.
+Afterward, this flow can capture the payment for every recurring payment order.
 
 <Tabs>
 
