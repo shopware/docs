@@ -359,7 +359,7 @@ class PaymentController {
 
 ## Prepared payments
 
-With Shopware 6.4.9.0, you can use prepared payments to enhance your checkout process beyond forwarding to a payment provider.
+With Shopware `6.4.9.0`, you can use prepared payments to enhance your checkout process beyond forwarding to a payment provider.
 This feature enables you to integrate more deeply into the checkout process.
 This method allows you to prepare the payment before placing the order, e.g., with credit card fields on the checkout confirmation page.
 Once you add specific parameters to the order placement request in the Storefront, which is also known as the checkout confirmation form, you can pass these parameters to your prepared payment handler.
