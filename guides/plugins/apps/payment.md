@@ -583,7 +583,7 @@ Don't worry, if you have set the transaction state in your capture call to anyth
 
 ## Refund
 
-With Shopware 6.4.12.0, we have also added basic functionality to be able to refund payments.
+With Shopware `6.4.12.0`, we have also added basic functionality to be able to refund payments.
 Your app will need to register captured amounts and create and persist a refund beforehand for Shopware to be able to process a refund of a capture.
 
 Similar to the other requests, on your `refund` call you will receive the data required to process your refund.
