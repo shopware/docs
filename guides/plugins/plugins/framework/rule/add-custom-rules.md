@@ -199,7 +199,7 @@ Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderServi
         component: 'swag-first-monday',
         label: 'Is first monday of the month',
         scopes: ['global'],
-        group: 'days_of_the_month', // [!code highlight]
+        group: 'days_of_the_month', // [!code focus]
     });
 
     return ruleConditionService;
