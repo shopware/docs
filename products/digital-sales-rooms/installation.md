@@ -17,13 +17,9 @@ To install and use the *Digital Sales Rooms* feature, follow the below steps:
 
 ### Get the plugin
 
-::: warning
-The term "Digital Sales Rooms" has been rebranded as "Digital Sales Rooms", though no modifications have been implemented in the source code at this point.
-:::
-
 1. Clone or download the [SwagDigitalSalesRooms repository 6.5.x](https://gitlab.com/shopware/shopware/shopware-6/services/swagdigitalsalesrooms/-/tree/6.5.x).
 2. Extract the plugin, including the outer folder `SwagDigitalSalesRooms`, to `platform/custom/plugins` directory of Shopware repository.
-3. Make sure the plugin has a PHP package structure containing `composer.json` file, `src/` folder, and so on.
+3. Ensure the plugin has a PHP package structure containing `composer.json` file, `src/` folder, and so on.
 4. Prepare a zip file containing the plugin as in the following structure:
 
 ```bash
@@ -74,7 +70,7 @@ pnpm install
 ```
 pnpm dev
 ```
-Normally, port `3000` is default port, so, you can access to the domain of Frontend App `http://localhost:3000/`
+Usually, port `3000` is the default port so that you can access the domain of the Frontend App `http://localhost:3000/`
 
 #### Build
 ```
@@ -100,7 +96,7 @@ You can install the plugin via the admin panel or terminal server.
 
    ![ ](../../assets/products-digitalSalesRooms-installExtension.png)
 
-5. On successful installation, activate the plugin by clicking on the switch button on the left.
+5. On successful installation, activate the plugin by clicking the switch button on the left.
 
 #### Terminal server
 
@@ -114,7 +110,7 @@ You can install the plugin via the admin panel or terminal server.
 bin/console plugin:refresh
 # find the plugin **name** (first column on the list). In this case, it is "**SwagDigitalSalesRooms"**
 bin/console plugin:install **SwagDigitalSalesRooms** --activate
-# clear the cache afterwards
+# clear the cache afterward
 bin/console cache:clear
 
 # Now it is ready to use
@@ -128,17 +124,17 @@ Except for the self-hosted service, we recommend using any cloud-based service.
 💡 We tested the service provided by [StackHero](https://www.stackhero.io/en/services/Mercure-Hub/pricing). Depending on the expected traffic, you can easily switch between the plans. For a small demo among a few people at the same time, the “Hobby” plan is sufficient.
 :::
 
-Detailed below is the minimum configuration needed for a working stack apart from project specific CMS configurations.
+Detailed below is the minimum configuration needed for a working stack apart from project-specific CMS configurations.
 
 * **Set up CORS allowed origins** - In our case, it would be the domain where the Shopware Frontends is hosted and available. For instance: `https://shopware-pwa-gs.herokuapp.com`(frontend).
 
-* **Set up publish allowed origins** - The domains which request the Mercure service must be added to *publish allowed origins* else it gets rejected. For instance (HTTP protocol must not be included): `shopware-pwa-gs.herokuapp.com` (frontend) and `pwa-demo-api.shopware.com`(backend - API).
+* **Set up publish allowed origins** - The domains that request the Mercure service must be added to *publish allowed origins* or else it gets rejected. For instance (HTTP protocol must not be included): `shopware-pwa-gs.herokuapp.com` (frontend) and `pwa-demo-api.shopware.com`(backend - API).
 
 * **Set up the publisher (JWT) key** - Set whatever you want.
 
 * **Set up the subscriber (JWT) key** - Set whatever you want.
 
-* **Other settings** - Take a look at the below sample Mercure configuration on StackHero (Default settings is recommended).
+* **Other settings** - Look at the below sample Mercure configuration on StackHero (Default settings is recommended).
 
 ![ ](../../assets/products-digitalSalesRooms-mercureConfiguration.png)
 
@@ -154,7 +150,7 @@ Daily service is responsible for streaming a video between the attendees. It is 
 
 ### Configure the plugin
 
-Once the plugin is installed, the services are up and running and have all the required credentials, then the next thing to do is to configure the Digital Sales Rooms plugin itself.
+Once the plugin is installed, the services are up and running and have all the required credentials. Then, the next thing to do is configure the Digital Sales Rooms plugin itself.
 
 To do so,
 
@@ -162,7 +158,7 @@ To do so,
 
    ![ ](../../assets/products-digitalSalesRooms-configuration.png)
 
-2. Click the menu and select configure option to configure the below two sections:
+2. Click the menu and select the configure option to configure the two sections below:
 
    * **Video (daily.co)**
 
@@ -178,4 +174,4 @@ To do so,
 
    ![ ](../../assets/products-digitalSalesRooms-mercureConfigExample.png)
 
-Daily and Mercure are two external services that are crucial for working with the Digital Sales Rooms plugin.
+Daily and Mercure are two crucial external services for working with the Digital Sales Rooms plugin.
