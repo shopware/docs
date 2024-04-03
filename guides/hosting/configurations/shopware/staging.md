@@ -101,9 +101,9 @@ The staging mode is designed to be used in a test environment. This means the sh
 
 ### What staging mode does not?
 
-- Does'nt duplicate the current installation.
-- Does'nt copy database or files.
-- Does'nt modify the live environment.
+- Doesn't duplicate the current installation.
+- Doesn't copy database or files.
+- Doesn't modify the live environment.
 
 ### Configuration
 

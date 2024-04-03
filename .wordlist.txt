@@ -47,6 +47,7 @@ amqp
 AndRule
 antipattern
 Analytics
+anonymization
 api
 ApiAware
 ApiController
