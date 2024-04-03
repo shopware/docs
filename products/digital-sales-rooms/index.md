@@ -23,7 +23,7 @@ Review the below minimum operating requirements before you install the *Digital 
 * [node](https://nodejs.org/en) >= v18
 * [pnpm](https://pnpm.io/installation) >= 8
 * [make](https://formulae.brew.sh/formula/make) command.
-* Instance of [Shopware 6](../../guides/installation/devenv) (version 6.5.6.0 and above).
+* Instance of [Shopware 6](../../guides/installation/devenv) (version 6.6.0 and above).
 * Install Mercure service with the below available options:
   * [Self-hosted installation](./selfHostedMercureInstallation).
   * [Cloud service](https://mercure.rocks/). Refer to the [basic configuration of Mercure hub](./installation#basic-configuration-of-mercure-hub) section.

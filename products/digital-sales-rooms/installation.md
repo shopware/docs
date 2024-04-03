@@ -21,7 +21,7 @@ To install and use the *Digital Sales Rooms* feature, follow the below steps:
 The term "Digital Sales Rooms" has been rebranded as "Digital Sales Rooms", though no modifications have been implemented in the source code at this point.
 :::
 
-1. Clone or download the [SwagDigitalSalesRooms repository](https://gitlab.com/shopware/shopware/6/services/swagdigitalsalesrooms).
+1. Clone or download the [SwagDigitalSalesRooms repository 6.6.x](https://gitlab.com/shopware/shopware/shopware-6/services/swagdigitalsalesrooms/-/tree/6.6.x).
 2. Extract the plugin, including the outer folder `SwagDigitalSalesRooms`, to `platform/custom/plugins` directory of Shopware repository.
 3. Make sure the plugin has a PHP package structure containing `composer.json` file, `src/` folder, and so on.
 4. Prepare a zip file containing the plugin as in the following structure:
