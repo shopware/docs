@@ -47,6 +47,7 @@ amqp
 AndRule
 antipattern
 Analytics
+anonymization
 api
 ApiAware
 ApiController
@@ -1636,3 +1637,6 @@ YYYY
 zlib
 zsh
 ZSH
+anonymize
+anonymized
+Cloudflare
