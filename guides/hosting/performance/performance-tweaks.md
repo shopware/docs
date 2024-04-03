@@ -7,7 +7,7 @@ nav:
 
 # Performance Tweaks
 
-Shopware is a platform for many different projects. It needs to handle a broad range of load characteristics and environments. That means that the default configuration is optimized for the best out-of-the-box experience. But there are many opportunities to increase the performance by fitting the configuration to your needs.
+Shopware is a platform for many different projects. It needs to handle a broad range of load characteristics and environments. It means that the default configuration is optimized for the best out-of-the-box experience. However, there are many opportunities to increase the performance by fitting the configuration to your needs.
 
 ## HTTP cache
 
@@ -35,7 +35,7 @@ shopware:
 
 ### Delayed invalidation
 
-A delay for the cache invalidation can be activated for systems with a high update frequency for the inventory (products, categories). Once the instruction to delete the cache entries for a specific product or category occurs, they are not deleted instantly but processed by a background task afterwards. Thus, if two processes invalidate the cache in quick succession, the timer for the invalidation of this cache entry will only reset.
+A delay for cache invalidation can be activated for systems with a high update frequency for the inventory (products, categories). Once the instruction to delete the cache entries for a specific product or category occurs, they are not deleted instantly but processed by a background task later. Thus, if two processes invalidate the cache in quick succession, the timer for the invalidation of this cache entry will only reset.
 
 ```yaml
 # config/packages/prod/shopware.yaml
@@ -64,7 +64,7 @@ and then you can set `SQL_SET_DEFAULT_SESSION_VARIABLES=0` to your `.env` file
 
 ## SQL is faster than DAL
 
-We designed the DAL (Data Abstraction Layer) to provide developers a flexible and extensible data management. However, features in such a system come at the cost of performance. Therefore, using DBAL (plain SQL) is much faster than using the DAL in many scenarios, especially when it comes to internal processes, where often only one ID of an entity is needed.
+DAL(Data Abstraction Layer) has been designed suitably to provide developers with a flexible and extensible data management. However, features in such a system come at the cost of performance. Therefore, using DBAL (plain SQL) is much faster than using the DAL in many scenarios, especially when it comes to internal processes, where often only one ID of an entity is needed.
 
 Refer to this article to know more on [when to use plain SQL and DAL](../../../resources/references/adr/2021-05-14-when-to-use-plain-sql-or-dal).
 
@@ -93,7 +93,7 @@ shopware:
         update_mail_variables_on_send: false
 ```
 
-If you wonder, why it is in `prod`, have a look into the [Symfony configuration about configuration environments](https://symfony.com/doc/current/configuration.html#configuration-environments).
+If you ever wonder why it is in `prod`, take a look into the [Symfony configuration environments](https://symfony.com/doc/current/configuration.html#configuration-environments).
 
 ## Increment storage
 
@@ -115,7 +115,7 @@ shopware:
             url: 'redis://host:port/dbindex'
 ```
 
-If you don't need such functionality, it is highly recommended to disable this behavior by using `array` as a type.
+If you don't need such functionality, it is highly recommended that you disable this behavior by using `array` as a type.
 
 ## Lock storage
 
@@ -135,7 +135,7 @@ The generation of the number ranges is an **atomic** operation, which guarantees
 
 By default, the number range states are stored in the database.
 In scenarios where high throughput is required (e.g., thousands of orders per minute), the database can become a performance bottleneck because of the requirement for atomicity.
-Redis offers better support for atomic increments than the database. Therefore the number ranges should be stored in Redis in such scenarios.
+Redis offers better support for atomic increments than the database. Therefore, the number ranges should be stored in Redis in such scenarios.
 
 ```yaml
 # config/packages/prod/shopware.yaml
@@ -163,14 +163,14 @@ framework:
 zend.assertions=-1
 
 # cache file_exists,is_file
-# WARNING: this will lead to thrown errors after clearing cache, while it tries to access cached Shopware_Core_KernelProdDebugContainer.php
+# WARNING: this will lead to thrown errors after clearing cache while it tries to access cached Shopware_Core_KernelProdDebugContainer.php
 opcache.enable_file_override=1
 
 # increase opcache string buffer as shopware has many files
 opcache.interned_strings_buffer=20
 
 # disables opcache validation for timestamp for reinvalidation of the cache
-# WARNING: you need to clear on deployments the opcache by reloadding php-fpm or cachetool (https://github.com/gordalina/cachetool)
+# WARNING: you need to clear on deployments the opcache by reloading php-fpm or cachetool (https://github.com/gordalina/cachetool)
 opcache.validate_timestamps=0
 
 # disable check for BOM
@@ -190,7 +190,7 @@ For an additional 2-5% performance improvement, it is possible to provide a prel
 
 - Each cache clear requires a PHP-FPM restart
 - Each file change requires a PHP-FPM restart
-- Extension Manager does not work
+- The Extension Manager does not work
 
 The PHP configuration would look like:
 
@@ -201,7 +201,7 @@ opcache.preload_user=nginx
 
 ## Cache ID
 
-The Shopware cache has a global cache id to clear the cache faster and work in a cluster setup. This cache id is saved in the database and will only be changed when the cache is cleared. This ensures that the new cache is used and the message queue can clean the old folder. If this functionality is not used, this cache id can also be hardcoded `SHOPWARE_CACHE_ID=foo` in the `.env` to save one SQL query on each request.
+The Shopware cache has a global cache ID to clear the cache faster and work in a cluster setup. This cache ID is saved in the database and will only be changed when the cache is cleared. This ensures that the new cache is used and the message queue can clean the old folder. If this functionality is not used, this cache ID can also be hardcoded `SHOPWARE_CACHE_ID=foo` in the `.env` to save one SQL query on each request.
 
 ## .env.local.php
 
@@ -234,7 +234,7 @@ The `business_event_handler_buffer` handler logs flow. Setting it to `error` wil
 
 ## Disable App URL external check
 
-On any Administration load Shopware tries to request himself to test that the configured `APP_URL` inside `.env` is correct.
+On any Administration load, Shopware tries to request itself to test that the configured `APP_URL` inside `.env` is correct.
 If your `APP_URL` is correct, you can disable this behavior with an environment variable `APP_URL_CHECK_DISABLED=1`.
 
 ## Disable fine-grained caching
