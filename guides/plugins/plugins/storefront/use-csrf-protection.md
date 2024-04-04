@@ -60,7 +60,7 @@ Shopware 6 provides two different mechanisms for token generation:
 
 Therefore, the two new lines are the following:
 
-* The `{{ sw_csrf }}` function is used to generate a valid CSRF token with twig and append it as a hidden input field to the form.
+* The `sw_csrf` function is used to generate a valid CSRF token with twig and append it as a hidden input field to the form.
 
   It also accepts a `mode` parameter which can be set to `token` or `input`\(default\):
 
