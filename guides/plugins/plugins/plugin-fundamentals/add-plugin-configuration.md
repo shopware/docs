@@ -88,8 +88,8 @@ Your `<input-field>` can be of different types, this is managed via the `type` a
 | password | [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Password field | ********
 | int |  | Integer field | 42
 | float |  | Float field | 42.42
-| bool |  | Switch | true or false
-| checkbox |  | Checkbox | true or false
+| bool |  | Switch | `true` or `false`
+| checkbox |  | Checkbox | `true` or `false`
 | datetime |  | Date-time picker | 2024-04-04T12:00:00.000Z
 | date |  | Date picker | 2024-04-05T00:00:00
 | time |  | Time picker | 11:00:00
