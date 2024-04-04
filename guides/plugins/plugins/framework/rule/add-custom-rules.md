@@ -119,6 +119,18 @@ $customer = $scope->getSalesChannelContext()->getCustomer();
 $loggedIn = $customer !== null;
 ```
 
+It is possible to add config to our rule. This makes it possible to skip the [Custom rule component](#custom-rule-component) and the [Custom rule Administration template](#custom-rule-administration-template) parts.
+
+```php
+    public function getConfig(): RuleConfig
+    {
+        return (new RuleConfig())->booleanField('isFirstMondayOfTheMonth');
+    }
+```
+
+when [Showing rule in the Administration](#showing-rule-in-the-administration) we would not use a custom component but we would render the `sw-condition-generic` component.
+
+
 ### Active rules
 
 You can access all active rules by using the `getRuleIds` method of the context.
@@ -129,7 +141,7 @@ $context->getRuleIds();
 
 ### Showing rule in the Administration
 
-Now we want to implement our new rule in the Administration so that we can manage it. To achieve this, we have to call the `addCondition` method of the [RuleConditionService](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/service/rule-condition.service.js), by decorating this service. The decoration of services in the Administration will be covered in our [Adding services](../../administration/add-custom-service#Decorating%20a%20service) guide.
+Now we want to implement our new rule in the Administration so that we can manage it. To achieve this, we have to call the `addCondition` method of the [RuleConditionService](https://github.com/shopware/shopware/blob/v6.6.0.0/src/Administration/Resources/app/administration/src/app/service/rule-condition.service.ts), by decorating this service. The decoration of services in the Administration will be covered in our [Adding services](../../administration/add-custom-service#Decorating%20a%20service) guide.
 
 Create a new directory called `<plugin root>/src/Resources/app/administration/src/decorator`. In this directory we create a new file called `rule-condition-service-decoration.js`.
 
@@ -160,6 +172,39 @@ import './decorator/rule-condition-service-decoration';
 ::: info
 It may be possible that rules, with your newly created condition, aren't selectable in some places inside the Administration — for example, inside the promotion module. That is because rules are "context-aware". To learn more about that feature [click here](#context-awareness)
 :::
+
+#### Creating a new group in the administration
+The rule will now be added to the list of rules in the admin. It might be useful to create a new group for your rules. We can create a new group by using the `upsertGroup` method of the [RuleConditionService](https://github.com/shopware/shopware/blob/v6.6.0.0/src/Administration/Resources/app/administration/src/app/service/rule-condition.service.ts).
+
+```javascript
+  // <plugin root>src/Resources/app/administration/src/decorator/rule-condition-service-decoration.js
+  Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderService', (ruleConditionService) => {
+      ruleConditionService.upsertGroup('days_of_the_month', {
+        id: 'days_of_the_month',
+        name: 'Days of the month',
+      });
+  
+      return ruleConditionService;
+  });
+```
+
+Now that we have our group, we have to link this group to our condition. This is easily done by adding the `group` property to our condition.
+
+```javascript
+// <plugin root>src/Resources/app/administration/src/decorator/rule-condition-service-decoration.js
+import '../../core/component/swag-first-monday';
+
+Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderService', (ruleConditionService) => {
+    ruleConditionService.addCondition('first_monday', {
+        component: 'swag-first-monday',
+        label: 'Is first monday of the month',
+        scopes: ['global'],
+        group: 'days_of_the_month', // [!code focus]
+    });
+
+    return ruleConditionService;
+});
+```
 
 ### Custom rule component
 
