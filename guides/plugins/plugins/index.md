@@ -19,10 +19,11 @@ There are different types of plugins in terms of their folder structure and func
 ### Static plugins
 `<shopware project root>/custom/static-plugins` contains all plugins that are project-specific and are typically committed to the git repository.
 
-:::Info
+:::info
 The detection of static plugins is not done via the Shopware administration. They have to be required by the project via composer to be installable.
 :::
 
 ```bash
+# You can find the vendor/package name in the plugin's composer.json file under "name"
 composer req <vendor>/<plugin-name>
 ```
