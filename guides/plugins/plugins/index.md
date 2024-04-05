@@ -14,7 +14,15 @@ Shopware plugins are extensions that enhance the functionality and features of t
 There are different types of plugins in terms of their folder structure and functionality.
 
 ### Plugins
-SHOPWARE_ROOT/custom/plugins contains all plugins from the shopware store. The plugins are installed and managed via the Shopware administration.
+`<shopware project root>/custom/plugins` contains all plugins from the shopware store. The plugins are installed and managed via the Shopware administration.
 
 ### Static plugins
-SHOPWARE_ROOT/custom/static-plugins contains all plugins that are project-specific and are typically committed to the git repository. Static plugins are plugins that are not installed via the Shopware administration.
+`<shopware project root>/custom/static-plugins` contains all plugins that are project-specific and are typically committed to the git repository.
+
+:::Info
+The detection of static plugins is not done via the Shopware administration. They have to be required by the project via composer to be installable.
+:::
+
+```bash
+composer req <vendor>/<plugin-name>
+```
