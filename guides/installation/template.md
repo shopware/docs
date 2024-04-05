@@ -66,7 +66,13 @@ Add a new software repository to your system to have the latest PHP version.
 ```bash
 sudo add-apt-repository ppa:ondrej/php
 
+# for shopware >6.5.0.4 and <6.6.x
 sudo apt-get install -y php8.1-fpm php8.1-mysql php8.1-curl php8.1-gd php8.1-xml php8.1-zip php8.1-opcache php8.1-mbstring php8.1-intl php8.1-cli
+
+# for Shopware 6.6x
+sudo apt-get install -y php8.2-fpm php8.2-mysql php8.2-curl php8.2-gd php8.2-xml php8.2-zip php8.2-opcache php8.2-mbstring php8.2-intl php8.2-cli
+# or
+sudo apt-get install -y php8.3-fpm php8.3-mysql php8.3-curl php8.3-gd php8.3-xml php8.3-zip php8.3-opcache php8.3-mbstring php8.3-intl php8.3-cli
 ```
 
 </Tab>
@@ -78,7 +84,13 @@ Add a new software repository to your system to have the latest PHP version:
 ```bash
 curl https://packages.sury.org/php/README.txt | bash
 
+# for shopware >6.5.0.4 and <6.6.x
 sudo apt-get install -y php8.1-fpm php8.1-mysql php8.1-curl php8.1-gd php8.1-xml php8.1-zip php8.1-opcache php8.1-mbstring php8.1-intl php8.1-cli
+
+# for Shopware 6.6x
+sudo apt-get install -y php8.2-fpm php8.2-mysql php8.2-curl php8.2-gd php8.2-xml php8.2-zip php8.2-opcache php8.2-mbstring php8.2-intl php8.2-cli
+# or
+sudo apt-get install -y php8.3-fpm php8.3-mysql php8.3-curl php8.3-gd php8.3-xml php8.3-zip php8.3-opcache php8.3-mbstring php8.3-intl php8.3-cli
 ```
 
 </Tab>
