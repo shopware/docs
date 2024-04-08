@@ -17,7 +17,7 @@ In the store-api case, use the `/store-api/employee/create` endpoint as a logged
 ## Invitation via Administration
 
 As a merchant, you can create and invite the employees via administration. Select the business partner customer, switch to the `company` tab and add a new employee account in edit mode.
-Because the administration is not related to a sales channel, you can select the sales channel which is used for the invitation. This field is preselected and disabled if the business partner customer is bound to a sales channel.
+Because the administration is not related to a sales channel, you can select the sales channel which is used for the invitation. This field is pre-selected and disabled if the business partner customer is bound to a sales channel.
 
 ## The URL for the Invitation Acceptance
 
