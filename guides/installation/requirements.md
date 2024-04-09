@@ -72,10 +72,14 @@ For optimal MySQL performance, it is advisable to have a minimum of 32 MB.
 * Node.js 20.0.0 or higher
 * NPM 8.0.0 or higher
 
-## Redis
+## Redis / key/value stores
 
-* Compatible versions: 7.0 or higher
-* Recommended version: 7.2 or higher
+Shopware uses the Redis Protocol and, therefore, supports the following key/value stores:
+- [Redis v7 or higher](https://redis.io)
+- [Redict](https://redict.io)
+- [KeyDB](https://docs.keydb.dev)
+- [Dragonfly](https://www.dragonflydb.io)
+
 * Recommended configuration `maxmemory-policy`: `volatile-lfu`
 
 ## Webserver
