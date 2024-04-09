@@ -6,7 +6,7 @@ nav:
 
 # Employee Invitation
 
-Employees can be created via storefront, administration and store-api to get an invitation email. This has to be confirmed by the employee to set a password.
+Employees can be created via storefront, administration and store-api. The employee will get an invitation mail that has to be confirmed to set a password.
 
 ## Invitation via Storefront and Store-API
 
