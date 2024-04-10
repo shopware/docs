@@ -30,13 +30,34 @@ For this guide, it's necessary to have a running Shopware 6 instance and full ac
 
 In addition, you need a custom entity to add to the search to begin with. Head over to the following guide to learn how to achieve that:
 
-<PageRef page="../plugin-base-guide" />
+<PageRef page="../../framework/data-handling/add-custom-complex-data" />
 
 ## Support custom entity via search API
 
-To support an entity in the untyped global search the definition in the symfony container needs the tag `shopware.composite_search.definition`. The priority of the tag defines the order in the search order.
+To support an entity in the untyped global search, the entity has to be defined in one of the Administration Modules.
 
-The typed global search needs an instance of the JavaScript class `ApiService` with the key of the entity in camelcase suffixed with `Service`. E.g. The service key is `yourCustomSearchService` when requesting a service for `your_custom_search`. Every entity definition gets automatically an instance in the injection container but can be overridden so there is no additional work needed.
+<PageRef page="./add-custom-module.md" />
+
+Add the `entity` and `defaultSearchConfiguration` values to your module to make it available to the search bar component.
+
+```javascript
+Shopware.Module.register('swag-plugin', {
+    entity: 'swag_example',
+    defaultSearchConfiguration: {
+        _searchable: true,
+            name: {
+            _searchable: true,
+                _score: 500,
+        },
+        description: {
+            name: {
+                _searchable: true,
+                    _score: 500,
+            },
+        },
+    },
+});
+```
 
 ## Support in the Administration UI
 
@@ -50,9 +71,9 @@ const { Application } = Shopware;
 Application.addServiceProviderDecorator('searchTypeService', searchTypeService => {
     searchTypeService.upsertType('foo_bar', {
         entityName: 'foo_bar',
-        entityService: 'fooBarService',
         placeholderSnippet: 'foo-bar.general.placeholderSearchBar',
-        listingRoute: 'foo.bar.index'
+        listingRoute: 'foo.bar.index',
+        hideOnGlobalSearchBar: false,
     });
 
     return searchTypeService;
@@ -62,10 +83,10 @@ Application.addServiceProviderDecorator('searchTypeService', searchTypeService =
 Let's take a closer look on how this decorator is used:
 
 * The key and `entityName` is used as the same to change also existing types.
-* The `entityService` is used for the typed search.
 * This service can be overridden with an own implementation for customization.
 * The `placeholderSnippet` is a translation key that is shown when no search term is entered.
 * The `listingRoute` is used to show a link to continue the search in the module specific listing view.
+* The `hideOnGlobalSearchBar` is used to determine wether the entity should be searched when searching globally untyped.
 
 ### Add the search result item
 
@@ -94,12 +115,18 @@ By default, the search bar does not know how to display the result items, so a c
 Here you see the changes in the `index.js` file:
 
 ```javascript
+// <plugin root>/src/Resources/app/administration/src/main.js
+
+Shopware.Component.override('sw-search-bar-item', () => import('./app/component/structure/sw-search-bar-item'));
+```
+
+```javascript
 // <plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-bar-item/index.js
 import template from './sw-search-bar-item.html.twig';
 
-Shopware.Component.override('sw-search-bar-item', {
+export default {
     template
-})
+};
 ```
 
 The `sw_search_bar_item_cms_page` block is used as it is the last block, but it is not important which shopware type is extended as long as the vue else-if structure is kept working.
@@ -129,12 +156,18 @@ By default, the search bar tries to resolve to the registered listing route. If 
 See for the changes in the `index.js` file below:
 
 ```javascript
+// <plugin root>/src/Resources/app/administration/src/main.js
+
+Shopware.Component.override('sw-search-more-results', () => import('./app/component/structure/sw-search-more-results'));
+```
+
+```javascript
 // <plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-more-results/index.js
 import template from './sw-search-more-results.html.twig';
 
-Shopware.Component.override('sw-search-more-results', {
+export default {
     template
-})
+};
 ```
 
 ### Potential pitfalls
