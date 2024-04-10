@@ -6,22 +6,17 @@ nav:
 
 # Employee Invitation
 
-Employees can be created via storefront, administration and store-api. The employee will get an invitation mail that has to be confirmed to set a password.
+Employees can be created via Storefront, Store-api, and Administration. 
 
-## Invitation via Storefront and Store-API
+- Storefront - Business partners can invite employees by logging-in to Storefront and navigating to the `employee` page. From there, they can add a new employee.
+- Store API - One can utilize the `/store-api/employee/create` endpoint while logged in as a customer to invite employees.
+- Administration - Merchants can invite employees by logging in to the administration interface. Selects the business partner customer, navigates to the `company` tab, and adds a new employee account in edit mode.
 
-As a business partner, you can create and invite your employees in the storefront and via store-api. The invitation will be sent from the sales channel, you used for the creation.
-For the storefront, login as the business partner and switch to the `employee` page. In this listing you have the opportunity to add a new employee.
-In the store-api case, use the `/store-api/employee/create` endpoint as a logged in customer.
+The invited employee receives an invitation mail that must be confirmed to set a password.
 
-## Invitation via Administration
+## The URL for the invitation acceptance
 
-As a merchant, you can create and invite the employees via administration. Select the business partner customer, switch to the `company` tab and add a new employee account in edit mode.
-Because the administration is not related to a sales channel, you can select the sales channel which is used for the invitation. This field is pre-selected and disabled if the business partner customer is bound to a sales channel.
-
-## The URL for the Invitation Acceptance
-
-The employees will get an invitation email, to set a password and to fulfill the registration. This process will also activate the employee for the business partners company.
+Upon invitation, the employee will receive an email requiring confirmation to set a password. This process will also activate the employee for the business partners company.
 The default URL for the acceptance is `/account/business-partner/employee/invite/%%RECOVERHASH%%`, the recovery hash is used as a unique identifier and is only valid for the invitation of one employee.
 
 ### How to override the Invitation URL
