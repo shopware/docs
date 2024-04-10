@@ -736,6 +736,7 @@ JVM
 jwt
 JWT
 kebabCase
+KeyDB
 keyframes
 Kibana
 LandingPage
@@ -1175,6 +1176,7 @@ reCAPTCHA
 RecipientsAware
 RecipientsStorer
 RecurringPaymentHandlerInterface
+Redict
 RedirectResponse
 redis
 refactorings
