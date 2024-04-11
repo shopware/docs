@@ -6,9 +6,9 @@ nav:
 
 # Meteor Admin SDK
 
-The [Meteor Admin SDK](https://shopware.github.io/meteor-admin-sdk/) is an NPM library for Shopware 6 apps and plugins that need an easy way to extend or customize the administration.
+The [Meteor Admin SDK](https://github.com/shopware/meteor/tree/main/packages/admin-sdk) is an NPM library for Shopware 6 apps and plugins that need an easy way to extend or customize the administration.
 
-To write advanced apps, its recommended that you use the [Meteor Admin SDK](https://shopware.github.io/meteor-admin-sdk/). It contains helper functions to communicate with the Administration, execute actions, subscribe to data or extend the user interface. It has many more features and is more flexible.
+To write advanced apps, its recommended that you use the [Meteor Admin SDK](https://github.com/shopware/meteor/tree/main/packages/admin-sdk). It contains helper functions to communicate with the Administration, execute actions, subscribe to data or extend the user interface. It has many more features and is more flexible.
 
 - 🏗  **Works with Shopware 6 Apps and Plugins:** You can use the SDK for your plugins or apps. API usage is identical.
 - 🎢  **Shallow learning curve:** You don't need to have extensive knowledge about the internals of the Shopware 6 Administration. Our SDK hides the complicated stuff behind a beautiful API.
@@ -18,4 +18,4 @@ To write advanced apps, its recommended that you use the [Meteor Admin SDK](http
 - 💙  **Developer experience:** Have a great development experience right from the start. And it will become better and better in the future.
 - 🪶  **Lightweight:** The whole library is completely tree-shakable and dependency-free. Every functionality can be imported granularly to keep your bundle as small and fast as possible.
 
-Go to [Installation](https://shopware.github.io/meteor-admin-sdk/docs/guide/getting-started/installation/) to get started. Or check out the [quick start guide](https://shopware.github.io/meteor-admin-sdk/docs/guide#quick-start).
+Go to [Installation](/resources/admin-extension-sdk/getting-started/installation/) to get started. Or check out the [quick start guide](/resources/admin-extension-sdk/#quick-start).
