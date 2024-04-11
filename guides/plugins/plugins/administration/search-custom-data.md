@@ -45,14 +45,14 @@ Shopware.Module.register('swag-plugin', {
     entity: 'swag_example',
     defaultSearchConfiguration: {
         _searchable: true,
-            name: {
+        name: {
             _searchable: true,
-                _score: 500,
+            _score: 500,
         },
         description: {
             name: {
                 _searchable: true,
-                    _score: 500,
+                _score: 500,
             },
         },
     },
