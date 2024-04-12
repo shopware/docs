@@ -68,7 +68,7 @@ Note: The version 1 used in the options is just an example, how to select a vers
 To fetch data from the server, the repository has a `search` function. Each repository function requires the API `context` and `criteria` class, which contains all functionality of the core criteria class. If you want to see all the options take a look at the file [src/Administration/Resources/app/administration/src/core/data/criteria.data.ts](https://github.com/shopware/meteor/blob/main/packages/admin-sdk/src/data/Criteria.ts).
 
 ```javascript
-import Criteria from '@shopware-ag/meteor-admin-sdk/es/data/Criteria';
+const { Criteria } = Shopware.Data;
 Shopware.Component.register('swag-basic-example', {
     inject: ['repositoryFactory'],
 
@@ -273,6 +273,7 @@ Shopware.Component.register('swag-basic-example', {
 Each association can be accessed via normal property access:
 
 ```javascript
+const { Criteria } = Shopware.Data;
 Shopware.Component.register('swag-basic-example', {
     inject: ['repositoryFactory'],
 
@@ -366,6 +367,7 @@ Shopware.Component.register('swag-basic-example', {
 In most cases, _ToMany_ associations can be loaded by adding a the association with the `.addAssociation()` method of the Criteria object.
 
 ```javascript
+const { Criteria } = Shopware.Data;
 Shopware.Component.register('swag-basic-example', {
     inject: ['repositoryFactory'],
 
@@ -405,6 +407,7 @@ Shopware.Component.register('swag-basic-example', {
 The following example shows how to create a repository based on associated data. In this case the `priceRepository` contains associated `prices` to the product with the `id` 'some-id'.
 
 ```javascript
+const { Criteria } = Shopware.Data;
 Shopware.Component.register('swag-basic-example', {
     inject: ['repositoryFactory'],
 
@@ -483,6 +486,7 @@ Shopware.Component.register('swag-basic-example', {
 The following example shows how to create a repository based on associated data. In this case the `categoryRepository` contains associated categories to the product with the `id` 'some-id'.
 
 ```javascript
+const { Criteria } = Shopware.Data;
 Shopware.Component.register('swag-basic-example', {
     inject: ['repositoryFactory'],
 
