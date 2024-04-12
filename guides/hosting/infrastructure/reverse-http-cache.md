@@ -21,7 +21,7 @@ In this guide, we will use Varnish as an example for HTTP cache.
 ### The example Setup with Varnish
 
 ::: warning
-This setup is compatible from Shopware version 6.4.
+This setup is compatible with Shopware version 6.4 and higher
 :::
 
 ![](../../../assets/hosting-infrastructure-reverseHttpCache.svg)
@@ -31,6 +31,7 @@ This setup is compatible from Shopware version 6.4.
 First, we need to activate the reverse proxy support in Shopware. To enable it, we need to create a new file in `config/packages/storefront.yaml`:
 
 ```yaml
+# Be aware that the configuration key changed from storefront.reverse_proxy to shopware.http_cache.reverse_proxy starting with Shopware 6.6
 shopware:
     http_cache:
         reverse_proxy:
@@ -473,6 +474,7 @@ The module is available for download on [GitHub](https://github.com/varnish/varn
 And also needs to be enabled in the `config/packages/shopware.yml` file:
 
 ```yaml
+# Be aware that the configuration key changed from storefront.reverse_proxy to shopware.http_cache.reverse_proxy starting with Shopware 6.6
 shopware:
   http_cache:
       reverse_proxy:
@@ -727,6 +729,7 @@ if (obj.hits > 0) {
 Fastly is supported since Shopware 6.4.11.0 is out-of-the-box with some configurations. To enable it, we need to create a new file in `config/packages/storefront.yaml`
 
 ```yaml
+# Be aware that the configuration key changed from storefront.reverse_proxy to shopware.http_cache.reverse_proxy starting with Shopware 6.6
 shopware:
   http_cache:
     reverse_proxy:
@@ -746,6 +749,7 @@ This feature has been introduced with Shopware version 6.4.15.0
 By default, the cache will be immediately purged and the next requesting user will get a slow response as the cache has been deleted. On soft purge, the user still gets the cached response after the purge, but in the configured time interval, the cache will be refreshed. This makes sure that the client gets the fastest response possible.
 
 ```yaml
+# Be aware that the configuration key changed from storefront.reverse_proxy to shopware.http_cache.reverse_proxy starting with Shopware 6.6
 shopware:
   http_cache:
     # Allow to serve the out-dated cache for 300 seconds
