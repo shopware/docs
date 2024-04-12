@@ -91,7 +91,7 @@ namespace Swag\BasicExample\Service\ScheduledTask;
 use Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTaskHandler;
 
 #[AsMessageHandler(handles: ExampleTask::class)]
-class MyScheduledTaskHandler extends ScheduledTaskHandler
+class ExampleTaskHandler extends ScheduledTaskHandler
 {
     public function run(): void
     {
