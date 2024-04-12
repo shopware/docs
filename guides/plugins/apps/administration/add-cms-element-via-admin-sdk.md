@@ -15,7 +15,7 @@ This article will teach you how to create a new CMS element via the Meteor Admin
 
 * Knowledge on the creation of [Plugins](/docs/guides/plugins/plugins/plugin-base-guide) or [Apps](/docs/guides/plugins/apps/app-base-guide)
 * Knowledge on the [creation of custom admin components](/docs/guides/plugins/plugins/administration/add-custom-component#creating-a-custom-component)
-* Understanding the [Meteor Admin SDK](https://shopware.github.io/meteor-admin-sdk/docs/guide/getting-started/installation)
+* Understanding the [Meteor Admin SDK](/resources/admin-extension-sdk/getting-started/installation)
 
 ::: info
 This example uses TypeScript, which is recommended, but not required for developing Shopware.
@@ -125,7 +125,7 @@ const app = new Vue({
 
 Really straightforward, isn't it? As you probably know from Vue.js's Options API, you just need to load, register and use the Vue.js component to make them work.
 
-What's especially interesting here is the use of the `location` object. This is a main concept of the Meteor Admin SDK, where Shopware provides dedicated `locationIds` to offer you places to inject your templates into. For further information on that, it is recommend to take a look at the documentation of the [Meteor Admin SDK](https://shopware.github.io/meteor-admin-sdk/docs/guide/concepts/locations) to learn more about its concepts.
+What's especially interesting here is the use of the `location` object. This is a main concept of the Meteor Admin SDK, where Shopware provides dedicated `locationIds` to offer you places to inject your templates into. For further information on that, it is recommend to take a look at the documentation of the [Meteor Admin SDK](/resources/admin-extension-sdk/concepts/locations) to learn more about its concepts.
 
 In your case, we will get your own **auto-generated** `locationIds`, depending on the name of your CMS element and suffixes, such as `-element`, `-config`, and `-preview`.
 

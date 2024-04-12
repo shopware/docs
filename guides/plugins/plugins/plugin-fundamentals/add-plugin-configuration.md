@@ -79,23 +79,23 @@ As you can see above, every `<input-field>` has to contain at least a `<name>` e
 
 Your `<input-field>` can be of different types, this is managed via the `type` attribute. Unless defined otherwise, your `<input-field>` will be a text field per default. Below you'll find a list of all available `<input-field type="?">`.
 
-| Type | Configuration settings | Renders |
-| :--- | :--- | :--- |
-| text | [copyable](add-plugin-configuration#copyable), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Text field |
-| textarea | [copyable](add-plugin-configuration#copyable), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Text area |
-| text-editor | [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | HTML editor |
-| url | [copyable](add-plugin-configuration#copyable), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | URL field |
-| password | [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Password field |
-| int |  | Integer field |
-| float |  | Float field |
-| bool |  | Switch |
-| checkbox |  | Checkbox |
-| datetime |  | Date-time picker |
-| date |  | Date picker |
-| time |  | Time picker |
-| colorpicker |  | Color picker |
-| single-select | [options](add-plugin-configuration#options), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Single-Select box |
-| multi-select | [options](add-plugin-configuration#options), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Multi-Select box |
+| Type | Configuration settings | Renders | Default value example
+| :--- | :--- | :--- | :--- |
+| text | [copyable](add-plugin-configuration#copyable), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Text field | Some text
+| textarea | [copyable](add-plugin-configuration#copyable), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Text area | Some more text
+| text-editor | [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | HTML editor | Some text with HTML `<div>`tags`</div>`
+| url | [copyable](add-plugin-configuration#copyable), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | URL field | https://example.com
+| password | [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Password field | ********
+| int |  | Integer field | 42
+| float |  | Float field | 42.42
+| bool |  | Switch | `true` or `false`
+| checkbox |  | Checkbox | `true` or `false`
+| datetime |  | Date-time picker | 2024-04-04T12:00:00.000Z
+| date |  | Date picker | 2024-04-05T00:00:00
+| time |  | Time picker | 11:00:00
+| colorpicker |  | Color picker | #189EFF
+| single-select | [options](add-plugin-configuration#options), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Single-Select box | option_id
+| multi-select | [options](add-plugin-configuration#options), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Multi-Select box | [option_id1, option_id2]
 
 ### Input field settings
 
