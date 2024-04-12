@@ -98,7 +98,7 @@ echo "trusted-users = root ${USER}" | sudo tee -a /etc/nix/nix.conf && sudo pkil
 Finally, install devenv:
 
 ```shell
-nix-env -if https://github.com/cachix/devenv/tarball/latest
+nix-env -iA devenv -f https://github.com/NixOS/nixpkgs/tarball/nixpkgs-unstable
 ```
 
 Before booting up your development environment, configure Cachix to use Shopware's cache:
