@@ -90,16 +90,12 @@ namespace Swag\BasicExample\Service\ScheduledTask;
 
 use Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTaskHandler;
 
+#[AsMessageHandler(handles: ExampleTask::class)]
 class ExampleTaskHandler extends ScheduledTaskHandler
 {
-    public static function getHandledMessages(): iterable
-    {
-        return [ ExampleTask::class ];
-    }
-
     public function run(): void
     {
-        file_put_contents('some/where/some/file.md', 'example');
+        // ...
     }
 }
 ```
