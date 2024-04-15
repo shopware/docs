@@ -159,24 +159,24 @@ framework:
 ## PHP Config tweaks
 
 ```ini
-# don't evaluate assert()
+; don't evaluate assert()
 zend.assertions=-1
 
-# cache file_exists,is_file
-# WARNING: this will lead to thrown errors after clearing cache while it tries to access cached Shopware_Core_KernelProdDebugContainer.php
+; cache file_exists,is_file
+; WARNING: this will lead to thrown errors after clearing cache while it tries to access cached Shopware_Core_KernelProdDebugContainer.php
 opcache.enable_file_override=1
 
-# increase opcache string buffer as shopware has many files
+; increase opcache string buffer as shopware has many files
 opcache.interned_strings_buffer=20
 
-# disables opcache validation for timestamp for reinvalidation of the cache
-# WARNING: you need to clear on deployments the opcache by reloading php-fpm or cachetool (https://github.com/gordalina/cachetool)
+; disables opcache validation for timestamp for reinvalidation of the cache
+; WARNING: you need to clear on deployments the opcache by reloading php-fpm or cachetool (https://github.com/gordalina/cachetool)
 opcache.validate_timestamps=0
 
-# disable check for BOM
+; disable check for BOM
 zend.detect_unicode=0
 
-# increase default realpath cache
+; increase default realpath cache
 realpath_cache_ttl=3600
 ```
 
