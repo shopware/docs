@@ -191,7 +191,7 @@ The preview element doesn't have to deal with mobile viewports or anything alike
             <h2>Lorem ipsum dolor</h2>
             <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</p>
         </div>
-        <img :src="'/administration/static/img/cms/preview_mountain_small.jpg' | asset">
+        <img :src="assetFilter('/administration/static/img/cms/preview_mountain_small.jpg')">
     </div>
 {% endblock %}
 ```
