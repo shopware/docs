@@ -26,6 +26,10 @@ This setup is compatible with Shopware version 6.4 and higher
 
 ![](../../../assets/hosting-infrastructure-reverseHttpCache.svg)
 
+### Shopware Varnish Docker image
+
+Feel free to check out the [Shopware Varnish Docker image](https://github.com/shopware/varnish-shopware) for a quick start. It contains the Shopware default VCL. The containing VCL is for the usage with xkeys. 
+
 ### Configure Shopware
 
 First, we need to activate the reverse proxy support in Shopware. To enable it, we need to create a new file in `config/packages/storefront.yaml`:

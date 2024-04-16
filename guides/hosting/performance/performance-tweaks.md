@@ -17,7 +17,7 @@ To enable this, set `SHOPWARE_HTTP_CACHE_ENABLED=1` in the `.env`
 
 ### Reverse proxy cache
 
-When you have many app servers, you should consider using a [reverse proxy cache](../infrastructure/reverse-http-cache) like Varnish. Shopware offers a default configuration for Varnish out-of-the-box.
+When you have many app servers, you should consider using a [reverse proxy cache](../infrastructure/reverse-http-cache) like Varnish. Shopware offers a default configuration for Varnish out-of-the-box and a [Varnish Docker image](https://github.com/shopware/varnish-shopware) for development.
 
 ### Logged-in / cart-filled
 
