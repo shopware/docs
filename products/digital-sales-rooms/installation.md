@@ -37,46 +37,6 @@ To install and use the *Digital Sales Rooms* feature, follow the below steps:
 └── tests
 ```
 
-### Run DSR template
-This repository contains the Frontend Template of DSR plugin.
-
-#### Installation
-- From Shopware root folder `<shopware-root-dir>`, go to the folder of DSR templates.
-```
-cd ./custom/plugins/SwagDigitalSalesRooms/templates/dsr-frontends
-```
-
-- Install pnpm with global scope
-```
-npm install -g pnpm
-```
-
-- Generate env file
-```
-cp .env.template .env
-```
-**SHOPWARE_ENDPOINT**: This is the Shopware API Domain server.
-
-**SHOPWARE_ACCESS_TOKEN**: This is the Shopware Access Token to connect to Shopware API. Every Sale Channel will always contain an access token. So you can copy it.
-
-**ALLOW_ANONYMOUS_MERCURE**: This is the flag for development only. When the value = 1, it means your app is running with unsecure Mercure.
-
-- Install dependencies
-```
-pnpm install
-```
-
-#### Development:
-```
-pnpm dev
-```
-Usually, port `3000` is the default port so that you can access the domain of the Frontend App `http://localhost:3000/`
-
-#### Build
-```
-pnpm build
-```
-
 ### Install the plugin
 
 You can install the plugin via the admin panel or terminal server.
@@ -115,6 +75,68 @@ bin/console cache:clear
 
 # Now it is ready to use
 ```
+
+### Run DSR template
+This repository contains the Frontend Template of DSR plugin. This template is built based on the Shopware Frontends framework, so it inherit from Shopware Frontends concepts.
+
+#### Notes
+DSR application is not stick with default Storefront. it's a standalone Frontend app running which Nuxt instance.
+This template will be hosted in the DSR domain (eg: `https://dsr.com`) and will different with the Storefront domain.
+The DSR domain will open DSR application.
+
+#### Setup sales channel for DSR
+- Based on your use case, you can decide to add DSR into your existing sales channel or new sales channel.
+- After specifying sales channel, head to Domains section and add the DSR domain. For now, DSR can switch language by the path, so please add the domains with the format below.
+```
+dsr.com - English
+dsr.com/de-DE - Deutsch
+```
+
+#### Installation
+- From Shopware root folder `<shopware-root-dir>`, go to the folder of DSR templates.
+```
+cd ./custom/plugins/SwagDigitalSalesRooms/templates/dsr-frontends
+```
+
+- Install pnpm with global scope
+```
+npm install -g pnpm
+```
+
+- Generate env file
+```
+cp .env.template .env
+```
+**SHOPWARE_ENDPOINT**: This is the Shopware API Domain server.
+
+**SHOPWARE_ACCESS_TOKEN**: This is the Shopware Access Token to connect to Shopware API. Head to sales channel you assign DSR domain, find the`API access` section and copy `API access key`.
+
+**ALLOW_ANONYMOUS_MERCURE**: This is the flag for development only. When the value = 1, it means your app is running with unsecure Mercure.
+
+- Install dependencies
+```
+pnpm install
+```
+
+#### CLI:
+- For dev:
+```
+pnpm dev
+```
+Usually, port `3000` is the default port so that you can access the domain of the Frontend App `http://localhost:3000/`
+
+- For build:
+```
+pnpm build
+```
+
+#### Customize the template
+This template is followed Shopware Frontends concept totally.
+https://frontends.shopware.com/getting-started/templates/demo-store-template.html#customizing-the-template
+
+#### Limitation
+Shopware Frontends have some limitations:
+https://frontends.shopware.com/getting-started/templates/demo-store-template.html#limitations
 
 ### Basic configuration of Mercure Hub
 
