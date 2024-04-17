@@ -17,7 +17,7 @@ Open Shopware CMS, select Marketing > Digital Sales Rooms > Configuration
 
 ### Appointments
 
-- *Default appointment domain* - This select box shows the list of domains of all sale channels. You should choose the DSR domain from [this section](./installation/app-installation.md#setup-sales-channel-for-dsr)
+- *Default appointment domain* - This select box shows the list of domains of all sale channels. You should choose the *Digital Sales Rooms* domain from [this section](./installation/app-installation.md#setup-sales-channel-for-dsr)
 
 ### Video and Audio
 - *API base url* - use value `https://api.daily.co/v1/`
