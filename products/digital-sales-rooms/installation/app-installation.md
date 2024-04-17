@@ -1,7 +1,7 @@
 ---
 nav:
    title: App installation
-   position: 20
+   position: 30
 
 ---
 
@@ -19,9 +19,9 @@ This template is built based on the Shopware Frontends framework, so it inherits
 dsr-frontends.com - English
 dsr-frontends.com/de-DE - Deutsch
 ```
-![ ](../../assets/setup-domain-for-sales-channel-DSR.png)
+![ ](../../../assets/setup-domain-for-sales-channel-DSR.png)
 
-The DSR domain (eg: `https://dsr-frontends.com`) should be selected as *Default appointment domain* in [Configuration Page - Appointments](./configuration.md#appointments)
+The DSR domain (eg: `https://dsr-frontends.com`) should be selected as *Default appointment domain* in [Configuration Page - Appointments](../configuration.md#appointments)
 
 ## Init environment
 

@@ -1,7 +1,7 @@
 ---
 nav:
    title: Realtime Service - Mercure
-   position: 40
+   position: 50
 
 ---
 
@@ -31,11 +31,11 @@ There are some ways to set up Mercure
 - Access the dashboard.
 - In the **Stacks** menu item, create a new stack with the **Mercure Hub** service.
 - When creating a stack successfully, tap into the Configure button.
-- On this page, it's easy to find the [Mercure general settings](#mercure-general-settings), copy all the necessary information, and paste it into [the proper inputs of the configuration page](./configuration.md#realtime-service).
+- On this page, it's easy to find the [Mercure general settings](#mercure-general-settings), copy all the necessary information, and paste it into [the proper inputs of the configuration page](../configuration.md#realtime-service).
 
-![Mercure configuration](../../assets/products-digitalSalesRooms-mercureConfig.png)
+![Mercure configuration](../../../assets/products-digitalSalesRooms-mercureConfig.png)
 
-![ ](../../assets/products-digitalSalesRooms-mercureConfigExample.png)
+![ ](../../../assets/products-digitalSalesRooms-mercureConfigExample.png)
 
 ### Alternative setups
 #### Setup via Docker

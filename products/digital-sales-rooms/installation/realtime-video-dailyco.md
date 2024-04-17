@@ -1,7 +1,7 @@
 ---
 nav:
    title: Realtime Video Call - Daily.co
-   position: 30
+   position: 40
 
 ---
 
@@ -15,6 +15,6 @@ The service is responsible for streaming a video between the attendees.
 
 ## Get the API key
 - Visit the “developers” section on the left
-- Copy the *API KEY* and paste it [here](./configuration.md#video-and-audio)
+- Copy the *API KEY* and paste it [here](../configuration.md#video-and-audio)
 
-![ ](../../assets/products-digitalSalesRooms-videoConfig.png)
+![ ](../../../assets/products-digitalSalesRooms-videoConfig.png)

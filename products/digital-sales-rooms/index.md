@@ -24,11 +24,5 @@ Review the below minimum operating requirements before you install the *Digital 
 * Instance of [Shopware 6](../../guides/installation) (version 6.6.0 and above).
   * Recommend installing with [devenv](../../guides/installation/devenv)
 * 3rd parties
-  * Realtime Video Call - [Daily.co](./realtime-video-dailyco)
-  * Realtime Service - [Mercure](./realtime-service-mercure)
-
-## Installation
-Follow the following steps to install Digital Sales Rooms in your system:
-* [Admin installation](./admin-installation.md)
-* [App installation](./app-installation.md)
-* Fill out the plugin configuration [here](./configuration.md)
+  * Realtime Video Call - [Daily.co](https://daily.co/)
+  * Realtime Service - [Mercure](https://mercure.rocks/)
