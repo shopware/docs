@@ -343,6 +343,8 @@ cyclus
 dailymotion
 Dailymotion
 Daily.co
+dsr
+herokuapp
 dal
 Dal
 DAL
