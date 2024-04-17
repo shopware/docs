@@ -9,14 +9,16 @@ This guide will show you how to use Vuex as you normally would, through the inte
 ## Prerequisites
 
 All you need for this guide is a running Shopware 6 instance, the files and preferably a registered module.
-Of course you'll have to understand JavaScript and have a basic familiarity with [Vue](https://vuejs.org/) the framework used in the Administration and it's flux library [Vuex](https://vuex.vuejs.org/).
+Of course, you'll have to understand JavaScript and have a basic familiarity with [Vue](https://vuejs.org/) the framework used in the Administration, and it's flux library [Vuex](https://vuex.vuejs.org/).
 
 ## Creating a store
 
-Creating a store works the same way as it would in standard Vuex with the only limitation being, that all stores have to be `namespaced` in order to prevent collisions with other third party plugins or the Shopware 6 Administration itself.
+Creating a store works the same way as it would in standard Vuex with the only limitation being,
+that all stores have to be `namespaced` in order to prevent collisions with other third party plugins or the Shopware 6 Administration itself.
 
 The following code snippet is the `namespaced` store we will register later through Shopware to the underlying Vuex.
-It is admittedly rather short and has only one variable called `content` and a setter for it, but again this all the same as in Vuex. Beware of the property `namespaced`, though.
+It is admittedly rather short and has only one variable called `content` and a setter for it, but again this all the same as in Vuex.
+Beware of the property `namespaced`, though.
 
 ```javascript
 // <plugin-root>/src/Resources/app/administration/app/src/component/store-example/store.js
@@ -122,7 +124,9 @@ The component below displays the previously mapped state `content` in a `div` an
 // <plugin-root>/src/Resources/app/administration/app/src/component/store-example/store-example.html.twig
 <div>
     <h1>SW-6 State</h1>
-    <sw-text-field @change="value => setContent(value)" :value="content">
+    <sw-text-field
+            :value="content"
+            @update:value="value => setContent(value)">
     </sw-text-field>
     <div>
         {{ content }}
