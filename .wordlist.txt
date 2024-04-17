@@ -1606,7 +1606,6 @@ Webpack
 webpackMerge
 webserver
 Webserver
-Websocket
 WebSocket
 wednesday
 WeekdayRule
