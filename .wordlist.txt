@@ -342,6 +342,7 @@ customizer
 cyclus
 dailymotion
 Dailymotion
+Daily.co
 dal
 Dal
 DAL
@@ -674,6 +675,7 @@ indexActions
 IndexerService
 infoIt
 ini
+Init
 initialisms
 Initialisms
 initializer
@@ -932,6 +934,7 @@ nullable
 NullObject
 nullsafe
 Nullsafe
+Nuxt
 Nvidia
 oauth
 OAuth
@@ -1355,6 +1358,7 @@ SSHes
 stableVersion
 stackable
 StackHero
+Stackhero
 StackOverflow
 stacktrace
 stateId
@@ -1601,6 +1605,8 @@ Webpack
 webpackMerge
 webserver
 Webserver
+Websocket
+WebSocket
 wednesday
 WeekdayRule
 WhitelistRule

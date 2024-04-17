@@ -1,17 +1,17 @@
 ---
 nav:
-   title: Realtime Video Call - Dailyco
+   title: Realtime Video Call - Daily.co
    position: 30
 
 ---
 
-# Realtime Video Call - Dailyco
+# Realtime Video Call - Daily.co
 
 The service is responsible for streaming a video between the attendees.
 
-## Login Dailyco dashboard
+## Login Daily.co dashboard
 - Go to the dashboard at: https://dashboard.daily.co/
-- Login or register with the Dailyco account.
+- Login or register with the Daily.co account.
 
 ## Get the API key
 - Visit the “developers” section on the left
