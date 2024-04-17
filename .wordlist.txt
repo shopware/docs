@@ -1254,6 +1254,7 @@ salesChannelLoaded
 SalesChannelProductEntity
 saleschannelrepositoryfacade
 SalesChannelRule
+Sales Rooms
 SameSite
 sandboxed
 sarven
