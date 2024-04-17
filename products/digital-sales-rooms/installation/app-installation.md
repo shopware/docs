@@ -1,11 +1,11 @@
 ---
 nav:
-   title: App installation
+   title: Front-end app installation
    position: 30
 
 ---
 
-# App Installation
+# Front-end App Installation
 
 ::: warning
 DSR application does not belong to *the default Storefront*. It's a standalone Frontend app running with Nuxt instance. This template will be hosted in a separate instance with a new domain (eg: `https://dsr-frontends.com`), which will be different from the Storefront domain.
@@ -51,7 +51,7 @@ pnpm install
 ```
 
 ## CLI:
-- For dev:
+- For development:
 ```
 pnpm dev
 ```

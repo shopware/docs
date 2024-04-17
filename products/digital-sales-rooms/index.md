@@ -23,6 +23,8 @@ Review the below minimum operating requirements before you install the *Digital 
 * [pnpm](https://pnpm.io/installation) >= 8
 * Instance of [Shopware 6](../../guides/installation) (version 6.6.0 and above).
   * Recommend installing with [devenv](../../guides/installation/devenv)
-* 3rd parties
-  * Realtime Video Call - [Daily.co](https://daily.co/)
-  * Realtime Service - [Mercure](https://mercure.rocks/)
+* Third party services:
+  * [Daily.co](https://daily.co/) - Refer to setup instructions for [realtime video call](../../guides/installation/realtime-video-dailyco)
+  * [Mercure](https://mercure.rocks/)- Refer to setup instructions for [realtime Mercure service](../../guides/installation/realtime-service-mercure)
+  
+Following section guides you on the installation procedure.

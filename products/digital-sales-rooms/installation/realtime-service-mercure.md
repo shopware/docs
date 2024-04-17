@@ -13,14 +13,14 @@ Symfony provides a straightforward component, built on top of the [Mercure](http
 :::
 
 ## Mercure general settings
-There are 4 main pieces of information from Mercure Hub we have to get
+There are 4 main pieces of information from Mercure Hub you have to get:
 - *Hub url* - The hub URL.
 - *Hub public url* - The hub public URL, normally it's the same as the hub URL.
 - *Hub subscriber secret* - The JWT key used for authenticating subscribers
 - *Hub publisher secret* - The JWT key used for authenticating publishers
 
 ## Setup
-There are some ways to set up Mercure
+There are different ways to set up Mercure as listed below:
 
 ### Setup via Stackhero (Recommended)
 ::: info
@@ -37,8 +37,7 @@ There are some ways to set up Mercure
 
 ![ ](../../../assets/products-digitalSalesRooms-mercureConfigExample.png)
 
-### Alternative setups
-#### Setup via Docker
+### Setup via Docker
 The docker image can be found at [dunglas/mercure](https://hub.docker.com/r/dunglas/mercure). It allows you to use the following *env* variables to configure Mercure.
 
 ::: warning
@@ -87,7 +86,7 @@ route {
 }
 ```
 
-#### Self-host setup
+### Self-host setup
 
 The [installation guide](https://mercure.rocks/docs/hub/install) explains all the steps that are required for installing the Mercure.
 
