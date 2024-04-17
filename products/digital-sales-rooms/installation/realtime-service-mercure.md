@@ -13,6 +13,12 @@ Symfony provides a straightforward component, built on top of the [Mercure](http
 :::
 
 ## Mercure general settings
+Detailed below is the minimum configuration needed for a working stack apart from project-specific CMS configurations.
+- Set up CORS allowed origins - In our case, it would be the domain where the Shopware Frontends is hosted and available. For instance: https://dsr-frontends.com (frontend).
+- Set up publish allowed origins - The domains that request the Mercure service must be added to publish allowed origins or else it gets rejected. For instance (HTTP protocol must not be included): shopware-pwa-gs.herokuapp.com (frontend) and pwa-demo-api.shopware.com(backend - API).
+- Set up the publisher (JWT) key - Set whatever you want.
+- Set up the subscriber (JWT) key - Set whatever you want.
+
 There are 4 main pieces of information from Mercure Hub you have to get:
 - *Hub url* - The hub URL.
 - *Hub public url* - The hub public URL, normally it's the same as the hub URL.
