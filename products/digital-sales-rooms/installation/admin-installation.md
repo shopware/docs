@@ -35,7 +35,7 @@ To access the *Digital Sales Rooms* source code, please create a support ticket 
 
 ## Install & activate the plugin in Admin Extension
 
-To install and use the *Digital Sales Rooms* feature, place and extract the above zip file in this location <shopware-root-dir>/custom/plugins directory. Once it is done, you can either refer the guide to [install plugin](https://developer.shopware.com/docs/guides/plugins/plugins/plugin-base-guide.html#install-your-plugin) or you can run the below Symfony commands:
+To install and use the *Digital Sales Rooms* feature, place and extract the above zip file in this location `<shopware-root-dir>/custom/plugins` directory. Once it is done, you can either refer the guide to [install plugin](https://developer.shopware.com/docs/guides/plugins/plugins/plugin-base-guide.html#install-your-plugin) or you can run the below Symfony commands:
 
 ```bash
 # refresh the list of available plugins
