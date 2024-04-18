@@ -23,7 +23,7 @@ Refer to this video on **[Common Storefront controller tasks](https://www.youtub
 
 ### Storefront Controller class example
 
-First of all we have to create a new controller which extends from the `StorefrontController` class. A controller is also just a service which can be registered via the service container. Furthermore, we have to define our `Route` with `defaults` and `_routeScope` via annotation, it is used to define which domain a route is part of and **needs to be set for every route**. In our case the scope is `storefront`.
+First of all we have to create a new controller which extends from the `StorefrontController` class. A controller is also just a service which can be registered via the service container. Furthermore, we have to define our `Route` with `defaults` and `_routeScope` via attributes, it is used to define which domain a route is part of and **needs to be set for every route**. In our case the scope is `storefront`.
 
 ::: info
 Prior to Shopware 6.4.11.0 the `_routeScope` was configured by a dedicated annotation: `@RouteScope`. This way of defining the route scope is deprecated for the 6.5 major version.
@@ -45,7 +45,7 @@ class ExampleController extends StorefrontController
 }
 ```
 
-Now we can create a new example method with a `Route` annotation which has to contain our route, in this case it will be `/example`. The route defines how our new method will be accessible.
+Now we can create a new example method with a `Route` attribute which has to contain our route, in this case it will be `/example`. The route defines how our new method will be accessible.
 
 Below you can find an example implementation of a controller method including a route, where we render an `example.html.twig` template file with a template variable `example`.
 
@@ -59,7 +59,7 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Shopware\Storefront\Controller\StorefrontController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 #[Route(defaults: ['_routeScope' => ['storefront']])]
 class ExampleController extends StorefrontController
@@ -74,7 +74,7 @@ class ExampleController extends StorefrontController
 }
 ```
 
-The name of the method does not really matter, but it should somehow fit its purpose. More important is the `Route` annotation, that points to the route `/example`. Also note its name, which is also quite important. Make sure to use prefixes `frontend`, `widgets`, `payment`, `api` or `store-api` here, depending on what your route does. Inside the method, we're using the method `renderStorefront` to render a twig template file in addition with the template variable `example`, which contains `Hello world`. This template variable will be usable in the rendered template file. The method `renderStorefront` then returns a `Response`, as every routed controller method has to.
+The name of the method does not really matter, but it should somehow fit its purpose. More important is the `Route` attribute, that points to the route `/example`. Also note its name, which is also quite important. Make sure to use prefixes `frontend`, `widgets`, `payment`, `api` or `store-api` here, depending on what your route does. Inside the method, we're using the method `renderStorefront` to render a twig template file in addition with the template variable `example`, which contains `Hello world`. This template variable will be usable in the rendered template file. The method `renderStorefront` then returns a `Response`, as every routed controller method has to.
 
 It is also possible to define the `_routeScope` per route.
 
@@ -90,7 +90,7 @@ namespace Swag\BasicExample\Storefront\Controller;
 
 use Shopware\Storefront\Controller\StorefrontController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 #[Route(defaults: ['_routeScope' => ['storefront']])]
 class ExampleController extends StorefrontController
@@ -177,7 +177,7 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Shopware\Storefront\Controller\StorefrontController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 #[Route(defaults: ['_routeScope' => ['storefront']])]
 class ExampleController extends StorefrontController

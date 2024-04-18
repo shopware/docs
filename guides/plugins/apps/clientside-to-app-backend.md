@@ -118,7 +118,7 @@ We recommend [NelmioCorsBundle](https://symfony.com/bundles/NelmioCorsBundle/cur
 use Shopware\App\SDK\Context\Storefront\StorefrontAction;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 #[AsController]
 class StorefrontController {

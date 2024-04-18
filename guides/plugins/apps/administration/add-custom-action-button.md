@@ -100,7 +100,7 @@ $actionButton = $contextResolver->assembleActionButton($serverRequest, $shop);
 use Shopware\App\SDK\Context\ActionButton\ActionButtonAction;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Psr\Http\Message\ResponseInterface;
 
 #[AsController]
