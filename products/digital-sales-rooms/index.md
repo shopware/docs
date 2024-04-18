@@ -7,9 +7,9 @@ nav:
 
 # Digital Sales Rooms Overview
 
-*Digital Sales Rooms* is a state-of-the-art new feature that seamlessly integrates into your Shopware system landscape and co-operates with your existing ecommerce infrastructure.
+*Digital Sales Rooms* is a state-of-the-art new feature that seamlessly integrates into your Shopware system landscape and co-operates with your existing e-commerce infrastructure.
 
-You can create interactive live video events for your customers straight from your Shopware website without having to switch between a presentation tool, video conferencing system, and store system. It is one sophisticated solution to highlight your products, engage your customers and reinforce brand loyalty.
+You can create interactive live video events for your customers straight from your Shopware website without having to switch between a presentation tool, video conferencing system, and store system. It is one sophisticated solution to highlight your products, engage your customers, and reinforce brand loyalty.
 
 ![ ](../../assets/products-digitalSalesRooms.png)
 
@@ -18,13 +18,13 @@ You can create interactive live video events for your customers straight from yo
 :::
 
 ## Prerequisites
-
 Review the below minimum operating requirements before you install the *Digital Sales Rooms* feature:
 * [node](https://nodejs.org/en) >= v18
 * [pnpm](https://pnpm.io/installation) >= 8
-* [make](https://formulae.brew.sh/formula/make) command.
-* Instance of [Shopware 6](../../guides/installation/devenv) (version 6.6.0 and above).
-* Install Mercure service with the below available options:
-  * [Self-hosted installation](./selfHostedMercureInstallation).
-  * [Cloud service](https://mercure.rocks/). Refer to the [basic configuration of Mercure hub](./installation#basic-configuration-of-mercure-hub) section.
-* An account in [daily.co](http://daily.co/). Refer to the [set up an account](./installation#set-up-an-account) section.
+* Instance of [Shopware 6](../../guides/installation) (version 6.6.0 and above).
+  * Recommend installing with [devenv](../../guides/installation/devenv)
+* Third party services:
+  * [Daily.co](https://daily.co/) - Refer to setup instructions for [realtime video call](../../guides/installation/realtime-video-dailyco)
+  * [Mercure](https://mercure.rocks/)- Refer to setup instructions for [realtime Mercure service](../../guides/installation/realtime-service-mercure)
+  
+Following section guides you on the installation procedure.
