@@ -17,13 +17,11 @@ In order to add a cache to an own controller route, you first need a plugin with
 
 ## Define the controller as cacheable
 
-To define a controller route as cacheable, it must be annotated with `@HttpCache()`. Once this annotation is set, the core takes care of everything else. If the route is called several times in the same state, a response is generated only for the first request and the second request gets the same response as the first one. It is also possible to exclude certain states from the cache. Shopware sets two different user states to which the HTTP cache reacts:
+To define a controller route as cacheable, the default option of the route attribute `_httpCache` must be set to `true`. Once this option is set, the core takes care of everything else. If the route is called several times in the same state, a response is generated only for the first request and the second request gets the same response as the first one. It is also possible to exclude certain states from the cache. Shopware sets two different user states to which the HTTP cache reacts:
 
 * state: `logged-in` - means that the user is logged in.
   
 * state: `cart-filled` - means that there are products in the shopping cart.
-
-If the controller route is not to be cached for one or both of these states, the annotation can be defined as follows: `@HttpCache(states={"cart-filled", "logged-in"})`
 
 ```php
 // <plugin root>/src/Storefront/Controller/ExampleController.php
@@ -31,12 +29,11 @@ If the controller route is not to be cached for one or both of these states, the
 
 namespace Swag\BasicExample\Storefront\Controller;
 
-use Shopware\Storefront\Framework\Cache\Annotation\HttpCache;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Shopware\Storefront\Controller\StorefrontController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 #[Route(defaults: ['_routeScope' => ['storefront']])]
 class ExampleController extends StorefrontController

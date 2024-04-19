@@ -125,7 +125,7 @@ function myController(RequestInterface $request): ResponseInterface
 use Shopware\App\SDK\Context\Payment\PaymentPayAction;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Shopware\App\SDK\Response\PaymentResponse;
 use Psr\Http\Message\ResponseInterface;
 
@@ -230,7 +230,7 @@ function pay(RequestInterface $request): ResponseInterface
 use Shopware\App\SDK\Context\Payment\PaymentPayAction;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Shopware\App\SDK\Response\PaymentResponse;
 use Psr\Http\Message\ResponseInterface;
 
@@ -337,7 +337,7 @@ function finalize(RequestInterface $request): ResponseInterface
 use Shopware\App\SDK\Context\Payment\PaymentFinalizeAction;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Shopware\App\SDK\Response\PaymentResponse;
 use Psr\Http\Message\ResponseInterface;
 
@@ -448,7 +448,7 @@ function validate(RequestInterface $request): ResponseInterface
 use Shopware\App\SDK\Context\Payment\PaymentValidateAction;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Shopware\App\SDK\Response\PaymentResponse;
 use Psr\Http\Message\ResponseInterface;
 
@@ -553,7 +553,7 @@ function capture(RequestInterface $request): ResponseInterface
 use Shopware\App\SDK\Context\Payment\PaymentCaptureAction;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Shopware\App\SDK\Response\PaymentResponse;
 use Psr\Http\Message\ResponseInterface;
 
@@ -728,7 +728,7 @@ function validate(RequestInterface $request): ResponseInterface
 use Shopware\App\SDK\Context\Payment\PaymentPayAction;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Shopware\App\SDK\Response\PaymentResponse;
 use Psr\Http\Message\ResponseInterface;
 
