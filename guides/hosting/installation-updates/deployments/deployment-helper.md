@@ -92,4 +92,11 @@ and to re-mark a task you can use `./vendor/bin/shopware-deployment-helper one-t
 
 ## Real World usage example
 
-In a real-world scenario, you would use [shopware-cli project ci](https://sw-cli.fos.gg) to install the dependencies and build the assets of your project in the CI/CD pipeline. After the pipeline has finished, you would upload the files / containerize it and run on the final
+### Container
+
+In a Docker environment, you would have a base image with a running PHP Webserver and from that image you would make a new image with your Shopware source code. To prepare the Shopware source code, you can run [shopware-cli project ci](https://sw-cli.fos.gg) to install the dependencies and build the assets. And on deployment you would spawn a second container or init container, which runs the deployment helper. The deployment helper would se tup Shopware when not, install the extensions and run the one-time tasks.
+
+
+### SFTP / Deployer
+
+When using SFTP or Deployer, you would clone the repository to the CI/CD server, run the [shopware-cli project ci](https://sw-cli.fos.gg) command to install the dependencies and build the assets. Then you would upload the source code to the server and run the deployment helper on the server. The deployment helper would set up Shopware when not, install the extensions and run the one-time tasks.
