@@ -109,7 +109,7 @@ Depending on whether you want to set up a fresh Shopware project or contribute t
 <Tabs>
 <Tab title="Symfony Flex">
 
-First, change to a temporary nix shell providing all neccessary packages for composer:
+First, change to a temporary nix shell providing all necessary packages for composer:
 
 ```shell
 nix-shell -p php82 php82Packages.composer
