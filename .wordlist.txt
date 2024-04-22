@@ -151,6 +151,7 @@ CachedProductListingRouteTest
 cacheinvalidatorfacade
 cacheKey
 Cachix
+cachix
 Caddy
 Caddyfile
 calculatedCheapestPrice
@@ -677,6 +678,7 @@ indexActions
 IndexerService
 infoIt
 ini
+init
 Init
 initialisms
 Initialisms
