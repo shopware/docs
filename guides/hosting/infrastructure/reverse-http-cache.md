@@ -226,7 +226,13 @@ sub vcl_backend_response {
 
     # Save the bereq.url so bans work efficiently
     set beresp.http.x-url = bereq.url;
-    set beresp.http.X-Cacheable = "YES";
+    
+    if(bereq.uncacheable) {
+        set beresp.http.X-Cacheable = "NO";
+    }
+    else {
+        set beresp.http.X-Cacheable = "YES";
+    }
 
     # Remove the exact PHP Version from the response for more security
     unset beresp.http.x-powered-by;
@@ -428,7 +434,12 @@ sub vcl_backend_response {
 
     # Save the bereq.url so bans work efficiently
     set beresp.http.x-url = bereq.url;
-    set beresp.http.X-Cacheable = "YES";
+    if(bereq.uncacheable) {
+        set beresp.http.X-Cacheable = "NO";
+    }
+    else {
+        set beresp.http.X-Cacheable = "YES";
+    }
 
     # Remove the exact PHP Version from the response for more security
     unset beresp.http.x-powered-by;
@@ -660,7 +671,12 @@ sub vcl_backend_response {
 
     # Save the bereq.url so bans work efficiently
     set beresp.http.x-url = bereq.url;
-    set beresp.http.X-Cacheable = "YES";
+    if(bereq.uncacheable) {
+        set beresp.http.X-Cacheable = "NO";
+    }
+    else {
+        set beresp.http.X-Cacheable = "YES";
+    }
 
     # Remove the exact PHP Version from the response for more security
     unset beresp.http.x-powered-by;
