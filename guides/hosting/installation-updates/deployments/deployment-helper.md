@@ -99,4 +99,4 @@ In a Docker environment, you would have a base image with a running PHP Webserve
 
 ### SFTP / Deployer
 
-When using SFTP or Deployer, you would clone the repository to the CI/CD server, run the [shopware-cli project ci](https://sw-cli.fos.gg) command to install the dependencies and build the assets. Then you would upload the source code to the server and run the deployment helper on the server. The deployment helper would set up Shopware when not, install the extensions and run the one-time tasks.
+When using SFTP or Deployer, you would clone the repository to the CI/CD server, run the [shopware-cli project ci](https://sw-cli.fos.gg) command to install the dependencies and build the assets. Then you would upload the source code to the server and run the deployment helper on the server. The deployment helper would set up Shopware when not, install the extensions, and run the one-time tasks.
