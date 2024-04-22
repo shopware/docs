@@ -10,7 +10,7 @@ nav:
 ## Routes
 
 * Stop implementing the Sales Channel API. It will be deprecated in the 6.4 major release. Define API Controllers \(Routes\) as services. Use named Routes internally.
-* The class or each API method requires the annotation: `@Route(defaults={"_routeScope"={"store-api"}})`.
+* The class or each API method requires the attribute: `#[Route(defaults: ['_routeScope' => ['store-api']])]`.
 * Decorator of response extends on `StoreApiResponse`.
 
 ## Page Loader

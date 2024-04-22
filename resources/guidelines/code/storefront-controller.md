@@ -28,7 +28,7 @@ nav:
 
 * A Storefront controller should never use a repository directly. The data should be fetched over a route or page loader.
 * Routes that load a full Storefront page should use a page loader class to load all corresponding data.
-* Pages that contain data that are the same for all customers should have the `_httpCache` annotation.
+* Pages that contain data that are the same for all customers should have the `_httpCache` attribute.
 
 ## Write operations inside Storefront controllers
 

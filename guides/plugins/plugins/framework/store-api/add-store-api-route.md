@@ -59,9 +59,8 @@ namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\Plugin\Exception\DecorationPatternException;
-use Shopware\Core\Framework\Routing\Annotation\Entity;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 #[Route(defaults: ['_routeScope' => ['store-api']])]
 class ExampleRoute extends AbstractExampleRoute
@@ -86,11 +85,11 @@ class ExampleRoute extends AbstractExampleRoute
 }
 ```
 
-As you can see, our class is annotated with `@Route` and the defined _routeScope `store-api`.
+As you can see, our class has the attribute `Route` and the defined _routeScope `store-api`.
 
 In our class constructor we've injected our `swag_example.repository`. The method `getDecorated()` must throw a `DecorationPatternException` because it has no decoration yet and the method `load`, which fetches the data, returns a new `ExampleRouteResponse` with the respective repository search result as argument.
 
-The `@Entity` annotation just marks the entity that the api will return.
+The `_entity` in the defaults of the `Route` attribute just marks the entity that the api will return.
 
 ### Register route class
 
@@ -124,16 +123,13 @@ use Swag\BasicExample\Core\Content\Example\ExampleCollection;
 
 /**
  * Class ExampleRouteResponse
- * @property EntitySearchResult $object
+ * @property EntitySearchResult<ExampleCollection> $object
  */
 class ExampleRouteResponse extends StoreApiResponse
 {
     public function getExamples(): ExampleCollection
     {
-        /** @var ExampleCollection $collection */
-        $collection = $this->object->getEntities();
-
-        return $collection;
+        return $this->object->getEntities();
     }
 }
 ```
@@ -150,7 +146,7 @@ The last thing we need to do now is to tell Shopware how to look for new routes 
         xsi:schemaLocation="http://symfony.com/schema/routing
         https://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <import resource="../../Core/**/*Route.php" type="annotation" />
+    <import resource="../../Core/**/*Route.php" type="attribute" />
 </routes>
 ```
 
@@ -311,7 +307,7 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Shopware\Storefront\Controller\StorefrontController;
 use Swag\BasicExample\Core\Content\Example\SalesChannel\AbstractExampleRoute;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 #[Route(defaults: ['_routeScope' => ['storefront']])]
 class ExampleController extends StorefrontController
@@ -323,7 +319,7 @@ class ExampleController extends StorefrontController
         $this->route = $route;
     }
 
-    #[Route(path: '/example', name: 'frontend.example.search', methods: ['GET', 'POST'], defaults: ['XmlHttpRequest' => 'true'])
+    #[Route(path: '/example', name: 'frontend.example.search', methods: ['GET', 'POST'], defaults: ['XmlHttpRequest' => 'true', '_entity' => 'swag_example'])]
     public function load(Criteria $criteria, SalesChannelContext $context): Response
     {
         return $this->route->load($criteria, $context);
@@ -332,7 +328,7 @@ class ExampleController extends StorefrontController
 ```
 
 This looks very similar then what we did in the `ExampleRoute` itself. The main difference is that this route is registered for the `storefront` route scope.
-Additionally, we also use the `defaults={"XmlHttpRequest"=true}` config option on the route, this will enable us to request that route via AJAX-calls from the Storefronts javascript.
+Additionally, we also use the `'XmlHttpRequest' => true` config option on the route, this will enable us to request that route via AJAX-calls from the Storefronts javascript.
 
 ### Register the Controller
 
@@ -349,6 +345,9 @@ Additionally, we also use the `defaults={"XmlHttpRequest"=true}` config option o
     
         <service id="Swag\BasicExample\Storefront\Controller\ExampleController" >
             <argument type="service" id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
         </service>
     </services>
 </container>
@@ -366,8 +365,8 @@ We need to tell Shopware that there is a new API-route for the `storefront` scop
         xsi:schemaLocation="http://symfony.com/schema/routing
         https://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <import resource="../../Core/**/*Route.php" type="annotation" />
-    <import resource="../../Storefront/**/*Controller.php" type="annotation" />
+    <import resource="../../Core/**/*Route.php" type="attribute" />
+    <import resource="../../Storefront/**/*Controller.php" type="attribute" />
 </routes>
 ```
 

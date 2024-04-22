@@ -186,4 +186,4 @@ public function examplePagelet(Request $request, SalesChannelContext $context): 
 }
 ```
 
-Using the part `defaults={"XmlHttpRequest"=true}` in the annotation ensures, that this pagelet can be loaded using an XML HTTP Request.
+Using the part `defaults: ['XmlHttpRequest' => true]` in the attribute ensures, that this pagelet can be loaded using an XML HTTP Request.
