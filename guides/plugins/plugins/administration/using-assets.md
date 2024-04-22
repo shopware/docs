@@ -57,10 +57,20 @@ This way, your plugin assets are copied to the `public/bundles` folder:
 
 ## Use custom assets in the Administration
 
-After adding your assets to the `public/bundles` folder, you can start using your assets in the Administration. Basically, you just need to use the Vue [filter](https://vuejs.org/v2/guide/filters.html) `asset`.
+After adding your assets to the `public/bundles` folder, you can start using your assets in the Administration. Basically, you just need to our `asset` Filter. Please note, that [Vue filters](https://vuejs.org/v2/guide/filters.html) are no feature of Vue3 anymore and therefore won't work in Shopware 6.6 and above as well.
+
+Create a computed component to make them easy to use in your template.
+
+```js
+computed: {
+    assetFilter() {
+        return Filter.getByName('asset');
+    },
+}
+```
 
 ```html
-<img :src="'/<plugin root>/static/your-image.png' | asset">
+<img :src="assetFilter('/<plugin root>/static/your-image.png')">
 ```
 
 You're able to use this line in your `twig`/`html` files as you please and that's basically it. You successfully added your own asset to the Administration.
