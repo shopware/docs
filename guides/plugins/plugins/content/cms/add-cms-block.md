@@ -196,6 +196,16 @@ The preview element doesn't have to deal with mobile viewports or anything alike
 {% endblock %}
 ```
 
+Also, you need to create a computed component to access the asset filter in your template.
+
+```js
+computed: {
+    assetFilter() {
+        return Filter.getByName('asset');
+    },
+}
+```
+
 Just a div containing some text and an example image next to that. For the styles, you can simply use the grid property of CSS again. Since you don't have to care about mobile viewports, this is even easier this time.
 
 Now create the styles file `sw-cms-preview-my-image-text-reversed.scss` with the following styles:
