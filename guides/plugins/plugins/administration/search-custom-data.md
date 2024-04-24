@@ -9,7 +9,7 @@ nav:
 
 ## Overview
 
-When developing a customization that has a frequently visited entity listing you're able to make use of an interesting opportunity: You can enable the user to take a shortcut finding his desired entry using the global search.
+When developing a customization that has a frequently visited entity listing, you're able to make use of an interesting opportunity: You can enable the user to take a shortcut finding his desired entry using the global search.
 
 There are two different ways how the global search works:
 
@@ -19,7 +19,7 @@ There are two different ways how the global search works:
 They only differ in the API they use and get displayed in a slightly different way.
 
 ::: warning
-Think twice about adding this shortcut because if every plugin adds their own search tag it gets cluttered.
+Think twice about adding this shortcut because if every plugin adds their own search tag, it gets cluttered.
 :::
 
 ## Prerequisites
@@ -63,7 +63,7 @@ Shopware.Module.register('swag-plugin', {
 
 ### Add search tag
 
-The search tag displays the entity type that is used in the typed search and is a clickable button to switch from the untyped to the typed search. In order to add the tag, a service decorator is used to add a type to the `searchTypeService`:
+The search tag displays the entity type used in the typed search and is a clickable button to switch from the untyped to the typed search. To add the tag, a service decorator is used to add a type to the `searchTypeService`:
 
 ```javascript
 const { Application } = Shopware;
@@ -80,13 +80,13 @@ Application.addServiceProviderDecorator('searchTypeService', searchTypeService =
 });
 ```
 
-Let's take a closer look on how this decorator is used:
+Let's take a closer look at how this decorator is used:
 
 * The key and `entityName` is used as the same to change also existing types.
 * This service can be overridden with an own implementation for customization.
 * The `placeholderSnippet` is a translation key that is shown when no search term is entered.
-* The `listingRoute` is used to show a link to continue the search in the module specific listing view.
-* The `hideOnGlobalSearchBar` is used to determine wether the entity should be searched when searching globally untyped.
+* The `listingRoute` is used to show a link to continue the search in the module-specific listing view.
+* The `hideOnGlobalSearchBar` is used to determine whether the entity should be searched when searching globally untyped.
 
 ### Add the search result item
 
@@ -184,7 +184,7 @@ In case of a tag with a technical name with a missing translation, proceed like 
 }
 ```
 
-To change the color of the tag, or the icon in the untyped global search a module has to be registered with an entity reference in the module:
+To change the color of the tag, or the icon in the untyped global search, a module has to be registered with an entity reference in the module:
 
 ```javascript
 Shopware.Module.register('any-name', {
