@@ -191,9 +191,19 @@ The preview element doesn't have to deal with mobile viewports or anything alike
             <h2>Lorem ipsum dolor</h2>
             <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</p>
         </div>
-        <img :src="'/administration/static/img/cms/preview_mountain_small.jpg' | asset">
+        <img :src="assetFilter('/administration/static/img/cms/preview_mountain_small.jpg')">
     </div>
 {% endblock %}
+```
+
+Also, you need to create a computed component to access the asset filter in your template.
+
+```js
+computed: {
+    assetFilter() {
+        return Filter.getByName('asset');
+    },
+}
 ```
 
 Just a div containing some text and an example image next to that. For the styles, you can simply use the grid property of CSS again. Since you don't have to care about mobile viewports, this is even easier this time.
