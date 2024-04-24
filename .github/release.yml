@@ -1,0 +1,23 @@
+changelog:
+  exclude:
+    labels:
+      - ignore-for-release
+    authors:
+      - octocat
+  categories:
+    - title: Highlights 🎉
+      labels:
+        - highlight
+    - title: New Content 🆕
+      labels:
+        - new
+    - title: Added Content ➕
+      labels:
+        - added
+    - title: Bug fixes 🐛
+      labels:
+        - bugfix
+        - patch
+    - title: Other Changes
+      labels:
+        - "*"
