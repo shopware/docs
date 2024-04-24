@@ -30,7 +30,7 @@ For this guide, it's necessary to have a running Shopware 6 instance and full ac
 
 In addition, you need a custom entity to add to the search to begin with. Head over to the following guide to learn how to achieve that:
 
-<PageRef page="../../framework/data-handling/add-custom-complex-data" />
+<PageRef page="../framework/data-handling/add-custom-complex-data" />
 
 ## Support custom entity via search API
 
