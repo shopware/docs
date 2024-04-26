@@ -6,7 +6,7 @@ nav:
 ---
 
 ## Introduction
-A new "Customer-specific features" section on the Customer detail page allows the shop merchant to turn B2B features on or off for a specific customer. This section aims to provide each customer with their own set of specific features, granting them access to certain B2B components within the shop.
+A new "Customer-specific features" section on the Customer detail page allows the shop merchant to turn B2B features on or off for a specific customer. This section aims to provide each customer with their own set of specific features, granting them access to certain B2B Components within the shop.
 
 ![Feature Toggles](../../../../assets/b2b-feature-toggles.png)
 
@@ -18,7 +18,7 @@ To achieve this, ACL (Access Control List) and address the following cases where
 Considering these scenarios, we can ensure that the appropriate B2B features are displayed and accessible based on feature toggles and admin-granted permissions.
 
 ### Prerequisite
-To improve organization and maintain a clear structure, it is advisable to relocate all B2B components into the `B2B` folder within the Commercial plugin. By doing so, you can centralize the B2B-related functionality, making it easier to locate, manage, and maintain the codebase. This folder structure promotes better separation of concerns and enhances the overall modularity of the application.
+To improve organization and maintain a clear structure, it is advisable to relocate all B2B Components into the `B2B` folder within the Commercial plugin. By doing so, you can centralize the B2B-related functionality, making it easier to locate, manage, and maintain the codebase. This folder structure promotes better separation of concerns and enhances the overall modularity of the application.
 ```
 ├── src
 │   ├── B2B

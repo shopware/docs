@@ -13,7 +13,7 @@ You can find the original version [here](https://github.com/shopware/shopware/bl
 :::
 
 ## Context
-* The package `@shopware-ag/admin-extension-sdk` will be referred to as sdk
+* The package `@shopware-ag/meteor-extension-sdk` will be referred to as sdk
 * The ts/js implementation of the Administration is referred to as administration
 
 Previously the administration held the implementation of the classes `Entity`, `EntityCollection` and `Criteria`.

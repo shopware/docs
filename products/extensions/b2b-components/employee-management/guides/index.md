@@ -22,10 +22,10 @@ A permission can be dependent on another permission, without which this permissi
 ### Shopware base permissions
 The following permissions are already included and used in the B2B Employee Management component. More "base" permissions will be duly added with future B2B Components.
 
-|Group|Permission|Dependencies|
-|---|---|---|---|
-|employee|employee.read| |
-|employee |employee.edit|employee.read|
-|employee |employee.create|employee.read, employee.edit|
-|employee |employee.delete|employee.read, employee.edit |
-|order|order.read.all|
+| Group | Permission | Dependencies  |
+|---------|----------|-----------|
+| employee | employee.read | |
+| employee | employee.edit | employee.read |
+| employee | employee.create | employee.read, employee.edit |
+| employee | employee.delete | employee.read, employee.edit |
+| order | order.read.all | |

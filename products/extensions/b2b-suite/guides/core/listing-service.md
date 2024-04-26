@@ -17,7 +17,7 @@ To reduce the necessary duplications, there are common implementations for this.
 
 The diagram below shows the usually implemented objects with their outside dependencies.
 
-![image](../../../../../assets/listing-service.svg)
+![image](../../../../../assets/b2bSuite-core-listingService.svg)
 
 ## Search struct
 
@@ -49,7 +49,7 @@ class SearchStruct
 }
 ```
 
-A more special `SearchStruct` is the `CompanyFilterStruct`. See the [Company](../../../../../../docs/products/extensions/b2b-suite/guides/storefront/company) module for more details.
+A more special `SearchStruct` is the `CompanyFilterStruct`. See the [Company](../../../../../products/extensions/b2b-suite/guides/storefront/company) module for more details.
 
 ## Repository
 

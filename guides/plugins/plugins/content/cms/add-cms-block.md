@@ -191,9 +191,19 @@ The preview element doesn't have to deal with mobile viewports or anything alike
             <h2>Lorem ipsum dolor</h2>
             <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</p>
         </div>
-        <img :src="'/administration/static/img/cms/preview_mountain_small.jpg' | asset">
+        <img :src="assetFilter('/administration/static/img/cms/preview_mountain_small.jpg')">
     </div>
 {% endblock %}
+```
+
+Also, you need to create a computed component to access the asset filter in your template.
+
+```js
+computed: {
+    assetFilter() {
+        return Filter.getByName('asset');
+    },
+}
 ```
 
 Just a div containing some text and an example image next to that. For the styles, you can simply use the grid property of CSS again. Since you don't have to care about mobile viewports, this is even easier this time.
@@ -268,7 +278,14 @@ A block's Storefront representation is always expected in the directory [platfor
 
 So go ahead and re-create that structure in your plugin: `<plugin root>/src/Resources/views/storefront/block/`
 
-In there create a new twig template named after your block, so `cms-block-my-image-text-reversed.html.twig` it is.
+Create a new twig template named after your block. The filename convention for this is : 
+
+- Starts with the prefix `cms-block-` 
+- Followed by the technical name of the block `my-image-text-reversed`
+- Ends with the extension `.html.twig` 
+
+Example : `cms-block-my-image-text-reversed.html.twig`.
+
 
 Since the [original 'image\_text' file](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Storefront/Resources/views/storefront/block/cms-block-image-text.html.twig) is already perfectly fine, you can go ahead and extend from it in your storefront template.
 

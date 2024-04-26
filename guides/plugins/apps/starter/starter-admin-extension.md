@@ -9,10 +9,6 @@ nav:
 
 In this guide, you will learn how to set up an extension for the Administration UI.
 
-::: info
-When you are using a self-hosted Shopware version, make sure to set the feature flag `FEATURE_NEXT_17950=1` to enable the Admin Extension API.
-:::
-
 ![An admin notification](../../../../assets/extension-api-notification.png)
 
 ## Prerequisites
@@ -82,7 +78,7 @@ SimpleNotification/
 <!doctype html>
 <html>
     <head>
-        <script src="https://unpkg.com/@shopware-ag/admin-extension-sdk/cdn"></script>
+        <script src="https://unpkg.com/@shopware-ag/meteor-admin-sdk/cdn"></script>
     </head>
     <script>
         sw.notification.dispatch({
@@ -96,7 +92,7 @@ SimpleNotification/
 This file contains the basic setup for our app to display the notification:
 
 * The HTML is rendered in a hidden iFrame when the Administration panel is loaded.
-* The Admin Extension SDK script is loaded through a CDN and exposed as the `sw` object.
+* The Meteor Admin SDK script is loaded through a CDN and exposed as the `sw` object.
 * We use the `notification.dispatch` SDK method to display a simple notification with a title and a message.
 
 ### Start the local development server
@@ -157,6 +153,6 @@ When the app is successfully installed, you will see the notification pop up onc
 
 This example showed end-to-end how to create a local dev environment and connect it with your Shopware Store. There is a lot more to learn and try out, so why not move on with one of those topics:
 
-* Did you know, you can add [new sections](https://shopware.github.io/admin-extension-sdk/docs/guide/api-reference/ui/component-section) to the UI or even [entire modules](https://shopware.github.io/admin-extension-sdk/docs/guide/api-reference/ui/mainModule)?
-* The Admin Extension SDK also offers [TypeScript support](https://shopware.github.io/admin-extension-sdk/docs/guide/getting-started/installation#using-npm-require-bundling) (including autocompletion)
+* Did you know, you can add [new sections](/resources/admin-extension-sdk/api-reference/ui/component-section) to the UI or even [entire modules](/resources/admin-extension-sdk/api-reference/ui/mainModule)?
+* The Meteor Admin SDK also offers [TypeScript support](/resources/admin-extension-sdk/getting-started/installation#using-npm-require-bundling) (including autocompletion)
 * Don't want to extend the admin panel? Have a look at [App Scripts](/docs/guides/plugins/apps/app-scripts/index.md)

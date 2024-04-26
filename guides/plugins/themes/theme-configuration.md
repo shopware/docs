@@ -30,11 +30,16 @@ The theme configuration for a theme is located in the `theme.json` file `<plugin
 {
   "name": "SwagBasicExampleTheme",
   "author": "Shopware AG",
+  "description": {
+    "en-GB": "My custom theme",
+    "de-DE": "Mein custom thema"
+  },
   "views": [
      "@Storefront",
      "@Plugins",
      "@SwagBasicExampleTheme"
   ],
+  "previewMedia": "app/storefront/dist/assets/defaultThemePreview.jpg",
   "style": [
     "app/storefront/src/scss/overrides.scss",
     "@Storefront",
@@ -87,6 +92,17 @@ The `views` section controls the template inheritance. This will be covered in t
      "@Plugins",
      "@SwagBasicExampleTheme"
   ],
+  ...
+}
+```
+
+The `previewMedia` field provides a path `app/storefront/dist/assets/defaultThemePreview.jpg` to an image file that is relative to the root directory of the theme. It serves as a visual preview of the theme. This preview image is typically displayed within the Shopware administration interface or theme marketplace as a thumbnail or preview of the theme's appearance to give users an idea of how the theme will appear on their storefront before they activate it.
+
+```js
+// <plugin root>/src/Resources/theme.json
+{
+  ...
+  "previewMedia": "app/storefront/dist/assets/defaultThemePreview.jpg",
   ...
 }
 ```

@@ -22,7 +22,7 @@ The payment and checkout flow consist of two essential steps:
 
 These steps are outlined in the diagram below:
 
-![Headless payment flow](../../../assets/payment-flow-headless.png)
+![Headless payment flow](../../../assets/checkout-payment-paymentFlow.svg)
 
 The diagram above shows the payment flow for headless environments; however, for the single-stack scenario (i.e., when the default Storefront is used) the differences are minor and described in the section below.
 
@@ -82,7 +82,7 @@ The actual implementation of payment integrations differs between providers. The
 
 ### Session and state
 
-The session should not be used in headless payment integrations. Read more about Session usage [here](../../../resources/guidelines/code/session-and-state)
+The session should not be used in headless payment integrations. Read more about [session guidelines](../../../resources/guidelines/code/session-and-state).
 
 ### Controllers and API
 

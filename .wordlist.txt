@@ -27,7 +27,6 @@ AddressBookWidget
 AddressDetailPage
 AddressListingPage
 Adminer
-AdminExtensionSDK
 AdministrationNewField
 AdministrationNewModule
 AdminQueueWorker
@@ -45,7 +44,12 @@ AllowEmptyString
 AllowHtml
 AlwaysValidRule
 amqp
+Analytics
 AndRule
+anonymization
+anonymize
+anonymized
+antipattern
 api
 ApiAware
 ApiController
@@ -84,6 +88,9 @@ AvailableCombinationLoader
 AvgResult
 awaitAndCheckNotification
 axios
+B2B Component
+B2B Components
+B2B Suite
 backend
 Backend
 backends
@@ -144,6 +151,7 @@ CachedProductListingRouteTest
 cacheinvalidatorfacade
 cacheKey
 Cachix
+cachix
 Caddy
 Caddyfile
 calculatedCheapestPrice
@@ -192,6 +200,7 @@ changeset
 changesets
 chargeback
 Chargeback
+checkboxes
 CheckoutCartPage
 CheckoutConfirmPage
 CheckoutFinishPage
@@ -213,6 +222,7 @@ clickContextMenuItem
 clickMainMenuItem
 ClientInterface
 cloneDeep
+Cloudflare
 Cmd
 cms
 CMS
@@ -284,6 +294,7 @@ createPropertyFixture
 createSalesChannelFixture
 createShippingFixture
 createSnippetFixture
+CreateTagAction
 createValidatorDefinition
 CredentialsBuilder
 CredentialsEntity
@@ -332,6 +343,9 @@ customizer
 cyclus
 dailymotion
 Dailymotion
+Daily.co
+dsr
+herokuapp
 dal
 Dal
 DAL
@@ -340,6 +354,7 @@ dasistweb
 DataAbstractionLayer
 DataAware
 datadog
+Datadog
 Datadog
 DataResolver
 dataSelection
@@ -430,11 +445,13 @@ dragTo
 dropdown
 DSGVO
 DSN
+DSR
 dTH
 DTO
 DTOs
 dunglas
 duplications
+DX
 EcmaScript
 ecommerce
 eg
@@ -533,6 +550,7 @@ Fk
 FkField
 flattenDeep
 FloatField
+FlowAction
 FlowBuilder
 FlowBuilderActionApp
 FlowBuilderTriggerApp
@@ -547,6 +565,7 @@ focussed
 focussing
 fontFamily
 FooterPagelet
+formatters
 FPM
 FQCN
 FrameworkBundle
@@ -608,15 +627,20 @@ GoodsCountRule
 GoodsPriceRule
 GoogleReCaptchaV
 goto
+Grafana
 grantable
 Grantable
+granularly
 graphviz
 gridActions
 gridColumns
 GridHelper
+grpc
+gRPC
 GuestWishlistPage
 GuestWishlistPagelet
 guid
+handleFlow
 hardcoded
 hasError
 hasOwnProperty
@@ -654,6 +678,8 @@ indexActions
 IndexerService
 infoIt
 ini
+init
+Init
 initialisms
 Initialisms
 initializer
@@ -701,6 +727,7 @@ iterable
 iteratively
 jargons
 javascript
+JavaScript
 JestJS
 JetBrains
 Jira
@@ -718,6 +745,7 @@ JVM
 jwt
 JWT
 kebabCase
+KeyDB
 keyframes
 Kibana
 LandingPage
@@ -787,6 +815,8 @@ LONGTEXT
 LongTextField
 lookups
 lowerCamelCase
+lychee
+Lychee
 macOS
 mailAware
 MailAware
@@ -832,6 +862,7 @@ mergeWith
 MessageAware
 MessageQueue
 MessageStorer
+MeteorAdminSDK
 Methodize
 middleware
 Middleware
@@ -864,6 +895,7 @@ mr
 MRs
 MultiWarehouse
 MVC
+MyExampleApp
 myNewMethod
 MyPlugin
 myPluginLogHandler
@@ -883,6 +915,7 @@ nd
 NelmioCorsBundle
 NewFeature
 newQuantity
+NewRelic
 newsletterRecipient
 NewsletterRecipientAware
 NewsletterRecipientStorer
@@ -905,6 +938,7 @@ nullable
 NullObject
 nullsafe
 Nullsafe
+Nuxt
 Nvidia
 oauth
 OAuth
@@ -914,6 +948,7 @@ observability
 oder
 offcanvas
 OffCanvas
+offCanvasCart
 og
 ok
 OldFeature
@@ -938,6 +973,8 @@ OPENSEARCH
 Opensearch's
 OpenSSH
 openssl
+OpenSSL
+OpenTelemetry
 openUserActionMenu
 orderAware
 OrderAware
@@ -966,6 +1003,10 @@ org's
 ORM
 ORMs
 OrRule
+otel
+OTEL
+otlp
+OTLP
 oversales
 paas
 Paas
@@ -997,6 +1038,7 @@ ParentFk
 ParentFkField
 parsers
 PasswordField
+PaymentGatewayApp
 PaymentHandlerIdentifierSubscriber
 PaymentMethod
 PaymentMethodRoute
@@ -1031,6 +1073,7 @@ PII
 pluginlogger
 PluginManager
 png
+pnpm
 POC
 positionID
 PositionID
@@ -1143,6 +1186,7 @@ reCAPTCHA
 RecipientsAware
 RecipientsStorer
 RecurringPaymentHandlerInterface
+Redict
 RedirectResponse
 redis
 refactorings
@@ -1183,9 +1227,11 @@ resolvers
 RestAPI
 RestrictDelete
 resubmittable
+rethrown
 returnUrl
 revalidation
 ReverseInherited
+Reviewdog
 ReviewFormDataAware
 ReviewFormDataStorer
 rfc
@@ -1212,11 +1258,14 @@ salesChannelLoaded
 SalesChannelProductEntity
 saleschannelrepositoryfacade
 SalesChannelRule
+Sales Rooms
 SameSite
 sandboxed
 sarven
 scalability
 scalable
+ScalarValuesAware
+ScalarValuesStorer
 ScheduledTask
 schemas
 ScriptEventRegistry
@@ -1260,6 +1309,7 @@ setToInitialState
 SFTP
 sha
 SHA
+shakable
 shallowMount
 shippable
 ShippingCountryRule
@@ -1295,8 +1345,8 @@ sku
 slowlog
 sm
 smartbar
-SMTP
 SMS
+SMTP
 snakeCase
 SnippetFileInterface
 SomeCoreClassTest
@@ -1313,6 +1363,7 @@ SSHes
 stableVersion
 stackable
 StackHero
+Stackhero
 StackOverflow
 stacktrace
 stateId
@@ -1372,7 +1423,7 @@ SwagAdvDevBundle
 SwagB
 SwagBasicExample
 SwagBasicExampleTheme
-SwagGuidedShopping
+SwagDigitalSalesRooms
 SwagMigrationBundleExample
 SwagMyPlugin
 SwagMyPluginSW
@@ -1429,6 +1480,7 @@ to's
 totalAmount
 tradeoff
 transactional
+TransactionalAction
 transactionCapture
 transactionId
 TranslatedField
@@ -1477,6 +1529,7 @@ UnitTests
 unprefixed
 unregister
 Unregistering
+unsecure
 unserialize
 unstyled
 untrusted
@@ -1557,6 +1610,7 @@ Webpack
 webpackMerge
 webserver
 Webserver
+WebSocket
 wednesday
 WeekdayRule
 WhitelistRule
@@ -1577,6 +1631,7 @@ XDebug
 xhost's
 XHR
 XKey
+xkeys
 xl
 XLIFF
 xml

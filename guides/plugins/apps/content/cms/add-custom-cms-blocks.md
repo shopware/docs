@@ -146,7 +146,7 @@ The preview template for `swag-image-text-reversed` looks like this:
 
 ::: info
 For security reasons you can only use pure HTML in the preview template.
-The template will be sanitized from possibly malicious tags like `<script>` or attributes like `:src="'/administration/static/img/cms/preview_mountain_small.jpg' | asset"`.
+The template will be sanitized from possibly malicious tags like `<script>` or attributes like `:src="assetFilter('/administration/static/img/cms/preview_mountain_small.jpg')"`.
 :::
 
 The styling of the preview looks as follows:

@@ -29,7 +29,7 @@ namespace SwagBasicExample\Storefront\Controller;
 
 use Shopware\Storefront\Controller\StorefrontController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 #[Route(defaults: ['_routeScope' => ['storefront']])]
 class ExampleController extends StorefrontController
@@ -42,7 +42,7 @@ class ExampleController extends StorefrontController
 }
 ```
 
-As you might have seen this controller isn't too different from the controller used in the article mentioned before. The route annotation has an added `defaults={"XmlHttpRequest"=true}` to allow XmlHttpRequest and it returns a `JsonResponse` instead of a normal `Response`. Using a `JsonResponse` instead of a normal `Response` causes the data structures passed to it to be automatically turned into a `JSON` string.
+As you might have seen this controller isn't too different from the controller used in the article mentioned before. The route attribute has an added `defaults: ['XmlHttpRequest' => true]` to allow XmlHttpRequest and it returns a `JsonResponse` instead of a normal `Response`. Using a `JsonResponse` instead of a normal `Response` causes the data structures passed to it to be automatically turned into a `JSON` string.
 
 The following `services.xml` and `routes.xml` are identical as in the before mentioned article, but here they are for reference anyways:
 
@@ -75,7 +75,7 @@ The following `services.xml` and `routes.xml` are identical as in the before men
         xsi:schemaLocation="http://symfony.com/schema/routing
         https://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <import resource="../../Storefront/Controller/**/*Controller.php" type="annotation" />
+    <import resource="../../Storefront/Controller/**/*Controller.php" type="attribute" />
 </routes>
 ```
 

@@ -7,6 +7,12 @@ nav:
 
 # Add custom action button
 
+:::info
+This guide will show you how to add custom action buttons to the Shopware Administration using your manifest file. This works for simple applications; however, if you want to write more advanced applications, the [Meteor Admin SDK](/resources/admin-extension-sdk/) is recommended. It has many more features and is more flexible.
+
+For further details and guidance on custom action buttons, refer to the documentation provided on the Meteor Admin SDK's [action button](/resources/admin-extension-sdk/api-reference/ui/actionButton) section.
+:::
+
 One extension possibility in the Administration is the ability to add custom action buttons to the smartbar. For now, you can add them in the smartbar of detail and list views:
 
 ![Custom action buttons in the Administration](../../../../assets/custom-buttons.png)
@@ -94,7 +100,7 @@ $actionButton = $contextResolver->assembleActionButton($serverRequest, $shop);
 use Shopware\App\SDK\Context\ActionButton\ActionButtonAction;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Psr\Http\Message\ResponseInterface;
 
 #[AsController]

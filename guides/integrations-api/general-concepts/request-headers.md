@@ -77,4 +77,4 @@ POST /api/search/product
 
 ## sw-app-integration-id
 
-The `sw-app-integration-id` enables seamless connection and data exchange between different software components. This header is required for correct permission checks performed by the backend when fetching or manipulating data. It overrides the default behavior and uses the privileges provided by the app. This is used in the Admin Extension SDK for the [Repository Data Handling](https://shopware.github.io/admin-extension-sdk/docs/guide/api-reference/data/repository). But the developer itself doesn’t need to care about it because it is handled automatically by the admin.
+The `sw-app-integration-id` enables seamless connection and data exchange between different software components. This header is required for correct permission checks performed by the backend when fetching or manipulating data. It overrides the default behavior and uses the privileges provided by the app. This is used in the Meteor Admin SDK for the [Repository Data Handling](/resources/admin-extension-sdk/api-reference/data/repository). But the developer itself doesn’t need to care about it because it is handled automatically by the admin.

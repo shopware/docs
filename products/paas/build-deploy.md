@@ -18,10 +18,10 @@ To push your latest changes, run the following commands from your terminal:
 ```bash{3}
 git add .
 git commit -m "Applied new configuration"
-git push -u platform main
+git push -u shopware main
 ```
 
-First, we stage all changes and then add them as a new commit. Then, we push them to our `platform` origin (remember, the one for our PaaS environment) on the `main` branch.
+First, we stage all changes and then add them as a new commit. Then, we push them to our `shopware` origin (remember, the one for our PaaS environment) on the `main` branch.
 
 This will trigger a new build with a subsequent deploy consisting of the following steps:
 
@@ -37,7 +37,7 @@ After both steps have been executed successfully (you will get extensive logging
 
 ## First deployment
 
-The first time the site is deployed, Shopware's command line installer will run and initialize Shopware. It will not run again unless the `installer/installed` file is removed. **Do not remove that file unless you want the installer to run on the next deploy.**
+The first time the site is deployed, Shopware's command line installer will run and initialize Shopware. It will not run again unless the `install.lock` file is removed. **Do not remove that file unless you want the installer to run on the next deploy.**
 
 The installer will create an administrator account with the default credentials.
 
@@ -111,6 +111,7 @@ Sometimes, you might want to trigger a rebuild and deploy of your environment wi
 
 ```bash
 shopware variable:create --environment main --level environment --prefix env --name REBUILD_DATE --value "$(date)" --visible-build true
+```
 
 To force a rebuild at any time, update the variable with a new value:
 

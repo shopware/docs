@@ -36,9 +36,7 @@ All you need to do is creating a `config.xml` file inside of a `Resources/config
 
 ## Fill your plugin configuration with settings
 
-As we now know how to create your configuration, we can start to fill it with life
-
-* or options to configure, in this case.
+As you now know how to create configurations, you can start to fill it with life using various configuration options.
 
 ### Cards in your configuration
 
@@ -62,7 +60,7 @@ Please make sure to specify the `xsi:noNamespaceSchemaLocation` as shown above a
 
 ### Card Titles
 
-A `<card>` `<title>` is translatable, this is managed via the `lang` attribute. By default the `lang` attribute is set to `en-GB`, to change the locale of a `<title>` just add the attribute as follows:
+A `<card>` `<title>` is translatable, this is managed via the `lang` attribute. By default, the `lang` attribute is set to `en-GB`, to change the locale of a `<title>` just add the attribute as follows:
 
 ```html
     ...
@@ -81,23 +79,23 @@ As you can see above, every `<input-field>` has to contain at least a `<name>` e
 
 Your `<input-field>` can be of different types, this is managed via the `type` attribute. Unless defined otherwise, your `<input-field>` will be a text field per default. Below you'll find a list of all available `<input-field type="?">`.
 
-| Type | Configuration settings | Renders |
-| :--- | :--- | :--- |
-| text | [copyable](add-plugin-configuration#copyable), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Text field |
-| textarea | [copyable](add-plugin-configuration#copyable), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Text area |
-| text-editor | [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | HTML editor |
-| url | [copyable](add-plugin-configuration#copyable), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | URL field |
-| password | [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Password field |
-| int |  | Integer field |
-| float |  | Float field |
-| bool |  | Switch |
-| checkbox |  | Checkbox |
-| datetime |  | Date-time picker |
-| date |  | Date picker |
-| time |  | Time picker |
-| colorpicker |  | Color picker |
-| single-select | [options](add-plugin-configuration#options), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Single-Select box |
-| multi-select | [options](add-plugin-configuration#options), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Multi-Select box |
+| Type | Configuration settings | Renders | Default value example
+| :--- | :--- | :--- | :--- |
+| text | [copyable](add-plugin-configuration#copyable), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Text field | Some text
+| textarea | [copyable](add-plugin-configuration#copyable), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Text area | Some more text
+| text-editor | [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | HTML editor | Some text with HTML `<div>`tags`</div>`
+| url | [copyable](add-plugin-configuration#copyable), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | URL field | https://example.com
+| password | [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Password field | ********
+| int |  | Integer field | 42
+| float |  | Float field | 42.42
+| bool |  | Switch | `true` or `false`
+| checkbox |  | Checkbox | `true` or `false`
+| datetime |  | Date-time picker | 2024-04-04T12:00:00.000Z
+| date |  | Date picker | 2024-04-05T00:00:00
+| time |  | Time picker | 11:00:00
+| colorpicker |  | Color picker | #189EFF
+| single-select | [options](add-plugin-configuration#options), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Single-Select box | option_id
+| multi-select | [options](add-plugin-configuration#options), [placeholder](add-plugin-configuration#label-placeholder-and-help-text) | Multi-Select box | [option_id1, option_id2]
 
 ### Input field settings
 
@@ -111,7 +109,7 @@ The settings `<label>`, `<placeholder>` and `<helpText>` are used to label and e
 
 Add the `defaultValue` setting to your `<input-field>` to define a default value for it. This value will be imported into the database on installing and updating the plugin. We use [Symfony\Component\Config\Util\XmlUtils](https://github.com/symfony/config/blob/master/Util/XmlUtils.php#L215) for casting the values into the correct PHP types.
 
-Below you'll find an example how to use this setting.
+Below, you'll find an example of how to use this setting.
 
 ```html
 <input-field type="text">
@@ -125,7 +123,7 @@ Below you'll find an example how to use this setting.
 
 You can add the `<disabled>` setting to any of your `<input-field>` elements to disable it.
 
-Below you'll find an example how to use this setting.
+Below, you'll find an example of how to use this setting.
 
 ```html
 <input-field>
@@ -140,7 +138,7 @@ _Please note, `<disabled>` only takes boolean values._
 
 You can add the `<copyable>` setting to your `<input-field>` which are of type `text` or extensions of it. This will add a button at the right, which on click copies the content of your `<input-field>` into the clipboard.
 
-Below you'll find an example how to use this setting.
+Below, you'll find an example of how to use this setting.
 
 ```html
 <input-field>
@@ -306,6 +304,10 @@ Now all that's left to do is to present you a working example `config.xml` and s
     </card>
 </config>
 ```
+
+## Add values to your configuration
+
+After adding your input fields to the `config.xml`, you can add values to your configuration. To do so, navigate from the sidebar to the `Extensions` > `My extensions` > `Apps` tab and click on your plugin's `...` button. Now you can see the `Configuration` tab and fill in the values for your input fields.
 
 ## Next steps
 

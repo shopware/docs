@@ -10,7 +10,7 @@ This guide is built upon the [Plugin base guide](../../plugin-base-guide), but a
 
 ## Adding an own data indexer
 
-It is possible to add data indexer for your own entities, like the one created in the [Adding custom complex data](./add-custom-complex-data) guide or for existing entities. However, if you want to react on changes of existing entities the preferred way should be subscribing to the events if available. See the [Index data using existing events](Index data using existing events) section below. To create a new indexer, just create a new class in your plugin:
+It is possible to add data indexer for your own entities, like the one created in the [Adding custom complex data](./add-custom-complex-data) guide or for existing entities. However, if you want to react on changes of existing entities the preferred way should be subscribing to the events if available. See the [Index data using existing events](#index-data-using-existing-events) section below. To create a new indexer, just create a new class in your plugin:
 
 ```php
 // <plugin root>/src/Core/Framework/DataAbstractionLayer/Indexing/ExampleIndexer.php

@@ -1,0 +1,25 @@
+name: "Publish release on Slack"
+on:
+  release:
+    types: [published]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Slack Markdown Converter
+        uses: LoveToKnow/slackify-markdown-action@v1.0.2
+        id: slackify
+        with:
+          text: ${{ github.event.release.body }}
+      - name: Replace \n with \\n
+        uses: actions/checkout@v4
+      - run: |
+          echo "${{ github.event.release.tag_name }}"
+          echo "${{ steps.slackify.outputs.text }}"
+          echo "text=${{ steps.slackify.outputs.text }}" | sed 's/\\n/%0A/g' > $GITHUB_ENV
+      - name: Notify Slack about release
+        uses: Isengo1989/notify-release-to-slack@master
+        with:
+          slackWebhookUrl: ${{ secrets.SLACK_NOTIFICATIONS_WEBHOOK }}
+          releaseMessage: ${{ steps.slackify.outputs.text }}

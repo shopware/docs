@@ -39,17 +39,38 @@ The center of the rule system is the `Rule`. It is realized as a variant of the 
 
 As well as a Specification class, a Rule class represents a condition to fulfill. It implements the `match(RuleScope $scope)` function to validate user defined values against a runtime state. See the following object diagram for a better understanding:
 
-![](../../assets/rule-objects.png)
+```mermaid
+classDiagram
+    root-OrRule .. lineItemCount - LineItemsInCartCountRule
+    root-OrRule .. cartPrice - GoodsPriceRule
+    class root-OrRule{
+        rules=[lineItemCount, cartPrice]
+    }
+    class lineItemCount - LineItemsInCartCountRule{
+      operator=">="
+      count="40"
+    }
+    class cartPrice - GoodsPriceRule{
+      operator=">="
+      count="500"
+    }
+```
 
 This will result in the following call order:
 
-![](../../assets/rule-sequence.png)
+```mermaid
+sequenceDiagram
+    root-->>lineItemCount: match()?
+    lineItemCount-->>root: false
+    root-->>cartPrice: match()?
+    cartPrice-->>root: false
+```
 
 As you can see, a single rule can either contain user defined values or other user defined rules. These are Container rules. The rule system here bears some resemblance to the [SearchCriteria](../../guides/plugins/plugins/framework/data-handling/reading-data#Filtering), although independent. A Search Criteria is the representation of a query that gets translated and executed through the storage engine. The rule matches in-memory in PHP and does not access the underlying storage.
 
 The last building block is the **Rule Scope**. The Scope contains the current runtime state of the application and is necessary to match the data. The whole picture is visualized in the next diagram:
 
-![](../../assets/rule-classes.png)
+![](../../assets/framework-rules-rulesScope.svg)
 
 ## Connection to the System
 

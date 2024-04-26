@@ -9,23 +9,23 @@ nav:
 
 ## Overview
 
-Sometimes you want to extend existing entities with some custom information, this guide will have you covered. Extensions are technical and not configurable by the admin user just like that. Also, they can deal with more complex types than scalar ones.
+Sometimes you want to extend existing entities with some custom information. Extensions are technical and not configurable by the admin user. Also, they can deal with more complex types than scalar ones.
 
 ## Prerequisites
 
-In order to create your own entity extension for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide).
+To create your own entity extension for your plugin, you first need a plugin as base. Please refer to the [Plugin Base Guide](../../plugin-base-guide).
 
-Also, basic knowledge of [creating a custom entity](add-custom-complex-data) and [adding associations](add-data-associations) to it are very helpful here.
+Basic knowledge of [creating a custom entity](add-custom-complex-data) and [adding associations](add-data-associations) will also be helpful for this guide.
 
 ## Creating the extension
 
 In this example, we're going to add a new string field to the `product` entity.
 
-You can choose whether or not you want to save the new string field to the database or not. Therefore, you're going to see two sections, one for each way.
+You can choose whether you want to save the new string field to the database or not. Therefore, you're going to see two sections, one for each way.
 
-For both cases, you need to create a new "extension" class in the directory `<plugin root>/src/Extension/`. In this case, we want to extend the `product` entity, so we create a subdirectory `Content/Product/` since the entity is located there in the Core. Our class then has to extend from the abstract `Shopware\Core\Framework\DataAbstractionLayer\EntityExtension` class, which forces you to implement the `getDefinitionClass` method. It has to point to the entity definition you want to extend, so `ProductDefinition` in this case.
+For both cases, you need to create a new "extension" class in the directory `<plugin root>/src/Extension/`. In this case, we want to extend the `product` entity, so we create a subdirectory `Content/Product/` since the entity location in the Core is the same. Our class needs to extend from the abstract `Shopware\Core\Framework\DataAbstractionLayer\EntityExtension` class, which forces you to implement the `getDefinitionClass` method. It has to point to the entity definition you want to extend, so `ProductDefinition` in this case.
 
-Now you add new fields by overriding the method `extendFields` and add your new fields in there.
+You add new fields by overriding the method `extendFields` and add your new fields in there.
 
 Here's an example class called `CustomExtension`:
 
@@ -75,7 +75,7 @@ Here's our `services.xml`:
 </container>
 ```
 
-### Adding a field with database
+### Adding a field with a database
 
 In this guide, you're extending the product entity in order to add a new string field to it. Since you must not extend the `product` table with a new column, you'll have to add a new table which contains the new data for the product. This new table will then be associated using a [OneToOne association](add-data-associations#One%20to%20One%20associations).
 
@@ -170,11 +170,11 @@ We've created a new entity definition called `ExampleExtensionDefinition`, as me
 
 So let's have a look at the `defineFields` method. There's the default `IdField`, that almost every entity owns. The next field is the actual `product_id` column, which will be necessary in order to properly this entity with the product and vice versa. It has to be defined as `FkField` since that's what it is: a foreign key.
 
-Now we're getting to the actual new data, in this example this is just a new string field. It is called `customString` and can now be used in order to store new string data for the product in the database.
+Now we're getting to the actual new data, in this example, this is just a new string field. It is called `customString` and can now be used in order to store new string data for the product in the database.
 
-The last field is the inverse side of the `OneToOneAssociationField`. The first parameter defines the name of the property again, which will contain the `ProductEntity`. Now have a look at the second and third parameters - those are the same as in the `ProductDefinition`, but the other way around. This is important, do not forget to do that!
+The last field is the inverse side of the `OneToOneAssociationField`. The first parameter defines the name of the property again, which will contain the `ProductEntity`. Now take a look at the second and third parameters. Those are the same as in the `ProductDefinition`, but the other way around. This order is important.
 
-The fourth parameter is the class of the associated definition, the `ProductDefinition` in this case. The last parameter, once again, defines the auto-loading. In this example, the product definition will **not** be loaded, when you're just trying to load this extension entity. Yet, the extension entity will always automatically be loaded when the product entity is loaded, just like we defined earlier.
+The fourth parameter is the class of the associated definition, the `ProductDefinition` in this case. The last parameter, once again, defines the autoloading. In this example, the product definition will **not** be loaded, when you're just trying to load this extension entity. Yet, the extension entity will always automatically be loaded when the product entity is loaded, just like we defined earlier.
 
 Of course, this new definition also needs to be registered to the DI container:
 
@@ -261,45 +261,11 @@ $this->productRepository->upsert([[
 
 In this case, you'd write "foo bar" to the product with your desired ID. Note the keys `exampleExtension`, as defined in the product extension class `CustomExtension`, and the key `customString`, which is the property name that you defined in the `ExampleExtensionDefinition` class.
 
-### Adding a field without database
-
-Adding a field without saving its value to the database is a lot less complicated. First of all, you'll have to let Shopware know that you're going to take care of this field yourself and it doesn't have to search for it in the database. This is done by using the `Runtime` flag on the new field.
-
-```php
-// <plugin root>/src/Extension/Content/Product/CustomExtension.php
-<?php declare(strict_types=1);
-
-namespace Swag\BasicExample\Extension\Content\Product;
-
-use Shopware\Core\Content\Product\ProductDefinition;
-use Shopware\Core\Framework\DataAbstractionLayer\EntityExtension;
-use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\Runtime;
-use Shopware\Core\Framework\DataAbstractionLayer\Field\StringField;
-use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
-
-class CustomExtension extends EntityExtension
-{
-    public function extendFields(FieldCollection $collection): void
-    {
-        $collection->add(
-            (new StringField('custom_string', 'customString'))->addFlags(new Runtime())
-        );
-    }
-
-    public function getDefinitionClass(): string
-    {
-        return ProductDefinition::class;
-    }
-}
-```
-
-In this case, you directly add the `StringField` to the extension class itself. Afterwards, we're adding the `Runtime` flag to this field, so Shopware knows that it doesn't have to take care of this new field automatically. We're doing this ourselves now.
-
-For this, we need a new subscriber. If you are not familiar with a subscriber, have a look at our [Listening to events](../../plugin-fundamentals/listening-to-events) guide.
+### Adding a field without a database
 
 We can use the DAL event which gets fired every time the product entity is loaded. You can find those kinds of events in the respective entities' event class. In this case, it is `Shopware\Core\Content\Product\ProductEvents`.
 
-Below you can find an example implementation where we add our extension when the product gets loaded.
+Below, you can find an example implementation where we add our extension when the product gets loaded.
 
 ```php
 // <plugin root>/src/Subscriber/ProductSubscriber.php
@@ -347,10 +313,6 @@ After we've created our subscriber, we have to adjust our `services.xml` to regi
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="Swag\BasicExample\Extension\Content\Product\CustomExtension">
-            <tag name="shopware.entity.extension"/>
-        </service>
-
         <service id="Swag\BasicExample\Subscriber\ProductSubscriber">
             <tag name="kernel.event_subscriber"/>
         </service>
@@ -360,4 +322,4 @@ After we've created our subscriber, we have to adjust our `services.xml` to regi
 
 ## Entity extension vs. Custom fields
 
-[Custom fields](../custom-field/add-custom-field) are by default configurable by the admin user in the Administration and they mostly support scalar types, e.g. a text-field, a number field, or the likes. If you'd like to create associations between entities, you'll need to use an entity extension, just like we did here. Of course, you can also add scalar values without an association to an entity via an extension.
+[Custom fields](../custom-field/add-custom-field) are by default configurable by the admin user in the Administration, and they mostly support scalar types, e.g. a text-field, a number field, or the likes. If you'd like to create associations between entities, you'll need to use an entity extension, just like we did here. Of course, you can also add scalar values without an association to an entity via an extension.

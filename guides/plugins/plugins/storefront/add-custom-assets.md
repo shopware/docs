@@ -72,7 +72,7 @@ There's one more interesting possibility though. If you want, you can use your c
 ```css
 // <plugin root>/src/Resources/app/storefront/src/scss/base.scss
 body {
-    background-image: url("/bundles/swagbasicexample/image.png");
+    background-image: url("#{$sw-asset-public-url}/bundles/swagbasicexample/image.png");
 }
 ```
 

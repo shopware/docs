@@ -14,5 +14,5 @@ nav:
 | `composer run e2e:setup`              | Prepares Shopware installation and environment for Cypress usage |
 | `composer run e2e:open`               | Opens Cypress' e2e tests runner                                  |
 | `composer run e2e:prepare`            | Install dependencies and prepare database for Cypress usage      |
-| `composer run e2e:admin:run`          | Runs Cypress' admin e2e tests in CLI                             |
-| `composer run e2e:storefront:run`     | Runs Cypress' storefront e2e tests in CLI                        |
+| `composer e2e:cypress -- run --spec="cypress/e2e/administration/**/*.cy.js"`          | Runs Cypress' admin e2e tests in CLI                             |
+| `composer e2e:cypress -- run --spec="cypress/e2e/storefront/**/*.cy.js"`     | Runs Cypress' storefront e2e tests in CLI                        |

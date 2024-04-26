@@ -72,6 +72,8 @@ The object cache pool is used for caching the data abstraction layer in Shopware
 
 "[Redis](https://redis.io/) is an open source \(BSD licensed\), in-memory data structure store, used as a database, cache, and message broker." In this example, we change the default HTTP cache adapter to Redis. It is possible to change every adapter as in this example. A running Redis instance is required for this to work. The configuration can be overridden by creating or editing the file `framework.yaml`
 
+For `cache.adapter.redis_tag_aware` minimum Shopware 6.5.8.3 is required. Otherwise use `cache.adapter.redis`.
+
 ```yaml
 # config/packages/framework.yaml
 framework:
@@ -79,7 +81,7 @@ framework:
         default_redis_provider: 'redis://host:port'
         pools:
             cache.http:
-                adapter: cache.adapter.redis
+                adapter: cache.adapter.redis_tag_aware
                 tags: cache.tags
 ```
 
@@ -88,7 +90,7 @@ Replace the `host` and `port` with your Redis instance. It is also possible to c
 ```yaml
 framework:
     cache:
-        app: cache.adapter.redis
+        app: cache.adapter.redis_tag_aware
         default_redis_provider: 'redis://host:port'
 ```
 

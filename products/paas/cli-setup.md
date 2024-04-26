@@ -17,14 +17,6 @@ To install PaaS CLI, run the following command:
 curl -sfS https://cli.shopware.com/installer | php
 ```
 
-## Add SSH key
-
-For secure communication between your local machine and your PaaS environment, create an SSH key, add it to your Account using the below command and go through the steps provided.
-
-```sh
-shopware ssh-key:add
-```
-
 When you run the CLI for the first time, it will ask you to log in via your browser.
 
 You can also generate an SSH key manually and add it in the **My profile > SSH Keys** section of your [PaaS Console](https://console.shopware.com/).

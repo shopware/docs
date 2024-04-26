@@ -15,7 +15,15 @@ server {
 
     root __DOCUMENT_ROOT__/public;
 
-    # Shopware install / update
+    # Shopware install / update    
+    location /shopware-installer.phar.php {
+    try_files $uri /shopware-installer.phar.php$is_args$args;
+    }
+    
+    location ~ ^/shopware-installer\.phar\.php/.+\.(?:css|js|png|svg|woff)$ {
+     try_files $uri /shopware-installer.phar.php$is_args$args;
+    }
+    
     location /recovery/install {
         index index.php;
         try_files $uri /recovery/install/index.php$is_args$args;

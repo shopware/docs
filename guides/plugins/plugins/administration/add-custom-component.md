@@ -51,15 +51,51 @@ Since the latter example is being used, this is the path being created in the pl
 
 In the directory mentioned above, create a new file `index.js`. We will get you covered with more information about it later. Now import your custom component using your plugin's `main.js` file:
 
+
+<Tabs>
+<Tab title="Asynchronous loading">
+The asynchronous loading behavior is the preferred way. This way, the component will only be loaded when it's actually being used. This will speed up the loading time of the Administration.
+
+You can use the `Shopware.Component.register` method to register your component. This method expects a name and a function that will import your component. By using a dynamic import here, your component will be loaded asynchronously when it's being used.
+
+```javascript
+// <plugin root>/src/Resources/app/administration/src
+Shopware.Component.register('hello-world', () => import('./component/custom-component/hello-world'));
+```
+</Tab>
+
+<Tab title="Synchronous loading">
+This way you can import the file synchronously. In most cases this just slows down the loading time of the Administration and may not be needed. Hence, the asynchronous loading is preferred instead.
+
+To import your component synchronously, you need to import it directly in the `main.js` file. The component registration
+will be done in the `index.js` file of your component.
+
 ```javascript
 // <plugin root>/src/Resources/app/administration/src
 import './component/custom-component/hello-world';
 ```
+</Tab>
+</Tabs>
 
 ### Index.js as main entry point for this component
 
 Head back to the `index.js` file, this one will be the most important for your component.
 
+The structure of this file depends on the type of your component. If it loads synchronously, you need to register your component directly in this file. If it loads asynchronously, you can just export the component and register it in the `main.js` file.
+
+<Tabs>
+<Tab title="Asynchronous loading">
+If you want to load your component asynchronously, you can just export it in the `index.js` file and register it in the `main.js` file.
+To get full type support for your component, you should use the `wrapComponentConfig` function from the ComponentFactory.
+
+```javascript
+export default Shopware.Component.wrapComponentConfig({
+    // Configuration here
+});
+```
+</Tab>
+
+<Tab title="Synchronous loading">
 First you have to register your component using the `ComponentFactory`, which is available throughout our third party wrapper. This `Component` object provides a method `register`, which expects a name and a configuration for your component.
 
 ```javascript
@@ -68,12 +104,14 @@ Shopware.Component.register('hello-world', {
     // Configuration here
 });
 ```
+</Tab>
+</Tabs>
 
 A component's template is being defined by using the `template` property. For this short example, the template will be defined inline. An example for a bigger template will also be provided later on this page.
 
 ```javascript
 // <plugin-root>/src/Resources/app/administration/src/component/custom-component/hello-world
-Shopware.Component.register('hello-world', {
+export default Shopware.Component.wrapComponentConfig('hello-world', {
     template: '<h2>Hello world!</h2>'
 });
 ```
@@ -90,7 +128,7 @@ Now simply import this file in your component's JS file and use the variable for
 // <plugin-root>/src/Resources/app/administration/src/component/custom-component/hello-world.html.twig
 import template from 'hello-world.html.twig';
 
-Shopware.Component.register('hello-world', {
+export default Shopware.Component.wrapComponentConfig('hello-world', {
     template: template
 });
 ```
@@ -101,7 +139,7 @@ In the core code, you will find another syntax for the same result though:
 // <plugin-root>/src/Resources/app/administration/src/component/custom-component/hello-world.html.twig
 import template from 'hello-world.html.twig';
 
-Shopware.Component.register('hello-world', {
+export default Shopware.Component.wrapComponentConfig('hello-world', {
     template
 });
 ```

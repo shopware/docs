@@ -24,26 +24,10 @@ The main difference to other tools like Docker or a VM is that it neither uses c
 As devenv is built on top of Nix, first install Nix with the following command based on your OS:
 
 <Tabs>
-<Tab title="macOS">
+<Tab title="macOS / Linux / WSL2 (Windows)">
 
 ```shell
-sh <(curl -L https://nixos.org/nix/install)
-```
-
-</Tab>
-
-<Tab title="Linux">
-
-```shell
-sh <(curl -L https://nixos.org/nix/install) --daemon
-```
-
-</Tab>
-
-<Tab title="Windows (WSL2)">
-
-```shell
-sh <(curl -L https://nixos.org/nix/install) --no-daemon
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 ```
 
 </Tab>
@@ -61,19 +45,20 @@ docker run -it nixos/nix
 
 You probably won't be able to use the commands below. Use the following steps to continue using [oh my zsh](https://ohmyz.sh/):
 
-* Open `/etc/zshrc` and look for the following lines (probably at the end of the file):
+* Open `/etc/zshrc` and look for lines enclosed in `# Nix` and `# End Nix` like so (probably at the end of the file):
 
  ```bash
  # Nix
- if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
- fi
+ 
+ # ... content ...
+ 
  # End Nix
  ```
 
-* Copy these lines and delete them from this file.
-* Open `~/.zshrc` and add the above-copied lines to the end of this file.
-* Initiate the terminal with `source ~/.zshrc` or reboot your terminal for nix to work.
+* Copy the lines block enclosed in `# Nix` and `# End Nix`
+* Open `~/.zshrc` and add the copied lines to the end of this file
+* Initiate the terminal with `source ~/.zshrc` or reboot your terminal for nix to work
+* Delete the lines between `# Nix` and `# End Nix` from `/etc/zshrc`
 
 [Credits: "nixos installation issue,'command not found: nix'", StackOverflow](https://stackoverflow.com/a/70822086/982278)
 
@@ -85,28 +70,18 @@ Next, install [Cachix](https://www.cachix.org/) to speed up the installation:
 nix-env -iA cachix -f https://cachix.org/api/v1/install
 ```
 
+::: info
+If this is the first time using cachix, you need to add your account to the trusted users:
+
+```shell
+echo "trusted-users = root ${USER}" | sudo tee -a /etc/nix/nix.conf && sudo pkill nix-daemon
+```
+:::
+
 Before installing devenv, instruct Cachix to use the devenv cache:
 
 ```shell
 cachix use devenv
-```
-
-::: info
-The first time you run `cachix use`, you will be prompted a warning that you are not a trusted user.
-:::
-
-> This user doesn't have permission to configure binary caches.
->
-> You can either:
->
-> a) ...
->
-> b) ...
-
-When you encounter the above message, run:
-
-```shell
-echo "trusted-users = root ${USER}" | sudo tee -a /etc/nix/nix.conf && sudo pkill nix-daemon
 ```
 
 ### Devenv
@@ -114,7 +89,7 @@ echo "trusted-users = root ${USER}" | sudo tee -a /etc/nix/nix.conf && sudo pkil
 Finally, install devenv:
 
 ```shell
-nix-env -if https://github.com/cachix/devenv/tarball/latest
+nix-env -iA devenv -f https://github.com/NixOS/nixpkgs/tarball/nixpkgs-unstable
 ```
 
 Before booting up your development environment, configure Cachix to use Shopware's cache:
@@ -133,17 +108,41 @@ Depending on whether you want to set up a fresh Shopware project or contribute t
 
 <Tabs>
 <Tab title="Symfony Flex">
-If you are already using our Symfony Flex template, you require a Composer package to get a basic devenv configuration:
+
+First, change to a temporary nix shell providing all necessary packages for composer:
 
 ```shell
-cd <YOUR_SHOPWARE_FLEX_PROJECT_ROOT>
+nix-shell -p php82 php82Packages.composer
 ```
+
+In that shell, create a new project:
+
+```shell
+composer create-project shopware/production <project-name>
+```
+
+Change into the project folder you've just created:
+
+```shell
+cd <project-name>
+```
+
+Require devenv:
 
 ```shell
 composer require devenv
 ```
 
 This will create a basic `devenv.nix` file to enable devenv support for Shopware.
+
+Then, leave the temporary shell:
+
+```shell
+exit
+```
+
+This will remove the php installation that was temporarily created for you inside the nix shell.
+
 </Tab>
 
 <Tab title="shopware/shopware (Contribute)">
@@ -186,14 +185,14 @@ ss -tulpn | grep ':80\|:3306\|:6379'
 </Tab>
 </Tabs>
 
-Ensure to change your `.env` file to have the database connect using localhost's IP address instead of the default MySQL socket:
+Change your `.env` file to the correct database settings:
 
-```txt
-// <PROJECT_ROOT>/.env
+```shell
+# <PROJECT_ROOT>/.env
 DATABASE_URL="mysql://shopware:shopware@127.0.0.1:3306/shopware?sslmode=disable&charset=utf8mb4"
 ```
 
-With a new terminal, go to the project directory and run the following command to launch a devenv shell.
+Start a *new terminal*, navigate to the project directory and run the following command to launch a devenv shell.
 This shell includes all needed programs (php, composer, npm, node, etc.) to initialize Shopware:
 
 ```shell
@@ -205,6 +204,22 @@ In the devenv shell, run the following command to initialize Shopware:
 ```shell
 bin/console system:install --basic-setup --create-database --force
 ```
+
+Open http://localhost:8000/admin in your browser after the installation has finished.
+You should see the Shopware admin interface.
+
+The default credentials are:
+
+- User: admin 
+- Password: shopware
+
+::: info
+
+When using Windows and WSL2, you need to change the default sales channel domain to `http://localhost:8000`.
+
+Important: Do use *http*, not https.
+
+:::
 
 ### Direnv
 

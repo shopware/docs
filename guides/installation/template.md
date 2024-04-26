@@ -66,7 +66,7 @@ Add a new software repository to your system to have the latest PHP version.
 ```bash
 sudo add-apt-repository ppa:ondrej/php
 
-sudo apt-get install -y php8.1-fpm php8.1-mysql php8.1-curl php8.1-gd php8.1-xml php8.1-zip php8.1-opcache php8.1-mbstring php8.1-intl php8.1-cli
+sudo apt-get install -y php8.2-fpm php8.2-mysql php8.2-curl php8.2-gd php8.2-xml php8.2-zip php8.2-opcache php8.2-mbstring php8.2-intl php8.2-cli
 ```
 
 </Tab>
@@ -78,7 +78,7 @@ Add a new software repository to your system to have the latest PHP version:
 ```bash
 curl https://packages.sury.org/php/README.txt | bash
 
-sudo apt-get install -y php8.1-fpm php8.1-mysql php8.1-curl php8.1-gd php8.1-xml php8.1-zip php8.1-opcache php8.1-mbstring php8.1-intl php8.1-cli
+sudo apt-get install -y php8.2-fpm php8.2-mysql php8.2-curl php8.2-gd php8.2-xml php8.2-zip php8.2-opcache php8.2-mbstring php8.2-intl php8.2-cli
 ```
 
 </Tab>
@@ -113,7 +113,10 @@ The template is small and does not contain any dev-tooling or integrations like 
 
 ```bash
 # Install profiler and other dev tools, eg Faker for demo data generation
-composer require --dev dev-tools
+composer require --dev shopware/dev-tools
+
+# Or Install symfony dev tools
+composer require --dev symfony/profiler-pack
 
 # Install PaaS integration
 composer require paas
@@ -248,7 +251,7 @@ composer require fastly
 
 There are two ways to update Shopware:
 
-* Initially run `bin/console system:update:prepare` to enable the maintenance mode and then update all Composer packages using `composer update`. However, to disable the maintenance mode, run `bin/console system:update:finish`.
+* Initially run `bin/console system:update:prepare` to enable the maintenance mode and then update all Composer packages using `composer update --no-scripts`. The `--no-scripts` flag instructs composer to not run any scripts that may reference Shopware CLI commands. They will only be functional after updating the recipes. To disable the maintenance mode, run `bin/console system:update:finish`.
 
 * To force-update all config files, run `composer recipes:update`.
 
