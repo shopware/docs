@@ -29,12 +29,7 @@ This setup is compatible from Shopware version 6.4.
 ### Configure Shopware
 
 :::warning
-This method is deprecated in v6.6.x and will be removed in v6.7.0. Please use the [Varnish with XKey](#using-varnish-xkey-module-without-redis) integration instead.
-::: 
-
-:::warning
-Varnish with redis uses LUA scripts to determine the URLs for the BAN request. This can cause problems depending on the setup or not work. Redis clusters are not supported.
-Please use the [Varnish with XKey](#using-varnish-xkey-module-without-redis) integration instead.
+From version v6.6.x onwards, this method is deprecated and will be removed in v6.7.0. Utilising Varnish with Redis involves LUA scripts to determine URLs for the BAN request. This can cause problems depending on the setup or network. Furthermore, Redis clusters are not supported. Therefore, it is advisable to opt for the [Varnish with XKey](#using-varnish-xkey-module-without-redis) integration instead.
 ::: 
 
 First, we need to activate the reverse proxy support in Shopware. To enable it, we need to create a new file in `config/packages/storefront.yaml`:
