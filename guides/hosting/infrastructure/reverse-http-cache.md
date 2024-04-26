@@ -32,6 +32,10 @@ Feel free to check out the [Shopware Varnish Docker image](https://github.com/sh
 
 ### Configure Shopware
 
+:::warning
+From version v6.6.x onwards, this method is deprecated and will be removed in v6.7.0. Utilising Varnish with Redis involves LUA scripts to determine URLs for the BAN request. This can cause problems depending on the setup or network. Furthermore, Redis clusters are not supported. Therefore, it is advisable to opt for the [Varnish with XKey](#using-varnish-xkey-module-without-redis) integration instead.
+::: 
+
 First, we need to activate the reverse proxy support in Shopware. To enable it, we need to create a new file in `config/packages/storefront.yaml`:
 
 ```yaml

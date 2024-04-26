@@ -815,6 +815,7 @@ LONGTEXT
 LongTextField
 lookups
 lowerCamelCase
+LUA
 lychee
 Lychee
 macOS
