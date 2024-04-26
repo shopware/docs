@@ -137,17 +137,6 @@ framework:
             'Your\Custom\LowPriorityMessage': async
 ```
 
-## Encrypted messages
-
-As the sent messages may travel through some 3rd party services you may want to encrypt messages containing sensible information. To send encrypted messages simply use the `encrypted.messenger.bus.shopware` rather than the `messenger.bus.shopware` message bus. The encrypted bus will handle encryption and decryption for you.
-
-```html
-// <plugin root>/src/Resources/config/services.xml
-<service id="Swag\BasicExample\Service\ExampleSender">
-    <argument type="service" id="encrypted.messenger.bus.shopware"/>
-</service>
-```
-
 ## Next steps
 
 Now that you know how to create a message and add it to the queue, let's create a handler to process our message. To do this, head over to [Add message handler](add-message-handler) guide.
