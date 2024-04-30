@@ -5,13 +5,6 @@ area: quality
 tags: [testing, acceptance testing, E2E, playwright]
 ---
 
-# New acceptance test suite
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2023-12-12-acceptance-test-suite.md)
-:::
-
 ## Context
 For our ambitions to consequently reduce manual testing in favour for test automation the current E2E test suite, based on Cypress, is not sufficient anymore. It has several flaws that have become a big road-blocker. The test suite is tightly coupled to the state of the test environment, which leads to tests that are not very deterministic and tend to be slow and flaky. Tests are often created in different ways and don't follow a specific strategy. In addition, the test suite is currently not able to test against our cloud environment.
 

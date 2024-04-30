@@ -5,13 +5,6 @@ area: product-operations
 tags: [workflow]
 ---
 
-# Mapping of product area
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2022-09-28-mapping-of-product-area.md)
-:::
-
 ## Context
 
 We have a lot of teams working on different parts of the Shopware 6 platform.

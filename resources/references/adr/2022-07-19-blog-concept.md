@@ -5,13 +5,6 @@ area: content
 tags: [content, cms, blog, custom-entities]
 --- 
 
-# Concept for blogs using Shopping Experiences
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2022-07-19-blog-concept.md)
-:::
-
 ## Context
 A highly requested feature & expected for the CMS of Shopware 6 is the blog. In addition, this is an ideal use case and example for the use of [Custom Entities](../adr/2021-09-14-technical-concept-custom-entities).
 

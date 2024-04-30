@@ -5,13 +5,6 @@ area: core
 tags: [catalog, product, category, import, api]
 ---
 
-# Catalog Import API
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2023-09-22-catalog-import-api.md)
-:::
-
 ## Context
 
 Our current API for importing entities is very flexible,

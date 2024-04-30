@@ -5,13 +5,6 @@ area: core
 tags: [adr, salutation]
 ---
 
-# Default handling for non specified salutations
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2023-06-28-default-handle-for-non-specified-salutations.md)
-:::
-
 ## Context
 The current implementation of the salutation in Shopware 6 needs to handle cases where the salutation is not specified by the customer or administrator. To address this requirement and promote inclusivity, we have updated the default salutation to "not_specified" for unspecified salutations in our Shopware 6 platform.
 
