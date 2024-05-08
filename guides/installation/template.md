@@ -267,7 +267,7 @@ composer require --dev profiler
 
 ### framework:demo-data is missing faker classes
 
-Prior to Shopware 6.4.17.0, you have to install some packages to get `framework:demo-data` command working:
+Prior to Shopware 6.4.17.0, you have to install some packages to get `bin/console framework:demodata APP_ENV=prod` command working:
 
 ```bash
 composer require --dev mbezhanov/faker-provider-collection maltyxx/images-generator
