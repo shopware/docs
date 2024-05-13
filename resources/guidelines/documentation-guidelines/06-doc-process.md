@@ -11,7 +11,7 @@ You have gone a long way in understanding audience types, language rules, gramma
 
 Now, are you thinking of how to kick-start?
 
-Refer to our [developer documentation](https://handbook.shopware.com/Product/Guides/Development/DeveloperDocumentation) for the complete process, from cloning the [shopware/docs](https://github.com/shopware/docs) repository to publishing the content.
+Refer to our [GitHub repository](https://github.com/shopware/docs) for the complete process, from cloning the repository to publishing the content.
 
 Well-defined writing leads to a more consistent, efficient learning experience for readers. We want to establish a common process for writing, reviewing, iterating, and maintaining documentation.
 
