@@ -65,7 +65,7 @@ You can use these commands to check your actual environment:
 
   * Problematic versions: [10.11.5, 11.0.3](https://jira.mariadb.org/browse/MDEV-31931)
 
-For optimal MySQL performance, it is advisable to have a minimum of 32 MB.
+For optimal MySQL performance, it is advisable to set `max_allowed_packet` to a minimum of 32 MB.
 
 ### JavaScript
 
