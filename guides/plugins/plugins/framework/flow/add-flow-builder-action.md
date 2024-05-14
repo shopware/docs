@@ -695,7 +695,6 @@ First, override the `openDynamicModal` method in the plugin to check if the valu
 
 ```JS
 // <plugin root>/src/Resources/app/administration/src/extension/sw-flow-sequence-action/index.js
-import template from './sw-flow-sequence-action.html.twig';
 const { Component } = Shopware;
 
 Component.register('sw-flow-sequence-action', {
