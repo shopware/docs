@@ -108,7 +108,7 @@ If the block `component_list_items` is being extended, the new accessibility cha
 
 ## Overview of known accessibility issues
 
-::: warning
+::: info
 Please note, that only issues that are completely resolved and already released in a shopware version will be in the list of released accessibility improvements. 
 The list below will include tickets that are already in progress or finished but not released yet. The list also includes checking and evaluation work. You can see the current status via the links to the issue tracker.
 :::
