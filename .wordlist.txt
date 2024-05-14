@@ -113,6 +113,7 @@ BillingCountryRule
 BillingStreetRule
 BillingZipCodeRule
 Bitbucket
+BITV
 blackbox
 blackfire
 Blackfire
@@ -1336,6 +1337,7 @@ simples
 simplexml
 Sinon
 SitemapPage
+suboptimal
 SKEs
 skipOnFeature
 skipTestIfInActive
@@ -1597,6 +1599,7 @@ Vuex
 VueX
 WarehouseGroup
 WarehouseGroups
+WCAG
 webhook
 Webhook
 webhooks
