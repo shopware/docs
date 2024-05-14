@@ -64,7 +64,7 @@ The end customer should not receive any misleading error messages. It does not m
 
     * **Statistics and Tracking**: Statistics and everything that has to do with data collection and tracking.
 
-* **[Store description German/English](../store/quality-guidelines-apps/#app-descriptions-in-your-shopware-account)** - The app store description includes several points if the app can be used only in a specific country, so leave this clearly in the description. The German description is only mandatory if the app is to be offered in the German market. Furthermore, there must always be at least two images of the app in English, e.g., of the Storefront and the Admin.
+* **[Store description German/English](../store/quality-guidelines-apps/#app-descriptions-in-your-shopware-account)** - The app store description includes several points if the app can be used only in a specific country, so leave this clearly in the description. The German description is only mandatory if the app is to be offered in the German market. Furthermore, there must always be at least two images of the app in English, e.g., of the Storefront and the Admin. [Here](https://docs.shopware.com/en/account-en/adding-pictures-and-icons/how-to) you can find a guide detailing how to add images and icons to the extensions.
 
 * **[Translations managed admin](../store/quality-guidelines-apps/#fallback-language)** - We check if the app is available in all languages specified in your account. However, it is important that English is fallback if the app does not support any other language.
 
