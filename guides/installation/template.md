@@ -119,7 +119,7 @@ composer require --dev shopware/dev-tools
 composer require --dev symfony/profiler-pack
 
 # Install PaaS integration
-composer require paas
+composer require paas --ignore-platform-req=ext-amqp
 
 # Install Fastly integration
 composer require fastly
@@ -241,7 +241,7 @@ If you want to use Shopware PaaS or Fastly, you need to install the following Co
 
 ```bash
 # PaaS
-composer require paas
+composer require paas --ignore-platform-req=ext-amqp
 
 # Fastly
 composer require fastly
