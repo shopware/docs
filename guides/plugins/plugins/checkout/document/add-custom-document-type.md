@@ -231,7 +231,11 @@ class ExampleDocumentRenderer extends AbstractDocumentRenderer
 
         $template = self::DEFAULT_TEMPLATE;
 
-        $orders = $this->orderRepository->search(new Criteria($ids), $context)->getEntities();
+        $criteria = new Criteria($ids);
+        $criteria->addAssociation('language');
+        $criteria->addAssociation('language.locale');
+
+        $orders = $this->orderRepository->search($criteria, $context)->getEntities();
         foreach ($orders as $order) {
             $orderId = $order->getId();
 
