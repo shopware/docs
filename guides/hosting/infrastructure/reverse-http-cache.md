@@ -215,7 +215,6 @@ sub vcl_backend_response {
         beresp.http.Cache-Control ~ "private"
     ) {
         set beresp.ttl = 0s;
-        set beresp.http.X-Cacheable = "NO:Cache-Control=private";
         set beresp.uncacheable = true;
         return (deliver);
     }
@@ -230,7 +229,6 @@ sub vcl_backend_response {
 
     # Save the bereq.url so bans work efficiently
     set beresp.http.x-url = bereq.url;
-    set beresp.http.X-Cacheable = "YES";
 
     # Remove the exact PHP Version from the response for more security
     unset beresp.http.x-powered-by;
@@ -417,7 +415,6 @@ sub vcl_backend_response {
         beresp.http.Cache-Control ~ "private"
     ) {
         set beresp.ttl = 0s;
-        set beresp.http.X-Cacheable = "NO:Cache-Control=private";
         set beresp.uncacheable = true;
         return (deliver);
     }
@@ -432,7 +429,6 @@ sub vcl_backend_response {
 
     # Save the bereq.url so bans work efficiently
     set beresp.http.x-url = bereq.url;
-    set beresp.http.X-Cacheable = "YES";
 
     # Remove the exact PHP Version from the response for more security
     unset beresp.http.x-powered-by;
@@ -649,7 +645,6 @@ sub vcl_backend_response {
         beresp.http.Cache-Control ~ "private"
     ) {
         set beresp.ttl = 0s;
-        set beresp.http.X-Cacheable = "NO:Cache-Control=private";
         set beresp.uncacheable = true;
         return (deliver);
     }
@@ -664,7 +659,6 @@ sub vcl_backend_response {
 
     # Save the bereq.url so bans work efficiently
     set beresp.http.x-url = bereq.url;
-    set beresp.http.X-Cacheable = "YES";
 
     # Remove the exact PHP Version from the response for more security
     unset beresp.http.x-powered-by;
@@ -731,6 +725,8 @@ if (obj.hits > 0) {
 
 #set resp.http.X-Cache-Hits = obj.hits;
 ```
+
+For more details, please refer to the [Varnish documentation](https://www.varnish-software.com/developers/tutorials/logging-cache-hits-misses-varnish/) on logging cache hits and misses.
 
 ## Configure Fastly
 
