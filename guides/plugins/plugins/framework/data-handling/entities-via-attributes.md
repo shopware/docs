@@ -7,13 +7,13 @@ nav:
 
 # Entities via attributes
 
-Since shopware v6.6.3.0 it is possible to register entities via php attributes. This is a new way to register entities in Shopware 6. This guide will show you how to do this.
+Since Shopware v6.6.3.0 it is possible to register entities via PHP attributes. This guide will show you how to do this.
 
 ## Define the entity
 
-First, you need to define your entity. This is done by creating a new class and adding the `Entity` attribute to it. The attribute requires the `name` parameter, which is the name of the entity. The `name` parameter is required and must be unique.
+First, you need to define your entity. This is done by creating a new class extending `EntityStruct` and adding the `Entity` attribute to it. The attribute requires the `name` parameter, which is the name of the entity. The `name` parameter is required and must be unique.
 
-Also, you have to extend the `EntityStruct` class and define a primary key. The primary key is defined by adding the `PrimaryKey` attribute to a property. In theory, the primary key can be of any type, but it is recommended to use a `UUID`. 
+You have to define a primary key. The primary key is defined by adding the `PrimaryKey` attribute to a property. In theory, the primary key can be of any type, but it is recommended to use a `UUID`. 
 
 ```php
 <?php
@@ -44,7 +44,7 @@ To register the entity, you have to add this class to the DI container in the `s
 </service>
 ```
 
-That's it. You entity is registered and you can read and write data to it over the DAL. Over the tag, shopware automatically registers an `EntityDefinition` for the entity and an `EntityRepository`.
+That's it. You entity is registered and you can read and write data to it over the DAL. Using the tag, Shopware automatically registers an `EntityDefinition` and `EntityRepository` for the entity.
 
 ## Field Types
 
@@ -74,7 +74,7 @@ class AttributeEntity extends EntityStruct
 
 All field types are defined in the [`FieldType`](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/DataAbstractionLayer/Attribute/FieldType.php) class.
 
-We also provide a list of special field-types, which implement a specific behavior. They have an own php attribute class, for example, the `AutoIncrement` or `ForeignKey` field. 
+We also provide a list of special field types, which implement a specific behavior. They have their own PHP attribute class, for example the `AutoIncrement` or `ForeignKey` field. 
 
 ```php
 #[Entity('attribute_entity')]
@@ -92,9 +92,9 @@ class AttributeEntity extends EntityStruct
 }
 ```
 
-## Json fields 
+## JSON fields
 
-If you want to store json data in a field, with an own validation and serialize logic, you can use the `Serialized` attribute, and define an own serializer class:
+If you want to store json data in a field, with its own validation and serialization logic, you can use the `Serialized` attribute, and define its own serializer class:
 
 ```php
 #[Entity('attribute_entity')]
@@ -132,9 +132,9 @@ class AttributeEntity extends EntityStruct
 
 ```
 
-## Api encoding
+## API encoding
 
-Each field of an entity is by default not exposed in the API. To expose a field in the API, you have to set the `api` parameter of the `Field` attribute to `true`, or to one of the scopes you want to allow. 
+By default, each field of an entity is not exposed in the API. To expose a field in the API, you must set the api parameter of the Field attribute to true or specify one of the scopes you want to allow.
 
 ```php
 <?php
@@ -164,10 +164,10 @@ class AttributeEntity extends EntityStruct
 
 ## Translated fields
 
-To also support shopware translations for your entity, you can set the `translated` property of the `Field` attribute to `true`. This will automatically create a `TranslatedField` for the field and
-registers a `EntityTranslationDefinition` for you.
+To support Shopware translations for your entity, set the `translated` property of the `Field` attribute to `true`. This will automatically create a `TranslatedField` for the field and
+register an `EntityTranslationDefinition` for you.
 
-You can also define a `Translations` attribute on a property to allow loading all translations of the entity.
+Additionally, you can define a `Translations` attribute on a property to enable loading all translations of the entity.
 
 Notice: Properties with the `translated` flag must be nullable. 
 
@@ -192,8 +192,8 @@ class AttributeEntity extends EntityStruct
 
 ## Required fields
 
-Each field which is not type hinted as nullable is required by default. But you can also mark a field as required by adding the `Required` attribute to the field. This will automatically add a validation rule to the field.
-This is necessary for fields which are marked as `translated`, because the translated fields need to be nullable.
+By default, any field that is not type-hinted as nullable is required. However, you can explicitly mark a field as required by adding the `Required` attribute to it. This will automatically add a validation rule to the field.
+This is necessary for fields marked as `translated`, as translated fields must be nullable.
 
 ```php
 #[Entity('attribute_entity')]
@@ -211,7 +211,7 @@ class AttributeEntity extends EntityStruct
 
 ## Associations
 
-It is also possible to define associations between entities. You can you one of the following four association types `OneToOne`, `OneToMany`, `ManyToOne` and `ManyToMany`.    
+It is also possible to define associations between entities. You can use one of the following four association types: `OneToOne`, `OneToMany`, `ManyToOne` or `ManyToMany`.    
 
 ```php
 <?php
