@@ -11,7 +11,7 @@ Since Shopware v6.6.3.0 it is possible to register entities via PHP attributes. 
 
 ## Define the entity
 
-First, you need to define your entity. This is done by creating a new class extending `EntityStruct` and adding the `Entity` attribute to it. The attribute requires the `name` parameter, which is the name of the entity. The `name` parameter is required and must be unique.
+First, you need to define your entity. This is done by creating a new class extending `Entity` and adding the `Entity` attribute to it. The attribute requires the `name` parameter, which is the name of the entity. The `name` parameter is required and must be unique.
 
 You have to define a primary key. The primary key is defined by adding the `PrimaryKey` attribute to a property. In theory, the primary key can be of any type, but it is recommended to use a `UUID`. 
 
@@ -20,11 +20,11 @@ You have to define a primary key. The primary key is defined by adding the `Prim
 
 namespace Shopware\Tests\Integration\Core\Framework\DataAbstractionLayer\fixture;
 
-use Shopware\Core\Framework\DataAbstractionLayer\Entity as EntityStruct;
-use Shopware\Core\Framework\DataAbstractionLayer\Attribute\Entity;
+use Shopware\Core\Framework\DataAbstractionLayer\Entity;
+use Shopware\Core\Framework\DataAbstractionLayer\Attribute\Entity as EntityAttribute;
 
-#[Entity('attribute_entity')]
-class AttributeEntity extends EntityStruct
+#[EntityAttribute('example_entity')]
+class ExampleEntity extends Entity
 {
     #[PrimaryKey]
     #[Field(type: FieldType::UUID)]
@@ -39,7 +39,7 @@ This is the most basic entity definition. You can add more properties and attrib
 To register the entity, you have to add this class to the DI container in the `services.xml` file. This is done by adding the `shopware.entity` tag to the service definition. 
 
 ```xml
-<service id="Shopware\Tests\Integration\Core\Framework\DataAbstractionLayer\fixture\AttributeEntity">
+<service id="Shopware\Tests\Integration\Core\Framework\DataAbstractionLayer\fixture\ExampleEntity">
     <tag name="shopware.entity"/>
 </service>
 ```
@@ -52,8 +52,8 @@ To define more fields, you typically use the `Field` attribute. The `Field` attr
 
 ```php
 
-#[Entity('attribute_entity')]
-class AttributeEntity extends EntityStruct
+#[EntityAttribute('example_entity')]
+class ExampleEntity extends Entity
 {
     #[PrimaryKey]
     #[Field(type: FieldType::UUID)]
@@ -77,8 +77,8 @@ All field types are defined in the [`FieldType`](https://github.com/shopware/sho
 We also provide a list of special field types, which implement a specific behavior. They have their own PHP attribute class, for example the `AutoIncrement` or `ForeignKey` field. 
 
 ```php
-#[Entity('attribute_entity')]
-class AttributeEntity extends EntityStruct
+#[EntityAttribute('example_entity')]
+class ExampleEntity extends Entity
 {
     #[PrimaryKey]
     #[Field(type: FieldType::UUID)]
@@ -97,8 +97,8 @@ class AttributeEntity extends EntityStruct
 If you want to store json data in a field, with its own validation and serialization logic, you can use the `Serialized` attribute, and define its own serializer class:
 
 ```php
-#[Entity('attribute_entity')]
-class AttributeEntity extends EntityStruct
+#[EntityAttribute('example_entity')]
+class ExampleEntity extends Entity
 {
     #[PrimaryKey]
     #[Field(type: FieldType::UUID)]
@@ -116,8 +116,8 @@ If you want to allow custom fields, you can use the `CustomField` attribute.
 ```php
 <?php
 
-#[Entity('attribute_entity')]
-class AttributeEntity extends EntityStruct
+#[EntityAttribute('example_entity')]
+class ExampleEntity extends Entity
 {
     #[PrimaryKey]
     #[Field(type: FieldType::UUID)]
@@ -142,8 +142,8 @@ By default, each field of an entity is not exposed in the API. To expose a field
 use Shopware\Core\Framework\Api\Context\AdminApiSource;
 use Shopware\Core\Framework\Api\Context\SalesChannelApiSource;
 
-#[Entity('attribute_entity')]
-class AttributeEntity extends EntityStruct
+#[EntityAttribute('example_entity')]
+class ExampleEntity extends Entity
 {
     #[PrimaryKey]
     #[Field(type: FieldType::UUID, api: true)]
@@ -172,8 +172,8 @@ Additionally, you can define a `Translations` attribute on a property to enable 
 Notice: Properties with the `translated` flag must be nullable. 
 
 ```php
-#[Entity('attribute_entity')]
-class AttributeEntity extends EntityStruct
+#[EntityAttribute('example_entity')]
+class ExampleEntity extends Entity
 {
     #[PrimaryKey]
     #[Field(type: FieldType::UUID)]
@@ -196,8 +196,8 @@ By default, any field that is not type-hinted as nullable is required. However, 
 This is necessary for fields marked as `translated`, as translated fields must be nullable.
 
 ```php
-#[Entity('attribute_entity')]
-class AttributeEntity extends EntityStruct
+#[EntityAttribute('example_entity')]
+class ExampleEntity extends Entity
 {
     #[PrimaryKey]
     #[Field(type: FieldType::UUID)]
@@ -216,8 +216,8 @@ It is also possible to define associations between entities. You can use one of 
 ```php
 <?php
 
-#[Entity('attribute_entity')]
-class AttributeEntity extends EntityStruct
+#[EntityAttribute('example_entity')]
+class ExampleEntity extends Entity
 {
     #[PrimaryKey]
     #[Field(type: FieldType::UUID)]
@@ -238,7 +238,7 @@ class AttributeEntity extends EntityStruct
     /**
      * @var array<string, AttributeEntityAgg>
      */
-    #[OneToMany(entity: 'attribute_entity_agg', ref: 'attribute_entity_id')]
+    #[OneToMany(entity: 'example_entity_agg', ref: 'example_entity_id')]
     public ?array $aggs = null;
 
     /**
@@ -268,7 +268,7 @@ namespace Shopware\Tests\Integration\Core\Framework\DataAbstractionLayer\fixture
 
 use Shopware\Core\Framework\DataAbstractionLayer\Attribute\AutoIncrement;
 use Shopware\Core\Framework\DataAbstractionLayer\Attribute\CustomFields;
-use Shopware\Core\Framework\DataAbstractionLayer\Attribute\Entity;
+use Shopware\Core\Framework\DataAbstractionLayer\Attribute\Entity as EntityAttribute;
 use Shopware\Core\Framework\DataAbstractionLayer\Attribute\Field;
 use Shopware\Core\Framework\DataAbstractionLayer\Attribute\FieldType;
 use Shopware\Core\Framework\DataAbstractionLayer\Attribute\ForeignKey;
@@ -281,7 +281,7 @@ use Shopware\Core\Framework\DataAbstractionLayer\Attribute\PrimaryKey;
 use Shopware\Core\Framework\DataAbstractionLayer\Attribute\Required;
 use Shopware\Core\Framework\DataAbstractionLayer\Attribute\Serialized;
 use Shopware\Core\Framework\DataAbstractionLayer\Attribute\Translations;
-use Shopware\Core\Framework\DataAbstractionLayer\Entity as EntityStruct;
+use Shopware\Core\Framework\DataAbstractionLayer\Entity;
 use Shopware\Core\Framework\DataAbstractionLayer\FieldSerializer\PriceFieldSerializer;
 use Shopware\Core\Framework\DataAbstractionLayer\FieldType\DateInterval;
 use Shopware\Core\Framework\DataAbstractionLayer\Pricing\PriceCollection;
@@ -291,8 +291,8 @@ use Shopware\Core\System\Currency\CurrencyEntity;
 /**
  * @internal
  */
-#[Entity('attribute_entity', since: '6.6.3.0')]
-class AttributeEntity extends EntityStruct
+#[EntityAttribute('example_entity', since: '6.6.3.0')]
+class ExampleEntity extends Entity
 {
     #[PrimaryKey]
     #[Field(type: FieldType::UUID)]
