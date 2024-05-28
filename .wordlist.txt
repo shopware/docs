@@ -1301,6 +1301,7 @@ SeoUrlTemplate
 seperate
 seperated
 serializable
+serializer
 setFlags
 setLocaleToEnGb
 SetNullOnDelete
