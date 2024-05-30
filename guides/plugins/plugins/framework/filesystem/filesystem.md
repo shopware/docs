@@ -101,4 +101,4 @@ This service makes use of the private und public filesystem. As you already know
 </container>
 ```
 
-Now, this service can be used to read or write files to the private plugin filesystem or to list all files in the public plugin filesystem. You should visit the [Flysystem API documentation](https://flysystem.thephpleague.com/v1/docs/usage/filesystem-api/) for more information.
+Now, this service can be used to read or write files to the private plugin filesystem or to list all files in the public plugin filesystem. You should visit the [Flysystem API documentation](https://flysystem.thephpleague.com/docs/usage/filesystem-api/) for more information.
