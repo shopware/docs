@@ -224,7 +224,7 @@ Set the log level of the monolog to `error` to reduce the amount of logged event
 monolog:
     handlers:
         main:
-            level: error  
+            level: error
             buffer_size: 30
         business_event_handler_buffer:
             level: error
@@ -249,4 +249,30 @@ shopware:
             each_config: false
             each_snippet: false
             each_theme_config: false
+```
+
+## Using zstd instead of gzip for compression
+
+Shopware uses gzip for compressing the Cache elements and the Cart when enabled. gzip saves a lot of storage, but it can be slow with huge values.
+
+Since Shopware 6.6.4.0 it is possible to use zstd as an alternative compression algorithm. zstd is faster than gzip and has a better compression ratio. Unfortunately, zstd is not included by default in PHP, so you need to install the extension first.
+
+
+```yaml
+# Enabling cart compression with zstd
+shopware:
+    cart:
+      compress: true
+      compression_method: zstd
+```
+
+::: danger
+If you are changing the **cache** compression method, you need to clear the cache after changing the configuration.
+:::
+
+```yaml
+# Enabling cache compression with zstd
+shopware:
+  cache:
+    cache_compression_method: 'zstd'
 ```
