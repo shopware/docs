@@ -53,6 +53,13 @@ shopware:
       # The Adapter Configuration
 ```
 
+### Fallback adapter configuration
+
+By default, the configuration for the theme, asset and sitemap filesystem will use the configuration from the `public` filesystem, if they are not specifically configured.
+This means when you want to change the configuration used for the public filesystem, but the others should use the old configuration you have to set them explicitly.
+
+### Additional configuration
+
 If you want to regulate the uploaded file types, then you could add the keys `allowed_extensions`for the public filesystem or `private_local_download_strategy` for the private filesystem.
 With the `private_local_download_strategy` key you could choose the download strategy for private files (e.g. the downloadable products):
 
