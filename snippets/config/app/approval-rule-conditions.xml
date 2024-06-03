@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+    <meta>
+        <!-- ... -->
+    </meta>
+
+    <rule-conditions>
+        <rule-condition>
+            <identifier>total_cart_amount</identifier>
+            <name>Total cart amount</name>
+            <group>approval</group>
+            <script>/approval-rule-conditions/custom-condition.twig</script>
+            <constraints>
+                <single-select name="operator">
+                    <placeholder>Choose an operator...</placeholder>
+                    <options>
+                        <option value="=">
+                            <name>Is equal to</name>
+                        </option>
+                        <option value="!=">
+                            <name>Is not equal to</name>
+                        </option>
+                        <option value=">">
+                            <name>Is greater than</name>
+                        </option>
+                        <option value=">=">
+                            <name>Is greater than or equal to</name>
+                        </option>
+                    </options>
+                    <required>true</required>
+                </single-select>
+                <float name="amount">
+                    <placeholder>Enter an amount...</placeholder>
+                </float>
+            </constraints>
+        </rule-condition>
+    </rule-conditions>
+</manifest>
