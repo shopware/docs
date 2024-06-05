@@ -167,7 +167,7 @@ class ExampleEntity extends Entity
 To support Shopware translations for your entity, set the `translated` property of the `Field` attribute to `true`. This will automatically create a `TranslatedField` for the field and
 register an `EntityTranslationDefinition` for you.
 
-Additionally, you can define a `Translations` attribute on a property to enable loading all translations of the entity.
+Additionally, you can define a `Translations` attribute on a property to enable loading of all translations of the entity.
 
 Notice: Properties with the `translated` flag must be nullable. 
 
