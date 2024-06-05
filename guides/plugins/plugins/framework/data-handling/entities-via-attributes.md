@@ -44,7 +44,7 @@ To register the entity, you have to add this class to the DI container in the `s
 </service>
 ```
 
-That's it. You entity is registered and you can read and write data to it over the DAL. Using the tag, Shopware automatically registers an `EntityDefinition` and `EntityRepository` for the entity.
+That's it. Your entity is registered and you can read and write data to it over the DAL. Using the tag, Shopware automatically registers an `EntityDefinition` and `EntityRepository` for the entity.
 
 ## Field Types
 
