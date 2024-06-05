@@ -47,48 +47,6 @@ The installer will create an administrator account with the default credentials.
 
 Make sure to change this password immediately in your Administration account settings. Not doing so is a security risk.
 
-### Manual steps
-
-After the first deploy, some steps must be done manually before the environment is entirely up and running.
-
-#### JWT keys
-
-The JWT keys, used for the Administration authentication, need to be generated for your project. The keys will be stored securely in the Shopware Paas environment variable storage and should not be committed to the Git repository or be available on the file system.
-
-To generate the keys and add them to the storage, run the following command:
-
-```bash
-shopware ssh --app=app "bin/console system:generate-jwt-secret --use-env" |\
-grep -E "^JWT_(PUBLIC|PRIVATE)_KEY=" |\
-while read line ; do \
-shopware variable:create --sensitive 1 --level project --name env:$(echo $line | cut -d "=" -f 1) --value $(echo $line | cut -d "=" -f 2-); \
-done
-```
-
-Run this command from your project directory so the `shopware` command knows which project to update.
-
-The command connects to the application server to generate the JWT keys. It then sets the `JWT_PUBLIC_KEY` and `JWT_PRIVATE_KEY` as private environment variables.
-
-Finally, execute the `shopware redeploy` command to proceed with the build-and-deploy process.
-
-##### Shopware config
-
-By default, Shopware looks for the JWT keys on the file system. The configuration must be updated to use the keys in the environment variables.
-
-If you use the Shopware Flex Paas template, [the configuration](https://github.com/shopware/recipes/blob/main/shopware/paas-meta/6.4/config/packages/paas.yaml) will be applied automatically.
-
-```yaml
- shopware:
-   api:
-     jwt_key:
-       private_key_path: '%env(base64:JWT_PRIVATE_KEY)%'
-       public_key_path: '%env(base64:JWT_PUBLIC_KEY)%'  
-```
-
-#### Theme assets
-
-It is a known issue that after the first deployment, theme assets are not compiled during the deployment. For that reason, your store will look unstyled. The [Theme Build](./theme-build) section explains how to resolve that issue.
-
 ## Composer authentication
 
 You must authenticate yourself to install extensions from the Shopware store via composer. In your local development environment, this is possible by creating an `auth.json` file that contains your auth token. However, this file shouldn't be committed to the repository.
