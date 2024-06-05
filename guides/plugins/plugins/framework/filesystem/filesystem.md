@@ -40,25 +40,25 @@ To make use of the filesystem, we register a new service, which helps to read an
 
 namespace Swag\BasicExample\Service;
 
-use League\Flysystem\FilesystemInterface;
+use League\Flysystem\FilesystemOperator;
 
 class ExampleFilesystemService
 {
     /**
-     * @var FilesystemInterface
+     * @var FilesystemOperator
      */
-    private FilesystemInterface $fileSystemPublic;
+    private FilesystemOperator $fileSystemPublic;
     /**
-     * @var FilesystemInterface
+     * @var FilesystemOperator
      */
-    private FilesystemInterface $fileSystemPrivate;
+    private FilesystemOperator $fileSystemPrivate;
 
     /**
      * ExampleFilesystemService constructor.
-     * @param FilesystemInterface $fileSystemPublic
-     * @param FilesystemInterface $fileSystemPrivate
+     * @param FilesystemOperator $fileSystemPublic
+     * @param FilesystemOperator $fileSystemPrivate
      */
-    public function __construct(FilesystemInterface $fileSystemPublic, FilesystemInterface $fileSystemPrivate)
+    public function __construct(FilesystemOperator $fileSystemPublic, FilesystemOperator $fileSystemPrivate)
     {
         $this->fileSystemPublic = $fileSystemPublic;
         $this->fileSystemPrivate = $fileSystemPrivate;
@@ -101,4 +101,4 @@ This service makes use of the private und public filesystem. As you already know
 </container>
 ```
 
-Now, this service can be used to read or write files to the private plugin filesystem or to list all files in the public plugin filesystem. You should visit the [Flysystem API documentation](https://flysystem.thephpleague.com/v1/docs/usage/filesystem-api/) for more information.
+Now, this service can be used to read or write files to the private plugin filesystem or to list all files in the public plugin filesystem. You should visit the [Flysystem API documentation](https://flysystem.thephpleague.com/docs/usage/filesystem-api/) for more information.
