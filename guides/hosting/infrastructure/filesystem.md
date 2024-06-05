@@ -55,7 +55,7 @@ shopware:
 
 ### Fallback adapter configuration
 
-By default, the configuration for the theme, asset and sitemap filesystem will use the configuration from the `public` filesystem, if they are not specifically configured.
+By default, the configuration for the theme, asset and sitemap filesystem will use the configuration from the `public` filesystem if they are not specifically configured.
 This means when you want to change the configuration used for the public filesystem, but the others should use the old configuration you have to set them explicitly.
 
 ### Additional configuration
