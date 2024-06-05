@@ -94,7 +94,7 @@ class ExampleEntity extends Entity
 
 ## JSON fields
 
-If you want to store json data in a field, with its own validation and serialization logic, you can use the `Serialized` attribute, and define its own serializer class:
+If you want to store JSON data in a field with its own validation and serialization logic, you can use the `Serialized` attribute and define its own serializer class:
 
 ```php
 #[EntityAttribute('example_entity')]
