@@ -9,10 +9,10 @@ tags: [feature-flag, workflow]
 
 ::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2020-08-10-feature-flag-system.md)
+You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/_superseded/2020-08-10-feature-flag-system.md)
 :::
 
-## Superseded by [Feature flags for major versions](2022-01-20-feature-flags-for-major-versions)
+## Superseded by [Feature flags for major versions](../2022-01-20-feature-flags-for-major-versions)
 
 ## Context
 To provide a way to toggle code from incomplete features, the feature flag system was implemented.
