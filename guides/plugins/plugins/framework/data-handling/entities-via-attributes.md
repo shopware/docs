@@ -11,14 +11,14 @@ Since Shopware v6.6.3.0, it has been possible to register entities via PHP attri
 
 ## Define the entity
 
-First, you need to define your entity. This is done by creating a new class extending `Entity` and adding the `Entity` attribute to it. The attribute requires the `name` parameter, which is the name of the entity. The `name` parameter is required and must be unique.
+First, you need to define your entity. This is done by creating a new class extending `Entity` and adding the `Entity` attribute to it. The `name` parameter denotes the name of the entity. It is required and must be unique.
 
 You have to define a primary key. The primary key is defined by adding the `PrimaryKey` attribute to a property. In theory, the primary key can be of any type, but it is recommended to use a `UUID`. 
 
 ```php
 <?php
 
-namespace Shopware\Tests\Integration\Core\Framework\DataAbstractionLayer\fixture;
+namespace Examples;
 
 use Shopware\Core\Framework\DataAbstractionLayer\Entity;
 use Shopware\Core\Framework\DataAbstractionLayer\Attribute\Entity as EntityAttribute;
@@ -134,7 +134,7 @@ class ExampleEntity extends Entity
 
 ## API encoding
 
-By default, each field of an entity is not exposed in the API. To expose a field in the API, you must set the api parameter of the Field attribute to true or specify one of the scopes you want to allow.
+By default, each field of an entity is not exposed in the API. To expose a field in the API, you must set the `api` parameter of the `Field` attribute to `true` or specify one of the scopes you want to allow.
 
 ```php
 <?php
@@ -192,7 +192,7 @@ class ExampleEntity extends Entity
 
 ## Required fields
 
-By default, any field that is not type-hinted as nullable is required. However, you can explicitly mark a field as required by adding the `Required` attribute to it. This will automatically add a validation rule to the field.
+By default, any field that is not typehinted as `null` is required. However, you can explicitly mark a field as required by adding the `Required` attribute. This will automatically add a validation rule to the field.
 This is necessary for fields marked as `translated`, as translated fields must be nullable.
 
 ```php
@@ -258,13 +258,12 @@ You can also typehint to many associations with the `EntityCollection` class.
 With this new pattern, we removed the need for `getter` and `setter` methods. The properties are public and can be accessed directly.
 Also, you don't have to define any `EntityTranslationDefinition` or `EntityCollection` anymore, which reduces the boilerplate code. 
 
-
 ## Full example
 
 ```php
 <?php declare(strict_types=1);
 
-namespace Shopware\Tests\Integration\Core\Framework\DataAbstractionLayer\fixture;
+namespace Examples;
 
 use Shopware\Core\Framework\DataAbstractionLayer\Attribute\AutoIncrement;
 use Shopware\Core\Framework\DataAbstractionLayer\Attribute\CustomFields;
