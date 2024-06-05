@@ -96,7 +96,7 @@ composer dump-autoload
 
 ## Making the Extension Manager in Administration read-only
 
-Since Shopware 6.6.4.0 it's possible to disable the installation of extensions in the Administration. This is useful when you have a cluster environment or want to use proper deployments to roll-out code changes.
+Since Shopware 6.6.4.0, it has been possible to disable the installation of extensions in the Administration. This is useful when you have a cluster environment or want to use proper deployments to roll out code changes.
 
 To disable the installation of extensions in the Administration, you can set the following configuration in your `config/packages/z-shopware.yaml` file:
 
