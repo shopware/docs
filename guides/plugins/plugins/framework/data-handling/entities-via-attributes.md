@@ -255,7 +255,7 @@ You can also typehint to many associations with the `EntityCollection` class.
 
 ## Getter & Setter, Translations and Collections
 
-With this new pattern, we removed the need for getter and setter methods. The properties are public and can be accessed directly.
+With this new pattern, we removed the need for `getter` and `setter` methods. The properties are public and can be accessed directly.
 Also, you don't have to define any `EntityTranslationDefinition` or `EntityCollection` anymore, which reduces the boilerplate code. 
 
 
