@@ -249,7 +249,7 @@ class ExampleEntity extends Entity
 }
 ```
 
-All the associations are defined as a nullable array property. The key of the array is the id of the associated entity. The value is the associated entity itself.
+All the associations are defined as a nullable array property. The key of the array is the *ID* of the associated entity. The value is the associated entity by itself.
 
 You can also typehint to many associations with the `EntityCollection` class.
 
