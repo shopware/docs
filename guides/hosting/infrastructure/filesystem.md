@@ -60,7 +60,7 @@ This means when you want to change the configuration used for the public filesys
 
 ### Additional configuration
 
-If you want to regulate the uploaded file types, then you could add the keys `allowed_extensions`for the public filesystem or `private_local_download_strategy` for the private filesystem.
+If you want to regulate the uploaded file types, then you could add the keys `allowed_extensions` for the public filesystem or `private_local_download_strategy` for the private filesystem.
 With the `private_local_download_strategy` key you could choose the download strategy for private files (e.g. the downloadable products):
 
 ```yaml
