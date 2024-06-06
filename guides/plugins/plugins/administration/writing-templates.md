@@ -24,7 +24,7 @@ Let's look at all of this in practice, with the example of a component staticall
 ```html
 {% block swag_basic_example_page %}
     <sw-page class="swag-example-list">
-        <template slot="content">
+        <template #content>
             <h2>Hello world!</h2>
         </template>
     </sw-page>
