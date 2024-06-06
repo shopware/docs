@@ -9,8 +9,9 @@ tags: [catalog, product, category, import, api]
 
 ::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2023-09-22-catalog-import-api.md)
+You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/_superseded/2023-09-22-catalog-import-api.md)
 :::
+## Superseded as this "project" was aborted as a lot of further issues came up while working on this approach.
 
 ## Context
 
