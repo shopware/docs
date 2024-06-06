@@ -19,15 +19,7 @@ pnpm i
 
 Docs CLI is accessible by running `./docs-cli` in the root of the `shopware/developer-portal` repository.
 
-To add a new repository config, update `.vitepress/portal.json` and create a new entry in the `repositories` array. The entry should contain the following keys:
-- `name` - The name of the repository. Example: `shopware/meteor-icon-kit` or `gitlab.shopware.com/shopware/meteor-icon-kit`
-- `src` - Name of the directory where your documentation is located, in an array format. Example: `["packages", "docs"]` for `./packages/docs/` or `.` when your repo is docs-only.
-- `dst` - The directory where the content will be embedded to in the developer portal. Example: `resources/meteor-icon-kit` for when the content should be accessible under `https://developer.shopware.com/resources/meteor-icon-kit/`.
-- `branch` - Array of values where the first one is the environment variable prefixed with `env.` and second one is the actual branch (usually `main`). Example: `["env.BRANCH_METEOR_ICON_KIT", "main"]`
-- `org` - Array of values where the first one is the environment variable prefixed with `env.` and second one is the actual organization (usually `shopware`). Example: `["env.ORG_METEOR_ICON_KIT", "shopware"]`
-- `env` - Object of all environment variables required by the process (usually empty).
-
-Try to run the CLI and see if you can embed the content of the new repository. Your repository should be visible in the list, and you should be able to select it and embed it by confirming the default settings.
+To add a new repository config, update `.vitepress/portal.json` and create a new entry in the `repositories` array. Then run the CLI and see if your repository is visible in the list - select it and continue by confirming the default settings.
 
 ```bash
 ./docs-cli manage
@@ -41,9 +33,17 @@ pnpm dev
 
 ## Configure Shopware specific features
 
-Now it's time to configure all custom features.
+Now it's time to configure all custom features. Let's first create a new branch.
 
-### Configure Algolia search
+```bash
+git checkout -b feature/embed-meteor-icon-kit
+```
+
+### Navigation and sidebar
+
+Open `.vitepress/navigation.ts` and update top-bar navigation with your new section. Make sure to update `sublinks` and `ignore` parameters to auto-build the sidebar based on your directory structure and frontmatter config.
+
+### Algolia search
 
 Update `sections: SwagSectionsConfig[]` with all the regex matches for your repository and define the title of new section displayed in the Algolia search modal.
 
@@ -59,7 +59,7 @@ const sections: SwagSectionsConfig[] = [
 ];
 ```
 
-### Configure edit links
+### Edit links
 
 Update `const embeds: SwagEmbedsConfig[]` to make sure correct Edit link is displayed in your articles.
 
@@ -76,19 +76,21 @@ const embeds: SwagEmbedsConfig[] = [
 ]
 ```
 
-### Configure Copilot AI
+### Optional
 
-Update `themeConfig.swag.similarArticles.filter` with your settings for recommended articles in Copilot AI (optional).
+#### Copilot AI 
 
-### Configure version switcher
+Update `themeConfig.swag.similarArticles.filter` with your settings for recommended articles in Copilot AI.
+
+#### Version switcher
 
 Update `themeConfig.swag.versionSwitcher` with additional settings for your paths when you are embedding multiple branches (versions) from the same repository.
 
-### Configure color coding
+#### Color coding
 
 Update `themeConfig.swag.colorCoding` with your settings for color coding in the breadcrumbs. This is currently only used for Plugins and Apps in the `docs` repository.
 
-### Static assets
+#### Static assets
 
 When you also want to share static assets from your repo, make sure to copy them in the `buildEnd` hook.
 
@@ -108,7 +110,7 @@ export default {
 }
 ```
 
-## Make it ready for deployment
+## Production deployment
 
 The new repo needs to be activated in `.github/scripts/mount.sh`. This is needed to apply correct build config in production build and during PR workflows.
 
@@ -132,8 +134,25 @@ ORG_METEOR_ICON_KIT=shopware
 
 Last step is setting up dev commands in `package.json` of your repository. Examples are available in [meteor](https://github.com/shopware/meteor/src/blob/package.json) (monorepo setup), [meteor](https://github.com/shopware/frontends/src/blob/package.json), [meteor](https://github.com/shopware/release-notes/src/blob/package.json) and [meteor](https://github.com/shopware/docs/src/blob/package.json) repositories (all standard repos).
 
-## Set up repository workflows and triggers
+This will create 3 shortcuts:
+ - `docs:env` - run this in the context of your repository and script will either create a new clone of the `developer-portal` or pull changes from the remote, and install latest dependencies
+ - `docs:link` - mount documentation from your repository into your local developer portal instance
+ - `docs:preview` - run Vitepress dev server from your local developer portal instance
 
-It is recommended for external repositories to also set up the same workflows as in the docs repo - this includes the same checks and deployments. This way, the repositories are in sync and the developer portal is consistent. This usually means copy/pasting `deploy-developer-portal.yml`, `update-healthcheck.yml` and `developer-portal-healthcheck.yml` workflows from any of the repositories mentioned above.
+```json
+{
+  "scripts": {
+    "docs:env": "[ -d \"../developer-portal\" ] && ../developer-portal/docs-cli.cjs pull || (git clone git@github.com:shopware/developer-portal.git ../developer-portal && pnpm i -C ../developer-portal)",
+    "docs:link": "../developer-portal/docs-cli.cjs link --src . --dst docs --symlink",
+    "docs:preview": "../developer-portal/docs-cli.cjs preview"
+  }
+}
+```
+
+## Set up CI pipelines
+
+It is recommended for external repositories to also set up the same workflows as in the `docs` and other repos - this includes the same checks and deployment triggers. This way, the repositories are in sync and the developer portal is consistent.
+
+This usually means copy/pasting `deploy-developer-portal.yml`, `update-healthcheck.yml` and `developer-portal-healthcheck.yml` workflows from any of the repositories mentioned above.
 
 Make sure to also add `DEV_HUB_PERSONAL_ACCESS_TOKEN` secret to your repository.
