@@ -68,7 +68,7 @@ Create a computed component to make them easy to use in your template.
 ```js
 computed: {
     assetFilter() {
-        return Filter.getByName('asset');
+        return Shopware.Filter.getByName('asset');
     },
 }
 ```
