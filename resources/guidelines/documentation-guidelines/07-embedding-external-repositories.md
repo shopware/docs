@@ -196,7 +196,7 @@ git checkout -b feature/embeds-meteor-icon-kit
 git commit -m "feat: embedded meteor repo"
 ```
 
-Make changes in your feature branch in your repository.
+Make changes in your feature branch of your repository.
 
 ```
 cd /www/shopware/meteor/
