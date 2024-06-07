@@ -122,7 +122,7 @@ export default {
 
 While we already added the repository to the Docs CLI, it is not included in the production build by default.
 
-The new repository needs to be activated in `.github/scripts/mount.sh`. This script is needed to apply correct build config in production build and during PR workflows where custom `branch` or even `org` are used and switched to by overwriting environment variables.
+The new repository must to be activated in `.github/scripts/mount.sh`. This script is needed to apply correct build config in production build and during PR workflows where custom `branch` or even `org` is used and switched to by overwriting environment variables.
 
 ```sh
 # ...
