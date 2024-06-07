@@ -152,7 +152,7 @@ cd /www/shopware/docs
 
 ### Shortcuts
 
-You'll want to create at least 3 scripts in `package.json` of your repository
+You will want to create at least 3 scripts in `package.json` of your repository
  - `docs:env` - Run this in the context of your repository and the script will either clone the `developer-portal` inside `../developer-portal` or pull changes from the remote, and install latest dependencies.
  - `docs:link` - Mount documentation from your repository into your local `developer-portal` instance.
  - `docs:preview` - Run Vitepress dev server from your local `developer-portal` instance.
