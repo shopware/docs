@@ -100,7 +100,7 @@ Update `themeConfig.swag.colorCoding` with your settings for color coding in the
 
 #### Static assets
 
-When you also want to share static assets from your repo such as .pdf or .zip files (excluding statically linked images in articles), make sure to copy them in the `buildEnd` hook.
+When you also want to share static assets from your repository such as .pdf or .zip files (excluding statically linked images in articles), make sure to copy them in the `buildEnd` hook.
 
 ```js
 export default {
@@ -183,7 +183,7 @@ Once you have everything set up, commit your changes and create PRs for the `sho
 
 Usually, you'll want to first preview the docs from the feature branch of your repository inside the Developer portal. You can do that by changing the environment variable of the default branch for your repository in the `.github/scripts/mount.sh` inside the `developer-portal`, review changes, and then switch back to `main` branch before merging.
 
-For example, follow the instructions in the article above, and use the feature branch of your repo in production build.
+For example, follow the instructions in the article above, and use the feature branch of your repository in production build.
 
 ```bash
 BRANCH_METEOR_ICON_KIT=feature/embed-meteor-repo-to-developer-portal
@@ -213,7 +213,7 @@ git checkout main
 git merge feature/embed-meteor-repo-to-developer-portal
 ```
 
-Now switch back production branch for your repo to `main` in the `developer-portal`.
+Now switch back production branch for your repository to `main` in the `developer-portal`.
 
 ```
 cd /www/shopware/developer-portal/
