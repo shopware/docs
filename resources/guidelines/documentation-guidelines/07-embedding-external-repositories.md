@@ -181,7 +181,7 @@ Make sure to also add `DEV_HUB_PERSONAL_ACCESS_TOKEN` secret to your repository.
 
 Once you have everything set up, commit your changes and create PRs for the `shopware/developer-portal` and your repository.
 
-Usually, you'll want to first preview the docs from the feature branch of your repository inside the Developer portal. You can do that by changing the environment variable of the default branch for your repository in the `.github/scripts/mount.sh` inside the `developer-portal`, review changes, and then switch back to `main` branch before merging.
+Usually, you will want to first preview the docs from the feature branch of your repository inside the Developer portal. You can do that by changing the environment variable of the default branch for your repository in the `.github/scripts/mount.sh` inside the `developer-portal`, review changes, and then switch back to `main` branch before merging.
 
 For example, follow the instructions in the article above, and use the feature branch of your repository in production build.
 
