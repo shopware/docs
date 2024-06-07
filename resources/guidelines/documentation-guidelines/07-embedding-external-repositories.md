@@ -2,9 +2,9 @@
 
 This guide will explain how to embed project documentation from your repository into the [Developer documentation](https://developer.shopware.com/frontends/).
 
-[Developer Portal](https://github.com/shopware/developer-portal) is built on top of [`shopware/developer-documentation-vitepress`](https://github.com/shopware/developer-documentation-vitepress) repository (`vitepress-shopware-docs` package) which heavily utilizes [Vitepress](https://vitepress.dev/) and customizes it with custom Shopware features such as custom design, breadcrumbs, Algolia search, Copilot AI chat and recommendations, auto-built sidebar and more.
+[Developer Portal](https://github.com/shopware/developer-portal) is built using the [`shopware/developer-documentation-vitepress`](https://github.com/shopware/developer-documentation-vitepress) repository (`vitepress-shopware-docs` package). This setup heavily utilizes [Vitepress](https://vitepress.dev/) and incorporates custom Shopware features such as unique design, breadcrumbs, Algolia search, Copilot AI chat and recommendations, auto-built sidebar and more.
 
-It acts as a central point for all developer resources and documentation. However, the actual content is stored in various repositories and embedded into the developer portal with help of the [Docs CLI](https://github.com/shopware/developer-documentation-vitepress/blob/main/CLI.md). This allows for a decentralized approach to managing the content and enables the maintainers of the respective repositories to manage their content independently.
+This portal serves as a central hub for all developer resources and documentation. However, the actual content is distributed across various repositories but integrated into the developer portal using the [Docs CLI](https://github.com/shopware/developer-documentation-vitepress/blob/main/CLI.md). This approach allows for decentralized content management, enabling the maintainers of each repository to manage their content independently.
 
 ## Local instance of the Developer Portal
 
@@ -25,7 +25,7 @@ git checkout -b feature/embed-meteor-icon-kit
 
 ### Docs CLI
 
-Docs CLI is now accessible by running `./docs-cli` in the root of the `shopware/developer-portal` repository.
+Now access `./docs-cli` in the root of the `shopware/developer-portal` repository.
 
 To start embedding a new repository, update `.vitepress/portal.json` and create a new entry in the `repositories` array. Then run the CLI and see if your repository is visible in the list - select it and continue by confirming the default settings.
 
@@ -33,7 +33,7 @@ To start embedding a new repository, update `.vitepress/portal.json` and create 
 ./docs-cli manage
 ```
 
-You should be able to preview your new content by running the Vitepress dev server and opening your defined URL in the browser.
+You should be able to preview your new content by running the Vitepress dev server and opening your defined URL in the browser using the below command.
 
 ```bash
 pnpm dev
@@ -100,7 +100,7 @@ Update `themeConfig.swag.colorCoding` with your settings for color coding in the
 
 #### Static assets
 
-When you also want to share static assets from your repository such as .pdf or .zip files (excluding statically linked images in articles), make sure to copy them in the `buildEnd` hook.
+When you also want to share static assets from your repository such as `.pdf` or `.zip` files (excluding statically linked images in articles), make sure to copy them in the `buildEnd` hook.
 
 ```js
 export default {
@@ -173,7 +173,7 @@ Examples are available in [meteor](https://github.com/shopware/meteor/src/blob/p
 
 It is recommended for external repositories to also set up the same workflows as in the `docs` and other repos - this includes the same checks and deployment triggers. This way, the repositories are in sync and the developer portal is consistent.
 
-This usually means copy/pasting `deploy-developer-portal.yml`, `update-healthcheck.yml` and `developer-portal-healthcheck.yml` workflows from any of the repositories mentioned above.
+This usually means copy-pasting `deploy-developer-portal.yml`, `update-healthcheck.yml` and `developer-portal-healthcheck.yml` workflows from any of the repositories mentioned above.
 
 Make sure to also add `DEV_HUB_PERSONAL_ACCESS_TOKEN` secret to your repository.
 
