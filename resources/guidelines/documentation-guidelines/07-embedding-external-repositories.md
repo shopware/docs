@@ -17,7 +17,7 @@ cd developer-portal
 pnpm i
 ```
 
-We also want to create a new branch.
+We also want to create a new branch so we can test the integration first in the pull request, then merge it to the `main` branch and do production deployment.
 
 ```bash
 git checkout -b feature/embed-meteor-icon-kit
