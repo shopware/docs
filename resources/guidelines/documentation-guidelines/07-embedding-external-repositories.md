@@ -6,7 +6,7 @@ This guide will explain how to embed project documentation from your repository 
 
 This portal serves as a central hub for all developer resources and documentation. However, the actual content is distributed across various repositories but integrated into the developer portal using the [Docs CLI](https://github.com/shopware/developer-documentation-vitepress/blob/main/CLI.md). This approach allows for decentralized content management, enabling the maintainers of each repository to manage their content independently.
 
-## Local instance of the Developer Portal
+## Configure Developer Portal
 
 To set up your local instance of the developer portal, clone Developer Portal repository and install the dependencies:
 
