@@ -41,7 +41,7 @@ pnpm dev
 
 ### Sidebar and main navigation
 
-The content is already there and published, but in most cases you'll also want to have a sidebar dedicated for your section.
+The content is already there and published, but in most cases you will also want to have a sidebar dedicated for your section.
 
 Open `.vitepress/navigation.ts` and update `sublinks` and `ignore` parameters to auto-build the sidebar based on your directory structure and frontmatter config.
 
