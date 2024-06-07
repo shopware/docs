@@ -1,6 +1,6 @@
 # Embedding external repositories
 
-In this guide, we will explain how to embed project documentation from your repository into the [Developer documentation](https://developer.shopware.com/frontends/).
+This guide will explain how to embed project documentation from your repository into the [Developer documentation](https://developer.shopware.com/frontends/).
 
 [Developer Portal](https://github.com/shopware/developer-portal) is built on top of [`shopware/developer-documentation-vitepress`](https://github.com/shopware/developer-documentation-vitepress) repository (`vitepress-shopware-docs` package) which heavily utilizes [Vitepress](https://vitepress.dev/) and customizes it with custom Shopware features such as custom design, breadcrumbs, Algolia search, Copilot AI chat and recommendations, auto-built sidebar and more.
 
