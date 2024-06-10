@@ -63,6 +63,10 @@ If you look for the old documentation and examples, you can find it [here](https
 
 #### Trusted proxies
 
+::: info
+Since Shopware 6.6, the `TRUSTED_PROXIES` environment variable is no longer taken into account out of the box. Make sure to create a Symfony configuration to make it configurable again [like here](https://github.com/shopware/recipes/blob/main/shopware/docker/0.1/config/packages/trusted_env.yaml).
+:::
+
 For the most part, using Symfony and Varnish doesn't cause any problem. But, when a request passes through a proxy, certain request information is sent using either the standard Forwarded header or *X-Forwarded* headers. For example, instead of reading the *REMOTE_ADDR* header (which will now be the IP address of your reverse proxy), the user's true IP will be stored in a standard Forwarded: for="..." header or an *X-Forwarded-For* header.
 
 If you don't configure Symfony to look for these headers, you will get incorrect information about the client's IP address. Whether or not the client connects via https, the client's port and the hostname are requested.
