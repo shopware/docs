@@ -24,8 +24,13 @@ server {
      try_files $uri /shopware-installer.phar.php$is_args$args;
     }
 
-    # Block .php .git .htaccess .env files in public folders
-    location ~ ^/(media|thumbnail|theme|bundles|sitemap).*\.(php|git|htaccess|env)$ {
+    # Deny access to . (dot) files
+    location ~ /\. {
+        deny all;
+    }
+    
+    # Deny access to .php files in public directories
+    location ~ ^/(media|thumbnail|theme|bundles|sitemap).*\.php$ {
         deny all;
     }
     
