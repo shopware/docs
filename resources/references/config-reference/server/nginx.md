@@ -23,6 +23,16 @@ server {
     location ~ ^/shopware-installer\.phar\.php/.+\.(?:css|js|png|svg|woff)$ {
      try_files $uri /shopware-installer.phar.php$is_args$args;
     }
+
+    # Deny access to . (dot) files
+    location ~ /\. {
+        deny all;
+    }
+    
+    # Deny access to .php files in public directories
+    location ~ ^/(media|thumbnail|theme|bundles|sitemap).*\.php$ {
+        deny all;
+    }
     
     location /recovery/install {
         index index.php;
@@ -77,7 +87,6 @@ server {
         send_timeout 300s;
         client_body_buffer_size 128k;
         fastcgi_pass 127.0.0.1:9000;
-        http2_push_preload on;
     }
 }
 ```
