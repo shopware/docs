@@ -40,6 +40,7 @@ ag
 AggregationResultCollection
 ajax
 AjaxModalPlugin
+Algolia
 AllowEmptyString
 AllowHtml
 AlwaysValidRule
@@ -573,6 +574,7 @@ FrameworkBundle
 frankdejonge
 frontend
 frontends
+frontmatter
 FroshDevelopmentHelper
 FroshPluginUploader
 Fullstack
@@ -1157,6 +1159,7 @@ programmatically
 PropertyGroupOptionDataSet
 Prosemirror
 ProseMirror
+PRs
 pseudocode
 Pseudocode
 psh
@@ -1577,6 +1580,7 @@ VARCHAR
 VCL
 VCS
 ve
+Vercel
 verifier
 versionable
 VersionDataPayload
