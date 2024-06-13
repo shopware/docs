@@ -23,7 +23,7 @@ In the world of digital B2B commerce, where businesses engage with other compani
 
 ## Configuring custom toggles for B2B components
 
-The B2B Components allow merchants to selectively choose and configure B2B capabilities according to their needs. They offer merchants the ability to craft a tailored B2B ecommerce experience for their business partners while also allowing agencies to fine-tune Shopware to meet specific requirements. This means that B2B Components can be individually activated or deactivated for each business partner within the shop.
+The B2B components allow merchants to selectively choose and configure B2B features according to their needs. They offer merchants the ability to craft a tailored B2B ecommerce experience for their business partners while also allowing agencies to fine-tune Shopware to meet specific requirements. This means that B2B components can be individually activated or deactivated for each business partner within the shop.
 
 The following articles will guide you how to do this by creating custom toggles via a plugin for B2B Components (Customer-specific features).
 
@@ -31,9 +31,9 @@ The **Customer-specific features** section on the Customer detail page allows th
 
 ![Feature Toggles](../../../assets/b2b-feature-toggles.png)
 
-To achieve this, ACL and address the following cases where functionality may be hidden:
+To achieve this, you need to address the following cases where functionality may be hidden:
 
-1. If the merchant has not activated a feature for a particular customer, it should be hidden.
+1. If a merchant has not activated a feature for a particular customer, it should be hidden.
 2. If the B2B admin has not granted an employee access to a specific feature, it should not be visible.
 
 Considering these scenarios, we can ensure that the appropriate B2B features are displayed and accessible based on feature toggles and admin-granted permissions.
@@ -77,8 +77,6 @@ class YourB2BComponent extends CommercialB2BBundle
 
 ## Using feature toggle in Route/API/Controller
 
-### Using new service
-
 To determine if a customer is allowed to access a specific B2B feature, we will utilize the `isAllowed()` method from the `Shopware\Commercial\B2B\QuickOrder\Domain\CustomerSpecificFeature\CustomerSpecificFeatureService` service. This method accepts two parameters: the customer ID and the technical code of the B2B component.
 
 We will place this check before every route, controller or API as follows:
@@ -109,8 +107,6 @@ class ApiController
 ```
 
 ## Using feature toggle in Twig - Storefront
-
-### New Twig function
 
 You can use a new Twig extension called `customerHasFeature()` to implement the functionality of retrieving customer-specific features in Twig templates. This method accepts only one parameter. The parameter is the technical code of the B2B component.
 

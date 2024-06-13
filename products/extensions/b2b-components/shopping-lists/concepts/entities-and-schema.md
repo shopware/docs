@@ -15,7 +15,7 @@ Shopping lists represent a list of products prepared for a customer or a sales c
 
 ### Line item
 
-The Shopping lists line item represents a set of products. These products are line items of the shopping list.
+he Shopping List Line Item represents individual products within a shopping list. Each product in the shopping list is considered a line item.
 
 ## Schema
 
