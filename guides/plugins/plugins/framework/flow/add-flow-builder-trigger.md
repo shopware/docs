@@ -30,6 +30,8 @@ You can refer to the [Flow reference](../../../../../resources/references/core-r
 
 Any event that implements one of these interfaces will be available in the trigger list of the Flow Builder module in Administration. Besides, the event will have the ability to execute the action that belongs to the interface.
 
+- `FlowEventAware`: This interface is the base for every flow builder trigger. It provides the `availableData` and `name` of the event.
+
 - `MailAware`: This interface provides `MailRecipientStruct` and `salesChannelId`.
 
 - `OrderAware`: This interface provides `orderId`, which is used to add tags, sendmail or generate documents, etc...
@@ -48,8 +50,6 @@ To create a custom flow trigger, firstly you have to create a plugin and install
 
 In this example, we will name it ExampleEvent to some actions related to customers when dispatching this event. It will be placed in the directory `<plugin root>/src/Core/Checkout/Customer/Event`. Our new event has to implement Shopware\Core\Framework\Event\CustomerAware interface to enable actions requiring this Aware.
 
-Currently, you will need to also implement `Shopware\Core\Framework\Event\BusinessEventInterface;` in case the feature flag `FEATURE_NEXT_17858` is inactive. Please take note that this interface will be removed in `v6.5` .
-
 Below you can find an example implementation:
 
 ```php
@@ -62,12 +62,12 @@ use Shopware\Core\Checkout\Customer\CustomerDefinition;
 use Shopware\Core\Checkout\Customer\CustomerEntity;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\Event\CustomerAware;
-use Shopware\Core\Framework\Event\BusinessEventInterface;
+use Shopware\Core\Framework\Event\FlowEventAware;
 use Shopware\Core\Framework\Event\EventData\EntityType;
 use Shopware\Core\Framework\Event\EventData\EventDataCollection;
 use Symfony\Contracts\EventDispatcher\Event;
 
-class ExampleEvent extends Event implements CustomerAware, BusinessEventInterface
+class ExampleEvent extends Event implements CustomerAware, FlowEventAware
 {
     public const EVENT_NAME = 'example.event';
 
