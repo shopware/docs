@@ -411,18 +411,16 @@ Component.override('sw-flow-sequence-action', {
 
             return this.$super('modalName');
         },
-
-        actionDescription() {
-            const actionDescriptionList = this.$super('actionDescription');
-
-            return {
-                ...actionDescriptionList,
-                [ACTION.CREATE_TAG] : (config) => this.getCreateTagDescription(config),
-            };
-        },
     },
 
     methods: {
+        getActionDescriptions(sequence) {
+            if(sequence.actionName === ACTION.CREATE_TAG){
+                return this.getCreateTagDescription(sequence.config)
+            }
+            return this.$super('getActionDescriptions', sequence)
+        },
+        
         getCreateTagDescription(config) {
             const tags = config.tags.join(', ');
 
