@@ -94,7 +94,7 @@ And run the below command to re-generate the class loader.
 composer dump-autoload
 ```
 
-## Making the Extension Manager in Administration read-only
+## Configuring Extension Manager to read-only in Admin
 
 Since Shopware 6.6.4.0, it has been possible to disable the installation of extensions in the Administration. This is useful when you have a cluster environment or want to use proper deployments to roll out code changes.
 
