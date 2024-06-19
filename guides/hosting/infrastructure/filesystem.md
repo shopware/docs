@@ -62,6 +62,60 @@ shopware:
 ```
 <!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/Resources/config/packages/shopware.yaml","WATCHER_HASH":"183f85ba8f15e8e7d0006b70be20940f","WATCHER_CONTAINS":"filesystem"} -->
 
+### Fallback adapter configuration
+
+By default, the configuration for the theme, asset and sitemap filesystem will use the configuration from the `public` filesystem if they are not specifically configured.
+This means when you want to change the configuration used for the public filesystem, but the others should use the old configuration you have to set them explicitly.
+
+E.g. before you had the following configuration:
+```yaml
+shopware:
+  filesystem:
+    public:
+      type: "local"
+      url: "https://your.domain/public"
+      config:
+        root: "%kernel.project_dir%/public"
+
+```
+Now you want to change the public filesystem to use an S3 adapter, but the theme, asset and sitemap filesystem should still use the local adapter. You have to set them explicitly:
+```yaml
+shopware:
+  filesystem:
+    public:
+      url: "{{S3_URL}}"
+      type: "amazon-s3"
+      config:
+        bucket: "{{AWS_BUCKET}}"
+        region: "{{AWS_REGION}}"
+        endpoint: "{{AWS_ENDPOINT}}"
+        options:
+          visibility: "public"
+          credentials:
+            key: "{{AWS_ACCESS_KEY_ID}}"
+            secret: "{{AWS_SECRET_ACCESS_KEY}}"
+    theme:
+      type: "local"
+      url: "https://your.domain/public"
+      config:
+        root: "%kernel.project_dir%/public"
+    asset:
+      type: "local"
+      url: "https://your.domain/public"
+      config:
+        root: "%kernel.project_dir%/public"
+    sitemap:
+      type: "local"
+      url: "https://your.domain/public"
+      config:
+        root: "%kernel.project_dir%/public"
+```
+
+### Additional configuration
+
+If you want to regulate the uploaded file types, then you could add the keys `allowed_extensions` for the public filesystem or `private_local_download_strategy` for the private filesystem.
+With the `private_local_download_strategy` key you could choose the download strategy for private files (e.g. the downloadable products):
+=======
 If you want to regulate the uploaded file types, then you could add the keys `allowed_extensions`for the public filesystem or `private_local_download_strategy` for the private filesystem.
 With the `private_local_download_strategy` key you could choose the download strategy for private files (e.g., the downloadable products):
 
