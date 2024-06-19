@@ -38,6 +38,7 @@ Go ahead and create a new file `ExampleController.php` in the directory `<plugin
 namespace Swag\BasicExample\Storefront\Controller;
 
 use Shopware\Storefront\Controller\StorefrontController;
+use Symfony\Component\Routing\Attribute\Route;
 
 #[Route(defaults: ['_routeScope' => ['storefront']])]
 class ExampleController extends StorefrontController
