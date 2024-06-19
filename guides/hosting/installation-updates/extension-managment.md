@@ -106,4 +106,4 @@ shopware:
         runtime_extension_management: false
 ```
 
-and clear the cache once. After that, the Extension Manager in the Administration will be read-only, so you can only access the extension configuration. Also the First Run Wizard will not download extensions like PayPal or the Shopware Store.
+Next clear the cache once. After doing this, the Extension Manager in the Administration will become read-only, allowing access only to the extension configuration. Additionally, the First Run Wizard will no longer download extensions such as PayPal or the Shopware Store.
