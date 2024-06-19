@@ -111,11 +111,6 @@ final class ResolveListingExtension extends Extension
         public readonly SalesChannelContext $context
     ) {
     }
-
-    public static function name(): string
-    {
-        return self::NAME;
-    }
 }
 ```
 
@@ -138,7 +133,7 @@ readonly class ResolveListingExample implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            'listing-loader.resolve-listing-ids.pre' => 'replace',
+            'listing-loader.resolve.pre' => 'replace',
         ];
     }
 
