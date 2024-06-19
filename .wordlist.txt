@@ -152,8 +152,8 @@ cacheable
 CachedProductListingRouteTest
 cacheinvalidatorfacade
 cacheKey
-Cachix
 cachix
+Cachix
 Caddy
 Caddyfile
 calculatedCheapestPrice
@@ -343,11 +343,9 @@ customizable
 customizations
 customizer
 cyclus
+Daily.co
 dailymotion
 Dailymotion
-Daily.co
-dsr
-herokuapp
 dal
 Dal
 DAL
@@ -447,6 +445,7 @@ dragTo
 dropdown
 DSGVO
 DSN
+dsr
 DSR
 dTH
 DTO
@@ -648,6 +647,7 @@ hardcoded
 hasError
 hasOwnProperty
 helpText
+herokuapp
 hideCookieBar
 hmac
 HMAC
@@ -870,6 +870,7 @@ MeteorAdminSDK
 Methodize
 middleware
 Middleware
+middlewares
 MigrationCollection
 minified
 minimalistic
@@ -967,6 +968,7 @@ onlyOnFeature
 onwards
 oop
 opcache
+Openapi
 OpenApi
 OpenAPI
 openInitialPage
@@ -1133,6 +1135,7 @@ ProductDataSet
 productId
 ProductListRoute
 ProductManufacturerDefinition
+ProductMedia
 ProductMediaDefinition
 productNumber
 ProductNumber
@@ -1150,6 +1153,7 @@ ProductsFacade
 ProductStorer
 ProductSubscriber
 ProductUpdater
+ProductVisibility
 ProductWarehouse
 ProductWarehouses
 profiler
@@ -1344,7 +1348,6 @@ simples
 simplexml
 Sinon
 SitemapPage
-suboptimal
 SKEs
 skipOnFeature
 skipTestIfInActive
@@ -1369,8 +1372,8 @@ srcset
 SSHes
 stableVersion
 stackable
-StackHero
 Stackhero
+StackHero
 StackOverflow
 stacktrace
 stateId
@@ -1417,6 +1420,7 @@ subdirectory
 subfolder
 SubjectAware
 SubjectStorer
+suboptimal
 subprocessor
 Subprocessor
 subprocessors
@@ -1522,6 +1526,7 @@ ui
 UI
 UML
 un
+Unassigning
 uncomment
 uncommenting
 uncompiled
