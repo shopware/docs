@@ -1,3 +1,10 @@
+---
+nav:
+  title: Customize payment provider
+  position: 20
+
+---
+
 # Customize Payment Provider
 
 ## Overview
@@ -6,15 +13,14 @@ In this guide you'll learn how to customize an existing payment provider. In thi
 
 ## Prerequisites
 
-As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide.md), but you don't necessarily need that. It is helpful to have looked at the guide about [adding a custom payment method](add-payment-plugin.md) beforehand. Furthermore, decorating a service is also not explained here, but it's covered in our guide about [adjusting a service](../../plugin-fundamentals/adjusting-service.md), so having this open in another tab won't hurt.
+As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide), but you don't necessarily need that. It is helpful to have looked at the guide about [adding a custom payment method](add-payment-plugin) beforehand. Furthermore, decorating a service is also not explained here, but it's covered in our guide about [adjusting a service](../../plugin-fundamentals/adjusting-service), so having this open in another tab won't hurt.
 
 ## Customize the payment provider
 
 First, we create a new class that extends from the provider we want to customise. In this example we customise the class `Shopware\Core\Checkout\Payment\Cart\PaymentHandler\DebitPayment` and name our class `ExampleDebitPayment`. The constructor has to accept an instance of `OrderTransactionStateHandler` like the original service and additionally an instance of `DebitPayment` that we want to decorate.
 
-{% code title="<plugin root>/src/Service/ExampleDebitPayment.php" %}
-
 ```php
+// <plugin root>/src/Service/ExampleDebitPayment.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -49,13 +55,10 @@ class ExampleDebitPayment extends DebitPayment
 }
 ```
 
-{% endcode %}
-
 After we've created our customized payment provider class, we have to register it to the DI-container.
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
-
-```markup
+```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -70,5 +73,3 @@ xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/sc
     </services>
 </container>
 ```
-
-{% endcode %}

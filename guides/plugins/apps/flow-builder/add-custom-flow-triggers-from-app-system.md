@@ -1,12 +1,19 @@
+---
+nav:
+  title: Add custom flow trigger from app system
+  position: 20
+
+---
+
 # Add custom flow trigger
 
-{% hint style="info" %}
+::: info
 The Shopware app custom flow triggers are only accessible from 6.5.3.0 and later versions.
-{% endhint %}
+:::
 
 In addition to the default triggers, you have the option to incorporate custom, pre-defined, and adjustable triggers into the flow builder.
 
-![Custom flow trigger in Administration](../../../../.gitbook/assets/flow-builder-custom-trigger-preview.png)
+![Custom flow trigger in Administration](../../../../assets/flow-builder-custom-trigger-preview.png)
 
 After reading, you will be able to :
 
@@ -18,7 +25,7 @@ After reading, you will be able to :
 
 Please ensure you have a working Shopware 6 store (either cloud or self-hosted). Prior knowledge about the Flow Builder feature of Shopware 6 is useful.
 
-Please see the [Flow Builder Concept](../../../../concepts/framework/flow-concept.md) for more information.
+Please see the [Flow Builder Concept](../../../../concepts/framework/flow-concept) for more information.
 
 ## Create the app wrapper
 
@@ -51,11 +58,10 @@ To get started with your app, create an `apps` folder inside the `custom` folder
 
 The manifest file is the central point of your app. It defines the interface between your app and the Shopware instance. It provides all the information concerning your app, as seen in the minimal version below:
 
-{% code title="manifest.xml" %}
-
 ```xml
+// manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
         <name>FlowBuilderTriggerApp</name>
         <label>Flow Builder Trigger App</label>
@@ -71,20 +77,17 @@ The manifest file is the central point of your app. It defines the interface bet
 </manifest>
 ```
 
-{% endcode %}
-
-{% hint style="warning" %}
+::: warning
 The name of your app that you provide in the manifest file needs to match the folder name of your app.
-{% endhint %}
+:::
 
 ## Define the flow trigger
 
 To create a flow trigger, you need to define a `<flow-event>` block within a file called `flow.xml`. Each `<flow-event>` represents one trigger, and you can define an arbitrary number of events.
 
-{% code title="Resources/flow.xml" %}
-
 ```xml
-<flow-extensions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd">
+// Resources/flow.xml
+<flow-extensions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd">
     <flow-events>
         <flow-event>
             ... # The first trigger
@@ -96,8 +99,6 @@ To create a flow trigger, you need to define a `<flow-event>` block within a fil
     ...
 </flow-extensions>
 ```
-
-{% endcode %}
 
 A single flow trigger would look like this:
 
@@ -154,7 +155,7 @@ To fulfill the `aware`, refer to a subset of action triggers aware:
 | salesChannelAware  | Shopware\Core\Framework\Event\SalesChannelAware  |
 | userAware          | Shopware\Core\Framework\Event\UserAware          |
 
-Please refer to the [Schema definition for flow events (GitHub)](https://github.com/shopware/platform/blob/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd) for more information.
+Please refer to the [Schema definition for flow events (GitHub)](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd) for more information.
 
 ## Trigger API
 
@@ -187,11 +188,11 @@ Or we can use the data when defining the email template.
     <h1>Visit us at: {{ url }} </h1>
 ```
 
-Please see the [StorableFlow Concept](../../../../resources/references/adr/2022-07-21-adding-the-storable-flow-to-implement-delay-action-in-flow-builder.md) for more information.
+Please see the [StorableFlow Concept](../../../../resources/references/adr/2022-07-21-adding-the-storable-flow-to-implement-delay-action-in-flow-builder) for more information.
 
 ## Snippet for translation
 
-You can define snippets to translate your custom trigger to show the trigger tree and flow list. Refer to the [Adding snippets](../../plugins/administration/adding-snippets.md) guide for more information.
+You can define snippets to translate your custom trigger to show the trigger tree and flow list. Refer to the [Adding snippets](../../plugins/administration/adding-snippets) guide for more information.
 
 Snippet keys should be defined based on your trigger name defined at `<name>` in your `flow.xml`.
 
@@ -203,10 +204,9 @@ Snippet keys should be defined based on your trigger name defined at `<name>` in
 
 ***Example***
 
-{% code title="Resources/flow.xml" %}
-
 ```xml
-<flow-extensions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd">
+// Resources/flow.xml
+<flow-extensions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd">
     <flow-events>
         <flow-event>
             <name>swag.before.open_the_doors</name>
@@ -216,11 +216,8 @@ Snippet keys should be defined based on your trigger name defined at `<name>` in
 </flow-extensions>
 ```
 
-{% endcode %}
-
-{% code title="custom/apps/FlowBuilderTriggerApp/Resources/app/administration/snippet/en-GB.json" %}
-
-```json
+```js
+// custom/apps/FlowBuilderTriggerApp/Resources/app/administration/snippet/en-GB.json
 {
   "sw-flow-custom-event": {
     "event-tree": {
@@ -234,8 +231,6 @@ Snippet keys should be defined based on your trigger name defined at `<name>` in
   }
 }
 ```
-
-{% endcode %}
 
 ## Install the App
 

@@ -1,6 +1,13 @@
+---
+nav:
+  title: Performance Tweaks
+  position: 70
+
+---
+
 # Performance Tweaks
 
-Shopware is a platform for many different projects. It needs to handle a broad range of load characteristics and environments. That means that the default configuration is optimized for the best out-of-the-box experience. But there are many opportunities to increase the performance by fitting the configuration to your needs.
+Shopware is a platform for many different projects. It needs to handle a broad range of load characteristics and environments. It means that the default configuration is optimized for the best out-of-the-box experience. However, there are many opportunities to increase the performance by fitting the configuration to your needs.
 
 ## HTTP cache
 
@@ -10,7 +17,7 @@ To enable this, set `SHOPWARE_HTTP_CACHE_ENABLED=1` in the `.env`
 
 ### Reverse proxy cache
 
-When you have many app servers, you should consider using a [reverse proxy cache](../infrastructure/reverse-http-cache.md) like Varnish. Shopware offers a default configuration for Varnish out-of-the-box.
+When you have many app servers, you should consider using a [reverse proxy cache](../infrastructure/reverse-http-cache) like Varnish. Shopware offers a default configuration for Varnish out-of-the-box and a [Varnish Docker image](https://github.com/shopware/varnish-shopware) for development.
 
 ### Logged-in / cart-filled
 
@@ -28,7 +35,7 @@ shopware:
 
 ### Delayed invalidation
 
-A delay for the cache invalidation can be activated for systems with a high update frequency for the inventory (products, categories). Once the instruction to delete the cache entries for a specific product or category occurs, they are not deleted instantly but processed by a background task afterwards. Thus, if two processes invalidate the cache in quick succession, the timer for the invalidation of this cache entry will only reset.
+A delay for cache invalidation can be activated for systems with a high update frequency for the inventory (products, categories). Once the instruction to delete the cache entries for a specific product or category occurs, they are not deleted instantly but processed by a background task later. Thus, if two processes invalidate the cache in quick succession, the timer for the invalidation of this cache entry will only reset.
 
 ```yaml
 # config/packages/prod/shopware.yaml
@@ -41,9 +48,9 @@ shopware:
 
 ## MySQL instead of MariaDB
 
-{% hint style="info" %}
+::: info
 If you use Elasticsearch/Opensearch as a search engine, you can ignore this section. All filtering, sorting, and aggregations are done in Elasticsearch/Opensearch.
-{% endhint %}
+:::
 
 In some places in the code, we use JSON fields. As soon as it comes to filtering, sorting, or aggregating JSON fields, MySQL is ahead of the MariaDB fork. Therefore, we strongly recommend the use of MySQL.
 
@@ -57,9 +64,9 @@ and then you can set `SQL_SET_DEFAULT_SESSION_VARIABLES=0` to your `.env` file
 
 ## SQL is faster than DAL
 
-We designed the DAL (Data Abstraction Layer) to provide developers a flexible and extensible data management. However, features in such a system come at the cost of performance. Therefore, using DBAL (plain SQL) is much faster than using the DAL in many scenarios, especially when it comes to internal processes, where often only one ID of an entity is needed.
+DAL(Data Abstraction Layer) has been designed suitably to provide developers with a flexible and extensible data management. However, features in such a system come at the cost of performance. Therefore, using DBAL (plain SQL) is much faster than using the DAL in many scenarios, especially when it comes to internal processes, where often only one ID of an entity is needed.
 
-Refer to this article to know more on [when to use plain SQL and DAL](../../../resources/references/adr/2021-05-14-when-to-use-plain-sql-or-dal.md).
+Refer to this article to know more on [when to use plain SQL and DAL](../../../resources/references/adr/2021-05-14-when-to-use-plain-sql-or-dal).
 
 ## Elasticsearch/Opensearch
 
@@ -67,13 +74,13 @@ Elasticsearch/Opensearch is a great tool to reduce the load of the MySQL server.
 
 When using Elasticsearch, it is important to set the `SHOPWARE_ES_THROW_EXCEPTION=1` `.env` variable. This ensures that there is no fallback to the MySQL server if an error occurs when querying the data via Elasticsearch. In large projects, the failure of Elasticsearch leads to the MySQL server being completely overloaded otherwise.
 
-Read more on [Elasticsearch setup](../infrastructure/elasticsearch/elasticsearch-setup.md)
+Read more on [Elasticsearch setup](../infrastructure/elasticsearch/elasticsearch-setup)
 
 ## Prevent mail data updates
 
-{% hint style="info" %}
-[Prevent mail updates](https://developer.shopware.com/docs/v/6.4/resources/references/adr/performance/2022-03-25-prevent-mail-updates) feature is available starting with Shopware 6.4.11.0.
-{% endhint %}
+::: info
+[Prevent mail updates](../../../resources/references/adr/2022-03-25-prevent-mail-updates.md) feature is available starting with Shopware 6.4.11.0.
+:::
 
 To provide auto-completion for different mail templates in the Administration UI, Shopware has a mechanism that writes an example mail into the database when sending the mail.
 
@@ -86,11 +93,11 @@ shopware:
         update_mail_variables_on_send: false
 ```
 
-If you wonder, why it is in `prod`, have a look into the [Symfony configuration about configuration environments](https://symfony.com/doc/current/configuration.html#configuration-environments).
+If you ever wonder why it is in `prod`, take a look into the [Symfony configuration environments](https://symfony.com/doc/current/configuration.html#configuration-environments).
 
 ## Increment storage
 
-The [Increment storage](../performance/increment.md) is used to store the state and display it in the Administration.
+The [Increment storage](../performance/increment) is used to store the state and display it in the Administration.
 This storage increments or decrements a given key in a transaction-safe way, which causes locks upon the storage. Therefore, we recommend moving this source of server load to a separate Redis:
 
 ```yaml
@@ -108,12 +115,12 @@ shopware:
             url: 'redis://host:port/dbindex'
 ```
 
-If you don't need such functionality, it is highly recommended to disable this behavior by using `array` as a type.
+If you don't need such functionality, it is highly recommended that you disable this behavior by using `array` as a type.
 
 ## Lock storage
 
 Shopware uses [Symfony's Lock component](https://symfony.com/doc/5.4/lock.html) to implement locking functionality.
-By default, Symfony will use a local file-based [lock store](../performance/lock-store.md), which breaks into multi-machine (cluster) setups. This is avoided using one of the [supported remote stores](https://symfony.com/doc/5.4/components/lock.html#available-stores).
+By default, Symfony will use a local file-based [lock store](../performance/lock-store), which breaks into multi-machine (cluster) setups. This is avoided using one of the [supported remote stores](https://symfony.com/doc/5.4/components/lock.html#available-stores).
 
 ```yaml
 # config/packages/prod/framework.yaml
@@ -123,12 +130,12 @@ framework:
 
 ## Number ranges
 
-[Number Ranges](../performance/number-ranges.md) provide a consistent way to generate a consecutive number sequence that is used for order numbers, invoice numbers, etc.
+[Number Ranges](../performance/number-ranges) provide a consistent way to generate a consecutive number sequence that is used for order numbers, invoice numbers, etc.
 The generation of the number ranges is an **atomic** operation, which guarantees that the sequence is consecutive and no number is generated twice.
 
 By default, the number range states are stored in the database.
 In scenarios where high throughput is required (e.g., thousands of orders per minute), the database can become a performance bottleneck because of the requirement for atomicity.
-Redis offers better support for atomic increments than the database. Therefore the number ranges should be stored in Redis in such scenarios.
+Redis offers better support for atomic increments than the database. Therefore, the number ranges should be stored in Redis in such scenarios.
 
 ```yaml
 # config/packages/prod/shopware.yaml
@@ -152,30 +159,30 @@ framework:
 ## PHP Config tweaks
 
 ```ini
-# don't evaluate assert()
-assert.active=0
+; don't evaluate assert()
+zend.assertions=-1
 
-# cache file_exists,is_file
-# WARNING: this will lead to thrown errors after clearing cache, while it tries to access cached Shopware_Core_KernelProdDebugContainer.php
+; cache file_exists,is_file
+; WARNING: this will lead to thrown errors after clearing cache while it tries to access cached Shopware_Core_KernelProdDebugContainer.php
 opcache.enable_file_override=1
 
-# increase opcache string buffer as shopware has many files
+; increase opcache string buffer as shopware has many files
 opcache.interned_strings_buffer=20
 
-# disables opcache validation for timestamp for reinvalidation of the cache
-# WARNING: you need to clear on deployments the opcache by reloadding php-fpm or cachetool (https://github.com/gordalina/cachetool)
+; disables opcache validation for timestamp for reinvalidation of the cache
+; WARNING: you need to clear on deployments the opcache by reloading php-fpm or cachetool (https://github.com/gordalina/cachetool)
 opcache.validate_timestamps=0
 
-# disable check for BOM
+; disable check for BOM
 zend.detect_unicode=0
 
-# increase default realpath cache
+; increase default realpath cache
 realpath_cache_ttl=3600
 ```
 
-{% hint style="info" %}
+::: info
 The web updater is not compatible with opcache, as updates require an opcache clear.
-{% endhint %}
+:::
 
 Also, PHP PCRE Jit Target should be enabled. This can be checked using `php -i | grep 'PCRE JIT Target'` or looking into the *phpinfo* page.
 
@@ -183,7 +190,7 @@ For an additional 2-5% performance improvement, it is possible to provide a prel
 
 - Each cache clear requires a PHP-FPM restart
 - Each file change requires a PHP-FPM restart
-- Extension Manager does not work
+- The Extension Manager does not work
 
 The PHP configuration would look like:
 
@@ -194,7 +201,7 @@ opcache.preload_user=nginx
 
 ## Cache ID
 
-The Shopware cache has a global cache id to clear the cache faster and work in a cluster setup. This cache id is saved in the database and will only be changed when the cache is cleared. This ensures that the new cache is used and the message queue can clean the old folder. If this functionality is not used, this cache id can also be hardcoded `SHOPWARE_CACHE_ID=foo` in the `.env` to save one SQL query on each request.
+The Shopware cache has a global cache ID to clear the cache faster and work in a cluster setup. This cache ID is saved in the database and will only be changed when the cache is cleared. This ensures that the new cache is used and the message queue can clean the old folder. If this functionality is not used, this cache ID can also be hardcoded `SHOPWARE_CACHE_ID=foo` in the `.env` to save one SQL query on each request.
 
 ## .env.local.php
 
@@ -227,7 +234,7 @@ The `business_event_handler_buffer` handler logs flow. Setting it to `error` wil
 
 ## Disable App URL external check
 
-On any Administration load Shopware tries to request himself to test that the configured `APP_URL` inside `.env` is correct.
+On any Administration load, Shopware tries to request itself to test that the configured `APP_URL` inside `.env` is correct.
 If your `APP_URL` is correct, you can disable this behavior with an environment variable `APP_URL_CHECK_DISABLED=1`.
 
 ## Disable fine-grained caching

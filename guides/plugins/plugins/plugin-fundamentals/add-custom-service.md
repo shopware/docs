@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom service
+  position: 60
+
+---
+
 # Add Custom Service
 
 ## Overview
@@ -6,7 +13,7 @@ In this guide you'll learn how to create a custom service using the Symfony [DI 
 
 ## Prerequisites
 
-In order to add your own custom service for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
+In order to add your own custom service for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide).
 
 ## Adding service
 
@@ -14,9 +21,8 @@ Adding a custom service requires to load a `services.xml` file with your plugin.
 
 Here's our example `services.xml`:
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
-
-```markup
+```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -29,13 +35,10 @@ xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/sc
 </container>
 ```
 
-{% endcode %}
-
 Therefore, this is how your service could then look like:
 
-{% code title="<plugin root>/src/Service/ExampleService.php" %}
-
 ```php
+// <plugin root>/src/Service/ExampleService.php
 // SwagBasicExample/src/Service/ExampleService.php
 
 <?php declare(strict_types=1);
@@ -51,14 +54,12 @@ class ExampleService
 }
 ```
 
-{% endcode %}
-
-{% hint style="info" %}
+::: info
 By default, all services in Shopware 6 are marked as _private_. Read more about [private and public services](https://symfony.com/doc/current/service_container.html#public-versus-private-services).
-{% endhint %}
+:::
 
 ## Next steps
 
-You have now created your own custom service. In the same manner, you can create other important plugin classes, such as [commands](add-custom-commands.md), [scheduled tasks](add-scheduled-task.md) or a [subscriber to listen to events](listening-to-events.md).
+You have now created your own custom service. In the same manner, you can create other important plugin classes, such as [commands](add-custom-commands), [scheduled tasks](add-scheduled-task) or a [subscriber to listen to events](listening-to-events).
 
-Furthermore, we also have a guide explaining how to [customize an existing service](adjusting-service.md) instead.
+Furthermore, we also have a guide explaining how to [customize an existing service](adjusting-service) instead.

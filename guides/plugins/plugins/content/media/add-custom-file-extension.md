@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom media extension
+  position: 20
+
+---
+
 # Add Custom Media File Extension
 
 ## Overview
@@ -9,9 +16,9 @@ It will provide an explanation on how you can add new allowed file extensions to
 
 ## Prerequisites
 
-As most of our plugin guides, this guide was also built upon our [Plugin base guide](../../plugin-base-guide.md).
-Furthermore, you'll have to know about adding classes to the [Dependency injection](../../plugin-fundamentals/dependency-injection.md) container
-and about using a subscriber in order to [Listen to events](../../plugin-fundamentals/listening-to-events.md).
+As most of our plugin guides, this guide was also built upon our [Plugin base guide](../../plugin-base-guide).
+Furthermore, you'll have to know about adding classes to the [Dependency injection](../../plugin-fundamentals/dependency-injection) container
+and about using a subscriber in order to [Listen to events](../../plugin-fundamentals/listening-to-events).
 
 ## Adding a custom extension
 
@@ -19,13 +26,13 @@ In this section, we're going to take care of allowing a new extension to Shopwar
 exactly what kind of file this new extension represents (Images, videos, documents, ...).
 
 For this to work, all you have to do is to register to the `MediaFileExtensionWhitelistEvent` event, which can be found
-[here](https://github.com/shopware/platform/blob/v6.4.0.0/src/Core/Content/Media/File/FileSaver.php#L397-L398).
-This is of course done via a [subscriber](../../plugin-fundamentals/listening-to-events.md).
+[here](https://github.com/shopware/shopware/blob/v6.4.0.0/src/Core/Content/Media/File/FileSaver.php#L397-L398).
+This is of course done via a [subscriber](../../plugin-fundamentals/listening-to-events).
 
 Have a look at the following code example:
-{% code title="<plugin root>/src/Service/Subscriber.php" %}
 
 ```php
+// <plugin root>/src/Service/Subscriber.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -52,8 +59,6 @@ class Subscriber implements EventSubscriberInterface
 }
 ```
 
-{% endcode %}
-
 You can use the method `getWhitelist` of the `$event` variable to get the current whitelist, which is just a plain array of extensions.
 Therefore you can add new array entries and then set the array back to the `$event` instance by using the respective setter method
 `setWhitelist`.
@@ -75,11 +80,11 @@ about it.
 What we'll be doing now, is to add a custom `TypeDetector` class which returns an `ImageType` if the extension of the file to be checked matches our type detector.
 Have a look at the following example:
 
-{% tabs %}
-{% tab title="CustomImageTypeDetector.php" %}
-{% code title="<plugin root>/src/Core/Content/Media/TypeDetector/CustomImageTypeDetector.php" %}
+<Tabs>
+<Tab title="CustomImageTypeDetector.php">
 
 ```php
+// <plugin root>/src/Core/Content/Media/TypeDetector/CustomImageTypeDetector.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Media\TypeDetector;
@@ -113,13 +118,12 @@ class CustomImageTypeDetector implements TypeDetectorInterface
 }
 ```
 
-{% endcode %}
-{% endtab %}
+</Tab>
 
-{% tab title="services.xml" %}
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<Tab title="services.xml">
 
 ```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -133,8 +137,8 @@ class CustomImageTypeDetector implements TypeDetectorInterface
 </container>
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 You will have to create a new class which implements from the interface `TypeDetectorInterface`.
 This will come with the requirement of having a `detect` method, which will return the respective media type.
@@ -148,9 +152,9 @@ If the extension does indeed match, we're for sure going to return `ImageType` h
 Make sure to add flags to your media type, e.g. the `transparent` flag, or if it's an animated image.
 
 You can find all available flags in their respective media type classes,
-e.g. [here](https://github.com/shopware/platform/blob/v6.4.0.0/src/Core/Content/Media/MediaType/ImageType.php#L7-L10) for the image media type.
+e.g. [here](https://github.com/shopware/shopware/blob/v6.4.0.0/src/Core/Content/Media/MediaType/ImageType.php#L7-L10) for the image media type.
 
-Make sure to register your new type detector to the [Dependency injection container](../../plugin-fundamentals/dependency-injection.md)
+Make sure to register your new type detector to the [Dependency injection container](../../plugin-fundamentals/dependency-injection)
 by using the tag `shopware.media_type.detector`.
 
 Shopware will now recognise your new image extension and handle your new file like an image.

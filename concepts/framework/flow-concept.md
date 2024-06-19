@@ -1,3 +1,10 @@
+---
+nav:
+  title: Flow
+  position: 70
+
+---
+
 # Flow Builder
 
 Flow Builder is a Shopware automation solution for shop owners with great adaptability and flexibility. With Flow Builder, you can build workflows to automate tasks tailored to your business needs without programming knowledge.
@@ -24,7 +31,7 @@ A special action called "Stop flow" stops any further action in the flow sequenc
 
 A flow template is a pre-created [flow](#flow).
 
-The flow library contains the flow template listing that is shipped with Shopware. Two main ways to create a flow template in the template library are by [apps](../../guides/plugins/plugins/framework/flow/README.md) and [plugins](../../guides/plugins/apps/flow-builder/README.md).
+The flow library contains the flow template listing that is shipped with Shopware. Two main ways to create a flow template in the template library are by [apps](../../guides/plugins/plugins/framework/flow/) and [plugins](../../guides/plugins/apps/flow-builder/).
 
 We can help merchants reduce the complexity of creating an automation process in their business by using a flow template rather than building a flow. As a merchant, you may design a flow more easily by using the flow templates. So you don't have to create complicated flows on your own.
 
@@ -36,8 +43,35 @@ In Shopware, you have multiple interfaces and classes for different types of eve
 
 Once the action on the Storefront or from the app happens, the FlowDispatcher will dispatch FlowEventAware to the FlowExecutor. From here, the FlowExecutor will check the condition to decide whether to execute the action.
 
-![Flow builder concept for flow sequence](../../.gitbook/assets/flow-concept-1.png)
+```mermaid
+flowchart-elk TD
+    A([Start])-->B["`FlowDispatcher::dispatch()`"]
+    B--dispatches (FlowEventAware)-->C["`FlowExecutor::execute()`"]
+    C-->D{"`FlowExecutor::sequenceRuleMatches()`"}
+    C--no condition-->E["`FlowExecutor::executeAction3()`"]
+    D--Yes-->I["`FlowExecutor::executeAction2()`"]    
+    E-->F["`StopFlowAction::handleFlow()`"]
+    F-->G([End])
+    D--No -->H["`FlowExecutor::executeAction1()`"]
+    H-->F
+    I-->F
+```
 
 Here is an example flow of what happens in the system when an order is placed on the Storefront.
 
-![Flow builder concept for order placed](../../.gitbook/assets/flow-concept-2.png)
+```mermaid
+flowchart-elk TD
+    A([Start])
+subgraph Storefront
+    B[User]
+end
+A-->Storefront
+Storefront--Place an order-->Core
+subgraph Core
+    C["`CartOrderRoute::Order()`"]--dispatch [checkout.order.place]-->D["`FlowDispatcher::dispatch()`"]
+    D-->E["`FlowExecutor::execute()`"]
+    E-->F["`FlowExecutor::executeAction()`"]
+    F-->G["`StopFlowAction::handleFlow()`"]
+end
+    G-->H([End])
+```

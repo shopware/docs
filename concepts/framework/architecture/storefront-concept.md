@@ -1,3 +1,10 @@
+---
+nav:
+  title: Storefront
+  position: 10
+
+---
+
 # Storefront
 
 In this article, you will get to know the Storefront component and learn a lot of its main concepts. Along the way, you will find answers to the following questions:
@@ -12,7 +19,7 @@ In this article, you will get to know the Storefront component and learn a lot o
 
 ## Introduction
 
-The Storefront component is a frontend written in PHP. It conceptually sits on top of the Core, similar to the [Administration](administration-concept.md) component. As the Storefront can be seen as a classical PHP application, it makes use of HTML rendering, JavaScript, and a CSS preprocessor. The Storefront component uses Twig as the templating engine and SASS for styling purposes. The foundation of the Storefront template is based on the Bootstrap framework and, therefore, fully customizable.
+The Storefront component is a frontend written in PHP. It conceptually sits on top of the Core, similar to the [Administration](administration-concept) component. As the Storefront can be seen as a classical PHP application, it makes use of HTML rendering, JavaScript, and a CSS preprocessor. The Storefront component uses Twig as the templating engine and SASS for styling purposes. The foundation of the Storefront template is based on the Bootstrap framework and, therefore, fully customizable.
 
 ## Main concerns
 
@@ -25,11 +32,11 @@ The main concerns that the Storefront component has are listed below. Furthermor
 
 Contrary to API calls that result in single resource data, a whole page in the Storefront displays multiple different data sets on a single page. Think of partials, which lead to a single page being displayed. Imagine a page that displays the order overview in the customer account environment. There are partials that are generic and will be displayed on almost every Page. These partials include - for example, Header and Footer information wrapped into a `GenericPage` as `Pagelets` \(`HeaderPagelet`, `FooterPagelet`\). This very generic Page will later be enriched with the specific information you want to display through a separate loader \(e.g. a list of orders\).
 
-To achieve getting information from a specific resource, the Storefront's second concern is to map requests to the Core. Internally, the Storefront makes use of the [Store API](../../api/store-api.md) routes to enrich the Page with additional information, e.g., a list of orders, which is being fetched through the order route. Once all needed information is added to the Page, the corresponding page loader returns the Page to a Storefront controller.
+To achieve getting information from a specific resource, the Storefront's second concern is to map requests to the Core. Internally, the Storefront makes use of the [Store API](../../api/store-api) routes to enrich the Page with additional information, e.g., a list of orders, which is being fetched through the order route. Once all needed information is added to the Page, the corresponding page loader returns the Page to a Storefront controller.
 
-Contrary to the Core, which can almost completely omit templating in favor of JSON responses, the Storefront contains a rich set of Twig templates to display a fully functional shop. Another concern of the Storefront is to provide templating with Twig. The page object, which was enriched beforehand, will later be passed to a specific Twig page template throughout a controller. A more detailed look into an example can be found in [Composite data handling](storefront-concept.md#composite-data-handling).
+Contrary to the Core, which can almost completely omit templating in favor of JSON responses, the Storefront contains a rich set of Twig templates to display a fully functional shop. Another concern of the Storefront is to provide templating with Twig. The page object, which was enriched beforehand, will later be passed to a specific Twig page template throughout a controller. A more detailed look into an example can be found in [Composite data handling](storefront-concept#composite-data-handling).
 
-Last but not least, the Storefront not only contains static templates but also includes a theming engine to modify the rendered templates or change the default layout programmatically with your own [Themes](../../../guides/plugins/themes/) or [Plugins](storefront-concept.md).
+Last but not least, the Storefront not only contains static templates but also includes a theming engine to modify the rendered templates or change the default layout programmatically with your own [Themes](../../../guides/plugins/themes/) or [Plugins](storefront-concept).
 
 ## Structure
 
@@ -54,7 +61,7 @@ Let's have a look at the Storefront's general component structure. When opening 
 |- Storefront.php
 ```
 
-Starting at the top of this list, you will find all Storefront controllers inside the `Controller` directory. As said beforehand, a page is being built inside that controller with the help of the corresponding page loaders, Pages, Pagelets, and events, which you will find in the directories: `Pages`, `Pagelets`, and their sub-directories. Each controller method will also give detailed information about its routing with the help of annotations. The directory `DependencyInjection` includes all dependencies which are used in the specific controllers, whereas the `Event` directory includes route request events, and the `Framework` directory, amongst other things, also includes the Routing, Caching, and furthermore. `Migration` and `Test` obviously include migrations and tests for the Storefront component \(e.g., tests for each Storefront controller\).
+Starting at the top of this list, you will find all Storefront controllers inside the `Controller` directory. As said beforehand, a page is being built inside that controller with the help of the corresponding page loaders, Pages, Pagelets, and events, which you will find in the directories: `Pages`, `Pagelets`, and their sub-directories. Each controller method will also give detailed information about its routing with the help of attributes. The directory `DependencyInjection` includes all dependencies which are used in the specific controllers, whereas the `Event` directory includes route request events, and the `Framework` directory, amongst other things, also includes the Routing, Caching, and furthermore. `Migration` and `Test` obviously include migrations and tests for the Storefront component \(e.g., tests for each Storefront controller\).
 
 As the Storefront theme uses Bootstrap, the template structure inside `./Resources` is a derivative of the Bootstrap starter template. Besides using Twig as the templating engine and SASS as the CSS preprocessor, we are also using Webpack for bundling and transpiling purposes. This templating directory structure is considered the best practice. If you are interested in developing your own themes or plugins, this section will give more information.
 
@@ -74,15 +81,15 @@ A single Page is always a three class namespace:
 
 ### Example: Composition of the account order page
 
-Referring to the example described in the [main concerns chapter](storefront-concept.md#main-concerns), have a detailed look at the composition of the Storefronts `AccountOrderPage` with Header and Footer information. The composition is handled through the page loaders themselves by triggering the loading of associated data internally. The following example will also be used for any other Page being displayed on the Storefront.
+Referring to the example described in the [main concerns chapter](storefront-concept#main-concerns), have a detailed look at the composition of the Storefronts `AccountOrderPage` with Header and Footer information. The composition is handled through the page loaders themselves by triggering the loading of associated data internally. The following example will also be used for any other Page being displayed on the Storefront.
 
 To describe how the composition of the Page works, first get to know what the result of the composition should be.
 
 * By calling a specific route \(e.g. `/account/order`\), one should receive a specific page in the Storefront.
 * This page consists of generic information \(e.g. Header, Footer\) and detailed information \(e.g. a list of orders\).
-* Detailed information should be fetched throughout the Core component to make use of the [Store API routes](../../api/store-api.md).
+* Detailed information should be fetched throughout the Core component to make use of the [Store API routes](../../api/store-api).
 
-The best entry point to give you a good understanding of how the composition works is the corresponding controller. In our case, it is the `AccountOrderController`. The main and only task of the controller is to assign a page struct to a variable, which will later be passed to a Twig template. The Page is received by the specific `AccountOrderPageLoader`. Additionally, the method annotations of the controller also set routing information like path, name, options, and methods.
+The best entry point to give you a good understanding of how the composition works is the corresponding controller. In our case, it is the `AccountOrderController`. The main and only task of the controller is to assign a page struct to a variable, which will later be passed to a Twig template. The Page is received by the specific `AccountOrderPageLoader`. Additionally, the method attributes of the controller also set routing information like path, name, options, and methods.
 
 Speaking of the page loader \(`AccountOrderPageLoader`\), which returns the page \(`AccountOrderPage`\), you will see that we are doing the composition here. At first, a generic page is created by using the `GenericPageLoader`. As described above, this generic Page includes information, which is generic like Header, Footer, and Meta information. This information is wrapped inside our `Pagelets` and displays a specific part of the Page.
 
@@ -92,14 +99,14 @@ Once we have set all the necessary information to our page \(`AccountOrderPage`\
 
 To summarize the composition of a page, have a look at this diagram:
 
-![Composition of a Storefront page](../../../.gitbook/assets/concepts-storefront-composite-data-loading.png)
+![Composition of a Storefront page](../../../assets/framework-storefront-comnpositeData.svg)
 
 ## Translations
 
 Extending or adjusting a **translation** in Shopware 6 can be done by adding your own snippets inside a plugin. Besides that, there is also a set of translations inside our default Storefront component. We have decided to save snippets as JSON files, so it is easy to structure and find snippets you want to change. However, when using pluralization and/or variables, you can expect slight differences between snippets in the Administration and the Storefront. In theory, you can place your snippets anywhere as long as you load your JSON files correctly. However, we recommend that you mirror the core structure of Shopware.
 
-{% hint style="info" %}
+::: info
 Storefront snippets can be found in `platform/src/Storefront/Resources/snippet`.
-{% endhint %}
+:::
 
 Inside that directory, you will find a specific sub-directory for each language, e.g., `de_DE` following the ISO standard. The localization is done via the exact ISO. In addition to the language, the country of destination is also supplied. By default, two Storefront translations are provided: `de_DE` and `en_GB`. There are, of course, language plugins for other locales available. Inside these JSON files, you will find a simple translation and the possibility to work with variables and pluralization, which are wrapped with the `%` character. The reference of a translated value is used inside our Twig templates by calling the Twig function `trans` and working with interpolations \( e.g. `{{ "general.homeLink"|trans }}`\).

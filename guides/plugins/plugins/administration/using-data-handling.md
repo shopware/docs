@@ -1,3 +1,10 @@
+---
+nav:
+  title: Using the data handling
+  position: 120
+
+---
+
 # Using the data handling
 
 The Shopware 6 Administration allows you to fetch and write nearly everything in the database. This guide will teach you the basics of the data handling.
@@ -6,7 +13,7 @@ The Shopware 6 Administration allows you to fetch and write nearly everything in
 
 All you need for this guide is a running Shopware 6 instance and full access to both the files, as well as the command line and preferably registered module. Of course you'll have to understand JavaScript, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation.
 
-Considering that the data handling in the Administration is remotely operating the Data Abstraction Layer its highly encouraged to read the articles [Reading data with the DAL](../framework/data-handling/reading-data.md) and [Writing data with the DAL](../framework/data-handling/writing-data.md).
+Considering that the data handling in the Administration is remotely operating the Data Abstraction Layer its highly encouraged to read the articles [Reading data with the DAL](../framework/data-handling/reading-data) and [Writing data with the DAL](../framework/data-handling/writing-data).
 
 ## Relevant classes
 
@@ -58,9 +65,10 @@ Note: The version 1 used in the options is just an example, how to select a vers
 
 ## Working with the criteria class
 
-To fetch data from the server, the repository has a `search` function. Each repository function requires the API `context` and `criteria` class, which contains all functionality of the core criteria class. If you want to see all the options take a look at the file `src/Administration/Resources/app/administration/src/core/data/criteria.data.js`.
+To fetch data from the server, the repository has a `search` function. Each repository function requires the API `context` and `criteria` class, which contains all functionality of the core criteria class. If you want to see all the options take a look at the file [src/Administration/Resources/app/administration/src/core/data/criteria.data.ts](https://github.com/shopware/meteor/blob/main/packages/admin-sdk/src/data/Criteria.ts).
 
 ```javascript
+const { Criteria } = Shopware.Data;
 Shopware.Component.register('swag-basic-example', {
     inject: ['repositoryFactory'],
 
@@ -109,7 +117,6 @@ Shopware.Component.register('swag-basic-example', {
 
         criteria.getAssociation('categories')
             .addSorting(Criteria.sort('category.name', 'ASC'));
-
 
         this.productRepository.create('product');
 
@@ -266,6 +273,7 @@ Shopware.Component.register('swag-basic-example', {
 Each association can be accessed via normal property access:
 
 ```javascript
+const { Criteria } = Shopware.Data;
 Shopware.Component.register('swag-basic-example', {
     inject: ['repositoryFactory'],
 
@@ -359,6 +367,7 @@ Shopware.Component.register('swag-basic-example', {
 In most cases, _ToMany_ associations can be loaded by adding a the association with the `.addAssociation()` method of the Criteria object.
 
 ```javascript
+const { Criteria } = Shopware.Data;
 Shopware.Component.register('swag-basic-example', {
     inject: ['repositoryFactory'],
 
@@ -398,6 +407,7 @@ Shopware.Component.register('swag-basic-example', {
 The following example shows how to create a repository based on associated data. In this case the `priceRepository` contains associated `prices` to the product with the `id` 'some-id'.
 
 ```javascript
+const { Criteria } = Shopware.Data;
 Shopware.Component.register('swag-basic-example', {
     inject: ['repositoryFactory'],
 
@@ -476,6 +486,7 @@ Shopware.Component.register('swag-basic-example', {
 The following example shows how to create a repository based on associated data. In this case the `categoryRepository` contains associated categories to the product with the `id` 'some-id'.
 
 ```javascript
+const { Criteria } = Shopware.Data;
 Shopware.Component.register('swag-basic-example', {
     inject: ['repositoryFactory'],
 
@@ -585,7 +596,6 @@ Shopware.Component.register('swag-basic-example', {
             .get('some-id', Shopware.Context.api)
             .then(product => {
                 this.product = product;
-
 
             });
     },

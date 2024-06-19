@@ -1,3 +1,10 @@
+---
+nav:
+  title: Using assets
+  position: 180
+
+---
+
 # Using assets
 
 ## Overview
@@ -8,7 +15,7 @@ When working with an own plugin, the usage of own custom images or other assets 
 
 In order to be able to start with this guide, you need to have an own plugin running. As to most guides, this guide is also built upon the Plugin base guide:
 
-{% page-ref page="../plugin-base-guide.md" %}
+<PageRef page="../plugin-base-guide" />
 
 Needless to say, you should have your image or another asset at hand to work with.
 
@@ -29,15 +36,12 @@ In order to add your own custom assets, you need to save your assets in the `Res
     └── SwagBasicExample.php
 ```
 
-Similar as in [using custom assets in Storefront](../storefront/add-custom-assets.md), you need to execute the following command:
-
-{% code title="" %}
+Similar as in [using custom assets in Storefront](../storefront/add-custom-assets), you need to execute the following command:
 
 ```bash
+// 
 bin/console assets:install
 ```
-
-{% endcode %}
 
 This way, your plugin assets are copied to the `public/bundles` folder:
 
@@ -53,10 +57,24 @@ This way, your plugin assets are copied to the `public/bundles` folder:
 
 ## Use custom assets in the Administration
 
-After adding your assets to the `public/bundles` folder, you can start using your assets in the Administration. Basically, you just need to use the Vue [filter](https://vuejs.org/v2/guide/filters.html) `asset`.
+After adding your assets to the `public/bundles` folder, you can start using them in the Administration. Simply utilize the `asset` filter.
 
-```markup
-<img :src="'/<plugin root>/static/your-image.png' | asset">
+:::warning
+Note that [Vue filters](https://vuejs.org/v2/guide/filters.html) are no longer supported in Vue3 and therefore they will not function in Shopware versions 6.6 and above.
+:::
+
+Create a computed component to make them easy to use in your template.
+
+```js
+computed: {
+    assetFilter() {
+        return Shopware.Filter.getByName('asset');
+    },
+}
+```
+
+```html
+<img :src="assetFilter('/<plugin root>/static/your-image.png')">
 ```
 
 You're able to use this line in your `twig`/`html` files as you please and that's basically it. You successfully added your own asset to the Administration.

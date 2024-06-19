@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom Javascript
+  position: 50
+
+---
+
 # Add Custom Javascript
 
 ## Overview
@@ -20,24 +27,20 @@ Now create an actual file for your JavaScript plugin, in this example it will be
 
 Inside this file create and export an ExamplePlugin class that extends the base Plugin class:
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
 import Plugin from 'src/plugin-system/plugin.class';
 
 export default class ExamplePlugin extends Plugin {
 }
 ```
 
-{% endcode %}
-
 This is just a basic vanilla JavaScript ES6 class, which extends the `Plugin` class.
 
 Each plugin has to implement the `init()` method. This method will be called when your plugin gets initialized and is the entrypoint to your custom logic. The plugin initialization runs on `DOMContentLoaded` event, so you can be sure, that the dom is already completely loaded. In your case you add a callback to the `scroll` event from the window and check if the user has scrolled to the bottom of the page. If so we display an alert. Your full plugin now looks like this:
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
 import Plugin from 'src/plugin-system/plugin.class';
 
 export default class ExamplePlugin extends Plugin {
@@ -53,8 +56,6 @@ export default class ExamplePlugin extends Plugin {
 }
 ```
 
-{% endcode %}
-
 A short explanation what the condition is doing here: The `window.innerHeight` contains the height of the window, as you might have guessed.
 
 This is added to `window.pageYOffset`, which contains the current scroll position on the Y-axis. It represents the **top** value of the current scroll, which basically means: If your website is 5000px high and you scroll to the very bottom, the value would **not** be 5000px, but rather `5000px - window.innerHeight`. Thus, we have to add up the `innerHeight` to actually get the bottom of the website.
@@ -69,9 +70,8 @@ Shopware is automatically looking for a `main.js` file in a directory `<plugin r
 
 Create a `main.js` file inside your `<plugin root>/src/Resources/app/storefront/src` folder and get the PluginManager from the global window object. Then register your own plugin:
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/main.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/storefront/src/main.js
 // Import all necessary Storefront plugins
 import ExamplePlugin from './example-plugin/example-plugin.plugin';
 
@@ -80,32 +80,46 @@ const PluginManager = window.PluginManager;
 PluginManager.register('ExamplePlugin', ExamplePlugin);
 ```
 
-{% endcode %}
-
 Right now, your plugin will automatically be loaded once you load the website.
 
 ## Binding your plugin to the DOM
 
 You can also bind your plugin to a DOM element by providing a css selector:
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/main.js" %}
-
 ```javascript
- // Import all necessary Storefront plugins
- import ExamplePlugin from './example-plugin/example-plugin.plugin';
+// <plugin root>/src/Resources/app/storefront/src/main.js
+// Import all necessary Storefront plugins
+import ExamplePlugin from './example-plugin/example-plugin.plugin';
 
- // Register your plugin via the existing PluginManager
- const PluginManager = window.PluginManager;
- PluginManager.register('ExamplePlugin', ExamplePlugin, '[data-example-plugin]');
+// Register your plugin via the existing PluginManager
+const PluginManager = window.PluginManager;
+PluginManager.register('ExamplePlugin', ExamplePlugin, '[data-example-plugin]');
 ```
-
-{% endcode %}
 
 In this case the plugin just gets executed if the HTML document contains at least one element with the `data-example-plugin` attribute. You can then use `this.el` inside your plugin to access the DOM element your plugin is bound to.
 
+## Registering an async plugin
+
+You can also register an async JS-plugin. Instead of importing a JS-plugin file at the top of your `main.js`, you can provide a dynamic import inside `PluginManager.register()`.
+The import path can remain the same as the synchronous import.
+
+```javascript
+// <plugin root>/src/Resources/app/storefront/src/main.js
+
+// Register your plugin via the existing PluginManager using a dynamic import
+const PluginManager = window.PluginManager;
+PluginManager.register('ExamplePlugin', () => import('./example-plugin/example-plugin.plugin'), '[data-example-plugin]');
+```
+
+If an async/dynamic import is provided, then the JS-plugin will be recognized as async by the PluginManager automatically. 
+This means that, the registered JS-plugin will not be included in the main bundled JavaScript (storefront.js) by default. The JS-plugin will only be downloaded on-demand if the plugin selector (`[data-example-plugin]`) is found on the current page, see [Loading your plugin](#loading-your-plugin).
+
+Using an async JS-plugin can be helpful when the plugin is not supposed to be loaded on every page and should only be loaded when it is actually needed. This can reduce the size of the initially loaded JavaScript in the browser.
+When using the "normal" import (`import ExamplePlugin from './example-plugin/example-plugin.plugin';`) in comparison, the JS-plugin will always be included in the JavaScript on all pages.
+
 ### Loading your plugin
 
-The following will create a new template with a very short explanation. If you're looking for more information on what's going on here, head over to our guide about [Customizing templates](customize-templates.md).
+The following will create a new template with a very short explanation. If you're looking for more information on what's going on here, head over to our guide about [Customizing templates](customize-templates).
 
 You bound your plugin to the css selector `[data-example-plugin]`, so you have to add DOM elements with this attribute on the pages you want your plugin to be active.
 
@@ -113,10 +127,8 @@ Create a `<plugin root>/src/Resources/views/storefront/page/content/` folder and
 
 A lot of text, here is the respective example:
 
-{% code title="<plugin root>/src/Resources/views/storefront/page/content/index.html.twig" %}
-{% raw %}
-
-```text
+```twig
+// <plugin root>/src/Resources/views/storefront/page/content/index.html.twig
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
 {% block base_main_inner %}
@@ -126,18 +138,14 @@ A lot of text, here is the respective example:
 {% endblock %}
 ```
 
-{% endraw %}
-{% endcode %}
-
 With this template extension your plugin is active on every content page, like the homepage or category listing pages.
 
 ## Configuring your plugins
 
 You can configure your plugins from inside the templates via data-options. First you have to define a static `options` object inside your plugin and assign your options with default values to it. In your case define a `text` option and as a default value use the text you previously directly prompted to the user. And instead of the hard coded string inside the `alert()`, use your new option value.
 
-{% code title="<plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js" %}
-
 ```javascript
+// <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
 import Plugin from 'src/plugin-system/plugin.class';
 
 export default class ExamplePlugin extends Plugin {
@@ -161,18 +169,14 @@ export default class ExamplePlugin extends Plugin {
 }
 ```
 
-{% endcode %}
-
 Now you are able to override the text that is prompted to the user from inside your templates. For this example we're going to display another message on product detail pages.
 
 Therefore create a `product-detail` folder inside your `<plugin root>/src/Resources/views/storefront/page` folder and add an `index.html.twig` file inside that folder. In your template extend from the default `@Storefront/storefront/page/product-detail/index.html.twig` and override the block `page_product_detail_content`.
 
 After the parent content add a template tag with the `data-example-plugin` tag to activate your plugin on product detail pages as well. Next add a `data-{your-plugin-name-in-kebab-case}-options` \(in this example: `data-example-plugin-options`\) attribute to the DOM element you registered your plugin on \(the template tag\). The value of this attribute are the options you want to override as a JSON object.
 
-{% code title="<plugin root>/src/Resources/views/storefront/page/product-detail/index.html.twig" %}
-{% raw %}
-
-```text
+```twig
+// <plugin root>/src/Resources/views/storefront/page/product-detail/index.html.twig
 {% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
 
 {% set examplePluginOptions = {
@@ -186,9 +190,6 @@ After the parent content add a template tag with the `data-example-plugin` tag t
 {% endblock %}
 ```
 
-{% endraw %}
-{% endcode %}
-
 It is best practice to use a variable for the options because this is extendable from plugins.
 
 ## Modify existing options
@@ -199,9 +200,7 @@ You can use the `replace_recursive` Twig filter for this case.
 
 Imagine the following example can be found in the core:
 
-{% raw %}
-
-```text
+```twig
 {% set productSliderOptions = {
     productboxMinWidth: sliderConfig.elMinWidth.value ? sliderConfig.elMinWidth.value : '',
     slider: {
@@ -222,13 +221,9 @@ Imagine the following example can be found in the core:
 {% endblock %}
 ```
 
-{% endraw %}
-
 Now you want to overwrite the value `slider.mouseDrag` with your plugin. The variable can be overwritten with `replace_recursive`:
 
-{% raw %}
-
-```text
+```twig
 {% block element_product_slider_slider %}
     {% set productSliderOptions = productSliderOptions|replace_recursive({
         slider: {
@@ -240,13 +235,11 @@ Now you want to overwrite the value `slider.mouseDrag` with your plugin. The var
 {% endblock %}
 ```
 
-{% endraw %}
-
 ## Plugin script path
 
 For JavaScript you normally would have two locations where your `*.js` files are located. You have your `main.js` as an entry point inside of the following directory: `<plugin root>/src/Resources/app/storefront/src`.
 
-Shopware will then compile the JavaScript and save the compiled version at `<plugin root>/src/Resources/app/storefront/dist/storefront/js/<plugin-name>.js`. This file will be recognized automatically by Shopware.
+Shopware will then compile the JavaScript and save the compiled version at `<plugin root>/src/Resources/app/storefront/dist/storefront/js/<plugin-name>/<plugin-name>.js`. These files will be recognized automatically by Shopware.
 
 Make sure to ship the compiled file with your plugin as well.
 
@@ -254,25 +247,25 @@ Make sure to ship the compiled file with your plugin as well.
 
 To see your changes you have to build the Storefront. Use the following command and reload your Storefront:
 
-{% tabs %}
-{% tab title="Template" %}
+<Tabs>
+<Tab title="Template">
 
 ```bash
 ./bin/build-storefront.sh
 ```
 
-{% endtab %}
-{% tab title="platform only (contribution setup)" %}
+</Tab>
+<Tab title="platform only (contribution setup)">
 
 ```bash
 composer run build:js:storefront
 ```
 
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 If you now scroll to the bottom of your page an alert should appear.
 
 ## Next steps
 
-You've got your own first javascript plugin running. You might want to start [listening to javascript events](reacting-to-javascript-events.md) now, or even [override other javascript plugins](override-existing-javascript.md) instead.
+You've got your own first javascript plugin running. You might want to start [listening to javascript events](reacting-to-javascript-events) now, or even [override other javascript plugins](override-existing-javascript) instead.

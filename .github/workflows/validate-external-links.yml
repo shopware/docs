@@ -1,0 +1,17 @@
+name: External link validation
+
+on:
+  schedule:
+    - cron: 0 11 * * *
+
+jobs:
+  linkvalidator:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: lychee Link Checker
+        id: lychee
+        uses: lycheeverse/lychee-action@v1.9.3
+        with:
+          fail: true
+          args: --accept=200,403,429 -s "https"  "**/*.html" "**/*.md" "**/*.txt" "**/*.json" --exclude "https://github.com/\[your*" --exclude "https://localhost:9200" --exclude-mail

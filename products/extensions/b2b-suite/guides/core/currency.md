@@ -1,10 +1,23 @@
+---
+nav:
+  title: Currency
+  position: 90
+
+---
+
 # Currency
 
 ## Introduction
 
 The Currency component provides the means for currency calculation in the B2B Suite. The following graph shows components depending on this component:
 
-![image](../../../../../.gitbook/assets/currency-usage.svg)
+![image](../../../../../assets/b2bSuite-core-currencyComponent.svg)
+
+| Icon                                      |Description|
+|---------------------------------------------|------------|
+| <SwagIcon icon="layer-group" type="solid" /> | Represents component |
+| <SwagIcon icon="database" type="solid" /> | Represent context objects that contain the component specific information |
+| <SwagIcon icon="bars-square" type="solid" /> | Represents child components |
 
 ## Context
 

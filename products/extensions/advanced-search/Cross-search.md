@@ -1,3 +1,10 @@
+---
+nav:
+  title: Cross search
+  position: 60
+
+---
+
 # Cross Search
 
 @Refer: `\Shopware\Commercial\AdvancedSearch\Domain\CrossSearch\CrossSearchLogic`

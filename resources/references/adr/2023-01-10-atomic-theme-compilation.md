@@ -3,14 +3,14 @@ title: Atomic theme compilation
 date: 2023-01-10
 area: storefront
 tags: [theme, storefront, performance]
---- 
+---
 
 # Atomic theme compilation
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2023-01-10-atomic-theme-compilation.md)
-{% endhint %}
+You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2023-01-10-atomic-theme-compilation.md)
+:::
 
 ## Context
 
@@ -47,6 +47,7 @@ Because of the aforementioned issues we decided to discard this approach.
 We will expand the abstract class `AbstractThemePathBuilder` to allow for a `seeding` mechanism that allows to change the active theme folder path based on a randomly generated seed.
 
 We add the two following methods that should be implemented in custom implementations of the `AbstractThemePathBuilder`.
+
 ```php
     public function generateNewPath(string $salesChannelId, string $themeId, string $seed): string
     {

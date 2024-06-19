@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom document type
+  position: 20
+
+---
+
 # Add Custom Document Type
 
 ## Overview
@@ -6,9 +13,9 @@ Using the Shopware Administration, you can easily create new documents. This gui
 
 ## Prerequisites
 
-This guide is built upon the [plugin base guide](../../plugin-base-guide.md), but of course you can use those examples with any other plugin.
+This guide is built upon the [plugin base guide](../../plugin-base-guide), but of course you can use those examples with any other plugin.
 
-Furthermore, adding a custom document type via your plugin is done by using [plugin database migrations](../../plugin-fundamentals/database-migrations.md). Since this isn't explained in this guide, you will have to know and understand the plugin database migrations first.
+Furthermore, adding a custom document type via your plugin is done by using [plugin database migrations](../../plugin-fundamentals/database-migrations). Since this isn't explained in this guide, you will have to know and understand the plugin database migrations first.
 
 ## Adding a custom document type, and its own base configuration to the database
 
@@ -16,9 +23,8 @@ Let's start with adding your custom document type to the database, so it's actua
 
 Let's have a look at an example migration:
 
-{% code title="<plugin root>/src/Migration/Migration1616677952AddDocumentType.php" %}
-
 ```php
+// <plugin root>/src/Migration/Migration1616677952AddDocumentType.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Migration;
@@ -136,8 +142,6 @@ class Migration1616677952AddDocumentType extends MigrationStep
 }
 ```
 
-{% endcode %}
-
 So first, we are creating the new document type with the `technical_name` as "example". Make sure to save the ID here since you are going to need it for the following translations:
 
 Afterwards we're inserting the translations, one for German, one for English. For this we're using the `Shopware\Core\Migration\Traits\ImportTranslationsTrait`, which adds the helper method `importTranslation`. There you have to supply the translation table and an instance of `Shopware\Core\Migration\Traits\Translations`. The latter accepts two constructor parameters:
@@ -163,13 +167,12 @@ Your custom document renderer has to implement the `Shopware\Core\Checkout\Docum
 * `supports`: Has to return a string of the document type it supports. We named our document type "example", so our renderer has to return "example".
 * `render`: This needs to return the instance `Shopware\Core\Checkout\Document\Renderer\RendererResult`, which will contain the instance of `Shopware\Core\Checkout\Document\Renderer\RenderedDocument` based on each `orderId`. You will have access to the array of `DocumentGenerateOperation` which contains all respective orderIds, the context and the instance of `Shopware\Core\Checkout\Document\Renderer\DocumentRendererConfig` (additional configuration).
 
-Furthermore, your renderer has to be registered to the [service container](../../plugin-fundamentals/dependency-injection.md) using the tag `document.renderer`.
+Furthermore, your renderer has to be registered to the [service container](../../plugin-fundamentals/dependency-injection) using the tag `document.renderer`.
 
 Let's have a look at an example renderer:
 
-{% code title="<plugin root>/src/Core/Checkout/Document/Render/ExampleDocumentRenderer.php" %}
-
 ```php
+// <plugin root>/src/Core/Checkout/Document/Render/ExampleDocumentRenderer.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Checkout\Document\Render;
@@ -228,7 +231,11 @@ class ExampleDocumentRenderer extends AbstractDocumentRenderer
 
         $template = self::DEFAULT_TEMPLATE;
 
-        $orders = $this->orderRepository->search(new Criteria($ids), $context)->getEntities();
+        $criteria = new Criteria($ids);
+        $criteria->addAssociation('language');
+        $criteria->addAssociation('language.locale');
+
+        $orders = $this->orderRepository->search($criteria, $context)->getEntities();
         foreach ($orders as $order) {
             $orderId = $order->getId();
 
@@ -313,8 +320,6 @@ class ExampleDocumentRenderer extends AbstractDocumentRenderer
 }
 ```
 
-{% endcode %}
-
 First, we are injecting the `rootDir` of the Shopware installation into our renderer since we will need that for rendering our template, and the `DocumentTemplateRenderer`, which will do the template rendering. We also inject `orderRepository` to get all order entities by list of order's id, `documentConfigLoader` to load the document configuration and `numberRangeValueGenerator` to get the document number
 
 The `supports` method just returns the string "example", which is the technical name of our new document type.
@@ -344,23 +349,18 @@ Let's have a quick look at an example document type template. Go ahead and creat
 
 In there you should extend from the default document base template:
 
-{% code title="<plugin root>/src/Resources/views/documents/example\_document.html.twig" %}
-{% raw %}
-
-```php
+```twig
+// <plugin root>/src/Resources/views/documents/example\_document.html.twig
 {% sw_extends '@Framework/documents/base.html.twig' %}
 ```
 
-{% endraw %}
-{% endcode %}
-
-This could be it already. The [base.html.twig](https://github.com/shopware/platform/blob/v6.3.4.1/src/Core/Framework/Resources/views/documents/base.html.twig) template comes with a lot of default templating, which you can now override by using blocks. If you don't know how that's done, have a look at our guide regarding [customizing templates](../../storefront/customize-templates.md).
+This could be it already. The [base.html.twig](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Framework/Resources/views/documents/base.html.twig) template comes with a lot of default templating, which you can now override by using blocks. If you don't know how that's done, have a look at our guide regarding [customizing templates](../../storefront/customize-templates).
 
 ## Adding a number range
 
 You are almost done here. You have a new document type in the database, a renderer for your new document type, and it even uses a custom template. However, you also need to add a new number range for your documents; otherwise, a new number wouldn't be generated for your documents.
 
-Adding a new number range is also done by using a [plugin database migration](../../plugin-fundamentals/database-migrations.md).
+Adding a new number range is also done by using a [plugin database migration](../../plugin-fundamentals/database-migrations).
 
 For this we need a few more things:
 
@@ -371,9 +371,8 @@ For this we need a few more things:
 
 Sounds like a lot, but having a look at an example migration, you will notice that it's not too much of a hassle.
 
-{% code title="<plugin root>/src/Migration/Migration1616974646AddDocumentNumberRange.php" %}
-
 ```php
+// <plugin root>/src/Migration/Migration1616974646AddDocumentNumberRange.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Migration;
@@ -497,8 +496,6 @@ SQL;
 }
 ```
 
-{% endcode %}
-
 As already said, we're first creating the entries in the tables `number_range`, `number_range_type` and `number_range_sales_channel`. For the latter, we're assigning a Storefront sales channel, if any available. Make sure to check here, since in theory there could be no storefront sales channel.
 
 Afterwards we import the translations for the `number_range_translation` and the `number_range_type_translation` tables by using the `ImportTranslationsTrait` once again.
@@ -511,4 +508,4 @@ And that's it now. You Have just created:
 
 ## Next steps
 
-With your custom document type, you also might want to add a new actual document configuration, which is making use of your new type. Creating a custom document is explained in [this guide](add-custom-document.md).
+With your custom document type, you also might want to add a new actual document configuration, which is making use of your new type. Creating a custom document is explained in [this guide](add-custom-document).

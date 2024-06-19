@@ -1,30 +1,25 @@
+---
+nav:
+  title: Stock
+  position: 20
+
+---
+
 # Stock Configuration
 
-When running Shopware 6 there are various configuration options you can use to customize your installation. These configurations reside in the general [bundle configuration](../../../../guides/hosting/configurations/README.md).
+When running Shopware 6 there are various configuration options you can use to customize your installation. These configurations reside in the general [bundle configuration](../../../../guides/hosting/configurations/).
 
 Some features of Shopware are only activated when the corresponding feature flag is enabled. Feature flags can be enabled in your project's `.env` file:
 
-{% code title="<project root>/.env" %}
-
-```shell
-STOCK_HANDLING=1
-```
-
-{% endcode %}
+<<< @/docs/snippets/config/stock.sh
 
 ## Enable stock management system
 
-As of Shopware 6.5.4, the stock management system has been rewritten. The `product.stock` field is now the primary source for real-time product stock values.
+As of Shopware 6.5.5, the stock management system has been rewritten. The `product.stock` field is now the primary source for real-time product stock values.
 
 The new system is not enabled by default. To enable it, set the `STOCK_HANDLING` feature flag to `1`.
 
-{% code title="<project root>/.env" %}
-
-```shell
-STOCK_HANDLING=1
-```
-
-{% endcode %}
+<<< @/docs/snippets/config/stock.sh
 
 In the next major version of Shopware, the new stock management system will become the default.
 
@@ -36,14 +31,8 @@ You can completely disable Shopware's default stock management system. When disa
 
 To disable, set `shopware.stock.enable_stock_management` to `false`:
 
-{% code title="<project root>/config/packages/shopware.yaml" %}
+<<< @/docs/snippets/config/stock_disabled.yaml
 
-```yaml
-shopware:
-  stock:
-    enable_stock_management: false
-```
+For more detailed implementation refer to [Stock](../../../../guides/plugins/plugins/content/stock/) guide section.
 
-{% endcode %}
-
-For more detailed implementation refer to [Stock](../../../../guides/plugins/plugins/content/stock/README.md) guide section.
+<!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/Resources/config/packages/shopware.yaml","WATCHER_HASH":"183f85ba8f15e8e7d0006b70be20940f","WATCHER_CONTAINS":"enable_stock_management"} -->

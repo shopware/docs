@@ -1,12 +1,25 @@
+---
+nav:
+  title: Add custom module
+  position: 20
+
+---
+
 # Add custom module
+
+:::info
+This guide will show you how to add custom modules to the Shopware Administration using your manifest file. This works for simple applications; however, if you want to write more advanced applications, the [Meteor Admin SDK](/resources/admin-extension-sdk/) is recommended. It has many more features and is more flexible.
+
+For further details and guidance on custom modules, refer to the documentation provided on the Meteor Admin SDK's [custom modules](/resources/admin-extension-sdk/api-reference/ui/mainModule) section.
+:::
 
 ## Overview
 
 In your app, you are able to add your own modules to the Administration. Your custom modules are loaded as iframes which are embedded in the Shopware Administration and within this iframe, your website will be loaded and shown.
 
-Creating custom modules takes place at the `<admin>` section of your `manifest.xml`. Take a look at the [Manifest Reference](../../../../resources/references/app-reference/manifest-reference.md) You can add any amount of custom modules by adding new `<module>` elements to your manifest.
+Creating custom modules takes place at the `<admin>` section of your `manifest.xml`. Take a look at the [Manifest Reference](../../../../resources/references/app-reference/manifest-reference) You can add any amount of custom modules by adding new `<module>` elements to your manifest.
 
-To configure your module you can set it up with with some additional attributes.
+To configure your module, you can set it up with with some additional attributes.
 
 * `name` \(required\): The technical name of the module. This is the name your module is referenced with.
 * `parent` \(required\): The Administration navigation id of the menu item that serves as the parent menu item.
@@ -16,11 +29,10 @@ To configure your module you can set it up with with some additional attributes.
 
 Additionally you can define `label` elements inside of your `module` element, to set up how your module will be displayed in the admin menu.
 
-{% code title="manifest.xml" %}
-
 ```xml
+// manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
         ...
     </meta>
@@ -37,9 +49,7 @@ Additionally you can define `label` elements inside of your `module` element, to
 </manifest>
 ```
 
-{% endcode %}
-
-For a complete reference of the structure of the manifest file, take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference.md).
+For a complete reference of the structure of the manifest file, take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference).
 
 If the user opens the module in the Administration your app will receive a request to the URL defined in the `source` attribute of your `module` element. Your app can determine the shop that has opened the module through query parameters added to the url:
 
@@ -48,9 +58,9 @@ If the user opens the module in the Administration your app will receive a reque
 * `timestamp`: The Unix timestamp when the request was created
 * `shopware-shop-signature`: SHA256 HMAC of the rest of the query string, signed with the `shop-secret`
 
-{% tabs %}
+<Tabs>
 
-{% tab title="HTTP" %}
+<Tab title="HTTP">
 
 A sample request may look like this:
 
@@ -58,11 +68,11 @@ A sample request may look like this:
 https://example.com/promotion/view/promotion-config?shop-id=HKTOOpH9nUQ2&shop-url=http%3A%2F%2Fmy.shop.com&timestamp=1592406102&shopware-shop-signature=3621fffa80187f6d43ce6cb25760340ab9ba2ea2f601e6a78a002e601579f415
 ```
 
-In this case the `shopware-shop-signature` parameter contains an SHA256 HMAC of the rest of the query string, signed again with the secret your app assigned the shop during the [registration](../app-base-guide.md#setup). The signature can be used to verify the authenticity of the request.
+In this case the `shopware-shop-signature` parameter contains an SHA256 HMAC of the rest of the query string, signed again with the secret your app assigned the shop during the [registration](../app-base-guide#setup). The signature can be used to verify the authenticity of the request.
 
-{% endtab %}
+</Tab>
 
-{% tab title="App PHP SDK" %}
+<Tab title="App PHP SDK">
 
 ```php
 // injected or build by yourself
@@ -73,15 +83,15 @@ $shop = $shopResolver->resolveShop($serverRequest);
 $module = $contextResolver->assembleModule($serverRequest, $shop);
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Symfony Bundle" %}
+<Tab title="Symfony Bundle">
 
 ```php
 use Shopware\App\SDK\Context\Module\ModuleAction;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 #[AsController]
 class ModuleController {
@@ -95,9 +105,9 @@ class ModuleController {
 }
 ```
 
-{% endtab %}
+</Tab>
 
-{% endtabs %}
+</Tabs>
 
 ## Leave loading state
 
@@ -119,11 +129,10 @@ When you define a module, it gets automatically loaded by the Administration. Ad
 
 The navigation id of your modules always uses the pattern `app-<appName>-<moduleName>`. So, within your manifest you can add a reference to modules that you just created:
 
-{% code title="manifest.xml" %}
-
 ```xml
+// manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
         <name>myApp</app>
         ...
@@ -150,8 +159,6 @@ The navigation id of your modules always uses the pattern `app-<appName>-<module
 </manifest>
 ```
 
-{% endcode %}
-
 Modules that are used as a parent for other modules do not need the `source` attribute to be set, although they can.
 
 ## Add main module to your app
@@ -162,11 +169,10 @@ Your main module can be defined by adding a `main-module` element within your `a
 
 To avoid mixing other modules with your main module, we decided to separate the main module from modules with navigation entries. You can still use the same URL on both, a module that is available through the menu and your main module.
 
-{% code title="manifest.xml" %}
-
 ```xml
+// manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
         <name>myApp</app>
         ...
@@ -187,8 +193,6 @@ To avoid mixing other modules with your main module, we decided to separate the 
 </manifest>
 ```
 
-{% endcode %}
-
 This feature is not compatible with themes as they will always open the theme config by default.
 
 ## Admin design compatibility
@@ -197,4 +201,4 @@ As your module page is integrated as an iframe you are not able to use the style
 Having the stylesheets that are used in the Administration can be beneficial for the app module to seamlessly integrate into the Administration.
 You can use the shop version that is passed as `sw-version` within the request query to determine what stylesheets you want to load.
 The compiled Administration stylesheets for each version can be found within the tagged releases of the `shopware/administration` package within the `Resources/public/static` folder.
-Combining these information enables your app the look exactly like the Administration although it is encapsuled within an iframe.
+Combining this information enables your app to look exactly like the Administration, although it is encapsulated within an iframe.

@@ -1,8 +1,15 @@
+---
+nav:
+  title: Define a custom Elasticsearch Definition
+  position: 20
+
+---
+
 # Define a custom Elasticsearch Definition
 
 In the previous implementation, the Elasticsearch index was language-based, meaning each system's language would be indexed in a separate index. With the introduction of the multilingual index:
 
-Each index will contain multiple language-based fields; refer to the [ADR](https://developer.shopware.com/docs/resources/references/adr/2023-04-11-new-language-inheritance-mechanism-for-opensearch) and adjust your custom Elasticsearch definition's configuration mapping to adapt to the new mapping structure.
+Each index will contain multiple language-based fields; refer to the [ADR](/docs/resources/references/adr/2023-04-11-new-language-inheritance-mechanism-for-opensearch) and adjust your custom Elasticsearch definition's configuration mapping to adapt to the new mapping structure.
 
 For instance, to define your custom Elasticsearch definition (this definition will be used for later examples).
 
@@ -144,7 +151,6 @@ SQL;
 ```
 
 And register it in the container with tag `shopware.es.definition` and `advanced_search.supported_definition`
-
 
 ```xml
 # YourPluginNameSpace should be changed to your respectively ElasticsearchDefinition and Definition classes

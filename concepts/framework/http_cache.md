@@ -1,3 +1,10 @@
+---
+nav:
+  title: HTTP Cache
+  position: 50
+
+---
+
 # HTTP Cache
 
 The HTTP cache allows you to cache responses of the shop system. This means that the next time the same page is requested, the answer can be returned much faster. While the general concept of a cache is quite simple, there are many details to think of in a complex system like a shopping cart. For that reason, the following overview might come in handy for you.
@@ -15,7 +22,7 @@ So whenever a user requests a page, Shopware will create a result page individua
 * A reverse proxy cache
 * The web application generates a result
 
-![](../../.gitbook/assets/reverse-proxy.svg)
+![](../../assets/concepts-framework-httpCache.svg)
 
 The reverse proxy is located between the user and the web application and takes care of any requests to the web application. If a user requests a page that has been requested before, chances are that the reverse proxy can just hand out the same result as before, so the web application will not even be asked.
 
@@ -33,14 +40,10 @@ The Shopware HTTP cache has a variety of mechanisms to answer these questions.
 
 ## When will the page be cached?
 
-The called route needs an `@HttpCache` annotation. Examples for this can be found in the [ProductController](https://github.com/shopware/platform/blob/v6.3.4.1/src/Storefront/Controller/ProductController.php#L86).
+Set the defaults value of the `_httpCache` key to `true`. Examples for this can be found in the [ProductController](https://github.com/shopware/shopware/blob/trunk/src/Storefront/Controller/ProductController.php#L62).
 
 ```php
-/**
- * @Since("6.3.3.0")
- * @HttpCache()
- * @Route("/detail/{productId}", name="frontend.detail.page", methods={"GET"})
- */
+#[Route(path: '/detail/{productId}', name: 'frontend.detail.page', methods: ['GET'], defaults: ['_httpCache' => true])]
 public function index(SalesChannelContext $context, Request $request): Response
 ```
 
@@ -66,6 +69,6 @@ An example of usage for this feature is to save the cache for logged-in customer
 
 As soon as a response has been defined as cacheable and the response is written to the cache, it is tagged accordingly. For this purpose, the core uses all cache tags generated during the request or loaded from existing cache entries. The cache invalidation of a Storefront controller route is controlled by the cache invalidation of the Store API routes.
 
-For more information about Store API cache invalidation, you can refer to the [Add Cache for Store API Route Guide](../../guides/plugins/plugins/framework/store-api/add-caching-for-store-api-route.md).
+For more information about Store API cache invalidation, you can refer to the [Add Cache for Store API Route Guide](../../guides/plugins/plugins/framework/store-api/add-caching-for-store-api-route).
 
 This is because all data loaded in a Storefront controller, is loaded in the core via the corresponding Store API routes and provided with corresponding cache tags. So the tags of the HTTP cache entries we have in the core consist of the sum of all Store API tags generated or loaded during the request. Therefore, the invalidation of a controller route is controlled over the Store API cache invalidation.

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Search and suggest routes
+  position: 90
+
+---
+
 # Search and Suggest Routes
 
 @Refer: `\Shopware\Commercial\AdvancedSearch\Domain\Search\ProductSearchRouteDecorator`

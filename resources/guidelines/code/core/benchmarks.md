@@ -1,24 +1,24 @@
 
 
-{% hint style="info" %}
+::: info
 This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/code/core/benchmarks.md)
-{% endhint %}
+You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/coding-guidelines/core/benchmarks.md)
+:::
 
 # Benchmarks
 
-Since the 6.4.11 version, we have run continuous performance benchmarks via [locust.io](https://locust.io/). We want to extend these benchmarks continuously. You can find the sources in the [src/Core/Devops/Locust](https://github.com/shopware/platform/tree/trunk/src/Core/DevOps/Locust) folder. You can find all the information on setting up and running these tests in the [README.md](https://github.com/shopware/platform/blob/trunk/src/Core/DevOps/Locust/README.md).
+Since the 6.4.11 version, we have run continuous performance benchmarks via [locust.io](https://locust.io/). We want to extend these benchmarks continuously. You can find the sources in the [src/Core/Devops/Locust](https://github.com/shopware/shopware/tree/trunk/src/Core/DevOps/Locust) folder. You can find all the information on setting up and running these tests in the [README.md](https://github.com/shopware/shopware/blob/trunk/src/Core/DevOps/Locust/README.md).
 
 If you develop a new feature that impacts the store (storefront and/or store API), this functionality must be performance tested. It is not enough to rest on the fact that performance tests already exist and hope they will test it somehow. New functionality usually also needs a configuration which is not inside the existing mysqldump.
 
 ## Extend `setup.php`
-The [`setup.php`](https://github.com/shopware/platform/blob/trunk/src/Core/DevOps/Locust/setup.php) exports a fixture set which you can use inside the locust python files. Getting the data on demand via API would also be possible, but this would put additional load on the server and possibly falsify the results.
+The [`setup.php`](https://github.com/shopware/shopware/blob/trunk/src/Core/DevOps/Locust/setup.php) exports a fixture set which you can use inside the locust python files. Getting the data on demand via API would also be possible, but this would put additional load on the server and possibly falsify the results.
 
-So if you need additional data to test your feature, you can write other .json files here. These will then be parsed in the [Context](https://github.com/shopware/platform/blob/trunk/src/Core/DevOps/Locust/common/context.py) class and made available globally.
+So if you need additional data to test your feature, you can write other .json files here. These will then be parsed in the [Context](https://github.com/shopware/shopware/blob/trunk/src/Core/DevOps/Locust/common/context.py) class and made available globally.
 
 ## Extend the scenarios
 
-We have defined several [scenarios](https://github.com/shopware/platform/tree/trunk/src/Core/DevOps/Locust/scenarios) in locust.
+We have defined several [scenarios](https://github.com/shopware/shopware/tree/trunk/src/Core/DevOps/Locust/scenarios) in locust.
 
 You have to customize the following scenarios under the following conditions:
 

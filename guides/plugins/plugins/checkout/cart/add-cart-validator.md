@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add cart validator
+  position: 40
+
+---
+
 # Add Cart Validator
 
 ## Overview
@@ -8,7 +15,7 @@ This guide will cover the subject on how to add your own custom cart validator.
 
 ## Prerequisites
 
-For this guide, you will need a working plugin, which you learn to create [here](../../plugin-base-guide.md). Also, you will have to know the [Dependency Injection container](../../plugin-fundamentals/dependency-injection.md), since that's going to be used in order to register your custom validator.
+For this guide, you will need a working plugin, which you learn to create [here](../../plugin-base-guide). Also, you will have to know the [Dependency Injection container](../../plugin-fundamentals/dependency-injection), since that's going to be used in order to register your custom validator.
 
 ## Adding a custom cart validator
 
@@ -28,9 +35,8 @@ Your validator has to implement the interface `Shopware\Core\Checkout\Cart\CartV
 
 But let's have a look at the example validator first:
 
-{% code title="<plugin root>/src/Core/Checkout/Cart/Custom/CustomCartValidator.php" %}
-
 ```php
+// <plugin root>/src/Core/Checkout/Cart/Custom/CustomCartValidator.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Checkout\Cart\Custom;
@@ -56,8 +62,6 @@ class CustomCartValidator implements CartValidatorInterface
 }
 ```
 
-{% endcode %}
-
 As already said, a cart validator has to implement the `CartValidatorInterface` and therefore implement a `validate` method. This method has access to some important parts of the checkout, such as the cart and the current sales channel context. Also you have access to the error collection, which may or may not contain errors from other earlier validators.
 
 In this example we're dealing with the line items and are validating them, so we're iterating over each line item. This example assumes that your line items got a custom payload, called `customPayload`, and it expects a value in there.
@@ -68,13 +72,12 @@ Important to note is the `return` statement afterwards. If you wouldn't return h
 
 #### Registering the validator
 
-One more thing to do is to register your new validator to the [dependency injection container](../../plugin-fundamentals/dependency-injection.md).
+One more thing to do is to register your new validator to the [dependency injection container](../../plugin-fundamentals/dependency-injection).
 
 Your validator has to be registered using the tag `shopware.cart.validator`:
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
-
-```markup
+```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -87,8 +90,6 @@ Your validator has to be registered using the tag `shopware.cart.validator`:
     </services>
 </container>
 ```
-
-{% endcode %}
 
 ### Adding the custom cart error
 
@@ -120,9 +121,8 @@ It has to extend from the abstract class `Shopware\Core\Checkout\Cart\Error\Erro
 
 So now let's have a look at the example error class:
 
-{% code title="<plugin root>/src/Core/Checkout/Cart/Custom/Error/CustomCartBlockedError.php" %}
-
 ```php
+// <plugin root>/src/Core/Checkout/Cart/Custom/Error/CustomCartBlockedError.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Checkout\Cart\Custom\Error;
@@ -170,23 +170,20 @@ class CustomCartBlockedError extends Error
 }
 ```
 
-{% endcode %}
-
 The constructor was overridden so we can ask for the line item ID and save it in a property. Since we already used this class in the validator, we're basically done with that part here.
 
 Only the snippets are missing.
 
 ### Adding the snippet
 
-First of all you should know our guide about [adding storefront snippets](../../storefront/add-translations.md), since that won't be explained in detail here.
+First of all you should know our guide about [adding storefront snippets](../../storefront/add-translations), since that won't be explained in detail here.
 
 You've defined the error key to be `custom-line-item-blocked` in your custom error class `CustomCartBlockedError`. Once your validator finds an invalid line item in your cart, Shopware is going to search for a respective snippet. In the cart, Shopware will be looking for the following snippet key: `checkout.custom-line-item-blocked`. Meanwhile it will be looking for a key `error.custom-line-item-blocked` in the checkout steps. This way you could technically define two different messages for the cart and the following checkout steps.
 
 Now let's have a look at an example snippet file:
 
-{% code title="<plugin root>/src/Resources/snippet/en\_GB/example.en-GB.json" %}
-
-```javascript
+```js
+// <plugin root>/src/Resources/snippet/en\_GB/example.en-GB.json
 {
     "checkout": {
         "custom-line-item-blocked": "Example error message for the cart"
@@ -197,12 +194,10 @@ Now let's have a look at an example snippet file:
 }
 ```
 
-{% endcode %}
-
 This way Shopware will find the new snippets in your plugin and display the respective error message.
 
 And that's it, you've now successfully added your own cart validator.
 
 ## Next steps
 
-In the examples mentioned above, we're asking for custom line item payloads. This subject is covered in our guide about [adding cart items](add-cart-items.md), so you might want to have a look at that.
+In the examples mentioned above, we're asking for custom line item payloads. This subject is covered in our guide about [adding cart items](add-cart-items), so you might want to have a look at that.

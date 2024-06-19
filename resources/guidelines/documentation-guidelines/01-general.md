@@ -1,3 +1,10 @@
+---
+nav:
+  title: General
+  position: 10
+
+---
+
 # Documentation Guidelines
 
 Your style, your words, and your tone define you. Correspondingly, this style guide lays out standard editorial instructions that define Shopware documentation.
@@ -20,12 +27,13 @@ It is important to consider the background of the potential audience reading you
 | Product owner/ Manager | <ul><li>Responsibilities pertaining to the product life cycle</li></ul> |
 | Tech writers | <ul><li>Document all product details</li></ul> |
 
-## List of docs maintained by us
+## Applicable documents: style guide coverage
 
-* [Developer Guide](https://developer.shopware.com/docs/)
+* [Developer docs](https://developer.shopware.com/docs/)
 * [API Reference Guide](https://shopware.stoplight.io/)
 * [PWA](https://shopware-pwa-docs.vuestorefront.io/)
-* [Admin Extension SDK](https://shopware.github.io/admin-extension-sdk/)
+* [Frontend docs](https://frontends.shopware.com/)
+* [Component library](https://component-library.shopware.com/)
 
 ## Word list
 
@@ -34,7 +42,9 @@ Choose ecommerce and technical terms from the pre-defined list of terminologies:
 * [Shopware terminologies](https://shopware.atlassian.net/wiki/spaces/pr/pages/19249037615/Shopware+terminology)
 * [General terms and abbreviations](https://shopware.atlassian.net/wiki/spaces/BGE/pages/735426953/Our+corporate+communications)
 
-{% hint style="info" %} These are internal resources visible to Shopware employees only. {% endhint %}
+::: info
+These are internal resources visible to Shopware employees only.
+:::
 
 ## Use of third-party sources
 
@@ -44,7 +54,7 @@ Third-party sources include websites, books, blogs, videos, images, and more. En
 
 Adhere to the [Markdown cheat sheet](https://www.markdownguide.org/cheat-sheet/) while creating the document.
 
-Refer to [GitBook syntax](https://gitbook.gitbook.io/git-sync/) for features like hint block, emoji, API blocks, etc.
+Refer to [Vitepress syntax](https://vitepress.dev/guide/markdown) for features like hint block, emoji, API blocks, etc.
 
 Symbols in Markdown sometimes serve multi-purpose. For example, `*` or `-` can be used to create bulleted lists. However, follow a single pattern to maintain uniformity throughout. Further sections describe the usage of these patterns and let us comply with them.
 

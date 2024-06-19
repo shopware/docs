@@ -1,14 +1,21 @@
+---
+nav:
+  title: Add product entity extension to elasticsearch
+  position: 10
+
+---
+
 # Adding Product Entity Extension to Elasticsearch
 
 ## Overview
 
 In this guide you'll learn how to add extended fields of the product entity to the elasticsearch engine to make it searchable.
 
-In this example we'll assume an extension of the `ProductDefinition` with a string field `customString` like described in [Adding Complex data to existing entities](../framework/data-handling/add-complex-data-to-existing-entities.md#adding-a-field-without-database).
+In this example we'll assume an extension of the `ProductDefinition` with a string field `customString` like described in [Adding Complex data to existing entities](../framework/data-handling/add-complex-data-to-existing-entities#adding-a-field-without-database).
 
 ## Prerequisites
 
-This guide is built upon the [Plugin Base Guide](../plugin-base-guide.md), and the entity extension described in [Adding Complex data to existing entities](../framework/data-handling/add-complex-data-to-existing-entities.md#adding-a-field-without-database).
+This guide is built upon the [Plugin Base Guide](../plugin-base-guide), and the entity extension described in [Adding Complex data to existing entities](../framework/data-handling/add-complex-data-to-existing-entities#adding-a-field-without-database).
 We will extend the product extension with an `OneToOneAssociationField` and `OneToManyAssociationField`.
 
 ## Decorate the ElasticsearchProductDefinition
@@ -17,9 +24,9 @@ To extend the elasticsearch definition we need to extend the product definition 
 Here we show you how this could look like in the end.
 
 The service.xml with all needed definitions.
-{% code title="<plugin root>/src/Core/Content/DependencyInjection/product.xml" %}
 
 ```xml
+// <plugin root>/src/Core/Content/DependencyInjection/product.xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -51,12 +58,10 @@ The service.xml with all needed definitions.
 </container>
 ```
 
-{% endcode %}
-
 The product extension `CustomExtension.php` provides the extensions to the product entity.
-{% code title="<plugin root>/src/Extension/Content/Product/CustomExtension.php" %}
 
 ```php
+// <plugin root>/src/Extension/Content/Product/CustomExtension.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Extension\Content\Product;
@@ -94,12 +99,10 @@ class CustomExtension extends EntityExtension
 }
 ```
 
-{% endcode %}
-
 The entity definition `OneToManyExampleExtensionDefinition.php`.
-{% code title="<plugin root>/src/Extension/Content/Product/OneToManyExampleExtensionDefinition.php" %}
 
 ```php
+// <plugin root>/src/Extension/Content/Product/OneToManyExampleExtensionDefinition.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Extension\Content\Product;
@@ -145,12 +148,10 @@ class OneToManyExampleExtensionDefinition extends EntityDefinition
 }
 ```
 
-{% endcode %}
-
 The entity definition `OneToOneExampleExtensionDefinition.php`.
-{% code title="<plugin root>/src/Extension/Content/Product/OneToOneExampleExtensionDefinition.php" %}
 
 ```php
+// <plugin root>/src/Extension/Content/Product/OneToOneExampleExtensionDefinition.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Extension\Content\Product;
@@ -194,17 +195,13 @@ class OneToOneExampleExtensionDefinition extends EntityDefinition
         ]);
     }
 }
-
 ```
-
-{% endcode %}
 
 Here is a decoration to add a new field named `customString`, an `oneToOneAssociationField` named `oneToOneExampleExtension` and an `oneToManyAssociationField` named `oneToManyExampleExtension` to the index.
 For adding more information from the database you should execute a single query with all document ids `(array_column($documents, 'id'))` and map the values.
 
-{% code title="<plugin root>/src/Elasticsearch/Product/MyProductEsDecorator.php" %}
-
 ```php
+// <plugin root>/src/Elasticsearch/Product/MyProductEsDecorator.php
 <?php
 
 namespace Swag\BasicExample\Elasticsearch\Product;
@@ -281,7 +278,6 @@ class MyProductEsDecorator extends AbstractElasticsearchDefinition
              */
             $document['customString'] = ProductSubscriber::getRuntimeValue($document['id'])->getValue();
 
-
             /**
              * Field with value from associated entity
              */
@@ -314,7 +310,6 @@ class MyProductEsDecorator extends AbstractElasticsearchDefinition
                 product_id IN(:ids)
         SQL;
 
-
         return $this->connection->fetchAllKeyValue(
             $query,
             [
@@ -338,7 +333,6 @@ class MyProductEsDecorator extends AbstractElasticsearchDefinition
                 product_id IN(:ids)
         SQL;
 
-
         return $this->connection->fetchAllKeyValue(
             $query,
             [
@@ -350,7 +344,4 @@ class MyProductEsDecorator extends AbstractElasticsearchDefinition
         );
     }
 }
-
 ```
-
-{% endcode %}

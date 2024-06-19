@@ -1,3 +1,10 @@
+---
+nav:
+  title: Deployment with Deployer
+  position: 10
+
+---
+
 # Deployment with Deployer
 
 ## Overview
@@ -7,12 +14,12 @@ Automated deployments shouldn't be a pain and have several advantages, like lowe
 This article explains the fundamental steps to deploy Shopware 6 to a certain infrastructure, focussing on continuous deployment using [GitLab CI](https://docs.gitlab.com/ee/ci/) and [Deployer](https://deployer.org/) (a deployment tool written in PHP).
 
 ## Video
-<!-- markdown-link-check-disable-next-line -->
-{% embed url="https://www.youtube.com/watch?v=Oo-KvyxJvpo" caption="" %}
+
+<YoutubeRef video="Oo-KvyxJvpo" title="Continuous Deployment: Automizing Shopware 6 deployments (Developer Tutorial) - YouTube" target="_blank" />
 
 ## Prerequisites
 
-Please make sure you already have a working Shopware 6 instance running and that your repository is based on the [Symfony Flex template](../../installation/template.md) because this article relies on some scripts to exist in your repository.
+Please make sure you already have a working Shopware 6 instance running and that your repository is based on the [Symfony Flex template](../../../installation/template) because this article relies on some scripts to exist in your repository.
 
 ### Preparations before the first deployment
 
@@ -33,7 +40,7 @@ The structure looks like this:
 
 Suppose you haven't used such a structure yet, it is recommended to move the current document root contents to a different location because you will have to copy some existing files into the `shared` folder after your first deployment with [Deployer](https://deployer.org/).
 
-For more information, refer to [Migrating existing instance to Deployer structure](deployment-with-deployer.md#migrating-existing-instance-to-deployer-structure).
+For more information, refer to [Migrating existing instance to Deployer structure](deployment-with-deployer#migrating-existing-instance-to-deployer-structure).
 
 ### Webserver configuration
 
@@ -70,7 +77,7 @@ Initially, only the Composer dependencies need to be installed by running the fo
 * `$ composer install --no-interaction --optimize-autoloader --no-suggest`
 * `$ composer install -d vendor/shopware/recovery --no-interaction --optimize-autoloader --no-suggest`
 
-This step is defined in the `Install dependencies` job in the [`.gitlab-ci.yml`](deployment-with-deployer.md#gitlab-ci-yml):
+This step is defined in the `Install dependencies` job in the [`.gitlab-ci.yml`](deployment-with-deployer#gitlab-ci-yml):
 
 ```text
 Install dependencies:
@@ -90,11 +97,11 @@ Install dependencies:
 
 The migrations need to be applied on the target server.
 
-{% hint style="danger" %}
+::: danger
 If you are deploying to a cluster with multiple web servers, please make sure to run the migrations only on one of the servers.
-{% endhint %}
+:::
 
-This step is defined in the `sw:database:migrate` job in the [`deploy.php`](deployment-with-deployer.md#deploy-php), which is part of the `sw:deploy` task group:
+This step is defined in the `sw:database:migrate` job in the [`deploy.php`](deployment-with-deployer#deploy-php), which is part of the `sw:deploy` task group:
 
 ```php
 task('sw:database:migrate', static function () {
@@ -104,9 +111,9 @@ task('sw:database:migrate', static function () {
 
 ### 4. Building assets
 
-{% hint style="info" %}
-From this step on, all other steps are handled by Deployer defined in the [`deploy.php`](deployment-with-deployer.md#deploy-php).
-{% endhint %}
+::: info
+From this step on, all other steps are handled by Deployer defined in the [`deploy.php`](deployment-with-deployer#deploy-php).
+:::
 
 To compile and copy assets, the Shopware production template provides a script, which is located under [`bin/build-js.sh`](https://github.com/shopware/production/blob/6.3/bin/build-js.sh). This script installs the [NPM](https://www.npmjs.com/) dependencies and builds assets needed for the Administration, Storefront, and plugins.
 
@@ -114,7 +121,7 @@ It is important to know that you need a database connection to execute this scri
 
 If you don't want to build the assets on the target server \(for performance reasons\), you could execute the `bundle:command` on the target server and download the generated `plugins.json` into your runner's workspace before executing [`bin/build-js.sh`](https://github.com/shopware/production/blob/6.3/bin/build-js.sh).
 
-This step is defined to be executed on the target server in the `sw:build` job in the [`deploy.php`](deployment-with-deployer.md#deploy-php) and will be executed before transferring the files to the target server:
+This step is defined to be executed on the target server in the `sw:build` job in the [`deploy.php`](deployment-with-deployer#deploy-php) and will be executed before transferring the files to the target server:
 
 ```php
 task('sw:build', static function () {
@@ -124,7 +131,7 @@ task('sw:build', static function () {
 
 ### 5. Transferring the workspace
 
-For transferring the files to the target server, please configure at least one host in the [`deploy.php`](deployment-with-deployer.md#deploy-php):
+For transferring the files to the target server, please configure at least one host in the [`deploy.php`](deployment-with-deployer#deploy-php):
 
 ```php
 host('SSH-HOSTNAME')
@@ -138,7 +145,7 @@ host('SSH-HOSTNAME')
     ->set('writable_mode', 'chmod');
 ```
 
-This step is defined in the `deploy:update_code` job in the [`deploy.php`](deployment-with-deployer.md#deploy-php):
+This step is defined in the `deploy:update_code` job in the [`deploy.php`](deployment-with-deployer#deploy-php):
 
 ```php
 task('deploy:update_code', static function () {
@@ -150,7 +157,7 @@ task('deploy:update_code', static function () {
 
 If you have the HTTP cache enabled in your `.env` file, it is recommended to warm up the caches so that the first user, who visits the recently deployed version, doesn't have to wait until the page is rendered for the first time.
 
-This step is defined in the `sw:cache:warmup` job in the [`deploy.php`](deployment-with-deployer.md#deploy-php):
+This step is defined in the `sw:cache:warmup` job in the [`deploy.php`](deployment-with-deployer#deploy-php):
 
 ```php
 task('sw:cache:warmup', static function () {
@@ -163,7 +170,7 @@ task('sw:cache:warmup', static function () {
 
 Before putting the new version live, ensure to create an empty file `install.lock` in the root of the build workspace. Otherwise, Shopware will redirect every request to the Shopware installer because it assumes that Shopware isn't installed yet.
 
-This task is defined in the `sw:touch_install_lock` job in the [`deploy.php`](deployment-with-deployer.md#deploy-php), which is part of the `sw:deploy` task group:
+This task is defined in the `sw:touch_install_lock` job in the [`deploy.php`](deployment-with-deployer#deploy-php), which is part of the `sw:deploy` task group:
 
 ```php
 task('sw:touch_install_lock', static function () {
@@ -175,7 +182,7 @@ task('sw:touch_install_lock', static function () {
 
 After all the steps are done, Deployer will switch the symlinks destination to the new release.
 
-This task is defined in the `deploy:symlink` default job in the [`deploy.php`](deployment-with-deployer.md#deploy-php).
+This task is defined in the `deploy:symlink` default job in the [`deploy.php`](deployment-with-deployer#deploy-php).
 
 ## Deployer output
 
@@ -209,9 +216,9 @@ After the very first deployment with Deployer, you have to copy some files and d
 Let's agree on the following two paths for the examples:
 
 1. You have copied your existing Shopware instance to `/var/www/shopware_backup`.
-1. You have set the `deploy_path` in the [`deploy.php`](deployment-with-deployer.md#deploy-php) to `/var/www/shopware`.
+1. You have set the `deploy_path` in the [`deploy.php`](deployment-with-deployer#deploy-php) to `/var/www/shopware`.
 
-Now, look at the `shared_files` and `shared_dirs` configurations in the [`deploy.php`](deployment-with-deployer.md#deploy-php). Simply copy all the paths into `/var/www/shopware/shared`. For the configuration of the `deploy.php` the commands would be the following:
+Now, look at the `shared_files` and `shared_dirs` configurations in the [`deploy.php`](deployment-with-deployer#deploy-php). Simply copy all the paths into `/var/www/shopware/shared`. For the configuration of the `deploy.php` the commands would be the following:
 
 ```bash
 cp /var/www/shopware_backup/.env /var/www/shopware/shared/

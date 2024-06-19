@@ -1,3 +1,10 @@
+---
+nav:
+  title: Tax provider
+  position: 10
+
+---
+
 # Tax provider
 
 Tax calculations differ from country to country. Especially in the US, the sales tax calculation can be tedious, as the laws and regulations differ from state to state, country-wise, or even based on cities. Therefore, most shops use a third-party service (so-called tax provider) to calculate sales taxes.
@@ -8,7 +15,7 @@ With version 6.5.0.0, Shopware allows apps to integrate custom tax calculations,
 
 You should be familiar with the concept of Apps, their registration flow as well as signing and verifying requests and responses between Shopware and the App backend server.
 
-{% page-ref page="app-base-guide.md" %}
+<PageRef page="app-base-guide" />
 
 Your app server must be also accessible for the Shopware server.
 You can use a tunneling service like [ngrok](https://ngrok.com/) for development.
@@ -19,29 +26,7 @@ To indicate to Shopware that your app uses a custom tax calculation, you must pr
 
 Below, you can see an example definition of a working tax provider.
 
-{% code title="manifest.xml" %}
-
-```markup
-<?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        <!-- The name of the app should not change. Otherwise all payment methods are created as duplicates. -->
-        <name>PaymentApp</name>
-        <!-- ... -->
-    </meta>
-    
-    <tax>
-        <tax-provider>
-            <identifier>myCustomTaxProvider</identifier>                        <!-- Unique identifier of the tax provider -->
-            <name>My custom tax provider</name>                                 <!-- Display name of the tax provider -->    
-            <priority>1</priority>                                              <!-- Priority of the tax provider - can be changed in the administration as well -->
-            <process-url>https://tax-provider.app/provide-taxes</process-url>     <!-- Url of your implementation - is called during checkout to provide taxes -->
-        </tax-provider>
-    </tax>
-</manifest>
-```
-
-{% endcode %}
+<<< @/docs/snippets/config/app/tax.xml
 
 After successful installation of your app, the tax provider will already be used during checkout to provide taxes. You should also see the new tax provider showing up in the administration in `Settings > Tax`.
 
@@ -49,17 +34,17 @@ After successful installation of your app, the tax provider will already be used
 
 During checkout, Shopware checks for any active tax providers - sorted by priority - and will call the `processUrl` to provide taxes one-by-one, until one of endpoint successfully provides taxes for the current cart.
 
-{% hint style="warning" %}
+::: warning
 **Connection timeouts**
 
 The Shopware shop will wait for a response for 5 seconds. Be sure, that your tax provider implementation responds in time, otherwise Shopware will time out and drop the connection.
-{% endhint %}
+:::
 
 In response, you can adjust the taxes of the entire cart, the entire delivery, or each item in the cart.
 
-{% tabs %}
+<Tabs>
 
-{% tab title="HTTP" %}
+<Tab title="HTTP">
 
 Request content is JSON
 
@@ -104,9 +89,9 @@ and your response should look like this:
 }
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="App PHP SDK" %}
+<Tab title="App PHP SDK">
 
 ```php
 use Psr\Http\Message\RequestInterface;
@@ -161,16 +146,16 @@ function taxController(RequestInterface $request): ResponseInterface
 }
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Symfony Bundle" %}
+<Tab title="Symfony Bundle">
 
 ```php
 use Shopware\App\SDK\Context\TaxProvider\TaxProviderAction;
 use Shopware\App\SDK\TaxProvider\TaxProviderResponseBuilder;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Psr\Http\Message\ResponseInterface;
 
 #[AsController]
@@ -216,8 +201,8 @@ class TaxController {
 }
 ```
 
-{% endtab %}
+</Tab>
 
-{% endtabs %}
+</Tabs>
 
 If you wish to use a tax provider, you will probably have to provide the whole cart for the tax provider to correctly calculate taxes during checkout and you will probably get sums of the specific tax rates, which you can respond to Shopware via `cartPriceTaxes`. If given, Shopware does not recalculate the tax sums and will use those given by your tax provider.

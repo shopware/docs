@@ -1,10 +1,17 @@
+---
+nav:
+  title: Categories
+  position: 20
+
+---
+
 # Categories
 
 Products in Shopware are organized in categories. Categories are represented as a hierarchical tree and they contain products. A product can be contained in multiple categories. Catalog categories provide structure to your catalog content.
 
 There is a single category tree that represents the whole product catalog of your store.
 
-![category](../../../.gitbook/assets/concept-categories.png)
+![category](../../../assets/concept-categories.png)
 
 ## Product assignments
 
@@ -12,15 +19,15 @@ There are two ways that products can be assigned to a category. Either through a
 
 ## Navigation
 
-Categories also serve as entry points for your store navigation. For every [Sales Channel](sales-channels.md), you can select a category to be the root of your navigation. Shopware will then build the navigation based on that category's child categories. Parent categories also contain the explicit assignments of their children based on the Inheritance relation between categories.
+Categories also serve as entry points for your store navigation. For every [Sales Channel](sales-channels), you can select a category to be the root of your navigation. Shopware will then build the navigation based on that category's child categories. Parent categories also contain the explicit assignments of their children based on the Inheritance relation between categories.
 
-{% hint style="info" %}
+::: info
 Categories can be globally hidden from store navigations based on a hide in navigation flag.
-{% endhint %}
+:::
 
 ## CMS layouts
 
-Every category has a [CMS layout](../core/shopping-experiences-cms.md) assigned to it. The layout dictates in which way the category will be displayed. It is very useful to centralize the management of CMS pages and hydrate it based on the category configuration.
+Every category has a [CMS layout](../content/shopping-experiences-cms.md) assigned to it. The layout dictates in which way the category will be displayed. It is very useful to centralize the management of CMS pages and hydrate it based on the category configuration.
 
 ## Types
 

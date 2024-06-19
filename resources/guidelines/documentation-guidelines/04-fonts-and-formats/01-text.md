@@ -1,10 +1,17 @@
+---
+nav:
+  title: Text
+  position: 10
+
+---
+
 # Fonts and Format for Text
 
 Follow the below textual formats for good content visualization.
 
-{% hint style="info" %}
+::: info
 Don't override global styles.
-{% endhint %}
+:::
 
 * **Bold**
 
@@ -34,13 +41,13 @@ Follow the below steps to start your project:
 1. Create a docker-compose.yml file
 2. Start the Docker
 3. Prepare Development
-...
+4. ...
 ```
 
 * **Regular bulleted list** - Use this for general enlisting with an asterisk `*` in Markdown to signify bulleted lists.
 
 ```text
-You can install Shopware on Mac with the help of other tools:
+You can install Shopware on Mac with the help of tools like:
 
 * Docker
 ```
@@ -119,6 +126,6 @@ Spell out all ordinal numbers in the text, such as first, fourth, twelfth, and t
 
 * Follow camel case for all the `<H1>` headings — for example, *Flow Sequence Evaluation* and sentence case for the rest of the sub-headings that follow - for example, *Flow sequence evaluation*.
 
-Refer to [GitBook syntax](https://gitbook.gitbook.io/git-sync/lists) for more.
+Refer to [Vitepress syntax](https://vitepress.dev/guide/markdown) for more.
 
 This section covers fonts and formats for text, while the following section covers fonts and formats for code.

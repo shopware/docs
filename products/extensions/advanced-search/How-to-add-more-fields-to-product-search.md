@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add more fields to product search
+  position: 30
+
+---
+
 # Add more Fields to Product Search
 
 You can add more searchable fields into your product or any Elasticsearch definition. 
@@ -80,7 +87,7 @@ class ElasticsearchProductDefinitionDecorator extends AbstractElasticsearchDefin
 
 We need to update these data mapping to the Opensearch's server to make the change effective:
 
-```cli
+```bash
 // Update the Elasticsearch indices mapping, introduce since 6.5.4.0
 bin/console es:mapping:update
 
@@ -92,7 +99,7 @@ bin/console es:index --no-queue
 
 So now the data is mapped and indexed, we need to make it searchable by adding the new field into the search config. Create a new migration and make sure it is run by reinstalling or updating the plugin:
 
-```cli
+```bash
 bin/console database:create-migration --name AddNewPrefixProductNumberFieldIntoProductAdvancedSearch --plugin YourPlugin
 ```
 

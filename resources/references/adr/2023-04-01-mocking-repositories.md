@@ -3,19 +3,19 @@ title: Mocking repositories
 date: 2023-01-04
 area: core
 tags: [testing, core, repository]
---- 
+---
 
 # Mocking repositories
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2023-04-01-mocking-repositories.md)
-{% endhint %}
+You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2023-04-01-mocking-repositories.md)
+:::
 
 ## Context
-Right now it is complicated to test classes which has a dependency on a repository. This is because mocking a repository `search` or `searchIds` call requires creating empty `EntitySearchResults` or `IdSearchResults`. This leads to much boilerplate code when writing tests and faking database results. For this reason we should provide a way to mock the `search` and `searchIds` calls in a much easier way. 
+Right now it is complicated to test classes which have a dependency on a repository. This is because mocking a repository `search` or `searchIds` call requires creating empty `EntitySearchResults` or `IdSearchResults`. This leads to much boilerplate code when writing tests and faking database results. For this reason we should provide a way to mock the `search` and `searchIds` calls in a much easier way. 
 
-Faking a search results of a repository looks like this at the moment:
+Faking a search result of a repository looks like this at the moment:
 
 ```php
 $result = new EntitySearchResult(
@@ -38,6 +38,7 @@ $entityRepository
 We created a `\Shopware\Tests\Unit\Common\Stubs\DataAbstractionLayer\StaticEntityRepository` which allows the developer to easily fake repository search results.  
 
 ### How to use
+
 ```php
 <?php
 
@@ -78,6 +79,7 @@ class SomeCoreClassTest extends TestCase
 The `StaticEntityRepository` constructor accepts an array of `EntitySearchResults`, `EntityCollections` or `AggregationResultCollection`. The value is the result of the search or one of the supported collections.
 
 ### Other configurations
+
 ```php
 <?php
 
@@ -111,4 +113,5 @@ class SomeCoreClassTest extends TestCase
         // some assertions
     }
 }
+
 ````

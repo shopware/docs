@@ -1,3 +1,10 @@
+---
+nav:
+  title: Override existing route
+  position: 30
+
+---
+
 # Override Existing Route
 
 ## Overview
@@ -6,30 +13,26 @@ In this guide you will learn how to override existing Store API routes to add ad
 
 ## Prerequisites
 
-As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide.md), but you don't necessarily need that.
+As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide), but you don't necessarily need that.
 
-Furthermore, you should have a look at our guide about [Adding a Store API route](add-store-api-route.md), since this guide is built upon it.
+Furthermore, you should have a look at our guide about [Adding a Store API route](add-store-api-route), since this guide is built upon it.
 
 ## Decorating our route
 
 First, we have to create a new class which extends `AbstractExampleRoute`. In this example we will name it `ExampleRouteDecorator`.
 
-{% code title="<plugin root>/src/Core/Content/Example/SalesChannel/ExampleRouteDecorator.php" %}
-
 ```php
+// <plugin root>/src/Core/Content/Example/SalesChannel/ExampleRouteDecorator.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
 
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Shopware\Core\Framework\Routing\Annotation\Entity;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
-/**
- * @Route(defaults={"_routeScope"={"store-api"}})
- */
+#[Route(defaults: ['_routeScope' => ['store-api']])]
 class ExampleRouteDecorator extends AbstractExampleRoute
 {
     protected EntityRepository $exampleRepository;
@@ -46,11 +49,8 @@ class ExampleRouteDecorator extends AbstractExampleRoute
     {
         return $this->decorated;
     }
-
-    /**
-     * @Entity("swag_example")
-     * @Route("/store-api/example", name="store-api.example.search", methods={"GET", "POST"})
-     */
+    
+    #[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET', 'POST'], defaults: ['_entity' => 'category'])]
     public function load(Criteria $criteria, SalesChannelContext $context): ExampleRouteResponse
     {
         // We must call this function when using the decorator approach
@@ -64,17 +64,14 @@ class ExampleRouteDecorator extends AbstractExampleRoute
 }
 ```
 
-{% endcode %}
-
 As you can see, our decorated route has to extend from the `AbstractExampleRoute` and the constructor has to accept an instance of `AbstractExampleRoute`. Furthermore, the `getDecorated()` function has to return the decorated route passed into the constructor. Now we can add some additional data in the `load` method, which we can retrieve with the criteria.
 
 ## Registering route
 
 Last, we have to register the decorated route to the DI-container. The `ExampleRouteDecorator` has to be registered after the `ExampleRoute` with the attribute `decorated` which points to the `ExampleRoute`. For the second argument we have to use the `ExampleRouteDecorator.inner`.
 
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
-
-```markup
+```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -91,5 +88,3 @@ Last, we have to register the decorated route to the DI-container. The `ExampleR
     </services>
 </container>
 ```
-
-{% endcode %}

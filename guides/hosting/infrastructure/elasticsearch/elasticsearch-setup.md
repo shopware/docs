@@ -1,15 +1,24 @@
+---
+nav:
+  title: Set up Elasticsearch
+  position: 10
+
+---
+
 # Set up Elasticsearch
 
 ## Overview
 
 As soon as several thousand data sets are used in a project, it makes sense to deal with Elasticsearch. The Elasticsearch integration for Shopware is in the [shopware/elasticsearch](https://github.com/shopware/elasticsearch) bundle. If this is not available in your project, you can simply add it via `composer require shopware/elasticsearch`. In this documentation, we will provide you with a short overview of the functionalities of Elasticsearch on your server and the configuration, activation, and indexing process in Shopware for live and test environments.
 
-{% hint style="info" %} Currently, the implementation for Elasticsearch/Opensearch works in the same way. {% endhint %}
+::: info
+Currently, the implementation for Elasticsearch/Opensearch works in the same way.
+:::
 
 ## Requirements
 
 * Opensearch >= 1.0 or Elasticsearch >= 7.8
-* [Running message queue workers in background](../message-queue.md)
+* [Running message queue workers in background](../message-queue)
 
 ## Server basics
 
@@ -77,7 +86,7 @@ Normally a shard in Elasticsearch can hold at least tens of gigabytes, so you mi
 | `SHOPWARE_ES_INDEXING_ENABLED`| `0` / `1` |  This variable activates the indexing to Elasticsearch|
 | `SHOPWARE_ES_ENABLED`| `0` / `1` | This variable activates the usage of Elasticsearch for your shop|
 | `SHOPWARE_ES_INDEX_PREFIX`| `sw_myshop` | This variable defines the prefix for the Elasticsearch indices|
-| `SHOPWARE_ES_THROW_EXCEPTION`| `0` / `1` | This variable activates the debug mode for Elasticsearch. Without this variable as = 1 you will get a fallback to mysql without any error message if Elasticsearch is not working|
+| `SHOPWARE_ES_THROW_EXCEPTION`| `0` / `1` | This variable activates the debug mode for Elasticsearch. Without this variable as = 0 you will get a fallback to mysql without any error message if Elasticsearch is not working|
 
 ### Example file for productive environments
 
@@ -119,11 +128,11 @@ SHOPWARE_ES_THROW_EXCEPTION=1
 
 Shopware will use by default 3 shards and 3 replicas for the created index. This configuration can be overwritten with a new config file in `config/packages/elasticsearch.yml`
 
-{% hint style="info" %}
+::: info
 This configuration is available since Shopware version 6.4.12.0
-{% endhint %}
+:::
 
-```yml
+```yaml
 elasticsearch:
   index_settings:
     number_of_shards: 1
@@ -186,6 +195,6 @@ bin/console es:admin:reset
 bin/console es:admin:test
 ```
 
-{% hint style="info" %}
+::: info
 Advanced admin users can refer to [elasticsearch reference guide](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-simple-query-string-query.html) for complex search queries.
-{% endhint %}
+:::

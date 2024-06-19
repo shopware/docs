@@ -1,8 +1,8 @@
 # Nginx
 
-{% hint style="info" %}
+::: info
 The document root must always point to the public folder, to ensure all functionality works.
-{% endhint %}
+:::
 
 ```text
 server {
@@ -15,7 +15,25 @@ server {
 
     root __DOCUMENT_ROOT__/public;
 
-    # Shopware install / update
+    # Shopware install / update    
+    location /shopware-installer.phar.php {
+    try_files $uri /shopware-installer.phar.php$is_args$args;
+    }
+    
+    location ~ ^/shopware-installer\.phar\.php/.+\.(?:css|js|png|svg|woff)$ {
+     try_files $uri /shopware-installer.phar.php$is_args$args;
+    }
+
+    # Deny access to . (dot) files
+    location ~ /\. {
+        deny all;
+    }
+    
+    # Deny access to .php files in public directories
+    location ~ ^/(media|thumbnail|theme|bundles|sitemap).*\.php$ {
+        deny all;
+    }
+    
     location /recovery/install {
         index index.php;
         try_files $uri /recovery/install/index.php$is_args$args;
@@ -69,7 +87,6 @@ server {
         send_timeout 300s;
         client_body_buffer_size 128k;
         fastcgi_pass 127.0.0.1:9000;
-        http2_push_preload on;
     }
 }
 ```

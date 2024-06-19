@@ -1,3 +1,10 @@
+---
+nav:
+  title: Versioning entities
+  position: 120
+
+---
+
 # Versioning Entities
 
 ## Overview
@@ -6,9 +13,9 @@ In this guide you will learn how to version your entities. The entity versioning
 
 ## Prerequisites
 
-In order to add your own versioned entities for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md).
+In order to add your own versioned entities for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide).
 
-Furthermore you should have a look at our [Adding custom complex data](add-custom-complex-data.md) guide, since this guide is built upon it.
+Furthermore you should have a look at our [Adding custom complex data](add-custom-complex-data) guide, since this guide is built upon it.
 
 ## Adjust migration
 
@@ -27,9 +34,8 @@ ALTER TABLE `swag_example`
 
 After we've added the new field to our table, we also have to add it to our definition. For this we use a `Shopware\Core\Framework\DataAbstractionLayer\Field\VersionField` which is always required, if we want to version our entity.
 
-{% code title="<plugin root>/src/Core/Content/Example/ExampleDefinition.php" %}
-
 ```php
+// <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 protected function defineFields(): FieldCollection
 {
     return new FieldCollection([
@@ -39,15 +45,12 @@ protected function defineFields(): FieldCollection
 }
 ```
 
-{% endcode %}
-
 ## Create and merge version
 
 In this section we will create a new version of our entity which will create a new entry in the database with our updated values. When we merge a particular version, all versions before the merged version are deleted. In the example below, we are using a service where we injected a `swag_example.repository`.
 
-{% code title="<plugin root>/src/" %}
-
 ```php
+// <plugin root>/src/
 public function exampleVersioning(Context $context): void
 {
     $exampleId = Uuid::randomHex();
@@ -86,8 +89,6 @@ public function exampleVersioning(Context $context): void
 }
 ```
 
-{% endcode %}
-
 As you can see above, we first created a new `ExampleEntity` with the description 'This is an example'.
 
 Then we created a new version of our entity with the appropriate repository method `createVersion` and as arguments the id of our created entity and the context. This method returns the id of our new entity version, which we have stored in a variable.
@@ -100,7 +101,7 @@ Lastly, we used the repository method `merge` with our versionId, which deletes 
 
 ## Versioning with foreign keys
 
-If you have an entity with foreign keys, your foreign keys also need to be versioned. In this example we're using an inherited field. If you are not familiar with inheritance, head over to our [Field inheritance](field-inheritance.md) guide.
+If you have an entity with foreign keys, your foreign keys also need to be versioned. In this example we're using an inherited field. If you are not familiar with inheritance, head over to our [Field inheritance](field-inheritance) guide.
 
 ### Migration
 
@@ -120,9 +121,8 @@ ALTER TABLE `swag_example`
 
 After we've added the new field to our table, we also have to add it to our definition. For this we use a `Shopware\Core\Framework\DataAbstractionLayer\Field\ReferenceVersionField` which references to our entity by using `self::class` and the related field `parent_version_id`.
 
-{% code title="<plugin root>/src/Core/Content/Example/ExampleDefinition.php" %}
-
 ```php
+// <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 protected function defineFields(): FieldCollection
 {
     return new FieldCollection([
@@ -132,5 +132,3 @@ protected function defineFields(): FieldCollection
     ]);
 }
 ```
-
-{% endcode %}

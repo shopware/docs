@@ -1,8 +1,15 @@
+---
+nav:
+  title: Debugging Elasticsearch
+  position: 20
+
+---
+
 # Debugging Elasticsearch
 
 ## Overview
 
-This article shows you how to debug the status and indexing process of your Elasticsearch environment. Ensure that the [Debug-Mode](./elasticsearch-debugging.md) is activated in your *.env* file.
+This article shows you how to debug the status and indexing process of your Elasticsearch environment. Ensure that the [Debug-Mode](./elasticsearch-debugging) is activated in your *.env* file.
 
 ## Shopware 6 CLI commands
 
@@ -46,7 +53,7 @@ bin/console es:create:alias
 
 `dal:refresh:index --use-queue` creates a complete reindex from the Shopware DAL (ES/SEO/Media/Sitemap...) **ALWAYS** "`--use-queue`" since big request can outperform the server!
 
-```bash​
+```bash
 bin/console dal:refresh:index --use-queue
 ```
 
@@ -75,7 +82,7 @@ bin/console dal:refresh:index --use-queue
 
 `messenger:consume -vv` starts a message consumer working on all tasks. This could be started *X* times. When using more than 3 message consumers, you will need something like RabbitMq to handle the data.
 
-```bash​
+```bash
 bin/console messenger:consume -vv
 ```
 
@@ -97,7 +104,7 @@ bin/console messenger:consume -vv
 
 `es:index:cleanup` to remove unused indices, because each indexing will generate a new Elasticsearch index.
 
-```bash​
+```bash
 bin/console es:index:cleanup
 ```
 
@@ -247,4 +254,4 @@ bin/console es:create:alias
 ## Logfiles and tipps
 
 You can usually find the Elasticsearch logfiles at [`/var/log/elasticsearch`](https://www.elastic.co/guide/en/elasticsearch/reference/master/settings.html#_config_file_format) to check for any issues when indexing.
-Also, tools like [Kibana](https://www.elastic.co/what-is/kibana) or [Cerebro](https://wissen.profihost.com/wissen/artikel/cerebro/) can help you better understand what is happening in your Elasticsearch.
+Also, tools like [Kibana](https://www.elastic.co/kibana) or [Cerebro](https://wissen.profihost.com/wissen/artikel/cerebro/) can help you better understand what is happening in your Elasticsearch.

@@ -1,3 +1,10 @@
+---
+nav:
+  title: Build & Deploy
+  position: 30
+
+---
+
 # Build and Deploy
 
 Now that we have set up the repository, we are ready to push changes to your PaaS environment.
@@ -11,10 +18,10 @@ To push your latest changes, run the following commands from your terminal:
 ```bash{3}
 git add .
 git commit -m "Applied new configuration"
-git push -u platform main
+git push -u shopware main
 ```
 
-First, we stage all changes and then add them as a new commit. Then, we push them to our `platform` origin (remember, the one for our PaaS environment) on the `main` branch.
+First, we stage all changes and then add them as a new commit. Then, we push them to our `shopware` origin (remember, the one for our PaaS environment) on the `main` branch.
 
 This will trigger a new build with a subsequent deploy consisting of the following steps:
 
@@ -23,14 +30,14 @@ This will trigger a new build with a subsequent deploy consisting of the followi
 | Configuration validation | Hold app requests |
 | Build container image | Unmount live containers |
 | Installing dependencies | Mount file systems |
-| Run [build hook](./setup-template.md#build-hook) | Run [deploy hook](./setup-template.md#deploy-hook) |
+| Run [build hook](./setup-template#build-hook) | Run [deploy hook](./setup-template#deploy-hook) |
 | Building app image | Serve requests |
 
 After both steps have been executed successfully (you will get extensive logging about the process), you will be able to see the deployed store on a link presented at the end of the deployment.
 
 ## First deployment
 
-The first time the site is deployed, Shopware's command line installer will run and initialize Shopware. It will not run again unless the `installer/installed` file is removed. **Do not remove that file unless you want the installer to run on the next deploy.**
+The first time the site is deployed, Shopware's command line installer will run and initialize Shopware. It will not run again unless the `install.lock` file is removed. **Do not remove that file unless you want the installer to run on the next deploy.**
 
 The installer will create an administrator account with the default credentials.
 
@@ -39,48 +46,6 @@ The installer will create an administrator account with the default credentials.
 | `admin` | `shopware` |
 
 Make sure to change this password immediately in your Administration account settings. Not doing so is a security risk.
-
-### Manual steps
-
-After the first deploy, some steps must be done manually before the environment is entirely up and running.
-
-#### JWT keys
-
-The JWT keys, used for the Administration authentication, need to be generated for your project. The keys will be stored securely in the Shopware Paas environment variable storage and should not be committed to the Git repository or be available on the file system.
-
-To generate the keys and add them to the storage, run the following command:
-
-```bash
-shopware ssh --app=app "bin/console system:generate-jwt-secret --use-env" |\
-grep -E "^JWT_(PUBLIC|PRIVATE)_KEY=" |\
-while read line ; do \
-shopware variable:create --sensitive 1 --level project --name env:$(echo $line | cut -d "=" -f 1) --value $(echo $line | cut -d "=" -f 2-); \
-done
-```
-
-Run this command from your project directory so the `shopware` command knows which project to update.
-
-The command connects to the application server to generate the JWT keys. It then sets the `JWT_PUBLIC_KEY` and `JWT_PRIVATE_KEY` as private environment variables.
-
-Finally, execute the `shopware redeploy` command to proceed with the build-and-deploy process.
-
-##### Shopware config
-
-By default, Shopware looks for the JWT keys on the file system. The configuration must be updated to use the keys in the environment variables.
-
-If you use the Shopware Flex Paas template, [the configuration](https://github.com/shopware/recipes/blob/main/shopware/paas-meta/6.4/config/packages/paas.yaml) will be applied automatically.
-
-```yaml
- shopware:
-   api:
-     jwt_key:
-       private_key_path: '%env(base64:JWT_PRIVATE_KEY)%'
-       public_key_path: '%env(base64:JWT_PUBLIC_KEY)%'  
-```
-
-#### Theme assets
-
-It is a known issue that after the first deployment, theme assets are not compiled during the deployment. For that reason, your store will look unstyled. The [Theme Build](./theme-build.md) section explains how to resolve that issue.
 
 ## Composer authentication
 
@@ -96,7 +61,7 @@ Make sure to replace `%place your key here%` with your actual token. You can fin
 
 ## Extending Shopware - plugins and apps
 
-The PaaS recipe uses the [Composer plugin loader](../../guides/hosting/installation-updates/cluster-setup.md#composer-plugin-loader).
+The PaaS recipe uses the [Composer plugin loader](../../guides/hosting/installation-updates/cluster-setup#composer-plugin-loader).
 
 ## Manually trigger rebuilds
 
@@ -104,6 +69,7 @@ Sometimes, you might want to trigger a rebuild and deploy of your environment wi
 
 ```bash
 shopware variable:create --environment main --level environment --prefix env --name REBUILD_DATE --value "$(date)" --visible-build true
+```
 
 To force a rebuild at any time, update the variable with a new value:
 

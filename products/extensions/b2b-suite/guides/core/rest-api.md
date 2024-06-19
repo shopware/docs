@@ -1,6 +1,13 @@
+---
+nav:
+  title: REST API
+  position: 30
+
+---
+
 # REST API
 
-[Download](../../../../../../docs/products/extensions/b2b-suite/guides/example-plugins/B2bRestApi.zip) a plugin showcasing the topic.
+[Download](../../../../../../products/extensions/b2b/b2b-suite/guides/example-plugins/B2bRestApi.zip) a plugin showcasing the topic.
 
 We use swagger.io for the documentation of our B2B Suite endpoints. The created [swagger.json](https://gitlab.com/shopware/shopware/enterprise/b2b/-/blob/minor/swagger.json) file can be displayed with [Swagger UI](https://swagger.io/tools/swagger-ui/).
 

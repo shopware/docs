@@ -1,3 +1,10 @@
+---
+nav:
+  title: API Versioning
+  position: 40
+
+---
+
 # API Versioning
 
 ## Overview
@@ -12,7 +19,7 @@ Prior to Shopware 6.4.0.0, the API version was mainly found in the routes themse
 
 By using the version, one could ensure that his application keeps on working because we are not going to introduce breaking changes within a version. Yet, versions had to be removed every now and then, which would then still break the application.
 
-More on this can be found in our guide [ADR regarding the API version removal](https://github.com/shopware/platform/blob/6.4.0.0/adr/2020-12-02-removing-api-version.md) section.
+More on this can be found in our guide [ADR regarding the API version removal](https://github.com/shopware/shopware/blob/6.4.0.0/adr/2020-12-02-removing-api-version.md) section.
 
 ### Versioning starting with 6.3.5.0
 
@@ -38,17 +45,17 @@ Also, deprecated fields and routes are now shown in the Swagger documentation. H
 
 The Swagger API reference now includes the necessary information about the route and field availability. For routes, this can look like this:
 
-![Availability route](../../../.gitbook/assets/availability_route.png)
+![Availability route](../../../assets/availability-route.png)
 
 Note the availability information.
 
 Same for fields, here is an example of how it would look like:
 
-![Availability field](../../../.gitbook/assets/availability_field.png)
+![Availability field](../../../assets/availability-field.png)
 
 ### API expectations
 
-API expectations can be used as a request header to define necessary conditions for the server side. Example conditions could be the Shopware version, the existence of plugins, or the version of a plugin. There are some examples:
+API expectations can be used as a request header to define the necessary conditions for the server side. Example conditions could be the Shopware version, the existence of plugins, or the version of a plugin. There are some examples:
 
 ```text
 GET /api/test

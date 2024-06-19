@@ -1,3 +1,10 @@
+---
+nav:
+  title: Template
+  position: 20
+
+---
+
 # Symfony Flex
 
 Symfony Flex is a Composer plugin that helps you to manage and keep your Shopware configuration files up-to-date.
@@ -22,17 +29,17 @@ composer remove shopware/<bundle-name>
 
 ### Local installation
 
-After you have created the project via Composer, you should create a `.env.local` file and specify the the enviroment variables you want to override from `.env` and run the following command:
+After you have created the project via Composer, you should create a `.env.local` file and specify the environment variables you want to override from `.env` and run the following command:
 
-{% hint style="info %}
+::: info
 The `.env` will be overwritten when the Shopware Web Installer is used for Shopware updates, so it's highly recommended to use a `.env.local` file.
-{% endhint %}
+:::
 
 ```bash
 bin/console system:install --basic-setup
 ```
 
-This installs Shopware and creates a default [sales channel](../../concepts/commerce/catalog/sales-channels.md) with Shopware's default Administration credentials:
+This installs Shopware and creates a default [sales channel](../../concepts/commerce/catalog/sales-channels) with Shopware's default Administration credentials:
 
 | Username | Password   |
 |:---------|:-----------|
@@ -50,33 +57,33 @@ The Symfony CLI is a developer tool that helps to build, run, and manage your Sy
 
 1. As Symfony CLI uses local PHP, ensure to have PHP installed. Below are the commands to install it:
 
-{% tabs %}
+<Tabs>
 
-{% tab title="Ubuntu" %}
+<Tab title="Ubuntu">
 
 Add a new software repository to your system to have the latest PHP version.
 
 ```bash
 sudo add-apt-repository ppa:ondrej/php
 
-sudo apt-get install -y php8.1-fpm php8.1-mysql php8.1-curl php8.1-gd php8.1-xml php8.1-zip php8.1-opcache php8.1-mbstring php8.1-intl php8.1-cli
+sudo apt-get install -y php8.2-fpm php8.2-mysql php8.2-curl php8.2-gd php8.2-xml php8.2-zip php8.2-opcache php8.2-mbstring php8.2-intl php8.2-cli
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Debian" %}
+<Tab title="Debian">
 
 Add a new software repository to your system to have the latest PHP version:
 
 ```bash
 curl https://packages.sury.org/php/README.txt | bash
 
-sudo apt-get install -y php8.1-fpm php8.1-mysql php8.1-curl php8.1-gd php8.1-xml php8.1-zip php8.1-opcache php8.1-mbstring php8.1-intl php8.1-cli
+sudo apt-get install -y php8.2-fpm php8.2-mysql php8.2-curl php8.2-gd php8.2-xml php8.2-zip php8.2-opcache php8.2-mbstring php8.2-intl php8.2-cli
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="macOS" %}
+<Tab title="macOS">
 
 The easiest way is to use [Homebrew](https://brew.sh/):
 
@@ -84,9 +91,9 @@ The easiest way is to use [Homebrew](https://brew.sh/):
 brew install php@8.1
 ```
 
-{% endtab %}
+</Tab>
 
-{% tab title="Nix / NixOS" %}
+<Tab title="Nix / NixOS">
 
 ```bash
 # Nix
@@ -96,9 +103,9 @@ nix-env -iA nixpkgs.php81 nixpkgs.symfony-cli
 nix-env -iA nixos.php81 nixpkgs.symfony-cli
 ```
 
-{% endtab %}
+</Tab>
 
-{% endtabs %}
+</Tabs>
 
 ### Optional packages
 
@@ -106,10 +113,13 @@ The template is small and does not contain any dev-tooling or integrations like 
 
 ```bash
 # Install profiler and other dev tools, eg Faker for demo data generation
-composer require --dev dev-tools
+composer require --dev shopware/dev-tools
+
+# Or Install symfony dev tools
+composer require --dev symfony/profiler-pack
 
 # Install PaaS integration
-composer require paas
+composer require paas --ignore-platform-req=ext-amqp
 
 # Install Fastly integration
 composer require fastly
@@ -231,7 +241,7 @@ If you want to use Shopware PaaS or Fastly, you need to install the following Co
 
 ```bash
 # PaaS
-composer require paas
+composer require paas --ignore-platform-req=ext-amqp
 
 # Fastly
 composer require fastly
@@ -241,7 +251,7 @@ composer require fastly
 
 There are two ways to update Shopware:
 
-* Initially run `bin/console system:update:prepare` to enable the maintenance mode and then update all Composer packages using `composer update`. However, to disable the maintenance mode, run `bin/console system:update:finish`.
+* Initially run `bin/console system:update:prepare` to enable the maintenance mode and then update all Composer packages using `composer update --no-scripts`. The `--no-scripts` flag instructs composer to not run any scripts that may reference Shopware CLI commands. They will only be functional after updating the recipes. To disable the maintenance mode, run `bin/console system:update:finish`.
 
 * To force-update all config files, run `composer recipes:update`.
 

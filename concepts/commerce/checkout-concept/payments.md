@@ -1,10 +1,17 @@
+---
+nav:
+  title: Payments
+  position: 30
+
+---
+
 # Payments
 
 Shopware 6 payment system is an integral part of the checkout process. A payment is applied to a transaction of an order. As with any order change, this is done through the state machine. At its core, the payment system is composed of payment handlers. These extend Shopware to support multiple different payment types. A list of all payment handlers is stored in the database.
 
-{% hint style="info" %}
-If you want to directly skip to implementation details, then head to the [Add payment plugin](../../../guides/plugins/plugins/checkout/payment/add-payment-plugin.md) section.
-{% endhint %}
+::: info
+If you want to directly skip to implementation details, then head to the [Add payment plugin](../../../guides/plugins/plugins/checkout/payment/add-payment-plugin) section.
+:::
 
 ## Payment flow
 
@@ -15,11 +22,11 @@ The payment and checkout flow consist of two essential steps:
 
 These steps are outlined in the diagram below:
 
-![Headless payment flow](../../../.gitbook/assets/payment-flow-headless.png)
+![Headless payment flow](../../../assets/checkout-payment-paymentFlow.svg)
 
 The diagram above shows the payment flow for headless environments; however, for the single-stack scenario (i.e., when the default Storefront is used) the differences are minor and described in the section below.
 
-If you want to see a specific example of a headless payment using the Store API, head to [API documentation](https://shopware.stoplight.io/docs/store-api/docs/guides/quick-start/handling-the-payment.md).
+If you want to see a specific example of a headless payment using the Store API, head to [API documentation](https://shopware.stoplight.io/docs/store-api/8218801e50fe5-handling-the-payment).
 
 ### 1. Select payment method
 
@@ -39,9 +46,9 @@ Some payment integrations already create a payment reservation or authorization 
 
 This step can only be executed after an order has been placed. It starts the payment by determining the correct payment handler for the selected payment method.
 
-{% hint style="info" %}
+::: info
 Although from a functional perspective, steps 2 and 3 are separated but in the default Storefront both are initiated in the same request.
-{% endhint %}
+:::
 
 #### 3.1 Payment handler
 
@@ -67,12 +74,20 @@ This step is only executed for asynchronous payments. After being redirected, th
 
 This step is only executed for asynchronous payments. It is triggered by the callback URL (which points to `/payment/finalize-transaction`) that has been provided to the payment gateway in step 3.1. Depending on the payment success, Shopware updates the transaction status and redirects the user to the corresponding finish page from step 3.
 
-{% hint style="warning" %}
+::: warning
 **Disclaimer**
 
 The actual implementation of payment integrations differs between providers. Therefore, our specification does not include any guidelines about payment states or specific API calls to be made. Some integrations share data between the steps or provide and call upon webhooks after the payment process has been finished. These implementations go beyond our standards.
-{% endhint %}
+:::
+
+### Session and state
+
+The session should not be used in headless payment integrations. Read more about [session guidelines](../../../resources/guidelines/code/session-and-state).
+
+### Controllers and API
+
+Do not add any logic inside your controllers and remember to add your Store API routes to the payment, so it can be used in headless scenarios. For Storefront and Store API route integration see the [Add store-api route guide](../../../guides/plugins/plugins/framework/store-api/add-store-api-route)
 
 ## Next steps
 
-{% page-ref page="../../../guides/plugins/plugins/checkout/payment/add-payment-plugin.md" %}
+<PageRef page="../../../guides/plugins/plugins/checkout/payment/add-payment-plugin" />

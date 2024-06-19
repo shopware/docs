@@ -1,3 +1,10 @@
+---
+nav:
+  title: Language & Grammar
+  position: 30
+
+---
+
 # Language and Grammar
 
 Basic guidelines for the apt use of language and grammar in the documentation are discussed in this section. In order to create a consistent product solution, Shopware maintains consistent documentation not just in terms of content but also style. A distinctive editorial voice helps create high-quality, readable, and consistent documentation.
@@ -20,13 +27,13 @@ Shopware voices a friendly and conversational tone. We are direct, clear, and mo
 
 In general, use the active voice (the subject is the person or thing performing the action) instead of the passive voice (the subject is the person or thing being acted upon). For example,
 
-{% hint style="success" %}
+::: tip
 **Active Voice** - The user passes the access-key.
-{% endhint %}
+:::
 
-{% hint style="danger" %}
+::: danger
 **Passive Voice** - The access-key is passed by the user.
-{% endhint %}
+:::
 
 It is okay to use passive voice in the following cases:
 
@@ -40,15 +47,15 @@ It is okay to use passive voice in the following cases:
 
 * In general, use the second-person instead of the first-person, such as *you* instead of *we* or *I*. However, first-person usage is an exception for FAQs.
 
-* If you are guiding the reader to perform something, use an imperative form with an implicit you. For example:
+* If you are guiding the reader to perform something, use an imperative form with an implicit *you*. For example:
 
-  {% hint style="success" %}
+::: tip
   **Recommended** - Create a PDF file.
-  {% endhint %}
+:::
 
-  {% hint style="danger" %}
+::: danger
   **Not recommended** - You need to create a PDF file.
-  {% endhint %}
+:::
 
 * Avoid the usage of *our* in sentences.
 
@@ -182,7 +189,7 @@ New cart features:
 
 Don't add important information in parentheses to describe it in detail.
 
-## Do's and dont's
+## Dos and don'ts
 
 * Don't use informal internet slang.
 

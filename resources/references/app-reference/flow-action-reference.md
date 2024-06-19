@@ -1,8 +1,15 @@
+---
+nav:
+  title: Flow Action Reference
+  position: 60
+
+---
+
 # Flow Action Reference
 
-{% code title="flow-action.xml" %}
 ```xml
-<flow-actions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/FlowAction/Schema/flow-action-1.0.xsd">
+// flow-action.xml
+<flow-actions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd">
     <flow-action>
         <meta>
             <name>slack</name>
@@ -90,7 +97,6 @@
     </flow-action>
 </flow-actions>
 ```
-{% endcode %}
 
 ## Variables
 

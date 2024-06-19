@@ -1,3 +1,10 @@
+---
+nav:
+  title: Custom Pricing
+  position: 10
+
+---
+
 # Customer-specific Pricing
 
 The Customer-specific pricing feature allows massive advances in the pricing model capabilities in the Shopware 6 ecosystem.
@@ -13,11 +20,11 @@ Customer-specific pricing is part of the Commercial plugin, requiring an existin
 To create, alter and/or delete customer-specific prices, you can use the API endpoint `/api/_action/custom-price`. Like with any other admin request in Shopware, you must first authenticate yourself. Therefore, please head over to the
 [authentication guide](https://shopware.stoplight.io/docs/admin-api/ZG9jOjEwODA3NjQx-authentication) for details.
 
-Otherwise, the Customer-specific Pricing API interface models itself upon the interface of the [sync API](https://shopware.stoplight.io/docs/admin-api), so you will be able to package your requests similarly.
+Otherwise, the Customer-specific Pricing API interface models itself upon the interface of the [sync API](https://shopware.stoplight.io/docs/admin-api/twpxvnspkg3yu-quick-start-guide), so you will be able to package your requests similarly.
 
-{% hint style="info" %}
+::: info
 You can use the route with single `upsert` and `delete` actions or even combine those in a single request: you can pack several different commands inside one sync API request, and each of them is executed in an independent and isolated way
-{% endhint %}
+:::
 
 So, it's not surprising that the request body looks like a familiar sync request. In the payload for the `upsert` action, you pass the following data:
 
@@ -77,13 +84,13 @@ For the `delete` action, the workflow operation accepts 3 different array of ids
 ]
 ```
 
-{% hint style="info" %}
+::: info
 In case of an error occurs, the response will not return an error code - which is typical for the sync API; instead, any validation errors will be stored within the `errors` key.
-{% endhint %}
+:::
 
-{% hint style="warning" %}
+::: warning
 When working with this route, one difference sets it apart from the familiar `sync` requests: You cannot specify headers to adapt the endpoint's behavior.
-{% endhint %}
+:::
 
 ## Known caveats or issues
 

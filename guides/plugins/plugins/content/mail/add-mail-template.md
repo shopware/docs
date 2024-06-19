@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add mail templates
+  position: 20
+
+---
+
 # Add Mail Templates
 
 ## Overview
@@ -8,9 +15,9 @@ This guide will cover how to add a custom mail template with your plugin.
 
 ## Prerequisites
 
-The namespaces used in the examples of this guide are the same as the namespace from our [Plugin base guide](../../plugin-base-guide.md), so you might want to have a look at it first.
+The namespaces used in the examples of this guide are the same as the namespace from our [Plugin base guide](../../plugin-base-guide), so you might want to have a look at it first.
 
-Furthermore, this guide will use [Database migrations](../../plugin-fundamentals/database-migrations.md) in order to add a custom mail template, which is not explained in depth here. Make sure to understand those first!
+Furthermore, this guide will use [Database migrations](../../plugin-fundamentals/database-migrations) in order to add a custom mail template, which is not explained in depth here. Make sure to understand those first!
 
 ## Adding a mail template via migration
 
@@ -28,9 +35,8 @@ Let's have a look at an example, which will:
 * Add a mail template entry
 * Add a mail template translation for en\_GB and de\_DE
 
-{% code title="<plugin root>/src/Migration/Migration1616418675AddMailTemplate.php" %}
-
 ```php
+// <plugin root>/src/Migration/Migration1616418675AddMailTemplate.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Migration;
@@ -183,8 +189,6 @@ class Migration1616418675AddMailTemplate extends MigrationStep
 }
 ```
 
-{% endcode %}
-
 First of all, let's have a look at the small `update` method. It's mainly just fetching the mail template type ID using a short SQL statement and afterwards it executes the method `createMailTemplate`, which will cover all the other steps.
 
 Now on to the `createMailTemplate` method, which looks big, but isn't that scary. First of all, we're fetching the language IDs for both `en-GB` and `de-DE`.
@@ -199,9 +203,9 @@ Each of those calls uses a little helper method `getContentHtml` or `getContentP
 
 And that's it, once your plugin is installed, the mail template will be added to Shopware.
 
-{% hint style="warning" %}
+::: warning
 Do not remove e-mail templates in your plugin, e.g. when it is uninstalled. This may lead to data inconsistency, since those templates can be associated to other entities. Beware to use `IGNORE` before `INTO` Statements so no exception will be thrown upon uninstallation and reinstallation of your plugin.
-{% endhint %}
+:::
 
 ### Creating a custom mail type
 
@@ -209,9 +213,8 @@ In order to not only use an existing mail template type, but to create a custom 
 
 Let's have a look:
 
-{% code title="<plugin root>/src/Migration/Migration1616418675AddMailTemplate.php" %}
-
 ```php
+// <plugin root>/src/Migration/Migration1616418675AddMailTemplate.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Migration;
@@ -293,8 +296,6 @@ class Migration1616418675AddMailTemplate extends MigrationStep
 }
 ```
 
-{% endcode %}
-
 First of all we changed the `getMailTemplateTypeId` method call to `createMailTemplateType`, a new method which we will create afterwards. Again, this method then has to return the ID of the newly created mail template ID.
 
 So having a look at the `createMailTemplateType` method, you will see some similarities:
@@ -309,4 +310,4 @@ Note the `available_entities` column when creating the mail template type itself
 
 Now that you know how to add custom mail templates, you might wonder how you can actually add new mail template data to existing mail templates.
 
-For that case, we've created a separate guide about [adding data to mail templates](add-data-to-mails.md).
+For that case, we've created a separate guide about [adding data to mail templates](add-data-to-mails).

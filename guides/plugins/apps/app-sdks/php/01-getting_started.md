@@ -1,3 +1,10 @@
+---
+nav:
+  title: Getting started
+  position: 10
+
+---
+
 # Getting Started
 
 The app server written in PHP is an open-source project accessible at [app-php-sdk](https://github.com/shopware/app-php-sdk).
@@ -36,4 +43,4 @@ $response = match($_SERVER['REQUEST_URI']) {
 
 With this code, you can register your app with our custom app backend.
 
-Next, we will look into the [lifecycle handling](./02-lifecycle.md).
+Next, we will look into the [lifecycle handling](./02-lifecycle).

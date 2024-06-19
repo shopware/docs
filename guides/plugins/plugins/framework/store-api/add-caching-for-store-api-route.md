@@ -1,18 +1,25 @@
+---
+nav:
+  title: Add caching for Store API route
+  position: 20
+
+---
+
 # Add caching for Store API route
 
 ## Overview
 
-In this guide you will learn how to add a cache layer to your custom Store API route. In this example, we will add a cache layer for the `ExampleRoute`, which is created in the [Add Store API route](./add-store-api-route.md) guide. For the cache invalidation we will write a invalidation subscriber.
+In this guide you will learn how to add a cache layer to your custom Store API route. In this example, we will add a cache layer for the `ExampleRoute`, which is created in the [Add Store API route](./add-store-api-route) guide. For the cache invalidation we will write a invalidation subscriber.
 
 ## Prerequisites
 
-In order to add a cache layer for the Store API route, you first need a Store API route as base. Therefore, you can refer to the [Add Store API route](./add-store-api-route.md) guide.
+In order to add a cache layer for the Store API route, you first need a Store API route as base. Therefore, you can refer to the [Add Store API route](./add-store-api-route) guide.
 
-You also should have a look at our [Adding custom complex data](../data-handling/add-custom-complex-data.md) guide, since this guide is built upon it.
+You also should have a look at our [Adding custom complex data](../data-handling/add-custom-complex-data) guide, since this guide is built upon it.
 
 ## Add cache layer
 
-As you might have learned already from the [Add Store API route](./add-store-api-route.md) guide, we use abstract classes to make our routes more decoratable.
+As you might have learned already from the [Add Store API route](./add-store-api-route) guide, we use abstract classes to make our routes more decoratable.
 
 This concept is very advantageous if we now want to include a cache layer for the route. There are of course different ways to do this - but in this guide we show how we implemented it in the core.
 
@@ -20,11 +27,11 @@ This concept is very advantageous if we now want to include a cache layer for th
 
 First, we create an abstract class called `CachedExampleRoute` which extends the `AbstractExampleRoute`.
 
-{% tabs %}
-{% tab title="CachedExampleRoute" %}
-{% code title="<plugin root>/src/Core/Content/Example/SalesChannel/CachedExampleRoute.php" %}
+<Tabs>
+<Tab title="CachedExampleRoute">
 
 ```php
+// <plugin root>/src/Core/Content/Example/SalesChannel/CachedExampleRoute.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
@@ -37,16 +44,12 @@ use Shopware\Core\Framework\Adapter\Cache\AbstractCacheTracer;
 use Shopware\Core\Framework\Adapter\Cache\CacheCompressor;
 use Shopware\Core\Framework\DataAbstractionLayer\Cache\EntityCacheKeyGenerator;
 use Shopware\Core\Framework\Util\Json;
-use Shopware\Core\Framework\Routing\Annotation\Entity;
-use Shopware\Core\Framework\Routing\Annotation\Since;
 use Symfony\Component\Cache\Adapter\TagAwareAdapterInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
-/**
- * @Route(defaults={"_routeScope"={"store-api"}})
- */
+#[Route(defaults: ['_routeScope' => ['store-api']])]
 class CachedExampleRoute extends AbstractExampleRoute
 {
     private AbstractExampleRoute $decorated;
@@ -83,10 +86,7 @@ class CachedExampleRoute extends AbstractExampleRoute
         return $this->decorated;
     }
 
-    /**
-     * @Entity("swag_example")
-     * @Route("/store-api/example", name="store-api.example.search", methods={"GET", "POST"})
-     */
+    #[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET','POST'], defaults: ['_entity' => 'swag_example'])]
     public function load(Criteria $criteria, SalesChannelContext $context): ExampleRouteResponse
     {
         // The context is provided with a state where the route cannot be cached
@@ -149,13 +149,12 @@ class CachedExampleRoute extends AbstractExampleRoute
 }
 ```
 
-{% endcode %}
-{% endtab %}
+</Tab>
 
-{% tab title="services.xml" %}
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<Tab title="services.xml">
 
 ```xml
+// <plugin root>/src/Resources/config/services.xml
 
 <?xml version="1.0" ?> 
 
@@ -173,12 +172,10 @@ class CachedExampleRoute extends AbstractExampleRoute
         </service>
     </services>
 </container>
-
 ```
 
-{% endcode %}
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 In the new `CachedExampleRoute` some core classes are used which simplify the caching.
 
@@ -194,12 +191,11 @@ In the new `CachedExampleRoute` some core classes are used which simplify the ca
 
 Cache invalidation is much harder to implement than the actual caching. Finding the right balance between too much and too little invalidation is difficult. Therefore, there is no precise guidance or documentation on when to invalidate what. What and how to invalidate depends on what has been cached. For example, the product routes in the core are always invalidated when the product is written, but also when the product is ordered and reaches the out-of-stock status. The entire cache invalidation in Shopware is controlled via events. On the one hand there is the entity written event and on the other hand the corresponding business events like `ProductNoLongerAvailableEvent`.
 
-{% tabs %}
-{% tab title="CacheInvalidationSubscriber.php" %}
-
-{% code title="<plugin root>/src/Core/Content/Example/SalesChannel/CacheInvalidationSubscriber.php" %}
+<Tabs>
+<Tab title="CacheInvalidationSubscriber.php">
 
 ```php
+// <plugin root>/src/Core/Content/Example/SalesChannel/CacheInvalidationSubscriber.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
@@ -245,13 +241,12 @@ class CacheInvalidationSubscriber implements EventSubscriberInterface
 }
 ```
 
-{% endcode %}
-{% endtab %}
+</Tab>
 
-{% tab title="services.xml" %}
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<Tab title="services.xml">
 
 ```xml
+// <plugin root>/src/Resources/config/services.xml
 
 <?xml version="1.0" ?> 
 
@@ -265,9 +260,7 @@ class CacheInvalidationSubscriber implements EventSubscriberInterface
         </service>
     </services>
 </container>
-
 ```
 
-{% endcode %}
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>

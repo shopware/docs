@@ -1,8 +1,15 @@
-# Add customer flow action
+---
+nav:
+  title: Add Flow Builder trigger
+  position: 20
 
-{% hint style="info" %}
+---
+
+# Add custom flow trigger
+
+::: info
   This functionality is available starting with Shopware 6.4.6.0
-{% endhint %}
+:::
 
 ## Overview
 
@@ -10,14 +17,14 @@ In this guide, you'll learn how to create a custom flow trigger in Shopware. Tri
 
 ## Prerequisites
 
-In order to add your own custom flow trigger for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md).
+In order to add your own custom flow trigger for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide).
 
-You also should be familiar with [Add custom event](../event/add-custom-event.md) to know how to create an event. Please refer to the [Flow Builder concept](../../../../../concepts/framework/flow-concept.md)
+You also should be familiar with [Add custom event](../event/add-custom-event) to know how to create an event. Please refer to the [Flow Builder concept](../../../../../concepts/framework/flow-concept)
 for better integration later.
 
 ## Existing triggers and actions
 
-You can refer to the [Flow reference](../../../../../resources/references/core-reference/flow-reference.md) to read triggers and actions detail.
+You can refer to the [Flow reference](../../../../../resources/references/core-reference/flow-reference) to read triggers and actions detail.
 
 ## Event interfaces and classes
 
@@ -35,19 +42,18 @@ Any event that implements one of these interfaces will be available in the trigg
 
 ## Create custom flow trigger
 
-To create a custom flow trigger, firstly you have to create a plugin and install it, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md) to do it. I will create a plugin named `ExamplePlugin`. There will be an example to actually show your new trigger in the Administration.
+To create a custom flow trigger, firstly you have to create a plugin and install it, you can refer to the [Plugin Base Guide](../../plugin-base-guide) to do it. I will create a plugin named `ExamplePlugin`. There will be an example to actually show your new trigger in the Administration.
 
 ### Create a new trigger (event)
 
-In this example, we will name it ExampleEvent to some actions related to customers when dispatching this event. It will be placed in the directory <plugin root>/src/Core/Checkout/Customer/Event. Our new event has to implement Shopware\Core\Framework\Event\CustomerAware interface to enable actions requiring this Aware.
+In this example, we will name it ExampleEvent to some actions related to customers when dispatching this event. It will be placed in the directory `<plugin root>/src/Core/Checkout/Customer/Event`. Our new event has to implement Shopware\Core\Framework\Event\CustomerAware interface to enable actions requiring this Aware.
 
 Currently, you will need to also implement `Shopware\Core\Framework\Event\BusinessEventInterface;` in case the feature flag `FEATURE_NEXT_17858` is inactive. Please take note that this interface will be removed in `v6.5` .
 
 Below you can find an example implementation:
 
-{% code title="<plugin root>/src/Core/Checkout/Customer/Event/ExampleEvent.php" %}
-
 ```php
+// <plugin root>/src/Core/Checkout/Customer/Event/ExampleEvent.php
 <?php declare(strict_types=1);
 
 namespace Swag\ExamplePlugin\Core\Checkout\Customer\Event;
@@ -103,11 +109,9 @@ class ExampleEvent extends Event implements CustomerAware, BusinessEventInterfac
 }
 ```
 
-{% endcode %}
-
-{% hint style="info" %}
+::: info
   Available starting with Shopware 6.5.0.0
-{% endhint %}
+:::
 
 From 6.5, in Flow Builder, the original event will be deprecated and we will only use a class `StorableFlow`. All event data will be stored in the `StorableFlow`, hence the `getAvailableData` function can no more be used to get data from the Flow Builder.
 
@@ -115,6 +119,7 @@ We have created many Aware interfaces. These Aware are the conditions to restore
 
 | Aware interface | Storer respective |
 | :--- | :--- |
+| Shopware\Core\Content\Flow\Dispatching\Aware\ScalarValuesAware | Shopware\Core\Content\Flow\Dispatching\Storer\ScalarValuesStorer |
 | Shopware\Core\Content\Flow\Dispatching\Aware\ConfirmUrlAware | Shopware\Core\Content\Flow\Dispatching\Storer\ConfirmUrlStorer |
 | Shopware\Core\Content\Flow\Dispatching\Aware\ContactFormDataAware | Shopware\Core\Content\Flow\Dispatching\Storer\ContactFormDataStorer |
 | Shopware\Core\Content\Flow\Dispatching\Aware\ContentsAware | Shopware\Core\Content\Flow\Dispatching\Storer\ContentsStorer |
@@ -122,22 +127,12 @@ We have created many Aware interfaces. These Aware are the conditions to restore
 | Shopware\Core\Content\Flow\Dispatching\Aware\CustomerGroupAware | Shopware\Core\Content\Flow\Dispatching\Storer\CustomerGroupStorer |
 | Shopware\Core\Content\Flow\Dispatching\Aware\CustomerRecoveryAware | Shopware\Core\Content\Flow\Dispatching\Storer\CustomerRecoveryStorer |
 | Shopware\Core\Framework\Event\CustomerAware | Shopware\Core\Content\Flow\Dispatching\Storer\CustomerStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\DataAware | Shopware\Core\Content\Flow\Dispatching\Storer\DataStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\EmailAware | Shopware\Core\Content\Flow\Dispatching\Storer\EmailStorer |
 | Shopware\Core\Framework\Event\MailAware | Shopware\Core\Content\Flow\Dispatching\Storer\MailStorer |
 | Shopware\Core\Content\Flow\Dispatching\Aware\MessageAware | Shopware\Core\Content\Flow\Dispatching\Storer\MessageStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\NameAware | Shopware\Core\Content\Flow\Dispatching\Storer\NameStorer |
 | Shopware\Core\Content\Flow\Dispatching\Aware\NewsletterRecipientAware | Shopware\Core\Content\Flow\Dispatching\Storer\NewsletterRecipientStorer |
 | Shopware\Core\Framework\Event\OrderAware | Shopware\Core\Content\Flow\Dispatching\Storer\OrderStorer |
 | Shopware\Core\Content\Flow\Dispatching\Aware\OrderTransactionAware | Shopware\Core\Content\Flow\Dispatching\Storer\OrderTransactionStorer |
 | Shopware\Core\Framework\Event\ProductAware | Shopware\Core\Content\Flow\Dispatching\Storer\ProductStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\RecipientsAware | Shopware\Core\Content\Flow\Dispatching\Storer\RecipientsStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\ResetUrlAware | Shopware\Core\Content\Flow\Dispatching\Storer\ResetUrlStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\ReviewFormDataAware | Shopware\Core\Content\Flow\Dispatching\Storer\ReviewFormDataStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\ShopNameAware | Shopware\Core\Content\Flow\Dispatching\Storer\ShopNameStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\SubjectAware | Shopware\Core\Content\Flow\Dispatching\Storer\SubjectStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\TemplateDataAware | Shopware\Core\Content\Flow\Dispatching\Storer\TemplateDataStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\UrlAware | Shopware\Core\Content\Flow\Dispatching\Storer\UrlStorer |
 | Shopware\Core\Framework\Event\UserAware | Shopware\Core\Content\Flow\Dispatching\Storer\UserStorer |
 
 ```php
@@ -244,7 +239,7 @@ class ShopNameStorer extends FlowStorer
 }
 ```
 
-We already have Aware interfaces, but if you want to use the custom data that is not available, you can define a new Aware interface and a Storer respective.
+We already have Aware interfaces, but if you want to use the custom data that is not available, you can define a new Aware interface and a Storer respectively.
 
 ```php
 <?php declare(strict_types=1);
@@ -335,15 +330,14 @@ class SendMailAction
 }
 ```
 
-Take a look at the [Add Flow Builder Action](/guides/plugins/plugins/framework/flow/add-flow-builder-action.md) section of the guide for how to use data in Flow Actions.
+Take a look at the [Add Flow Builder Action](../../../../../guides/plugins/plugins/framework/flow/add-flow-builder-action.md) section of the guide for how to use data in Flow Actions.
 
 ### Add your new event to the flow trigger list
 
- At this step you need to add your new event to the flow trigger list, let see the code below:
-
-{% code title="<plugin root>/src/Core/Checkout/Customer/Subscriber/BusinessEventCollectorSubscriber.php" %}
+At this step, you need to add your new event to the flow trigger list, let us see the code below:
 
 ```php
+// <plugin root>/src/Core/Checkout/Customer/Subscriber/BusinessEventCollectorSubscriber.php
 <?php declare(strict_types=1);
 
 namespace Swag\ExamplePlugin\Core\Checkout\Customer\Subscriber;
@@ -383,13 +377,10 @@ class BusinessEventCollectorSubscriber implements EventSubscriberInterface
 }
 ```
 
-{% endcode %}
-
 Please note that your subscriber has to have a higher priority point to ensure your event is added before any subscriber `BusinessEventCollectorEvent` to prevent missing awareness or action. I set 1000 for `onAddExampleEvent` action:
 
-{% code title="<plugin root>/src/Core/Checkout/Customer/Subscriber/BusinessEventCollectorSubscriber.php" %}
-
 ```php
+// <plugin root>/src/Core/Checkout/Customer/Subscriber/BusinessEventCollectorSubscriber.php
 public static function getSubscribedEvents()
 {
    return [
@@ -398,20 +389,15 @@ public static function getSubscribedEvents()
 }
 ```
 
-{% endcode %}
-
-And don't forget to register your subscriber to the container at `<plugin root>/src/Resources/config/services.xml`
-
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+And remember to register your subscriber to the container at `<plugin root>/src/Resources/config/services.xml`
 
 ```xml
+// <plugin root>/src/Resources/config/services.xml
 <service id="Swag\ExamplePlugin\Core\Checkout\Customer\Subscriber\BusinessEventCollectorSubscriber">
     <argument type="service" id="Shopware\Core\Framework\Event\BusinessEventCollector"/>
     <tag name="kernel.event_subscriber"/>
 </service>
 ```
-
-{% endcode %}
 
 Well done, you have successfully created your own flow trigger.
 
@@ -419,4 +405,4 @@ Well done, you have successfully created your own flow trigger.
 
 Go to Administration page -> Settings -> Flow Builder, then click Add flow to create a new flow, search for Example Event. You could see your event is available and having actions related to the Customer likes to Add tag, Remove tag, etc...
 
-![Flow Builder Action Example](../../../../../.gitbook/assets/flow-builder-action.png)
+![Flow Builder Action Example](../../../../../assets/flow-builder-action.png)

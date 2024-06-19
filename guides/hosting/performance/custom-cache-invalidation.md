@@ -1,3 +1,10 @@
+---
+nav:
+  title: Custom cache invalidation
+  position: 20
+
+---
+
 # Custom cache invalidation
 
 The current cache system of Shopware is based on a multi-layer system, in which the individual layers build on each other and whose tags are passed on to the upper layer for later invalidation.
@@ -12,9 +19,8 @@ However, currently, the subscriber adheres to a highly precise invalidation conc
 
 Therefore, we have solved all configurations via the service definition of this subscriber, so that all events, on which the subscriber listens, can be manipulated via compiler passes.
 
-{% code title="src/Core/Framework/DependencyInjection/cache.xml" %}
-
 ```xml
+// src/Core/Framework/DependencyInjection/cache.xml
 <service id="Shopware\Core\Framework\Adapter\Cache\CacheInvalidationSubscriber">
     <tag name="kernel.event_listener" event="Shopware\Core\Content\Category\Event\CategoryIndexerEvent" method="invalidateCategoryRouteByCategoryIds" priority="2000" />
 
@@ -25,8 +31,6 @@ Therefore, we have solved all configurations via the service definition of this 
     <!-- ... -->
 </service>
 ```
-
-{% endcode %}
 
 For example, if you want to disable all cache invalidation in a project, you can simply remove the `kernel.event_listener` tag of the service definition via compiler pass and implement your own cache invalidation.
 

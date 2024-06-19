@@ -1,3 +1,10 @@
+---
+nav:
+  title: Finding events
+  position: 20
+
+---
+
 # Finding Events
 
 ## Overview
@@ -9,8 +16,8 @@ This guide will cover how you can find those events in the first place, in order
 
 ## DAL Events
 
-At first we will start with the [Data Abstraction Layer events](../data-handling/using-database-events.md).
-They're fired whenever a [DAL entity](../data-handling/add-custom-complex-data.md) is read, written, created, or deleted.
+At first we will start with the [Data Abstraction Layer events](../data-handling/using-database-events).
+They're fired whenever a [DAL entity](../data-handling/add-custom-complex-data) is read, written, created, or deleted.
 
 There usually is no need to find them, since the pattern for them is always the same.
 You can use them by following this pattern: `entity_name.event`.
@@ -19,12 +26,12 @@ For products, this could be e.g. `product.written` or `product.deleted`. For you
 
 However, some default Shopware entities come with special "Event classes", which are basically a class, which contains all
 possible kinds of events as constants.
-Have a look at the [product event class](https://github.com/shopware/platform/blob/v6.4.0.0/src/Core/Content/Product/ProductEvents.php) for example.
+Have a look at the [product event class](https://github.com/shopware/shopware/blob/v6.4.0.0/src/Core/Content/Product/ProductEvents.php) for example.
 This way you can also find out about all the possible DAL events available in Shopware.
 
 Finding those "event classes" can be done by searching for the term `@Event` in your project.
 
-You can use those events in a [subscriber](../../plugin-fundamentals/listening-to-events.md) like the following:
+You can use those events in a [subscriber](../../plugin-fundamentals/listening-to-events) like the following:
 
 ```php
 public static function getSubscribedEvents(): array
@@ -38,7 +45,7 @@ public static function getSubscribedEvents(): array
 
 As you can see, you can either use the event class constants, if available, or the string itself.
 
-You'll then have access to several event specific information, e.g. your listener method will have access to an [EntityWrittenEvent](https://github.com/shopware/platform/blob/v6.4.0.0/src/Core/Framework/DataAbstractionLayer/Event/EntityWrittenEvent.php)
+You'll then have access to several event specific information, e.g. your listener method will have access to an [EntityWrittenEvent](https://github.com/shopware/shopware/blob/v6.4.0.0/src/Core/Framework/DataAbstractionLayer/Event/EntityWrittenEvent.php)
 instance when subscribing to the `written` event.
 
 ```php
@@ -47,7 +54,7 @@ public function onCustomEntityWritten(EntityWrittenEvent $event): void
 }
 ```
 
-You can find all of those DAL event classes [here](https://github.com/shopware/platform/tree/v6.4.0.0/src/Core/Framework/DataAbstractionLayer/Event).
+You can find all of those DAL event classes [here](https://github.com/shopware/shopware/tree/v6.4.0.0/src/Core/Framework/DataAbstractionLayer/Event).
 
 ## General PHP events
 
@@ -98,7 +105,7 @@ The [next section](#Specifically searching for events) will cover how to find th
 ### Specifically searching for events
 
 If you're really looking for a fitting event for your purpose, you might want to directly search for them.
-This can be done by searching through the `<shopware root>/platform/src` or the `<shopware root>/vendor/shopware/platform/src` directory,
+This can be done by searching through the `<shopware root>/platform/src` or the `<shopware root>/vendor/shopware/shopware/src` directory,
 depending on whether you are using the [development](https://github.com/shopware/development) or the [production template](https://github.com/shopware/production).
 Use one of the following search terms:
 
@@ -110,7 +117,7 @@ Use one of the following search terms:
 
 Every service, that wants to fire an event sooner or later, needs access to the `event_dispatcher` in order to do so.
 
-Hence, you can have a look at all the service definitions for the [Dependency injection container](../../plugin-fundamentals/dependency-injection.md)
+Hence, you can have a look at all the service definitions for the [Dependency injection container](../../plugin-fundamentals/dependency-injection)
 and therefore quickly figure out, which services and classes are having access to the said `event_dispatcher`:
 
 ```xml
@@ -152,10 +159,10 @@ There's a few more event "types" or classes that you may stumble upon, which are
 
 #### Page Loaded Events
 
-Usually when a [Storefront page](../../storefront/add-custom-page.md) is being loaded, a respective "page is being loaded" event is fired
+Usually when a [Storefront page](../../storefront/add-custom-page) is being loaded, a respective "page is being loaded" event is fired
 as well.
 
-You can find an example in the [GenericPageLoader](https://github.com/shopware/platform/blob/v6.4.0.0/src/Storefront/Page/GenericPageLoader.php), which is kinda a "default page" to be used pretty often.
+You can find an example in the [GenericPageLoader](https://github.com/shopware/shopware/blob/v6.4.0.0/src/Storefront/Page/GenericPageLoader.php), which is kinda a "default page" to be used pretty often.
 It dispatches an `GenericPageLoadedEvent` every time the page is being loaded.
 
 This way, you can react to this and e.g. add more meta information to the said page.
@@ -164,18 +171,14 @@ You can find those events by searching for the term "PageLoadedEvent".
 
 #### Criteria Events
 
-You should be familiar with the `Criteria` class, at least if you've dealt with the [Data Abstraction Layer](../data-handling/README.md).
+You should be familiar with the `Criteria` class, at least if you've dealt with the [Data Abstraction Layer](../data-handling/).
 There are many methods, that will dispatch a "criteria" event whenever a given default Shopware entity is being loaded using
 a `Criteria` instance.
 
-Let's have a look at an [example code](https://github.com/shopware/platform/blob/v6.4.0.0/src/Core/Content/Product/SalesChannel/Listing/ResolveCriteriaProductListingRoute.php#L55-L59):
+Let's have a look at an [example code](https://github.com/shopware/shopware/blob/v6.4.0.0/src/Core/Content/Product/SalesChannel/Listing/ResolveCriteriaProductListingRoute.php#L55-L59):
 
 ```php
-/**
- * @Since("6.2.0.0")
- * @Entity("product")
- * @Route("/store-api/product-listing/{categoryId}", name="store-api.product.listing", methods={"POST"})
- */
+#[Route(path: '/store-api/product-listing/{categoryId}', name: 'store-api.product.listing', methods: ['POST'], defaults: ['_entity' => 'product'])]
 public function load(string $categoryId, Request $request, SalesChannelContext $context, Criteria $criteria): ProductListingRouteResponse
 {
     $this->eventDispatcher->dispatch(
@@ -194,9 +197,9 @@ Of course, the code above is just one example excerpt and there are many more of
 
 Finding those events can be done by searching for the term `CriteriaEvent`.
 
-{% hint style="info" %}
+::: info
 Those "criteria events" are not generated automatically and therefore it is not guaranteed to exist for a given entity.
-{% endhint %}
+:::
 
 #### Business events
 
@@ -205,8 +208,8 @@ Business events are fired everytime an important business / ecommerce action occ
 Therefore, you can use them to react on those events, most times there even is an event fired **before** an action happened.
 Have a look at those two example events:
 
-- [CustomerBeforeLoginEvent](https://github.com/shopware/platform/blob/v6.4.0.0/src/Core/Checkout/Customer/SalesChannel/AccountService.php#L97-L98)
-- [CustomerLoginEvent](https://github.com/shopware/platform/blob/v6.4.0.0/src/Core/Checkout/Customer/SalesChannel/AccountService.php#L109-L110)
+- [CustomerBeforeLoginEvent](https://github.com/shopware/shopware/blob/v6.4.0.0/src/Core/Checkout/Customer/SalesChannel/AccountService.php#L97-L98)
+- [CustomerLoginEvent](https://github.com/shopware/shopware/blob/v6.4.0.0/src/Core/Checkout/Customer/SalesChannel/AccountService.php#L109-L110)
 
 The kind of information they contain and which you can modify is different for each event, so you'll have to have a look at the respective
 event classes to find out about it.
@@ -222,14 +225,14 @@ Since Shopware is built upon the Symfony framework, it also grants access to the
 Using the profiler, you can easily find all fired events in the current request.
 You can do so by opening up the profiler and clicking on the "Events" tab on the left.
 
-![](../../../../../.gitbook/assets/profiler_events.png)
+![](../../../../../assets/profiler-events.png)
 
 There you will find all events that were fired in the current request including their respective name to be used.
 
 ## Storefront events
 
 We're also making use of events in our Storefront javascript plugins.
-We've already covered Storefront events in this [guide](../../storefront/reacting-to-javascript-events.md).
+We've already covered Storefront events in this [guide](../../storefront/reacting-to-javascript-events).
 
 However, it's not really explaining how you can find them in the first place.
 For this case, we're using the same plain method like before: Simply searching for them or by looking through the code.
@@ -253,7 +256,7 @@ this.$emitter.subscribe('someEvent', (additionalData) => {
 ### Searching for javascript events
 
 Searching for the said javascript events is done by searching for the following term in either the `<shopware root>/platform/src/Storefront/Resources/app/storefront/src` directory for
-the [development template](https://github.com/shopware/development) or the `<shopware root>/vendor/shopware/platform/src/Storefront/Resources/app/storefront/src` directory
+the [development template](https://github.com/shopware/development) or the `<shopware root>/vendor/shopware/shopware/src/Storefront/Resources/app/storefront/src` directory
 for the [production template](https://github.com/shopware/production):
 `$emitter.publish`.
 This way, you'll find all occurrences of plugins actually firing a custom event.
@@ -269,7 +272,7 @@ this.$emit('some-event', additionalData);
 ```
 
 Therefore you can also find those occurrences by searching for `$emit` in the `<shopware root>/platform/src/Administration/Resources/app/administration/src` directory for
-the [development template](https://github.com/shopware/development) or the `<shopware root>/vendor/shopware/platform/src/Administration/Resources/app/administration/src` directory
+the [development template](https://github.com/shopware/development) or the `<shopware root>/vendor/shopware/shopware/src/Administration/Resources/app/administration/src` directory
 for the [production template](https://github.com/shopware/production).
 
 ### Vue extension
@@ -278,8 +281,8 @@ One more note here:
 There's a vue browser extension which can greatly help will development in general, but also with finding events.
 
 [Vue.js devtools for Firefox](https://addons.mozilla.org/de/firefox/addon/vue-js-devtools/)
-[Vue.js devtools for Google Chrome](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
+[Vue.js devtools for Google Chrome](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
 
 ## Flow builder events
 
-From Shopware 6.5, all events data in the Flow Builder will be stored in the `StorableFlow`, hence the `getAvailableData` function can no more be used to get data from the Flow Builder. For more information on this refer to [Create a new trigger (event)](../../../../../guides/plugins/plugins/framework/flow/add-flow-builder-trigger.md#create-a-new-trigger-event) section of this guide.
+From Shopware 6.5, all events data in the Flow Builder will be stored in the `StorableFlow`, hence the `getAvailableData` function can no more be used to get data from the Flow Builder. For more information on this refer to [Create a new trigger (event)](../../../../../guides/plugins/plugins/framework/flow/add-flow-builder-trigger#create-a-new-trigger-event) section of this guide.

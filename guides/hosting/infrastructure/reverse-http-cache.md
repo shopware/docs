@@ -1,44 +1,71 @@
+---
+nav:
+  title: Reverse HTTP Cache
+  position: 40
+
+---
+
 # Reverse HTTP Cache
 
 ## Overview
 
-A reverse HTTP cache is a cache server placed before the web shop. If you are not familiar with HTTP caching, please refer to the [HTTP cache](../../../concepts/framework/http_cache.md) concept. The reverse http cache needs the following capabilities to function with Shopware fully:
+A reverse HTTP cache is a cache server placed before the web shop. If you are not familiar with HTTP caching, please refer to the [HTTP cache](../../../concepts/framework/http_cache) concept. The reverse http cache needs the following capabilities to function with Shopware fully:
 
 * Able to differentiate the request with multiple cookies
 * Allow clearing the cache using a web request for a specific site or with `/` for all pages
 
-{% hint style="info" %}
+::: info
 In this guide, we will use Varnish as an example for HTTP cache.
-{% endhint %}
+:::
 
 ### The example Setup with Varnish
 
-{% hint style="warning" %}
-This setup is compatible from Shopware version 6.4.
-{% endhint %}
+::: warning
+This setup is compatible with Shopware version 6.4 and higher
+:::
 
-![](../../../.gitbook/assets/reverse_proxy_setup.svg)
+![](../../../assets/hosting-infrastructure-reverseHttpCache.svg)
+
+### Shopware Varnish Docker image
+
+Feel free to check out the [Shopware Varnish Docker image](https://github.com/shopware/varnish-shopware) for a quick start. It contains the Shopware default VCL. The containing VCL is for the usage with xkeys. 
 
 ### Configure Shopware
+
+:::warning
+From version v6.6.x onwards, this method is deprecated and will be removed in v6.7.0. Utilising Varnish with Redis involves LUA scripts to determine URLs for the BAN request. This can cause problems depending on the setup or network. Furthermore, Redis clusters are not supported. Therefore, it is advisable to opt for the [Varnish with XKey](#using-varnish-xkey-module-without-redis) integration instead.
+::: 
 
 First, we need to activate the reverse proxy support in Shopware. To enable it, we need to create a new file in `config/packages/storefront.yaml`:
 
 ```yaml
-storefront:
-    reverse_proxy:
-        enabled: true
-        ban_method: "BAN"
-        # This needs to point to your varnish hosts
-        hosts: [ "http://varnish" ]
-        # Max parallel invalidations at same time for a single worker
-        max_parallel_invalidations: 3
-        # Redis Storage for the HTTP cache tags
-        redis_url: "redis://redis"
+# Be aware that the configuration key changed from storefront.reverse_proxy to shopware.http_cache.reverse_proxy starting with Shopware 6.6
+shopware:
+    http_cache:
+        reverse_proxy:
+            enabled: true
+            ban_method: "BAN"
+            # This needs to point to your varnish hosts
+            hosts: [ "http://varnish" ]
+            # Max parallel invalidations at same time for a single worker
+            max_parallel_invalidations: 3
+            # Redis Storage for the HTTP cache tags
+            redis_url: "redis://redis"
 ```
 
 Also set `SHOPWARE_HTTP_CACHE_ENABLED=1` in your `.env` file.
 
+::: info
+The configuration key changed from `storefront.reverse_proxy` up to Shopware 6.5.x to `shopware.http_cache.reverse_proxy` starting with Shopware 6.6.0.0.
+So you will need to adjust your config while upgrading.
+If you look for the old documentation and examples, you can find it [here](https://developer.shopware.com/docs/v6.5/guides/hosting/infrastructure/reverse-http-cache.html)
+:::
+
 #### Trusted proxies
+
+::: info
+Since Shopware 6.6, the `TRUSTED_PROXIES` environment variable is no longer taken into account out of the box. Make sure to create a Symfony configuration to make it configurable again [like here](https://github.com/shopware/recipes/blob/main/shopware/docker/0.1/config/packages/trusted_env.yaml).
+:::
 
 For the most part, using Symfony and Varnish doesn't cause any problem. But, when a request passes through a proxy, certain request information is sent using either the standard Forwarded header or *X-Forwarded* headers. For example, instead of reading the *REMOTE_ADDR* header (which will now be the IP address of your reverse proxy), the user's true IP will be stored in a standard Forwarded: for="..." header or an *X-Forwarded-For* header.
 
@@ -192,7 +219,6 @@ sub vcl_backend_response {
         beresp.http.Cache-Control ~ "private"
     ) {
         set beresp.ttl = 0s;
-        set beresp.http.X-Cacheable = "NO:Cache-Control=private";
         set beresp.uncacheable = true;
         return (deliver);
     }
@@ -207,7 +233,6 @@ sub vcl_backend_response {
 
     # Save the bereq.url so bans work efficiently
     set beresp.http.x-url = bereq.url;
-    set beresp.http.X-Cacheable = "YES";
 
     # Remove the exact PHP Version from the response for more security
     unset beresp.http.x-powered-by;
@@ -266,8 +291,6 @@ acl purgers {
 }
 
 sub vcl_recv {
-    set req.http.host = "sw6.dev.localhost";
-
     # Mitigate httpoxy application vulnerability, see: https://httpoxy.org/
     unset req.http.Proxy;
 
@@ -396,7 +419,6 @@ sub vcl_backend_response {
         beresp.http.Cache-Control ~ "private"
     ) {
         set beresp.ttl = 0s;
-        set beresp.http.X-Cacheable = "NO:Cache-Control=private";
         set beresp.uncacheable = true;
         return (deliver);
     }
@@ -411,7 +433,6 @@ sub vcl_backend_response {
 
     # Save the bereq.url so bans work efficiently
     set beresp.http.x-url = bereq.url;
-    set beresp.http.X-Cacheable = "YES";
 
     # Remove the exact PHP Version from the response for more security
     unset beresp.http.x-powered-by;
@@ -458,24 +479,22 @@ Varnish XKey is a cache key module that allows you to use Varnish with surrogate
 
 The module is available for download on [GitHub](https://github.com/varnish/varnish-modules/blob/master/src/vmod_xkey.vcc)
 
-{% hint style="warning" %}
-This feature has been introduced with Shopware version 6.4.17.0
-{% endhint %}
-
 And also needs to be enabled in the `config/packages/shopware.yml` file:
 
 ```yaml
-storefront:
-  reverse_proxy:
-    enabled: true
-    use_varnish_xkey: true
-    hosts:
-      - 'varnish-host'
+# Be aware that the configuration key changed from storefront.reverse_proxy to shopware.http_cache.reverse_proxy starting with Shopware 6.6
+shopware:
+  http_cache:
+      reverse_proxy:
+        enabled: true
+        use_varnish_xkey: true
+        hosts:
+          - 'varnish-host'
 ```
 
 Varnish Config:
 
-```vcl
+```txt
 vcl 4.0;
 
 import std;
@@ -630,7 +649,6 @@ sub vcl_backend_response {
         beresp.http.Cache-Control ~ "private"
     ) {
         set beresp.ttl = 0s;
-        set beresp.http.X-Cacheable = "NO:Cache-Control=private";
         set beresp.uncacheable = true;
         return (deliver);
     }
@@ -645,7 +663,6 @@ sub vcl_backend_response {
 
     # Save the bereq.url so bans work efficiently
     set beresp.http.x-url = bereq.url;
-    set beresp.http.X-Cacheable = "YES";
 
     # Remove the exact PHP Version from the response for more security
     unset beresp.http.x-powered-by;
@@ -687,7 +704,7 @@ The `X-Cache` and `X-Cache-Hits` headers are only meant to verify that Varnish i
 
 To disable these headers, comment out the lines by prefixing them with the `#` character. The lines in question are:
 
-```vcl
+```txt
 # Set a cache header to allow us to inspect the response headers during testing
 if (obj.hits > 0) {
     unset resp.http.set-cookie;
@@ -701,7 +718,7 @@ set resp.http.X-Cache-Hits = obj.hits;
 
 Make it so that the lines look like the following:
 
-```vcl
+```txt
 # Set a cache header to allow us to inspect the response headers during testing
 if (obj.hits > 0) {
     unset resp.http.set-cookie;
@@ -713,12 +730,16 @@ if (obj.hits > 0) {
 #set resp.http.X-Cache-Hits = obj.hits;
 ```
 
+For more details, please refer to the [Varnish documentation](https://www.varnish-software.com/developers/tutorials/logging-cache-hits-misses-varnish/) on logging cache hits and misses.
+
 ## Configure Fastly
 
 Fastly is supported since Shopware 6.4.11.0 is out-of-the-box with some configurations. To enable it, we need to create a new file in `config/packages/storefront.yaml`
 
 ```yaml
-storefront:
+# Be aware that the configuration key changed from storefront.reverse_proxy to shopware.http_cache.reverse_proxy starting with Shopware 6.6
+shopware:
+  http_cache:
     reverse_proxy:
         enabled: true
         fastly:
@@ -729,38 +750,41 @@ storefront:
 
 ### Fastly soft-purge
 
-{% hint style="warning" %}
+::: warning
 This feature has been introduced with Shopware version 6.4.15.0
-{% endhint %}
+:::
 
 By default, the cache will be immediately purged and the next requesting user will get a slow response as the cache has been deleted. On soft purge, the user still gets the cached response after the purge, but in the configured time interval, the cache will be refreshed. This makes sure that the client gets the fastest response possible.
 
 ```yaml
-storefront:
+# Be aware that the configuration key changed from storefront.reverse_proxy to shopware.http_cache.reverse_proxy starting with Shopware 6.6
+shopware:
   http_cache:
     # Allow to serve the out-dated cache for 300 seconds
     stale_while_revalidate: 300
     # Allow to serve the out-dated cache for an hour if the origin server is offline
     stale_if_error: 3600
-  reverse_proxy:
-    enabled: true
-    fastly:
-      enabled: true
-      api_key: '<personal-token-from-fastly>'
-      service_id: '<service-id>'
-      soft_purge: '1'
+    reverse_proxy:
+        enabled: true
+        fastly:
+          enabled: true
+          api_key: '<personal-token-from-fastly>'
+          service_id: '<service-id>'
+          soft_purge: '1'
 ```
 
 ### Fastly VCL Snippets
 
 Additionally, we need to set up some VCL Snippets in the Fastly interface:
 
-{% embed url="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/deliver.vcl" caption="vcl_deliver" %}
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/deliver/default.vcl" title="vcl_deliver" target="_blank" />
 
-{% embed url="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/fetch.vcl" caption="vcl_fetch" %}
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/fetch/default.vcl" title="vcl_fetch" target="_blank" />
 
-{% embed url="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/hash.vcl" caption="vcl_hash" %}
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/hash/default.vcl" title="vcl_hash" target="_blank" />
 
-{% embed url="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/hit.vcl" caption="vcl_hit" %}
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/hit/default.vcl" title="vcl_hit" target="_blank" />
 
-{% embed url="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/recv.vcl" caption="vcl_recv" %}
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/recv/default.vcl" title="vcl_recv" target="_blank" />
+
+<!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Storefront/Resources/config/packages/storefront.yaml","WATCHER_HASH":"caead56ad257ecec0e10a62dd3121bb6"} -->

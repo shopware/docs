@@ -1,3 +1,10 @@
+---
+nav:
+  title: Entity based ACL
+  position: 100
+
+---
+
 # Entity based ACL
 
 ## Introduction
@@ -14,10 +21,10 @@ They provide the means of creating the tables, storing and removing the relation
 In order to understand the design decisions of the ACL component, we first take a look at the different requirements imposed on ACL.
 As you can see in the graphic below, access control is basically a concern of every technical layer of the application.
 
-![acl addresses](../../../../../.gitbook/assets/acl-architecture.svg)
+![acl addresses](../../../../../assets/b2bSuite-core-entityAclArchitecture.svg)
 
 The base ACL component described in this document provides functionality for repository filtering and service checks.
-The [Authentication component](https://docs.enterprise.shopware.com/b2b-suite/technical/store-front-authentication/) provides the context for the currently logged-in user and the [ACL route](https://docs.enterprise.shopware.com/b2b-suite/technical/acl-routes/) component then provides the ability to secure routes and means of inspection for allowed routes.
+The [Authentication component](authentication) provides the context for the currently logged-in user and the [ACL route](../storefront/acl-routing) component then provides the ability to secure routes and means of inspection for allowed routes.
 
 ## Naming
 
@@ -51,11 +58,10 @@ CREATE TABLE `b2b_acl_*` (
 
 For example, let's look at the schema part responsible for storing the address access rights.
 
-![acl addresses](../../../../../.gitbook/assets/acl-address-schema.svg)
+![acl addresses](../../../../../assets/b2bSuite-core-entityAcl.svg)
 
-As you can see, the addresses (subject) can be allowed in two distinct contexts.
-Either through a *role* or through a *contact*. So between these entities are two ACL tables holding the M:N relations.
-On the left, you see the *ContactRole* table. This table holds the information on which contact is assigned to what roles.
+As you can see, the addresses (subject) can be allowed in two distinct contexts, either through a *role* or through a *contact*. In between these entities are two *ACL* tables holding the M:N relations.
+On the left, you see the *ContactRole* table. This table holds the information of which contact is assigned to what roles.
 
 This allows for a single query to select all allowed addresses of a particular user combined from the role and direct assignments.
 

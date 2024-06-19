@@ -1,3 +1,10 @@
+---
+nav:
+  title: Profile and Connection
+  position: 10
+
+---
+
 # Profile and Connection
 
 ## Overview
@@ -8,14 +15,14 @@ Users of the plugin can create connections to different source systems. A connec
 
 The base of Shopware Migration Assistant is the profile, which enables you to migrate your shop system to Shopware 6. Shopware Migration Assistant comes with the default Shopware 5.5 profile and is located in the `shopware55.xml`:
 
-```markup
+```html
 <!-- Shopware 5.5 Profile -->
 <service id="SwagMigrationAssistant\Profile\Shopware55\Shopware55Profile">
     <tag name="shopware.migration.profile"/>
 </service>
 ```
 
-In order to identify itself, the profile has to implement getter functions like `getName`, which returns the unique name of the profile. The profile is used together with the [Gateway](gateway-and-reader.md#gateway) to check and apply the right processing during a migration run.
+In order to identify itself, the profile has to implement getter functions like `getName`, which returns the unique name of the profile. The profile is used together with the [Gateway](gateway-and-reader#gateway) to check and apply the right processing during a migration run.
 
 ```php
 <?php declare(strict_types=1);
@@ -65,7 +72,7 @@ class Shopware55Profile implements ShopwareProfileInterface
 
 ## Connection
 
-To connect Shopware 6 to your source system \(e.g., Shopware 5\), you will need a connection entity. The connection includes all the important information for your migration run. It contains the credentials for the API or database access, the actual [Premapping](premapping.md) and the profile, [Gateway](gateway-and-reader.md) combination which is used for your migration:
+To connect Shopware 6 to your source system \(e.g., Shopware 5\), you will need a connection entity. The connection includes all the important information for your migration run. It contains the credentials for the API or database access, the actual [Premapping](premapping) and the profile, [Gateway](gateway-and-reader) combination which is used for your migration:
 
 ```php
 <?php declare(strict_types=1);

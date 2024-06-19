@@ -80,10 +80,10 @@ Media can be previewed with the `sw-media-preview-v2` component as seen below:
 As previously mentioned this component is already embedded within the `sw-media-upload-v2`.
 However, using it as a separate component you get access to the following configuration options:
 
-| Property         | Function                                                                            |
-|------------------|-------------------------------------------------------------------------------------|
-| `source`         | The `id` or alternately the path to the media to be previewed                       |
-| `showControls`   | Controls whether media such as videos or audio shows controls                       |
-| `autoplay`       | Controls whether media such as videos or audio autoplays                            |
-| `hideTooltip`    | Hides the the filename tooltip of the media in at the bottom of the component       |
-| `mediaIsPrivate` | If set to true displays various lock symbols                                        |
+| Property         | Function                                                                      |
+|------------------|-------------------------------------------------------------------------------|
+| `source`         | The `id` or alternately the path to the media to be previewed                 |
+| `showControls`   | Controls whether media such as videos or audio shows controls                 |
+| `autoplay`       | Controls whether media such as videos or audio auto-plays                     |
+| `hideTooltip`    | Hides the the filename tooltip of the media in at the bottom of the component |
+| `mediaIsPrivate` | If set to true displays various lock symbols                                  |

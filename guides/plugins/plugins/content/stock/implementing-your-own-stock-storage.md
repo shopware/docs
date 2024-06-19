@@ -1,3 +1,10 @@
+---
+nav:
+  title: Implementing your own stock storage
+  position: 10
+
+---
+
 # Implementing your own stock storage
 
 ## Overview
@@ -6,7 +13,7 @@ Shopware stores stock as simple integer values in the `product` table. If you ne
 
 ## Prerequisites
 
-Here you will be decorating a service; therefore, it will be helpful to familiarise yourself with the [Adjusting a Service](../../../../../guides/plugins/plugins/plugin-fundamentals/adjusting-service.md) guide.
+Here you will be decorating a service; therefore, it will be helpful to familiarise yourself with the [Adjusting a Service](../../../../../guides/plugins/plugins/plugin-fundamentals/adjusting-service) guide.
 
 ## Add a decorator to load the stock
 
@@ -16,11 +23,11 @@ First, to communicate stock alterations to a third-party service, you will have 
 * the old quantity and 
 * the new quantity.
 
-{% tabs %}
-{% tab title="StockStorageDecorator.php" %}
-{% code title="<plugin root>/src/Swag/Example/Service/StockStorageDecorator.php" %}
+<Tabs>
+<Tab title="StockStorageDecorator.php">
 
 ```php
+// <plugin root>/src/Swag/Example/Service/StockStorageDecorator.php
 <?php declare(strict_types=1);
 
 namespace Swag\Example\Service;
@@ -68,13 +75,12 @@ class StockStorageDecorator extends AbstractStockStorage
 }
 ```
 
-{% endcode %}
-{% endtab %}
+</Tab>
 
-{% tab title="services.xml" %}
-{% code title="<plugin root>/src/Resources/config/services.xml" %}
+<Tab title="services.xml">
 
 ```xml
+// <plugin root>/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -88,9 +94,8 @@ class StockStorageDecorator extends AbstractStockStorage
 </container>
 ```
 
-{% endcode %}
-{% endtab %}
-{% endtabs %}
+</Tab>
+</Tabs>
 
 The alter method will be called when the stock of a product should be updated. The `$changes` array contains a list of `StockAlteration` instances. These objects contain the following properties/methods:
 
@@ -121,4 +126,4 @@ All of these scenarios are handled by the event subscriber `Shopware\Core\Conten
 ## Further extension points for advanced customization
 
 1. If you need to listen to more events to trigger stock alterations, you can create an event subscriber for the required events and call the `\Shopware\Core\Content\Product\Stock\AbstractStockStorage::alter` method with a `StockAlteration` instance representative of the alteration.
-1. If you don't want to use Shopware's default events and stock storage, you can implement your own system and recommend that the project owner disables the Shopware stock management system. Refer them to [Configuration guide](../../../../../guides/installation/configuration).
+1. If you don't want to use Shopware's default events and stock storage, you can implement your own system and recommend that the project owner disables the Shopware stock management system. Refer them to [Configuration guide](../../../../../guides/hosting/configurations/shopware/stock).

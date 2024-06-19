@@ -1,0 +1,11 @@
+shopware:
+  html_sanitizer:
+    sets:
+      -   name: basic
+          tags: [ "img" ]
+          attributes: [ "src", "alt", "style" ]
+          options:
+            - key: HTML.Trusted
+              value: true
+            - key: CSS.Trusted
+              value: true

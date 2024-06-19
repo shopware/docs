@@ -1,12 +1,19 @@
+---
+nav:
+  title: The Shopware object
+  position: 270
+
+---
+
 # The Shopware object
 
 ## Overview
 
 The global `Shopware` object is the bridge between the Shopware Administration and your plugin as third party code. It provides utility functions to interface to the rest of the Administration.
 
-{% hint style="warning" %}
+::: warning
 Don't try to access other parts of the Administration directly, always use the `Shopware` object.
-{% endhint %}
+:::
 
 It is bound to a window object in order to be accessible everywhere and can therefore be inspected with the browser console in the developer tools. To take a look at it, open the `Administration` in your browser and run this in the dev-tools console:
 
@@ -19,7 +26,7 @@ There are lots of things bound to this object. So here is a short overview of th
 
 ## Component
 
-The `Component` property of the global `Shopware` contains the component registry, wich is responsible for handling the VueJS components. If you want to write your own components you have to register them with the `Component.register()` method. Those components are small reusable building blocks which you can use to implement your features.
+The `Component` property of the global `Shopware` contains the component registry, which is responsible for handling the VueJS components. If you want to write your own components you have to register them with the `Component.register()` method. Those components are small reusable building blocks which you can use to implement your features.
 
 ```javascript
 const { Component } = Shopware;
@@ -29,7 +36,7 @@ Component.register('sw-dashboard-index', {
 });
 ```
 
-Learn more about them here: [Creating administration component](add-custom-component.md)
+Learn more about them here: [Creating administration component](add-custom-component)
 
 ## Module
 
@@ -41,7 +48,7 @@ const { Module } = Shopware;
 Module.register('your-module', {});
 ```
 
-Learn more about them here: [Creating administration module](add-custom-module.md)
+Learn more about them here: [Creating administration module](add-custom-module)
 
 ## A more general overview
 
@@ -67,16 +74,16 @@ We now have discussed the most commonly used parts of the `Shopware` object, but
 
 ## TypeScript declarations
 
-{% hint style="info" %}
+::: info
 TypeScript declarations are available from Shopware Version 6.4.4.0
-{% endhint %}
+:::
 
 The Shopware Administration is written in pure JavaScript. To provide you with the benefits of TypeScript and the best possible developer experience while working in JavaScript files we're providing TypeScript declaration files within the Administration. These files are helping you to understand how the Shopware object works and what arguments you have to provide for example when you're creating a new module or registering a new component.
 
-![TypeScript declarations example](../../../../.gitbook/assets/typescript-declaration-shopware-module.gif)
+![TypeScript declarations example](../../../../assets/typescript-declaration-shopware-module.gif)
 
 In the example above you can see how the TypeScript declarations are helping you to register a module. It automatically marks your code and points out what is missing.
 
 ## Next steps
 
-As you might have noticed, the `Shopware` object can be used in a lot of cases. Besides registering components and modules, here are some guides about [adding filters](add-filter.md), about [adding mixins](add-mixins.md) and about [using our utils](using-utils.md) - all by using the Shopware object.
+As you might have noticed, the `Shopware` object can be used in a lot of cases. Besides registering components and modules, here are some guides about [adding filters](add-filter), about [adding mixins](add-mixins) and about [using our utils](using-utils) - all by using the Shopware object.

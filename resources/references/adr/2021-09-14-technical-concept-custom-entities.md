@@ -3,14 +3,14 @@ title: Technical concept custom entities
 date: 2021-08-31
 area: core
 tags: [app, custom-entities, store-api, dal, admin-api]
---- 
+---
 
 # Technical concept custom entities
 
-{% hint style="info" %}
+::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/platform/blob/trunk/adr/2021-09-14-technical-concept-custom-entities.md)
-{% endhint %}
+You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2021-09-14-technical-concept-custom-entities.md)
+:::
 
 ## Context
 It should be possible for apps to define their entities. Furthermore, it should be possible, if desired, that these entities are available via Store API.

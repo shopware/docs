@@ -1,3 +1,10 @@
+---
+nav:
+  title: Platform Domains
+  position: 90
+
+---
+
 # Platform Domains
 
 * The `Core` domain must not have any dependency on any of the other domains. This means that neither classes nor assets from `Storefront`, `Administration` or `Elasticsearch` may be used within the `Core` domain.

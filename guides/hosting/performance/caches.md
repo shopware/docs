@@ -1,3 +1,10 @@
+---
+nav:
+  title: Cache
+  position: 10
+
+---
+
 # Cache
 
 There are several caches in Shopware that can be used to optimize performance. This page gives a brief overview and shows how to configure them.
@@ -17,11 +24,11 @@ The HTTP cache configuration takes place completely in the `.env file.` The foll
 
 ### How to trigger the HTTP cache warmer
 
-To warm up the HTTP cache, you can simply use the console command `http:cache:warm:up`. This command sends a message to the message queue for each sales channel domain to warm it up as fast as possible. It is important that queue workers are started according to our [message queue](../infrastructure/message-queue.md).
+To warm up the HTTP cache, you can simply use the console command `http:cache:warm:up`. This command sends a message to the message queue for each sales channel domain to warm it up as fast as possible. It is important that queue workers are started according to our [message queue](../infrastructure/message-queue).
 
 ### How to change the cache storage
 
-The standard Shopware HTTP cache can be exchanged or reconfigured in several ways. The standard cache comes with an `adapter.filesystem`. The configuration can be found in the `platform/src/Core/Framework/Resources/config/packages/framework.yaml` file.
+The standard Shopware HTTP cache can be exchanged or reconfigured in several ways. The standard cache comes with an `adapter.filesystem`. The configuration can be found in the `shopware/src/Core/Framework/Resources/config/packages/framework.yaml` file.
 
 ```yaml
 framework:
@@ -65,6 +72,8 @@ The object cache pool is used for caching the data abstraction layer in Shopware
 
 "[Redis](https://redis.io/) is an open source \(BSD licensed\), in-memory data structure store, used as a database, cache, and message broker." In this example, we change the default HTTP cache adapter to Redis. It is possible to change every adapter as in this example. A running Redis instance is required for this to work. The configuration can be overridden by creating or editing the file `framework.yaml`
 
+For `cache.adapter.redis_tag_aware` minimum Shopware 6.5.8.3 is required. Otherwise use `cache.adapter.redis`.
+
 ```yaml
 # config/packages/framework.yaml
 framework:
@@ -72,7 +81,7 @@ framework:
         default_redis_provider: 'redis://host:port'
         pools:
             cache.http:
-                adapter: cache.adapter.redis
+                adapter: cache.adapter.redis_tag_aware
                 tags: cache.tags
 ```
 
@@ -81,7 +90,7 @@ Replace the `host` and `port` with your Redis instance. It is also possible to c
 ```yaml
 framework:
     cache:
-        app: cache.adapter.redis
+        app: cache.adapter.redis_tag_aware
         default_redis_provider: 'redis://host:port'
 ```
 

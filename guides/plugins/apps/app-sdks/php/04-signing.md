@@ -1,3 +1,10 @@
+---
+nav:
+  title: Signing
+  position: 40
+
+---
+
 # Signing of responses
 
 The Shopware App System requires you to sign your responses to the Shopware server.
@@ -29,4 +36,4 @@ $signer = new \Shopware\App\SDK\Authentication\ResponseSigner();
 $signer->signResponse($psrResponse, $shop);
 ```
 
-Next, we will look into the [Making HTTP requests to the Shop](./05-http-client.md).
+Next, we will look into the [Making HTTP requests to the Shop](./05-http-client).

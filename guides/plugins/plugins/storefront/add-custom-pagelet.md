@@ -1,3 +1,10 @@
+---
+nav:
+  title: Add custom pagelet
+  position: 110
+
+---
+
 # Add Custom Pagelet
 
 ## Overview
@@ -8,13 +15,13 @@ In short: Pages are exactly that, a fully functioning page of your store with a 
 
 ## Prerequisites
 
-In order to add your own custom pagelet for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md). Since a pagelet is just part of another page, we are going to use the page created in our guide about [adding a custom page](add-custom-page.md).
+In order to add your own custom pagelet for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide). Since a pagelet is just part of another page, we are going to use the page created in our guide about [adding a custom page](add-custom-page).
 
 ## Adding custom pagelet
 
-Bssically a pagelet is created exactly like a page: You need a pagelet loader, a pagelet struct to hold the data and a pagelet loaded event.
+Basically a pagelet is created exactly like a page: You need a pagelet loader, a pagelet struct to hold the data and a pagelet loaded event.
 
-Since creating this kind of classes is explained in detail in our guide about [adding a custom page](add-custom-page.md), it is not going to be explained here in detail again. Yet, there's some differences worth mentioning:
+Since creating this kind of classes is explained in detail in our guide about [adding a custom page](add-custom-page), it is not going to be explained here in detail again. Yet, there's some differences worth mentioning:
 
 * The struct to hold the data has to extend from the `Shopware\Storefront\Pagelet\Pagelet` class instead of `Shopware\Storefront\Page\Page`
 * A pagelet doesn't have to be bound to a controller, e.g. with an extra route. It can have a route though!
@@ -35,9 +42,8 @@ Let's now have a look at the example classes. The pagelet is going to be called 
 
 ### The ExamplePageletLoader
 
-{% code title="<plugin root>/src/Storefront/Pagelet/Example/ExamplePageletLoader.php" %}
-
 ```php
+// <plugin root>/src/Storefront/Pagelet/Example/ExamplePageletLoader.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Storefront\Pagelet\Example;
@@ -72,15 +78,12 @@ class ExamplePageletLoader
 }
 ```
 
-{% endcode %}
-
 Note the instance creation without the `::createFrom()` call. The rest is quite equal, you can load your data, set it to the pagelet struct, you fire an event and you return the pagelet.
 
 ### The ExamplePagelet struct
 
-{% code title="<plugin root>/src/Storefront/Pagelet/Example/ExamplePagelet.php" %}
-
 ```php
+// <plugin root>/src/Storefront/Pagelet/Example/ExamplePagelet.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Storefront\Pagelet\Example;
@@ -104,15 +107,12 @@ class ExamplePagelet extends Pagelet
 }
 ```
 
-{% endcode %}
-
 Just like the page struct, this is basically just a class holding data. Note the different `extend` though, you're not extending from `Shopware\Storefront\Page\Page` here. It only contained helper method for the header & footer pagelets.
 
 ### The ExamplePageletLoadedEvent
 
-{% code title="<plugin root>/src/Storefront/Pagelet/Example/ExamplePageletLoadedEvent.php" %}
-
 ```php
+// <plugin root>/src/Storefront/Pagelet/Example/ExamplePageletLoadedEvent.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Storefront\Pagelet\Example;
@@ -138,8 +138,6 @@ class ExamplePageletLoadedEvent extends PageletLoadedEvent
 }
 ```
 
-{% endcode %}
-
 Note the different `extends`, which uses the `PageletLoadedEvent` class instead. Also, the getter method is no longer `getPage`, but `getPagelet` instead.
 
 ## Loading the pagelet
@@ -148,11 +146,10 @@ Note the different `extends`, which uses the `PageletLoadedEvent` class instead.
 
 Most times you want to load your pagelet as part of another page. This is simply done by calling the `load` method of your pagelet in another page's `load` method.
 
-Using the example from our [adding a custom page](add-custom-page.md) guide, this is what the `load` method could look like:
-
-{% code title="<plugin root>/src/Storefront/Page/Example/ExamplePageLoader.php" %}
+Using the example from our [adding a custom page](add-custom-page) guide, this is what the `load` method could look like:
 
 ```php
+// <plugin root>/src/Storefront/Page/Example/ExamplePageLoader.php
 public function load(Request $request, SalesChannelContext $context): ExamplePage
 {
     $page = $this->genericPageLoader->load($request, $context);
@@ -171,8 +168,6 @@ public function load(Request $request, SalesChannelContext $context): ExamplePag
 }
 ```
 
-{% endcode %}
-
 Of course, in this example your `ExamplePage` struct needs a method `setExamplePagelet`, as well as the respective getter method `getExamplePagelet`. And then that's it, you've loaded your pagelet as part of another page.
 
 ### Loading the pagelet via route
@@ -180,9 +175,7 @@ Of course, in this example your `ExamplePage` struct needs a method `setExampleP
 As already mentioned, a pagelet can be loaded via a route if you want it to. For that case, you can simply add a new route to your controller and load the pagelet via the `ExamplePageletLoader`:
 
 ```php
-/**
- * @Route("/example-pagelet", name="frontend.example.pagelet", methods={"POST"}, defaults={"XmlHttpRequest"=true})
- */
+#[Route(path: '/example-pagelet', name: 'frontend.example.pagelet', methods: ['POST'], defaults: ['XmlHttpRequest' => 'true'])]
 public function examplePagelet(Request $request, SalesChannelContext $context): Response
 {
     $pagelet = $this->examplePageletLoader->load($request, $context);
@@ -193,4 +186,4 @@ public function examplePagelet(Request $request, SalesChannelContext $context): 
 }
 ```
 
-Using the part `defaults={"XmlHttpRequest"=true}` in the annotation ensures, that this pagelet can be loaded using an XML HTTP Request.
+Using the part `defaults: ['XmlHttpRequest' => true]` in the attribute ensures, that this pagelet can be loaded using an XML HTTP Request.

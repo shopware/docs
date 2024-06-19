@@ -1,3 +1,10 @@
+---
+nav:
+  title: Replacing associated data
+  position: 50
+
+---
+
 # Replacing Associated Data
 
 ## Overview
@@ -6,13 +13,13 @@ This short guide will give you an example on how to replace associated `ToMany` 
 
 ## Prerequisites
 
-Having read our guide about [Writing data](writing-data.md) is mandatory to understand the next few steps here. Other than that, the default prerequisites apply here as well: A running Shopware 6 instance and full access to the files.
+Having read our guide about [Writing data](writing-data) is mandatory to understand the next few steps here. Other than that, the default prerequisites apply here as well: A running Shopware 6 instance and full access to the files.
 
-The examples mentioned here are built upon the [Plugin base guide](../../plugin-base-guide.md). If you don't know how to create a plugin or how to use the code examples here in the first place, the plugin base guide is a good way to start.
+The examples mentioned here are built upon the [Plugin base guide](../../plugin-base-guide). If you don't know how to create a plugin or how to use the code examples here in the first place, the plugin base guide is a good way to start.
 
 ## Replacing data
 
-So let's start with the main issue going on here. Let's imagine you've created a product using our previously mentioned guide about [Writing data](writing-data.md) and you have assigned a category to it. Unfortunately you made a mistake, since this was the wrong category to be assigned and you want another category to be assigned instead.
+So let's start with the main issue going on here. Let's imagine you've created a product using our previously mentioned guide about [Writing data](writing-data) and you have assigned a category to it. Unfortunately you made a mistake, since this was the wrong category to be assigned and you want another category to be assigned instead.
 
 ### A wrong example
 
@@ -42,13 +49,13 @@ Well, this is **not** how it works. Using a write operation will **not** delete 
 
 The right way to do it is to delete the category association first, only to then re-assign a new category. Let's take a look at the deletion part first, since this is where most people struggle.
 
-The product categories are a `ManyToMany` association and thus come with a mapping table, and a custom entity. You can find the entity definition for the association [here](https://github.com/shopware/platform/blob/trunk/src/Core/Content/Product/Aggregate/ProductCategory/ProductCategoryDefinition.php).
+The product categories are a `ManyToMany` association and thus come with a mapping table, and a custom entity. You can find the entity definition for the association [here](https://github.com/shopware/shopware/blob/trunk/src/Core/Content/Product/Aggregate/ProductCategory/ProductCategoryDefinition.php).
 
 In order to delete it, we once again need its repository. The name for the entity can be found in the definition, to be precise inside of the `getEntityName` method.
 
 So let's inject this repository into our class called `ReplacingData`:
 
-```markup
+```xml
 // SwagBasicExample/src/Resources/config/services.xml
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -64,7 +71,7 @@ So let's inject this repository into our class called `ReplacingData`:
 </container>
 ```
 
-Afterwards, you can just use the `delete` method on the repository, just like you did before in the [Writing data](writing-data.md) guide.
+Afterwards, you can just use the `delete` method on the repository, just like you did before in the [Writing data](writing-data) guide.
 
 ```php
 public function replaceData(Context $context): void
@@ -127,4 +134,4 @@ This works as expected.
 
 ## More interesting topics
 
-* [Deleting associated data](deleting-associated-data.md)
+* [Deleting associated data](deleting-associated-data)
