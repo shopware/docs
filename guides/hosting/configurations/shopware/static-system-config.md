@@ -15,13 +15,13 @@ The static system configuration is a feature that allows you to configure system
 
 ## How it works
 
-The staticly set configuration is an overlay of the database loaded configuration. This means that the configuration in the database is loaded first, and then the configuration set in the `config/packages` directory is loaded. If a configuration key is set in both places, the value from the `config/packages` directory will be used. Additionally when the configuration is overwritten, the user is not able to change the configuration in the administration anymore.
+The statically set configuration is an overlay of the database loaded configuration. This means that the configuration in the database is loaded first, and then the configuration set in the `config/packages` directory is loaded. If a configuration key is set in both places, the value from the `config/packages` directory will be used. Additionally, when the configuration is overwritten, the user is not able to change the configuration in the administration anymore.
 
 ## Why to use?
 
-- When the configuration should be fix and should not be changed by the user
+- When the configuration should be fixed and should not be changed by the user
 - When you want to have the configuration versioned in the repository
-- When you want to have different configurations for different environments (e.g. development, staging, production)
+- When you want to have different configurations for different environments (e.g., development, staging, production)
 
 ## Usage
 
