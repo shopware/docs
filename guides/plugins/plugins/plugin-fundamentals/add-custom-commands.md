@@ -70,11 +70,10 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+// Command name
+#[AsCommand(name: 'swag-commands:example')]
 class ExampleCommand extends Command
 {
-    // Command name
-    protected static $defaultName = 'swag-commands:example';
-
     // Provides a description, printed out in bin/console
     protected function configure(): void
     {
@@ -86,8 +85,7 @@ class ExampleCommand extends Command
     {
         $output->writeln('It works!');
 
-        // Exit code 0 for success
-        return 0;
+        return Command::SUCCESS;
     }
 }
 ```
