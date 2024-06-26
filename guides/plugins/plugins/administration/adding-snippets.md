@@ -61,6 +61,8 @@ Component.register('my-custom-page', {
 });
 ```
 
+Or use `Shopware.Snippet.tc('swag-example.general.myCustomText')` when `this` doesn't point to a component.
+
 ## Using the snippets in templates
 
 The same `$tc` helper function can be used in the templates to access translations.
