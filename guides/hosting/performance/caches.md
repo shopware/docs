@@ -94,14 +94,3 @@ framework:
         default_redis_provider: 'redis://host:port'
 ```
 
-## Twig cache
-
-Twig caches all compiled template files by default. With the `cache` option, a directory can be defined, where twig saves the compiled templates. This path can be overridden by creating or editing a `twig.yaml`:
-
-```yaml
-# config/packages/twig.yaml
-twig:
-    cache: '%kernel.cache_dir%/twig'
-```
-
-To know more about caching in twig, look at the [Twig for Developers](https://twig.symfony.com/doc/3.x/api.html#) documentation.
