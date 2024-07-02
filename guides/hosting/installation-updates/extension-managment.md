@@ -93,3 +93,17 @@ And run the below command to re-generate the class loader.
 ```bash
 composer dump-autoload
 ```
+
+## Configuring Extension Manager to read-only in Admin
+
+Since Shopware 6.6.4.0, it has been possible to disable the installation of extensions in the Administration. This is useful when you have a cluster environment or want to use proper deployments to roll out code changes.
+
+To disable the installation of extensions in the Administration, you can set the following configuration in your `config/packages/z-shopware.yaml` file:
+
+```yaml
+shopware:
+    deployment:
+        runtime_extension_management: false
+```
+
+Next clear the cache once. After doing this, the Extension Manager in the Administration will become read-only, allowing access only to the extension configuration. Additionally, the First Run Wizard will no longer download extensions such as PayPal or the Shopware Store.
