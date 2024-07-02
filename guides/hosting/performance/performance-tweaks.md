@@ -253,7 +253,7 @@ shopware:
 
 ## Using zstd instead of gzip for compression
 
-Shopware uses gzip for compressing the Cache elements and the Cart when enabled. gzip saves a lot of storage, but it can be slow with huge values.
+Shopware uses `gzip` for compressing the cache elements and the cart when enabled. `gzip` saves a lot of storage, but it can be slow with huge values.
 
 Since Shopware 6.6.4.0, it has been possible to use `zstd` as an alternative compression algorithm. `zstd` is faster than `gzip` and has a better compression ratio. Unfortunately, `zstd` is not included by default in PHP, so you need to install the extension first.
 
