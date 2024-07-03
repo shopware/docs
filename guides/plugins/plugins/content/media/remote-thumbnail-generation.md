@@ -27,7 +27,7 @@ shopware:
       pattern: '{mediaUrl}/{mediaPath}?width={width}&ts={mediaUpdatedAt}'
 ```
 
-1. `shopware.media.remote_thumbnails.enable`: Set this parameter to `true` to enable the use of remote thumbnails.
+1. `shopware.media.remote_thumbnails.enable`: Set this parameter to `true` to enable remote thumbnails.
 
 2. `shopware.media.remote_thumbnails.pattern`: This parameter defines the URL pattern for your remote thumbnails. Replace it with your actual URL pattern.
 
