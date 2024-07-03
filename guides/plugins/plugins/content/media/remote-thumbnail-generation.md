@@ -39,7 +39,7 @@ The pattern supports the following variables:
 * `height`: The height of the thumbnail.
 * `mediaUpdatedAt`: The timestamp of the last media change.
 
-For example, by default the pattern was set as `{mediaUrl}/{mediaPath}?width={width}&ts={mediaUpdatedAt}`, the thumbnail URL would be generated as `https://yourshop.example/abc/123/456.jpg?width=80&ts=1718954838`.
+For example, by default, the pattern was set as `{mediaUrl}/{mediaPath}?width={width}&ts={mediaUpdatedAt}`, the thumbnail URL would be generated as `https://yourshop.example/abc/123/456.jpg?width=80&ts=1718954838`.
 
 ## Usage
 
