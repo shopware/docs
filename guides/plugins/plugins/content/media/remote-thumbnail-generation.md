@@ -44,7 +44,7 @@ For example, by default the pattern was set as `{mediaUrl}/{mediaPath}?width={wi
 ## Usage
 
 Once the configuration is set, Shopware will automatically use the defined pattern to generate URLs for thumbnails.
-These URLs will point to the external CDN service, which should handle the actual generation and delivery of the thumbnail images.
+These URLs will point to the external CDN service, which should handle generating and delivering the thumbnail images.
 
 Please note that the external service needs to be able to handle the URL pattern and generate the appropriate thumbnails based on the provided parameters.
 
