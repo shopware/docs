@@ -34,7 +34,7 @@ shopware:
 The pattern supports the following variables:
 
 * `mediaUrl`: The base URL of the media file.
-* `mediaPath`: The path of the media file relative to the `mediaUrl`.
+* `mediaPath`: The media file path relative to the `mediaUrl`.
 * `width`: The width of the thumbnail.
 * `height`: The height of the thumbnail.
 * `mediaUpdatedAt`: The timestamp of the last media change.
