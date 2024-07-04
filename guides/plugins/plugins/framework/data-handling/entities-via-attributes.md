@@ -111,7 +111,26 @@ class ExampleEntity extends Entity
 
 ## Custom Fields
 
-If you want to allow custom fields, you can use the `CustomField` attribute. 
+If you want to allow custom fields, you can use the `EntityCustomFieldsTrait`. This gives you some helper methods to easier work with custom fields values out of the box.
+
+```php
+<?php
+
+use Shopware\Core\Framework\DataAbstractionLayer\EntityCustomFieldsTrait;
+
+#[EntityAttribute('example_entity')]
+class ExampleEntity extends Entity
+{
+    use EntityCustomFieldsTrait;
+    
+    #[PrimaryKey]
+    #[Field(type: FieldType::UUID)]
+    public string $id;
+}
+
+```
+
+Alternatively you can use the `CustomField` attribute directly, that way you have full control over the custom fields and can add your own helpers.
 
 ```php
 <?php
@@ -127,7 +146,7 @@ class ExampleEntity extends Entity
      * @var array<string, mixed>
      */
     #[CustomFields]
-    public array $customFields;
+    public array $customFields = [];
 }
 
 ```
@@ -167,7 +186,7 @@ class ExampleEntity extends Entity
 To support Shopware translations for your entity, set the `translated` property of the `Field` attribute to `true`. This will automatically create a `TranslatedField` for the field and
 register an `EntityTranslationDefinition` for you.
 
-Additionally, you can define a `Translations` attribute on a property to enable loading of all translations of the entity.
+Additionally, you can define a `Translations` attribute on a property to enable loading of all translations of the entity. This field needs to be nullable, as by default it will not be loaded, but this allows you to add the `translations` association to the criteria to load all translations at once.
 
 Notice: Properties with the `translated` flag must be nullable. 
 
@@ -186,7 +205,7 @@ class ExampleEntity extends Entity
      * @var array<string, ArrayEntity>
      */
     #[Translations]
-    public array $translations;
+    public ?array $translations = null;
 }
 ```
 
