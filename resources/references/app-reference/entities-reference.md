@@ -27,6 +27,9 @@ nav:
             <!-- beside the generic fields, we support different logical fields like email and price -->
             <email name="email"  store-api-aware="false" />
             <price name="price" store-api-aware="false" />
+            
+            <!--   each field also supports having a default value. This is only supported for scalar types -->
+            <bool name="in_stock" store-api-aware="true" default="true" />
 
             <!-- you may want to define that some fields should not be available in the store-api -->
             <text name="internal_comment" store-api-aware="false" />
