@@ -111,7 +111,7 @@ class ExampleEntity extends Entity
 
 ## Custom Fields
 
-If you want to allow custom fields, you can use the `EntityCustomFieldsTrait`. This gives you some helper methods to easier work with custom fields values out of the box.
+To allow custom fields, you can use the `EntityCustomFieldsTrait`. This gives you some helper methods to easily work with custom field values out of the box.
 
 ```php
 <?php
