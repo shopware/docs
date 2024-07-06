@@ -41,8 +41,6 @@ The first line just imports the original `cookie-permission` plugin class, so yo
 If you aren't able to import the original plugin class (for example third-party plugins without an alias) you can make use of the `window.PluginManager` object to get it.
 
 ```javascript
-import CookiePermissionPlugin from 'src/plugin/cookie/cookie-permission.plugin';
-
 const PluginManager = window.PluginManager
 const Plugin = PluginManager.getPlugin('CookiePermission')
 const PluginClass = Plugin.get('class')
