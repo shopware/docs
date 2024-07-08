@@ -212,6 +212,7 @@ changelog
 Changelog
 CHANGELOG
 Changelogs
+changelogs
 changeset
 changesets
 chargeback
@@ -254,6 +255,7 @@ codebase
 codeblock
 codeblocks
 codereview
+Codestyle
 colorpicker
 CommercialB
 CommercialBundle
