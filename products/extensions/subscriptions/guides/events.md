@@ -39,7 +39,7 @@ class MyEventSubscriber implements EventSubscriberInterface
 }
 ```
 
-These are the events available in the subscription checkout:
+These are the events available in the subscription checkout (subject to change):
 
 - AfterLineItemAddedEvent
 - AfterLineItemRemovedEvent
