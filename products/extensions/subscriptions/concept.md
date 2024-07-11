@@ -4,7 +4,7 @@ To use subscriptions, you will need to be familiar with two core concepts in sub
 
 ## Plans
 
-A plan is a set of rules that define the subscription. This includes the price, the billing interval, and the product that the customer will receive. Multiple intervals can be assigned to a single plan. Plans can be created and managed in the Shopware administration.
+A plan is a set of rules that define the subscription. This includes the billing interval, and the product that the customer will receive. Multiple intervals can be assigned to a single plan. Plans can be created and managed in the Shopware administration.
 
 ## Intervals
 
@@ -18,7 +18,7 @@ A relative interval is an interval that is determined by a previous interval. Fo
 
 ### Absolute
 
-An absolute interval is an interval that is determined by a fixed date. For example, if a customer subscribes to a monthly plan, the next interval will be on the same day of the month as the first delivery. These work with cron expressions.
+An absolute interval is an interval that is determined by a fixed date. For example, if a customer subscribes to a monthly plan, the next interval will be on a fixed day like the 1st or 15th of each month. These work with cron expressions.
 
 ### Mixed
 

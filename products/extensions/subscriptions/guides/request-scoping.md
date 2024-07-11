@@ -7,7 +7,7 @@ nav:
 
 # Request scoping
 
-When you are in a subscription checkout, you are using a separate cart and context. In Storefront, there is an additional URL parameter (`subscriptionToken`) that gets resolved. In headless, there are four header parameters that need to be set namely `sw-subscription-plan`, `sw-subscription-interval`, `_subscriptionCart` and `_subscriptionContext`.
+When you are in a subscription checkout, you are using a separate cart and context. In Storefront, there is an additional URL parameter (`subscriptionToken`) that gets resolved. In headless, there are two header parameters that need to be set namely `sw-subscription-plan` and `sw-subscription-interval`.
 
 Below is an example of the context set on a subscription cart in the Storefront:
 
@@ -33,8 +33,6 @@ And, here is an example of the headers set on a subscription cart using headless
 curl -XPOST /
     -H 'sw-subscription-plan: planId' /
     -H 'sw-subscription-interval: intervalId' /
-    -H '_subscriptionCart: true' /
-    -H '_subscriptionContext: true' /
     -d 'your body' /
     '/store-api/subscription/{subscriptionId}/activate'
 ```

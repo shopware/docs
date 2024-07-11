@@ -16,3 +16,4 @@ To achieve this separation, templates used within the subscription context shoul
     template: '@Storefront/storefront/base.html.twig',
     scopes: ['default', 'subscription']
 } %}
+```
