@@ -7,13 +7,12 @@ nav:
 
 # Template scoping
 
-When you are in a subscription context, templates would not extend storefront templates by default. This is to prevent buttons being displayed on checkout that should not be displayed (i.e. A PayPal Express checkout button should not be visible when we are processing a subscription product). The same applies to themes. If you want your template to also be used in a subscription context, you should add the scope to your template extension:
+In a subscription context, it's important to ensure that certain template adjustments, which are applicable to the standard storefront, are not automatically applied. This precaution helps in maintaining a clear distinction between the regular checkout process and the subscription checkout process. For instance, elements or buttons that facilitate immediate purchases or third-party payment options, like PayPal Express, should not be visible during the subscription checkout to avoid confusion.
+
+To achieve this separation, templates used within the subscription context should explicitly define their scope. Below is an example of extending a template in the default and subscription context:
 
 ```twig
 {% sw_extends {
     template: '@Storefront/storefront/base.html.twig',
     scopes: ['default', 'subscription']
 } %}
-```
-
-Keep in mind that the subscription buy button is separate from the regular button, so that accidental overwrites do not occur.
