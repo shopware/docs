@@ -35,7 +35,7 @@ To get an overview of all the options, here is a list:
 | `defaultFolder`    | The path where the file will be put                                                                                             |
 | `targetFolderId`   | The `targetFolderId` that will be used as a backup to the `defaultFolder`                                                       |
 | `helpText`         | Sets the `helpText` displayed in the header of the component                                                                    |
-| `fileAccept`       | Sets what the underlying <input>, accepts standard is `image/*`                                                                 |
+| `fileAccept`       | Sets what the underlying `<input>`, accepts standard is `image/*`                                                                 |
 | `disabled`         | Disables the whole component                                                                                                    |
 
 ## Keeping track of uploads
