@@ -4,7 +4,7 @@ To use subscriptions, you will need to be familiar with two core concepts in sub
 
 ## Plans
 
-A plan is a set of rules that define the subscription. This includes the billing interval, and the product that the customer will receive. Multiple intervals can be assigned to a single plan. Plans can be created and managed in the Shopware administration.
+A plan is a set of rules that define the subscription. This includes the billing interval and the product that the customer will receive. Multiple intervals can be assigned to a single plan. Plans can be created and managed in the Shopware administration.
 
 ## Intervals
 
