@@ -36,8 +36,8 @@ ADR
 ADRs
 Afile
 AfterLineItemAddedEvent
-AfterLineItemRemovedEvent
 AfterLineItemQuantityChangedEvent
+AfterLineItemRemovedEvent
 afterSort
 ag
 AggregationResultCollection
@@ -111,8 +111,8 @@ BBundle
 BDD
 BeforeCartMergeEvent
 BeforeLineItemAddedEvent
-BeforeLineItemRemovedEvent
 BeforeLineItemQuantityChangedEvent
+BeforeLineItemRemovedEvent
 BeforeRegistrationCompletedEvent
 BeforeShopActivateEvent
 BeforeShopDeactivatedEvent
@@ -179,8 +179,8 @@ Captcha
 Captchas
 captureId
 CartAmountRule
-CartCreatedEvent
 CartConvertedEvent
+CartCreatedEvent
 CartDataCollection
 CartDeletedEvent
 cartfacade
@@ -211,8 +211,8 @@ ChangeEmployeeStatusAction
 changelog
 Changelog
 CHANGELOG
-Changelogs
 changelogs
+Changelogs
 changeset
 changesets
 chargeback
@@ -600,7 +600,6 @@ FroshPluginUploader
 Fullstack
 func
 gd
-gzip
 GDPR
 GenericPage
 GenericPageLoader
@@ -664,6 +663,7 @@ gRPC
 GuestWishlistPage
 GuestWishlistPagelet
 guid
+gzip
 handleFlow
 hardcoded
 hasError
@@ -1075,6 +1075,7 @@ PaymentMethodRoute
 PaymentMethodRule
 PaymentRefundHandlerInterface
 PaymentRefundProcessor
+paypal
 pcre
 pdf
 pdo
@@ -1105,6 +1106,8 @@ PluginManager
 png
 pnpm
 POC
+pos
+POS
 positionID
 PositionID
 PositionIdentifier
