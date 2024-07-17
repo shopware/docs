@@ -25,6 +25,4 @@ After your CLI took is working correctly, it is time to [set up your project rep
 
 When your repository is set up correctly, you are ready to [push and deploy your project](build-deploy) to the PaaS environment.
 
-After your first deploy, the Storefront for your website will not work directly. You will have to [set up the building of the theme](theme-build) for frontend assets to be generated correctly.
-
 Finally, you can look into setting up [Elasticsearch](elasticsearch), [RabbitMQ](rabbitmq) and/or [Fastly](fastly) to further enhance the performance of your PaaS project.
