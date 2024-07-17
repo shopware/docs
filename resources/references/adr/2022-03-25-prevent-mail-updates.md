@@ -1,7 +1,7 @@
 ---
 title: Prevent mail updates 
 date: 2022-03-25
-area: system-settings
+area: services-settings
 tags: [mail, flow]
 ---
 
