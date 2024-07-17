@@ -58,10 +58,10 @@ git commit -am "initial commit"
 
 7. Configure the CLI with your project_id
 ```sh
-shopware project:set-remote xxxxxx
+shopware project:set-remote PROJECT_ID
 ```
 
-Where xxxxxx is the project_id of your empty project.
+Where PROJECT_ID is the project_id of your empty project.
 
 8. Push the code to Shopware PaaS
 ```sh
