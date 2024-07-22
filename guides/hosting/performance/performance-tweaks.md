@@ -46,14 +46,6 @@ shopware:
             count: 150
 ```
 
-## MySQL instead of MariaDB
-
-::: info
-If you use Elasticsearch/Opensearch as a search engine, you can ignore this section. All filtering, sorting, and aggregations are done in Elasticsearch/Opensearch.
-:::
-
-In some places in the code, we use JSON fields. As soon as it comes to filtering, sorting, or aggregating JSON fields, MySQL is ahead of the MariaDB fork. Therefore, we strongly recommend the use of MySQL.
-
 ## MySQL configuration
 
 Shopware sets some MySQL configuration variables on each request to ensure it works in any environment. You can disable this behavior if you have correctly configured your MySQL server.
