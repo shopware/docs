@@ -701,6 +701,181 @@ Shopware.Component.register('swag-basic-example', {
 });
 ```
 
+#### Working with entity extensions
+The following example shows how to pass on and save data of entity extensions.
+
+```javascript{134,164}
+import template from './swag-paypal-pos-wizard.html.twig';
+import './swag-paypal-pos-wizard.scss';
+import {
+    PAYPAL_POS_SALES_CHANNEL_EXTENSION,
+    PAYPAL_POS_SALES_CHANNEL_TYPE_ID,
+} from '../../../../../constant/swag-paypal.constant';
+
+const { Component, Context } = Shopware;
+const { Criteria } = Shopware.Data;
+
+Component.extend('swag-paypal-pos-wizard', 'sw-first-run-wizard-modal', {
+    template,
+
+    inject: [
+        'SwagPayPalPosApiService',
+        'SwagPayPalPosSettingApiService',
+        'SwagPayPalPosWebhookRegisterService',
+        'salesChannelService',
+        'repositoryFactory',
+    ],
+
+    mixins: [
+        'swag-paypal-pos-catch-error',
+        'notification',
+    ],
+
+    data() {
+        return {
+            showModal: true,
+            isLoading: false,
+            salesChannel: {},
+            cloneSalesChannelId: null,
+            stepperPages: [
+                'connection',
+                'connectionSuccess',
+                'connectionDisconnect',
+                'customization',
+                'productSelection',
+                'syncLibrary',
+                'syncPrices',
+                'finish',
+            ],
+            stepper: {},
+            currentStep: {},
+        };
+    },
+
+    metaInfo() {
+        return {
+            title: this.wizardTitle,
+        };
+    },
+
+    computed: {
+
+        paypalPosSalesChannelRepository() {
+            return this.repositoryFactory.create('swag_paypal_pos_sales_channel');
+        },
+
+        salesChannelRepository() {
+            return this.repositoryFactory.create('sales_channel');
+        },
+
+        salesChannelCriteria() {
+            return (new Criteria(1, 500))
+                .addAssociation(PAYPAL_POS_SALES_CHANNEL_EXTENSION)
+                .addAssociation('countries')
+                .addAssociation('currencies')
+                .addAssociation('domains')
+                .addAssociation('languages');
+        },
+    },
+
+    watch: {
+        '$route'(to) {
+            this.handleRouteUpdate(to);
+        },
+    },
+
+    mounted() {
+        this.mountedComponent();
+    },
+
+    methods: {
+        //...
+        
+        createdComponent() {
+            //...
+            this.createNewSalesChannel();
+        },
+
+        save(activateSalesChannel = false, silentWebhook = false) {
+            if (activateSalesChannel) {
+                this.salesChannel.active = true;
+            }
+
+            return this.salesChannelRepository.save(this.salesChannel, Context.api).then(async () => {
+                this.isLoading = false;
+                this.isSaveSuccessful = true;
+                this.isNewEntity = false;
+
+                this.$root.$emit('sales-channel-change');
+                await this.loadSalesChannel();
+
+                this.cloneProductVisibility();
+                this.registerWebhook(silentWebhook);
+            }).catch(() => {
+                this.isLoading = false;
+
+                this.createNotificationError({
+                    message: this.$tc('sw-sales-channel.detail.messageSaveError', 0, {
+                        name: this.salesChannel.name || this.placeholder(this.salesChannel, 'name'),
+                    }),
+                });
+            });
+        },
+
+        createNewSalesChannel() {
+            if (Context.api.languageId !== Context.api.systemLanguageId) {
+                Context.api.languageId = Context.api.systemLanguageId;
+            }
+
+            this.previousApiKey = null;
+            this.salesChannel = this.salesChannelRepository.create(Context.api);
+            this.salesChannel.typeId = PAYPAL_POS_SALES_CHANNEL_TYPE_ID;
+            this.salesChannel.name = this.$tc('swag-paypal-pos.wizard.salesChannelPrototypeName');
+            this.salesChannel.active = false;
+
+            this.salesChannel.extensions.paypalPosSalesChannel
+                = this.paypalPosSalesChannelRepository.create(Context.api);
+
+            Object.assign(
+                this.salesChannel.extensions.paypalPosSalesChannel,
+                {
+                    mediaDomain: '',
+                    apiKey: '',
+                    imageDomain: '',
+                    productStreamId: null,
+                    syncPrices: true,
+                    replace: 0,
+                },
+            );
+
+            this.salesChannelService.generateKey().then((response) => {
+                this.salesChannel.accessKey = response.accessKey;
+            }).catch(() => {
+                this.createNotificationError({
+                    message: this.$tc('sw-sales-channel.detail.messageAPIError'),
+                });
+            });
+        },
+
+        loadSalesChannel() {
+            const salesChannelId = this.$route.params.id || this.salesChannel.id;
+            if (!salesChannelId) {
+                return new Promise((resolve) => { resolve(); });
+            }
+
+            this.isLoading = true;
+            return this.salesChannelRepository.get(salesChannelId, Shopware.Context.api, this.salesChannelCriteria)
+                .then((entity) => {
+                    this.salesChannel = entity;
+                 this.previousApiKey = entity.extensions.paypalPosSalesChannel.apiKey;
+                    this.isLoading = false;
+                });
+        },
+        //...
+    },
+});
+```
+
 ## Next steps
 
 As this is very similar to the DAL it might be interesting to learn more about that. For this, head over to the section about the [data handling](../framework/data-handling/) in PHP.

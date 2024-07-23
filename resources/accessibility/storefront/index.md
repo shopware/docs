@@ -12,7 +12,7 @@ At Shopware, we are committed to creating inclusive and barrier-free shopping ex
 
 * Shopware is committed to fulfill the [WCAG 2.1 AA](https://www.w3.org/TR/WCAG21/) accessibility guidelines and Barrier-Free Information Technology Regulation (BITV 2.0) in the Storefront. 
     * You can find more information on [shopware.design](https://shopware.design/foundations/accessibility.html) and [in our blog post](https://www.shopware.com/en/news/accessible-online-store-by-2025/).
-* The Storefront is using [Bootstrap components](https://getbootstrap.com/docs/5.3/getting-started/accessibility/) that already consider good accessibility practices, for example using aria roles.
+* The Storefront is using [Bootstrap components](https://getbootstrap.com/docs/5.3/getting-started/accessibility/) that already consider good accessibility practices, for example, using aria roles.
 * Much of the HTML structure and CSS styling already fulfill accessibility guidelines. However, there are still [open accessibility issues](#Overview-of-known-accessibility-issues) that will be addressed. 
 * Automated [E2E testing with playwright](https://github.com/shopware/shopware/tree/trunk/tests/acceptance) and axe reporter are used to ensure future accessibility.
 
@@ -42,9 +42,9 @@ With the major version v6.7.0 all accessibility improvements will become the def
 
 ### Example of a breaking accessibility change
 
-Let's say for example that a list is not using a proper markup, and it is changed to improve accessibility.
+Let's say, for example, that a list is not using a proper markup, and it is changed to improve accessibility.
 
-This is how a suboptimal HTML structure could look like:
+This is what a suboptimal HTML structure could look like:
 ```twig
 <div class="sidebar-list">
     {% block component_list_items %}
@@ -78,7 +78,7 @@ Let's assume it should be changed to a proper list. Instead of implementing this
 {% endif %}
 ```
 
-If the block `component_list_items` is being extended, the new accessibility change can already be considered. If the change was rolled out without feature flag, the extension still assumes a `<div class="list-item">` which would likely result in incorrect HTML:
+If the block `component_list_items` is being extended, the new accessibility change can already be considered. If the change was rolled out without a feature flag, the extension still assumes a `<div class="list-item">` which would likely result in incorrect HTML:
 ```twig
 {% sw_extends '@Storefront/storefront/component/list.html.twig' %}
 
@@ -95,48 +95,56 @@ If the block `component_list_items` is being extended, the new accessibility cha
 {% endblock %}
 ```
 
-## Overview of released accessibility improvements
+## Overview of accessibility issues for iteration 1
 
-* Below you find a list of recent accessibility improvements. The list includes a changelog and the release versions for each improvement.
+We list our current accessibility issues with their state of implementation in the following ticket: [NEXT-37039](https://issues.shopware.com/issues/NEXT-37039)
+This ticket has an up-to-date overview.
+Below, we will update the current states with more additional information about the implementation, but this can be lagging a view days behind.
+
+### Overview of released accessibility improvements
+
+* Below, you find a list of recent accessibility improvements. The list includes a changelog and the release versions for each improvement.
 * Enable the feature flag `ACCESSIBILITY_TWEAKS` to activate all breaking accessibility changes.
 
-| Issue key                                                        | Topic                                                      | Breaking changes | Changelog                                                                                                                                                | Release versions                                                         |
-|------------------------------------------------------------------|------------------------------------------------------------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
-| [NEXT-33694](https://issues.shopware.com/issues/NEXT-33694)      | Change shipping toggle in OffCanvas cart to button element | No               | [Changelog](https://github.com/shopware/shopware/blob/v6.6.2.0/changelog/release-6-6-2-0/2024-04-17-change-shipping-costs-toggle-to-button-element.md)   | [v6.6.2.0](https://github.com/shopware/shopware/releases/tag/v6.6.2.0)   |
-| [NEXT-35318](https://issues.shopware.com/issues/NEXT-35318)      | Add heading elements for account login page                | No               | [Changelog](https://github.com/shopware/shopware/blob/v6.6.2.0/changelog/release-6-6-2-0/2024-04-15-heading-elements-on-registration-page.md)            | [v6.6.2.0](https://github.com/shopware/shopware/releases/tag/v6.6.2.0)   |
-| [NEXT-34423](https://issues.shopware.com/issues/NEXT-33684)      | No empty nav element in top-bar                            | Yes              | [Changelog](https://github.com/shopware/shopware/blob/v6.6.1.0/changelog/release-6-6-1-0/2023-03-05-no-empty-nav.md)                                     | [v6.6.1.0](https://github.com/shopware/shopware/releases/tag/v6.6.1.0)   |
-| [NEXT-33682](https://issues.shopware.com/issues/NEXT-33682)      | Provide distinctive document titles for each page          | No               | [Changelog](https://github.com/shopware/shopware/blob/v6.6.1.0/changelog/release-6-6-1-0/2024-03-12-distinctive-document-titles.md)                      | [v6.6.1.0](https://github.com/shopware/shopware/releases/tag/v6.6.1.0)   |                                                              |
+| Issue key                                                   | Topic                                                      | Breaking changes | Changelog                                                                                                                                              | Release versions                                                                   |
+|-------------------------------------------------------------|------------------------------------------------------------|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------|
+| [NEXT-33694](https://issues.shopware.com/issues/NEXT-33694) | Change shipping toggle in OffCanvas cart to button element | No               | [Changelog](https://github.com/shopware/shopware/blob/v6.6.2.0/changelog/release-6-6-2-0/2024-04-17-change-shipping-costs-toggle-to-button-element.md) | [v6.6.2.0](https://github.com/shopware/shopware/releases/tag/v6.6.2.0)             |
+| [NEXT-35318](https://issues.shopware.com/issues/NEXT-35318) | Add heading elements for account login page                | No               | [Changelog](https://github.com/shopware/shopware/blob/v6.6.2.0/changelog/release-6-6-2-0/2024-04-15-heading-elements-on-registration-page.md)          | [v6.6.2.0](https://github.com/shopware/shopware/releases/tag/v6.6.2.0)             |
+| [NEXT-34423](https://issues.shopware.com/issues/NEXT-33684) | No empty nav element in top-bar                            | Yes              | [Changelog](https://github.com/shopware/shopware/blob/v6.6.1.0/changelog/release-6-6-1-0/2023-03-05-no-empty-nav.md)                                   | [v6.6.1.0](https://github.com/shopware/shopware/releases/tag/v6.6.1.0)             |
+| [NEXT-33682](https://issues.shopware.com/issues/NEXT-33682) | Provide distinctive document titles for each page          | No               | [Changelog](https://github.com/shopware/shopware/blob/v6.6.1.0/changelog/release-6-6-1-0/2024-03-12-distinctive-document-titles.md)                    | [v6.6.1.0](https://github.com/shopware/shopware/releases/tag/v6.6.1.0)             |                                                              |
+| [NEXT-33879](https://issues.shopware.com/issues/NEXT-33879) | A closing mechanism for the navigation                     | No               | [Changelog](https://github.com/shopware/shopware/blob/trunk/changelog/2024-05-03-esc-key-for-nav-flyout-close.md)                                             | [v6.6.3.0](https://github.com/shopware/shopware/releases/tag/v6.6.3.0)             |
 
-## Overview of known accessibility issues
+### Overview of known accessibility issues
 
 ::: info
-Please note, that only issues that are completely resolved and already released in a shopware version will be in the list of released accessibility improvements. 
+Please note that only issues that are completely resolved and already released in a shopware version will be in the list of released accessibility improvements. 
 The list below will include tickets that are already in progress or finished but not released yet. The list also includes checking and evaluation work. You can see the current status via the links to the issue tracker.
 :::
 
-| Issue key                                                      | Topic                                                                                             |
-|----------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
-| [NEXT-33675](https://issues.shopware.com/issues/NEXT-33675)    | Slider reports confusing status changes to screen readers                                         |
-| [NEXT-33683](https://issues.shopware.com/issues/NEXT-33683)    | Improve "Remove Product" button labeling in checkout                                              | 
-| [NEXT-33685](https://issues.shopware.com/issues/NEXT-33685)    | Missing alternative text for product images in the shopping cart                                  |  
-| [NEXT-33689](https://issues.shopware.com/issues/NEXT-33689)    | Missing semantic markup of form address headings                                                  |  
-| [NEXT-33693](https://issues.shopware.com/issues/NEXT-33693)    | Product image zoom modal keyboard accessibility                                                   |  
-| [NEXT-33695](https://issues.shopware.com/issues/NEXT-33695)    | The form element quantity selector is not labeled                                                 |  
-| [NEXT-33696](https://issues.shopware.com/issues/NEXT-33696)    | Focus jumps to the top of the page after closing a modal                                          |  
-| [NEXT-33697](https://issues.shopware.com/issues/NEXT-33697)    | Focused slides in the carousel are not being moved into the visible area                          |  
-| [NEXT-33879](https://issues.shopware.com/issues/NEXT-33879)    | Close navigation flyout with escape key                                                           |  
-| [NEXT-26677](https://issues.shopware.com/issues/NEXT-26677)    | Check if all non-text content has text alternative and provide if necessary                       |  
-| [NEXT-26679](https://issues.shopware.com/issues/NEXT-26679)    | Add text to components that only work with icons to identify their purpose                        |  
-| [NEXT-26680](https://issues.shopware.com/issues/NEXT-26680)    | Ensure that resizing content up to 200% does not cause breaks                                     |  
-| [NEXT-26682](https://issues.shopware.com/issues/NEXT-26682)    | The user needs to be able to close triggered, additional content                                  |  
-| [NEXT-26705](https://issues.shopware.com/issues/NEXT-26705)    | Content functionality operable through keyboard                                                   |  
-| [NEXT-26707](https://issues.shopware.com/issues/NEXT-26707)    | No keyboard traps should occur in the Storefront                                                  |  
-| [NEXT-26709](https://issues.shopware.com/issues/NEXT-26709)    | Mechanism for the user to pause, stop, or hide moving content                                     |  
-| [NEXT-26715](https://issues.shopware.com/issues/NEXT-26715)    | Provide error correction suggestions                                                              |  
-| [NEXT-26712](https://issues.shopware.com/issues/NEXT-26712)    | Update the focus states so that they are clearly visible                                          |  
-| [NEXT-26714](https://issues.shopware.com/issues/NEXT-26714)    | Language of each Storefront passage or phrase in the content can be programmatically determined   |  
-| [NEXT-26717](https://issues.shopware.com/issues/NEXT-26717)    | Increase compatibility of Storefront with future assistance technologies                          |  
-| [NEXT-33807](https://issues.shopware.com/issues/NEXT-33807)    | Text styles needs to be adjusted (line height, paragraph spacing)                                 |  
-| [NEXT-34090](https://issues.shopware.com/issues/NEXT-34090)    | Check Lighthouse Accessibility Score                                                              |  
-| [NEXT-36116](https://issues.shopware.com/issues/NEXT-36116)    | Keyboard/Tabs should work for nav main-navigation-menu                                            |  
-| [NEXT-21474](https://issues.shopware.com/issues/NEXT-21474)    | Pagination does not have links                                                                    |  
+| Issue key                                                   | Topic                                                                                           |
+|-------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| [NEXT-33675](https://issues.shopware.com/issues/NEXT-33675) | Slider reports confusing status changes to screen readers                                       |
+| [NEXT-33683](https://issues.shopware.com/issues/NEXT-33683) | Improve "Remove Product" button labeling in checkout                                            | 
+| [NEXT-33685](https://issues.shopware.com/issues/NEXT-33685) | Missing alternative text for product images in the shopping cart                                |  
+| [NEXT-33689](https://issues.shopware.com/issues/NEXT-33689) | Missing semantic markup of form address headings                                                |  
+| [NEXT-33693](https://issues.shopware.com/issues/NEXT-33693) | Product image zoom modal keyboard accessibility                                                 |  
+| [NEXT-33695](https://issues.shopware.com/issues/NEXT-33695) | The form element quantity selector is not labeled                                               |  
+| [NEXT-33696](https://issues.shopware.com/issues/NEXT-33696) | Focus jumps to the top of the page after closing a modal                                        |  
+| [NEXT-33697](https://issues.shopware.com/issues/NEXT-33697) | Focused slides in the carousel are not being moved into the visible area                        |  
+| [NEXT-33879](https://issues.shopware.com/issues/NEXT-33879) | Close navigation flyout with escape key                                                         |  
+| [NEXT-26677](https://issues.shopware.com/issues/NEXT-26677) | Check if all non-text content has text alternative and provide if necessary                     |  
+| [NEXT-26679](https://issues.shopware.com/issues/NEXT-26679) | Add text to components that only work with icons to identify their purpose                      |  
+| [NEXT-26680](https://issues.shopware.com/issues/NEXT-26680) | Ensure that resizing content up to 200% does not cause breaks                                   |  
+| [NEXT-26682](https://issues.shopware.com/issues/NEXT-26682) | The user needs to be able to close triggered, additional content                                |  
+| [NEXT-26705](https://issues.shopware.com/issues/NEXT-26705) | Content functionality operable through keyboard                                                 |  
+| [NEXT-26707](https://issues.shopware.com/issues/NEXT-26707) | No keyboard traps should occur in the Storefront                                                |  
+| [NEXT-26709](https://issues.shopware.com/issues/NEXT-26709) | Mechanism for the user to pause, stop, or hide moving content                                   |  
+| [NEXT-26715](https://issues.shopware.com/issues/NEXT-26715) | Provide error correction suggestions                                                            |  
+| [NEXT-26712](https://issues.shopware.com/issues/NEXT-26712) | Update the focus states so that they are clearly visible                                        |  
+| [NEXT-26714](https://issues.shopware.com/issues/NEXT-26714) | Language of each Storefront passage or phrase in the content can be programmatically determined |  
+| [NEXT-26717](https://issues.shopware.com/issues/NEXT-26717) | Increase compatibility of Storefront with future assistance technologies                        |  
+| [NEXT-33807](https://issues.shopware.com/issues/NEXT-33807) | Text styles needs to be adjusted (line height, paragraph spacing)                               |  
+| [NEXT-34090](https://issues.shopware.com/issues/NEXT-34090) | Check Lighthouse Accessibility Score                                                            |  
+| [NEXT-36116](https://issues.shopware.com/issues/NEXT-36116) | Keyboard/Tabs should work for nav main-navigation-menu                                          |  
+| [NEXT-21474](https://issues.shopware.com/issues/NEXT-21474) | Pagination does not have links                                                                  |
+| [NEXT-33682](https://issues.shopware.com/issues/NEXT-33682) | Non-informative document title                                                                  |

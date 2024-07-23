@@ -27,7 +27,7 @@ Imagine we wanted to exclude the `OffCanvasCart` plugin, just to get a test case
 
 ```javascript
 // <plugin root>/src/Resources/app/storefront/src/main.js
-window.PluginManager.deregister('OffCanvasCart', '[data-offcanvas-cart]');
+window.PluginManager.deregister('OffCanvasCart', '[data-off-canvas-cart]');
 ```
 
 After building the Storefront anew, you shouldn't be able to open the offcanvas cart anymore. Another useful way of testing this is using your browser's devtools. Just open your devtool's console and type in `PluginManager.getPluginList()` in order to get a list of all registered plugins.

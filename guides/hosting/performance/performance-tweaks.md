@@ -46,14 +46,6 @@ shopware:
             count: 150
 ```
 
-## MySQL instead of MariaDB
-
-::: info
-If you use Elasticsearch/Opensearch as a search engine, you can ignore this section. All filtering, sorting, and aggregations are done in Elasticsearch/Opensearch.
-:::
-
-In some places in the code, we use JSON fields. As soon as it comes to filtering, sorting, or aggregating JSON fields, MySQL is ahead of the MariaDB fork. Therefore, we strongly recommend the use of MySQL.
-
 ## MySQL configuration
 
 Shopware sets some MySQL configuration variables on each request to ensure it works in any environment. You can disable this behavior if you have correctly configured your MySQL server.
@@ -224,7 +216,7 @@ Set the log level of the monolog to `error` to reduce the amount of logged event
 monolog:
     handlers:
         main:
-            level: error  
+            level: error
             buffer_size: 30
         business_event_handler_buffer:
             level: error
@@ -249,4 +241,30 @@ shopware:
             each_config: false
             each_snippet: false
             each_theme_config: false
+```
+
+## Using zstd instead of gzip for compression
+
+Shopware uses `gzip` for compressing the cache elements and the cart when enabled. `gzip` saves a lot of storage, but it can be slow with huge values.
+
+Since Shopware 6.6.4.0, it has been possible to use `zstd` as an alternative compression algorithm. `zstd` is faster than `gzip` and has a better compression ratio. Unfortunately, `zstd` is not included by default in PHP, so you need to install the extension first.
+
+
+```yaml
+# Enabling cart compression with zstd
+shopware:
+    cart:
+      compress: true
+      compression_method: zstd
+```
+
+::: danger
+If you are changing the **cache** compression method, you need to clear the cache after changing the configuration.
+:::
+
+```yaml
+# Enabling cache compression with zstd
+shopware:
+  cache:
+    cache_compression_method: 'zstd'
 ```

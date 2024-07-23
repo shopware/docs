@@ -35,6 +35,9 @@ adr
 ADR
 ADRs
 Afile
+AfterLineItemAddedEvent
+AfterLineItemQuantityChangedEvent
+AfterLineItemRemovedEvent
 afterSort
 ag
 AggregationResultCollection
@@ -106,6 +109,10 @@ bAuditLog
 bAuth
 BBundle
 BDD
+BeforeCartMergeEvent
+BeforeLineItemAddedEvent
+BeforeLineItemQuantityChangedEvent
+BeforeLineItemRemovedEvent
 BeforeRegistrationCompletedEvent
 BeforeShopActivateEvent
 BeforeShopDeactivatedEvent
@@ -172,14 +179,21 @@ Captcha
 Captchas
 captureId
 CartAmountRule
+CartConvertedEvent
+CartCreatedEvent
 CartDataCollection
+CartDeletedEvent
 cartfacade
 CartHasDeliveryFreeItemRule
+CartLoadedEvent
+CartMergedEvent
 CartPrice
 cartpricefacade
 CartPriceFacade
 CartPriceField
 CartPromotionsCollector
+CartSavedEvent
+CartVerifyPersistEvent
 CartWeightRule
 CascadeDelete
 CashRounding
@@ -197,6 +211,7 @@ ChangeEmployeeStatusAction
 changelog
 Changelog
 CHANGELOG
+changelogs
 Changelogs
 changeset
 changesets
@@ -204,11 +219,16 @@ chargeback
 Chargeback
 checkboxes
 CheckoutCartPage
+CheckoutCartPageLoadedEvent
 CheckoutConfirmPage
+CheckoutConfirmPageLoadedEvent
 CheckoutFinishPage
 CheckoutInfoWidget
 CheckoutOffcanvasWidget
+CheckoutOrderPlacedCriteriaEvent
+CheckoutOrderPlacedEvent
 CheckoutRegisterPage
+CheckoutRegisterPageLoadedEvent
 ChildCount
 ChildCountField
 ChildrenAssociation
@@ -235,6 +255,7 @@ codebase
 codeblock
 codeblocks
 codereview
+Codestyle
 colorpicker
 CommercialB
 CommercialBundle
@@ -642,6 +663,7 @@ gRPC
 GuestWishlistPage
 GuestWishlistPagelet
 guid
+gzip
 handleFlow
 hardcoded
 hasError
@@ -783,6 +805,7 @@ LineItemPromotedRule
 LineItemPropertyRule
 LineItemPurchasePriceRule
 LineItemReleaseDateRule
+LineItemRemovedEvent
 LineItemRule
 LineItemsInCartCountRule
 LineItemsInCartRule
@@ -954,6 +977,7 @@ oder
 offcanvas
 OffCanvas
 offCanvasCart
+OffcanvasCartPageLoadedEvent
 og
 ok
 OldFeature
@@ -1051,6 +1075,7 @@ PaymentMethodRoute
 PaymentMethodRule
 PaymentRefundHandlerInterface
 PaymentRefundProcessor
+paypal
 pcre
 pdf
 pdo
@@ -1081,6 +1106,8 @@ PluginManager
 png
 pnpm
 POC
+pos
+POS
 positionID
 PositionID
 PositionIdentifier
@@ -1261,6 +1288,10 @@ salesChannelAware
 SalesChannelAware
 salesChannelContext
 SalesChannelContext
+SalesChannelContextCreatedEvent
+SalesChannelContextResolvedEvent
+SalesChannelContextRestoredEvent
+SalesChannelContextRestorerOrderCriteriaEvent
 salesChannelId
 SalesChannelId
 salesChannelLoaded
@@ -1667,3 +1698,4 @@ YYYY
 zlib
 zsh
 ZSH
+zstd

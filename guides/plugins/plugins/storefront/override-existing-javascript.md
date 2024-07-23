@@ -38,6 +38,17 @@ export default class MyCookiePermission extends CookiePermissionPlugin {
 
 The first line just imports the original `cookie-permission` plugin class, so you can extend from it.
 
+If you aren't able to import the original plugin class (for example third-party plugins without an alias) you can make use of the `window.PluginManager` object to get it.
+
+```javascript
+const PluginManager = window.PluginManager
+const Plugin = PluginManager.getPlugin('CookiePermission')
+const PluginClass = Plugin.get('class')
+
+export default class MyCookiePermission extends PluginClass {
+}
+```
+
 Now you can override the functions from the parent class.
 
 ### Always show the cookie bar
