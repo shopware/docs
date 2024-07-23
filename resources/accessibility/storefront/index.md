@@ -12,7 +12,7 @@ At Shopware, we are committed to creating inclusive and barrier-free shopping ex
 
 * Shopware is committed to fulfill the [WCAG 2.1 AA](https://www.w3.org/TR/WCAG21/) accessibility guidelines and Barrier-Free Information Technology Regulation (BITV 2.0) in the Storefront. 
     * You can find more information on [shopware.design](https://shopware.design/foundations/accessibility.html) and [in our blog post](https://www.shopware.com/en/news/accessible-online-store-by-2025/).
-* The Storefront is using [Bootstrap components](https://getbootstrap.com/docs/5.3/getting-started/accessibility/) that already consider good accessibility practices, for example using aria roles.
+* The Storefront is using [Bootstrap components](https://getbootstrap.com/docs/5.3/getting-started/accessibility/) that already consider good accessibility practices, for example, using aria roles.
 * Much of the HTML structure and CSS styling already fulfill accessibility guidelines. However, there are still [open accessibility issues](#Overview-of-known-accessibility-issues) that will be addressed. 
 * Automated [E2E testing with playwright](https://github.com/shopware/shopware/tree/trunk/tests/acceptance) and axe reporter are used to ensure future accessibility.
 
@@ -42,9 +42,9 @@ With the major version v6.7.0 all accessibility improvements will become the def
 
 ### Example of a breaking accessibility change
 
-Let's say for example that a list is not using a proper markup, and it is changed to improve accessibility.
+Let's say, for example, that a list is not using a proper markup, and it is changed to improve accessibility.
 
-This is how a suboptimal HTML structure could look like:
+This is what a suboptimal HTML structure could look like:
 ```twig
 <div class="sidebar-list">
     {% block component_list_items %}
@@ -78,7 +78,7 @@ Let's assume it should be changed to a proper list. Instead of implementing this
 {% endif %}
 ```
 
-If the block `component_list_items` is being extended, the new accessibility change can already be considered. If the change was rolled out without feature flag, the extension still assumes a `<div class="list-item">` which would likely result in incorrect HTML:
+If the block `component_list_items` is being extended, the new accessibility change can already be considered. If the change was rolled out without a feature flag, the extension still assumes a `<div class="list-item">` which would likely result in incorrect HTML:
 ```twig
 {% sw_extends '@Storefront/storefront/component/list.html.twig' %}
 
@@ -98,12 +98,12 @@ If the block `component_list_items` is being extended, the new accessibility cha
 ## Overview of accessibility issues for iteration 1
 
 We list our current accessibility issues with their state of implementation in the following ticket: [NEXT-37039](https://issues.shopware.com/issues/NEXT-37039)
-There you will always have an up-to-date overview.
-Below we will update the current states with more additional information about the implementation, but this can be lagging a view days behind.
+This ticket has an up-to-date overview.
+Below, we will update the current states with more additional information about the implementation, but this can be lagging a view days behind.
 
 ### Overview of released accessibility improvements
 
-* Below you find a list of recent accessibility improvements. The list includes a changelog and the release versions for each improvement.
+* Below, you find a list of recent accessibility improvements. The list includes a changelog and the release versions for each improvement.
 * Enable the feature flag `ACCESSIBILITY_TWEAKS` to activate all breaking accessibility changes.
 
 | Issue key                                                   | Topic                                                      | Breaking changes | Changelog                                                                                                                                              | Release versions                                                                   |
@@ -117,7 +117,7 @@ Below we will update the current states with more additional information about t
 ### Overview of known accessibility issues
 
 ::: info
-Please note, that only issues that are completely resolved and already released in a shopware version will be in the list of released accessibility improvements. 
+Please note that only issues that are completely resolved and already released in a shopware version will be in the list of released accessibility improvements. 
 The list below will include tickets that are already in progress or finished but not released yet. The list also includes checking and evaluation work. You can see the current status via the links to the issue tracker.
 :::
 
