@@ -439,7 +439,7 @@ Refer to the official devenv documentation to get a complete list of all availab
       php_fastcgi unix/${config.languages.php.fpm.pools.web.socket}
       file_server
     '';
- };
+  };
 }
 ```
 
@@ -459,6 +459,7 @@ Refer to the official devenv documentation to get a complete list of all availab
       file_server
     '';
   };
+}
 ```
 
 </Tab>
@@ -474,6 +475,82 @@ Refer to the official devenv documentation to get a complete list of all availab
 {
   services.adminer.listen = "127.0.0.1:9084";
 }
+```
+
+### Use varnish
+
+```nix
+  # <PROJECT_ROOT>/devenv.local.nix
+  { pkgs, config, lib, ... }:
+  
+  {
+    # caddy config
+    services.caddy = {
+      enable = true;
+
+      # all traffic to localhost is redirected to varnish
+      virtualHosts."http://localhost" = {
+        extraConfig = ''
+          reverse_proxy 127.0.0.1:6081 {
+            # header_up solves this issue: https://shopwarecommunity.slack.com/archives/C05CQT51H1V/p1721754934084939
+            header_up Host sw.localhost
+          }
+        '';
+      };
+
+      # the actual shopware application is served from sw.localhost,
+      # choose any domain you want.
+      # you may need to add the domain to /etc/hosts:
+      # 127.0.0.1       sw.localhost
+      virtualHosts."http://sw.localhost" = {
+        extraConfig = ''
+          # set header to avoid CORS errors
+          header {
+              Access-Control-Allow-Origin *
+              Access-Control-Allow-Credentials true
+              Access-Control-Allow-Methods *
+              Access-Control-Allow-Headers *
+              defer
+          }
+          root * public
+          php_fastcgi unix/${config.languages.php.fpm.pools.web.socket}
+          encode zstd gzip
+          file_server
+          log {
+            output stderr
+            format console
+            level ERROR
+          }
+        '';
+      };
+    };
+
+    # varnish config
+    services.varnish = {
+      enable = true;
+      package = pkgs.varnish;
+      listen = "127.0.0.1:6081";
+      # enables xkey module
+      extraModules = [ pkgs.varnishPackages.modules ];
+      # it's a slightly adjusted version from the [docs](https://developer.shopware.com/docs/guides/hosting/infrastructure/reverse-http-cache.html)
+      vcl = ''
+        ...
+        # Specify your app nodes here. Use round-robin balancing to add more than one.
+        backend default {
+            .host = "sw.localhost";
+            .port = "80";
+        }
+        ...
+        # ACL for purgers IP. (This needs to contain app server ips)
+        acl purgers {
+            "sw.localhost";
+            "127.0.0.1";
+            "localhost";
+            "::1";
+        }
+      '';
+    };
+  }
 ```
 
 ## Known issues
