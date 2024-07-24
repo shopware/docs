@@ -532,7 +532,7 @@ Refer to the official devenv documentation to get a complete list of all availab
       listen = "127.0.0.1:6081";
       # enables xkey module
       extraModules = [ pkgs.varnishPackages.modules ];
-      # it's a slightly adjusted version from the [docs](https://developer.shopware.com/docs/guides/hosting/infrastructure/reverse-http-cache.html)
+      # it's a slightly adjusted version from the [docs](https://developer.shopware.com/docs/guides/hosting/infrastructure/reverse-http-cache.html#configure-varnish)
       vcl = ''
         ...
         # Specify your app nodes here. Use round-robin balancing to add more than one.
