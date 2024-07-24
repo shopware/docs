@@ -480,77 +480,109 @@ Refer to the official devenv documentation to get a complete list of all availab
 ### Use varnish
 
 ```nix
-  # <PROJECT_ROOT>/devenv.local.nix
-  { pkgs, config, lib, ... }:
-  
-  {
-    # caddy config
-    services.caddy = {
-      enable = true;
+# <PROJECT_ROOT>/devenv.local.nix
+{ pkgs, config, lib, ... }:
 
-      # all traffic to localhost is redirected to varnish
-      virtualHosts."http://localhost" = {
-        extraConfig = ''
-          reverse_proxy 127.0.0.1:6081 {
-            # header_up solves this issue: https://shopwarecommunity.slack.com/archives/C05CQT51H1V/p1721754934084939
-            header_up Host sw.localhost
-          }
-        '';
-      };
+{
+  # caddy config
+  services.caddy = {
+    enable = true;
 
-      # the actual shopware application is served from sw.localhost,
-      # choose any domain you want.
-      # you may need to add the domain to /etc/hosts:
-      # 127.0.0.1       sw.localhost
-      virtualHosts."http://sw.localhost" = {
-        extraConfig = ''
-          # set header to avoid CORS errors
-          header {
-              Access-Control-Allow-Origin *
-              Access-Control-Allow-Credentials true
-              Access-Control-Allow-Methods *
-              Access-Control-Allow-Headers *
-              defer
-          }
-          root * public
-          php_fastcgi unix/${config.languages.php.fpm.pools.web.socket}
-          encode zstd gzip
-          file_server
-          log {
-            output stderr
-            format console
-            level ERROR
-          }
-        '';
-      };
-    };
-
-    # varnish config
-    services.varnish = {
-      enable = true;
-      package = pkgs.varnish;
-      listen = "127.0.0.1:6081";
-      # enables xkey module
-      extraModules = [ pkgs.varnishPackages.modules ];
-      # it's a slightly adjusted version from the [docs](https://developer.shopware.com/docs/guides/hosting/infrastructure/reverse-http-cache.html#configure-varnish)
-      vcl = ''
-        ...
-        # Specify your app nodes here. Use round-robin balancing to add more than one.
-        backend default {
-            .host = "sw.localhost";
-            .port = "80";
-        }
-        ...
-        # ACL for purgers IP. (This needs to contain app server ips)
-        acl purgers {
-            "sw.localhost";
-            "127.0.0.1";
-            "localhost";
-            "::1";
+    # all traffic to localhost is redirected to varnish
+    virtualHosts."http://localhost" = {
+      extraConfig = ''
+        reverse_proxy 127.0.0.1:6081 {
+          # header_up solves this issue: https://shopwarecommunity.slack.com/archives/C05CQT51H1V/p1721754934084939
+          header_up Host sw.localhost
         }
       '';
     };
-  }
+
+    # the actual shopware application is served from sw.localhost,
+    # choose any domain you want.
+    # you may need to add the domain to /etc/hosts:
+    # 127.0.0.1       sw.localhost
+    virtualHosts."http://sw.localhost" = {
+      extraConfig = ''
+        # set header to avoid CORS errors
+        header {
+            Access-Control-Allow-Origin *
+            Access-Control-Allow-Credentials true
+            Access-Control-Allow-Methods *
+            Access-Control-Allow-Headers *
+            defer
+        }
+        root * public
+        php_fastcgi unix/${config.languages.php.fpm.pools.web.socket}
+        encode zstd gzip
+        file_server
+        log {
+          output stderr
+          format console
+          level ERROR
+        }
+      '';
+    };
+  };
+
+  # varnish config
+  services.varnish = {
+    enable = true;
+    package = pkgs.varnish;
+    listen = "127.0.0.1:6081";
+    # enables xkey module
+    extraModules = [ pkgs.varnishPackages.modules ];
+    # it's a slightly adjusted version from the [docs](https://developer.shopware.com/docs/guides/hosting/infrastructure/reverse-http-cache.html#configure-varnish)
+    vcl = ''
+      # ...
+      # Specify your app nodes here. Use round-robin balancing to add more than one.
+      backend default {
+          .host = "sw.localhost";
+          .port = "80";
+      }
+      # ...
+      # ACL for purgers IP. (This needs to contain app server ips)
+      acl purgers {
+          "sw.localhost";
+          "127.0.0.1";
+          "localhost";
+          "::1";
+      }
+      # ...
+    '';
+  };
+}
+```
+
+### Use an older package version
+
+Sometimes you want to pin a service to an older version.
+Here is an example to use a specific mysql version.
+
+```nix
+{
+  services.mysql = let 
+    mysql8033 = pkgs.mysql80.overrideAttrs (oldAttrs: {
+      version = "8.0.33";
+      # the final url would look like this: https://github.com/mysql/mysql-server/archive/mysql-8.0.33.tar.gz
+      # make sure the url exists. 
+      # alternatively you could use that url directly via pkgs.fetchurl { url = "xyz"; hash="xyz";};
+      # for reference see the [different fetchers](https://ryantm.github.io/nixpkgs/builders/fetchers/#chap-pkgs-fetchers)
+      src = pkgs.fetchFromGitHub {
+        owner = "mysql";
+        repo = "mysql-server";
+        rev = "mysql-8.0.33";
+        # leave empty on the first run, you will get prompted with the expected hash
+        sha256 = "sha256-s4llspXB+rCsGLEtI4WJiPYvtnWiKx51oAgxlg/lATg=";
+      };
+    });
+  in
+  {
+    enable = true;
+    package = mysql8033; # use the overridden package
+    # ...
+  };
+}
 ```
 
 ## Known issues
