@@ -645,7 +645,7 @@ This comes in handy if you want to configure interpreters in your IDE.
 In case you can't find and stop running devenv processes, you can use the following command to kill them:
 
 ```shell
-kill $(ps -ax | grep /nix/store  | awk '{print $1}')
+kill $(ps -ax | grep /nix/store | grep -v "grep" | awk '{print $1}')
 ```
 
 ### Are you unable to access http://127.0.0.1:8000 in your Browser?
