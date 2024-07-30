@@ -85,9 +85,9 @@ AvailableCombinationLoader
 AvgResult
 awaitAndCheckNotification
 axios
-B2B Component 
+B2B Component
 B2B Components
-B2B Suite 
+B2B Suite
 backend
 Backend
 backends
@@ -338,6 +338,9 @@ customizer
 cyclus
 dailymotion
 Dailymotion
+Daily.co
+dsr
+herokuapp
 dal
 Dal
 DAL
@@ -437,6 +440,7 @@ dragTo
 dropdown
 DSGVO
 DSN
+DSR
 dTH
 DTO
 DTOs
@@ -669,6 +673,7 @@ indexActions
 IndexerService
 infoIt
 ini
+Init
 initialisms
 Initialisms
 initializer
@@ -925,6 +930,7 @@ nullable
 NullObject
 nullsafe
 Nullsafe
+Nuxt
 Nvidia
 oauth
 OAuth
@@ -1059,6 +1065,7 @@ PII
 pluginlogger
 PluginManager
 png
+pnpm
 POC
 positionID
 PositionID
@@ -1242,6 +1249,7 @@ salesChannelLoaded
 SalesChannelProductEntity
 saleschannelrepositoryfacade
 SalesChannelRule
+Sales Rooms
 SameSite
 sandboxed
 sarven
@@ -1346,6 +1354,7 @@ SSHes
 stableVersion
 stackable
 StackHero
+Stackhero
 StackOverflow
 stacktrace
 stateId
@@ -1405,7 +1414,7 @@ SwagAdvDevBundle
 SwagB
 SwagBasicExample
 SwagBasicExampleTheme
-SwagGuidedShopping
+SwagDigitalSalesRooms
 SwagMigrationBundleExample
 SwagMyPlugin
 SwagMyPluginSW
@@ -1511,6 +1520,7 @@ UnitTests
 unprefixed
 unregister
 Unregistering
+unsecure
 unserialize
 unstyled
 untrusted
@@ -1591,6 +1601,7 @@ Webpack
 webpackMerge
 webserver
 Webserver
+WebSocket
 wednesday
 WeekdayRule
 WhitelistRule
