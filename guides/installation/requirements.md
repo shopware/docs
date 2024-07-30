@@ -55,7 +55,7 @@ You can use these commands to check your actual environment:
 
 * MySQL
 
-  * Recommended version: 8.0
+  * Compatible versions: 8.0 and 9.0
   * Minimum version: 8.0.17
   * Problematic versions: 8.0.20, 8.0.21
 
