@@ -442,6 +442,8 @@ di
 DIC
 DIC EntityRepository
 DifferentAddressesRule
+Differentiator
+differentiator
 dir
 DirectoryLoader
 direnv
