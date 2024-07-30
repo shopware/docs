@@ -106,7 +106,7 @@ You might consider using the new `low_priority` queue if you are dispatching mes
 # config/packages/framework.yaml
 framework:
     messenger:
-        routing:
+        routing_overwrite:
             'Your\Custom\Message': low_priority
 ```
 
@@ -132,7 +132,7 @@ class LowPriorityMessage implements LowPriorityMessageInterface
 # config/packages/framework.yaml
 framework:
     messenger:
-        routing:
+        routing_overwrite:
             'Shopware\Core\Framework\MessageQueue\LowPriorityMessageInterface': low_priority
             'Your\Custom\LowPriorityMessage': async
 ```
