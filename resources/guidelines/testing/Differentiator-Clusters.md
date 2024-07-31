@@ -23,7 +23,7 @@ This section will show you the new differentiator groups which needs to be fulfi
 
 * Offers a reasonable API connection. This means that the extension uses the Shopware API in a compliant and efficient manner to exchange, update, or manipulate data.
 
-*Precisely adapts to Shopware externally. This means that the extension complements or extends the appearance of the Shopware admin interface without disturbing or altering it, by using the same styles and elements.
+* Precisely adapts to Shopware externally. This means that the extension complements or extends the appearance of the Shopware admin interface without disturbing or altering it, by using the same styles and elements.
 
 
 ## Examples of meaningful use cases that cannot be represented with other extensions
