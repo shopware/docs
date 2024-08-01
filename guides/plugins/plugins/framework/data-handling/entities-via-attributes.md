@@ -111,7 +111,26 @@ class ExampleEntity extends Entity
 
 ## Custom Fields
 
-If you want to allow custom fields, you can use the `CustomField` attribute. 
+To allow custom fields, you can use the `EntityCustomFieldsTrait`. This gives you some helper methods to easily work with custom field values out of the box.
+
+```php
+<?php
+
+use Shopware\Core\Framework\DataAbstractionLayer\EntityCustomFieldsTrait;
+
+#[EntityAttribute('example_entity')]
+class ExampleEntity extends Entity
+{
+    use EntityCustomFieldsTrait;
+    
+    #[PrimaryKey]
+    #[Field(type: FieldType::UUID)]
+    public string $id;
+}
+
+```
+
+Alternatively you can use the `CustomField` attribute directly, that way you have full control over the custom fields and can add your own helpers.
 
 ```php
 <?php
@@ -124,10 +143,10 @@ class ExampleEntity extends Entity
     public string $id;
     
     /**
-     * @var array<string, mixed>
+     * @var array<string, mixed>|null
      */
     #[CustomFields]
-    public array $customFields;
+    public ?array $customFields = null;
 }
 
 ```
@@ -167,7 +186,7 @@ class ExampleEntity extends Entity
 To support Shopware translations for your entity, set the `translated` property of the `Field` attribute to `true`. This will automatically create a `TranslatedField` for the field and
 register an `EntityTranslationDefinition` for you.
 
-Additionally, you can define a `Translations` attribute on a property to enable loading of all translations of the entity.
+Additionally, you can define a `Translations` attribute on a property to enable loading of all translations of the entity. This field needs to be nullable, as by default it will not be loaded, but this allows you to add the `translations` association to the criteria to load all translations at once.
 
 Notice: Properties with the `translated` flag must be nullable. 
 
@@ -183,10 +202,10 @@ class ExampleEntity extends Entity
     public ?string $string = null;
 
     /**
-     * @var array<string, ArrayEntity>
+     * @var array<string, ArrayEntity>|null
      */
     #[Translations]
-    public array $translations;
+    public ?array $translations = null;
 }
 ```
 
@@ -236,13 +255,13 @@ class ExampleEntity extends Entity
     public ?CurrencyEntity $follow = null;
 
     /**
-     * @var array<string, AttributeEntityAgg>
+     * @var array<string, AttributeEntityAgg>|null
      */
     #[OneToMany(entity: 'example_entity_agg', ref: 'example_entity_id')]
     public ?array $aggs = null;
 
     /**
-     * @var array<string, CurrencyEntity>
+     * @var array<string, CurrencyEntity>|null
      */
     #[ManyToMany(entity: 'currency')]
     public ?array $currencies = null;
@@ -293,6 +312,8 @@ use Shopware\Core\System\Currency\CurrencyEntity;
 #[EntityAttribute('example_entity', since: '6.6.3.0')]
 class ExampleEntity extends Entity
 {
+    use EntityCustomFieldsTrait;
+
     #[PrimaryKey]
     #[Field(type: FieldType::UUID)]
     public string $id;
@@ -383,28 +404,22 @@ class ExampleEntity extends Entity
     public ?CurrencyEntity $follow = null;
 
     /**
-     * @var array<string, AttributeEntityAgg>
+     * @var array<string, AttributeEntityAgg>|null
      */
     #[OneToMany(entity: 'attribute_entity_agg', ref: 'attribute_entity_id', onDelete: OnDelete::CASCADE)]
     public ?array $aggs = null;
 
     /**
-     * @var array<string, CurrencyEntity>
+     * @var array<string, CurrencyEntity>|null
      */
     #[ManyToMany(entity: 'currency', onDelete: OnDelete::CASCADE)]
     public ?array $currencies = null;
 
     /**
-     * @var array<string, ArrayEntity>
+     * @var array<string, ArrayEntity>|null
      */
     #[Translations]
-    public array $translations;
-
-    /**
-     * @var array<string, mixed>
-     */
-    #[CustomFields]
-    public array $customFields;
+    public ?array $translations = null;
 }
 
 ```
