@@ -1,7 +1,7 @@
 ---
 nav:
    title: Plugin Configuration
-   position: 60
+   position: 20
 
 ---
 
