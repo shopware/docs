@@ -8,6 +8,8 @@ nav:
 # Quality Guidelines for the Plugin System in the Shopware Store
 
 > **Changelog**
+>> 01/08/24: [Added - Message queue](../quality-guidelines-plugins/#message-queue)
+>
 >> 26/07/23: [Added - Identical name rule](../quality-guidelines-plugins/#every-app-based-on-the-plugin-system)
 >
 >> 06/09/23: [Added - Rules for own composer dependencies](../quality-guidelines-plugins/#own-composer-dependencies)
@@ -311,6 +313,11 @@ If the query is negative, a growl message must appear in the backend.
 ### Reloading of files not allowed
 
 Apps may not load other files during and after the installation in the *Extension Manager*.
+
+### Message queue
+
+If the extension adds messages to the message queue, make sure they are not bigger than 262,144 bytes (256 KB).
+This limitation is set by common message queue workers and should not be exceeded.
 
 ### App pages with their own URL must appear in the sitemap.xml
 
