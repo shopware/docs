@@ -7,6 +7,14 @@ nav:
 
 # Add Payment Plugin
 
+::: warning
+With Shopware 6.6.5.0, the payment handling was refactored.
+Most of this documentation is deprecated and obsolete with 6.7.0.0.
+
+The new payment handling is done via a single `AbstractPaymentHandler`.
+Check out the new documentation here: [Add Payment Plugin (>6.7)](/docs/v6.7/guides/plugins/plugins/checkout/payment/add-payment-plugin.html).
+:::
+
 ## Overview
 
 Payments are an essential part of the checkout process. That's why Shopware 6 offers an easy platform on which you can build payment plugins.
@@ -33,7 +41,7 @@ You can create your payment handler by implementing one of the following interfa
 | AsynchronousPaymentHandlerInterface | `shopware.payment.method.async`     | A redirect to an external payment provider is required, e.g. PayPal                                |
 | PreparedPaymentHandlerInterface     | `shopware.payment.method.prepared`  | The payment was prepared beforehand and will only be validated and captured by your implementation |
 | RefundPaymentHandlerInterface       | `shopware.payment.method.refund`    | The payment allows refund handling                                                                 |
-| RecurringPaymentHandlerInterface    | `shopware.payment.method.recurring` | The payment allows recurring payments, e.g. subscriptions                                       |
+| RecurringPaymentHandlerInterface    | `shopware.payment.method.recurring` | The payment allows recurring payments, e.g. subscriptions                                          |
 
 Depending on the interface, those methods are required:
 
