@@ -14,17 +14,22 @@ You can create interactive live video events for your customers straight from yo
 ![ ](../../assets/products-digitalSalesRooms.png)
 
 ::: warning
-*Digital Sales Rooms* is a commercial extension and is not available as open source.
+*Digital Sales Rooms* is a license extension and is not available as open source.
+:::
+
+::: warning
+*Digital Sales Rooms* application does not belong to *the default Storefront*. It's a standalone Frontend app running with Nuxt instance. This template will be hosted in a separate instance with a new domain, which will be different from the Storefront domain.
 :::
 
 ## Prerequisites
 Review the below minimum operating requirements before you install the *Digital Sales Rooms* feature:
 * [node](https://nodejs.org/en) >= v18
 * [pnpm](https://pnpm.io/installation) >= 8
+* [Shopware Frontends framework](https://frontends.shopware.com/) based on Nuxt 3.
 * Instance of [Shopware 6](../../guides/installation) (version 6.6.0 and above).
   * Recommend installing with [devenv](../../guides/installation/devenv)
 * Third party services:
-  * [Daily.co](https://daily.co/) - Refer to setup instructions for [realtime video call](./installation/realtime-video-dailyco)
-  * [Mercure](https://mercure.rocks/) - Refer to setup instructions for [realtime Mercure service](./installation/realtime-service-mercure)
+  * [Daily.co](https://daily.co/) - Refer to setup instructions for [realtime video call](./setup-3rd-party/realtime-video-dailyco.md)
+  * [Mercure](https://mercure.rocks/)- Refer to setup instructions for [realtime Mercure service](./setup-3rd-party/realtime-service-mercure.md)
   
 Following section guides you on the installation procedure.
