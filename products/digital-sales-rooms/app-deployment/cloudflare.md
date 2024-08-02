@@ -12,7 +12,7 @@ In this chapter you will learn how to
 - Deploy the template to Cloudflare Pages
 
 ## Setup
-- Because of this [issue](https://github.com/nuxt/nuxt/issues/28248), just make sure your .npmrc file have
+- Because of this [issue](https://github.com/nuxt/nuxt/issues/28248), just make sure your `.npmrc` file have
 ```
 shamefully-hoist=true
 strict-peer-dependencies=false
