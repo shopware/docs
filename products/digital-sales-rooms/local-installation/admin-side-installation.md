@@ -8,13 +8,12 @@ nav:
 # Admin Side Installation
 
 ::: info
-Digital Sales Rooms plugin is a licensed plugin. If you alredy know how to install a licensed plugin, you can skip this part.
+Digital Sales Rooms plugin is a licensed plugin. If you already know how to install a licensed plugin, you can skip this part.
 :::
 
 ::: warning
 As part of the Shopware Beyond plan, the Digital Sales Rooms is available to you as an extension.
 Same with other plugins, you have multiple ways to fetch the plugin via composer, via download, via Shopware Account.
-Digital Sales Rooms plugin is a licensed plugin. If you alredy know how to install a licensed plugin, you can skip this part.
 :::
 
 
