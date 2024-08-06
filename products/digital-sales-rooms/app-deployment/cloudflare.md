@@ -113,7 +113,7 @@ jobs:
           wranglerVersion: '3'
 ```
 
-- Replace `YOUR_ACCOUNT_ID` with your account ID. Get it from the dashboard URL. E.g: https://dash.cloudflare.com/<ACCOUNT_ID>/pages.
+- Replace `YOUR_ACCOUNT_ID` with your account ID. Get it from the dashboard URL. E.g: `https://dash.cloudflare.com/<ACCOUNT_ID>/pages`.
 - Replace `YOUR_PROJECT_NAME` with the appropriate value.
 
 ## Custom domain
