@@ -62,7 +62,7 @@ To trigger the deployment automatically, we can attach the Github Actions.
 Please note that this pipeline is just a sample. There are some points need to update for specific purpose
 :::
 
-```bash
+```yml
 on:
   push:
    # Specify the pipeline trigger
