@@ -22,6 +22,7 @@ You can create interactive live video events for your customers straight from yo
 :::
 
 ## Prerequisites
+
 Review the below minimum operating requirements before you install the *Digital Sales Rooms* feature:
 * [node](https://nodejs.org/en) >= v18
 * [pnpm](https://pnpm.io/installation) >= 8

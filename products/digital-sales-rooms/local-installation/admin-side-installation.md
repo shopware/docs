@@ -13,18 +13,17 @@ Digital Sales Rooms plugin is a licensed plugin. If you already know how to inst
 
 ::: warning
 As part of the Shopware Beyond plan, the Digital Sales Rooms is available to you as an extension.
-Same with other plugins, you have multiple ways to fetch the plugin via composer, via download, via Shopware Account.
+Same with other plugins, you have multiple ways to fetch the plugin via composer, direct download or through your Shopware Account.
 :::
 
-
-In this part, we will learn how to get & install the Digital Sales Rooms plugin into local Shopware instance.
+In this part, we will learn how to get and install the *Digital Sales Rooms* plugin into local Shopware instance.
 
 ## Get the plugin
 
-If you are a merchant with Shopware Beyond, you can access to account.shopware.com and create a wildcard environment with attached plugins. Please read [guideline](https://docs.shopware.com/en/account-en/extension-partner/wildcard-environments).
+If you are a merchant with Shopware Beyond, you can access account.shopware.com and create a wildcard environment with attached plugins. Refer to [guideline](https://docs.shopware.com/en/account-en/extension-partner/wildcard-environments) for more info.
 
 ![ ](../../../assets/products-digitalSalesRooms-wildcard.png)
-By this way, you can get the plugin fastly into Shopware instance via multiple ways (via composer, via download or via Shopware Account).
+By this way, you can get the plugin quickly into Shopware instance via multiple ways (via composer, direct download or through your Shopware Account).
 
 ### via download
 
