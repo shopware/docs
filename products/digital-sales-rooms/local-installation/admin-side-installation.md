@@ -27,6 +27,7 @@ If you are a merchant with Shopware Beyond, you can access to account.shopware.c
 By this way, you can get the plugin fastly into Shopware instance via multiple ways (via composer, via download or via Shopware Account).
 
 ### via download
+
 To install a plugin via download, follow these steps:
 
 - From wildcard environment detail page, click on the plugin and then click on the “Download” button.
@@ -35,6 +36,7 @@ To install a plugin via download, follow these steps:
 - Extract the zip file into the `custom/plugins` directory with name `SwagDigitalSalesRooms`.
 
 ### via composer
+
 To install a plugin via composer, follow these steps:
 
 - From wildcard environment detail page, click on the plugin and then click on the "Install via composer" button.

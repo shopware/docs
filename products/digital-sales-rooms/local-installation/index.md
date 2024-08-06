@@ -8,7 +8,7 @@ nav:
 # Digital Sales Rooms Installation
 
 ::: warning
-This section for only local installation.
+This section is for local installation only.
 :::
 
 This section will show how to install *Digital Sales Rooms* plugin into your local machine.

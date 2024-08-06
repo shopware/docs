@@ -12,7 +12,8 @@ In this chapter you will learn how to
 - Deploy the template to Cloudflare Pages
 
 ## Setup
-- Because of this [issue](https://github.com/nuxt/nuxt/issues/28248), just make sure your `.npmrc` file have
+- Due to this [issue](https://github.com/nuxt/nuxt/issues/28248), just make sure your `.npmrc` file has
+
 ```
 shamefully-hoist=true
 strict-peer-dependencies=false
@@ -24,7 +25,7 @@ strict-peer-dependencies=false
 pnpm install wrangler --save-dev
 ```
 
-- Make sure the Front-end App already [generated .env file](../local-installation/app-installation.md#generate-env-file)
+- Make sure the Frontend app has already [generated .env file](../local-installation/app-installation.md#generate-env-file)
 
 - Build your project for Cloudflare Pages:
 
@@ -32,10 +33,10 @@ pnpm install wrangler --save-dev
 npx nuxi build --preset=cloudflare_pages
 ```
 
-- Deploy, it will ask you to create a project for the first time:
+- Then deploy. However, for the first time, it will ask you to create a project:
 
 ```bash
 wrangler pages deploy dist/
 ```
 
-- After finish this, your website is ready and Cloudflare also give you a Front-end App domain. Please use the current domain to config [sales channel domain](../configuration/domain-config.md).
+- After this, your website is ready and Cloudflare also gives you a frontend app domain. Please use the current domain to configure [sales channel domain](../configuration/domain-config.md).
