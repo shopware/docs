@@ -7,11 +7,16 @@ nav:
 
 # Deploy with Cloudflare
 
-In this chapter you will learn how to
+In this chapter you will learn how to deploy the frontend source code to [Cloudflare Pages](https://pages.cloudflare.com/).
 
-- Deploy the template to Cloudflare Pages
+## Prerequisites
 
-## Setup
+* Register a Cloudflare account.
+* Clone the frontend source code and push to your Github repository.
+  * Download the plugin zip. After extracting, you can find it inside `/templates/dsr-frontends`.
+
+## Deploy from local machine
+
 - Due to this [issue](https://github.com/nuxt/nuxt/issues/28248), just make sure your `.npmrc` file has
 
 ```
@@ -39,4 +44,83 @@ npx nuxi build --preset=cloudflare_pages
 wrangler pages deploy dist/
 ```
 
-- After this, your website is ready and Cloudflare also gives you a frontend app domain. Please use the current domain to configure [sales channel domain](../configuration/domain-config.md).
+## Automation with Github Actions
+
+### Setup Github Secrets & variables
+
+- In Github Secrets, add `CLOUDFLARE_API_TOKEN` with API token value.
+   - [Create an API token](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/) in the Cloudflare dashboard with the "Cloudflare Pages — Edit" permission.
+- In Github environment variables, create new environment named `production`. Add `SHOPWARE_ENDPOINT` and `SHOPWARE_ACCESS_TOKEN` variables with appropriate values.
+   - Besides `production`, we can add new values for the same variable names in multiple environments such as `development`, `staging`.
+
+### Setup pipeline
+
+To trigger the deployment automatically, we can attach the Github Actions. 
+- Create a .github/workflows/publish.yml file in your repository with below sample content.
+
+::: warning
+Please note that this pipeline is just a sample. There are some points need to update for specific purpose
+:::
+
+```bash
+on:
+  push:
+   # Specify the pipeline trigger
+   branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    name: Cloudflare Pages Deployment
+    # Specify the environment name
+    environment: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 8
+          run_install: false
+
+      - name: Install dependencies
+        run: |
+          pnpm install
+
+      - name: Build env file
+        run: |
+          touch .env
+          echo SHOPWARE_ENDPOINT=${{ vars.SHOPWARE_ENDPOINT }} >> .env
+          echo SHOPWARE_ACCESS_TOKEN=${{ vars.SHOPWARE_ACCESS_TOKEN }} >> .env
+          cat .env
+
+      - name: Build code
+        run: |
+          npx nuxi build --preset=cloudflare_pages
+
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1.5.0
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: YOUR_ACCOUNT_ID
+          projectName: YOUR_PROJECT_NAME
+          directory: dist
+          wranglerVersion: '3'
+```
+
+- Replace `YOUR_ACCOUNT_ID` with your account ID. Get it from the dashboard URL. E.g: https://dash.cloudflare.com/<ACCOUNT_ID>/pages.
+- Replace `YOUR_PROJECT_NAME` with the appropriate value.
+
+## Custom domain
+
+When deploying your Pages project, you may wish to point custom domains (or subdomains) to your site. Cloudflare has an [instruction](https://developers.cloudflare.com/pages/configuration/custom-domains/).
+
+
+## Configure sales channel domain
+
+Your website is ready, you should have a frontend app domain. Please use the current domain to configure [sales channel domain](../configuration/domain-config.md).
