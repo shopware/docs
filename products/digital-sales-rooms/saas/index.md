@@ -8,7 +8,7 @@ nav:
 # Digital Sales Rooms with SaaS
 
 If you are a Beyond merchant and are using SaaS, the *Digital Sales Rooms* plugin is installed in your SaaS instance. So, you should see the *Digital Sales Rooms* section in the Marketing menu item.
-However, there are some stuffs need to complete the whole project:
+However, there are some steps that need to be completed to ensure the DSR functions fully with SaaS:
 
 - [Deploy the Front-end App](../app-deployment/index.md)
 
