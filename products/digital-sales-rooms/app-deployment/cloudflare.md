@@ -12,7 +12,7 @@ In this chapter you will learn how to deploy the frontend source code to [Cloudf
 ## Prerequisites
 
 * Register a Cloudflare account.
-* Clone the frontend source code and push to your Github repository.
+* Clone the frontend source code and push to your GitHub repository.
   * Download the plugin zip. After extracting, you can find it inside `/templates/dsr-frontends`.
 
 ## Deploy from local machine
@@ -44,19 +44,19 @@ npx nuxi build --preset=cloudflare_pages
 wrangler pages deploy dist/
 ```
 
-## Automation with Github Actions
+## Automation with GitHub Actions
 
-### Setup Github Secrets & variables
+### Setup GitHub Secrets & variables
 
-- In Github Secrets, add `CLOUDFLARE_API_TOKEN` with API token value.
+- In GitHub Secrets, add `CLOUDFLARE_API_TOKEN` with API token value.
    - [Create an API token](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/) in the Cloudflare dashboard with the "Cloudflare Pages — Edit" permission.
-- In Github environment variables, create new environment named `production`. Add `SHOPWARE_ENDPOINT` and `SHOPWARE_ACCESS_TOKEN` variables with appropriate values.
+- In GitHub environment variables, create new environment named `production`. Add `SHOPWARE_ENDPOINT` and `SHOPWARE_ACCESS_TOKEN` variables with appropriate values.
    - Besides `production`, we can add new values for the same variable names in multiple environments such as `development`, `staging`.
 
 ### Setup pipeline
 
-To trigger the deployment automatically, we can attach the Github Actions. 
-- Create a .github/workflows/publish.yml file in your repository with below sample content.
+To trigger the deployment automatically, we can attach the GitHub Actions. 
+- Create a `.github/workflows/publish.yml` file in your repository with below sample content.
 
 ::: warning
 Please note that this pipeline is just a sample. There are some points need to update for specific purpose
