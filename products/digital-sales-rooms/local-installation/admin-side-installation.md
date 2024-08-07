@@ -25,7 +25,7 @@ If you are a merchant with Shopware Beyond, you can access account.shopware.com 
 ![ ](../../../assets/products-digitalSalesRooms-wildcard.png)
 By this way, you can get the plugin quickly into Shopware instance via multiple ways (via composer, direct download or through your Shopware Account).
 
-### via download
+### Via download
 
 To install a plugin via download, follow these steps:
 
@@ -34,7 +34,7 @@ To install a plugin via download, follow these steps:
 - In your Shopware 6 instance source code, go to the `custom/plugins` directory.
 - Extract the zip file into the `custom/plugins` directory with name `SwagDigitalSalesRooms`.
 
-### via composer
+### Via composer
 
 To install a plugin via composer, follow these steps:
 
