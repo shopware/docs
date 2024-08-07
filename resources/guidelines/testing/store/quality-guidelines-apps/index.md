@@ -129,7 +129,7 @@ To ensure that the code remains accessible to all developers, the uncompiled ver
     * Video content increases awareness, trust and has proven to convert potential customers better than other content types. Help your customers better understand your app or service with explainer videos, product demos, tutorials, etc. You can embed maximum 2 YouTube videos in your app description.
 
 ::: info
-    You can no longer advertise your Shopware certificates within the app description, in your app images, or in your manufacturer profile. The manufacturer/partner certificates are dynamically loaded at the end of each app description and published by us.
+You can no longer advertise your Shopware certificates within the app description, in your app images, or in your manufacturer profile. The manufacturer/partner certificates are dynamically loaded at the end of each app description and published by us.
 :::
 
 * Include several screenshots and descriptive images from the Storefront and backend that represent the app functionality. They must show the app "in action", its configuration options, and how to use it.
