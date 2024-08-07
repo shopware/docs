@@ -639,6 +639,7 @@ getTotal
 getType
 getUnit
 getUrls
+ghcr
 gif
 GIFs
 github
@@ -1372,6 +1373,7 @@ ShopNameStorer
 shopUrl
 shopware
 Shopware
+shopwarelabs
 shopwarepartners
 shopware's
 Shopware's
