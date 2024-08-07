@@ -1,11 +1,11 @@
 ---
 nav:
-   title: Front-end app installation
+   title: Frontend app installation
    position: 30
 
 ---
 
-# Front-end App Installation
+# Frontend App Installation
 
 ::: warning
 This template is built based on the Shopware Frontends framework, so it inherits from Shopware Frontends & Nuxt 3 concepts.
@@ -35,7 +35,7 @@ cp .env.template .env
 **ALLOW_ANONYMOUS_MERCURE**: This is the flag for development only. When the value = 1, it means your app is running with unsecured Mercure.
 
 
-## Run Front-end App
+## Run frontend App
 - Install dependencies
 ```
 pnpm install

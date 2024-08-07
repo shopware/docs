@@ -5,7 +5,7 @@ nav:
 
 ---
 
-# Domain Configuration for Front-end app
+# Domain Configuration for frontend app
 
 When you run the frontend app server (in both development or production), you will always have a specific domain (eg: `https://dsr-frontends.com`). This section will show you how to add this domain to sales channel.
 
