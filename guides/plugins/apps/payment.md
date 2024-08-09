@@ -40,6 +40,10 @@ Depending on the URLs you provide, Shopware knows which kind of payment flow you
 
 ## Synchronous payments
 
+::: info
+Be aware, that from Shopware 6.7.0.0 onwards your app-server **has to** respond with a payment state in its response, if you intend to change the transaction state.
+:::
+
 There are different types of payments.
 Synchronous payment is the simplest of all and does not need any additional interaction with the customer.
 If you have defined a `pay-url`, you can choose to be informed about and possibly process the payment or not.
@@ -55,7 +59,7 @@ Below you can see an example of a simple answer from your app to mark a payment 
 
 Request content is JSON
 
-```json
+```json5
 {
   "source": {
     "url": "http:\/\/localhost:8000",
@@ -73,7 +77,7 @@ Request content is JSON
 
 Refer to an example on [payment payload](https://github.com/shopware/app-php-sdk/blob/main/tests/Context/_fixtures/payment.json) and the response should look like this:
 
-```json
+```json5
 {
   "status": "authorize"
 }
@@ -82,7 +86,7 @@ Refer to an example on [payment payload](https://github.com/shopware/app-php-sdk
 Refer to possible [status values](#all-possible-payment-states).
 Failing states can also have a `message` property with the reason, which will be logged and could be seen as information for the merchant.
 
-```json
+```json5
 {
   "status": "authorize",
   "message": "The customer failed to pass the credit check."
@@ -147,6 +151,10 @@ class PaymentController {
 
 ## Asynchronous payments
 
+::: info
+Be aware, that from Shopware 6.7.0.0 onwards your app-server **has to** respond with a payment state in its response, if you intend to change the transaction state.
+:::
+
 Asynchronous payments are more complicated than synchronous payments.
 They require interaction with the customer and a redirect to the payment provider, such as PayPal or Stripe.
 
@@ -159,7 +167,7 @@ Here is how it works:
 * The browser will be redirected to this URL and processes his order,
   and the payment provider will redirect the customer back to the `returnUrl` provided in the first request.
 * Shopware sends a second `POST` request to the `finalize-url` with the `orderTransaction` and all the query parameters passed by the payment provider to Shopware.
-* Your app server responds with a `status` and a `message` if necessary, like in the synchronous payment.
+* Your app server responds with a `status` and, if necessary a `message`, like in the synchronous payment.
 
 <Tabs>
 
@@ -167,7 +175,7 @@ Here is how it works:
 
 Request content is JSON
 
-```json
+```json5
 {
   "source": {
     "url": "http:\/\/localhost:8000",
@@ -188,7 +196,7 @@ You can find an example refund payload [here](https://github.com/shopware/app-ph
 
 and your response should look like this:
 
-```json
+```json5
 {
   "redirectUrl": "https://payment.app/customer/gotoPaymentProvider"
 }
@@ -267,7 +275,7 @@ The response `status` value determines the outcome of the payment, e.g.:
 
 Request content is JSON
 
-```json
+```json5
 {
   "source": {
     "url": "http:\/\/localhost:8000",
@@ -285,7 +293,7 @@ Request content is JSON
 
 and your response should look like this:
 
-```json
+```json5
 {
   "status": "paid"
 }
@@ -294,7 +302,7 @@ and your response should look like this:
 Refer possible [status values](#all-possible-payment-states).
 Failing states can also have a `message` property with the reason, which will be logged and could be seen as information for the merchant.
 
-```json
+```json5
 {
   "status": "authorize",
   "message": "The customer failed to pass the credit check."
@@ -366,15 +374,19 @@ Once you add specific parameters to the order placement request in the Storefron
 This enables your payment handler to capture the payment successfully when the order is placed.
 
 For this, you have two calls available during the order placement, the `validate` call to verify,
-that the payment reference is valid and if not, stop the placement of the order, and the `capture` call,
+that the payment reference is valid and if not, stop the placement of the order, and the `pay` call,
 which then allows the payment to be processed to completion after the order has been placed and persisted.
 
 Let's first talk about the `validate` call.
 Here, you will receive three items to validate your payment.
 The `cart` with all its line items, the `requestData` from the `CartOrderRoute` request and the current `salesChannelContext`.
 This allows you to validate, if the payment reference you may have given your payment handler via the Storefront implementation is valid and will be able to be used to pay the order which is about to be placed.
-The array data you may send as the `preOrderPayment` object in your response will be forwarded to your `capture` call, so you don't have to worry about identifying the order by looking at the cart from the `validate` call.
+The array data you may send as the `preOrderPayment` object in your response will be forwarded to your `pay` call, so you don't have to worry about identifying the order by looking at the cart from the `validate` call.
 If the payment is invalid, either return a response with an error response code or provide a `message` in your response.
+
+::: info
+Be aware, that from Shopware 6.7.0.0 onwards your app-server **has to** respond with a payment state in its response, if you intend to change the transaction state.
+:::
 
 <Tabs>
 
@@ -382,7 +394,7 @@ If the payment is invalid, either return a response with an error response code 
 
 Request content is JSON
 
-```json
+```json5
 {
   "source": {
     "url": "http:\/\/localhost:8000",
@@ -403,7 +415,7 @@ Request content is JSON
 
 You can refer to an example on [validation payload](https://github.com/shopware/app-php-sdk/blob/main/tests/Context/_fixtures/payment-validation.json) and your response looks like this:
 
-```json
+```json5
 {
   "preOrderPayment": {
     "myCustomReference": "1234567890"
@@ -411,7 +423,7 @@ You can refer to an example on [validation payload](https://github.com/shopware/
 }
 ```
 
-this will be forwarded to the `capture` call afterward.
+this will be forwarded to the `pay` call afterward.
 
 </Tab>
 
@@ -468,7 +480,7 @@ class PaymentController {
 
 </Tabs>
 
-If the payment has been validated and the order has been placed, you then receive another call to your `capture` endpoint.
+If the payment has been validated and the order has been placed, you then receive another call to your `pay` endpoint.
 You will receive the `order`, the `orderTransaction` and also the `preOrderPayment` array data, that you have sent in your validate call.
 
 <Tabs>
@@ -477,7 +489,7 @@ You will receive the `order`, the `orderTransaction` and also the `preOrderPayme
 
 Request content is JSON
 
-```json
+```json5
 {
   "source": {
     "url": "http:\/\/localhost:8000",
@@ -498,7 +510,7 @@ Request content is JSON
 
 and your response should look like this:
 
-```json
+```json5
 {
   "status": "authorize"
 }
@@ -507,7 +519,7 @@ and your response should look like this:
 You can find all possible status values [here](#all-possible-payment-states).
 Failing states can also have a `message` property with the reason, which will be logged and could be seen as information for the merchant.
 
-```json
+```json5
 {
   "status": "authorize",
   "message": "The customer failed to pass the credit check."
@@ -525,7 +537,7 @@ use Shopware\App\SDK\Shop\ShopResolver;
 use Shopware\App\SDK\Context\ContextResolver;
 use Shopware\App\SDK\Response\PaymentResponse;
 
-function capture(RequestInterface $request): ResponseInterface
+function pay(RequestInterface $request): ResponseInterface
 {
     // injected or build by yourself
     $shopResolver = new ShopResolver($repository);
@@ -589,13 +601,17 @@ Your app will need to register captured amounts and create and persist a refund 
 Similar to the other requests, on your `refund` call you will receive the data required to process your refund.
 This is the `order` with all its details and also the `refund` which holds the information on the `amount`, the referenced `capture` and, if provided, a `reason` and specific `positions` which items are being refunded.
 
+::: info
+Be aware, that from Shopware 6.7.0.0 onwards your app-server **has to** respond with a payment state in its response, if you intend to change the transaction state.
+:::
+
 <Tabs>
 
 <Tab title="HTTP">
 
 Request content is JSON
 
-```json
+```json5
 {
   "source": {
     "url": "http:\/\/localhost:8000",
@@ -613,7 +629,7 @@ Request content is JSON
 
 You can refer to [refund payload](https://github.com/shopware/app-php-sdk/blob/main/tests/Context/_fixtures/refund.json) example and your response should look like this:
 
-```json
+```json5
 {
   "status": "completed"
 }
@@ -663,13 +679,17 @@ At this point, a valid running billing agreement between the customer and the PS
 Use any of the other payment flows to capture the initial order and create such an agreement during the checkout.
 Afterward, this flow can capture the payment for every recurring payment order.
 
+::: info
+Be aware, that from Shopware 6.7.0.0 onwards your app-server **has to** respond with a payment state in its response, if you intend to change the transaction state.
+:::
+
 <Tabs>
 
 <Tab title="HTTP">
 
 Request content is JSON
 
-```json
+```json5
 {
   "source": {
     "url": "http:\/\/localhost:8000",
@@ -687,7 +707,7 @@ Request content is JSON
 
 You can refer to an example on [recurring capture payload](https://github.com/shopware/app-php-sdk/blob/main/tests/Context/_fixtures/payment.json) and your response looks like this:
 
-```json
+```json5
 {
   "status": "paid"
 }
