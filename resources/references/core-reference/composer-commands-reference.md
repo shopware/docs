@@ -7,6 +7,11 @@ nav:
 
 # Composer Commands Reference
 
+::: info
+These commands are only available inside `shopware/shopware` GitHub repository, so when you contribute to Shopware. For regular projects, use `./bin/*.sh` scripts.
+:::
+
+
 These composer commands can be executed using composer with your Shopware project.
 
 ```bash
