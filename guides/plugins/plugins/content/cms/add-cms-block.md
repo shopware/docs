@@ -199,9 +199,10 @@ The preview element doesn't have to deal with mobile viewports or anything alike
 Also, you need to create a computed component to access the asset filter in your template.
 
 ```js
+// <plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/preview/index.js
 computed: {
     assetFilter() {
-        return Filter.getByName('asset');
+        return Shopware.Filter.getByName('asset');
     },
 }
 ```
