@@ -20,7 +20,7 @@ The system checks can be invoked either through the CLI or via an HTTP API.
 
 The default flow of Shopware system checks is done via: `Shopware\Core\Framework\SystemCheck\SystemChecker`
 
-The SystemChecker class makes sure the system is working correctly by running all the registered system checks in a series. The following behavior is observed:
+The `SystemChecker` class makes sure the system is working correctly by running all the registered system checks in a series. The following behavior is observed:
 
 - Order of Checks: It runs checks in a specific order, grouped by types.
 - Skipping Checks: Some checks are skipped if they aren’t allowed to run or if a major problem is found early on.
@@ -69,4 +69,4 @@ All the properties in the Result class, are objective in nature, so there usuall
 In principle, regardless of the actual status of the check, the `healthy` flag should be set to:
 - `true` if the system can still function normally
 - `false` if the system cannot function normally
-- `null` if neither could be deterministically decided
+- `null` if it cannot be determined
