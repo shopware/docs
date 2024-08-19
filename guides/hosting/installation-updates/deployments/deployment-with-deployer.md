@@ -178,7 +178,19 @@ task('sw:touch_install_lock', static function () {
 });
 ```
 
-### 8. Switching the document root
+### 8. Running System Checks (Optional)
+
+Before putting the new version live, it is recommended to run the system checks to ensure that the new version is working correctly.
+
+```php
+task('sw:health_checks', static function () {
+    run('cd {{release_path}} && bin/console system:check --context=pre_rollout');
+});
+```
+
+> Before incorporating this step into your deployment process, make sure that you are well familiar with the [System Checks Concepts](/concepts/framework/system-check.md) and how to use and interpret the results [Custom usage](/guides/plugins/plugins/framework/system-check/index.md), and the command [error codes](/guides/plugins/plugins/framework/system-check/index.md#triggering-system-checks).
+
+### 9. Switching the document root
 
 After all the steps are done, Deployer will switch the symlinks destination to the new release.
 
@@ -408,6 +420,10 @@ task('sw:database:migrate', static function () {
     run('cd {{release_path}} && bin/console database:migrate --all');
 });
 
+task('sw:health_checks', static function () {
+    run('cd {{release_path}} && bin/console system:check --context=pre_rollout');
+});
+
 /**
  * Grouped SW deploy tasks
  */
@@ -416,6 +432,7 @@ task('sw:deploy', [
     'sw:database:migrate',
     'sw:build',
     'sw:cache:clear',
+    'sw:health_checks',
 ]);
 
 /**

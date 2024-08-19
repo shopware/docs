@@ -80,6 +80,9 @@ class LocalDiskSpaceCheck extends BaseCheck
 }
 ```
 
+
+> An important consideration is the healthy flag, which is subjective and can vary depending on the specific shop's criteria. For example, if the disk space threshold is set high, the system can still function normally, so the healthy flag could be true. Conversely, if the threshold is too low for normal operation, the healthy flag could be false.
+
 ### Register the custom check
 
 Finally, you need to register the custom check as a service resource.

@@ -7,7 +7,7 @@ nav:
 
 # System Checks
 
-System checks are a way to ensure that your Shopware installation is operating normally where each check verifies a specific aspect functionality. If a check fails, it can be an indicator that something is wrong with your system.
+System checks are a way to ensure that your Shopware installation is operating normally, where each check verifies a specific aspect of functionality. If a check fails, it can be an indicator that something is wrong with your system.
 
 ## Concepts
 
@@ -15,9 +15,11 @@ System checks are a way to ensure that your Shopware installation is operating n
 
 Shopware is composed of many components that work together to provide the full experience. A component can be an internal piece of code that achieves a functionality, an external provider, or a plugin.
 
-Each system checks verify a specific aspect of the system. For example, one system check can verify that the database connection is working, another that the payment system is functioning correctly, or that the SMTP server is online. 
+Each system check verifies a specific aspect of the system. For example, one system check might verify that the database connection is working, another that the payment system is functioning correctly, or that the SMTP server is online.
 
-And to ensure clear terminology, we have defined the following logical concepts that defines a guideline for a System Check type:
+And to ensure clear terminology, we have defined the following logical concepts that defines a guideline for a System Check type.
+
+#### Types
 
 - `Readiness Checks`: Checks that are executed before the system is ready to serve traffic.
 - `Health Checks`: Checks that are executed periodically to ensure the system is healthy. Those are usually invoked either manually or by monitoring systems.
