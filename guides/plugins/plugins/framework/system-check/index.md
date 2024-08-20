@@ -1,3 +1,10 @@
+---
+nav:
+  title: System Checks
+  position: 100
+
+---
+
 # Overview
 
 In this guide, you will learn about the system health check in Shopware. System health checks are a way to monitor the health of a system and detect failures early. 
