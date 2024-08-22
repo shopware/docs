@@ -28,9 +28,9 @@ So your structure could then look like this:
     └── src
         ├─ Resources
         │  └─ snippet
-        │     ├─ de_DE
+        │     ├─ de-DE
         │     │  └─ example.de-DE.json
-        │     └─ en_GB
+        │     └─ en-GB
         │        └─ example.en-GB.json
         └─ SwagBasicExample.php
 ```
