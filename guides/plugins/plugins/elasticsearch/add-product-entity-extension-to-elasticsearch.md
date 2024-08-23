@@ -209,7 +209,6 @@ namespace Swag\BasicExample\Elasticsearch\Product;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityDefinition;
 use Shopware\Elasticsearch\Framework\AbstractElasticsearchDefinition;
-use Shopware\Elasticsearch\Framework\Indexing\EntityMapper;
 use Doctrine\DBAL\Connection;
 use Swag\BasicExample\Subscriber\ProductSubscriber;
 
@@ -231,7 +230,7 @@ class MyProductEsDecorator extends AbstractElasticsearchDefinition
 
     public function buildTermQuery(Context $context, Criteria $criteria): BoolQuery
     {
-        return $this->decoratedService->buildTermQuery($context, $criteria);
+        return $this->productDefinition->buildTermQuery($context, $criteria);
     }
 
     /**
@@ -243,13 +242,13 @@ class MyProductEsDecorator extends AbstractElasticsearchDefinition
         $mapping = $this->productDefinition->getMapping($context);
 
         //The mapping for a simple keyword field
-        $mapping['properties']['customString'] = EntityMapper::KEYWORD_FIELD;
+        $mapping['properties']['customString'] = AbstractElasticsearchDefinition::KEYWORD_FIELD;
 
         // Adding an association as keyword
         $mapping['properties']['oneToOneExampleExtension'] = [
                 'type' => 'nested',
                 'properties' => [
-                    'customString' => EntityMapper::KEYWORD_FIELD,
+                    'customString' => AbstractElasticsearchDefinition::KEYWORD_FIELD,
             ],
         ];
 
@@ -257,7 +256,7 @@ class MyProductEsDecorator extends AbstractElasticsearchDefinition
         $mapping['properties']['oneToManyExampleExtension'] = [
             'type' => 'nested',
             'properties' => [
-                'id' => EntityMapper::KEYWORD_FIELD,
+                'id' => AbstractElasticsearchDefinition::KEYWORD_FIELD,
             ],
         ];
 
