@@ -1,0 +1,2902 @@
+classDiagram
+direction BT
+class acl_role {
+   varchar(255) name
+   longtext description
+   json privileges
+   datetime(3) created_at
+   datetime(3) updated_at
+   datetime(3) deleted_at
+   binary(16) id
+}
+class acl_user_role {
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) user_id
+   binary(16) acl_role_id
+}
+class admin_elasticsearch_index_task {
+   varchar(500) index
+   varchar(500) alias
+   varchar(500) entity
+   int doc_count
+   binary(16) id
+}
+class app {
+   varchar(255) name
+   varchar(4096) path
+   varchar(255) author
+   varchar(255) copyright
+   varchar(255) license
+   varchar(255) privacy
+   varchar(255) version
+   varchar(1024) base_app_url
+   tinyint(1) active
+   tinyint(1) allow_disable
+   tinyint(1) configurable
+   mediumblob icon
+   varchar(255) app_secret
+   json modules
+   json main_module
+   json cookies
+   json allowed_hosts
+   binary(16) integration_id
+   binary(16) acl_role_id
+   datetime(3) created_at
+   datetime(3) updated_at
+   int template_load_priority
+   varchar(255) checkout_gateway_url
+   binary(16) id
+}
+class app_action_button {
+   varchar(255) entity
+   varchar(255) view
+   varchar(255) url
+   varchar(255) action
+   binary(16) app_id
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class app_action_button_translation {
+   varchar(255) label
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) app_action_button_id
+   binary(16) language_id
+}
+class app_administration_snippet {
+   binary(16) app_id
+   binary(16) locale_id
+   json value
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class app_cms_block {
+   binary(16) app_id
+   varchar(255) name
+   json block
+   longtext template
+   longtext styles
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class app_cms_block_translation {
+   varchar(255) label
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) app_cms_block_id
+   binary(16) language_id
+}
+class app_config {
+   longtext value
+   varchar(255) key
+}
+class app_flow_action {
+   binary(16) app_id
+   varchar(255) name
+   varchar(255) badge
+   varchar(500) url
+   tinyint(1) delayable
+   json parameters
+   json config
+   json headers
+   json requirements
+   mediumblob icon
+   varchar(255) sw_icon
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class app_flow_action_translation {
+   varchar(255) label
+   longtext description
+   varchar(255) headline
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) app_flow_action_id
+   binary(16) language_id
+}
+class app_flow_event {
+   binary(16) app_id
+   varchar(255) name
+   json aware
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class app_payment_method {
+   binary(16) app_id
+   binary(16) payment_method_id
+   varchar(255) app_name
+   varchar(255) identifier
+   varchar(255) pay_url
+   varchar(255) finalize_url
+   varchar(255) validate_url
+   varchar(255) capture_url
+   varchar(255) refund_url
+   binary(16) original_media_id
+   datetime(3) created_at
+   datetime(3) updated_at
+   varchar(255) recurring_url
+   binary(16) id
+}
+class app_script_condition {
+   binary(16) app_id
+   varchar(255) identifier
+   tinyint(1) active
+   varchar(255) group
+   longtext script
+   longblob constraints
+   json config
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class app_script_condition_translation {
+   varchar(255) name
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) app_script_condition_id
+   binary(16) language_id
+}
+class app_shipping_method {
+   binary(16) app_id
+   varchar(255) app_name
+   binary(16) shipping_method_id
+   binary(16) original_media_id
+   varchar(255) identifier
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class app_template {
+   longtext template
+   varchar(1024) path
+   tinyint(1) active
+   binary(16) app_id
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class app_translation {
+   varchar(255) label
+   longtext description
+   mediumtext privacy_policy_extensions
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) app_id
+   binary(16) language_id
+}
+class cart {
+   json rule_ids
+   datetime(3) created_at
+   bigint auto_increment
+   tinyint(1) compressed
+   longblob payload
+   varchar(50) token
+}
+class category {
+   int auto_increment
+   binary(16) parent_id
+   binary(16) parent_version_id
+   binary(16) media_id
+   binary(16) cms_page_id
+   binary(16) cms_page_version_id
+   binary(16) product_stream_id
+   varchar(32) product_assignment_type
+   longtext path
+   binary(16) after_category_id
+   binary(16) after_category_version_id
+   int unsigned level
+   tinyint(1) active
+   int unsigned child_count
+   tinyint unsigned display_nested_products
+   tinyint unsigned visible
+   varchar(32) type
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) custom_entity_type_id
+   binary(16) id
+   binary(16) version_id
+}
+class category_tag {
+   binary(16) category_id
+   binary(16) category_version_id
+   binary(16) tag_id
+}
+class category_translation {
+   varchar(255) name
+   json breadcrumb
+   binary(16) internal_link
+   tinyint link_new_tab
+   varchar(255) link_type
+   mediumtext external_link
+   longtext description
+   varchar(255) meta_title
+   varchar(255) meta_description
+   varchar(255) keywords
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   json slot_config
+   binary(16) category_id
+   binary(16) category_version_id
+   binary(16) language_id
+}
+class cms_block {
+   binary(16) cms_section_id
+   binary(16) cms_section_version_id
+   int position
+   varchar(50) section_position
+   varchar(255) type
+   varchar(255) name
+   tinyint(1) locked
+   varchar(255) margin_top
+   varchar(255) margin_bottom
+   varchar(255) margin_left
+   varchar(255) margin_right
+   varchar(255) background_color
+   binary(16) background_media_id
+   varchar(255) background_media_mode
+   json visibility
+   varchar(255) css_class
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+   binary(16) version_id
+}
+class cms_page {
+   varchar(255) type
+   varchar(255) entity
+   binary(16) preview_media_id
+   tinyint(1) locked
+   varchar(255) css_class
+   json config
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+   binary(16) version_id
+}
+class cms_page_translation {
+   varchar(255) name
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) cms_page_id
+   binary(16) cms_page_version_id
+   binary(16) language_id
+}
+class cms_section {
+   binary(16) cms_page_id
+   binary(16) cms_page_version_id
+   int position
+   varchar(255) type
+   varchar(255) name
+   tinyint(1) locked
+   varchar(255) sizing_mode
+   varchar(255) mobile_behavior
+   varchar(255) background_color
+   binary(16) background_media_id
+   varchar(255) background_media_mode
+   json visibility
+   varchar(255) css_class
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+   binary(16) version_id
+}
+class cms_slot {
+   binary(16) cms_block_id
+   binary(16) cms_block_version_id
+   varchar(255) type
+   varchar(255) slot
+   tinyint(1) locked
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+   binary(16) version_id
+}
+class cms_slot_translation {
+   json config
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) cms_slot_id
+   binary(16) cms_slot_version_id
+   binary(16) language_id
+}
+class country {
+   varchar(255) iso
+   int position
+   tinyint(1) active
+   varchar(45) iso3
+   tinyint(1) display_state_in_registration
+   tinyint(1) force_state_in_registration
+   tinyint(1) check_vat_id_pattern
+   varchar(255) vat_id_pattern
+   tinyint(1) vat_id_required
+   json customer_tax
+   json company_tax
+   varchar(255) advanced_postal_code_pattern
+   tinyint(1) check_advanced_postal_code_pattern
+   tinyint(1) check_postal_code_pattern
+   varchar(1024) default_postal_code_pattern
+   tinyint(1) postal_code_required
+   datetime(3) created_at
+   datetime(3) updated_at
+   tinyint(1) shipping_available
+   tinyint(1) is_eu
+   binary(16) id
+}
+class country_state {
+   binary(16) country_id
+   varchar(255) short_code
+   int position
+   tinyint(1) active
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class country_state_translation {
+   varchar(255) name
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) country_state_id
+   binary(16) language_id
+}
+class country_translation {
+   varchar(255) name
+   json address_format
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) country_id
+   binary(16) language_id
+}
+class currency {
+   char(3) iso_code
+   double factor
+   varchar(255) symbol
+   int position
+   datetime(3) created_at
+   datetime(3) updated_at
+   json item_rounding
+   json total_rounding
+   double tax_free_from
+   binary(16) id
+}
+class currency_country_rounding {
+   binary(16) currency_id
+   binary(16) country_id
+   json item_rounding
+   json total_rounding
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class currency_translation {
+   varchar(255) short_name
+   varchar(255) name
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) currency_id
+   binary(16) language_id
+}
+class custom_entity {
+   varchar(255) name
+   json fields
+   binary(16) app_id
+   datetime(3) created_at
+   datetime(3) updated_at
+   json flags
+   binary(16) plugin_id
+   tinyint(1) custom_fields_aware
+   varchar(255) label_property
+   datetime(3) deleted_at
+   binary(16) id
+}
+class custom_field {
+   varchar(255) name
+   varchar(255) type
+   json config
+   tinyint(1) active
+   binary(16) set_id
+   datetime(3) created_at
+   datetime(3) updated_at
+   tinyint allow_customer_write
+   tinyint(1) allow_cart_expose
+   binary(16) id
+}
+class custom_field_set {
+   varchar(255) name
+   json config
+   tinyint(1) active
+   binary(16) app_id
+   int position
+   tinyint(1) global
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class custom_field_set_relation {
+   binary(16) set_id
+   varchar(64) entity_name
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class customer {
+   bigint unsigned auto_increment
+   binary(16) customer_group_id
+   binary(16) requested_customer_group_id
+   binary(16) default_payment_method_id
+   binary(16) sales_channel_id
+   binary(16) language_id
+   binary(16) last_payment_method_id
+   binary(16) default_billing_address_id
+   binary(16) default_shipping_address_id
+   varchar(255) customer_number
+   binary(16) salutation_id
+   varchar(255) first_name
+   varchar(255) last_name
+   varchar(255) company
+   varchar(1024) password
+   varchar(255) legacy_password
+   varchar(255) legacy_encoder
+   varchar(254) email
+   varchar(100) title
+   json vat_ids
+   tinyint(1) active
+   tinyint(1) double_opt_in_registration
+   datetime(3) double_opt_in_email_sent_date
+   datetime(3) double_opt_in_confirm_date
+   varchar(255) hash
+   tinyint(1) guest
+   datetime(3) first_login
+   datetime(3) last_login
+   json newsletter_sales_channel_ids
+   date birthday
+   datetime(3) last_order_date
+   int order_count
+   double order_total_amount
+   json custom_fields
+   varchar(255) affiliate_code
+   varchar(255) campaign_code
+   datetime(3) created_at
+   datetime(3) updated_at
+   varchar(255) remote_address
+   json tag_ids
+   binary(16) bound_sales_channel_id
+   binary(16) created_by_id
+   binary(16) updated_by_id
+   varchar(255) account_type
+   int review_count
+   binary(16) id
+}
+class customer_address {
+   binary(16) customer_id
+   binary(16) country_id
+   binary(16) country_state_id
+   varchar(255) company
+   varchar(255) department
+   binary(16) salutation_id
+   varchar(100) title
+   varchar(50) first_name
+   varchar(60) last_name
+   varchar(255) street
+   varchar(50) zipcode
+   varchar(70) city
+   varchar(40) phone_number
+   varchar(255) additional_address_line1
+   varchar(255) additional_address_line2
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class customer_group {
+   tinyint(1) display_gross
+   tinyint(1) registration_active
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class customer_group_registration_sales_channels {
+   datetime(3) created_at
+   binary(16) customer_group_id
+   binary(16) sales_channel_id
+}
+class customer_group_translation {
+   varchar(255) name
+   json custom_fields
+   varchar(255) registration_title
+   longtext registration_introduction
+   tinyint(1) registration_only_company_registration
+   longtext registration_seo_meta_description
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) customer_group_id
+   binary(16) language_id
+}
+class customer_recovery {
+   binary(16) customer_id
+   varchar(255) hash
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class customer_tag {
+   binary(16) customer_id
+   binary(16) tag_id
+}
+class customer_wishlist {
+   binary(16) customer_id
+   binary(16) sales_channel_id
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class customer_wishlist_product {
+   binary(16) customer_wishlist_id
+   binary(16) product_id
+   binary(16) product_version_id
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class delivery_time {
+   int min
+   int max
+   varchar(255) unit
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class delivery_time_translation {
+   varchar(255) name
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) delivery_time_id
+   binary(16) language_id
+}
+class document {
+   binary(16) document_type_id
+   binary(16) referenced_document_id
+   varchar(255) file_type
+   binary(16) order_id
+   binary(16) order_version_id
+   json config
+   tinyint(1) sent
+   tinyint(1) static
+   varchar(32) deep_link_code
+   binary(16) document_media_file_id
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   varchar(255) document_number
+   binary(16) id
+}
+class document_base_config {
+   varchar(64) name
+   varchar(64) filename_prefix
+   varchar(64) filename_suffix
+   varchar(64) document_number
+   tinyint(1) global
+   binary(16) document_type_id
+   binary(16) logo_id
+   json config
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class document_base_config_sales_channel {
+   binary(16) document_base_config_id
+   binary(16) document_type_id
+   binary(16) sales_channel_id
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class document_type {
+   varchar(255) technical_name
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class document_type_translation {
+   varchar(255) name
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) document_type_id
+   binary(16) language_id
+}
+class elasticsearch_index_task {
+   varchar(500) index
+   varchar(500) alias
+   varchar(500) entity
+   int doc_count
+   binary(16) id
+}
+class flow {
+   varchar(255) name
+   mediumtext description
+   varchar(255) event_name
+   int priority
+   longblob payload
+   tinyint(1) invalid
+   tinyint(1) active
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) app_flow_event_id
+   binary(16) id
+}
+class flow_sequence {
+   binary(16) flow_id
+   binary(16) app_flow_action_id
+   binary(16) parent_id
+   binary(16) rule_id
+   varchar(255) action_name
+   json config
+   int position
+   int display_group
+   tinyint(1) true_case
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class flow_template {
+   varchar(255) name
+   json config
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class import_export_file {
+   varchar(255) original_name
+   varchar(255) path
+   datetime(3) expire_date
+   int size
+   datetime(3) updated_at
+   datetime(3) created_at
+   varchar(255) access_token
+   binary(16) id
+}
+class import_export_log {
+   varchar(255) activity
+   varchar(255) state
+   int records
+   varchar(255) username
+   varchar(255) profile_name
+   binary(16) user_id
+   binary(16) profile_id
+   binary(16) file_id
+   datetime(3) created_at
+   datetime(3) updated_at
+   json config
+   json result
+   binary(16) invalid_records_log_id
+   binary(16) id
+}
+class import_export_profile {
+   varchar(255) name
+   tinyint unsigned system_default
+   varchar(255) source_entity
+   varchar(255) file_type
+   varchar(255) delimiter
+   varchar(255) enclosure
+   varchar(255) type
+   longtext mapping
+   json update_by
+   datetime(3) created_at
+   datetime(3) updated_at
+   json config
+   varchar(255) technical_name
+   binary(16) id
+}
+class import_export_profile_translation {
+   varchar(255) label
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) import_export_profile_id
+   binary(16) language_id
+}
+class increment {
+   bigint unsigned count
+   datetime(3) created_at
+   datetime(3) updated_at
+   varchar(255) pool
+   varchar(255) cluster
+   varchar(255) key
+}
+class integration {
+   varchar(255) access_key
+   varchar(255) secret_access_key
+   varchar(255) label
+   tinyint(1) admin
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   datetime(3) last_usage_at
+   datetime(3) deleted_at
+   binary(16) id
+}
+class integration_role {
+   binary(16) integration_id
+   binary(16) acl_role_id
+}
+class landing_page {
+   tinyint(1) active
+   binary(16) cms_page_id
+   binary(16) cms_page_version_id
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+   binary(16) version_id
+}
+class landing_page_sales_channel {
+   binary(16) landing_page_id
+   binary(16) landing_page_version_id
+   binary(16) sales_channel_id
+}
+class landing_page_tag {
+   binary(16) landing_page_id
+   binary(16) landing_page_version_id
+   binary(16) tag_id
+}
+class landing_page_translation {
+   varchar(255) name
+   varchar(255) url
+   varchar(255) meta_title
+   varchar(255) meta_description
+   varchar(255) keywords
+   json custom_fields
+   json slot_config
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) landing_page_id
+   binary(16) landing_page_version_id
+   binary(16) language_id
+}
+class language {
+   varchar(50) name
+   binary(16) parent_id
+   binary(16) locale_id
+   binary(16) translation_code_id
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class locale {
+   varchar(255) code
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class locale_translation {
+   varchar(255) name
+   varchar(255) territory
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) locale_id
+   binary(16) language_id
+}
+class log_entry {
+   longtext message
+   smallint level
+   varchar(255) channel
+   json context
+   json extra
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class mail_header_footer {
+   tinyint unsigned system_default
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class mail_header_footer_translation {
+   varchar(255) name
+   longtext description
+   longtext header_html
+   longtext header_plain
+   longtext footer_html
+   longtext footer_plain
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) mail_header_footer_id
+   binary(16) language_id
+}
+class mail_template {
+   binary(16) mail_template_type_id
+   tinyint unsigned system_default
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class mail_template_media {
+   binary(16) mail_template_id
+   binary(16) language_id
+   binary(16) media_id
+   int position
+   binary(16) id
+}
+class mail_template_translation {
+   varchar(255) sender_name
+   varchar(255) subject
+   longtext description
+   longtext content_html
+   longtext content_plain
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) mail_template_id
+   binary(16) language_id
+}
+class mail_template_type {
+   varchar(255) technical_name
+   longtext available_entities
+   datetime(3) created_at
+   datetime(3) updated_at
+   longtext template_data
+   binary(16) id
+}
+class mail_template_type_translation {
+   varchar(255) name
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) mail_template_type_id
+   binary(16) language_id
+}
+class main_category {
+   binary(16) product_id
+   binary(16) product_version_id
+   binary(16) category_id
+   binary(16) category_version_id
+   binary(16) sales_channel_id
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class media {
+   binary(16) user_id
+   binary(16) media_folder_id
+   varchar(255) mime_type
+   varchar(50) file_extension
+   int unsigned file_size
+   json meta_data
+   longtext file_name
+   longblob media_type
+   longblob thumbnails_ro
+   tinyint(1) private
+   datetime(3) uploaded_at
+   datetime(3) created_at
+   datetime(3) updated_at
+   varchar(2048) path
+   json config
+   binary(16) id
+}
+class media_default_folder {
+   varchar(255) entity
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class media_folder {
+   binary(16) parent_id
+   binary(16) default_folder_id
+   varchar(255) name
+   int unsigned child_count
+   longtext path
+   binary(16) media_folder_configuration_id
+   tinyint(1) use_parent_configuration
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class media_folder_configuration {
+   tinyint(1) create_thumbnails
+   int thumbnail_quality
+   longblob media_thumbnail_sizes_ro
+   tinyint(1) keep_aspect_ratio
+   tinyint(1) private
+   tinyint(1) no_association
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class media_folder_configuration_media_thumbnail_size {
+   binary(16) media_folder_configuration_id
+   binary(16) media_thumbnail_size_id
+}
+class media_tag {
+   binary(16) media_id
+   binary(16) tag_id
+}
+class media_thumbnail {
+   binary(16) media_id
+   int unsigned width
+   int unsigned height
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   varchar(2048) path
+   binary(16) id
+}
+class media_thumbnail_size {
+   int width
+   int height
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class media_translation {
+   varchar(255) alt
+   varchar(255) title
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) media_id
+   binary(16) language_id
+}
+class messenger_messages {
+   longtext body
+   longtext headers
+   varchar(190) queue_name
+   datetime created_at
+   datetime available_at
+   datetime delivered_at
+   bigint id
+}
+class migration {
+   int creation_timestamp
+   timestamp(6) update
+   timestamp(6) update_destructive
+   text message
+   varchar(255) class
+}
+class newsletter_recipient {
+   varchar(255) email
+   varchar(255) title
+   varchar(255) first_name
+   varchar(255) last_name
+   varchar(255) zip_code
+   varchar(255) city
+   varchar(255) street
+   varchar(255) status
+   varchar(255) hash
+   binary(16) salutation_id
+   binary(16) language_id
+   binary(16) sales_channel_id
+   json custom_fields
+   datetime(3) confirmed_at
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class newsletter_recipient_tag {
+   binary(16) newsletter_recipient_id
+   binary(16) tag_id
+}
+class notification {
+   varchar(255) status
+   varchar(5000) message
+   tinyint(1) admin_only
+   json required_privileges
+   binary(16) created_by_integration_id
+   binary(16) created_by_user_id
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class number_range {
+   binary(16) type_id
+   tinyint(1) global
+   varchar(255) pattern
+   int start
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class number_range_sales_channel {
+   binary(16) number_range_id
+   binary(16) sales_channel_id
+   binary(16) number_range_type_id
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class number_range_state {
+   binary(16) id
+   int last_value
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) number_range_id
+}
+class number_range_translation {
+   varchar(64) name
+   varchar(255) description
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) number_range_id
+   binary(16) language_id
+}
+class number_range_type {
+   varchar(64) technical_name
+   tinyint(1) global
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class number_range_type_translation {
+   varchar(64) type_name
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) number_range_type_id
+   binary(16) language_id
+}
+class order {
+   binary(16) state_id
+   bigint unsigned auto_increment
+   varchar(64) order_number
+   binary(16) currency_id
+   binary(16) language_id
+   double currency_factor
+   binary(16) sales_channel_id
+   binary(16) billing_address_id
+   binary(16) billing_address_version_id
+   json price
+   datetime(3) order_date_time
+   date order_date
+   double amount_total
+   double amount_net
+   double position_price
+   varchar(255) tax_status
+   json shipping_costs
+   double shipping_total
+   varchar(32) deep_link_code
+   json custom_fields
+   varchar(255) affiliate_code
+   varchar(255) campaign_code
+   longtext customer_comment
+   datetime(3) created_at
+   datetime(3) updated_at
+   json item_rounding
+   json total_rounding
+   json rule_ids
+   binary(16) created_by_id
+   binary(16) updated_by_id
+   varchar(255) source
+   binary(16) id
+   binary(16) version_id
+}
+class order_address {
+   binary(16) country_id
+   binary(16) country_state_id
+   binary(16) order_id
+   binary(16) order_version_id
+   varchar(255) company
+   varchar(255) department
+   binary(16) salutation_id
+   varchar(100) title
+   varchar(50) first_name
+   varchar(60) last_name
+   varchar(255) street
+   varchar(50) zipcode
+   varchar(70) city
+   varchar(50) vat_id
+   varchar(40) phone_number
+   varchar(255) additional_address_line1
+   varchar(255) additional_address_line2
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+   binary(16) version_id
+}
+class order_customer {
+   binary(16) customer_id
+   binary(16) order_id
+   binary(16) order_version_id
+   varchar(254) email
+   binary(16) salutation_id
+   varchar(255) first_name
+   varchar(255) last_name
+   varchar(100) title
+   json vat_ids
+   varchar(255) company
+   varchar(255) customer_number
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   varchar(255) remote_address
+   binary(16) id
+   binary(16) version_id
+}
+class order_delivery {
+   binary(16) order_id
+   binary(16) order_version_id
+   binary(16) state_id
+   binary(16) shipping_order_address_id
+   binary(16) shipping_order_address_version_id
+   binary(16) shipping_method_id
+   json tracking_codes
+   date shipping_date_earliest
+   date shipping_date_latest
+   json shipping_costs
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+   binary(16) version_id
+}
+class order_delivery_position {
+   binary(16) order_delivery_id
+   binary(16) order_delivery_version_id
+   binary(16) order_line_item_id
+   binary(16) order_line_item_version_id
+   json price
+   int total_price
+   int unit_price
+   int quantity
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+   binary(16) version_id
+}
+class order_line_item {
+   binary(16) order_id
+   binary(16) order_version_id
+   binary(16) parent_id
+   binary(16) parent_version_id
+   varchar(255) identifier
+   varchar(255) referenced_id
+   binary(16) product_id
+   binary(16) product_version_id
+   binary(16) promotion_id
+   varchar(255) label
+   mediumtext description
+   binary(16) cover_id
+   int quantity
+   double unit_price
+   double total_price
+   varchar(255) type
+   json payload
+   json price_definition
+   json price
+   tinyint(1) stackable
+   tinyint(1) removable
+   tinyint(1) good
+   int position
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   json states
+   binary(16) id
+   binary(16) version_id
+}
+class order_line_item_download {
+   int position
+   tinyint(1) access_granted
+   binary(16) order_line_item_id
+   binary(16) order_line_item_version_id
+   binary(16) media_id
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+   binary(16) version_id
+}
+class order_tag {
+   binary(16) order_id
+   binary(16) order_version_id
+   binary(16) tag_id
+}
+class order_transaction {
+   binary(16) order_id
+   binary(16) order_version_id
+   binary(16) state_id
+   binary(16) payment_method_id
+   json amount
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   json validation_data
+   binary(16) id
+   binary(16) version_id
+}
+class order_transaction_capture {
+   binary(16) order_transaction_id
+   binary(16) order_transaction_version_id
+   binary(16) state_id
+   varchar(255) external_reference
+   json amount
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+   binary(16) version_id
+}
+class order_transaction_capture_refund {
+   binary(16) capture_id
+   binary(16) state_id
+   varchar(255) reason
+   json amount
+   json custom_fields
+   varchar(255) external_reference
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) capture_version_id
+   binary(16) id
+   binary(16) version_id
+}
+class order_transaction_capture_refund_position {
+   binary(16) refund_id
+   binary(16) order_line_item_id
+   binary(16) order_line_item_version_id
+   int quantity
+   varchar(255) reason
+   varchar(255) external_reference
+   json amount
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) refund_version_id
+   binary(16) id
+   binary(16) version_id
+}
+class payment_method {
+   varchar(255) handler_identifier
+   int position
+   tinyint(1) active
+   tinyint(1) after_order_enabled
+   binary(16) availability_rule_id
+   binary(16) plugin_id
+   binary(16) media_id
+   datetime(3) created_at
+   datetime(3) updated_at
+   varchar(255) technical_name
+   binary(16) id
+}
+class payment_method_translation {
+   varchar(255) name
+   varchar(255) distinguishable_name
+   mediumtext description
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) payment_method_id
+   binary(16) language_id
+}
+class payment_token {
+   datetime(3) expires
+   char(32) token
+}
+class plugin {
+   varchar(255) name
+   varchar(255) base_class
+   varchar(255) composer_name
+   tinyint(1) active
+   tinyint(1) managed_by_composer
+   varchar(255) path
+   json autoload
+   varchar(255) author
+   varchar(255) copyright
+   varchar(255) license
+   varchar(255) version
+   varchar(255) upgrade_version
+   mediumblob icon
+   datetime(3) installed_at
+   datetime(3) upgraded_at
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class plugin_translation {
+   varchar(255) label
+   longtext description
+   text manufacturer_link
+   text support_link
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) plugin_id
+   binary(16) language_id
+}
+class product {
+   int auto_increment
+   varchar(64) product_number
+   tinyint unsigned active
+   binary(16) parent_id
+   binary(16) parent_version_id
+   binary(16) tax_id
+   binary(16) product_manufacturer_id
+   binary(16) product_manufacturer_version_id
+   binary(16) delivery_time_id
+   binary(16) deliveryTime
+   binary(16) product_media_id
+   binary(16) product_media_version_id
+   binary(16) cms_page_id
+   binary(16) cms_page_version_id
+   binary(16) unit_id
+   binary(16) product_feature_set_id
+   json category_tree
+   json category_ids
+   json stream_ids
+   json option_ids
+   json property_ids
+   binary(16) tax
+   binary(16) manufacturer
+   binary(16) cover
+   binary(16) unit
+   binary(16) media
+   binary(16) prices
+   binary(16) visibilities
+   binary(16) properties
+   binary(16) categories
+   binary(16) translations
+   json price
+   varchar(255) manufacturer_number
+   varchar(255) ean
+   int sales
+   int stock
+   int available_stock
+   tinyint(1) available
+   int restock_time
+   tinyint(1) is_closeout
+   int unsigned purchase_steps
+   int unsigned max_purchase
+   int unsigned min_purchase
+   decimal(11,4) unsigned purchase_unit
+   decimal(10,3) unsigned reference_unit
+   tinyint(1) shipping_free
+   json purchase_prices
+   tinyint unsigned mark_as_topseller
+   decimal(10,3) unsigned weight
+   decimal(10,3) unsigned width
+   decimal(10,3) unsigned height
+   decimal(10,3) unsigned length
+   datetime(3) release_date
+   json tag_ids
+   binary(16) tags
+   json variant_restrictions
+   datetime(3) created_at
+   datetime(3) updated_at
+   float rating_average
+   varchar(50) display_group
+   int child_count
+   binary(16) crossSellings
+   binary(16) featureSet
+   binary(16) customFieldSets
+   tinyint(1) custom_field_set_selection_active
+   binary(16) canonical_product_id
+   binary(16) canonical_product_version_id
+   binary(16) canonicalProduct
+   binary(16) cmsPage
+   longtext cheapest_price
+   longtext cheapest_price_accessor
+   json states
+   json variant_listing_config
+   binary(16) id
+   binary(16) version_id
+}
+class product_category {
+   binary(16) product_id
+   binary(16) product_version_id
+   binary(16) category_id
+   binary(16) category_version_id
+}
+class product_category_tree {
+   binary(16) product_id
+   binary(16) product_version_id
+   binary(16) category_id
+   binary(16) category_version_id
+}
+class product_configurator_setting {
+   binary(16) product_id
+   binary(16) product_version_id
+   binary(16) property_group_option_id
+   json price
+   int position
+   binary(16) media_id
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+   binary(16) version_id
+}
+class product_cross_selling {
+   varchar(255) type
+   int position
+   varchar(255) sort_by
+   varchar(255) sort_direction
+   tinyint(1) active
+   int limit
+   binary(16) product_id
+   binary(16) product_version_id
+   binary(16) product_stream_id
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class product_cross_selling_assigned_products {
+   binary(16) cross_selling_id
+   binary(16) product_id
+   binary(16) product_version_id
+   int position
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class product_cross_selling_translation {
+   varchar(255) name
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) product_cross_selling_id
+   binary(16) language_id
+}
+class product_custom_field_set {
+   binary(16) custom_field_set_id
+   binary(16) product_id
+   binary(16) product_version_id
+}
+class product_download {
+   int position
+   binary(16) product_id
+   binary(16) product_version_id
+   binary(16) media_id
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+   binary(16) version_id
+}
+class product_export {
+   binary(16) product_stream_id
+   binary(16) storefront_sales_channel_id
+   binary(16) sales_channel_id
+   binary(16) sales_channel_domain_id
+   varchar(255) file_name
+   varchar(255) access_key
+   varchar(255) encoding
+   varchar(255) file_format
+   tinyint(1) include_variants
+   tinyint(1) generate_by_cronjob
+   datetime(3) generated_at
+   int interval
+   longtext header_template
+   longtext body_template
+   longtext footer_template
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) currency_id
+   tinyint(1) paused_schedule
+   tinyint(1) is_running
+   binary(16) id
+}
+class product_feature_set {
+   json features
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class product_feature_set_translation {
+   varchar(255) name
+   mediumtext description
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) product_feature_set_id
+   binary(16) language_id
+}
+class product_keyword_dictionary {
+   varchar(500) keyword
+   varchar(500) reversed
+   binary(16) id
+   binary(16) language_id
+}
+class product_manufacturer {
+   varchar(255) link
+   binary(16) media_id
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+   binary(16) version_id
+}
+class product_manufacturer_translation {
+   varchar(255) name
+   longtext description
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) product_manufacturer_id
+   binary(16) product_manufacturer_version_id
+   binary(16) language_id
+}
+class product_media {
+   int position
+   binary(16) product_id
+   binary(16) product_version_id
+   binary(16) media_id
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+   binary(16) version_id
+}
+class product_option {
+   binary(16) product_id
+   binary(16) product_version_id
+   binary(16) property_group_option_id
+}
+class product_price {
+   binary(16) rule_id
+   binary(16) product_id
+   binary(16) product_version_id
+   json price
+   int quantity_start
+   int quantity_end
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+   binary(16) version_id
+}
+class product_property {
+   binary(16) product_id
+   binary(16) product_version_id
+   binary(16) property_group_option_id
+}
+class product_review {
+   binary(16) product_id
+   binary(16) customer_id
+   binary(16) sales_channel_id
+   binary(16) language_id
+   varchar(255) external_user
+   varchar(255) external_email
+   varchar(255) title
+   longtext content
+   double points
+   tinyint(1) status
+   longtext comment
+   json custom_fields
+   datetime(3) updated_at
+   datetime(3) created_at
+   binary(16) product_version_id
+   binary(16) id
+}
+class product_search_config {
+   binary(16) language_id
+   tinyint(1) and_logic
+   smallint min_search_length
+   json excluded_terms
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class product_search_config_field {
+   binary(16) product_search_config_id
+   binary(16) custom_field_id
+   varchar(255) field
+   tinyint(1) tokenize
+   tinyint(1) searchable
+   int ranking
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class product_search_keyword {
+   binary(16) product_id
+   binary(16) product_version_id
+   varchar(255) keyword
+   double ranking
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+   binary(16) version_id
+   binary(16) language_id
+}
+class product_sorting {
+   varchar(255) url_key
+   int unsigned priority
+   tinyint(1) active
+   json fields
+   datetime(3) created_at
+   tinyint(1) locked
+   datetime(3) updated_at
+   binary(16) id
+}
+class product_sorting_translation {
+   varchar(255) label
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) product_sorting_id
+   binary(16) language_id
+}
+class product_stream {
+   json api_filter
+   tinyint(1) invalid
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class product_stream_filter {
+   binary(16) product_stream_id
+   binary(16) parent_id
+   varchar(255) type
+   varchar(255) field
+   varchar(255) operator
+   longtext value
+   longtext parameters
+   int position
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class product_stream_mapping {
+   binary(16) product_id
+   binary(16) product_version_id
+   binary(16) product_stream_id
+}
+class product_stream_translation {
+   varchar(255) name
+   mediumtext description
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) product_stream_id
+   binary(16) language_id
+}
+class product_tag {
+   binary(16) product_id
+   binary(16) product_version_id
+   binary(16) tag_id
+}
+class product_translation {
+   varchar(255) meta_description
+   varchar(255) name
+   mediumtext keywords
+   mediumtext description
+   varchar(255) meta_title
+   varchar(255) pack_unit
+   json custom_fields
+   json slot_config
+   datetime(3) created_at
+   datetime(3) updated_at
+   varchar(255) pack_unit_plural
+   json custom_search_keywords
+   binary(16) product_id
+   binary(16) product_version_id
+   binary(16) language_id
+}
+class product_visibility {
+   binary(16) product_id
+   binary(16) product_version_id
+   binary(16) sales_channel_id
+   int visibility
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class promotion {
+   tinyint(1) active
+   datetime valid_from
+   datetime valid_until
+   int max_redemptions_global
+   int max_redemptions_per_customer
+   int priority
+   int order_count
+   json orders_per_customer_count
+   tinyint(1) exclusive
+   varchar(255) code
+   tinyint(1) use_codes
+   datetime(3) created_at
+   datetime(3) updated_at
+   tinyint(1) customer_restriction
+   tinyint(1) prevent_combination
+   json exclusion_ids
+   tinyint(1) use_individual_codes
+   varchar(255) individual_code_pattern
+   tinyint(1) use_setgroups
+   binary(16) id
+}
+class promotion_cart_rule {
+   binary(16) promotion_id
+   binary(16) rule_id
+}
+class promotion_discount {
+   binary(16) promotion_id
+   varchar(32) scope
+   varchar(32) type
+   double value
+   datetime(3) created_at
+   datetime(3) updated_at
+   tinyint(1) consider_advanced_rules
+   float max_value
+   varchar(255) sorter_key
+   varchar(255) applier_key
+   varchar(255) usage_key
+   varchar(255) picker_key
+   binary(16) id
+}
+class promotion_discount_prices {
+   binary(16) discount_id
+   binary(16) currency_id
+   float price
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class promotion_discount_rule {
+   binary(16) discount_id
+   binary(16) rule_id
+}
+class promotion_individual_code {
+   binary(16) promotion_id
+   varchar(255) code
+   json payload
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class promotion_order_rule {
+   binary(16) promotion_id
+   binary(16) rule_id
+}
+class promotion_persona_customer {
+   binary(16) promotion_id
+   binary(16) customer_id
+}
+class promotion_persona_rule {
+   binary(16) promotion_id
+   binary(16) rule_id
+}
+class promotion_sales_channel {
+   binary(16) promotion_id
+   binary(16) sales_channel_id
+   int priority
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class promotion_setgroup {
+   binary(16) promotion_id
+   varchar(255) packager_key
+   varchar(255) sorter_key
+   double value
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class promotion_setgroup_rule {
+   binary(16) setgroup_id
+   binary(16) rule_id
+}
+class promotion_translation {
+   varchar(255) name
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) promotion_id
+   binary(16) language_id
+}
+class property_group {
+   varchar(50) sorting_type
+   varchar(50) display_type
+   datetime(3) created_at
+   datetime(3) updated_at
+   tinyint(1) filterable
+   tinyint(1) visible_on_product_detail_page
+   binary(16) id
+}
+class property_group_option {
+   binary(16) property_group_id
+   varchar(20) color_hex_code
+   binary(16) media_id
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class property_group_option_translation {
+   varchar(255) name
+   int position
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) property_group_option_id
+   binary(16) language_id
+}
+class property_group_translation {
+   varchar(255) name
+   longtext description
+   int position
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) property_group_id
+   binary(16) language_id
+}
+class refresh_token {
+   binary(16) user_id
+   varchar(80) token_id
+   datetime(3) issued_at
+   datetime(3) expires_at
+   binary(16) id
+}
+class rule {
+   varchar(500) name
+   longtext description
+   int priority
+   longblob payload
+   tinyint(1) invalid
+   json areas
+   json module_types
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class rule_condition {
+   varchar(255) type
+   binary(16) rule_id
+   binary(16) script_id
+   binary(16) parent_id
+   json value
+   int position
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class rule_tag {
+   binary(16) rule_id
+   binary(16) tag_id
+}
+class sales_channel {
+   binary(16) type_id
+   varchar(45) short_name
+   json configuration
+   varchar(255) access_key
+   binary(16) language_id
+   binary(16) currency_id
+   binary(16) payment_method_id
+   binary(16) shipping_method_id
+   binary(16) country_id
+   binary(16) navigation_category_id
+   binary(16) navigation_category_version_id
+   int navigation_category_depth
+   tinyint unsigned hreflang_active
+   binary(16) hreflang_default_domain_id
+   binary(16) footer_category_id
+   binary(16) footer_category_version_id
+   binary(16) service_category_id
+   binary(16) service_category_version_id
+   tinyint(1) active
+   tinyint(1) maintenance
+   json maintenance_ip_whitelist
+   binary(16) customer_group_id
+   binary(16) mail_header_footer_id
+   json payment_method_ids
+   binary(16) analytics_id
+   varchar(50) tax_calculation_type
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) home_cms_page_id
+   binary(16) home_cms_page_version_id
+   binary(16) id
+}
+class sales_channel_analytics {
+   varchar(50) tracking_id
+   tinyint(1) active
+   tinyint(1) track_orders
+   datetime(3) created_at
+   datetime(3) updated_at
+   tinyint(1) anonymize_ip
+   binary(16) id
+}
+class sales_channel_api_context {
+   json payload
+   binary(16) sales_channel_id
+   binary(16) customer_id
+   datetime updated_at
+   varchar(255) token
+}
+class sales_channel_country {
+   binary(16) sales_channel_id
+   binary(16) country_id
+}
+class sales_channel_currency {
+   binary(16) sales_channel_id
+   binary(16) currency_id
+}
+class sales_channel_domain {
+   binary(16) sales_channel_id
+   binary(16) language_id
+   varchar(255) url
+   binary(16) currency_id
+   binary(16) snippet_set_id
+   tinyint unsigned hreflang_use_only_locale
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class sales_channel_language {
+   binary(16) sales_channel_id
+   binary(16) language_id
+}
+class sales_channel_payment_method {
+   binary(16) sales_channel_id
+   binary(16) payment_method_id
+}
+class sales_channel_shipping_method {
+   binary(16) sales_channel_id
+   binary(16) shipping_method_id
+}
+class sales_channel_translation {
+   varchar(255) name
+   varchar(255) home_keywords
+   varchar(255) home_meta_description
+   varchar(255) home_meta_title
+   varchar(255) home_name
+   tinyint home_enabled
+   json home_slot_config
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) sales_channel_id
+   binary(16) language_id
+}
+class sales_channel_type {
+   varchar(500) cover_url
+   varchar(255) icon_name
+   json screenshot_urls
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class sales_channel_type_translation {
+   varchar(255) name
+   varchar(255) manufacturer
+   varchar(255) description
+   longtext description_long
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) sales_channel_type_id
+   binary(16) language_id
+}
+class salutation {
+   varchar(255) salutation_key
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class salutation_translation {
+   varchar(255) display_name
+   varchar(255) letter_name
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) salutation_id
+   binary(16) language_id
+}
+class scheduled_task {
+   varchar(255) name
+   varchar(512) scheduled_task_class
+   int run_interval
+   varchar(255) status
+   datetime(3) last_execution_time
+   datetime(3) next_execution_time
+   datetime(3) created_at
+   datetime(3) updated_at
+   int default_run_interval
+   binary(16) id
+}
+class script {
+   longtext script
+   varchar(255) hook
+   varchar(1024) name
+   tinyint(1) active
+   binary(16) app_id
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class seo_url {
+   binary(16) language_id
+   binary(16) sales_channel_id
+   binary(16) foreign_key
+   varchar(50) route_name
+   varchar(750) path_info
+   varchar(750) seo_path_info
+   tinyint(1) is_canonical
+   tinyint(1) is_modified
+   tinyint(1) is_deleted
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class seo_url_template {
+   binary(16) sales_channel_id
+   varchar(255) route_name
+   varchar(64) entity_name
+   varchar(750) template
+   tinyint(1) is_valid
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class shipping_method {
+   tinyint unsigned active
+   int position
+   binary(16) availability_rule_id
+   binary(16) media_id
+   binary(16) delivery_time_id
+   varchar(50) tax_type
+   binary(16) tax_id
+   datetime(3) created_at
+   datetime(3) updated_at
+   varchar(255) technical_name
+   binary(16) id
+}
+class shipping_method_price {
+   binary(16) shipping_method_id
+   int unsigned calculation
+   binary(16) rule_id
+   binary(16) calculation_rule_id
+   json currency_price
+   double quantity_start
+   double quantity_end
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class shipping_method_tag {
+   binary(16) shipping_method_id
+   binary(16) tag_id
+}
+class shipping_method_translation {
+   varchar(255) name
+   mediumtext description
+   mediumtext tracking_url
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) shipping_method_id
+   binary(16) language_id
+}
+class snippet {
+   varchar(255) translation_key
+   longtext value
+   varchar(255) author
+   binary(16) snippet_set_id
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class snippet_set {
+   varchar(255) name
+   varchar(255) base_file
+   varchar(255) iso
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class state_machine {
+   varchar(255) technical_name
+   binary(16) initial_state_id
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class state_machine_history {
+   binary(16) state_machine_id
+   varchar(100) entity_name
+   binary(16) from_state_id
+   binary(16) to_state_id
+   varchar(255) action_name
+   binary(16) user_id
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) referenced_id
+   binary(16) referenced_version_id
+   binary(16) id
+}
+class state_machine_state {
+   varchar(255) technical_name
+   binary(16) state_machine_id
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class state_machine_state_translation {
+   varchar(255) name
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) language_id
+   binary(16) state_machine_state_id
+}
+class state_machine_transition {
+   varchar(255) action_name
+   binary(16) state_machine_id
+   binary(16) from_state_id
+   binary(16) to_state_id
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class state_machine_translation {
+   varchar(255) name
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) language_id
+   binary(16) state_machine_id
+}
+class system_config {
+   varchar(255) configuration_key
+   json configuration_value
+   binary(16) sales_channel_id
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class tag {
+   varchar(255) name
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class tax {
+   decimal(10,3) tax_rate
+   varchar(255) name
+   int position
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class tax_provider {
+   tinyint unsigned active
+   int priority
+   varchar(255) identifier
+   binary(16) availability_rule_id
+   binary(16) app_id
+   varchar(255) process_url
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class tax_provider_translation {
+   varchar(255) name
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) tax_provider_id
+   binary(16) language_id
+}
+class tax_rule {
+   binary(16) tax_id
+   binary(16) tax_rule_type_id
+   binary(16) country_id
+   double(10,3) tax_rate
+   json data
+   datetime(3) created_at
+   datetime(3) updated_at
+   datetime(3) active_from
+   binary(16) id
+}
+class tax_rule_type {
+   varchar(255) technical_name
+   int position
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class tax_rule_type_translation {
+   varchar(255) type_name
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) tax_rule_type_id
+   binary(16) language_id
+}
+class theme {
+   varchar(255) technical_name
+   varchar(255) name
+   varchar(255) author
+   binary(16) preview_media_id
+   binary(16) parent_theme_id
+   json base_config
+   json config_values
+   datetime(3) created_at
+   datetime(3) updated_at
+   tinyint(1) active
+   json theme_json
+   binary(16) id
+}
+class theme_child {
+   binary(16) parent_id
+   binary(16) child_id
+}
+class theme_media {
+   binary(16) theme_id
+   binary(16) media_id
+}
+class theme_sales_channel {
+   binary(16) theme_id
+   binary(16) sales_channel_id
+}
+class theme_translation {
+   mediumtext description
+   json labels
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   json help_texts
+   binary(16) theme_id
+   binary(16) language_id
+}
+class unit {
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class unit_translation {
+   varchar(255) short_code
+   varchar(255) name
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) unit_id
+   binary(16) language_id
+}
+class usage_data_entity_deletion {
+   json entity_ids
+   varchar(255) entity_name
+   datetime(3) deleted_at
+   binary(16) id
+}
+class user {
+   varchar(255) username
+   varchar(255) password
+   varchar(255) first_name
+   varchar(255) last_name
+   varchar(255) title
+   varchar(255) email
+   tinyint(1) active
+   tinyint(1) admin
+   binary(16) avatar_id
+   binary(16) locale_id
+   varchar(255) store_token
+   datetime(3) last_updated_password_at
+   varchar(255) time_zone
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class user_access_key {
+   binary(16) user_id
+   varchar(255) access_key
+   varchar(255) secret_access_key
+   datetime(3) last_usage_at
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class user_config {
+   binary(16) user_id
+   varchar(255) key
+   json value
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class user_recovery {
+   binary(16) user_id
+   varchar(255) hash
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class version {
+   varchar(255) name
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class version_commit {
+   bigint auto_increment
+   tinyint(1) is_merge
+   varchar(5000) message
+   binary(16) user_id
+   binary(16) integration_id
+   binary(16) version_id
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class version_commit_data {
+   bigint auto_increment
+   binary(16) version_commit_id
+   varchar(100) entity_name
+   json entity_id
+   varchar(100) action
+   json payload
+   binary(16) user_id
+   binary(16) integration_id
+   datetime(3) created_at
+   datetime(3) updated_at
+   binary(16) id
+}
+class webhook {
+   varchar(255) name
+   varchar(500) event_name
+   varchar(500) url
+   binary(16) app_id
+   tinyint(1) active
+   datetime(3) created_at
+   datetime(3) updated_at
+   int error_count
+   tinyint unsigned only_live_version
+   binary(16) id
+}
+class webhook_event_log {
+   varchar(255) app_name
+   text webhook_name
+   varchar(255) event_name
+   varchar(255) delivery_status
+   int timestamp
+   int processing_time
+   varchar(255) app_version
+   json request_content
+   json response_content
+   int response_status_code
+   varchar(255) response_reason_phrase
+   varchar(500) url
+   longblob serialized_webhook_message
+   json custom_fields
+   datetime(3) created_at
+   datetime(3) updated_at
+   tinyint unsigned only_live_version
+   binary(16) id
+}
+
+acl_user_role  -->  acl_role : acl_role_id:id
+acl_user_role  -->  user : user_id:id
+app  -->  acl_role : acl_role_id:id
+app  -->  integration : integration_id:id
+app_action_button  -->  app : app_id:id
+app_action_button_translation  -->  app_action_button : app_action_button_id:id
+app_action_button_translation  -->  language : language_id:id
+app_administration_snippet  -->  app : app_id:id
+app_administration_snippet  -->  locale : locale_id:id
+app_cms_block  -->  app : app_id:id
+app_cms_block_translation  -->  app_cms_block : app_cms_block_id:id
+app_cms_block_translation  -->  language : language_id:id
+app_flow_action  -->  app : app_id:id
+app_flow_action_translation  -->  app_flow_action : app_flow_action_id:id
+app_flow_action_translation  -->  language : language_id:id
+app_flow_event  -->  app : app_id:id
+app_payment_method  -->  app : app_id:id
+app_payment_method  -->  media : original_media_id:id
+app_payment_method  -->  payment_method : payment_method_id:id
+app_script_condition  -->  app : app_id:id
+app_script_condition_translation  -->  app_script_condition : app_script_condition_id:id
+app_script_condition_translation  -->  language : language_id:id
+app_shipping_method  -->  app : app_id:id
+app_shipping_method  -->  media : original_media_id:id
+app_shipping_method  -->  shipping_method : shipping_method_id:id
+app_template  -->  app : app_id:id
+app_translation  -->  app : app_id:id
+app_translation  -->  language : language_id:id
+category  -->  category : after_category_id, after_category_version_id:id, version_id
+category  -->  category : parent_id, parent_version_id:id, version_id
+category  -->  cms_page : cms_page_id:id
+category  -->  cms_page : cms_page_id, cms_page_version_id:id, version_id
+category  -->  custom_entity : custom_entity_type_id:id
+category  -->  media : media_id:id
+category  -->  product_stream : product_stream_id:id
+category  -->  version : version_id:id
+category_tag  -->  category : category_id, category_version_id:id, version_id
+category_tag  -->  category : category_id:id
+category_tag  -->  tag : tag_id:id
+category_translation  -->  category : category_id, category_version_id:id, version_id
+category_translation  -->  category : category_id:id
+category_translation  -->  language : language_id:id
+cms_block  -->  cms_section : cms_section_id:id
+cms_block  -->  cms_section : cms_section_id, cms_section_version_id:id, version_id
+cms_block  -->  media : background_media_id:id
+cms_block  -->  version : version_id:id
+cms_page  -->  media : preview_media_id:id
+cms_page  -->  version : version_id:id
+cms_page_translation  -->  cms_page : cms_page_id, cms_page_version_id:id, version_id
+cms_page_translation  -->  cms_page : cms_page_id:id
+cms_page_translation  -->  language : language_id:id
+cms_section  -->  cms_page : cms_page_id, cms_page_version_id:id, version_id
+cms_section  -->  cms_page : cms_page_id:id
+cms_section  -->  media : background_media_id:id
+cms_section  -->  version : version_id:id
+cms_slot  -->  cms_block : cms_block_id, cms_block_version_id:id, version_id
+cms_slot  -->  cms_block : cms_block_id:id
+cms_slot  -->  version : version_id:id
+cms_slot_translation  -->  cms_slot : cms_slot_id:id
+cms_slot_translation  -->  cms_slot : cms_slot_id, cms_slot_version_id:id, version_id
+cms_slot_translation  -->  language : language_id:id
+country_state  -->  country : country_id:id
+country_state_translation  -->  country_state : country_state_id:id
+country_state_translation  -->  language : language_id:id
+country_translation  -->  country : country_id:id
+country_translation  -->  language : language_id:id
+currency_country_rounding  -->  country : country_id:id
+currency_country_rounding  -->  currency : currency_id:id
+currency_translation  -->  currency : currency_id:id
+currency_translation  -->  language : language_id:id
+custom_entity  -->  app : app_id:id
+custom_entity  -->  plugin : plugin_id:id
+custom_field  -->  custom_field_set : set_id:id
+custom_field_set  -->  app : app_id:id
+custom_field_set_relation  -->  custom_field_set : set_id:id
+customer  -->  customer_group : customer_group_id:id
+customer  -->  language : language_id:id
+customer  -->  payment_method : default_payment_method_id:id
+customer  -->  payment_method : last_payment_method_id:id
+customer  -->  sales_channel : sales_channel_id:id
+customer  -->  sales_channel : bound_sales_channel_id:id
+customer  -->  salutation : salutation_id:id
+customer  -->  user : updated_by_id:id
+customer  -->  user : created_by_id:id
+customer_address  -->  country : country_id:id
+customer_address  -->  country_state : country_state_id:id
+customer_address  -->  customer : customer_id:id
+customer_address  -->  salutation : salutation_id:id
+customer_group_registration_sales_channels  -->  customer_group : customer_group_id:id
+customer_group_registration_sales_channels  -->  sales_channel : sales_channel_id:id
+customer_group_translation  -->  customer_group : customer_group_id:id
+customer_group_translation  -->  language : language_id:id
+customer_recovery  -->  customer : customer_id:id
+customer_tag  -->  customer : customer_id:id
+customer_tag  -->  tag : tag_id:id
+customer_wishlist  -->  customer : customer_id:id
+customer_wishlist  -->  sales_channel : sales_channel_id:id
+customer_wishlist_product  -->  customer_wishlist : customer_wishlist_id:id
+customer_wishlist_product  -->  product : product_id:id
+customer_wishlist_product  -->  product : product_id, product_version_id:id, version_id
+delivery_time_translation  -->  delivery_time : delivery_time_id:id
+delivery_time_translation  -->  language : language_id:id
+document  -->  document : referenced_document_id:id
+document  -->  document_type : document_type_id:id
+document  -->  media : document_media_file_id:id
+document  -->  order : order_id:id
+document  -->  order : order_id, order_version_id:id, version_id
+document_base_config  -->  document_type : document_type_id:id
+document_base_config  -->  media : logo_id:id
+document_base_config_sales_channel  -->  document_base_config : document_base_config_id:id
+document_base_config_sales_channel  -->  document_type : document_type_id:id
+document_base_config_sales_channel  -->  sales_channel : sales_channel_id:id
+document_type_translation  -->  document_type : document_type_id:id
+document_type_translation  -->  language : language_id:id
+flow  -->  app_flow_event : app_flow_event_id:id
+flow_sequence  -->  app_flow_action : app_flow_action_id:id
+flow_sequence  -->  flow : flow_id:id
+flow_sequence  -->  flow_sequence : parent_id:id
+flow_sequence  -->  rule : rule_id:id
+import_export_log  -->  import_export_file : file_id:id
+import_export_log  -->  import_export_log : invalid_records_log_id:id
+import_export_log  -->  import_export_profile : profile_id:id
+import_export_log  -->  user : user_id:id
+import_export_profile_translation  -->  import_export_profile : import_export_profile_id:id
+import_export_profile_translation  -->  language : language_id:id
+integration_role  -->  acl_role : acl_role_id:id
+integration_role  -->  integration : integration_id:id
+landing_page  -->  cms_page : cms_page_id:id
+landing_page  -->  cms_page : cms_page_id, cms_page_version_id:id, version_id
+landing_page  -->  version : version_id:id
+landing_page_sales_channel  -->  landing_page : landing_page_id, landing_page_version_id:id, version_id
+landing_page_sales_channel  -->  landing_page : landing_page_id:id
+landing_page_sales_channel  -->  sales_channel : sales_channel_id:id
+landing_page_tag  -->  landing_page : landing_page_id, landing_page_version_id:id, version_id
+landing_page_tag  -->  landing_page : landing_page_id:id
+landing_page_tag  -->  tag : tag_id:id
+landing_page_translation  -->  landing_page : landing_page_id:id
+landing_page_translation  -->  landing_page : landing_page_id, landing_page_version_id:id, version_id
+landing_page_translation  -->  language : language_id:id
+language  -->  language : parent_id:id
+language  -->  locale : translation_code_id:id
+language  -->  locale : locale_id:id
+locale_translation  -->  language : language_id:id
+locale_translation  -->  locale : locale_id:id
+mail_header_footer_translation  -->  language : language_id:id
+mail_header_footer_translation  -->  mail_header_footer : mail_header_footer_id:id
+mail_template  -->  mail_template_type : mail_template_type_id:id
+mail_template_media  -->  language : language_id:id
+mail_template_media  -->  mail_template : mail_template_id:id
+mail_template_media  -->  media : media_id:id
+mail_template_translation  -->  language : language_id:id
+mail_template_translation  -->  mail_template : mail_template_id:id
+mail_template_type_translation  -->  language : language_id:id
+mail_template_type_translation  -->  mail_template_type : mail_template_type_id:id
+main_category  -->  category : category_id, category_version_id:id, version_id
+main_category  -->  category : category_id:id
+main_category  -->  product : product_id, product_version_id:id, version_id
+main_category  -->  product : product_id:id
+main_category  -->  sales_channel : sales_channel_id:id
+media  -->  media_folder : media_folder_id:id
+media  -->  user : user_id:id
+media_folder  -->  media_default_folder : default_folder_id:id
+media_folder  -->  media_folder : parent_id:id
+media_folder  -->  media_folder_configuration : media_folder_configuration_id:id
+media_folder_configuration_media_thumbnail_size  -->  media_folder_configuration : media_folder_configuration_id:id
+media_folder_configuration_media_thumbnail_size  -->  media_thumbnail_size : media_thumbnail_size_id:id
+media_tag  -->  media : media_id:id
+media_tag  -->  tag : tag_id:id
+media_thumbnail  -->  media : media_id:id
+media_translation  -->  language : language_id:id
+media_translation  -->  media : media_id:id
+newsletter_recipient  -->  language : language_id:id
+newsletter_recipient  -->  sales_channel : sales_channel_id:id
+newsletter_recipient  -->  salutation : salutation_id:id
+newsletter_recipient_tag  -->  newsletter_recipient : newsletter_recipient_id:id
+newsletter_recipient_tag  -->  tag : tag_id:id
+notification  -->  integration : created_by_integration_id:id
+notification  -->  user : created_by_user_id:id
+number_range_sales_channel  -->  number_range : number_range_id:id
+number_range_sales_channel  -->  number_range_type : number_range_type_id:id
+number_range_sales_channel  -->  sales_channel : sales_channel_id:id
+number_range_state  -->  number_range : number_range_id:id
+number_range_translation  -->  language : language_id:id
+number_range_translation  -->  number_range : number_range_id:id
+number_range_type_translation  -->  language : language_id:id
+number_range_type_translation  -->  number_range_type : number_range_type_id:id
+order  -->  currency : currency_id:id
+order  -->  language : language_id:id
+order  -->  sales_channel : sales_channel_id:id
+order  -->  state_machine_state : state_id:id
+order  -->  user : updated_by_id:id
+order  -->  user : created_by_id:id
+order  -->  version : version_id:id
+order_address  -->  country : country_id:id
+order_address  -->  country_state : country_state_id:id
+order_address  -->  order : order_id:id
+order_address  -->  order : order_id, order_version_id:id, version_id
+order_address  -->  salutation : salutation_id:id
+order_address  -->  version : version_id:id
+order_customer  -->  customer : customer_id:id
+order_customer  -->  order : order_id:id
+order_customer  -->  order : order_id, order_version_id:id, version_id
+order_customer  -->  salutation : salutation_id:id
+order_customer  -->  version : version_id:id
+order_delivery  -->  order : order_id, order_version_id:id, version_id
+order_delivery  -->  order : order_id:id
+order_delivery  -->  order_address : shipping_order_address_id, shipping_order_address_version_id:id, version_id
+order_delivery  -->  shipping_method : shipping_method_id:id
+order_delivery  -->  state_machine_state : state_id:id
+order_delivery  -->  version : version_id:id
+order_delivery_position  -->  order_delivery : order_delivery_id:id
+order_delivery_position  -->  order_delivery : order_delivery_id, order_delivery_version_id:id, version_id
+order_delivery_position  -->  order_line_item : order_line_item_id:id
+order_delivery_position  -->  order_line_item : order_line_item_id, order_line_item_version_id:id, version_id
+order_delivery_position  -->  version : version_id:id
+order_line_item  -->  media : cover_id:id
+order_line_item  -->  order : order_id:id
+order_line_item  -->  order : order_id, order_version_id:id, version_id
+order_line_item  -->  order_line_item : parent_id, parent_version_id:id, version_id
+order_line_item  -->  product : product_id:id
+order_line_item  -->  product : product_id, product_version_id:id, version_id
+order_line_item  -->  promotion : promotion_id:id
+order_line_item  -->  version : version_id:id
+order_line_item_download  -->  media : media_id:id
+order_line_item_download  -->  order_line_item : order_line_item_id, order_line_item_version_id:id, version_id
+order_line_item_download  -->  order_line_item : order_line_item_id:id
+order_line_item_download  -->  version : version_id:id
+order_tag  -->  order : order_id, order_version_id:id, version_id
+order_tag  -->  order : order_id:id
+order_tag  -->  tag : tag_id:id
+order_transaction  -->  order : order_id:id
+order_transaction  -->  order : order_id, order_version_id:id, version_id
+order_transaction  -->  payment_method : payment_method_id:id
+order_transaction  -->  state_machine_state : state_id:id
+order_transaction  -->  version : version_id:id
+order_transaction_capture  -->  order_transaction : order_transaction_id:id
+order_transaction_capture  -->  order_transaction : order_transaction_id, order_transaction_version_id:id, version_id
+order_transaction_capture  -->  state_machine_state : state_id:id
+order_transaction_capture  -->  version : version_id:id
+order_transaction_capture_refund  -->  order_transaction_capture : capture_id, capture_version_id:id, version_id
+order_transaction_capture_refund  -->  state_machine_state : state_id:id
+order_transaction_capture_refund  -->  version : version_id:id
+order_transaction_capture_refund_position  -->  order_line_item : order_line_item_id:id
+order_transaction_capture_refund_position  -->  order_line_item : order_line_item_id, order_line_item_version_id:id, version_id
+order_transaction_capture_refund_position  -->  order_transaction_capture_refund : refund_id, refund_version_id:id, version_id
+order_transaction_capture_refund_position  -->  version : version_id:id
+payment_method  -->  media : media_id:id
+payment_method  -->  plugin : plugin_id:id
+payment_method  -->  rule : availability_rule_id:id
+payment_method_translation  -->  language : language_id:id
+payment_method_translation  -->  payment_method : payment_method_id:id
+plugin_translation  -->  language : language_id:id
+plugin_translation  -->  plugin : plugin_id:id
+product  -->  cms_page : cms_page_id:id
+product  -->  cms_page : cms_page_id, cms_page_version_id:id, version_id
+product  -->  delivery_time : delivery_time_id:id
+product  -->  product : parent_id, parent_version_id:id, version_id
+product  -->  product : canonical_product_id, canonical_product_version_id:id, version_id
+product  -->  product_feature_set : product_feature_set_id:id
+product  -->  product_manufacturer : product_manufacturer_id:id
+product  -->  product_manufacturer : product_manufacturer_id, product_manufacturer_version_id:id, version_id
+product  -->  product_media : product_media_id:id
+product  -->  tax : tax_id:id
+product  -->  unit : unit_id:id
+product  -->  version : version_id:id
+product_category  -->  category : category_id, category_version_id:id, version_id
+product_category  -->  category : category_id:id
+product_category  -->  product : product_id:id
+product_category  -->  product : product_id, product_version_id:id, version_id
+product_category_tree  -->  category : category_id:id
+product_category_tree  -->  category : category_id, category_version_id:id, version_id
+product_category_tree  -->  product : product_id, product_version_id:id, version_id
+product_category_tree  -->  product : product_id:id
+product_configurator_setting  -->  media : media_id:id
+product_configurator_setting  -->  product : product_id:id
+product_configurator_setting  -->  product : product_id, product_version_id:id, version_id
+product_configurator_setting  -->  property_group_option : property_group_option_id:id
+product_configurator_setting  -->  version : version_id:id
+product_cross_selling  -->  product : product_id:id
+product_cross_selling  -->  product : product_id, product_version_id:id, version_id
+product_cross_selling  -->  product_stream : product_stream_id:id
+product_cross_selling_assigned_products  -->  product : product_id:id
+product_cross_selling_assigned_products  -->  product : product_id, product_version_id:id, version_id
+product_cross_selling_assigned_products  -->  product_cross_selling : cross_selling_id:id
+product_cross_selling_translation  -->  language : language_id:id
+product_cross_selling_translation  -->  product_cross_selling : product_cross_selling_id:id
+product_custom_field_set  -->  custom_field_set : custom_field_set_id:id
+product_custom_field_set  -->  product : product_id:id
+product_custom_field_set  -->  product : product_id, product_version_id:id, version_id
+product_download  -->  media : media_id:id
+product_download  -->  product : product_id:id
+product_download  -->  product : product_id, product_version_id:id, version_id
+product_download  -->  version : version_id:id
+product_export  -->  currency : currency_id:id
+product_export  -->  product_stream : product_stream_id:id
+product_export  -->  sales_channel : sales_channel_id:id
+product_export  -->  sales_channel : storefront_sales_channel_id:id
+product_export  -->  sales_channel_domain : sales_channel_domain_id:id
+product_feature_set_translation  -->  language : language_id:id
+product_feature_set_translation  -->  product_feature_set : product_feature_set_id:id
+product_keyword_dictionary  -->  language : language_id:id
+product_manufacturer  -->  media : media_id:id
+product_manufacturer  -->  version : version_id:id
+product_manufacturer_translation  -->  language : language_id:id
+product_manufacturer_translation  -->  product_manufacturer : product_manufacturer_id:id
+product_manufacturer_translation  -->  product_manufacturer : product_manufacturer_id, product_manufacturer_version_id:id, version_id
+product_media  -->  media : media_id:id
+product_media  -->  product : product_id, product_version_id:id, version_id
+product_media  -->  product : product_id:id
+product_media  -->  version : version_id:id
+product_option  -->  product : product_id:id
+product_option  -->  product : product_id, product_version_id:id, version_id
+product_option  -->  property_group_option : property_group_option_id:id
+product_price  -->  product : product_id:id
+product_price  -->  product : product_id, product_version_id:id, version_id
+product_price  -->  rule : rule_id:id
+product_price  -->  version : version_id:id
+product_property  -->  product : product_id, product_version_id:id, version_id
+product_property  -->  product : product_id:id
+product_property  -->  property_group_option : property_group_option_id:id
+product_review  -->  customer : customer_id:id
+product_review  -->  language : language_id:id
+product_review  -->  product : product_id:id
+product_review  -->  product : product_id, product_version_id:id, version_id
+product_review  -->  sales_channel : sales_channel_id:id
+product_search_config  -->  language : language_id:id
+product_search_config_field  -->  custom_field : custom_field_id:id
+product_search_config_field  -->  product_search_config : product_search_config_id:id
+product_search_keyword  -->  language : language_id:id
+product_search_keyword  -->  product : product_id, product_version_id:id, version_id
+product_search_keyword  -->  product : product_id:id
+product_search_keyword  -->  version : version_id:id
+product_sorting_translation  -->  language : language_id:id
+product_sorting_translation  -->  product_sorting : product_sorting_id:id
+product_stream_filter  -->  product_stream : product_stream_id:id
+product_stream_filter  -->  product_stream_filter : parent_id:id
+product_stream_mapping  -->  product : product_id:id
+product_stream_mapping  -->  product : product_id, product_version_id:id, version_id
+product_stream_mapping  -->  product_stream : product_stream_id:id
+product_stream_translation  -->  language : language_id:id
+product_stream_translation  -->  product_stream : product_stream_id:id
+product_tag  -->  product : product_id, product_version_id:id, version_id
+product_tag  -->  product : product_id:id
+product_tag  -->  tag : tag_id:id
+product_translation  -->  language : language_id:id
+product_translation  -->  product : product_id, product_version_id:id, version_id
+product_translation  -->  product : product_id:id
+product_visibility  -->  product : product_id:id
+product_visibility  -->  product : product_id, product_version_id:id, version_id
+product_visibility  -->  sales_channel : sales_channel_id:id
+promotion_cart_rule  -->  promotion : promotion_id:id
+promotion_cart_rule  -->  rule : rule_id:id
+promotion_discount  -->  promotion : promotion_id:id
+promotion_discount_prices  -->  currency : currency_id:id
+promotion_discount_prices  -->  promotion_discount : discount_id:id
+promotion_discount_rule  -->  promotion_discount : discount_id:id
+promotion_discount_rule  -->  rule : rule_id:id
+promotion_individual_code  -->  promotion : promotion_id:id
+promotion_order_rule  -->  promotion : promotion_id:id
+promotion_order_rule  -->  rule : rule_id:id
+promotion_persona_customer  -->  customer : customer_id:id
+promotion_persona_customer  -->  promotion : promotion_id:id
+promotion_persona_rule  -->  promotion : promotion_id:id
+promotion_persona_rule  -->  rule : rule_id:id
+promotion_sales_channel  -->  promotion : promotion_id:id
+promotion_sales_channel  -->  sales_channel : sales_channel_id:id
+promotion_setgroup  -->  promotion : promotion_id:id
+promotion_setgroup_rule  -->  promotion_setgroup : setgroup_id:id
+promotion_setgroup_rule  -->  rule : rule_id:id
+promotion_translation  -->  language : language_id:id
+promotion_translation  -->  promotion : promotion_id:id
+property_group_option  -->  media : media_id:id
+property_group_option  -->  property_group : property_group_id:id
+property_group_option_translation  -->  language : language_id:id
+property_group_option_translation  -->  property_group_option : property_group_option_id:id
+property_group_translation  -->  language : language_id:id
+property_group_translation  -->  property_group : property_group_id:id
+refresh_token  -->  user : user_id:id
+rule_condition  -->  app_script_condition : script_id:id
+rule_condition  -->  rule : rule_id:id
+rule_condition  -->  rule_condition : parent_id:id
+rule_condition  -->  script : script_id:id
+rule_tag  -->  rule : rule_id:id
+rule_tag  -->  tag : tag_id:id
+sales_channel  -->  category : navigation_category_id, navigation_category_version_id:id, version_id
+sales_channel  -->  category : service_category_id, service_category_version_id:id, version_id
+sales_channel  -->  category : footer_category_id, footer_category_version_id:id, version_id
+sales_channel  -->  cms_page : home_cms_page_id, home_cms_page_version_id:id, version_id
+sales_channel  -->  country : country_id:id
+sales_channel  -->  currency : currency_id:id
+sales_channel  -->  customer_group : customer_group_id:id
+sales_channel  -->  language : language_id:id
+sales_channel  -->  mail_header_footer : mail_header_footer_id:id
+sales_channel  -->  payment_method : payment_method_id:id
+sales_channel  -->  sales_channel_analytics : analytics_id:id
+sales_channel  -->  sales_channel_domain : hreflang_default_domain_id:id
+sales_channel  -->  sales_channel_type : type_id:id
+sales_channel  -->  shipping_method : shipping_method_id:id
+sales_channel_api_context  -->  customer : customer_id:id
+sales_channel_api_context  -->  sales_channel : sales_channel_id:id
+sales_channel_country  -->  country : country_id:id
+sales_channel_country  -->  sales_channel : sales_channel_id:id
+sales_channel_currency  -->  currency : currency_id:id
+sales_channel_currency  -->  sales_channel : sales_channel_id:id
+sales_channel_domain  -->  currency : currency_id:id
+sales_channel_domain  -->  language : language_id:id
+sales_channel_domain  -->  sales_channel : sales_channel_id:id
+sales_channel_domain  -->  snippet_set : snippet_set_id:id
+sales_channel_language  -->  language : language_id:id
+sales_channel_language  -->  sales_channel : sales_channel_id:id
+sales_channel_payment_method  -->  payment_method : payment_method_id:id
+sales_channel_payment_method  -->  sales_channel : sales_channel_id:id
+sales_channel_shipping_method  -->  sales_channel : sales_channel_id:id
+sales_channel_shipping_method  -->  shipping_method : shipping_method_id:id
+sales_channel_translation  -->  language : language_id:id
+sales_channel_translation  -->  sales_channel : sales_channel_id:id
+sales_channel_type_translation  -->  language : language_id:id
+sales_channel_type_translation  -->  sales_channel_type : sales_channel_type_id:id
+salutation_translation  -->  language : language_id:id
+salutation_translation  -->  salutation : salutation_id:id
+script  -->  app : app_id:id
+seo_url  -->  language : language_id:id
+seo_url  -->  sales_channel : sales_channel_id:id
+seo_url_template  -->  sales_channel : sales_channel_id:id
+shipping_method  -->  delivery_time : delivery_time_id:id
+shipping_method  -->  media : media_id:id
+shipping_method  -->  rule : availability_rule_id:id
+shipping_method  -->  tax : tax_id:id
+shipping_method_price  -->  rule : rule_id:id
+shipping_method_price  -->  rule : calculation_rule_id:id
+shipping_method_price  -->  shipping_method : shipping_method_id:id
+shipping_method_tag  -->  shipping_method : shipping_method_id:id
+shipping_method_tag  -->  tag : tag_id:id
+shipping_method_translation  -->  language : language_id:id
+shipping_method_translation  -->  shipping_method : shipping_method_id:id
+snippet  -->  snippet_set : snippet_set_id:id
+state_machine  -->  state_machine_state : initial_state_id:id
+state_machine_history  -->  state_machine : state_machine_id:id
+state_machine_history  -->  state_machine_state : from_state_id:id
+state_machine_history  -->  state_machine_state : to_state_id:id
+state_machine_history  -->  user : user_id:id
+state_machine_state  -->  state_machine : state_machine_id:id
+state_machine_state_translation  -->  language : language_id:id
+state_machine_state_translation  -->  state_machine_state : state_machine_state_id:id
+state_machine_transition  -->  state_machine : state_machine_id:id
+state_machine_transition  -->  state_machine_state : from_state_id:id
+state_machine_transition  -->  state_machine_state : to_state_id:id
+state_machine_translation  -->  language : language_id:id
+state_machine_translation  -->  state_machine : state_machine_id:id
+system_config  -->  sales_channel : sales_channel_id:id
+tax_provider  -->  app : app_id:id
+tax_provider  -->  rule : availability_rule_id:id
+tax_provider_translation  -->  language : language_id:id
+tax_provider_translation  -->  tax_provider : tax_provider_id:id
+tax_rule  -->  country : country_id:id
+tax_rule  -->  tax : tax_id:id
+tax_rule  -->  tax_rule_type : tax_rule_type_id:id
+tax_rule_type_translation  -->  language : language_id:id
+tax_rule_type_translation  -->  tax_rule_type : tax_rule_type_id:id
+theme  -->  media : preview_media_id:id
+theme_child  -->  theme : parent_id:id
+theme_child  -->  theme : child_id:id
+theme_media  -->  media : media_id:id
+theme_media  -->  theme : theme_id:id
+theme_sales_channel  -->  sales_channel : sales_channel_id:id
+theme_sales_channel  -->  theme : theme_id:id
+theme_translation  -->  language : language_id:id
+theme_translation  -->  theme : theme_id:id
+unit_translation  -->  language : language_id:id
+unit_translation  -->  unit : unit_id:id
+user  -->  locale : locale_id:id
+user  -->  media : avatar_id:id
+user_access_key  -->  user : user_id:id
+user_config  -->  user : user_id:id
+user_recovery  -->  user : user_id:id
+version_commit  -->  integration : integration_id:id
+version_commit  -->  user : user_id:id
+version_commit  -->  version : version_id:id
+version_commit_data  -->  integration : integration_id:id
+version_commit_data  -->  user : user_id:id
+version_commit_data  -->  version_commit : version_commit_id:id
+webhook  -->  app : app_id:id

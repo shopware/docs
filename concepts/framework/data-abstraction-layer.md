@@ -13,7 +13,7 @@ nav:
 
 In contrast to most Symfony applications, Shopware uses no ORM, but a thin abstraction layer called the data abstraction layer \(DAL\). The DAL is implemented with the specific needs of Shopware in mind and lets developers access the database via pre-defined interfaces. Some concepts used by the DAL, like Criteria, may sound familiar to you if you know [Doctrine](https://symfony.com/doc/current/doctrine.html) or other ORMs. A reference to more in-depth documentation about the DAL can be found below.
 
-Refer to [Shopware entity relationship model](https://developers.shopware.com/assets/pdf/erd.pdf) dipicts different tables with different colors and their relationship. 
+Refer to [Shopware entity relationship model](../../../docs/snippets/mermaid-diagrams/sw-6.6.5.1.mermaid) dipicts different tables with different colors and their relationship. 
 
 ### CRUD operations
 
