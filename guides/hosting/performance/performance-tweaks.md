@@ -266,5 +266,6 @@ If you are changing the **cache** compression method, you need to clear the cach
 # Enabling cache compression with zstd
 shopware:
   cache:
+    cache_compression: true
     cache_compression_method: 'zstd'
 ```
