@@ -28,9 +28,9 @@ So your structure could then look like this:
     └── src
         ├─ Resources
         │  └─ snippet
-        │     ├─ de-DE
+        │     ├─ de_DE
         │     │  └─ example.de-DE.json
-        │     └─ en-GB
+        │     └─ en_GB
         │        └─ example.en-GB.json
         └─ SwagBasicExample.php
 ```
@@ -42,7 +42,7 @@ Now that we know how the structure of snippets should be, we can create a new sn
 Here's an example of an English translation file:
 
 ```json
-// <extension root>/src/Resources/snippet/en\_GB/example.en-GB.json
+// <extension root>/src/Resources/snippet/en_GB/example.en-GB.json
 {
   "header": {
     "example": "Our example header"
