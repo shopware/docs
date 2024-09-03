@@ -5,13 +5,6 @@ area: administration
 tags: [administration, jest, pipeline, testing, unit]
 ---
 
-# Add jest runner with disabled compat mode
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2024-06-12-add-jest-runner-with-disabled-compat-mode.md)
-:::
-
 ## Context
 
 Currently, our component tests in Jest are running with enabled compat mode. To remove the compat mode for each

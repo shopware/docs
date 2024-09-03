@@ -5,13 +5,6 @@ area: core
 tags: [media, url, strategy]
 ---
 
-# Media path rewrite
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2023-08-17-media-path.md)
-:::
-
 ## Context
 In the current media system it is possible to configure different `Shopware\Core\Content\Media\Pathname\PathnameStrategy\PathnameStrategyInterface`.
 

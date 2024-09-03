@@ -5,13 +5,6 @@ area: core
 tags: [admin-api, store-api, app-system]
 ---
 
-# Allow apps to define custom api endpoints
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2022-01-06-custom-app-api-endpoints.md)
-:::
-
 ## Context
 Apps should be allowed to provide their own API and Store-API and Storefront endpoints where they can execute different logics that deviate from the automatic entity API.
 

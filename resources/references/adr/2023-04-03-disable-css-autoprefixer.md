@@ -5,13 +5,6 @@ area: storefront
 tags: [css, autoprefixer, theme-compiler]
 ---
 
-# Disable the CSS autoprefixer in the Storefront by default
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2023-04-03-disable-css-autoprefixer.md)
-:::
-
 ## Context
 
 The storefront CSS, compiled by `scssphp/scssphp`, is currently automatically prefixed with vendor prefixes using `padaliyajay/php-autoprefixer`.

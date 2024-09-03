@@ -5,13 +5,6 @@ area: core
 tags: [architecture, adr, approval-rules]
 ---
 
-# Adjust ADR approval rules for the new org structure
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2021-11-05-adjust-adr-approval-rules.md)
-:::
-
 ## Context
 
 When we decided to introduce ADRs we also decided that there need to be special approval rules for those ADRs.

@@ -5,13 +5,6 @@ area: core, administration, storefront
 tags: [process, backwards compatibility]
 ---
 
-# Add Feature property to `@experimental` annotation
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2023-09-06-feature-property-for-experimental-anotation.md)
-:::
-
 ## Context
 Our current development process uses ['Experimental features'](./2023-05-10-experimental-features) to publish features in an early state to gather feedback regarding those features.
 During the implementation, developers may encounter challenges related to the effective management of extensive code scattered throughout the platform, particularly in connection with specific experimental features. This codebase fragmentation presents impediments to the tracking, maintenance, and comprehensive understanding of each feature's scope, thereby hindering our development progress.
