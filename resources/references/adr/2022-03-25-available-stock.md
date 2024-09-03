@@ -4,13 +4,6 @@ date: 2022-03-25
 area: inventory
 tags: [inventory, performance, stock]
 ---
-
-# Available stock improvements
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2022-03-25-available-stock.md)
-:::
 Currently, the available stock calculation is performed on every update of a product. This is true if the product is updated via the API but also if it is ordered via the store api route. When an order is placed, this is triggered by `StockUpdater::lineItemWritten` and performs an update of the available stock by subtracting the stock with the quantity of open orders. If there are many open orders in the storage, this can lead to a bottleneck if many orders are executed at the same time, with the same products.
 
 We have solved this problem by updating the available stock directly in the `CheckoutOrderPlaced` event with the ordered quantity:

@@ -5,13 +5,6 @@ area: storefront
 tags: [image, lazy-loading, storefront]
 ---
 
-# Add native lazy loading for images to the storefront
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2023-01-30-image-lazy-loading.md)
-:::
-
 ## Context
 
 * Currently, the images/thumbnails inside the Storefront are not making use of any lazy loading mechanism. 

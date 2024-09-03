@@ -5,13 +5,6 @@ area: services-settings
 tags: [flow, event, refactoring]
 ---
 
-# Adding the `StorableFlow` instead of the `FlowEvent` for implementing the flow DelayAction in flow builder
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2022-07-21-adding-the-storable-flow-to-implement-delay-action-in-flow-builder.md)
-:::
-
 ## Context
 
 The actions in Flow Builder are listening for Business Events. We want to implement the flow DelayAction in Flow Builder,

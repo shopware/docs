@@ -5,13 +5,6 @@ area: core
 tags: [repository, dal, entity, sort, product]
 ---
 
-# Implement individual sorting
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2020-08-14-implement-individual-sorting.md)
-:::
-
 ## Context
 
 Shop owners should be able to define custom sorting options for product listings and search result pages out of the administration.

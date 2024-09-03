@@ -5,13 +5,6 @@ area: administration
 tags: [administration, vue, meteor, component library]
 ---
 
-# Implementation of Meteor Component Library
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2024-03-21-implementation-of-meteor-component-library.md)
-:::
-
 ## Context
 
 We have decided to implement the Meteor Component Library within the Shopware platform. They will replace the current base components in the administration.

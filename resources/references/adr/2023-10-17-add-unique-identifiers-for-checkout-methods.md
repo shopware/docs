@@ -5,13 +5,6 @@ area: Checkout
 tags: [payment, shipping]
 ---
 
-# Introduction of Unique Identifiers for Checkout Methods
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2023-10-17-add-unique-identifiers-for-checkout-methods.md)
-:::
-
 ## Context
 In the current implementation, there exists a challenge for extension developers in uniquely identifying payment and shipping methods using identifiers.
 This issue is particularly significant for app servers, as it necessitates calls to the Shopware Admin API for the identification of payment and shipping methods based on their respective IDs.

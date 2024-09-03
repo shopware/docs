@@ -5,13 +5,6 @@ area: admin
 tags: [admin, vuex, pinia]
 ---
 
-# Replace Vuex with Pinia
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2024-06-17-replace-vuex-with-pinia.md)
-:::
-
 # ADR: Replace Vuex with Pinia
 ## Context
 It was brought to our attention that the latest version of Vuex `4.1.0` contains a bug that destroys getter reactivity under specific circumstances. The proposed fix was to downgrade to `4.0.2`. However, downgrading was not possible as `4.0.2` contains other bugs that caused modules to fail.

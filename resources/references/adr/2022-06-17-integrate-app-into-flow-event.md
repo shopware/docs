@@ -5,13 +5,6 @@ area: services-settings
 tags: [flow, app]
 ---
 
-# Integrate an app into the flow event
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2022-06-17-integrate-app-into-flow-event.md)
-:::
-
 # 2022-10-11 - Integrate an app into the flow event
 
 ## Context

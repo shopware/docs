@@ -5,13 +5,6 @@ area: admin
 tags: [admin, meteor admin sdk, component section]
 ---
 
-# Deprecating Meteor Admin SDK public SDK
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2024-07-16-deprecating-sdk-public-api.md)
-:::
-
 ## Context
 
 Recently, the need arose to deprecate the `Meteor Admin SDK` public API built into the Shopware Core.

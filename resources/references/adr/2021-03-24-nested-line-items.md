@@ -5,13 +5,6 @@ area: checkout
 tags: [checkout, cart, line-items]
 ---
 
-# Processing of nested line items
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2021-03-24-nested-line-items.md)
-:::
-
 ## Context
 
 We want to handle nested order line items.
