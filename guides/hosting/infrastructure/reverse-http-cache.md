@@ -787,4 +787,4 @@ Additionally, we need to set up some VCL Snippets in the Fastly interface:
 
 <PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/recv/default.vcl" title="vcl_recv" target="_blank" />
 
-<!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Storefront/Resources/config/packages/storefront.yaml","WATCHER_HASH":"caead56ad257ecec0e10a62dd3121bb6"} -->
+<!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Storefront/Resources/config/packages/storefront.yaml","WATCHER_HASH":"ea090957a082e950ffa112b108e40abf"} -->
