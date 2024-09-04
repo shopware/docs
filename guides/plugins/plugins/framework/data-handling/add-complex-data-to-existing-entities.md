@@ -159,6 +159,7 @@ class ExampleExtensionDefinition extends EntityDefinition
             (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
             new FkField('product_id', 'productId', ProductDefinition::class),
             (new StringField('custom_string', 'customString')),
+            // ReferenceVersionField only needed on versioned entities
             new ReferenceVersionField(ProductDefinition::class, 'product_version_id'),
             new OneToOneAssociationField('product', 'product_id', 'id', ProductDefinition::class, false)
         ]);
@@ -219,6 +220,7 @@ class Migration1614903457ExampleExtension extends MigrationStep
 
     public function update(Connection $connection): void
     {
+    // product_version_id only needed when extending a versioned entity
         $sql = <<<SQL
 CREATE TABLE IF NOT EXISTS `swag_example_extension` (
     `id` BINARY(16) NOT NULL,
