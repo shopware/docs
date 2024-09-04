@@ -36,14 +36,16 @@ shopware:
 ### Delayed invalidation
 
 A delay for cache invalidation can be activated for systems with a high update frequency for the inventory (products, categories). Once the instruction to delete the cache entries for a specific product or category occurs, they are not deleted instantly but processed by a background task later. Thus, if two processes invalidate the cache in quick succession, the timer for the invalidation of this cache entry will only reset.
-
+By default, the scheduled task will run every 20 minutes, but the interval can be adjusted over the `scheduled_taks` DB table, by setting the `run_interval` to the desired value (it is configured in minutes) for the entry with the name `shopware.invalidate_cache`. 
 ```yaml
 # config/packages/prod/shopware.yaml
 shopware:
     cache:
         invalidation:
-            delay: 0
-            count: 150
+            delay: 1
+            delay_options:
+                storage: redis
+                dsn: 'redis://host:port/dbindex'
 ```
 
 ## MySQL configuration
