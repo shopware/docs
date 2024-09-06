@@ -13,7 +13,14 @@ nav:
 
 In contrast to most Symfony applications, Shopware uses no ORM, but a thin abstraction layer called the data abstraction layer \(DAL\). The DAL is implemented with the specific needs of Shopware in mind and lets developers access the database via pre-defined interfaces. Some concepts used by the DAL, like Criteria, may sound familiar to you if you know [Doctrine](https://symfony.com/doc/current/doctrine.html) or other ORMs. A reference to more in-depth documentation about the DAL can be found below.
 
-Refer to [Shopware entity relationship model](../../../docs/snippets/mermaid-diagrams/sw-6.6.5.1.mermaid) dipicts different tables with different colors and their relationship. 
+Refer to [Shopware 6.6.5.0 entity relationship model](../../../docs/snippets/mermaid-diagrams/sw-6.6.5.1.mermaid) that dipicts different tables and their relationships. 
+
+Alternatively, you can export a fresh ER model, using [MySQL Workbench](https://dev.mysql.com/doc/workbench/en/wb-reverse-engineering.html), [PHPStorm Database Tools](https://www.jetbrains.com/help/phpstorm/creating-diagrams.html), or similar tool.
+
+::: info
+Mysql Workbench → File → Import → Reverse Engineer Mysql Script → Select Db → ERD is created.
+If you want to have it as an image: File → Export → Export as PNG
+:::
 
 ### CRUD operations
 
