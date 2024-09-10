@@ -79,10 +79,12 @@ app.post("/app/action-button", async (c) => {
 
 So in this case the Request will be validated by the shop secret and the shop will be resolved by the shopId in the request. Additionally the response will be signed by the app secret. This is all done by the Integration, so you don't have to worry about it.
 
-## DynamoDB (AWS)
+## Various Repositories (DynamoDB, Deno KV, Cloudflare KV, Bun SQLite, Better SQLite3)
 
-The SDK offers a ready-to-use Repository for the AWS DynamoDB to store the shops. This is useful if you want to store the shops in a DynamoDB.
+The SDK offers a ready-to-use Repository for several storage solutions to store the shops.
 
+<Tabs>
+<Tab title="DynamoDB">
 The AWS SDK needs to be installed separately:
 
 ```bash
@@ -106,10 +108,9 @@ configureAppServer(app, {
 // Without Hono
 const appServer = new AppServer(..., new DynamoDBRepository(client, 'my-table-name'));
 ```
+</Tab>
 
-## Deno KV
-
-The SDK offers a ready-to-use Repository for the Deno KV to store the shops. This is useful if you want to store the shops in a Deno KV.
+<Tab title="Deno KV">
 
 ```ts
 import { DenoKVRepository } from '@shopware-ag/app-server-sdk/integration/deno-kv';
@@ -125,9 +126,9 @@ configureAppServer(app, {
 const appServer = new AppServer(..., new DenoKVRepository('my-namespace'));
 ```
 
-## Cloudflare KV
+</Tab>
 
-The SDK offers a ready-to-use Repository for the Cloudflare KV to store the shops. This is useful if you want to store the shops in a Cloudflare KV.
+<Tab title="Cloudflare KV">
 
 ```ts
 import { CloudflareShopRepository } from '@shopware-ag/app-server-sdk/integration/cloudflare-kv';
@@ -143,9 +144,9 @@ configureAppServer(app, {
 const appServer = new AppServer(..., new CloudflareShopRepository(env.KV_BINDING));
 ```
 
-## Bun SQLite
+</Tab>
 
-The SDK offers a ready-to-use Repository for the Bun SQLite to store the shops. This is useful if you want to store the shops in a SQLite database.
+<Tab title="Bun SQLite">
 
 ```ts
 import { BunSqliteRepository } from '@shopware-ag/app-server-sdk/integration/bun-sqlite';
@@ -161,9 +162,9 @@ configureAppServer(app, {
 const appServer = new AppServer(..., new BunSqliteRepository('my-sqlite.db'));
 ```
 
-## Bun SQLite
+</Tab>
 
-The SDK offers a ready-to-use Repository for the Better SQLite3 to store the shops. This is useful if you want to store the shops in a SQLite database.
+<Tab title="Better SQLite (Node)">
 
 The package `better-sqlite3` needs to be installed separately:
 
@@ -184,5 +185,9 @@ configureAppServer(app, {
 // Without Hono
 const appServer = new AppServer(..., new BetterSqlite3Repository('my-sqlite.db'));
 ```
+
+</Tab>
+
+</Tabs>
 
 Next, we will look into the [External Frontend](./07-external-frontend.md).
