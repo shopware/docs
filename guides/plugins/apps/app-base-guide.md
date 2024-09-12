@@ -80,6 +80,10 @@ For a complete reference of the structure of the manifest file, take a look at t
 Only if your app backend server and Shopware need to communicate, it is necessary that registration is performed during the installation of your app. This process is called setup.
 :::
 
+::: warning
+If your app makes use of the Admin Module, Payment Method, Tax providers or Webhook app system features, you need to implement the registration, in order to exchange a secret key, that is later used to authenticate the shops.
+:::
+
 During the setup, it is verified that Shopware connects to the right backend server and keys are exchanged to secure all further communications.
 During the setup process, your app backend will obtain credentials that can be used to authenticate against the Shopware API.
 Additionally, your app will provide a secret that Shopware will use to sign all further requests it makes to your app backend, allowing you to verify that the incoming requests originate from authenticated Shopware installations.
@@ -92,7 +96,7 @@ The setup workflow is shown in the following schema. Each step will be explained
 The timeout for the requests against the app server is 5 seconds.
 :::
 
-## SDK Integration
+### SDK Integration
 
 Integrating apps into your application can be a daunting task, but with our PHP SDK, the process becomes much easier. Our SDK simplifies the registration flow and other typical tasks.
 
