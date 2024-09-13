@@ -13,6 +13,13 @@ This guide will show you how to add custom modules to the Shopware Administratio
 For further details and guidance on custom modules, refer to the documentation provided on the Meteor Admin SDK's [custom modules](/resources/admin-extension-sdk/api-reference/ui/mainModule) section.
 :::
 
+## Prerequisites
+
+You should be familiar with the concept of Apps, especially their registration flow as well as signing and verifying requests and responses between Shopware and the App backend server, as that is required to authenticate the requests coming from the shops and showing the correct content in your modules.
+
+<PageRef page="app-base-guide" />
+
+
 ## Overview
 
 In your app, you are able to add your own modules to the Administration. Your custom modules are loaded as iframes which are embedded in the Shopware Administration and within this iframe, your website will be loaded and shown.
