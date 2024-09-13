@@ -9,6 +9,14 @@ nav:
 
 With webhooks, you can subscribe to events occurring in Shopware. Whenever such an event occurs, a `POST` request will be sent to the URL specified for this particular event.
 
+## Prerequisites
+
+You should be familiar with the concept of Apps, especially their registration flow as well as signing and verifying requests and responses between Shopware and the App backend server, as that is required to authenticate the webhooks coming from the shops and showing the correct content in your modules.
+
+<PageRef page="app-base-guide" />
+
+## Webhook configuration
+
 To use webhooks in your app, you need to implement a `<webhooks>` element in your manifest file as shown below:
 
 <<< @/docs/snippets/config/app/webhooks.xml
