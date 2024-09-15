@@ -29,6 +29,23 @@ server {
         }
     }
 
+    location ~ ^/(theme|media|thumbnail|bundles|css|fonts|js|recovery|sitemap)/ {
+        expires 1y;
+        add_header Cache-Control "public, must-revalidate, proxy-revalidate";
+        log_not_found off;
+        tcp_nodelay off;
+        open_file_cache max=3000 inactive=120s;
+        open_file_cache_valid 45s;
+        open_file_cache_min_uses 2;
+        open_file_cache_errors off;
+    
+        location ~* ^.+\.svg {
+            add_header Content-Security-Policy "script-src 'none'";
+            add_header Cache-Control "public, must-revalidate, proxy-revalidate";
+            log_not_found off;
+        }
+    }
+
     location ~* ^.+\.(?:css|cur|js|jpe?g|gif|ico|png|svg|webp|html|woff|woff2|xml)$ {
         expires 1y;
         add_header Cache-Control "public, must-revalidate, proxy-revalidate";
