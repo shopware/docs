@@ -5,13 +5,6 @@ area: administration
 tags: [admin, extension-api]
 ---
 
-# Extract data handling classes to extension sdk
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2022-03-15-extract-data-handling-classes-to-extension-sdk.md)
-:::
-
 ## Context
 * The package `@shopware-ag/meteor-extension-sdk` will be referred to as sdk
 * The ts/js implementation of the Administration is referred to as administration

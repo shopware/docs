@@ -5,13 +5,6 @@ area: core
 tags: [adr, file-structure, workflow]
 ---
 
-# Unstructured ADRs
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2023-02-20-unstructured-adrs.md)
-:::
-
 ## Context
 Currently, our ADRs are grouped into folders according to different areas. We have added this structure to help people find their way around when they are looking for specific ADRs.
 

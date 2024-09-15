@@ -5,13 +5,6 @@ area: admin
 tags: [admin, text-editor, evaluation]
 ---
 
-# Admin text editor evaluation
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2023-03-27-admin-text-editor-evaluation.md)
-:::
-
 ## Context
 The current sw-text-editor in the administration has numerous low-level bugs in basic WYSIWYG features. It is built in a
 way that is difficult to maintain and understand. Therefore, we require a new text editor that is easy to maintain, has

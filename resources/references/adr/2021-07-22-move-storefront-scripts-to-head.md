@@ -5,13 +5,6 @@ area: storefront
 tags: [storefront, javascript, performance]
 ---
 
-# Move storefront script to head with defer
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2021-07-22-move-storefront-scripts-to-head.md)
-:::
-
 ## Context
 
 * Currently, our main storefront scripts (inline scripts as well as `all.js`) are located at the bottom of the page near the body end tag.

@@ -5,13 +5,6 @@ area: core
 tags: [core, plugin, event]
 ---
 
-# Transition to an Event-Based Extension System
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2024-06-18-extended-event-system.md)
-:::
-
 ## Context
 
 In our current architecture, we rely heavily on PHP decoration, Adapter, and Factory patterns to allow for extensions and customizations by third-party developers. While these patterns are effective, they present significant challenges:

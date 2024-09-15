@@ -5,13 +5,6 @@ area: storefront
 tags: [csrf, security, storefront]
 --- 
 
-# Deprecate the storefront CSRF implementation
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2022-11-16-deprecate-csrf.md)
-:::
-
 ## Context
 
 * With browsers evolving and dropping support for older browser in 6.5 we have wide support for SameSite cookies.
