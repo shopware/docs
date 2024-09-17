@@ -101,6 +101,7 @@ Be sure to use the most recent testing checklist from Shopware and not from any 
 
 * Compiled JavaScript offers many benefits such as improved performance and code optimization. However, it is difficult to read and understand the compiled code.
 To ensure that the code remains accessible to all developers, the uncompiled version of the JavaScript code must be placed in a separate folder. This allows other developers to review and understand the code in its original, readable form.
+Shopware reserves the right to publish extensions with minified code after individual consideration and consultation with the developer. For this, the developer must ensure that Shopware has access to the current unminified code of the extension at all times.
 
 * We want to improve the quality of the Shopware Community Store and offer as many different apps as possible. Hence, we check for a functional comparison with other apps already in the Shopware Community store, in the Rise edition, or above. If there is an app with the same function, it can be rejected as it doesn't provide any added value. For further information, write an email to [alliances@shopware.com](mailto:alliances@shopware.com).
 
