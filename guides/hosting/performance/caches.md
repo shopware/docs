@@ -94,3 +94,8 @@ framework:
         default_redis_provider: 'redis://host:port'
 ```
 
+### Redis configuration
+
+As the cached information is ephemeral and can be recreated, it is not necessary to configure Redis to store the data on disk. For maximum performance you can configure Redis to use no persistence, refer to the [Redis docs](https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/) for details.
+
+As key eviction policy you should use `volatile-lru`, which only automatically deletes data that is expired, as the application explicitly manages the TTL for each cache item. For a detailed overview of Redis key eviction policies see the [Redis docs](https://redis.io/docs/latest/develop/reference/eviction/).
