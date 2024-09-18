@@ -12,7 +12,7 @@ App Bundle integrates the PHP App SDK for Symfony. This can be accessed at [app-
 ## Installation
 
 ```bash
-composer require shopware/app-bundle doctrine/orm
+composer require shopware/app-bundle doctrine/orm symfony/doctrine-bridge
 ```
 
 ## Quick Start
@@ -26,7 +26,7 @@ composer create-project symfony/skeleton:"6.2.*" my-app
 ### 2. Install the App Bundle in your Symfony Project
 
 ```bash
-composer require shopware/app-bundle doctrine/orm
+composer require shopware/app-bundle doctrine/orm symfony/doctrine-bridge
 ```
 
 It is also recommended to install the monolog bundle to have logging:
