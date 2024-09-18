@@ -27,6 +27,22 @@ The easiest way to access the generated schema is Swagger UI. [Swagger UI](https
 The above path is relative and contains `api` (Admin API) and `store-api` seperated by a pipe. Please choose the appropriate option.
 :::
 
+::: warning
+The Swagger UI is deprecated and can freeze your browser when loading all schemas. We recommend using the Stoplight (see below) instead.
+:::
+
+## Stoplight
+
+The easiest way to access the generated schema is Stoplight. [Stoplight](https://docs.stoplight.io/) is a collaborative platform equipping your team with tooling across the API lifecycle that helps them build quality APIs efficiently. Shopware already ships with these user interfaces. They are accessible at the following endpoint relative to their respective base path:
+
+```text
+/(api|store-api)/_info/stoplightio.html
+```
+
+::: info
+The above path is relative and contains `api` (Admin API) and `store-api` seperated by a pipe. Please choose the appropriate option.
+:::
+
 ## OpenAPI schema
 
 If you don't want to bother with the UI but just fetch the schema definition instead, use the following endpoint:
