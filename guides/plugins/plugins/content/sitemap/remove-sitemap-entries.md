@@ -9,7 +9,7 @@ nav:
 
 ## Overview
 
-This guide however will cover how you can remove URLs from the sitemap.
+This guide covers how to remove URLs from the sitemap.
 
 ## By using the configuration
 
