@@ -14,7 +14,7 @@ This guide however will cover how you can add your own custom URLs to the sitema
 
 ## By using the configuration
 
-To add a custom URL to the sitemap use the configuration setting `shopware.sitemap.custom_urls`
+To add a custom URL to the sitemap, use the configuration setting `shopware.sitemap.custom_urls`
 
 ```yaml
 shopware:
