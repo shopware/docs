@@ -9,7 +9,7 @@ nav:
 
 [Redis](https://redis.io/docs/latest/get-started/) is an in-memory data storage, that offers high performance and can be used as a cache, message broker, and database. It is a key-value store that supports various data structures like strings, hashes, lists, sets, and sorted sets.
 Especially in high-performance and high-throughput scenarios it can give better results, than relying on a traditional relational database.
-Therefore, multiple adapter exist in shopware, to offload some tasks from the DB to Redis.
+Therefore, multiple adapter exists in shopware, to offload some tasks from the DB to Redis.
 
 However, as the data that is stored in Redis differs and also the access patterns to this data differ, it makes sense to use different Redis instances with different configurations for different tasks.
 
