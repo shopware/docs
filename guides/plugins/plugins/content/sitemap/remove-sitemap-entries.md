@@ -25,5 +25,5 @@ shopware:
 ```
 
 The `salesChannelId` is the ID of the sales channel you want to exclude the URL from.
-The `resource` is the full class name of the entity you want to exclude the URL off, for example `Shopware\Core\Content\Product\ProductEntity`.
+The `resource` is the full class name of the entity from which you want to exclude the URL, for example, `Shopware\Core\Content\Product\ProductEntity`.
 The `identifier` is the ID of the entity you want to exclude the URL of.
