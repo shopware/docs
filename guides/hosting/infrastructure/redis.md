@@ -43,7 +43,7 @@ The session data is what should be stored in this instance.
 
 Again this is durable data, that can not easily be recreated, therefore it should be persisted as well.
 
-As the data is critical it is important to use a key eviction policy that will not delete data that is not expired, therefore `volatile-lru` should be used.
+As the data is critical, it is important to use a key eviction policy that will not delete data that is not expired, therefore `volatile-lru` should be used.
 
 The cart, number range, lock store and increment data is what should be stored in this instance.
 
