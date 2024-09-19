@@ -34,7 +34,7 @@ shopware:
 
 The `salesChannelId` is the ID of the sales channel you want to add the URL to.
 
-## By adding an URL provider
+## By adding a URL provider
 
 This part of guide is mostly built upon the guide about [Adding a custom SEO URL](../seo/add-custom-seo-url#Dynamic SEO URLs for entities),
 so you might want to have a look at that.
