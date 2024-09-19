@@ -8,7 +8,7 @@ nav:
 # Cart Storage
 
 By default, shopware stores the cart in the database. This can be a performance bottleneck in scenarios where high throughput is required (e.g., thousands of orders per minute), especially if a DB cluster with a read/write-split is used.
-Additionally, as the content in that table can change quite quickly, it can lead to an explosion of the databases binlog file.
+Additionally, as the content in that table can change quite quickly, it can lead to an explosion of the databases `binlog` file.
 
 Redis is better suited in high-throughput scenarios, therefore you should use Redis as storage for the cart in such scenarios.
 
