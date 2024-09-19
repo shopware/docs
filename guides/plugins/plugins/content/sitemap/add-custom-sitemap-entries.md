@@ -20,12 +20,12 @@ To add a custom URL to the sitemap, use the configuration setting `shopware.site
 shopware:
     sitemap:
         custom_urls:
-            -   url: 'https://www.example.com/custom-url'
+            -   url: 'custom-url'
                 salesChannelId: '98432def39fc4624b33213a56b8c944d'
                 changeFreq: 'weekly'
                 priority: 0.5
                 lastMod: '2024-09-19 12:19:00'
-            -   url: 'https://www.example.com/custom-url-2'
+            -   url: 'custom-url-2'
                 salesChannelId: '98432def39fc4624b33213a56b8c944d'
                 changeFreq: 'weekly'
                 priority: 0.5
