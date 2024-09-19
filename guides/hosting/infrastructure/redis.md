@@ -15,8 +15,8 @@ However, as the data that is stored in Redis differs and also the access pattern
 
 The data stored in Redis can be roughly classified into those three categories:
 1. Ephemeral data: This data is not critical and can be easily recreated when lost, e.g. caches.
-2. Durable, but "aging" data: This data is important and can not easily be recreated, but the relevance of the data decreases over time, e.g. sessions.
-3. Durable and critical data: This data is important and can not easily be recreated, e.g. carts, number ranges.
+2. Durable, but "aging" data: This data is important and cannot easily be recreated, but the relevance of the data decreases over time, e.g. sessions.
+3. Durable and critical data: This data is important and cannot easily be recreated, e.g. carts, number ranges.
 
 ## Ephemeral data
 
