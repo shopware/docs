@@ -36,7 +36,7 @@ The `salesChannelId` is the ID of the sales channel you want to add the URL to.
 
 ## By adding a URL provider
 
-This part of guide is mostly built upon the guide about [Adding a custom SEO URL](../seo/add-custom-seo-url#Dynamic SEO URLs for entities),
+This part of the guide is mainly built upon the guide about [Adding a custom SEO URL](../seo/add-custom-seo-url#Dynamic SEO URLs for entities),
 so you might want to have a look at that.
 The said guide comes with a custom entity, a controller with a technical route to display each entity, and a custom SEO URL.
 All of this will be needed for this guide, as we're going to add the custom entity SEO URLs to the sitemap here.
