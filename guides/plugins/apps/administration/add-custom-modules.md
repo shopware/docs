@@ -17,7 +17,7 @@ For further details and guidance on custom modules, refer to the documentation p
 
 You should be familiar with the concept of Apps, especially their registration flow as well as signing and verifying requests and responses between Shopware and the App backend server, as that is required to authenticate the requests coming from the shops and showing the correct content in your modules.
 
-<PageRef page="app-base-guide" />
+<PageRef page="../app-base-guide" />
 
 
 ## Overview

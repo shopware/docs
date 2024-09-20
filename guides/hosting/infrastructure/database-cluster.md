@@ -45,6 +45,9 @@ shopware:
 
 It is recommended to use a persistent Redis connection to avoid connection issues in high-load scenarios. There is also a `cart:migrate` command to migrate the existing carts between MySQL and Redis, so the migration does not influence end-user experience.
 
+For a detailed explanation refer to the cart storage docs:
+<PageRef page="../performance/cart-storage" />
+
 ## Configure the database cluster
 
 To use the MySQL cluster, you have to configure the following in the `.env` file:
