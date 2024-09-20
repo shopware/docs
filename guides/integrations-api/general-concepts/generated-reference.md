@@ -43,6 +43,8 @@ The easiest way to access the generated schema is Stoplight. [Stoplight](https:/
 The above path is relative and contains `api` (Admin API) and `store-api` seperated by a pipe. Please choose the appropriate option.
 :::
 
+You will find a list of all generic endpoints (entity endpoints like product, category etc.) for the **Admin API** here `api/_info/stoplightio.html?type=jsonapi#/` or access it via the top navigation bar.
+
 ## OpenAPI schema
 
 If you don't want to bother with the UI but just fetch the schema definition instead, use the following endpoint:
