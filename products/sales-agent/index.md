@@ -2,6 +2,8 @@
 
 This project is designed to streamline the communication and sales processes between sales representatives and their customers. By integrating Shopware, it enables sales representatives to handle various tasks in an optimized environment, without the overhead added by the Shopware Administration.
 
+![ ](../../assets/sales-agent-overview.jpg)
+
 ::: warning
 *Sales Agent * is a licensed application and not available as open source.
 :::
