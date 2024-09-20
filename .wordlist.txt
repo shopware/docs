@@ -1584,6 +1584,7 @@ uniqBy
 UnitCollection
 UnitEntity
 UnitTests
+unminified
 unprefixed
 unregister
 Unregistering
