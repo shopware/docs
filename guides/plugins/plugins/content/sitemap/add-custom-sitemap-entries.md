@@ -12,17 +12,37 @@ nav:
 Of course Shopware comes with a sitemap generation feature, including products and categories, as well as some more URLs.
 This guide however will cover how you can add your own custom URLs to the sitemap.
 
-## Prerequisites
+## By using the configuration
 
-This guide is mostly built upon the guide about [Adding a custom SEO URL](../seo/add-custom-seo-url#Dynamic SEO URLs for entities),
+To add a custom URL to the sitemap, use the configuration setting `shopware.sitemap.custom_urls`
+
+```yaml
+shopware:
+    sitemap:
+        custom_urls:
+            -   url: 'custom-url'
+                salesChannelId: '98432def39fc4624b33213a56b8c944d'
+                changeFreq: 'weekly'
+                priority: 0.5
+                lastMod: '2024-09-19 12:19:00'
+            -   url: 'custom-url-2'
+                salesChannelId: '98432def39fc4624b33213a56b8c944d'
+                changeFreq: 'weekly'
+                priority: 0.5
+                lastMod: '2024-09-18 12:18:00'
+```
+
+The `salesChannelId` is the ID of the sales channel you want to add the URL to.
+
+## By adding a URL provider
+
+This part of the guide is mainly built upon the guide about [Adding a custom SEO URL](../seo/add-custom-seo-url#Dynamic SEO URLs for entities),
 so you might want to have a look at that.
 The said guide comes with a custom entity, a controller with a technical route to display each entity, and a custom SEO URL.
 All of this will be needed for this guide, as we're going to add the custom entity SEO URLs to the sitemap here.
 
-## Adding an URL provider
-
 So let's get started.
-Adding custom URLs to the sitemap is done by adding a so called "URL provider" to the system.
+Adding custom URLs to the sitemap is done by adding a so-called "URL provider" to the system.
 
 This is done by adding a new class, which is extending from `Shopware\Core\Content\Sitemap\Provider\AbstractUrlProvider`.
 It then has to be registered to the [service container](../../plugin-fundamentals/dependency-injection) using the tag
