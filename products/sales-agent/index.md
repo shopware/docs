@@ -1,3 +1,10 @@
+---
+nav:
+  title: Sales Agent
+  position: 10
+
+---
+
 # Sales Agent Overview
 
 This project is designed to streamline the communication and sales processes between sales representatives and their customers. By integrating Shopware, it enables sales representatives to handle various tasks in an optimized environment, without the overhead added by the Shopware Administration.
@@ -20,5 +27,9 @@ Review the below minimum operating requirements before you install *Sales Agent*
 * [pnpm](https://pnpm.io/installation) >= 8
 * [Shopware Frontends framework](https://frontends.shopware.com/) based on Nuxt 3.
 * Instance of [Shopware 6](../../guides/installation) (version 6.5 and above).
+* Beyond or Evolve license needed for the Shopware instance.
 
 
+## API Documentation
+
+[API documentation](https://shopware.stoplight.io/docs/swag-sales-agent/) provides detailed information about the available endpoints and their functionalities.

@@ -1,3 +1,10 @@
+---
+nav:
+   title: Installation
+   position: 20
+
+---
+
 # Installation
 
 1. **Clone the Repository**
@@ -65,3 +72,18 @@ docker compose up
 | STORAGE_PORT                     | The storage port to use in production. Please refer to the [Deployment](#Deployment) section.                                                               |
 | STORAGE_PASSWORD                 | The storage password to use in production. Please refer to the [Deployment](#Deployment) section.                                                           |
 | STORAGE_TLS                      | Use TLS for storage communication in production. Please refer to the [Deployment](#Deployment) section.                                                     |
+
+
+
+
+### Local SSL setup
+
+To set up SSL for local development, you can follow these steps:
+
+1. Install `mkcert` (or similar tools)
+2. Inside the SalesAgent directory, run `mkcert localhost`. This will generate a key pair in your current directory.
+3. Run `NODE_TLS_REJECT_UNAUTHORIZED=0 nuxt dev --host=localhost --https --ssl-cert 'localhost.pem' --ssl-key 'localhost-key.pem'`
+
+:::info
+You can also replace localhost with any IP address or domain name, for example, if you want to test this application from different devices over your local network.
+:::

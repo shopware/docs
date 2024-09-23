@@ -1,3 +1,10 @@
+---
+nav:
+   title: Routing
+   position: 30
+
+---
+
 # Client and Server Routing
 
 Please refer to the Nuxt documentation for more information about how [server](https://nuxt.com/docs/guide/directory-structure/server) and [client](https://nuxt.com/docs/guide/directory-structure/pages) routes work internally.
