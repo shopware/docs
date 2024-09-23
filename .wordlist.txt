@@ -1294,6 +1294,7 @@ runtime
 RuntimeException
 runtimes
 SaaS
+SalesAgent
 saleschannel
 salesChannel
 SalesChannel
@@ -1415,6 +1416,7 @@ SQS
 src
 srcset
 SSHes
+SSL
 stableVersion
 stackable
 Stackhero
@@ -1525,6 +1527,7 @@ tipps
 TipTap
 TipTap's
 tl
+TLS
 todo
 tokenized
 ToMany
@@ -1585,11 +1588,13 @@ UnitCollection
 UnitEntity
 UnitTests
 unminified
+UnoCSS
 unprefixed
 unregister
 Unregistering
 unsecure
 unserialize
+unstorage
 unstyled
 untrusted
 Untrusted
@@ -1645,6 +1650,7 @@ viewports
 vimeo
 VirtualHosts
 Vitepress
+Vitest
 VM
 vscode
 VSCode

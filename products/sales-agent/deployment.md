@@ -5,7 +5,7 @@ position: 70
 
 ---
 
-# Deployment
+## Deployment
 
 For general information about running a Nuxt application in production, please refer to the [official docs](https://nuxt.com/docs/getting-started/deployment).
 

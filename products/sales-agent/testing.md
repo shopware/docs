@@ -9,7 +9,7 @@ nav:
 
 ## Unit Tests
 
-[Vitest](https://vitest.dev/) is used for unit testing. The tests are located in the `__tests__` directory of each module.
+[Vitest](https://vitest.dev/) is used for unit testing. The tests are located in the `tests` directory.
 
 ## Running Tests
 
