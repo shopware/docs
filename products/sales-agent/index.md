@@ -19,6 +19,7 @@ This project is designed to streamline the communication and sales processes bet
 The *Sales Agent* application does not belong to *the default Storefront*. It's a standalone Frontend app running with Nuxt instance. This template will be hosted in a separate instance with a new domain, which will be different from the Storefront domain.
 :::
 
+To get access to the private Gitlab repository, please create a ticket in your [Shopware Account](https://account.shopware.com). Access is granted after a short validation or a purchase of the Beyond or Evolve license.
 
 ## Prerequisites
 
