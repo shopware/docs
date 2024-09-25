@@ -46,10 +46,10 @@ When you create a new pull request on GitHub, it will normally get the first sig
 
 ## What happens after a pull request has been created
 
-Everyday weekdays, we assign the pull request to a Area (team), which is responsible for the specific part of the Shopware software. The Area will then review further your pull request and decide what to do next.
+Everyday weekdays, we assign the pull request to an Area (team) which is responsible for the specific part of the Shopware software. The Area will then review your pull request and decide what to do next.
 The Area can either accept your pull request, decline it, or ask you to update it with more information or changes.
 
-The next step is that the pull request get's an "Scheduled" label.
+The next step is that the pull request gets a "Scheduled" label.
 This means that your pull request is now imported into our internal ticket system and will go through our internal workflow.
 You will find a comment containing the GitHub Issue to follow the process.
 
