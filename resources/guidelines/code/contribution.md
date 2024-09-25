@@ -21,8 +21,8 @@ To avoid your pull request getting rejected, you should always check that you pr
 * A pull request to the Shopware core always has to be made to the [main shopware](https://github.com/shopware/shopware) repository.
 * Fill out the [pull request info template](https://github.com/shopware/shopware/blob/trunk/.github/PULL_REQUEST_TEMPLATE.md) as detailed as possible.
 * Create a changelog file with documentation of your changes. Refer to [Changelog](https://github.com/shopware/shopware/blob/master/adr/2020-08-03-implement-new-changelog.md) section for more detailed information about writing changelog.
-* Check if your pull request addresses the correct Shopware version. Breaks and features can't be merged in a patch release.
-* Check if your implementation is missing some important parts - For example, translations, downward compatibility, compatibility with important plugins, etc.
+* Check if your pull request addresses the correct Shopware branch: 6.5.x for upcomming 6.5 version and trunk for next upcomming 6.6 version.
+* Check if your implementation is missing some important parts - For example, translations, backwards compatibility etc.
 * Provide the necessary tests for your implementation.
 * Check if there is already an existing pull request tackling the same issue.
 * Write your commit messages in English, have them short and descriptive, and squash your commits meaningfully.
@@ -42,9 +42,16 @@ When you create a new pull request on GitHub, it will normally get the first sig
 |        ![GitHub label scheduled](../../../assets/github-label-scheduled.png)         | Your changes have been reviewed by our developers, and they decided that you provided a benefit for our product. Your pull request will be imported into our ticket system and will go through our internal workflow. You will find a comment containing the ticket number to follow the status. |
 |        ![GitHub label quickpick](../../../assets/github-label-quickpick.png)         | The changes you provide seem to be easy to test and implement. Our developers decided to integrate this quickly into our software. There will probably be no ticket for this change to follow, but you will be informed by the accepted label on this pull request that your change was finally merged into the product. |
 |         ![GitHub label accepted](../../../assets/github-label-accepted.png)          | Your changes are finally accepted. The pull request passed our internal workflow. Your changes will be released with one of the next releases. |
-|      ![GitHub label feature request](../../../assets/github-label-feature.png)       | Your pull request includes a new feature that needs an internal discussion by our developers. We have to decide if the new feature provides a benefit for the product and at which point it should be scheduled on the roadmap. |
-|      ![GitHub label refactoring](../../../assets/github-label-refactoring.png)       | Your pull request includes a larger refactoring which needs an internal discussion by our developers. This label will mainly be set when larger chunks of code have been re-written, renamed, or moved to different directories. |
 |    ![GitHub label missing tests](../../../assets/github-label-missing-tests.png)     | Your pull request lacks the necessary tests for your changes. E.g. [Jest](../../../guides/plugins/plugins/testing/jest-admin) or [Cypress](../../../guides/plugins/plugins/testing/end-to-end-testing) tests for frontend changes or [PHPUnit](../../../guides/plugins/plugins/testing/php-unit) tests for backend changes. |
+
+## What happens after a pull request has been created
+
+Everyday weekdays, we assign the pull request to a Area (team), which is responsible for the specific part of the Shopware software. The Area will then review further your pull request and decide what to do next.
+The Area can either accept your pull request, decline it, or ask you to update it with more information or changes.
+
+The next step is that the pull request get's an "Scheduled" label.
+This means that your pull request is now imported into our internal ticket system and will go through our internal workflow.
+You will find a comment containing the GitHub Issue to follow the process.
 
 ## Why a pull request gets declined
 
