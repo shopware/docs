@@ -11,6 +11,10 @@ nav:
 
 This reference presents a comprehensive compilation of all security measures implemented in Shopware 6, along with instructions on how to configure them.
 
+:::info
+If you have found a security vulnerability in Shopware, please report it to us following the instructions in our [Security Advisory Form](https://github.com/shopware/shopware/security/advisories/new).
+:::
+
 ## ACL in the Administration
 
 The Access Control List (ACL) in Shopware ensures that by default, data can only be created, read, updated, or deleted (CRUD), once the user has specific privileges for a module. [ACL in the Administration](../../concepts/framework/architecture/administration-concept#acl-in-the-administration)
