@@ -78,7 +78,7 @@ docker compose up
 
 ### Local SSL setup
 
-To set up SSL for local development, you can follow these steps:
+To set up SSL for local development, follow the below steps:
 
 1. Install `mkcert` (or similar tools)
 2. Inside the SalesAgent directory, run `mkcert localhost`. This will generate a key pair in your current directory.
