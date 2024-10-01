@@ -18,7 +18,7 @@ curl -XPOST -H 'x-api-key: <secret>' -H "Content-type: application/json" -d '{
 }' '<sales_agent_instance_url>/api/user'
 ```
 
-If you want to restrict the user so that they can only see specific customers, you can send a POST request to the `/api/entity-restriction` endpoint.
+To restrict a user to viewing only specific customers, you can send a `POST` request to the `/api/entity-restriction` endpoint.
 
 ```bash
 curl -XPOST -H 'x-api-key: <secret>' -H "Content-type: application/json" -d '{
