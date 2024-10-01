@@ -16,7 +16,7 @@ Currently SCSS (or Sass) is included as a dev dependency in our project (see `pa
 
 ## Config, favicon and logo
 
-You can customize your sales agent by editing the app and configuration in your `config.ts` file. In addition, favicon and logo can easily be replaced in the following paths to use them. Please consider using square dimensions for the image file if possible:
+You can customize your sales agent by editing the app and configuring it in your `config.ts` file. Additionally, favicon and logo can be easily replaced in the following paths. Please consider using square dimensions for the image file if possible:
 
 - Favicon: `./public/favicon.ico`
 - Logo: `./public/logo.svg`
