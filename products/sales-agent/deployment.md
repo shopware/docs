@@ -7,7 +7,7 @@ position: 70
 
 ## Deployment
 
-For general information about running a Nuxt application in production, please refer to the [official docs](https://nuxt.com/docs/getting-started/deployment).
+For general information about running a Nuxt application in production, refer to the [official docs](https://nuxt.com/docs/getting-started/deployment).
 
 In addition to that, Sales Agent is using a configurable storage adapter for persisting data (`server/infrastructure/StorageAdapter.ts`). During local development, there's a file-based fallback storage adapter. In production, you need to configure a proper storage adapter.
 The corresponding configuration can be found in `nuxt.config.ts` in the `nitro.storage` object.
