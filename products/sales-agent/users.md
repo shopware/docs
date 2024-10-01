@@ -7,7 +7,7 @@ nav:
 
 # Creating a user and set restrictions
 
-You can create a user by sending a POST request to the `/api/user` endpoint. The x-api-key header is required and can be set in the environment (`API_AUTH_SECRET_KEY`).
+You can create a user by sending a `POST` request to the `/api/user` endpoint. The `x-api-key` header is required and can be set in the environment (`API_AUTH_SECRET_KEY`).
 
 ```bash
 curl -XPOST -H 'x-api-key: <secret>' -H "Content-type: application/json" -d '{
