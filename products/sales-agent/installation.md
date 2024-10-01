@@ -21,7 +21,7 @@ cd swagsalesagent
 ```
 cp .env.template .env
 ```
-- Fill in the required details in the `.env` file. See the table below for a detailed explanation of the properties.
+- Fill in the required details in the `.env` file. See the [table](../#.env properties) below for a detailed explanation of the properties.
 
 3. **Set Up Shopware**
 
