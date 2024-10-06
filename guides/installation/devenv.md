@@ -162,6 +162,10 @@ Since the environment is described via a `devenv.nix` file committed to version 
 devenv up
 ```
 
+::: info
+If the command fails, try to update devenv ```shell devenv update ``` once before booting up the environment.
+:::
+
 ::: warning
 Make sure that the ports for the services are not already in use, or else the command will fail.
 :::
