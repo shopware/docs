@@ -163,7 +163,7 @@ devenv up
 ```
 
 ::: info
-If the command fails, try to update devenv ```shell devenv update ``` once before booting up the environment.
+If the command fails, try to update devenv ```shell devenv update``` once before booting up the environment.
 :::
 
 ::: warning
