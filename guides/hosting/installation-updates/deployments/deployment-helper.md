@@ -7,10 +7,6 @@ nav:
 
 # Deployment Helper
 
-::: warning
-The Deployment Helper is experimental and configuration may change in the future. Please use it with caution.
-:::
-
 The Deployment Helper is a tool that unifies the steps executed after the Code has been uploaded to the server.
 On a traditional deployment, you would run it after the files have been uploaded. 
 When using a Containerized environment you would run Deployment Helper with the new source code and then switch over the traffic.
