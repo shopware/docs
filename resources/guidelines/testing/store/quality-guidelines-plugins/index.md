@@ -118,7 +118,8 @@ Shopware reserves the right to publish extensions with minified code after indiv
 * We want to improve the quality of the Shopware Community Store and offer as many different apps as possible.
 Hence, we check for a functional comparison with other apps already in the Shopware Community store, in the Rise edition, or above.
 If there is an app with the same function, it can be rejected as it doesn't provide any added value.
-For further information, write an email to [alliances@shopware.com](mailto:alliances@shopware.com).
+
+For further information, have a look at our [Differentiator cluster for Shopware extensions](Differentiator-Clusters.html) or write an email to [alliances@shopware.com](mailto:alliances@shopware.com).
 
 ::: info
 **Safe your app idea and get a preview in the store** - If you already have an idea and don't want it to be snatched away, then make sure you get it by creating a preview in your account.
