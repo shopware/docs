@@ -11,8 +11,8 @@ The Shopware 6 Administration allows you to override and extend components to ch
 ## Prerequisites
 
 All you need for this guide is a running Shopware 6 instance, the files and preferably a registered module.
-Of course, you'll have to understand JavaScript, Vue and have a basic familiarity with TwigJS block system, the templating engine, used in the Administration. It's just used for the block extending and overriding. Every other feature of TwigJS is not used in the Administration.
-However, that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation.
+Of course, you will have to understand JavaScript, Vue and have a basic familiarity with TwigJS block system, and the templating engine used in the Administration. It is just used for the block extending and overriding. Every other feature of TwigJS is not used in the Administration.
+However, that is a prerequisite for Shopware as a whole and will not be taught as part of this documentation.
 
 ## General
 
@@ -36,7 +36,7 @@ Shopware.Component.override('sw-text-field', {
 
 ## Extending a component
 
-To create your custom text-field `sw-custom-field` based on the existing `sw-text-field` you can implement it like following.
+To create your custom text-field `sw-custom-field` based on the existing `sw-text-field` you can implement it like the following:
 
 ```JS
 // import the custom twig-template file
@@ -49,7 +49,7 @@ Shopware.Component.extend('sw-custom-field', 'sw-text-field', {
 });
 ```
 
-Now you can render your new component `sw-custom-field` in any template like this.
+Now you can render your new component `sw-custom-field` in any template like this:
 
 ```twig
     <sw-custom-field></sw-custom-field>
@@ -59,7 +59,7 @@ Now you can render your new component `sw-custom-field` in any template like thi
 
 To extend a given template you can use the Twig `block` feature.
 
-Imagine you component you want to extend/override has the following template.
+Imagine, the component you want to extend/override has the following template:
 
 ```twig
 {% block card %}
@@ -80,7 +80,7 @@ Imagine you component you want to extend/override has the following template.
 ```
 
 Maybe you want to replace the markup of the header section and add an extra block to the content.
-With the Twig `block` feature you can implement a solution like this.
+With the Twig `block` feature you can implement a solution like this:
 
 ```twig
 {# override/replace an existing block #}
@@ -124,8 +124,8 @@ Shopware.Component.extend('sw-custom-field', 'sw-text-field', {
 });
 ```
 
-In the previous example the inherited logic of `onInput()` will be replaced completely.
-But sometimes you only be able to add additional logic to the method. You can achieve this by using `this.$super()` call.
+In the previous example, the inherited logic of `onInput()` will be replaced completely.
+But sometimes, you will only be able to add additional logic to the method. You can achieve this by using `this.$super()` call.
 
 ```JS
 // extend the existing component `sw-text-field` by passing
@@ -145,7 +145,7 @@ Shopware.Component.extend('sw-custom-field', 'sw-text-field', {
 });
 ```
 
-This technique also works for `computed` properties, e.g.
+This technique also works for `computed` properties, for example:
 
 ```JS
 // extend the existing component `sw-text-field` by passing
@@ -170,11 +170,11 @@ Shopware.Component.extend('sw-custom-field', 'sw-text-field', {
 ### Finding the block to override
 
 In this guide we want to change the heading of the Shopware 6 dashboard to be `Welcome to a customized Administration` instead of `Welcome to Shopware 6`.
-To do this we first need to find an appropriate twig block to override.
+To do this, we first need to find an appropriate twig block to override.
 We don't want to replace too much but also to not override too little of the Administration.
-In this case we only want to override the headline and not links or anything else on the page.
+In this case, we only want to override the headline and not links or anything else on the page.
 Looking at the twig markup for the dashboard [here](https://github.com/shopware/shopware/blob/trunk/src/Administration/Resources/app/administration/src/module/sw-dashboard/page/sw-dashboard-index/sw-dashboard-index.html.twig),
-suggests that we only need to override the Twig block with the name `sw_dashboard_index_content_intro_content_headline` to achieve our goal.
+suggests that we only need to override the twig block with the name `sw_dashboard_index_content_intro_content_headline` to achieve our goal.
 
 ### Preparing the override
 
@@ -190,8 +190,8 @@ In this very simple example it suffices to create a twig file, declare a block w
 {% endblock %}
 ```
 
-This overrides the entire Twig block with our new markup.
-However, if we want to retain the original content of the Twig block and just add our markup to the existing one, we can do that by including a <code v-pre>{% parent %}</code> somewhere in the Twig block.
+This overrides the entire twig block with our new markup.
+However, if we want to retain the original content of the twig block and just add our markup to the existing one, we can do that by including a <code v-pre>{% parent %}</code> somewhere in the twig block.
 Learn more about the capabilities of twig.js [here](https://github.com/twigjs/twig.js/wiki).
 
 As you might have noticed the heading we just replaced had a `{ $tc() }` [string interpolation](https://vuejs.org/v2/guide/syntax.html#Text) which is used to make it multilingual.
@@ -210,33 +210,33 @@ Shopware.Component.override('sw-dashboard-index', {
 });
 ```
 
-The first parameter matches the component to override, the second parameter has to be an object containing the actually overridden properties , e.g. the new twig template extension for this component.
+The first parameter matches the component to override, the second parameter has to be an object containing the actually overridden properties for example, the new twig template extension for this component.
 
 ### Loading the JavaScript File
 
 The main entry point to customize the Administration via a plugin is the `main.js` file.
 It has to be placed into the `<plugin root>/src/Resources/app/administration/src` directory in order to be automatically found by Shopware 6.
 
-The only thing now left to just add an import for our of previously created `./sw-dashboard-index-override/index.js` in the `main.js`:
+The only thing now left to just add an import for our previously created `./sw-dashboard-index-override/index.js` in the `main.js`:
 
 ```javascript
 import './sw-dashboard-index-override/';
 ```
 
-## Experimental: Composition API Extension System
+## Experimental: Composition API extension system
 
 Shopware 6 is introducing a new way to extend components using the Composition API. This system is currently in an experimental state and is needed for the future migration of components from the Options API to the Composition API.
 
-### Current Status and Future Plans
+### Current status and future plans
 
 - The existing Options API extension system remains fully supported and functional.
 - The new Composition API extension system is introduced as an experimental feature.
 - In future versions, components will gradually migrate from Options API to Composition API.
-- Plugin developers are encouraged to familiarize themselves with the new system, but should continue using the current Component Factory extension system for components written with the Options API.
+- Plugin developers are encouraged to familiarize themselves with the new system, but should continue using the current Component factory extension system for components written with the Options API.
 - For components written with the Composition API, the new extension system should be used.
-- In long term, the Composition API extension system will become the standard way to extend components. The Options API extension system will be deprecated and eventually removed when all components are migrated to the Composition API.
+- In the long term, the Composition API extension system will become the standard way to extend components. The Options API extension system will be deprecated and eventually removed when all components are migrated to the Composition API.
 
-### How It Works
+### How it works
 
 The new extension system introduces two main functions:
 
@@ -247,7 +247,7 @@ The new extension system introduces two main functions:
 
 The `overrideComponentSetup` function is a key part of the new Composition API extension system. It allows plugin developers to modify or extend the behavior of existing components without directly altering their source code.
 
-### Basic Usage
+### Basic usage
 
 ```javascript
 Shopware.Component.overrideComponentSetup()('componentName', (previousState, props, context) => {
@@ -259,16 +259,19 @@ Shopware.Component.overrideComponentSetup()('componentName', (previousState, pro
 ```
 
 #### Parameters
+
 1. `componentName`: A string identifying the component you want to extend.
 2. Callback function: This function receives three arguments:
    1. `previousState`: The current state of the component, including all its reactive properties and methods.
    2. `props`: The props passed to the component.
-   3. `context`: The setup context, similar to what you'd receive in a standard Vue 3 setup function.
+   3. `context`: The setup context, similar to what you would receive in a standard Vue 3 setup function.
 
-#### Return Value
+#### Return value
+
 The callback function should return an object containing any new or modified properties or methods you want to add or change in the component.
 
 #### Example: Replacing a Single Property
+
 ```javascript
 Shopware.Component.overrideComponentSetup()('sw-product-list', (previousState) => {
     const newPageSize = ref(50);
@@ -280,6 +283,7 @@ Shopware.Component.overrideComponentSetup()('sw-product-list', (previousState) =
 ```
 
 #### Example: Adding a New Method
+
 ```javascript
 Shopware.Component.overrideComponentSetup()('sw-order-list', (previousState) => {
     return {
@@ -290,7 +294,8 @@ Shopware.Component.overrideComponentSetup()('sw-order-list', (previousState) => 
 });
 ```
 
-#### Example: Modifying Existing Data
+#### Example: Modifying existing data
+
 ```javascript
 Shopware.Component.overrideComponentSetup()('sw-customer-list', (previousState) => {
     // Add a new column to the list
@@ -300,7 +305,8 @@ Shopware.Component.overrideComponentSetup()('sw-customer-list', (previousState) 
 });
 ```
 
-#### Example: Overwriting a Method
+#### Example: Overwriting a method
+
 ```javascript
 Shopware.Component.overrideComponentSetup()('sw-customer-list', (previousState) => {
     // Overwrite the existing method
@@ -318,6 +324,7 @@ Shopware.Component.overrideComponentSetup()('sw-customer-list', (previousState) 
 ```
 
 #### Example: Accessing props and context
+
 ```javascript
 Shopware.Component.overrideComponentSetup()('sw-customer-list', (previousState, props, context) => {
     // Access the props
@@ -330,7 +337,8 @@ Shopware.Component.overrideComponentSetup()('sw-customer-list', (previousState, 
 });
 ```
 
-### Important Notes
+### Important notes
+
 1. Type Safety: The system aims to provide type safety. Make sure your IDE is set up to recognize the types from Shopware's type definitions.
 2. Reactive Properties: When modifying reactive properties, ensure you maintain their reactivity. Use Vue's reactive utilities when necessary.
 3. Multiple Overrides: Multiple plugins can override the same component. Overrides are applied in the order they are registered.
@@ -340,7 +348,7 @@ Shopware.Component.overrideComponentSetup()('sw-customer-list', (previousState, 
 
 ### Example real world usage
 
-Here's an example of how to create an extendable component and how to extend it:
+Here is an example of how to create an extendable component and how to extend it:
 
 ```javascript
 import { defineComponent, reactive } from 'vue';
@@ -423,14 +431,16 @@ Shopware.Component.overrideComponentSetup()('originalComponent', (previousState,
 
 In this example, `createExtendableSetup` is used to make the `originalComponent` extendable. The `overrideComponentSetup` function is then used to modify the properties of the component. In this case, the message is changed, a new computed property is added, and the increment method is modified to show a notification if the `showNotification` prop is set to `true`.
 
-### Key Differences from Options API Extension system
+### Key differences from Options API extension system
+
 - Uses Composition API syntax and reactive primitives of Vue 3 instead of Vue 2 options API.
 - Extensions are applied using function composition rather than option merging.
 - Provides more granular control over what parts of a component can be extended.
 - Only overrides are possible. Extending a component is not supported anymore. This can be done natively with the Composition API.
 
 ### Using TypeScript
-To take full advantage of the Composition API extension system, it's recommended to use TypeScript. This will provide better type safety and autocompletion in your IDE and prevent common errors.
+
+To take full advantage of the Composition API extension system, it is recommended to use TypeScript. This will provide better type safety and autocompletion in your IDE and prevent common errors.
 
 For adding type safety to props you need to import the type of the component you want to override and use it in the `overrideComponentSetup` function as a generic type: `<typeof _InternalTestComponent>`. The types for the `previousState` are automatically inferred from the component you are extending by using the correct component name.
 
