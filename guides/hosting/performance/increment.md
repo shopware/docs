@@ -20,6 +20,9 @@ Shopware uses the `increment` table to store such information by default. When m
 
 To use Redis, create a `config/packages/shopware.yml` file with the following content
 
+<Tabs>
+<Tab title="Before v6.6.8.0">
+
 ```yaml
 shopware:
     increment:
@@ -33,6 +36,30 @@ shopware:
           config:
             url: 'redis://host:port/dbindex'
 ```
+</Tab>
+
+<Tab title="Since v6.6.8.0">
+
+```yaml
+shopware:
+    redis:
+        connections:
+            persistent:
+                dsn: 'redis://host:port/dbindex?persistent=1'
+
+    increment:
+        user_activity:
+            type: 'redis'
+            config:
+                connection: 'persistent'
+
+        message_queue:
+            type: 'redis'
+            config:
+                connection: 'persistent'
+```
+</Tab>
+</Tabs>
 
 ### Redis configuration
 
@@ -50,8 +77,8 @@ To disable it, create a `config/packages/shopware.yml` file with the following c
 shopware:
     increment:
         user_activity:
-          type: 'array'
+            type: 'array'
 
         message_queue:
-          type: 'array'
+            type: 'array'
 ```
