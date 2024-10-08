@@ -19,7 +19,7 @@ Open Shopware CMS, select **Marketing** > **Digital Sales Rooms** > **Configurat
 
 ### Appointments
 
-- *Default appointment domain* - This select box shows the list of domains of all sales channel. You should choose the *Digital Sales Rooms* domain from [this section](./domain-config.md)
+- *Available domains* - This select box shows the list of domains of all sales channel. You should choose the *Digital Sales Rooms* domains from [this section](./domain-config.md)
 
 ### Video and Audio
 
@@ -28,7 +28,7 @@ Open Shopware CMS, select **Marketing** > **Digital Sales Rooms** > **Configurat
 
 ### Realtime service
 
-- *Hub url* - get the value from [this section](../setup-3rd-party/realtime-service-mercure.md#setup-via-stackhero-recommended)
-- *Hub public url* - get the value from [this section](../setup-3rd-party/realtime-service-mercure.md#setup-via-stackhero-recommended)
-- *Hub subscriber secret* - get the value from [this section](../setup-3rd-party/realtime-service-mercure.md#setup-via-stackhero-recommended)
-- *Hub publisher secret* - get the value from [this section](../setup-3rd-party/realtime-service-mercure.md#setup-via-stackhero-recommended)
+- *Hub url* - get the value from [this section](../setup-3rd-party/realtime-service-mercure.md#attach-mercure-information-into-digital-sales-rooms)
+- *Hub public url* - get the value from [this section](../setup-3rd-party/realtime-service-mercure.md#attach-mercure-information-into-digital-sales-rooms)
+- *Hub subscriber secret* - get the value from [this section](../setup-3rd-party/realtime-service-mercure.md#attach-mercure-information-into-digital-sales-rooms)
+- *Hub publisher secret* - get the value from [this section](../setup-3rd-party/realtime-service-mercure.md#attach-mercure-information-into-digital-sales-rooms)

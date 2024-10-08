@@ -1,7 +1,7 @@
 ---
 nav:
   title: Frontend App Deployment
-  position: 40
+  position: 10
 
 ---
 

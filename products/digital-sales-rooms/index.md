@@ -21,6 +21,8 @@ You can create interactive live video events for your customers straight from yo
 *Digital Sales Rooms* application does not belong to *the default Storefront*. It's a standalone Frontend app running with Nuxt instance. This template will be hosted in a separate instance with a new domain, which will be different from the Storefront domain.
 :::
 
+To use the Digital Sales Rooms plugin, you must perform **installation** & **3rd parties setup** & **plugin configuration**.
+
 ## Prerequisites
 
 Review the below minimum operating requirements before you install the *Digital Sales Rooms* feature:
@@ -33,4 +35,5 @@ Review the below minimum operating requirements before you install the *Digital 
   * [Daily.co](https://daily.co/) - Refer to setup instructions for [realtime video call](./setup-3rd-party/realtime-video-dailyco.md)
   * [Mercure](https://mercure.rocks/)- Refer to setup instructions for [realtime Mercure service](./setup-3rd-party/realtime-service-mercure.md)
   
+
 Following section guides you on the installation procedure.
