@@ -16,7 +16,7 @@ However, that's a prerequisite for Shopware as a whole and will not be taught as
 
 ## General
 
-To add new functionality or change the behavior of a existing component, you can either override or extend the component.
+To add new functionality or change the behavior of an existing component, you can either override or extend the component.
 
 The difference between the two methods is that with `Component.extend()` a new component is created. With `Component.override()`, on the other hand, the previous behavior of the component is simply overwritten.
 
@@ -24,7 +24,7 @@ The difference between the two methods is that with `Component.extend()` a new c
 
 The following example shows how you can override the template of the `sw-text-field` component.
 
-```js
+```JS
 // import the new twig-template file
 import template from './sw-text-field-new.html.twig';
 
@@ -38,7 +38,7 @@ Shopware.Component.override('sw-text-field', {
 
 To create your custom text-field `sw-custom-field` based on the existing `sw-text-field` you can implement it like following.
 
-```js
+```JS
 // import the custom twig-template file
 import template from './sw-custom-field.html.twig';
 
@@ -79,7 +79,7 @@ Imagine you component you want to extend/override has the following template.
 {% endblock %}
 ```
 
-Maybe you want to replace the markup of the header section an add an extra block to the content.
+Maybe you want to replace the markup of the header section and add an extra block to the content.
 With the Twig `block` feature you can implement a solution like this.
 
 ```twig
@@ -102,14 +102,14 @@ With the Twig `block` feature you can implement a solution like this.
 ```
 
 Summarized with the `block` feature you will be able to replace blocks inside a template.
-Additionally you can render the original markup of a block by using `{% parent %}`
+Additionally, you can render the original markup of a block by using `{% parent %}`
 
 ## Extending methods and computed properties
 
 Sometimes you need to change the logic of a method or a computed property while you are extending/overriding a component.
 In the following example we extend the `sw-text-field` component and change the `onInput()` method, which gets called after the value of the input field changes.
 
-```js
+```JS
 // extend the existing component `sw-text-field` by passing
 // a new component name and the new configuration
 Shopware.Component.extend('sw-custom-field', 'sw-text-field', {
@@ -127,7 +127,7 @@ Shopware.Component.extend('sw-custom-field', 'sw-text-field', {
 In the previous example the inherited logic of `onInput()` will be replaced completely.
 But sometimes you only be able to add additional logic to the method. You can achieve this by using `this.$super()` call.
 
-```js
+```JS
 // extend the existing component `sw-text-field` by passing
 // a new component name and the new configuration
 Shopware.Component.extend('sw-custom-field', 'sw-text-field', {
@@ -147,7 +147,7 @@ Shopware.Component.extend('sw-custom-field', 'sw-text-field', {
 
 This technique also works for `computed` properties, e.g.
 
-```js
+```JS
 // extend the existing component `sw-text-field` by passing
 // a new component name and the new configuration
 Shopware.Component.extend('sw-custom-field', 'sw-text-field', {
