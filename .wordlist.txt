@@ -1050,6 +1050,7 @@ OTEL
 otlp
 OTLP
 oversales
+overrideComponentSetup
 paas
 Paas
 PaaS
