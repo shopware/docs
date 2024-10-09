@@ -234,18 +234,18 @@ Shopware 6 is introducing a new way to extend components using the Composition A
 - In future versions, components will gradually migrate from Options API to Composition API.
 - Plugin developers are encouraged to familiarize themselves with the new system, but should continue using the current Component factory extension system for components written with the Options API.
 - For components written with the Composition API, the new extension system should be used.
-- In the long term, the Composition API extension system will become the standard way to extend components. The Options API extension system will be deprecated and eventually removed when all components are migrated to the Composition API.
+- In the long term, the Composition API extension system will become the standard way to override components. The Options API extension system will be deprecated and eventually removed when all components are migrated to the Composition API.
 
 ### How it works
 
 The new extension system introduces two main functions:
 
 1. `Shopware.Component.createExtendableSetup`: Used within components to make them extendable. This will mainly be used by the core team to make components extendable.
-2. `Shopware.Component.overrideComponentSetup`: Used by plugins to extend components.
+2. `Shopware.Component.overrideComponentSetup`: Used by plugins to override components.
 
 ### Using overrideComponentSetup
 
-The `overrideComponentSetup` function is a key part of the new Composition API extension system. It allows plugin developers to modify or extend the behavior of existing components without directly altering their source code.
+The `overrideComponentSetup` function is a key part of the new Composition API extension system. It allows plugin developers to override or extend the behavior of existing components without directly altering their source code.
 
 ### Basic usage
 
@@ -260,7 +260,7 @@ Shopware.Component.overrideComponentSetup()('componentName', (previousState, pro
 
 #### Parameters
 
-1. `componentName`: A string identifying the component you want to extend.
+1. `componentName`: A string identifying the component you want to override.
 2. Callback function: This function receives three arguments:
    1. `previousState`: The current state of the component, including all its reactive properties and methods.
    2. `props`: The props passed to the component.
@@ -348,7 +348,7 @@ Shopware.Component.overrideComponentSetup()('sw-customer-list', (previousState, 
 
 ### Example real world usage
 
-Here is an example of how to create an extendable component and how to extend it:
+Here is an example of how to create an extendable component and how to override it:
 
 ```javascript
 import { defineComponent, reactive } from 'vue';
@@ -377,32 +377,33 @@ const originalComponent = defineComponent({
             default: false,
         },
     },
-    setup(props, context) {
-        const publicApi = Shopware.Component.createExtendableSetup({
-            props,
-            context,
-            name: 'originalComponent',
-        }, () => {
-            const count = ref(0);
-            const message = 'Hello from Shopware!';
-            const countMessage = computed(() => `The current count is: ${count.value}`);
+    setup: (props, context) => Shopware.Component.createExtendableSetup({
+        props,
+        context,
+        name: 'originalComponent',
+    }, () => {
+        const count = ref(0);
+        const message = 'Hello from Shopware!';
+        const countMessage = computed(() => `The current count is: ${count.value}`);
 
-            const increment = () => {
-                count.value++;
-            };
+        const increment = () => {
+            count.value++;
+        };
 
-            return {
+        const privateExample = ref('This is a private property');
+
+        return {
+            public: {
                 count,
                 message,
                 countMessage,
                 increment,
-            };            
-        });
-
-        return {
-            ...publicApi,
-        };
-    },
+            },
+            private: {
+                privateExample,
+            }
+        };            
+    }),
 });
 
 // Overriding the component with a plugin
@@ -435,14 +436,14 @@ In this example, `createExtendableSetup` is used to make the `originalComponent`
 
 - Uses Composition API syntax and reactive primitives of Vue 3 instead of Vue 2 options API.
 - Extensions are applied using function composition rather than option merging.
-- Provides more granular control over what parts of a component can be extended.
+- Provides more granular control over what parts of a component can be overridden.
 - Only overrides are possible. Extending a component is not supported anymore. This can be done natively with the Composition API.
 
 ### Using TypeScript
 
 To take full advantage of the Composition API extension system, it is recommended to use TypeScript. This will provide better type safety and autocompletion in your IDE and prevent common errors.
 
-For adding type safety to props you need to import the type of the component you want to override and use it in the `overrideComponentSetup` function as a generic type: `<typeof _InternalTestComponent>`. The types for the `previousState` are automatically inferred from the component you are extending by using the correct component name.
+For adding type safety to props you need to import the type of the component you want to override and use it in the `overrideComponentSetup` function as a generic type: `<typeof _InternalTestComponent>`. The types for the `previousState` are automatically inferred from the component you are overriding by using the correct component name.
 
 ```typescript
 import _InternalTestComponent from 'src/the/path/to/the/exported/component';
@@ -461,6 +462,19 @@ Shopware.Component.overrideComponentSetup<typeof _InternalTestComponent>()('_int
         baseValue: newBaseValue,
         multipliedValue: newMultipliedValue,
     };
+});
+```
+
+### Accessing private properties
+
+In some cases, you may need to access private properties of a component. This is not recommended, as it can lead to unexpected behavior and breakages when the component is updated. However, if you need to access private properties for debugging or testing purposes, you can do so using the `_private` property of the `previousState` object where all private properties are stored.
+
+Note: overriding and accessing private properties has no TS support and is not recommended for production use.
+
+```javascript
+Shopware.Component.overrideComponentSetup()('sw-customer-list', (previousState, props, context) => {
+    // Access the private properties
+    console.log(previousState._private.thePrivateProperty);
 });
 ```
 
