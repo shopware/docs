@@ -1,7 +1,7 @@
 ---
 nav:
   title: SaaS
-  position: 50
+  position: 20
 
 ---
 
@@ -12,6 +12,6 @@ However, there are some steps that need to be completed to ensure the DSR functi
 
 - [Deploy the frontend app](../app-deployment/index.md)
 
-- [3rd parties](../setup-3rd-party/index.md)
+- [3rd parties](../../setup-3rd-party/index.md)
 
-- [Configuration](../configuration/index.md)
+- [Configuration](../../configuration/index.md)

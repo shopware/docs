@@ -30,7 +30,7 @@ strict-peer-dependencies=false
 pnpm install wrangler --save-dev
 ```
 
-- Make sure the Frontend app has already [generated .env file](../local-installation/app-installation.md#generate-env-file)
+- Make sure the Frontend app has already [generated .env file](../../installation/app-installation.md#generate-env-file)
 
 - Build your project for Cloudflare Pages:
 
@@ -123,4 +123,4 @@ When deploying your Pages project, you may wish to point custom domains (or subd
 
 ## Configure sales channel domain
 
-Your website is ready, you should have a frontend app domain. Please use the current domain to configure [sales channel domain](../configuration/domain-config.md).
+Your website is ready, you should have a frontend app domain. Please use the current domain to configure [sales channel domain](../../configuration/domain-config.md).
