@@ -7,7 +7,7 @@ nav:
 
 # Getting Started
 
-The app server written in TypeScript and is an open-source project accessible at [app-php-sdk](https://github.com/shopware/app-sdk-js).
+The app server written in TypeScript and is an open-source project accessible at [app-sdk-js](https://github.com/shopware/app-sdk-js).
 
 ## Installation
 
