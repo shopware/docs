@@ -79,20 +79,20 @@ As an app will be released in both stores (German and International), the conten
 * Check if all images for the English store description contain the English language. [Please do not mix English with other languages in your screenshots. Screenshots in German for the German store description are optional.]
 * Check if you explained the setup of the app and added a configuration manual.
 
-###Diplay Name
+### Display Name
 
 According to the new naming scheme, extensions may no longer display the words "plugin" and "shopware" in their names.
 An extension with a name that directly reflects its functional purpose is permissible, even if it shares the same name as another extension.
 
-Also, the store-display name had to be used for composer.json and config.xml.
+Also, the store-display name had to be used for `composer.json` and `config.xml`.
 
-###Short description
+### Short description
 
-(Min. 150—max. 185 characters)—The app's short description must be unique and at least 150 characters long.
+(Min. 150 — max. 185 characters)—The app's short description must be unique and at least 150 characters long.
 Use the short description wisely, as the text will tease your app in the overview along with the "Customers also bought" and "Customers also viewed" recommendations.
 The short description is also published as a meta-description.
 
-###Description
+### Description
 
 (Min. 200 characters)—The app description must be at least 200 characters long and describe the app's functions in detail.
 
@@ -105,7 +105,7 @@ The short description is also published as a meta-description.
   * **Tips:**
 
     * When it comes to increasing your app sales, it is important that potential customers feel completely informed about your products and services.
-	To this end, you should provide a description, highlights, and features that are meaningful, detailed, and easy to understand, even for people with very little technical knowledge.
+	To this end, you should provide description, highlights, and features that are meaningful, detailed, and easy to understand, even for people with very minimal technical knowledge.
 	Explain step-by-step how your app works and how to use it to achieve the desired result.
 	Of course, your app description should be accompanied by clean HTML source code.
 
@@ -127,21 +127,21 @@ Include several screenshots and descriptive images from the Storefront and backe
 They must show the app "in action", its configuration options, and how to use it.
 We recommend uploading screenshots showing the mobile- and desktop-view.
 
-[Link: How To - Add images and icons to extensions](https://docs.shopware.com/en/account-en/adding-pictures-and-icons/how-to)
+Take a look at [How To - Add images and icons to extensions](https://docs.shopware.com/en/account-en/adding-pictures-and-icons/how-to)
 
-###Link to Demoshop
+### Link to Demoshop
 
-If you provide a demo shop, the link must be valid (the URL cannot contain http: or https:).
+If you provide a demo shop, the link must be valid (the URL cannot contain `http:` or `https:`).
 Do not link to your test environments, as we will delete them automatically two weeks after they are created.
 
-###Personal data protection information
+### Personal data protection information
 
 If necessary, personal data protection information has to be set.
 If personal data of the customers (store operator and/or his customers) are processed with this extension according to Art. 28 DSGVO, the following information of the data processing company must be stored in the field "Subprocessor".
 
 If other companies are involved in the data processing of personal data, the same information must be stored accordingly for them in the field "Further subprocessors".
 
-###Configuration manual
+### Configuration manual
 
 Explain how your app is installed and configured, how it works on a technical base, and how it can be used to achieve the desired result.
 Of course, your app manual should contain a setup guide and be accompanied by clean HTML source code.
@@ -149,7 +149,7 @@ Of course, your app manual should contain a setup guide and be accompanied by cl
 ###Manufacturer Profile
 
 Your manufacturer profile must mandatorily contain accurate English and German descriptions and a manufacturer logo.
-You can find the manufacturer profile in your account under Shopware Account > Extension Partner > Extension Partner profile.
+You can find the manufacturer profile in your account under Shopware Account > Extension Partner > [Extension Partner profile](https://account.shopware.com/producer/profile).
 
 [extension partner profile](https://account.shopware.com/producer/profile)
 
@@ -163,12 +163,12 @@ Custom styles may not overwrite the original Shopware styles. External sources m
 ### Testing functionality
 Due to our quality assurance, we check the app's complete functionality and test it wherever it impacts the administration or storefront.
 
-Also, every app will be code-reviewed by one of our core-developer ensuring coding- and security standards.
+Also, every app will be code-reviewed by one of our core-developer ensuring coding and security standards.
 
 ### Extension master data/license
 
 Please enter the valid license you set in your Shopware account.
-You have to identify this license in the composer.json as well.
+You have to identify this license in the `composer.json` as well.
 
 ::: info
 The chosen license can't be changed after adding your app to your account.
@@ -183,7 +183,7 @@ For example, if the customer has his installation in Spanish and your app is not
 
 If your app is available in more than one language (e.g., English, Spanish, French and German), these can be defined using the option "Translations into the following languages are available" (located in the “Description & images” section of your *Extension Manager*).
 
-We check for text snippets, config.xml, and composer.json.
+We check for text snippets, `config.xml`, and `composer.json`.
 
 ### Valid preview images for the Shopware administration
 
@@ -196,7 +196,7 @@ Also, provide a preview image for Themes in the *Theme Manager* and CMS elements
 
 ### Configuration per sales channel
 
-Apps that appear in the Storefrond and use a config.xml must be able to be configured separately for each sales channel.
+Apps that appear in the Storefrond and use a `config.xml` must be able to be configured separately for each sales channel.
 
 ### External links with rel="noopener"
 
@@ -211,7 +211,7 @@ This ensures that the log file can never be accessed via the URL.
 
 For payment apps, we check if the "plugin logger" service is used for the debug/error.log and that logs are written in the directory /var/log/. Log files must be used in every circumstance.
 
-The log file had to be named like this: MyExtension-Year-Month-Day.log
+The log file had to be named like this: "MyExtension-Year-Month-Day.log"
 
 Another solution is to store them in the database.
 Try to avoid using your own log tables. Otherwise, you have to implement a scheduled task that regularly empties your log table within the given time of max. 6 months.
@@ -254,7 +254,7 @@ However, it is difficult to read and understand the compiled code.
 The uncompiled JavaScript code must be placed in a separate folder to ensure it remains accessible to all developers.
 This allows other developers to review and understand the code in its original, readable form.
 
-Please build your main.js as described in our documentation and create the minified code as described in our developer documentation. 
+Please build your `main.js` as described in our documentation and create the minified code as described in our developer documentation. 
 
 [Loading the JS files](https://developer.shopware.com/docs/guides/plugins/plugins/administration/add-custom-field.html#loading-the-js-files)
 [Injecting into the Administration](https://developer.shopware.com/docs/guides/plugins/plugins/administration/add-custom-field.html#injecting-into-the-administration)
@@ -263,6 +263,7 @@ Shopware reserves the right to publish extensions with minified code after indiv
 For this, the developer must ensure that Shopware has access to the current unminified code of the extension at all times.
 
 ### Message queue
+
 If the extension adds messages to the message queue, ensure they are not bigger than 262,144 bytes (256 KB).
 This limitation is set by common message queue workers and should not be exceeded.
 
@@ -278,7 +279,7 @@ If you have any questions regarding the technology partner agreement, please con
 
 ### Testing the storefront
 
-Test the frontend and the checkout for new errors throughout the entire Storefront using the Browser Debug Console – also pay attention to JavaScript errors.
+Test the frontend and the checkout for new errors throughout the entire Storefront using the Browser Debug Console and also pay attention to JavaScript errors.
 
 ### Links must include a title tag
 
@@ -302,7 +303,7 @@ Use your own classes and let your CSS be compiled by the theme.
 We check for new XHR/Document requests in the storefront as they must be accompanied by an `X-Robots-Tag` in the header request with the directive "noindex, nofollow.".
 For further details, please refer to the [robots meta tag](https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag?hl=de#xrobotstag) article.
 
-If the app creates its own controller URLs set to "index, follow" and the URLs are accessible via the frontend, then these "app URLs" must also appear in the sitemap.xml.
+If the app creates its own controller URLs set to "index, follow" and the URLs are accessible via the frontend, then these "app URLs" must also appear in the `sitemap.xml`.
 In addition, these pages must include a valid canonical tag, their own meta description, and a title tag, which can be entered individually via the administration or as a text snippet.
 
 ### Lighthouse A/B-Testing:
@@ -322,13 +323,14 @@ Also, could you check for duplicate entries as well as any new bugs?
   * [Schema Markup Validator of schema.org](https://validator.schema.org/)
   * [Google Rich Result Tester] (https://search.google.com/test/rich-results)
 
-###Usage of fonts from external sources
+### Usage of fonts from external sources
+
 If you are using external fonts (e.g., Google fonts, Fontawesome) or external services, the app store description must contain this information.
 
 Please be aware that you might have to edit your *data protection information*.
 This info could be placed as a tooltip near the font settings of the app configuration.
 
-###Register your cookie to the Cookie Consent Manager
+### Register your cookie to the Cookie Consent Manager
 
 We expect every cookie set from the store URL to be optional and not technically required for running shopware.
 Therefore, the cookies had to be [registered in our Cookie Consent Manager](/docs/guides/plugins/plugins/storefront/add-cookie-to-manager).
