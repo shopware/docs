@@ -14,7 +14,7 @@ The app server written in TypeScript and is an open-source project accessible at
 Install the App PHP SDK via NPM:
 
 ```bash
-npm install --save @shopware/app-sdk-server
+npm install --save @shopware-ag/app-sdk-server
 ```
 
 After the installation, you can use the SDK in your project. Here is an example:
