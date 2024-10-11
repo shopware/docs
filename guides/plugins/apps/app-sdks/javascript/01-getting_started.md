@@ -7,7 +7,7 @@ nav:
 
 # Getting Started
 
-The app server written in TypeScript and is an open-source project accessible at [app-php-sdk](https://github.com/shopware/app-sdk-js).
+The app server written in TypeScript and is an open-source project accessible at [app-sdk-js](https://github.com/shopware/app-sdk-js).
 
 ## Installation
 
@@ -51,14 +51,19 @@ With this code, you can register your app with our custom app backend.
 <Tabs>
 
 <Tab title="Bun">
+
 ```bash
 bun run index.js
 ```
+
 </Tab>
 
 <Tab title="Deno">
+
 ```bash
 deno serve index.js
+```
+
 </Tab>
 
 <Tab title="Node.js">
