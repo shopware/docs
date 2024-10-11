@@ -120,8 +120,11 @@ import { createMediaFolder, uploadMediaFile, getMediaFolderByName } from '@shopw
 // The same http client as usual
 const httpClient = ...;
 
-// Create a new folder, optionally you can pass a parent folder id
-const folderId = await createMediaFolder(httpClient, 'My Folder');
+// Create a new folder
+const folderId = await createMediaFolder(httpClient, 'My Folder', {});
+
+// Create a new folder with parent folder id
+const folderId = await createMediaFolder(httpClient, 'My Folder', {parentId: "parent-id"});
 
 // Lookup a folder by name
 const folderId = await getMediaFolderByName(httpClient, 'My Folder');
