@@ -110,4 +110,33 @@ await syncService.sync([
 
 The second argument also allows a ApiContext to be passed to configure the API behaviour like disable indexing, or do it using queue asynchronous, disable triggering of flows, etc.
 
+## Abstraction of Media APIs
+
+The SDK offers helpers to manage the Shopware Media Manager. This allows you to easily upload an media, lookup folders or create new folder.
+
+```ts
+import { createMediaFolder, uploadMediaFile, getMediaFolderByName } from '@shopware-ag/app-server-sdk/helper/media';
+
+// The same http client as usual
+const httpClient = ...;
+
+// Create a new folder, optionally you can pass a parent folder id
+const folderId = await createMediaFolder(httpClient, 'My Folder');
+
+// Lookup a folder by name
+const folderId = await getMediaFolderByName(httpClient, 'My Folder');
+
+// Lookup a folder by default folder for an entity
+// Returns back the folderId to be used when using a media for a product
+const folderId = await getMediaDefaultFolderByEntity(httpClient, 'product');
+
+// Upload a file to the media manager
+await uploadMediaFile(httpClient, {
+    file: new Blob(['my text'], { type: 'text/plain' }),
+    fileName: `foo.text`,
+    // Optional, a folder id to upload the file to
+    mediaFolderId: folderId
+});
+```
+
 Next, we will look into the [Integrations](./06-integration).
