@@ -195,7 +195,7 @@ Also, provide a preview image for Themes in the *Theme Manager* and CMS elements
 
 ### Configuration per sales channel
 
-Apps that appear in the Storefrond and use a `config.xml` must be able to be configured separately for each sales channel.
+Apps that appear in the Storefront and use a `config.xml` must be able to be configured separately for each sales channel.
 
 ### External links with rel="noopener"
 
@@ -507,7 +507,7 @@ Remove out-commented code, unused files and folders, and all dev-files from your
 Here are some examples of not allowed folders and files:
 * /__MACOSX
 *./tests
-* .gitgignore
+* .gitignore
 * .gitkeep
 * .gitlab-ci.yml
 * .DS_Store

@@ -416,6 +416,7 @@ DelegatingLoader
 deletable
 Deleter
 demodemo
+demoshop
 deno
 Deno
 Denormalization
@@ -471,6 +472,7 @@ dont's
 dr
 dragTo
 dropdown
+DS
 DSGVO
 DSN
 dsr
@@ -482,6 +484,7 @@ dunglas
 duplications
 DX
 DynamoDB
+editorconfig
 EcmaScript
 ecommerce
 eg
@@ -521,6 +524,7 @@ ENUM
 enums
 Enums
 ENUMS
+ean
 env
 envs
 EOL
@@ -605,6 +609,7 @@ frontends
 frontmatter
 FroshDevelopmentHelper
 FroshPluginUploader
+Fontawesome
 Fullstack
 func
 gd
@@ -648,8 +653,10 @@ getUrls
 ghcr
 gif
 GIFs
+gitignore
 github
 Github
+gitkeep
 gitlab
 GitLab
 globals
@@ -673,6 +680,7 @@ GuestWishlistPage
 GuestWishlistPagelet
 guid
 gzip
+gz
 handleFlow
 hardcoded
 hasError
@@ -857,6 +865,7 @@ LUA
 lychee
 Lychee
 macOS
+MACOSX
 mailAware
 MailAware
 Mailcatcher
@@ -931,6 +940,7 @@ Monorepos
 MoveShopPermanently
 moz
 mozilla
+mpn
 mr
 MRs
 MultiWarehouse
@@ -943,6 +953,7 @@ mysql
 mysqldump
 MyTestClass
 MyTestInterface
+MyExtension
 NameAware
 namespace
 namespaces
@@ -1112,6 +1123,7 @@ PhpUnit
 PHPunit
 PHPUnit
 phpunit's
+phpunitx
 PII
 pluginlogger
 PluginManager
@@ -1214,6 +1226,7 @@ pwa
 PWA
 px
 py
+qa@shopware.com
 qty's
 quantityBefore
 quantityDelta
