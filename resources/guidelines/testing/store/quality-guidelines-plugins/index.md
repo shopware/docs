@@ -118,18 +118,19 @@ The short description is also published as a meta-description.
 	The manufacturer/partner certificates are dynamically loaded at the end of each app description and published by us.
 :::
 
-###Images
+### Images
 
-[Screenshots and a Preview-Image in English language are standard. Only full English screenshots are accepted. Please do not mix English with other languages in your screenshots].
-Screenshots in German for the German store description are optional.
+::: info
+Screenshots and preview images in English are standard. Only full English screenshots are accepted. Please do not mix English with other languages in your screenshots. Screenshots in German for the German store description are optional.
+:::
 
 Include several screenshots and descriptive images from the Storefront and backend that represent the app functionality.
 They must show the app "in action", its configuration options, and how to use it.
-We recommend uploading screenshots showing the mobile- and desktop-view.
+We recommend uploading screenshots showing the mobile and desktop-view.
 
 Take a look at [How To - Add images and icons to extensions](https://docs.shopware.com/en/account-en/adding-pictures-and-icons/how-to)
 
-### Link to Demoshop
+### Link to demoshop
 
 If you provide a demo shop, the link must be valid (the URL cannot contain `http:` or `https:`).
 Do not link to your test environments, as we will delete them automatically two weeks after they are created.
@@ -146,12 +147,10 @@ If other companies are involved in the data processing of personal data, the sam
 Explain how your app is installed and configured, how it works on a technical base, and how it can be used to achieve the desired result.
 Of course, your app manual should contain a setup guide and be accompanied by clean HTML source code.
 
-###Manufacturer Profile
+### Manufacturer Profile
 
 Your manufacturer profile must mandatorily contain accurate English and German descriptions and a manufacturer logo.
 You can find the manufacturer profile in your account under Shopware Account > Extension Partner > [Extension Partner profile](https://account.shopware.com/producer/profile).
-
-[extension partner profile](https://account.shopware.com/producer/profile)
 
 ::: info
 The source code's descriptions, profiles, and instructions do not allow iframes, external scripts, or tracking pixels.
@@ -356,20 +355,18 @@ If you use your own media folder, keep in mind that the folder and the included 
 Apart from that, you can validate the required credentials while saving them in the app settings.
 In this case, a status message must be displayed in the administration and Shopware log.
 If the API data is incorrect, an entry must appear in the event log file in the Shopware folder `/var/log/` respectively in the database.
-Apart from that, you can validate the required credentials while saving them in the app settings.
-In this case, a status message must be displayed in the administration and the Shopware log.
 
 * **Example for implementing an API Test Button into the System Config form:
  * [Github](https://github.com/shyim/ShyimApiTest)
 
 ### Shopping experiences
 
-[Shopping worlds elements] must include an element icon.
+[Shopping worlds elements](https://developer.shopware.com/docs/concepts/commerce/content/shopping-experiences-cms.html#elements) must include an element icon.
 If the app is deleted, *Shopping Worlds* should work flawlessly in the frontend.
 
 ### Themes
 
-[Themes] must include its own preview image.
+[Themes](https://developer.shopware.com/docs/guides/plugins/themes/) must include its own preview image.
 
 ### External technology/ Shopware Technology Partner (STP) apps
 
