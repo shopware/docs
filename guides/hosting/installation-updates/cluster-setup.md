@@ -43,11 +43,6 @@ The following folders are available in the production template:
 
 Most big-scale projects have a development team assigned. It is responsible for the stability and performance of the system. The integration of external sources via apps or plugins can be useful but should always be viewed with a critical eye. By including those sources, the development team relinquishes control over parts of the system. We recommend including necessary plugins as Composer packages instead of user-managed plugins.
 
-## Composer plugin loader
-
-Shopware loads by default all plugins via the database and allows to enable/disable plugins at runtime. This needs to be fixed in a multi-app server environment. Therefore, we recommend using the Composer plugin loader. The Composer plugin loader loads the plugin state from Composer, so when a plugin is installed using Composer we assume that it is enabled.
-That allows you to deploy plugins to all app servers by deploying with installing them using Composer. The plugins must be installed while deployment using `bin/console plugin:install --activate <name>`, so they are ready to use after the deployment. To use the composer plugin loader, add the environment variable `COMPOSER_PLUGIN_LOADER=1` to your `.env` file.
-
 ## Redis
 
 We recommend setting up at least five Redis servers for the following resources:
