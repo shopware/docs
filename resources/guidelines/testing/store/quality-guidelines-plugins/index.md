@@ -288,9 +288,9 @@ Links in the storefront and administration must include a meaningful "title tag"
 
 Links in the storefront and administration must include a meaningful "alt tag" or the original alt tag from the media manager.
 
-### Do not use <hX>-Tags
+### Do not use `<hX>`-Tags
 
-The utilization of <hX>-tags in the storefront templates, which are set to "<meta name="robots" content="index,follow">", is not permissible, as these tags are reserved exclusively for content purposes.
+The utilization of `<hX>`-tags in the storefront templates, which are set to `<meta name="robots" content="index,follow">`, is not permissible, as these tags are reserved exclusively for content purposes.
 However, you may employ `<span class="h2">`, for instance.
 
 ### Do not use inline-css in the storefront templates
