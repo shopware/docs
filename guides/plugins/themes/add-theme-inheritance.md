@@ -111,4 +111,3 @@ Now that you know how the theme inheritance works you can start with own customi
 
 * [Add SCSS Styling and JavaScript to a theme](add-css-js-to-theme.md)
 * [Customize templates](../plugins/storefront/customize-templates.md)
-
