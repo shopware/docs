@@ -2,6 +2,7 @@
 
 user := "$(shell id -u):$(shell id -g)"
 ignored = '/docs/resources/references/* /docs/adr/*'
+image = jonasbn/github-action-spellcheck:0.43.0
 
 .PHONY : help lint fix
 .DEFAULT_GOAL : help
@@ -12,7 +13,7 @@ help: ## Show this help
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  \033[32m%-18s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
 lint: ## Runs the linting tool
-	docker run --rm -u ${user} -v "$(shell pwd):/docs:ro" -e INPUT_IGNORE=${ignored} avtodev/markdown-lint:v1.5 \
+	docker run --rm -u ${user} -v "$(shell pwd):/docs" -w /docs -e INPUT_IGNORE=${ignored} ${image} \
 	    --config /docs/markdown-style-config.yml /docs
 
 fix: ## Runs the linting tool and fixes simple mistakes
