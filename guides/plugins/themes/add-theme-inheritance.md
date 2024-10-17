@@ -89,7 +89,7 @@ Here is an example:
   "configInheritance": [
     "@Storefront",
     "@SwagBasicExampleTheme"
-]
+  ]
 }
 ```
 
