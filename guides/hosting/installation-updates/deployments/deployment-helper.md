@@ -71,6 +71,9 @@ deployment:
       script: |
         # runs one time in deployment, then never again
         ./bin/console --version
+
+  store:
+    license-domain: 'example.com'
 ```
 
 Additionally, you can configure the Shopware installation using the following environment variables:
@@ -80,6 +83,9 @@ Additionally, you can configure the Shopware installation using the following en
 - `INSTALL_ADMIN_USERNAME` - The username of the admin user (default: `admin`)
 - `INSTALL_ADMIN_PASSWORD` - The password of the admin user (default: `shopware`)
 - `SALES_CHANNEL_URL` - The URL of the Storefront sales channel (default: `http://localhost`)
+- `SHOPWARE_STORE_ACCOUNT_EMAIL` - The email address of the Shopware account
+- `SHOPWARE_STORE_ACCOUNT_PASSWORD` - The password of the Shopware account
+- `SHOPWARE_STORE_LICENSE_DOMAIN` - The license domain of the Shopware Shop (default: license-domain value in YAML file)
 
 ## One Time Tasks
 
@@ -89,6 +95,13 @@ You can check with `./vendor/bin/shopware-deployment-helper one-time-task:list` 
 To remove a task, use `./vendor/bin/shopware-deployment-helper one-time-task:unmark <id>`. This will cause the task to be executed again during the next update.
 To manually mark a task as run you can use `./vendor/bin/shopware-deployment-helper one-time-task:mark <id>`.
 
+
+## Automatic Store Login
+
+The Deployment Helper can automatically log in to the Shopware Store, so you can install Apps from the Store. For this the environment variables: `SHOPWARE_STORE_ACCOUNT_EMAIL` and `SHOPWARE_STORE_ACCOUNT_PASSWORD` need to be set, and a license domain needs to be configured in the `.shopware-project.yml` file.
+The license domain can be set also by env variable `SHOPWARE_STORE_LICENSE_DOMAIN`, which will overwrite the value from the `.shopware-project.yml` file.
+
+When you open the extension manager, you will see that you are not logged in. This is normal as the Deployment Helper does log you in only for system tasks like extension installation or updates. For the extension manager, every Administration user needs to log in manually.
 
 ## Usage examples
 
