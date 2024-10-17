@@ -1707,6 +1707,7 @@ WriteProtected
 WSL
 www
 xasjkyld
+Valkey
 Xdebug
 XDebug
 xhost's
