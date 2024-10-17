@@ -45,7 +45,7 @@ shopware:
             delay: 1
             delay_options:
                 storage: redis
-                dsn: 'redis://host:port/dbindex'
+                connection: 'ephemeral' # connection name from redis configuration
 ```
 
 ## MySQL configuration
@@ -92,23 +92,7 @@ If you ever wonder why it is in `prod`, take a look into the [Symfony configurat
 ## Increment storage
 
 The [Increment storage](../performance/increment) is used to store the state and display it in the Administration.
-This storage increments or decrements a given key in a transaction-safe way, which causes locks upon the storage. Therefore, we recommend moving this source of server load to a separate Redis:
-
-```yaml
-# config/packages/prod/shopware.yaml
-shopware:
-    increment:
-        user_activity:
-          type: 'redis'
-          config:
-            url: 'redis://host:port/dbindex'
-
-        message_queue:
-          type: 'redis'
-          config:
-            url: 'redis://host:port/dbindex'
-```
-
+This storage increments or decrements a given key in a transaction-safe way, which causes locks upon the storage. Therefore, we recommend moving this source of server load to a separate Redis, as described in [Increment storage Redis configuration](./increment#redis-configuration).  
 If you don't need such functionality, it is highly recommended that you disable this behavior by using `array` as a type.
 
 ## Lock storage
@@ -129,15 +113,7 @@ The generation of the number ranges is an **atomic** operation, which guarantees
 
 By default, the number range states are stored in the database.
 In scenarios where high throughput is required (e.g., thousands of orders per minute), the database can become a performance bottleneck because of the requirement for atomicity.
-Redis offers better support for atomic increments than the database. Therefore, the number ranges should be stored in Redis in such scenarios.
-
-```yaml
-# config/packages/prod/shopware.yaml
-shopware:
-  number_range:
-    increment_storage: "Redis"
-    redis_url: 'redis://host:port/dbindex'
-```
+Redis offers better support for atomic increments than the database. Therefore, the number ranges should be stored in Redis in such scenarios, see [Number Ranges - using Redis as a storage](./number-ranges#using-redis-as-storage).
 
 ## Sending mails with the Queue
 

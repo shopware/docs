@@ -16,11 +16,33 @@ Redis is better suited in high-throughput scenarios, therefore you should use Re
 
 To use Redis, create a `config/packages/shopware.yml` file with the following content:
 
+<Tabs>
+<Tab title="Before v6.6.8.0">
+
 ```yaml
 shopware:
   cart:
     redis_url: 'redis://host:port/dbindex?persistent=1'
 ```
+</Tab>
+
+<Tab title="Since v6.6.8.0">
+
+```yaml
+shopware:
+    redis:
+        connections:
+            persistent:
+                dsn: 'redis://host:port/dbindex?persistent=1'
+    cart:
+        storage:
+            type: 'redis'
+            config:
+                 connection: 'persistent'
+```
+</Tab>
+</Tabs>
+
 It is recommended to use a persistent Redis connection to avoid connection issues in high-load scenarios.
 
 ## Migrating between storages
