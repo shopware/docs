@@ -1,10 +1,3 @@
-
-
-::: info
-This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/coding-guidelines/core/extendability.md)
-:::
-
 # Extendability
 
 The Extendability of our software and its features is an essential part of development. Enabling external companies, but also ourselves, to customize our software so that it can be adapted to different business cases is the foundation for the success of our software.
