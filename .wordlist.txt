@@ -1261,6 +1261,7 @@ refundId
 RefundPaymentHandlerInterface
 refundPositions
 refundPrice
+RegEx
 regexes
 RegistrationCompletedEvent
 RegistrationService
