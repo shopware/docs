@@ -89,6 +89,20 @@ You can check with `./vendor/bin/shopware-deployment-helper one-time-task:list` 
 To remove a task, use `./vendor/bin/shopware-deployment-helper one-time-task:unmark <id>`. This will cause the task to be executed again during the next update.
 To manually mark a task as run you can use `./vendor/bin/shopware-deployment-helper one-time-task:mark <id>`.
 
+## Fastly Integration
+
+The Deployment Helper can also deploy Fastly VCL Snippets for you and keep them up to date. After installing the Deployment Helper, you can install the Fastly meta package:
+
+```bash
+composer require shopware/fastly-meta
+```
+
+After that, make sure that environment variable `FASTLY_API_KEY` and `FASTLY_SERVICE_ID` are set and the Fastly VCL Snippets will be deployed with the regular deployment process of the Deployment Helper.
+
+The deployment helper has also two commands to manage the Fastly VCL Snippets:
+
+- `./vendor/bin/shopware-deployment-helper fastly:snippet:list` - List all VCL snippets that are currently deployed
+- `./vendor/bin/shopware-deployment-helper fastly:snippet:remove <name>` - Remove a VCL snippet by name
 
 ## Usage examples
 
