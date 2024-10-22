@@ -177,16 +177,18 @@ shopware:
 
 ### Fastly VCL Snippets
 
-Additionally, we need to set up some VCL Snippets in the Fastly interface:
+You can use the [Deployment Helper to automatically deploy Fastly VCL Snippets and keep them up to date](../installation-updates//deployments/deployment-helper.md).
 
-<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/deliver/default.vcl" title="vcl_deliver" target="_blank" />
+For manual deployment, you can find the VCL Snippets here:
 
-<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/fetch/default.vcl" title="vcl_fetch" target="_blank" />
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.6/config/fastly/deliver/default.vcl" title="vcl_deliver" target="_blank" />
 
-<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/hash/default.vcl" title="vcl_hash" target="_blank" />
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.6/config/fastly/fetch/default.vcl" title="vcl_fetch" target="_blank" />
 
-<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/hit/default.vcl" title="vcl_hit" target="_blank" />
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.6/config/fastly/hash/default.vcl" title="vcl_hash" target="_blank" />
 
-<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/recv/default.vcl" title="vcl_recv" target="_blank" />
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.6/config/fastly/hit/default.vcl" title="vcl_hit" target="_blank" />
+
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.6/config/fastly/recv/default.vcl" title="vcl_recv" target="_blank" />
 
 <!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Storefront/Resources/config/packages/storefront.yaml","WATCHER_HASH":"ea090957a082e950ffa112b108e40abf"} -->
