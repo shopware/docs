@@ -74,6 +74,23 @@ class ExampleEntity extends Entity
 
 All field types are defined in the [`FieldType`](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/DataAbstractionLayer/Attribute/FieldType.php) class.
 
+If you have a custom field type, you can also specify the FQCN of the field type.
+
+```php
+#[EntityAttribute('example_entity')]
+class ExampleEntity extends Entity
+{
+    #[PrimaryKey]
+    #[Field(type: FieldType::UUID)]
+    public string $id;
+    
+    #[Field(type: PriceField::class)]
+    public ?PriceCollection $price = null;
+
+    // ...
+}
+```
+
 We also provide a list of special field types, which implement a specific behavior. They have their own PHP attribute class, for example the `AutoIncrement` or `ForeignKey` field. 
 
 ```php
