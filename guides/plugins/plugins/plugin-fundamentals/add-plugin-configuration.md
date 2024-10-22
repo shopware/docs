@@ -198,7 +198,7 @@ With those you can restrict the length of the input.
 Below, you'll find an example of how to use this setting.
 
 ```html
-<input-field>
+<input-field type="password">
     <name>token</name>
     <minLength>5</minLength>
     <maxLength>20</maxLength>
@@ -213,7 +213,7 @@ With those you can restrict the minimum and maximum value of the input.
 Below, you'll find an example of how to use this setting.
 
 ```html
-<input-field>
+<input-field type="int">
     <name>token</name>
     <min>5</min>
     <max>20</max>
