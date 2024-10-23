@@ -14,6 +14,10 @@ for await (const entry of walk("./resources/guidelines/code/core")) {
 await Promise.allSettled(formattingPromises);
 
 function addHint(buffer, filePath) {
+	if (filePath.includes('/adr/assets/')) {
+		return buffer;
+	}
+
 	buffer += '\n';
 	buffer += '::: info\n';
 	buffer += 'This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.\n';
