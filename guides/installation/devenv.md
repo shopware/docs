@@ -161,6 +161,10 @@ Since the environment is described via a `devenv.nix` file committed to version 
 devenv up
 ```
 
+::: info
+You may first have to change into the project folder you've just created back again.
+:::
+
 ::: warning
 Make sure that the ports for the services are not already in use, or else the command will fail.
 :::
