@@ -248,7 +248,7 @@ Shopware.Module.register('swag-plugin', {
 
 The `group` property determines the tab, the item will be displayed in. Valid options are 'shop', 'system' and 'plugins'.
 
-The `icon` property contains the icon name which will be displayed.
+The `icon` property contains the icon name which will be displayed. Refer to the [Meteor Icon Kit documentation](https://developer.shopware.com/resources/meteor-icon-kit/) for icon names.
 
 The `to` property must contain the name of the route. The route has to be defined in a separate routes section as described [here](add-custom-route.md). Have a look at the `Configuring the route` section in particular to find out about the name of your route. 
 
