@@ -514,11 +514,12 @@ Here are some examples of not allowed folders and files:
 * .editorconfig
 * .git
 * .gitignore
+* .phar
+* .prettierrc
 * .shopware-extension.yml
-* .zip
 * .tar
 * .tar.gz
-* .phar
+* .zip
 * composer.lock
 * package.json
 * package-lock.json
