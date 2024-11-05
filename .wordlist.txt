@@ -1160,6 +1160,7 @@ preprocessors
 preselect
 Preselect
 preselection
+prettierrc
 previewable
 previewComponent
 PreWriteValidationEvent
