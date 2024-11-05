@@ -9,7 +9,7 @@ nav:
 
 ## Overview
 
-In this guide you'll learn how to add translations to the Storefront and how to use them in your twig templates.
+In this guide, you'll learn how to add translations to the Storefront and how to use them in your twig templates.
 To organize your snippets you can add them to `.json` files, so structuring and finding snippets you want to change is very easy.
 
 ## Prerequisites
@@ -24,8 +24,8 @@ To do so, store your snippet files in the `<extension root>/src/Resources/snippe
 Also, you can use further subdirectories if you want to.
 Use `<name>.<locale>` as the naming pattern for the file.
 The name can be freely defined, while the locale **must** map to the ISO string of the supported locale in this snippet file - for example `example.de-DE.json`.
-More precisely, the ISO string is combination of "ISO 639-1" language codes and "ISO 3166-1 alpha-2" country codes.
-Later, this will be converted to the ICU format (`de_DE`), which is also used by [Symfony](https://symfony.com/doc/current/reference/constraints/Locale.html).
+More precisely, the ISO string is a combination of "ISO 639-1" language codes and "ISO 3166-1 alpha-2" country codes.
+Later this will be converted to the ICU format (`de_DE`), which is also used by [Symfony](https://symfony.com/doc/current/reference/constraints/Locale.html).
 
 In case you want to provide base translations (ship translations for a whole new language), indicate it with the suffix `.base` in your file name.
 Now the filename convention to be followed looks like this `<name>.<locale>.base.json` - for example, `example.de-AT.base.json`.
@@ -67,7 +67,7 @@ Here's an example of an English translation file:
 ## Using the translation in templates
 
 Now we want to use our previously created snippet in our twig template, we can do this with the `trans` filter.
-Below you can find two examples where we use our translation with placeholders and without.
+Below, you can find two examples where we use our translation with placeholders and without.
 
 Translation without placeholders:
 
