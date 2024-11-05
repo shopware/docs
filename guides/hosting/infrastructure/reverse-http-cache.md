@@ -191,4 +191,4 @@ For manual deployment, you can find the VCL Snippets here:
 
 <PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.6/config/fastly/recv/default.vcl" title="vcl_recv" target="_blank" />
 
-<!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Storefront/Resources/config/packages/storefront.yaml","WATCHER_HASH":"ea090957a082e950ffa112b108e40abf"} -->
+<!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Storefront/Resources/config/packages/storefront.yaml","WATCHER_HASH":"3ae5bc3363521c72d05f4ecbb89b3505"} -->
