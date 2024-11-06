@@ -135,14 +135,6 @@ composer require devenv
 
 This will create a basic `devenv.nix` file to enable devenv support for Shopware.
 
-Then, leave the temporary shell:
-
-```shell
-exit
-```
-
-This will remove the php installation that was temporarily created for you inside the nix shell.
-
 </Tab>
 
 <Tab title="shopware/shopware (Contribute)">
