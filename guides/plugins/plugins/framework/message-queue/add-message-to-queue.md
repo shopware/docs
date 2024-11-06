@@ -103,8 +103,8 @@ public function sendMessage(string $message): void
 You might consider using the new `low_priority` queue if you are dispatching messages that do not need to be handled immediately. To configure specific messages to be transported via the `low_priority` queue, you need to either adjust the routing or implement the `LowPriorityMessageInterface` as already mentioned:
 
 ```yaml
-# config/packages/framework.yaml
-framework:
+# config/packages/shopware.yaml
+shopware:
     messenger:
         routing_overwrite:
             'Your\Custom\Message': low_priority
@@ -129,8 +129,8 @@ class LowPriorityMessage implements LowPriorityMessageInterface
 ```
 
 ```yaml
-# config/packages/framework.yaml
-framework:
+# config/packages/shopware.yaml
+shopware:
     messenger:
         routing_overwrite:
             'Shopware\Core\Framework\MessageQueue\LowPriorityMessageInterface': low_priority
