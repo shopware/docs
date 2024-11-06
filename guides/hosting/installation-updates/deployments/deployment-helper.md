@@ -76,6 +76,8 @@ deployment:
     license-domain: 'example.com'
 ```
 
+## Environment Variables
+
 Additionally, you can configure the Shopware installation using the following environment variables:
 
 - `INSTALL_LOCALE` - The locale to install Shopware with (default: `en-GB`)
