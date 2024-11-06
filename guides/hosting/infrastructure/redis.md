@@ -47,6 +47,23 @@ As the data is critical, it is important to use a key eviction policy that will 
 
 The cart, number range, lock store and increment data is what should be stored in this instance.
 
+## Configuration
+
+Starting with v6.6.8.0 Shopware supports configuring different reusable Redis connections in the`config/packages/shopware.yaml` file under the `shopware` section:
+
+```yaml
+shopware:
+    # ...
+    redis:
+        connections:
+            ephemeral:
+                dsn: 'redis://host1:port/dbindex'
+            persistent:
+                dsn: 'redis://host2:port/dbindex?persistent=1'
+```
+
+Connection names should reflect the actual connection purpose/type and be unique. Also, the names are used as part of the service names in the container, so they should follow the service naming conventions. After defining connections, you can reference them by name in the configuration of different subsystems.
+
 <PageRef page="../performance/cart-storage" />
 
 <PageRef page="../performance/number-ranges" />
@@ -54,3 +71,5 @@ The cart, number range, lock store and increment data is what should be stored i
 <PageRef page="../performance/lock-store" />
 
 <PageRef page="../performance/increment" />
+
+<PageRef page="../performance/performance-tweaks#delayed-invalidation" />

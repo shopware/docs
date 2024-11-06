@@ -1468,6 +1468,8 @@ preprocessor
 preprocessors
 preselect
 preselection
+prettierrc
+previewable
 previewComponent
 previewable
 pricecollectionfacade
@@ -1506,6 +1508,7 @@ refundAmount
 refundId
 refundPositions
 refundPrice
+RegEx
 regexes
 reindex
 reinitializing
