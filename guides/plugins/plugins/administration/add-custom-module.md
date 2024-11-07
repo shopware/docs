@@ -145,25 +145,8 @@ In this example you would have access to two translations by the following paths
 You can nest those objects as much as you want. Please note that each path is prefixed by the extension name.
 
 Since those translation objects become rather large, you should store them into separate files.
-For this purpose, create a new directory `snippet` in your module's directory and in there two new files: `de-DE.json` and `en-GB.json`
-
-Then, when each file contains your translations as an object, you only have to import them into your module again.
-
-```javascript
-// <plugin root>/src/Resources/app/administration/src/module/swag-example/index.js
-[...]
-
-import deDE from './snippet/de-DE';
-import enGB from './snippet/en-GB';
-
-Shopware.Module.register('swag-example', {
-    ...
-    snippets: {
-        'de-DE': deDE,
-        'en-GB': enGB
-    },
-});
-```
+For this purpose, create a new directory `snippet` in your module's directory and in there two new files: `de-DE.json` and `en-GB.json`. 
+The snippet files will be loaded automatically based on the folder structure.
 
 Let's also create the first translation, which is for your menu's label.
 It's key should be something like this: `swag-example.general.mainMenuItemGeneral`
