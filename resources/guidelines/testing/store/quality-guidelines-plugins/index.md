@@ -268,7 +268,7 @@ This limitation is set by common message queue workers and should not be exceede
 
 ### Note on Shopware technology partner contract for interfaces
 
-You have now read the complete list of requirements for developing and releasing apps based on our app system in the Shopware Community Store.
+You have now read the complete list of requirements for developing and releasing apps based on our plugin system in the Shopware Community Store.
 
 If your app is a software app/interface with downstream costs, transaction fees, or service fees for the customer, we need to complete a technology partner agreement in order to activate your app.
 
