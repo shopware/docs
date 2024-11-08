@@ -57,8 +57,8 @@ Hence, we check for a functional comparison with other apps already in the Shopw
 If an extension with the same function exists and it does not fit into one of our differentiator clusters, it can be rejected as it doesn't provide any added value.
 If you would like more information, please write an email to [qa@shopware.com](mailto:qa@shopware.com).
 
-[Link: Differentiator cluster for Shopware extensions](https://developer.shopware.com/docs/resources/guidelines/testing/Differentiator-Clusters.html)
-[Link: Documentation for Extension Partner](https://docs.shopware.com/en/account-en/extension-partner/extensions?category=account-en/extension-partner#how-can-i-request-a-preview)
+Link: [Differentiator cluster for Shopware extensions](https://developer.shopware.com/docs/resources/guidelines/testing/Differentiator-Clusters.html)
+Link: [Documentation for Extension Partner](https://docs.shopware.com/en/account-en/extension-partner/extensions?category=account-en/extension-partner#how-can-i-request-a-preview)
 
 ::: info
 **Safe your app idea and get a preview in the store**
@@ -114,8 +114,7 @@ The short description is also published as a meta-description.
 	You can embed a maximum of 2 YouTube videos in your app description.
 
 ::: info
-    You can no longer advertise your Shopware certificates within the app description, in your app images, or in your manufacturer profile.
-	The manufacturer/partner certificates are dynamically loaded at the end of each app description and published by us.
+You can no longer advertise your Shopware certificates within the app description, in your app images, or in your manufacturer profile. The manufacturer/partner certificates are dynamically loaded at the end of each app description and published by us.
 :::
 
 ### Images
@@ -234,7 +233,7 @@ Composer dependencies are possible if they are in the `composer.json`.
 With `executeComposerCommands() === true` in the plugin base class, we provide a dynamic installation of the composer dependencies by default, so they don't have to be included.
 Everything that is delivered in code should be traceable either directly or via `composer.json`.
 
-[Developer documentation article to add private dependency](../../../../../guides/plugins/plugins/plugin-fundamentals/using-composer-dependencies)
+Link: [Developer documentation article to add private dependency](../../../../../guides/plugins/plugins/plugin-fundamentals/using-composer-dependencies)
 
 ### Extension manager
 
@@ -255,8 +254,8 @@ This allows other developers to review and understand the code in its original, 
 
 Please build your `main.js` as described in our documentation and create the minified code as described in our developer documentation. 
 
-[Loading the JS files](https://developer.shopware.com/docs/guides/plugins/plugins/administration/add-custom-field.html#loading-the-js-files)
-[Injecting into the Administration](https://developer.shopware.com/docs/guides/plugins/plugins/administration/add-custom-field.html#injecting-into-the-administration)
+Link: [Loading the JS files](https://developer.shopware.com/docs/guides/plugins/plugins/administration/add-custom-field.html#loading-the-js-files)
+Link: [Injecting into the Administration](https://developer.shopware.com/docs/guides/plugins/plugins/administration/add-custom-field.html#injecting-into-the-administration)
 
 Shopware reserves the right to publish extensions with minified code after individual consideration and consultation with the developer.
 For this, the developer must ensure that Shopware has access to the current unminified code of the extension at all times.
@@ -268,7 +267,7 @@ This limitation is set by common message queue workers and should not be exceede
 
 ### Note on Shopware technology partner contract for interfaces
 
-You have now read the complete list of requirements for developing and releasing apps based on our plugin system in the Shopware Community Store.
+You have now read the complete list of requirements for developing and releasing apps based on our app system in the Shopware Community Store.
 
 If your app is a software app/interface with downstream costs, transaction fees, or service fees for the customer, we need to complete a technology partner agreement in order to activate your app.
 
@@ -311,7 +310,7 @@ Could you do an A/B test with *Lighthouse Audit* to check the performance and qu
 There should not be any drastic change in performance, accessibility values, or any new errors when activating the app.
 
 * **Testing tool** for A/B-Testing:
-  * [Google Lighthouse](https://developers.google.com/web/tools/lighthouse)
+  * Link: [Google Lighthouse](https://developers.google.com/web/tools/lighthouse)
 
 ### schema.org/Rich Snippets A/B-Testing:
 
@@ -319,8 +318,8 @@ Do an A/B-Test with *Scheme.org's Structured Data Testing Tool* and *Google Rich
 Also, could you check for duplicate entries as well as any new bugs?
 
 * **Testing tool** for A/B-Testing:
-  * [Schema Markup Validator of schema.org](https://validator.schema.org/)
-  * [Google Rich Result Tester] (https://search.google.com/test/rich-results)
+  * Link: [Schema Markup Validator of schema.org](https://validator.schema.org/)
+  * Link: [Google Rich Result Tester](https://search.google.com/test/rich-results)
 
 ### Usage of fonts from external sources
 
@@ -334,7 +333,7 @@ This info could be placed as a tooltip near the font settings of the app configu
 We expect every cookie set from the store URL to be optional and not technically required for running shopware.
 Therefore, the cookies had to be [registered in our Cookie Consent Manager](/docs/guides/plugins/plugins/storefront/add-cookie-to-manager).
 
-We differentiate between "Technically required", ,"Marketing" and "Comfort features".
+We differentiate between "Technically required","Marketing" and "Comfort features".
 All cookies must appear (unchecked) in the cookie configuration box in the frontend.
 
 ## Administration guidelines
@@ -357,7 +356,7 @@ In this case, a status message must be displayed in the administration and Shopw
 If the API data is incorrect, an entry must appear in the event log file in the Shopware folder `/var/log/` respectively in the database.
 
 * **Example for implementing an API Test Button into the System Config form:
- * [Github](https://github.com/shyim/ShyimApiTest)
+ * Link: [Github](https://github.com/shyim/ShyimApiTest)
 
 ### Shopping experiences
 
@@ -396,30 +395,26 @@ Below is an example of implementing the tracking logic in their extensions:
 
 Our most current code review configurations when uploading apps via the Shopware Account can be found on GitHub.
 
-* [Code reviews for Shopware 6 on GitHub](https://github.com/shopwareLabs/store-plugin-codereview)
+* Link: [Code reviews for Shopware 6 on GitHub](https://github.com/shopwareLabs/store-plugin-codereview)
 
 ### Sonarcube Rules status Blocker
 
 The following statements will be blocked as of 1st Oct. 2022:  
 -die; exit; var_dump
 
-[Refer to the list of the already existing blockers](https://s3.eu-central-1.amazonaws.com/wiki-assets.shopware.com/1657519735/blocker.txt).
+* Link: [Refer to the list of the already existing blockers](https://s3.eu-central-1.amazonaws.com/wiki-assets.shopware.com/1657519735/blocker.txt).
 
 ### Automated code tests with Cypress
 
 There are Cypress tests for Shopware 6 on GitHub.
 The project is driven by the *Friends of Shopware* group. You can contribute at any time:
 
-* [Developer Documentation Cypress Tests for Shopware 6](/docs/guides/plugins/plugins/testing/end-to-end-testing)
-* [Cypress Tests for Shopware 6](https://github.com/shopware/shopware/tree/trunk/src/Administration/Resources)
+* Link: [Developer Documentation Cypress Tests for Shopware 6](/docs/guides/plugins/plugins/testing/end-to-end-testing)
+* Link: [Cypress Tests for Shopware 6](https://github.com/shopware/shopware/tree/trunk/src/Administration/Resources)
 
 ### Helpful tools for app developers
-* [FroshPluginUploader](https://github.com/FriendsOfShopware/FroshPluginUploader): Tool for validating and uploading new SW6 app releases to the Community Store (GitHub Project from "Friends of Shopware")]
-* [Shopware CLI tools](https://github.com/shopwareLabs/sw-cli-tools): When you think about performance, these are various useful console helpers for generating data.
-
-### Descriptions in your Shopware account
-
-[App descriptions in your Shopware account](#app-descriptions-in-your-shopware-account) must follow the checklist criterion.
+* Link: [FroshPluginUploader](https://github.com/FriendsOfShopware/FroshPluginUploader): Tool for validating and uploading new SW6 app releases to the Community Store (GitHub Project from "Friends of Shopware")]
+* Link: [Shopware CLI tools](https://github.com/shopwareLabs/sw-cli-tools): When you think about performance, these are various useful console helpers for generating data.
 
 ## Automatic code review - Errors
 
@@ -428,12 +423,11 @@ The project is driven by the *Friends of Shopware* group. You can contribute at 
 **Cause:** Error in composer.json  
 
 One possible cause is that the technical app name from the Community Store or Account does not match the technical name entered in composer.json, or the app is incorrectly zipped.
-The technical app name must be stored in the last part of composer.json, located at composer.json > extra > shopware-plugin-class.
+The technical app name must be stored in the first part of composer.json, located at composer.json > extra > shopware-plugin-class.
 Could you take a look at the bootstrap class? Most of the errors are caused by the wrong technical name.
 For example, "Swag\\MyPlugin\\SwagMyPluginSW6" instead of "Swag\\MyPlugin\\SwagMyPlugin".
 
-[Here is an example](https://github.com/FriendsOfShopware/FroshPlatformPerformance/blob/master/composer.json#L20) of a valid composer.json.  
-See "[Plugin-Base Class](https://developers.shopware.com/designers-guide/javascript-statemanager-and-pluginbase/#plugin-base-class)" for more information.
+Link: [Exampl eof a valid composer.json](https://github.com/FriendsOfShopware/FroshPlatformPerformance/blob/master/composer.json#L20).  
 
 ### Ensure cross-domain messages are sent to the intended domain
 
@@ -506,7 +500,7 @@ Remove out-commented code, unused files and folders, and all dev-files from your
 
 Here are some examples of not allowed folders and files:
 * /__MACOSX
-* /tests
+*./tests
 * .gitignore
 * .gitkeep
 * .gitlab-ci.yml
