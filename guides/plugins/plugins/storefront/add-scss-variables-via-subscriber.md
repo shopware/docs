@@ -153,7 +153,7 @@ In order to be able to read this config, you have to inject the `SystemConfigSer
 namespace Swag\BasicExample\Subscriber;
 
 use Shopware\Core\System\SystemConfig\SystemConfigService;
-use Shopware\Storefront\Event\ThemeCompilerEnrichScssVariablesEvent;
+use Shopware\Storefront\Theme\Event\ThemeCompilerEnrichScssVariablesEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class ThemeVariableSubscriber implements EventSubscriberInterface
