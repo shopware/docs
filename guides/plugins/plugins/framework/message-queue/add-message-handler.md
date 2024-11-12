@@ -173,6 +173,24 @@ framework:
 
 You can route messages by their classname and use the asterisk as a fallback for all other messages. If you specify a list of transports the messages will be routed to all of them. For more information on this check the [Symfony docs](https://symfony.com/doc/current/messenger.html#routing-messages-to-a-transport).
 
+#### Routing overwrites
+
+By default, all messages that implement the `AsyncMessageInterface` will be routed to the `async` transport. THe default symfony config detailed above will only let you add additional routing to those messages, however if you need to overwrite the additional routing you can do so by adding the following to your `shopware.yaml`:
+
+```yaml
+shopware:
+  messenger:
+    routing_overwrite:
+      Shopware\Core\Framework\DataAbstractionLayer\Indexing\EntityIndexingMessage: entity_indexing
+```      
+
+The `shopware.messenger.routing_overwrite` config option accepts the same format as the `framework.messenger.routing` option, but it will overwrite the routing for the given message class instead of adding to it.
+This is especially useful if there is a default routing already configured based on a message interface, but you need to change the routing for a specific message.
+
+::: info
+This configuration option was added in Shopware 6.6.4.0 and 6.5.12.0.
+:::
+
 ### Admin worker
 
 ::: warning
