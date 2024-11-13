@@ -334,7 +334,7 @@ This info could be placed as a tooltip near the font settings of the app configu
 We expect every cookie set from the store URL to be optional and not technically required for running shopware.
 Therefore, the cookies had to be [registered in our Cookie Consent Manager](/docs/guides/plugins/plugins/storefront/add-cookie-to-manager).
 
-We differentiate between "Technically required","Marketing" and "Comfort features".
+We differentiate between "Technically required", "Marketing" and "Comfort features".
 All cookies must appear (unchecked) in the cookie configuration box in the frontend.
 
 ## Administration guidelines
