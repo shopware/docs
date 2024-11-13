@@ -396,7 +396,7 @@ Below is an example of implementing the tracking logic in their extensions:
 
 Our most current code review configurations when uploading apps via the Shopware Account can be found on GitHub.
 
-* Link: [Code reviews for Shopware 6 on GitHub](https://github.com/shopwareLabs/store-plugin-codereview)
+* [Code reviews for Shopware 6 on GitHub](https://github.com/shopwareLabs/store-plugin-codereview)
 
 ### Sonarcube Rules status Blocker
 
