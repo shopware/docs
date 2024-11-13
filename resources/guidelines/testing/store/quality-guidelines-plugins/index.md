@@ -57,8 +57,8 @@ Hence, we check for a functional comparison with other apps already in the Shopw
 If an extension with the same function exists and it does not fit into one of our differentiator clusters, it can be rejected as it doesn't provide any added value.
 If you would like more information, please write an email to [qa@shopware.com](mailto:qa@shopware.com).
 
-[Link: Differentiator cluster for Shopware extensions](https://developer.shopware.com/docs/resources/guidelines/testing/Differentiator-Clusters.html)
-[Link: Documentation for Extension Partner](https://docs.shopware.com/en/account-en/extension-partner/extensions?category=account-en/extension-partner#how-can-i-request-a-preview)
+[Differentiator cluster for Shopware extensions](https://developer.shopware.com/docs/resources/guidelines/testing/Differentiator-Clusters.html)
+[Documentation for Extension Partner](https://docs.shopware.com/en/account-en/extension-partner/extensions?category=account-en/extension-partner#how-can-i-request-a-preview)
 
 ::: info
 **Safe your app idea and get a preview in the store**
@@ -114,8 +114,8 @@ The short description is also published as a meta-description.
 	You can embed a maximum of 2 YouTube videos in your app description.
 
 ::: info
-    You can no longer advertise your Shopware certificates within the app description, in your app images, or in your manufacturer profile.
-	The manufacturer/partner certificates are dynamically loaded at the end of each app description and published by us.
+You can no longer advertise your Shopware certificates within the app description, in your app images, or in your manufacturer profile.
+The manufacturer/partner certificates are dynamically loaded at the end of each app description and published by us.
 :::
 
 ### Images
@@ -268,7 +268,7 @@ This limitation is set by common message queue workers and should not be exceede
 
 ### Note on Shopware technology partner contract for interfaces
 
-You have now read the complete list of requirements for developing and releasing apps based on our plugin system in the Shopware Community Store.
+You have now read the complete list of requirements for developing and releasing apps based on our app system in the Shopware Community Store.
 
 If your app is a software app/interface with downstream costs, transaction fees, or service fees for the customer, we need to complete a technology partner agreement in order to activate your app.
 
@@ -320,7 +320,7 @@ Also, could you check for duplicate entries as well as any new bugs?
 
 * **Testing tool** for A/B-Testing:
   * [Schema Markup Validator of schema.org](https://validator.schema.org/)
-  * [Google Rich Result Tester] (https://search.google.com/test/rich-results)
+  * [Google Rich Result Tester](https://search.google.com/test/rich-results)
 
 ### Usage of fonts from external sources
 
@@ -334,7 +334,7 @@ This info could be placed as a tooltip near the font settings of the app configu
 We expect every cookie set from the store URL to be optional and not technically required for running shopware.
 Therefore, the cookies had to be [registered in our Cookie Consent Manager](/docs/guides/plugins/plugins/storefront/add-cookie-to-manager).
 
-We differentiate between "Technically required", ,"Marketing" and "Comfort features".
+We differentiate between "Technically required", "Marketing" and "Comfort features".
 All cookies must appear (unchecked) in the cookie configuration box in the frontend.
 
 ## Administration guidelines
@@ -403,7 +403,7 @@ Our most current code review configurations when uploading apps via the Shopware
 The following statements will be blocked as of 1st Oct. 2022:  
 -die; exit; var_dump
 
-[Refer to the list of the already existing blockers](https://s3.eu-central-1.amazonaws.com/wiki-assets.shopware.com/1657519735/blocker.txt).
+* [Refer to the list of the already existing blockers](https://s3.eu-central-1.amazonaws.com/wiki-assets.shopware.com/1657519735/blocker.txt).
 
 ### Automated code tests with Cypress
 
@@ -417,10 +417,6 @@ The project is driven by the *Friends of Shopware* group. You can contribute at 
 * [FroshPluginUploader](https://github.com/FriendsOfShopware/FroshPluginUploader): Tool for validating and uploading new SW6 app releases to the Community Store (GitHub Project from "Friends of Shopware")]
 * [Shopware CLI tools](https://github.com/shopwareLabs/sw-cli-tools): When you think about performance, these are various useful console helpers for generating data.
 
-### Descriptions in your Shopware account
-
-[App descriptions in your Shopware account](#app-descriptions-in-your-shopware-account) must follow the checklist criterion.
-
 ## Automatic code review - Errors
 
 ### The required composer.json file was not found
@@ -428,12 +424,11 @@ The project is driven by the *Friends of Shopware* group. You can contribute at 
 **Cause:** Error in composer.json  
 
 One possible cause is that the technical app name from the Community Store or Account does not match the technical name entered in composer.json, or the app is incorrectly zipped.
-The technical app name must be stored in the last part of composer.json, located at composer.json > extra > shopware-plugin-class.
+The technical app name must be stored in the composer.json, located at `composer.json` > extra > `shopware-plugin-class`.
 Could you take a look at the bootstrap class? Most of the errors are caused by the wrong technical name.
 For example, "Swag\\MyPlugin\\SwagMyPluginSW6" instead of "Swag\\MyPlugin\\SwagMyPlugin".
 
-[Here is an example](https://github.com/FriendsOfShopware/FroshPlatformPerformance/blob/master/composer.json#L20) of a valid composer.json.  
-See "[Plugin-Base Class](https://developers.shopware.com/designers-guide/javascript-statemanager-and-pluginbase/#plugin-base-class)" for more information.
+[Example of a valid composer.json](https://github.com/FriendsOfShopware/FroshPlatformPerformance/blob/master/composer.json#L20).  
 
 ### Ensure cross-domain messages are sent to the intended domain
 
