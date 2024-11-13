@@ -58,8 +58,8 @@ class ExampleEntity extends Entity
     #[PrimaryKey]
     #[Field(type: FieldType::UUID)]
     public string $id;
-    
-     #[Field(type: FieldType::STRING)]
+
+    #[Field(type: FieldType::STRING)]
     public string $string;
 
     #[Field(type: FieldType::TEXT)]
@@ -285,7 +285,7 @@ Also, you don't have to define any `EntityTranslationDefinition` or `EntityColle
 namespace Examples;
 
 use Shopware\Core\Framework\DataAbstractionLayer\Attribute\AutoIncrement;
-use Shopware\Core\Framework\DataAbstractionLayer\Attribute\CustomFields;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityCustomFieldsTrait;
 use Shopware\Core\Framework\DataAbstractionLayer\Attribute\Entity as EntityAttribute;
 use Shopware\Core\Framework\DataAbstractionLayer\Attribute\Field;
 use Shopware\Core\Framework\DataAbstractionLayer\Attribute\FieldType;
