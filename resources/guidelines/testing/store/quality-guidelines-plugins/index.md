@@ -57,8 +57,8 @@ Hence, we check for a functional comparison with other apps already in the Shopw
 If an extension with the same function exists and it does not fit into one of our differentiator clusters, it can be rejected as it doesn't provide any added value.
 If you would like more information, please write an email to [qa@shopware.com](mailto:qa@shopware.com).
 
-Link: [Differentiator cluster for Shopware extensions](https://developer.shopware.com/docs/resources/guidelines/testing/Differentiator-Clusters.html)
-Link: [Documentation for Extension Partner](https://docs.shopware.com/en/account-en/extension-partner/extensions?category=account-en/extension-partner#how-can-i-request-a-preview)
+[Differentiator cluster for Shopware extensions](https://developer.shopware.com/docs/resources/guidelines/testing/Differentiator-Clusters.html)
+[Documentation for Extension Partner](https://docs.shopware.com/en/account-en/extension-partner/extensions?category=account-en/extension-partner#how-can-i-request-a-preview)
 
 ::: info
 **Safe your app idea and get a preview in the store**
