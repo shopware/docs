@@ -501,7 +501,7 @@ Remove out-commented code, unused files and folders, and all dev-files from your
 
 Here are some examples of not allowed folders and files:
 * /__MACOSX
-*./tests
+* /tests
 * .gitignore
 * .gitkeep
 * .gitlab-ci.yml
