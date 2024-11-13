@@ -158,3 +158,78 @@ The number of workers depends on the number of messages queued and the type of m
 Sometimes, it also makes sense to route messages to a different transport to limit the number of workers for a specific type of message to avoid database locks or prioritize messages like sending emails.
 
 <!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/Resources/config/packages/shopware.yaml","WATCHER_HASH":"183f85ba8f15e8e7d0006b70be20940f","WATCHER_CONTAINS":"enable_admin_worker"} -->
+
+## Configuration
+
+### Message bus
+
+The message bus is used to dispatch your messages to your registered handlers. While dispatching your message, it loops through the configured middleware for that bus. The message bus used inside Shopware can be found under the service tag `messenger.bus.shopware`. It is mandatory to use this message bus if your messages should be handled inside Shopware. However, if you want to send messages to external systems, you can define your custom message bus for that.
+
+You can configure an array of buses and define one default bus in your `framework.yaml`.
+
+```yaml
+// <platform root>/src/Core/Framework/Resources/config/packages/framework.yaml
+framework:
+    messenger:
+        default_bus: messenger.bus.shopware
+        buses:
+            messenger.bus.shopware:
+```
+
+For more information on this check the [Symfony docs](https://symfony.com/doc/current/messenger/multiple_buses.html).
+
+### Transport
+
+A [transport](https://symfony.com/doc/current/messenger.html#transports-async-queued-messages) is responsible for communicating with your 3rd party message broker. You can configure multiple transports and route messages to multiple or different transports. Supported are all transports that are either supported by [Symfony](https://symfony.com/doc/current/messenger.html#transport-configuration) itself. If you don't configure a transport, messages will be processed synchronously like in the Symfony event system.
+
+You can configure an amqp transport directly in your `framework.yaml` and simply tell Symfony to use your  transports.
+
+In a simple setup you only need to set the transport to a valid DSN like:
+
+```yaml
+// <platform root>/src/Core/Framework/Resources/config/packages/queue.yaml
+framework:
+  messenger:
+    transports:
+      my_transport:
+        dsn: "%env(MESSENGER_TRANSPORT_DSN)%"
+```
+
+For more information on this check the [symfony docs](https://symfony.com/doc/current/messenger.html#transport-configuration).
+
+### Routing
+
+You can route messages to different transports. For that, just configure your routing in the `framework.yaml`.
+
+```yaml
+// <plugin root>/src/
+framework:
+    messenger:
+      transports:
+        async: "%env(MESSENGER_TRANSPORT_DSN)%"
+        another_transport: "%env(MESSENGER_TRANSPORT_ANOTHER_DSN)%"
+      routing: 
+        'Swag\BasicExample\MessageQueue\Message\SmsNotification': another_transport
+        'Swag\BasicExample\MessageQueue\Message\AnotherExampleNotification': [async, another_transport]
+        '*': async
+```
+
+You can route messages by their classname and use the asterisk as a fallback for all other messages. If you specify a list of transports the messages will be routed to all of them. For more information on this check the [Symfony docs](https://symfony.com/doc/current/messenger.html#routing-messages-to-a-transport).
+
+#### Routing overwrites
+
+By default, all messages that implement the `AsyncMessageInterface` will be routed to the `async` transport. The default symfony config detailed above will only let you add additional routing to those messages, however if you need to overwrite the additional routing you can do so by adding the following to your `shopware.yaml`:
+
+```yaml
+shopware:
+  messenger:
+    routing_overwrite:
+      'Shopware\Core\Framework\DataAbstractionLayer\Indexing\EntityIndexingMessage': entity_indexing
+```      
+
+The `shopware.messenger.routing_overwrite` config option accepts the same format as the `framework.messenger.routing` option, but it will overwrite the routing for the given message class instead of adding to it.
+This is especially useful if there is a default routing already configured based on a message interface, but you need to change the routing for a specific message.
+
+::: info
+This configuration option was added in Shopware 6.6.4.0 and 6.5.12.0.
+:::
