@@ -46,4 +46,7 @@ class SmsHandler
 
 ## Next steps
 
-Now that you know how to add a message handler and configure a bus for it, you may want to add a custom middleware for your bus. To do this, head over to [Add middleware](add-middleware) guide.
+Now that you know how to add a message handler, you may want to add a custom middleware for your bus. To do this, head over to [Add middleware](add-middleware) guide.
+
+If you want to learn more about configuring the message queue, have a look at the [Message queue hosting guide](../../../../hosting/infrastructure/message-queue.md).
+

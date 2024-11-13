@@ -218,7 +218,7 @@ You can route messages by their classname and use the asterisk as a fallback for
 
 #### Routing overwrites
 
-By default, all messages that implement the `AsyncMessageInterface` will be routed to the `async` transport. THe default symfony config detailed above will only let you add additional routing to those messages, however if you need to overwrite the additional routing you can do so by adding the following to your `shopware.yaml`:
+By default, all messages that implement the `AsyncMessageInterface` will be routed to the `async` transport. The default symfony config detailed above will only let you add additional routing to those messages, however if you need to overwrite the additional routing you can do so by adding the following to your `shopware.yaml`:
 
 ```yaml
 shopware:
