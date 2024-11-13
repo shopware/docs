@@ -49,6 +49,18 @@ export default class MyCookiePermission extends PluginClass {
 }
 ```
 
+
+::: info
+This does not work, if the plugin you want to override is an async plugin. Currently you need to import a third-party plugin like below.
+:::
+
+```javascript
+import ThirdPartyPluginClass from '../../../../../../../../../vendor/store.shopware.com/thirdparty/src/Resources/app/storefront/src/plugin/third-party-js-plugin-dir/third-party-js.plugin';
+
+export default class MyCookiePermission extends ThirdPartyPluginClass {
+}
+```
+
 Now you can override the functions from the parent class.
 
 ### Always show the cookie bar
