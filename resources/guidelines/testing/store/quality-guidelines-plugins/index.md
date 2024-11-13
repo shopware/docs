@@ -319,8 +319,8 @@ Do an A/B-Test with *Scheme.org's Structured Data Testing Tool* and *Google Rich
 Also, could you check for duplicate entries as well as any new bugs?
 
 * **Testing tool** for A/B-Testing:
-  * Link: [Schema Markup Validator of schema.org](https://validator.schema.org/)
-  * Link: [Google Rich Result Tester](https://search.google.com/test/rich-results)
+  * [Schema Markup Validator of schema.org](https://validator.schema.org/)
+  * [Google Rich Result Tester](https://search.google.com/test/rich-results)
 
 ### Usage of fonts from external sources
 
