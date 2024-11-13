@@ -403,7 +403,7 @@ Our most current code review configurations when uploading apps via the Shopware
 The following statements will be blocked as of 1st Oct. 2022:  
 -die; exit; var_dump
 
-* Link: [Refer to the list of the already existing blockers](https://s3.eu-central-1.amazonaws.com/wiki-assets.shopware.com/1657519735/blocker.txt).
+* [Refer to the list of the already existing blockers](https://s3.eu-central-1.amazonaws.com/wiki-assets.shopware.com/1657519735/blocker.txt).
 
 ### Automated code tests with Cypress
 
