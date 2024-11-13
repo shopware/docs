@@ -424,7 +424,7 @@ The project is driven by the *Friends of Shopware* group. You can contribute at 
 **Cause:** Error in composer.json  
 
 One possible cause is that the technical app name from the Community Store or Account does not match the technical name entered in composer.json, or the app is incorrectly zipped.
-The technical app name must be stored in the first part of composer.json, located at composer.json > extra > shopware-plugin-class.
+The technical app name must be stored in the composer.json, located at `composer.json` > extra > `shopware-plugin-class`.
 Could you take a look at the bootstrap class? Most of the errors are caused by the wrong technical name.
 For example, "Swag\\MyPlugin\\SwagMyPluginSW6" instead of "Swag\\MyPlugin\\SwagMyPlugin".
 
