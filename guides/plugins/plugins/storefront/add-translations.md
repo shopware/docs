@@ -20,12 +20,12 @@ Refer to either the [Plugin Base Guide](../plugin-base-guide) or the [App Base G
 ## Snippet file structure
 
 Shopware 6 automatically loads your snippet files when a standard file structure and a naming convention are followed.
-To do so, store your snippet files in the `<extension root>/src/Resources/snippet/` directory of your extension.
+To do so, store your snippet files in the `<extension root>/src/Resources/snippet/` directory of your plugin or `<extension root>/Resources/snippet/` for your app or theme.
 Also, you can use further subdirectories if you want to.
 Use `<name>.<locale>` as the naming pattern for the file.
 The name can be freely defined, while the locale **must** map to the ISO string of the supported locale in this snippet file - for example `example.de-DE.json`.
 More precisely, the ISO string is a combination of "ISO 639-1" language codes and "ISO 3166-1 alpha-2" country codes.
-Later this will be converted to the ICU format (`de_DE`), which is also used by [Symfony](https://symfony.com/doc/current/reference/constraints/Locale.html).
+Later, this will be converted to the ICU format (`de_DE`), which is also used by [Symfony](https://symfony.com/doc/current/reference/constraints/Locale.html).
 
 In case you want to provide base translations (ship translations for a whole new language), indicate it with the suffix `.base` in your file name.
 Now the filename convention to be followed looks like this `<name>.<locale>.base.json` - for example, `example.de-AT.base.json`.
@@ -34,7 +34,7 @@ So your structure could then look like this:
 
 ```text
 └── SwagBasicExample
-    └── src
+    └── src // Without `src` in apps / themes
         ├─ Resources
         │  └─ snippet
         │     ├─ example.de-DE.json
@@ -43,7 +43,7 @@ So your structure could then look like this:
         └─ SwagBasicExample.php
 ```
 
-## Creating the translation
+## Creating translations
 
 Now that we know how the structure of snippets should be, we can create a new snippet file.
 In this example we are creating a snippet file for British English called `example.en-GB.json`.
@@ -64,7 +64,7 @@ Here's an example of an English translation file:
 }
 ```
 
-## Using the translation in templates
+## Using translations in templates
 
 Now we want to use our previously created snippet in our twig template, we can do this with the `trans` filter.
 Below, you can find two examples where we use our translation with placeholders and without.
@@ -85,7 +85,7 @@ Translation with placeholders:
 </div>
 ```
 
-## Using the translation in controllers
+## Using translations in controllers
 
 If we want to use our snippet in a controller, we can use the `trans` method,
 which is available if our class is extending from `Shopware\Storefront\Controller\StorefrontController`.
@@ -103,7 +103,7 @@ Translation with placeholders:
 $this->trans('soldProducts', ['%count%' => 3, '%country%' => 'Germany']);
 ```
 
-## Using the translation generally in PHP
+## General usage of translations in PHP
 
 If we need to use a snippet elsewhere in PHP,
 we can use [Dependency Injection](../plugin-fundamentals/dependency-injection) to inject the `translator` service,
@@ -124,7 +124,7 @@ public function __construct(TranslatorInterface $translator)
 }
 ```
 
-Then call the `trans` method, which has the same parameters as the method from controllers.
+Then, call the `trans` method, which has the same parameters as the method from controllers.
 
 ```php
 $this->translator->trans('soldProducts', ['%count%' => 3, '%country%' => 'Germany']);
