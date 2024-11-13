@@ -311,7 +311,7 @@ Could you do an A/B test with *Lighthouse Audit* to check the performance and qu
 There should not be any drastic change in performance, accessibility values, or any new errors when activating the app.
 
 * **Testing tool** for A/B-Testing:
-  * Link: [Google Lighthouse](https://developers.google.com/web/tools/lighthouse)
+  * [Google Lighthouse](https://developers.google.com/web/tools/lighthouse)
 
 ### schema.org/Rich Snippets A/B-Testing:
 
