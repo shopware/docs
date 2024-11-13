@@ -114,7 +114,8 @@ The short description is also published as a meta-description.
 	You can embed a maximum of 2 YouTube videos in your app description.
 
 ::: info
-You can no longer advertise your Shopware certificates within the app description, in your app images, or in your manufacturer profile. The manufacturer/partner certificates are dynamically loaded at the end of each app description and published by us.
+You can no longer advertise your Shopware certificates within the app description, in your app images, or in your manufacturer profile.
+The manufacturer/partner certificates are dynamically loaded at the end of each app description and published by us.
 :::
 
 ### Images
