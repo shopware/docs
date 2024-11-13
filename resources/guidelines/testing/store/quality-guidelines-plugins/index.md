@@ -357,7 +357,7 @@ In this case, a status message must be displayed in the administration and Shopw
 If the API data is incorrect, an entry must appear in the event log file in the Shopware folder `/var/log/` respectively in the database.
 
 * **Example for implementing an API Test Button into the System Config form:
- * Link: [Github](https://github.com/shyim/ShyimApiTest)
+ * [Github](https://github.com/shyim/ShyimApiTest)
 
 ### Shopping experiences
 
