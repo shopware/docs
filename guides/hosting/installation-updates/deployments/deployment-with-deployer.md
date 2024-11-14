@@ -188,7 +188,7 @@ task('sw:health_checks', static function () {
 });
 ```
 
-> Before incorporating this step into your deployment process, make sure that you are well familiar with the [System Checks Concepts](/concepts/framework/system-check.md) and how to use and interpret the results [Custom usage](/guides/plugins/plugins/framework/system-check/index.md), and the command [error codes](/guides/plugins/plugins/framework/system-check/index.md#triggering-system-checks).
+> Before incorporating this step into your deployment process, make sure that you are well familiar with the [System Checks Concepts](../../../../concepts/framework/system-check.md) and how to use and interpret the results [Custom usage](../../../../guides/plugins/plugins/framework/system-check/index.md), and the command [error codes](../../../../guides/plugins/plugins/framework/system-check/index.md#triggering-system-checks).
 
 ### 9. Switching the document root
 
@@ -197,7 +197,7 @@ After all the steps are done, Deployer will switch the symlinks destination to t
 This task is defined in the `deploy:symlink` default job in the [`deploy.php`](deployment-with-deployer#deploy-php).
 
 ## Deployer output
-
+pnpm 
 This is the output of `dep deploy env=prod`:
 
 ```text
