@@ -36,7 +36,7 @@ shopware:
     redis:
         connections:
             persistent:
-                dsn: 'redis://host:port/dbindex?persistent=1'
+                dsn: 'redis://host:port/dbindex'
     number_range:
         increment_storage: 'redis'
         config:

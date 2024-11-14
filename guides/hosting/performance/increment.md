@@ -45,7 +45,7 @@ shopware:
     redis:
         connections:
             persistent:
-                dsn: 'redis://host:port/dbindex?persistent=1'
+                dsn: 'redis://host:port/dbindex'
 
     increment:
         user_activity:
