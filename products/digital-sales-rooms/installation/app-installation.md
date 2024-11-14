@@ -30,17 +30,17 @@ cd ./custom/plugins/SwagDigitalSalesRooms/templates/dsr-frontends
 ```
 cp .env.template .env
 ```
-**NUXT_PUBLIC_SHOPWARE_DEV_STOREFRONT_URL**: This is current frontend app domain. E.g: `http://localhost:3000`
+**ORIGIN**: This is current frontend app domain. E.g: `http://localhost:3000`
 
-**NUXT_PUBLIC_SHOPWARE_INSTANCE_URL**: This is default Shopware storefront domain. E.g: `http://localhost:8000`
+**SHOPWARE_STOREFRONT_URL**: This is default Shopware storefront domain. E.g: `http://localhost:8000`
 
-**NUXT_PUBLIC_SHOPWARE_ADMIN_API**: This is Shopware admin-api domain server. E.g: `http://localhost:8000/admin-api`
+**SHOPWARE_ADMIN_API**: This is Shopware admin-api domain server. E.g: `http://localhost:8000/admin-api`
 
-**NUXT_PUBLIC_SHOPWARE_ENDPOINT**: This is the Shopware store-api domain server. E.g: `http://localhost:8000/store-api`
+**SHOPWARE_STORE_API**: This is the Shopware store-api domain server. E.g: `http://localhost:8000/store-api`
 
-**NUXT_PUBLIC_SHOPWARE_ACCESS_TOKEN**: This is the Shopware Access Token to connect to Shopware API. Head to sales channel you assign the *Digital Sales Rooms* domain, find the `API access` section, and copy the `API access key`.
+**SHOPWARE_STORE_API_ACCESS_TOKEN**: This is the Shopware Access Token to connect to Shopware API. Head to sales channel you assign the *Digital Sales Rooms* domain, find the `API access` section, and copy the `API access key`.
 
-**NUXT_PUBLIC_ALLOW_ANONYMOUS_MERCURE**: This is the flag for development only. When the value = 1, it means your app is running with unsecured Mercure.
+**ALLOW_ANONYMOUS_MERCURE**: This is the flag for development only. When the value = 1, it means your app is running with unsecured Mercure.
 
 ## Run frontend App
 
