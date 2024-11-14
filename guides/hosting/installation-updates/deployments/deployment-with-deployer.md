@@ -197,7 +197,7 @@ After all the steps are done, Deployer will switch the symlinks destination to t
 This task is defined in the `deploy:symlink` default job in the [`deploy.php`](deployment-with-deployer#deploy-php).
 
 ## Deployer output
-pnpm 
+
 This is the output of `dep deploy env=prod`:
 
 ```text
