@@ -13,6 +13,8 @@ Since Shopware v6.6.3.0, it has been possible to register entities via PHP attri
 
 First, you need to define your entity. This is done by creating a new class extending `Entity` and adding the `Entity` attribute to it. The `name` parameter denotes the name of the entity. It is required and must be unique.
 
+You can also supply the entity collection class to use for this entity, by specifying the `collectionClass` parameter. The default `EntityCollection` class is used if none is specified.
+
 You have to define a primary key. The primary key is defined by adding the `PrimaryKey` attribute to a property. In theory, the primary key can be of any type, but it is recommended to use a `UUID`. 
 
 ```php
@@ -23,7 +25,7 @@ namespace Examples;
 use Shopware\Core\Framework\DataAbstractionLayer\Entity;
 use Shopware\Core\Framework\DataAbstractionLayer\Attribute\Entity as EntityAttribute;
 
-#[EntityAttribute('example_entity')]
+#[EntityAttribute('example_entity', collectionClass: ExampleEntityCollection::class)]
 class ExampleEntity extends Entity
 {
     #[PrimaryKey]
