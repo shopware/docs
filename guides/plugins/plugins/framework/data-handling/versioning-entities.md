@@ -9,13 +9,16 @@ nav:
 
 ## Overview
 
-In this guide you will learn how to version your entities. The entity versioning system in Shopware gives you the opportunity to create multiple versions of an entity, which could be used to save drafts for example.
+In this guide you will learn how to version your entities.
+The entity versioning system in Shopware gives you the opportunity to create multiple versions of an entity, which could be used to save drafts for example.
+Learn more about the versioning concept [here](../../../../../concepts/framework/data-abstraction-layer#versioning).
 
 ## Prerequisites
 
-In order to add your own versioned entities for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide).
+In order to add your own versioned entities for your plugin, you first need a plugin as base.
+Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide).
 
-Furthermore you should have a look at our [Adding custom complex data](add-custom-complex-data) guide, since this guide is built upon it.
+Furthermore, you should have a look at our [Adding custom complex data](add-custom-complex-data) guide, since this guide is built upon it.
 
 ## Adjust migration
 
@@ -32,7 +35,8 @@ ALTER TABLE `swag_example`
 
 ## Adjust definition
 
-After we've added the new field to our table, we also have to add it to our definition. For this we use a `Shopware\Core\Framework\DataAbstractionLayer\Field\VersionField` which is always required, if we want to version our entity.
+After we've added the new field to our table, we also have to add it to our definition.
+For this we use a `Shopware\Core\Framework\DataAbstractionLayer\Field\VersionField` which is always required, if we want to version our entity.
 
 ```php
 // <plugin root>/src/Core/Content/Example/ExampleDefinition.php
@@ -47,7 +51,9 @@ protected function defineFields(): FieldCollection
 
 ## Create and merge version
 
-In this section we will create a new version of our entity which will create a new entry in the database with our updated values. When we merge a particular version, all versions before the merged version are deleted. In the example below, we are using a service where we injected a `swag_example.repository`.
+In this section we will create a new version of our entity which will create a new entry in the database with our updated values.
+When we merge a particular version, all versions before the merged version are deleted.
+In the example below, we are using a service where we injected a `swag_example.repository`.
 
 ```php
 // <plugin root>/src/
@@ -91,21 +97,31 @@ public function exampleVersioning(Context $context): void
 
 As you can see above, we first created a new `ExampleEntity` with the description 'This is an example'.
 
-Then we created a new version of our entity with the appropriate repository method `createVersion` and as arguments the id of our created entity and the context. This method returns the id of our new entity version, which we have stored in a variable.
+Then we created a new version of our entity with the appropriate repository method `createVersion` and as arguments the id of our created entity and the context.
+This method returns the id of our new entity version, which we have stored in a variable.
 
-Next, we used the `createWithVersionId` method of our `Context` to create a new context with our new versionId assigned to it. This new `Context` is used to update the `ExampleEntity`. In our case we have updated the description to 'This is our new description'. By using the updated context with the new `versionId`, the DAL knows that we want to update this version of our entity.
+Next, we used the `createWithVersionId` method of our `Context` to create a new context with our new versionId assigned to it.
+This new `Context` is used to update the `ExampleEntity`.
+In our case we have updated the description to 'This is our new description'.
+By using the updated context with the new `versionId`, the DAL knows that we want to update this version of our entity.
 
-Subsequently, we searched the repository with the original context and our new versioned context. In the first search result, using the original context, we get the first version of our entity, which we created at the beginning. With the second search result we get the updated entity, using our new versioned context.
+Subsequently, we searched the repository with the original context and our new versioned context.
+In the first search result, using the original context, we get the first version of our entity, which we created at the beginning.
+With the second search result we get the updated entity, using our new versioned context.
 
-Lastly, we used the repository method `merge` with our versionId, which deletes all versions before this one. The merged version is now our new live version. From now on we can find it without using a versioned context.
+Lastly, we used the repository method `merge` with our versionId, which deletes all versions before this one.
+The merged version is now our new live version. From now on we can find it without using a versioned context.
 
 ## Versioning with foreign keys
 
-If you have an entity with foreign keys, your foreign keys also need to be versioned. In this example we're using an inherited field. If you are not familiar with inheritance, head over to our [Field inheritance](field-inheritance) guide.
+If you have an entity with foreign keys, your foreign keys also need to be versioned.
+In this example we're using an inherited field.
+If you are not familiar with inheritance, head over to our [Field inheritance](field-inheritance) guide.
 
 ### Migration
 
-In this step we have to additionally add a foreign key constraint for your `parent_id` and `parent_version_id` referencing to our `id` and `version_id`. The same pattern applies to other entities.
+In this step we have to additionally add a foreign key constraint for your `parent_id` and `parent_version_id` referencing to our `id` and `version_id`.
+The same pattern applies to other entities.
 
 ```sql
 ALTER TABLE `swag_example`
@@ -119,7 +135,8 @@ ALTER TABLE `swag_example`
 
 ### Definition
 
-After we've added the new field to our table, we also have to add it to our definition. For this we use a `Shopware\Core\Framework\DataAbstractionLayer\Field\ReferenceVersionField` which references to our entity by using `self::class` and the related field `parent_version_id`.
+After we've added the new field to our table, we also have to add it to our definition.
+For this we use a `Shopware\Core\Framework\DataAbstractionLayer\Field\ReferenceVersionField` which references to our entity by using `self::class` and the related field `parent_version_id`.
 
 ```php
 // <plugin root>/src/Core/Content/Example/ExampleDefinition.php

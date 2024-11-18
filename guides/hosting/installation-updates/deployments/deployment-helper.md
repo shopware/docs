@@ -7,10 +7,6 @@ nav:
 
 # Deployment Helper
 
-::: warning
-The Deployment Helper is experimental and configuration may change in the future. Please use it with caution.
-:::
-
 The Deployment Helper is a tool that unifies the steps executed after the Code has been uploaded to the server.
 On a traditional deployment, you would run it after the files have been uploaded. 
 When using a Containerized environment you would run Deployment Helper with the new source code and then switch over the traffic.
@@ -75,7 +71,12 @@ deployment:
       script: |
         # runs one time in deployment, then never again
         ./bin/console --version
+
+  store:
+    license-domain: 'example.com'
 ```
+
+## Environment Variables
 
 Additionally, you can configure the Shopware installation using the following environment variables:
 
@@ -84,6 +85,9 @@ Additionally, you can configure the Shopware installation using the following en
 - `INSTALL_ADMIN_USERNAME` - The username of the admin user (default: `admin`)
 - `INSTALL_ADMIN_PASSWORD` - The password of the admin user (default: `shopware`)
 - `SALES_CHANNEL_URL` - The URL of the Storefront sales channel (default: `http://localhost`)
+- `SHOPWARE_STORE_ACCOUNT_EMAIL` - The email address of the Shopware account
+- `SHOPWARE_STORE_ACCOUNT_PASSWORD` - The password of the Shopware account
+- `SHOPWARE_STORE_LICENSE_DOMAIN` - The license domain of the Shopware Shop (default: license-domain value in YAML file)
 
 ## One Time Tasks
 
@@ -93,6 +97,27 @@ You can check with `./vendor/bin/shopware-deployment-helper one-time-task:list` 
 To remove a task, use `./vendor/bin/shopware-deployment-helper one-time-task:unmark <id>`. This will cause the task to be executed again during the next update.
 To manually mark a task as run you can use `./vendor/bin/shopware-deployment-helper one-time-task:mark <id>`.
 
+## Fastly Integration
+
+The Deployment Helper can also deploy Fastly VCL Snippets for you and keep them up to date. After installing the Deployment Helper, you can install the Fastly meta package:
+
+```bash
+composer require shopware/fastly-meta
+```
+
+After that, make sure that environment variable `FASTLY_API_KEY` and `FASTLY_SERVICE_ID` are set and the Fastly VCL Snippets will be deployed with the regular deployment process of the Deployment Helper.
+
+The deployment helper has also two commands to manage the Fastly VCL Snippets:
+
+- `./vendor/bin/shopware-deployment-helper fastly:snippet:list` - List all VCL snippets that are currently deployed
+- `./vendor/bin/shopware-deployment-helper fastly:snippet:remove <name>` - Remove a VCL snippet by name
+
+## Automatic Store Login
+
+The Deployment Helper can automatically log in to the Shopware Store, so you can install Apps from the Store. For this the environment variables: `SHOPWARE_STORE_ACCOUNT_EMAIL` and `SHOPWARE_STORE_ACCOUNT_PASSWORD` need to be set, and a license domain needs to be configured in the `.shopware-project.yml` file.
+The license domain can be set also by env variable `SHOPWARE_STORE_LICENSE_DOMAIN`, which will overwrite the value from the `.shopware-project.yml` file.
+
+When you open the extension manager, you will see that you are not logged in. This is normal as the Deployment Helper does log you in only for system tasks like extension installation or updates. For the extension manager, every Administration user needs to log in manually.
 
 ## Usage examples
 
