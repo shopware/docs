@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Quality guidelines for apps in the plugin system
+  title: Quality guidelines for apps and themes in the app system
   position: 10
 
 ---
 
-# Quality Guidelines for the Plugin System in the Shopware Store
+# Quality Guidelines for apps and themes app system in the Shopware Store
 
 > **Changelog**
 >
@@ -58,6 +58,7 @@ If an extension with the same function exists and it does not fit into one of ou
 If you would like more information, please write an email to [qa@shopware.com](mailto:qa@shopware.com).
 
 Link: [Differentiator cluster for Shopware extensions](/docs/resources/guidelines/testing/Differentiator-Clusters.html)
+
 Link: [Documentation for Extension Partner](https://docs.shopware.com/en/account-en/extension-partner/extensions?category=account-en/extension-partner#how-can-i-request-a-preview)
 
 ::: info
@@ -127,7 +128,7 @@ Include several screenshots and descriptive images from the Storefront and backe
 They must show the app "in action", its configuration options, and how to use it.
 We recommend uploading screenshots showing the mobile and desktop-view.
 
-[How To - Add images and icons to extensions](https://docs.shopware.com/en/account-en/adding-pictures-and-icons/how-to)
+Link: [How To - Add images and icons to extensions](https://docs.shopware.com/en/account-en/adding-pictures-and-icons/how-to)
 
 ### Link to demoshop
 
@@ -235,6 +236,7 @@ This allows other developers to review and understand the code in its original, 
 Please build your `main.js` as described in our documentation and create the minified code as described in our developer documentation. 
 
 Link: [Loading the JS files](/docs/guides/plugins/plugins/administration/add-custom-field.html#loading-the-js-files)
+
 Link: [Injecting into the Administration](/docs/guides/plugins/plugins/administration/add-custom-field.html#injecting-into-the-administration)
 
 Shopware reserves the right to publish extensions with minified code after individual consideration and consultation with the developer.
@@ -389,16 +391,17 @@ The technical app name must be stored in the first part of manifest.xml.
 Most of the errors are caused by the wrong technical name.
 For example, "Swag\\MyPlugin\\SwagMyPluginSW6" instead of "Swag\\MyPlugin\\SwagMyPlugin".
 
-[Here is an example](https://developer.shopware.com/docs/resources/references/app-reference/manifest-reference.html#manifest-reference) of a valid manifest.xml.  
+Link: [Example of a valid manifest.xml](https://developer.shopware.com/docs/resources/references/app-reference/manifest-reference.html#manifest-reference)
 
 ### Ensure cross-domain messages are sent to the intended domain
 
-See ["Cross-document messaging domains should be carefully restricted"](https://rules.sonarsource.com/javascript/RSPEC-2819) for more information.
+Link: ["Cross-document messaging domains should be carefully restricted"](https://rules.sonarsource.com/javascript/RSPEC-2819)
 
 ### Class Shopware\Storefront\* not found
 
 Missing requirements in the theme.json (e.g. "require": {"shopware/frontend": "*"},)  
-See "[Shopware App Development: App Meta Information - Explanation of the properties](../../../../../guides/plugins/plugins/plugin-base-guide#the-composerjson-file) for more information.
+
+Link: [Shopware App Development: App Meta Information - Explanation of the properties](../../../../../guides/plugins/plugins/plugin-base-guide#the-composerjson-file)
 
 ### Cookies are written safely
 
@@ -432,9 +435,11 @@ Here are some examples of not allowed folders and files:
 * .tar
 * .tar.gz
 * .zip
+* .zipignore
 * composer.lock
 * package.json
 * package-lock.json
+* phpunit.sh
 * phpunitx.xml
 * shell.nix
 * Thumbs.db
