@@ -42,7 +42,7 @@ shopware:
 ```
 </Tab>
 </Tabs>
-Note that the ?persistent=1 parameter here refers to the connection pooling, not the persistent storage of data. Please refer to the [Redis configuration guide](../infrastructure/redis) for more information.*
+Note that the `?persistent=1` parameter here refers to the connection pooling, not the persistent storage of data. Please refer to the [Redis configuration guide](../infrastructure/redis) for more information.*
 
 ## Migrating between storages
 

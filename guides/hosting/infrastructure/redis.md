@@ -66,7 +66,7 @@ shopware:
 
 Connection names should reflect the actual connection purpose/type and be unique. Also, the names are used as part of the service names in the container, so they should follow the service naming conventions. After defining connections, you can reference them by name in the configuration of different subsystems.
 
-It's possible to use environment variables in the DSN string, e.g. if REDIS_EPHEMERAL is set to `redis://host1:port`, the configuration could look like this:
+It's possible to use environment variables in the DSN string, e.g. if `REDIS_EPHEMERAL` is set to `redis://host1:port`, the configuration could look like this:
 
 ```yaml
 shopware:
@@ -81,7 +81,7 @@ shopware:
 
 ### Connection pooling
 
-In high-load scenarios, it is recommended to use persistent connections to avoid the overhead of establishing a new connection for each request. This can be achieved by setting the `persistent` flag in DSN to 1:
+In high-load scenarios, it is recommended to use persistent connections to avoid the overhead of establishing a new connection for each request. This can be achieved by setting the `persistent` flag in DSN to `1`:
 ```yaml
 shopware:
     redis:
