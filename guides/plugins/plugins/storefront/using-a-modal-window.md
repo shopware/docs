@@ -118,10 +118,10 @@ Now let's get started with the modal window. First we have to import the `Pseudo
 
 ```javascript
 // <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
-import Plugin from 'src/plugin-system/plugin.class';
+const { PluginBaseClass } = window;
 import PseudoModalUtil from 'src/utility/modal-extension/pseudo-modal.util';
 
-export default class ExamplePlugin extends Plugin {
+export default class ExamplePlugin extends PluginBaseClass {
     init() {
         // ...
     }
@@ -133,10 +133,10 @@ We also call the method `open()` to make it visible.
 
 ```javascript
 // <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
-import Plugin from 'src/plugin-system/plugin.class';
+const { PluginBaseClass } = window;
 import PseudoModalUtil from 'src/utility/modal-extension/pseudo-modal.util';
 
-export default class ExamplePlugin extends Plugin {
+export default class ExamplePlugin extends PluginBaseClass {
     init() {
         this.openModal();
     }
@@ -177,10 +177,10 @@ Of course, the content can also be generated via an API and inserted via AJAX re
 
 ```javascript
 // <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
-import Plugin from 'src/plugin-system/plugin.class';
+const { PluginBaseClass } = window;
 import PseudoModalUtil from 'src/utility/modal-extension/pseudo-modal.util';
 
-export default class ExamplePlugin extends Plugin {
+export default class ExamplePlugin extends PluginBaseClass {
     init() {
         // declaring some basic content
         const content = `
@@ -213,10 +213,10 @@ The `open()` method of the `PseudoModalUtil` class supports a callback function 
 
 ```javascript
 // <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
-import Plugin from 'src/plugin-system/plugin.class';
+const { PluginBaseClass } = window;
 import PseudoModalUtil from 'src/utility/modal-extension/pseudo-modal.util';
 
-export default class ExamplePlugin extends Plugin {
+export default class ExamplePlugin extends PluginBaseClass {
     init() {
         // declaring some basic content
         const content = `
@@ -250,10 +250,10 @@ Here is an example how to use it:
 
 ```javascript
 // <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
-import Plugin from 'src/plugin-system/plugin.class';
+const { PluginBaseClass } = window;
 import PseudoModalUtil from 'src/utility/modal-extension/pseudo-modal.util';
 
-export default class ExamplePlugin extends Plugin {
+export default class ExamplePlugin extends PluginBaseClass {
     init() {
         // declaring some basic content
         const content = `
@@ -302,10 +302,10 @@ The constructor method of `PseudoModalUtil` provides optional configuration. If 
 
 ```javascript
 // <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
-import Plugin from 'src/plugin-system/plugin.class';
+const { PluginBaseClass } = window;
 import PseudoModalUtil from 'src/utility/modal-extension/pseudo-modal.util';
 
-export default class ExamplePlugin extends Plugin {
+export default class ExamplePlugin extends PluginBaseClass {
     init() {
         // declaring some basic content
         const content = `
@@ -342,7 +342,7 @@ Here is an example which shows how to override the CSS class names.
 ```javascript
 // <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
 // ...
-export default class ExamplePlugin extends Plugin {
+export default class ExamplePlugin extends PluginBaseClass {
     init() {
         // ...
     }

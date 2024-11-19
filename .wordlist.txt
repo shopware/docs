@@ -1742,3 +1742,4 @@ youtube
 zlib
 zsh
 zstd
+XMLHttpRequest
