@@ -510,6 +510,8 @@ Here are some examples of not allowed folders and files:
 * .git
 * .gitignore
 * .phar
+* phpstan.neon
+* phpstan.neon.dist
 * .prettierrc
 * .shopware-extension.yml
 * .tar
