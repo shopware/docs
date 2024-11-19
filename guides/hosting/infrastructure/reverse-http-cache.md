@@ -192,3 +192,11 @@ For manual deployment, you can find the VCL Snippets here:
 <PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.6/config/fastly/recv/default.vcl" title="vcl_recv" target="_blank" />
 
 <!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Storefront/Resources/config/packages/storefront.yaml","WATCHER_HASH":"3ae5bc3363521c72d05f4ecbb89b3505"} -->
+
+### Cache Invalidations
+
+The Reverse Proxy Cache does share the same invalidation mechanism as the Object Cache and has the same tags. So when a product gets invalidated, the object cache and the http cache will be invalidated.
+
+::: warning
+`bin/console cache:clear` will also clear the HTTP cache. If this is not intended you should delete the `var/cache` folder manually, the object cache can be cleared with `bin/console cache:pool:clear --all` explictly.
+:::
