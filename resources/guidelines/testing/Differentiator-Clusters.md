@@ -8,9 +8,9 @@ This section will show you the new differentiator groups which needs to be fulfi
 
 * Cluster 2: Your plugin or app offers meaningful use case that cannot be replicated with other comparable plugins or apps. Moreover, it works sensibly with Shopware standards, instead of using its own technical approaches.
 
-* Cluster 3: Your app is based on the app system and offers a meaningful integration that is not implemented in the comparison app.
+* Cluster 3: Your app is based on the app system and offers a meaningful integration that is not implemented in the comparison extension.
 
-* Cluster 4: Your app is based on the app system and offers meaningful use cases that cannot be replicated with other comparable apps.
+* Cluster 4: Your app is based on the app system and offers meaningful use cases that cannot be replicated with other comparable extension.
 
 
 ## Examples of meaningful use of the Shopware standard 
