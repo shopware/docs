@@ -9,6 +9,8 @@ nav:
 
 Starting with Shopware v6.6.8.0, Redis support has been improved, giving you more flexibility in how you use it in your projects and plugins.
 
+## Accessing Redis connections
+
 Once you've set up your Redis connections as explained in the  [Redis configuration](../../hosting/infrastructure/redis) guide, you can access them in your code using the following methods:
 
 1. Inject `Shopware\Core\Framework\Adapter\Redis\RedisConnectionProvider` and retrieve connections by name:
@@ -55,7 +57,7 @@ Once you've set up your Redis connections as explained in the  [Redis configurat
     class MyCustomService
     { 
         public function __construct (
-            private Redis $redisConnection,
+            private object $redisConnection,
         ) { }
 
         public function doSomething()
@@ -74,4 +76,22 @@ Once you've set up your Redis connections as explained in the  [Redis configurat
     ```
    Be cautious with this approach! If you change the Redis connection names in your configuration, it will cause container build errors.
 
-Keep in mind that Redis is an optional dependency in Shopware and might not be available in all installations.
+## Redis usage tips
+
+### Connection types
+Under the hood, connection service objects are created using the `\Symfony\Component\Cache\Adapter\RedisAdapter::createConnection` method.
+Depending on the installed extensions/libraries and the provided DSN, this method may return instance of one of the following classes:
+`\Redis|Relay|\RedisArray|\RedisCluster|\Predis\ClientInterface`
+
+### Reusing connections
+Connections are cached in a static variable and reused based on the provided DSN. If you use the same DSN for multiple connections, they will share the same connection object.
+This means you need to be cautious when closing or modifying connection options, as it will affect all services using the same connection.
+
+### Connection initialization
+The moment actual connection is established depends on the usage model:
+* When `RedisConnectionProvider::getConnection` is called.
+* When the Redis connection service is requested from the container.
+* When a service that depends on Redis connection is instantiated.
+ 
+### Redis is optional
+When developing a plugin, please keep in mind that Redis is an optional dependency in Shopware and might not be available in all installations.

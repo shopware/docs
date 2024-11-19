@@ -435,6 +435,8 @@ Here are some examples of not allowed folders and files:
 * composer.lock
 * package.json
 * package-lock.json
+* phpstan.neon
+* phpstan.neon.dist
 * phpunitx.xml
 * shell.nix
 * Thumbs.db
