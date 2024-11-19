@@ -29,9 +29,9 @@ Inside this file create and export an ExamplePlugin class that extends the base 
 
 ```javascript
 // <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
-import Plugin from 'src/plugin-system/plugin.class';
+const { PluginBaseClass } = window;
 
-export default class ExamplePlugin extends Plugin {
+export default class ExamplePlugin extends PluginBaseClass {
 }
 ```
 
@@ -41,9 +41,9 @@ Each plugin has to implement the `init()` method. This method will be called whe
 
 ```javascript
 // <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
-import Plugin from 'src/plugin-system/plugin.class';
+const { PluginBaseClass } = window;
 
-export default class ExamplePlugin extends Plugin {
+export default class ExamplePlugin extends PluginBaseClass {
     init() {
         window.addEventListener('scroll', this.onScroll.bind(this));
     }
@@ -146,9 +146,9 @@ You can configure your plugins from inside the templates via data-options. First
 
 ```javascript
 // <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
-import Plugin from 'src/plugin-system/plugin.class';
+const { PluginBaseClass } = window;
 
-export default class ExamplePlugin extends Plugin {
+export default class ExamplePlugin extends PluginBaseClass {
     static options = {
         /**
          * Specifies the text that is prompted to the user
