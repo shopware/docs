@@ -520,7 +520,7 @@ Here are some examples of not allowed folders and files:
 * .tar
 * .tar.gz
 * .zip
-* .zipognore
+* .zipignore
 * composer.lock
 * package.json
 * package-lock.json
