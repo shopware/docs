@@ -331,7 +331,7 @@ set('writable_dirs', [
 ]);
 
 task('sw:deployment:helper', static function() {
-   run('cd {{release_path}} && ./vendor/bin/shopware-deployment-helper run');
+   run('cd {{release_path}} && vendor/bin/shopware-deployment-helper run');
 });
 
 task('sw:touch_install_lock', static function () {
