@@ -147,7 +147,7 @@ deployment:
     enabled: true
 
     overrides:
-      TheExtensionWeWantToGetRidOff:
+      TheExtensionWeWantToGetRidOf:
         # This plugin will be uninstalled if it is installed
         state: remove
         # should the extension data of an uninstalled extension be kept
