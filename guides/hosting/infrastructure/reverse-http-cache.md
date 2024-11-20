@@ -198,5 +198,5 @@ For manual deployment, you can find the VCL Snippets here:
 The Reverse Proxy Cache does share the same invalidation mechanism as the Object Cache and has the same tags. So when a product gets invalidated, the object cache and the http cache will be invalidated.
 
 ::: warning
-`bin/console cache:clear` will also clear the HTTP cache. If this is not intended you should delete the `var/cache` folder manually, the object cache can be cleared with `bin/console cache:pool:clear --all` explictly.
+`bin/console cache:clear` will also clear the HTTP cache. If this is not intended, you should manually delete the `var/cache` folder. The object cache can be cleared with `bin/console cache:pool:clear --all` explicitly.
 :::
