@@ -48,7 +48,7 @@ Ensure to set the document root of the domain to `/var/www/shopware/current/publ
 
 Because `current` is a symlink, please also make sure your web server is configured to resolve/follow symlinks correctly.
 
-### Require deployer and deployment-helper
+### Require Deployer and deployment-helper
 
 Your project needs to have the following dependencies installed:
 
