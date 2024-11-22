@@ -522,6 +522,7 @@ Here are some examples of not allowed folders and files:
 * .zip
 * .zipignore
 * composer.lock
+* phpdoc.dist.xml
 * package.json
 * package-lock.json
 * phpunit.sh
