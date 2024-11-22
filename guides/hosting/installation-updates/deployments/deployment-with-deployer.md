@@ -194,6 +194,16 @@ cp -R /var/www/shopware_backup/public/thumbnail /var/www/shopware/shared/public
 cp -R /var/www/shopware_backup/public/sitemap /var/www/shopware/shared/public
 ```
 
+## Generating a new SSH key
+
+To deploy your code to a server, you need to have an SSH key. If you don't have one yet, you can generate one with the following command:
+
+```bash
+ssh-keygen -t ed25519
+```
+
+It will be used in the above-mentioned GitLab CI/CD pipeline or GitHub Actions.
+
 ## Sources
 
 Have a look at the following files. All steps are provided with helpful comments.
