@@ -48,6 +48,14 @@ Ensure to set the document root of the domain to `/var/www/shopware/current/publ
 
 Because `current` is a symlink, please also make sure your web server is configured to resolve/follow symlinks correctly.
 
+### Require deployer and deployment-helper
+
+Your project needs to have the following dependencies installed:
+
+```bash
+composer require deployer/deployer shopware/deployment-helper
+```
+
 ## GitLab runner requirements
 
 [GitLab pipelines](https://docs.gitlab.com/ee/ci/pipelines/) are processed by [runners](https://docs.gitlab.com/runner/). Once a pipeline job is created, GitLab notifies a registered runner, and the job will then be processed by that runner.
