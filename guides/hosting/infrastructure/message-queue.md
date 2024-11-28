@@ -163,7 +163,7 @@ Sometimes, it also makes sense to route messages to a different transport to lim
 
 ### Message bus
 
-The message bus is used to dispatch your messages to your registered handlers. While dispatching your message, it loops through the configured middleware for that bus. The message bus used inside Shopware can be found under the service tag `messenger.bus.shopware`. It is mandatory to use this message bus if your messages should be handled inside Shopware. However, if you want to send messages to external systems, you can define your custom message bus for that.
+The message bus is used to dispatch your messages to your registered handlers. While dispatching your message, it loops through the configured middleware for that bus. The message bus used inside Shopware can be found under the service tag `messenger.bus.default`. It is mandatory to use this message bus if your messages should be handled inside Shopware. However, if you want to send messages to external systems, you can define your custom message bus for that.
 
 You can configure an array of buses and define one default bus in your `framework.yaml`.
 
@@ -171,9 +171,9 @@ You can configure an array of buses and define one default bus in your `framewor
 // <platform root>/src/Core/Framework/Resources/config/packages/framework.yaml
 framework:
     messenger:
-        default_bus: messenger.bus.shopware
+        default_bus: my.messenger.bus
         buses:
-            messenger.bus.shopware:
+            my.messenger.bus:
 ```
 
 For more information on this check the [Symfony docs](https://symfony.com/doc/current/messenger/multiple_buses.html).
