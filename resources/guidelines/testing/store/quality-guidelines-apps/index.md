@@ -276,7 +276,7 @@ However, you may employ `<span class="h2">`, for instance.
 
 Use your own classes and let your CSS be compiled by the plugin.
 
-Link: [Add SCSS variables]https://developer.shopware.com/docs/guides/plugins/plugins/storefront/add-scss-variables.html#add-scss-variables
+[Add SCSS variables](https://developer.shopware.com/docs/guides/plugins/plugins/storefront/add-scss-variables.html#add-scss-variables)
 
 ### New controller URLs / XHR requests
 
