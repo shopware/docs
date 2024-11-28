@@ -297,7 +297,9 @@ However, you may employ `<span class="h2">`, for instance.
 
 ### Do not use inline-css in the storefront templates
 
-Use your own classes and let your CSS be compiled by the theme.
+Use your own classes and let your CSS be compiled by the app.
+
+[Add SCSS variables](https://developer.shopware.com/docs/guides/plugins/plugins/storefront/add-scss-variables.html#add-scss-variables)
 
 ### New controller URLs / XHR requests
 
