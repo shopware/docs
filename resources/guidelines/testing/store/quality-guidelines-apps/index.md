@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Quality guidelines for apps in the plugin system
+  title: Quality guidelines for apps and themes in the app system
   position: 10
 
 ---
 
-# Quality Guidelines for the Plugin System in the Shopware Store
+# Quality Guidelines for apps and themes based on the app system in the Shopware Store
 
 > **Changelog**
 >
@@ -57,8 +57,9 @@ Hence, we check for a functional comparison with other apps already in the Shopw
 If an extension with the same function exists and it does not fit into one of our differentiator clusters, it can be rejected as it doesn't provide any added value.
 If you would like more information, please write an email to [qa@shopware.com](mailto:qa@shopware.com).
 
-Link: [Differentiator cluster for Shopware extensions](/docs/resources/guidelines/testing/Differentiator-Clusters.html)
-Link: [Documentation for Extension Partner](https://docs.shopware.com/en/account-en/extension-partner/extensions?category=account-en/extension-partner#how-can-i-request-a-preview)
+[Differentiator cluster for Shopware extensions](/docs/resources/guidelines/testing/Differentiator-Clusters.html)
+
+[Documentation for Extension Partner](https://docs.shopware.com/en/account-en/extension-partner/extensions?category=account-en/extension-partner#how-can-i-request-a-preview)
 
 ::: info
 **Safe your app idea and get a preview in the store**
@@ -234,8 +235,9 @@ This allows other developers to review and understand the code in its original, 
 
 Please build your `main.js` as described in our documentation and create the minified code as described in our developer documentation. 
 
-Link: [Loading the JS files](/docs/guides/plugins/plugins/administration/add-custom-field.html#loading-the-js-files)
-Link: [Injecting into the Administration](/docs/guides/plugins/plugins/administration/add-custom-field.html#injecting-into-the-administration)
+[Loading the JS files](/docs/guides/plugins/plugins/administration/add-custom-field.html#loading-the-js-files)
+
+[Injecting into the Administration](/docs/guides/plugins/plugins/administration/add-custom-field.html#injecting-into-the-administration)
 
 Shopware reserves the right to publish extensions with minified code after individual consideration and consultation with the developer.
 For this, the developer must ensure that Shopware has access to the current unminified code of the extension at all times.
@@ -367,7 +369,7 @@ Below is an example of implementing the tracking logic in their extensions:
 
 Our most current code review configurations when uploading apps via the Shopware Account can be found on GitHub.
 
-* Link: [Code reviews for Shopware 6 on GitHub](https://github.com/shopwareLabs/store-plugin-codereview)
+* [Code reviews for Shopware 6 on GitHub](https://github.com/shopwareLabs/store-plugin-codereview)
 
 ### Sonarcube Rules status Blocker
 
@@ -391,16 +393,17 @@ The technical app name must be stored in the first part of manifest.xml.
 Most of the errors are caused by the wrong technical name.
 For example, "Swag\\MyPlugin\\SwagMyPluginSW6" instead of "Swag\\MyPlugin\\SwagMyPlugin".
 
-[Here is an example](https://developer.shopware.com/docs/resources/references/app-reference/manifest-reference.html#manifest-reference) of a valid manifest.xml.  
+[Example of a valid manifest.xml](https://developer.shopware.com/docs/resources/references/app-reference/manifest-reference.html#manifest-reference)
 
 ### Ensure cross-domain messages are sent to the intended domain
 
-See ["Cross-document messaging domains should be carefully restricted"](https://rules.sonarsource.com/javascript/RSPEC-2819) for more information.
+["Cross-document messaging domains should be carefully restricted"](https://rules.sonarsource.com/javascript/RSPEC-2819)
 
 ### Class Shopware\Storefront\* not found
 
 Missing requirements in the theme.json (e.g. "require": {"shopware/frontend": "*"},)  
-See "[Shopware App Development: App Meta Information - Explanation of the properties](../../../../../guides/plugins/plugins/plugin-base-guide#the-composerjson-file) for more information.
+
+[Shopware App Development: App Meta Information - Explanation of the properties](../../../../../guides/plugins/plugins/plugin-base-guide#the-composerjson-file)
 
 ### Cookies are written safely
 
@@ -419,6 +422,7 @@ The `composer.lock` in the app archive has to be deleted.
 Remove out-commented code, unused files and folders, and all dev-files from your binary.
 
 Here are some examples of not allowed folders and files:
+
 * /__MACOSX
 *./tests
 * .gitignore
@@ -434,9 +438,11 @@ Here are some examples of not allowed folders and files:
 * .tar
 * .tar.gz
 * .zip
+* .zipignore
 * composer.lock
 * package.json
 * package-lock.json
+* phpunit.sh
 * phpdoc.dist.xml
 * phpstan.neon
 * phpstan.neon.dist
