@@ -328,22 +328,30 @@ After we've created our subscriber, we have to adjust our `services.xml` to regi
 [Custom fields](../custom-field/add-custom-field) are by default configurable by the admin user in the Administration, and they mostly support scalar types, e.g. a text-field, a number field, or the likes. If you'd like to create associations between entities, you'll need to use an entity extension, just like we did here. Of course, you can also add scalar values without an association to an entity via an extension.
 
 ## Bulk entity extensions
-In case your project or plugin requires a lot of entity extensions, you can register also a `BulkEntityExtension` which allows to extend multiple entities at once:
+
+::: info
+This feature is available since Shopware 6.6.10.0
+:::
+
+In case your project or plugin requires many entity extensions, you can register a `BulkEntityExtension` which allows extending multiple entities at once:
 
 ```php
 <?php
 
 namespace Examples;
 
+use Shopware\Core\Content\Product\ProductDefinition;
+use Shopware\Core\Content\Category\CategoryDefinition;
+
 class MyBulkExtension extends BulkEntityExtension
 {
     public function collect(): \Generator
     {
-        yield 'product' => [
+        yield ProductDefinition::ENTITY_NAME => [
             new FkField('main_category_id', 'mainCategoryId', CategoryDefinition::class),
         ];
 
-        yield 'category' => [
+        yield CategoryDefinition::ENTITY_NAME => [
             new FkField('product_id', 'productId', ProductDefinition::class),
             new ManyToOneAssociationField('product', 'product_id', ProductDefinition::class),
         ];
@@ -351,11 +359,11 @@ class MyBulkExtension extends BulkEntityExtension
 }
 ```
 
-Each yield defines the entity name which should be extended and the array value defines the fields which should be added. In this example, the `product` and `category` entities got extended.
+Each yield defines the entity name which should be extended and the array value defines the fields which should be added. In this example, the `product` and `category` entities are extended.
 
-In this case you also just have to register a single file inside your services.xml
+You must also register the extension in your `services.xml` file and tag it with `shopware.bulk.entity.extension`.
 
-```
+```xml
 <service id="Examples\MyBulkExtension">
    <tag name="shopware.bulk.entity.extension"/>
 </service>
