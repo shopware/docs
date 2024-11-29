@@ -250,7 +250,7 @@ shopware:
 
 ## Disable Symfony Secrets
 
-Symfony (the used web framework of Shopware) has a secret implementation. That allows to encrypt environment variables and decrypt them on the fly. If you don't use Symfony Secrets, you can disable this complete behaviour which saves some CPU cycles while booting the Application.
+Symfony has a [secret](https://symfony.com/doc/current/configuration/secrets.html) implementation. That allows the encryption of environment variables and their decryption on the fly. If you don't use Symfony Secrets, you can disable this complete behavior, saving some CPU cycles while booting the Application.
 
 ```yaml
 framework:
