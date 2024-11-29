@@ -340,7 +340,7 @@ class SendMailAction
 }
 ```
 
-You also need to register this action in the container as a service. Make sure to define a tag `<tag name="flow.storer" priority="600">` at `<plugin root>/src/Resources/config/services.xml`. This tag will ensure that your storer is included into the flow trigger process.
+You also need to register this action as a service in the container. Make sure to define a tag `<tag name="flow.storer" priority="600">` at `<plugin root>/src/Resources/config/services.xml`. This tag will ensure that your storer is included in the flow trigger process.
 
 ```XML
 // <plugin root>/src/Resources/config/services.xml
