@@ -66,6 +66,22 @@ deployment:
     exclude:
       - Name
 
+    overrides:
+      # the key is the extension name (app or plugin)
+      MyPlugin:
+        # Same as exclude
+        state: ignored
+
+      AnotherPlugin:
+        # This plugin can be installed, but should be inactive
+        state: inactive
+
+      RemoveThisPlugin:
+        # This plugin will be uninstalled if it is installed
+        state: remove
+        # should the extension data of an uninstalled extension be kept
+        keepUserData: true
+
   one-time-tasks:
     - id: foo
       script: |
@@ -118,6 +134,32 @@ The Deployment Helper can automatically log in to the Shopware Store, so you can
 The license domain can be set also by env variable `SHOPWARE_STORE_LICENSE_DOMAIN`, which will overwrite the value from the `.shopware-project.yml` file.
 
 When you open the extension manager, you will see that you are not logged in. This is normal as the Deployment Helper does log you in only for system tasks like extension installation or updates. For the extension manager, every Administration user needs to log in manually.
+
+## Removal of extensions
+
+If you want to remove an extension you need to do it in two steps:
+
+1. Set the extension to `remove` in the `.shopware-project.yml` file
+
+```yaml
+deployment:
+  extension-management:
+    enabled: true
+
+    overrides:
+      TheExtensionWeWantToGetRidOf:
+        # This plugin will be uninstalled if it is installed
+        state: remove
+        # should the extension data of an uninstalled extension be kept
+        keepUserData: true
+
+```
+
+and deploy the changes. The extension will be uninstalled and is inactive.
+
+2. Remove the extension from source code
+
+After the deployment, you can remove the extension from the source code, remove the entry from the `.shopware-project.yml` file and deploy the changes again.
 
 ## Usage examples
 

@@ -33,7 +33,7 @@ Feel free to check out the [Shopware Varnish Docker image](https://github.com/sh
 ### Configure Shopware
 
 :::warning
-From version v6.6.x onwards, this method is deprecated and will be removed in v6.7.0. Utilising Varnish with Redis involves LUA scripts to determine URLs for the BAN request. This can cause problems depending on the setup or network. Furthermore, Redis clusters are not supported. Therefore, it is advisable to opt for the [Varnish with XKey](#using-varnish-xkey-module-without-redis) integration instead.
+From version v6.6.x onwards, this method is deprecated and will be removed in v6.7.0. Utilising Varnish with Redis involves LUA scripts to determine URLs for the BAN request. This can cause problems depending on the setup or network. Furthermore, Redis clusters are not supported. Therefore, it is advisable to opt for the [Varnish with XKey](#configure-varnish) integration instead.
 :::
 
 First, we need to activate the reverse proxy support in Shopware. To enable it, we need to create a new file in `config/packages/storefront.yaml`:
@@ -47,7 +47,7 @@ shopware:
             ban_method: "BAN"
             # This needs to point to your varnish hosts
             hosts: [ "http://varnish" ]
-            # Max parallel invalidations at same time for a single worker
+            # Max parallel invalidations at the same time for a single worker
             max_parallel_invalidations: 3
             use_varnish_xkey: true
 ```
@@ -78,7 +78,7 @@ Shopware offers a Varnish Docker image that is pre-configured to work with Shopw
 
 ### Configure Varnish
 
-Varnish XKey is a cache key module that allows you to use Varnish with surrogate keys. It is a module that is not included in the default Varnish installation. It is available for Varnish 6.0 or higher.
+Varnish XKey is a cache key module that allows you to use Varnish with surrogate keys. It is a module not included in the default Varnish installation. It is available for Varnish 6.0 or higher.
 
 Checkout the official Varnish installation guide [here](https://github.com/varnish/varnish-modules#installation).
 
@@ -101,7 +101,7 @@ Make sure to replace the `__XXX__` placeholders with your actual values.
 
 ### Soft Purge vs Hard Purge
 
-The default configuration Varnish uses Hard purges, so when you update a product the page will be removed from the cache and the next request takes longer because the cache is empty. To avoid this, you can use Soft purges.
+The default configuration Varnish uses Hard purges, so when you update a product, the page will be removed from the cache and the next request takes longer because the cache is empty. To avoid this, you can use Soft purges.
 Soft purge keeps the old page in case and serves it still to the clients and refreshes the cache in the background. This way the client gets **always** a cached page and the cache is updated in the background.
 
 To enable soft purge, you need to change the varnish configuration.
@@ -190,5 +190,13 @@ For manual deployment, you can find the VCL Snippets here:
 <PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.6/config/fastly/hit/default.vcl" title="vcl_hit" target="_blank" />
 
 <PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.6/config/fastly/recv/default.vcl" title="vcl_recv" target="_blank" />
+
+### Cache Invalidations
+
+The Reverse Proxy Cache shares the same invalidation mechanism as the Object Cache and has the same tags. So, when a product is invalidated, the object cache and the HTTP cache will also be invalidated.
+
+::: warning
+`bin/console cache:clear` will also clear the HTTP cache. If this is not intended, you should manually delete the `var/cache` folder. The object cache can be cleared with `bin/console cache:pool:clear --all` explicitly.
+:::
 
 <!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Storefront/Resources/config/packages/storefront.yaml","WATCHER_HASH":"3ae5bc3363521c72d05f4ecbb89b3505"} -->
