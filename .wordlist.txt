@@ -258,6 +258,7 @@ Denylist
 Dependabot
 DependencyInjection
 Deployer
+deployer
 Deprecations
 Deutsch
 DevOps
