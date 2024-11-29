@@ -342,7 +342,7 @@ class SendMailAction
 
 You also need to register this action as a service in the container. Make sure to define a tag `<tag name="flow.storer" priority="600">` at `<plugin root>/src/Resources/config/services.xml`. This tag will ensure that your storer is included in the flow trigger process.
 
-```XML
+```xml
 // <plugin root>/src/Resources/config/services.xml
 <service id="Swag\ExamplePlugin\Core\Content\Flow\Dispatching\Storer\CustomExampleDataStorer">
     <argument type="service" id="tag.repository" />
