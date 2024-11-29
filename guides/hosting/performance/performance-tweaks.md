@@ -247,3 +247,14 @@ shopware:
     cache_compression: true
     cache_compression_method: 'zstd'
 ```
+
+## Disable Symfony Secrets
+
+Symfony has a [secret](https://symfony.com/doc/current/configuration/secrets.html) implementation. That allows the encryption of environment variables and their decryption on the fly. If you don't use Symfony Secrets, you can disable this complete behavior, saving some CPU cycles while booting the Application.
+
+```yaml
+framework:
+  secrets:
+    enabled: false
+```
+
