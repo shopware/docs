@@ -13,9 +13,9 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v4
 
-    - name: Lint changelog file
+    - name: Lint all files
       uses: docker://avtodev/markdown-lint:v1.5
       with:
-        config: 'markdown-style-config.yml'
+        config: './markdown-style-config.yml'
         args: './'
         ignore: './resources/guidelines/code/core/* ./resources/references/* ./adr/* ./'
