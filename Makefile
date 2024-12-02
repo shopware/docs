@@ -1,7 +1,7 @@
 #! /usr/bin/env make
 
 user := "$(shell id -u):$(shell id -g)"
-ignored = '/docs/resources/references/* /docs/adr/* /docs/assets/adr/* /docs/resources/guidelines/code/core/* /docs/snippets/guide/*'
+ignored = '/docs/resources/references/adr/* /docs/assets/adr/* /docs/resources/guidelines/code/core/* /docs/snippets/guide/*'
 image = jonasbn/github-action-spellcheck:0.43.0
 
 .PHONY : help lint fix

@@ -12,7 +12,7 @@ nav:
 
 All available Hooks that can be used to load additional data.
 
-#### payment-method-route-request
+### payment-method-route-request
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -24,7 +24,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### shipping-method-route-request
+### shipping-method-route-request
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -36,7 +36,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### customer-group-registration-page-loaded
+### customer-group-registration-page-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -48,7 +48,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### account-guest-login-page-loaded
+### account-guest-login-page-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -60,7 +60,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### account-login-page-loaded
+### account-login-page-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -72,7 +72,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### account-edit-order-page-loaded
+### account-edit-order-page-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -84,7 +84,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### account-order-detail-page-loaded
+### account-order-detail-page-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -96,7 +96,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### account-order-page-loaded
+### account-order-page-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -108,7 +108,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### account-overview-page-loaded
+### account-overview-page-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -120,7 +120,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### account-payment-method-page-loaded
+### account-payment-method-page-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -132,7 +132,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### account-profile-page-loaded
+### account-profile-page-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -144,7 +144,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### account-recover-password-page-loaded
+### account-recover-password-page-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -156,7 +156,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### account-register-page-loaded
+### account-register-page-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -168,7 +168,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### address-detail-page-loaded
+### address-detail-page-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -180,7 +180,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### address-book-widget-loaded
+### address-book-widget-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -192,7 +192,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### address-listing-page-loaded
+### address-listing-page-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -204,7 +204,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### checkout-cart-page-loaded
+### checkout-cart-page-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -216,7 +216,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### checkout-confirm-page-loaded
+### checkout-confirm-page-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -228,7 +228,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### checkout-finish-page-loaded
+### checkout-finish-page-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -240,7 +240,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### checkout-info-widget-loaded
+### checkout-info-widget-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -252,7 +252,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### checkout-offcanvas-widget-loaded
+### checkout-offcanvas-widget-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -264,7 +264,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### checkout-register-page-loaded
+### checkout-register-page-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -276,7 +276,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### cms-page-loaded
+### cms-page-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -288,7 +288,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### landing-page-loaded
+### landing-page-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -300,7 +300,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### maintenance-page-loaded
+### maintenance-page-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -312,7 +312,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### navigation-page-loaded
+### navigation-page-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -324,7 +324,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### product-page-loaded
+### product-page-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -336,7 +336,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### product-quick-view-widget-loaded
+### product-quick-view-widget-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -348,7 +348,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### product-reviews-loaded
+### product-reviews-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -360,7 +360,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### search-page-loaded
+### search-page-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -372,7 +372,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### search-widget-loaded
+### search-widget-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -384,7 +384,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### sitemap-page-loaded
+### sitemap-page-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -396,7 +396,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### suggest-page-loaded
+### suggest-page-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -408,7 +408,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### guest-wishlist-page-loaded
+### guest-wishlist-page-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -420,7 +420,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### wishlist-page-loaded
+### wishlist-page-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -432,7 +432,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### wishlist-widget-loaded
+### wishlist-widget-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -444,7 +444,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### country-sate-data-pagelet-loaded
+### country-sate-data-pagelet-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -456,7 +456,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### menu-offcanvas-pagelet-loaded
+### menu-offcanvas-pagelet-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -468,7 +468,7 @@ All available Hooks that can be used to load additional data.
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### guest-wishlist-pagelet-loaded
+### guest-wishlist-pagelet-loaded
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -484,7 +484,7 @@ All available Hooks that can be used to load additional data.
 
 All available Hooks that can be used to manipulate the cart.
 
-#### cart
+### cart
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -500,7 +500,7 @@ All available Hooks that can be used to manipulate the cart.
 
 All available hooks within the Store-API and API
 
-#### cache-invalidation
+### cache-invalidation
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -512,7 +512,7 @@ All available hooks within the Store-API and API
 | **Available Services** | [cache](./custom-endpoint-script-services-reference#CacheInvalidatorFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### api-{hook}
+### api-{hook}
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -524,13 +524,13 @@ All available hooks within the Store-API and API
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[writer](./custom-endpoint-script-services-reference#RepositoryWriterFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[response](./custom-endpoint-script-services-reference#ScriptResponseFactoryFacade)<br> |
 | **Stoppable**          | `true`                  |
 
-#### store-api-{hook}
+### store-api-{hook}
 
 **Interface Hook**
 
 Triggered when the api endpoint /store-api/script/{hook} is called. Used to execute your logic and provide a response to the request.<br>
 
-##### Function: `cache_key`
+#### Function: `cache_key`
 
 | <!-- -->               | <!-- -->                                        |
 |:-----------------------|:------------------------------------------------|
@@ -543,7 +543,7 @@ Triggered when the api endpoint /store-api/script/{hook} is called. Used to exec
 | **Available Services** |  |
 | **Stoppable**          | `true`                  |
 
-##### Function: `response`
+#### Function: `response`
 
 | <!-- -->               | <!-- -->                                        |
 |:-----------------------|:------------------------------------------------|
@@ -556,7 +556,7 @@ Triggered when the api endpoint /store-api/script/{hook} is called. Used to exec
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br>[writer](./custom-endpoint-script-services-reference#RepositoryWriterFacade)<br>[response](./custom-endpoint-script-services-reference#ScriptResponseFactoryFacade)<br> |
 | **Stoppable**          | `true`                  |
 
-#### storefront-{hook}
+### storefront-{hook}
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -572,7 +572,7 @@ Triggered when the api endpoint /store-api/script/{hook} is called. Used to exec
 
 All available hooks that can be used to execute scripts during your app's lifecycle.
 
-#### app-activated
+### app-activated
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -584,7 +584,7 @@ All available hooks that can be used to execute scripts during your app's lifecy
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[writer](./custom-endpoint-script-services-reference#RepositoryWriterFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### app-deactivated
+### app-deactivated
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -596,7 +596,7 @@ All available hooks that can be used to execute scripts during your app's lifecy
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[writer](./custom-endpoint-script-services-reference#RepositoryWriterFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### app-deleted
+### app-deleted
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -608,7 +608,7 @@ All available hooks that can be used to execute scripts during your app's lifecy
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[writer](./custom-endpoint-script-services-reference#RepositoryWriterFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### app-installed
+### app-installed
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -620,7 +620,7 @@ All available hooks that can be used to execute scripts during your app's lifecy
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[writer](./custom-endpoint-script-services-reference#RepositoryWriterFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-#### app-updated
+### app-updated
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -632,9 +632,7 @@ All available hooks that can be used to execute scripts during your app's lifecy
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[writer](./custom-endpoint-script-services-reference#RepositoryWriterFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-## 
-
-#### product-pricing
+### product-pricing
 
 | <!-- -->               | <!-- -->                                |
 |:-----------------------|:----------------------------------------|
@@ -645,6 +643,5 @@ All available hooks that can be used to execute scripts during your app's lifecy
 | **Available Data**     | products: `array`<br>salesChannelContext: [`Shopware\Core\System\SalesChannel\SalesChannelContext`](https://github.com/shopware/shopware/blob/trunk/src/Core/System/SalesChannel/SalesChannelContext.php)<br>context: [`Shopware\Core\Framework\Context`](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/Context.php)<br>        |
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[price](./cart-manipulation-script-services-reference#PriceFactory)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
-
 
 <!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/Webhook/Hookable/HookableEventCollector.php","WATCHER_HASH":"c8d1e5be8efb3ab8e06e434be1330489"} -->
