@@ -16,7 +16,7 @@ It comes with full flexibility and code ownership of a self-hosted Shopware proj
 
 Get started by installing the PaaS CLI on your local development machine.
 
-# Getting started with PaaS - How to deploy your first project
+## Getting started with PaaS - How to deploy your first project
 
 ::: info
 Prerequisites:
