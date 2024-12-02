@@ -16,7 +16,7 @@ It comes with full flexibility and code ownership of a self-hosted Shopware proj
 
 Get started by installing the PaaS CLI on your local development machine.
 
-## Getting started with PaaS - How to deploy your first project
+# Getting started with PaaS - How to deploy your first project
 
 ::: info
 Prerequisites:
@@ -80,7 +80,7 @@ git push shopware
 
 ## Step-by-step guide
 
-The subpages describe a more detailed step-by-step guide that you can follow to set up your PaaS project.
+The sub-pages describe a more detailed step-by-step guide that you can follow to set up your PaaS project.
 
 First, make sure your [CLI is set up correctly](cli-setup).
 Once your CLI is up and running, it is time to [set up your project repository](repository).
