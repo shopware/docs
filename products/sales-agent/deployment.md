@@ -14,7 +14,6 @@ The corresponding configuration can be found in `nuxt.config.ts` in the `nitro.s
 
 For a list of supported storage drivers and more detailed information, please refer to the [unstorage documentation](https://unstorage.unjs.io/).
 
-
 ## Production build
 
 To build and start the project in production mode:

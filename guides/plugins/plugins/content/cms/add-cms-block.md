@@ -279,14 +279,13 @@ A block's Storefront representation is always expected in the directory [platfor
 
 So go ahead and re-create that structure in your plugin: `<plugin root>/src/Resources/views/storefront/block/`
 
-Create a new twig template named after your block. The filename convention for this is : 
+Create a new twig template named after your block. The filename convention for this is :
 
-- Starts with the prefix `cms-block-` 
+- Starts with the prefix `cms-block-`
 - Followed by the technical name of the block `my-image-text-reversed`
-- Ends with the extension `.html.twig` 
+- Ends with the extension `.html.twig`
 
 Example : `cms-block-my-image-text-reversed.html.twig`.
-
 
 Since the [original 'image\_text' file](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Storefront/Resources/views/storefront/block/cms-block-image-text.html.twig) is already perfectly fine, you can go ahead and extend from it in your storefront template.
 

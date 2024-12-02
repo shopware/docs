@@ -27,7 +27,7 @@ The B2B components allow merchants to selectively choose and configure B2B featu
 
 The following articles will guide you how to do this by creating custom toggles via a plugin for B2B Components (Customer-specific features).
 
-The **Customer-specific features** section on the Customer detail page allows the shop merchant to turn these B2B features on or off for a specific customer. 
+The **Customer-specific features** section on the Customer detail page allows the shop merchant to turn these B2B features on or off for a specific customer.
 
 ![Feature Toggles](../../../assets/b2b-feature-toggles.png)
 
@@ -42,14 +42,13 @@ Considering these scenarios, we can ensure that the appropriate B2B features are
 
 To improve organization and maintain a clear structure, it is advisable to relocate all B2B Components into the `B2B` folder within the Commercial plugin. By doing so, you can centralize the B2B-related functionality, making it easier to locate, manage, and maintain the codebase. This folder structure promotes better separation of concerns and enhances the overall modularity of the application.
 
-```
+```text
 ├── src
 │   ├── B2B
 │   │   ├── QuickOrder
 │   │   ├── AnotherB2BComponent
 │   │   │   CommercialB2BBundle.php
 ...
-
 ```
 
 To ensure consistency and clarity, it is recommended to make your B2B Component extend `CommercialB2BBundle` instead of `CommercialBundle` and add the `type` as **B2B** attribute inside the `describeFeatures()` method of each B2B Component. This attribute will help identify and categorize the features specifically related to B2B functionality.

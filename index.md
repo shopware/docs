@@ -14,4 +14,4 @@ These two sections are complemented by the **References**, which contain structu
 
 Visit the [academy](https://academy.shopware.com/collections?category=developer-sw6) for video content. If you have any questions left, you can always ask them on [StackOverflow](https://stackoverflow.com/questions/tagged/shopware6?tab=Newest) or join our awesome community on [Slack](https://slack.shopware.com/).
 
-![](assets/readme-splash.png)
+![Readme](assets/readme-splash.png)

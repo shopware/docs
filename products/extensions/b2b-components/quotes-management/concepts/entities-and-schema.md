@@ -43,7 +43,6 @@ The quote document entity represents documents associated with a quote.
 
 ## Schema
 
-
 ```mermaid
 erDiagram
     Quote {

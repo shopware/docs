@@ -24,7 +24,7 @@ In this guide, we will use Varnish as an example for HTTP cache.
 This setup is compatible with Shopware version 6.4 and higher
 :::
 
-![](../../../assets/hosting-infrastructure-reverseHttpCache.svg)
+![Http cache](../../../assets/hosting-infrastructure-reverseHttpCache.svg)
 
 ### Shopware Varnish Docker image
 
@@ -123,7 +123,7 @@ curl -vvv -H 'Host: <sales-channel-domain>' <app-server-ip> 1> /dev/null
 
 and you should get a response like:
 
-```
+```text
 < HTTP/1.1 200 OK
 < Cache-Control: public, s-maxage=7200
 < Content-Type: text/html; charset=UTF-8

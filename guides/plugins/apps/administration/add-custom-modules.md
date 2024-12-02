@@ -19,7 +19,6 @@ You should be familiar with the concept of Apps, especially their registration f
 
 <PageRef page="../app-base-guide" />
 
-
 ## Overview
 
 In your app, you are able to add your own modules to the Administration. Your custom modules are loaded as iframes which are embedded in the Shopware Administration and within this iframe, your website will be loaded and shown.

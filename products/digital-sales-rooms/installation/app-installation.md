@@ -13,23 +13,26 @@ This template is built based on the Shopware Frontends framework, so it inherits
 
 ## Init environment
 
-- Install pnpm with global scope
-```
+* Install pnpm with global scope
+
+```shell
 npm install -g pnpm
 ```
 
-- From the Shopware root folder `<shopware-root-dir>`, go to the folder of *Digital Sales Rooms* templates.
-```
+* From the Shopware root folder `<shopware-root-dir>`, go to the folder of *Digital Sales Rooms* templates.
+
+```shell
 cd ./custom/plugins/SwagDigitalSalesRooms/templates/dsr-frontends
 ```
 
 ## Generate env file
 
-- Assume Shopware platform is running at `http://localhost:8000` & frontend app will run in `http://localhost:3000`.
+* Assume Shopware platform is running at `http://localhost:8000` & frontend app will run in `http://localhost:3000`.
 
-```
+```shell
 cp .env.template .env
 ```
+
 **ORIGIN**: This is current frontend app domain. E.g: `http://localhost:3000`
 
 **SHOPWARE_STOREFRONT_URL**: This is default Shopware storefront domain. E.g: `http://localhost:8000`
@@ -46,29 +49,34 @@ cp .env.template .env
 
 For development, you can run the dev server by the following commands:
 
-- Install dependencies
-```
+* Install dependencies
+
+```shell
 pnpm install
 ```
 
-- Run dev server
-```
+* Run dev server
+
+```shell
 pnpm dev
 ```
+
 Usually, port `3000` is the default port so that you can access the domain of the Frontend App `http://localhost:3000/`
 
-# Build frontend App
+## Build frontend App
 
 For production, you can build code by the following commands:
 
-- Install dependencies
-```
+* Install dependencies
+
+```shell
 pnpm install
 ```
 
-- Build
-```
+* Build
+
+```shell
 pnpm build
 ```
 
-Following section guides you on 3rd parties setup procedure.
+The Following section guides you on 3rd parties setup procedure.

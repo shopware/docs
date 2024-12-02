@@ -16,7 +16,7 @@ The DAL is implemented with the specific needs of Shopware in mind and lets deve
 Some concepts used by the DAL, like Criteria, may sound familiar to you if you know [Doctrine](https://symfony.com/doc/current/doctrine.html) or other ORMs.
 A reference to more in-depth documentation about the DAL can be found below.
 
-Refer to [Shopware 6.6.5.0 entity relationship model](../../../assets/shopware6-erd.pdf) that depicts different tables and their relationships. 
+Refer to [Shopware 6.6.5.0 entity relationship model](../../../assets/shopware6-erd.pdf) that depicts different tables and their relationships.
 
 Alternatively, you can export a fresh ER model, using [MySQL Workbench](https://dev.mysql.com/doc/workbench/en/wb-reverse-engineering.html), [PHPStorm Database Tools](https://www.jetbrains.com/help/phpstorm/creating-diagrams.html), or similar tool.
 
@@ -64,9 +64,9 @@ The DAL was designed, among other things, to enable the special requirements of 
 When a record is read or searched, three language levels are searched.
 
 1. **Current language**: The first level is the current language that is set and displayed to the user.
-1. **Parent language**: the second level is an optional parent language that can be configured. 
+2. **Parent language**: the second level is an optional parent language that can be configured.
 So it is possible to translate certain dialects faster.
-1. **System language**: The third and last level is the system language that is selected during the installation.
+3. **System language**: The third and last level is the system language that is selected during the installation.
 Each entity in the system has a translation in this language.
 This serves as a final fallback to ensure only one label for the entity in the end.
 

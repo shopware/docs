@@ -14,4 +14,3 @@ The app SDK provides a context object that grants access to relevant information
 To ensure secure communication between the application and Shopware, this SDK supports signing mechanisms, allowing developers to validate the authenticity and integrity of requests and responses.		
 
 It also includes an HTTP client that simplifies making API requests to Shopware endpoints. It provides methods for handling authentication, executing HTTP requests, and processing responses.		
-

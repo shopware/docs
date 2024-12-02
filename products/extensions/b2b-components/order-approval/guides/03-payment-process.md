@@ -38,4 +38,3 @@ class MySubscriber implements EventSubscriberInterface
     }
 }
 ```
-

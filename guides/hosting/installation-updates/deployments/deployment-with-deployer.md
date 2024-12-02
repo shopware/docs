@@ -186,7 +186,7 @@ After the very first deployment with Deployer, you have to copy some files and d
 Let's agree on the following two paths for the examples:
 
 1. You have copied your existing Shopware instance to `/var/www/shopware_backup`.
-1. You have set the `deploy_path` in the [`deploy.php`](deployment-with-deployer#deploy-php) to `/var/www/shopware`.
+2. You have set the `deploy_path` in the [`deploy.php`](deployment-with-deployer#deploy-php) to `/var/www/shopware`.
 
 Now, look at the `shared_files` and `shared_dirs` configurations in the [`deploy.php`](deployment-with-deployer#deploy-php). Simply copy all the paths into `/var/www/shopware/shared`. For the configuration of the `deploy.php` the commands would be the following:
 

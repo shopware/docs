@@ -164,7 +164,7 @@ Note, that we've added the page to the template variables.
 
 #### Adjusting the services.xml
 
-In addition, it is necessary to pass the argument with the ID of the `ExamplePageLoader` class to the [configuration ](add-custom-controller#services-xml-example) of the controller service in the `services.xml`.
+In addition, it is necessary to pass the argument with the ID of the `ExamplePageLoader` class to the [configuration](add-custom-controller#services-xml-example) of the controller service in the `services.xml`.
 
 ```html
 // <plugin root>/src/Resources/config/services.xml

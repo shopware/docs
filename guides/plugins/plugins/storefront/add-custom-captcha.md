@@ -26,10 +26,9 @@ Take a look at the AbstractCaptcha class. This class is the base class for all c
 * `getName(): string` - This method is used to get the name of the captcha type.
 * `shouldBreak(): bool` - This method is used to check if the captcha should break the validation.
 * `getData(): array` - This method is used to get the data of the captcha type.
-+ `getViolations(): ConstraintViolationListInterface` - This method is used to get the violations of the captcha type.
+* `getViolations(): ConstraintViolationListInterface` - This method is used to get the violations of the captcha type.
 
-
-Simply extend the AbstractCaptcha class and implement the methods isValid and getName. The isValid method should return true if the captcha code is valid, false otherwise. The getName method should return the name of the captcha type.
+Extend the AbstractCaptcha class and implement the methods isValid and getName. The isValid method should return true if the captcha code is valid, false otherwise. The getName method should return the name of the captcha type.
 
 ```php
 

@@ -56,7 +56,8 @@ You can list all scheduled tasks with `bin/console scheduled-task:list` command.
 To run the scheduled tasks, you must set up a background worker like the [Message Queue](message-queue.md) and run the command `bin/console scheduled-task:run`. The command schedules all tasks to the queue and waits until a task needs to be scheduled. It consumes little CPU time or memory.
 
 You can use the flag `--no-wait` and run the command from an operating system scheduler like cron. Check your scheduled task interval to determine the best interval to trigger the command. Example:
-```
+
+```bash
 */5 * * * * /usr/bin/php /var/www/html/bin/console scheduled-task:run --no-wait
 ```
 
@@ -66,7 +67,7 @@ You can use the flag `--no-wait` and run the command from an operating system sc
 Running tasks with the symfony scheduler is available starting with Shopware 6.6
 :::
 
-::: warning 
+::: warning
 This feature is experimental.
 :::
 
@@ -82,6 +83,7 @@ To deactivate tasks, set status to `Shopware\Core\Framework\MessageQueue\Schedul
 ## Debugging scheduled tasks
 
 You can directly run a single scheduled task without the queue. This is useful for debugging purposes or to have better control of when and which tasks are executed. You can use `bin/console scheduled-task:run-single <task-name>` to run a single task. Example:
-```
+
+```shell
 bin/console scheduled-task:run-single log_entry.cleanup
 ```
