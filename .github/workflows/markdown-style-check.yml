@@ -19,3 +19,4 @@ jobs:
         config: './markdown-style-config.yml'
         args: './'
         ignore: './resources/guidelines/code/core/* ./resources/references/* ./adr/* ./'
+      continue-on-error: false
