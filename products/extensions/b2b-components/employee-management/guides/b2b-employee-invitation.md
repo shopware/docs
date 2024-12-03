@@ -6,7 +6,7 @@ nav:
 
 # Employee Invitation
 
-Employees can be created via Storefront, Store-api, and Administration. 
+Employees can be created via Storefront, Store-api, and Administration.
 
 - Storefront - Business partners can invite employees by logging-in to Storefront and navigating to the `employee` page. From there, they can add a new employee.
 - Store API - One can utilize the `/store-api/employee/create` endpoint while logged in as a customer to invite employees.

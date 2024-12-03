@@ -1,5 +1,4 @@
 
-
 ::: info
 This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/coding-guidelines/core/final-and-internal.md)
@@ -11,15 +10,17 @@ We use `@final` and `@internal` annotations to mark classes as final or internal
 
 ## Final
 
-We mark classes as `@final` when developers can use the class but should not extend it. 
+We mark classes as `@final` when developers can use the class but should not extend it.
 
 Following changes of the class are allowed:
+
 - Adding new public methods/properties/constants
 - Adding new optional parameters to public methods
 - Protected and private methods/properties/constants can be changed without any restrictions.
 - Widening the type of public method params
 
 Following changes of the class are not allowed:
+
 - Removing public methods/properties/constants
 - Removing public methods parameters
 - Narrowing the type of public methods/properties/constants

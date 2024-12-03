@@ -17,7 +17,6 @@ Configuration of Monolog is done in the `config/packages/prod/monolog.yaml` file
 
 <<< @/docs/snippets/config/monolog.yaml
 
-
 ## Log levels
 
 Monolog supports the following log levels:
@@ -30,7 +29,6 @@ Monolog supports the following log levels:
 - `CRITICAL`: Critical conditions. Example: Application component unavailable, unexpected exception.
 - `ALERT`: Action must be taken immediately. Example: Entire website down, database unavailable, etc. This should trigger the SMS alerts and wake you up.
 - `EMERGENCY`: Emergency: system is unusable.
-
 
 ## Log sent e-mails and other flow events
 

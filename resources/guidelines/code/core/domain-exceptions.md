@@ -1,5 +1,4 @@
 
-
 ::: info
 This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/coding-guidelines/core/domain-exceptions.md)
@@ -12,6 +11,7 @@ To ensure a consistent exception handling, we introduced domain exceptions. Thes
 Each domain exception class extends the `Shopware\Core\Framework\HttpException` class, which ensure a unique error code and http handling. Error codes of each domain exception class are unique within the domain. The error codes are defined within the corresponding domain exception.
 
 Domain exception are always stored directly inside the top level domain in each area. Top level domains are:
+
 - `Checkout\Cart`
 - `Checkout\Customer`
 - `Content\Category`
@@ -45,6 +45,7 @@ class CustomerException extends HttpException
 ```
 
 ## Exceptions which should be catchable
+
 However, the DomainExceptions are not (necessarily) made to be caught and handled in a try-catch. Therefore, we will continue to implement own exception classes, for exceptions that we want to catch ourselves in the system via a try-catch, which extends the DomainException. These exceptions are then stored in an exception sub folder:
 
 ```php
@@ -80,4 +81,5 @@ class CustomerNotFoundException extends CustomerException
 ```
 
 ## Http status code
+
 Each specific type of domain exceptions should provide a specific http status code. Please use the following official http status defined by [https://developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)

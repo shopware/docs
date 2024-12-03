@@ -11,7 +11,6 @@ nav:
 These commands are only available inside `shopware/shopware` GitHub repository, so when you contribute to Shopware. For regular projects, use `./bin/*.sh` scripts.
 :::
 
-
 These composer commands can be executed using composer with your Shopware project.
 
 ```bash
@@ -21,6 +20,7 @@ $ composer [command] [parameters]
 ## Commands
 
 ### Setup & build
+
 | Command                      | Description                                                                                                                   |
 |------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
 | `setup`                      | Resets and re-installs this Shopware instance - Database will be purged!                                                      |
@@ -31,7 +31,6 @@ $ composer [command] [parameters]
 | `build:js:storefront`        | Builds the Storefront's JavaScript - Includes `bundle:dump`, `feature:dump` and `theme:compile`                               |
 | `check:license`              | Check third-party dependency licenses for composer dependencies                                                               |
 | `reset`                      | Resets this Shopware instance, without composer and npm install. (Faster reset if no dependencies changed)                    |
-
 
 ### Administration
 
@@ -46,7 +45,6 @@ $ composer [command] [parameters]
 | `admin:unit:watch:vue3`              | Launches the interactive jest unit test-suite watcher for the Admin with Vue3 |
 | `npm:admin:check-license`            | Check third-party dependency licenses for administration                      |
 | `watch:admin`                        | Build administration with hot module reloading                                |
-
 
 ### Storefront
 

@@ -51,7 +51,6 @@ Since the latter example is being used, this is the path being created in the pl
 
 In the directory mentioned above, create a new file `index.js`. We will get you covered with more information about it later. Now import your custom component using your plugin's `main.js` file:
 
-
 <Tabs>
 <Tab title="Asynchronous loading">
 The asynchronous loading behavior is the preferred way. This way, the component will only be loaded when it's actually being used. This will speed up the loading time of the Administration.
@@ -62,6 +61,7 @@ You can use the `Shopware.Component.register` method to register your component.
 // <plugin root>/src/Resources/app/administration/src
 Shopware.Component.register('hello-world', () => import('./component/custom-component/hello-world'));
 ```
+
 </Tab>
 
 <Tab title="Synchronous loading">
@@ -74,6 +74,7 @@ will be done in the `index.js` file of your component.
 // <plugin root>/src/Resources/app/administration/src
 import './component/custom-component/hello-world';
 ```
+
 </Tab>
 </Tabs>
 
@@ -93,6 +94,7 @@ export default Shopware.Component.wrapComponentConfig({
     // Configuration here
 });
 ```
+
 </Tab>
 
 <Tab title="Synchronous loading">
@@ -104,6 +106,7 @@ Shopware.Component.register('hello-world', {
     // Configuration here
 });
 ```
+
 </Tab>
 </Tabs>
 

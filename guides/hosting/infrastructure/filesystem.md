@@ -68,6 +68,7 @@ By default, the configuration for the theme, asset and sitemap filesystem will u
 This means when you want to change the configuration used for the public filesystem, but the others should use the old configuration you have to set them explicitly.
 
 E.g. before you had the following configuration:
+
 ```yaml
 shopware:
   filesystem:
@@ -78,7 +79,9 @@ shopware:
         root: "%kernel.project_dir%/public"
 
 ```
+
 Now you want to change the public filesystem to use an S3 adapter, but the theme, asset and sitemap filesystem should still use the local adapter. You have to set them explicitly:
+
 ```yaml
 shopware:
   filesystem:
@@ -113,9 +116,6 @@ shopware:
 
 ### Additional configuration
 
-If you want to regulate the uploaded file types, then you could add the keys `allowed_extensions` for the public filesystem or `private_local_download_strategy` for the private filesystem.
-With the `private_local_download_strategy` key you could choose the download strategy for private files (e.g. the downloadable products):
-=======
 If you want to regulate the uploaded file types, then you could add the keys `allowed_extensions`for the public filesystem or `private_local_download_strategy` for the private filesystem.
 With the `private_local_download_strategy` key you could choose the download strategy for private files (e.g., the downloadable products):
 
@@ -223,7 +223,6 @@ shopware:
 ```
 
 The bucket needs to use the "Fine-grained" [ACL mode](https://cloud.google.com/storage/docs/access-control#choose_between_uniform_and_fine-grained_access). This is required so that Shopware can manage the ACL of the objects.
-
 
 ## Add your own adapter
 

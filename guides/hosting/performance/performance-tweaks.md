@@ -36,7 +36,8 @@ shopware:
 ### Delayed invalidation
 
 A delay for cache invalidation can be activated for systems with a high update frequency for the inventory (products, categories). Once the instruction to delete the cache entries for a specific product or category occurs, they are not deleted instantly but processed by a background task later. Thus, if two processes invalidate the cache in quick succession, the timer for the invalidation of this cache entry will only reset.
-By default, the scheduled task will run every 20 seconds, but the interval can be adjusted over the `scheduled_taks` DB table, by setting the `run_interval` to the desired value (it is configured in seconds) for the entry with the name `shopware.invalidate_cache`. 
+By default, the scheduled task will run every 20 seconds, but the interval can be adjusted over the `scheduled_taks` DB table, by setting the `run_interval` to the desired value (it is configured in seconds) for the entry with the name `shopware.invalidate_cache`.
+
 ```yaml
 # config/packages/prod/shopware.yaml
 shopware:
@@ -227,7 +228,6 @@ Shopware uses `gzip` for compressing the cache elements and the cart when enable
 
 Since Shopware 6.6.4.0, it has been possible to use `zstd` as an alternative compression algorithm. `zstd` is faster than `gzip` and has a better compression ratio. Unfortunately, `zstd` is not included by default in PHP, so you need to install the extension first.
 
-
 ```yaml
 # Enabling cart compression with zstd
 shopware:
@@ -257,4 +257,3 @@ framework:
   secrets:
     enabled: false
 ```
-

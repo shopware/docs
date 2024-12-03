@@ -19,6 +19,7 @@ Your app server must be also accessible for the Shopware server.
 You can use a tunneling service like [ngrok](https://ngrok.com/) for development.
 
 ## Manifest configuration
+
 To indicate to Shopware that your app uses the checkout gateway, you must provide a `checkout` property inside a `gateways` parent property of your app's `manifest.xml`.
 
 Below, you can see an example definition of a working checkout gateway configuration.
@@ -35,18 +36,20 @@ Below, you can see an example definition of a working checkout gateway configura
     </gateways>
 </manifest>
 ```
+
 :::
 
 After successful installation of your app, the checkout gateway will already be used during checkout.
 
 ## Checkout gateway endpoint
+
 During checkout, Shopware checks for any active checkout gateways and will call the `checkout` url.
 The app server will receive the current `SalesChannelContext`, `Cart`, and available payment and shipping methods as part of the payload.
 
 ::: warning
 **Connection timeouts**
 
-The Shopware shop will wait for a response for 5 seconds. 
+The Shopware shop will wait for a response for 5 seconds.
 Be sure, that your checkout gateway implementation on your app server responds in time, otherwise Shopware will time out and drop the connection.
 :::
 
@@ -213,6 +216,7 @@ class GatewayController extends AbstractController
 </Tabs>
 
 ## Event
+
 Plugins can listen to the `Shopware\Core\Checkout\Gateway\Command\Event\CheckoutGatewayCommandsCollectedEvent`.
 This event is dispatched after the Checkout Gateway has collected all commands from all app servers.
 It allows plugins to manipulate the commands before they are executed, based on the same payload the app servers retrieved.

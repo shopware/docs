@@ -26,6 +26,7 @@ To use the Digital Sales Rooms plugin, you must perform **installation** & **3rd
 ## Prerequisites
 
 Review the below minimum operating requirements before you install the *Digital Sales Rooms* feature:
+
 * [node](https://nodejs.org/en) >= v18
 * [pnpm](https://pnpm.io/installation) >= 8
 * [Shopware Frontends framework](https://frontends.shopware.com/) based on Nuxt 3.
@@ -35,5 +36,4 @@ Review the below minimum operating requirements before you install the *Digital 
   * [Daily.co](https://daily.co/) - Refer to setup instructions for [realtime video call](./setup-3rd-party/realtime-video-dailyco.md)
   * [Mercure](https://mercure.rocks/)- Refer to setup instructions for [realtime Mercure service](./setup-3rd-party/realtime-service-mercure.md)
   
-
 Following section guides you on the installation procedure.

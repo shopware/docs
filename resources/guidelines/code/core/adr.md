@@ -1,5 +1,4 @@
 
-
 ::: info
 This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/coding-guidelines/core/adr.md)
@@ -14,6 +13,7 @@ Joel Parker Henderson has done a lot of work on this topic, collected excellent 
 The ADRs examples published there are good.
 
 Expectations for an ADR:
+
 - Write a complete description of the requirements
 - List all technical domains that are affected by the ADR
 - List all affected logic in the system that are affected

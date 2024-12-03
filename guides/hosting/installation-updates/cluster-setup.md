@@ -48,10 +48,10 @@ Most big-scale projects have a development team assigned. It is responsible for 
 We recommend setting up at least five Redis servers for the following resources:
 
 1. [Session](../performance/session) + [cart](../infrastructure/database-cluster#cart-in-redis)
-1. [cache.object](../performance/caches#example-replace-some-cache-with-redis)
-1. [Lock](../performance/lock-store) + [Increment storage](../performance/increment)
-1. [Number Ranges](../performance/number-ranges)
-1. [Message Queue](../infrastructure/message-queue#transport-redis-example)  
+2. [cache.object](../performance/caches#example-replace-some-cache-with-redis)
+3. [Lock](../performance/lock-store) + [Increment storage](../performance/increment)
+4. [Number Ranges](../performance/number-ranges)
+5. [Message Queue](../infrastructure/message-queue#transport-redis-example)  
    Instead of setting up a Redis server for `messenger`, you can also work directly with [RabbitMQ](../infrastructure/message-queue#transport-rabbitmq-example)
 
 The PHP Redis extension provides persistent Redis connections. Persistent connections can help in high load scenarios as each request doesn't have to open and close connections. Using non-persistent Redis connections can also hit the system's maximum open sockets. Because of these limitations, the Redis extension is preferred over Predis.

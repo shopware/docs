@@ -22,10 +22,10 @@ You also should have a look at our [Adding custom complex data](add-custom-compl
 To start using inheritance, we have to update our definition and database.
 
 1. Make inheritable fields nullable in the database
-1. Add the `ParentFkField`, `ParentAssociationField`, `ChildrenAssociationField` in your definition
-1. Enable inheritance by overwriting `isInheritanceAware()`
-1. Flag fields as inheritable
-1. Add getters and setters to the entity class
+2. Add the `ParentFkField`, `ParentAssociationField`, `ChildrenAssociationField` in your definition
+3. Enable inheritance by overwriting `isInheritanceAware()`
+4. Flag fields as inheritable
+5. Add getters and setters to the entity class
 
 ### Make fields nullable
 
@@ -197,9 +197,9 @@ class ExampleEntity extends Entity
 This concept also supports translations. Given a parent/child entity with an inherited language \(de-CH _inherits from_ de-DE\), the inheritance system will try to look up the values in following order:
 
 1. Child \(de-CH\)
-1. Child \(de-DE\)
-1. Parent \(de-CH\)
-1. Parent \(de-DE\)
+2. Child \(de-DE\)
+3. Parent \(de-CH\)
+4. Parent \(de-DE\)
 
 If an inheritance is not found, the next translation in the chain above will be used.
 

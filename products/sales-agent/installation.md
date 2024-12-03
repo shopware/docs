@@ -7,41 +7,42 @@ nav:
 
 # Installation
 
-1. **Clone the Repository**
+1.) **Clone the Repository**
 
-```bash
+```shell
 git clone https://github.com/shopware/swagsalesagent.git
 cd swagsalesagent
 ```
 
+2.) **Create a `.env` File**
 
-2. **Create a `.env` File**
+* Use the provided `.env.template` file as an example.
 
-- Use the provided `.env.template` file as an example.
-```
+```shell
 cp .env.template .env
 ```
-- Fill in the required details in the `.env` file. See the [table](../#.env properties) below for a detailed explanation of the properties.
 
-3. **Set Up Shopware**
+* Fill in the required details in the `.env` file. See the [table](../#.env properties) below for a detailed explanation of the properties.
 
-- Go to the Shopware instance you want to use.
-- Go to the storefront sales channel, scroll down, and copy the API Access Key. Add this key to your `.env` file.
-- Go to Admin > Settings > Integrations, add a new Integration and assign a role that has at least the following permissions:
-    - Write permission for Orders
-    - View permission for Sales Channels
-    - View permission for Customers
-- Copy the secrets into your `.env` file.
+3.) **Set Up Shopware**
 
-4. **Install dependencies**
+* Go to the Shopware instance you want to use.
+* Go to the storefront sales channel, scroll down, and copy the API Access Key. Add this key to your `.env` file.
+* Go to Admin > Settings > Integrations, add a new Integration and assign a role that has at least the following permissions:
+  * Write permission for Orders
+  * View permission for Sales Channels
+  * View permission for Customers
+* Copy the secrets into your `.env` file.
 
-```bash
+4.) **Install dependencies**
+
+```shell
 pnpm install --frozen-lockfile --prefer-offline
 ```
 
-5. **Run the Development Server**
+5.) **Run the Development Server**
 
-```bash
+```shell
 pnpm run dev
 ```
 
@@ -49,10 +50,9 @@ pnpm run dev
 
 Alternatively, you can also use docker to install and start the application.
 
-```bash
+```shell
 docker compose up
 ```
-
 
 ### .env Properties
 
@@ -72,9 +72,6 @@ docker compose up
 | STORAGE_PORT                     | The storage port to use in production. Please refer to the [Deployment](#Deployment) section.                                                               |
 | STORAGE_PASSWORD                 | The storage password to use in production. Please refer to the [Deployment](#Deployment) section.                                                           |
 | STORAGE_TLS                      | Use TLS for storage communication in production. Please refer to the [Deployment](#Deployment) section.                                                     |
-
-
-
 
 ### Local SSL setup
 

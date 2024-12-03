@@ -51,7 +51,6 @@ create those manually (check files [here](https://github.com/symfony/recipes-con
     (defaults to n): n
 ```
 
-
 Modify the `SHOPWARE_APP_NAME` and `SHOPWARE_APP_SECRET` in the env to your app name`./.env` to ensure you can install the app in a store later.
 Also, configure the `DATABASE_URL` to point to your database:
 

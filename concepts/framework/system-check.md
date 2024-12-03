@@ -29,7 +29,7 @@ And to ensure clear terminology, we have defined the following logical concepts 
 
 ### Category
 
-The category aims to cluster what the check is verifying rather than to categorize the type of check itself. 
+The category aims to cluster what the check is verifying rather than to categorize the type of check itself.
 Each component logically falls into a certain category. Functional categories are used to group checks together. The following categories are available:
 
 - `SYSTEM`: System checks make sure that the backbone of the software is functioning correctly. For example, a database connection.

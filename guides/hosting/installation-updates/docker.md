@@ -5,7 +5,7 @@ nav:
 
 ---
 
-Shopware provides a Docker image to run Shopware 6 in a containerized environment for production intent. The Docker image is based on the official PHP image and includes the required PHP extensions and configurations to run Shopware 6. But it does not contain Shopware itself. 
+Shopware provides a Docker image to run Shopware 6 in a containerized environment for production intent. The Docker image is based on the official PHP image and includes the required PHP extensions and configurations to run Shopware 6. But it does not contain Shopware itself.
 It's intended to be used together with your existing Shopware project, copy the project into the image, build it, and run it.
 
 If you don't have yet a Shopware project, you can create a new one with:
@@ -13,7 +13,6 @@ If you don't have yet a Shopware project, you can create a new one with:
 ::: info
 You can create a Project with a specific Shopware version by specifying the version like: `composer create-project shopware/production:6.6.7.0 <folder>`
 :::
-
 
 ```bash
 composer create-project shopware/production <folder>
@@ -75,7 +74,6 @@ Additionally we have also FPM only images available:
 - `shopware/docker-base:8.3.12-fpm` - PHP 8.3.12 with FPM (same as above, but much more explicit)
 - `shopware/docker-base:8.3-fpm-otel` - PHP 8.3 with FPM and OpenTelemetry
 - `shopware/docker-base:8.3.12-fpm-otel` - PHP 8.3.12 with FPM and OpenTelemetry (same as above, but much more explicit)
-
 
 The images are available at Docker Hub and GitHub Container Registry (ghcr.io) with the same names and tags.
 
@@ -239,4 +237,3 @@ COPY custom.ini /usr/local/etc/php/conf.d/
 ### No transport supports the given Messenger DSN for Redis
 
 When you are stuck with the error `No transport supports the given Messenger DSN`, you need to install the required package. When the package is already installed, it's mostly a dependency resolving issue. Make sure that you have also the PHP Redis Extension locally installed.
-
