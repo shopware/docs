@@ -158,7 +158,7 @@ You will want to create at least 3 scripts in `package.json` of your repository
 * `docs:link` - Mount documentation from your repository into your local `developer-portal` instance.
 * `docs:preview` - Run Vitepress dev server from your local `developer-portal` instance.
 
-Examples are available in [meteor](https://github.com/shopware/meteor/src/blob/package.json) (monorepo setup), [meteor](https://github.com/shopware/frontends/src/blob/package.json), [meteor](https://github.com/shopware/release-notes/src/blob/package.json) and [meteor](https://github.com/shopware/docs/src/blob/package.json) repositories (all standard repos).
+Examples are available in [meteor](https://github.com/shopware/meteor/blob/main/package.json) (monorepo setup), [frontends](https://github.com/shopware/frontends/blob/main/package.json), [release](https://github.com/shopware/release-notes/blob/main/package.json) and [docs](https://github.com/shopware/docs/blob/main/package.json) repositories (all standard repos).
 
 ```json
 {

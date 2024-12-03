@@ -9,11 +9,11 @@ nav:
 
 ## Overview
 
-In this guide, you will see an example of how you can extend a Shopware migration profile of the [Shopware Migration Assistant](https://store.shopware.com/search?sSearch=Swag257162657297f). For this example, the Shopware 5 [SwagAdvDevBundle](https://github.com/shopwareLabs/SwagAdvDevBundle) plugin is migrated to the Shopware 6. For simplicity, only the local gateway is implemented.
+In this guide, you will see an example of how you can extend a Shopware migration profile of the [Shopware Migration Assistant](https://store.shopware.com/de/swag257162657297f/migrations-assistent.html). For this example, the Shopware 5 [SwagAdvDevBundle](https://github.com/shopwareLabs/SwagAdvDevBundle) plugin is migrated to the Shopware 6. For simplicity, only the local gateway is implemented.
 
 ## Setup
 
-It is required to have a basic plugin running. You must have installed the [SwagAdvDevBundle](https://github.com/shopwareLabs/SwagAdvDevBundle) plugin in Shopware 5, an own [Plugin](../../../../guides/plugins/plugins/plugin-base-guide#create-your-first-plugin) and [Shopware Migration Assistant](https://store.shopware.com/search?sSearch=Swag257162657297f) in Shopware 6.
+It is required to have a basic plugin running. You must have installed the [SwagAdvDevBundle](https://github.com/shopwareLabs/SwagAdvDevBundle) plugin in Shopware 5, an own [Plugin](../../../../guides/plugins/plugins/plugin-base-guide#create-your-first-plugin) and [Shopware Migration Assistant](https://store.shopware.com/de/swag257162657297f/migrations-assistent.html) in Shopware 6.
 
 ## Enrich existing plugin with migration features
 
