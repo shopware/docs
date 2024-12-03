@@ -19,7 +19,7 @@ Prior to Shopware 6.4.0.0, the API version was mainly found in the routes themse
 
 By using the version, one could ensure that his application keeps on working because we are not going to introduce breaking changes within a version. Yet, versions had to be removed every now and then, which would then still break the application.
 
-More on this can be found in our guide [ADR regarding the API version removal](https://github.com/shopware/shopware/blob/trunk/adr/2020-12-02-removing-api-version.md) section.
+More on this can be found in our guide [ADR regarding the API version removal](https://githubs.com/shopware/shopware/blob/trunk/adr/2020-12-02-removing-api-version.md) section.
 
 ### Versioning starting with 6.3.5.0
 
