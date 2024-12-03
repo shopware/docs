@@ -1,4 +1,5 @@
 
+
 ::: info
 This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/coding-guidelines/core/writing-code-for-static-analysis.md)
@@ -29,8 +30,7 @@ if ($foo === null) {
     throw new \InvalidArgumentException('Foo must not be null');
 }
 ```
-
-or
+or 
 
 ```php
 $foo = $bar->getFoo(); // $foo is mixed, but we expect only string
@@ -40,7 +40,6 @@ if (!is_string($foo)) {
     throw new \InvalidArgumentException('$foo must not be string');  
 }
 ```
-
 or
 
 ```php
@@ -75,7 +74,7 @@ $foo = (string) $foo; // this might hide unexpected conversions from non-string 
 
 ### 1.2 Ensuring types in unit tests
 
-In unit tests, the type ensuring asserts from PhpUnit can be used to ensure that the types are correct. Those are also evaluated at (test) runtime, thus they guarantee have full type safety.
+In unit tests, the type ensuring asserts from PhpUnit can be used to ensure that the types are correct. Those are also evaluated at (test) runtime, thus they guarantee have full type safety. 
 This is especially useful as the error case in unit tests does not have to be handled manually, as the error will simply lead to a test failure when a type is encountered that was not expected.
 **Examples:**
 
@@ -84,7 +83,6 @@ $foo = $bar->getFoo(); // $foo is Foo|null, but we expect only Foo
 
 static::assertNotNull($foo);
 ```
-
 or
 
 ```php
@@ -92,7 +90,6 @@ $foo = $bar->getFoo(); // $foo is mixed, but we expect only string
 
 static::assertIsString($foo);
 ```
-
 or
 
 ```php
@@ -117,15 +114,13 @@ $foo = $bar->getFoo(); // $foo is Foo|null, but we expect only Foo
 
 assert($foo !== null);
 ```
-
-or
+or 
 
 ```php
 $foo = $bar->getFoo(); // $foo is mixed, but we expect only string
 
 assert(is_string($foo));
 ```
-
 or
 
 ```php
@@ -136,7 +131,7 @@ assert($foo instanceof Foo);
 
 ## 3. Narrow types during static analysis with `@var` annotations
 
-Lastly it is possible to use `@var` annotations to narrow down types during static analysis.
+Lastly it is possible to use `@var` annotations to narrow down types during static analysis. 
 Those annotations are evaluated by static analysis tools, but are ignored at runtime, which means that they offer no real type safety at runtime.
 With the [latest PHPStan version](https://phpstan.org/blog/phpstan-1-10-comes-with-lie-detector) it is now able to detect cases where the `@var` annotations contradict with the real types specified on language level, but beside that there are no checks that the type we expect and specify as `@var` annotations are actually the correct types we get at runtime.
 Which also means that wrong `@var` annotations can actively hide type mismatches that would otherwise be detected by static analysis tools.
@@ -148,14 +143,12 @@ Thus `@var` annotations should only be used when the other approaches are not po
 /** @var Foo $foo */
 $foo = $bar->getFoo(); // $foo is Foo|null, but we expect only Foo
 ```
-
-or
+or 
 
 ```php
 /** @var string $foo */
 $foo = $bar->getFoo(); // $foo is mixed, but we expect only string
 ```
-
 or
 
 ```php
@@ -167,7 +160,6 @@ $foo = $bar->getFoo(); // $foo is object, but we expect it to be Foo instance
 
 `@var`, `@param` and `@return` annotations should only be used when they cover cases that you could not accomplish using language features alone.
 This mainly includes:
-
 * [Generics](https://phpstan.org/blog/generics-in-php-using-phpdocs)
 * [Array shapes](https://phpstan.org/writing-php-code/phpdoc-types#array-shapes)
 * special PHPStan types e.g. [class-string](https://phpstan.org/writing-php-code/phpdoc-types#class-string), [integer ranges](https://phpstan.org/writing-php-code/phpdoc-types#integer-ranges), etc
