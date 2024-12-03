@@ -1,4 +1,5 @@
 
+
 ::: info
 This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/coding-guidelines/core/decorator-pattern.md)
@@ -6,13 +7,13 @@ You can find the original version [here](https://github.com/shopware/shopware/bl
 
 # Decorator pattern
 
-The decorator pattern is a design pattern that allows behavior to be added to an individual object, either statically or dynamically, without affecting the behavior of other objects from the same class.
+The decorator pattern is a design pattern that allows behavior to be added to an individual object, either statically or dynamically, without affecting the behavior of other objects from the same class. 
 
 ## When to use the decorator pattern
 
 You should choose the decorator pattern, when you want that other developers can extend your functionality. The most common use case is that other developers should be allowed to decorate or rewrite your DI container services.
 
-<https://symfony.com/doc/current/service_container/service_decoration.html>
+https://symfony.com/doc/current/service_container/service_decoration.html
 
 ## How to use the decorator pattern
 
@@ -20,8 +21,7 @@ Instead of interfaces, we use abstract classes to define the base functionality 
 
 ## Rules for the decorator pattern
 
-When defining a service, which should be decorated, you have to follow these rules:
-
+When defining a service, which should be decorated, you have to follow these rules: 
 - The abstract class has to implement a `getDecorated()` function which returns the abstract class.
 - The core service has to throw a `DecorationPatternException` if the `getDecorated()` function is called.
 - The abstract class **can not** be marked as `@internal` or `@final`
@@ -93,7 +93,6 @@ This can be the case when you "just" want to implement a logging or cache layer 
 In this case, you should not use the decorator pattern described above and only inject the inner service and delegate the calls to it.
 
 In this case you should mark the service as follows:
-
 - if this is private api and should not be used by other developers, mark all classes as `@internal`
 - if you want that developers can call public functions of your service but should not extend it, mark all classes as `@final`
 

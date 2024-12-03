@@ -1,4 +1,5 @@
 
+
 ::: info
 This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/coding-guidelines/core/unit-tests.md)
@@ -24,9 +25,7 @@ When writing unit tests, the following is important:
 - **Para-test** - Your tests should be compatible with our para-test setup so that any developer can quickly run the tests locally.
 
 ## Examples
-
 Here are some good examples of shopware unit tests:
-
 - [CriteriaTest](https://github.com/shopware/shopware/blob/trunk/tests/unit/Core/Framework/DataAbstractionLayer/Search/CriteriaTest.php)
   - Good example for simple DTO tests
 - [CashRounding](https://github.com/shopware/shopware/blob/trunk/tests/unit/Core/Checkout/Cart/Price/CashRoundingTest.php)
@@ -35,7 +34,6 @@ Here are some good examples of shopware unit tests:
   - A good example of how to test flow actions and use mocks for repositories
 
 Here are some good examples of integration tests:
-
 - [ProductCartTest](https://github.com/shopware/shopware/blob/trunk/src/Core/Content/Test/Product/Cart/ProductCartTest.php)
   - Slim product cart test with good helper function integrations
 - [CachedProductListingRouteTest](https://github.com/shopware/shopware/blob/trunk/src/Core/Content/Test/Product/SalesChannel/Listing/CachedProductListingRouteTest.php)
@@ -54,7 +52,6 @@ Be cautious when utilizing mocks extensively because it can be hard to automatic
 More broadly speaking, it is hard to guarantee that the mock behaves in the same/or intended manner as the real implementation (especially when the underlying implementation changes).
 
 Use mocks only where you need to because:
-
 1. creating the objects is hard as you need tons of nested dependencies to create the object.
 or
 2. the class produces some side effects that you don't want in unit tests (e.g., DB writes).
@@ -69,13 +66,11 @@ Before:
 ```php
 $id = $this->repository->search($criteria, $context)->first()?->getId();
 ```
-
 After:
 
 ```php
 $id = $this->repository->searchIds($criteria, $context)->firstId();
 ```
-
 Before
 
 ```php
@@ -83,7 +78,6 @@ $values = $this->connection->fetchAllAssociative('SELECT first, second FROM foo 
 
 $values = $this->mapToKeyValue($values);
 ```
-
 After:
 
 ```php
@@ -121,7 +115,7 @@ There are better options but that depends on the use cases. Here are a few alter
 
 The way you design your codebase directly impacts whether you can rely on option 1 or option 2 without resorting to heavy mocking.
 
-# Conclusion: Write tests first
+# Conclusion: Write tests first!
 
 When you write tests first, most of the points described above should come out of the box!
 Nobody who starts with a test would start with configuring a mock.
@@ -130,16 +124,16 @@ While we provide insights on this, it is essential to validate the information. 
 
 ## References
 
-Frank De Jonge on the exact same topic (with more examples in PHP): <https://blog.frankdejonge.nl/testing-without-mocking-frameworks/>
+Frank De Jonge on the exact same topic (with more examples in PHP): https://blog.frankdejonge.nl/testing-without-mocking-frameworks/
 
-Martin Fowler on the differences between mocks (option 3) and stubs (option 2): <https://martinfowler.com/articles/mocksArentStubs.html>
+Martin Fowler on the differences between mocks (option 3) and stubs (option 2): https://martinfowler.com/articles/mocksArentStubs.html
 
-Presentation by Mathias Noback on testing hexagonal architectures: <https://matthiasnoback.nl/talk/a-testing-strategy-for-hexagonal-applications/>
+Presentation by Mathias Noback on testing hexagonal architectures: https://matthiasnoback.nl/talk/a-testing-strategy-for-hexagonal-applications/
 
-Some good real life examples on unit tests in php: <https://github.com/sarven/unit-testing-tips>
+Some good real life examples on unit tests in php: https://github.com/sarven/unit-testing-tips
 
-A great write up on testing in general: <https://dannorth.net/2021/07/26/we-need-to-talk-about-testing/>
+A great write up on testing in general: https://dannorth.net/2021/07/26/we-need-to-talk-about-testing/
 
-Quite old (1997!) paper on how **not** to use code coverage: <http://www.exampler.com/testing-com/writings/coverage.pdf>
+Quite old (1997!) paper on how **not** to use code coverage: http://www.exampler.com/testing-com/writings/coverage.pdf
 
-Great blog post series on how to avoid mocks: <https://philippe.bourgau.net/categories/#how-to-avoid-mocks-series>
+Great blog post series on how to avoid mocks: https://philippe.bourgau.net/categories/#how-to-avoid-mocks-series
