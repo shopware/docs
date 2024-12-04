@@ -80,7 +80,7 @@ The transaction will be rollback if either of the following are true:
 2. If the action throws an instance of `TransactionFailedException` during execution.
 3. If another non-handled exception is thrown during the action execution.
 
-If the transaction fails, then an error will be logged. 
+If the transaction fails, then an error will be logged.
 
 Also, if the transaction has been performed inside a nested transaction without save points enabled (which is the default in Shopware), the exception will be rethrown.
 This is because the calling code knows something went wrong and is able to handle it correctly, by rolling back instead of committing. In this scenario, the connection will be marked as rollback only.

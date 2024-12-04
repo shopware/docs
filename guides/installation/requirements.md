@@ -36,7 +36,7 @@ You can use these commands to check your actual environment:
   * `ext-fileinfo`
   * `ext-gd`
   * `ext-iconv`  
-  * `ext-intl` 
+  * `ext-intl`
   * `ext-json`
   * `ext-libxml`
   * `ext-mbstring`  
@@ -46,7 +46,7 @@ You can use these commands to check your actual environment:
   * `ext-pdo_mysql`
   * `ext-phar`
   * `ext-simplexml`
-  * `ext-xml` 
+  * `ext-xml`
   * `ext-zip`
   * `ext-zlib`
 * Composer recommended version: 2.0 or higher
@@ -75,11 +75,12 @@ For optimal MySQL performance, it is advisable to set `max_allowed_packet` to a 
 ## Redis or key/value stores
 
 Shopware uses the Redis Protocol and, therefore, supports the following key/value stores:
-- [Redis v7 or higher](https://redis.io)
-- [Valkey](https://valkey.io/)
-- [Redict](https://redict.io)
-- [KeyDB](https://docs.keydb.dev)
-- [Dragonfly](https://www.dragonflydb.io)
+
+* [Redis v7 or higher](https://redis.io)
+* [Valkey](https://valkey.io/)
+* [Redict](https://redict.io)
+* [KeyDB](https://docs.keydb.dev)
+* [Dragonfly](https://www.dragonflydb.io)
 
 * Recommended configuration `maxmemory-policy`: `volatile-lfu`
 

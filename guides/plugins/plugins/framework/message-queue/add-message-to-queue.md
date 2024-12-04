@@ -115,6 +115,7 @@ shopware:
 If you explicitly configure a message to be transported via the `async` (default) queue, even though it implements the `LowPriorityMessageInterface`, which would usually be transported via the `low_priority` queue, the transport is overridden for this specific message.
 
 Example:
+
 ```php
 // <plugin root>/src/MessageQueue/Message/LowPriorityMessage.php
 <?php declare(strict_types=1);

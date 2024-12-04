@@ -110,7 +110,7 @@ The folder structure is similar to [Add custom rule conditions](../../../../../g
 
 #### Manifest file
 
-Similar to [Add custom rule conditions](../../../../../guides/plugins/apps/rule-builder/add-custom-rule-conditions.md), a condition's manifest file has `identifier`, `name` and `script`. 
+Similar to [Add custom rule conditions](../../../../../guides/plugins/apps/rule-builder/add-custom-rule-conditions.md), a condition's manifest file has `identifier`, `name` and `script`.
 
 The `name` is a descriptive and translatable name for the condition. The name will be shown within the Condition's selection in the Storefront Approval Rule detail or create page.
 

@@ -225,7 +225,7 @@ shopware:
   messenger:
     routing_overwrite:
       'Shopware\Core\Framework\DataAbstractionLayer\Indexing\EntityIndexingMessage': entity_indexing
-```      
+```
 
 The `shopware.messenger.routing_overwrite` config option accepts the same format as the `framework.messenger.routing` option, but it will overwrite the routing for the given message class instead of adding to it.
 This is especially useful if there is a default routing already configured based on a message interface, but you need to change the routing for a specific message.

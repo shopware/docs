@@ -13,13 +13,13 @@ This feature is only available starting with Shopware 6.4.1.0.
 
 These two requests are executed against your API, the up to two endpoints you define per payment method. All bodies are JSON encoded.
 
-### Pay
+## Pay
 
 `POST https://payment.app/pay`
 
 This request gets called, when the users hits _Confirm Order_ in Shopware.
 
-#### Parameters
+### Parameters
 
 | Parameter                | Type                   | Description                                                                                                                                                                                                                          |
 |--------------------------|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -35,7 +35,7 @@ This request gets called, when the users hits _Confirm Order_ in Shopware.
 | source.shopId*           | string                 | The shop id you can use to identify the sho that has been registered before with your app.                                                                                                                                           |
 | source.appVersion*       | string                 | The version of the app that is installed in the shop.                                                                                                                                                                                |
 
-#### Responses
+### Responses
 
 `200`
 
@@ -54,13 +54,13 @@ This request gets called, when the users hits _Confirm Order_ in Shopware.
 }
 ```
 
-### Finalize
+## Finalize
 
 `POST https://payment.app/finalize`
 
 This request gets called once the user returns to the `returnUrl` Shopware provided in the first request.
 
-#### Parameters
+### Parameters
 
 | Parameter                | Type                   | Description                                                                                                                                                                                                                          |
 |--------------------------|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -74,7 +74,7 @@ This request gets called once the user returns to the `returnUrl` Shopware provi
 | source.shopId*           | string                 | The shop id you can use to identify the sho that has been registered before with your app.                                                                                                                                           |
 | source.appVersion*       | string                 | The version of the app that is installed in the shop.                                                                                                                                                                                |
 
-#### Responses
+### Responses
 
 `200`
 

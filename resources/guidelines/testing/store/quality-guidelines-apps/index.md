@@ -1,20 +1,20 @@
 ---
 nav:
-  title: Quality guidelines for apps in the plugin system
+  title: Quality guidelines for apps and themes in the app system
   position: 10
 
 ---
 
-# Quality Guidelines for the Plugin System in the Shopware Store
+# Quality Guidelines for apps and themes based on the app system in the Shopware Store
 
 > **Changelog**
 >
 >> 09/11/24: Quality guidelines for apps and themes based on app system.
 >
 >> 23/11/23: [Added - New rules for Checklist for app testing](#every-app-based-on-the-app-system)
-> 
+>
 >> 27/09/23: [Added - Identical name rule](#every-app-based-on-the-app-system)
-> 
+>
 >> 26/07/23: [Added - Name preset according to new naming scheme](#every-app-based-on-the-app-system)
 
 ## The way we test apps and themes based on the app system
@@ -57,8 +57,9 @@ Hence, we check for a functional comparison with other apps already in the Shopw
 If an extension with the same function exists and it does not fit into one of our differentiator clusters, it can be rejected as it doesn't provide any added value.
 If you would like more information, please write an email to [qa@shopware.com](mailto:qa@shopware.com).
 
-Link: [Differentiator cluster for Shopware extensions](/docs/resources/guidelines/testing/Differentiator-Clusters.html)
-Link: [Documentation for Extension Partner](https://docs.shopware.com/en/account-en/extension-partner/extensions?category=account-en/extension-partner#how-can-i-request-a-preview)
+[Differentiator cluster for Shopware extensions](/docs/resources/guidelines/testing/Differentiator-Clusters.html)
+
+[Documentation for Extension Partner](https://docs.shopware.com/en/account-en/extension-partner/extensions?category=account-en/extension-partner#how-can-i-request-a-preview)
 
 ::: info
 **Safe your app idea and get a preview in the store**
@@ -96,13 +97,13 @@ The short description is also published as a meta-description.
 
 (Min. 200 characters)—The app / theme description must be at least 200 characters long and describe the app's/theme's functions in detail.
 
-  * Inline styles will be stripped. The following HTML tags are allowed:
+* Inline styles will be stripped. The following HTML tags are allowed:
 
 ```markdown
 <a> <p> <br> <b> <strong> <i> <ul> <ol> <li> <h2> <h3> <h4> <h5>
 ```
 
-  * **Tips:**
+* **Tips:**
 
     * When it comes to increasing your app / theme sales, it is important that potential customers feel completely informed about your products and services.
 	To this end, you should provide description, highlights, and features that are meaningful, detailed, and easy to understand, even for people with very minimal technical knowledge.
@@ -159,6 +160,7 @@ Custom styles may not overwrite the original Shopware styles. External sources m
 ## Basic Guidelines
 
 ### Testing functionality
+
 Due to our quality assurance, we check the app's / theme's complete functionality and test it wherever it impacts the administration or storefront.
 
 Also, every app / theme will be code-reviewed by one of our core-developer ensuring coding and security standards.
@@ -188,7 +190,7 @@ We check for text snippets, `config.xml`, `manifest.xml`, or `theme.json`.
 Preview images: There must be a preview image available in the *Extension Manager*.
 You must upload a valid favicon named plugin.png (png / 40 x 40 px) for the app.
 This favicon will help you identify your app in the Extension Manager module in the administration.
-The favicon has to be stored under `src/Resources/config/`. 
+The favicon has to be stored under `src/Resources/config/`.
 
 Also, provide a preview image for Themes in the *Theme Manager* and CMS elements in the *Shopping Experiences*.
 
@@ -232,10 +234,11 @@ However, it is difficult to read and understand the compiled code.
 The uncompiled JavaScript code must be placed in a separate folder to ensure it remains accessible to all developers.
 This allows other developers to review and understand the code in its original, readable form.
 
-Please build your `main.js` as described in our documentation and create the minified code as described in our developer documentation. 
+Please build your `main.js` as described in our documentation and create the minified code as described in our developer documentation.
 
-Link: [Loading the JS files](/docs/guides/plugins/plugins/administration/add-custom-field.html#loading-the-js-files)
-Link: [Injecting into the Administration](/docs/guides/plugins/plugins/administration/add-custom-field.html#injecting-into-the-administration)
+[Loading the JS files](/docs/guides/plugins/plugins/administration/add-custom-field.html#loading-the-js-files)
+
+[Injecting into the Administration](/docs/guides/plugins/plugins/administration/add-custom-field.html#injecting-into-the-administration)
 
 Shopware reserves the right to publish extensions with minified code after individual consideration and consultation with the developer.
 For this, the developer must ensure that Shopware has access to the current unminified code of the extension at all times.
@@ -274,7 +277,9 @@ However, you may employ `<span class="h2">`, for instance.
 
 ### Do not use inline-css in the storefront templates
 
-Use your own classes and let your CSS be compiled by the theme.
+Use your own classes and let your CSS be compiled by the plugin.
+
+[Add SCSS variables](https://developer.shopware.com/docs/guides/plugins/plugins/storefront/add-scss-variables.html#add-scss-variables)
 
 ### New controller URLs / XHR requests
 
@@ -284,7 +289,7 @@ For further details, please refer to the [robots meta tag](https://developers.go
 If the app creates its own controller URLs set to "index, follow" and the URLs are accessible via the frontend, then these "app URLs" must also appear in the `sitemap.xml`.
 In addition, these pages must include a valid canonical tag, their own meta description, and a title tag, which can be entered individually via the administration or as a text snippet.
 
-### Lighthouse A/B-Testing:
+### Lighthouse A/B-Testing
 
 Could you do an A/B test with *Lighthouse Audit* to check the performance and quality of your frontend app?
 There should not be any drastic change in performance, accessibility values, or any new errors when activating the app.
@@ -292,14 +297,14 @@ There should not be any drastic change in performance, accessibility values, or 
 * **Testing tool** for A/B-Testing:
   * [Google Lighthouse](https://developers.google.com/web/tools/lighthouse)
 
-### schema.org/Rich Snippets A/B-Testing:
+### schema.org/Rich Snippets A/B-Testing
 
 Do an A/B-Test with *Scheme.org's Structured Data Testing Tool* and *Google Rich Result Tester* to check the homepage, categories, and various product detail pages (incl. available products, unavailable products, products with no review, single review, many reviews with various ratings, out-of-stock products, products to be released in the future or any other kind of product configuration and products including ean, mpn, width, length, height, weight).
 Also, could you check for duplicate entries as well as any new bugs?
 
 * **Testing tool** for A/B-Testing:
   * [Schema Markup Validator of schema.org](https://validator.schema.org/)
-  * [Google Rich Result Tester] (https://search.google.com/test/rich-results)
+  * [Google Rich Result Tester] (<https://search.google.com/test/rich-results>)
 
 ### Usage of fonts from external sources
 
@@ -365,7 +370,7 @@ Below is an example of implementing the tracking logic in their extensions:
 
 Our most current code review configurations when uploading apps via the Shopware Account can be found on GitHub.
 
-* Link: [Code reviews for Shopware 6 on GitHub](https://github.com/shopwareLabs/store-plugin-codereview)
+* [Code reviews for Shopware 6 on GitHub](https://github.com/shopwareLabs/store-plugin-codereview)
 
 ### Sonarcube Rules status Blocker
 
@@ -375,6 +380,7 @@ The following statements will be blocked as of 1st Oct. 2022:
 [Refer to the list of the already existing blockers](https://s3.eu-central-1.amazonaws.com/wiki-assets.shopware.com/1657519735/blocker.txt).
 
 ### Helpful tools for app developers
+
 * [FroshPluginUploader](https://github.com/FriendsOfShopware/FroshPluginUploader): Tool for validating and uploading new SW6 app releases to the Community Store (GitHub Project from "Friends of Shopware")]
 * [Shopware CLI tools](https://github.com/shopwareLabs/sw-cli-tools): When you think about performance, these are various useful console helpers for generating data.
 
@@ -389,34 +395,37 @@ The technical app name must be stored in the first part of manifest.xml.
 Most of the errors are caused by the wrong technical name.
 For example, "Swag\\MyPlugin\\SwagMyPluginSW6" instead of "Swag\\MyPlugin\\SwagMyPlugin".
 
-[Here is an example](https://developer.shopware.com/docs/resources/references/app-reference/manifest-reference.html#manifest-reference) of a valid manifest.xml.  
+[Example of a valid manifest.xml](https://developer.shopware.com/docs/resources/references/app-reference/manifest-reference.html#manifest-reference)
 
 ### Ensure cross-domain messages are sent to the intended domain
 
-See ["Cross-document messaging domains should be carefully restricted"](https://rules.sonarsource.com/javascript/RSPEC-2819) for more information.
+["Cross-document messaging domains should be carefully restricted"](https://rules.sonarsource.com/javascript/RSPEC-2819)
 
 ### Class Shopware\Storefront\* not found
 
 Missing requirements in the theme.json (e.g. "require": {"shopware/frontend": "*"},)  
-See "[Shopware App Development: App Meta Information - Explanation of the properties](../../../../../guides/plugins/plugins/plugin-base-guide#the-composerjson-file) for more information.
+
+[Shopware App Development: App Meta Information - Explanation of the properties](../../../../../guides/plugins/plugins/plugin-base-guide#the-composerjson-file)
 
 ### Cookies are written safely
 
 Be sure you set cookies as secure.
 Remember to register your cookie to the *Cookie Consent Manager*.
 
-### The lock file is not up to date with the latest changes in manifest.xml.
+### The lock file is not up to date with the latest changes in manifest.xml
+
 You may need to get updated dependencies. Run an update to update them.
 
 The `composer.lock` in the app archive has to be deleted.
 
 ### Remove out-commented code from your source-code
 
-### Unauthorized file formats or folders detected in the app.
+### Unauthorized file formats or folders detected in the app
 
 Remove out-commented code, unused files and folders, and all dev-files from your binary.
 
 Here are some examples of not allowed folders and files:
+
 * /__MACOSX
 *./tests
 * .gitignore
@@ -432,9 +441,11 @@ Here are some examples of not allowed folders and files:
 * .tar
 * .tar.gz
 * .zip
+* .zipignore
 * composer.lock
 * package.json
 * package-lock.json
+* phpunit.sh
 * phpdoc.dist.xml
 * phpstan.neon
 * phpstan.neon.dist

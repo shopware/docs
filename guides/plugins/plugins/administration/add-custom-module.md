@@ -145,7 +145,7 @@ In this example you would have access to two translations by the following paths
 You can nest those objects as much as you want. Please note that each path is prefixed by the extension name.
 
 Since those translation objects become rather large, you should store them into separate files.
-For this purpose, create a new directory `snippet` in your module's directory and in there two new files: `de-DE.json` and `en-GB.json`. 
+For this purpose, create a new directory `snippet` in your module's directory and in there two new files: `de-DE.json` and `en-GB.json`.
 The snippet files will be loaded automatically based on the folder structure.
 
 Let's also create the first translation, which is for your menu's label.
@@ -233,7 +233,7 @@ The `group` property determines the tab, the item will be displayed in. Valid op
 
 The `icon` property contains the icon name which will be displayed. Refer to the [Meteor Icon Kit documentation](https://developer.shopware.com/resources/meteor-icon-kit/) for icon names.
 
-The `to` property must contain the name of the route. The route has to be defined in a separate routes section as described [here](add-custom-route.md). Have a look at the `Configuring the route` section in particular to find out about the name of your route. 
+The `to` property must contain the name of the route. The route has to be defined in a separate routes section as described [here](add-custom-route.md). Have a look at the `Configuring the route` section in particular to find out about the name of your route.
 
 ## Example for the final module
 

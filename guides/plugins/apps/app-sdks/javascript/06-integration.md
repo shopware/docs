@@ -108,6 +108,7 @@ configureAppServer(app, {
 // Without Hono
 const appServer = new AppServer(..., new DynamoDBRepository(client, 'my-table-name'));
 ```
+
 </Tab>
 
 <Tab title="Deno KV">

@@ -97,13 +97,13 @@ The short description is also published as a meta-description.
 
 (Min. 200 characters)—The app description must be at least 200 characters long and describe the app's functions in detail.
 
-  * Inline styles will be stripped. The following HTML tags are allowed:
+* Inline styles will be stripped. The following HTML tags are allowed:
 
 ```markdown
 <a> <p> <br> <b> <strong> <i> <ul> <ol> <li> <h2> <h3> <h4> <h5>
 ```
 
-  * **Tips:**
+* **Tips:**
 
     * When it comes to increasing your app sales, it is important that potential customers feel completely informed about your products and services.
 	To this end, you should provide description, highlights, and features that are meaningful, detailed, and easy to understand, even for people with very minimal technical knowledge.
@@ -161,6 +161,7 @@ Custom styles may not overwrite the original Shopware styles. External sources m
 ## Basic Guidelines
 
 ### Testing functionality
+
 Due to our quality assurance, we check the app's complete functionality and test it wherever it impacts the administration or storefront.
 
 Also, every app will be code-reviewed by one of our core-developer ensuring coding and security standards.
@@ -190,7 +191,7 @@ We check for text snippets, `config.xml`, and `composer.json`.
 Preview images: There must be a preview image available in the *Extension Manager*.
 You must upload a valid favicon named plugin.png (png / 40 x 40 px) for the app.
 This favicon will help you identify your app in the Extension Manager module in the administration.
-The favicon has to be stored under `src/Resources/config/`. 
+The favicon has to be stored under `src/Resources/config/`.
 
 Also, provide a preview image for Themes in the *Theme Manager* and CMS elements in the *Shopping Experiences*.
 
@@ -297,7 +298,9 @@ However, you may employ `<span class="h2">`, for instance.
 
 ### Do not use inline-css in the storefront templates
 
-Use your own classes and let your CSS be compiled by the theme.
+Use your own classes and let your CSS be compiled by the app.
+
+[Add SCSS variables](https://developer.shopware.com/docs/guides/plugins/plugins/storefront/add-scss-variables.html#add-scss-variables)
 
 ### New controller URLs / XHR requests
 
@@ -307,7 +310,7 @@ For further details, please refer to the [robots meta tag](https://developers.go
 If the app creates its own controller URLs set to "index, follow" and the URLs are accessible via the frontend, then these "app URLs" must also appear in the `sitemap.xml`.
 In addition, these pages must include a valid canonical tag, their own meta description, and a title tag, which can be entered individually via the administration or as a text snippet.
 
-### Lighthouse A/B-Testing:
+### Lighthouse A/B-Testing
 
 Could you do an A/B test with *Lighthouse Audit* to check the performance and quality of your frontend app?
 There should not be any drastic change in performance, accessibility values, or any new errors when activating the app.
@@ -315,7 +318,7 @@ There should not be any drastic change in performance, accessibility values, or 
 * **Testing tool** for A/B-Testing:
   * Link: [Google Lighthouse](https://developers.google.com/web/tools/lighthouse)
 
-### schema.org/Rich Snippets A/B-Testing:
+### schema.org/Rich Snippets A/B-Testing
 
 Do an A/B-Test with *Scheme.org's Structured Data Testing Tool* and *Google Rich Result Tester* to check the homepage, categories, and various product detail pages (incl. available products, unavailable products, products with no review, single review, many reviews with various ratings, out-of-stock products, products to be released in the future or any other kind of product configuration and products including ean, mpn, width, length, height, weight).
 Also, could you check for duplicate entries as well as any new bugs?
@@ -359,7 +362,7 @@ In this case, a status message must be displayed in the administration and Shopw
 If the API data is incorrect, an entry must appear in the event log file in the Shopware folder `/var/log/` respectively in the database.
 
 * **Example** for implementing an API Test Button into the System Config form:
- * Link: [GitHub](https://github.com/shyim/ShyimApiTest)
+  * Link: [GitHub](https://github.com/shyim/ShyimApiTest)
 
 ### Shopping experiences
 
@@ -416,6 +419,7 @@ The project is driven by the *Friends of Shopware* group. You can contribute at 
 * Link: [Cypress Tests for Shopware 6](https://github.com/shopware/shopware/tree/trunk/src/Administration/Resources)
 
 ### Helpful tools for app developers
+
 * Link: [FroshPluginUploader](https://github.com/FriendsOfShopware/FroshPluginUploader) Tool for validating and uploading new SW6 app releases to the Community Store (GitHub Project from "Friends of Shopware").
 * Link: [Shopware CLI tools / console helpers](https://github.com/shopwareLabs/sw-cli-tools)
 
@@ -456,7 +460,8 @@ Remember to register your cookie to the *Cookie Consent Manager*.
 
 Shopware always uses json_Encode exclusively - there is no other fallback.
 
-### The lock file is not up to date with the latest changes in composer.json.
+### The lock file is not up to date with the latest changes in composer.json
+
 You may need to get updated dependencies. Run an update to update them.
 
 The `composer.lock` in the app archive has to be deleted.
@@ -498,11 +503,12 @@ It will be preferred as soon as the final 6.1 is released.
 
 ### Remove out-commented code from your source-code
 
-### Unauthorized file formats or folders detected in the app.
+### Unauthorized file formats or folders detected in the app
 
 Remove out-commented code, unused files and folders, and all dev-files from your binary.
 
 Here are some examples of not allowed folders and files:
+
 * /__MACOSX
 * /tests
 * .gitignore

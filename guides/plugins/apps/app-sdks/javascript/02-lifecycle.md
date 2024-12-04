@@ -30,7 +30,7 @@ The lifecycle registration in the `manifest.xml` would look like this:
 
 ## Usage
 
-The implementation is similar to [Registration](./01-getting_started), 
+The implementation is similar to [Registration](./01-getting_started),
 
 ```js
 import { AppServer, InMemoryShopRepository } from '@shopware-ag/app-server-sdk'

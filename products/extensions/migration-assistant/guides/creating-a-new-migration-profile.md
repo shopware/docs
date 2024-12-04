@@ -11,7 +11,7 @@ If you want to migrate your data from a different source system than Shopware, c
 
 ## Setup
 
-First of all, it is required that you already have installed the [Migration Assistant](https://github.com/shopware/SwagMigrationAssistant) plugin in Shopware 6 and have created a demo source system database with a `product` table. To create the table, use this SQL statement:
+First, it is required that you already have installed the [Migration Assistant](https://github.com/shopware/SwagMigrationAssistant) plugin in Shopware 6 and have created a demo source system database with a `product` table. To create the table, use this SQL statement:
 
 ```sql
 CREATE TABLE product
@@ -368,9 +368,9 @@ As you can see above, currently, the template does not exist and you have to cre
 Note that the component name isn't random and consists of:
 
 1. The prefix: `swag-migration-profile-`
-1. The name of the profile
-1. The name of the gateway
-1. The suffix: `-credential-form`
+2. The name of the profile
+3. The name of the gateway
+4. The suffix: `-credential-form`
 
 To see your credentials page, you have to register this component in your `main.js`:
 
@@ -380,7 +380,7 @@ import './own-profile/profile';
 
 ## Creating a dataSet and dataSelection
 
-Now the credentials page is loaded in the Administration and the connection check will succeed. But there is no data selection if you open the data selection table. To add an entry to this table, you have to create a `ProductDataSet` first:
+Now the credential page is loaded in the Administration and the connection check will succeed. But there is no data selection if you open the data selection table. To add an entry to this table, you have to create a `ProductDataSet` first:
 
 ```php
 <?php declare(strict_types=1);

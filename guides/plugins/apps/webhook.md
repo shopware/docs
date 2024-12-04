@@ -132,7 +132,7 @@ There might be cases when you only want to call the webhook when an entry is wri
 
 You can achieve this by adding the option `onlyLiveVersion` to your webhook definition in the manifest file:
 
-```xml 
+```xml
 <webhook name="order-created" url="https://example.com/event/order-created" event="order.written" onlyLiveVersion="true"/>
 ```
 

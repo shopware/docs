@@ -27,6 +27,7 @@ shopware:
         increment_storage: "Redis"
         redis_url: 'redis://host:port/dbindex'
 ```
+
 </Tab>
 
 <Tab title="Since v6.6.8.0">
@@ -42,6 +43,7 @@ shopware:
         config:
             connection: 'persistent'
 ```
+
 </Tab>
 </Tabs>
 

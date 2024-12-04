@@ -21,7 +21,7 @@ The default `EntityCollection` class is used if none is specified.
 Note: this is only possible since 6.6.9.0
 
 You have to define a primary key. The primary key is defined by adding the `PrimaryKey` attribute to a property.
-In theory, the primary key can be of any type, but it is recommended to use a `UUID`. 
+In theory, the primary key can be of any type, but it is recommended to use a `UUID`.
 
 ```php
 <?php declare(strict_types=1);
@@ -47,7 +47,7 @@ For example, you can add the `Field` attribute to a property to define the type 
 ## Register the entity
 
 To register the entity, you have to add this class to the DI container in the `services.xml` file.
-This is done by adding the `shopware.entity` tag to the service definition. 
+This is done by adding the `shopware.entity` tag to the service definition.
 
 ```xml
 <service id="Shopware\Tests\Integration\Core\Framework\DataAbstractionLayer\fixture\ExampleEntity">
@@ -63,7 +63,7 @@ Using the tag, Shopware automatically registers an `EntityDefinition` and `Entit
 
 To define more fields, you typically use the `Field` attribute.
 The `Field` attribute requires the `type` parameter, which is the type of the field.
-The type can be any of the `FieldType` constants. 
+The type can be any of the `FieldType` constants.
 
 ```php
 <?php declare(strict_types=1);
@@ -101,7 +101,7 @@ All field types are defined in the [`FieldType`](https://github.com/shopware/sho
 ### Using field class directly
 
 It is also possible to directly define the field type with any class extending `\Shopware\Core\Framework\DataAbstractionLayer\Field\Field`.
-Use the fully qualified class name reference as value for the `type` parameter. 
+Use the fully qualified class name reference as value for the `type` parameter.
 
 ::: note
 This feature is available since Shopware 6.6.9.0.
@@ -137,7 +137,7 @@ class ExampleEntity extends Entity
 ### Special field types
 
 We also provide a list of special field types, which implement a specific behavior.
-They have their own PHP attribute class, for example the `AutoIncrement` or `ForeignKey` field. 
+They have their own PHP attribute class, for example the `AutoIncrement` or `ForeignKey` field.
 
 ```php
 <?php declare(strict_types=1);
@@ -302,7 +302,7 @@ This will automatically create a `TranslatedField` for the field and register an
 Additionally, you can define a `Translations` attribute on a property to enable loading of all translations of the entity.
 This field needs to be nullable, as by default it will not be loaded, but this allows you to add the `translations` association to the criteria to load all translations at once.
 
-Notice: Properties with the `translated` flag must be nullable. 
+Notice: Properties with the `translated` flag must be nullable.
 
 ```php
 <?php declare(strict_types=1);
@@ -369,7 +369,7 @@ class ExampleEntity extends Entity
 ## Associations
 
 It is also possible to define associations between entities.
-You can use one of the following four association types: `OneToOne`, `OneToMany`, `ManyToOne` or `ManyToMany`.    
+You can use one of the following four association types: `OneToOne`, `OneToMany`, `ManyToOne` or `ManyToMany`.
 
 ```php
 <?php declare(strict_types=1);
@@ -432,7 +432,7 @@ You can also typehint to many associations with the `EntityCollection` class.
 
 With this new pattern, we removed the need for `getter` and `setter` methods.
 The properties are public and can be accessed directly.
-Also, you don't have to define any `EntityTranslationDefinition` or `EntityCollection` anymore, which reduces the boilerplate code. 
+Also, you don't have to define any `EntityTranslationDefinition` or `EntityCollection` anymore, which reduces the boilerplate code.
 
 ## Full example
 

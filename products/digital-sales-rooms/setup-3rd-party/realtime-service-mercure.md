@@ -13,6 +13,7 @@ Symfony provides a straightforward component, built on top of the [Mercure](http
 :::
 
 ## Setup hub
+
 There are different ways to set up Mercure as listed below:
 
 ### Setup via Stackhero (Recommended)
@@ -32,6 +33,7 @@ There are different ways to set up Mercure as listed below:
 ![ ](../../../assets/products-digitalSalesRooms-mercureConfigExample.png)
 
 ### Setup via Docker
+
 The docker image can be found at [dunglas/mercure](https://hub.docker.com/r/dunglas/mercure). It allows you to use the following *env* variables to configure Mercure.
 
 ::: warning
@@ -99,6 +101,7 @@ ui 0
 ## Config Mercure hub
 
 After init mercure hub, let's make it more secure with your information:
+
 - *Set up CORS allowed origins* - In our case, it would be the domain where the Shopware Frontends is hosted and available. For instance: `http://localhost:3000` (frontend domain).
 - *Set up publish allowed origins* - The domains that request the Mercure service must be added to publish allowed origins or else it gets rejected. For instance (HTTP protocol must not be included): `http://localhost:3000`  (frontend domain) and `http://localhost:8000` (backend API domain).
 - *Set up the publisher (JWT) key* - Set whatever you want.
@@ -107,6 +110,7 @@ After init mercure hub, let's make it more secure with your information:
 ## Attach Mercure information into Digital Sales Rooms
 
 From your Mercure hub, it's easy to get the proper information:
+
 - *Hub url* - The hub URL.
 - *Hub public url* - The hub public URL, normally it's the same as the hub URL.
 - *Hub subscriber secret* - The JWT key used for authenticating subscribers

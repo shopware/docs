@@ -48,5 +48,4 @@ const ctx = await app.contextResolver.fromBrowser<MyCustomWebHook>(/** Request *
 ctx.payload.foo; // This is now typed and the IDE will help you
 ```
 
-
 Next, we will look into the [Signing of responses](./04-signing).

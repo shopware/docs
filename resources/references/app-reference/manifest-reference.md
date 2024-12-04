@@ -8,12 +8,13 @@ nav:
 # Manifest Reference
 
 ## Meta information (required)
+
 Meta-information about your app.
 
 <<< @/docs/snippets/config/app/meta.xml
 
 :::info
-The following configurations are all optional. 
+The following configurations are all optional.
 :::
 
 ## Setup
