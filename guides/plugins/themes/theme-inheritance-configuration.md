@@ -27,11 +27,11 @@ Create the two themes like described in [Theme inheritance](./add-theme-inherita
 
 Add some configuration fields you need in your basic theme inside the `theme.json` of the `SwagBasicExampleTheme`
 
-```javascript
+```json
 // <plugin root>/src/Resources/theme.json
 {
   "name": "SwagBasicExampleTheme",
-  .....
+  // ...
   "config": {
     "blocks": {
       "colors": {
@@ -51,11 +51,11 @@ Add some configuration fields you need in your basic theme inside the `theme.jso
     },
     "tabs": {
       "colors": {
-          "label": {
-              "en-GB": "Colours",
-              "de-DE": "Farben"
-          }
-      } 
+        "label": {
+          "en-GB": "Colours",
+          "de-DE": "Farben"
+        }
+      }
     },
     "fields": {
       "sw-color-brand-primary": {
@@ -72,8 +72,8 @@ Add some configuration fields you need in your basic theme inside the `theme.jso
       },
       "sw-brand-icon": {
         "label": {
-            "en-GB": "Brand icon", 
-            "de-DE": "Markenlogo"
+          "en-GB": "Brand icon",
+          "de-DE": "Markenlogo"
         },
         "type": "url",
         "value": "/our-logo.png",
@@ -88,11 +88,11 @@ Add some configuration fields you need in your basic theme inside the `theme.jso
 
 Add configurations to your extended theme
 
-```javascript
+```json
 // <plugin root>/src/Resources/theme.json
 {
   "name": "SwagBasicExampleThemeExtend",
-  .....
+  // ...
   "configInheritance": [
     "@Storefront",
     "@SwagBasicExampleTheme"

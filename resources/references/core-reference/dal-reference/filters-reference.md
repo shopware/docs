@@ -34,15 +34,15 @@ $criteria->addFilter(new EqualsFilter('stock', 10));
 
 <Tab title="API Criteria">
 
-```javascript
- {
-    "filter": [
-        { 
-            "type": "equals", 
-            "field": "stock", 
-            "value": 10
-        }    
-    ]
+```json
+{
+  "filter": [
+    {
+      "type": "equals",
+      "field": "stock",
+      "value": 10
+    }
+  ]
 }
 ```
 
@@ -246,31 +246,31 @@ $criteria->addFilter(
 
 <Tab title="API Criteria">
 
-```javascript
- {
-    "filter": [
-        { 
-            "type": "multi",   
-            "operator": "or",
-            "queries": [
-                {
-                    "type": "equals",
-                    "field": "stock",
-                    "value": 1
-                },
-                {
-                    "type": "equals",
-                    "field": "availableStock",
-                    "value": 1
-                } 
-            ]
+```json
+{
+  "filter": [
+    {
+      "type": "multi",
+      "operator": "or",
+      "queries": [
+        {
+          "type": "equals",
+          "field": "stock",
+          "value": 1
         },
         {
-            "type": "equals",
-            "field": "active",
-            "value": true
+          "type": "equals",
+          "field": "availableStock",
+          "value": 1
         }
-    ]
+      ]
+    },
+    {
+      "type": "equals",
+      "field": "active",
+      "value": true
+    }
+  ]
 }
 ```
 

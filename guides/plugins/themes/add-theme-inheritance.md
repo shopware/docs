@@ -27,15 +27,15 @@ To set up the inheritance we need to edit the theme configuration file called `t
 
 The content of the `theme.json` file looks like this:
 
-```javascript
+```json
 // <plugin root>/src/Resources/theme.json
 {
   "name": "SwagBasicExampleThemeExtend",
   "author": "Shopware AG",
   "views": [
-     "@Storefront",
-     "@Plugins",
-     "@SwagBasicExampleThemeExtend"
+    "@Storefront",
+    "@Plugins",
+    "@SwagBasicExampleThemeExtend"
   ],
   "style": [
     "app/storefront/src/scss/overrides.scss",
@@ -59,16 +59,16 @@ Now it is easy to see how we can inherit from our base theme `SwagBasicExampleTh
 
 Here is an example:
 
-```javascript
+```json
 // <plugin root>/src/Resources/theme.json
 {
   "name": "SwagBasicExampleThemeExtend",
   "author": "Shopware AG",
   "views": [
-     "@Storefront",
-     "@Plugins",
-     "@SwagBasicExampleTheme",
-     "@SwagBasicExampleThemeExtend"
+    "@Storefront",
+    "@Plugins",
+    "@SwagBasicExampleTheme",
+    "@SwagBasicExampleThemeExtend"
   ],
   "style": [
     "app/storefront/src/scss/overrides.scss",

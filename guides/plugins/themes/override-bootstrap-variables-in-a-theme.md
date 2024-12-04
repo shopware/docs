@@ -29,17 +29,17 @@ To be able to override Bootstrap variables there is an additional SCSS entry poi
 
 This entry point is called `overrides.scss`:
 
-```javascript
+```json
 // <plugin root>/src/Resources/theme.json
 {
   "name": "SwagBasicExampleTheme",
   "author": "Shopware AG",
   "views": [
-        "@Storefront",
-        "@Plugins"
+    "@Storefront",
+    "@Plugins"
   ],
   "style": [
-    "app/storefront/src/scss/overrides.scss", <-- Variable overrides
+    "app/storefront/src/scss/overrides.scss", // <-- Variable overrides
     "@Storefront",
     "app/storefront/src/scss/base.scss"
   ],

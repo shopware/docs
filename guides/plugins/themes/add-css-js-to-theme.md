@@ -21,17 +21,17 @@ When it comes to CSS and SCSS, they are processed by a PHP SASS compiler.
 
 The main entry point to deploy your SCSS code is defined in the `theme.json` file. By default it is the `<plugin root>/app/storefront/src/scss/base.scss` file.
 
-```javascript
+```json
 // <plugin root>/src/Resources/theme.json
- {
-   ...
-   "style": [
-     "app/storefront/src/scss/overrides.scss",
-     "@Storefront",
-     "app/storefront/src/scss/base.scss"
-   ],
-   ...
- }
+{
+  // ...
+  "style": [
+    "app/storefront/src/scss/overrides.scss",
+    "@Storefront",
+    "app/storefront/src/scss/base.scss"
+  ],
+  // ...
+}
 ```
 
 When the Storefront gets compiled the PHP SASS compiler will look up the files declared in the `style` section of the theme configuration. You can define the SCSS entrypoints individually if you want to.

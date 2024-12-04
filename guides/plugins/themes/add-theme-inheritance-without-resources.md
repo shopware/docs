@@ -15,10 +15,10 @@ The Shopware default theme is using [Bootstrap](https://getbootstrap.com/) with 
 
 If you want to build your theme only upon the Bootstrap SCSS you can use the `@StorefrontBootstrap` placeholder instead of the `@Storefront` bundle in the `style` section of your `theme.json`. This gives you the ability to use the Bootstrap SCSS without the Shopware Storefront "skin". Therefore all the SCSS from `<plugin root>src/Storefront/Resources/app/storefront/src/scss/skin` will not be available in your theme.
 
-```javascript
+```json
 // <plugin root>/src/Resources/theme.json
 {
-  ...
+  // ...
   "style": [
     "@StorefrontBootstrap",
     "@Plugins",

@@ -96,38 +96,38 @@ and the `require` field must include at least `shopware/core`, to check for comp
 
 Here's an example `composer.json` for this guide, which will do the trick:
 
-```javascript
+```json
 // <plugin root>/composer.json
 {
-    "name": "swag/basic-example",
-    "description": "Description for the plugin SwagBasicExample",
-    "version": "1.0.0",
-    "type": "shopware-platform-plugin",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Shopware"
-        }
-    ],
-    "require": {
-        "shopware/core": "~6.6.0"
-    },
-    "extra": {
-        "shopware-plugin-class": "Swag\\BasicExample\\SwagBasicExample",
-        "label": {
-            "de-DE": "Der angezeigte lesbare Name für das Plugin",
-            "en-GB": "The displayed readable name for the plugin"
-        },
-        "description": {
-            "de-DE": "Beschreibung in der Administration für das Plugin",
-            "en-GB": "Description in the Administration for this plugin"
-        }
-    },
-    "autoload": {
-        "psr-4": {
-            "Swag\\BasicExample\\": "src/"
-        }
+  "name": "swag/basic-example",
+  "description": "Description for the plugin SwagBasicExample",
+  "version": "1.0.0",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Shopware"
     }
+  ],
+  "require": {
+    "shopware/core": "~6.6.0"
+  },
+  "extra": {
+    "shopware-plugin-class": "Swag\\BasicExample\\SwagBasicExample",
+    "label": {
+      "de-DE": "Der angezeigte lesbare Name für das Plugin",
+      "en-GB": "The displayed readable name for the plugin"
+    },
+    "description": {
+      "de-DE": "Beschreibung in der Administration für das Plugin",
+      "en-GB": "Description in the Administration for this plugin"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Swag\\BasicExample\\": "src/"
+    }
+  }
 }
 ```
 

@@ -69,10 +69,12 @@ We will cover the use of every folder in detail.
 
 Within the folder `Resources/app/<environment>/test/e2e`, please run `npm init -y` to generate a `package.json` file. It is very convenient to place a script inside the newly created `package.json` to run the tests locally. Please add the following section to do so:
 
-```javascript
-"scripts": {
-   "open": "node_modules/.bin/cypress open"
-},
+```json
+{
+  "scripts": {
+    "open": "node_modules/.bin/cypress open"
+  }
+}
 ```
 
 Now install this package with the following command:
