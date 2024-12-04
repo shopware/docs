@@ -46,7 +46,7 @@ For more information on snippets deleted in this course see CHANGELOG-6.3.md
 
 * Create error notification
 
-```js
+```javascript
 this.createNotificationError({
     message: this.$tc('sw-module.messageError')
 });
@@ -59,7 +59,7 @@ this.createNotificationError({
 
 * Avoid cheap solutions like 
 
-```js
+```javascript
 this.createNotificationError({
     message: err
 });

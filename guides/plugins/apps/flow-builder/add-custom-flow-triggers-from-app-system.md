@@ -216,7 +216,7 @@ Snippet keys should be defined based on your trigger name defined at `<name>` in
 </flow-extensions>
 ```
 
-```js
+```javascript
 // custom/apps/FlowBuilderTriggerApp/Resources/app/administration/snippet/en-GB.json
 {
   "sw-flow-custom-event": {

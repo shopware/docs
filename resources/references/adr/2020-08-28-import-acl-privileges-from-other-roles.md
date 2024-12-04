@@ -24,7 +24,7 @@ To avoid duplication of these privileges we use a helper function. These
 function returns all privileges from the other module dynamically. You can
 use it directly in the privileges:
 
-```js
+```javascript
 Shopware.Service('privileges')
     .addPrivilegeMappingEntry({
         category: 'permissions',
