@@ -18,7 +18,7 @@ The developer documentation is organized into sections covering :
 - [Products](./products/)
 - [Resources](./resources/)
 
-Refer to its [structure](./index.md) to understand better. Contributions to improve the content are welcome, following the outlined [contribution guidelines](./resources/guidelines/documentation-guidelines/06-doc-process.md). The markdown content undergoes workflow checks for easier maintenance. Further details are outlined below. 
+Refer to its [structure](./index.md) to understand better. Contributions to improve the content are welcome, following the outlined [contribution guidelines](fundamentals/non-functional-req/documentation/developer-documentation/06-doc-process.md). The markdown content undergoes workflow checks for easier maintenance. Further details are outlined below. 
 
 
 ![Developer docs](./assets/developer-docs.png)
@@ -30,7 +30,7 @@ They are defined in the [`.github/workflows`](./.github/workflows/) folder and h
 
 ### Grammar and language check
 
-All changed content is checked with Reviewdog for grammar and language. The configuration for Reviewdog can be found in [`.reviewdog.yml`](./.github/workflows/reviewdog.yml). It will create warnings in the pull request if the language or grammar is not correct. A more in-depth explanation can be found in [Language and Grammar](./resources/guidelines/documentation-guidelines/03-language-and-grammar.md) section.
+All changed content is checked with Reviewdog for grammar and language. The configuration for Reviewdog can be found in [`.reviewdog.yml`](./.github/workflows/reviewdog.yml). It will create warnings in the pull request if the language or grammar is not correct. A more in-depth explanation can be found in [Language and Grammar](fundamentals/non-functional-req/documentation/developer-documentation/03-language-and-grammar.md) section.
 
 ### Markdown check
 
@@ -46,7 +46,7 @@ sort .wordlist.txt -o .wordlist.txt
 
 ### Media file format check
 
-The `/docs/assets` folder stores images, videos, and other files linked in markdown. They follow the naming convention outlined in [Methodize Assets](./resources/guidelines/documentation-guidelines/05-methodize-assets.md#visual-diagram-guidelines). The [`file-format-check.yml`](.github/workflows/file-format-check.yml) ensures adherence to these naming guidelines.
+The `/docs/assets` folder stores images, videos, and other files linked in markdown. They follow the naming convention outlined in [Methodize Assets](fundamentals/non-functional-req/documentation/developer-documentation/05-methodize-assets.md#visual-diagram-guidelines). The [`file-format-check.yml`](.github/workflows/file-format-check.yml) ensures adherence to these naming guidelines.
 
 ### External link check
 
