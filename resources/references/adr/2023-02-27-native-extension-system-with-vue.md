@@ -29,7 +29,7 @@ Our main idea for the template part was to use native Vue components named sw-bl
 
 For the script and logic part, we aimed to use the Composition API. Before returning all the component data and methods, we would provide a hook point for plugins so they could modify or inject everything they want.
 
-```javascript
+```vue
 // The original component
 <script setup lang="ts">
 // Hook for providing extensibility
@@ -38,23 +38,23 @@ useExtensibility();
 
 // The plugin component
 <script lang="ts">
-    import SwOrignal from './sw-original.vue';
-    // use our extensibility helpers
-    import { useComponentExtender, getPropsFromComponent } from 'sw-vue-extensbiles';
-    
-    const myCustomData = ref('test');
-    
-    export default {
-        name: 'sw-extended-component',
-        props: {
-            ...getPropsFromComponent(SwOrignal)
-        },
-        setup(props, context) {
-            return {
-                ...useComponentExtender(SwOrignal, props, context),
-                myCustomData
-            }   
-        }
+import SwOrignal from './sw-original.vue';
+// use our extensibility helpers
+import { useComponentExtender, getPropsFromComponent } from 'sw-vue-extensbiles';
+
+const myCustomData = ref('test');
+
+export default {
+  name: 'sw-extended-component',
+  props: {
+    ...getPropsFromComponent(SwOrignal)
+  },
+  setup(props, context) {
+    return {
+      ...useComponentExtender(SwOrignal, props, context),
+      myCustomData
+    }
+  }
 }
 </script>
 ```

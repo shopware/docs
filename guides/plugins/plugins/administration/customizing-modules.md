@@ -30,19 +30,19 @@ This is done by creating a new module and implementing a `routeMiddleware`. You 
 ```javascript
 // <plugin root>/src/Resources/app/administration/src/main.js
 Shopware.Module.register('my-new-custom-route', {
-    routeMiddleware(next, currentRoute) {
-        if (currentRoute.name === 'sw.product.detail') {
-            currentRoute.children.push({
-                name: 'sw.product.detail.custom',
-                path: '/sw/product/detail/:id/custom',
-                component: 'sw-product-detail-custom',
-                meta: {
-                    parentPath: "sw.product.index"
-                }
-            });
+  routeMiddleware(next, currentRoute) {
+    if (currentRoute.name === 'sw.product.detail') {
+      currentRoute.children.push({
+        name: 'sw.product.detail.custom',
+        path: '/sw/product/detail/:id/custom',
+        component: 'sw-product-detail-custom',
+        meta: {
+          parentPath: "sw.product.index"
         }
-        next(currentRoute);
+      });
     }
+    next(currentRoute);
+  }
 });
 ```
 

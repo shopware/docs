@@ -26,12 +26,12 @@ This service is then available via its name on the object instance.
 
 ```javascript
 Shopware.Component.register('swag-basic-example', {
-    // inject the service
-    inject: ['repositoryFactory'],
+  // inject the service
+  inject: ['repositoryFactory'],
 
-    created() {
-        // insatiate the injected repositoryFactory 
-        this.productRepository = this.repositoryFactory.create('product')
-    }
+  created() {
+    // insatiate the injected repositoryFactory 
+    this.productRepository = this.repositoryFactory.create('product')
+  }
 });
 ```

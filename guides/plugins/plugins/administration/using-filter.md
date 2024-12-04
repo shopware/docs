@@ -26,7 +26,7 @@ In this section we will show you, how to use our `example` filter in JavaScript 
 If we want to use the filter in our components JavaScript files, we can access it by using `this.$options.filters` and the name of our filter.
 
 ```javascript
-this.$options.filters.example('firstArgument')
+this.$options.filters.example('firstArgument');
 ```
 
 ### Filter in Twig templates

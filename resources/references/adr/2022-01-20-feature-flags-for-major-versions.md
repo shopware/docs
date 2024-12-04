@@ -111,10 +111,9 @@ Also in the JavaScript code of the administration the flags can be used in vario
 You can also hide complete admin modules behind a flag:
 
 ```javascript
- 
 Module.register('sw-awesome', {
-    flag: 'v6.5.0.0',
-    ...
+  flag: 'v6.5.0.0',
+  // ...
 });
 ```
 

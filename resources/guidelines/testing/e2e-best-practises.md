@@ -202,13 +202,13 @@ cy.server();
 
 // Route POST requests with matching URL and assign an alias to it
 cy.route({
-    url: '/api/search/category',
-    method: 'post'
+  url: '/api/search/category',
+  method: 'post'
 }).as('getData');
 
 // Later, you can use the alias to wait for the API response
 cy.wait('@getData').then((xhr) => {
-    expect(xhr).to.have.property('status', 200);
+  expect(xhr).to.have.property('status', 200);
 });
 ```
 

@@ -121,7 +121,7 @@ Because your module is displayed as an iframe in the Administration, Shopware ca
 
 ```javascript
 function sendReadyState() {
-    window.parent.postMessage('sw-app-loaded', '*');
+  window.parent.postMessage('sw-app-loaded', '*');
 }
 ```
 

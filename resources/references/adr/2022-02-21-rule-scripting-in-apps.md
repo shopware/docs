@@ -258,55 +258,55 @@ The following is a draft for a generic component that gets, sets and validates f
 
 ```javascript
 Component.extend('sw-condition-script', 'sw-condition-base', {
-    template,
-    inheritAttrs: false,
+  template,
+  inheritAttrs: false,
 
-    computed: {
-        constraints() {
-            return this.condition.script.constraints;
-        },
-
-        values() {
-            const that = this;
-            const values = {};
-
-            Object.keys(this.constraints).forEach((key) => {
-                Object.defineProperty(values, key, {
-                    get: () => {
-                        that.ensureValueExist();
-
-                        return that.condition.value[key];
-                    },
-                    set: (value) => {
-                        that.ensureValueExist();
-                        that.condition.value = { ...that.condition.value, [key]: value };
-                    },
-                });
-            });
-
-            return values;
-        },
-
-        currentError() {
-            let error = null;
-
-            Object.keys(this.constraints).forEach((key) => {
-                if (error) {
-                    return;
-                }
-
-                const errorProperty = Shopware.State.getters['error/getApiError'](this.condition, `value.${key}`);
-
-                if (errorProperty) {
-                    error = errorProperty;
-                }
-            });
-
-            return error;
-        },
+  computed: {
+    constraints() {
+      return this.condition.script.constraints;
     },
-    
-    // ...
+
+    values() {
+      const that = this;
+      const values = {};
+
+      Object.keys(this.constraints).forEach((key) => {
+        Object.defineProperty(values, key, {
+          get: () => {
+            that.ensureValueExist();
+
+            return that.condition.value[key];
+          },
+          set: (value) => {
+            that.ensureValueExist();
+            that.condition.value = { ...that.condition.value, [key]: value };
+          },
+        });
+      });
+
+      return values;
+    },
+
+    currentError() {
+      let error = null;
+
+      Object.keys(this.constraints).forEach((key) => {
+        if (error) {
+          return;
+        }
+
+        const errorProperty = Shopware.State.getters['error/getApiError'](this.condition, `value.${key}`);
+
+        if (errorProperty) {
+          error = errorProperty;
+        }
+      });
+
+      return error;
+    },
+  },
+
+  // ...
 });
 ```
 

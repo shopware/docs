@@ -57,7 +57,7 @@ const client = new AppClient('MyAppName');
 
 // the second parameter is 
 client.get('https://my-app-backend.com/foo', {
-    headers: {}, // the parameters are same as https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+  headers: {}, // the parameters are same as https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
 })
 client.put('https://my-app-backend.com/foo')
 client.post('https://my-app-backend.com/foo')
@@ -73,7 +73,7 @@ If you want to generate the JWT yourself, you can use the following code snippet
 
 ```javascript
 const response = await fetch('/store-api/app-system/{name}/generate-token', {
-    method: 'POST'
+  method: 'POST'
 });
 
 // send token as 'shopware-app-token' header and shopId as 'shopware-app-shop-id' header to your app server.

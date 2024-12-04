@@ -47,17 +47,17 @@ Since snippets are automatically registered in the scope of your module, you can
 
 ```javascript
 Component.register('my-custom-page', {
-    ...
+  // ...
 
-    methods: {
-        createdComponent() {
-            // call the $tc helper function provided by Vue I18n 
-            const myCustomText = this.$tc('swag-example.general.myCustomText');
+  methods: {
+    createdComponent() {
+      // call the $tc helper function provided by Vue I18n 
+      const myCustomText = this.$tc('swag-example.general.myCustomText');
 
-            console.log(myCustomText);
-        }
+      console.log(myCustomText);
     }
-    ...
+  }
+  // ...
 });
 ```
 

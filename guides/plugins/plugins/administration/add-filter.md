@@ -26,11 +26,11 @@ Here's an example how your filter could look like:
 const { Filter } = Shopware;
 
 Filter.register('example', (value) => {
-    if (!value) {
-        return '';
-    }
+  if (!value) {
+    return '';
+  }
 
-    return `_${value.toLocaleUpperCase()}_`;
+  return `_${value.toLocaleUpperCase()}_`;
 });
 ```
 
@@ -40,7 +40,7 @@ If you want to use multiple arguments in your filter function, it could look lik
 
 ```javascript
 Filter.register('example', (value, secondValue, thirdValue) => {
-    ...
+  // ...
 });
 ```
 

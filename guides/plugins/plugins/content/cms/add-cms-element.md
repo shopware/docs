@@ -79,17 +79,17 @@ Here's what it should look like after having set all of those options:
 ```javascript
 // <plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/index.js
 Shopware.Service('cmsService').registerCmsElement({
-    name: 'dailymotion',
-    label: 'sw-cms.elements.customDailymotionElement.label',
-    component: 'sw-cms-el-dailymotion',
-    configComponent: 'sw-cms-el-config-dailymotion',
-    previewComponent: 'sw-cms-el-preview-dailymotion',
-    defaultConfig: {
-        dailyUrl: {
-            source: 'static',
-            value: ''
-        }
+  name: 'dailymotion',
+  label: 'sw-cms.elements.customDailymotionElement.label',
+  component: 'sw-cms-el-dailymotion',
+  configComponent: 'sw-cms-el-config-dailymotion',
+  previewComponent: 'sw-cms-el-preview-dailymotion',
+  defaultConfig: {
+    dailyUrl: {
+      source: 'static',
+      value: ''
     }
+  }
 });
 ```
 
@@ -131,7 +131,7 @@ import template from './sw-cms-el-preview-dailymotion.html.twig';
 import './sw-cms-el-preview-dailymotion.scss';
 
 Shopware.Component.register('sw-cms-el-preview-dailymotion', {
-    template
+  template
 });
 ```
 
@@ -205,7 +205,7 @@ import template from './sw-cms-el-dailymotion.html.twig';
 import './sw-cms-el-dailymotion.scss';
 
 Shopware.Component.register('sw-cms-el-dailymotion', {
-    template
+  template
 });
 ```
 
@@ -241,13 +241,13 @@ import template from './sw-cms-el-dailymotion.html.twig';
 import './sw-cms-el-dailymotion.scss';
 
 Shopware.Component.register('sw-cms-el-dailymotion', {
-    template,
+  template,
 
-    computed: {
-        dailyUrl() {
-            return `https://www.dailymotion.com/embed/video/${this.element.config.dailyUrl.value}`;
-        }
-    },    
+  computed: {
+    dailyUrl() {
+      return `https://www.dailymotion.com/embed/video/${this.element.config.dailyUrl.value}`;
+    }
+  },
 });
 ```
 
@@ -264,27 +264,27 @@ import template from './sw-cms-el-dailymotion.html.twig';
 import './sw-cms-el-dailymotion.scss';
 
 Shopware.Component.register('sw-cms-el-dailymotion', {
-    template,
+  template,
 
-    mixins: [
-        'cms-element'
-    ],
+  mixins: [
+    'cms-element'
+  ],
 
-    computed: {
-        dailyUrl() {
-            return `https://www.dailymotion.com/embed/video/${this.element.config.dailyUrl.value}`;
-        }
-    },
-
-    created() {
-        this.createdComponent();
-    },
-
-    methods: {
-        createdComponent() {
-            this.initElementConfig('dailymotion');
-        }
+  computed: {
+    dailyUrl() {
+      return `https://www.dailymotion.com/embed/video/${this.element.config.dailyUrl.value}`;
     }
+  },
+
+  created() {
+    this.createdComponent();
+  },
+
+  methods: {
+    createdComponent() {
+      this.initElementConfig('dailymotion');
+    }
+  }
 });
 ```
 
@@ -330,39 +330,39 @@ Let's head over to the last remaining component. Create a directory `config`, an
 import template from './sw-cms-el-config-dailymotion.html.twig';
 
 Shopware.Component.register('sw-cms-el-config-dailymotion', {
-    template,
+  template,
 
-    mixins: [
-        'cms-element'
-    ],
+  mixins: [
+    'cms-element'
+  ],
 
-    computed: {
-        dailyUrl: {
-            get() {
-                return this.element.config.dailyUrl.value;
-            },
+  computed: {
+    dailyUrl: {
+      get() {
+        return this.element.config.dailyUrl.value;
+      },
 
-            set(value) {
-                this.element.config.dailyUrl.value = value;
-            }
-        }
-    },
-
-    created() {
-        this.createdComponent();
-    },
-
-    methods: {
-        createdComponent() {
-            this.initElementConfig('dailymotion');
-        },
-
-        onElementUpdate(value) {
-            this.element.config.dailyUrl.value = value;
-
-            this.$emit('element-update', this.element);
-        }
+      set(value) {
+        this.element.config.dailyUrl.value = value;
+      }
     }
+  },
+
+  created() {
+    this.createdComponent();
+  },
+
+  methods: {
+    createdComponent() {
+      this.initElementConfig('dailymotion');
+    },
+
+    onElementUpdate(value) {
+      this.element.config.dailyUrl.value = value;
+
+      this.$emit('element-update', this.element);
+    }
+  }
 });
 ```
 
@@ -396,7 +396,7 @@ import './config';
 import './preview';
 
 Shopware.Service('cmsService').registerCmsElement({
-    // ...
+  // ...
 });
 ```
 

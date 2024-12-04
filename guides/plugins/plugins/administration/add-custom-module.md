@@ -53,7 +53,7 @@ The method needs two parameters to be set, the first one being the module's name
 ```javascript
 // <plugin root>/src/Resources/app/administration/src/module/swag-example/index.js
 Shopware.Module.register('swag-example', {
-    // configuration here
+  // configuration here
 });
 ```
 
@@ -103,13 +103,14 @@ For reference, see this example:
 ```javascript
 // <plugin root>/src/Resources/app/administration/src/module/swag-example/index.js
 Shopware.Module.register('swag-example', {
-    type: 'plugin',
-    name: 'Example',
-    title: 'swag-example.general.mainMenuItemGeneral',
-    description: 'sw-property.general.descriptionTextModule',
-    color: '#ff3d58',
-    icon: 'regular-shopping-bag',
-...
+  type: 'plugin',
+  name: 'Example',
+  title: 'swag-example.general.mainMenuItemGeneral',
+  description: 'sw-property.general.descriptionTextModule',
+  color: '#ff3d58',
+  icon: 'regular-shopping-bag',
+  // ...
+});
 ```
 
 The `name` should be a technical unique one, the `type` would be 'plugin' here. When it comes to this `type`, there are basically two options in Shopware: `core` and `plugin`.
@@ -216,16 +217,16 @@ You can add the `settingsItem` option to the module configuration as seen below:
 import './page/swag-plugin-list';
 import './page/swag-plugin-detail';
 Shopware.Module.register('swag-plugin', {
-    ...
-    settingsItem: [{
-        group: 'plugins',
-        icon: 'regular-rocket',
-        to: 'swag.plugin.list',
-        name: 'SwagExampleMenuItemGeneral', // optional, fallback is taken from module
-        id: '', // optional, fallback is taken from module
-        label: '', // optional, fallback is taken from module
-        iconComponent: YourCustomIconRenderingComponent, // optional, this overrides the component used to render the icon
-    }]
+  // ...
+  settingsItem: [{
+    group: 'plugins',
+    icon: 'regular-rocket',
+    to: 'swag.plugin.list',
+    name: 'SwagExampleMenuItemGeneral', // optional, fallback is taken from module
+    id: '', // optional, fallback is taken from module
+    label: '', // optional, fallback is taken from module
+    iconComponent: YourCustomIconRenderingComponent, // optional, this overrides the component used to render the icon
+  }]
 });
 ```
 
@@ -248,46 +249,46 @@ import deDE from './snippet/de-DE';
 import enGB from './snippet/en-GB';
 
 Shopware.Module.register('swag-example', {
-    type: 'plugin',
-    name: 'Example',
-    title: 'swag-example.general.mainMenuItemGeneral',
-    description: 'sw-property.general.descriptionTextModule',
+  type: 'plugin',
+  name: 'Example',
+  title: 'swag-example.general.mainMenuItemGeneral',
+  description: 'sw-property.general.descriptionTextModule',
+  color: '#ff3d58',
+  icon: 'regular-shopping-bag',
+
+  snippets: {
+    'de-DE': deDE,
+    'en-GB': enGB
+  },
+
+  routes: {
+    list: {
+      component: 'swag-example-list',
+      path: 'list'
+    },
+    detail: {
+      component: 'swag-example-detail',
+      path: 'detail/:id',
+      meta: {
+        parentPath: 'swag.example.list'
+      }
+    },
+    create: {
+      component: 'swag-example-create',
+      path: 'create',
+      meta: {
+        parentPath: 'swag.example.list'
+      }
+    }
+  },
+
+  navigation: [{
+    label: 'swag-example.general.mainMenuItemGeneral',
     color: '#ff3d58',
+    path: 'swag.example.list',
     icon: 'regular-shopping-bag',
-
-    snippets: {
-        'de-DE': deDE,
-        'en-GB': enGB
-    },
-
-    routes: {
-        list: {
-            component: 'swag-example-list',
-            path: 'list'
-        },
-        detail: {
-            component: 'swag-example-detail',
-            path: 'detail/:id',
-            meta: {
-                parentPath: 'swag.example.list'
-            }
-        },
-        create: {
-            component: 'swag-example-create',
-            path: 'create',
-            meta: {
-                parentPath: 'swag.example.list'
-            }
-        }
-    },
-
-    navigation: [{
-        label: 'swag-example.general.mainMenuItemGeneral',
-        color: '#ff3d58',
-        path: 'swag.example.list',
-        icon: 'regular-shopping-bag',
-        position: 100
-    }]
+    position: 100
+  }]
 });
 ```
 

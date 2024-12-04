@@ -46,12 +46,12 @@ The next step is loading your custom fields. First things first, create a variab
 
 ```javascript
 // <plugin-root>/src/Resources/app/administration/app/src/component/swag-basic-example/index.js
-    data() {
-        return {
-            ...
-            customFieldSets: null
-        };
-    }
+data() {
+  return {
+    // ...
+    customFieldSets: null
+  };
+}
 ```
 
 Afterwards, you can start to integrate the custom field data into your component. Therefore, you need to create a `customFieldSetRepository` first as `computed` property. In this context, it may come in handy to already set the `customFieldSetCriteria`. Both steps can be seen in the example below:
@@ -59,34 +59,34 @@ Afterwards, you can start to integrate the custom field data into your component
 ```javascript
 // <plugin-root>/src/Resources/app/administration/app/src/component/swag-basic-example/index.js
 computed: {
-    // Using the repository to work with customFields
-    customFieldSetRepository() {
-        return this.repositoryFactory.create('custom_field_set');
-    },
+  // Using the repository to work with customFields
+  customFieldSetRepository() {
+    return this.repositoryFactory.create('custom_field_set');
+  },
 
-    // sets the criteria used for your custom field set
-    customFieldSetCriteria() {
-        const criteria = new Criteria();
+  // sets the criteria used for your custom field set
+  customFieldSetCriteria() {
+    const criteria = new Criteria();
 
-        // restrict the customFieldSets to be associated with products
-        criteria.addFilter(Criteria.equals('relations.entityName', 'product'));
+    // restrict the customFieldSets to be associated with products
+    criteria.addFilter(Criteria.equals('relations.entityName', 'product'));
 
-        // sort the customFields based on customFieldPosition
-        criteria
-            .getAssociation('customFields')
-            .addSorting(Criteria.sort('config.customFieldPosition', 'ASC', true));
+    // sort the customFields based on customFieldPosition
+    criteria
+      .getAssociation('customFields')
+      .addSorting(Criteria.sort('config.customFieldPosition', 'ASC', true));
 
-        return criteria;
-    }
+    return criteria;
+  }
 }
 ```
 
 Now you can access your custom fields, e.g. within a `method`. In order to achieve that, you can use the `search` method as you're used to working with repositories:
 
 ```javascript
-    // this will fetch the customFieldSets
-    this.customFieldSetRepository.search(this.customFieldSetCriteria, Shopware.Context.api)
-        .then((customFieldSets) => {
-            this.customFieldSets = customFieldSets;
-        });
+// this will fetch the customFieldSets
+this.customFieldSetRepository.search(this.customFieldSetCriteria, Shopware.Context.api)
+  .then((customFieldSets) => {
+    this.customFieldSets = customFieldSets;
+  });
 ```

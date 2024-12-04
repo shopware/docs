@@ -113,7 +113,7 @@ Modules, Components, Services, etc. can be marked as experimental, meaning that 
  * @experimental stableVersion:v6.6.0
  */
 Component.register('sw-new-component', {
-    ...
+  // ...
 });
 ```
 ### Storefront

@@ -42,20 +42,20 @@ Add the `entity` and `defaultSearchConfiguration` values to your module to make 
 
 ```javascript
 Shopware.Module.register('swag-plugin', {
-    entity: 'swag_example',
-    defaultSearchConfiguration: {
-        _searchable: true,
-        name: {
-            _searchable: true,
-            _score: 500,
-        },
-        description: {
-            name: {
-                _searchable: true,
-                _score: 500,
-            },
-        },
+  entity: 'swag_example',
+  defaultSearchConfiguration: {
+    _searchable: true,
+    name: {
+      _searchable: true,
+      _score: 500,
     },
+    description: {
+      name: {
+        _searchable: true,
+        _score: 500,
+      },
+    },
+  },
 });
 ```
 
@@ -69,14 +69,14 @@ The search tag displays the entity type used in the typed search and is a clicka
 const { Application } = Shopware;
 
 Application.addServiceProviderDecorator('searchTypeService', searchTypeService => {
-    searchTypeService.upsertType('foo_bar', {
-        entityName: 'foo_bar',
-        placeholderSnippet: 'foo-bar.general.placeholderSearchBar',
-        listingRoute: 'foo.bar.index',
-        hideOnGlobalSearchBar: false,
-    });
+  searchTypeService.upsertType('foo_bar', {
+    entityName: 'foo_bar',
+    placeholderSnippet: 'foo-bar.general.placeholderSearchBar',
+    listingRoute: 'foo.bar.index',
+    hideOnGlobalSearchBar: false,
+  });
 
-    return searchTypeService;
+  return searchTypeService;
 });
 ```
 
@@ -125,7 +125,7 @@ Shopware.Component.override('sw-search-bar-item', () => import('./app/component/
 import template from './sw-search-bar-item.html.twig';
 
 export default {
-    template
+  template
 };
 ```
 
@@ -166,7 +166,7 @@ Shopware.Component.override('sw-search-more-results', () => import('./app/compon
 import template from './sw-search-more-results.html.twig';
 
 export default {
-    template
+  template
 };
 ```
 
@@ -188,8 +188,8 @@ To change the color of the tag, or the icon in the untyped global search, a modu
 
 ```javascript
 Shopware.Module.register('any-name', {
-    color: '#ff0000',
-    icon: 'default-basic-shape-triangle',
-    entity: 'my_entity',
-})
+  color: '#ff0000',
+  icon: 'default-basic-shape-triangle',
+  entity: 'my_entity',
+});
 ```

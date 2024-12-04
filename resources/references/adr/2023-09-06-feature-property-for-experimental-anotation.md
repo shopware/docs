@@ -62,7 +62,7 @@ js
  * @experimental stableVersion:v6.6.0 feature:WISHLIST
  */
 Component.register('sw-new-component', {
-    ...
+  // ...
 });
 ```
 

@@ -86,22 +86,22 @@ Go ahead and create this configuration object yourself. Here's what it should lo
 ```javascript
 // <plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/index.js
 Shopware.Service('cmsService').registerCmsBlock({
-    name: 'my-image-text-reversed',
-    category: 'text-image',
-    label: 'My Image Text Block!',
-    component: 'sw-cms-block-my-image-text-reversed',
-    previewComponent: 'sw-cms-preview-my-image-text-reversed',
-    defaultConfig: {
-        marginBottom: '20px',
-        marginTop: '20px',
-        marginLeft: '20px',
-        marginRight: '20px',
-        sizingMode: 'boxed'
-    },
-    slots: {
-        left: 'text',
-        right: 'image'
-    }
+  name: 'my-image-text-reversed',
+  category: 'text-image',
+  label: 'My Image Text Block!',
+  component: 'sw-cms-block-my-image-text-reversed',
+  previewComponent: 'sw-cms-preview-my-image-text-reversed',
+  defaultConfig: {
+    marginBottom: '20px',
+    marginTop: '20px',
+    marginLeft: '20px',
+    marginRight: '20px',
+    sizingMode: 'boxed'
+  },
+  slots: {
+    left: 'text',
+    right: 'image'
+  }
 });
 ```
 
@@ -121,7 +121,7 @@ import template from './sw-cms-block-my-image-text-reversed.html.twig';
 import './sw-cms-block-my-image-text-reversed.scss';
 
 Shopware.Component.register('sw-cms-block-my-image-text-reversed', {
-    template
+  template
 });
 ```
 
@@ -161,7 +161,7 @@ That's it for this component! Make sure to import your `component` directory in 
 import './component'; // <- Right here!
 
 Shopware.Service('cmsService').registerCmsBlock({
-    ...
+  // ...
 });
 ```
 
@@ -177,7 +177,7 @@ import template from './sw-cms-preview-my-image-text-reversed.html.twig';
 import './sw-cms-preview-my-image-text-reversed.scss';
 
 Shopware.Component.register('sw-cms-preview-my-image-text-reversed', {
-    template
+  template
 });
 ```
 
@@ -201,9 +201,9 @@ Also, you need to create a computed component to access the asset filter in your
 ```javascript
 // <plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/preview/index.js
 computed: {
-    assetFilter() {
-        return Shopware.Filter.getByName('asset');
-    },
+  assetFilter() {
+    return Shopware.Filter.getByName('asset');
+  },
 }
 ```
 
@@ -231,22 +231,22 @@ import './component';
 import './preview';
 
 Shopware.Service('cmsService').registerCmsBlock({
-    name: 'my-image-text-reversed',
-    category: 'text-image',
-    label: 'My Image Text Block!',
-    component: 'sw-cms-block-my-image-text-reversed',
-    previewComponent: 'sw-cms-preview-my-image-text-reversed',
-    defaultConfig: {
-        marginBottom: '20px',
-        marginTop: '20px',
-        marginLeft: '20px',
-        marginRight: '20px',
-        sizingMode: 'boxed'
-    },
-    slots: {
-        left: 'text',
-        right: 'image'
-    }
+  name: 'my-image-text-reversed',
+  category: 'text-image',
+  label: 'My Image Text Block!',
+  component: 'sw-cms-block-my-image-text-reversed',
+  previewComponent: 'sw-cms-preview-my-image-text-reversed',
+  defaultConfig: {
+    marginBottom: '20px',
+    marginTop: '20px',
+    marginLeft: '20px',
+    marginRight: '20px',
+    sizingMode: 'boxed'
+  },
+  slots: {
+    left: 'text',
+    right: 'image'
+  }
 });
 ```
 

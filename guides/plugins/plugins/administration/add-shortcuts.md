@@ -25,26 +25,26 @@ The following code sample will show you how to register shortcuts in your compon
 const { Component } = Shopware;
 
 Component.register('swag-basic-example', {
-    
-    shortcuts: {
-        'SYSTEMKEY+S': {
-            active() {
-                return this.acl.can('product.editor');
-            },
-            method: 'myEditProductFunction'
-        },
-        ESCAPE: 'myCancelEditProductFunction'
-    },
 
-   
-    methods: {
-        myEditProductFunction() {
-            console.log("myEditProductFunction")
-        },
-        myCancelEditProductFunction() {
-            console.log("myCancelEditProductFunction")
-        }
+  shortcuts: {
+    'SYSTEMKEY+S': {
+      active() {
+        return this.acl.can('product.editor');
+      },
+      method: 'myEditProductFunction'
+    },
+    ESCAPE: 'myCancelEditProductFunction'
+  },
+
+
+  methods: {
+    myEditProductFunction() {
+      console.log("myEditProductFunction")
+    },
+    myCancelEditProductFunction() {
+      console.log("myCancelEditProductFunction")
     }
+  }
 });
 ```
 

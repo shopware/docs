@@ -48,7 +48,7 @@ For more information on snippets deleted in this course see CHANGELOG-6.3.md
 
 ```javascript
 this.createNotificationError({
-    message: this.$tc('sw-module.messageError')
+  message: this.$tc('sw-module.messageError')
 });
 ```
 * Create error message snippets (DE/EN)
@@ -61,7 +61,7 @@ this.createNotificationError({
 
 ```javascript
 this.createNotificationError({
-    message: err
+  message: err
 });
 ```
 ### Best practice

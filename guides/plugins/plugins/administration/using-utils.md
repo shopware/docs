@@ -22,22 +22,22 @@ Let us see how to use one of the utility functions — for example, `capitalizeS
 const { Component, Utils } = Shopware;
 
 Component.register('swag-basic-example', {
-    data() {
-        return {
-            text: 'hello',
-            capitalizedString: undefined,
-        };
-    },
+  data() {
+    return {
+      text: 'hello',
+      capitalizedString: undefined,
+    };
+  },
 
-    created() {
-        this.capitalize();
-    },
+  created() {
+    this.capitalize();
+  },
 
-    methods: {
-        capitalize() {
-            this.capitalizedString = Utils.string.capitalizeString(this.string);
-        },
+  methods: {
+    capitalize() {
+      this.capitalizedString = Utils.string.capitalizeString(this.string);
     },
+  },
 });
 ```
 

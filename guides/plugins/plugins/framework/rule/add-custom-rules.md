@@ -149,13 +149,13 @@ Create a new directory called `<plugin root>/src/Resources/app/administration/sr
 import '../../core/component/swag-first-monday';
 
 Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderService', (ruleConditionService) => {
-    ruleConditionService.addCondition('first_monday', {
-        component: 'swag-first-monday',
-        label: 'Is first monday of the month',
-        scopes: ['global']
-    });
+  ruleConditionService.addCondition('first_monday', {
+    component: 'swag-first-monday',
+    label: 'Is first monday of the month',
+    scopes: ['global']
+  });
 
-    return ruleConditionService;
+  return ruleConditionService;
 });
 ```
 
@@ -177,15 +177,15 @@ It may be possible that rules, with your newly created condition, aren't selecta
 The rule will now be added to the list of rules in the admin. It might be useful to create a new group for your rules. We can create a new group by using the `upsertGroup` method of the [RuleConditionService](https://github.com/shopware/shopware/blob/v6.6.0.0/src/Administration/Resources/app/administration/src/app/service/rule-condition.service.ts).
 
 ```javascript
-  // <plugin root>src/Resources/app/administration/src/decorator/rule-condition-service-decoration.js
-  Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderService', (ruleConditionService) => {
-      ruleConditionService.upsertGroup('days_of_the_month', {
-        id: 'days_of_the_month',
-        name: 'Days of the month',
-      });
-  
-      return ruleConditionService;
+// <plugin root>src/Resources/app/administration/src/decorator/rule-condition-service-decoration.js
+Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderService', (ruleConditionService) => {
+  ruleConditionService.upsertGroup('days_of_the_month', {
+    id: 'days_of_the_month',
+    name: 'Days of the month',
   });
+
+  return ruleConditionService;
+});
 ```
 
 Now that we have our group, we have to link this group to our condition. This is easily done by adding the `group` property to our condition.
@@ -195,14 +195,14 @@ Now that we have our group, we have to link this group to our condition. This is
 import '../../core/component/swag-first-monday';
 
 Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderService', (ruleConditionService) => {
-    ruleConditionService.addCondition('first_monday', {
-        component: 'swag-first-monday',
-        label: 'Is first monday of the month',
-        scopes: ['global'],
-        group: 'days_of_the_month', // [!code focus]
-    });
+  ruleConditionService.addCondition('first_monday', {
+    component: 'swag-first-monday',
+    label: 'Is first monday of the month',
+    scopes: ['global'],
+    group: 'days_of_the_month', // [!code focus]
+  });
 
-    return ruleConditionService;
+  return ruleConditionService;
 });
 ```
 
@@ -217,38 +217,38 @@ Here's an example of what this component could look like:
 import template from './swag-first-monday.html.twig';
 
 Shopware.Component.extend('swag-first-monday', 'sw-condition-base', {
-    template,
+  template,
 
-    computed: {
-        selectValues() {
-            return [
-                {
-                    label: this.$tc('global.sw-condition.condition.yes'),
-                    value: true
-                },
-                {
-                    label: this.$tc('global.sw-condition.condition.no'),
-                    value: false
-                }
-            ];
+  computed: {
+    selectValues() {
+      return [
+        {
+          label: this.$tc('global.sw-condition.condition.yes'),
+          value: true
         },
-
-        isFirstMondayOfTheMonth: {
-            get() {
-                this.ensureValueExist();
-
-                if (this.condition.value.isFirstMondayOfTheMonth == null) {
-                    this.condition.value.isFirstMondayOfTheMonth = false;
-                }
-
-                return this.condition.value.isFirstMondayOfTheMonth;
-            },
-            set(isFirstMondayOfTheMonth) {
-                this.ensureValueExist();
-                this.condition.value = { ...this.condition.value, isFirstMondayOfTheMonth };
-            }
+        {
+          label: this.$tc('global.sw-condition.condition.no'),
+          value: false
         }
+      ];
+    },
+
+    isFirstMondayOfTheMonth: {
+      get() {
+        this.ensureValueExist();
+
+        if (this.condition.value.isFirstMondayOfTheMonth == null) {
+          this.condition.value.isFirstMondayOfTheMonth = false;
+        }
+
+        return this.condition.value.isFirstMondayOfTheMonth;
+      },
+      set(isFirstMondayOfTheMonth) {
+        this.ensureValueExist();
+        this.condition.value = { ...this.condition.value, isFirstMondayOfTheMonth };
+      }
     }
+  }
 });
 ```
 
@@ -309,29 +309,29 @@ You can find all possible relations in `Shopware\Core\Content\Rule\RuleDefinitio
 
 Now, add your `awarenessConfiguration` and call the `addAwarenessConfiguration` method.
 
-```javascript
+```typescript
 type awarenessConfiguration = {
-notEquals?: Array<string>,
-equalsAny?: Array<string>,
-snippet?: string,
+  notEquals?: Array<string>,
+  equalsAny?: Array<string>,
+  snippet?: string,
 }
 ```
 
 ```javascript
 // <plugin root>src/Resources/app/administration/src/decorator/rule-condition-service-decoration.js
 Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderService', (ruleConditionService) => {
-    // Your newly added conditions is here
+  // Your newly added conditions is here
 
-    const restrictions = ruleConditionService.getAwarenessConfigurationByAssignmentName('productPrices');
+  const restrictions = ruleConditionService.getAwarenessConfigurationByAssignmentName('productPrices');
 
-    ruleConditionService
-        .addAwarenessConfiguration('productPrices', {
-            notEquals: [
-                'first_monday'
-            ],
-            equalsAny: [ ], // ignore if not needed
-            snippet: 'sw-restricted-rules.restrictedAssignment.productPrices',
-        });
+  ruleConditionService
+    .addAwarenessConfiguration('productPrices', {
+      notEquals: [
+        'first_monday'
+      ],
+      equalsAny: [], // ignore if not needed
+      snippet: 'sw-restricted-rules.restrictedAssignment.productPrices',
+    });
 });
 ```
 

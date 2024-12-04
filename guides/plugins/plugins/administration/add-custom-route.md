@@ -21,16 +21,16 @@ Now, our route should look like this:
 
 ```javascript
 // routes: {
-//     nameOfTheRoute: {
-//         component: 'example',
-//         path: 'actualPathInTheBrowser'
-//     }
+//   nameOfTheRoute: {
+//     component: 'example',
+//     path: 'actualPathInTheBrowser'
+//   }
 // }
 routes: {
-    overview: {
-        component: 'sw-product-list',
-        path: 'overview'
-    },
+  overview: {
+    component: 'sw-product-list',
+    path: 'overview'
+  },
 },
 ```
 
@@ -44,25 +44,25 @@ Let's extend this example:
 
 ```javascript
 Shopware.Module.register('swag-example', {
-    color: '#ff3d58',
-    icon: 'default-shopping-paper-bag-product',
-    title: 'My custom module',
-    description: 'Manage your custom module here.',
+  color: '#ff3d58',
+  icon: 'default-shopping-paper-bag-product',
+  title: 'My custom module',
+  description: 'Manage your custom module here.',
 
-    routes: {
-        overview: {
-            component: 'swag-example-list',
-            path: 'overview'
-        },
-        // This is our second route
-        detail: {
-            component: 'sw-example-detail',
-            path: 'detail/:id',
-            meta: {
-                parentPath: 'swag.example.list'
-            }
-        }
+  routes: {
+    overview: {
+      component: 'swag-example-list',
+      path: 'overview'
     },
+    // This is our second route
+    detail: {
+      component: 'sw-example-detail',
+      path: 'detail/:id',
+      meta: {
+        parentPath: 'swag.example.list'
+      }
+    }
+  },
 });
 ```
 
@@ -79,11 +79,11 @@ You might want to have a closer look at the `parentPath` value though. Its route
 See in this example:
 
 ```javascript
-...
-   meta: {
-       parentPath: 'swag.example.list'
-   }
-...
+// ...
+meta: {
+  parentPath: 'swag.example.list'
+}
+// ...
 ```
 
 The `bundle-name` is separated by dots instead of dashes here though. The second part is the **name** of the route, the key of the route configuration that is. Thus the path to the `list` route is `swag.example.list`. The same applies for the `create` route.

@@ -380,25 +380,25 @@ When you want to request your custom route you can use the existing `http-client
 const { PluginBaseClass } = window;
 
 export default class ExamplePlugin extends PluginBaseClass {
-    async requestCustomRoute() {
-        const response = await fetch('/example', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                limit: 10,
-                offset: 0,
-            }),
-        });
-        
-        if (!response.ok) {
-            throw new Error('Request failed');
-        }
+  async requestCustomRoute() {
+    const response = await fetch('/example', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        limit: 10,
+        offset: 0,
+      }),
+    });
 
-        const data = await response.json();
-
-        console.log(data);
+    if (!response.ok) {
+      throw new Error('Request failed');
     }
+
+    const data = await response.json();
+
+    console.log(data);
+  }
 }
 ```

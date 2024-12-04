@@ -96,47 +96,47 @@ Here's an example how this can look like for the review functionality in the Adm
 
 ```javascript
 Shopware.Service('privileges')
-    .addPrivilegeMappingEntry({
-        category: 'permissions',
-        parent: 'catalogues',
-        key: 'review',
-        roles: {
-            viewer: {
-                privileges: [
-                    'product_review:read',
-                    'customer:read',
-                    'product:read',
-                    'sales_channel:read'
-                ],
-                dependencies: []
-            },
-            editor: {
-                privileges: [
-                    'product_review:update'
-                ],
-                dependencies: [
-                    'review.viewer'
-                ]
-            },
-            creator: {
-                privileges: [
-                    'product_review:create'
-                ],
-                dependencies: [
-                    'review.viewer',
-                    'review.editor'
-                ]
-            },
-            deleter: {
-                privileges: [
-                    'product_review:delete'
-                ],
-                dependencies: [
-                    'review.viewer'
-                ]
-            }
-        }
-    });
+  .addPrivilegeMappingEntry({
+    category: 'permissions',
+    parent: 'catalogues',
+    key: 'review',
+    roles: {
+      viewer: {
+        privileges: [
+          'product_review:read',
+          'customer:read',
+          'product:read',
+          'sales_channel:read'
+        ],
+        dependencies: []
+      },
+      editor: {
+        privileges: [
+          'product_review:update'
+        ],
+        dependencies: [
+          'review.viewer'
+        ]
+      },
+      creator: {
+        privileges: [
+          'product_review:create'
+        ],
+        dependencies: [
+          'review.viewer',
+          'review.editor'
+        ]
+      },
+      deleter: {
+        privileges: [
+          'product_review:delete'
+        ],
+        dependencies: [
+          'review.viewer'
+        ]
+      }
+    }
+  });
 ```
 
 ### Adding new, normal permissions
@@ -159,27 +159,27 @@ To add a new mapping for your custom key use the following approach:
 // <plugin root>/src/Resources/app/administration/src/<your-component>/acl/index.js
 
 Shopware.Service('privileges').addPrivilegeMappingEntry({
-    category: 'permissions',
-    parent: null,
-    key: 'your_key',
-    roles: {
-        viewer: {
-            privileges: [],
-            dependencies: []
-        },
-        editor: {
-            privileges: [],
-            dependencies: []
-        },
-        creator: {
-            privileges: [],
-            dependencies: []
-        },
-        deleter: {
-            privileges: [],
-            dependencies: []
-        }
+  category: 'permissions',
+  parent: null,
+  key: 'your_key',
+  roles: {
+    viewer: {
+      privileges: [],
+      dependencies: []
+    },
+    editor: {
+      privileges: [],
+      dependencies: []
+    },
+    creator: {
+      privileges: [],
+      dependencies: []
+    },
+    deleter: {
+      privileges: [],
+      dependencies: []
     }
+  }
 });
 ```
 
@@ -191,20 +191,20 @@ Adding privileges to an existing key can be done like this:
 // <plugin root>/src/Resources/app/administration/src/acl-override/index.js
 
 Shopware.Service('privileges').addPrivilegeMappingEntry({
-    category: 'permissions',
-    parent: null,
-    key: 'product',
-    roles: {
-        viewer: {
-            privileges: ['plugin:read']
-        },
-        editor: {
-            privileges: ['plugin:update']
-        },
-        newrole: {
-            privileges: ['plugin:write']
-        }
+  category: 'permissions',
+  parent: null,
+  key: 'product',
+  roles: {
+    viewer: {
+      privileges: ['plugin:read']
+    },
+    editor: {
+      privileges: ['plugin:update']
+    },
+    newrole: {
+      privileges: ['plugin:write']
     }
+  }
 });
 ```
 
@@ -218,15 +218,15 @@ Here's an example for `additional_permissions`:
 
 ```javascript
 Shopware.Service('privileges').addPrivilegeMappingEntry({
-    category: 'additional_permissions',
-    parent: null,
-    key: 'system',
-    roles: {
-        clear_cache: {
-            privileges: ['system:clear:cache'],
-            dependencies: []
-        }
+  category: 'additional_permissions',
+  parent: null,
+  key: 'system',
+  roles: {
+    clear_cache: {
+      privileges: ['system:clear:cache'],
+      dependencies: []
     }
+  }
 });
 ```
 
@@ -240,19 +240,19 @@ See this example here:
 
 ```javascript
 Shopware.Service('privileges').addPrivilegeMappingEntry({
-    category: 'permissions',
-    parent: null,
-    key: 'product',
-    roles: {
-        viewer: {
-            privileges: [
-                'product.read',
-                Shopware.Service('privileges').getPrivileges('rule.viewer')
-            ],
-            dependencies: []
-        }
+  category: 'permissions',
+  parent: null,
+  key: 'product',
+  roles: {
+    viewer: {
+      privileges: [
+        'product.read',
+        Shopware.Service('privileges').getPrivileges('rule.viewer')
+      ],
+      dependencies: []
     }
-})
+  }
+});
 ```
 
 Now all users with the privilege `product.viewer` automatically have access to all privileges from the `rule.viewer`.
@@ -265,15 +265,15 @@ It's easy to protect your routes for users without the appropriate privileges. J
 
 ```javascript
 Module.register('your-plugin-module', {
-    routes: {
-        detail: {
-            component: 'your-plugin-detail',
-            path: 'your-plugin',
-            meta: {
-                privilege: 'your_key.your_role' // e.g. 'product.viewer'
-            }
-        }    
+  routes: {
+    detail: {
+      component: 'your-plugin-detail',
+      path: 'your-plugin',
+      meta: {
+        privilege: 'your_key.your_role' // e.g. 'product.viewer'
+      }
     }
+  }
 });
 ```
 
@@ -283,11 +283,11 @@ Similar to the routes, you can to add the property `privilege` to your navigatio
 
 ```javascript
 Module.register('your-plugin-module', {
-    navigation: [{
-        id: 'your-plugin',
-        ...,
-        privilege: 'your_key.your_role' // e.g. product.viewer
-    }]
+  navigation: [{
+    id: 'your-plugin',
+    ...,
+    privilege: 'your_key.your_role' // e.g. product.viewer
+  }]
 });
 ```
 
@@ -295,11 +295,11 @@ or in the settings item:
 
 ```javascript
 Module.register('your-plugin-module', {
-    settingsItem: [{
-        group: 'system',
-        to: 'sw.your.plugin.detail',
-        privilege: 'your_key.your_role' // e.g. product.viewer
-    }]
+  settingsItem: [{
+    group: 'system',
+    to: 'sw.your.plugin.detail',
+    privilege: 'your_key.your_role' // e.g. product.viewer
+  }]
 });
 ```
 
@@ -350,11 +350,11 @@ You can use the global Shopware object \(`Shopware.Service('acl')`\) or inject t
 
 ```javascript
 Shopware.Component.register('your-plugin-component', {
-    template,
+  template,
 
-    inject: ['acl'],
+  inject: ['acl'],
 
-    ...
+  // ...
 });
 ```
 
@@ -364,15 +364,15 @@ Example in a method:
 
 ```javascript
 Shopware.Component.register('your-plugin-component', {
-    template,
+  template,
 
-    inject: ['acl'],
+  inject: ['acl'],
 
-    methods: {
-        allowSaving() {
-            return this.acl.can('sales_channel.creator');
-        }    
+  methods: {
+    allowSaving() {
+      return this.acl.can('sales_channel.creator');
     }
+  }
 });
 ```
 
@@ -402,15 +402,15 @@ You can replace the String value with an object which contains the method with t
 
 ```javascript
 Module.register('your-plugin-module', {
-    shortcuts: {
-        'SYSTEMKEY+S': {
-            active() {
-                return this.acl.can('product.editor');
-            },
-            method: 'onSave'
-        },
-        ESCAPE: 'onCancel'
+  shortcuts: {
+    'SYSTEMKEY+S': {
+      active() {
+        return this.acl.can('product.editor');
+      },
+      method: 'onSave'
     },
+    ESCAPE: 'onCancel'
+  },
 });
 ```
 

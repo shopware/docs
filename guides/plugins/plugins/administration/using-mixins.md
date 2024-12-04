@@ -31,14 +31,14 @@ const { Component, Mixin } = Shopware;
 
 Component.register('swag-basic-example', {
 
-    mixins: [
-        Mixin.getByName('notification')
-    ],
+  mixins: [
+    Mixin.getByName('notification')
+  ],
 
-    methods: {
-        greet: function () {
-            this.createNotificationSuccess({ title: 'Greetings' })
-        }
+  methods: {
+    greet: function () {
+      this.createNotificationSuccess({ title: 'Greetings' })
     }
+  }
 });
 ```

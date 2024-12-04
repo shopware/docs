@@ -26,26 +26,26 @@ use it directly in the privileges:
 
 ```javascript
 Shopware.Service('privileges')
-    .addPrivilegeMappingEntry({
-        category: 'permissions',
-        parent: null,
-        key: 'promotion',
-        roles: {
-            viewer: {
-                privileges: ['promotion:read',],
-                dependencies: []
-            },
-            editor: {
-                privileges: [
-                    'promotion:update',
-                    Shopware.Service('privileges').getPrivileges('rule.creator')
-                ],
-                dependencies: [
-                    'promotion.viewer'
-                ]
-            }   
-        }
-    });
+  .addPrivilegeMappingEntry({
+    category: 'permissions',
+    parent: null,
+    key: 'promotion',
+    roles: {
+      viewer: {
+        privileges: ['promotion:read',],
+        dependencies: []
+      },
+      editor: {
+        privileges: [
+          'promotion:update',
+          Shopware.Service('privileges').getPrivileges('rule.creator')
+        ],
+        dependencies: [
+          'promotion.viewer'
+        ]
+      }
+    }
+  });
 ```
 
 ## Consequences

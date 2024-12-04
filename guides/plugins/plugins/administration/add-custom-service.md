@@ -26,15 +26,15 @@ For this example, we want to use the following service. It's supposed to get ran
 
 ```javascript
 export default class JokeService {
-    constructor(httpClient) {
-        this.httpClient = httpClient;
-    }
+  constructor(httpClient) {
+    this.httpClient = httpClient;
+  }
 
-    joke() {
-        return this.httpClient
-            .get('https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political')
-            .then(response => response.data)
-    }
+  joke() {
+    return this.httpClient
+      .get('https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political')
+      .then(response => response.data)
+  }
 }
 ```
 
@@ -44,8 +44,8 @@ For now this service class is not available in the injection container. To fix t
 import JokeService from '../services/joke.service'
 
 Shopware.Service().register('joker', (container) => {
-    const initContainer = Shopware.Application.getContainer('init');
-    return new JokeService(initContainer.httpClient);
+  const initContainer = Shopware.Application.getContainer('init');
+  return new JokeService(initContainer.httpClient);
 });
 ```
 
@@ -55,11 +55,11 @@ A service is typically injected into a vue component and can simply be reference
 
 ```javascript
 Shopware.Component.register('swag-basic-example', {
-    inject: ['joker'],
+  inject: ['joker'],
 
-    created() {
-        this.joker.joke().then(joke => console.log(joke))
-    }
+  created() {
+    this.joker.joke().then(joke => console.log(joke))
+  }
 });
 ```
 
@@ -67,13 +67,13 @@ To avoid collision with other properties like computed fields or data fields the
 
 ```javascript
 Shopware.Component.register('swag-basic-example', {
-    inject: {
-        jokeService: 'joker'
-    },
+  inject: {
+    jokeService: 'joker'
+  },
 
-    created() {
-        this.jokeService.joke().then(joke => console.log(joke))
-    }
+  created() {
+    this.jokeService.joke().then(joke => console.log(joke))
+  }
 });
 ```
 
@@ -85,16 +85,16 @@ This code sample is based on the example in the [BottleJS documentation](https:/
 
 ```javascript
 class JokeService {
-    constructor(httpClient) {
-        this.httpClient = httpClient;
-        this.isActive = false;
-    }
+  constructor(httpClient) {
+    this.httpClient = httpClient;
+    this.isActive = false;
+  }
 
-    joke() {
-        return this.httpClient
-            .get(`https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political`)
-            .then(response => response.data)
-    }
+  joke() {
+    return this.httpClient
+      .get(`https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political`)
+      .then(response => response.data)
+  }
 }
 ```
 
@@ -102,16 +102,16 @@ Now that we've added an `isActive` flag, we can react to it in our middleware an
 
 ```javascript
 Shopware.Application.addServiceProviderMiddleware('joker', (service, next) => {
-    if(!service.isActive) {
-        return next(new Error('Service is inActive'));
-    }
+  if (!service.isActive) {
+    return next(new Error('Service is inActive'));
+  }
 
-    next();
+  next();
 });
 
 Shopware.Service().register('joker', (container) => {
-    const initContainer = Shopware.Application.getContainer('init');
-    return new JokeService(initContainer.httpClient);
+  const initContainer = Shopware.Application.getContainer('init');
+  return new JokeService(initContainer.httpClient);
 });
 ```
 
@@ -127,16 +127,16 @@ If you need to alter a service method return value or add an additional paramete
 
 ```javascript
 Shopware.Application.addServiceProviderDecorator('joker', joker => {
-    const decoratedMethod = joker.joke;
+  const decoratedMethod = joker.joke;
 
-    joker.joke = function () {
-        return decoratedMethod.call(joker).then(joke => ({
-            ...joke,
-            funny: joke.id % 2 === 0
-        }))
-    };
+  joker.joke = function () {
+    return decoratedMethod.call(joker).then(joke => ({
+      ...joke,
+      funny: joke.id % 2 === 0
+    }))
+  };
 
-    return joker;
+  return joker;
 });
 ```
 

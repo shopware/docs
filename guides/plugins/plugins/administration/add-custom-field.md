@@ -30,7 +30,7 @@ The first parameter matches the component to override, the second parameter has 
 import template from './extension/sw-product-settings-form/sw-product-settings-form.html.twig';
 
 Shopware.Component.override('sw-product-settings-form', {
-    template
+  template
 });
 ```
 

@@ -269,7 +269,7 @@ If you need to use this structure in a plugin, it is just the path to the `e2e` 
 
 If you want to contribute to Shopware platform's tests, please ensure to place your test in one of those folders:
 
-```javascript
+```text
 `-- integration
   |-- catalogue
   |-- content
@@ -293,12 +293,12 @@ To have a frame surrounding your test and provide a nice way to keep your test o
 
 ```javascript
 describe('Test: This is my test file', () => {
-    it('test something', () => {
-        // This is your first test
-    });
-    it('tests something else', () => {
-        // This is your second test
-    });
+  it('test something', () => {
+    // This is your first test
+  });
+  it('tests something else', () => {
+    // This is your second test
+  });
 });
 ```
 
@@ -314,16 +314,16 @@ Commands are the actions you need to do in order to interact with the elements o
 
 ```javascript
 it('test something', () => {
-    ...
-    cy.get('.sw-grid__row--0')
-        .contains('A Set Name Snippet')
-        .dblclick();
-    cy.get('.sw-grid__row--0 input')
-        .clear()
-        .type('Nordfriesisch')
-        .click();
-    ...
-    });
+  // ...
+  cy.get('.sw-grid__row--0')
+    .contains('A Set Name Snippet')
+    .dblclick();
+  cy.get('.sw-grid__row--0 input')
+    .clear()
+    .type('Nordfriesisch')
+    .click();
+  // ...
+});
 ```
 
 You can chain commands by passing its return value to the next one. These commands may contain extra steps to take, e.g. a `click` or `type` operation.
@@ -336,17 +336,17 @@ Assertions describe the desired state of your elements, objects and application.
 
 ```javascript
 it('test something', () => {
-    ...
-    cy.get('.sw-loader')
-        .should('not.exist')
-        .should('be.visible')
-        .should('not.have.css', 'display', 'none');
-    cy.get('div')
-        .should(($div) => {
-            expect($div).to.have.length(1)
-        });
-    ...
+  // ...
+  cy.get('.sw-loader')
+    .should('not.exist')
+    .should('be.visible')
+    .should('not.have.css', 'display', 'none');
+  cy.get('div')
+    .should(($div) => {
+      expect($div).to.have.length(1)
     });
+  // ...
+});
 ```
 
 ## Hooks
@@ -356,20 +356,20 @@ You might want to set hooks to run before a set of tests or before each test. At
 Cypress got you covered, similar to Mocha, by providing hooks. These can be used to set conditions that you can run before or after a set of tests or each test.
 
 ```javascript
-describe('We are using hooks', function() {
-  before(function() {
+describe('We are using hooks', function () {
+  before(function () {
     // runs once before all tests in the block
   })
 
-  beforeEach(function() {
+  beforeEach(function () {
     // runs before each test in the block
   })
 
-  afterEach(function() {
+  afterEach(function () {
     // runs after each test in the block
   })
 
-  after(function() {
+  after(function () {
     // runs once after all tests in the block
   })
 })
@@ -456,31 +456,31 @@ If you want to use all known services, you can access them using custom commands
 The stationary fixtures mentioned in the paragraph "Cypress' fixtures" can be sent to Shopware's REST API directly: In most cases Shopware does not need any additional data, like IDs or other data already stored in Shopware. That means the request can be sent, and the desired entity can be created immediately: You just need to use the `createDefaultFixture(endpoint, options = [])` command, as seen below:
 
 ```javascript
-    beforeEach(() => {
-        cy.createDefaultFixture('tax');
-    });
+beforeEach(() => {
+  cy.createDefaultFixture('tax');
+});
 ```
 
 In this example, a tax rate will be created with the data provided based on the `json` file located in the `fixtures` folder. Let's look at the command in detail:
 
 ```javascript
 Cypress.Commands.add('createDefaultFixture', (endpoint, data = {}, jsonPath) => {
-    const fixture = new Fixture();
-    let finalRawData = {};
+  const fixture = new Fixture();
+  let finalRawData = {};
 
-    if (!jsonPath) {
-        jsonPath = endpoint;
-    }
+  if (!jsonPath) {
+    jsonPath = endpoint;
+  }
 
-    // Get test data from cy.fixture first
-    return cy.fixture(jsonPath).then((json) => {
+  // Get test data from cy.fixture first
+  return cy.fixture(jsonPath).then((json) => {
 
-        // Merge fixed test data with possible custom one
-        finalRawData = Cypress._.merge(json, data);
+    // Merge fixed test data with possible custom one
+    finalRawData = Cypress._.merge(json, data);
 
-        // Create the fixture using method from fixture service
-        return fixture.create(endpoint, finalRawData);
-    });
+    // Create the fixture using method from fixture service
+    return fixture.create(endpoint, finalRawData);
+  });
 });
 ```
 
@@ -505,9 +505,9 @@ Your `ShippingFixtureService` has to extend the class `AdminFixtureService`. Aft
 const AdminFixtureService = require('../fixture.service.js');
 
 class ShippingFixtureService extends AdminFixtureService {
-    setShippingFixture(userData) {
-        // Here we're going to create our shipping fixture
-    }
+  setShippingFixture(userData) {
+    // Here we're going to create our shipping fixture
+  }
 }
 
 module.exports = ShippingFixtureService;
@@ -518,13 +518,13 @@ global.ShippingFixtureService = new ShippingFixtureService();
 All custom services hold a distinct method for creating fixtures: First, it's important to collect the necessary data via REST API. This is done by filtering POST requests used in promises. In case of your our `ShippingFixtureService`, you need the ID of the rule you want to use for the availability, and the ID of the delivery time.
 
 ```javascript
- const findRuleId = () => this.search('rule', {
-        type: 'equals',
-        value: 'Cart >= 0 (Payment)'
-    });
- const findDeliveryTimeId = () => this.search('delivery-time', {
-    type: 'equals',
-    value: '3-4 weeks'
+const findRuleId = () => this.search('rule', {
+  type: 'equals',
+  value: 'Cart >= 0 (Payment)'
+});
+const findDeliveryTimeId = () => this.search('delivery-time', {
+  type: 'equals',
+  value: '3-4 weeks'
 });
 ```
 
@@ -532,15 +532,15 @@ The responses of these calls are used to provide the missing IDs for your final 
 
 ```javascript
 return Promise.all([
-    findRuleId(),
-    findDeliveryTimeId()
+  findRuleId(),
+  findDeliveryTimeId()
 ]).then(([rule, deliveryTime]) => {
-    return this.mergeFixtureWithData(userData, {
-        availabilityRuleId: rule.id,
-        deliveryTimeId: deliveryTime.id
-    });
+  return this.mergeFixtureWithData(userData, {
+    availabilityRuleId: rule.id,
+    deliveryTimeId: deliveryTime.id
+  });
 }).then((finalShippingData) => {
-    return this.apiClient.post('/shipping-method?_response=true', finalShippingData);
+  return this.apiClient.post('/shipping-method?_response=true', finalShippingData);
 });
 ```
 

@@ -21,7 +21,7 @@ It makes it possible to run functions to react to `onResize` events with adding 
 
 ```javascript
 const listener = function (ev) {
-    // do something on resize with the event, like adding or removing classes to elements   
+  // do something on resize with the event, like adding or removing classes to elements   
 };
 
 const scope = this;

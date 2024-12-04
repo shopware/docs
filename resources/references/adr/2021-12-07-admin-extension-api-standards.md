@@ -31,11 +31,11 @@ The app want to render different views depending on the "location" of the iFrame
 
 ```javascript
 if (sw.location.is('sw-dashboard-example-app-dashboard-card')) {
-    renderDashboardCard();
+  renderDashboardCard();
 }
 
 if (sw.location.is('example-app-example-modal-content')) {
-    renderModalContent();
+  renderModalContent();
 }
 ```
 
@@ -47,7 +47,7 @@ Developers can extend existing areas or create new areas in the administration w
 An app wants to add a new tab item to a tab-bar. In the administration are many tab-bars available. So the developer needs to choose the correct "positionID" to determine which tab-bar should be extended. In this example the developer adds a new tab item to the tab-bar in the product detail page.
 
 ```javascript
-sw.ui.tabs('sw-product-detail').addTabItem({ ... })
+sw.ui.tabs('sw-product-detail').addTabItem({ ... });
 ```
 
 ### Solution:
@@ -62,16 +62,16 @@ To give them more flexibility we introduce a feature named "Component Sections".
 ```javascript
 // Adding a card before the manufacturer card with custom fields entries.
 sw.ui.componentSection('sw-manufacturer-card-custom-fields__before').add({
-    // The Extension-API provides different components out of the box
-    component: 'card', 
-    // Props are depending on the type of component
-    props: {
-        title: 'This is the title',
-        subtitle: 'I am the subtitle',
-        // Some components can render a custom view. In this case the extension can render custom content in the card.
-        locationId: 'example-app-card-before-manufactuer-custom-fields-card'
-    }
-})
+  // The Extension-API provides different components out of the box
+  component: 'card',
+  // Props are depending on the type of component
+  props: {
+    title: 'This is the title',
+    subtitle: 'I am the subtitle',
+    // Some components can render a custom view. In this case the extension can render custom content in the card.
+    locationId: 'example-app-card-before-manufactuer-custom-fields-card'
+  }
+});
 ```
 
 #### Vue Devtools Plugin for finding the PositionIDs

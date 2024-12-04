@@ -90,7 +90,7 @@ import template from './sw-product-detail.html.twig';
 
 // Override your template here, using the actual template from the core
 Shopware.Component.override('sw-product-detail', {
-    template
+  template
 });
 ```
 
@@ -173,24 +173,24 @@ import './view/sw-product-detail-custom';
 
 // Here you create your new route, refer to the mentioned guide for more information
 Shopware.Module.register('sw-new-tab-custom', {
-    routeMiddleware(next, currentRoute) {
-        const customRouteName = 'sw.product.detail.custom';
-    
-        if (
-            currentRoute.name === 'sw.product.detail' 
-            && currentRoute.children.every((currentRoute) => currentRoute.name !== customRouteName)
-        ) {
-            currentRoute.children.push({
-                name: customRouteName,
-                path: '/sw/product/detail/:id/custom',
-                component: 'sw-product-detail-custom',
-                meta: {
-                    parentPath: 'sw.product.index'
-                }
-            });
+  routeMiddleware(next, currentRoute) {
+    const customRouteName = 'sw.product.detail.custom';
+
+    if (
+      currentRoute.name === 'sw.product.detail'
+      && currentRoute.children.every((currentRoute) => currentRoute.name !== customRouteName)
+    ) {
+      currentRoute.children.push({
+        name: customRouteName,
+        path: '/sw/product/detail/:id/custom',
+        component: 'sw-product-detail-custom',
+        meta: {
+          parentPath: 'sw.product.index'
         }
-        next(currentRoute);
+      });
     }
+    next(currentRoute);
+  }
 });
 ```
 
@@ -228,13 +228,13 @@ Since a component always gets initiated by a file called `index.js`, create such
 import template from './sw-product-detail-custom.html.twig';
 
 Shopware.Component.register('sw-product-detail-custom', {
-    template,
+  template,
 
-    metaInfo() {
-        return {
-            title: 'Custom'
-        };
-    },
+  metaInfo() {
+    return {
+      title: 'Custom'
+    };
+  },
 });
 ```
 

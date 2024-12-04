@@ -58,13 +58,13 @@ import { location } from '@shopware-ag/meteor-admin-sdk';
 // Only execute extensionSDK commands when
 // it is inside a iFrame (only needed for plugins)
 if (location.isIframe()) {
-    if (location.is(location.MAIN_HIDDEN)) {
-        // Execute the base commands
-        import('./base/mainCommands');
-    } else {
-        // Render different views
-        import('./viewRenderer');
-    }
+  if (location.is(location.MAIN_HIDDEN)) {
+    // Execute the base commands
+    import('./base/mainCommands');
+  } else {
+    // Render different views
+    import('./viewRenderer');
+  }
 }
 ```
 
@@ -97,28 +97,28 @@ location.startAutoResizer();
 
 // start app views
 const app = new Vue({
-    el: '#app',
-    data() {
-        return { location };
-    },
-    components: {
-        'SwagDailymotionElement':
-            () => import('./views/swag-dailymotion/swag-dailymotion-element'),
-        'SwagDailymotionConfig':
-            () => import('./views/swag-dailymotion/swag-dailymotion-config'),
-        'SwagDailymotionPreview':
-            () => import('./views/swag-dailymotion/swag-dailymotion-preview'),
-    },
-    template: `
-        <SwagDailymotionElement
-            v-if="location.is('swag-dailymotion-element')"
-        ></SwagDailymotionElement>
-        <SwagDailymotionConfig
-            v-else-if="location.is('swag-dailymotion-config')"
-        ></SwagDailymotionConfig>
-        <SwagDailymotionPreview
-            v-else-if="location.is('swag-dailymotion-preview')"
-        ></SwagDailymotionPreview>
+  el: '#app',
+  data() {
+    return { location };
+  },
+  components: {
+    'SwagDailymotionElement':
+      () => import('./views/swag-dailymotion/swag-dailymotion-element'),
+    'SwagDailymotionConfig':
+      () => import('./views/swag-dailymotion/swag-dailymotion-config'),
+    'SwagDailymotionPreview':
+      () => import('./views/swag-dailymotion/swag-dailymotion-preview'),
+  },
+  template: `
+    <SwagDailymotionElement
+        v-if="location.is('swag-dailymotion-element')"
+    ></SwagDailymotionElement>
+    <SwagDailymotionConfig
+        v-else-if="location.is('swag-dailymotion-config')"
+    ></SwagDailymotionConfig>
+    <SwagDailymotionPreview
+        v-else-if="location.is('swag-dailymotion-preview')"
+    ></SwagDailymotionPreview>
     `,
 });
 ```
@@ -140,19 +140,19 @@ import { cms } from '@shopware-ag/meteor-admin-sdk';
 
 const CMS_ELEMENT_NAME = 'swag-dailymotion';
 const CONSTANTS = {
-    CMS_ELEMENT_NAME,
-    PUBLISHING_KEY: `${CMS_ELEMENT_NAME}__config-element`,
+  CMS_ELEMENT_NAME,
+  PUBLISHING_KEY: `${CMS_ELEMENT_NAME}__config-element`,
 };
 
 void cms.registerCmsElement({
-    name: CONSTANTS.CMS_ELEMENT_NAME,
-    label: 'Dailymotion video',
-    defaultConfig: {
-        dailyUrl: {
-            source: 'static',
-            value: '',
-        },
+  name: CONSTANTS.CMS_ELEMENT_NAME,
+  label: 'Dailymotion video',
+  defaultConfig: {
+    dailyUrl: {
+      source: 'static',
+      value: '',
     },
+  },
 });
 
 export default CONSTANTS;
@@ -187,47 +187,47 @@ import { data } from "@shopware-ag/meteor-admin-sdk";
 import CONSTANTS from "../../base/mainCommands";
 
 export default Vue.extend({
-    template: `
-        <div>
-          <h2>
-            Config!
-          </h2>
-          Video-Code: <input v-model="dailyUrl" type="text"/><br/>
-        </div>
+  template: `
+    <div>
+      <h2>
+        Config!
+      </h2>
+      Video-Code: <input v-model="dailyUrl" type="text"/><br/>
+    </div>
     `,
 
-    data(): Object {
-        return {
-            element: null
-        }
-    },
-
-    computed: {
-        dailyUrl: {
-            get(): string {
-                return this.element?.config?.dailyUrl?.value || '';
-            },
-
-            set(value: string): void {
-                this.element.config.dailyUrl.value = value;
-
-                data.update({
-                    id: CONSTANTS.PUBLISHING_KEY,
-                    data: this.element,
-                });
-            }
-        }
-    },
-
-    created() {
-        this.createdComponent();
-    },
-
-    methods: {
-        async createdComponent() {
-            this.element = await data.get({ id: CONSTANTS.PUBLISHING_KEY });
-        }
+  data(): Object {
+    return {
+      element: null
     }
+  },
+
+  computed: {
+    dailyUrl: {
+      get(): string {
+        return this.element?.config?.dailyUrl?.value || '';
+      },
+
+      set(value: string): void {
+        this.element.config.dailyUrl.value = value;
+
+        data.update({
+          id: CONSTANTS.PUBLISHING_KEY,
+          data: this.element,
+        });
+      }
+    }
+  },
+
+  created() {
+    this.createdComponent();
+  },
+
+  methods: {
+    async createdComponent() {
+      this.element = await data.get({ id: CONSTANTS.PUBLISHING_KEY });
+    }
+  }
 });
 ```
 
@@ -253,51 +253,51 @@ import { data } from "@shopware-ag/meteor-admin-sdk";
 import CONSTANTS from "../../base/mainCommands";
 
 export default Vue.extend({
-    template: `
-        <div>
-            <h2>
-              Element!
-            </h2>
-            <div class="sw-cms-el-dailymotion">
-                <div class="sw-cms-el-dailymotion-iframe-wrapper">
-                    <iframe
-                        frameborder="0"
-                        type="text/html"
-                        width="100%"
-                        height="100%"
-                        :src="dailyUrl">
-                    </iframe>
-                </div>
+  template: `
+    <div>
+        <h2>
+          Element!
+        </h2>
+        <div class="sw-cms-el-dailymotion">
+            <div class="sw-cms-el-dailymotion-iframe-wrapper">
+                <iframe
+                    frameborder="0"
+                    type="text/html"
+                    width="100%"
+                    height="100%"
+                    :src="dailyUrl">
+                </iframe>
             </div>
         </div>
+    </div>
     `,
 
-    data(): { element: object|null } {
-        return {
-            element: null
-        }
-    },
-
-    computed: {
-        dailyUrl(): string {
-            return `https://www.dailymotion.com/embed/video/${this.element?.config?.dailyUrl?.value || ''}`;
-        }
-    },
-
-    created() {
-        this.createdComponent();
-    },
-
-    methods: {
-        async createdComponent() {
-            this.element = await data.get({ id: CONSTANTS.PUBLISHING_KEY });
-            data.subscribe(CONSTANTS.PUBLISHING_KEY, this.elementSubscriber);
-        },
-
-        elementSubscriber(response: { data: unknown, id: string }): void {
-            this.element = response.data;
-        }
+  data(): { element: object | null } {
+    return {
+      element: null
     }
+  },
+
+  computed: {
+    dailyUrl(): string {
+      return `https://www.dailymotion.com/embed/video/${this.element?.config?.dailyUrl?.value || ''}`;
+    }
+  },
+
+  created() {
+    this.createdComponent();
+  },
+
+  methods: {
+    async createdComponent() {
+      this.element = await data.get({ id: CONSTANTS.PUBLISHING_KEY });
+      data.subscribe(CONSTANTS.PUBLISHING_KEY, this.elementSubscriber);
+    },
+
+    elementSubscriber(response: { data: unknown, id: string }): void {
+      this.element = response.data;
+    }
+  }
 });
 ```
 
@@ -315,10 +315,10 @@ Lastly, have a look at `swag-dailymotion-preview.ts`. In most cases, not much lo
 import Vue from 'vue'
 
 export default Vue.extend({
-    template: `
-        <h2>
-          Preview!
-        </h2>
+  template: `
+    <h2>
+      Preview!
+    </h2>
     `,
 });
 ```

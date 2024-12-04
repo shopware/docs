@@ -39,13 +39,13 @@ Each component has a template property, which is used to set the template. To us
 import template from './swag-basic-example.html.twig';
 
 Shopware.Component.register('swag-basic-example', {
-    template, // ES6 shorthand for: 'template: template'  
+  template, // ES6 shorthand for: 'template: template'  
 
-    metaInfo() {
-        return {
-            title: this.$createTitle()
-        };
-    },
+  metaInfo() {
+    return {
+      title: this.$createTitle()
+    };
+  },
 });
 ```
 

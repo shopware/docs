@@ -249,7 +249,7 @@ Therefore, you could subscribe to the event named `someEvent` and gain access to
 
 ```javascript
 this.$emitter.subscribe('someEvent', (additionalData) => {
-    // Do stuff
+  // Do stuff
 });
 ```
 

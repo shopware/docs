@@ -44,15 +44,15 @@ Each plugin has to implement the `init()` method. This method will be called whe
 const { PluginBaseClass } = window;
 
 export default class ExamplePlugin extends PluginBaseClass {
-    init() {
-        window.addEventListener('scroll', this.onScroll.bind(this));
-    }
+  init() {
+    window.addEventListener('scroll', this.onScroll.bind(this));
+  }
 
-    onScroll() {
-        if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
-            alert('Seems like there\'s nothing more to see here.');
-        }
+  onScroll() {
+    if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+      alert('Seems like there\'s nothing more to see here.');
     }
+  }
 }
 ```
 
@@ -149,23 +149,23 @@ You can configure your plugins from inside the templates via data-options. First
 const { PluginBaseClass } = window;
 
 export default class ExamplePlugin extends PluginBaseClass {
-    static options = {
-        /**
-         * Specifies the text that is prompted to the user
-         * @type string
-         */
-        text: 'Seems like there\'s nothing more to see here.',
-    };
+  static options = {
+    /**
+     * Specifies the text that is prompted to the user
+     * @type string
+     */
+    text: 'Seems like there\'s nothing more to see here.',
+  };
 
-    init() {
-        window.addEventListener('scroll', this.onScroll.bind(this));
-    }
+  init() {
+    window.addEventListener('scroll', this.onScroll.bind(this));
+  }
 
-    onScroll() {
-        if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
-            alert(this.options.text);
-        }
+  onScroll() {
+    if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+      alert(this.options.text);
     }
+  }
 }
 ```
 

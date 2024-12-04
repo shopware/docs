@@ -28,7 +28,7 @@ This menu entry can be defined in your module configuration. Remember, your modu
 ```javascript
 // <plugin root>/src/Resources/app/administration/src/module/swag-example/index.js
 Shopware.Module.register('swag-plugin', {
-    // configuration here
+  // configuration here
 });
 ```
 
@@ -39,11 +39,11 @@ So let's define a menu entry using the `navigation` key in your module configura
 ```javascript
 // <plugin root>/src/Resources/app/administration/src/module/swag-example/index.js
 navigation: [{
-    label: 'CustomModule',
-    color: '#ff3d58',
-    path: 'swag.custommodule.list',
-    icon: 'default-shopping-paper-bag-product',
-    position: 100
+  label: 'CustomModule',
+  color: '#ff3d58',
+  path: 'swag.custommodule.list',
+  icon: 'default-shopping-paper-bag-product',
+  position: 100
 }]
 ```
 
@@ -66,13 +66,13 @@ Due to UX reasons, we're not supporting plugin modules to add new menu entries o
 ```javascript
 // <plugin root>/src/Resources/app/administration/src/module/swag-example/index.js
 navigation: [{
-    id: 'swag-custommodule-list',
-    label: 'CustomModule',
-    color: '#ff3d58',
-    path: 'swag.custommodule.list',
-    icon: 'default-shopping-paper-bag-product',
-    parent: 'sw-catalogue',
-    position: 100
+  id: 'swag-custommodule-list',
+  label: 'CustomModule',
+  color: '#ff3d58',
+  path: 'swag.custommodule.list',
+  icon: 'default-shopping-paper-bag-product',
+  parent: 'sw-catalogue',
+  position: 100
 }]
 ```
 

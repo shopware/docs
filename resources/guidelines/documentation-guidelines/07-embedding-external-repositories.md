@@ -71,16 +71,16 @@ Every article has a `Edit this page on GitHub` link in the bottom left corner. B
 
 You can do that by updating `const embeds: SwagEmbedsConfig[]`.
 
-```javascript
+```typescript
 const embeds: SwagEmbedsConfig[] = [
-    // ...
-    {
-        repository: 'meteor',
-        points: {
-            '/resources/meteor-icon-kit/': 'main',
-        },
-        folder: 'packages/icon-kit/docs',
+  // ...
+  {
+    repository: 'meteor',
+    points: {
+      '/resources/meteor-icon-kit/': 'main',
     },
+    folder: 'packages/icon-kit/docs',
+  },
 ]
 ```
 
@@ -104,17 +104,17 @@ When you also want to share static assets from your repository such as `.pdf` or
 
 ```javascript
 export default {
+  // ...
+  async buildEnd() {
     // ...
-    async buildEnd() {
-        // ...
-        await copyAdditionalAssets([
-            // meteor-icon-kit
-            {
-                src: './resources/meteor-icon-kit/public/icons/regular',
-                dst: 'icons/regular',
-            }
-        ])
-    }
+    await copyAdditionalAssets([
+      // meteor-icon-kit
+      {
+        src: './resources/meteor-icon-kit/public/icons/regular',
+        dst: 'icons/regular',
+      }
+    ])
+  }
 }
 ```
 
