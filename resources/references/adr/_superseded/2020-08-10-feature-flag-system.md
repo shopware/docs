@@ -25,12 +25,13 @@ Also it is recommended that the system is safe to not breaking things when a fla
 
 ```yaml
 shopware:
-    ....
-    feature:
-        flags:
-            - NEXT-733
-            - FEATURE-NEXT-1797
-            - FEATURE_NEXT_1797
+  # ....
+  feature:
+    flags:
+      - NEXT-733
+      - FEATURE-NEXT-1797
+      - FEATURE_NEXT_1797
+
 ```
 * The flag should have a reference to an issue.
 * The full flag name will always be ```FEATURE_XXX_XXX``` while the ```FEATURE_``` prefix is hard coded and can be provided in the configuration, but doesn't have to (see examples above).

@@ -50,15 +50,15 @@ After we've created our middleware, we have to add that middleware to the messag
 For each defined bus in our `framework.yaml`, we can define the middleware that this bus should use. To add middleware, we simply specify our custom middleware as follows:
 
 ```yaml
-// <platform root>/src/Core/Framework/Resources/config/packages/framework.yaml
+# <platform root>/src/Core/Framework/Resources/config/packages/framework.yaml
 framework:
-    messenger:
-        default_bus: messenger.bus.shopware
-        buses:
-            messenger.bus.default:
-              middleware:
-                - 'Swag\BasicExample\MessageQueue\Middleware\ExampleMiddleware'
-                - 'Swag\BasicExample\MessageQueue\Middleware\AnotherExampleMiddleware'
+  messenger:
+    default_bus: messenger.bus.shopware
+    buses:
+      messenger.bus.default:
+        middleware:
+          - 'Swag\BasicExample\MessageQueue\Middleware\ExampleMiddleware'
+          - 'Swag\BasicExample\MessageQueue\Middleware\AnotherExampleMiddleware'
 ```
 
 ## More interesting topics

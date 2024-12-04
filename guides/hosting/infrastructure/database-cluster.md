@@ -39,8 +39,8 @@ To use Redis, add the following snippet to `config/packages/cart.yml`
 
 ```yaml
 shopware:
-    cart:
-        redis_url: 'redis://localhost:6379/0?persistent=1'
+  cart:
+    redis_url: 'redis://localhost:6379/0?persistent=1'
 ```
 
 It is recommended to use a persistent Redis connection to avoid connection issues in high-load scenarios. There is also a `cart:migrate` command to migrate the existing carts between MySQL and Redis, so the migration does not influence end-user experience.

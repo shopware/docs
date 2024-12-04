@@ -45,17 +45,17 @@ You can easily tweak or define new increment pools in config file with your own 
 
 ```yaml
 shopware:
-    increment:
-        user_activity:
-            type: 'mysql'
+  increment:
+    user_activity:
+      type: 'mysql'
 
-        message_queue:
-            type: 'redis'
-            config:
-                url: 'redis://localhost'
-        
-        custom_pool:
-          type: 'array'
+    message_queue:
+      type: 'redis'
+      config:
+        url: 'redis://localhost'
+
+    custom_pool:
+      type: 'array'
 ```
 
 By default, we ship a Redis, MySQL and array adapter for the gateway. It should be possible to easily switch the adapter via config.

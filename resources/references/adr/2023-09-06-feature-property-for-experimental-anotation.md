@@ -102,7 +102,7 @@ shopware:
       - name: WISHLIST
         default: false
         major: true
-        description: "experimental stableVersion:v6.6.0 feature:WISHLIST"
+        description: 'experimental stableVersion:v6.6.0 feature:WISHLIST'
 ```
 New experimental class
 

@@ -28,9 +28,9 @@ However, if the project does not require such functionality, pages can also be c
 ```yaml
 # config/packages/prod/shopware.yaml
 shopware:
-    cache:
-        invalidation:
-            http_cache: []
+  cache:
+    invalidation:
+      http_cache: []
 ```
 
 ### Delayed invalidation
@@ -41,12 +41,12 @@ By default, the scheduled task will run every 20 seconds, but the interval can b
 ```yaml
 # config/packages/prod/shopware.yaml
 shopware:
-    cache:
-        invalidation:
-            delay: 1
-            delay_options:
-                storage: redis
-                connection: 'ephemeral' # connection name from redis configuration
+  cache:
+    invalidation:
+      delay: 1
+      delay_options:
+        storage: redis
+        connection: 'ephemeral' # connection name from redis configuration
 ```
 
 ## MySQL configuration
@@ -84,8 +84,8 @@ With the `shopware.mail.update_mail_variables_on_send` configuration, you can di
 ```yaml
 # config/packages/prod/shopware.yaml
 shopware:
-    mail:
-        update_mail_variables_on_send: false
+  mail:
+    update_mail_variables_on_send: false
 ```
 
 If you ever wonder why it is in `prod`, take a look into the [Symfony configuration environments](https://symfony.com/doc/current/configuration.html#configuration-environments).
@@ -104,7 +104,7 @@ By default, Symfony will use a local file-based [lock store](../performance/lock
 ```yaml
 # config/packages/prod/framework.yaml
 framework:
-    lock: 'redis://host:port'
+  lock: 'redis://host:port'
 ```
 
 ## Number ranges
@@ -123,8 +123,8 @@ Shopware sends the mails by default synchronously. This process can take a while
 ```yaml
 # config/packages/prod/framework.yaml
 framework:
-    mailer:
-        message_bus: 'messenger.default_bus'
+  mailer:
+    message_bus: 'messenger.default_bus'
 ```
 
 ## PHP Config tweaks
@@ -193,12 +193,12 @@ Set the log level of the monolog to `error` to reduce the amount of logged event
 ```yaml
 # config/packages/prod/monolog.yaml
 monolog:
-    handlers:
-        main:
-            level: error
-            buffer_size: 30
-        business_event_handler_buffer:
-            level: error
+  handlers:
+    main:
+      level: error
+      buffer_size: 30
+    business_event_handler_buffer:
+      level: error
 ```
 
 The `business_event_handler_buffer` handler logs flow. Setting it to `error` will disable the logging of flow activities that succeed.
@@ -215,11 +215,11 @@ Shopware has a fine-grained caching system for system config, translation and th
 ```yaml
 # config/packages/shopware.yaml
 shopware:
-    cache:
-        tagging:
-            each_config: false
-            each_snippet: false
-            each_theme_config: false
+  cache:
+    tagging:
+      each_config: false
+      each_snippet: false
+      each_theme_config: false
 ```
 
 ## Using zstd instead of gzip for compression
@@ -231,9 +231,9 @@ Since Shopware 6.6.4.0, it has been possible to use `zstd` as an alternative com
 ```yaml
 # Enabling cart compression with zstd
 shopware:
-    cart:
-      compress: true
-      compression_method: zstd
+  cart:
+    compress: true
+    compression_method: zstd
 ```
 
 ::: danger

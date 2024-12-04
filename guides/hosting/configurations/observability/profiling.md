@@ -15,15 +15,15 @@ By default, only the Stopwatch profiler (Symfony Profiler Bar) is enabled. To en
 
 ```yaml
 shopware:
-    profiler:
-        integrations:
-            - Symfony
-            # Requires the dd-trace PHP extension
-            - Datadog
-            # Requires the tideways PHP extension
-            - Tideways
-            # Requires the opentelemetry PHP extension
-            - OpenTelemetry
+  profiler:
+    integrations:
+      - Symfony
+      # Requires the dd-trace PHP extension
+      - Datadog
+      # Requires the tideways PHP extension
+      - Tideways
+      # Requires the opentelemetry PHP extension
+      - OpenTelemetry
 ```
 
 ::: info

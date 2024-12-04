@@ -166,40 +166,49 @@ x-environment: &shopware
     - sitemap:/var/www/html/public/sitemap
 
 services:
-    database:
-        image: mariadb:11.4
+  database:
+    image: mariadb:11.4
 
-    init:
-        <<: *shopware
-        entrypoint: /setup
-        depends_on:
-            db:
-                condition: service_started
-            init-perm:
-                condition: service_completed_successfully
-    web:
-        <<: *shopware
-        depends_on:
-            init:
-                condition: service_completed_successfully
-        ports:
-            - 8000:8000
+  init:
+    <<: *shopware
+    entrypoint: /setup
+    depends_on:
+      db:
+        condition: service_started
+      init-perm:
+        condition: service_completed_successfully
+  web:
+    <<: *shopware
+    depends_on:
+      init:
+        condition: service_completed_successfully
+    ports:
+      - 8000:8000
 
-    worker:
-        <<: *shopware
-        depends_on:
-            init:
-                condition: service_completed_successfully
-        entrypoint: [ "php", "bin/console", "messenger:consume", "async", "low_priority", "--time-limit=300", "--memory-limit=512M" ]
-        deploy:
-            replicas: 3
+  worker:
+    <<: *shopware
+    depends_on:
+      init:
+        condition: service_completed_successfully
+    entrypoint:
+      [
+        'php',
+        'bin/console',
+        'messenger:consume',
+        'async',
+        'low_priority',
+        '--time-limit=300',
+        '--memory-limit=512M',
+      ]
+    deploy:
+      replicas: 3
 
-    scheduler:
-        <<: *shopware
-        depends_on:
-            init:
-                condition: service_completed_successfully
-        entrypoint: [ "php", "bin/console", "scheduled-task:run" ]
+  scheduler:
+    <<: *shopware
+    depends_on:
+      init:
+        condition: service_completed_successfully
+    entrypoint: ['php', 'bin/console', 'scheduled-task:run']
 ```
 
 <PageRef page="https://github.com/shopwareLabs/example-docker-repository/" title="Example Repository with fully working setup" target="_blank" />

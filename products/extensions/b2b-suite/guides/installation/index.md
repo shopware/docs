@@ -85,13 +85,13 @@ You can change the database configuration in your own *.psh.yaml* file.
 
 ```yaml
 mac:
-    paths:
-      - "dev-ops/mac/actions"
-    const:
-      DB_USER: "USERNAME"
-      DB_PASSWORD: "PASSWORD"
-      DB_HOST: "DB_HOST"
-      SW_HOST: "SWHost"
+  paths:
+    - 'dev-ops/mac/actions'
+  const:
+    DB_USER: 'USERNAME'
+    DB_PASSWORD: 'PASSWORD'
+    DB_HOST: 'DB_HOST'
+    SW_HOST: 'SWHost'
 ```
 
 For a better explanation, use the provided *.psh.yaml.dist* file as an example.

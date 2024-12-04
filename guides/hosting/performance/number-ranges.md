@@ -23,9 +23,9 @@ To use Redis, create a `config/packages/shopware.yml` file with the following co
 
 ```yaml
 shopware:
-    number_range:
-        increment_storage: "Redis"
-        redis_url: 'redis://host:port/dbindex'
+  number_range:
+    increment_storage: 'Redis'
+    redis_url: 'redis://host:port/dbindex'
 ```
 
 </Tab>
@@ -34,14 +34,14 @@ shopware:
 
 ```yaml
 shopware:
-    redis:
-        connections:
-            persistent:
-                dsn: 'redis://host:port/dbindex'
-    number_range:
-        increment_storage: 'redis'
-        config:
-            connection: 'persistent'
+  redis:
+    connections:
+      persistent:
+        dsn: 'redis://host:port/dbindex'
+  number_range:
+    increment_storage: 'redis'
+    config:
+      connection: 'persistent'
 ```
 
 </Tab>

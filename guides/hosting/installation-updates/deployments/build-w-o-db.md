@@ -28,13 +28,13 @@ This means that you still **need a dumped configuration from a system with a wor
 
 By default, Shopware still tries to load configurations from the database. In the next step, you will need to change the loader to `StaticFileConfigLoader`. To change that, you will need to create a new file, `config/packages/storefront.yaml` with the following content:
 
- ```yaml
+```yaml
 storefront:
-    theme:
-        config_loader_id: Shopware\Storefront\Theme\ConfigLoader\StaticFileConfigLoader
-        available_theme_provider: Shopware\Storefront\Theme\ConfigLoader\StaticFileAvailableThemeProvider
-        theme_path_builder_id: Shopware\Storefront\Theme\MD5ThemePathBuilder
- ```
+  theme:
+    config_loader_id: Shopware\Storefront\Theme\ConfigLoader\StaticFileConfigLoader
+    available_theme_provider: Shopware\Storefront\Theme\ConfigLoader\StaticFileAvailableThemeProvider
+    theme_path_builder_id: Shopware\Storefront\Theme\MD5ThemePathBuilder
+```
 
 This will force the theme compiler to use the static dumped file instead of looking into the database.
 

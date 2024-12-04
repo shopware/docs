@@ -29,8 +29,8 @@ If you don't have access to the php.ini configuration, you can configure it dire
 ```yaml
 # config/packages/redis.yml
 framework:
-    session:
-        handler_id: "redis://host:port"
+  session:
+    handler_id: 'redis://host:port'
 ```
 
 ### Redis configuration
@@ -62,6 +62,6 @@ Example session configuration:
 ```yaml
 # config/packages/redis.yml
 framework:
-    session:
-        handler_id: "session.db"
+  session:
+    handler_id: 'session.db'
 ```

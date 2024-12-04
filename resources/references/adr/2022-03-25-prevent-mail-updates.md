@@ -58,8 +58,8 @@ To avoid this load, we have implemented the configuration `shopware.mail.update_
 
 ```yaml
 shopware:
-    mail:
-        update_mail_variables_on_send: false
+  mail:
+    update_mail_variables_on_send: false
 ```
 
 This is only a temporary solution. We will create an alternative for this feature in the future, which will have no impact on the database due to high order numbers.

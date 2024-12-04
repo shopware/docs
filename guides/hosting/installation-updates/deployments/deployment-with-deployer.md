@@ -222,32 +222,32 @@ Have a look at the following files. All steps are provided with helpful comments
 # This file defines the GitLab CI/CD pipeline.
 # For more information, please visit the GitLab CI/CD docs: https://docs.gitlab.com/ee/ci/README.html
 variables:
-    GIT_STRATEGY: clone
+  GIT_STRATEGY: clone
 
 # This variable holds all commands that are needed to be able to connect to the target server via SSH.
 # For this you need to define two variables in the GitLab CI/CD variables:
 #   - SSH_PRIVATE_KEY: The contents of the SSH private key file. The public key must be authorized on the target server.
 #   - DEPLOYMENT_SERVER: Just the hostname of the target server (e.g. shopware.com, don't include schema or paths)
 .configureSSHAgent: &configureSSHAgent |-
-    eval $(ssh-agent -s)
-    echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-    mkdir -p ~/.ssh
-    ssh-keyscan $DEPLOYMENT_SERVER >> ~/.ssh/known_hosts
-    chmod 700 ~/.ssh
+  eval $(ssh-agent -s)
+  echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+  mkdir -p ~/.ssh
+  ssh-keyscan $DEPLOYMENT_SERVER >> ~/.ssh/known_hosts
+  chmod 700 ~/.ssh
 
 Deploy:
-    stage: deploy
-    # Tags are useful to only use runners that are safe or meet specific requirements
-    image: shopware/shopware-cli:latest-php-8.3
-    before_script:
-        # First, we need to execute all commands that are defined in the `configureSSHAgent` variable.
-        - *configureSSHAgent
-    script:
-        # This command installs all dependencies and builds the project.
-        - shopware-cli project ci .
-        # This command starts the workflow that is defined in the `deploy` task in the `deploy.php`.
-        # `production` is the stage that was defined in the `host` in the `deploy.php`
-        - vendor/bin/dep deploy
+  stage: deploy
+  # Tags are useful to only use runners that are safe or meet specific requirements
+  image: shopware/shopware-cli:latest-php-8.3
+  before_script:
+    # First, we need to execute all commands that are defined in the `configureSSHAgent` variable.
+    - *configureSSHAgent
+  script:
+    # This command installs all dependencies and builds the project.
+    - shopware-cli project ci .
+    # This command starts the workflow that is defined in the `deploy` task in the `deploy.php`.
+    # `production` is the stage that was defined in the `host` in the `deploy.php`
+    - vendor/bin/dep deploy
 ```
 
 ### .github/workflows/deploy.yml

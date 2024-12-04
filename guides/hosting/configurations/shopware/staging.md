@@ -113,22 +113,22 @@ The staging mode is fully configurable with `config/packages/staging.yaml`. You 
 ```yaml
 # <shopware-root>/config/packages/staging.yaml
 shopware:
-    staging:
-        mailing:
-            # Disables the sending of mails (default: true)
-            disable_delivery: true
-        storefront:
-            # Shows a banner in the storefront when staging mode is active (default: true)
-            show_banner: true
-        administration:
-            # Shows a banner in the administration when staging mode is active (default: true)
-            show_banner: true
-        sales_channel:
-            domain_rewrite:
-                # See below for more information
-        elasticsearch:
-            # Checks that no indices are existing yet (default: true)
-            check_for_existence: true
+  staging:
+    mailing:
+      # Disables the sending of mails (default: true)
+      disable_delivery: true
+    storefront:
+      # Shows a banner in the storefront when staging mode is active (default: true)
+      show_banner: true
+    administration:
+      # Shows a banner in the administration when staging mode is active (default: true)
+      show_banner: true
+    sales_channel:
+      domain_rewrite:
+        # See below for more information
+    elasticsearch:
+      # Checks that no indices are existing yet (default: true)
+      check_for_existence: true
 ```
 
 One of the most important options is the `domain_rewrite`. This option allows you to rewrite the URLs to the staging domain. This allows multiple ways to rewrite the URLs:
@@ -138,13 +138,13 @@ One of the most important options is the `domain_rewrite`. This option allows yo
 ```yaml
 # <shopware-root>/config/packages/staging.yaml
 shopware:
-    staging:
-        sales_channel:
-            domain_rewrite:
-                - type: equal
-                  match: https://my-live-store.com
-                  replace: https://my-staging-store.com
-                - # ... second rule
+  staging:
+    sales_channel:
+      domain_rewrite:
+        - type: equal
+          match: https://my-live-store.com
+          replace: https://my-staging-store.com
+        -  # ... second rule
 ```
 
 This compares the Sales Channel URLs. When it's equal to `https://my-live-store.com`, it will be replaced with `https://my-staging-store.com`.
@@ -154,13 +154,13 @@ This compares the Sales Channel URLs. When it's equal to `https://my-live-store.
 ```yaml
 # <shopware-root>/config/packages/staging.yaml
 shopware:
-    staging:
-        sales_channel:
-            domain_rewrite:
-                - type: prefix
-                  match: https://my-live-store.com
-                  replace: https://my-staging-store.com
-                - # ... second rule
+  staging:
+    sales_channel:
+      domain_rewrite:
+        - type: prefix
+          match: https://my-live-store.com
+          replace: https://my-staging-store.com
+        -  # ... second rule
 ```
 
 The difference here to the `equal` type is that it will only replace the URL when it starts with `https://my-live-store.com`, so all paths to that beginning will be replaced. For example, `https://my-live-store.com/en` will be replaced with `https://my-staging-store.com/en`
@@ -170,13 +170,13 @@ The difference here to the `equal` type is that it will only replace the URL whe
 ```yaml
 # <shopware-root>/config/packages/staging.yaml
 shopware:
-    staging:
-        sales_channel:
-            domain_rewrite:
-                - type: regex
-                  match: '/https?:\/\/(\w+)\.(\w+)$/m'
-                  replace: 'http://$1-$2.local'
-                - # ... second rule
+  staging:
+    sales_channel:
+      domain_rewrite:
+        - type: regex
+          match: '/https?:\/\/(\w+)\.(\w+)$/m'
+          replace: 'http://$1-$2.local'
+        -  # ... second rule
 ```
 
 This will use the regex to replace the URL. The match and replace are regular expressions. In this example, `https://my-live-store.com` will be replaced with `http://my-live-store.local`.

@@ -48,8 +48,8 @@ This stores the cart inside redis, which can be configured via the config in `co
 
 ```yaml
 shopware:
-    cart:
-        redis_url: 'redis://redis'
+  cart:
+    redis_url: 'redis://redis'
 ```
 
 If no redis connection is configured, the redis cart persister is removed from the DI container. This is done inside the `\Shopware\Core\Checkout\DependencyInjection\CompilerPass\CartRedisCompilerPass`:
@@ -80,8 +80,8 @@ In addition, to reduce network traffic, we used cache compression, which signifi
 
 ```yaml
 shopware:
-    cart:
-        compress: false
+  cart:
+    compress: false
 ```
 
 **Notice:** Currently there is no migration path to transfer shopping carts from one storage to the other.

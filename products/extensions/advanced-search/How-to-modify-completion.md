@@ -60,10 +60,10 @@ For example, you can add or modify this configuration in `config/packages/advanc
 
 ```yaml
 advanced_search:
-    completion:
-        your_custom_entity:
-            - email
-            - company
+  completion:
+    your_custom_entity:
+      - email
+      - company
 ```
 
 If you want to have more control over the completion, such as using static texts from files or parsing a field from another data source as completion keywords, you might want to decorate the service `\Shopware\Commercial\AdvancedSearch\Domain\Completion\CompletionDefinitionEnrichment::enrichData` instead.

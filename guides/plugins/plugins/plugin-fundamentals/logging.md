@@ -60,7 +60,6 @@ We will now use monolog configuration to create a channel for your log messages;
 ::: code-group
 
 ```yaml [[plugin root]/src/Resources/config/packages/monolog.yaml]
-
 monolog:
   channels: ['my_plugin_channel']
 ```
@@ -79,10 +78,10 @@ monolog:
 
   handlers:
     myPluginLogHandler:
-        type: rotating_file
-        path: "%kernel.logs_dir%/my_plugin_%kernel.environment%.log"
-        level: error
-        channels: [ "my_plugin_channel"]
+      type: rotating_file
+      path: '%kernel.logs_dir%/my_plugin_%kernel.environment%.log'
+      level: error
+      channels: ['my_plugin_channel']
 ```
 
 :::

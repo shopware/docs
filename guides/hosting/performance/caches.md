@@ -32,10 +32,10 @@ The standard Shopware HTTP cache can be exchanged or reconfigured in several way
 
 ```yaml
 framework:
-    cache:
-        pools:
-            cache.http:
-                adapter: cache.adapter.filesystem
+  cache:
+    pools:
+      cache.http:
+        adapter: cache.adapter.filesystem
 ```
 
 This is a Symfony cache pool configuration and therefore supports all adapters from the [Symfony FrameworkBundle](https://symfony.com/doc/current/cache.html#configuring-cache-with-frameworkbundle).
@@ -46,20 +46,20 @@ The app cache defines the default cache adapter for Shopware. As you can see in 
 
 ```yaml
 framework:
-    cache:
-        prefix_seed: "%kernel.cache.hash%"
-        app: cache.adapter.filesystem
-        pools:
-            cache.object:
-                default_lifetime: 3600
-                adapter: cache.app
-                tags: cache.tags
-            cache.http:
-                default_lifetime: 3600
-                adapter: cache.app
-                tags: cache.tags
-            cache.tags:
-                adapter: cache.app
+  cache:
+    prefix_seed: '%kernel.cache.hash%'
+    app: cache.adapter.filesystem
+    pools:
+      cache.object:
+        default_lifetime: 3600
+        adapter: cache.app
+        tags: cache.tags
+      cache.http:
+        default_lifetime: 3600
+        adapter: cache.app
+        tags: cache.tags
+      cache.tags:
+        adapter: cache.app
 ```
 
 This is also a Symfony cache configuration and supports all adapters from the [Symfony FrameworkBundle](https://symfony.com/doc/current/cache.html#configuring-cache-with-frameworkbundle).
@@ -77,21 +77,21 @@ For `cache.adapter.redis_tag_aware` minimum Shopware 6.5.8.3 is required. Otherw
 ```yaml
 # config/packages/framework.yaml
 framework:
-    cache:
-        default_redis_provider: 'redis://host:port'
-        pools:
-            cache.http:
-                adapter: cache.adapter.redis_tag_aware
-                tags: cache.tags
+  cache:
+    default_redis_provider: 'redis://host:port'
+    pools:
+      cache.http:
+        adapter: cache.adapter.redis_tag_aware
+        tags: cache.tags
 ```
 
 Replace the `host` and `port` with your Redis instance. It is also possible to change the cache adapter for `app`, which would affect every pool since they inherit from `app` by default.
 
 ```yaml
 framework:
-    cache:
-        app: cache.adapter.redis_tag_aware
-        default_redis_provider: 'redis://host:port'
+  cache:
+    app: cache.adapter.redis_tag_aware
+    default_redis_provider: 'redis://host:port'
 ```
 
 ### Redis configuration

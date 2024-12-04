@@ -16,12 +16,12 @@ To solve this problem, an **experimental** feature called Cross Search has been 
 ```yaml
 # config/packages/advanced_search.yaml
 advanced_search:
-    # When searching for `manufacturer.product.name`, if `product_manufacturer.product` cross_search is enabled, the `product` index will be used for search field `name`
-    cross_search:
-        product.product_manufacturer: false
-        product.category: false
-        category.product: true
-        product_manufacturer.product: true
+  # When searching for `manufacturer.product.name`, if `product_manufacturer.product` cross_search is enabled, the `product` index will be used for search field `name`
+  cross_search:
+    product.product_manufacturer: false
+    product.category: false
+    category.product: true
+    product_manufacturer.product: true
 ```
 
 By default, only `category - product` and `product_manufacturer - product` associations are enabled, but you can change this behavior in the parameter. This way, we don't need to index product's data inside category and manufacturer indexes.

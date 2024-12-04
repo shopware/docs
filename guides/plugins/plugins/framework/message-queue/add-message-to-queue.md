@@ -105,9 +105,9 @@ You might consider using the new `low_priority` queue if you are dispatching mes
 ```yaml
 # config/packages/shopware.yaml
 shopware:
-    messenger:
-        routing_overwrite:
-            'Your\Custom\Message': low_priority
+  messenger:
+    routing_overwrite:
+      'Your\Custom\Message': low_priority
 ```
 
 ## Override transport for specific messages
@@ -132,10 +132,10 @@ class LowPriorityMessage implements LowPriorityMessageInterface
 ```yaml
 # config/packages/shopware.yaml
 shopware:
-    messenger:
-        routing_overwrite:
-            'Shopware\Core\Framework\MessageQueue\LowPriorityMessageInterface': low_priority
-            'Your\Custom\LowPriorityMessage': async
+  messenger:
+    routing_overwrite:
+      'Shopware\Core\Framework\MessageQueue\LowPriorityMessageInterface': low_priority
+      'Your\Custom\LowPriorityMessage': async
 ```
 
 ## Next steps

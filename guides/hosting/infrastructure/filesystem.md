@@ -44,22 +44,22 @@ You can also change the URL of the file systems. This is useful if you want to u
 shopware:
   filesystem:
     public:
-      url: "{url-to-your-public-files}"
+      url: '{url-to-your-public-files}'
       # The Adapter Configuration
     private:
-      visibility: "private"
+      visibility: 'private'
       # The Adapter Configuration
     theme:
-      url: "{url-to-your-theme-files}"
+      url: '{url-to-your-theme-files}'
       # The Adapter Configuration
     asset:
-      url: "{url-to-your-asset-files}"
+      url: '{url-to-your-asset-files}'
       # The Adapter Configuration
     sitemap:
-      url: "{url-to-your-sitemap-files}"
+      url: '{url-to-your-sitemap-files}'
       # The Adapter Configuration
-
 ```
+
 <!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/Resources/config/packages/shopware.yaml","WATCHER_HASH":"183f85ba8f15e8e7d0006b70be20940f","WATCHER_CONTAINS":"filesystem"} -->
 
 ### Fallback adapter configuration
@@ -73,11 +73,10 @@ E.g. before you had the following configuration:
 shopware:
   filesystem:
     public:
-      type: "local"
-      url: "https://your.domain/public"
+      type: 'local'
+      url: 'https://your.domain/public'
       config:
-        root: "%kernel.project_dir%/public"
-
+        root: '%kernel.project_dir%/public'
 ```
 
 Now you want to change the public filesystem to use an S3 adapter, but the theme, asset and sitemap filesystem should still use the local adapter. You have to set them explicitly:
@@ -86,32 +85,32 @@ Now you want to change the public filesystem to use an S3 adapter, but the theme
 shopware:
   filesystem:
     public:
-      url: "{{S3_URL}}"
-      type: "amazon-s3"
+      url: '{{S3_URL}}'
+      type: 'amazon-s3'
       config:
-        bucket: "{{AWS_BUCKET}}"
-        region: "{{AWS_REGION}}"
-        endpoint: "{{AWS_ENDPOINT}}"
+        bucket: '{{AWS_BUCKET}}'
+        region: '{{AWS_REGION}}'
+        endpoint: '{{AWS_ENDPOINT}}'
         options:
-          visibility: "public"
+          visibility: 'public'
           credentials:
-            key: "{{AWS_ACCESS_KEY_ID}}"
-            secret: "{{AWS_SECRET_ACCESS_KEY}}"
+            key: '{{AWS_ACCESS_KEY_ID}}'
+            secret: '{{AWS_SECRET_ACCESS_KEY}}'
     theme:
-      type: "local"
-      url: "https://your.domain/public"
+      type: 'local'
+      url: 'https://your.domain/public'
       config:
-        root: "%kernel.project_dir%/public"
+        root: '%kernel.project_dir%/public'
     asset:
-      type: "local"
-      url: "https://your.domain/public"
+      type: 'local'
+      url: 'https://your.domain/public'
       config:
-        root: "%kernel.project_dir%/public"
+        root: '%kernel.project_dir%/public'
     sitemap:
-      type: "local"
-      url: "https://your.domain/public"
+      type: 'local'
+      url: 'https://your.domain/public'
       config:
-        root: "%kernel.project_dir%/public"
+        root: '%kernel.project_dir%/public'
 ```
 
 ### Additional configuration
@@ -146,10 +145,10 @@ If your public files are available on a CDN, you can use the following config to
 shopware:
   filesystem:
     public:
-      url: "YOUR_CDN_URL"
-      type: "local"
+      url: 'YOUR_CDN_URL'
+      type: 'local'
       config:
-        root: "%kernel.project_dir%/public"
+        root: '%kernel.project_dir%/public'
 ```
 
 ::: info
@@ -162,11 +161,11 @@ Be aware of the **prod** in the config path. CDNs are typically for production e
 
 ```yaml
 shopware:
-    filesystem:
-      {ADAPTER_NAME}:
-        type: "local"
-        config:
-          root: "%kernel.project_dir%/public"
+  filesystem:
+    { ADAPTER_NAME }:
+      type: 'local'
+      config:
+        root: '%kernel.project_dir%/public'
 ```
 
 ### Amazon S3
@@ -181,20 +180,20 @@ Example configuration:
 
 ```yaml
 shopware:
-    filesystem:
-      {ADAPTER_NAME}:
-        type: "amazon-s3"
-        url: "https://your-cloudfront-url"
-        visibility: "private" # Default is "public", can be set only on shopware.filesystem.private
-        config:
-            bucket: "{your-public-bucket-name}"
-            region: "{your-bucket-region}"
-            endpoint: "{your-s3-provider-endpoint}"
-            root: "{your-root-folder}"
-            # Optional, otherwise will be automatically discovered with AWS content discovery
-            credentials:
-              key: '{your-access-key}'
-              secret: '{your-secret-key}'
+  filesystem:
+    { ADAPTER_NAME }:
+      type: 'amazon-s3'
+      url: 'https://your-cloudfront-url'
+      visibility: 'private' # Default is "public", can be set only on shopware.filesystem.private
+      config:
+        bucket: '{your-public-bucket-name}'
+        region: '{your-bucket-region}'
+        endpoint: '{your-s3-provider-endpoint}'
+        root: '{your-root-folder}'
+        # Optional, otherwise will be automatically discovered with AWS content discovery
+        credentials:
+          key: '{your-access-key}'
+          secret: '{your-secret-key}'
 ```
 
 If your S3 provider does not use buckets as subdomain like Minio in default configuration, you need to set `use_path_style_endpoint` to `true` inside `config`.
@@ -211,15 +210,15 @@ Example configuration:
 
 ```yaml
 shopware:
-    filesystem:
-      {ADAPTER_NAME}:
-        type: "google-storage"
-        url: "https://storage.googleapis.com/{your-public-bucket-name}"
-        visibility: "private" # Default is "public", can be set only on shopware.filesystem.private
-        config:
-            bucket: "{your-public-bucket-name}"
-            projectId: "{your-project-id}"
-            keyFilePath: "{path-to-your-keyfile}"
+  filesystem:
+    { ADAPTER_NAME }:
+      type: 'google-storage'
+      url: 'https://storage.googleapis.com/{your-public-bucket-name}'
+      visibility: 'private' # Default is "public", can be set only on shopware.filesystem.private
+      config:
+        bucket: '{your-public-bucket-name}'
+        projectId: '{your-project-id}'
+        keyFilePath: '{path-to-your-keyfile}'
 ```
 
 The bucket needs to use the "Fine-grained" [ACL mode](https://cloud.google.com/storage/docs/access-control#choose_between_uniform_and_fine-grained_access). This is required so that Shopware can manage the ACL of the objects.

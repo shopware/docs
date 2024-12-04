@@ -122,6 +122,6 @@ Which profiler should be used in the system can be configured via `config/packag
 
 ```yaml
 shopware:
-    profiler:
-        integrations: ['Symfony', 'Tideways', 'Datadog']
+  profiler:
+    integrations: ['Symfony', 'Tideways', 'Datadog']
 ```

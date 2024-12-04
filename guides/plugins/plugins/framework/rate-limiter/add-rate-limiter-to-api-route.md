@@ -35,10 +35,10 @@ If you plan to configure the `time_backoff` policy, head over to [rate limiter](
 Otherwise, check the [Symfony documentation](https://symfony.com/doc/current/rate_limiter.html#configuration) for the other keys you need for each policy.
 
 ```yaml
-// <plugin root>/src/Resources/config/rate_limiter.yaml
+# <plugin root>/src/Resources/config/rate_limiter.yaml
 example_route:
-    enabled: true
-    policy: 'time_backoff'
+  enabled: true
+  policy: 'time_backoff'
 ```
 
 ### Extending rate limit configuration in the DI-container
