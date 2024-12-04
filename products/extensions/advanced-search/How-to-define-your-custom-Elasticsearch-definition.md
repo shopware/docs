@@ -153,13 +153,14 @@ SQL;
 And register it in the container with tag `shopware.es.definition` and `advanced_search.supported_definition`
 
 ```xml
-# YourPluginNameSpace should be changed to your respectively ElasticsearchDefinition and Definition classes
+<!-- YourPluginNameSpace should be changed to your respectively ElasticsearchDefinition and
+Definition classes -->
 <service id="YourPluginNameSpace\YourCustomElasticsearchDefinition">
-    <argument type="service" id="YourPluginNameSpace\YourCustomDefinition"/>
-    <argument type="service" id="Doctrine\DBAL\Connection"/>
-    <argument type="service" id="Shopware\Commercial\AdvancedSearch\Domain\Search\SearchLogic"/>
+  <argument type="service" id="YourPluginNameSpace\YourCustomDefinition" />
+  <argument type="service" id="Doctrine\DBAL\Connection" />
+  <argument type="service" id="Shopware\Commercial\AdvancedSearch\Domain\Search\SearchLogic" />
 
-    <tag name="shopware.es.definition"/>
-    <tag name="advanced_search.supported_definition"/>
+  <tag name="shopware.es.definition" />
+  <tag name="advanced_search.supported_definition" />
 </service>
 ```

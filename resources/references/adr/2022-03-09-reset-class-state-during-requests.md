@@ -81,7 +81,7 @@ And additionally we will tag the service with the `kernel.reset` tag:
 
 ```xml
 <service id="FooService">
-    <tag name="kernel.reset" method="reset"/>
+  <tag name="kernel.reset" method="reset" />
 </service>
 ```
 

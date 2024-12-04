@@ -20,21 +20,22 @@ To add new cookies to the cookie consent manager, you can add a `cookies` sectio
 ```xml
 <!-- manifest.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        <name>ExampleAppWithCookies</name>
-        <version>1.0.0</version>
-        <!-- other meta data goes here -->
-    </meta>
-    <cookies>
-        <cookie>
-            <cookie>my-cookie</cookie>
-            <snippet-name>example-app-with-cookies.my-cookie.name</snippet-name>
-            <snippet-description>example-app-with-cookies.my-cookie.description</snippet-description>
-            <value>a static value for the cookie</value>
-            <expiration>1</expiration>
-        </cookie>
-    </cookies>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
+    <name>ExampleAppWithCookies</name>
+    <version>1.0.0</version>
+    <!-- other meta data goes here -->
+  </meta>
+  <cookies>
+    <cookie>
+      <cookie>my-cookie</cookie>
+      <snippet-name>example-app-with-cookies.my-cookie.name</snippet-name>
+      <snippet-description>example-app-with-cookies.my-cookie.description</snippet-description>
+      <value>a static value for the cookie</value>
+      <expiration>1</expiration>
+    </cookie>
+  </cookies>
 </manifest>
 ```
 
@@ -57,27 +58,28 @@ To add a cookie group, you can add a `groups` section within your `cookies` sect
 ```xml
 <!-- manifest.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        <name>ExampleAppWithCookies</name>
-        <version>1.0.0</version>
-        <!-- other meta data goes here -->
-    </meta>
-    <cookies>
-        <group>
-            <snippet-name>example-app-with-cookies.cookie-group.name</snippet-name>
-            <snippet-description>example-app-with-cookies.cookie-group.description</snippet-description>
-            <entries>
-                <cookie>
-                    <cookie>my-cookie</cookie>
-                    <snippet-name>example-app-with-cookies.my-cookie.name</snippet-name>
-                    <snippet-description>example-app-with-cookies.my-cookie.description</snippet-description>
-                    <value>a static value for the cookie</value>
-                    <expiration>1</expiration>
-                </cookie>
-            </entries>
-        </group>
-    </cookies>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
+    <name>ExampleAppWithCookies</name>
+    <version>1.0.0</version>
+    <!-- other meta data goes here -->
+  </meta>
+  <cookies>
+    <group>
+      <snippet-name>example-app-with-cookies.cookie-group.name</snippet-name>
+      <snippet-description>example-app-with-cookies.cookie-group.description</snippet-description>
+      <entries>
+        <cookie>
+          <cookie>my-cookie</cookie>
+          <snippet-name>example-app-with-cookies.my-cookie.name</snippet-name>
+          <snippet-description>example-app-with-cookies.my-cookie.description</snippet-description>
+          <value>a static value for the cookie</value>
+          <expiration>1</expiration>
+        </cookie>
+      </entries>
+    </group>
+  </cookies>
 </manifest>
 ```
 

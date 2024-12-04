@@ -22,21 +22,25 @@ To get those buttons, you start in the `admin` section of your manifest file. Th
 ```xml
 <!-- manifest.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        ...
-    </meta>
-    <admin>
-        <action-button action="setPromotion" entity="promotion" view="detail" url="https://example.com/promotion/set-promotion">
-            <label>set Promotion</label>
-        </action-button>
-        <action-button action="deletePromotion" entity="promotion" view="detail" url="https://example.com/promotion/delete-promotion">
-            <label>delete Promotion</label>
-        </action-button>
-        <action-button action="restockProduct" entity="product" view="list" url="https://example.com/restock">
-            <label>restock</label>
-        </action-button>
-    </admin>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
+    <!-- ... -->
+  </meta>
+  <admin>
+    <action-button action="setPromotion" entity="promotion" view="detail"
+      url="https://example.com/promotion/set-promotion">
+      <label>set Promotion</label>
+    </action-button>
+    <action-button action="deletePromotion" entity="promotion" view="detail"
+      url="https://example.com/promotion/delete-promotion">
+      <label>delete Promotion</label>
+    </action-button>
+    <action-button action="restockProduct" entity="product" view="list"
+      url="https://example.com/restock">
+      <label>restock</label>
+    </action-button>
+  </admin>
 </manifest>
 ```
 
@@ -299,15 +303,16 @@ To use custom endpoints as the target url for action buttons you can define the 
 ```xml
 <!-- manifest.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        ...
-    </meta>
-    <admin>
-      <action-button action="test-button" entity="product" view="list" url="/api/script/action-button">
-        <label>test-api-endpoint</label>
-      </action-button>
-    </admin>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
+    <!-- ... -->
+  </meta>
+  <admin>
+    <action-button action="test-button" entity="product" view="list" url="/api/script/action-button">
+      <label>test-api-endpoint</label>
+    </action-button>
+  </admin>
 </manifest>
 ```
 

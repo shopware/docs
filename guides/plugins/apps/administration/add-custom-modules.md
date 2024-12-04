@@ -38,20 +38,21 @@ Additionally you can define `label` elements inside of your `module` element, to
 ```xml
 <!-- manifest.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        ...
-    </meta>
-    <admin>
-        <module name="exampleModule"
-                source="https://example.com/promotion/view/promotion-module"
-                parent="sw-marketing"
-                position="50"
-        >
-            <label>Example module</label>
-            <label lang="de-DE">Beispiel Modul</label>
-        </module>
-    </admin>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
+    <!-- ... -->
+  </meta>
+  <admin>
+    <module name="exampleModule"
+      source="https://example.com/promotion/view/promotion-module"
+      parent="sw-marketing"
+      position="50"
+    >
+      <label>Example module</label>
+      <label lang="de-DE">Beispiel Modul</label>
+    </module>
+  </admin>
 </manifest>
 ```
 
@@ -138,30 +139,32 @@ The navigation id of your modules always uses the pattern `app-<appName>-<module
 ```xml
 <!-- manifest.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        <name>myApp</app>
-        ...
-    </meta>
-    <admin>
-        <module name="myModules"
-                source="https://example.com/promotion/view/promotion-module"
-                parent="sw-catalogue"
-                position="50"
-        >
-            <label>My apps modules</label>
-            <label lang="de-DE">Module meiner app</label>
-        </module>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
+    <name>myApp
+    </app>
+    <!-- ... -->
+  </meta>
+  <admin>
+    <module name="myModules"
+      source="https://example.com/promotion/view/promotion-module"
+      parent="sw-catalogue"
+      position="50"
+    >
+      <label>My apps modules</label>
+      <label lang="de-DE">Module meiner app</label>
+    </module>
 
-        <module name="someModule"
-                source="https://example.com/promotion/view/promotion-module"
-                parent="app-myApp-myModules"
-                position="1"
-        >
-            <label>Module underneath "My apps modules"</label>
-            <label lang="de-DE">Modul unterhalb von "Module meiner app"</label>
-        </module>
-    </admin>
+    <module name="someModule"
+      source="https://example.com/promotion/view/promotion-module"
+      parent="app-myApp-myModules"
+      position="1"
+    >
+      <label>Module underneath "My apps modules"</label>
+      <label lang="de-DE">Modul unterhalb von "Module meiner app"</label>
+    </module>
+  </admin>
 </manifest>
 ```
 
@@ -178,24 +181,25 @@ To avoid mixing other modules with your main module, we decided to separate the 
 ```xml
 <!-- manifest.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        <name>myApp</app>
-        ...
-    </meta>
-    <admin>
-        <module name="normalModule"
-                source="https://example.com/main"
-                parent="sw-catalogue"
-                position="50"
-        >
-            <label>Module in admin menu</label>
-            <label lang="de-DE">Modul im Adminmenü</label>
-        </module>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
+    <name>myApp</name>
+    <!-- ... -->
+  </meta>
+  <admin>
+    <module name="normalModule"
+      source="https://example.com/main"
+      parent="sw-catalogue"
+      position="50"
+    >
+      <label>Module in admin menu</label>
+      <label lang="de-DE">Modul im Adminmenü</label>
+    </module>
 
-        <!-- You can use the same url to open your module from the app store -->
-        <main-module source="https://example.com/main"/>
-    </admin>
+    <!-- You can use the same url to open your module from the app store -->
+    <main-module source="https://example.com/main" />
+  </admin>
 </manifest>
 ```
 

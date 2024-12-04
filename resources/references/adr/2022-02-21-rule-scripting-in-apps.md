@@ -200,32 +200,32 @@ The syntax for defining the parameters of a condition follows the same schema of
 <!-- ExampleApp/manifest.xml -->
 <!-- ... -->
 <rule-conditions>
-    <rule-condition>
-        <name>My custom rule condition</name>
-        <group>customer</group>
-        <script>customer-group-rule-script.twig</script>
-        <constraints>
-            <single-select name="operator">
-                <label>Operator</label>
-                <placeholder>Choose an operator...</placeholder>
-                <options>
-                    <option value="=">
-                        <name>Is equal to</name>
-                    </option>
-                    <option value="!=">
-                        <name>Is not equal to</name>
-                    </option>
-                </options>
-                <required>true</required>
-            </single-select>
-            <multi-entity-select name="cusstomerGroupIds">
-                <label>Customer groups</label>
-                <placeholder>Choose customer groups...</placeholder>
-                <entity>customer_group</entity>
-                <required>true</required>
-            </multi-entity-select>
-        </constraints>
-    </rule-condition>
+  <rule-condition>
+    <name>My custom rule condition</name>
+    <group>customer</group>
+    <script>customer-group-rule-script.twig</script>
+    <constraints>
+      <single-select name="operator">
+        <label>Operator</label>
+        <placeholder>Choose an operator...</placeholder>
+        <options>
+          <option value="=">
+            <name>Is equal to</name>
+          </option>
+          <option value="!=">
+            <name>Is not equal to</name>
+          </option>
+        </options>
+        <required>true</required>
+      </single-select>
+      <multi-entity-select name="cusstomerGroupIds">
+        <label>Customer groups</label>
+        <placeholder>Choose customer groups...</placeholder>
+        <entity>customer_group</entity>
+        <required>true</required>
+      </multi-entity-select>
+    </constraints>
+  </rule-condition>
 </rule-conditions>
 <!-- ... -->
 ```

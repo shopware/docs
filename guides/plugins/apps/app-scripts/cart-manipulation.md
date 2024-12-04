@@ -98,20 +98,20 @@ You can define price fields for [custom fields](../custom-data/custom-fields)
 ```xml
 <!-- manifest.xml -->
 <custom-fields>
-    <custom-field-set>
-        <name>custom_field_test</name>
-        <label>Custom field test</label>
-        <label lang="de-DE">Zusatzfeld Test</label>
-        <related-entities>
-            <product/>
-            <customer/>
-        </related-entities>
-        <fields>
-            <price name="test_price_field">
-                <label>Test price field</label>
-            </price>
-        </fields>
-    </custom-field-set>
+  <custom-field-set>
+    <name>custom_field_test</name>
+    <label>Custom field test</label>
+    <label lang="de-DE">Zusatzfeld Test</label>
+    <related-entities>
+      <product />
+      <customer />
+    </related-entities>
+    <fields>
+      <price name="test_price_field">
+        <label>Test price field</label>
+      </price>
+    </fields>
+  </custom-field-set>
 </custom-fields>
 ```
 

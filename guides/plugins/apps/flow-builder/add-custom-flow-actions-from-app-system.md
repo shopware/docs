@@ -62,19 +62,20 @@ The manifest file is the central point of your app. It defines the interface bet
 ```xml
 <!-- manifest.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        <name>FlowBuilderActionApp</name>
-        <label>Flow Builder Action App</label>
-        <label lang="de-DE">Flow Builder Aktions-App</label>
-        <description>This is the example description for app</description>
-        <description lang="de-DE">Dies ist die Beispielbeschreibung für app</description>
-        <author>shopware AG</author>
-        <copyright>(c) shopware AG</copyright>
-        <version>4.14.0</version>
-        <icon>Resources/app-icon.png</icon>
-        <license>MIT</license>
-    </meta>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
+    <name>FlowBuilderActionApp</name>
+    <label>Flow Builder Action App</label>
+    <label lang="de-DE">Flow Builder Aktions-App</label>
+    <description>This is the example description for app</description>
+    <description lang="de-DE">Dies ist die Beispielbeschreibung für app</description>
+    <author>shopware AG</author>
+    <copyright>(c) shopware AG</copyright>
+    <version>4.14.0</version>
+    <icon>Resources/app-icon.png</icon>
+    <license>MIT</license>
+  </meta>
 </manifest>
 ```
 
@@ -98,25 +99,28 @@ To create a flow action, you need to define a `<flow-action>` block within a fil
   </flow-action>
     <flow-action>
     ... # The third action
-  </flow-action> ... </flow-actions>
+  </flow-action>
+  <!-- ... -->
+</flow-actions>
 ```
 
 From 6.5.2.0, to create a flow action, you must define a `<flow-actions>` block within a file called `flow.xml`. Each `<flow-action>` in `<flow-actions>` represents one action, and you can define an arbitrary number of actions.
 
 ```xml
-<flow-extensions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd">
-    <flow-actions>
-        <flow-action>
-            ... # The first action
-        </flow-action>
-        <flow-action>
-            ... # The second action
-        </flow-action>
-        <flow-action>
-            ... # The third action
-        </flow-action>
-    </flow-actions>
-    ...
+<flow-extensions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd">
+  <flow-actions>
+    <flow-action>
+      ... # The first action
+    </flow-action>
+    <flow-action>
+      ... # The second action
+    </flow-action>
+    <flow-action>
+      ... # The third action
+    </flow-action>
+  </flow-actions>
+  <!-- ... -->
 </flow-extensions>
 ```
 
@@ -124,20 +128,19 @@ A single flow action would look like this:
 
 ```xml
 <flow-action>
-    <meta>
-        <name>slackmessage</name>
-        <label>Send slack message</label>
-        <label lang="de-DE">Slack-Nachricht senden</label>
-        <badge>Slack</badge>
-        <description>Slack send message description</description>
-        <description lang="de-DE">Dies ist die Beispielbeschreibung für app</description>
-        <url>https://hooks.slack.com/services/{id}</url>
-        <sw-icon>default-communication-speech-bubbles</sw-icon>
-        <icon>slack.png</icon>
-        <requirements>orderAware</requirements>
-        <requirements>customerAware</requirements>
-    </meta>
-    ...
+  <meta>
+    <name>slackmessage</name>
+    <label>Send slack message</label>
+    <label lang="de-DE">Slack-Nachricht senden</label>
+    <badge>Slack</badge>
+    <description>Slack send message description</description>
+    <description lang="de-DE">Dies ist die Beispielbeschreibung für app</description>
+    <url>https://hooks.slack.com/services/{id}</url>
+    <sw-icon>default-communication-speech-bubbles</sw-icon>
+    <icon>slack.png</icon>
+    <requirements>orderAware</requirements>
+    <requirements>customerAware</requirements>
+  </meta>
 </flow-action>
 ```
 
@@ -175,13 +178,13 @@ To fulfill the requirements, refer to a subset of action triggers aware:
 
 ```xml
 <flow-action>
-    <meta>
-        ...
-    </meta>
-    <headers>
-        <parameter type="string" name="content-type" value="application/json"/>
-    </headers>
-    ...
+  <meta>
+    <!-- ... -->
+  </meta>
+  <headers>
+    <parameter type="string" name="content-type" value="application/json" />
+  </headers>
+  <!-- ... -->
 </flow-action>
  ```
 
@@ -195,16 +198,17 @@ To fulfill the requirements, refer to a subset of action triggers aware:
 
 ```xml
 <flow-action>
-    <meta>
-        ...
-    </meta>
-    <headers>
-        ...
-    </headers>
-    <parameters>
-        <parameter type="string" name="text" value="{{ message }} \n Order Number: {{ order.orderNumber }}"/>
-    </parameters>
-    ...
+  <meta>
+    <!-- ... -->
+  </meta>
+  <headers>
+    <!-- ... -->
+  </headers>
+  <parameters>
+    <parameter type="string" name="text"
+      value="{{ message }} \n Order Number: {{ order.orderNumber }}" />
+  </parameters>
+  <!-- ... -->
 </flow-action>
  ```
 
@@ -235,27 +239,27 @@ You can make your flow action configurable in the Administration by adding input
 
 ```xml
 <flow-action>
-    <meta>
-        ...
-    </meta>
-    <headers>
-        ...
-    </headers>
-    <parameters>
-        ...
-    </parameters>
-    <config>
-        <input-field type="text">
-            <name>message</name>
-            <label>Message</label>
-            <label lang="de-DE">Gegenstand</label>
-            <place-holder>Placeholder</place-holder>
-            <place-holder lang="de-DE">Platzhalter</place-holder>
-            <required>true</required>
-            <helpText>Help Text</helpText>
-            <helpText lang="de-DE">Hilfstext</helpText>
-        </input-field>
-    </config>
+  <meta>
+    <!-- ... -->
+  </meta>
+  <headers>
+    <!-- ... -->
+  </headers>
+  <parameters>
+    <!-- ... -->
+  </parameters>
+  <config>
+    <input-field type="text">
+      <name>message</name>
+      <label>Message</label>
+      <label lang="de-DE">Gegenstand</label>
+      <place-holder>Placeholder</place-holder>
+      <place-holder lang="de-DE">Platzhalter</place-holder>
+      <required>true</required>
+      <helpText>Help Text</helpText>
+      <helpText lang="de-DE">Hilfstext</helpText>
+    </input-field>
+  </config>
 </flow-action>
 ```
 

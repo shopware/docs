@@ -217,17 +217,15 @@ So now you've already filled the custom fields of one of your entity instances v
 Only if you want your custom field to show up in the Administration and to be editable in there, you have to define the custom fields first in a custom field set. For this you have to use the custom fieldset repository, which can be retrieved from the dependency injection container via the `custom_field_set.repository` key and is used like any other repository.
 
 ```xml
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\CustomFieldClass">
-          <argument type="service" id="custom_field_set.repository"/>
-          ...
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\CustomFieldClass">
+      <argument type="service" id="custom_field_set.repository" /> ... </service>
+  </services>
 </container>
 ```
 

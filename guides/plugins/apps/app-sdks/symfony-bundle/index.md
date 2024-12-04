@@ -50,28 +50,30 @@ Here is an example app manifest
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        <name>TestApp</name>
-        <label>TestApp</label>
-        <label lang="de-DE">TestApp</label>
-        <description/>
-        <description lang="de-DE"/>
-        <author>Your Company</author>
-        <copyright>(c) by Your Company</copyright>
-        <version>1.0.0</version>
-        <icon>Resources/config/plugin.png</icon>
-        <license>MIT</license>
-    </meta>
-    <setup>
-        <registrationUrl>http://localhost:8000/app/lifecycle/register</registrationUrl>
-        <secret>TestSecret</secret>
-    </setup>
-    <webhooks>
-        <webhook name="appActivated" url="http://localhost:8000/app/lifecycle/activate" event="app.activated"/>
-        <webhook name="appDeactivated" url="http://localhost:8000/app/lifecycle/deactivate" event="app.deactivated"/>
-        <webhook name="appDeleted" url="http://localhost:8000/app/lifecycle/delete" event="app.deleted"/>
-    </webhooks>
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
+    <name>TestApp</name>
+    <label>TestApp</label>
+    <label lang="de-DE">TestApp</label>
+    <description />
+    <description lang="de-DE" />
+    <author>Your Company</author>
+    <copyright>(c) by Your Company</copyright>
+    <version>1.0.0</version>
+    <icon>Resources/config/plugin.png</icon>
+    <license>MIT</license>
+  </meta>
+  <setup>
+    <registrationUrl>http://localhost:8000/app/lifecycle/register</registrationUrl>
+    <secret>TestSecret</secret>
+  </setup>
+  <webhooks>
+    <webhook name="appActivated" url="http://localhost:8000/app/lifecycle/activate"
+      event="app.activated" />
+    <webhook name="appDeactivated" url="http://localhost:8000/app/lifecycle/deactivate"
+      event="app.deactivated" />
+    <webhook name="appDeleted" url="http://localhost:8000/app/lifecycle/delete" event="app.deleted" />
+  </webhooks>
 </manifest>
 ```
 
@@ -105,7 +107,7 @@ The app bundle also registers a generic webhook controller, which dispatches the
 To use that, register your Shopware webhooks to the generic webhook, which is by default `/app/webhook`.
 
 ```xml
-<webhook name="productWritten" url="http://localhost:8000/app/webhook" event="product.written"/>
+<webhook name="productWritten" url="http://localhost:8000/app/webhook" event="product.written" />
 ```
 
 With that, you can write a Symfony EventListener/Subscriber to listen to and react to the event.

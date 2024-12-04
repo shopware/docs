@@ -151,10 +151,10 @@ If it is not intended to allow the use beforehand, you can also use the major fl
 service.xml
 
 ```xml
-        <service id="Shopware\Core\Content\MyTest\Service\MyNewTestClass" public="true">
-            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
-            <tag name="shopware.feature" flag="FEATURE_NEXT_11111"/>
-        </service>
+<service id="Shopware\Core\Content\MyTest\Service\MyNewTestClass" public="true">
+  <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
+  <tag name="shopware.feature" flag="FEATURE_NEXT_11111" />
+</service>
 ```
 
 ###### Exchange a service with a new one
@@ -163,21 +163,23 @@ If the old service is not used anywhere right now, you can deprecate it with the
 On feature release, the service will be deprecated with the symfony tag:
 
 ```xml
-        <!-- feature-deprecated flag:FEATURE_NEXT_22222 deprecate service on feature release -->
-        <service id="Shopware\Core\Content\MyTest\Service\MyTestClass" public="true">
-            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
-            <deprecated>tag:v6.4.0: The "%alias_id%" service is deprecated and will be removed in 6.4.0. Use "%Shopware\Core\Content\MyTest\Service\MyTestClass%" instead<deprecated/>
-        </service>
+<!-- feature-deprecated flag:FEATURE_NEXT_22222 deprecate service on feature release -->
+<service id="Shopware\Core\Content\MyTest\Service\MyTestClass" public="true">
+  <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
+  <deprecated>tag:v6.4.0: The "%alias_id%" service is deprecated and will be removed in 6.4.0. Use
+  "%Shopware\Core\Content\MyTest\Service\MyTestClass%" instead
+  <deprecated />
+</service>
 ```
 If it is still used, but marked as major-deprecated, you can use the tag-type "deprecated" with the major flag.
 This will cause an error if this service is still used while the major flag is active.
 
 ```xml
-        <!-- feature-deprecated flag:FEATURE_NEXT_22222 deprecate service on feature release -->
-        <service id="Shopware\Core\Content\MyTest\Service\MyTestClass" public="true">
-            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
-            <tag name="deprecated" flag="FEATURE_NEXT_22222" version="tag:v6.4.0"/>
-        </service>
+<!-- feature-deprecated flag:FEATURE_NEXT_22222 deprecate service on feature release -->
+<service id="Shopware\Core\Content\MyTest\Service\MyTestClass" public="true">
+  <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
+  <tag name="deprecated" flag="FEATURE_NEXT_22222" version="tag:v6.4.0" />
+</service>
 ```
 
 ##### Adding many new Services
@@ -987,14 +989,15 @@ class MyTestClass
 service.xml
 
 ```xml
-        <!-- major-deprecated flag:FEATURE_NEXT_22222 deprecate service on feature release -->
-        <service id="Shopware\Core\Content\MyTest\Service\MyTestClass" public="true">
-            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
-            <!-- major-deprecated tag:v6.4.0 (flag:FEATURE_NEXT_22222) remove argument 'Something' on feature release -->
-            <argument type="service" id="Shopware\Core\System\SystemConfig\Something" on-invalid="null" />
-            <!-- @internal tag:v6.4.0 (flag:FEATURE_NEXT_22222) remove on-invalid=null on feature release -->
-            <argument type="service" id="Shopware\Core\System\SystemConfig\Somewhat" on-invalid="null" />
-        </service>
+<!-- major-deprecated flag:FEATURE_NEXT_22222 deprecate service on feature release -->
+<service id="Shopware\Core\Content\MyTest\Service\MyTestClass" public="true">
+  <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
+  <!-- major-deprecated tag:v6.4.0 (flag:FEATURE_NEXT_22222) remove argument 'Something' on feature
+  release -->
+  <argument type="service" id="Shopware\Core\System\SystemConfig\Something" on-invalid="null" />
+  <!-- @internal tag:v6.4.0 (flag:FEATURE_NEXT_22222) remove on-invalid=null on feature release -->
+  <argument type="service" id="Shopware\Core\System\SystemConfig\Somewhat" on-invalid="null" />
+</service>
 ```
 
 ##### Change/Removal/Exchange of interfaces

@@ -77,9 +77,9 @@ class CartAmountRule extends Rule
 Then, we have to register it in our `services.xml` and tag it as `shopware.approval_rule.definition`
 
 ```xml
- <service id="YourPluginNameSpace\CartAmountRule" public="true">
-    <tag name="shopware.approval_rule.definition"/>
- </service>
+<service id="YourPluginNameSpace\CartAmountRule" public="true">
+  <tag name="shopware.approval_rule.definition" />
+</service>
 ```
 
 ## App
@@ -157,25 +157,25 @@ We then use the variables `operator` and `totalPrice`, provided by the constrain
 <!-- manifest.xml -->
 <!-- ... -->
 <rule-condition>
-    <identifier>cart_tax_status_rule_script</identifier>
-    <name>Customer's first name</name>
-    <group>customer</group>
-    <script>/approval-rule-conditions/custom-condition.twig</script>
-    <constraints>
-        <single-select name="operator">
-            <options>
-                <option value="=">
-                    <name>Is equal to</name>
-                </option>
-                <option value="!=">
-                    <name>Is not equal to</name>
-                </option>
-            </options>
-        </single-select>
-        <text name="firstName">
-            <placeholder>Enter customer's first name</placeholder>
-        </text>
-    </constraints>
+  <identifier>cart_tax_status_rule_script</identifier>
+  <name>Customer's first name</name>
+  <group>customer</group>
+  <script>/approval-rule-conditions/custom-condition.twig</script>
+  <constraints>
+    <single-select name="operator">
+      <options>
+        <option value="=">
+          <name>Is equal to</name>
+        </option>
+        <option value="!=">
+          <name>Is not equal to</name>
+        </option>
+      </options>
+    </single-select>
+    <text name="firstName">
+      <placeholder>Enter customer's first name</placeholder>
+    </text>
+  </constraints>
 </rule-condition>
 <!-- ... -->
 ```
@@ -197,32 +197,32 @@ We then use the variables `operator` and `totalPrice`, provided by the constrain
 <!-- manifest.xml -->
 <!-- ... -->
 <rule-condition>
-    <identifier>cart_tax_status_rule_script</identifier>
-    <name>Cart tax status</name>
-    <group>cart</group>
-    <script>/approval-rule-conditions/custom-condition.twig</script>
-    <constraints>
-        <single-select name="operator">
-            <options>
-                <option value="=">
-                    <name>Is equal to</name>
-                </option>
-                <option value="!=">
-                    <name>Is not equal to</name>
-                </option>
-            </options>
-        </single-select>
-        <single-select name="taxStatus">
-            <options>
-                <option value="net">
-                    <name>Net</name>
-                </option>
-                <option value="gross">
-                    <name>Gross</name>
-                </option>
-            </options>
-        </single-select>
-    </constraints>
+  <identifier>cart_tax_status_rule_script</identifier>
+  <name>Cart tax status</name>
+  <group>cart</group>
+  <script>/approval-rule-conditions/custom-condition.twig</script>
+  <constraints>
+    <single-select name="operator">
+      <options>
+        <option value="=">
+          <name>Is equal to</name>
+        </option>
+        <option value="!=">
+          <name>Is not equal to</name>
+        </option>
+      </options>
+    </single-select>
+    <single-select name="taxStatus">
+      <options>
+        <option value="net">
+          <name>Net</name>
+        </option>
+        <option value="gross">
+          <name>Gross</name>
+        </option>
+      </options>
+    </single-select>
+  </constraints>
 </rule-condition>
 <!-- ... -->
 ```
@@ -244,38 +244,38 @@ We then use the variables `operator` and `totalPrice`, provided by the constrain
 <!-- manifest.xml -->
 <!-- ... -->
 <rule-condition>
-    <identifier>cart_currency_rule_script</identifier>
-    <name>Cart currency</name>
-    <group>cart</group>
-    <script>/approval-rule-conditions/cart-currency.twig</script>
-    <constraints>
-        <single-select name="operator">
-            <options>
-                <option value="=">
-                    <name>Is one of</name>
-                </option>
-                <option value="!=">
-                    <name>Is none of</name>
-                </option>
-            </options>
-             <required>true</required>
-        </single-select>
-        <multi-select name="isoCode">
-            <options>
-                <option value="EUR">
-                    <name>Euro</name>
-                </option>
-                <option value="USD">
-                    <name>US-Dollar</name>
-                </option>
-                <option value="GBP">
-                    <name>Pound</name>
-                </option>
-            </options>
-            <required>true</required>
-        </multi-select>
-    </constraints>
- </rule-condition>
+  <identifier>cart_currency_rule_script</identifier>
+  <name>Cart currency</name>
+  <group>cart</group>
+  <script>/approval-rule-conditions/cart-currency.twig</script>
+  <constraints>
+    <single-select name="operator">
+      <options>
+        <option value="=">
+          <name>Is one of</name>
+        </option>
+        <option value="!=">
+          <name>Is none of</name>
+        </option>
+      </options>
+      <required>true</required>
+    </single-select>
+    <multi-select name="isoCode">
+      <options>
+        <option value="EUR">
+          <name>Euro</name>
+        </option>
+        <option value="USD">
+          <name>US-Dollar</name>
+        </option>
+        <option value="GBP">
+          <name>Pound</name>
+        </option>
+      </options>
+      <required>true</required>
+    </multi-select>
+  </constraints>
+</rule-condition>
 <!-- ... -->
 ```
 

@@ -365,6 +365,6 @@ You must also register the extension in your `services.xml` file and tag it with
 
 ```xml
 <service id="Examples\MyBulkExtension">
-   <tag name="shopware.bulk.entity.extension"/>
+  <tag name="shopware.bulk.entity.extension"/>
 </service>
 ```

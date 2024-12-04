@@ -94,16 +94,16 @@ The `_entity` in the defaults of the `Route` attribute just marks the entity tha
 ### Register route class
 
 ```xml
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute" >
-            <argument type="service" id="swag_example.repository"/>
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute">
+      <argument type="service" id="swag_example.repository" />
+    </service>
+  </services>
 </container>
 ```
 
@@ -332,23 +332,23 @@ Additionally, we also use the `'XmlHttpRequest' => true` config option on the ro
 ### Register the Controller
 
 ```xml
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute" >
-            <argument type="service" id="swag_example.repository"/>
-        </service>
-    
-        <service id="Swag\BasicExample\Storefront\Controller\ExampleController" >
-            <argument type="service" id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute"/>
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute">
+      <argument type="service" id="swag_example.repository" />
+    </service>
+
+    <service id="Swag\BasicExample\Storefront\Controller\ExampleController">
+      <argument type="service" id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute" />
+      <call method="setContainer">
+        <argument type="service" id="service_container" />
+      </call>
+    </service>
+  </services>
 </container>
 ```
 

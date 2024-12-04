@@ -29,34 +29,34 @@ Ensure that the `<identifier>` of your shipping method remains unchanged, as Sho
 
 ```xml
 <!-- manifest.xml -->
-
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        <!-- Make sure that the name of your app does not change anymore, otherwise there will be duplicates of your shipping methods -->
-        <name>NameOfYourShippingMethodApp</name>
-        <!-- ... -->
-    </meta>
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
+    <!-- Make sure that the name of your app does not change anymore, otherwise there will be
+    duplicates of your shipping methods -->
+    <name>NameOfYourShippingMethodApp</name>
+    <!-- ... -->
+  </meta>
 
-    <shipping-methods>
+  <shipping-methods>
 
-        <shipping-method>
-            <!-- The identifier should not change after the first release -->
-            <identifier>NameOfYourFirstShippingMethod</identifier>
-            <name>First shipping method</name>
+    <shipping-method>
+      <!-- The identifier should not change after the first release -->
+      <identifier>NameOfYourFirstShippingMethod</identifier>
+      <name>First shipping method</name>
 
-            <delivery-time>
-                <!-- Requires a new generated UUID for your new delivery time -->
-                <id>c8864e36a4d84bd4a16cc31b5953431b</id>
-                <name>From 2 to 4 days</name>
-                <min>2</min>
-                <max>4</max>
-                <unit>day</unit>
-            </delivery-time>
-        </shipping-method>
+      <delivery-time>
+        <!-- Requires a new generated UUID for your new delivery time -->
+        <id>c8864e36a4d84bd4a16cc31b5953431b</id>
+        <name>From 2 to 4 days</name>
+        <min>2</min>
+        <max>4</max>
+        <unit>day</unit>
+      </delivery-time>
+    </shipping-method>
 
-    </shipping-methods>
+  </shipping-methods>
 </manifest>
 ```
 
@@ -92,30 +92,29 @@ The following values are possible units
 
 ```xml
 <!-- manifest.xml -->
-
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    
-    ...
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
 
-    <shipping-methods>
+  <!-- ... -->
 
-        <shipping-method>
-            <identifier>NameOfYourFirstShippingMethod</identifier>
-            <name>First shipping method</name>
-            ...
-            <delivery-time>
-                <id>c8864e36a4d84bd4a16cc31b5953431b</id>
-                <name>From 2 to 4 days</name>
-                <min>2</min>
-                <max>4</max>
-                <unit>day</unit>
-            </delivery-time>
-            ...
-        </shipping-method>
+  <shipping-methods>
 
-    </shipping-methods>
+    <shipping-method>
+      <identifier>NameOfYourFirstShippingMethod</identifier>
+      <name>First shipping method</name>
+      <!-- ... -->
+      <delivery-time>
+        <id>c8864e36a4d84bd4a16cc31b5953431b</id>
+        <name>From 2 to 4 days</name>
+        <min>2</min>
+        <max>4</max>
+        <unit>day</unit>
+      </delivery-time>
+      <!-- ... -->
+    </shipping-method>
+
+  </shipping-methods>
 </manifest>
 ```
 
@@ -130,38 +129,37 @@ The functionality offers more than one identifier name. The following examples r
 
 ```xml
 <!-- manifest.xml -->
-
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
 
-    ...
+  <!-- ... -->
 
-    <shipping-methods>
+  <shipping-methods>
 
-        <shipping-method>
-            <!-- Identifier should not change after the first release -->
-            <identifier>NameOfYourFirstShippingMethod</identifier>
-            <name>First shipping method</name>
-            <name lang="de-DE">Erste Versandmethode</name>
-            <delivery-time>
-                <!-- Remember to remove the dashes from generated UUID -->
-                <id>c8864e36a4d84bd4a16cc31b5953431b</id>
-                <name>From 2 to 4 days</name>
-                <min>2</min>
-                <max>4</max>
-                <unit>day</unit>
-            </delivery-time>
-            <!-- The following configurations are optional -->
-            <description>This is a simple description</description>
-            <description lang="de-DE">Das ist eine einfache Beschreibung</description>
-            <icon>icon.png</icon>
-            <active>true</active>
-            <tracking-url>https://www.yourtrackingurl.com</tracking-url>
-            <position>2</position>
-        </shipping-method>
+    <shipping-method>
+      <!-- Identifier should not change after the first release -->
+      <identifier>NameOfYourFirstShippingMethod</identifier>
+      <name>First shipping method</name>
+      <name lang="de-DE">Erste Versandmethode</name>
+      <delivery-time>
+        <!-- Remember to remove the dashes from generated UUID -->
+        <id>c8864e36a4d84bd4a16cc31b5953431b</id>
+        <name>From 2 to 4 days</name>
+        <min>2</min>
+        <max>4</max>
+        <unit>day</unit>
+      </delivery-time>
+      <!-- The following configurations are optional -->
+      <description>This is a simple description</description>
+      <description lang="de-DE">Das ist eine einfache Beschreibung</description>
+      <icon>icon.png</icon>
+      <active>true</active>
+      <tracking-url>https://www.yourtrackingurl.com</tracking-url>
+      <position>2</position>
+    </shipping-method>
 
-    </shipping-methods>
+  </shipping-methods>
 </manifest>
 ```
 
@@ -175,26 +173,25 @@ Please note that the manifest cannot modify the description once you install the
 
 ```xml
 <!-- manifest.xml -->
-
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    
-    ...
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
 
-    <shipping-methods>
+  <!-- ... -->
 
-        <shipping-method>
-            <identifier>NameOfYourFirstShippingMethod</identifier>
-            <name>First shipping method</name>
-            ...
-            <description>This is a simple description</description>
-            <description lang="de-DE">Das ist eine einfache Beschreibung</description>
-            <description lang="fr-FR">C'est une description simple</description>
-            ...
-        </shipping-method>
+  <shipping-methods>
 
-    </shipping-methods>
+    <shipping-method>
+      <identifier>NameOfYourFirstShippingMethod</identifier>
+      <name>First shipping method</name>
+      <!-- ... -->
+      <description>This is a simple description</description>
+      <description lang="de-DE">Das ist eine einfache Beschreibung</description>
+      <description lang="fr-FR">C'est une description simple</description>
+      <!-- ... -->
+    </shipping-method>
+
+  </shipping-methods>
 </manifest>
 ```
 
@@ -218,24 +215,23 @@ Please note that the manifest cannot modify the icon once you install the app, a
 
 ```xml
 <!-- manifest.xml -->
-
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    
-    ...
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
 
-    <shipping-methods>
+  <!-- ... -->
 
-        <shipping-method>
-            <identifier>NameOfYourFirstShippingMethod</identifier>
-            <name>First shipping method</name>
-            ...
-            <icon>assets/icons/yourIcon.png</icon>
-            ...
-        </shipping-method>
+  <shipping-methods>
 
-    </shipping-methods>
+    <shipping-method>
+      <identifier>NameOfYourFirstShippingMethod</identifier>
+      <name>First shipping method</name>
+      <!-- ... -->
+      <icon>assets/icons/yourIcon.png</icon>
+      <!-- ... -->
+    </shipping-method>
+
+  </shipping-methods>
 </manifest>
 ```
 
@@ -248,24 +244,23 @@ You can activate the shipping method by default. Possible values for active are 
 
 ```xml
 <!-- manifest.xml -->
-
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    
-    ...
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
 
-    <shipping-methods>
+  <!-- ... -->
 
-        <shipping-method>
-            <identifier>NameOfYourFirstShippingMethod</identifier>
-            <name>First shipping method</name>
-            ...
-            <active>true</active>
-            ...
-        </shipping-method>
+  <shipping-methods>
 
-    </shipping-methods>
+    <shipping-method>
+      <identifier>NameOfYourFirstShippingMethod</identifier>
+      <name>First shipping method</name>
+      <!-- ... -->
+      <active>true</active>
+      <!-- ... -->
+    </shipping-method>
+
+  </shipping-methods>
 </manifest>
 ```
 
@@ -275,24 +270,23 @@ It is possible to add a tracking URL for customers to monitor the delivery statu
 
 ```xml
 <!-- manifest.xml -->
-
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    
-    ...
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
 
-    <shipping-methods>
+  <!-- ... -->
 
-        <shipping-method>
-            <identifier>NameOfYourFirstShippingMethod</identifier>
-            <name>First shipping method</name>
-            ...
-            <tracking-url>https://www.yourtrackingurl.com</tracking-url>
-            ...
-        </shipping-method>
+  <shipping-methods>
 
-    </shipping-methods>
+    <shipping-method>
+      <identifier>NameOfYourFirstShippingMethod</identifier>
+      <name>First shipping method</name>
+      <!-- ... -->
+      <tracking-url>https://www.yourtrackingurl.com</tracking-url>
+      <!-- ... -->
+    </shipping-method>
+
+  </shipping-methods>
 </manifest>
 ```
 
@@ -302,24 +296,23 @@ Here, you can set the display order of the shipping methods in the checkout. If 
 
 ```xml
 <!-- manifest.xml -->
-
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
 
-    ...
+  <!-- ... -->
 
-    <shipping-methods>
+  <shipping-methods>
 
-        <shipping-method>
-            <identifier>NameOfYourFirstShippingMethod</identifier>
-            <name>First shipping method</name>
-            ...
-            <position>2</position>
-            ...
-        </shipping-method>
+    <shipping-method>
+      <identifier>NameOfYourFirstShippingMethod</identifier>
+      <name>First shipping method</name>
+      <!-- ... -->
+      <position>2</position>
+      <!-- ... -->
+    </shipping-method>
 
-    </shipping-methods>
+  </shipping-methods>
 </manifest>
 ```
 

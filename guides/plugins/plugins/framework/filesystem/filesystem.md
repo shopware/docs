@@ -92,10 +92,10 @@ This service makes use of the private und public filesystem. As you already know
       <argument type="service" id="swag_basic_example.filesystem.public" />
       <argument type="service" id="swag_basic_example.filesystem.private" />
       <!--
-            There are also predefined file system services
-            <argument type="service" id="shopware.filesystem.private"/>
-            <argument type="service" id="shopware.filesystem.public"/>
-            -->
+        There are also predefined file system services
+        <argument type="service" id="shopware.filesystem.private"/>
+        <argument type="service" id="shopware.filesystem.public"/>
+      -->
     </service>
   </services>
 </container>

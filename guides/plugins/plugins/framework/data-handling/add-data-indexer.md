@@ -118,19 +118,20 @@ class ExampleIndexer extends EntityIndexer
 With the corresponding service registration:
 
 ```xml
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-                <service id="Swag\BasicExample\Core\Framework\DataAbstractionLayer\Indexing\ExampleIndexer">
-                    <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Dbal\Common\IteratorFactory"/>
-                    <argument type="service" id="customer.repository"/>
-                    <argument type="service" id="Doctrine\DBAL\Connection" />
-                    <tag name="shopware.entity_indexer"/>
-                </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Core\Framework\DataAbstractionLayer\Indexing\ExampleIndexer">
+      <argument type="service"
+        id="Shopware\Core\Framework\DataAbstractionLayer\Dbal\Common\IteratorFactory" />
+      <argument type="service" id="customer.repository" />
+      <argument type="service" id="Doctrine\DBAL\Connection" />
+      <tag name="shopware.entity_indexer" />
+    </service>
+  </services>
 </container>
 ```
 
@@ -249,17 +250,17 @@ class Subscriber implements EventSubscriberInterface
 The service definition for the subscriber would look like this.
 
 ```xml
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Service\Subscriber" >
-            <argument type="service" id="Doctrine\DBAL\Connection" />
-            <tag name="kernel.event_subscriber" />
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Service\Subscriber">
+      <argument type="service" id="Doctrine\DBAL\Connection" />
+      <tag name="kernel.event_subscriber" />
+    </service>
+  </services>
 </container>
 ```
 

@@ -475,9 +475,9 @@ Therefore, the code review failed. The reason for the problem is the following s
 
 <pre>"require": {
 
-    "shopware/core": "*",
+  "shopware/core": "*",
 
-    "shopware/storefront": "*"
+  "shopware/storefront": "*"
 
 },</pre>
 ```
@@ -489,9 +489,9 @@ The solution is to amend the requirement as follows:
 ```xml
 <pre>"require": {
 
-    "shopware/core": "~6.1.0",
+  "shopware/core": "~6.1.0",
 
-    "shopware/storefront": "~6.1.0"
+  "shopware/storefront": "~6.1.0"
 
 },
 

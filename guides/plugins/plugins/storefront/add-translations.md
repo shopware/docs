@@ -111,7 +111,7 @@ which implements Symfony's `Symfony\Contracts\Translation\TranslatorInterface`:
 
 ```xml
 <service id="Swag\Example\Service\SwagService" public="true" >
-    <argument type="service" id="translator" />
+  <argument type="service" id="translator" />
 </service>
 ```
 

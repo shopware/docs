@@ -53,12 +53,12 @@ This could look like this in the `manifest.xml`:
 
 ```xml
 <setup>
-    <registrationUrl>http://localhost:3000/app/register</registrationUrl>
+  <registrationUrl>http://localhost:3000/app/register</registrationUrl>
 </setup>
 <webhooks>
-    <webhook name="appActivated" url="http://localhost:3000/app/activate" event="app.activated"/>
-    <webhook name="appDeactivated" url="http://localhost:3000/app/deactivate" event="app.deactivated"/>
-    <webhook name="appDeleted" url="http://localhost:3000/app/delete" event="app.deleted"/>
+  <webhook name="appActivated" url="http://localhost:3000/app/activate" event="app.activated" />
+  <webhook name="appDeactivated" url="http://localhost:3000/app/deactivate" event="app.deactivated" />
+  <webhook name="appDeleted" url="http://localhost:3000/app/delete" event="app.deleted" />
 </webhooks>
 ```
 

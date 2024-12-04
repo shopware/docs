@@ -71,10 +71,10 @@ class MyApiRouteProvider implements RouteProvider
 Now the route provider and the controller are registered to the DIC.
 
 ```xml
-<service id="my.controller" class="My\Namespace\MyApiController"/>
+<service id="my.controller" class="My\Namespace\MyApiController" />
 
 <service id="my.api_route_provider" class="My\Namespace\DependencyInjection\MyApiRouteProvider">
-    <tag name="b2b_common.rest_route_provider"/>
+  <tag name="b2b_common.rest_route_provider" />
 </service>
 ```
 

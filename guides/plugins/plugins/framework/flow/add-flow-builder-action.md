@@ -313,8 +313,8 @@ And don't forget to register your subscriber to the container at `<plugin root>/
 
 ```xml
 <service id="Swag\CreateTagAction\Core\Content\Subscriber\BusinessEventCollectorSubscriber">
-    <argument type="service" id="Shopware\Core\Framework\Event\BusinessEventCollector"/>
-    <tag name="kernel.event_subscriber"/>
+  <argument type="service" id="Shopware\Core\Framework\Event\BusinessEventCollector" />
+  <tag name="kernel.event_subscriber" />
 </service>
 ```
 

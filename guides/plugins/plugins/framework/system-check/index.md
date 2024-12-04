@@ -53,7 +53,7 @@ class CustomSystemChecker
 
 ```xml
 <service id="YourNamepace\CustomSystemChecker">
-    <argument type="tagged_iterator" tag="shopware.system_check"/>
+  <argument type="tagged_iterator" tag="shopware.system_check"/>
 </service>
 ```
 

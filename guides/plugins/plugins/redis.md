@@ -44,12 +44,12 @@ Once you've set up your Redis connections as explained in the  [Redis configurat
 
     ```xml
     <service id="my.custom.redis_connection" class="Redis">
-        <factory service="Shopware\Core\Framework\Adapter\Redis\RedisConnectionProvider" method="getConnection" />
-        <argument>%myservice.redis_connection_name%</argument>
+      <factory service="Shopware\Core\Framework\Adapter\Redis\RedisConnectionProvider" method="getConnection" />
+      <argument>%myservice.redis_connection_name%</argument>
     </service>
 
     <service id="MyCustomService">
-        <argument type="service" id="my.custom.redis_connection" />
+      <argument type="service" id="my.custom.redis_connection" />
     </service>
     ```
 
@@ -73,7 +73,7 @@ Once you've set up your Redis connections as explained in the  [Redis configurat
 
     ```xml
     <service id="MyCustomService">
-        <argument type="service" id="shopware.redis.connection.connection_name" />
+      <argument type="service" id="shopware.redis.connection.connection_name" />
     </service>
     ```
 

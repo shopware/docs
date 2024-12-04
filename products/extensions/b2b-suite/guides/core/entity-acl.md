@@ -344,8 +344,9 @@ Now the table exists, but we must still make the table definition accessible thr
 This is achieved through a tag in the service definition:
 
 ```xml
-<service id="b2b_address.contact_acl_table" class="Shopware\B2B\Address\Framework\AddressContactAclTable">
-    <tag name="b2b_acl.table"/>
+<service id="b2b_address.contact_acl_table"
+  class="Shopware\B2B\Address\Framework\AddressContactAclTable">
+  <tag name="b2b_acl.table" />
 </service>
 ```
 
@@ -353,8 +354,8 @@ Finally, we need to register the service in the DIC. This is done by this XML sn
 
 ```xml
 <service id="b2b_address.acl_repository" class="Shopware\B2B\Acl\Framework\AclRepository">
-    <factory service="b2b_acl.repository_factory" method="createRepository"/>
-    <argument type="string">s_user_addresses</argument>
+  <factory service="b2b_acl.repository_factory" method="createRepository" />
+  <argument type="string">s_user_addresses</argument>
 </service>
 ```
 

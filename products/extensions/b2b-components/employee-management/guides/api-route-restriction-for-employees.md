@@ -19,14 +19,15 @@ The denylist can be found in the employee management config at: `Resources\confi
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../Schema/Xml/employee-route-access-1.0.xsd">
-    <denied>store-api.account.change-profile</denied>
-    <denied>store-api.account.change-email</denied>
-    <denied>...</denied>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../Schema/Xml/employee-route-access-1.0.xsd">
+  <denied>store-api.account.change-profile</denied>
+  <denied>store-api.account.change-email</denied>
+  <denied>...</denied>
 
-    <allowed>store-api.account.login</allowed>
-    <allowed>store-api.account.logout</allowed>
-    <allowed>...</allowed>
+  <allowed>store-api.account.login</allowed>
+  <allowed>store-api.account.logout</allowed>
+  <allowed>...</allowed>
 </routes>
 ```
 

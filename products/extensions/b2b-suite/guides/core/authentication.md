@@ -221,10 +221,11 @@ context owner ids. Notice that the interface is designed to be chained to create
 Finally, you register your authentication provider (in our case a repository) as a tagged service through the DIC.
 
 ```xml
-<service id="b2b_my.contact_authentication_identity_loader" class="Shopware\B2B\My\AuthenticationIdentityLoader">
-    [...]
+<service id="b2b_my.contact_authentication_identity_loader"
+  class="Shopware\B2B\My\AuthenticationIdentityLoader">
+  <!-- [...] -->
 
-    <tag name="b2b_front_auth.authentication_repository" />
+  <tag name="b2b_front_auth.authentication_repository" />
 </service>
 ```
 

@@ -52,8 +52,9 @@ To use one of these handlers, you must create a new service in the dependency in
 Example service definition:
 
 ```xml
-<service id="session.db" class="Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler">
-    <argument ....></argument>
+<service id="session.db"
+  class="Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler">
+  <argument ....></argument>
 </service>
 ```
 

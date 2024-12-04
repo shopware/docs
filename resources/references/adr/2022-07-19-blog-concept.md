@@ -41,65 +41,65 @@ This flag will also result in new component types, so that for example the `cms-
 
 ```xml
 <admin-ui>
-    <entity name="custom_entity_example"
-            navigation-parent="sw-content"
-            position="50"
-            icon="regular-tools-alt"
-            color="#f00">
-        <listing>
-            <columns>
-                <column ref="name"/>
-                <column ref="my_description"/>
-                <column ref="position" hidden="true" />
-                <column ref="rating"/>
-            </columns>
-        </listing>
-        <detail>
-            <tabs>
-                <tab name="main">
-                    <card name="general">
-                        <field ref="name"/>
-                        <field ref="position"/>
-                        <field ref="rating"/>
-                    </card>
-                    <card name="cardClone">
-                        <field ref="name"/>
-                        <field ref="my_description"/>
-                    </card>
-                </tab>
-                <tab name="tabClone">
-                    <card name="generalSecond">
-                        <field ref="name"/>
-                        <field ref="position"/>
-                        <field ref="rating"/>
-                    </card>
-                    <card name="cardClone">
-                        <field ref="name"/>
-                        <field ref="my_description"/>
-                    </card>
-                </tab>
-                <!-- cms-aware tabs will always be rendered last, if defined -->
-            </tabs>
-        </detail>
-    </entity>
-    <entity name="custom_entity_example_second"
-            navigation-parent="sw-content"
-            position="50"
-            icon="regular-tools-alt"
-            color="#f00">
-        <!-- Like above -->
-    </entity>
+  <entity name="custom_entity_example"
+    navigation-parent="sw-content"
+    position="50"
+    icon="regular-tools-alt"
+    color="#f00">
+    <listing>
+      <columns>
+        <column ref="name" />
+        <column ref="my_description" />
+        <column ref="position" hidden="true" />
+        <column ref="rating" />
+      </columns>
+    </listing>
+    <detail>
+      <tabs>
+        <tab name="main">
+          <card name="general">
+            <field ref="name" />
+            <field ref="position" />
+            <field ref="rating" />
+          </card>
+          <card name="cardClone">
+            <field ref="name" />
+            <field ref="my_description" />
+          </card>
+        </tab>
+        <tab name="tabClone">
+          <card name="generalSecond">
+            <field ref="name" />
+            <field ref="position" />
+            <field ref="rating" />
+          </card>
+          <card name="cardClone">
+            <field ref="name" />
+            <field ref="my_description" />
+          </card>
+        </tab>
+        <!-- cms-aware tabs will always be rendered last, if defined -->
+      </tabs>
+    </detail>
+  </entity>
+  <entity name="custom_entity_example_second"
+    navigation-parent="sw-content"
+    position="50"
+    icon="regular-tools-alt"
+    color="#f00">
+    <!-- Like above -->
+  </entity>
 </admin-ui>
 ```
 
 #### Example `cms-aware.xml`
 
 ```xml
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <cms-aware xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:noNamespaceSchemaLocation="../../../../../../../../src/Core/System/CustomEntity/Xml/Config/CmsAware/cms-aware-1.0.xsd">
-    <entity name="custom_entity_example"/>
-    <entity name="custom_entity_example_second"/>
+  xsi:noNamespaceSchemaLocation="../../../../../../../../src/Core/System/CustomEntity/Xml/Config/CmsAware/cms-aware-1.0.xsd">
+  <entity name="custom_entity_example" />
+  <entity name="custom_entity_example_second" />
 </cms-aware>
 ```
 

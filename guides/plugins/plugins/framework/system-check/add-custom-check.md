@@ -87,12 +87,12 @@ class LocalDiskSpaceCheck extends BaseCheck
 Finally, you need to register the custom check as a service resource.
 
 ```xml
-        <service id="%YourNameSpace%\LocalDiskSpaceCheck" >
-            <argument>%shopware.filesystem.public.type%</argument>
-            <argument>%shopware.filesystem.public.config.root%</argument>
-            <argument>%warning_threshold_in_mb%</argument>
-            <tag name="shopware.system_check"/>
-        </service>
+<service id="%YourNameSpace%\LocalDiskSpaceCheck">
+  <argument>%shopware.filesystem.public.type%</argument>
+  <argument>%shopware.filesystem.public.config.root%</argument>
+  <argument>%warning_threshold_in_mb%</argument>
+  <tag name="shopware.system_check" />
+</service>
 ```
 
 ### Trigger the check

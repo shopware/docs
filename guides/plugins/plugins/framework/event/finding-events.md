@@ -121,18 +121,17 @@ Hence, you can have a look at all the service definitions for the [Dependency in
 and therefore quickly figure out, which services and classes are having access to the said `event_dispatcher`:
 
 ```xml
-<?xml version="1.0" ?>
-
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Some\Service">
-            <argument type="service" id="Another/Service"/>
-            <argument type="service" id="event_dispatcher"/>
-        </service>
-    </services>
+  <services>
+    <service id="Some\Service">
+      <argument type="service" id="Another/Service" />
+      <argument type="service" id="event_dispatcher" />
+    </service>
+  </services>
 </container>
 ```
 

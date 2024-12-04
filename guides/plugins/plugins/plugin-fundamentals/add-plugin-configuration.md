@@ -52,13 +52,13 @@ See the minimum `config.xml` below:
 <!--<plugin root>/src/Resources/config/config.xml-->
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
-    <card>
-        <title>Minimal configuration</title>
-        <input-field>
-            <name>example</name>
-        </input-field>
-    </card>
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+  <card>
+    <title>Minimal configuration</title>
+    <input-field>
+      <name>example</name>
+    </input-field>
+  </card>
 </config>
 ```
 
@@ -337,55 +337,55 @@ Now all that's left to do is to present you a working example `config.xml` and s
 <!--<plugin root>/src/Resources/config/config.xml-->
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
 
-    <card>
-        <title>Basic Configuration</title>
-        <title lang="de-DE">Grundeinstellungen</title>
+  <card>
+    <title>Basic Configuration</title>
+    <title lang="de-DE">Grundeinstellungen</title>
 
-        <input-field>
-            <name>email</name>
-            <copyable>true</copyable>
-            <label>eMail address</label>
-            <label lang="de-DE">E-Mailadresse</label>
-            <placeholder>you@example.com</placeholder>
-            <placeholder lang="de-DE">du@beispiel.de</placeholder>
-            <helpText>Please fill in your personal eMail address</helpText>
-            <helpText lang="de-DE">Bitte trage deine persönliche E-Mailadresse ein</helpText>
-        </input-field>
+    <input-field>
+      <name>email</name>
+      <copyable>true</copyable>
+      <label>eMail address</label>
+      <label lang="de-DE">E-Mailadresse</label>
+      <placeholder>you@example.com</placeholder>
+      <placeholder lang="de-DE">du@beispiel.de</placeholder>
+      <helpText>Please fill in your personal eMail address</helpText>
+      <helpText lang="de-DE">Bitte trage deine persönliche E-Mailadresse ein</helpText>
+    </input-field>
 
-        <input-field type="single-select">
-            <name>mailMethod</name>
-            <options>
-                <option>
-                    <id>smtp</id>
-                    <name>English smtp</name>
-                    <name lang="de-DE">German smtp</name>
-                </option>
-                <option>
-                    <id>pop3</id>
-                    <name>English pop3</name>
-                    <name lang="de-DE">German pop3</name>
-                </option>
-            </options>
-            <defaultValue>smtp</defaultValue>
-            <label>Mail method</label>
-            <label lang="de-DE">Versand-Protokoll</label>
-        </input-field>
-    </card>
+    <input-field type="single-select">
+      <name>mailMethod</name>
+      <options>
+        <option>
+          <id>smtp</id>
+          <name>English smtp</name>
+          <name lang="de-DE">German smtp</name>
+        </option>
+        <option>
+          <id>pop3</id>
+          <name>English pop3</name>
+          <name lang="de-DE">German pop3</name>
+        </option>
+      </options>
+      <defaultValue>smtp</defaultValue>
+      <label>Mail method</label>
+      <label lang="de-DE">Versand-Protokoll</label>
+    </input-field>
+  </card>
 
-    <card>
-        <title>Advanced Configuration</title>
-        <title lang="de-DE">Erweiterte Einstellungen</title>
+  <card>
+    <title>Advanced Configuration</title>
+    <title lang="de-DE">Erweiterte Einstellungen</title>
 
-        <input-field type="password">
-            <name>secret</name>
-            <label>Secret token</label>
-            <label lang="de-DE">Geheimschlüssel</label>
-            <helpText>Your secret token for xyz...</helpText>
-            <helpText lang="de-DE">Dein geheimer Schlüssel für xyz...</helpText>
-        </input-field>
-    </card>
+    <input-field type="password">
+      <name>secret</name>
+      <label>Secret token</label>
+      <label lang="de-DE">Geheimschlüssel</label>
+      <helpText>Your secret token for xyz...</helpText>
+      <helpText lang="de-DE">Dein geheimer Schlüssel für xyz...</helpText>
+    </input-field>
+  </card>
 </config>
 ```
 

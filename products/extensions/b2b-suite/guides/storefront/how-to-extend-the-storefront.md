@@ -14,15 +14,16 @@ In order to be able to extend the templates of the B2B Suite with another plugin
 Register the `TemplateNamespaceHierarchyBuilder` by tagging it in the `services.xml` file of your plugin.
 
 ```xml
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-    <services>
-        <service id="MyPlugin\Framework\Adapter\Twig\NamespaceHierarchy\TemplateNamespaceHierarchyBuilder">
-            <tag name="shopware.twig.hierarchy_builder" priority="750"/>
-        </service>
-    </services>
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  <services>
+    <service
+      id="MyPlugin\Framework\Adapter\Twig\NamespaceHierarchy\TemplateNamespaceHierarchyBuilder">
+      <tag name="shopware.twig.hierarchy_builder" priority="750" />
+    </service>
+  </services>
 </container>
 ```
 

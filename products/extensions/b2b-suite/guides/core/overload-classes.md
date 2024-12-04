@@ -18,58 +18,60 @@ To add new functionality or overload existing classes to change functionality, t
 In the release package, our service.xml looks like this:
 
 ```xml
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-    <parameters>
-        <parameter key="b2b_role.repository_class">Shopware\B2B\Role\Framework\RoleRepository</parameter>
-        [...]
-    </parameters>
-    <services>
-        <service id="b2b_role.repository_abstract" abstract="true">
-            <argument type="service" id="dbal_connection"/>
-            <argument type="service" id="b2b_common.repository_dbal_helper"/>
-        </service>
-        [...]
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  <parameters>
+    <parameter key="b2b_role.repository_class">Shopware\B2B\Role\Framework\RoleRepository</parameter>
+    <!-- [...] -->
+  </parameters>
+  <services>
+    <service id="b2b_role.repository_abstract" abstract="true">
+      <argument type="service" id="dbal_connection" />
+      <argument type="service" id="b2b_common.repository_dbal_helper" />
+    </service>
+    <!-- [...] -->
 
-        <service id="b2b_role.repository" class="%b2b_role.repository_class%" parent="b2b_role.repository_abstract"/>
-        [...]
-    </services>
+    <service id="b2b_role.repository" class="%b2b_role.repository_class%"
+      parent="b2b_role.repository_abstract" />
+    <!-- [...] -->
+  </services>
 </container>
 ```
 
 For development (GitHub), it looks like this:
 
 ```xml
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-    <services>
-        <service id="b2b_role.repository" class="Shopware\B2B\Role\Framework\RoleRepository">
-            <argument type="service" id="dbal_connection"/>
-            <argument type="service" id="b2b_common.repository_dbal_helper"/>
-        </service>
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  <services>
+    <service id="b2b_role.repository" class="Shopware\B2B\Role\Framework\RoleRepository">
+      <argument type="service" id="dbal_connection" />
+      <argument type="service" id="b2b_common.repository_dbal_helper" />
+    </service>
 
-        <service id="b2b_role.grid_helper" class="Shopware\B2B\Common\Controller\GridHelper">
-            <argument type="service" id="b2b_role.repository"/>
-        </service>
+    <service id="b2b_role.grid_helper" class="Shopware\B2B\Common\Controller\GridHelper">
+      <argument type="service" id="b2b_role.repository" />
+    </service>
 
-        <service id="b2b_role.crud_service" class="Shopware\B2B\Role\Framework\RoleCrudService">
-            <argument type="service" id="b2b_role.repository"/>
-            <argument type="service" id="b2b_role.validation_service"/>
-        </service>
+    <service id="b2b_role.crud_service" class="Shopware\B2B\Role\Framework\RoleCrudService">
+      <argument type="service" id="b2b_role.repository" />
+      <argument type="service" id="b2b_role.validation_service" />
+    </service>
 
-        <service id="b2b_role.validation_service" class="Shopware\B2B\Role\Framework\RoleValidationService">
-            <argument type="service" id="b2b_common.validation_builder"/>
-            <argument type="service" id="validator"/>
-        </service>
+    <service id="b2b_role.validation_service"
+      class="Shopware\B2B\Role\Framework\RoleValidationService">
+      <argument type="service" id="b2b_common.validation_builder" />
+      <argument type="service" id="validator" />
+    </service>
 
-        <service id="b2b_role.acl_route_table" class="Shopware\B2B\Role\Framework\AclRouteAclTable">
-            <tag name="b2b_acl.table"/>
-        </service>
-    </services>
+    <service id="b2b_role.acl_route_table" class="Shopware\B2B\Role\Framework\AclRouteAclTable">
+      <tag name="b2b_acl.table" />
+    </service>
+  </services>
 </container>
 ```
 
@@ -84,16 +86,16 @@ You only have to change the parameter or overload the service id.
 Your service file could look like this:
 
 ```xml
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-    <services>
-        <service id="b2b_role.repository" class="Your/Class" parent="b2b_role.repository_abstract">
-            <argument id="Your/own/class" type="service"/>
-        </service>
-        [...]
-    </services>
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  <services>
+    <service id="b2b_role.repository" class="Your/Class" parent="b2b_role.repository_abstract">
+      <argument id="Your/own/class" type="service" />
+    </service>
+    <!-- [...] -->
+  </services>
 </container>
 ```
 

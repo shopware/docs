@@ -157,29 +157,28 @@ class ProductCountRoute extends AbstractProductCountRoute
 ### Register route class
 
 ```xml
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ProductCountRoute" >
-            <argument type="service" id="product.repository"/>
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ProductCountRoute">
+      <argument type="service" id="product.repository" />
+    </service>
+  </services>
 </container>
 ```
 
 The routes.xml according to our guide for [adding store-api routes](../framework/store-api/add-store-api-route) should look like this.
 
 ```xml
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <routes xmlns="http://symfony.com/schema/routing"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://symfony.com/schema/routing
-        https://symfony.com/schema/routing/routing-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/routing https://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <import resource="../../Core/**/*Route.php" type="attribute" />
+  <import resource="../../Core/**/*Route.php" type="attribute" />
 </routes>
 ```
 
@@ -262,21 +261,23 @@ This data will then be available via the name `product_count`, but we'll get to 
 Now you only have to adjust your service definition to inject the productCountRoute:
 
 ```xml
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ProductCountRoute" public="true">
-            <argument type="service" id="product.repository"/>
-        </service>
-        
-        <service id="Swag\BasicExample\Service\AddDataToPage" >
-            <argument type="service" id="Swag\BasicExample\Core\Content\Example\SalesChannel\ProductCountRoute"/>
-            <tag name="kernel.event_subscriber" />
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ProductCountRoute"
+      public="true">
+      <argument type="service" id="product.repository" />
+    </service>
+
+    <service id="Swag\BasicExample\Service\AddDataToPage">
+      <argument type="service"
+        id="Swag\BasicExample\Core\Content\Example\SalesChannel\ProductCountRoute" />
+      <tag name="kernel.event_subscriber" />
+    </service>
+  </services>
 </container>
 ```
 

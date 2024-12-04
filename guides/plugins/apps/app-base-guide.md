@@ -40,19 +40,20 @@ The manifest file is the central point of your app. It defines the interface bet
 ```xml
 <!-- manifest.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        <name>MyExampleApp</name>
-        <label>Label</label>
-        <label lang="de-DE">Name</label>
-        <description>A description</description>
-        <description lang="de-DE">Eine Beschreibung</description>
-        <author>Your Company Ltd.</author>
-        <copyright>(c) by Your Company Ltd.</copyright>
-        <version>1.0.0</version>
-        <icon>Resources/config/plugin.png</icon>
-        <license>MIT</license>
-    </meta>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
+    <name>MyExampleApp</name>
+    <label>Label</label>
+    <label lang="de-DE">Name</label>
+    <description>A description</description>
+    <description lang="de-DE">Eine Beschreibung</description>
+    <author>Your Company Ltd.</author>
+    <copyright>(c) by Your Company Ltd.</copyright>
+    <version>1.0.0</version>
+    <icon>Resources/config/plugin.png</icon>
+    <license>MIT</license>
+  </meta>
 </manifest>
 ```
 
@@ -301,20 +302,21 @@ Sample permissions to read, create and update products, delete orders, as well a
 ```xml
 <!-- manifest.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        ...
-    </meta>
-    <permissions>
-        <read>product</read>
-        <create>product</create>
-        <update>product</update>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
+    <!-- ... -->
+  </meta>
+  <permissions>
+    <read>product</read>
+    <create>product</create>
+    <update>product</update>
 
-        <delete>order</delete>
+    <delete>order</delete>
 
-        <!-- Since version 6.4.12.0 your app can request additional non-CRUD privileges-->
-        <permission>system:cache:info</permission>
-    </permissions>
+    <!-- Since version 6.4.12.0 your app can request additional non-CRUD privileges-->
+    <permission>system:cache:info</permission>
+  </permissions>
 </manifest>
 ```
 

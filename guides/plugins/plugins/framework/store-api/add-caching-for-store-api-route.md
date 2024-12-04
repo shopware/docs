@@ -155,7 +155,6 @@ class CachedExampleRoute extends AbstractExampleRoute
 
 ```xml
 <!-- <plugin root>/src/Resources/config/services.xml -->
-
 <?xml version="1.0"?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -251,7 +250,6 @@ class CacheInvalidationSubscriber implements EventSubscriberInterface
 
 ```xml
 <!-- <plugin root>/src/Resources/config/services.xml -->
-
 <?xml version="1.0"?>
 
 <container xmlns="http://symfony.com/schema/dic/services"

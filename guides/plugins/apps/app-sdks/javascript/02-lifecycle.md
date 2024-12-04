@@ -22,9 +22,9 @@ The lifecycle registration in the `manifest.xml` would look like this:
 
 ```xml
 <webhooks>
-    <webhook name="appActivate" url="https://app-server.com/app/activate" event="app.activated"/>
-    <webhook name="appDeactivated" url="https://app-server.com/app/deactivate" event="app.deactivated"/>
-    <webhook name="appDelete" url="https://app-server.com/app/delete" event="app.deleted"/>
+  <webhook name="appActivate" url="https://app-server.com/app/activate" event="app.activated" />
+  <webhook name="appDeactivated" url="https://app-server.com/app/deactivate" event="app.deactivated" />
+  <webhook name="appDelete" url="https://app-server.com/app/delete" event="app.deleted" />
 </webhooks>
 ```
 

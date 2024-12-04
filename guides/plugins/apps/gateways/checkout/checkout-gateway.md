@@ -29,11 +29,11 @@ Below, you can see an example definition of a working checkout gateway configura
 ```xml [manifest.xml]
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-    <!-- ... -->
+  <!-- ... -->
 
-    <gateways>
-        <checkout>https://my-app.server.com/checkout/gateway</checkout>
-    </gateways>
+  <gateways>
+    <checkout>https://my-app.server.com/checkout/gateway</checkout>
+  </gateways>
 </manifest>
 ```
 

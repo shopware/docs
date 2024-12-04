@@ -87,11 +87,11 @@ The checkout gateway endpoint is configured using a new element called `checkout
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-    <!-- ... -->
+  <!-- ... -->
 
-    <gateways>
-        <checkout>https://example.com/checkout/gateway</checkout>
-    </gateways>
+  <gateways>
+    <checkout>https://example.com/checkout/gateway</checkout>
+  </gateways>
 </manifest>
 ```
 

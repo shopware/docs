@@ -51,7 +51,7 @@ This is done by adding the `shopware.entity` tag to the service definition.
 
 ```xml
 <service id="Shopware\Tests\Integration\Core\Framework\DataAbstractionLayer\fixture\ExampleEntity">
-    <tag name="shopware.entity"/>
+  <tag name="shopware.entity"/>
 </service>
 ```
 

@@ -226,17 +226,18 @@ The flow events are configured in a `<appRoot>/src/Resources/flow.xml` file. We 
 A complete XML structure looks like this:
 
 ```xml
-<flow-extensions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://test-flow.com/flow-1.0.xsd">
-    <flow-events>
-        <flow-event>
-            <name>swag.before.open.the.doors</name>
-            <aware>customerAware</aware>
-            <aware>orderAware</aware>
-        </flow-event>
-        <flow-event>
-            ...
-        </flow-event>
-    </flow-events>
+<flow-extensions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://test-flow.com/flow-1.0.xsd">
+  <flow-events>
+    <flow-event>
+      <name>swag.before.open.the.doors</name>
+      <aware>customerAware</aware>
+      <aware>orderAware</aware>
+    </flow-event>
+    <flow-event>
+      ...
+    </flow-event>
+  </flow-events>
 </flow-extensions>
 ```
 

@@ -61,19 +61,20 @@ The manifest file is the central point of your app. It defines the interface bet
 ```xml
 <!-- manifest.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        <name>FlowBuilderTriggerApp</name>
-        <label>Flow Builder Trigger App</label>
-        <label lang="de-DE">Flow Builder Abzug-App</label>
-        <description>This is the example description for app</description>
-        <description lang="de-DE">Dies ist die Beispielbeschreibung für app</description>
-        <author>shopware AG</author>
-        <copyright>(c) shopware AG</copyright>
-        <version>4.14.0</version>
-        <icon>Resources/app-icon.png</icon>
-        <license>MIT</license>
-    </meta>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
+    <name>FlowBuilderTriggerApp</name>
+    <label>Flow Builder Trigger App</label>
+    <label lang="de-DE">Flow Builder Abzug-App</label>
+    <description>This is the example description for app</description>
+    <description lang="de-DE">Dies ist die Beispielbeschreibung für app</description>
+    <author>shopware AG</author>
+    <copyright>(c) shopware AG</copyright>
+    <version>4.14.0</version>
+    <icon>Resources/app-icon.png</icon>
+    <license>MIT</license>
+  </meta>
 </manifest>
 ```
 
@@ -96,7 +97,9 @@ To create a flow trigger, you need to define a `<flow-event>` block within a fil
     <flow-event>
       ... # The second trigger
     </flow-event>
-  </flow-events> ... </flow-extensions>
+  </flow-events>
+  <!-- ... -->
+</flow-extensions>
 ```
 
 A single flow trigger would look like this:
