@@ -257,3 +257,7 @@ framework:
   secrets:
     enabled: false
 ```
+
+## Disable auto setup of Symfony Messenger
+
+By default Symfony messenger checks if the queue is existing and creates it when not. This can be a overhead, when the system is under load. Therefore make sure that you disabled the auto setup in the connection url like so: `redis://localhost?auto_setup=false`, that query parameter can be passed to all transports. After disabling auto setup, make sure you are running `bin/console messenger:setup-transports` while deployment to make sure that the transports are existing, or when you use the [Deployment Helper](../installation-updates/deployments/deployment-helper.md) it will do that for you.
