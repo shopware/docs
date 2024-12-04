@@ -176,11 +176,11 @@ In case of a tag with a technical name with a missing translation, proceed like 
 
 ```json
 {
-    "global": {
-        "entities": {
-            "my_entity": "My entity | My entities"
-        }
+  "global": {
+    "entities": {
+      "my_entity": "My entity | My entities"
     }
+  }
 }
 ```
 

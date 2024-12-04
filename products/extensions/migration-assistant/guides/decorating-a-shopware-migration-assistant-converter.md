@@ -184,16 +184,16 @@ Currently, the premapping card has no snippets at all, so you have to create a n
 
 ```json
 {
-     "swag-migration": {
-         "index": {
-             "premappingCard": {
-                 "group": {
-                     "swag_manufacturer": "Manufacturer"
-                 }
-             }
-         }
-     }
- }
+  "swag-migration": {
+    "index": {
+      "premappingCard": {
+        "group": {
+          "swag_manufacturer": "Manufacturer"
+        }
+      }
+    }
+  }
+}
 ```
 
 This file has to be located in `Resources\administration\snippet` and registered in `Resources\administration\main.js` of the plugin like this:

@@ -58,17 +58,20 @@ Request
 
 ```json
 {
-    "limit": 1,
-    "includes": {
-        "product": ["id", "name"]
-    },
-    "aggregations": [
-        {  
-            "name": "avg-price",
-            "type": "avg",
-            "field": "price"
-        }
+  "limit": 1,
+  "includes": {
+    "product": [
+      "id",
+      "name"
     ]
+  },
+  "aggregations": [
+    {
+      "name": "avg-price",
+      "type": "avg",
+      "field": "price"
+    }
+  ]
 }
 ```
 
@@ -76,20 +79,20 @@ Response
 
 ```json
 {
-    "total": 1,
-    "data": [
-        {
-            "name": "Gorgeous Cotton Magellanic Penguin",
-            "id": "0402ca6a746b41458fd000124c308cc8",
-            "apiAlias": "product"
-        }
-    ],
-    "aggregations": {
-        "avg-price": {
-            "avg": 505.73333333333335,
-            "extensions": []
-        }
+  "total": 1,
+  "data": [
+    {
+      "name": "Gorgeous Cotton Magellanic Penguin",
+      "id": "0402ca6a746b41458fd000124c308cc8",
+      "apiAlias": "product"
     }
+  ],
+  "aggregations": {
+    "avg-price": {
+      "avg": 505.73333333333335,
+      "extensions": []
+    }
+  }
 }
 ```
 
@@ -126,17 +129,20 @@ Request
 
 ```json
 {
-    "limit": 1,
-    "includes": {
-        "product": ["id", "name"]
-    },
-    "aggregations": [
-        {  
-            "name": "count-manufacturers",
-            "type": "count",
-            "field": "manufacturerId"
-        }
+  "limit": 1,
+  "includes": {
+    "product": [
+      "id",
+      "name"
     ]
+  },
+  "aggregations": [
+    {
+      "name": "count-manufacturers",
+      "type": "count",
+      "field": "manufacturerId"
+    }
+  ]
 }
 ```
 
@@ -144,20 +150,20 @@ Response
 
 ```json
 {
-    "total": 1,
-    "data": [
-        {
-            "name": "Gorgeous Cotton Magellanic Penguin",
-            "id": "0402ca6a746b41458fd000124c308cc8",
-            "apiAlias": "product"
-        }
-    ],
-    "aggregations": {
-        "count-manufacturers": {
-            "count": 44,
-            "extensions": []
-        }
+  "total": 1,
+  "data": [
+    {
+      "name": "Gorgeous Cotton Magellanic Penguin",
+      "id": "0402ca6a746b41458fd000124c308cc8",
+      "apiAlias": "product"
     }
+  ],
+  "aggregations": {
+    "count-manufacturers": {
+      "count": 44,
+      "extensions": []
+    }
+  }
 }
 ```
 
@@ -194,17 +200,20 @@ Request
 
 ```json
 {
-    "limit": 1,
-    "includes": {
-        "product": ["id", "name"]
-    },
-    "aggregations": [
-        {  
-            "name": "max-price",
-            "type": "max",
-            "field": "price"
-        }
+  "limit": 1,
+  "includes": {
+    "product": [
+      "id",
+      "name"
     ]
+  },
+  "aggregations": [
+    {
+      "name": "max-price",
+      "type": "max",
+      "field": "price"
+    }
+  ]
 }
 ```
 
@@ -212,20 +221,20 @@ Response
 
 ```json
 {
-    "total": 1,
-    "data": [
-        {
-            "name": "Gorgeous Cotton Magellanic Penguin",
-            "id": "0402ca6a746b41458fd000124c308cc8",
-            "apiAlias": "product"
-        }
-    ],
-    "aggregations": {
-        "max-price": {
-            "max": "979",
-            "extensions": []
-        }
+  "total": 1,
+  "data": [
+    {
+      "name": "Gorgeous Cotton Magellanic Penguin",
+      "id": "0402ca6a746b41458fd000124c308cc8",
+      "apiAlias": "product"
     }
+  ],
+  "aggregations": {
+    "max-price": {
+      "max": "979",
+      "extensions": []
+    }
+  }
 }
 ```
 
@@ -262,17 +271,20 @@ Request
 
 ```json
 {
-    "limit": 1,
-    "includes": {
-        "product": ["id", "name"]
-    },
-    "aggregations": [
-        {  
-            "name": "min-price",
-            "type": "min",
-            "field": "price"
-        }
+  "limit": 1,
+  "includes": {
+    "product": [
+      "id",
+      "name"
     ]
+  },
+  "aggregations": [
+    {
+      "name": "min-price",
+      "type": "min",
+      "field": "price"
+    }
+  ]
 }
 ```
 
@@ -280,20 +292,20 @@ Response
 
 ```json
 {
-    "total": 1,
-    "data": [
-        {
-            "name": "Gorgeous Cotton Magellanic Penguin",
-            "id": "0402ca6a746b41458fd000124c308cc8",
-            "apiAlias": "product"
-        }
-    ],
-    "aggregations": {
-        "min-price": {
-            "min": "5",
-            "extensions": []
-        }
+  "total": 1,
+  "data": [
+    {
+      "name": "Gorgeous Cotton Magellanic Penguin",
+      "id": "0402ca6a746b41458fd000124c308cc8",
+      "apiAlias": "product"
     }
+  ],
+  "aggregations": {
+    "min-price": {
+      "min": "5",
+      "extensions": []
+    }
+  }
 }
 ```
 
@@ -330,17 +342,20 @@ Request
 
 ```json
 {
-    "limit": 1,
-    "includes": {
-        "product": ["id", "name"]
-    },
-    "aggregations": [
-        {  
-            "name": "sum-price",
-            "type": "sum",
-            "field": "price"
-        }
+  "limit": 1,
+  "includes": {
+    "product": [
+      "id",
+      "name"
     ]
+  },
+  "aggregations": [
+    {
+      "name": "sum-price",
+      "type": "sum",
+      "field": "price"
+    }
+  ]
 }
 ```
 
@@ -348,20 +363,20 @@ Response
 
 ```json
 {
-    "total": 1,
-    "data": [
-        {
-            "name": "Gorgeous Cotton Magellanic Penguin",
-            "id": "0402ca6a746b41458fd000124c308cc8",
-            "apiAlias": "product"
-        }
-    ],
-    "aggregations": {
-        "sum-price": {
-            "sum": 30344,
-            "extensions": []
-        }
+  "total": 1,
+  "data": [
+    {
+      "name": "Gorgeous Cotton Magellanic Penguin",
+      "id": "0402ca6a746b41458fd000124c308cc8",
+      "apiAlias": "product"
     }
+  ],
+  "aggregations": {
+    "sum-price": {
+      "sum": 30344,
+      "extensions": []
+    }
+  }
 }
 ```
 
@@ -401,17 +416,20 @@ Request
 
 ```json
 {
-    "limit": 1,
-    "includes": {
-        "product": ["id", "name"]
-    },
-    "aggregations": [
-        {  
-            "name": "stats-price",
-            "type": "stats",
-            "field": "price"
-        }
+  "limit": 1,
+  "includes": {
+    "product": [
+      "id",
+      "name"
     ]
+  },
+  "aggregations": [
+    {
+      "name": "stats-price",
+      "type": "stats",
+      "field": "price"
+    }
+  ]
 }
 ```
 
@@ -419,23 +437,23 @@ Response
 
 ```json
 {
-    "total": 1,
-    "data": [
-        {
-            "name": "Gorgeous Cotton Magellanic Penguin",
-            "id": "0402ca6a746b41458fd000124c308cc8",
-            "apiAlias": "product"
-        }
-    ],
-    "aggregations": {
-        "stats-price": {
-            "min": "5",
-            "max": "979",
-            "avg": 505.73333333333335,
-            "sum": 30344,
-            "extensions": []
-        }
+  "total": 1,
+  "data": [
+    {
+      "name": "Gorgeous Cotton Magellanic Penguin",
+      "id": "0402ca6a746b41458fd000124c308cc8",
+      "apiAlias": "product"
     }
+  ],
+  "aggregations": {
+    "stats-price": {
+      "min": "5",
+      "max": "979",
+      "avg": 505.73333333333335,
+      "sum": 30344,
+      "extensions": []
+    }
+  }
 }
 ```
 
@@ -486,19 +504,25 @@ Request
 
 ```json
 {
-    "limit": 1,
-    "includes": {
-        "product": ["id", "name"]
-    },
-    "aggregations": [
-        {
-            "name": "manufacturer-ids",
-            "type": "terms",
-            "limit": 3,
-            "sort": { "field": "manufacturer.name", "order": "DESC" },
-            "field": "manufacturerId"
-        }
+  "limit": 1,
+  "includes": {
+    "product": [
+      "id",
+      "name"
     ]
+  },
+  "aggregations": [
+    {
+      "name": "manufacturer-ids",
+      "type": "terms",
+      "limit": 3,
+      "sort": {
+        "field": "manufacturer.name",
+        "order": "DESC"
+      },
+      "field": "manufacturerId"
+    }
+  ]
 }
 ```
 
@@ -506,36 +530,36 @@ Response
 
 ```json
 {
-    "total": 1,
-    "data": [
-        {
-            "name": "Gorgeous Cotton Magellanic Penguin",
-            "id": "0402ca6a746b41458fd000124c308cc8",
-            "apiAlias": "product"
-        }
-    ],
-    "aggregations": {
-        "manufacturer-ids": {
-            "buckets": [
-                {
-                    "key": "7af1534f96604744a4bc16e713550107",
-                    "count": 1,
-                    "extensions": []
-                },
-                {
-                    "key": "32d5c55f960b409ab209fe25c88a6676",
-                    "count": 1,
-                    "extensions": []
-                },
-                {
-                    "key": "935ceec182714a8da48227d4772628a4",
-                    "count": 1,
-                    "extensions": []
-                }
-            ],
-            "extensions": []
-        }
+  "total": 1,
+  "data": [
+    {
+      "name": "Gorgeous Cotton Magellanic Penguin",
+      "id": "0402ca6a746b41458fd000124c308cc8",
+      "apiAlias": "product"
     }
+  ],
+  "aggregations": {
+    "manufacturer-ids": {
+      "buckets": [
+        {
+          "key": "7af1534f96604744a4bc16e713550107",
+          "count": 1,
+          "extensions": []
+        },
+        {
+          "key": "32d5c55f960b409ab209fe25c88a6676",
+          "count": 1,
+          "extensions": []
+        },
+        {
+          "key": "935ceec182714a8da48227d4772628a4",
+          "count": 1,
+          "extensions": []
+        }
+      ],
+      "extensions": []
+    }
+  }
 }
 ```
 
@@ -578,28 +602,31 @@ Request
 
 ```json
 {
-    "limit": 1,
-    "includes": {
-        "product": ["id", "name"]
-    },
-    "aggregations": [
-       {
-            "name": "active-price-avg",
-            "type": "filter",
-            "filter": [
-                { 
-                    "type": "equals", 
-                    "field": "active", 
-                    "value": true
-                }
-            ],
-            "aggregation": {  
-                "name": "avg-price",
-                "type": "avg",
-                "field": "price"
-            }
-        }
+  "limit": 1,
+  "includes": {
+    "product": [
+      "id",
+      "name"
     ]
+  },
+  "aggregations": [
+    {
+      "name": "active-price-avg",
+      "type": "filter",
+      "filter": [
+        {
+          "type": "equals",
+          "field": "active",
+          "value": true
+        }
+      ],
+      "aggregation": {
+        "name": "avg-price",
+        "type": "avg",
+        "field": "price"
+      }
+    }
+  ]
 }
 ```
 
@@ -607,20 +634,20 @@ Response
 
 ```json
 {
-    "total": 1,
-    "data": [
-        {
-            "name": "Awesome Granite HelpingHand",
-            "id": "000bba26e2044b98a3ee4a84b03f9551",
-            "apiAlias": "product"
-        }
-    ],
-    "aggregations": {
-        "avg-price": {
-            "avg": 517.5898195488719,
-            "extensions": []
-        }
+  "total": 1,
+  "data": [
+    {
+      "name": "Awesome Granite HelpingHand",
+      "id": "000bba26e2044b98a3ee4a84b03f9551",
+      "apiAlias": "product"
     }
+  ],
+  "aggregations": {
+    "avg-price": {
+      "avg": 517.5898195488719,
+      "extensions": []
+    }
+  }
 }
 ```
 
@@ -660,19 +687,25 @@ Request
 
 ```json
 {
-    "limit": 1,
-    "includes": {
-        "product": ["id", "name"],
-        "product_manufacturer": ["id", "name"]
-    },
-    "aggregations": [
-        {
-            "name": "manufacturers",
-            "type": "entity",
-            "definition": "product_manufacturer",
-            "field": "manufacturerId"
-        }
+  "limit": 1,
+  "includes": {
+    "product": [
+      "id",
+      "name"
+    ],
+    "product_manufacturer": [
+      "id",
+      "name"
     ]
+  },
+  "aggregations": [
+    {
+      "name": "manufacturers",
+      "type": "entity",
+      "definition": "product_manufacturer",
+      "field": "manufacturerId"
+    }
+  ]
 }
 ```
 
@@ -680,31 +713,31 @@ Response
 
 ```json
 {
-    "total": 1,
-    "data": [
-        {
-            "name": "Gorgeous Cotton Magellanic Penguin",
-            "id": "0402ca6a746b41458fd000124c308cc8",
-            "apiAlias": "product"
-        }
-    ],
-    "aggregations": {
-        "manufacturers": {
-            "entities": [
-                {
-                    "name": "Kris, Thiel and Tillman",
-                    "id": "0055fe4c16ac4d34a57b460d225682cb",
-                    "apiAlias": "product_manufacturer"
-                },
-                {
-                    "name": "Beier Group",
-                    "id": "073e354c7a854287ac8c084cd70ebf90",
-                    "apiAlias": "product_manufacturer"
-                }
-            ],
-            "apiAlias": "manufacturers_aggregation"
-        }
+  "total": 1,
+  "data": [
+    {
+      "name": "Gorgeous Cotton Magellanic Penguin",
+      "id": "0402ca6a746b41458fd000124c308cc8",
+      "apiAlias": "product"
     }
+  ],
+  "aggregations": {
+    "manufacturers": {
+      "entities": [
+        {
+          "name": "Kris, Thiel and Tillman",
+          "id": "0055fe4c16ac4d34a57b460d225682cb",
+          "apiAlias": "product_manufacturer"
+        },
+        {
+          "name": "Beier Group",
+          "id": "073e354c7a854287ac8c084cd70ebf90",
+          "apiAlias": "product_manufacturer"
+        }
+      ],
+      "apiAlias": "manufacturers_aggregation"
+    }
+  }
 }
 ```
 
@@ -748,18 +781,21 @@ Request
 
 ```json
 {
-    "limit": 1,
-    "includes": {
-        "product": ["id", "name"]
-    },
-    "aggregations": [
-        {
-            "name": "release-dates",
-            "type": "histogram",
-            "field": "releaseDate",
-            "interval": "month"
-        }
+  "limit": 1,
+  "includes": {
+    "product": [
+      "id",
+      "name"
     ]
+  },
+  "aggregations": [
+    {
+      "name": "release-dates",
+      "type": "histogram",
+      "field": "releaseDate",
+      "interval": "month"
+    }
+  ]
 }
 ```
 
@@ -767,36 +803,36 @@ Response
 
 ```json
 {
-    "total": 1,
-    "data": [
-        {
-            "name": "Gorgeous Cotton Magellanic Penguin",
-            "id": "0402ca6a746b41458fd000124c308cc8",
-            "apiAlias": "product"
-        }
-    ],
-    "aggregations": {
-        "release-dates": {
-            "buckets": [
-                {
-                    "key": "2020-04-01 00:00:00",
-                    "count": 50,
-                    "extensions": []
-                },
-                {
-                    "key": "2020-03-01 00:00:00",
-                    "count": 4,
-                    "extensions": []
-                },
-                {
-                    "key": "2020-04-01 00:00:00",
-                    "count": 6,
-                    "extensions": []
-                }
-            ],
-            "apiAlias": "release-dates_aggregation"
-        }
+  "total": 1,
+  "data": [
+    {
+      "name": "Gorgeous Cotton Magellanic Penguin",
+      "id": "0402ca6a746b41458fd000124c308cc8",
+      "apiAlias": "product"
     }
+  ],
+  "aggregations": {
+    "release-dates": {
+      "buckets": [
+        {
+          "key": "2020-04-01 00:00:00",
+          "count": 50,
+          "extensions": []
+        },
+        {
+          "key": "2020-03-01 00:00:00",
+          "count": 4,
+          "extensions": []
+        },
+        {
+          "key": "2020-04-01 00:00:00",
+          "count": 6,
+          "extensions": []
+        }
+      ],
+      "apiAlias": "release-dates_aggregation"
+    }
+  }
 }
 ```
 
@@ -846,19 +882,26 @@ Request
 
 ```json
 {
-    ...
-    "aggregations": {
-        "price_ranges": {
-            "range": {
-                "field": "products.price",
-                    "ranges": [
-                    { "to": 100.0 },
-                    { "from": 100.0, "to": 200.0 },
-                    { "from": 200.0 }
-                ]
-            }
-        }
+  // ...
+  "aggregations": {
+    "price_ranges": {
+      "range": {
+        "field": "products.price",
+        "ranges": [
+          {
+            "to": 100.0
+          },
+          {
+            "from": 100.0,
+            "to": 200.0
+          },
+          {
+            "from": 200.0
+          }
+        ]
+      }
     }
+  }
 }
 ```
 
@@ -866,29 +909,29 @@ Response
 
 ```json
 {
-    ...
-    "aggregations": {
-        "price_ranges": {
-            "buckets": [
-                {
-                    "key": "*-100.0",
-                    "to": 100.0,
-                    "doc_count": 2
-                },
-                {
-                    "key": "100.0-200.0",
-                    "from": 100.0,
-                    "to": 200.0,
-                    "doc_count": 2
-                },
-                {
-                    "key": "200.0-*",
-                    "from": 200.0,
-                    "doc_count": 3
-                }
-            ]
+  // ...
+  "aggregations": {
+    "price_ranges": {
+      "buckets": [
+        {
+          "key": "*-100.0",
+          "to": 100.0,
+          "doc_count": 2
+        },
+        {
+          "key": "100.0-200.0",
+          "from": 100.0,
+          "to": 200.0,
+          "doc_count": 2
+        },
+        {
+          "key": "200.0-*",
+          "from": 200.0,
+          "doc_count": 3
         }
+      ]
     }
+  }
 }
 ```
 
@@ -951,35 +994,38 @@ Request
 
 ```json
 {
-    "limit": 1,
-    "includes": {
-        "product": ["id", "name"]
-    },
-    "aggregations": [
-        {
-            "name": "my-filter",
-            "type": "filter",
-            "filter": [
-                { 
-                    "type": "range", 
-                    "field": "price", 
-                    "parameters": {
-                        "gte": 500
-                    }
-                }
-            ],
-            "aggregation": {  
-                "name": "per-category",
-                "type": "terms",
-                "field": "categories.id",
-                "aggregation": {
-                    "name": "manufacturer-ids",
-                    "type": "terms", 
-                    "field": "manufacturerId"
-                }
-            }
-        }
+  "limit": 1,
+  "includes": {
+    "product": [
+      "id",
+      "name"
     ]
+  },
+  "aggregations": [
+    {
+      "name": "my-filter",
+      "type": "filter",
+      "filter": [
+        {
+          "type": "range",
+          "field": "price",
+          "parameters": {
+            "gte": 500
+          }
+        }
+      ],
+      "aggregation": {
+        "name": "per-category",
+        "type": "terms",
+        "field": "categories.id",
+        "aggregation": {
+          "name": "manufacturer-ids",
+          "type": "terms",
+          "field": "manufacturerId"
+        }
+      }
+    }
+  ]
 }
 ```
 
@@ -987,56 +1033,56 @@ Response
 
 ```json
 {
-    "total": 1,
-    "data": [
-        {
-            "name": "Gorgeous Cotton Magellanic Penguin",
-            "id": "0402ca6a746b41458fd000124c308cc8",
-            "apiAlias": "product"
-        }
-    ],
-    "aggregations": {
-        "per-category": {
-            "buckets": [
-                {
-                    "key": "25fb912226fa48c2a5c9f4788f1f552d",
-                    "count": 1,
-                    "extensions": [],
-                    "manufacturer-ids": {
-                        "buckets": [
-                            {
-                                "key": "715901f2b5864181a777d1a1b912d9a2",
-                                "count": 1,
-                                "extensions": []
-                            }
-                        ],
-                        "extensions": []
-                    }
-                },
-                {
-                    "key": "59b38c960597446e8c7bb76593ff7043",
-                    "count": 2,
-                    "extensions": [],
-                    "manufacturer-ids": {
-                        "buckets": [
-                            {
-                                "key": "98e53a711d8549059325da044da2951d",
-                                "count": 1,
-                                "extensions": []
-                            },
-                            {
-                                "key": "ee8b37324c5a4c32962367146be4d7b4",
-                                "count": 1,
-                                "extensions": []
-                            }
-                        ],
-                        "extensions": []
-                    }
-                }
-            ],
-            "apiAlias": "per-category_aggregation"
-        }
+  "total": 1,
+  "data": [
+    {
+      "name": "Gorgeous Cotton Magellanic Penguin",
+      "id": "0402ca6a746b41458fd000124c308cc8",
+      "apiAlias": "product"
     }
+  ],
+  "aggregations": {
+    "per-category": {
+      "buckets": [
+        {
+          "key": "25fb912226fa48c2a5c9f4788f1f552d",
+          "count": 1,
+          "extensions": [],
+          "manufacturer-ids": {
+            "buckets": [
+              {
+                "key": "715901f2b5864181a777d1a1b912d9a2",
+                "count": 1,
+                "extensions": []
+              }
+            ],
+            "extensions": []
+          }
+        },
+        {
+          "key": "59b38c960597446e8c7bb76593ff7043",
+          "count": 2,
+          "extensions": [],
+          "manufacturer-ids": {
+            "buckets": [
+              {
+                "key": "98e53a711d8549059325da044da2951d",
+                "count": 1,
+                "extensions": []
+              },
+              {
+                "key": "ee8b37324c5a4c32962367146be4d7b4",
+                "count": 1,
+                "extensions": []
+              }
+            ],
+            "extensions": []
+          }
+        }
+      ],
+      "apiAlias": "per-category_aggregation"
+    }
+  }
 }
 ```
 

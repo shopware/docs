@@ -152,25 +152,25 @@ Modules generated via `admin-ui.xml` are automatically referring to the followin
 
 ```json
 {
-   "custom_entity_bundle": {
-       "moduleTitle": "Blog posts",
-       "moduleDescription": "Blog is colorful and has pics",
-       "tabs": {
-           "main": "Main settings",
-           "tabClone": "Optional stuff"
-       },
-       "cards": {
-           "general": "General stuff",
-           "cardClone": "Just a clone",
-           "generalSecond": "More general stuff"
-       },
-       "fields": {
-           "swTitle": "Title",
-           "swContent": "Product description",
-           "swContentHelpText": "Help text!",
-           "swContentPlaceholder": "Enter description...",
-           "position": "Positioning"
-       }
-   }
+  "custom_entity_bundle": {
+    "moduleTitle": "Blog posts",
+    "moduleDescription": "Blog is colorful and has pics",
+    "tabs": {
+      "main": "Main settings",
+      "tabClone": "Optional stuff"
+    },
+    "cards": {
+      "general": "General stuff",
+      "cardClone": "Just a clone",
+      "generalSecond": "More general stuff"
+    },
+    "fields": {
+      "swTitle": "Title",
+      "swContent": "Product description",
+      "swContentHelpText": "Help text!",
+      "swContentPlaceholder": "Enter description...",
+      "position": "Positioning"
+    }
+  }
 }
 ```

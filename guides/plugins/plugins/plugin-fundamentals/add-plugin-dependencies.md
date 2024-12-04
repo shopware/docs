@@ -19,10 +19,10 @@ So, those are example lines of the `SwagBasicExample` plugin's `composer.json`:
 
 ```json
 {
-    "name": "swag/swag-basic-example",
-    "description": "Plugin quick start plugin",
-    "version": "v1.0.0",
-    ...
+  "name": "swag/swag-basic-example",
+  "description": "Plugin quick start plugin",
+  "version": "v1.0.0",
+  // ...
 }
 ```
 

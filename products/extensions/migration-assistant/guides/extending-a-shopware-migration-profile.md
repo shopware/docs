@@ -136,15 +136,15 @@ First of all, you create a new snippet file, e.g., `en-GB.json`:
 
 ```json
 {
-    "swag-migration": {
-        "index": {
-            "selectDataCard": {
-                "entities": {
-                    "swag_bundle": "Bundles:"
-                }
-            }
+  "swag-migration": {
+    "index": {
+      "selectDataCard": {
+        "entities": {
+          "swag_bundle": "Bundles:"
         }
+      }
     }
+  }
 }
 ```
 

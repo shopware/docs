@@ -133,12 +133,12 @@ Each language then contains a nested object of translations, so let's have a loo
 
 ```json
 {
-    "swag-example": {
-        "nested": {
-            "value": "example"
-        },
-        "foo": "bar"
-    }
+  "swag-example": {
+    "nested": {
+      "value": "example"
+    },
+    "foo": "bar"
+  }
 }
 ```
 
@@ -163,12 +163,12 @@ This should be your snippet file now:
 
 ```json
 {
-    "swag-example": {
-        "general": {
-            "mainMenuItemGeneral": "My custom module",
-            "descriptionTextModule": "Manage this custom module here"
-        }
+  "swag-example": {
+    "general": {
+      "mainMenuItemGeneral": "My custom module",
+      "descriptionTextModule": "Manage this custom module here"
     }
+  }
 }
 ```
 

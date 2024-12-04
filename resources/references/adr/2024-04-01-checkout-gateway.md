@@ -101,20 +101,20 @@ The `AppCheckoutGateway` will call the app server with this payload.
 
 ```json
 {
-    "salesChannelContext": SalesChannelContextObject,
-    "cart": CartObject,
-    "paymentMethods": [
-        "payment-method-technical-name-1",
-        "payment-method-technical-name-2",
-        "payment-method-technical-name-3",
-        ...
-    ],
-    "shippingMethods": [
-        "shipping-method-technical-name-1",
-        "shipping-method-technical-name-2",
-        "shipping-method-technical-name-3",
-        ...
-    ]
+  "salesChannelContext": SalesChannelContextObject,
+  "cart": CartObject,
+  "paymentMethods": [
+    "payment-method-technical-name-1",
+    "payment-method-technical-name-2",
+    "payment-method-technical-name-3",
+    // ...
+  ],
+  "shippingMethods": [
+    "shipping-method-technical-name-1",
+    "shipping-method-technical-name-2",
+    "shipping-method-technical-name-3",
+    // ...
+  ]
 }
 ```
 

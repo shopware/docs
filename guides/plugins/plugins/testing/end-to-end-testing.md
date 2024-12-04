@@ -403,7 +403,7 @@ In the example file below, this file is used in order to define and create a cus
   "guest": true,
   "addresses": [
     {
-        ...
+      // ...
     }
   ]
 }

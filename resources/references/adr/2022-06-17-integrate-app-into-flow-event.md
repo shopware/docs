@@ -53,12 +53,12 @@ Flow data storer saves the data from the event as the [StorableFlow](../adr/2022
 *Example to define data from the API:*
 
 ```json
-    {
-        "customerId": "d20e4d60e35e4afdb795c767eee08fec",
-        "salesChannelId": "55cb094fd1794d489c63975a6b4b5b90",
-        "shopName": "Shopware's Shop",
-        "url": "https://shopware.com" 
-    }
+{
+  "customerId": "d20e4d60e35e4afdb795c767eee08fec",
+  "salesChannelId": "55cb094fd1794d489c63975a6b4b5b90",
+  "shopName": "Shopware's Shop",
+  "url": "https://shopware.com"
+}
 ```
 
 *After that, at actions we can get data thought FlowStorer.*
@@ -250,18 +250,18 @@ We support defining translation for custom trigger events to show in the trigger
     **Example pseudocode**
     ```json
     {
-    "sw-flow-custom-event": {
-      "event-tree": {
-        "swag": "Swag",
-        "before": "Before",
-        "openTheDoors": "Open the doors"
-      },
-      "flow-list": {
-        "swag_before_open_the_doors": "Before open the doors"
+      "sw-flow-custom-event": {
+        "event-tree": {
+          "swag": "Swag",
+          "before": "Before",
+          "openTheDoors": "Open the doors"
+        },
+        "flow-list": {
+          "swag_before_open_the_doors": "Before open the doors"
+        }
       }
     }
-}
-```
+    ```
 
 ## Database migration
 * We will create a new table `app_flow_event` to save defined data from the `<appRoot>/src/Resources/flow.xml` file.

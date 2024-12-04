@@ -55,18 +55,18 @@ The format looks as follows:
 
 ```json
 {
-    "entity_one": [
-        "fieldOne",
-        "fieldTwo",
-        "fieldThree"
-    ],
-    "entity_two": [
-        "fieldOne",
-        "fieldTwo"
-    ],
-    "entity_three": [
-        "fieldOne"
-    ]
+  "entity_one": [
+    "fieldOne",
+    "fieldTwo",
+    "fieldThree"
+  ],
+  "entity_two": [
+    "fieldOne",
+    "fieldTwo"
+  ],
+  "entity_three": [
+    "fieldOne"
+  ]
 }
 ```
 
@@ -74,16 +74,16 @@ Example:
 
 ```json
 {
-    "category": [
-        "id",
-        "parentId",
-        "type"
-    ],
-    "product": [
-        "id",
-        "parentId",
-        "name"
-    ]
+  "category": [
+    "id",
+    "parentId",
+    "type"
+  ],
+  "product": [
+    "id",
+    "parentId",
+    "name"
+  ]
 }
 ```
 
@@ -114,10 +114,10 @@ class ProductDefinition
 
 ```json
 {
-    "product": [
-        "categories",
-        "tags"
-    ]
+  "product": [
+    "categories",
+    "tags"
+  ]
 }
 ```
 

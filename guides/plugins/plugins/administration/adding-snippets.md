@@ -23,13 +23,13 @@ Each language then receives a nested object of translations, so let's have a loo
 
 ```json
 {
-    "swag-example": {
-        "nested": {
-            "value": "example",
-            "examplePluralization": "1 Product | {n} Products"
-        },
-        "foo": "bar"
-    }
+  "swag-example": {
+    "nested": {
+      "value": "example",
+      "examplePluralization": "1 Product | {n} Products"
+    },
+    "foo": "bar"
+  }
 }
 ```
 

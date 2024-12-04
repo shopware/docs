@@ -165,12 +165,12 @@ The data given will be saved through `StorableFlow`. This can be utilized for ac
 Here is an example to define data from the API:
 
 ```json
-    {
-        "customerId": "d20e4d60e35e4afdb795c767eee08fec",
-        "salesChannelId": "55cb094fd1794d489c63975a6b4b5b90",
-        "shopName": "Shopware's Shop",
-        "url": "https://shopware.com" 
-    }
+{
+  "customerId": "d20e4d60e35e4afdb795c767eee08fec",
+  "salesChannelId": "55cb094fd1794d489c63975a6b4b5b90",
+  "shopName": "Shopware's Shop",
+  "url": "https://shopware.com" 
+}
 ```
 
 Flow actions can retrieve the data from FlowStorer.

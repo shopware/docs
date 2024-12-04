@@ -69,16 +69,16 @@ $criteria->addFilter(
 
 ```json
 {
-    "filter": [
-        { 
-            "type": "equalsAny", 
-            "field": "productNumber", 
-            "value": [
-                "3fed029475fa4d4585f3a119886e0eb1", 
-                "77d26d011d914c3aa2c197c81241a45b"
-            ] 
-        }    
-    ]
+  "filter": [
+    {
+      "type": "equalsAny",
+      "field": "productNumber",
+      "value": [
+        "3fed029475fa4d4585f3a119886e0eb1",
+        "77d26d011d914c3aa2c197c81241a45b"
+      ]
+    }
+  ]
 }
 ```
 
@@ -103,13 +103,13 @@ $criteria->addFilter(new ContainsFilter('name', 'Lightweight'));
 
 ```json
 {
-    "filter": [
-        { 
-            "type": "contains", 
-            "field": "name", 
-            "value": "Lightweight"
-        }    
-    ]
+  "filter": [
+    {
+      "type": "contains",
+      "field": "name",
+      "value": "Lightweight"
+    }
+  ]
 }
 ```
 
@@ -146,16 +146,16 @@ $criteria->addFilter(
 
 ```json
 {
-    "filter": [
-        { 
-            "type": "range", 
-            "field": "stock", 
-            "parameters": {
-                "gte": 20,      
-                "lte": 30
-            }
-        }    
-    ]
+  "filter": [
+    {
+      "type": "range",
+      "field": "stock",
+      "parameters": {
+        "gte": 20,
+        "lte": 30
+      }
+    }
+  ]
 }
 ```
 
@@ -190,29 +190,29 @@ $criteria->addFilter(
 
 ```json
 {
-    "filter": [
-        { 
-            "type": "not", 
-            "operator": "or",
-            "queries": [
-                {
-                    "type": "equals",
-                    "field": "stock",
-                    "value": 1
-                },
-                {
-                    "type": "equals",
-                    "field": "availableStock",
-                    "value": 1
-                }    
-            ]
+  "filter": [
+    {
+      "type": "not",
+      "operator": "or",
+      "queries": [
+        {
+          "type": "equals",
+          "field": "stock",
+          "value": 1
         },
         {
-            "type": "equals",
-            "field": "active",
-            "value": true
+          "type": "equals",
+          "field": "availableStock",
+          "value": 1
         }
-    ]
+      ]
+    },
+    {
+      "type": "equals",
+      "field": "active",
+      "value": true
+    }
+  ]
 }
 ```
 
@@ -295,13 +295,13 @@ $criteria->addFilter(new PrefixFilter('name', 'Lightweight'));
 
 ```json
 {
-    "filter": [
-        {
-            "type": "prefix",
-            "field": "name",
-            "value": "Lightweight"
-        }
-    ]
+  "filter": [
+    {
+      "type": "prefix",
+      "field": "name",
+      "value": "Lightweight"
+    }
+  ]
 }
 ```
 
@@ -326,13 +326,13 @@ $criteria->addFilter(new SuffixFilter('name', 'Lightweight'));
 
 ```json
 {
-    "filter": [
-        {
-            "type": "suffix",
-            "field": "name",
-            "value": "Lightweight"
-        }
-    ]
+  "filter": [
+    {
+      "type": "suffix",
+      "field": "name",
+      "value": "Lightweight"
+    }
+  ]
 }
 ```
 

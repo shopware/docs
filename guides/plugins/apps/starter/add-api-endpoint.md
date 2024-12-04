@@ -154,7 +154,10 @@ curl --request GET \
 which should return something like:
 
 ```json
-{"apiAlias":"store_api_swag_topseller_response","test":"This is my API endpoint"}
+{
+  "apiAlias": "store_api_swag_topseller_response",
+  "test": "This is my API endpoint"
+}
 ```
 
 However, instead of using curl, we recommend using visual clients to test the API - such as [Postman](https://www.postman.com/downloads/) or [Insomnia](https://insomnia.rest/download).

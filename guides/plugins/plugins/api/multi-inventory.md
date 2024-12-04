@@ -97,64 +97,71 @@ The following examples contain payloads for typical use-cases of this feature. B
 ### Creating or updating a WarehouseGroup and assigning it to an existing Warehouse
 
 ```json
-
 // POST /api/warehouse-group
 // PATCH /api/warehouse-group/8cf7736855594501aaf86351e147c61e
-
 {
-    "id": "8cf7736855594501aaf86351e147c61e",
-    "name": "Group A",
-    "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.",
-    "priority": 25,
-    "ruleId": "93248b220a064424a1f6e90010820ba2",
-    "warehouses":  [{
-        "id": "4ce2bd36d2824153812fcb6a97f22d22"
-    }]
+  "id": "8cf7736855594501aaf86351e147c61e",
+  "name": "Group A",
+  "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.",
+  "priority": 25,
+  "ruleId": "93248b220a064424a1f6e90010820ba2",
+  "warehouses": [
+    {
+      "id": "4ce2bd36d2824153812fcb6a97f22d22"
+    }
+  ]
 }
 ```
 
 ### Creating or updating a Warehouse and assigning it to an existing WarehouseGroups
 
 ```json
-
 // POST /api/warehouse
 // PATCH /api/warehouse/4ce2bd36d2824153812fcb6a97f22d22
-
 {
-    "id": "4ce2bd36d2824153812fcb6a97f22d22",
-    "name": "Warehouse A",
-    "groups": [{
-        "id": "8cf7736855594501aaf86351e147c61e"
-    }, {
-        "id": "4154501a3812fcb6a501aaf8c7736855"
-    }]
+  "id": "4ce2bd36d2824153812fcb6a97f22d22",
+  "name": "Warehouse A",
+  "groups": [
+    {
+      "id": "8cf7736855594501aaf86351e147c61e"
+    },
+    {
+      "id": "4154501a3812fcb6a501aaf8c7736855"
+    }
+  ]
 }
 ```
 
 ### Assigning WarehouseGroups to Products, creating ProductWarehouses via association
 
 ```json
-
 // POST /api/_action/sync
-
-[{
+[
+  {
     "action": "upsert",
     "entity": "product",
-    "payload": [{
+    "payload": [
+      {
         "id": "86d38702be7e4ac9a941583933a1c6f5",
         "versionId": "0fa91ce3e96a4bc2be4bd9ce752c3425",
-        "warehouseGroups": [{
+        "warehouseGroups": [
+          {
             "id": "8cf7736855594501aaf86351e147c61e"
-        }],
-        "warehouses": [{
+          }
+        ],
+        "warehouses": [
+          {
             "id": "f5c850109fe64c228377cbd369903b75",
             "productId": "86d38702be7e4ac9a941583933a1c6f5",
             "productVersionId": "0fa91ce3e96a4bc2be4bd9ce752c3425",
-            "warehouseId":"4ce2bd36d2824153812fcb6a97f22d22",
+            "warehouseId": "4ce2bd36d2824153812fcb6a97f22d22",
             "stock": 0
-        }]
-    }]
-}]
+          }
+        ]
+      }
+    ]
+  }
+]
 ```
 
 ### Updating ProductWarehouse stocks
@@ -162,26 +169,27 @@ The following examples contain payloads for typical use-cases of this feature. B
 You can update `product_warehouse.stock` in batch via SyncApi, or patch a specific entity directly via entity repository.
 
 ```json
-
 // POST /api/_action/sync
-
-[{
+[
+  {
     "action": "upsert",
     "entity": "product_warehouse",
-    "payload": [{
+    "payload": [
+      {
         "id": "f5c850109fe64c228377cbd369903b75",
         "stock": 1500
-    }, {
+      },
+      {
         "id": "228377cbd369903b75f5c850109fe64c",
         "stock": 0
-    }]
-}]
-
+      }
+    ]
+  }
+]
 // PATCH /api/product-warehouse/f5c850109fe64c228377cbd369903b75
-
 {
-    "id": "f5c850109fe64c228377cbd369903b75",
-    "stock": 1500
+  "id": "f5c850109fe64c228377cbd369903b75",
+  "stock": 1500
 }
 ```
 

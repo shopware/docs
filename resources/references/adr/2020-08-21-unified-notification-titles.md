@@ -54,7 +54,9 @@ this.createNotificationError({
 * Create error message snippets (DE/EN)
 
 ```json
-    "messageError": "Meaningful error message.",
+{
+  "messageError": "Meaningful error message."
+}
 ```
 
 * Avoid cheap solutions like 

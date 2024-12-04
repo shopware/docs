@@ -351,18 +351,18 @@ Below is an example of implementing the tracking logic in their extensions:
 
 ```json
 {
-    "identifier": "8e167662-6bbb-11eb-9439-0242ac130002",
-    "reportDate": "2005-08-15T15:52:01",
-    "instanceId": "alur24esfaw3ghk",
-    "shopwareVersion": "6.3.1",
-    "reportDataKeys": [
-        {
-            "customer": 3
-        },
-        {
-            "turnover": 440
-        }
-    ]
+  "identifier": "8e167662-6bbb-11eb-9439-0242ac130002",
+  "reportDate": "2005-08-15T15:52:01",
+  "instanceId": "alur24esfaw3ghk",
+  "shopwareVersion": "6.3.1",
+  "reportDataKeys": [
+    {
+      "customer": 3
+    },
+    {
+      "turnover": 440
+    }
+  ]
 }
 ```
 

@@ -27,48 +27,38 @@ Here is an example of how the final `PremappingStruct` looks like in the `genera
 
 ```json
 {
-   "entity":"salutation",
-   "choices":[
-      {
-         "uuid":"d4883ea9db2b4a5ca033873903358062",
-         "description":"mr",
-         "extensions":[
-
-         ]
-      },
-      {
-         "uuid":"7a7ef1e4a9064c46b5f85e28b4d942a9",
-         "description":"mrs",
-         "extensions":[
-
-         ]
-      },
-      {
-         "uuid":"a6fa00aef9a648d9bd012dbe16c112bf",
-         "description":"not_specified",
-         "extensions":[
-
-         ]
-      }
-   ],
-   "mapping":[
-      {
-         "sourceId":"mr",
-         "description":"mr",
-         "destinationUuid":"d4883ea9db2b4a5ca033873903358062",
-         "extensions":[
-
-         ]
-      },
-      {
-         "sourceId":"ms",
-         "description":"ms",
-         "destinationUuid":"",
-         "extensions":[
-
-         ]
-      }
-   ]
+  "entity": "salutation",
+  "choices": [
+    {
+      "uuid": "d4883ea9db2b4a5ca033873903358062",
+      "description": "mr",
+      "extensions": []
+    },
+    {
+      "uuid": "7a7ef1e4a9064c46b5f85e28b4d942a9",
+      "description": "mrs",
+      "extensions": []
+    },
+    {
+      "uuid": "a6fa00aef9a648d9bd012dbe16c112bf",
+      "description": "not_specified",
+      "extensions": []
+    }
+  ],
+  "mapping": [
+    {
+      "sourceId": "mr",
+      "description": "mr",
+      "destinationUuid": "d4883ea9db2b4a5ca033873903358062",
+      "extensions": []
+    },
+    {
+      "sourceId": "ms",
+      "description": "ms",
+      "destinationUuid": "",
+      "extensions": []
+    }
+  ]
 }
 ```
 

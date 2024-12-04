@@ -31,9 +31,9 @@ Merchants can use the cms sections and blocks to customize their storefront.
 
 ```json
 {
-    'mobile': true,
-    'tablet': true,
-    'desktop': true
+  "mobile": true,
+  "tablet": true,
+  "desktop": true
 }
 ```
 
