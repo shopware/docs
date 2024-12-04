@@ -71,10 +71,10 @@ class AddDataToPage implements EventSubscriberInterface
 The next thing we need to do is register our subscriber in the DI-Container and tag it as an event subscriber:
 
 ```xml
-// Resources/config/services.xml
-<?xml version="1.0" ?>
-<service id="Swag\BasicExample\Service\AddDataToPage" >
-    <tag name="kernel.event_subscriber" />
+<!-- Resources/config/services.xml -->
+<?xml version="1.0"?>
+<service id="Swag\BasicExample\Service\AddDataToPage">
+  <tag name="kernel.event_subscriber" />
 </service>
 ```
 

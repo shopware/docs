@@ -20,15 +20,21 @@ However, currently, the subscriber adheres to a highly precise invalidation conc
 Therefore, we have solved all configurations via the service definition of this subscriber, so that all events, on which the subscriber listens, can be manipulated via compiler passes.
 
 ```xml
-// src/Core/Framework/DependencyInjection/cache.xml
+<!--src/Core/Framework/DependencyInjection/cache.xml -->
 <service id="Shopware\Core\Framework\Adapter\Cache\CacheInvalidationSubscriber">
-    <tag name="kernel.event_listener" event="Shopware\Core\Content\Category\Event\CategoryIndexerEvent" method="invalidateCategoryRouteByCategoryIds" priority="2000" />
+  <tag name="kernel.event_listener"
+    event="Shopware\Core\Content\Category\Event\CategoryIndexerEvent"
+    method="invalidateCategoryRouteByCategoryIds" priority="2000" />
 
-    <tag name="kernel.event_listener" event="Shopware\Core\Content\Category\Event\CategoryIndexerEvent" method="invalidateListingRouteByCategoryIds" priority="2001" />
+  <tag name="kernel.event_listener"
+    event="Shopware\Core\Content\Category\Event\CategoryIndexerEvent"
+    method="invalidateListingRouteByCategoryIds" priority="2001" />
 
-    <tag name="kernel.event_listener" event="Shopware\Core\Content\LandingPage\Event\LandingPageIndexerEvent" method="invalidateIndexedLandingPages" priority="2000" />
-    
-    <!-- ... -->
+  <tag name="kernel.event_listener"
+    event="Shopware\Core\Content\LandingPage\Event\LandingPageIndexerEvent"
+    method="invalidateIndexedLandingPages" priority="2000" />
+
+  <!-- ... -->
 </service>
 ```
 

@@ -26,35 +26,37 @@ Here we show you how this could look like in the end.
 The service.xml with all needed definitions.
 
 ```xml
-// <plugin root>/src/Core/Content/DependencyInjection/product.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Core/Content/DependencyInjection/product.xml -->
+<?xml version="1.0"?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Extension\Content\Product\CustomExtension">
-            <tag name="shopware.entity.extension"/>
-        </service>
+  <services>
+    <service id="Swag\BasicExample\Extension\Content\Product\CustomExtension">
+      <tag name="shopware.entity.extension" />
+    </service>
 
-        <service id="Swag\BasicExample\Extension\Content\Product\OneToOneExampleExtensionDefinition">
-            <tag name="shopware.entity.definition" entity="one_to_one_swag_example_extension" />
-        </service>
+    <service id="Swag\BasicExample\Extension\Content\Product\OneToOneExampleExtensionDefinition">
+      <tag name="shopware.entity.definition" entity="one_to_one_swag_example_extension" />
+    </service>
 
-        <service id="Swag\BasicExample\Extension\Content\Product\OneToManyExampleExtensionDefinition">
-            <tag name="shopware.entity.definition" entity="one_to_many_swag_example_extension" />
-        </service>
+    <service id="Swag\BasicExample\Extension\Content\Product\OneToManyExampleExtensionDefinition">
+      <tag name="shopware.entity.definition" entity="one_to_many_swag_example_extension" />
+    </service>
 
-        <service id="Swag\BasicExample\Subscriber\ProductSubscriber">
-            <tag name="kernel.event_subscriber"/>
-        </service>
+    <service id="Swag\BasicExample\Subscriber\ProductSubscriber">
+      <tag name="kernel.event_subscriber" />
+    </service>
 
-        <service id="Swag\BasicExample\Elasticsearch\Product\MyProductEsDecorator" decorates="Shopware\Elasticsearch\Product\ElasticsearchProductDefinition">
-            <argument type="service" id="Swag\BasicExample\Elasticsearch\Product\MyProductEsDecorator.inner"/>
-            <argument type="service" id="Doctrine\DBAL\Connection"/>
-        </service>
-    </services>
+    <service id="Swag\BasicExample\Elasticsearch\Product\MyProductEsDecorator"
+      decorates="Shopware\Elasticsearch\Product\ElasticsearchProductDefinition">
+      <argument type="service"
+        id="Swag\BasicExample\Elasticsearch\Product\MyProductEsDecorator.inner" />
+      <argument type="service" id="Doctrine\DBAL\Connection" />
+    </service>
+  </services>
 </container>
 ```
 

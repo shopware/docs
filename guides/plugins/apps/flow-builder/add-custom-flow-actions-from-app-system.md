@@ -87,19 +87,18 @@ The name of your app that you provide in the manifest file needs to match the fo
 To create a flow action, you need to define a `<flow-action>` block within a file called `flow-action.xml`. Each `<flow-action>` represents one action and you can define an arbitrary number of actions.
 
 ```xml
-// Resources/flow-action.xml
-<flow-actions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd">
+<!-- Resources/flow-action.xml -->
+<flow-actions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd">
+  <flow-action>
+    ... # The first action
+  </flow-action>
     <flow-action>
-        ... # The first action
-    </flow-action>
+    ... # The second action
+  </flow-action>
     <flow-action>
-        ... # The second action
-    </flow-action>
-    <flow-action>
-        ... # The third action
-    </flow-action>
-    ...
-</flow-actions>
+    ... # The third action
+  </flow-action> ... </flow-actions>
 ```
 
 From 6.5.2.0, to create a flow action, you must define a `<flow-actions>` block within a file called `flow.xml`. Each `<flow-action>` in `<flow-actions>` represents one action, and you can define an arbitrary number of actions.

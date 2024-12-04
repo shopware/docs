@@ -59,22 +59,23 @@ All payment handler methods have the `\Shopware\Core\System\SalesChannel\SalesCh
 Before we're going to have a look at some examples, we need to register our new service to the [Dependency Injection](../../plugin-fundamentals/dependency-injection) container. We'll use a class called `ExamplePayment` here.
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\PaymentPlugin\Service\ExamplePayment">
-            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
-            <tag name="shopware.payment.method.sync" />
-<!--        <tag name="shopware.payment.method.async" />-->
-<!--        <tag name="shopware.payment.method.prepared" />-->
-<!--        <tag name="shopware.payment.method.refund" />-->
-        </service>
-    </services>
+  <services>
+    <service id="Swag\PaymentPlugin\Service\ExamplePayment">
+      <argument type="service"
+        id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler" />
+      <tag name="shopware.payment.method.sync" />
+      <!-- <tag name="shopware.payment.method.async" />-->
+      <!-- <tag name="shopware.payment.method.prepared" />-->
+      <!-- <tag name="shopware.payment.method.refund" />-->
+    </service>
+  </services>
 </container>
 ```
 

@@ -24,20 +24,20 @@ Adding custom cookies basically requires you to decorate a service, the `CookieP
 Start with creating the `services.xml` entry and with decorating the `CookieProviderInterface`. The `CookieProvider` service was already built before we decided to use abstract classes for decorations, so don't be confused here.
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-       <service id="PluginName\Framework\Cookie\CustomCookieProvider"
-                decorates="Shopware\Storefront\Framework\Cookie\CookieProviderInterface">
-             <argument type="service" 
-                       id="PluginName\Framework\Cookie\CustomCookieProvider.inner" />
-         </service>
-    </services>
+  <services>
+    <service id="PluginName\Framework\Cookie\CustomCookieProvider"
+      decorates="Shopware\Storefront\Framework\Cookie\CookieProviderInterface">
+      <argument type="service"
+        id="PluginName\Framework\Cookie\CustomCookieProvider.inner" />
+    </service>
+  </services>
 </container>
 ```
 

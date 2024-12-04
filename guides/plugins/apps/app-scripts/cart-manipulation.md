@@ -120,16 +120,16 @@ You can define price fields for [custom fields](../custom-data/custom-fields)
 You can define price fields for [app configuration](../configuration).
 
 ```xml
-// Resources/config/config.xml
+<!-- Resources/config/config.xml -->
 <card>
-    <title>Basic configuration</title>
-    <title lang="de-DE">Grundeinstellungen</title>
-    <name>TestCard</name>
-    <input-field type="price">
-        <name>priceField</name>
-        <label>Test price field</label>
-        <defaultValue>null</defaultValue>
-    </input-field>
+  <title>Basic configuration</title>
+  <title lang="de-DE">Grundeinstellungen</title>
+  <name>TestCard</name>
+  <input-field type="price">
+    <name>priceField</name>
+    <label>Test price field</label>
+    <defaultValue>null</defaultValue>
+  </input-field>
 </card>
 ```
 
@@ -285,16 +285,16 @@ The cart scripts automatically integrate with the [Rule Builder](../../../../con
 For example, you can add an entity-single-select field to your [app's config](../configuration) to allow the merchant to choose a rule that needs to match your app script taking effect.
 
 ```xml
-// Resources/config/config.xml
+<!-- Resources/config/config.xml -->
 <card>
-    <title>Basic configuration</title>
-    <title lang="de-DE">Grundeinstellungen</title>
-    <name>TestCard</name>
-    <component name="sw-entity-single-select">
-        <name>exampleRule</name>
-        <entity>rule</entity>
-        <label>Choose a rule that activates the cart script</label>
-    </component>
+  <title>Basic configuration</title>
+  <title lang="de-DE">Grundeinstellungen</title>
+  <name>TestCard</name>
+  <component name="sw-entity-single-select">
+    <name>exampleRule</name>
+    <entity>rule</entity>
+    <label>Choose a rule that activates the cart script</label>
+  </component>
 </card>
 ```
 

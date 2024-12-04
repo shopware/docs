@@ -108,37 +108,37 @@ Inside your `ThemeVariableSubscriber` you can also read values from the plugin c
 First, lets add a new plugin configuration field according to the [Plugin Configurations](../plugin-fundamentals/add-plugin-configuration):
 
 ```xml
-// <plugin root>/src/Resources/config/config.xml
+<!-- <plugin root>/src/Resources/config/config.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
 
-    <card>
-        <title>Example configuration</title>
-        <input-field type="colorpicker">
-            <name>sassPluginHeaderBgColor</name>
-            <label>Header background color</label>
-        </input-field>
-    </card>
+  <card>
+    <title>Example configuration</title>
+    <input-field type="colorpicker">
+      <name>sassPluginHeaderBgColor</name>
+      <label>Header background color</label>
+    </input-field>
+  </card>
 </config>
 ```
 
 As you can see in the example, we add an input field of the type colorpicker for our plugin. In the Administration, the component 'sw-colorpicker' will later be displayed for the selection of the value. You also can set a `defaultValue` which will be pre-selected like the following:
 
 ```xml
-// <plugin root>/src/Resources/config/config.xml
+<!-- <plugin root>/src/Resources/config/config.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
 
-    <card>
-        <title>Example configuration</title>
-        <input-field type="colorpicker">
-            <name>sassPluginHeaderBgColor</name>
-            <label>Header background color</label>
-            <defaultValue>#fff</defaultValue>
-        </input-field>
-    </card>
+  <card>
+    <title>Example configuration</title>
+    <input-field type="colorpicker">
+      <name>sassPluginHeaderBgColor</name>
+      <label>Header background color</label>
+      <defaultValue>#fff</defaultValue>
+    </input-field>
+  </card>
 </config>
 ```
 

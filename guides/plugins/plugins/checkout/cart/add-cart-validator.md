@@ -77,17 +77,17 @@ One more thing to do is to register your new validator to the [dependency inject
 Your validator has to be registered using the tag `shopware.cart.validator`:
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Core\Checkout\Cart\Custom\CustomCartValidator">
-            <tag name="shopware.cart.validator"/>
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Core\Checkout\Cart\Custom\CustomCartValidator">
+      <tag name="shopware.cart.validator" />
+    </service>
+  </services>
 </container>
 ```
 

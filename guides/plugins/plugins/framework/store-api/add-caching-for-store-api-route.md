@@ -154,23 +154,27 @@ class CachedExampleRoute extends AbstractExampleRoute
 <Tab title="services.xml">
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
+<!-- <plugin root>/src/Resources/config/services.xml -->
 
-<?xml version="1.0" ?> 
+<?xml version="1.0"?>
 
-<container xmlns="http://symfony.com/schema/dic/services" 
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-    
-    <services> 
-        <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\CachedExampleRoute" decorates="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute" decoration-priority="-1000">
-            <argument type="service" id="Swag\BasicExample\Core\Content\Example\SalesChannel\CachedExampleRoute.inner"/>
-            <argument type="service" id="cache.object"/>
-            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Cache\EntityCacheKeyGenerator"/>
-            <argument type="service" id="Shopware\Core\Framework\Adapter\Cache\CacheTracer"/>
-            <argument type="service" id="logger" />
-        </service>
-    </services>
+<container xmlns="http://symfony.com/schema/dic/services"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+  <services>
+    <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\CachedExampleRoute"
+      decorates="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute"
+      decoration-priority="-1000">
+      <argument type="service"
+        id="Swag\BasicExample\Core\Content\Example\SalesChannel\CachedExampleRoute.inner" />
+      <argument type="service" id="cache.object" />
+      <argument type="service"
+        id="Shopware\Core\Framework\DataAbstractionLayer\Cache\EntityCacheKeyGenerator" />
+      <argument type="service" id="Shopware\Core\Framework\Adapter\Cache\CacheTracer" />
+      <argument type="service" id="logger" />
+    </service>
+  </services>
 </container>
 ```
 
@@ -246,19 +250,19 @@ class CacheInvalidationSubscriber implements EventSubscriberInterface
 <Tab title="services.xml">
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
+<!-- <plugin root>/src/Resources/config/services.xml -->
 
-<?xml version="1.0" ?> 
+<?xml version="1.0"?>
 
-<container xmlns="http://symfony.com/schema/dic/services" 
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-    
-    <services> 
-        <service id=" Swag\BasicExample\Core\Content\Example\SalesChannel\CacheInvalidationSubscriber">
-            <argument type="service" id="Shopware\Core\Framework\Adapter\Cache\CacheInvalidator"/>
-        </service>
-    </services>
+<container xmlns="http://symfony.com/schema/dic/services"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+  <services>
+    <service id=" Swag\BasicExample\Core\Content\Example\SalesChannel\CacheInvalidationSubscriber">
+      <argument type="service" id="Shopware\Core\Framework\Adapter\Cache\CacheInvalidator" />
+    </service>
+  </services>
 </container>
 ```
 

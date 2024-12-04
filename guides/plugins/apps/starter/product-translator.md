@@ -89,19 +89,20 @@ It contains all the required information about your app.
 Let's start by filling in all the meta-information:
 
 ```xml
-// release/manifest.xml
-<?xml version="1.0" encoding="UTF-8" ?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/master/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        <name>product-translator</name>
-        <label>Product translator</label>
-        <description>App to translate product descriptions</description>
-        <author>shopware AG</author>
-        <copyright>(c) by shopware AG</copyright>
-        <version>0.1.0</version>
-        <license>MIT</license>
-    </meta>
-   </manifest>
+<!-- release/manifest.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/master/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
+    <name>product-translator</name>
+    <label>Product translator</label>
+    <description>App to translate product descriptions</description>
+    <author>shopware AG</author>
+    <copyright>(c) by shopware AG</copyright>
+    <version>0.1.0</version>
+    <license>MIT</license>
+  </meta>
+</manifest>
 ```
 
 ::: warning
@@ -113,16 +114,17 @@ Take care to use the same `<name>` as in the `.env` file. Otherwise, stores can'
 Next, we will define the `<setup>` part of the manifest. This part describes how the store will connect itself with the app server.
 
 ```xml
-// release/manifest.xml
-<?xml version="1.0" encoding="UTF-8" ?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/master/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
+<!-- release/manifest.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/master/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
     <!-- ... -->
-    </meta>
-    <setup>
-        <registrationUrl>http://localhost:8000/app/lifecycle/register</registrationUrl>
-        <secret>TestSecret</secret>
-    </setup>
+  </meta>
+  <setup>
+    <registrationUrl>http://localhost:8000/app/lifecycle/register</registrationUrl>
+    <secret>TestSecret</secret>
+  </setup>
 </manifest>
 ```
 
@@ -134,24 +136,25 @@ The `<secret>` element is only present in development versions of the app. In pr
 The manifest needs permissions as this app will read product descriptions and translate them:
 
 ```xml
-// release/manifest.xml
-<?xml version="1.0" encoding="UTF-8" ?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/master/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
+<!-- release/manifest.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/master/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
     <!-- ... -->
-    </meta>
-    <setup>
+  </meta>
+  <setup>
     <!-- ... -->
-    </setup>
-    <permissions>
-        <read>product</read>
-        <read>product_translation</read>
-        <read>language</read>
-        <read>locale</read>
-        <update>product</update>
-        <update>product_translation</update>
-        <create>product_translation</create>
-    </permissions>
+  </setup>
+  <permissions>
+    <read>product</read>
+    <read>product_translation</read>
+    <read>language</read>
+    <read>locale</read>
+    <update>product</update>
+    <update>product_translation</update>
+    <create>product_translation</create>
+  </permissions>
 </manifest>
 ```
 
@@ -162,24 +165,27 @@ The app system provides webhooks to subscribe your app server to any changes in 
 in its shops:
 
 ```xml
-// release/manifest.xml
-<?xml version="1.0" encoding="UTF-8" ?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/master/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
+<!-- release/manifest.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/master/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
     <!-- ... -->
-    </meta>
-    <setup>
+  </meta>
+  <setup>
     <!-- ... -->
-    </setup>
-    <permissions>
+  </setup>
+  <permissions>
     <!-- ... -->
-    </permissions>
-    <webhooks>
-        <webhook name="appActivated" url="http://localhost:8000/app/lifecycle/activate" event="app.activated"/>
-        <webhook name="appDeactivated" url="http://localhost:8000/app/lifecycle/deactivate" event="app.deactivated"/>
-        <webhook name="appDeleted" url="http://localhost:8000/app/lifecycle/delete" event="app.deleted"/>
-        <webhook name="productWritten" url="http://localhost:8000/app/webhook" event="product.written"/>
-    </webhooks>
+  </permissions>
+  <webhooks>
+    <webhook name="appActivated" url="http://localhost:8000/app/lifecycle/activate"
+      event="app.activated" />
+    <webhook name="appDeactivated" url="http://localhost:8000/app/lifecycle/deactivate"
+      event="app.deactivated" />
+    <webhook name="appDeleted" url="http://localhost:8000/app/lifecycle/delete" event="app.deleted" />
+    <webhook name="productWritten" url="http://localhost:8000/app/webhook" event="product.written" />
+  </webhooks>
 </manifest>
 ```
 

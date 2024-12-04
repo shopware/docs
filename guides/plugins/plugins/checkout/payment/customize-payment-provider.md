@@ -58,18 +58,20 @@ class ExampleDebitPayment extends DebitPayment
 After we've created our customized payment provider class, we have to register it to the DI-container.
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Service\ExampleDebitPayment" decorates="Shopware\Core\Checkout\Payment\Cart\PaymentHandler\DebitPayment">
-            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
-            <argument type="service" id="Swag\BasicExample\Service\ExampleDebitPayment.inner"/>
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Service\ExampleDebitPayment"
+      decorates="Shopware\Core\Checkout\Payment\Cart\PaymentHandler\DebitPayment">
+      <argument type="service"
+        id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler" />
+      <argument type="service" id="Swag\BasicExample\Service\ExampleDebitPayment.inner" />
+    </service>
+  </services>
 </container>
 ```

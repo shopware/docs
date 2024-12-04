@@ -12,16 +12,17 @@ Unlike [Custom fields](custom-fields), you can generate completely custom data s
 To make use of the custom entities register your entities in your `entities.xml` file, which is located in the `Resources` directory of your app.
 
 ```xml
-// <app root>/Resources/entities.xml
-<?xml version="1.0" encoding="utf-8" ?>
-<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/CustomEntity/Xml/entity-1.0.xsd">
-    <entity name="custom_entity_bundle">
-        <fields>
-            <string name="name" required="true" translatable="true" store-api-aware="true" />
-            <price name="discount" required="true" store-api-aware="true"/>
-            <many-to-many name="products" reference="product" store-api-aware="true" />
-        </fields>
-    </entity>
+<!-- <app root>/Resources/entities.xml -->
+<?xml version="1.0" encoding="utf-8"?>
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/CustomEntity/Xml/entity-1.0.xsd">
+  <entity name="custom_entity_bundle">
+    <fields>
+      <string name="name" required="true" translatable="true" store-api-aware="true" />
+      <price name="discount" required="true" store-api-aware="true" />
+      <many-to-many name="products" reference="product" store-api-aware="true" />
+    </fields>
+  </entity>
 </entities>
 ```
 
@@ -50,16 +51,17 @@ The ability to use custom entities with custom fields is available since Shopwar
 By default, it is not possible to create a custom field of type "Entity Select", which references a custom entity. However, you can opt in to this behavior. You will need to add the `custom-fields-aware` & `label-property` attributes to your entity definition:
 
 ```xml
-// Resources/entities.xml
-<?xml version="1.0" encoding="utf-8" ?>
-<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/CustomEntity/Xml/entity-1.0.xsd">
-    <entity name="custom_entity_bundle" custom-fields-aware="true" label-property="name">
-        <fields>
-            <string name="name" required="true" translatable="true" store-api-aware="true" />
-            <price name="discount" required="true" store-api-aware="true"/>
-            <many-to-many name="products" reference="product" store-api-aware="true" />
-        </fields>
-    </entity>
+<!-- Resources/entities.xml -->
+<?xml version="1.0" encoding="utf-8"?>
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/CustomEntity/Xml/entity-1.0.xsd">
+  <entity name="custom_entity_bundle" custom-fields-aware="true" label-property="name">
+    <fields>
+      <string name="name" required="true" translatable="true" store-api-aware="true" />
+      <price name="discount" required="true" store-api-aware="true" />
+      <many-to-many name="products" reference="product" store-api-aware="true" />
+    </fields>
+  </entity>
 </entities>
 ```
 

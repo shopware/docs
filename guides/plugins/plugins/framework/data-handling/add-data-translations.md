@@ -138,21 +138,22 @@ All that's left to do now, is to introduce your `ExampleTranslationDefinition` t
 Here's the `services.xml` as it should look like:
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Core\Content\Example\ExampleDefinition">
-            <tag name="shopware.entity.definition" entity="swag_example" />
-        </service>
+  <services>
+    <service id="Swag\BasicExample\Core\Content\Example\ExampleDefinition">
+      <tag name="shopware.entity.definition" entity="swag_example" />
+    </service>
 
-        <service id="Swag\BasicExample\Core\Content\Example\Aggregate\ExampleTranslation\ExampleTranslationDefinition">
-            <tag name="shopware.entity.definition" entity="swag_example_translation" />
-        </service>
-    </services>
+    <service
+      id="Swag\BasicExample\Core\Content\Example\Aggregate\ExampleTranslation\ExampleTranslationDefinition">
+      <tag name="shopware.entity.definition" entity="swag_example_translation" />
+    </service>
+  </services>
 </container>
 ```
 

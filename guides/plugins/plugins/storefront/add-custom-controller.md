@@ -109,23 +109,23 @@ class ExampleController extends StorefrontController
 Next, we need to register our controller in the DI-container and make it public.
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 
-<container xmlns="http://symfony.com/schema/dic/services" 
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+<container xmlns="http://symfony.com/schema/dic/services"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Storefront\Controller\ExampleController" public="true">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-            <call method="setTwig">
-                <argument type="service" id="twig"/>
-            </call>
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Storefront\Controller\ExampleController" public="true">
+      <call method="setContainer">
+        <argument type="service" id="service_container" />
+      </call>
+      <call method="setTwig">
+        <argument type="service" id="twig" />
+      </call>
+    </service>
+  </services>
 </container>
 ```
 
@@ -136,14 +136,13 @@ Please also note the `call` tag, which is necessary in order to set the DI conta
 Once we‘ve registered our new controller, we have to tell Shopware how we want it to search for new routes in our plugin. This is done with a `routes.xml` file at `<plugin root>/src/Resources/config/` location. Have a look at the official [Symfony documentation](https://symfony.com/doc/current/routing.html) about routes and how they are registered.
 
 ```xml
-// <plugin root>/src/Resources/config/routes.xml
-<?xml version="1.0" encoding="UTF-8" ?>
+<!-- <plugin root>/src/Resources/config/routes.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
 <routes xmlns="http://symfony.com/schema/routing"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://symfony.com/schema/routing
-        https://symfony.com/schema/routing/routing-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/routing https://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <import resource="../../Storefront/Controller/*Controller.php" type="attribute" />
+  <import resource="../../Storefront/Controller/*Controller.php" type="attribute" />
 </routes>
 ```
 

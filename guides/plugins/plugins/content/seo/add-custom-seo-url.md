@@ -242,19 +242,19 @@ class ExamplePageSeoUrlRoute implements SeoUrlRouteInterface
 <Tab title="services.xml">
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Storefront\Framework\Seo\SeoUrlRoute\ExamplePageSeoUrlRoute">
-            <argument type="service" id="Swag\BasicExample\Core\Content\Example\ExampleDefinition"/>
+  <services>
+    <service id="Swag\BasicExample\Storefront\Framework\Seo\SeoUrlRoute\ExamplePageSeoUrlRoute">
+      <argument type="service" id="Swag\BasicExample\Core\Content\Example\ExampleDefinition" />
 
-            <tag name="shopware.seo_url.route"/>
-        </service>
-    </services>
+      <tag name="shopware.seo_url.route" />
+    </service>
+  </services>
 </container>
 ```
 
@@ -336,20 +336,20 @@ class DynamicSeoUrlPageSubscriber implements EventSubscriberInterface
 <Tab title="services.xml">
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <!-- ... -->
-        <service id="Swag\BasicExample\Service\DynamicSeoUrlPageSubscriber" >
-            <argument type="service" id="Shopware\Core\Content\Seo\SeoUrlUpdater" />
+  <services>
+    <!-- ... -->
+    <service id="Swag\BasicExample\Service\DynamicSeoUrlPageSubscriber">
+      <argument type="service" id="Shopware\Core\Content\Seo\SeoUrlUpdater" />
 
-            <tag name="kernel.event_subscriber" />
-        </service>
-    </services>
+      <tag name="kernel.event_subscriber" />
+    </service>
+  </services>
 </container>
 ```
 

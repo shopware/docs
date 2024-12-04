@@ -60,18 +60,18 @@ Now we have to register our extension via the DI-container. If you don't know ho
 Here's our `services.xml`:
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Extension\Content\Product\CustomExtension">
-            <tag name="shopware.entity.extension"/>
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Extension\Content\Product\CustomExtension">
+      <tag name="shopware.entity.extension" />
+    </service>
+  </services>
 </container>
 ```
 
@@ -180,22 +180,22 @@ The fourth parameter is the class of the associated definition, the `ProductDefi
 Of course, this new definition also needs to be registered to the DI container:
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Extension\Content\Product\CustomExtension">
-            <tag name="shopware.entity.extension"/>
-        </service>
+  <services>
+    <service id="Swag\BasicExample\Extension\Content\Product\CustomExtension">
+      <tag name="shopware.entity.extension" />
+    </service>
 
-        <service id="Swag\BasicExample\Extension\Content\Product\ExampleExtensionDefinition">
-            <tag name="shopware.entity.definition" entity="swag_example_extension" />
-        </service>
-    </services>
+    <service id="Swag\BasicExample\Extension\Content\Product\ExampleExtensionDefinition">
+      <tag name="shopware.entity.definition" entity="swag_example_extension" />
+    </service>
+  </services>
 </container>
 ```
 
@@ -308,18 +308,18 @@ Please note that its second parameter, the actual value, has to be a struct and 
 After we've created our subscriber, we have to adjust our `services.xml` to register it. Below you can find our `services.xml`.
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Subscriber\ProductSubscriber">
-            <tag name="kernel.event_subscriber"/>
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Subscriber\ProductSubscriber">
+      <tag name="kernel.event_subscriber" />
+    </service>
+  </services>
 </container>
 ```
 

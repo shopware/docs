@@ -57,18 +57,18 @@ In the previous [example](add-cms-element) we added a cms element with the name 
 To register our custom resolver to the service container we have to register it in the `services.xml` file in our plugin.
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\DataResolver\DailyMotionCmsElementResolver">
-            <tag name="shopware.cms.data_resolver" />
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\DataResolver\DailyMotionCmsElementResolver">
+      <tag name="shopware.cms.data_resolver" />
+    </service>
+  </services>
 </container>
 ```
 

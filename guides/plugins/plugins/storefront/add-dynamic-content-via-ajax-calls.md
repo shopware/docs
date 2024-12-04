@@ -47,35 +47,34 @@ As you might have seen this controller isn't too different from the controller u
 The following `services.xml` and `routes.xml` are identical as in the before mentioned article, but here they are for reference anyways:
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 
-<container xmlns="http://symfony.com/schema/dic/services" 
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+<container xmlns="http://symfony.com/schema/dic/services"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="SwagBasicExample\Storefront\Controller\ExampleController" public="true">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-            <call method="setTwig">
-              <argument type="service" id="twig"/>
-            </call>
-        </service>
-    </services>
+  <services>
+    <service id="SwagBasicExample\Storefront\Controller\ExampleController" public="true">
+      <call method="setContainer">
+        <argument type="service" id="service_container" />
+      </call>
+      <call method="setTwig">
+        <argument type="service" id="twig" />
+      </call>
+    </service>
+  </services>
 </container>
 ```
 
 ```xml
-// <plugin root>/src/Resources/config/routes.xml
-<?xml version="1.0" encoding="UTF-8" ?>
+<!-- <plugin root>/src/Resources/config/routes.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
 <routes xmlns="http://symfony.com/schema/routing"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://symfony.com/schema/routing
-        https://symfony.com/schema/routing/routing-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/routing https://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <import resource="../../Storefront/Controller/**/*Controller.php" type="attribute" />
+  <import resource="../../Storefront/Controller/**/*Controller.php" type="attribute" />
 </routes>
 ```
 

@@ -33,18 +33,18 @@ The repository's service name follows this pattern: `entity_name.repository`
 For products this then would be `product.repository`. Additional to that, you're going to need the `tax` repository later for this guide, so let's add this as well already.
 
 ```xml
-// SwagBasicExample/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- SwagBasicExample/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Service\WritingData" >
-            <argument type="service" id="product.repository"/>
-            <argument type="service" id="tax.repository"/>
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Service\WritingData">
+      <argument type="service" id="product.repository" />
+      <argument type="service" id="tax.repository" />
+    </service>
+  </services>
 </container>
 ```
 

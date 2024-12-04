@@ -26,20 +26,21 @@ First of all we have to create a new service for this example which gets decorat
 Here's our example `services.xml`:
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Service\ExampleService" />
+  <services>
+    <service id="Swag\BasicExample\Service\ExampleService" />
 
-        <service id="Swag\BasicExample\Service\ExampleServiceDecorator" decorates="Swag\BasicExample\Service\ExampleService">
-            <argument type="service" id="Swag\BasicExample\Service\ExampleServiceDecorator.inner" />
-        </service>
-    </services>
+    <service id="Swag\BasicExample\Service\ExampleServiceDecorator"
+      decorates="Swag\BasicExample\Service\ExampleService">
+      <argument type="service" id="Swag\BasicExample\Service\ExampleServiceDecorator.inner" />
+    </service>
+  </services>
 </container>
 ```
 

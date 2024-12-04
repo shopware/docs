@@ -56,18 +56,18 @@ In order to delete it, we once again need its repository. The name for the entit
 So let's inject this repository into our class called `ReplacingData`:
 
 ```xml
-// SwagBasicExample/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- SwagBasicExample/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Service\ReplacingData" >
-            <argument type="service" id="product.repository"/>
-            <argument type="service" id="product_category.repository"/>
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Service\ReplacingData">
+      <argument type="service" id="product.repository" />
+      <argument type="service" id="product_category.repository" />
+    </service>
+  </services>
 </container>
 ```
 

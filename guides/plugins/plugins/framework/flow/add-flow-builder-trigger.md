@@ -397,10 +397,10 @@ public static function getSubscribedEvents()
 And remember to register your subscriber to the container at `<plugin root>/src/Resources/config/services.xml`
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
+<!-- <plugin root>/src/Resources/config/services.xml -->
 <service id="Swag\ExamplePlugin\Core\Checkout\Customer\Subscriber\BusinessEventCollectorSubscriber">
-    <argument type="service" id="Shopware\Core\Framework\Event\BusinessEventCollector"/>
-    <tag name="kernel.event_subscriber"/>
+  <argument type="service" id="Shopware\Core\Framework\Event\BusinessEventCollector" />
+  <tag name="kernel.event_subscriber" />
 </service>
 ```
 

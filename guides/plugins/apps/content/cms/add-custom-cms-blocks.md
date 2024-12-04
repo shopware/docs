@@ -63,51 +63,58 @@ As already mentioned above and similar to an app's `manifest.xml`, CMS blocks al
 In this example we will define a custom CMS block that will extend the default block `image-text` and reverse its elements:
 
 ```xml
-// <app root>/Resources/cms.xml
-<?xml version="1.0" encoding="utf-8" ?>
-<cms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Cms/Schema/cms-1.0.xsd">
-    <blocks>
-        <block>
-            <!-- A unique technical name for your block. We recommend to use a shorthand prefix for your company, e.g. "Swag" for shopware AG. -->
-            <name>swag-image-text-reversed</name>
+<!-- <app root>/Resources/cms.xml -->
+<?xml version="1.0" encoding="utf-8"?>
+<cms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Cms/Schema/cms-1.0.xsd">
+  <blocks>
+    <block>
+      <!-- A unique technical name for your block. We recommend to use a shorthand prefix for your
+      company, e.g. "Swag" for shopware AG. -->
+      <name>swag-image-text-reversed</name>
 
-            <!-- The category your block is associated with. See the XSD for available categories. -->
-            <category>text-image</category>
+      <!-- The category your block is associated with. See the XSD for available categories. -->
+      <category>text-image</category>
 
-            <!-- Your block's label which will be shown in the CMS module in the Administration. -->
-            <label>Two columns, text &amp; boxed image</label>
-            <label lang="de-DE">Zwei Spalten, Text &amp; gerahmtes Bild</label>
+      <!-- Your block's label which will be shown in the CMS module in the Administration. -->
+      <label>Two columns, text &amp; boxed image</label>
+      <label lang="de-DE">Zwei Spalten, Text &amp; gerahmtes Bild</label>
 
-            <!-- The slots that your block holds which again hold CMS elements. -->
-            <slots>
-                <!-- A slot requires a unique name and a type which refers to the CMS element it shows. Right now you can only use the CMS elements provided by Shopware but at a later point you will be able to add custom elements too. -->
-                <slot name="left" type="text">
-                    <!-- The slot requires some basic configuration. The following config-value elements highly depend on which element the slot holds. -->
-                    <config>
-                        <!-- The following config-value will be interpreted as 'verticalAlign: { source: "static", value: "top"}' in the JavaScript. -->
-                        <config-value name="vertical-align" source="static" value="top"/>
-                    </config>
-                </slot>
+      <!-- The slots that your block holds which again hold CMS elements. -->
+      <slots>
+        <!-- A slot requires a unique name and a type which refers to the CMS element it shows.
+        Right now you can only use the CMS elements provided by Shopware but at a later point you
+        will be able to add custom elements too. -->
+        <slot name="left" type="text">
+          <!-- The slot requires some basic configuration. The following config-value elements
+          highly depend on which element the slot holds. -->
+          <config>
+            <!-- The following config-value will be interpreted as 'verticalAlign: { source:
+            "static", value: "top"}' in the JavaScript. -->
+            <config-value name="vertical-align" source="static" value="top" />
+          </config>
+        </slot>
 
-                <slot name="right" type="image">
-                    <config>
-                        <config-value name="display-mode" source="static" value="auto"/>
-                        <config-value name="vertical-align" source="static" value="top"/>
-                    </config>
-                </slot>
-            </slots>
+        <slot name="right" type="image">
+          <config>
+            <config-value name="display-mode" source="static" value="auto" />
+            <config-value name="vertical-align" source="static" value="top" />
+          </config>
+        </slot>
+      </slots>
 
-            <!-- Each block comes with a default configuration which is pre-filled and customizable when adding a block to a section in the CMS module in the Administration. -->
-            <default-config>
-                <margin-top>20px</margin-top>
-                <margin-right>20px</margin-right>
-                <margin-bottom>20px</margin-bottom>
-                <margin-left>20px</margin-left>
-                <!-- The sizing mode of your block. Allowed values are "boxed" or "full_width". -->
-                <sizing-mode>boxed</sizing-mode>
-            </default-config>
-        </block>
-    </blocks>
+      <!-- Each block comes with a default configuration which is pre-filled and customizable when
+      adding a block to a section in the CMS module in the Administration. -->
+      <default-config>
+        <margin-top>20px</margin-top>
+        <margin-right>20px</margin-right>
+        <margin-bottom>20px</margin-bottom>
+        <margin-left>20px</margin-left>
+        <!-- The sizing mode of your block. Allowed values are "boxed" or "full_width". -->
+        <sizing-mode>boxed</sizing-mode>
+      </default-config>
+    </block>
+  </blocks>
 </cms>
 ```
 

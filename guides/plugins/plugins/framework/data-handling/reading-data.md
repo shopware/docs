@@ -28,17 +28,17 @@ The repository's service name follows this pattern: `entity_name.repository`
 For products this then would be `product.repository`, so let's do this.
 
 ```xml
-// SwagBasicExample/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- SwagBasicExample/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Service\ReadingData" >
-            <argument type="service" id="product.repository"/>
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Service\ReadingData">
+      <argument type="service" id="product.repository" />
+    </service>
+  </services>
 </container>
 ```
 

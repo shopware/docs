@@ -81,23 +81,23 @@ class ExampleFilesystemService
 This service makes use of the private und public filesystem. As you already know, this php class has to be registered as a service in the dependency injection container. This is also the place where we define which filesystem will be handed over to the constructor. To make use of the plugin private and public files, the service definition could look like this:
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Service\ExampleFilesystemService">
-            <argument type="service" id="swag_basic_example.filesystem.public"/>
-            <argument type="service" id="swag_basic_example.filesystem.private"/>
-            <!--
+  <services>
+    <service id="Swag\BasicExample\Service\ExampleFilesystemService">
+      <argument type="service" id="swag_basic_example.filesystem.public" />
+      <argument type="service" id="swag_basic_example.filesystem.private" />
+      <!--
             There are also predefined file system services
             <argument type="service" id="shopware.filesystem.private"/>
             <argument type="service" id="shopware.filesystem.public"/>
             -->
-        </service>
-    </services>
+    </service>
+  </services>
 </container>
 ```
 
