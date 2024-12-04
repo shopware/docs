@@ -21,10 +21,10 @@ prices by resetting or changing the price collection.
 
         ```twig
         {% do debug.dump(product.calculatedPrice.unit, 'discount') %}
-		
-		{% do product.calculatedPrice.surcharge(10) %}
-		
-		{% do debug.dump(product.calculatedPrice.unit, 'surcharge') %}
+  
+  {% do product.calculatedPrice.surcharge(10) %}
+  
+  {% do debug.dump(product.calculatedPrice.unit, 'surcharge') %}
         ```
 
 ### count()
@@ -55,9 +55,10 @@ but also wraps some data into helper facade classes like `PriceFacade` or `Price
     * Access the product properties
 
         ```twig
-        { to: 30, price: services.price.create({ 'default': { 'gross': 10, 'net': 10} }) },
-		    { to: null, price: services.price.create({ 'default': { 'gross': 5, 'net': 5} }) },
-		]) %}
+        {% ([
+            { to: 30, price: services.price.create({ 'default': { 'gross': 10, 'net': 10} }) },
+            { to: null, price: services.price.create({ 'default': { 'gross': 5, 'net': 5} }) },
+        ]) %}
         ```
 
 ### calculatedCheapestPrice()

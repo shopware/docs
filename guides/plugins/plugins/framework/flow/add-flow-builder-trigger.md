@@ -98,8 +98,10 @@ class ExampleEvent extends Event implements CustomerAware, FlowEventAware
 
     public static function getAvailableData(): EventDataCollection
     {
-        return (new EventDataCollection())
-            ->add('customer', new EntityType(CustomerDefinition::class));
+        return (new EventDataCollection())->add(
+            'customer',
+            new EntityType(CustomerDefinition::class)
+        );
     }
 
     public function getContext(): Context
@@ -185,32 +187,35 @@ In the example above, to get the `customerId` and `shopName` data events, you ne
 ```php
 class CustomerStorer extends FlowStorer
 {
-	public function store(FlowEventAware $event, array $stored): array
-	{
-    		if (!$event instanceof CustomerAware || isset($stored['customerId'])) {
-        		return $stored;
-    		}
+    public function store(FlowEventAware $event, array $stored): array
+    {
+        if (!$event instanceof CustomerAware || isset($stored['customerId'])) {
+            return $stored;
+        }
 
-    		$stored['customerId'] = $event->getCustomerId();
+        $stored['customerId'] = $event->getCustomerId();
 
-    		return $stored;
-	}
+        return $stored;
+    }
 
-	public function restore(StorableFlow $storable): void
-	{
-    		if (!$storable->hasStore('customerId')) {
-        		return;
-    		}
+    public function restore(StorableFlow $storable): void
+    {
+        if (!$storable->hasStore('customerId')) {
+            return;
+        }
 
-   		$storable->setData('customer', $this->getCustomer($storable->getStore('customerId')));
-	}
+        $storable->setData(
+            'customer',
+            $this->getCustomer($storable->getStore('customerId'))
+        );
+    }
 
-	private function getCustomer(string $customerId): Customer
-	{
-		// load customer via $customerId
-		
-		return $customer;
-	}
+    private function getCustomer(string $customerId): Customer
+    {
+        // load customer via $customerId
+
+        return $customer;
+    }
 }
 ```
 
@@ -321,12 +326,12 @@ In Flow Actions, you can get the data easily via `getStore` and `getData`.
 ```php
 class SendMailAction
 {
-	public function handleFlow(StorableFlow $flow)
-	{
-		$shopName = $flow->getStore('shopName');
-		$customer = $flow->getData('customer');
-		$customExampleData = $flow->getData('customExampleData');
-	}
+    public function handleFlow(StorableFlow $flow)
+    {
+        $shopName = $flow->getStore('shopName');
+        $customer = $flow->getData('customer');
+        $customExampleData = $flow->getData('customExampleData');
+    }
 }
 ```
 
@@ -384,7 +389,7 @@ Please note that your subscriber has to have a higher priority point to ensure y
 public static function getSubscribedEvents()
 {
    return [
-      BusinessEventCollectorEvent::NAME => ['onAddExampleEvent', 1000],
+        BusinessEventCollectorEvent::NAME => ['onAddExampleEvent', 1000],
    ];
 }
 ```

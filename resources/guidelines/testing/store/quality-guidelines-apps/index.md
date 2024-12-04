@@ -106,13 +106,13 @@ The short description is also published as a meta-description.
 * **Tips:**
 
     * When it comes to increasing your app / theme sales, it is important that potential customers feel completely informed about your products and services.
-	To this end, you should provide description, highlights, and features that are meaningful, detailed, and easy to understand, even for people with very minimal technical knowledge.
-	Explain step-by-step how your app works and how to use it to achieve the desired result.
-	Of course, your app description should be accompanied by clean HTML source code.
+ To this end, you should provide description, highlights, and features that are meaningful, detailed, and easy to understand, even for people with very minimal technical knowledge.
+ Explain step-by-step how your app works and how to use it to achieve the desired result.
+ Of course, your app description should be accompanied by clean HTML source code.
 
     * Video content increases awareness and trust and has proven to convert potential customers better than other content types.
-	You can help your customers better understand your app or service with explainer videos, product demos, tutorials, etc.
-	You can embed a maximum of 2 YouTube videos in your app description.
+ You can help your customers better understand your app or service with explainer videos, product demos, tutorials, etc.
+ You can embed a maximum of 2 YouTube videos in your app description.
 
 ::: info
     You can no longer advertise your Shopware certificates within the app description, in your app images, or in your manufacturer profile. The manufacturer/partner certificates are dynamically loaded at the end of each app description and published by us.
@@ -350,20 +350,20 @@ Below is an example of implementing the tracking logic in their extensions:
 // POST /shopwarepartners/reports/technology - Allows partners to send us the info based on the STP contract
 
 ```json
-    {
-      "identifier": "8e167662-6bbb-11eb-9439-0242ac130002",
-      "reportDate": "2005-08-15T15:52:01",
-      "instanceId": "alur24esfaw3ghk",
-      "shopwareVersion": "6.3.1",
-      "reportDataKeys": [
+{
+    "identifier": "8e167662-6bbb-11eb-9439-0242ac130002",
+    "reportDate": "2005-08-15T15:52:01",
+    "instanceId": "alur24esfaw3ghk",
+    "shopwareVersion": "6.3.1",
+    "reportDataKeys": [
         {
-          "customer": 3
+            "customer": 3
         },
         {
-          "turnover": 440
+            "turnover": 440
         }
-      ]
-    }
+    ]
+}
 ```
 
 ### Automatic code reviews with PhpStan and SonarQube
@@ -381,7 +381,7 @@ The following statements will be blocked as of 1st Oct. 2022:
 
 ### Helpful tools for app developers
 
-* [FroshPluginUploader](https://github.com/FriendsOfShopware/FroshPluginUploader): Tool for validating and uploading new SW6 app releases to the Community Store (GitHub Project from "Friends of Shopware")]
+* [FroshPluginUploader](https://github.com/FriendsOfShopware/FroshPluginUploader): Tool for validating and uploading new SW6 app releases to the Community Store (GitHub Project from "Friends of Shopware")
 * [Shopware CLI tools](https://github.com/shopwareLabs/sw-cli-tools): When you think about performance, these are various useful console helpers for generating data.
 
 ## Automatic code review - Errors

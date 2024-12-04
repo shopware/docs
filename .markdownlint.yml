@@ -22,7 +22,7 @@ MD007: false
 MD009: true
 
 # Hard tabs <https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md010>
-MD010: false
+MD010: true
 
 # Reversed link syntax <https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md011>
 MD011: true

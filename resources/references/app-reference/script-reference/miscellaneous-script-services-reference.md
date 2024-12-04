@@ -38,8 +38,8 @@ Examples:
 
         ```twig
         {% set product = services.cart.products.get(hook.ids.get('p1')) %}
-		
-		{% do product.payload.set('test', 1) %}
+  
+        {% do product.payload.set('test', 1) %}
         ```
 
 ### push()
@@ -78,8 +78,8 @@ Examples:
 
         ```twig
         {% set my_array = array({'bar': 'foo', 'baz': true}) %}
-		
-		{% do product.payload.merge(my_array) %}
+  
+        {% do product.payload.merge(my_array) %}
         ```
 
 ### replace()
@@ -93,8 +93,8 @@ Examples:
 
         ```twig
         {% set second = array({'bar': 'baz'}) %}
-		
-		{% do product.payload.replace(second) %}
+  
+        {% do product.payload.replace(second) %}
         ```
 
 ### count()

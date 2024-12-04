@@ -29,35 +29,35 @@ The `cache` service allows you to invalidate the cache if some entity is updated
 
         ```twig
         {% set ids = hook.event.getIds('product_manufacturer') %}
-		
-		{% if ids.empty %}
-		    {% return %}
-		{% endif %}
-		
-		{% set tags = [] %}
-		{% for id in ids %}
-		    {% set tags = tags|merge(['my-manufacturer-' ~ id]) %}
-		{% endfor %}
-		
-		{% do services.cache.invalidate(tags) %}
+
+        {% if ids.empty %}
+            {% return %}
+        {% endif %}
+
+        {% set tags = [] %}
+        {% for id in ids %}
+            {% set tags = tags|merge(['my-manufacturer-' ~ id]) %}
+        {% endfor %}
+
+        {% do services.cache.invalidate(tags) %}
         ```
 
     * Build tags if products with a specific property is created and invalidate those tags.
 
         ```twig
         {% set ids = hook.event.getIds('product') %}
-		
-		{% set ids = ids.only('insert').with('description', 'parentId') %}
-		{% if ids.empty %}
-		    {% return %}
-		{% endif %}
-		
-		{% set tags = [] %}
-		{% for id in ids %}
-		    {% set tags = tags|merge(['my-product-' ~ id]) %}
-		{% endfor %}
-		
-		{% do services.cache.invalidate(tags) %}
+  
+        {% set ids = ids.only('insert').with('description', 'parentId') %}
+        {% if ids.empty %}
+            {% return %}
+        {% endif %}
+        
+        {% set tags = [] %}
+        {% for id in ids %}
+            {% set tags = tags|merge(['my-product-' ~ id]) %}
+        {% endfor %}
+        
+        {% do services.cache.invalidate(tags) %}
         ```
 
 _________
@@ -83,16 +83,16 @@ Keep in mind that your app needs to have the correct permissions for the data it
 
         ```twig
         {% do services.writer.upsert('tax', [
-		    { 'name': 'new Tax', 'taxRate': 99.9 }
-		]) %}
+            { 'name': 'new Tax', 'taxRate': 99.9 }
+        ]) %}
         ```
 
     * Update an existing entity.
 
         ```twig
         {% do services.writer.upsert('product', [
-		    { 'id':  hook.productId, 'active': true }
-		]) %}
+            { 'id':  hook.productId, 'active': true }
+        ]) %}
         ```
 
 ### delete()
@@ -110,8 +110,8 @@ Keep in mind that your app needs to have the correct permissions for the data it
 
         ```twig
         {% do services.writer.delete('product', [
-		    { 'id':  hook.productId }
-		]) %}
+            { 'id':  hook.productId }
+        ]) %}
         ```
 
 ### sync()
@@ -128,23 +128,23 @@ Keep in mind that your app needs to have the correct permissions for the data it
 
         ```twig
         {% set payload = [
-		    {
-		        'entity': 'product',
-		        'action': 'upsert',
-		        'payload': [
-		            { 'id':  hook.updateProductId, 'active': true }
-		        ]
-		    },
-		    {
-		        'entity': 'product',
-		        'action': 'delete',
-		        'payload': [
-		        { 'id':  hook.deleteProductId }
-		    ]
-		    },
-		] %}
-		
-		{% do services.writer.sync(payload) %}
+            {
+                'entity': 'product',
+                'action': 'upsert',
+                'payload': [
+                    { 'id':  hook.updateProductId, 'active': true }
+                ]
+            },
+            {
+                'entity': 'product',
+                'action': 'delete',
+                'payload': [
+                { 'id':  hook.deleteProductId }
+            ]
+            },
+        ] %}
+
+        {% do services.writer.sync(payload) %}
         ```
 
 _________
@@ -170,33 +170,33 @@ The `response` service allows you to create HTTP-Responses.
 
         ```twig
         {% set response = services.response.json({ 'foo': 'bar' }) %}
-		{% do hook.setResponse(response) %}
+        {% do hook.setResponse(response) %}
         ```
 
     * Search for products and return them in a JsonResponse.
 
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
-		{% set products = services.repository.search('product', hook.request) %}
-		
-		{% set response = services.response.json({ 'products': products }) %}
-		{% do hook.setResponse(response) %}
+        {% set products = services.repository.search('product', hook.request) %}
+
+        {% set response = services.response.json({ 'products': products }) %}
+        {% do hook.setResponse(response) %}
         ```
 
     * Provide a response to a ActionButtons request from the administration.
 
         ```twig
         {% set ids = hook.request.ids %}
-		
-		{% set response = services.response.json({
-		    "actionType": "notification",
-		    "payload": {
-		        "status": "success",
-		        "message": "You selected " ~ ids|length ~ " products."
-		    }
-		}) %}
-		
-		{% do hook.setResponse(response) %}
+
+        {% set response = services.response.json({
+            "actionType": "notification",
+            "payload": {
+                "status": "success",
+                "message": "You selected " ~ ids|length ~ " products."
+            }
+        }) %}
+
+        {% do hook.setResponse(response) %}
         ```
 
 ### redirect()
@@ -217,14 +217,14 @@ The `response` service allows you to create HTTP-Responses.
 
         ```twig
         {% set response = services.response.redirect('api.product.detail', { 'path': productId }) %}
-		{% do hook.setResponse(response) %}
+        {% do hook.setResponse(response) %}
         ```
 
     * Redirect to a storefront page.
 
         ```twig
         {% set response = services.response.redirect('frontend.detail.page', { 'productId': productId }) %}
-		{% do hook.setResponse(response) %}
+        {% do hook.setResponse(response) %}
         ```
 
 ### render()
@@ -232,7 +232,7 @@ The `response` service allows you to create HTTP-Responses.
 * The `render()` method allows you to render a twig view with the parameters you provide and create a StorefrontResponse.
 
     Note that the `render()` method will throw an exception if it is called from outside a `SalesChannelContext` (e.g. from an `/api` route)
-	or if the Storefront-bundle is not installed.
+ or if the Storefront-bundle is not installed.
 * **Returns** [`Shopware\Core\Framework\Script\Api\ScriptResponse`](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/Script/Api/ScriptResponse.php)
 
     The created response object with the rendered template as content, remember to assign it to the hook with `hook.setResponse()`.
@@ -247,12 +247,12 @@ The `response` service allows you to create HTTP-Responses.
 
         ```twig
         {% set product = services.store.search('product', { 'ids': [productId]}).first %}
-		
-		{% do hook.page.addExtension('myProduct', product) %}
-		
-		{% do hook.setResponse(
-		    services.response.render('@MyApp/storefront/page/custom-page/index.html.twig', { 'page': hook.page })
-		) %}
+
+        {% do hook.page.addExtension('myProduct', product) %}
+
+        {% do hook.setResponse(
+            services.response.render('@MyApp/storefront/page/custom-page/index.html.twig', { 'page': hook.page })
+        ) %}
         ```
 
 _________

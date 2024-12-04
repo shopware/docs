@@ -33,7 +33,7 @@ You can use the cart service to add line-items, change prices, add discounts, et
 
 * The `calculate()` method recalculates the whole cart.
 
-    Use this to get the correct prices after you made changes to the cart. Note that after calling the `calculate()` all collections (e.g. items(), products()) get new references,	so if you still hold references to things inside the cart, these are outdated after calling `calculate()`. This method will be called automatically after your cart script executed.
+    Use this to get the correct prices after you made changes to the cart. Note that after calling the `calculate()` all collections (e.g. items(), products()) get new references, so if you still hold references to things inside the cart, these are outdated after calling `calculate()`. This method will be called automatically after your cart script executed.
 
 ### price()
 
@@ -81,35 +81,35 @@ You can use the cart service to add line-items, change prices, add discounts, et
 
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
-		{% do services.cart.products.add(hook.ids.get('p1')) %}
-		
-		{% if services.cart.items.count <= 0 %}
-		    {% return %}
-		{% endif %}
-		
-		{% if services.cart.items.has('my-discount') %}
-		    {% return %}
-		{% endif %}
-		
-		{% set price = services.cart.price.create({
-		    'default': { 'gross': -19.99, 'net': -19.99}
-		}) %}
-		
-		{% do services.cart.discount('my-discount', 'absolute', price, 'Fancy discount') %}
+        {% do services.cart.products.add(hook.ids.get('p1')) %}
+        
+        {% if services.cart.items.count <= 0 %}
+            {% return %}
+        {% endif %}
+        
+        {% if services.cart.items.has('my-discount') %}
+            {% return %}
+        {% endif %}
+        
+        {% set price = services.cart.price.create({
+            'default': { 'gross': -19.99, 'net': -19.99}
+        }) %}
+        
+        {% do services.cart.discount('my-discount', 'absolute', price, 'Fancy discount') %}
         ```
 
   * Add a relative discount to the cart.
 
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
-		
-		{% do services.cart.products.add(hook.ids.get('p1')) %}
-		
-		{% if services.cart.has('my-discount') %}
-		    {% return %}
-		{% endif %}
-		
-		{% do services.cart.discount('my-discount', 'percentage', -10, 'Fancy discount') %}
+        
+        {% do services.cart.products.add(hook.ids.get('p1')) %}
+        
+        {% if services.cart.has('my-discount') %}
+            {% return %}
+        {% endif %}
+        
+        {% do services.cart.discount('my-discount', 'percentage', -10, 'Fancy discount') %}
         ```
 
 ### surcharge()
@@ -132,27 +132,27 @@ You can use the cart service to add line-items, change prices, add discounts, et
 
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
-		{% do services.cart.products.add(hook.ids.get('p1')) %}
-		
-		{% set price = services.cart.price.create({
-		    'default': { 'gross': 19.99, 'net': 19.99}
-		}) %}
-		
-		{% do services.cart.surcharge('my-surcharge', 'absolute', price, 'Fancy surcharge') %}
+        {% do services.cart.products.add(hook.ids.get('p1')) %}
+        
+        {% set price = services.cart.price.create({
+            'default': { 'gross': 19.99, 'net': 19.99}
+        }) %}
+        
+        {% do services.cart.surcharge('my-surcharge', 'absolute', price, 'Fancy surcharge') %}
         ```
 
   * Add a relative surcharge to the cart.
 
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
-		
-		{% do services.cart.products.add(hook.ids.get('p1')) %}
-		
-		{% if services.cart.has('my-surcharge') %}
-		    {% return %}
-		{% endif %}
-		
-		{% do services.cart.surcharge('my-surcharge', 'percentage', -10, 'Fancy discount') %}
+  
+        {% do services.cart.products.add(hook.ids.get('p1')) %}
+        
+        {% if services.cart.has('my-surcharge') %}
+            {% return %}
+        {% endif %}
+        
+        {% do services.cart.surcharge('my-surcharge', 'percentage', -10, 'Fancy discount') %}
         ```
 
 ### get()
@@ -180,8 +180,8 @@ You can use the cart service to add line-items, change prices, add discounts, et
 
         ```twig
         {% do services.cart.products.add(hook.ids.get('p1')) %}
-		
-		{% do services.cart.products.remove(hook.ids.get('p1')) %}
+  
+        {% do services.cart.products.remove(hook.ids.get('p1')) %}
         ```
 
 ### has()
@@ -273,8 +273,8 @@ The CartPriceFacade is a wrapper around the calculated price of a cart.
 
         ```twig
         {% set price = services.cart.price.create({
-		    'default': { 'gross': 19.99, 'net': 19.99}
-		}) %}
+            'default': { 'gross': 19.99, 'net': 19.99}
+        }) %}
         ```
 
 _________
@@ -343,14 +343,14 @@ The ContainerFacade allows you to wrap multiple line-items inside a container li
 
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
-		
-		{% do services.cart.products.add(hook.ids.get('p1'), 5) %}
-		
-		{% set product = services.cart.products.get(hook.ids.get('p1')) %}
-		
-		{% set split = product.take(2, 'new-key') %}
-		
-		{% do services.cart.products.add(split) %}
+
+        {% do services.cart.products.add(hook.ids.get('p1'), 5) %}
+
+        {% set product = services.cart.products.get(hook.ids.get('p1')) %}
+
+        {% set split = product.take(2, 'new-key') %}
+
+        {% do services.cart.products.add(split) %}
         ```
 
 ### getId()
@@ -432,35 +432,35 @@ The ContainerFacade allows you to wrap multiple line-items inside a container li
 
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
-		{% do services.cart.products.add(hook.ids.get('p1')) %}
-		
-		{% if services.cart.items.count <= 0 %}
-		    {% return %}
-		{% endif %}
-		
-		{% if services.cart.items.has('my-discount') %}
-		    {% return %}
-		{% endif %}
-		
-		{% set price = services.cart.price.create({
-		    'default': { 'gross': -19.99, 'net': -19.99}
-		}) %}
-		
-		{% do services.cart.discount('my-discount', 'absolute', price, 'Fancy discount') %}
+        {% do services.cart.products.add(hook.ids.get('p1')) %}
+
+        {% if services.cart.items.count <= 0 %}
+            {% return %}
+        {% endif %}
+
+        {% if services.cart.items.has('my-discount') %}
+            {% return %}
+        {% endif %}
+
+        {% set price = services.cart.price.create({
+            'default': { 'gross': -19.99, 'net': -19.99}
+        }) %}
+
+        {% do services.cart.discount('my-discount', 'absolute', price, 'Fancy discount') %}
         ```
 
   * Add a relative discount to the cart.
 
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
-		
-		{% do services.cart.products.add(hook.ids.get('p1')) %}
-		
-		{% if services.cart.has('my-discount') %}
-		    {% return %}
-		{% endif %}
-		
-		{% do services.cart.discount('my-discount', 'percentage', -10, 'Fancy discount') %}
+
+        {% do services.cart.products.add(hook.ids.get('p1')) %}
+
+        {% if services.cart.has('my-discount') %}
+            {% return %}
+        {% endif %}
+
+        {% do services.cart.discount('my-discount', 'percentage', -10, 'Fancy discount') %}
         ```
 
 ### surcharge()
@@ -483,27 +483,27 @@ The ContainerFacade allows you to wrap multiple line-items inside a container li
 
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
-		{% do services.cart.products.add(hook.ids.get('p1')) %}
-		
-		{% set price = services.cart.price.create({
-		    'default': { 'gross': 19.99, 'net': 19.99}
-		}) %}
-		
-		{% do services.cart.surcharge('my-surcharge', 'absolute', price, 'Fancy surcharge') %}
+        {% do services.cart.products.add(hook.ids.get('p1')) %}
+
+        {% set price = services.cart.price.create({
+            'default': { 'gross': 19.99, 'net': 19.99}
+        }) %}
+
+        {% do services.cart.surcharge('my-surcharge', 'absolute', price, 'Fancy surcharge') %}
         ```
 
   * Add a relative surcharge to the cart.
 
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
-		
-		{% do services.cart.products.add(hook.ids.get('p1')) %}
-		
-		{% if services.cart.has('my-surcharge') %}
-		    {% return %}
-		{% endif %}
-		
-		{% do services.cart.surcharge('my-surcharge', 'percentage', -10, 'Fancy discount') %}
+
+        {% do services.cart.products.add(hook.ids.get('p1')) %}
+
+        {% if services.cart.has('my-surcharge') %}
+            {% return %}
+        {% endif %}
+
+        {% do services.cart.surcharge('my-surcharge', 'percentage', -10, 'Fancy discount') %}
         ```
 
 ### get()
@@ -532,8 +532,8 @@ The ContainerFacade allows you to wrap multiple line-items inside a container li
 
         ```twig
         {% do services.cart.products.add(hook.ids.get('p1')) %}
-		
-		{% do services.cart.products.remove(hook.ids.get('p1')) %}
+  
+        {% do services.cart.products.remove(hook.ids.get('p1')) %}
         ```
 
 ### has()
@@ -759,14 +759,14 @@ The ItemFacade is a wrapper around one line-item.
 
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
-		
-		{% do services.cart.products.add(hook.ids.get('p1'), 5) %}
-		
-		{% set product = services.cart.products.get(hook.ids.get('p1')) %}
-		
-		{% set split = product.take(2, 'new-key') %}
-		
-		{% do services.cart.products.add(split) %}
+
+        {% do services.cart.products.add(hook.ids.get('p1'), 5) %}
+
+        {% set product = services.cart.products.get(hook.ids.get('p1')) %}
+
+        {% set split = product.take(2, 'new-key') %}
+
+        {% do services.cart.products.add(split) %}
         ```
 
 ### getId()
@@ -853,21 +853,21 @@ The ItemsFacade is a wrapper around a collection of line-items.
 
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
-		{% do services.cart.products.add(hook.ids.get('p1')) %}
-		
-		{% if services.cart.items.count <= 0 %}
-		    {% return %}
-		{% endif %}
-		
-		{% if services.cart.items.has('my-discount') %}
-		    {% return %}
-		{% endif %}
-		
-		{% set price = services.cart.price.create({
-		    'default': { 'gross': -19.99, 'net': -19.99}
-		}) %}
-		
-		{% do services.cart.discount('my-discount', 'absolute', price, 'Fancy discount') %}
+        {% do services.cart.products.add(hook.ids.get('p1')) %}
+
+        {% if services.cart.items.count <= 0 %}
+            {% return %}
+        {% endif %}
+
+        {% if services.cart.items.has('my-discount') %}
+            {% return %}
+        {% endif %}
+
+        {% set price = services.cart.price.create({
+            'default': { 'gross': -19.99, 'net': -19.99}
+        }) %}
+
+        {% do services.cart.discount('my-discount', 'absolute', price, 'Fancy discount') %}
         ```
 
 ### get()
@@ -908,8 +908,8 @@ The ItemsFacade is a wrapper around a collection of line-items.
 
         ```twig
         {% do services.cart.products.add(hook.ids.get('p1')) %}
-		
-		{% do services.cart.products.remove(hook.ids.get('p1')) %}
+  
+        {% do services.cart.products.remove(hook.ids.get('p1')) %}
         ```
 
 ### count()
@@ -985,10 +985,10 @@ over the quantity price calculator to consider quantity, tax rule and cash round
 
         ```twig
         {% do product.calculatedPrices.change([
-		    { to: 20, price: services.price.create({ 'default': { 'gross': 15, 'net': 15} }) },
-		    { to: 30, price: services.price.create({ 'default': { 'gross': 10, 'net': 10} }) },
-		    { to: null, price: services.price.create({ 'default': { 'gross': 5, 'net': 5} }) },
-		]) %}
+            { to: 20, price: services.price.create({ 'default': { 'gross': 15, 'net': 15} }) },
+            { to: 30, price: services.price.create({ 'default': { 'gross': 10, 'net': 10} }) },
+            { to: null, price: services.price.create({ 'default': { 'gross': 5, 'net': 5} }) },
+        ]) %}
         ```
 
 ### plus()
@@ -1007,10 +1007,10 @@ over the quantity price calculator to consider quantity, tax rule and cash round
 
         ```twig
         {% set price = services.price.create({
-		    'default': { 'gross': 1.5, 'net': 1.5}
-		}) %}
-		
-		{% do product.calculatedPrice.plus(price) %}
+            'default': { 'gross': 1.5, 'net': 1.5}
+        }) %}
+
+        {% do product.calculatedPrice.plus(price) %}
         ```
 
 ### minus()
@@ -1029,10 +1029,10 @@ over the quantity price calculator to consider quantity, tax rule and cash round
 
         ```twig
         {% set price = services.price.create({
-		    'default': { 'gross': 1.5, 'net': 1.5}
-		}) %}
-		
-		{% do product.calculatedPrice.minus(price) %}
+            'default': { 'gross': 1.5, 'net': 1.5}
+        }) %}
+
+        {% do product.calculatedPrice.minus(price) %}
         ```
 
 ### discount()
@@ -1089,8 +1089,8 @@ over the quantity price calculator to consider quantity, tax rule and cash round
 
         ```twig
         {% set price = services.cart.price.create({
-		    'default': { 'gross': 19.99, 'net': 19.99}
-		}) %}
+            'default': { 'gross': 19.99, 'net': 19.99}
+        }) %}
         ```
 
 _________
@@ -1117,8 +1117,8 @@ The PriceFacade is a wrapper around a price.
 
         ```twig
         {% set price = services.cart.price.create({
-		    'default': { 'gross': 19.99, 'net': 19.99}
-		}) %}
+            'default': { 'gross': 19.99, 'net': 19.99}
+        }) %}
         ```
 
 _________
@@ -1204,8 +1204,8 @@ The ProductsFacade is a wrapper around a collection of product line-items.
 
         ```twig
         {% do services.cart.products.add(hook.ids.get('p1')) %}
-		
-		{% do services.cart.products.remove(hook.ids.get('p1')) %}
+
+        {% do services.cart.products.remove(hook.ids.get('p1')) %}
         ```
 
 ### has()

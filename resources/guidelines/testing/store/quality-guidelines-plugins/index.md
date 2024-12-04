@@ -106,13 +106,13 @@ The short description is also published as a meta-description.
 * **Tips:**
 
     * When it comes to increasing your app sales, it is important that potential customers feel completely informed about your products and services.
-	To this end, you should provide description, highlights, and features that are meaningful, detailed, and easy to understand, even for people with very minimal technical knowledge.
-	Explain step-by-step how your app works and how to use it to achieve the desired result.
-	Of course, your app description should be accompanied by clean HTML source code.
+ To this end, you should provide description, highlights, and features that are meaningful, detailed, and easy to understand, even for people with very minimal technical knowledge.
+ Explain step-by-step how your app works and how to use it to achieve the desired result.
+ Of course, your app description should be accompanied by clean HTML source code.
 
     * Video content increases awareness and trust and has proven to convert potential customers better than other content types.
-	You can help your customers better understand your app or service with explainer videos, product demos, tutorials, etc.
-	You can embed a maximum of 2 YouTube videos in your app description.
+ You can help your customers better understand your app or service with explainer videos, product demos, tutorials, etc.
+ You can embed a maximum of 2 YouTube videos in your app description.
 
 ::: info
 You can no longer advertise your Shopware certificates within the app description, in your app images, or in your manufacturer profile.

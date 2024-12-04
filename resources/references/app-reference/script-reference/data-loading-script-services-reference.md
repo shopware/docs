@@ -28,51 +28,51 @@ Keep in mind that your app needs to have the correct permissions for the data it
 
         ```twig
         {% set page = hook.page %}
-		{# @var page \Shopware\Storefront\Page\Page #}
-		
-		{% set criteria = {
-		    'ids': [ hook.productId ]
-		} %}
-		
-		{% set product = services.repository.search('product', criteria).first %}
-		
-		{% do page.addExtension('myProduct', product) %}
+        {# @var page \Shopware\Storefront\Page\Page #}
+
+        {% set criteria = {
+            'ids': [ hook.productId ]
+        } %}
+
+        {% set product = services.repository.search('product', criteria).first %}
+
+        {% do page.addExtension('myProduct', product) %}
         ```
 
     * Filter the search result.
 
         ```twig
         {% set page = hook.page %}
-		{# @var page \Shopware\Storefront\Page\Page #}
-		
-		{% set criteria = {
-		    'filter': [
-		        { 'field': 'productNumber', 'type': 'equals', 'value': 'p1' }
-		    ]
-		} %}
-		
-		{% set product = services.repository.search('product', criteria).first %}
-		
-		{% do page.addExtension('myProduct', product) %}
+        {# @var page \Shopware\Storefront\Page\Page #}
+
+        {% set criteria = {
+            'filter': [
+                { 'field': 'productNumber', 'type': 'equals', 'value': 'p1' }
+            ]
+        } %}
+
+        {% set product = services.repository.search('product', criteria).first %}
+
+        {% do page.addExtension('myProduct', product) %}
         ```
 
     * Add associations that should be included in the result.
 
         ```twig
         {% set page = hook.page %}
-		{# @var page \Shopware\Storefront\Page\Page #}
-		
-		{% set criteria = {
-		    'ids': [ hook.productId ],
-		    'associations': {
-		        'manufacturer': {}
-		    }
-		} %}
-		
-		{% set product = services.repository.search('product', criteria).first %}
-		
-		{% do page.addExtension('myProduct', product) %}
-		{% do page.addExtension('myManufacturer', product.manufacturer) %}
+        {# @var page \Shopware\Storefront\Page\Page #}
+
+        {% set criteria = {
+            'ids': [ hook.productId ],
+            'associations': {
+                'manufacturer': {}
+            }
+        } %}
+
+        {% set product = services.repository.search('product', criteria).first %}
+
+        {% do page.addExtension('myProduct', product) %}
+        {% do page.addExtension('myManufacturer', product.manufacturer) %}
         ```
 
 ### ids()
@@ -90,19 +90,19 @@ Keep in mind that your app needs to have the correct permissions for the data it
 
         ```twig
         {% set page = hook.page %}
-		{# @var page \Shopware\Storefront\Page\Page #}
-		
-		{% set criteria = {
-		    'filter': [
-		        { 'field': 'productNumber', 'type': 'equals', 'value': 'p1' }
-		    ]
-		} %}
-		
-		{% set productIds = services.repository.ids('product', criteria).ids %}
-		
-		{% do page.addArrayExtension('myProductIds', {
-		    'ids': productIds
-		}) %}
+        {# @var page \Shopware\Storefront\Page\Page #}
+
+        {% set criteria = {
+            'filter': [
+                { 'field': 'productNumber', 'type': 'equals', 'value': 'p1' }
+            ]
+        } %}
+
+        {% set productIds = services.repository.ids('product', criteria).ids %}
+
+        {% do page.addArrayExtension('myProductIds', {
+            'ids': productIds
+        }) %}
         ```
 
 ### aggregate()
@@ -120,19 +120,19 @@ Keep in mind that your app needs to have the correct permissions for the data it
 
         ```twig
         {% set page = hook.page %}
-		{# @var page \Shopware\Storefront\Page\Page #}
-		
-		{% set criteria = {
-		    'aggregations': [
-		        { 'name': 'sumOfPrices', 'type': 'sum', 'field': 'price.gross' }
-		    ]
-		} %}
-		
-		{% set sumResult = services.repository.aggregate('product', criteria).get('sumOfPrices') %}
-		
-		{% do page.addArrayExtension('myProductAggregations', {
-		    'sum': sumResult.getSum
-		}) %}
+        {# @var page \Shopware\Storefront\Page\Page #}
+
+        {% set criteria = {
+            'aggregations': [
+                { 'name': 'sumOfPrices', 'type': 'sum', 'field': 'price.gross' }
+            ]
+        } %}
+
+        {% set sumResult = services.repository.aggregate('product', criteria).get('sumOfPrices') %}
+
+        {% do page.addArrayExtension('myProductAggregations', {
+            'sum': sumResult.getSum
+        }) %}
         ```
 
 _________
@@ -161,51 +161,51 @@ this means that e.g. product prices are already calculated based on the current 
 
         ```twig
         {% set page = hook.page %}
-		{# @var page \Shopware\Storefront\Page\Page #}
-		
-		{% set criteria = {
-		    'ids': [ hook.productId ]
-		} %}
-		
-		{% set product = services.store.search('product', criteria).first %}
-		
-		{% do page.addExtension('myProduct', product) %}
+        {# @var page \Shopware\Storefront\Page\Page #}
+
+        {% set criteria = {
+            'ids': [ hook.productId ]
+        } %}
+
+        {% set product = services.store.search('product', criteria).first %}
+
+        {% do page.addExtension('myProduct', product) %}
         ```
 
     * Filter the search result.
 
         ```twig
         {% set page = hook.page %}
-		{# @var page \Shopware\Storefront\Page\Page #}
-		
-		{% set criteria = {
-		    'filter': [
-		        { 'field': 'productNumber', 'type': 'equals', 'value': 'p1' }
-		    ]
-		} %}
-		
-		{% set product = services.store.search('product', criteria).first %}
-		
-		{% do page.addExtension('myProduct', product) %}
+        {# @var page \Shopware\Storefront\Page\Page #}
+
+        {% set criteria = {
+            'filter': [
+                { 'field': 'productNumber', 'type': 'equals', 'value': 'p1' }
+            ]
+        } %}
+
+        {% set product = services.store.search('product', criteria).first %}
+
+        {% do page.addExtension('myProduct', product) %}
         ```
 
     * Add associations that should be included in the result.
 
         ```twig
         {% set page = hook.page %}
-		{# @var page \Shopware\Storefront\Page\Page #}
-		
-		{% set criteria = {
-		    'ids': [ hook.productId ],
-		    'associations': {
-		        'manufacturer': {}
-		    }
-		} %}
-		
-		{% set product = services.store.search('product', criteria).first %}
-		
-		{% do page.addExtension('myProduct', product) %}
-		{% do page.addExtension('myManufacturer', product.manufacturer) %}
+        {# @var page \Shopware\Storefront\Page\Page #}
+
+        {% set criteria = {
+            'ids': [ hook.productId ],
+            'associations': {
+                'manufacturer': {}
+            }
+        } %}
+
+        {% set product = services.store.search('product', criteria).first %}
+
+        {% do page.addExtension('myProduct', product) %}
+        {% do page.addExtension('myManufacturer', product.manufacturer) %}
         ```
 
 ### ids()
@@ -223,19 +223,19 @@ this means that e.g. product prices are already calculated based on the current 
 
         ```twig
         {% set page = hook.page %}
-		{# @var page \Shopware\Storefront\Page\Page #}
-		
-		{% set criteria = {
-		    'filter': [
-		        { 'field': 'productNumber', 'type': 'equals', 'value': 'p1' }
-		    ]
-		} %}
-		
-		{% set productIds = services.store.ids('product', criteria).ids %}
-		
-		{% do page.addArrayExtension('myProductIds', {
-		    'ids': productIds
-		}) %}
+        {# @var page \Shopware\Storefront\Page\Page #}
+
+        {% set criteria = {
+            'filter': [
+                { 'field': 'productNumber', 'type': 'equals', 'value': 'p1' }
+            ]
+        } %}
+
+        {% set productIds = services.store.ids('product', criteria).ids %}
+
+        {% do page.addArrayExtension('myProductIds', {
+            'ids': productIds
+        }) %}
         ```
 
 ### aggregate()
@@ -253,19 +253,19 @@ this means that e.g. product prices are already calculated based on the current 
 
         ```twig
         {% set page = hook.page %}
-		{# @var page \Shopware\Storefront\Page\Page #}
-		
-		{% set criteria = {
-		    'aggregations': [
-		        { 'name': 'sumOfChildren', 'type': 'sum', 'field': 'childCount' }
-		    ]
-		} %}
-		
-		{% set sumResult = services.store.aggregate('product', criteria).get('sumOfChildren') %}
-		
-		{% do page.addArrayExtension('myProductAggregations', {
-		    'sum': sumResult.getSum
-		}) %}
+        {# @var page \Shopware\Storefront\Page\Page #}
+
+        {% set criteria = {
+            'aggregations': [
+                { 'name': 'sumOfChildren', 'type': 'sum', 'field': 'childCount' }
+            ]
+        } %}
+
+        {% set sumResult = services.store.aggregate('product', criteria).get('sumOfChildren') %}
+
+        {% do page.addArrayExtension('myProductAggregations', {
+            'sum': sumResult.getSum
+        }) %}
         ```
 
 _________
