@@ -29,13 +29,13 @@ Refer to this video on custom **[Creating a CLI command](https://www.youtube.com
 
 From here on, everything works exactly like in Symfony itself. Commands are recognised by Shopware, once they're tagged with the `console.command` tag in the [dependency injection](dependency-injection) container. So to register a new command, just add it to your plugin's `services.xml` and specify the `console.command` tag:
 
-```html
+```xml
 <services>
-   <!-- ... -->
+  <!-- ... -->
 
-   <service id="Swag\BasicExample\Command\ExampleCommand">
-       <tag name="console.command"/>
-   </service>
+  <service id="Swag\BasicExample\Command\ExampleCommand">
+    <tag name="console.command" />
+  </service>
 </services>
 <!-- ... -->
 ```

@@ -114,14 +114,15 @@ To insert the bundle entity to this `DataSelection`, you have to add this entity
 
 Both classes have to be registered in the `migration_assistant_extension.xml`:
 
-```html
+```xml
 <service id="SwagMigrationBundleExample\Profile\Shopware\DataSelection\ProductDataSelection"
-         decorates="SwagMigrationAssistant\Profile\Shopware\DataSelection\ProductDataSelection">
-    <argument type="service" id="SwagMigrationBundleExample\Profile\Shopware\DataSelection\ProductDataSelection.inner"/>
+  decorates="SwagMigrationAssistant\Profile\Shopware\DataSelection\ProductDataSelection">
+  <argument type="service"
+    id="SwagMigrationBundleExample\Profile\Shopware\DataSelection\ProductDataSelection.inner" />
 </service>
 
 <service id="SwagMigrationBundleExample\Profile\Shopware\DataSelection\DataSet\BundleDataSet">
-    <tag name="shopware.migration.data_set"/>
+  <tag name="shopware.migration.data_set" />
 </service>
 ```
 
@@ -275,10 +276,10 @@ class LocalBundleReader extends AbstractReader
 
 In this local reader, you fetch all bundles with associated products and return this in the `read` method. Like the `DataSelection` and `DataSet`, you must register the local reader and tag it with `shopware.migration.reader` in your `migration_assistant_extension.xml`. Also, you have to set the parent property of your local reader to `AbstractReader` to inherit from this class:
 
-```html
+```xml
 <service id="SwagMigrationBundleExample\Profile\Shopware\Gateway\Local\Reader\LocalBundleReader"
-         parent="SwagMigrationAssistant\Profile\Shopware\Gateway\Local\Reader\AbstractReader">
-    <tag name="shopware.migration.reader"/>
+  parent="SwagMigrationAssistant\Profile\Shopware\Gateway\Local\Reader\AbstractReader">
+  <tag name="shopware.migration.reader" />
 </service>
 ```
 
@@ -450,11 +451,11 @@ class BundleDefinition extends EntityDefinition
 
 In the `BundleDefinition`, you can see which fields the entity has and which are required. \(Hint: Always use the property name of the field.\) At the end of this step, you have to register your new converter in the `migration_assistant_extension.xml` and tag it with `shopware.migration.converter`:
 
-```html
+```xml
 <service id="SwagMigrationBundleExample\Profile\Shopware\Converter\BundleConverter">
-    <argument type="service" id="SwagMigrationAssistant\Migration\Mapping\MappingService"/>
-    <argument type="service" id="SwagMigrationAssistant\Migration\Logging\LoggingService"/>
-    <tag name="shopware.migration.converter"/>
+  <argument type="service" id="SwagMigrationAssistant\Migration\Mapping\MappingService" />
+  <argument type="service" id="SwagMigrationAssistant\Migration\Logging\LoggingService" />
+  <tag name="shopware.migration.converter" />
 </service>
 ```
 
@@ -479,12 +480,12 @@ class BundleWriter extends AbstractWriter
 }
 ```
 
-```html
+```xml
 <service id="SwagMigrationBundleExample\Migration\Writer\BundleWriter"
-         parent="SwagMigrationAssistant\Migration\Writer\AbstractWriter">
-    <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Write\EntityWriter"/>
-    <argument type="service" id="Swag\BundleExample\Core\Content\Bundle\BundleDefinition"/>
-    <tag name="shopware.migration.writer"/>
+  parent="SwagMigrationAssistant\Migration\Writer\AbstractWriter">
+  <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Write\EntityWriter" />
+  <argument type="service" id="Swag\BundleExample\Core\Content\Bundle\BundleDefinition" />
+  <tag name="shopware.migration.writer" />
 </service>
 ```
 

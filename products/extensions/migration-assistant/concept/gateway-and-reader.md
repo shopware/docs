@@ -15,24 +15,30 @@ Users will have to specify a gateway for the connection. The gateway defines the
 
 The gateway defines how to communicate from Shopware 6 with your source system, like Shopware 5. Every profile needs to have at least one gateway. Gateways need to be defined in the corresponding service xml using the `shopware.migration.gateway` tag:
 
-```html
+```xml
 <!-- Shopware Profile Gateways -->
 <service id="SwagMigrationAssistant\Profile\Shopware\Gateway\Local\ShopwareLocalGateway">
-    <argument type="service" id="SwagMigrationAssistant\Profile\Shopware\Gateway\Local\ReaderRegistry" />
-    <argument type="service" id="SwagMigrationAssistant\Profile\Shopware\Gateway\Local\Reader\EnvironmentReader" />
-    <argument type="service" id="SwagMigrationAssistant\Profile\Shopware\Gateway\Local\Reader\TableReader" />
-    <argument type="service" id="SwagMigrationAssistant\Profile\Shopware\Gateway\Connection\ConnectionFactory" />
-    <argument type="service" id="currency.repository"/>
-    <tag name="shopware.migration.gateway" />
+  <argument type="service" id="SwagMigrationAssistant\Profile\Shopware\Gateway\Local\ReaderRegistry" />
+  <argument type="service"
+    id="SwagMigrationAssistant\Profile\Shopware\Gateway\Local\Reader\EnvironmentReader" />
+  <argument type="service"
+    id="SwagMigrationAssistant\Profile\Shopware\Gateway\Local\Reader\TableReader" />
+  <argument type="service"
+    id="SwagMigrationAssistant\Profile\Shopware\Gateway\Connection\ConnectionFactory" />
+  <argument type="service" id="currency.repository" />
+  <tag name="shopware.migration.gateway" />
 </service>
 
 <service id="SwagMigrationAssistant\Profile\Shopware\Gateway\Api\ShopwareApiGateway">
-    <argument type="service" id="SwagMigrationAssistant\Migration\Gateway\Reader\ReaderRegistry"/>
-    <argument type="service" id="SwagMigrationAssistant\Profile\Shopware\Gateway\Api\Reader\EnvironmentReader" />
-    <argument type="service" id="SwagMigrationAssistant\Profile\Shopware\Gateway\Api\Reader\TableReader" />
-    <argument type="service" id="SwagMigrationAssistant\Profile\Shopware\Gateway\Api\Reader\TableCountReader" />
-    <argument type="service" id="currency.repository"/>
-    <tag name="shopware.migration.gateway" />
+  <argument type="service" id="SwagMigrationAssistant\Migration\Gateway\Reader\ReaderRegistry" />
+  <argument type="service"
+    id="SwagMigrationAssistant\Profile\Shopware\Gateway\Api\Reader\EnvironmentReader" />
+  <argument type="service"
+    id="SwagMigrationAssistant\Profile\Shopware\Gateway\Api\Reader\TableReader" />
+  <argument type="service"
+    id="SwagMigrationAssistant\Profile\Shopware\Gateway\Api\Reader\TableCountReader" />
+  <argument type="service" id="currency.repository" />
+  <tag name="shopware.migration.gateway" />
 </service>
 ```
 

@@ -139,15 +139,15 @@ The full CMS reference is available here:
 The preview template for `swag-image-text-reversed` looks like this:
 
 ```html
-// <app root>/Resources/cms/blocks/swag-image-text-reversed/preview.html
+<!-- <app root>/Resources/cms/blocks/swag-image-text-reversed/preview.html -->
 <div class="sw-cms-preview-swag-image-text-reversed">
-    <div>
-        <h2>Lorem ipsum dolor</h2>
-        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</p>
-    </div>
+  <div>
+    <h2>Lorem ipsum dolor</h2>
+    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</p>
+  </div>
 
-    <!-- Alternatively you might e.g. also use a base64 encoded preview image instead of an external resource. -->
-    <img src="https://example.com/preview.jpg" alt="Preview image">
+  <!-- Alternatively you might e.g. also use a base64 encoded preview image instead of an external resource. -->
+  <img src="https://example.com/preview.jpg" alt="Preview image">
 </div>
 ```
 

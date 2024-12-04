@@ -47,10 +47,10 @@ If you are using [Service autowiring](https://symfony.com/doc/current/service_co
 
 Alternatively, configure the `product.repository` service to be injected explicitly:
 
-```html
-// <plugin root>src/Resources/config/service.xml
+```xml
+<!-- <plugin root>src/Resources/config/service.xml -->
 <service id="Swag\ExamplePlugin\Service\DalExampleService">
-    <argument type="service" id="product.repository"/>
+  <argument type="service" id="product.repository" />
 </service>
 ```
 

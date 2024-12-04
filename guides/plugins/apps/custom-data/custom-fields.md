@@ -27,16 +27,16 @@ The names of the custom fields are global and therefore should always contain a 
 
 When defining custom fields in the `<fields>` element, you can configure additional properties of the fields. For example a `placeholder`, `min`, `max` and `step` size of a float field:
 
-```html
+```xml
 <float name="swag_test_float_field">
-    <label>Test float field</label>
-    <label lang="de-DE">Test-Kommazahlenfeld</label>
-    <help-text>This is an float field.</help-text>
-    <position>2</position>
-    <placeholder>Enter an float...</placeholder>
-    <min>0.5</min>
-    <max>1.6</max>
-    <steps>0.2</steps>
+  <label>Test float field</label>
+  <label lang="de-DE">Test-Kommazahlenfeld</label>
+  <help-text>This is an float field.</help-text>
+  <position>2</position>
+  <placeholder>Enter an float...</placeholder>
+  <min>0.5</min>
+  <max>1.6</max>
+  <steps>0.2</steps>
 </float>
 ```
 

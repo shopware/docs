@@ -378,21 +378,21 @@ Shopware.Component.register('your-plugin-component', {
 
 Below is an example to hide the element if the user has not the right privilege:
 
-```html
+```twig
 <button v-if="acl.can('review.editor')">
 </button>
 ```
 
 For example you could disable elements if the user has not the right privilege to use them and inform the user with a tooltip that a privilege is missing. To achieve this, you can use the global snippet path:
 
-```html
+```twig
 <button @click="saveProduct"
-        :disabled="!acl.can('review.editor')"
-        v-tooltip="{
-            message: $tc('sw-privileges.tooltip.warning'),
-            disabled: acl.can('review.editor'),
-            showOnDisabledElements: true
-        }"
+  :disabled="!acl.can('review.editor')"
+  v-tooltip="{
+    message: $tc('sw-privileges.tooltip.warning'),
+    disabled: acl.can('review.editor'),
+    showOnDisabledElements: true
+  }"
 ></button>
 ```
 

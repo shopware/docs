@@ -182,9 +182,9 @@ Flow actions can retrieve the data from FlowStorer.
 
 Or we can use the data when defining the email template.
 
-```html
-    <h3>Welcome to {{ shopName }}</h3>
-    <h1>Visit us at: {{ url }} </h1>
+```twig
+<h3>Welcome to {{ shopName }}</h3>
+<h1>Visit us at: {{ url }} </h1>
 ```
 
 Please see the [StorableFlow Concept](../../../../resources/references/adr/2022-07-21-adding-the-storable-flow-to-implement-delay-action-in-flow-builder) for more information.

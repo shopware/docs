@@ -303,13 +303,15 @@ Your new decorated product migration converter checks if a manufacturer is set a
 
 In the end, you have to register your decorated converter in your `services.xml`:
 
-```html
-<service id="SwagMigrationExtendConverterExample\Profile\Shopware\Converter\Shopware55DecoratedProductConverter"
-          decorates="SwagMigrationAssistant\Profile\Shopware55\Converter\Shopware55ProductConverter">
-    <argument type="service" id="SwagMigrationExtendConverterExample\Profile\Shopware\Converter\Shopware55DecoratedProductConverter.inner"/>
-    <argument type="service" id="SwagMigrationAssistant\Migration\Mapping\MappingService"/>
-    <argument type="service" id="SwagMigrationAssistant\Migration\Logging\LoggingService"/>
-    <argument type="service" id="SwagMigrationAssistant\Migration\Media\MediaFileService"/>
+```xml
+<service
+  id="SwagMigrationExtendConverterExample\Profile\Shopware\Converter\Shopware55DecoratedProductConverter"
+  decorates="SwagMigrationAssistant\Profile\Shopware55\Converter\Shopware55ProductConverter">
+  <argument type="service"
+    id="SwagMigrationExtendConverterExample\Profile\Shopware\Converter\Shopware55DecoratedProductConverter.inner" />
+  <argument type="service" id="SwagMigrationAssistant\Migration\Mapping\MappingService" />
+  <argument type="service" id="SwagMigrationAssistant\Migration\Logging\LoggingService" />
+  <argument type="service" id="SwagMigrationAssistant\Migration\Media\MediaFileService" />
 </service>
 ```
 

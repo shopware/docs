@@ -61,8 +61,8 @@ Shopware.Component.register('swag-basic-example', {
 
 As mentioned before, directives can be used as in any other Vue application, after they are registered:
 
-```html
-// <plugin-root>/src/Resources/app/administration/app/src/component/swag-basic-example/swag-basic-example.html.twig
+```twig
+{# <plugin-root>/src/Resources/app/administration/app/src/component/swag-basic-example/swag-basic-example.html.twig #}
 <input type="text" v-focus="">
 ```
 

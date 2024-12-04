@@ -24,16 +24,16 @@ When you save data without reloading the entity, then you need to re-assign the 
 
 For example:
 
-```html
-<!-- we change the status by click to switch for example -->
+```twig
+{# we change the status by click to switch for example #}
 <sw-switch-field
-    v-model="data.status"
-    :label="$tc('sw-review.detail.labelStatus')">
+  v-model="data.status"
+  :label="$tc('sw-review.detail.labelStatus')">
 </sw-switch-field>
 
-<!-- we will save data with onSave method -->
+{# we will save data with onSave method #}
 <sw-button-process @click="onSave">
-    {{ $tc('global.default.save') }}
+  {{ $tc('global.default.save') }}
 </sw-button-process>
 ```
 

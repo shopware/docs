@@ -43,7 +43,7 @@ Below you can see two example implementations, how it could be done with single 
 {% endblock %}
 ```
 
-```html
+```twig
 <example-component :name="$tc('swag-example.general.myCustomText')|example"></example-component>
 ```
 
@@ -57,6 +57,6 @@ When using multiple arguments, we can pass them as shown below.
 {% endblock %}
 ```
 
-```html
+```twig
 <example-component :title="$tc('swag-example.general.myCustomText')|example('secondArgument', 'thirdArgument')"></example-component>
 ```

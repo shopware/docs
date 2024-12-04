@@ -310,20 +310,20 @@ Component.extend('sw-condition-script', 'sw-condition-base', {
 });
 ```
 
-```html
-<!-- /src/app/component/rule/condition-type/sw-condition-script/sw-condition-script.html.twig -->
+```twig
+{# /src/app/component/rule/condition-type/sw-condition-script/sw-condition-script.html.twig #}
 {% block sw_condition_value_content %}
-<div class="sw-condition-script sw-condition__condition-value">
+  <div class="sw-condition-script sw-condition__condition-value">
     {% block sw_condition_script_fields %}
-    <sw-arrow-field
+      <sw-arrow-field
         v-for="(constraint, index) in constraints"
         :disabled="disabled"
-    >
-        <!-- use the specific type of field as need for a constraint -->
-        <!-- e.g. sw-entity-multi-select, sw-tagged-field, sw-number-field ... -->
-    </sw-arrow-field>
+      >
+        {# use the specific type of field as need for a constraint #}
+        {# e.g. sw-entity-multi-select, sw-tagged-field, sw-number-field ... #}
+      </sw-arrow-field>
     {% endblock %}
-</div>
+  </div>
 {% endblock %}
 ```
 

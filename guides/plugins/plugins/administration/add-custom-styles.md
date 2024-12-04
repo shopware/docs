@@ -35,11 +35,11 @@ Just like most components, it has a custom template. First we create the templat
 
 This template now has to define the basic structure of your component. In this simple case, you only need a parent container and two sub-elements, whatever those are.
 
-```html
+```twig
 {% block example_block %}
-    <div class="sw-hello-world">
-        <p>Hello world!</p>
-    </div>
+  <div class="sw-hello-world">
+    <p>Hello world!</p>
+  </div>
 {% endblock %}
 ```
 

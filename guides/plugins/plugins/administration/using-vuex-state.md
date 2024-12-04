@@ -120,17 +120,17 @@ Component.register('swag-basic-state', {
 After we have registered our `namespaced` store, mapped state and mutations, we can now use them in our components or templates.
 The component below displays the previously mapped state `content` in a `div` and a `sw-text-field`, mutating the state on the `changed` event of the `sw-text-field`.
 
-```html
-// <plugin-root>/src/Resources/app/administration/app/src/component/store-example/store-example.html.twig
+```twig
+{# <plugin-root>/src/Resources/app/administration/app/src/component/store-example/store-example.html.twig #}
 <div>
-    <h1>SW-6 State</h1>
-    <sw-text-field
-            :value="content"
-            @update:value="value => setContent(value)">
-    </sw-text-field>
-    <div>
-        {{ content }}
-    </div>
+  <h1>SW-6 State</h1>
+  <sw-text-field
+    :value="content"
+    @update:value="value => setContent(value)">
+  </sw-text-field>
+  <div>
+    {{ content }}
+  </div>
 </div>
 ```
 

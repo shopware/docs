@@ -131,7 +131,7 @@ featureIsActive(flag) {
 ### Using flags in templates
 When you want to toggle different parts of the template you can use the flag in a VueJs condition if you injected the service in the module:
 
-```html
+```twig
 <sw-field type="text" v-if="feature.isActive('v6.5.0.0')"></sw-field>
 ```
 

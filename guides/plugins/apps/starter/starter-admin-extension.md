@@ -74,18 +74,20 @@ SimpleNotification/
 ```
 
 ```html
-// src/index.html
+<!-- src/index.html -->
 <!doctype html>
 <html>
-    <head>
-        <script src="https://unpkg.com/@shopware-ag/meteor-admin-sdk/cdn"></script>
-    </head>
-    <script>
-        sw.notification.dispatch({
-            title: 'Hi there',
-            message: 'Looks like someone sent you a message'
-        });
-    </script>
+
+<head>
+  <script src="https://unpkg.com/@shopware-ag/meteor-admin-sdk/cdn"></script>
+</head>
+<script>
+  sw.notification.dispatch({
+    title: 'Hi there',
+    message: 'Looks like someone sent you a message'
+  });
+</script>
+
 </html>
 ```
 

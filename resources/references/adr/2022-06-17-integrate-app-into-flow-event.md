@@ -70,9 +70,9 @@ Flow data storer saves the data from the event as the [StorableFlow](../adr/2022
 
 *Or we can use the data when defining the email template.*
 
-```html
-    <h3>Welcome to {{ shopName }}</h3>
-    <h1>Visit us at: {{ url }} </h1>
+```twig
+<h3>Welcome to {{ shopName }}</h3>
+<h1>Visit us at: {{ url }} </h1>
 ```
 
 **Example pseudocode**

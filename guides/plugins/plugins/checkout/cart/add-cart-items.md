@@ -199,14 +199,12 @@ Of course you can use processors to do much more than this. Have a look at [addi
 
 Now register this processor in your `services.xml` like this:
 
-```html
-// <plugin root>/Resources/config/services.xml
-...
+```xml
+<!-- <plugin root>/Resources/config/services.xml -->
 <services>
-    ...
-    <service id="Swag\BasicExample\Core\Checkout\Cart\ExampleProcessor">
-        <tag name="shopware.cart.processor" priority="4800"/>
-    </service>
+  <service id="Swag\BasicExample\Core\Checkout\Cart\ExampleProcessor">
+    <tag name="shopware.cart.processor" priority="4800" />
+  </service>
 </services>
 ```
 

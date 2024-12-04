@@ -19,11 +19,11 @@ All you need for this guide is a running Shopware 6 instance and full access to 
 
 Let's create the simplest template we need in order to use the [`sw-data-grid`](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/component/data-grid/sw-data-grid/index.js).
 
-```html
-// <plugin-root>/src/Resources/app/administration/app/src/component/swag-example/swag-example.html.twig
+```twig
+{# <plugin-root>/src/Resources/app/administration/app/src/component/swag-example/swag-example.html.twig #}
 <div>
-    <sw-data-grid :data-source="dataSource" :columns="columns">
-    </sw-data-grid>
+  <sw-data-grid :data-source="dataSource" :columns="columns">
+  </sw-data-grid>
 </div>
 ```
 

@@ -21,9 +21,9 @@ To address these issues, we aimed to test a new idea with Vue 3, which includes 
 
 Our main idea for the template part was to use native Vue components named sw-block that can replace the Twig.JS template part. Plugin developers can extend or overwrite the sw-block component as needed.
 
-```html
+```twig
 <sw-block name="sw-hello-world">
-<div>Hello World</div>
+  <div>Hello World</div>
 </sw-block>
 ```
 

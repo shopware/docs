@@ -125,9 +125,9 @@ class ProductDataSet extends DataSet
 
 The `dataSelections` are registered the following way:
 
-```html
+```xml
 <service id="SwagMigrationAssistant\Profile\Shopware\DataSelection\ProductDataSelection">
-    <tag name="shopware.migration.data_selection"/>
+  <tag name="shopware.migration.data_selection" />
 </service>
 ```
 

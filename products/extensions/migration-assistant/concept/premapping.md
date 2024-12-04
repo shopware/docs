@@ -9,11 +9,11 @@ nav:
 
 The premapping will use the normal [Mapping](convert-and-mapping#mapping) to store the old identifier with the equivalent new one. All premapping readers provide the information for the mapping choices and are registered like this:
 
-```html
+```xml
 <service id="SwagMigrationAssistant\Profile\Shopware\Premapping\SalutationReader">
-    <argument type="service" id="salutation.repository" />
-    <argument type="service" id="SwagMigrationAssistant\Migration\Gateway\GatewayRegistry"/>
-    <tag name="shopware.migration.pre_mapping_reader"/>
+  <argument type="service" id="salutation.repository" />
+  <argument type="service" id="SwagMigrationAssistant\Migration\Gateway\GatewayRegistry" />
+  <tag name="shopware.migration.pre_mapping_reader" />
 </service>
 ```
 

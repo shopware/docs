@@ -10,15 +10,15 @@ This guide will show you how to use the most important of them.
 The Shopware 6 Administration media upload component makes it relatively easy to upload media of various kinds such as images, videos and audio files.
 This is done through the `sw-media-upload-v2` component as seen below:
 
-```html
+```twig
 <div>
-    <sw-media-upload-v2
-        uploadTag="my-upload-tag"
-        :allowMultiSelect="false"
-        variant="regular"
-        :autoUpload="true"
-        label="My image-upload">
-    </sw-media-upload-v2>
+  <sw-media-upload-v2
+    uploadTag="my-upload-tag"
+    :allowMultiSelect="false"
+    variant="regular"
+    :autoUpload="true"
+    label="My image-upload">
+  </sw-media-upload-v2>
 </div>
 ```
 
@@ -42,18 +42,18 @@ To get an overview of all the options, here is a list:
 
 As seen below, the `sw-upload-listener` component can be used in conjunction with an `sw-media-upload-v2` component.
 
-```html
+```twig
 <div>
-    <sw-media-upload-v2
-        uploadTag="my-upload-tag"
-        :allowMultiSelect="false"
-        variant="regular"
-        label="My image-upload">
-    </sw-media-upload-v2>
-    <sw-upload-listener
-        @media-upload-finish="onUploadFinish" 
-        uploadTag="my-upload-tag">
-    </sw-upload-listener>
+  <sw-media-upload-v2
+    uploadTag="my-upload-tag"
+    :allowMultiSelect="false"
+    variant="regular"
+    label="My image-upload">
+  </sw-media-upload-v2>
+  <sw-upload-listener
+    @media-upload-finish="onUploadFinish" 
+    uploadTag="my-upload-tag">
+  </sw-upload-listener>
 </div>
 ```
 
@@ -71,9 +71,9 @@ Beyond the `media-upload-finish` event there are a few more events:
 
 Media can be previewed with the `sw-media-preview-v2` component as seen below:
 
-```html
+```twig
 <sw-media-preview-v2
-    :source="some-id">
+  :source="some-id">
 </sw-media-preview-v2>
 ```
 

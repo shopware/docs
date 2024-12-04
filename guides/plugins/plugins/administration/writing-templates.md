@@ -21,13 +21,13 @@ Templates in Shopware are usually defined in a separate `.twig` file, named afte
 
 Let's look at all of this in practice, with the example of a component statically printing `'Hello World'`:
 
-```html
+```twig
 {% block swag_basic_example_page %}
-    <sw-page class="swag-example-list">
-        <template #content>
-            <h2>Hello world!</h2>
-        </template>
-    </sw-page>
+  <sw-page class="swag-example-list">
+    <template #content>
+      <h2>Hello world!</h2>
+    </template>
+  </sw-page>
 {% endblock %}
 ```
 

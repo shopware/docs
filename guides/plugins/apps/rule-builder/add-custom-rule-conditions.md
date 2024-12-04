@@ -104,33 +104,33 @@ We then use the variables `operator` and `firstName`, provided by the constraint
 
 ### Line item condition example
 
-```html
-// manifest.xml
+```xml
+<!-- manifest.xml -->
 <!-- ... -->
 <rule-condition>
-    <identifier>line_item_condition</identifier>
-    <name>Custom product multi select</name>
-    <group>item</group>
-    <script>line-item-condition.twig</script>
-    <constraints>
-        <single-select name="operator">
-            <placeholder>Choose an operator...</placeholder>
-            <options>
-                <option value="=">
-                    <name>Is equal to</name>
-                </option>
-                <option value="!=">
-                    <name>Is not equal to</name>
-                </option>
-            </options>
-            <required>true</required>
-        </single-select>
-        <multi-entity-select name="productIds">
-            <placeholder>Choose products...</placeholder>
-            <entity>product</entity>
-            <required>true</required>
-        </multi-entity-select>
-    </constraints>
+  <identifier>line_item_condition</identifier>
+  <name>Custom product multi select</name>
+  <group>item</group>
+  <script>line-item-condition.twig</script>
+  <constraints>
+    <single-select name="operator">
+      <placeholder>Choose an operator...</placeholder>
+      <options>
+        <option value="=">
+          <name>Is equal to</name>
+        </option>
+        <option value="!=">
+          <name>Is not equal to</name>
+        </option>
+      </options>
+      <required>true</required>
+    </single-select>
+    <multi-entity-select name="productIds">
+      <placeholder>Choose products...</placeholder>
+      <entity>product</entity>
+      <required>true</required>
+    </multi-entity-select>
+  </constraints>
 </rule-condition>
 <!-- ... -->
 ```
@@ -158,14 +158,14 @@ In this example we first check if the current scope is `LineItemScope` and refer
 
 ### Date condition example
 
-```html
-// manifest.xml
+```xml
+<!-- manifest.xml -->
 <!-- ... -->
 <rule-condition>
-    <identifier>date_condition</identifier>
-    <name>Custom date condition</name>
-    <group>misc</group>
-    <script>date-condition.twig</script>
+  <identifier>date_condition</identifier>
+  <name>Custom date condition</name>
+  <group>misc</group>
+  <script>date-condition.twig</script>
 </rule-condition>
 <!-- ... -->
 ```

@@ -141,8 +141,8 @@ class CustomerSpecificFeatureTwigExtension extends AbstractExtension
 
 Use it to check if a specific feature is allowed for a given customer in Twig.
 
-```html
+```twig
 {% if customerHasFeature('QUICK_ORDER') %}
-    ...
+  {# ... #}
 {% endif %}
 ```

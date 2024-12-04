@@ -73,7 +73,7 @@ computed: {
 }
 ```
 
-```html
+```twig
 <img :src="assetFilter('/<plugin root>/static/your-image.png')">
 ```
 

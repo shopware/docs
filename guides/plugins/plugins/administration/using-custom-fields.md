@@ -27,8 +27,8 @@ In Shopware, we provide an own component called `sw-custom-field-set-renderer` f
 
 As a consequence, you're able to use this component to display your custom fields. See here:
 
-```html
-// <plugin-root>/src/Resources/app/administration/app/src/component/swag-basic-example/swag-basic-example.html.twig
+```twig
+{# <plugin-root>/src/Resources/app/administration/app/src/component/swag-basic-example/swag-basic-example.html.twig #}
 <sw-card title="Custom fields">
     <sw-custom-field-set-renderer
         :entity="customEntity"

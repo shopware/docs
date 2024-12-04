@@ -42,23 +42,23 @@ Blocks and sections are visible on all viewports by default. In the administrati
 
 **Example in pseudocode:**
 
-```html
+```twig
 <sw-checkbox-field
-    v-model="visibility.mobile"
-    class=sw-cms-visibility-config__checkbox-input
-    :label="$tc('sw-cms.sidebar.contentMenu.visibilityMobile')"
+  v-model="visibility.mobile"
+  class=sw-cms-visibility-config__checkbox-input
+  :label="$tc('sw-cms.sidebar.contentMenu.visibilityMobile')"
 />
 
 <sw-checkbox-field
-    v-model="visibility.tablet"
-    class="sw-cms-visibility-config__checkbox-input"
-    :label="$tc('sw-cms.sidebar.contentMenu.visibilityTablet')"
+  v-model="visibility.tablet"
+  class="sw-cms-visibility-config__checkbox-input"
+  :label="$tc('sw-cms.sidebar.contentMenu.visibilityTablet')"
 />
 
 <sw-checkbox-field
-    v-model="visibility.desktop"
-    class="sw-cms-visibility-config__checkbox-input"
-    :label="$tc('sw-cms.sidebar.contentMenu.visibilityDesktop')"
+  v-model="visibility.desktop"
+  class="sw-cms-visibility-config__checkbox-input"
+  :label="$tc('sw-cms.sidebar.contentMenu.visibilityDesktop')"
 />
 ```
 
@@ -67,24 +67,24 @@ Based on the settings set in the administration, in the storefront we will add c
 
 **Example in pseudocode:**
 
-```html
+```twig
 {% if block.visibility is null %}
-    {% set block = {
-        visibility: {
-            mobile: true,
-            tablet: true,
-            desktop: true
-        }
-    } %}
+  {% set block = {
+    visibility: {
+      mobile: true,
+      tablet: true,
+      desktop: true
+    }
+  } %}
 {% endif %}
 
 {% if not block.visibility.mobile %}
-    {% set blockClasses = ['hidden-mobile']|merge(blockClasses) %}
+  {% set blockClasses = ['hidden-mobile']|merge(blockClasses) %}
 {% endif %}
 {% if not block.visibility.tablet %}
-    {% set blockClasses = ['hidden-tablet']|merge(blockClasses) %}
+  {% set blockClasses = ['hidden-tablet']|merge(blockClasses) %}
 {% endif %}
 {% if not block.visibility.desktop %}
-    {% set blockClasses = ['hidden-desktop']|merge(blockClasses) %}
+  {% set blockClasses = ['hidden-desktop']|merge(blockClasses) %}
 {% endif %}
 ```

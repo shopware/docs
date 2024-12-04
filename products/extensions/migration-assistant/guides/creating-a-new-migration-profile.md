@@ -79,9 +79,9 @@ class OwnProfile implements ProfileInterface
 
 The profile itself does not contain any logic and is used to bundle the executing classes. To use this profile, you have to register and tag it in the `service.xml` with `shopware.migration.profile`:
 
-```html
+```xml
 <service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\OwnProfile">
-    <tag name="shopware.migration.profile"/>
+  <tag name="shopware.migration.profile" />
 </service>
 ```
 
@@ -202,11 +202,12 @@ class OwnLocaleGateway implements GatewayInterface
 
 As you have seen above, the gateway uses the `ConnectionFactory` to test the connection to the source system. You can also implement your own way to check this, but using this factory is the simplest way for a gateway to connect to a local database. Like the profile, you have to register the new gateway in the `service.xml` and tag it with `shopware.migration.gateway`:
 
-```html
+```xml
 <service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\Gateway\OwnLocaleGateway">
-    <argument type="service" id="SwagMigrationAssistant\Migration\Gateway\Reader\ReaderRegistry"/>
-    <argument type="service" id="SwagMigrationAssistant\Profile\Shopware\Gateway\Connection\ConnectionFactory"/>
-    <tag name="shopware.migration.gateway"/>
+  <argument type="service" id="SwagMigrationAssistant\Migration\Gateway\Reader\ReaderRegistry" />
+  <argument type="service"
+    id="SwagMigrationAssistant\Profile\Shopware\Gateway\Connection\ConnectionFactory" />
+  <tag name="shopware.migration.gateway" />
 </service>
 ```
 
@@ -296,72 +297,71 @@ Component.register('swag-migration-profile-ownProfile-local-credential-form', {
 
 As you can see above, currently, the template does not exist and you have to create this file: `swag-migration-profile-ownProfile-local-credential-form.html.twig`
 
-```html
+```twig
 {% block own_profile_page_credentials %}
-    <div class="swag-migration-wizard swag-migration-wizard-page-credentials"
-         @keypress.enter="onKeyPressEnter">
-        {% block own_profile_page_credentials_content %}
-            <div class="swag-migration-wizard__content">
-                {% block own_profile_page_credentials_information %}
-                    <div class="swag-migration-wizard__content-information">
-                        {% block own_profile_page_credentials_local_hint %}
-                            {{ $tc('swag-migration.wizard.pages.credentials.shopware55.local.contentInformation') }}
-                        {% endblock %}
-                    </div>
-                {% endblock %}
-
-                {% block own_profile_page_credentials_credentials %}
-                    <div class="swag-migration-wizard__form">
-                        {% block own_profile_page_credentials_local_db_host_port_group %}
-                            <sw-container columns="1fr 80px"
-                                          gap="16px">
-                                {% block own_profile_page_credentials_local_dbhost_field %}
-                                    <sw-text-field v-autofocus
-                                                   name="sw-field--dbHost"
-                                                   :label="$tc('swag-migration.wizard.pages.credentials.shopware55.local.dbHostLabel')"
-                                                   :placeholder="$tc('swag-migration.wizard.pages.credentials.shopware55.local.dbHostPlaceholder')"
-                                                   v-model="inputCredentials.dbHost">
-                                    </sw-text-field>
-                                {% endblock %}
-
-                                {% block own_profile_page_credentials_local_dbport_field %}
-                                    <sw-field name="sw-field--dbPort"
-                                              :label="$tc('swag-migration.wizard.pages.credentials.shopware55.local.dbPortLabel')"
-                                              v-model="inputCredentials.dbPort">
-                                    </sw-field>
-                                {% endblock %}
-                            </sw-container>
-                        {% endblock %}
-
-                        {% block own_profile_page_credentials_local_dbuser_field %}
-                            <sw-field name="sw-field--dbUser"
-                                      :label="$tc('swag-migration.wizard.pages.credentials.shopware55.local.dbUserLabel')"
-                                      :placeholder="$tc('swag-migration.wizard.pages.credentials.shopware55.local.dbUserPlaceholder')"
-                                      v-model="inputCredentials.dbUser">
-                            </sw-field>
-                        {% endblock %}
-
-                        {% block own_profile_page_credentials_local_dbpassword_field %}
-                            <sw-field name="sw-field--dbPassword"
-                                      type="password"
-                                      :label="$tc('swag-migration.wizard.pages.credentials.shopware55.local.dbPasswordLabel')"
-                                      :placeholder="$tc('swag-migration.wizard.pages.credentials.shopware55.local.dbPasswordPlaceholder')"
-                                      v-model="inputCredentials.dbPassword">
-                            </sw-field>
-                        {% endblock %}
-
-                        {% block own_profile_page_credentials_local_dbname_field %}
-                            <sw-field name="sw-field--dbName"
-                                      :label="$tc('swag-migration.wizard.pages.credentials.shopware55.local.dbNameLabel')"
-                                      :placeholder="$tc('swag-migration.wizard.pages.credentials.shopware55.local.dbNamePlaceholder')"
-                                      v-model="inputCredentials.dbName">
-                            </sw-field>
-                        {% endblock %}
-                    </div>
-                {% endblock %}
-            </div>
+  <div class="swag-migration-wizard swag-migration-wizard-page-credentials"
+    @keypress.enter="onKeyPressEnter">
+    {% block own_profile_page_credentials_content %}
+      <div class="swag-migration-wizard__content">
+        {% block own_profile_page_credentials_information %}
+          <div class="swag-migration-wizard__content-information">
+            {% block own_profile_page_credentials_local_hint %}
+              {{ $tc('swag-migration.wizard.pages.credentials.shopware55.local.contentInformation') }}
+            {% endblock %}
+          </div>
         {% endblock %}
-    </div>
+
+        {% block own_profile_page_credentials_credentials %}
+          <div class="swag-migration-wizard__form">
+            {% block own_profile_page_credentials_local_db_host_port_group %}
+              <sw-container columns="1fr 80px" gap="16px">
+                {% block own_profile_page_credentials_local_dbhost_field %}
+                  <sw-text-field v-autofocus
+                    name="sw-field--dbHost"
+                    :label="$tc('swag-migration.wizard.pages.credentials.shopware55.local.dbHostLabel')"
+                    :placeholder="$tc('swag-migration.wizard.pages.credentials.shopware55.local.dbHostPlaceholder')"
+                    v-model="inputCredentials.dbHost">
+                  </sw-text-field>
+                {% endblock %}
+
+                {% block own_profile_page_credentials_local_dbport_field %}
+                  <sw-field name="sw-field--dbPort"
+                    :label="$tc('swag-migration.wizard.pages.credentials.shopware55.local.dbPortLabel')"
+                    v-model="inputCredentials.dbPort">
+                  </sw-field>
+                {% endblock %}
+              </sw-container>
+            {% endblock %}
+
+            {% block own_profile_page_credentials_local_dbuser_field %}
+              <sw-field name="sw-field--dbUser"
+                :label="$tc('swag-migration.wizard.pages.credentials.shopware55.local.dbUserLabel')"
+                :placeholder="$tc('swag-migration.wizard.pages.credentials.shopware55.local.dbUserPlaceholder')"
+                v-model="inputCredentials.dbUser">
+              </sw-field>
+            {% endblock %}
+
+            {% block own_profile_page_credentials_local_dbpassword_field %}
+              <sw-field name="sw-field--dbPassword"
+                type="password"
+                :label="$tc('swag-migration.wizard.pages.credentials.shopware55.local.dbPasswordLabel')"
+                :placeholder="$tc('swag-migration.wizard.pages.credentials.shopware55.local.dbPasswordPlaceholder')"
+                v-model="inputCredentials.dbPassword">
+              </sw-field>
+            {% endblock %}
+
+            {% block own_profile_page_credentials_local_dbname_field %}
+              <sw-field name="sw-field--dbName"
+                :label="$tc('swag-migration.wizard.pages.credentials.shopware55.local.dbNameLabel')"
+                :placeholder="$tc('swag-migration.wizard.pages.credentials.shopware55.local.dbNamePlaceholder')"
+                v-model="inputCredentials.dbName">
+              </sw-field>
+            {% endblock %}
+          </div>
+        {% endblock %}
+      </div>
+    {% endblock %}
+  </div>
 {% endblock %}
 ```
 
@@ -477,13 +477,13 @@ The order in the `getDataSets` array is important as it determines the order in 
 
 To see the created `ProductDataSelection` in the Administration, you have to register it both in the `services.xml` and tag them with `shopware.migration.data_selection` and `shopware.migration.data_set`:
 
-```html
+```xml
 <service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\DataSelection\ProductDataSelection">
-    <tag name="shopware.migration.data_selection"/>
+  <tag name="shopware.migration.data_selection" />
 </service>
 
 <service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\DataSelection\DataSet\ProductDataSet">
-    <tag name="shopware.migration.data_set"/>
+  <tag name="shopware.migration.data_set" />
 </service>
 ```
 
@@ -570,11 +570,12 @@ class ProductReader extends AbstractReader
 
 Then you have to register this in `services.xml` and tag it with `shopware.migration.reader`:
 
-```html
+```xml
 <service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\Gateway\Reader\ProductReader"
-    parent="SwagMigrationAssistant\Profile\Shopware\Gateway\Local\Reader\AbstractReader">
-    <argument type="service" id="SwagMigrationAssistant\Profile\Shopware\Gateway\Connection\ConnectionFactory"/>
-    <tag name="shopware.migration.reader"/>
+  parent="SwagMigrationAssistant\Profile\Shopware\Gateway\Local\Reader\AbstractReader">
+  <argument type="service"
+    id="SwagMigrationAssistant\Profile\Shopware\Gateway\Connection\ConnectionFactory" />
+  <tag name="shopware.migration.reader" />
 </service>
 ```
 
@@ -840,11 +841,11 @@ If you don't know which properties or requirements your entity has in Shopware 6
 
 To use this converter, you must register it in the `services.xml`:
 
-```html
+```xml
 <service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\Converter\ProductConverter">
-    <argument type="service" id="SwagMigrationAssistant\Migration\Mapping\MappingService"/>
-    <argument type="service" id="SwagMigrationAssistant\Migration\Logging\LoggingService"/>
-    <tag name="shopware.migration.converter"/>
+  <argument type="service" id="SwagMigrationAssistant\Migration\Mapping\MappingService" />
+  <argument type="service" id="SwagMigrationAssistant\Migration\Logging\LoggingService" />
+  <tag name="shopware.migration.converter" />
 </service>
 ```
 
