@@ -57,8 +57,8 @@ Example:
 
 ```typescript
 export default class {
-    public addClass(element: HTMLElement, name: string): void {
-        element.classList.add(name);
-    }
+  public addClass(element: HTMLElement, name: string): void {
+    element.classList.add(name);
+  }
 }
 ```

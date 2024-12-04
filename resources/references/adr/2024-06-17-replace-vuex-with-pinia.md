@@ -147,50 +147,50 @@ Let's look at a simple Vuex module and how to transition it:
 ```typescript
 // Old Vuex implementation
 Shopware.State.registerModule('example', {
-    state: {
-        id: '',
-    },
-    getters: {
-        idStart(state) {
-            return state.id.substring(0, 4);
-        }
-    },
-    mutations: {
-        setId(state, id) {
-            state.id = id;
-        }
-    },
-    actions: {
-        async asyncFoo({ commit }, id) {
-            // Do some async stuff
-            return Promise.resolve(() => {
-                commit('setId', id);
-                
-                return id;
-            });
-        }
+  state: {
+    id: '',
+  },
+  getters: {
+    idStart(state) {
+      return state.id.substring(0, 4);
     }
+  },
+  mutations: {
+    setId(state, id) {
+      state.id = id;
+    }
+  },
+  actions: {
+    async asyncFoo({ commit }, id) {
+      // Do some async stuff
+      return Promise.resolve(() => {
+        commit('setId', id);
+
+        return id;
+      });
+    }
+  }
 });
 
 // New Pinia implementation
 // Notice that the mutation setId was removed! You can directly modify a Pinia store state after retrieving it with Shopware.Store.get.
 Shopware.Store.register({
-    id: 'example',
-    state: () => ({
-        id: '',
-    }),
-    getters: {
-        idStart: () => this.id.substring(0, 4),
-    },
-    actions: {
-        async asyncFoo(id) {
-            // Do some async stuff
-            return Promise.resolve(() => {
-                this.id = id;
+  id: 'example',
+  state: () => ({
+    id: '',
+  }),
+  getters: {
+    idStart: () => this.id.substring(0, 4),
+  },
+  actions: {
+    async asyncFoo(id) {
+      // Do some async stuff
+      return Promise.resolve(() => {
+        this.id = id;
 
-                return id;
-            });
-        }
+        return id;
+      });
     }
+  }
 });
 ```
