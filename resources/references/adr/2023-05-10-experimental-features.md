@@ -108,7 +108,7 @@ To do so add the `Experimental` tag to the OpenApi definition of the route and a
 
 Modules, Components, Services, etc. can be marked as experimental, meaning that they are not covered by the backwards compatibility promise.
 
-```js
+```javascript
 /**
  * @experimental stableVersion:v6.6.0
  */

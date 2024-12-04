@@ -57,7 +57,7 @@ class testClass()
 ```
 js
 
-```js
+```javascript
 /**
  * @experimental stableVersion:v6.6.0 feature:WISHLIST
  */
