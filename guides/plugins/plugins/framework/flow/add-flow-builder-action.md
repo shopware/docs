@@ -161,7 +161,7 @@ There are three scopes for the `CreateTagAction`:
 
 - Just define the empty array in `CreateTagAction::requirements`
 
-```PHP
+```php
     // plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
     ...
 
@@ -183,7 +183,7 @@ Here, the action name is empty as the action name snippet is not yet defined.
 
 Make the `CreateTagAction` available for all events related to Order and Customer.
 
-```PHP
+```php
     // <plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
     ...
 
@@ -201,7 +201,7 @@ Make the `CreateTagAction` available for all events related to Order and Custome
 
 - Event must implement the `TagAware`
 
-```PHP
+```php
 // <plugin root>/src/Core/Content/Flow/Subscriber/BusinessEventCollectorSubscriber.php
 <?php declare(strict_types=1);
 
@@ -254,7 +254,7 @@ class BasicExampleEvent extends Event implements TagAware
 
 - Define the `TagAware` in `CreateTagAction::requirements`
 
-```PHP
+```php
     // <plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
     ...
 

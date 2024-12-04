@@ -34,7 +34,7 @@ The OpenTelemetry profiler is not installed by default. Checkout the [OpenTeleme
 
 To add custom spans to the profiler, you can use the `Shopware\Core\Profiling\Profiler::trace` method:
 
-```PHP
+```php
 use Shopware\Core\Profiling\Profiler;
 
 $value = Profiler::trace('my-example-trace', function () {
@@ -50,7 +50,7 @@ To add a custom profiler backend, you need to implement the `Shopware\Core\Profi
 
 The following example shows a custom profiler backend that logs the traces to the console:
 
-```PHP
+```php
 
 namespace App\Profiler;
 

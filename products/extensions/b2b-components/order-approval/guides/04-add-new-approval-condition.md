@@ -15,7 +15,7 @@ To add a custom rule, following this document [Add custom rule](../../../../../g
 
 Example:
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace YourPluginNameSpace;
