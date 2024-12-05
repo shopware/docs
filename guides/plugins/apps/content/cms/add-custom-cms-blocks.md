@@ -201,8 +201,8 @@ The DOM structure of the block in the CMS editor will look like this:
 
 ```html
 <div class="sw-cms-block-swag-image-text-reversed-component">
-    <div class="sw-cms-slot sw-cms-slot-left"></div>
-    <div class="sw-cms-slot sw-cms-slot-right"></div>
+  <div class="sw-cms-slot sw-cms-slot-left"></div>
+  <div class="sw-cms-slot sw-cms-slot-right"></div>
 </div>
 ```
 

@@ -48,7 +48,7 @@ It might be necessary that certain links in a panel really trigger the default b
 <a href="http://www.shopware.com" class="ignore--b2b-ajax-panel">Go to Shopware Home</a>
 
 <form class="ignore--b2b-ajax-panel">
-    [...]
+  <!-- [...] -->
 </form>
 ```
 

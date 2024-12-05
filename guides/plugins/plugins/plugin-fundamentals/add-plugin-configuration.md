@@ -71,12 +71,12 @@ A `<card>` `<title>` is translatable, this is managed via the `lang` attribute.
 By default, the `lang` attribute is set to `en-GB`, to change the locale of a `<title>` just add the attribute as follows:
 
 ```html
-    ...
-    <card>
-        <title>English Title</title>
-        <title lang="de-DE">German Titel</title>
-    </card>
-    ...
+<!-- ... -->
+<card>
+  <title>English Title</title>
+  <title lang="de-DE">German Titel</title>
+</card>
+<!-- ... -->
 ```
 
 ### Input fields
@@ -138,9 +138,9 @@ Below, you'll find an example of how to use this setting.
 
 ```html
 <input-field type="text">
-    <name>textField</name>
-    <label>Test field with default value</label>
-    <defaultValue>test</defaultValue>
+  <name>textField</name>
+  <label>Test field with default value</label>
+  <defaultValue>test</defaultValue>
 </input-field>
 ```
 
@@ -152,8 +152,8 @@ Below, you'll find an example of how to use this setting.
 
 ```html
 <input-field>
-    <name>email</name>
-    <disabled>true</disabled>
+  <name>email</name>
+  <disabled>true</disabled>
 </input-field>
 ```
 
@@ -167,8 +167,8 @@ Below, you'll find an example of how to use this setting.
 
 ```html
 <input-field>
-    <name>email</name>
-    <required>true</required>
+  <name>email</name>
+  <required>true</required>
 </input-field>
 ```
 
@@ -183,8 +183,8 @@ Below, you'll find an example of how to use this setting.
 
 ```html
 <input-field>
-    <name>email</name>
-    <copyable>true</copyable>
+  <name>email</name>
+  <copyable>true</copyable>
 </input-field>
 ```
 
@@ -199,9 +199,9 @@ Below, you'll find an example of how to use this setting.
 
 ```html
 <input-field type="password">
-    <name>token</name>
-    <minLength>5</minLength>
-    <maxLength>20</maxLength>
+  <name>token</name>
+  <minLength>5</minLength>
+  <maxLength>20</maxLength>
 </input-field>
 ```
 
@@ -214,9 +214,9 @@ Below, you'll find an example of how to use this setting.
 
 ```html
 <input-field type="int">
-    <name>token</name>
-    <min>5</min>
-    <max>20</max>
+  <name>token</name>
+  <min>5</min>
+  <max>20</max>
 </input-field>
 ```
 
@@ -229,19 +229,19 @@ Below you'll find an example.
 
 ```html
 <input-field type="single-select">
-    <name>mailMethod</name>
-    <options>
-        <option>
-            <id>smtp</id>
-            <name>English label</name>
-            <name lang="de-DE">German label</name>
-        </option>
-        <option>
-            <id>pop3</id>
-            <name>English label</name>
-            <name lang="de-DE">German label</name>
-        </option>
-    </options>
+  <name>mailMethod</name>
+  <options>
+    <option>
+      <id>smtp</id>
+      <name>English label</name>
+      <name lang="de-DE">German label</name>
+    </option>
+    <option>
+      <id>pop3</id>
+      <name>English label</name>
+      <name lang="de-DE">German label</name>
+    </option>
+  </options>
 </input-field>
 ```
 
@@ -265,9 +265,9 @@ Here are some examples:
 
 ```html
 <component name="sw-entity-single-select">
-    <name>exampleProduct</name>
-    <entity>product</entity>
-    <label>Choose a product for the plugin configuration</label>
+  <name>exampleProduct</name>
+  <entity>product</entity>
+  <label>Choose a product for the plugin configuration</label>
 </component>
 ```
 
@@ -277,9 +277,9 @@ Stores the ID of the selected product into the system config.
 
 ```html
 <component name="sw-entity-multi-id-select">
-    <name>exampleMultiProductIds</name>
-    <entity>product</entity>
-    <label>Choose multiple products IDs for the plugin configuration</label>
+  <name>exampleMultiProductIds</name>
+  <entity>product</entity>
+  <label>Choose multiple products IDs for the plugin configuration</label>
 </component>
 ```
 
@@ -289,8 +289,8 @@ Stores an array with IDs of the selected products into the system config.
 
 ```html
 <component name="sw-media-field">
-    <name>pluginMedia</name>
-    <label>Upload media or choose one from the media manager</label>
+  <name>pluginMedia</name>
+  <label>Upload media or choose one from the media manager</label>
 </component>
 ```
 
@@ -298,8 +298,8 @@ Stores an array with IDs of the selected products into the system config.
 
 ```html
 <component name="sw-text-editor">
-    <name>textEditor</name>
-    <label>Write some nice text with WYSIWYG editor</label>
+  <name>textEditor</name>
+  <label>Write some nice text with WYSIWYG editor</label>
 </component>
 ```
 
@@ -307,9 +307,9 @@ Stores an array with IDs of the selected products into the system config.
 
 ```html
 <component name="sw-snippet-field">
-    <name>snippetField</name>
-    <label>Description</label>
-    <snippet>myPlugin.test.snippet</snippet>
+  <name>snippetField</name>
+  <label>Description</label>
+  <snippet>myPlugin.test.snippet</snippet>
 </component>
 ```
 

@@ -41,10 +41,10 @@ This will render:
 
 ```html
 <head>
-    <!-- Other tags are rendered here... -->
+  <!-- Other tags are rendered here... -->
 
-    <script src="https://your-shop.example/theme/747e1c6a73cf4d70f5e831b30554dd15/js/all.js?1698139296" defer></script>
-    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js" defer></script>
+  <script src="https://your-shop.example/theme/747e1c6a73cf4d70f5e831b30554dd15/js/all.js?1698139296" defer></script>
+  <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js" defer></script>
 </head>
 ```
 

@@ -129,16 +129,16 @@ This example will print out the following output:
 
 ```html
 <img 
-    src="http://shopware.local/media/06/f0/5c/1614258798/example-image.jpg" 
-    srcset="http://shopware.local/media/06/f0/5c/1614258798/example-image.jpg 1921w, 
-            http://shopware.local/thumbnail/06/f0/5c/1614258798/example-image_1920x1920.jpg 1920w, 
-            http://shopware.local/thumbnail/06/f0/5c/1614258798/example-image_800x800.jpg 800w, 
-            http://shopware.local/thumbnail/06/f0/5c/1614258798/example-image_400x400.jpg 400w" 
-    sizes="(max-width: 1920px) and (min-width: 1200px) 284px,
-           (max-width: 1199px) and (min-width: 992px) 333px, 
-           (max-width: 991px) and (min-width: 768px) 427px, 
-           (max-width: 767px) and (min-width: 576px) 315px, 
-           (max-width: 575px) and (min-width: 0px) 501px, 100vw">
+  src="http://shopware.local/media/06/f0/5c/1614258798/example-image.jpg" 
+  srcset="http://shopware.local/media/06/f0/5c/1614258798/example-image.jpg 1921w, 
+          http://shopware.local/thumbnail/06/f0/5c/1614258798/example-image_1920x1920.jpg 1920w, 
+          http://shopware.local/thumbnail/06/f0/5c/1614258798/example-image_800x800.jpg 800w, 
+          http://shopware.local/thumbnail/06/f0/5c/1614258798/example-image_400x400.jpg 400w" 
+  sizes="(max-width: 1920px) and (min-width: 1200px) 284px,
+          (max-width: 1199px) and (min-width: 992px) 333px, 
+          (max-width: 991px) and (min-width: 768px) 427px, 
+          (max-width: 767px) and (min-width: 576px) 315px, 
+          (max-width: 575px) and (min-width: 0px) 501px, 100vw">
 ```
 
 By giving the `default` size you can override the media queries and always refer to a single image source for all viewports. To give an example, think about always using a small thumbnail closest to 100px regardless of the current viewport:
@@ -161,12 +161,12 @@ This example will create the output below:
 
 ```html
 <img 
-    src="http://shopware.local/media/06/f0/5c/1614258798/example-image.jpg" 
-    srcset="http://shopware.local/media/06/f0/5c/1614258798/example-image.jpg 1921w, 
-            http://shopware.local/thumbnail/06/f0/5c/1614258798/example-image_1920x1920.jpg 1920w, 
-            http://shopware.local/thumbnail/06/f0/5c/1614258798/example-image_800x800.jpg 800w, 
-            http://shopware.local/thumbnail/06/f0/5c/1614258798/example-image_400x400.jpg 400w" 
-    sizes="100px">
+  src="http://shopware.local/media/06/f0/5c/1614258798/example-image.jpg" 
+  srcset="http://shopware.local/media/06/f0/5c/1614258798/example-image.jpg 1921w, 
+          http://shopware.local/thumbnail/06/f0/5c/1614258798/example-image_1920x1920.jpg 1920w, 
+          http://shopware.local/thumbnail/06/f0/5c/1614258798/example-image_800x800.jpg 800w, 
+          http://shopware.local/thumbnail/06/f0/5c/1614258798/example-image_400x400.jpg 400w" 
+  sizes="100px">
 ```
 
 ::: danger
@@ -192,11 +192,11 @@ This will generate the output below:
 
 ```html
 <img 
-    src="..." 
-    sizes="..." 
-    class="my-custom-class" 
-    alt="Image name" 
-    title="My beautiful image">
+  src="..." 
+  sizes="..." 
+  class="my-custom-class" 
+  alt="Image name" 
+  title="My beautiful image">
 ```
 
 ### Native lazy loading
@@ -216,9 +216,9 @@ This will generate the below output:
 
 ```html
 <img 
-    src="..." 
-    sizes="..." 
-    loading="lazy">
+  src="..." 
+  sizes="..." 
+  loading="lazy">
 ```
 
 By default, lazy loading is disabled for newly added `sw_thumbnail` elements. You should consider activating it in the following scenarios:

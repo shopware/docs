@@ -39,8 +39,8 @@ If you implement new UI using mostly utility classes, please consider to still a
 ```html
 <!-- Classes "shipping-modal-actions", "shipping-abort" and "shipping-submit" are added for better semantics and CSS extensibility, but ship no default CSS. -->
 <div class="border p-3 mb-3 shipping-modal-actions">
-    <button class="btn btn-light shipping-abort">Abort</button>
-    <button class="btn btn-primary shipping-submit">Submit</button>
+  <button class="btn btn-light shipping-abort">Abort</button>
+  <button class="btn btn-primary shipping-submit">Submit</button>
 </div>
 ```
 
