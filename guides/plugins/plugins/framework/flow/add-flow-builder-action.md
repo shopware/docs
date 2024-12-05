@@ -140,11 +140,11 @@ As you can see, several methods are already implemented:
 
 You also need to register this action in the container as a service. Make sure to define a tag `<tag name="flow.action" priority="600">` at `<plugin root>/src/Resources/config/services.xml`. This tag will ensure that your action is included in the response of the *`/api/_info/flow-actions.json`* API. The priority attribute will determine the order of the action in the API response.
 
-```XML
-// <plugin root>/src/Resources/config/services.xml
+```xml
+<!-- <plugin root>/src/Resources/config/services.xml -->
 <service id="Swag\CreateTagAction\Core\Content\Flow\Dispatching\Action\CreateTagAction">
-    <argument type="service" id="tag.repository" />
-    <tag name="flow.action" priority="600" key="action.create.tag"/>
+  <argument type="service" id="tag.repository" />
+  <tag name="flow.action" priority="600" key="action.create.tag" />
 </service>
 ```
 
