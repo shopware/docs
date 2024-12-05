@@ -107,8 +107,8 @@ class ScriptEventRegistry
 
 ```twig
 {% if cart.price.totalPrice > 500 %}
-    {# get discount for high value orders #}
-    {% do cart.discount('percentage', 10, 'my_discount_snippet', cart.lineItems) %}
+  {# get discount for high value orders #}
+  {% do cart.discount('percentage', 10, 'my_discount_snippet', cart.lineItems) %}
 {% endif %}
 ```
 
@@ -116,8 +116,8 @@ class ScriptEventRegistry
 
 ```twig
 {% if cart.price.totalPrice < 500 %}
-    {# allow only carts with high values #}
-    {% do cart.block('you have to pay at least 500€ for this cart') %}
+  {# allow only carts with high values #}
+  {% do cart.block('you have to pay at least 500€ for this cart') %}
 {% endif %}
 ```
 

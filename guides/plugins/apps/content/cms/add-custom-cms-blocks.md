@@ -227,7 +227,7 @@ In `Resources/views/storefront/block/` a Twig template matching the pattern `cms
 So in this example, it's sufficient to simply extend the existing `image-text` element:
 
 ```twig
-// <app root>/Resources/views/storefront/block/cms-block-swag-image-text-reversed-component.html.twig
+{# <app root>/Resources/views/storefront/block/cms-block-swag-image-text-reversed-component.html.twig #}
 {% sw_extends '@Storefront/storefront/block/cms-block-image-text.html.twig' %}
 ```
 

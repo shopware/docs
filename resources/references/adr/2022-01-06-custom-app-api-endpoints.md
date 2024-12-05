@@ -119,12 +119,12 @@ Instead of providing the raw payload, we will provide a fluid, functional interf
 {% set ids = hook.event.get('manufacturer').only('upated').with(['name', 'url']) %} // same as above but chained
 
 {% if ids.empty %}
-    {% return %}
+  {% return %}
 {% endif %}
 
 {% set tags = [] %}
 {% for id in ids %}
-    {% set tags = tags|merge(['my-manufacturer-tag-' ~ id]) %}
+  {% set tags = tags|merge(['my-manufacturer-tag-' ~ id]) %}
 {% endfor %}
 
 {% do services.cache.invalidate(tags) %}

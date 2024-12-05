@@ -128,13 +128,13 @@ Create a `<plugin root>/src/Resources/views/storefront/page/content/` folder and
 A lot of text, here is the respective example:
 
 ```twig
-// <plugin root>/src/Resources/views/storefront/page/content/index.html.twig
+{# <plugin root>/src/Resources/views/storefront/page/content/index.html.twig #}
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
 {% block base_main_inner %}
-    {{ parent() }}
+  {{ parent() }}
 
-    <template data-example-plugin></template>
+  <template data-example-plugin></template>
 {% endblock %}
 ```
 
@@ -176,17 +176,17 @@ Therefore create a `product-detail` folder inside your `<plugin root>/src/Resour
 After the parent content add a template tag with the `data-example-plugin` tag to activate your plugin on product detail pages as well. Next add a `data-{your-plugin-name-in-kebab-case}-options` \(in this example: `data-example-plugin-options`\) attribute to the DOM element you registered your plugin on \(the template tag\). The value of this attribute are the options you want to override as a JSON object.
 
 ```twig
-// <plugin root>/src/Resources/views/storefront/page/product-detail/index.html.twig
+{# <plugin root>/src/Resources/views/storefront/page/product-detail/index.html.twig #}
 {% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
 
 {% set examplePluginOptions = {
-    text: "Are you not interested in this product?"
+  text: "Are you not interested in this product?"
 } %}
 
 {% block page_product_detail_content %}
-    {{ parent() }}
+  {{ parent() }}
 
-    <template data-example-plugin data-example-plugin-options='{{ examplePluginOptions|json_encode }}'></template>
+  <template data-example-plugin data-example-plugin-options='{{ examplePluginOptions|json_encode }}'></template>
 {% endblock %}
 ```
 
@@ -202,22 +202,22 @@ Imagine the following example can be found in the core:
 
 ```twig
 {% set productSliderOptions = {
-    productboxMinWidth: sliderConfig.elMinWidth.value ? sliderConfig.elMinWidth.value : '',
-    slider: {
-        gutter: 30,
-        autoplayButtonOutput: false,
-        nav: false,
-        mouseDrag: false,
-        controls: sliderConfig.navigation.value ? true : false,
-        autoplay: sliderConfig.rotate.value ? true : false
-    }
+  productboxMinWidth: sliderConfig.elMinWidth.value ? sliderConfig.elMinWidth.value : '',
+  slider: {
+    gutter: 30,
+    autoplayButtonOutput: false,
+    nav: false,
+    mouseDrag: false,
+    controls: sliderConfig.navigation.value ? true : false,
+    autoplay: sliderConfig.rotate.value ? true : false
+  }
 } %}
 
 {% block element_product_slider_slider %}
-    <div class="base-slider"
-         data-product-slider="true"
-         data-product-slider-options="{{ productSliderOptions|default({})|json_encode|escape('html_attr') }}">
-    </div>
+  <div class="base-slider"
+    data-product-slider="true"
+    data-product-slider-options="{{ productSliderOptions|default({})|json_encode|escape('html_attr') }}">
+  </div>
 {% endblock %}
 ```
 
@@ -225,13 +225,13 @@ Now you want to overwrite the value `slider.mouseDrag` with your plugin. The var
 
 ```twig
 {% block element_product_slider_slider %}
-    {% set productSliderOptions = productSliderOptions|replace_recursive({
-        slider: {
-            mouseDrag: true
-        }
-    }) %}
+  {% set productSliderOptions = productSliderOptions|replace_recursive({
+    slider: {
+      mouseDrag: true
+    }
+  }) %}
 
-    {{ parent() }}
+  {{ parent() }}
 {% endblock %}
 ```
 

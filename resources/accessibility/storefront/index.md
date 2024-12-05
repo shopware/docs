@@ -48,11 +48,11 @@ This is what a suboptimal HTML structure could look like:
 
 ```twig
 <div class="sidebar-list">
-    {% block component_list_items %}
-        <div class="list-item"><a href="#">Item</a></div>
-        <div class="list-item"><a href="#">Item</a></div>
-        <div class="list-item"><a href="#">Item</a></div>
-    {% endblock %}
+  {% block component_list_items %}
+    <div class="list-item"><a href="#">Item</a></div>
+    <div class="list-item"><a href="#">Item</a></div>
+    <div class="list-item"><a href="#">Item</a></div>
+  {% endblock %}
 </div>
 ```
 
@@ -61,22 +61,22 @@ Let's assume it should be changed to a proper list. Instead of implementing this
 ```twig
 {# @deprecated tag:v6.7.0 - The list will be changed to `<ul>` and `<li>` to improve accessibility #}
 {% if feature('ACCESSIBILITY_TWEAKS') %}
-    <ul class="sidebar-list">
-        {% block component_list_items_inner %}
-            <li class="list-item"><a href="#">Item</a></li>
-            <li class="list-item"><a href="#">Item</a></li>
-            <li class="list-item"><a href="#">Item</a></li>
-        {% endblock %}
-    </ul>
+  <ul class="sidebar-list">
+    {% block component_list_items_inner %}
+      <li class="list-item"><a href="#">Item</a></li>
+      <li class="list-item"><a href="#">Item</a></li>
+      <li class="list-item"><a href="#">Item</a></li>
+    {% endblock %}
+  </ul>
 {% else %}
-    <div class="sidebar-list">
-        {# @deprecated tag:v6.7.0 - Use `component_list_items_inner` instead with `<li>` #}
-        {% block component_list_items %}
-            <div class="list-item"><a href="#">Item</a></div>
-            <div class="list-item"><a href="#">Item</a></div>
-            <div class="list-item"><a href="#">Item</a></div>
-        {% endblock %}
-    </div>
+  <div class="sidebar-list">
+    {# @deprecated tag:v6.7.0 - Use `component_list_items_inner` instead with `<li>` #}
+    {% block component_list_items %}
+      <div class="list-item"><a href="#">Item</a></div>
+      <div class="list-item"><a href="#">Item</a></div>
+      <div class="list-item"><a href="#">Item</a></div>
+    {% endblock %}
+  </div>
 {% endif %}
 ```
 
@@ -87,14 +87,14 @@ If the block `component_list_items` is being extended, the new accessibility cha
 
 {# Consider the new structure already #}
 {% block component_list_items_inner %}
-    {{ parent() }}
-    <li class="list-item"><a href="#">My item</a></li>
+  {{ parent() }}
+  <li class="list-item"><a href="#">My item</a></li>
 {% endblock %}
 
 {# This can be removed after v6.7.0 #}
 {% block component_list_items %}
-    {{ parent() }}
-    <div class="list-item"><a href="#">My item</a></div>
+  {{ parent() }}
+  <div class="list-item"><a href="#">My item</a></div>
 {% endblock %}
 ```
 

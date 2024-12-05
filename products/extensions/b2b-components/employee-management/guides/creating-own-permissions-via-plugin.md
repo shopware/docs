@@ -60,7 +60,9 @@ If you want to check in the template if the user has this permission, the Twig f
 {{ parent() }}
 
 {% if isB2bAllowed(constant('PermissionCollectorSubscriber::EMPLOYEE_READ')) %}
-...
+
+{# ... #}
+
 {% endif  %}
 ```
 

@@ -40,25 +40,25 @@ Did you notice the Twig function `sw_sanitize`? It's a Twig function we wrote, c
 Imagine you want to add a text field to the product description. If you want to use the snippet in the Storefront, you have to extend a template file first. Let's say we want to add our custom field to the product description's text. The block of this element is `page_product_detail_description_content_text`, so we'll use it in our example. As we want to add our custom field in there, we use `parent` Twig function to keep the original template:
 
 ```twig
-// <plugin root>/src/Resources/views/storefront/page/product-detail/description.html.twig
+{# <plugin root>/src/Resources/views/storefront/page/product-detail/description.html.twig #}
 {% sw_extends '@Storefront/storefront/page/product-detail/description.html.twig' %}
 
 {% block page_product_detail_description_content_text %}
-    {{ parent() }}
+  {{ parent() }}
 {% endblock %}
 ```
 
 Now, we finally add our custom field as explained before:
 
 ```twig
-// <plugin root>/src/Resources/views/storefront/page/product-detail/description.html.twig
+{# <plugin root>/src/Resources/views/storefront/page/product-detail/description.html.twig #}
 {% sw_extends '@Storefront/storefront/page/product-detail/description.html.twig' %}
 
 {% block page_product_detail_description_content_text %}
-    {{ parent() }}
+  {{ parent() }}
 
-    {# Insert your custom field here, as seen below: #}
-    {{ "customFields.my_test_field"|trans|sw_sanitize }}: {{ page.product.translated.customFields.my_test_field }}
+  {# Insert your custom field here, as seen below: #}
+  {{ "customFields.my_test_field"|trans|sw_sanitize }}: {{ page.product.translated.customFields.my_test_field }}
 {% endblock %}
 ```
 
@@ -67,18 +67,18 @@ Now, we finally add our custom field as explained before:
 Let's say you have a custom field for the customer entity through the administration; now, you want the customer to input data into it through a field in the customer register form. This can be done without the need for a subscriber or listener; simply add a field to the form using the correct custom field name.
 
 ```twig
-// <plugin root>/src/Resources/views/storefront/component/address/address-personal.html.twig
+{# <plugin root>/src/Resources/views/storefront/component/address/address-personal.html.twig #}
 {% sw_extends '@Storefront/storefront/component/address/address-personal.html.twig' %}
 
 {% block component_address_personal_fields %}
-    {{ parent() }}
+  {{ parent() }}
 
-    {# custom field #}
-    <div class="form-group col-sm-6">
-        <label class="form-label" for="customFields[custom_field_name]">
-        {{ "customFields.custom_field_name"|trans|sanitize}}*
-        </label>
-        <input type="text" class="form-control" name="customFields[custom_field_name]" value="{{context.customer.customFields['custom_field_name'] }}" id="customFields[custom_field_name]" required="required">
-    </div>
+  {# custom field #}
+  <div class="form-group col-sm-6">
+    <label class="form-label" for="customFields[custom_field_name]">
+    {{ "customFields.custom_field_name"|trans|sanitize}}*
+    </label>
+    <input type="text" class="form-control" name="customFields[custom_field_name]" value="{{context.customer.customFields['custom_field_name'] }}" id="customFields[custom_field_name]" required="required">
+  </div>
 {% endblock %}
 ```

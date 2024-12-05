@@ -125,7 +125,7 @@ In twig blocks can be wrapped as being experimental:
 ```twig
 {# @experimental stableVersion:v6.6.0 #}
 {% block awesome_new_feature %}
-   ...
+  {# ... #}
 {% endblock %}
 ```
 

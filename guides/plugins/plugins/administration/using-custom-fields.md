@@ -30,11 +30,11 @@ As a consequence, you're able to use this component to display your custom field
 ```twig
 {# <plugin-root>/src/Resources/app/administration/app/src/component/swag-basic-example/swag-basic-example.html.twig #}
 <sw-card title="Custom fields">
-    <sw-custom-field-set-renderer
-        :entity="customEntity"
-        showCustomFieldSetSelection
-        :sets="sets">
-    </sw-custom-field-set-renderer>
+  <sw-custom-field-set-renderer
+    :entity="customEntity"
+    showCustomFieldSetSelection
+    :sets="sets">
+  </sw-custom-field-set-renderer>
 </sw-card>
 ```
 

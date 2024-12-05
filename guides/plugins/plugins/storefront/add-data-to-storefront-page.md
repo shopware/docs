@@ -288,17 +288,17 @@ Refer to the respective section of this guide for detailed information on how to
 For our case we extend the footer template and add a new column to the navigation block:
 
 ```twig
-// Resources/views/storefront/layout/footer/footer.html.twig
+{# Resources/views/storefront/layout/footer/footer.html.twig #}
 {% sw_extends '@Storefront/storefront/layout/footer/footer.html.twig' %}
 
 {% block layout_footer_navigation_columns %}
-    {{ parent() }}
+  {{ parent() }}
 
-    {% if page.footer.extensions.product_count %}
-        <div class="col-md-4 footer-column">
-            <p>This shop offers you {{ page.footer.extensions.product_count.count }} products</p>
-        </div>
-    {% endif %}
+  {% if page.footer.extensions.product_count %}
+    <div class="col-md-4 footer-column">
+      <p>This shop offers you {{ page.footer.extensions.product_count.count }} products</p>
+    </div>
+  {% endif %}
 {% endblock %}
 ```
 

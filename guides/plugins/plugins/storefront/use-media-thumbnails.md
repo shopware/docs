@@ -37,16 +37,16 @@ This `searchMedia` function reads out the corresponding media objects for the gi
 {% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
 
 {% block page_product_detail_media %}
-    {# simplify ID access #}
-    {% set sportsMediaId = page.product.translated.customFields.custom_sports_media_id %}
+  {# simplify ID access #}
+  {% set sportsMediaId = page.product.translated.customFields.custom_sports_media_id %}
 
-    {# fetch media as batch - optimized for performance #}
-    {% set mediaCollection = searchMedia([sportsMediaId], context.context) %}
+  {# fetch media as batch - optimized for performance #}
+  {% set mediaCollection = searchMedia([sportsMediaId], context.context) %}
 
-    {# extract single media object #}
-    {% set sportsMedia = mediaCollection.get(sportsMediaId) %}
+  {# extract single media object #}
+  {% set sportsMedia = mediaCollection.get(sportsMediaId) %}
 
-    {{ dump (sportsMedia) }}
+  {{ dump (sportsMedia) }}
 {% endblock %}
 ```
 
@@ -60,29 +60,29 @@ The function is already structured in a way that several IDs can be passed. To r
 {% sw_extends '@Storefront/storefront/component/product/listing.html.twig' %}
 
 {% block element_product_listing_col %}
-    {# initial ID array #}
-    {% set sportsMediaIds = [] %}
+  {# initial ID array #}
+  {% set sportsMediaIds = [] %}
 
-    {% for product in searchResult %}
-        {# simplify ID access #}
-        {% set sportsMediaId = product.translated.customFields.custom_sports_media_id %}
+  {% for product in searchResult %}
+    {# simplify ID access #}
+    {% set sportsMediaId = product.translated.customFields.custom_sports_media_id %}
 
-        {# merge IDs to a single array #}
-        {% set sportsMediaIds = sportsMediaIds|merge([sportsMediaId]) %}
-    {% endfor %}
+    {# merge IDs to a single array #}
+    {% set sportsMediaIds = sportsMediaIds|merge([sportsMediaId]) %}
+  {% endfor %}
 
-    {# do a single fetch from database #}
-    {% set mediaCollection = searchMedia(sportsMediaIds, context.context) %}
+  {# do a single fetch from database #}
+  {% set mediaCollection = searchMedia(sportsMediaIds, context.context) %}
 
-    {% for product in searchResult %}
-        {# simplify ID access #}
-        {% set sportsMediaId = product.translated.customFields.custom_sports_media_id %}
+  {% for product in searchResult %}
+    {# simplify ID access #}
+    {% set sportsMediaId = product.translated.customFields.custom_sports_media_id %}
 
-        {# get access to media of product #}
-        {% set sportsMedia = mediaCollection.get(sportsMediaId) %}
+    {# get access to media of product #}
+    {% set sportsMedia = mediaCollection.get(sportsMediaId) %}
 
-        {{ dump(sportsMedia) }}
-    {% endfor %}
+    {{ dump(sportsMedia) }}
+  {% endfor %}
 {% endblock %}
 ```
 
@@ -94,7 +94,7 @@ Fortunately, you do not need to define these attributes on your own - For that, 
 
 ```twig
 {% sw_thumbnails 'my-thumbnails' with {
-    media: cover
+  media: cover
 } %}
 ```
 
@@ -114,14 +114,14 @@ Let's think about the snippet below:
 
 ```twig
 {% sw_thumbnails 'my-thumbnails' with {
-    media: cover,
-    sizes: {
-        'xs': '501px',
-        'sm': '315px',
-        'md': '427px',
-        'lg': '333px',
-        'xl': '284px',
-    }
+  media: cover,
+  sizes: {
+    'xs': '501px',
+    'sm': '315px',
+    'md': '427px',
+    'lg': '333px',
+    'xl': '284px',
+  }
 } %}
 ```
 
@@ -145,15 +145,15 @@ By giving the `default` size you can override the media queries and always refer
 
 ```twig
 {% sw_thumbnails 'my-thumbnails' with {
-    media: cover,
-    sizes: {
-        'xs': '501px', {# Will be ignored #}
-        'sm': '315px', {# Will be ignored #}
-        'md': '427px', {# Will be ignored #}
-        'lg': '333px', {# Will be ignored #}
-        'xl': '284px', {# Will be ignored #}
-        'default': '100px'
-    }
+  media: cover,
+  sizes: {
+    'xs': '501px', {# Will be ignored #}
+    'sm': '315px', {# Will be ignored #}
+    'md': '427px', {# Will be ignored #}
+    'lg': '333px', {# Will be ignored #}
+    'xl': '284px', {# Will be ignored #}
+    'default': '100px'
+  }
 } %}
 ```
 
@@ -179,12 +179,12 @@ With the `attributes` param, additional attributes can be applied. Imagine the f
 
 ```twig
 {% sw_thumbnails 'my-thumbnails' with {
-    media: cover,
-    attributes: {
-        'class': 'my-custom-class',
-        'alt': 'alt tag of image',
-        'title': 'title of image'
-    }
+  media: cover,
+  attributes: {
+    'class': 'my-custom-class',
+    'alt': 'alt tag of image',
+    'title': 'title of image'
+  }
 } %}
 ```
 
@@ -205,10 +205,10 @@ With the `attributes` param, it is also possible to enable native lazy loading o
 
 ```twig
 {% sw_thumbnails 'my-thumbnails' with {
-    media: cover,
-    attributes: {
-        'loading': 'lazy'
-    }
+  media: cover,
+  attributes: {
+    'loading': 'lazy'
+  }
 } %}
 ```
 

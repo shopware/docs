@@ -117,10 +117,10 @@ This directory naming causes Shopware to expose the script on two routes:
 Let's start with a simple script to see it in action:
 
 ```twig
-// Resources/scripts/store-api-swag-topseller/topseller-script.twig
+{# Resources/scripts/store-api-swag-topseller/topseller-script.twig #}
 {% block response %}
-    {% set response = services.response.json({ test: 'This is my API endpoint' }) %}
-    {% do hook.setResponse(response) %}
+  {% set response = services.response.json({ test: 'This is my API endpoint' }) %}
+  {% do hook.setResponse(response) %}
 {% endblock %}
 ```
 
@@ -168,40 +168,40 @@ However, instead of using curl, we recommend using visual clients to test the AP
 For now, our script is not really doing anything. Let's change that.
 
 ```twig
-// Resources/scripts/store-api-swag-topseller/topseller-script.twig
+{# Resources/scripts/store-api-swag-topseller/topseller-script.twig #}
 {% block response %}
 
-    {% set categoryId = hook.request.categoryId %}
+  {% set categoryId = hook.request.categoryId %}
 
-    {% set criteria = {
-        aggregations: [
-            {
-                name: "categoryFilter",
-                type: "filter",
-                filter: [{
-                    type: "equals",
-                    field: "order.lineItems.product.categoryIds",
-                    value: categoryId
-                }],
-                aggregation: {
-                    name: "orderedProducts",
-                    type: "terms",
-                    field: "order.lineItems.productId",
-                    aggregation: {
-                        name: "quantityItemsOrdered",
-                        type : "sum",
-                        field: "order.lineItems.quantity"
-                    }
-                }
-            }
-        ]
-    } %}
+  {% set criteria = {
+    aggregations: [
+      {
+        name: "categoryFilter",
+        type: "filter",
+        filter: [{
+          type: "equals",
+          field: "order.lineItems.product.categoryIds",
+          value: categoryId
+        }],
+        aggregation: {
+          name: "orderedProducts",
+          type: "terms",
+          field: "order.lineItems.productId",
+          aggregation: {
+            name: "quantityItemsOrdered",
+            type : "sum",
+            field: "order.lineItems.quantity"
+          }
+        }
+      }
+    ]
+  } %}
 
-    {% set orderAggregations = services.repository.aggregate('order', criteria) %}
+  {% set orderAggregations = services.repository.aggregate('order', criteria) %}
 
-    {% set response = services.response.json(orderAggregations.first.jsonSerialize) %}
+  {% set response = services.response.json(orderAggregations.first.jsonSerialize) %}
 
-    {% do hook.setResponse(response) %}
+  {% do hook.setResponse(response) %}
 
 {% endblock %}
 ```

@@ -334,19 +334,19 @@ Since everything is already described in guide [CMS element development for plug
 ```twig
 {% block element_swag_dailymotion %}
 <div class="cms-element-swag-dailymotion" style="height: 100%; width: 100%">
-    {% block element_dailymotion_image_inner %}
-    <div class="cms-el-swag-dailymotion">
-        <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
-            <iframe style="width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden"
-                    src="https://www.dailymotion.com/embed/video//{{ element.config.dailyUrl.value }}"
-                    frameborder="0"
-                    type="text/html"
-                    width="100%"
-                    height="100%">
-            </iframe>
-        </div>
+  {% block element_dailymotion_image_inner %}
+  <div class="cms-el-swag-dailymotion">
+    <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
+      <iframe style="width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden"
+        src="https://www.dailymotion.com/embed/video//{{ element.config.dailyUrl.value }}"
+        frameborder="0"
+        type="text/html"
+        width="100%"
+        height="100%">
+      </iframe>
     </div>
-    {% endblock %}
+  </div>
+  {% endblock %}
 </div>
 {% endblock %}
 ```

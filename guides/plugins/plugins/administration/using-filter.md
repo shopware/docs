@@ -37,9 +37,9 @@ Below you can see two example implementations, how it could be done with single 
 
 ```twig
 {% block my_custom_block %}
-    <p>
-       {{ $tc('swag-example.general.myCustomText')|example }}
-    </p>
+  <p>
+    {{ $tc('swag-example.general.myCustomText')|example }}
+  </p>
 {% endblock %}
 ```
 
@@ -51,9 +51,9 @@ When using multiple arguments, we can pass them as shown below.
 
 ```twig
 {% block my_custom_block %}
-    <p>
-       {{ $tc('swag-example.general.myCustomText')|example('secondArgument', 'thirdArgument') }}
-    </p>
+  <p>
+    {{ $tc('swag-example.general.myCustomText')|example('secondArgument', 'thirdArgument') }}
+  </p>
 {% endblock %}
 ```
 

@@ -29,11 +29,11 @@ While it is possible to add a `<script>` anywhere in the HTML via template exten
 {% sw_extends '@Storefront/storefront/layout/meta.html.twig' %}
 
 {% block layout_head_javascript_hmr_mode %}
-    {# Renders Storefront script: <script src="https://your-shop.example/theme/747e1c6a73cf4d70f5e831b30554dd15/js/all.js?1698139296" defer></script> #}
-    {{ parent() }}
+  {# Renders Storefront script: <script src="https://your-shop.example/theme/747e1c6a73cf4d70f5e831b30554dd15/js/all.js?1698139296" defer></script> #}
+  {{ parent() }}
 
-    {# Your script #}
-    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js" defer></script>
+  {# Your script #}
+  <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js" defer></script>
 {% endblock %}
 ```
 
@@ -63,12 +63,12 @@ Then the script will only be rendered when the Twig condition is met.
 {% sw_extends '@Storefront/storefront/layout/meta.html.twig' %}
 
 {% block layout_head_javascript_hmr_mode %}
-    {{ parent() }}
+  {{ parent() }}
 
-    {# Only add script when condition is met #}
-    {% if someCondition %}
-        <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js" defer></script>
-    {% endif %}
+  {# Only add script when condition is met #}
+  {% if someCondition %}
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js" defer></script>
+  {% endif %}
 {% endblock %}
 ```
 

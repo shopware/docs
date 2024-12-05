@@ -69,9 +69,9 @@ The same `$tc` helper function can be used in the templates to access translatio
 
 ```twig
 {% block my_custom_block %}
-    <p>
-       {{ $tc('swag-example.general.myCustomText') }}
-    </p>
+  <p>
+    {{ $tc('swag-example.general.myCustomText') }}
+  </p>
 {% endblock %}
 ```
 
@@ -80,9 +80,9 @@ Let's have a look at this example of `"examplePluralization": "One Product | {n}
 
 ```twig
 {% block my_custom_block %}
-    <p>
-       {{ $tc('swag-example.nested.examplePluralization', products.length) }}
-    </p>
+  <p>
+    {{ $tc('swag-example.nested.examplePluralization', products.length) }}
+  </p>
 {% endblock %}
 ```
 

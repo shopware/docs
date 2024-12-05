@@ -20,10 +20,10 @@ The most basic ajax panel looks like this:
 
 ```twig
 <div
-    class="b2b--ajax-panel"
-    data-url="{{ path('frontend.b2b.b2bcontact.grid') }}"
+  class="b2b--ajax-panel"
+  data-url="{{ path('frontend.b2b.b2bcontact.grid') }}"
 >
-    <!-- will load content here -->
+  <!-- will load content here -->
 </div>
 ```
 
@@ -72,11 +72,11 @@ Let's take our last example and extend it with a form plugin:
 
 ```twig
 <div
-    class="b2b--ajax-panel"
-    data-url="{{ path('frontend.b2b.b2bcontact.grid') }}"
-    data-plugins="ajaxPanelFormDisable"
+  class="b2b--ajax-panel"
+  data-url="{{ path('frontend.b2b.b2bcontact.grid') }}"
+  data-plugins="ajaxPanelFormDisable"
 >
-    <!-- will load content here -->
+  <!-- will load content here -->
 </div>
 ```
 
@@ -90,11 +90,11 @@ The `b2bAjaxPanelModal` plugin helps to open ajax panel content in a modal dialo
 
 ```twig
 <div
-    class="b2b--ajax-panel b2b-modal-panel"
-    data-url="{{ path('frontend.b2b.b2bcontact.grid') }}"
-    data-plugins="ajaxPanelFormDisable"
+  class="b2b--ajax-panel b2b-modal-panel"
+  data-url="{{ path('frontend.b2b.b2bcontact.grid') }}"
+  data-plugins="ajaxPanelFormDisable"
 >
-    <!-- will load content here -->
+  <!-- will load content here -->
 </div>
 ```
 
@@ -108,11 +108,11 @@ In this case, you can just trigger reload on other panel id's, just like that:
 
 ```twig
 <div class="b2b--ajax-panel" data-url="{{ path('frontend.b2b.b2bcontact.grid') }}" data-id="grid">
-    <!-- grid -->
+  <!-- grid -->
 </div>
 
 <div class="b2b--ajax-panel" data-url="{{ path('frontend.b2b.b2bcontact.edit') }}" data-ajax-panel-trigger-reload="grid">
-    <!-- form -->
+  <!-- form -->
 </div>
 ```
 

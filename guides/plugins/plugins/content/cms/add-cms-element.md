@@ -146,15 +146,15 @@ That means: You'll need a container to contain both the image and the icon.
 In there, you create an `img` tag and use the [sw-icon component](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/component/base/sw-icon/index.js) to display the icon.
 
 ```twig
-// <plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/preview/sw-cms-el-preview-dailymotion.html.twig
+{# <plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/preview/sw-cms-el-preview-dailymotion.html.twig #}
 {% block sw_cms_element_dailymotion_preview %}
-    <div class="sw-cms-el-preview-dailymotion">
-        <img class="sw-cms-el-preview-dailymotion-img"
-             :src="'customcmselement/static/img/background_dailymotion_preview.jpg' | asset">
+  <div class="sw-cms-el-preview-dailymotion">
+    <img class="sw-cms-el-preview-dailymotion-img"
+      :src="'customcmselement/static/img/background_dailymotion_preview.jpg' | asset">
 
-        <sw-icon class="sw-cms-el-preview-dailymotion-icon"
-                 name="multicolor-action-play"></sw-icon>
-    </div>
+    <sw-icon class="sw-cms-el-preview-dailymotion-icon"
+      name="multicolor-action-play"></sw-icon>
+  </div>
 {% endblock %}
 ```
 
@@ -165,25 +165,25 @@ This is necessary, so the child can be positioned absolutely and will do so rela
 Thus, the icon receives a `position: absolute; style`, plus some top and left values to center it.
 
 ```css
-// <plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/preview/sw-cms-el-preview-dailymotion.scss
+/** <plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/preview/sw-cms-el-preview-dailymotion.scss */
 .sw-cms-el-preview-dailymotion {
-    position: relative;
+  position: relative;
 
-    .sw-cms-el-preview-dailymotion-img {
-        display: block;
-        max-width: 100%;
-    }
+  .sw-cms-el-preview-dailymotion-img {
+    display: block;
+    max-width: 100%;
+  }
 
-    .sw-cms-el-preview-dailymotion-icon {
-        $icon-height: 50px;
-        $icon-width: $icon-height;
-        position: absolute;
-        height: $icon-height;
-        width: $icon-width;
+  .sw-cms-el-preview-dailymotion-icon {
+    $icon-height: 50px;
+    $icon-width: $icon-height;
+    position: absolute;
+    height: $icon-height;
+    width: $icon-width;
 
-        left: calc(50% - #{$icon-width/2});
-        top: calc(50% - #{$icon-height/2});
-    }
+    left: calc(50% - #{$icon-width/2});
+    top: calc(50% - #{$icon-height/2});
+  }
 }
 ```
 
@@ -215,18 +215,18 @@ The template doesn't have to include a lot.
 Having a look at how Dailymotion video embedding works, you just have to add an `iframe` with a src attribute pointing to the video.
 
 ```twig
-// <plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/component/sw-cms-el-dailymotion.html.twig
+{# <plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/component/sw-cms-el-dailymotion.html.twig #}
 {% block sw_cms_element_dailymotion %}
-    <div class="sw-cms-el-dailymotion">
-        <div class="sw-cms-el-dailymotion-iframe-wrapper">
-            <iframe frameborder="0"
-                    type="text/html"
-                    width="100%"
-                    height="100%"
-                    :src="dailyUrl">
-            </iframe>
-        </div>
+  <div class="sw-cms-el-dailymotion">
+    <div class="sw-cms-el-dailymotion-iframe-wrapper">
+      <iframe frameborder="0"
+        type="text/html"
+        width="100%"
+        height="100%"
+        :src="dailyUrl">
+      </iframe>
     </div>
+  </div>
 {% endblock %}
 ```
 
@@ -374,15 +374,15 @@ Open the template `sw-cms-el-config-dailymotion.html.twig` instead.
 To be displayed in the config, we just need a text element, so the shop managers can apply a Dailymotion video ID.
 
 ```twig
-// <plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/config/sw-cms-el-config-dailymotion.html.twig
+{# <plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/config/sw-cms-el-config-dailymotion.html.twig #}
 {% block sw_cms_element_dailymotion_config %}
-    <sw-text-field
-          v-model="dailyUrl"
-          class="swag-dailymotion-field"
-          label="Dailymotion video link"
-          placeholder="Enter dailymotion link..."
-          @update:value="onElementUpdate">
-    </sw-text-field>
+  <sw-text-field
+    v-model="dailyUrl"
+    class="swag-dailymotion-field"
+    label="Dailymotion video link"
+    placeholder="Enter dailymotion link..."
+    @update:value="onElementUpdate">
+  </sw-text-field>
 {% endblock %}
 ```
 
@@ -435,23 +435,24 @@ The template for this is super easy though, just like it's been in your main com
 Just add an iFrame again. Simply apply the same styles as in the Administration, 100% to both height and width that is.
 
 ```twig
-// platform/src/Storefront/Resources/views/storefront/element/cms-element-dailymotion.html.twig
+{# platform/src/Storefront/Resources/views/storefront/element/cms-element-dailymotion.html.twig #}
 {% block element_dailymotion %}
     <div class="cms-element-dailymotion" style="height: 100%; width: 100%">
 
-        {% block element_dailymotion_image_inner %}
-            <div class="cms-el-dailymotion">
-                <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
-                    <iframe style="width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden"
-                            src="https://www.dailymotion.com/embed/video//{{ element.config.dailyUrl.value }}"
-                            frameborder="0"
-                            type="text/html"
-                            width="100%"
-                            height="100%">
-                    </iframe>
-                </div>
-            </div>
-        {% endblock %}
+      {% block element_dailymotion_image_inner %}
+        <div class="cms-el-dailymotion">
+          <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
+            <iframe style="width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden"
+              src="https://www.dailymotion.com/embed/video//{{ element.config.dailyUrl.value }}"
+              frameborder="0"
+              type="text/html"
+              width="100%"
+              height="100%">
+            </iframe>
+          </div>
+        </div>
+      {% endblock %}
+
     </div>
 {% endblock %}
 ```

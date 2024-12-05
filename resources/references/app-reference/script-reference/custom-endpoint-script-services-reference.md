@@ -31,12 +31,12 @@ The `cache` service allows you to invalidate the cache if some entity is updated
         {% set ids = hook.event.getIds('product_manufacturer') %}
 
         {% if ids.empty %}
-            {% return %}
+          {% return %}
         {% endif %}
 
         {% set tags = [] %}
         {% for id in ids %}
-            {% set tags = tags|merge(['my-manufacturer-' ~ id]) %}
+          {% set tags = tags|merge(['my-manufacturer-' ~ id]) %}
         {% endfor %}
 
         {% do services.cache.invalidate(tags) %}
@@ -49,12 +49,12 @@ The `cache` service allows you to invalidate the cache if some entity is updated
   
         {% set ids = ids.only('insert').with('description', 'parentId') %}
         {% if ids.empty %}
-            {% return %}
+          {% return %}
         {% endif %}
         
         {% set tags = [] %}
         {% for id in ids %}
-            {% set tags = tags|merge(['my-product-' ~ id]) %}
+          {% set tags = tags|merge(['my-product-' ~ id]) %}
         {% endfor %}
         
         {% do services.cache.invalidate(tags) %}
@@ -83,7 +83,7 @@ Keep in mind that your app needs to have the correct permissions for the data it
 
         ```twig
         {% do services.writer.upsert('tax', [
-            { 'name': 'new Tax', 'taxRate': 99.9 }
+          { 'name': 'new Tax', 'taxRate': 99.9 }
         ]) %}
         ```
 
@@ -91,7 +91,7 @@ Keep in mind that your app needs to have the correct permissions for the data it
 
         ```twig
         {% do services.writer.upsert('product', [
-            { 'id':  hook.productId, 'active': true }
+          { 'id':  hook.productId, 'active': true }
         ]) %}
         ```
 
@@ -110,7 +110,7 @@ Keep in mind that your app needs to have the correct permissions for the data it
 
         ```twig
         {% do services.writer.delete('product', [
-            { 'id':  hook.productId }
+          { 'id':  hook.productId }
         ]) %}
         ```
 
@@ -128,20 +128,20 @@ Keep in mind that your app needs to have the correct permissions for the data it
 
         ```twig
         {% set payload = [
-            {
-                'entity': 'product',
-                'action': 'upsert',
-                'payload': [
-                    { 'id':  hook.updateProductId, 'active': true }
-                ]
-            },
-            {
-                'entity': 'product',
-                'action': 'delete',
-                'payload': [
-                { 'id':  hook.deleteProductId }
+          {
+            'entity': 'product',
+            'action': 'upsert',
+            'payload': [
+              { 'id':  hook.updateProductId, 'active': true }
             ]
-            },
+          },
+          {
+            'entity': 'product',
+            'action': 'delete',
+            'payload': [
+              { 'id':  hook.deleteProductId }
+            ]
+          },
         ] %}
 
         {% do services.writer.sync(payload) %}
@@ -189,11 +189,11 @@ The `response` service allows you to create HTTP-Responses.
         {% set ids = hook.request.ids %}
 
         {% set response = services.response.json({
-            "actionType": "notification",
-            "payload": {
-                "status": "success",
-                "message": "You selected " ~ ids|length ~ " products."
-            }
+          "actionType": "notification",
+          "payload": {
+            "status": "success",
+            "message": "You selected " ~ ids|length ~ " products."
+          }
         }) %}
 
         {% do hook.setResponse(response) %}
@@ -251,7 +251,7 @@ The `response` service allows you to create HTTP-Responses.
         {% do hook.page.addExtension('myProduct', product) %}
 
         {% do hook.setResponse(
-            services.response.render('@MyApp/storefront/page/custom-page/index.html.twig', { 'page': hook.page })
+          services.response.render('@MyApp/storefront/page/custom-page/index.html.twig', { 'page': hook.page })
         ) %}
         ```
 

@@ -66,18 +66,18 @@ Note that app scripts can use the `return` keyword to return values to the calle
 A basic example may look like this:
 
 ```twig
-// Resources/scripts/include/media-repository.twig
+{# Resources/scripts/include/media-repository.twig #}
 {% macro getById(mediaId) %}
-    {% set criteria = {
-        'ids': [ mediaId ]
-    } %}
-    
-     {% return services.repository.search('media', criteria).first %}
+  {% set criteria = {
+    'ids': [ mediaId ]
+  } %}
+  
+  {% return services.repository.search('media', criteria).first %}
 {% endmacro %}
 ```
 
 ```twig
-// Resources/scripts/cart/first-cart-script.twig
+{# Resources/scripts/cart/first-cart-script.twig #}
 {% import "include/media-repository.twig" as mediaRepository %}
 
 {% set mediaEntity = mediaRepository.getById(myMediaId) %}
@@ -91,11 +91,11 @@ To implement the different functions, you use different twig blocks with the nam
 
 ```twig
 {% block cache_key %}
-    // provide a cacheKey for the incoming request
+  {# provide a cacheKey for the incoming request #}
 {% endblock %}
 
 {% block response %}
-    // produce the response for the request
+  {# produce the response for the request #}
 {% endblock %}
 ```
 
@@ -126,7 +126,7 @@ Instead of using the rather verbose `{% if var is same as(1) %}`, you can use th
 
 ```twig
 {% if var === 1 %}
-    ...
+  {# ... #}
 {% endif %}
 ```
 
@@ -134,7 +134,7 @@ Additionally, you can also use the `!==` not equals operator as well.
 
 ```twig
 {% if var !== 1 %}
-    ...
+  {# ... #}
 {% endif %}
 ```
 
@@ -144,8 +144,8 @@ Instead of the `for...in` syntax for loops, you can also use a `foreach` tag.
 
 ```twig
 {% foreach list as entry %}
-    {{ entry }}
-    {% break %}
+  {{ entry }}
+  {% break %}
 {% endforeach %}
 ```
 
@@ -155,7 +155,7 @@ You can use a `is` check to check the type of a variable.
 
 ```twig
 {% if var is string %}
-    ...
+  {# ... #}
 {% endif %}
 ```
 
@@ -178,7 +178,7 @@ You can cast variables into different types with the `intval` filter.
 
 ```twig
 {% if '5'|intval === 5 %}
-    {# always evaluates to true #}
+  {# always evaluates to true #}
 {% endif %}
 ```
 
@@ -195,7 +195,7 @@ Instead of using `AND` or `OR` in if-conditions, you can use the `&&` or `||` sh
 
 ```twig
 {% if condition === true && condition2 === true %}
-    ...
+  {# ... #}
 {% endif %}
 ```
 
@@ -205,7 +205,7 @@ You can use the `return` tag to return values from inside macros.
 
 ```twig
 {% macro foo() %} 
-     {% return 'bar' %}
+  {% return 'bar' %}
 {% endmacro %}
 ```
 
@@ -236,18 +236,18 @@ For this case, you can add an app script on the `product-page-loaded`
 hook, which loads the media entity by id and adds it to the page object so the data is available in templates.
 
 ```twig
-// Resources/scripts/product-page-loaded/add-custom-media.twig
+{# Resources/scripts/product-page-loaded/add-custom-media.twig #}
 {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
 
 {% set page = hook.page %}
 {# @var page \Shopware\Storefront\Page\Product\ProductPage #}
 
 {% if page.product.customFields.myCustomMediaField is not defined %}
-    {% return %}
+  {% return %}
 {% endif %}
 
 {% set criteria = {
-    'ids': [ page.product.customFields.myCustomMediaField ]
+  'ids': [ page.product.customFields.myCustomMediaField ]
 } %}
 
 {% set media = services.repository.search('media', criteria).first %}

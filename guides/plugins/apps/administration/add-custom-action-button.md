@@ -322,15 +322,15 @@ To use custom endpoints as the target url for action buttons you can define the 
 And then add the corresponding app script that should be executed when the user clicks the action button.
 
 ```twig
-// Resources/scripts/api-action-button/action-button-script.twig
+{# Resources/scripts/api-action-button/action-button-script.twig #}
 {% set ids = hook.request.ids %}
 
 {% set response = services.response.json({
-    "actionType": "notification",
-    "payload": {
-        "status": "success",
-        "message": "You selected " ~ ids|length ~ " products."
-    }
+  "actionType": "notification",
+  "payload": {
+    "status": "success",
+    "message": "You selected " ~ ids|length ~ " products."
+  }
 }) %}
 
 {% do hook.setResponse(response) %}

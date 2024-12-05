@@ -33,18 +33,18 @@ To apply the datepicker functionality we have to add a DOM element in a template
 To keep this example simple for now we just override the `base_main_inner` block of the `storefront/page/content/index.html.twig` template.
 
 ```twig
-// <plugin root>/src/Resources/views/storefront/page/content/index.html.twig
+{# <plugin root>/src/Resources/views/storefront/page/content/index.html.twig #}
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
 {% block base_main_inner %}
-    <label>
-        <input type="text"
-               name="customDate"
-               class="customDate"
-        />
-    </label>
+  <label>
+    <input type="text"
+      name="customDate"
+      class="customDate"
+    />
+  </label>
 
-    {{ parent() }}
+  {{ parent() }}
 {% endblock %}
 ```
 
@@ -52,19 +52,19 @@ Now you should see an empty input field if you open the storefront in your brows
 We need to add the data-attribute `data-date-picker` to activate the datepicker plugin on our input field.
 
 ```twig
-// <plugin root>/src/Resources/views/storefront/page/content/index.html.twig
+{# <plugin root>/src/Resources/views/storefront/page/content/index.html.twig #}
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
 {% block base_main_inner %}
-    <label>
-        <input type="text"
-               name="customDate"
-               class="customDate"
-               data-date-picker
-        />
-    </label>
+  <label>
+    <input type="text"
+      name="customDate"
+      class="customDate"
+      data-date-picker
+    />
+  </label>
 
-    {{ parent() }}
+  {{ parent() }}
 {% endblock %}
 ```
 
@@ -79,26 +79,26 @@ We can change this behaviour by passing more options to the datepicker plugin.
 Here you can see how this is done by setting up a local Twig variable `pickerOptions`. We can assign a JSON formatted object to the variable and pass the value to the datepicker plugin through the `data-date-picker-options` attribute.
 
 ```twig
-// <plugin root>/src/Resources/views/storefront/page/content/index.html.twig
+{# <plugin root>/src/Resources/views/storefront/page/content/index.html.twig #}
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
 {% block base_main_inner %}
 
-    {% set pickerOptions = {
-        locale: app.request.locale,
-        enableTime: true
-    } %}
-    
-    <label>
-        <input type="text"
-               name="customDate"
-               class="customDate"
-               data-date-picker
-               data-date-picker-options="{{ pickerOptions|json_encode|escape('html_attr') }}"
-        />
-    </label>
+  {% set pickerOptions = {
+    locale: app.request.locale,
+    enableTime: true
+  } %}
+  
+  <label>
+    <input type="text"
+      name="customDate"
+      class="customDate"
+      data-date-picker
+      data-date-picker-options="{{ pickerOptions|json_encode|escape('html_attr') }}"
+    />
+  </label>
 
-    {{ parent() }}
+  {{ parent() }}
 {% endblock %}
 ```
 
@@ -111,27 +111,27 @@ languages accordingly.
 To preselect the value of the datepicker we can simply set its value in the input field which gets picked up by the datepicker plugin.
 
 ```twig
-// <plugin root>/src/Resources/views/storefront/page/content/index.html.twig
+{# <plugin root>/src/Resources/views/storefront/page/content/index.html.twig #}
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
 {% block base_main_inner %}
 
-    {% set pickerOptions = {
-        locale: app.request.locale,
-        enableTime: true
-    } %}
-    
-    <label>
-        <input type="text"
-               name="customDate"
-               class="customDate"
-               value="2021-01-01T00:00:00+00:00"
-               data-date-picker
-               data-date-picker-options="{{ pickerOptions|json_encode|escape('html_attr') }}"
-        />
-    </label>
+  {% set pickerOptions = {
+    locale: app.request.locale,
+    enableTime: true
+  } %}
+  
+  <label>
+    <input type="text"
+      name="customDate"
+      class="customDate"
+      value="2021-01-01T00:00:00+00:00"
+      data-date-picker
+      data-date-picker-options="{{ pickerOptions|json_encode|escape('html_attr') }}"
+    />
+  </label>
 
-    {{ parent() }}
+  {{ parent() }}
 {% endblock %}
 ```
 
@@ -141,36 +141,36 @@ To open or close the datepicker by trigger buttons you can pass in DOM selectors
 Here is an example which shows all three selectors in action.
 
 ```twig
-// <plugin root>/src/Resources/views/storefront/page/content/index.html.twig
+{# <plugin root>/src/Resources/views/storefront/page/content/index.html.twig #}
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
 {% block base_main_inner %}
 
-    {% set pickerProperties = {
-        locale: app.request.locale,
-        enableTime: true,
-        selectors: {
-            openButton: ".openDatePicker",
-            closeButton: ".closeDatePicker",
-            clearButton: ".resetDatePicker"
-        }
-    } %}
+  {% set pickerProperties = {
+    locale: app.request.locale,
+    enableTime: true,
+    selectors: {
+      openButton: ".openDatePicker",
+      closeButton: ".closeDatePicker",
+      clearButton: ".resetDatePicker"
+    }
+  } %}
 
-    <label>
-        <input type="text"
-               name="foo"
-               class="customDate"
-               value="2021-04-13T00:00:00+00:00"
-               data-date-picker
-               data-date-picker-options="{{ pickerProperties|json_encode|escape('html_attr') }}"
-        />
+  <label>
+    <input type="text"
+      name="foo"
+      class="customDate"
+      value="2021-04-13T00:00:00+00:00"
+      data-date-picker
+      data-date-picker-options="{{ pickerProperties|json_encode|escape('html_attr') }}"
+    />
 
-        <button class="openDatePicker">Open</button>
-        <button class="closeDatePicker">Close</button>
-        <button class="resetDatePicker">Reset</button>
-    </label>
+    <button class="openDatePicker">Open</button>
+    <button class="closeDatePicker">Close</button>
+    <button class="resetDatePicker">Reset</button>
+  </label>
 
-    {{ parent() }}
+  {{ parent() }}
 {% endblock %}
 ```
 

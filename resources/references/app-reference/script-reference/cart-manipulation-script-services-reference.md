@@ -84,15 +84,15 @@ You can use the cart service to add line-items, change prices, add discounts, et
         {% do services.cart.products.add(hook.ids.get('p1')) %}
         
         {% if services.cart.items.count <= 0 %}
-            {% return %}
+          {% return %}
         {% endif %}
         
         {% if services.cart.items.has('my-discount') %}
-            {% return %}
+          {% return %}
         {% endif %}
         
         {% set price = services.cart.price.create({
-            'default': { 'gross': -19.99, 'net': -19.99}
+          'default': { 'gross': -19.99, 'net': -19.99}
         }) %}
         
         {% do services.cart.discount('my-discount', 'absolute', price, 'Fancy discount') %}
@@ -106,7 +106,7 @@ You can use the cart service to add line-items, change prices, add discounts, et
         {% do services.cart.products.add(hook.ids.get('p1')) %}
         
         {% if services.cart.has('my-discount') %}
-            {% return %}
+          {% return %}
         {% endif %}
         
         {% do services.cart.discount('my-discount', 'percentage', -10, 'Fancy discount') %}
@@ -135,7 +135,7 @@ You can use the cart service to add line-items, change prices, add discounts, et
         {% do services.cart.products.add(hook.ids.get('p1')) %}
         
         {% set price = services.cart.price.create({
-            'default': { 'gross': 19.99, 'net': 19.99}
+          'default': { 'gross': 19.99, 'net': 19.99}
         }) %}
         
         {% do services.cart.surcharge('my-surcharge', 'absolute', price, 'Fancy surcharge') %}
@@ -149,7 +149,7 @@ You can use the cart service to add line-items, change prices, add discounts, et
         {% do services.cart.products.add(hook.ids.get('p1')) %}
         
         {% if services.cart.has('my-surcharge') %}
-            {% return %}
+          {% return %}
         {% endif %}
         
         {% do services.cart.surcharge('my-surcharge', 'percentage', -10, 'Fancy discount') %}
@@ -273,7 +273,7 @@ The CartPriceFacade is a wrapper around the calculated price of a cart.
 
         ```twig
         {% set price = services.cart.price.create({
-            'default': { 'gross': 19.99, 'net': 19.99}
+          'default': { 'gross': 19.99, 'net': 19.99}
         }) %}
         ```
 
@@ -435,15 +435,15 @@ The ContainerFacade allows you to wrap multiple line-items inside a container li
         {% do services.cart.products.add(hook.ids.get('p1')) %}
 
         {% if services.cart.items.count <= 0 %}
-            {% return %}
+          {% return %}
         {% endif %}
 
         {% if services.cart.items.has('my-discount') %}
-            {% return %}
+          {% return %}
         {% endif %}
 
         {% set price = services.cart.price.create({
-            'default': { 'gross': -19.99, 'net': -19.99}
+          'default': { 'gross': -19.99, 'net': -19.99}
         }) %}
 
         {% do services.cart.discount('my-discount', 'absolute', price, 'Fancy discount') %}
@@ -457,7 +457,7 @@ The ContainerFacade allows you to wrap multiple line-items inside a container li
         {% do services.cart.products.add(hook.ids.get('p1')) %}
 
         {% if services.cart.has('my-discount') %}
-            {% return %}
+          {% return %}
         {% endif %}
 
         {% do services.cart.discount('my-discount', 'percentage', -10, 'Fancy discount') %}
@@ -486,7 +486,7 @@ The ContainerFacade allows you to wrap multiple line-items inside a container li
         {% do services.cart.products.add(hook.ids.get('p1')) %}
 
         {% set price = services.cart.price.create({
-            'default': { 'gross': 19.99, 'net': 19.99}
+          'default': { 'gross': 19.99, 'net': 19.99}
         }) %}
 
         {% do services.cart.surcharge('my-surcharge', 'absolute', price, 'Fancy surcharge') %}
@@ -500,7 +500,7 @@ The ContainerFacade allows you to wrap multiple line-items inside a container li
         {% do services.cart.products.add(hook.ids.get('p1')) %}
 
         {% if services.cart.has('my-surcharge') %}
-            {% return %}
+          {% return %}
         {% endif %}
 
         {% do services.cart.surcharge('my-surcharge', 'percentage', -10, 'Fancy discount') %}
@@ -856,15 +856,15 @@ The ItemsFacade is a wrapper around a collection of line-items.
         {% do services.cart.products.add(hook.ids.get('p1')) %}
 
         {% if services.cart.items.count <= 0 %}
-            {% return %}
+          {% return %}
         {% endif %}
 
         {% if services.cart.items.has('my-discount') %}
-            {% return %}
+          {% return %}
         {% endif %}
 
         {% set price = services.cart.price.create({
-            'default': { 'gross': -19.99, 'net': -19.99}
+          'default': { 'gross': -19.99, 'net': -19.99}
         }) %}
 
         {% do services.cart.discount('my-discount', 'absolute', price, 'Fancy discount') %}
@@ -985,9 +985,9 @@ over the quantity price calculator to consider quantity, tax rule and cash round
 
         ```twig
         {% do product.calculatedPrices.change([
-            { to: 20, price: services.price.create({ 'default': { 'gross': 15, 'net': 15} }) },
-            { to: 30, price: services.price.create({ 'default': { 'gross': 10, 'net': 10} }) },
-            { to: null, price: services.price.create({ 'default': { 'gross': 5, 'net': 5} }) },
+          { to: 20, price: services.price.create({ 'default': { 'gross': 15, 'net': 15} }) },
+          { to: 30, price: services.price.create({ 'default': { 'gross': 10, 'net': 10} }) },
+          { to: null, price: services.price.create({ 'default': { 'gross': 5, 'net': 5} }) },
         ]) %}
         ```
 
@@ -1007,7 +1007,7 @@ over the quantity price calculator to consider quantity, tax rule and cash round
 
         ```twig
         {% set price = services.price.create({
-            'default': { 'gross': 1.5, 'net': 1.5}
+          'default': { 'gross': 1.5, 'net': 1.5}
         }) %}
 
         {% do product.calculatedPrice.plus(price) %}
@@ -1029,7 +1029,7 @@ over the quantity price calculator to consider quantity, tax rule and cash round
 
         ```twig
         {% set price = services.price.create({
-            'default': { 'gross': 1.5, 'net': 1.5}
+          'default': { 'gross': 1.5, 'net': 1.5}
         }) %}
 
         {% do product.calculatedPrice.minus(price) %}
@@ -1089,7 +1089,7 @@ over the quantity price calculator to consider quantity, tax rule and cash round
 
         ```twig
         {% set price = services.cart.price.create({
-            'default': { 'gross': 19.99, 'net': 19.99}
+          'default': { 'gross': 19.99, 'net': 19.99}
         }) %}
         ```
 
@@ -1117,7 +1117,7 @@ The PriceFacade is a wrapper around a price.
 
         ```twig
         {% set price = services.cart.price.create({
-            'default': { 'gross': 19.99, 'net': 19.99}
+          'default': { 'gross': 19.99, 'net': 19.99}
         }) %}
         ```
 

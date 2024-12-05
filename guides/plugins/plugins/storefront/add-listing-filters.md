@@ -134,17 +134,17 @@ The block `component_filter_panel_items` is available from Shopware Version 6.4.
 Including our filter will be done as seen below, please take the comments into account:
 
 ```twig
-// <plugin root>/src/Resources/views/storefront/component/listing/filter-panel.html.twig
+{# <plugin root>/src/Resources/views/storefront/component/listing/filter-panel.html.twig #}
 {% sw_extends '@Storefront/storefront/component/listing/filter-panel.html.twig' %}
 
 {% block component_filter_panel_items %}
-    {{ parent() }}
+  {{ parent() }}
 
-    {# We'll include our filter element here #}
-    {% sw_include '@Storefront/storefront/component/listing/filter/filter-boolean.html.twig' with {
-        name: 'isCloseout',
-        displayName: 'Closeout'
-    } %}
+  {# We'll include our filter element here #}
+  {% sw_include '@Storefront/storefront/component/listing/filter/filter-boolean.html.twig' with {
+    name: 'isCloseout',
+    displayName: 'Closeout'
+  } %}
 {% endblock %}
 ```
 
@@ -163,17 +163,17 @@ Extending  `component_filter_panel_items` as shown above puts our filter *after*
 If we instead want our filter to be placed before or after a specific filter in the middle of the list, we can instead extend the block for that filter. For example, if we want our filter to be displayed after the price filter, we would extend the block `component_filter_panel_item_price`:
 
 ```twig
-// <plugin root>/src/Resources/views/storefront/component/listing/filter-panel.html.twig
+{# <plugin root>/src/Resources/views/storefront/component/listing/filter-panel.html.twig #}
 {% sw_extends '@Storefront/storefront/component/listing/filter-panel.html.twig' %}
 
 {% block component_filter_panel_item_price %}
-    {{ parent() }}
+  {{ parent() }}
 
-    {# We'll include our filter element here #}
-    {% sw_include '@Storefront/storefront/component/listing/filter/filter-boolean.html.twig' with {
-        name: 'isCloseout',
-        displayName: 'Closeout'
-    } %}
+  {# We'll include our filter element here #}
+  {% sw_include '@Storefront/storefront/component/listing/filter/filter-boolean.html.twig' with {
+    name: 'isCloseout',
+    displayName: 'Closeout'
+  } %}
 {% endblock %}
 ```
 

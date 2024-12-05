@@ -93,22 +93,22 @@ Let's take a closer look at how this decorator is used:
 By default, the search bar does not know how to display the result items, so a current search request will not show any result. In order to declare a search result view the `sw-search-bar-item` template has to be altered as seen below, starting with the template:
 
 ```twig
-// <plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-bar-item/sw-search-bar-item.html.twig
+{# <plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-bar-item/sw-search-bar-item.html.twig #}
 {% block sw_search_bar_item_cms_page %}
-    {% parent %}
+  {% parent %}
 
-    <router-link v-else-if="type === 'foo_bar'"
-                 v-bind:to="{ name: 'foo.bar.detail', params: { id: item.id } }"
-                 ref="routerLink"
-                 class="sw-search-bar-item__link">
-        {% block sw_search_bar_item_foo_bar_label %}
-            <span class="sw-search-bar-item__label">
-                <sw-highlight-text v-bind:searchTerm="searchTerm"
-                                   v-bind:text="item.name">
-                </sw-highlight-text>
-            </span>
-        {% endblock %}
-    </router-link>
+  <router-link v-else-if="type === 'foo_bar'"
+    v-bind:to="{ name: 'foo.bar.detail', params: { id: item.id } }"
+    ref="routerLink"
+    class="sw-search-bar-item__link">
+      {% block sw_search_bar_item_foo_bar_label %}
+        <span class="sw-search-bar-item__label">
+          <sw-highlight-text v-bind:searchTerm="searchTerm"
+            v-bind:text="item.name">
+          </sw-highlight-text>
+        </span>
+      {% endblock %}
+  </router-link>
 {% endblock %}
 ```
 
@@ -136,20 +136,20 @@ The `sw_search_bar_item_cms_page` block is used as it is the last block, but it 
 By default, the search bar tries to resolve to the registered listing route. If your entity can be searched externally you can edit the `sw-search-more-results` or `sw-search` components as well:
 
 ```twig
-// <plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-more-results/sw-search-more-results.html.twig
+{# <plugin root>/src/Resources/app/administration/src/app/component/structure/sw-search-more-results/sw-search-more-results.html.twig #}
 {% block sw_search_more_results %}
-    <template v-if="result.entity === 'foo_bar'">
-        There are so many hits.
-        <a :href="'https://my.erp.localhost/?q=' + searchTerm"
-           class="sw-search-bar-item__link"
-           target="_blank">
-             Look it directly up
-        </a>
-        in the ERP instead.
-    </template>
-    <template v-else>
-        {% parent %}
-    </template>
+  <template v-if="result.entity === 'foo_bar'">
+    There are so many hits.
+    <a :href="'https://my.erp.localhost/?q=' + searchTerm"
+      class="sw-search-bar-item__link"
+      target="_blank">
+        Look it directly up
+    </a>
+    in the ERP instead.
+  </template>
+  <template v-else>
+    {% parent %}
+  </template>
 {% endblock %}
 ```
 

@@ -347,7 +347,7 @@ Let's have a quick look at an example document type template. Go ahead and creat
 In there you should extend from the default document base template:
 
 ```twig
-// <plugin root>/src/Resources/views/documents/example\_document.html.twig
+{# <plugin root>/src/Resources/views/documents/example\_document.html.twig #}
 {% sw_extends '@Framework/documents/base.html.twig' %}
 ```
 

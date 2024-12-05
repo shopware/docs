@@ -38,7 +38,7 @@ By default, a `204 No Content` response will be sent after your script was execu
 To provide a custom response, you can use the [`response`-service](../../../../resources/references/app-reference/script-reference/custom-endpoint-script-services-reference#scriptresponsefactoryfacade) to create a response and set it as the `response` of the hook:
 
 ```twig
-// Resources/scripts/api-custom-endpoint/my-example-script.twig
+{# Resources/scripts/api-custom-endpoint/my-example-script.twig #}
 {% set response = services.response.json({ 'foo': 'bar' }) %}
 {% do hook.setResponse(response) %}
 ```
@@ -48,7 +48,7 @@ Those scripts will be executed in alphabetical order. Remember that later script
 If you want to prevent the execution of further scripts, you can do so by calling `hook.stopPropagation`:
 
 ```twig
-// Resources/scripts/api-custom-endpoint/my-example-script.twig
+{# Resources/scripts/api-custom-endpoint/my-example-script.twig #}
 {% do hook.stopPropagation() %}
 ```
 
@@ -73,10 +73,10 @@ This endpoint allows `POST` and `GET` requests.
 This hook is an [Interface Hook](./#interface-hooks). The execution of your logic should be implemented in the `response` block of your script.
 
 ```twig
-// Resources/scripts/store-api-custom-endpoint/my-example-script.twig
+{# Resources/scripts/store-api-custom-endpoint/my-example-script.twig #}
 {% block response %}
-    {% set response = services.response.json({ 'foo': 'bar' }) %}
-    {% do hook.setResponse(response) %}
+  {% set response = services.response.json({ 'foo': 'bar' }) %}
+  {% do hook.setResponse(response) %}
 {% endblock %}
 ```
 
@@ -85,12 +85,12 @@ The cache key you generate should take every permutation of the request, which w
 A simple cache key generation would be to generate an `md5`-hash of all the incoming request parameters, as well as your hook's name:
 
 ```twig
-// Resources/scripts/store-api-custom-endpoint/my-example-script.twig
+{# Resources/scripts/store-api-custom-endpoint/my-example-script.twig #}
 {% block cache_key %}
-    {% set cachePayload = hook.query %}
-    {% set cachePayload = cachePayload|merge({'script': 'custom-endpoint'}) %}
+  {% set cachePayload = hook.query %}
+  {% set cachePayload = cachePayload|merge({'script': 'custom-endpoint'}) %}
 
-    {% do hook.setCacheKey(cachePayload|md5) %}
+  {% do hook.setCacheKey(cachePayload|md5) %}
 {% endblock %}
 ```
 
@@ -109,20 +109,20 @@ Caching is supported and enabled by default for `GET` requests.
 In addition to providing `JsonResponses` you can also render your own templates:
 
 ```twig
-// Resources/scripts/storefront-custom-endpoint/my-example-script.twig
+{# Resources/scripts/storefront-custom-endpoint/my-example-script.twig #}
 {% set product = services.store.search('product', { 'ids': [productId]}).first %}
 
 {% do hook.page.addExtension('myProduct', product) %}
 
 {% do hook.setResponse(
-    services.response.render('@MyApp/storefront/page/custom-page/index.html.twig', { 'page': hook.page })
+  services.response.render('@MyApp/storefront/page/custom-page/index.html.twig', { 'page': hook.page })
 ) %}
 ```
 
 Additionally, it is also possible to redirect to an existing route:
 
 ```twig
-// Resources/scripts/storefront-custom-endpoint/my-example-script.twig
+{# Resources/scripts/storefront-custom-endpoint/my-example-script.twig #}
 {% set productId = hook.query['product-id'] %}
 
 {% set response = services.response.redirect('frontend.detail.page', { 'productId': productId }) %}
@@ -194,36 +194,36 @@ To prevent serving stale cache items, the cache needs to be invalidated if the u
 In your `cache-invalidation` scripts, you can get the `ids` that were written for a specific entity, e.g., `product_manufacturer`.
 
 ```twig
-// Resources/scripts/cache-invalidation/my-invalidation-script.twig
+{# Resources/scripts/cache-invalidation/my-invalidation-script.twig #}
 {% set ids = hook.event.getIds('product_manufacturer') %}
 
 {% if ids.empty %}
-    {% return %}
+  {% return %}
 {% endif %}
 ```
 
 To allow even more fine-grained invalidation, you can filter down the list of written entities by filtering for specific actions that were performed on that entity (e.g., `insert`, `update`, `delete`) and filter by which properties were changed.
 
 ```twig
-// Resources/scripts/cache-invalidation/my-invalidation-script.twig
+{# Resources/scripts/cache-invalidation/my-invalidation-script.twig #}
 {% set ids = hook.event.getIds('product') %}
 
 {% set ids = ids.only('insert') %} // filter by action = insert
 {% set ids = ids.with('description', 'parentId') %} // filter all entities were 'description` OR `parentId` was changed
 {% if ids.empty %}
-    {% return %}
+  {% return %}
 {% endif %}
 ```
 
 Note that you can also chain the filter operations:
 
 ```twig
-// Resources/scripts/cache-invalidation/my-invalidation-script.twig
+{# Resources/scripts/cache-invalidation/my-invalidation-script.twig #}
 {% set ids = hook.event.getIds('product') %}
 
 {% set ids = ids.only('insert').with('description', 'parentId') %}
 {% if ids.empty %}
-    {% return %}
+  {% return %}
 {% endif %}
 ```
 
@@ -232,7 +232,7 @@ You can then use the filtered down list of ids to invalidate entity specific tag
 ```twig
 {% set tags = [] %}
 {% for id in ids %}
-    {% set tags = tags|merge(['my-product-' ~ id]) %}
+  {% set tags = tags|merge(['my-product-' ~ id]) %}
 {% endfor %}
 
 {% do services.cache.invalidate(tags) %}

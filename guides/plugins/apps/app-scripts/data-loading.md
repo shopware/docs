@@ -28,7 +28,7 @@ This may come in handy if you are searching for the right hook for your script.
 For example, if you want to enrich a storefront detail page with additional data, you just set it within a custom app script and attach it to the `page` object.
 
 ```twig
-// Resources/scripts/product-page-loaded/my-example-script.twig
+{# Resources/scripts/product-page-loaded/my-example-script.twig #}
 {% set page = hook.page %}
 {# @var page \Shopware\Storefront\Page\Product\ProductPage #}
 
@@ -36,7 +36,7 @@ For example, if you want to enrich a storefront detail page with additional data
 {% do page.product ... %}
 
 {% set myAdditionalData = {
-    'example': 'just an example'
+  'example': 'just an example'
 } %}
 
 {# it also lets you add data to it, that you can later use in your Storefront templates #}
@@ -46,13 +46,13 @@ For example, if you want to enrich a storefront detail page with additional data
 In your Storefront templates, you can read the data again from the `page` object:
 
 ```twig
-// Resources/views/storefront/page/product-detail/index.html.twig
+{# Resources/views/storefront/page/product-detail/index.html.twig #}
 {% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
 
 {% block page_product_detail %}
-    <h1>{{ page.getExtension('swagMyAdditionalData').example }}</h1>
-    
-    {{ parent() }}
+  <h1>{{ page.getExtension('swagMyAdditionalData').example }}</h1>
+  
+  {{ parent() }}
 {% endblock %}
 ```
 
@@ -86,14 +86,14 @@ The criteria object can be assembled inside scripts as follows:
 
 ```twig
 {% set criteria = {
-    'ids': [ 'id1', 'id2' ],
-    'associations': {
-        'manufacturer': {},
-        'cover': {},
-    },
-    'filter': [
-        { 'type': 'equals', 'field': 'active', 'value': true },
-    ]
+  'ids': [ 'id1', 'id2' ],
+  'associations': {
+    'manufacturer': {},
+    'cover': {},
+  },
+  'filter': [
+    { 'type': 'equals', 'field': 'active', 'value': true },
+  ]
 } %}
 
 {% set matchedProducts = services.repository.search('product', criteria) %}
@@ -142,9 +142,9 @@ In your **scripts** that would look something like this:
 
 {# via addArrayExtension #}
 {% set arrayExtension = {
-    'collection': products,
-    'entity': products.first,
-    'scalar': 'a scalar value',
+  'collection': products,
+  'entity': products.first,
+  'scalar': 'a scalar value',
 } %}
 {% do page.addArrayExtension('swagArrayExtension', arrayExtension) %}
 ```
@@ -154,14 +154,14 @@ You can access the extensions again in your **Storefront templates** like this:
 ```twig
 {# via addExtension #}
 {% for product in page.getExtension('swagCollection') %}
-    ...
+  {# ... #}
 {% endfor %}
 
 {% set product = page.getExtension('swagEntity') %}
 
 {# via addArrayExtension #}
 {% for product in page.getExtension('swagArrayExtension').collection %}
-    ...
+  {# ... #}
 {% endfor %}
 
 {% set product = page.getExtension('swagArrayExtension').entity %}

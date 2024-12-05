@@ -31,7 +31,7 @@ Keep in mind that your app needs to have the correct permissions for the data it
         {# @var page \Shopware\Storefront\Page\Page #}
 
         {% set criteria = {
-            'ids': [ hook.productId ]
+          'ids': [ hook.productId ]
         } %}
 
         {% set product = services.repository.search('product', criteria).first %}
@@ -46,9 +46,9 @@ Keep in mind that your app needs to have the correct permissions for the data it
         {# @var page \Shopware\Storefront\Page\Page #}
 
         {% set criteria = {
-            'filter': [
-                { 'field': 'productNumber', 'type': 'equals', 'value': 'p1' }
-            ]
+          'filter': [
+            { 'field': 'productNumber', 'type': 'equals', 'value': 'p1' }
+          ]
         } %}
 
         {% set product = services.repository.search('product', criteria).first %}
@@ -63,10 +63,10 @@ Keep in mind that your app needs to have the correct permissions for the data it
         {# @var page \Shopware\Storefront\Page\Page #}
 
         {% set criteria = {
-            'ids': [ hook.productId ],
-            'associations': {
-                'manufacturer': {}
-            }
+          'ids': [ hook.productId ],
+          'associations': {
+            'manufacturer': {}
+          }
         } %}
 
         {% set product = services.repository.search('product', criteria).first %}
@@ -93,15 +93,15 @@ Keep in mind that your app needs to have the correct permissions for the data it
         {# @var page \Shopware\Storefront\Page\Page #}
 
         {% set criteria = {
-            'filter': [
-                { 'field': 'productNumber', 'type': 'equals', 'value': 'p1' }
-            ]
+          'filter': [
+            { 'field': 'productNumber', 'type': 'equals', 'value': 'p1' }
+          ]
         } %}
 
         {% set productIds = services.repository.ids('product', criteria).ids %}
 
         {% do page.addArrayExtension('myProductIds', {
-            'ids': productIds
+          'ids': productIds
         }) %}
         ```
 
@@ -123,15 +123,15 @@ Keep in mind that your app needs to have the correct permissions for the data it
         {# @var page \Shopware\Storefront\Page\Page #}
 
         {% set criteria = {
-            'aggregations': [
-                { 'name': 'sumOfPrices', 'type': 'sum', 'field': 'price.gross' }
-            ]
+          'aggregations': [
+            { 'name': 'sumOfPrices', 'type': 'sum', 'field': 'price.gross' }
+          ]
         } %}
 
         {% set sumResult = services.repository.aggregate('product', criteria).get('sumOfPrices') %}
 
         {% do page.addArrayExtension('myProductAggregations', {
-            'sum': sumResult.getSum
+          'sum': sumResult.getSum
         }) %}
         ```
 
@@ -164,7 +164,7 @@ this means that e.g. product prices are already calculated based on the current 
         {# @var page \Shopware\Storefront\Page\Page #}
 
         {% set criteria = {
-            'ids': [ hook.productId ]
+          'ids': [ hook.productId ]
         } %}
 
         {% set product = services.store.search('product', criteria).first %}
@@ -179,9 +179,9 @@ this means that e.g. product prices are already calculated based on the current 
         {# @var page \Shopware\Storefront\Page\Page #}
 
         {% set criteria = {
-            'filter': [
-                { 'field': 'productNumber', 'type': 'equals', 'value': 'p1' }
-            ]
+          'filter': [
+            { 'field': 'productNumber', 'type': 'equals', 'value': 'p1' }
+          ]
         } %}
 
         {% set product = services.store.search('product', criteria).first %}
@@ -196,10 +196,10 @@ this means that e.g. product prices are already calculated based on the current 
         {# @var page \Shopware\Storefront\Page\Page #}
 
         {% set criteria = {
-            'ids': [ hook.productId ],
-            'associations': {
-                'manufacturer': {}
-            }
+          'ids': [ hook.productId ],
+          'associations': {
+            'manufacturer': {}
+          }
         } %}
 
         {% set product = services.store.search('product', criteria).first %}
@@ -226,15 +226,15 @@ this means that e.g. product prices are already calculated based on the current 
         {# @var page \Shopware\Storefront\Page\Page #}
 
         {% set criteria = {
-            'filter': [
-                { 'field': 'productNumber', 'type': 'equals', 'value': 'p1' }
-            ]
+          'filter': [
+            { 'field': 'productNumber', 'type': 'equals', 'value': 'p1' }
+          ]
         } %}
 
         {% set productIds = services.store.ids('product', criteria).ids %}
 
         {% do page.addArrayExtension('myProductIds', {
-            'ids': productIds
+          'ids': productIds
         }) %}
         ```
 
@@ -256,15 +256,15 @@ this means that e.g. product prices are already calculated based on the current 
         {# @var page \Shopware\Storefront\Page\Page #}
 
         {% set criteria = {
-            'aggregations': [
-                { 'name': 'sumOfChildren', 'type': 'sum', 'field': 'childCount' }
-            ]
+          'aggregations': [
+            { 'name': 'sumOfChildren', 'type': 'sum', 'field': 'childCount' }
+          ]
         } %}
 
         {% set sumResult = services.store.aggregate('product', criteria).get('sumOfChildren') %}
 
         {% do page.addArrayExtension('myProductAggregations', {
-            'sum': sumResult.getSum
+          'sum': sumResult.getSum
         }) %}
         ```
 

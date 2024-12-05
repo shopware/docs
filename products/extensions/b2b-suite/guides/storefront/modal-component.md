@@ -30,15 +30,15 @@ The modal component comes with different states:
 {% sw_extends '@SwagB2bPlatform/storefront/_partials/_b2bmodal/_modal.html.twig' %}
 
 {% set modalSettings = {
-    navigation: false
+  navigation: false
 } %}
 
 {% block b2b_modal_base_navigation_header %}
-    Modal Title
+  Modal Title
 {% endblock %}
 
 {% block b2b_modal_base_content_inner %}
-    Modal Content
+  Modal Content
 {% endblock %}
 ```
 
@@ -50,23 +50,23 @@ If you would like to have a navigation sidebar inside the modal window, you can 
 {% sw_extends '@SwagB2bPlatform/storefront/_partials/_b2bmodal/_modal.html.twig' %}
 
 {% set modalSettings = {
-    navigation: true
+  navigation: true
 } %}
 
 {% block b2b_modal_base_navigation_header %}
-    Modal Title
+  Modal Title
 {% endblock %}
 
 {% block b2b_modal_base_navigation_entries %}
-    <li>
-        <a class="b2b--tab-link">
-            Navigation Link
-        </a>
-    </li>
+  <li>
+    <a class="b2b--tab-link">
+      Navigation Link
+    </a>
+  </li>
 {% endblock %}
 
 {% block b2b_modal_base_content_inner %}
-    Modal Content
+  Modal Content
 {% endblock %}
 ```
 
@@ -76,23 +76,23 @@ If you would like to have a navigation sidebar inside the modal window, you can 
 {% sw_extends '@SwagB2bPlatform/storefront/_partials/_b2bmodal/_modal.html.twig' %}
 
 {% set modalSettings = {
-    navigation: true
+  navigation: true
 } %}
 
 {% block b2b_modal_base_navigation_header %}
-    Modal Title
+  Modal Title
 {% endblock %}
 
 {% block b2b_modal_base_navigation_entries %}
-    <li>
-        <a class="b2b--tab-link">
-            Navigation Link
-        </a>
-    </li>
+  <li>
+    <a class="b2b--tab-link">
+      Navigation Link
+    </a>
+  </li>
 {% endblock %}
 
 {% block b2b_modal_base_content_inner %}
-    <div class="b2b--ajax-panel" data-id="example-panel" data-url="{url}"></div>
+  <div class="b2b--ajax-panel" data-id="example-panel" data-url="{url}"></div>
 {% endblock %}
 ```
 
@@ -104,26 +104,26 @@ The modal content template has different options for fixed inner containers. The
 {% sw_extends "@SwagB2bPlatform/storefront/_partials/_b2bmodal/_modal-content.html.twig" %}
 
 {% set modalSettings = {
-    navigation: true,
-    bottom: true,
-    content: {
-      padding: true
-    }
+  navigation: true,
+  bottom: true,
+  content: {
+    padding: true
+  }
 } %}
 
 {% block b2b_modal_base_content_inner_topbar_headline %}
-    Modal Content Headline
+  Modal Content Headline
 {% endblock %}
 
 {% block b2b_modal_base_content_inner_scrollable_inner_actions_inner %}
-    Modal Actions
+  Modal Actions
 {% endblock %}
 
 {% block b2b_modal_base_content_inner_scrollable_inner_content_inner %}
-    Modal Content
+  Modal Content
 {% endblock %}
 
 {% block b2b_modal_base_content_inner_scrollable_inner_bottom_inner %}
-    Modal Bottom
+  Modal Bottom
 {% endblock %}
 ```

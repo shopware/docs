@@ -33,7 +33,7 @@ After changing the price definitions in the cart, the total prices of the cart a
 But if your script depends on updated and recalculated prices, you can recalculate the entire cart manually.
 
 ```twig
-// Resources/scripts/cart/my-cart-script.twig
+{# Resources/scripts/cart/my-cart-script.twig #}
 {% do services.cart.products.add(productId) %}
 
 {% do services.cart.calculate() %}
@@ -55,9 +55,9 @@ The safest way to ensure is to check the cart to see if your script's action was
 For example, you could only add a discount to the cart if it doesn't already exist.
 
 ```twig
-// Resources/scripts/cart/my-cart-script.twig
+{# Resources/scripts/cart/my-cart-script.twig #}
 {% if not services.cart.has('my-custom-discount') %}
-    {% do services.cart.discount('my-custom-discount', 'percentage', 10, 'A custom discount') %}
+  {% do services.cart.discount('my-custom-discount', 'percentage', 10, 'A custom discount') %}
 {% endif %}
 ```
 
@@ -65,20 +65,20 @@ An alternative solution would be to mark that you already did perform an action 
 This way, you can only perform the action if your custom state is not present and additionally, you can remove the state again when you revert your action.
 
 ```twig
-// Resources/scripts/cart/my-cart-script.twig
+{# Resources/scripts/cart/my-cart-script.twig #}
 {% set isEligable = services.cart.items.count > 3 %}
 
 {% if not services.cart.states.has('swag-my-state') %}
 
-    {% if isEligable %}
-        {# perform action #}
-    {% endif %}
+  {% if isEligable %}
+    {# perform action #}
+  {% endif %}
 
 {% else %}
 
-    {% if not isEligable %}
-        {# revert action #}
-    {% endif %}
+  {% if not isEligable %}
+    {# revert action #}
+  {% endif %}
 
 {% endif %}
 ```
@@ -139,11 +139,11 @@ The simplest way is to define the price manually and hard code it into your app 
 You can specify the `gross` and `net` prices for each currency.
 
 ```twig
-// Resources/scripts/cart/my-cart-script.twig
+{# Resources/scripts/cart/my-cart-script.twig #}
 {% set price = services.cart.price.create({
-    'default': { 'gross': 19.99, 'net': 19.99},
-    'EUR': { 'gross': 19.99, 'net': 19.99},
-    'USD': { 'gross': 24.99, 'net': 21.37},
+  'default': { 'gross': 19.99, 'net': 19.99},
+  'EUR': { 'gross': 19.99, 'net': 19.99},
+  'USD': { 'gross': 24.99, 'net': 21.37},
 }) %}
 ```
 
@@ -152,7 +152,7 @@ You can specify the `gross` and `net` prices for each currency.
 As described above, it is also possible to use price fields inside the [app configuration](../configuration). In your cart scripts, you can access those config values over the [`config` service](../../../../resources/references/app-reference/script-reference/miscellaneous-script-services-reference#SystemConfigFacade) and pass them to the same price factory as the manual definitions.
 
 ```twig
-// Resources/scripts/cart/my-cart-script.twig
+{# Resources/scripts/cart/my-cart-script.twig #}
 {% set priceData = services.config.app('myCustomPrice') %}
 
 {% set discountPrice = services.cart.price.create(priceData) %}
@@ -170,7 +170,7 @@ You can add a new product line item simply by providing the product `id` of the 
 Additionally, you may provide a quantity as a second parameter if the product should be added with a quantity higher than 1.
 
 ```twig
-// Resources/scripts/cart/my-cart-script.twig
+{# Resources/scripts/cart/my-cart-script.twig #}
 {% do services.cart.products.add(productId) %}
 
 {% do services.cart.products.add(productId, 4) %}
@@ -185,14 +185,14 @@ The fourth parameter is the label of the discount. You can either use a hard-cod
 Note that you should check if your discount was already added, as your script may run multiple times.
 
 ```twig
-// Resources/scripts/cart/my-cart-script.twig
+{# Resources/scripts/cart/my-cart-script.twig #}
 {% set discountPrice = services.cart.price.create({
-    'default': { 'gross': 19.99, 'net': 19.99},
-    'EUR': { 'gross': 19.99, 'net': 19.99},
+  'default': { 'gross': 19.99, 'net': 19.99},
+  'EUR': { 'gross': 19.99, 'net': 19.99},
 }) %}
 
 {% if not services.cart.has('my-custom-discount') %}
-    {% do services.cart.discount('my-custom-discount', 'absolute', discountPrice, 'my.custom.discount.label'|trans) %}
+  {% do services.cart.discount('my-custom-discount', 'absolute', discountPrice, 'my.custom.discount.label'|trans) %}
 {% endif %}
 ```
 
@@ -201,7 +201,7 @@ Note that you should check if your discount was already added, as your script ma
 Adding a relative discount is very similar to adding an absolute discount. Instead of providing a price definition, you can provide a percentage value that should be discounted, and the absolute value will be calculated automatically based on the current total price of the cart.
 
 ```twig
-// Resources/scripts/cart/my-cart-script.twig
+{# Resources/scripts/cart/my-cart-script.twig #}
 {% do services.cart.discount('my-custom-discount', 'percentage', 10, 'A custom 10% discount') %}
 ```
 
@@ -210,7 +210,7 @@ Adding a relative discount is very similar to adding an absolute discount. Inste
 You can remove line items by providing the `id` of the line item that should be removed.
 
 ```twig
-// Resources/scripts/cart/my-cart-script.twig
+{# Resources/scripts/cart/my-cart-script.twig #}
 {# first add the product #}
 {% do services.cart.products.add(productId) %}
 {# then remove it again #}
@@ -231,12 +231,12 @@ Optionally you can provide the new `id` of the new line item as a second paramet
 Note that the `take()` method won't automatically add the new line item to the cart, but instead, it returns the split line item, so you have to add it to the corresponding line item collection manually in your script.
 
 ```twig
-// Resources/scripts/cart/my-cart-script.twig
+{# Resources/scripts/cart/my-cart-script.twig #}
 {% set existingLineItem = services.cart.products.get(productId) %}
 
 {% if existingLineItem and existingLineItem.quantity > 3 %}
-    {% set newLineItem = existingLineItem.take(2, newLineItemId) %}
-    {% do services.cart.products.add(newLineItem) %}
+  {% set newLineItem = existingLineItem.take(2, newLineItemId) %}
+  {% do services.cart.products.add(newLineItem) %}
 {% endif %}
 ```
 
@@ -245,7 +245,7 @@ Note that the `take()` method won't automatically add the new line item to the c
 You can add custom (meta-) data to line items in the cart by manipulating the payload of the cart items.
 
 ```twig
-// Resources/scripts/cart/my-cart-script.twig
+{# Resources/scripts/cart/my-cart-script.twig #}
 {% set lineItem = services.cart.get(lineItemId) %}
 {# Add a custom payload value #}
 {% do lineItem.payload.set('custom-payload', myValue) %}
@@ -261,12 +261,12 @@ As the second optional parameter, you can specify a `id` for the error, so you c
 Lastly, you can provide an array of parameters as the optional third parameter if you need to pass parameters to the snippet.
 
 ```twig
-// Resources/scripts/cart/my-cart-script.twig
+{# Resources/scripts/cart/my-cart-script.twig #}
 {% if not cartIsValid %}
-    {# add a new error #}
-    {% do services.cart.errors.error('my-error-message', 'error-id') %}
+  {# add a new error #}
+  {% do services.cart.errors.error('my-error-message', 'error-id') %}
 {% else %}
-    {% do services.cart.errors.remove('error-id') %}
+  {% do services.cart.errors.remove('error-id') %}
 {% endif %}
 ```
 
@@ -275,7 +275,7 @@ If you only want to display some information to the user during the checkout pro
 The API is basically the same as for adding errors.
 
 ```twig
-// Resources/scripts/cart/my-cart-script.twig
+{# Resources/scripts/cart/my-cart-script.twig #}
 {% do services.cart.errors.notice('my-notice') %}
 ```
 
@@ -301,13 +301,13 @@ For example, you can add an entity-single-select field to your [app's config](..
 Inside your cart script, you can check if the rule matches by checking if the configured rule id exists in the list of matched rule ids of the context:
 
 ```twig
-// Resources/scripts/cart/my-cart-script.twig
+{# Resources/scripts/cart/my-cart-script.twig #}
 {% set ruleId = services.config.app('exampleRule') %}
 
 {% if ruleId and ruleId in hook.context.ruleIds %}
-    {# perform action #}
+  {# perform action #}
 {% else %}
-   {# revert action #}
+  {# revert action #}
 {% endif %}
 ```
 

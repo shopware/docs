@@ -79,8 +79,8 @@ The created function is now available in all your templates. You can call it lik
 {% set md5Hash = createMd5Hash('Shopware is awesome') %}
 
 {% block layout_header_logo %}
-    {{ parent() }}
+  {{ parent() }}
 
-    {{ md5Hash }}
+  {{ md5Hash }}
 {% endblock %}
 ```

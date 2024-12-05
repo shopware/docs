@@ -122,18 +122,18 @@ window.PluginManager.register('AjaxLoadPlugin', AjaxLoadPlugin, '[data-ajax-help
 The only thing that is now left, is to provide a template for the Storefront plugin to hook into:
 
 ```twig
-// <plugin root>/src/Resources/views/storefront/page/content/index.html.twig
+{# <plugin root>/src/Resources/views/storefront/page/content/index.html.twig #}
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
 {% block cms_content %}
-    <div>
-        <h1>Swag AJAX Example</h1>
+  <div>
+    <h1>Swag AJAX Example</h1>
 
-        <div data-ajax-helper>
-            <div id="ajax-display"></div>
-            <button id="ajax-button">Button</button>
-        </div>
+    <div data-ajax-helper>
+      <div id="ajax-display"></div>
+      <button id="ajax-button">Button</button>
     </div>
+  </div>
 {% endblock %}
 ```
 

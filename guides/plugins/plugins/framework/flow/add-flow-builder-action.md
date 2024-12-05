@@ -616,49 +616,49 @@ Component.register('sw-flow-create-tag-modal', {
 #### Twig template file
 
 ```twig
-// <plugin root>/src/Resources/app/administration/src/component/sw-flow-create-tag-modal/sw-flow-create-tag-modal.html.twig
+{# <plugin root>/src/Resources/app/administration/src/component/sw-flow-create-tag-modal/sw-flow-create-tag-modal.html.twig #}
 {% block create_tag_action_modal %}
 <sw-modal
-    class="create-tag-action-modal"
-    :title="$tc('create-tag-action.titleCreateTag')"
-    @modal-close="onClose"
+  class="create-tag-action-modal"
+  :title="$tc('create-tag-action.titleCreateTag')"
+  @modal-close="onClose"
 >
-    {% block create_tag_action_modal_content %}
-        <sw-entity-tag-select
-            v-model="tagCollection"
-            class="sw-flow-create-tag-modal__tags-field"
-            required
-            :label="$tc('create-tag-action.labelTags')"
-            :placeholder="$tc('create-tag-action.placeholderTags')"
-            @item-add="onAddTag"
-            @item-remove="onRemoveTag"
-        />
-    {% endblock %}
+  {% block create_tag_action_modal_content %}
+    <sw-entity-tag-select
+      v-model="tagCollection"
+      class="sw-flow-create-tag-modal__tags-field"
+      required
+      :label="$tc('create-tag-action.labelTags')"
+      :placeholder="$tc('create-tag-action.placeholderTags')"
+      @item-add="onAddTag"
+      @item-remove="onRemoveTag"
+    />
+  {% endblock %}
 
-    {% block create_tag_action_modall_footer %}
-        <template #modal-footer>
-            {% block create_tag_action_modal_footer_cancel_button %}
-                <sw-button
-                    class="create-tag-action-modal__cancel-button"
-                    size="small"
-                    @click="onClose"
-                >
-                    {{ $tc('global.default.cancel') }}
-                </sw-button>
-            {% endblock %}
+  {% block create_tag_action_modall_footer %}
+    <template #modal-footer>
+      {% block create_tag_action_modal_footer_cancel_button %}
+        <sw-button
+          class="create-tag-action-modal__cancel-button"
+          size="small"
+          @click="onClose"
+        >
+          {{ $tc('global.default.cancel') }}
+        </sw-button>
+      {% endblock %}
 
-            {% block create_tag_action_modal_footer_save_button %}
-                <sw-button
-                    class="create-tag-action-modal__save-button"
-                    variant="primary"
-                    size="small"
-                    @click="onAddAction"
-                >
-                    {{ $tc('create-tag-action.buttonSaveAction') }}
-                </sw-button>
-            {% endblock %}
-        </template>
-    {% endblock %}
+      {% block create_tag_action_modal_footer_save_button %}
+        <sw-button
+          class="create-tag-action-modal__save-button"
+          variant="primary"
+          size="small"
+          @click="onAddAction"
+        >
+          {{ $tc('create-tag-action.buttonSaveAction') }}
+        </sw-button>
+      {% endblock %}
+    </template>
+  {% endblock %}
 </sw-modal>
 {% endblock %}
 ```

@@ -135,9 +135,9 @@ This is how the custom condition appears on the Approval Rule detail page, the `
 Script logic is similar to [Add custom rule conditions](../../../../../guides/plugins/apps/rule-builder/add-custom-rule-conditions.md). Let's continue with our example by creating a script file that compares the current shopping cart's total price with the pre-established value in the approval rule.
 
 ```twig
-// Resources/scripts/approval-rule-conditions/custom-condition.twig
+{# Resources/scripts/approval-rule-conditions/custom-condition.twig #}
 {% if scope.cart is not defined %}
-    {% return false %}
+  {% return false %}
 {% endif %}
 
 {% return compare(operator, scope.cart.price.totalPrice, amount) %}
@@ -181,9 +181,9 @@ We then use the variables `operator` and `totalPrice`, provided by the constrain
 ```
 
 ```twig
-// Resources/scripts/approval-rule-conditions/custom-condition.twig
+{# Resources/scripts/approval-rule-conditions/custom-condition.twig #}
 {% if scope.salesChannelContext.customer is not defined %}
-    {% return false %}
+  {% return false %}
 {% endif %}
 
 {% return compare(operator, scope.salesChannelContext.customer.firstName, firstName) %}
@@ -228,9 +228,9 @@ We then use the variables `operator` and `totalPrice`, provided by the constrain
 ```
 
 ```twig
-// Resources/scripts/approval-rule-conditions/custom-condition.twig
+{# Resources/scripts/approval-rule-conditions/custom-condition.twig #}
 {% if scope.cart is not defined %}
-    {% return false %}
+  {% return false %}
 {% endif %}
 
 {% return compare(operator, scope.cart.price.taxStatus, taxStatus) %}
@@ -280,9 +280,9 @@ We then use the variables `operator` and `totalPrice`, provided by the constrain
 ```
 
 ```twig
-// Resources/scripts/approval-rule-conditions/custom-condition.twig
+{# Resources/scripts/approval-rule-conditions/custom-condition.twig #}
 {% if scope.salesChannelContext.currency is not defined %}
-    {% return false %}
+  {% return false %}
 {% endif %}
 {% return compare(operator, scope.salesChannelContext.currency.isoCode, isoCode) %}
 ```

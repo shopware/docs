@@ -51,15 +51,15 @@ Afterwards, you need to make sure your plugin assets are copied over to the publ
 Let's think about a simple example, displaying our image right in the base template of the Storefront. In there we're able to link our assets by simply using the [asset](https://symfony.com/doc/current/templates.html#linking-to-css-javascript-and-image-assets) function Symfony provides:
 
 ```twig
-// <plugin root>/src/Resources/views/storefront/base.html.twig
+{# <plugin root>/src/Resources/views/storefront/base.html.twig #}
 {% sw_extends '@Storefront/storefront/base.html.twig' %}
 
 {% block base_main %}
-    <h2>Asset:</h2>
+  <h2>Asset:</h2>
 
-    {# Using asset function to display our custom asset #}
-    <img src="{{ asset('bundles/swagbasicexample/image.png', 'asset') }}">
-    {{ parent() }}
+  {# Using asset function to display our custom asset #}
+  <img src="{{ asset('bundles/swagbasicexample/image.png', 'asset') }}">
+  {{ parent() }}
 {% endblock %}
 ```
 
@@ -70,9 +70,9 @@ That's basically all you need to do to link your plugin's custom assets.
 There's one more interesting possibility though. If you want, you can use your custom asset in your CSS files. Look at the following example:
 
 ```css
-// <plugin root>/src/Resources/app/storefront/src/scss/base.scss
+/** <plugin root>/src/Resources/app/storefront/src/scss/base.scss */
 body {
-    background-image: url("#{$sw-asset-public-url}/bundles/swagbasicexample/image.png");
+  background-image: url("#{$sw-asset-public-url}/bundles/swagbasicexample/image.png");
 }
 ```
 

@@ -13,7 +13,7 @@ To achieve this separation, templates used within the subscription context shoul
 
 ```twig
 {% sw_extends {
-    template: '@Storefront/storefront/base.html.twig',
-    scopes: ['default', 'subscription']
+  template: '@Storefront/storefront/base.html.twig',
+  scopes: ['default', 'subscription']
 } %}
 ```

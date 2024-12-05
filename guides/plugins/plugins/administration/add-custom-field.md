@@ -51,13 +51,13 @@ The path starting from 'src' is fully customizable, yet we recommend choosing a 
 :::
 
 ```twig
-// <plugin root>/src/Resources/app/administration/src/extension/sw-product-settings-form/sw-product-settings-form.html.twig
+{# <plugin root>/src/Resources/app/administration/src/extension/sw-product-settings-form/sw-product-settings-form.html.twig #}
 {% block sw_product_settings_form_content %}
-    {% parent %}
+  {% parent %}
 
-    <sw-container columns="repeat(auto-fit, minmax(250px, 1fr))" gap="0px 30px">
-        <sw-text-field label="Manufacturer ID" v-model="product.manufacturerId" disabled></sw-text-field>
-    </sw-container>
+  <sw-container columns="repeat(auto-fit, minmax(250px, 1fr))" gap="0px 30px">
+    <sw-text-field label="Manufacturer ID" v-model="product.manufacturerId" disabled></sw-text-field>
+  </sw-container>
 {% endblock %}
 ```
 

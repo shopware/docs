@@ -40,7 +40,7 @@ By default, Shopware looks inside the "default" folder.
 
 ```twig
 {% sw_icon 'done-outline-24px' style {
-    'namespace': 'TestPlugin'
+  'namespace': 'TestPlugin'
 } %}
 ```
 
@@ -73,14 +73,14 @@ A simple but fully functional example could look like below:
 
 {% block base_body %}
 
-    {# We want to set our own icon here #}
-    <h1>Custom icon:</h1>
-    {% sw_icon 'done-outline-24px' style {
-        'size': 'lg',
-        'namespace': 'TestPlugin',
-        'pack': 'solid'
-    } %}
-    {{ parent() }}
+  {# We want to set our own icon here #}
+  <h1>Custom icon:</h1>
+  {% sw_icon 'done-outline-24px' style {
+    'size': 'lg',
+    'namespace': 'TestPlugin',
+    'pack': 'solid'
+  } %}
+  {{ parent() }}
 
 {% endblock %}
 ```
@@ -109,7 +109,7 @@ You can use your custom icons by specifying your icon pack:
 
 ```twig
 {% sw_icon 'done-outline-24px' style {
-    'pack': 'custom-icons'
+  'pack': 'custom-icons'
 } %}
 ```
 

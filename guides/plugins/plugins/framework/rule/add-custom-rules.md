@@ -265,15 +265,15 @@ The second and last computed property is `isFirstMondayOfTheMonth`, which uses a
 The last step is, creating a template for our condition. We will create a new file called `swag-first-monday.html.twig` in the same directory as the component. In our template, we have to overwrite the block `sw_condition_value_content`. In this example we define a `sw-single-select` in this block.
 
 ```twig
-// <plugin root>/src/Resources/app/administration/src/core/component/swag-first-monday/swag-first-monday.html.twig
+{# <plugin root>/src/Resources/app/administration/src/core/component/swag-first-monday/swag-first-monday.html.twig #}
 {% block sw_condition_value_content %}
-    <sw-single-select name="first-monday"
-                      id="first-monday"
-                      size="medium"
-                      :options="selectValues"
-                      v-model="isFirstMondayOfTheMonth"
-                      class="field--main">
-    </sw-single-select>
+  <sw-single-select name="first-monday"
+    id="first-monday"
+    size="medium"
+    :options="selectValues"
+    v-model="isFirstMondayOfTheMonth"
+    class="field--main">
+  </sw-single-select>
 {% endblock %}
 ```
 
@@ -351,9 +351,9 @@ Refer to [customize administration components](../../administration/customizing-
 
 ```twig
 {% block example_twig_blog %}
-    <sw-select-rule-create
-        rule-aware-group-key="productPrices"
-        @save-rule="[YOUR SAVE METHOD]">
+  <sw-select-rule-create
+    rule-aware-group-key="productPrices"
+    @save-rule="[YOUR SAVE METHOD]">
 {% endblock %}
 ```
 

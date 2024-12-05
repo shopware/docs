@@ -26,7 +26,7 @@ Using base components in your own Administration templates is rather simple. In 
 ```twig
 {# <plugin-root>/src/Resources/app/administration/app/src/component/example-component/example.html.twig #}
 <div>
-    <sw-text-field />
+  <sw-text-field />
 </div>
 ```
 
