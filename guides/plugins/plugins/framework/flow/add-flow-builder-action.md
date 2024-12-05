@@ -357,32 +357,32 @@ First, we need to define information like `constants`, `snippets` to show on the
 
 ![Flow Builder action services list](../../../../../assets/flow-builder-action-sevices-list.png)
 
-```JS
+```javascript
 // <plugin root>src/Resources/app/administration/src/constant/create-tag-action.constant.js
 export const ACTION = Object.freeze({
-    CREATE_TAG: 'action.create.tag',
+  CREATE_TAG: 'action.create.tag',
 });
 
 export const GROUP = 'customer'
 
 export default {
-    ACTION, GROUP
+  ACTION, GROUP
 };
 ```
 
 And then add snippets for labels:
 
-```JS
+```json
 // src/Resources/app/administration/src/snippet/en-GB.json
 {
-    "create-tag-action": {
-        "titleCreateTag": "Create tag",
-        "labelTags": "Tags",
-        "placeholderTags": "Enter tags",
-        "buttonSaveAction": "Save action",
-        "buttonAddAction": "Add action",
-        "descriptionTags": "Tags: {tags}"
-    }
+  "create-tag-action": {
+    "titleCreateTag": "Create tag",
+    "labelTags": "Tags",
+    "placeholderTags": "Enter tags",
+    "buttonSaveAction": "Save action",
+    "buttonAddAction": "Add action",
+    "descriptionTags": "Tags: {tags}"
+  }
 }
 ```
 
@@ -390,67 +390,66 @@ Do it as the same with `de-DE.json` file for translation of DE language.
 
 After that, we also need to override the `sw-flow-sequence-action` component in the core:
 
-```JS
+```javascript
 // <plugin root>/src/Resources/app/administration/src/extension/sw-flow-sequence-action/index.js
 import { ACTION, GROUP } from '../../constant/create-tag-action.constant';
 
 const { Component } = Shopware;
 
 Component.override('sw-flow-sequence-action', {
-    computed: {
-        // Not necessary if you use an existing group
-        // Push the `groups` method in computed if you are defining a new group
-        groups() {
-            this.actionGroups.unshift(GROUP);
+  computed: {
+    // Not necessary if you use an existing group
+    // Push the `groups` method in computed if you are defining a new group
+    groups() {
+      this.actionGroups.unshift(GROUP);
 
-            return this.$super('groups');
-        },
-
-        modalName() {
-            if (this.selectedAction === ACTION.CREATE_TAG) {
-                return 'sw-flow-create-tag-modal';
-            }
-
-            return this.$super('modalName');
-        },
+      return this.$super('groups');
     },
 
-    methods: {
-        getActionDescriptions(sequence) {
-            if(sequence.actionName === ACTION.CREATE_TAG){
-                return this.getCreateTagDescription(sequence.config)
-            }
-            return this.$super('getActionDescriptions', sequence)
-        },
-        
-        getCreateTagDescription(config) {
-            const tags = config.tags.join(', ');
+    modalName() {
+      if (this.selectedAction === ACTION.CREATE_TAG) {
+        return 'sw-flow-create-tag-modal';
+      }
 
-            return this.$tc('create-tag-action.descriptionTags', 0, {
-                tags
-            });
-        },
-
-        getActionTitle(actionName) {
-            if (actionName === ACTION.CREATE_TAG) {
-                return {
-                    value: actionName,
-                    icon: 'regular-tag',
-                    label: this.$tc('create-tag-action.titleCreateTag'),
-                    group: GROUP,
-                }
-            }
-
-            return this.$super('getActionTitle', actionName);
-        },
+      return this.$super('modalName');
     },
+  },
+
+  methods: {
+    getActionDescriptions(sequence) {
+      if (sequence.actionName === ACTION.CREATE_TAG) {
+        return this.getCreateTagDescription(sequence.config)
+      }
+      return this.$super('getActionDescriptions', sequence)
+    },
+
+    getCreateTagDescription(config) {
+      const tags = config.tags.join(', ');
+
+      return this.$tc('create-tag-action.descriptionTags', 0, {
+        tags
+      });
+    },
+
+    getActionTitle(actionName) {
+      if (actionName === ACTION.CREATE_TAG) {
+        return {
+          value: actionName,
+          icon: 'regular-tag',
+          label: this.$tc('create-tag-action.titleCreateTag'),
+          group: GROUP,
+        }
+      }
+
+      return this.$super('getActionTitle', actionName);
+    },
+  },
 });
-
 ```
 
 Do not forget to import the file to the entry file `main.js`:
 
-```JS
+```javascript
 // <plugin root>/src/Resources/app/administration/src/main.js
 import './extension/sw-flow-sequence-action';
 ```
@@ -459,7 +458,7 @@ import './extension/sw-flow-sequence-action';
 
 As you can see, we already defined the constant for the group in `create-tag-action.constant.js`
 
-```JS
+```javascript
 export const GROUP = 'customer'
 ```
 
@@ -486,13 +485,13 @@ If you click the Create tag action, the below error will be shown on the console
 
 Because in `sw-flow-sequence-action`, we expect that the new modal has the name `sw-flow-create-tag-modal`.
 
-```JS
+```javascript
 modalName() {
-    if (this.selectedAction === ACTION.CREATE_TAG) {
-        return 'sw-flow-create-tag-modal';
-    }
+  if (this.selectedAction === ACTION.CREATE_TAG) {
+    return 'sw-flow-create-tag-modal';
+  }
 
-    return this.$super('modalName');
+  return this.$super('modalName');
 },
 ```
 
@@ -500,7 +499,7 @@ To define the modal, just create a new folder `sw-flow-create-tag-modal` in `src
 
 #### JavaScript file
 
-```JS
+```javascript
 // <plugin root>/src/Resources/app/administration/src/component/sw-flow-create-tag-modal/index.js
 import template from './sw-flow-create-tag-modal.html.twig';
 
@@ -508,109 +507,109 @@ const { Data: { Criteria, EntityCollection } } = Shopware;
 const { Component, Context } = Shopware;
 
 Component.register('sw-flow-create-tag-modal', {
-    template,
+  template,
 
-    inject: [
-        'repositoryFactory',
-    ],
+  inject: [
+    'repositoryFactory',
+  ],
 
-    props: {
-        sequence: {
-            type: Object,
-            required: true,
-        },
+  props: {
+    sequence: {
+      type: Object,
+      required: true,
+    },
+  },
+
+  data() {
+    return {
+      tagCollection: [],
+    };
+  },
+
+  computed: {
+    tagRepository() {
+      return this.repositoryFactory.create('tag');
     },
 
-    data() {
-        return {
-            tagCollection: [],
-        };
+    tagCriteria() {
+      const criteria = new Criteria(1, 25);
+      const { config } = this.sequence;
+      const tagIds = Object.keys(config.tagIds);
+      if (tagIds.length) {
+        criteria.addFilter(Criteria.equalsAny('id', tagIds));
+      }
+
+      return criteria;
+    },
+  },
+
+  created() {
+    this.createdComponent();
+  },
+
+  methods: {
+    createdComponent() {
+      this.tagCollection = this.createTagCollection();
+
+      const { config } = this.sequence;
+      if (this.sequence.id && config?.tagIds) {
+        this.getTagCollection();
+      }
     },
 
-    computed: {
-        tagRepository() {
-            return this.repositoryFactory.create('tag');
-        },
-
-        tagCriteria() {
-            const criteria = new Criteria(1, 25);
-            const { config } = this.sequence;
-            const tagIds = Object.keys(config.tagIds);
-            if (tagIds.length) {
-                criteria.addFilter(Criteria.equalsAny('id', tagIds));
-            }
-
-            return criteria;
-        },
+    getTagCollection() {
+      return this.tagRepository.search(this.tagCriteria)
+        .then(tags => {
+          this.tagCollection = tags;
+        })
+        .catch(() => {
+          this.tagCollection = [];
+        });
     },
 
-    created() {
-        this.createdComponent();
+    createTagCollection() {
+      return new EntityCollection(
+        this.tagRepository.route,
+        this.tagRepository.entityName,
+        Context.api,
+      );
     },
 
-    methods: {
-        createdComponent() {
-            this.tagCollection = this.createTagCollection();
-
-            const { config } = this.sequence;
-            if (this.sequence.id && config?.tagIds) {
-                this.getTagCollection();
-            }
-        },
-
-        getTagCollection() {
-            return this.tagRepository.search(this.tagCriteria)
-                .then(tags => {
-                    this.tagCollection = tags;
-                })
-                .catch(() => {
-                    this.tagCollection = [];
-                });
-        },
-
-        createTagCollection() {
-            return new EntityCollection(
-                this.tagRepository.route,
-                this.tagRepository.entityName,
-                Context.api,
-            );
-        },
-
-        onClose() {
-            this.$emit('modal-close');
-        },
-
-        onAddTag(data) {
-            this.tagCollection.add(data);
-        },
-
-        onRemoveTag(data) {
-            this.tagCollection.remove(data);
-        },
-
-        getConfig() {
-            const tagIds = {};
-            this.tagCollection.forEach(tag => {
-                Object.assign(tagIds, {
-                    [tag.id]: tag.name,
-                });
-            });
-
-            return {
-                tagIds,
-            };
-        },
-
-        onAddAction() {
-            const config = this.getConfig();
-            const data = {
-                ...this.sequence,
-                config,
-            };
-
-            this.$emit('process-finish', data);
-        },
+    onClose() {
+      this.$emit('modal-close');
     },
+
+    onAddTag(data) {
+      this.tagCollection.add(data);
+    },
+
+    onRemoveTag(data) {
+      this.tagCollection.remove(data);
+    },
+
+    getConfig() {
+      const tagIds = {};
+      this.tagCollection.forEach(tag => {
+        Object.assign(tagIds, {
+          [tag.id]: tag.name,
+        });
+      });
+
+      return {
+        tagIds,
+      };
+    },
+
+    onAddAction() {
+      const config = this.getConfig();
+      const data = {
+        ...this.sequence,
+        config,
+      };
+
+      this.$emit('process-finish', data);
+    },
+  },
 });
 ```
 
@@ -666,7 +665,7 @@ Component.register('sw-flow-create-tag-modal', {
 
 Please update the file `main.js` like this:
 
-```JS
+```javascript
 // <plugin root>/src/Resources/app/administration/src/main.js
 import './extension/sw-flow-sequence-action';
 import './component/sw-flow-create-tag-modal';
@@ -692,36 +691,36 @@ First, override the `openDynamicModal` method in the plugin to check if the valu
 
 #### JavaScript
 
-```JS
+```javascript
 // <plugin root>/src/Resources/app/administration/src/extension/sw-flow-sequence-action/index.js
 const { Component } = Shopware;
 
 Component.register('sw-flow-sequence-action', {
-    methods: {
-        openDynamicModal(value) {
-            if (!value) {
-                return;
-            }
+  methods: {
+    openDynamicModal(value) {
+      if (!value) {
+        return;
+      }
 
-            const actionName = this.flowBuilderService.getActionName('CREATE_TAG');
+      const actionName = this.flowBuilderService.getActionName('CREATE_TAG');
 
-            if (value === actionName) {
-                this.selectedAction = actionName;
-                const config = {
-                    tagIds: {
-                        'tag_id_1': 'Vip',
-                        'tag_id_2': 'New Customer',
-                    },
-                };
+      if (value === actionName) {
+        this.selectedAction = actionName;
+        const config = {
+          tagIds: {
+            'tag_id_1': 'Vip',
+            'tag_id_2': 'New Customer',
+          },
+        };
 
-                // Config can be a result from an API.
-                this.onSaveActionSuccess({ config });
-                return;
-            }
+        // Config can be a result from an API.
+        this.onSaveActionSuccess({ config });
+        return;
+      }
 
-            // handle for the rest of actions.
-        },
+      // handle for the rest of actions.
     },
+  },
 });
 ```
 
