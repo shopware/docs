@@ -33,52 +33,52 @@ Look at the below condensed overview of relationships between entities - product
 
 ```mermaid
 erDiagram
-    Product||--|{ ProductCategory : "M:1"
-    ProductCategory}|--|| Category : "1:M"
-    Product {
-        uuid product_id
-    }
-    ProductCategory {
-        uuid product_id 
-        uuid category_id 
-    }
-    Category {
-        uuid category_id
-    }
-    Product ||--|{ ProductOption : "1:M"
-    ProductOption{
-        uuid product_id
-        uuid property_group_option_id
-    }
-    ProductOption }|--|| PropertyGroupOption : "M:1"
-    PropertyGroupOption{
-        uuid property_group_option_id
-        uuid property_group_id
-    }
-        PropertyGroupOption }|--|| PropertyGroup : "M:1"
-    PropertyGroup{
-        uuid property_group_id
-    }
+  Product||--|{ ProductCategory : "M:1"
+  ProductCategory}|--|| Category : "1:M"
+  Product {
+    uuid product_id
+  }
+  ProductCategory {
+    uuid product_id 
+    uuid category_id
+  }
+  Category {
+    uuid category_id
+  }
+  Product ||--|{ ProductOption : "1:M"
+  ProductOption{
+    uuid product_id
+    uuid property_group_option_id
+  }
+  ProductOption }|--|{ PropertyGroupOption : "M:1"
+  PropertyGroupOption{
+    uuid property_group_option_id
+    uuid property_group_id
+  }
+  PropertyGroupOption }|--|| PropertyGroup : "M:1"
+  PropertyGroup{
+    uuid property_group_id
+  }
 ```
 
 * **Product variant**: A sellable product. Products are a self-referencing entity, which is interpreted as a parent-child relationship. Similarly, product variants are also generally mapped to products. This mechanism is used to model variants. This also provides inheritance between field values from parent products to child products.
 
 ```mermaid
 erDiagram
-    Product||--|| Product : "uuid=variant"
-    Product {
-        uuid product_id
-        uuid parent_id
-    }
-    Product ||--|{ PropertyGroupOption : "1:M"
-    PropertyGroupOption{
-        uuid property_group_option_id
-        uuid property_group_id
-    }
-    PropertyGroupOption }|--|| PropertyGroup : "M:1"
-    PropertyGroup{
-        uuid property_group_id
-    }
+  Product||--|| Product : "uuid=variant"
+  Product {
+    uuid product_id
+    uuid parent_id
+  }
+  Product ||--|{ PropertyGroupOption : "1:M"
+  PropertyGroupOption{
+    uuid property_group_option_id
+    uuid property_group_id
+  }
+  PropertyGroupOption }|--|| PropertyGroup : "M:1"
+  PropertyGroup{
+    uuid property_group_id
+  }
 ```
 
 It is also useful to attach some additional properties to differentiate product variants next to the field inheritance. For that reason, it is critical to understand the difference between *properties* and *options*:

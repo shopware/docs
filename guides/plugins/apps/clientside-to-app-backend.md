@@ -18,12 +18,12 @@ The JWT can be only generated when in the browser the user is logged-in.
 
 ```mermaid
 sequenceDiagram
-    participant Client
-    participant Shopware Backend
-    participant App Server
-    Client->>Shopware Backend: POST /store-api/app-system/MyApp/generate-token
-    Shopware Backend->>Client: Responds with signed JWT
-    Client->>App Server: Post /product-review/submit containing JWT in header
+  participant Client
+  participant Shopware Backend
+  participant App Server
+  Client->>Shopware Backend: POST /store-api/app-system/MyApp/generate-token
+  Shopware Backend->>Client: Responds with signed JWT
+  Client->>App Server: Post /product-review/submit containing JWT in header
 ```
 
 ## The JSON Web Token

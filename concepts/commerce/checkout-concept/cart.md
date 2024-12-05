@@ -73,12 +73,12 @@ Shopware 6 manages the cart's state through different services. The diagram belo
 title: Cart State
 ---
 stateDiagram-v2
-    [*] --> Empty
-    Empty --> Dirty : add line item
-    Dirty --> Calculated : calculate
-    Calculated --> Dirty : modify line item/shipping/payment
-    Calculated --> Calculated : order invalid
-    Calculated --> [*] : order
+  [*] --> Empty
+  Empty --> Dirty : add line item
+  Dirty --> Calculated : calculate
+  Calculated --> Dirty : modify line item/shipping/payment
+  Calculated --> Calculated : order invalid
+  Calculated --> [*] : order
 ```
 
 | Cart state | Description|
@@ -96,12 +96,12 @@ Calculating a cart is one of the more costly operations an ecommerce system must
 title: Cart Calculation
 ---
 stateDiagram-v2
-    [*] --> Enrich
-    Enrich --> Process
-    Process --> Validate
-    Validate --> Validate : repeat until no changes occur
-    Validate --> Persist
-    Persist --> [*]
+  [*] --> Enrich
+  Enrich --> Process
+  Process --> Validate
+  Validate --> Validate : repeat until no changes occur
+  Validate --> Persist
+  Persist --> [*]
 ```
 
 | Cart calculation state | Description|
@@ -147,20 +147,20 @@ title: Enrichment
 sequenceDiagram
 Enrichment->>Enrichment : 
 box
-    participant Enrichment
-    participant ProductCartProcessor
-    participant CartPromotionsCollector
-    participant CartDiscountCollector
-    end
-    Note over Enrichment,CartDiscountCollector: Collect
-    Enrichment->>ProductCartProcessor: collect
-    Enrichment->>CartPromotionsCollector: collect
-    Enrichment->>CartDiscountCollector: collect
-    Note over Enrichment,CartDiscountCollector: Enrichment
-    Enrichment->>ProductCartProcessor: enrich
-    Enrichment->>CartPromotionsCollector: enrich
-    Enrichment->>CartDiscountCollector: enrich
-    Enrichment->>Enrichment : 
+  participant Enrichment
+  participant ProductCartProcessor
+  participant CartPromotionsCollector
+  participant CartDiscountCollector
+  end
+  Note over Enrichment,CartDiscountCollector: Collect
+  Enrichment->>ProductCartProcessor: collect
+  Enrichment->>CartPromotionsCollector: collect
+  Enrichment->>CartDiscountCollector: collect
+  Note over Enrichment,CartDiscountCollector: Enrichment
+  Enrichment->>ProductCartProcessor: enrich
+  Enrichment->>CartPromotionsCollector: enrich
+  Enrichment->>CartDiscountCollector: enrich
+  Enrichment->>Enrichment : 
 ```
 
 ## Cart processors - price calculation and validation
@@ -182,13 +182,13 @@ After the cart has been processed, it is validated against the rules, which can 
 
 ```mermaid
 stateDiagram-v2
-    [*] --> Empty_cart : checkout started
-    Empty_cart --> Enrichment : User orders a car
-        state Enrichment {
-    Cart_with_lineitem(car) --> Cart_with_lineitem(car+sunglasses) : Iteration 1 - Cart automatically adds sunglasses
-    Cart_with_lineitem(car+sunglasses) --> Cart_with_lineitem(car+sunglasses+2%discount) : Iteration 2 - Cart automatically adds discount
-    }
-    Cart_with_lineitem(car+sunglasses+2%discount) --> [*] : valid
+  [*] --> Empty_cart : checkout started
+  Empty_cart --> Enrichment : User orders a car
+    state Enrichment {
+  Cart_with_lineitem(car) --> Cart_with_lineitem(car+sunglasses) : Iteration 1 - Cart automatically adds sunglasses
+  Cart_with_lineitem(car+sunglasses) --> Cart_with_lineitem(car+sunglasses+2%discount) : Iteration 2 - Cart automatically adds discount
+  }
+  Cart_with_lineitem(car+sunglasses+2%discount) --> [*] : valid
 ```
 
 As you can see in the diagram above, the cart is modified during the enrichment process. The sunglasses are added in the first iteration, and in the second iteration, the discount is added as the cart contains two products. This results in the expected state of one car, one pair of sunglasses, and a two-percent discount.

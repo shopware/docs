@@ -21,20 +21,20 @@ he Shopping List Line Item represents individual products within a shopping list
 
 ```mermaid
 erDiagram
-    b2b_components_shopping_list {
-        uuid id PK
-        uuid customer_id FK
-        uuid employee_id FK
-        uuid sales_channel_id FK
-        string name
-        boolean active
-        json custom_fields
-    }
-    b2b_components_shopping_list_line_item {
-        uuid id PK
-        uuid b2b_components_shopping_list_id FK
-        uuid product_id FK
-        int quantity
-    }
+  b2b_components_shopping_list {
+    uuid id PK
+    uuid customer_id FK
+    uuid employee_id FK
+    uuid sales_channel_id FK
+    string name
+    boolean active
+    json custom_fields
+  }
+  b2b_components_shopping_list_line_item {
+    uuid id PK
+    uuid b2b_components_shopping_list_id FK
+    uuid product_id FK
+    int quantity
+  }
 b2b_components_shopping_list_line_item o{--|| b2b_components_shopping_list : "has line items"
 ```
