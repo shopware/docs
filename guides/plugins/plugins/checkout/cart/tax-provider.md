@@ -40,44 +40,44 @@ use TaxJar\Client;
 
 class TaxProvider extends AbstractTaxProvider
 {
-    public function provide(Cart $cart, SalesChannelContext $context): TaxProviderResult
-    {
-        $lineItemTaxes = [];
-    
-        foreach ($cart->getLineItems() as $lineItem) {
-            $taxRate = 50;
-            $price = $lineItem->getPrice()->getTotalPrice();
-            $tax = $price * $taxRate / 100;
+  public function provide(Cart $cart, SalesChannelContext $context): TaxProviderResult
+  {
+    $lineItemTaxes = [];
 
-            // shopware will look for the `uniqueIdentifier` property of the lineItem to identify this lineItem even in nested-line-item structures
-            $lineItemTaxes[$lineItem->getUniqueIdentifier()] = new CalculatedTaxCollection(
-                [
-                    new CalculatedTax($tax, $taxRate, $price),
-                ]
-            );
-        }
-        
-        // you could do the same for deliveries
-        // $deliveryTaxes = []; // use the id of the delivery position as keys, if you want to transmit delivery taxes
-        
-        // foreach ($cart->getDeliveries() as $delivery) {
-        //     foreach ($delivery->getPositions() as $position) {
-        //         $deliveryTaxes[$delivery->getId()] = new CalculatedTaxCollection(...);
-        //         ...
-        //     }
-        // }
-        
-        // If you call a tax provider, you will probably get calculated tax sums for the whole cart
-        // Use the cartPriceTaxes to let Shopware show the correct sums in the checkout
-        // If omitted, Shopware will try to calculate the tax sums itself
-        // $cartPriceTaxes = [];
-        
-        return new TaxProviderResult(
-            $lineItemTaxes,
-            // $deliveryTaxes,
-            // $cartPriceTaxes
-        );
+    foreach ($cart->getLineItems() as $lineItem) {
+      $taxRate = 50;
+      $price = $lineItem->getPrice()->getTotalPrice();
+      $tax = $price * $taxRate / 100;
+
+      // shopware will look for the `uniqueIdentifier` property of the lineItem to identify this lineItem even in nested-line-item structures
+      $lineItemTaxes[$lineItem->getUniqueIdentifier()] = new CalculatedTaxCollection(
+        [
+          new CalculatedTax($tax, $taxRate, $price),
+        ]
+      );
     }
+
+    // you could do the same for deliveries
+    // $deliveryTaxes = []; // use the id of the delivery position as keys, if you want to transmit delivery taxes
+
+    // foreach ($cart->getDeliveries() as $delivery) {
+    //     foreach ($delivery->getPositions() as $position) {
+    //         $deliveryTaxes[$delivery->getId()] = new CalculatedTaxCollection(...);
+    //         ...
+    //     }
+    // }
+
+    // If you call a tax provider, you will probably get calculated tax sums for the whole cart
+    // Use the cartPriceTaxes to let Shopware show the correct sums in the checkout
+    // If omitted, Shopware will try to calculate the tax sums itself
+    // $cartPriceTaxes = [];
+
+    return new TaxProviderResult(
+      $lineItemTaxes,
+      // $deliveryTaxes,
+      // $cartPriceTaxes
+    );
+  }
 }
 ```
 
@@ -123,33 +123,31 @@ use Shopware\Core\System\TaxProvider\TaxProviderDefinition;
 
 class MigrationTaxProvider extends MigrationStep
 {
-    public function getCreationTimestamp(): int
-    {
-        return 1662366151;
-    }
+  public function getCreationTimestamp(): int
+  {
+    return 1662366151;
+  }
 
-    public function update(Connection $connection): void
-    {
-        $ruleId = $connection->fetchOne(
-            'SELECT `id` FROM `rule` WHERE `name` = :name',
-            ['name' => 'Always valid (Default)']
-        );
+  public function update(Connection $connection): void
+  {
+    $ruleId = $connection->fetchOne(
+      'SELECT `id` FROM `rule` WHERE `name` = :name',
+      ['name' => 'Always valid (Default)']
+    );
 
-        $id = Uuid::randomBytes();
+    $id = Uuid::randomBytes();
 
-        $connection->insert(TaxProviderDefinition::ENTITY_NAME, [
-            'id' => $id,
-            'identifier' => Swag\BasicExample\Checkout\Cart\Tax\TaxProvider::class, // your tax provider class
-            'active' => true,
-            'priority' => 1,
-            'availability_rule_id' => $ruleId,
-            'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
-        ]);
-    }
+    $connection->insert(TaxProviderDefinition::ENTITY_NAME, [
+      'id' => $id,
+      'identifier' => Swag\BasicExample\Checkout\Cart\Tax\TaxProvider::class, // your tax provider class
+      'active' => true,
+      'priority' => 1,
+      'availability_rule_id' => $ruleId,
+      'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
+    ]);
+  }
 
-    public function updateDestructive(Connection $connection): void
-    {
-    }
+  public function updateDestructive(Connection $connection): void {}
 }
 ```
 
@@ -175,47 +173,47 @@ use Shopware\Core\Framework\Uuid\Uuid;
 
 class SwagBasicExample extends Plugin
 {
-    public function install(InstallContext $installContext): void
-    {
-        $ruleRepo = $this->container->get('rule.repository');
+  public function install(InstallContext $installContext): void
+  {
+    $ruleRepo = $this->container->get('rule.repository');
 
-        // create a rule, which will be used to determine the availability of your tax provider
-        // do not rely on specific rules to be always present
-        $rule = $ruleRepo->create([
-            [
-                'name' => 'Cart > 0',
-                'priority' => 0,
-                'conditions' => [
-                    [
-                        'type' => 'cart.cartAmount',
-                        'operator' => '>=',
-                        'value' => 0,
-                    ],
-                ],
-            ],
-        ], $installContext->getContext());
-        
-        $criteria = new Criteria();
-        $criteria->addFilter(
-            new EqualsFilter('name', 'Cart > 0')
-        );
+    // create a rule, which will be used to determine the availability of your tax provider
+    // do not rely on specific rules to be always present
+    $rule = $ruleRepo->create([
+      [
+        'name' => 'Cart > 0',
+        'priority' => 0,
+        'conditions' => [
+          [
+            'type' => 'cart.cartAmount',
+            'operator' => '>=',
+            'value' => 0,
+          ],
+        ],
+      ],
+    ], $installContext->getContext());
 
-        $ruleId = $ruleRepo->searchIds($criteria, $installContext->getContext())->firstId();
+    $criteria = new Criteria();
+    $criteria->addFilter(
+      new EqualsFilter('name', 'Cart > 0')
+    );
 
-        $taxRepo = $this->container->get('tax_provider.repository');
-        $taxRepo->create([
-            [
-                'id' => Uuid::randomHex(),
-                'identifier' => Swag\BasicExample\Checkout\Cart\Tax\TaxProvider::class,
-                'priority' => 1,
-                'active' => false, // activate this via the `activate` lifecycle method
-                'availabilityRuleId' => $ruleId,
-            ],
-        ], $installContext->getContext());
-    }
-    
-    // do not forget to add an `uninstall` method, which removes your tax providers, when the plugin is uninstalled
-    // you also may want to add the `activate` and `deactivate` methods to activate and deactivate the tax providers
+    $ruleId = $ruleRepo->searchIds($criteria, $installContext->getContext())->firstId();
+
+    $taxRepo = $this->container->get('tax_provider.repository');
+    $taxRepo->create([
+      [
+        'id' => Uuid::randomHex(),
+        'identifier' => Swag\BasicExample\Checkout\Cart\Tax\TaxProvider::class,
+        'priority' => 1,
+        'active' => false, // activate this via the `activate` lifecycle method
+        'availabilityRuleId' => $ruleId,
+      ],
+    ], $installContext->getContext());
+  }
+
+  // do not forget to add an `uninstall` method, which removes your tax providers, when the plugin is uninstalled
+  // you also may want to add the `activate` and `deactivate` methods to activate and deactivate the tax providers
 }
 ```
 

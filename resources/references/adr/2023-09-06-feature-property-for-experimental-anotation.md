@@ -52,7 +52,7 @@ php
  */
 class testClass()
 {
-    //...
+  //...
 }
 ```
 js
@@ -117,10 +117,10 @@ class Foo
 Connection point
 
 ```php
-if (Feature.isActive('WISHLIST') {
-        $obj = new Foo();
-        // New implementation
+if (Feature.isActive('WISHLIST')) {
+  $obj = new Foo();
+  // New implementation
 } else {
-        // Old/current implementation
+  // Old/current implementation
 }
 ```

@@ -40,40 +40,40 @@ use SwagMigrationAssistant\Migration\Profile\ProfileInterface;
 
 class OwnProfile implements ProfileInterface
 {
-    public const PROFILE_NAME = 'ownProfile';
+  public const PROFILE_NAME = 'ownProfile';
 
-    public const SOURCE_SYSTEM_NAME = 'MySourceSystem';
+  public const SOURCE_SYSTEM_NAME = 'MySourceSystem';
 
-    public const SOURCE_SYSTEM_VERSION = '1.0';
+  public const SOURCE_SYSTEM_VERSION = '1.0';
 
-    public const AUTHOR_NAME = 'shopware AG';
+  public const AUTHOR_NAME = 'shopware AG';
 
-    public const ICON_PATH = '/swagmigrationassistant/static/img/migration-assistant-plugin.svg';
+  public const ICON_PATH = '/swagmigrationassistant/static/img/migration-assistant-plugin.svg';
 
-    public function getName(): string
-    {
-        return self::PROFILE_NAME;
-    }
+  public function getName(): string
+  {
+    return self::PROFILE_NAME;
+  }
 
-    public function getSourceSystemName(): string
-    {
-        return self::SOURCE_SYSTEM_NAME;
-    }
+  public function getSourceSystemName(): string
+  {
+    return self::SOURCE_SYSTEM_NAME;
+  }
 
-    public function getVersion(): string
-    {
-        return self::SOURCE_SYSTEM_VERSION;
-    }
+  public function getVersion(): string
+  {
+    return self::SOURCE_SYSTEM_VERSION;
+  }
 
-    public function getAuthorName(): string
-    {
-        return self::AUTHOR_NAME;
-    }
+  public function getAuthorName(): string
+  {
+    return self::AUTHOR_NAME;
+  }
 
-    public function getIconPath(): string
-    {
-        return self::ICON_PATH;
-    }
+  public function getIconPath(): string
+  {
+    return self::ICON_PATH;
+  }
 }
 ```
 
@@ -106,97 +106,97 @@ use SwagMigrationOwnProfileExample\Profile\OwnProfile\OwnProfile;
 
 class OwnLocaleGateway implements GatewayInterface
 {
-    public const GATEWAY_NAME = 'local';
+  public const GATEWAY_NAME = 'local';
 
-    private ConnectionFactoryInterface $connectionFactory;
+  private ConnectionFactoryInterface $connectionFactory;
 
-    private ReaderRegistry $readerRegistry;
+  private ReaderRegistry $readerRegistry;
 
-    public function __construct(
-        ReaderRegistry $readerRegistry,
-        ConnectionFactoryInterface $connectionFactory
-    ) {
-        $this->readerRegistry = $readerRegistry;
-        $this->connectionFactory = $connectionFactory;
+  public function __construct(
+    ReaderRegistry $readerRegistry,
+    ConnectionFactoryInterface $connectionFactory
+  ) {
+    $this->readerRegistry = $readerRegistry;
+    $this->connectionFactory = $connectionFactory;
+  }
+
+  public function getName(): string
+  {
+    return self::GATEWAY_NAME;
+  }
+
+  public function supports(MigrationContextInterface $migrationContext): bool
+  {
+    return $migrationContext->getProfile() instanceof OwnProfile;
+  }
+
+  public function getSnippetName(): string
+  {
+    return 'swag-migration.wizard.pages.connectionCreate.gateways.shopwareLocal';
+  }
+
+  /**
+   * Reads the given entity type from via context from its connection and returns the data
+   */
+  public function read(MigrationContextInterface $migrationContext): array
+  {
+    // TODO: Implement read() method.
+    return [];
+  }
+
+  public function readEnvironmentInformation(
+    MigrationContextInterface $migrationContext,
+    Context $context
+  ): EnvironmentInformation {
+    $connection = $this->connectionFactory->createDatabaseConnection($migrationContext);
+    $profile = $migrationContext->getProfile();
+
+    try {
+      $connection->connect();
+    } catch (\Exception $e) {
+      $error = new DatabaseConnectionException();
+
+      return new EnvironmentInformation(
+        $profile->getSourceSystemName(),
+        $profile->getVersion(),
+        '-',
+        [],
+        [],
+        new RequestStatusStruct($error->getErrorCode(), $error->getMessage())
+      );
+    }
+    $connection->close();
+
+    $totals = $this->readTotals($migrationContext, $context);
+
+    return new EnvironmentInformation(
+      $profile->getSourceSystemName(),
+      $profile->getVersion(),
+      'Example Host Name',
+      $totals,
+      [],
+      new RequestStatusStruct(),
+      false
+    );
+  }
+
+  public function readTotals(MigrationContextInterface $migrationContext, Context $context): array
+  {
+    $readers = $this->readerRegistry->getReaderForTotal($migrationContext);
+
+    $totals = [];
+    foreach ($readers as $reader) {
+      $total = $reader->readTotal($migrationContext);
+
+      if ($total === null) {
+        continue;
+      }
+
+      $totals[$total->getEntityName()] = $total;
     }
 
-    public function getName(): string
-    {
-        return self::GATEWAY_NAME;
-    }
-
-    public function supports(MigrationContextInterface $migrationContext): bool
-    {
-        return $migrationContext->getProfile() instanceof OwnProfile;
-    }
-
-    public function getSnippetName(): string
-    {
-        return 'swag-migration.wizard.pages.connectionCreate.gateways.shopwareLocal';
-    }
-
-    /**
-     * Reads the given entity type from via context from its connection and returns the data
-     */
-    public function read(MigrationContextInterface $migrationContext): array
-    {
-        // TODO: Implement read() method.
-        return [];
-    }
-
-    public function readEnvironmentInformation(
-        MigrationContextInterface $migrationContext,
-        Context $context
-    ): EnvironmentInformation {
-        $connection = $this->connectionFactory->createDatabaseConnection($migrationContext);
-        $profile = $migrationContext->getProfile();
-
-        try {
-            $connection->connect();
-        } catch (\Exception $e) {
-            $error = new DatabaseConnectionException();
-
-            return new EnvironmentInformation(
-                $profile->getSourceSystemName(),
-                $profile->getVersion(),
-                '-',
-                [],
-                [],
-                new RequestStatusStruct($error->getErrorCode(), $error->getMessage())
-            );
-        }
-        $connection->close();
-
-        $totals = $this->readTotals($migrationContext, $context);
-
-        return new EnvironmentInformation(
-            $profile->getSourceSystemName(),
-            $profile->getVersion(),
-            'Example Host Name',
-            $totals,
-            [],
-            new RequestStatusStruct(),
-            false
-        );
-    }
-
-    public function readTotals(MigrationContextInterface $migrationContext, Context $context): array
-    {
-        $readers = $this->readerRegistry->getReaderForTotal($migrationContext);
-
-        $totals = [];
-        foreach ($readers as $reader) {
-            $total = $reader->readTotal($migrationContext);
-
-            if ($total === null) {
-                continue;
-            }
-
-            $totals[$total->getEntityName()] = $total;
-        }
-
-        return $totals;
-    }
+    return $totals;
+  }
 }
 ```
 
@@ -393,21 +393,21 @@ use SwagMigrationOwnProfileExample\Profile\OwnProfile\OwnProfile;
 
 class ProductDataSet extends DataSet
 {
-    /**
-     * Returns the entity identifier of this DataSet
-     */
-    public static function getEntity(): string
-    {
-        return 'product';
-    }
+  /**
+   * Returns the entity identifier of this DataSet
+   */
+  public static function getEntity(): string
+  {
+    return 'product';
+  }
 
-    /**
-     * Supports only an OwnProfile
-     */
-    public function supports(MigrationContextInterface $migrationContext): bool
-    {
-        return $migrationContext->getProfile() instanceof OwnProfile;
-    }
+  /**
+   * Supports only an OwnProfile
+   */
+  public function supports(MigrationContextInterface $migrationContext): bool
+  {
+    return $migrationContext->getProfile() instanceof OwnProfile;
+  }
 }
 ```
 
@@ -426,48 +426,48 @@ use SwagMigrationOwnProfileExample\Profile\OwnProfile\OwnProfile;
 
 class ProductDataSelection implements DataSelectionInterface
 {
-    /**
-     * Identifier of this DataSelection
-     */
-    public const IDENTIFIER = 'products';
+  /**
+   * Identifier of this DataSelection
+   */
+  public const IDENTIFIER = 'products';
 
-    /**
-     * Supports only an OwnProfile
-     */
-    public function supports(MigrationContextInterface $migrationContext): bool
-    {
-        return $migrationContext->getProfile() instanceof OwnProfile;
-    }
+  /**
+   * Supports only an OwnProfile
+   */
+  public function supports(MigrationContextInterface $migrationContext): bool
+  {
+    return $migrationContext->getProfile() instanceof OwnProfile;
+  }
 
-    public function getData(): DataSelectionStruct
-    {
-        return new DataSelectionStruct(
-            self::IDENTIFIER,
-            $this->getDataSets(),
-            $this->getDataSetsRequiredForCount(),
-            /*
+  public function getData(): DataSelectionStruct
+  {
+    return new DataSelectionStruct(
+      self::IDENTIFIER,
+      $this->getDataSets(),
+      $this->getDataSetsRequiredForCount(),
+      /*
              * Snippet of the original ProductDataSelection, if you
              * want to use your own title, you have to create a new snippet
              */
-            'swag-migration.index.selectDataCard.dataSelection.products',
-            100
-        );
-    }
+      'swag-migration.index.selectDataCard.dataSelection.products',
+      100
+    );
+  }
 
-    /**
-     * Returns all DataSets, which should be migrated with this DataSelection
-     */
-    public function getDataSets(): array
-    {
-        return [
-            new ProductDataSet()
-        ];
-    }
+  /**
+   * Returns all DataSets, which should be migrated with this DataSelection
+   */
+  public function getDataSets(): array
+  {
+    return [
+      new ProductDataSet()
+    ];
+  }
 
-    public function getDataSetsRequiredForCount(): array
-    {
-        return $this->getDataSets();
-    }
+  public function getDataSetsRequiredForCount(): array
+  {
+    return $this->getDataSets();
+  }
 }
 ```
 
@@ -506,65 +506,65 @@ use SwagMigrationOwnProfileExample\Profile\OwnProfile\OwnProfile;
 
 class ProductReader extends AbstractReader
 {
-    /**
-     * Supports only an OwnProfile and the ProductDataSet
-     */
-    public function supports(MigrationContextInterface $migrationContext): bool
-    {
-        return $migrationContext->getProfile() instanceof OwnProfile
-            && $migrationContext->getDataSet()::getEntity() === ProductDataSet::getEntity();
+  /**
+   * Supports only an OwnProfile and the ProductDataSet
+   */
+  public function supports(MigrationContextInterface $migrationContext): bool
+  {
+    return $migrationContext->getProfile() instanceof OwnProfile
+      && $migrationContext->getDataSet()::getEntity() === ProductDataSet::getEntity();
+  }
+
+  /**
+   * Supports only an OwnProfile and the ProductDataSet for totals
+   */
+  public function supportsTotal(MigrationContextInterface $migrationContext): bool
+  {
+    return $migrationContext->getProfile() instanceof OwnProfile
+      && $migrationContext->getGateway()->getName() === ShopwareLocalGateway::GATEWAY_NAME;
+  }
+
+  /**
+   * Creates a database connection and sets the connection class variable
+   */
+  protected function setConnection(MigrationContextInterface $migrationContext): void
+  {
+    $this->connection = $this->connectionFactory->createDatabaseConnection($migrationContext);
+  }
+
+  public function readTotal(MigrationContextInterface $migrationContext): ?TotalStruct
+  {
+    $this->setConnection($migrationContext);
+
+    $query = $this->connection->createQueryBuilder()
+      ->select('COUNT(*)')
+      ->from('product')
+      ->execute();
+
+    $total = 0;
+    if ($query instanceof ResultStatement) {
+      $total = (int) $query->fetchColumn();
     }
 
-    /**
-     * Supports only an OwnProfile and the ProductDataSet for totals
-     */
-    public function supportsTotal(MigrationContextInterface $migrationContext): bool
-    {
-        return $migrationContext->getProfile() instanceof OwnProfile
-            && $migrationContext->getGateway()->getName() === ShopwareLocalGateway::GATEWAY_NAME;
-    }
+    return new TotalStruct(ProductDataSet::getEntity(), $total);
+  }
 
-    /**
-     * Creates a database connection and sets the connection class variable
-     */
-    protected function setConnection(MigrationContextInterface $migrationContext): void
-    {
-        $this->connection = $this->connectionFactory->createDatabaseConnection($migrationContext);
-    }
+  /**
+   * Fetches all entities out of the product table with the given limit
+   */
+  public function read(MigrationContextInterface $migrationContext, array $params = []): array
+  {
+    $this->setConnection($migrationContext);
 
-    public function readTotal(MigrationContextInterface $migrationContext): ?TotalStruct
-    {
-        $this->setConnection($migrationContext);
+    $query = $this->connection->createQueryBuilder();
+    $query->from('product');
+    $query->addSelect('*');
 
-        $query = $this->connection->createQueryBuilder()
-            ->select('COUNT(*)')
-            ->from('product')
-            ->execute();
+    $query->setFirstResult($migrationContext->getOffset());
+    $query->setMaxResults($migrationContext->getLimit());
 
-        $total = 0;
-        if ($query instanceof ResultStatement) {
-            $total = (int) $query->fetchColumn();
-        }
-
-        return new TotalStruct(ProductDataSet::getEntity(), $total);
-    }
-
-    /**
-     * Fetches all entities out of the product table with the given limit
-     */
-    public function read(MigrationContextInterface $migrationContext, array $params = []): array
-    {
-        $this->setConnection($migrationContext);
-
-        $query = $this->connection->createQueryBuilder();
-        $query->from('product');
-        $query->addSelect('*');
-
-        $query->setFirstResult($migrationContext->getOffset());
-        $query->setMaxResults($migrationContext->getLimit());
-
-        return $query->execute()->fetchAll(\PDO::FETCH_ASSOC);
-    }
+    return $query->execute()->fetchAll(\PDO::FETCH_ASSOC);
+  }
 }
 ```
 
@@ -598,95 +598,95 @@ use SwagMigrationOwnProfileExample\Profile\OwnProfile\OwnProfile;
 
 class OwnLocaleGateway implements GatewayInterface
 {
-    public const GATEWAY_NAME = 'local';
+  public const GATEWAY_NAME = 'local';
 
-    private ConnectionFactoryInterface $connectionFactory;
+  private ConnectionFactoryInterface $connectionFactory;
 
-    private ReaderRegistry $readerRegistry;
+  private ReaderRegistry $readerRegistry;
 
-    public function __construct(
-        ReaderRegistry $readerRegistry,
-        ConnectionFactoryInterface $connectionFactory
-    ) {
-        $this->readerRegistry = $readerRegistry;
-        $this->connectionFactory = $connectionFactory;
+  public function __construct(
+    ReaderRegistry $readerRegistry,
+    ConnectionFactoryInterface $connectionFactory
+  ) {
+    $this->readerRegistry = $readerRegistry;
+    $this->connectionFactory = $connectionFactory;
+  }
+
+  public function getName(): string
+  {
+    return self::GATEWAY_NAME;
+  }
+
+  public function supports(MigrationContextInterface $migrationContext): bool
+  {
+    return $migrationContext->getProfile() instanceof OwnProfile;
+  }
+
+  public function getSnippetName(): string
+  {
+    return 'swag-migration.wizard.pages.connectionCreate.gateways.shopwareLocal';
+  }
+
+  public function read(MigrationContextInterface $migrationContext): array
+  {
+    $reader = $this->readerRegistry->getReader($migrationContext);
+
+    return $reader->read($migrationContext);
+  }
+
+  public function readEnvironmentInformation(
+    MigrationContextInterface $migrationContext,
+    Context $context
+  ): EnvironmentInformation {
+    $connection = $this->connectionFactory->createDatabaseConnection($migrationContext);
+    $profile = $migrationContext->getProfile();
+
+    try {
+      $connection->connect();
+    } catch (\Exception $e) {
+      $error = new DatabaseConnectionException();
+
+      return new EnvironmentInformation(
+        $profile->getSourceSystemName(),
+        $profile->getVersion(),
+        '-',
+        [],
+        [],
+        new RequestStatusStruct($error->getErrorCode(), $error->getMessage())
+      );
+    }
+    $connection->close();
+
+    $totals = $this->readTotals($migrationContext, $context);
+
+    return new EnvironmentInformation(
+      $profile->getSourceSystemName(),
+      $profile->getVersion(),
+      'Example Host Name',
+      $totals,
+      [],
+      new RequestStatusStruct(),
+      false
+    );
+  }
+
+  public function readTotals(MigrationContextInterface $migrationContext, Context $context): array
+  {
+    $readers = $this->readerRegistry->getReaderForTotal($migrationContext);
+
+    $totals = [];
+    foreach ($readers as $reader) {
+      $total = $reader->readTotal($migrationContext);
+
+      if ($total === null) {
+        continue;
+      }
+
+      $totals[$total->getEntityName()] = $total;
     }
 
-    public function getName(): string
-    {
-        return self::GATEWAY_NAME;
-    }
-
-    public function supports(MigrationContextInterface $migrationContext): bool
-    {
-        return $migrationContext->getProfile() instanceof OwnProfile;
-    }
-
-    public function getSnippetName(): string
-    {
-        return 'swag-migration.wizard.pages.connectionCreate.gateways.shopwareLocal';
-    }
-
-    public function read(MigrationContextInterface $migrationContext): array
-    {
-        $reader = $this->readerRegistry->getReader($migrationContext);
-
-        return $reader->read($migrationContext);
-    }
-
-    public function readEnvironmentInformation(
-        MigrationContextInterface $migrationContext,
-        Context $context
-    ): EnvironmentInformation {
-        $connection = $this->connectionFactory->createDatabaseConnection($migrationContext);
-        $profile = $migrationContext->getProfile();
-
-        try {
-            $connection->connect();
-        } catch (\Exception $e) {
-            $error = new DatabaseConnectionException();
-
-            return new EnvironmentInformation(
-                $profile->getSourceSystemName(),
-                $profile->getVersion(),
-                '-',
-                [],
-                [],
-                new RequestStatusStruct($error->getErrorCode(), $error->getMessage())
-            );
-        }
-        $connection->close();
-
-        $totals = $this->readTotals($migrationContext, $context);
-
-        return new EnvironmentInformation(
-            $profile->getSourceSystemName(),
-            $profile->getVersion(),
-            'Example Host Name',
-            $totals,
-            [],
-            new RequestStatusStruct(),
-            false
-        );
-    }
-
-    public function readTotals(MigrationContextInterface $migrationContext, Context $context): array
-    {
-        $readers = $this->readerRegistry->getReaderForTotal($migrationContext);
-
-        $totals = [];
-        foreach ($readers as $reader) {
-            $total = $reader->readTotal($migrationContext);
-
-            if ($total === null) {
-                continue;
-            }
-
-            $totals[$total->getEntityName()] = $total;
-        }
-
-        return $totals;
-    }
+    return $totals;
+  }
 }
 ```
 
@@ -709,131 +709,131 @@ use SwagMigrationOwnProfileExample\Profile\OwnProfile\OwnProfile;
 
 class ProductConverter extends ShopwareConverter
 {
-    private string $connectionId;
+  private string $connectionId;
 
-    private Context $context;
+  private Context $context;
 
-    public function getSourceIdentifier(array $data): string
-    {
-        return $data['id'];
-    }
+  public function getSourceIdentifier(array $data): string
+  {
+    return $data['id'];
+  }
+
+  /**
+   * Supports only an OwnProfile and the ProductDataSet
+   */
+  public function supports(MigrationContextInterface $migrationContext): bool
+  {
+    return $migrationContext->getProfile() instanceof OwnProfile &&
+      $migrationContext->getDataSet()::getEntity() === ProductDataSet::getEntity();
+  }
+
+  /**
+   * Writes the created mapping
+   */
+  public function writeMapping(Context $context): void
+  {
+    $this->mappingService->writeMapping($context);
+  }
+
+  public function convert(array $data, Context $context, MigrationContextInterface $migrationContext): ConvertStruct
+  {
+    $this->generateChecksum($data);
+    $this->connectionId = $migrationContext->getConnection()->getId();
+    $this->context = $context;
 
     /**
-     * Supports only an OwnProfile and the ProductDataSet
+     * Gets the product uuid out of the mapping table or creates a new one
      */
-    public function supports(MigrationContextInterface $migrationContext): bool
-    {
-        return $migrationContext->getProfile() instanceof OwnProfile &&
-            $migrationContext->getDataSet()::getEntity() === ProductDataSet::getEntity();
+    $this->mainMapping = $this->mappingService->getOrCreateMapping(
+      $migrationContext->getConnection()->getId(),
+      ProductDataSet::getEntity(),
+      $data['id'],
+      $context,
+      $this->checksum
+    );
+
+    $converted['id'] = $this->mainMapping['entityUuid'];
+    $this->convertValue($converted, 'productNumber', $data, 'product_number');
+    $this->convertValue($converted, 'name', $data, 'product_name');
+    $this->convertValue($converted, 'stock', $data, 'stock', self::TYPE_INTEGER);
+
+    if (isset($data['tax'])) {
+      $converted['tax'] = $this->getTax($data);
+      $converted['price'] = $this->getPrice($data, $converted['tax']['taxRate']);
     }
+
+    unset(
+      $data['id'],
+      $data['product_number'],
+      $data['product_name'],
+      $data['stock'],
+      $data['tax'],
+      $data['price']
+    );
+
+    if (empty($data)) {
+      $data = null;
+    }
+    $this->updateMainMapping($migrationContext, $context);
+
+    return new ConvertStruct($converted, $data, $this->mainMapping['id']);
+  }
+
+  private function getTax(array $data): array
+  {
+    $taxRate = (float) $data['tax'];
 
     /**
-     * Writes the created mapping
+     * Gets the tax uuid by the given tax rate
      */
-    public function writeMapping(Context $context): void
-    {
-        $this->mappingService->writeMapping($context);
+    $taxUuid = $this->mappingService->getTaxUuid($this->connectionId, $taxRate, $this->context);
+
+    /**
+     * If no tax rate is found, create a new one
+     */
+    if ($taxUuid === null) {
+      $mapping = $this->mappingService->createMapping(
+        $this->connectionId,
+        DefaultEntities::TAX,
+        $data['id']
+      );
+      $taxUuid = $mapping['entityUuid'];
     }
 
-    public function convert(array $data, Context $context, MigrationContextInterface $migrationContext): ConvertStruct
-    {
-        $this->generateChecksum($data);
-        $this->connectionId = $migrationContext->getConnection()->getId();
-        $this->context = $context;
+    return [
+      'id' => $taxUuid,
+      'taxRate' => $taxRate,
+      'name' => 'Own profile tax rate (' . $taxRate . ')',
+    ];
+  }
 
-        /**
-         * Gets the product uuid out of the mapping table or creates a new one
-         */
-        $this->mainMapping = $this->mappingService->getOrCreateMapping(
-            $migrationContext->getConnection()->getId(),
-            ProductDataSet::getEntity(),
-            $data['id'],
-            $context,
-            $this->checksum
-        );
+  private function getPrice(array $data, float $taxRate): array
+  {
+    $gross = (float) $data['price'] * (1 + $taxRate / 100);
 
-        $converted['id'] = $this->mainMapping['entityUuid'];
-        $this->convertValue($converted, 'productNumber', $data, 'product_number');
-        $this->convertValue($converted, 'name', $data, 'product_name');
-        $this->convertValue($converted, 'stock', $data, 'stock', self::TYPE_INTEGER);
+    /**
+     * Gets the currency uuid by the given iso code
+     */
+    $currencyUuid = $this->mappingService->getCurrencyUuid(
+      $this->connectionId,
+      'EUR',
+      $this->context
+    );
 
-        if (isset($data['tax'])) {
-            $converted['tax'] = $this->getTax($data);
-            $converted['price'] = $this->getPrice($data, $converted['tax']['taxRate']);
-        }
-
-        unset(
-          $data['id'],
-          $data['product_number'],
-          $data['product_name'],
-          $data['stock'],
-          $data['tax'],
-          $data['price']
-        );
-
-        if (empty($data)) {
-            $data = null;
-        }
-        $this->updateMainMapping($migrationContext, $context);
-
-        return new ConvertStruct($converted, $data, $this->mainMapping['id']);
+    if ($currencyUuid === null) {
+      return [];
     }
 
-    private function getTax(array $data): array
-    {
-        $taxRate = (float) $data['tax'];
+    $price = [];
+    $price[] = [
+      'currencyId' => $currencyUuid,
+      'gross' => $gross,
+      'net' => (float) $data['price'],
+      'linked' => true,
+    ];
 
-        /**
-         * Gets the tax uuid by the given tax rate
-         */
-        $taxUuid = $this->mappingService->getTaxUuid($this->connectionId, $taxRate, $this->context);
-
-        /**
-         * If no tax rate is found, create a new one
-         */
-        if ($taxUuid === null) {
-            $mapping = $this->mappingService->createMapping(
-                $this->connectionId,
-                DefaultEntities::TAX,
-                $data['id']
-            );
-            $taxUuid = $mapping['entityUuid'];
-        }
-
-        return [
-            'id' => $taxUuid,
-            'taxRate' => $taxRate,
-            'name' => 'Own profile tax rate (' . $taxRate . ')',
-        ];
-    }
-
-    private function getPrice(array $data, float $taxRate): array
-    {
-        $gross = (float) $data['price'] * (1 + $taxRate / 100);
-
-        /**
-         * Gets the currency uuid by the given iso code
-         */
-        $currencyUuid = $this->mappingService->getCurrencyUuid(
-            $this->connectionId,
-            'EUR',
-            $this->context
-        );
-
-        if ($currencyUuid === null) {
-            return [];
-        }
-
-        $price = [];
-        $price[] = [
-            'currencyId' => $currencyUuid,
-            'gross' => $gross,
-            'net' => (float) $data['price'],
-            'linked' => true,
-        ];
-
-        return $price;
-    }
+    return $price;
+  }
 }
 ```
 
@@ -860,10 +860,10 @@ use SwagMigrationAssistant\Migration\DataSelection\DefaultEntities;
 
 class ProductWriter extends AbstractWriter
 {
-    public function supports(): string
-    {
-        return DefaultEntities::PRODUCT;
-    }
+  public function supports(): string
+  {
+    return DefaultEntities::PRODUCT;
+  }
 }
 ```
 

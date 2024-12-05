@@ -42,17 +42,17 @@ use Twig\TwigFunction;
 
 class SwagCreateMd5Hash extends AbstractExtension
 {
-    public function getFunctions()
-    {
-        return [
-            new TwigFunction('createMd5Hash', [$this, 'createMd5Hash']),
-        ];
-    }
+  public function getFunctions()
+  {
+    return [
+      new TwigFunction('createMd5Hash', [$this, 'createMd5Hash']),
+    ];
+  }
 
-    public function createMd5Hash(string $str)
-    {
-        return md5($str);
-    }
+  public function createMd5Hash(string $str)
+  {
+    return md5($str);
+  }
 }
 ```
 

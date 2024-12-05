@@ -230,23 +230,23 @@ To create your own adapter, check out the [official Flysystem guide](https://fly
 To make your adapter available in Shopware, you will need to create an AdapterFactory for your Flysystem provided adapter. An example of that could look like this:
 
 ```php
-<?php
+<?php declare(strict_types=1);
 
 use Shopware\Core\Framework\Adapter\Filesystem\Adapter\AdapterFactoryInterface;
 use League\Flysystem\AdapterInterface;
 
 class MyFlysystemAdapterFactory implements AdapterFactoryInterface
 {
-    public function getType(): string
-    {
-        return 'my-adapter-prefix'; // This must match with the type in the yaml file
-    }
+  public function getType(): string
+  {
+    return 'my-adapter-prefix'; // This must match with the type in the yaml file
+  }
 
-    public function create(array $config): AdapterInterface
-    {
-        // $config contains the given config from the yaml
-        return new MyFlysystemAdapter($config);
-    }
+  public function create(array $config): AdapterInterface
+  {
+    // $config contains the given config from the yaml
+    return new MyFlysystemAdapter($config);
+  }
 }
 ```
 

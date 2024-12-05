@@ -13,7 +13,7 @@ The signing is required for all responses that are sent to the Shopware server. 
 
 To sign the response, you can call the signer with `signResponse` method. The signer will sign the response with the provided shop.
 
-```php
+```javascript
 import { AppServer } from '@shopware-ag/app-server-sdk'
 
 const app = new AppServer(/** ... */);
@@ -22,9 +22,9 @@ const app = new AppServer(/** ... */);
 const shop = await app.repository.getShopById('shop-id');
 
 const response = new Response('Hello World', {
-    headers: {
-        'Content-Type': 'text/plain',
-    },
+  headers: {
+    'Content-Type': 'text/plain',
+  },
 });
 
 const signedResponse = await app.signer.signResponse(response, shop);

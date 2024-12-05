@@ -39,35 +39,35 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 
 class CustomProductPriceCalculator extends AbstractProductPriceCalculator
 {
-    /**
-     * @var AbstractProductPriceCalculator
-     */
-    private AbstractProductPriceCalculator $productPriceCalculator;
+  /**
+   * @var AbstractProductPriceCalculator
+   */
+  private AbstractProductPriceCalculator $productPriceCalculator;
 
-    public function __construct(AbstractProductPriceCalculator $productPriceCalculator)
-    {
-        $this->productPriceCalculator = $productPriceCalculator;
+  public function __construct(AbstractProductPriceCalculator $productPriceCalculator)
+  {
+    $this->productPriceCalculator = $productPriceCalculator;
+  }
+
+  public function getDecorated(): AbstractProductPriceCalculator
+  {
+    return $this->productPriceCalculator;
+  }
+
+  public function calculate(iterable $products, SalesChannelContext $context): void
+  {
+    /** @var SalesChannelProductEntity $product */
+    foreach ($products as $product) {
+      $price = $product->getPrice();
+      // Just an example!
+      // A product can have more than one price, which you also have to consider.
+      // Also you might have to change the value of "getCheapestPrice"!
+      $price->first()->setGross(100);
+      $price->first()->setNet(50);
     }
 
-    public function getDecorated(): AbstractProductPriceCalculator
-    {
-        return $this->productPriceCalculator;
-    }
-
-    public function calculate(iterable $products, SalesChannelContext $context): void
-    {
-        /** @var SalesChannelProductEntity $product */
-        foreach ($products as $product) {
-            $price = $product->getPrice();
-            // Just an example!
-            // A product can have more than one price, which you also have to consider.
-            // Also you might have to change the value of "getCheapestPrice"!
-            $price->first()->setGross(100);
-            $price->first()->setNet(50);
-        }
-
-        $this->getDecorated()->calculate($products, $context);
-    }
+    $this->getDecorated()->calculate($products, $context);
+  }
 }
 ```
 

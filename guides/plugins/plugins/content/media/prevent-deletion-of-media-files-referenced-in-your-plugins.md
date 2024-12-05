@@ -55,27 +55,27 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class UnusedMediaSubscriber implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            UnusedMediaSearchEvent::class => 'removeUsedMedia',
-        ];
-    }
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      UnusedMediaSearchEvent::class => 'removeUsedMedia',
+    ];
+  }
 
-    public function removeUsedMedia(UnusedMediaSearchEvent $event): void
-    {
-        $idsToBeDeleted = $event->getUnusedIds();
-    
-        $doNotDeleteTheseIds = $this->getUsedMediaIds($idsToBeDeleted);
-    
-        $event->markAsUsed($doNotDeleteTheseIds);
-    }
-    
-    private function getUsedMediaIds(array $idsToBeDeleted): array
-    {
-        // do something to get the IDs that are used
-        return [];
-    }
+  public function removeUsedMedia(UnusedMediaSearchEvent $event): void
+  {
+    $idsToBeDeleted = $event->getUnusedIds();
+
+    $doNotDeleteTheseIds = $this->getUsedMediaIds($idsToBeDeleted);
+
+    $event->markAsUsed($doNotDeleteTheseIds);
+  }
+
+  private function getUsedMediaIds(array $idsToBeDeleted): array
+  {
+    // do something to get the IDs that are used
+    return [];
+  }
 }
 ```
 
@@ -93,21 +93,21 @@ Imagine an extension which provides an image slider feature. An implementation o
 // <plugin root>/src/Subscriber/UnusedMediaSubscriber.php
 private function getUsedMediaIds(array $idsToBeDeleted): array
 {
-    $sql = <<<SQL
-    SELECT JSON_EXTRACT(slider_config, "$.images") as mediaIds FROM my_slider_table
-    WHERE JSON_OVERLAPS(
-        JSON_EXTRACT(slider_config, "$.images"),
-        JSON_ARRAY(?)
-    );
-    SQL;
+  $sql = <<<SQL
+  SELECT JSON_EXTRACT(slider_config, "$.images") as mediaIds FROM my_slider_table
+  WHERE JSON_OVERLAPS(
+    JSON_EXTRACT(slider_config, "$.images"),
+    JSON_ARRAY(?)
+  );
+  SQL;
 
-    $usedMediaIds = $this->connection->fetchFirstColumn(
-        $sql,
-        [$event->getUnusedIds()],
-        [ArrayParameterType::STRING]
-    );
+  $usedMediaIds = $this->connection->fetchFirstColumn(
+    $sql,
+    [$event->getUnusedIds()],
+    [ArrayParameterType::STRING]
+  );
 
-    return array_map(fn (string $ids) => json_decode($ids, true, \JSON_THROW_ON_ERROR), $usedMediaIds);
+  return array_map(fn (string $ids) => json_decode($ids, true, \JSON_THROW_ON_ERROR), $usedMediaIds);
 }
 ```
 

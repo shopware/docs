@@ -36,10 +36,10 @@ You can use those events in a [subscriber](../../plugin-fundamentals/listening-t
 ```php
 public static function getSubscribedEvents(): array
 {
-    return [
-        ProductEvents::PRODUCT_LOADED_EVENT => 'onProductsLoaded',
-        'custom_entity.written' => 'onCustomEntityWritten'
-    ];
+  return [
+    ProductEvents::PRODUCT_LOADED_EVENT => 'onProductsLoaded',
+    'custom_entity.written' => 'onCustomEntityWritten'
+  ];
 }
 ```
 
@@ -88,11 +88,11 @@ When subscribing to those events, your event listener method will have access to
 ```php
 public static function getSubscribedEvents(): array
 {
-    return [
-        'some_event' => 'registeringToSomeEvent',
-        // If there is no name applied to the event, the class name is the fallback
-        SomeEvent::class => 'registeringToSomeEvent'
-    ];
+  return [
+    'some_event' => 'registeringToSomeEvent',
+    // If there is no name applied to the event, the class name is the fallback
+    SomeEvent::class => 'registeringToSomeEvent'
+  ];
 }
 
 public function registeringToSomeEvent(SomeEvent $event): void
@@ -141,11 +141,11 @@ You can also do this the other way around, by having a look at the service's con
 
 ```php
 public function __construct(
-    Some\Service $someService,
-    EventDispatcherInterface $eventDispatcher
+  Some\Service $someService,
+  EventDispatcherInterface $eventDispatcher
 ) {
-    $this->someService = $someService;
-    $this->eventDispatcher = $eventDispatcher;
+  $this->someService = $someService;
+  $this->eventDispatcher = $eventDispatcher;
 }
 ```
 
@@ -180,11 +180,11 @@ Let's have a look at an [example code](https://github.com/shopware/shopware/blob
 #[Route(path: '/store-api/product-listing/{categoryId}', name: 'store-api.product.listing', methods: ['POST'], defaults: ['_entity' => 'product'])]
 public function load(string $categoryId, Request $request, SalesChannelContext $context, Criteria $criteria): ProductListingRouteResponse
 {
-    $this->eventDispatcher->dispatch(
-        new ProductListingCriteriaEvent($request, $criteria, $context)
-    );
+  $this->eventDispatcher->dispatch(
+    new ProductListingCriteriaEvent($request, $criteria, $context)
+  );
 
-    return $this->getDecorated()->load($categoryId, $request, $context, $criteria);
+  return $this->getDecorated()->load($categoryId, $request, $context, $criteria);
 }
 ```
 

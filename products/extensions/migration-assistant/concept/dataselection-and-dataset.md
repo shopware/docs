@@ -50,50 +50,50 @@ use SwagMigrationAssistant\Profile\Shopware\ShopwareProfileInterface;
 
 class ProductDataSelection implements DataSelectionInterface
 {
-    public const IDENTIFIER = 'products';
+  public const IDENTIFIER = 'products';
 
-    public function supports(MigrationContextInterface $migrationContext): bool
-    {
-        return $migrationContext->getProfile() instanceof ShopwareProfileInterface;
-    }
+  public function supports(MigrationContextInterface $migrationContext): bool
+  {
+    return $migrationContext->getProfile() instanceof ShopwareProfileInterface;
+  }
 
-    public function getData(): DataSelectionStruct
-    {
-        return new DataSelectionStruct(
-            self::IDENTIFIER,
-            $this->getDataSets(),
-            $this->getDataSetsRequiredForCount(),
-            'swag-migration.index.selectDataCard.dataSelection.products', // Snippet name
-            100, // The position of the dataSelection
-            true, // Is process-media needed (to download / copy images for example),
-            DataSelectionStruct::BASIC_DATA_TYPE, // specify the type of data (core data or plugin data)
-            false // Is the selection required for every migration? (the user can't unselect this data selection)
-        );
-    }
+  public function getData(): DataSelectionStruct
+  {
+    return new DataSelectionStruct(
+      self::IDENTIFIER,
+      $this->getDataSets(),
+      $this->getDataSetsRequiredForCount(),
+      'swag-migration.index.selectDataCard.dataSelection.products', // Snippet name
+      100, // The position of the dataSelection
+      true, // Is process-media needed (to download / copy images for example),
+      DataSelectionStruct::BASIC_DATA_TYPE, // specify the type of data (core data or plugin data)
+      false // Is the selection required for every migration? (the user can't unselect this data selection)
+    );
+  }
 
-    public function getDataSets(): array
-    {
-        return [
-            // The order matters!
-            new MediaFolderDataSet(),
-            new ProductAttributeDataSet(),
-            new ProductPriceAttributeDataSet(),
-            new ManufacturerAttributeDataSet(),
-            new ProductDataSet(),
-            new PropertyGroupOptionDataSet(),
-            new ProductOptionRelationDataSet(),
-            new ProductPropertyRelationDataSet(),
-            new TranslationDataSet(),
-            new CrossSellingDataSet(),
-        ];
-    }
+  public function getDataSets(): array
+  {
+    return [
+      // The order matters!
+      new MediaFolderDataSet(),
+      new ProductAttributeDataSet(),
+      new ProductPriceAttributeDataSet(),
+      new ManufacturerAttributeDataSet(),
+      new ProductDataSet(),
+      new PropertyGroupOptionDataSet(),
+      new ProductOptionRelationDataSet(),
+      new ProductPropertyRelationDataSet(),
+      new TranslationDataSet(),
+      new CrossSellingDataSet(),
+    ];
+  }
 
-    public function getDataSetsRequiredForCount(): array
-    {
-        return [
-            new ProductDataSet(),
-        ];
-    }
+  public function getDataSetsRequiredForCount(): array
+  {
+    return [
+      new ProductDataSet(),
+    ];
+  }
 }
 ```
 
@@ -111,15 +111,15 @@ use SwagMigrationAssistant\Profile\Shopware\ShopwareProfileInterface;
 
 class ProductDataSet extends DataSet
 {
-    public static function getEntity(): string
-    {
-        return DefaultEntities::PRODUCT;
-    }
+  public static function getEntity(): string
+  {
+    return DefaultEntities::PRODUCT;
+  }
 
-    public function supports(MigrationContextInterface $migrationContext): bool
-    {
-        return $migrationContext->getProfile() instanceof ShopwareProfileInterface;
-    }
+  public function supports(MigrationContextInterface $migrationContext): bool
+  {
+    return $migrationContext->getProfile() instanceof ShopwareProfileInterface;
+  }
 }
 ```
 
@@ -158,53 +158,53 @@ use SwagMigrationAssistant\Profile\Shopware\ShopwareProfileInterface;
 
 class ProductReviewDataSelection implements DataSelectionInterface
 {
-    public const IDENTIFIER = 'productReviews';
+  public const IDENTIFIER = 'productReviews';
 
-    public function supports(MigrationContextInterface $migrationContext): bool
-    {
-        return $migrationContext->getProfile() instanceof ShopwareProfileInterface;
-    }
+  public function supports(MigrationContextInterface $migrationContext): bool
+  {
+    return $migrationContext->getProfile() instanceof ShopwareProfileInterface;
+  }
 
-    public function getData(): DataSelectionStruct
-    {
-        return new DataSelectionStruct(
-            self::IDENTIFIER,
-            $this->getDataSets(),
-            $this->getDataSetsRequiredForCount(),
-            'swag-migration.index.selectDataCard.dataSelection.productReviews',
-            250,
-            true
-        );
-    }
+  public function getData(): DataSelectionStruct
+  {
+    return new DataSelectionStruct(
+      self::IDENTIFIER,
+      $this->getDataSets(),
+      $this->getDataSetsRequiredForCount(),
+      'swag-migration.index.selectDataCard.dataSelection.productReviews',
+      250,
+      true
+    );
+  }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getDataSets(): array
-    {
-        return [
-            new MediaFolderDataSet(),
-            new ProductAttributeDataSet(),
-            new ProductPriceAttributeDataSet(),
-            new ManufacturerAttributeDataSet(),
-            new ProductDataSet(),
-            new PropertyGroupOptionDataSet(),
-            new ProductOptionRelationDataSet(),
-            new ProductPropertyRelationDataSet(),
-            new TranslationDataSet(),
-            new CrossSellingDataSet(),
-            new CustomerAttributeDataSet(),
-            new CustomerDataSet(),
-            new ProductReviewDataSet(),
-        ];
-    }
+  /**
+   * {@inheritdoc}
+   */
+  public function getDataSets(): array
+  {
+    return [
+      new MediaFolderDataSet(),
+      new ProductAttributeDataSet(),
+      new ProductPriceAttributeDataSet(),
+      new ManufacturerAttributeDataSet(),
+      new ProductDataSet(),
+      new PropertyGroupOptionDataSet(),
+      new ProductOptionRelationDataSet(),
+      new ProductPropertyRelationDataSet(),
+      new TranslationDataSet(),
+      new CrossSellingDataSet(),
+      new CustomerAttributeDataSet(),
+      new CustomerDataSet(),
+      new ProductReviewDataSet(),
+    ];
+  }
 
-    public function getDataSetsRequiredForCount(): array
-    {
-        return [
-            new ProductReviewDataSet(),
-        ];
-    }
+  public function getDataSetsRequiredForCount(): array
+  {
+    return [
+      new ProductReviewDataSet(),
+    ];
+  }
 }
 ```
 

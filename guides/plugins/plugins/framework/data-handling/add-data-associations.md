@@ -43,20 +43,20 @@ use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
 
 class BarDefinition extends EntityDefinition
 {
-    public const ENTITY_NAME = 'bar';
+  public const ENTITY_NAME = 'bar';
 
-    public function getEntityName(): string
-    {
-        return self::ENTITY_NAME;
-    }
+  public function getEntityName(): string
+  {
+    return self::ENTITY_NAME;
+  }
 
-    protected function defineFields(): FieldCollection
-    {
-        return new FieldCollection([
-            (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
-            // Other fields here
-        ]);
-    }
+  protected function defineFields(): FieldCollection
+  {
+    return new FieldCollection([
+      (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
+      // Other fields here
+    ]);
+  }
 }
 ```
 
@@ -74,20 +74,20 @@ use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
 
 class FooDefinition extends EntityDefinition
 {
-    public const ENTITY_NAME = 'foo';
+  public const ENTITY_NAME = 'foo';
 
-    public function getEntityName(): string
-    {
-        return self::ENTITY_NAME;
-    }
+  public function getEntityName(): string
+  {
+    return self::ENTITY_NAME;
+  }
 
-    protected function defineFields(): FieldCollection
-    {
-        return new FieldCollection([
-            (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
-            // Other fields here
-        ]);
-    }
+  protected function defineFields(): FieldCollection
+  {
+    return new FieldCollection([
+      (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
+      // Other fields here
+    ]);
+  }
 }
 ```
 
@@ -101,13 +101,13 @@ Let's have a look at the `defineFields` methods of both entity definitions:
 // <plugin root>/src/Core/Content/Bar/BarDefinition.php
 protected function defineFields(): FieldCollection
 {
-    return new FieldCollection([
-        (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
-        (new FkField('foo_id', 'fooId', FooDefinition::class))->addFlags(new Required()),
-        (new StringField('name', 'name'))->addFlags(new Required()),
+  return new FieldCollection([
+    (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
+    (new FkField('foo_id', 'fooId', FooDefinition::class))->addFlags(new Required()),
+    (new StringField('name', 'name'))->addFlags(new Required()),
 
-        new OneToOneAssociationField('foo', 'foo_id', 'id', FooDefinition::class, false)
-    ]);
+    new OneToOneAssociationField('foo', 'foo_id', 'id', FooDefinition::class, false)
+  ]);
 }
 ```
 
@@ -125,12 +125,12 @@ For the sake of completion, here is the respective `defineFields` method of the 
 // <plugin root>/src/Core/Content/Foo/FooDefinition.php
 protected function defineFields(): FieldCollection
 {
-    return new FieldCollection([
-        (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
-        (new StringField('name', 'name'))->addFlags(new Required()),
+  return new FieldCollection([
+    (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
+    (new StringField('name', 'name'))->addFlags(new Required()),
 
-        (new OneToOneAssociationField('bar', 'id', 'foo_id', BarDefinition::class, false))
-    ]);
+    (new OneToOneAssociationField('bar', 'id', 'foo_id', BarDefinition::class, false))
+  ]);
 }
 ```
 
@@ -146,11 +146,11 @@ Let's have a look at the `defineFields` methods of both entity definitions:
 // <plugin root>/src/Core/Content/Bar/BarDefinition.php
 protected function defineFields(): FieldCollection
 {
-    return new FieldCollection([
-        (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
+  return new FieldCollection([
+    (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
 
-        new OneToManyAssociationField('foos', FooDefinition::class, 'bar_id')
-    ]);
+    new OneToManyAssociationField('foos', FooDefinition::class, 'bar_id')
+  ]);
 }
 ```
 
@@ -162,12 +162,12 @@ Let's have a look at the `FooDefinition` now:
 // <plugin root>/src/Core/Content/Foo/FooDefinition.php
 protected function defineFields(): FieldCollection
 {
-    return new FieldCollection([
-        (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
-        (new FkField('bar_id', 'barId', BarDefinition::class))->addFlags(new Required()),
+  return new FieldCollection([
+    (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
+    (new FkField('bar_id', 'barId', BarDefinition::class))->addFlags(new Required()),
 
-        new ManyToOneAssociationField('bar', 'bar_id', BarDefinition::class, 'id'),
-    ]);
+    new ManyToOneAssociationField('bar', 'bar_id', BarDefinition::class, 'id'),
+  ]);
 }
 ```
 
@@ -201,22 +201,22 @@ use Swag\BasicExample\Core\Content\Foo\FooDefinition;
 
 class FooBarMappingDefinition extends MappingEntityDefinition
 {
-    public const ENTITY_NAME = 'foo_bar';
+  public const ENTITY_NAME = 'foo_bar';
 
-    public function getEntityName(): string
-    {
-        return self::ENTITY_NAME;
-    }
+  public function getEntityName(): string
+  {
+    return self::ENTITY_NAME;
+  }
 
-    protected function defineFields(): FieldCollection
-    {
-        return new FieldCollection([
-            (new FkField('bar_id', 'barId', BarDefinition::class))->addFlags(new PrimaryKey(), new Required()),
-            (new FkField('foo_id', 'fooId', FooDefinition::class))->addFlags(new PrimaryKey(), new Required()),
-            new ManyToOneAssociationField('bar', 'bar_id', BarDefinition::class, 'id'),
-            new ManyToOneAssociationField('foo', 'foo_id', FooDefinition::class, 'id')
-        ]);
-    }
+  protected function defineFields(): FieldCollection
+  {
+    return new FieldCollection([
+      (new FkField('bar_id', 'barId', BarDefinition::class))->addFlags(new PrimaryKey(), new Required()),
+      (new FkField('foo_id', 'fooId', FooDefinition::class))->addFlags(new PrimaryKey(), new Required()),
+      new ManyToOneAssociationField('bar', 'bar_id', BarDefinition::class, 'id'),
+      new ManyToOneAssociationField('foo', 'foo_id', FooDefinition::class, 'id')
+    ]);
+  }
 }
 ```
 
@@ -236,17 +236,17 @@ The last thing to do, is to add a `ManyToManyAssociationField` to each of your d
 // <plugin root>/src/Core/Content/Bar/BarDefinition.php
 protected function defineFields(): FieldCollection
 {
-    return new FieldCollection([
-        (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
+  return new FieldCollection([
+    (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
 
-        new ManyToManyAssociationField(
-            'foos',
-            FooDefinition::class,
-            FooBarMappingDefinition::class,
-            'bar_id',
-            'foo_id'
-        ),
-    ]);
+    new ManyToManyAssociationField(
+      'foos',
+      FooDefinition::class,
+      FooBarMappingDefinition::class,
+      'bar_id',
+      'foo_id'
+    ),
+  ]);
 }
 ```
 
@@ -264,17 +264,17 @@ For the sake of completion, here is the respective `FooDefinition`:
 // <plugin root>/src/Core/Content/Foo/FooDefinition.php
 protected function defineFields(): FieldCollection
 {
-    return new FieldCollection([
-        (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
+  return new FieldCollection([
+    (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
 
-        new ManyToManyAssociationField(
-            'bars',
-            BarDefinition::class,
-            FooBarMappingDefinition::class,
-            'foo_id',
-            'bar_id'
-        ),
-    ]);
+    new ManyToManyAssociationField(
+      'bars',
+      BarDefinition::class,
+      FooBarMappingDefinition::class,
+      'foo_id',
+      'bar_id'
+    ),
+  ]);
 }
 ```
 

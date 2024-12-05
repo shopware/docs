@@ -40,17 +40,16 @@ Therefore, this is how your service could then look like:
 ```php
 // <plugin root>/src/Service/ExampleService.php
 // SwagBasicExample/src/Service/ExampleService.php
-
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
 
 class ExampleService
 {
-    public function doSomething(): void
-    {
-        ...
-    }
+  public function doSomething(): void
+  {
+    // ...
+  }
 }
 ```
 

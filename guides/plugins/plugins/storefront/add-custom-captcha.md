@@ -32,7 +32,8 @@ Extend the AbstractCaptcha class and implement the methods isValid and getName. 
 
 ```php
 
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 namespace Shopware\Storefront\Framework\Captcha;
 
@@ -44,52 +45,49 @@ use Symfony\Component\HttpFoundation\Request;
 #[Package('storefront')]
 class YourCaptcha extends AbstractCaptcha
 {
-    final public const CAPTCHA_NAME = 'yourCaptchaName';
-    final public const CAPTCHA_REQUEST_PARAMETER = '_your_captcha_name';
-    private const YOUR_CAPTCHA_ENDPOINT = 'https://www.yourcaptcha.com/verify';
+  final public const CAPTCHA_NAME = 'yourCaptchaName';
+  final public const CAPTCHA_REQUEST_PARAMETER = '_your_captcha_name';
+  private const YOUR_CAPTCHA_ENDPOINT = 'https://www.yourcaptcha.com/verify';
 
-    /**
-     * @internal
-     */
-    public function __construct(private readonly ClientInterface $client)
-    {
+  /**
+   * @internal
+   */
+  public function __construct(private readonly ClientInterface $client) {}
+
+  /**
+   * {@inheritdoc}
+   */
+  public function isValid(Request $request, array $captchaConfig): bool
+  {
+    if (!$request->get(self::CAPTCHA_REQUEST_PARAMETER)) {
+      return false;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function isValid(Request $request, array $captchaConfig): bool
-    {
-        if (!$request->get(self::CAPTCHA_REQUEST_PARAMETER)) {
-            return false;
-        }
-        
-        try {
-            $response = $this->client->request('POST', self::GOOGLE_CAPTCHA_VERIFY_ENDPOINT, [
-                'form_params' => [
-                    'response' => $request->get(self::CAPTCHA_REQUEST_PARAMETER),
-                    'remoteip' => $request->getClientIp(),
-                ],
-            ]);
+    try {
+      $response = $this->client->request('POST', self::GOOGLE_CAPTCHA_VERIFY_ENDPOINT, [
+        'form_params' => [
+          'response' => $request->get(self::CAPTCHA_REQUEST_PARAMETER),
+          'remoteip' => $request->getClientIp(),
+        ],
+      ]);
 
-            $responseRaw = $response->getBody()->getContents();
-            $response = json_decode($responseRaw, true);
+      $responseRaw = $response->getBody()->getContents();
+      $response = json_decode($responseRaw, true);
 
-            return $response && (bool) $response['success'];
-        } catch (ClientExceptionInterface) {
-            return false;
-        }
+      return $response && (bool) $response['success'];
+    } catch (ClientExceptionInterface) {
+      return false;
     }
+  }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getName(): string
-    {
-        return self::CAPTCHA_NAME;
-    }
+  /**
+   * {@inheritdoc}
+   */
+  public function getName(): string
+  {
+    return self::CAPTCHA_NAME;
+  }
 }
-
 ```
 
 ## Google reCAPTCHA v3 example

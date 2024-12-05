@@ -95,20 +95,23 @@ $module = $contextResolver->assembleModule($serverRequest, $shop);
 <Tab title="Symfony Bundle">
 
 ```php
+<?php declare(strict_types=1);
+
 use Shopware\App\SDK\Context\Module\ModuleAction;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[AsController]
-class ModuleController {
-    #[Route('/module')]
-    public function show(ModuleAction $module): Response
-    {
-        // handle payment
-        
-        return $this->render('....');
-    }
+class ModuleController
+{
+  #[Route('/module')]
+  public function show(ModuleAction $module): Response
+  {
+    // handle payment
+
+    return $this->render('....');
+  }
 }
 ```
 

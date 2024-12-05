@@ -49,30 +49,30 @@ use Swag\BasicExample\Core\Content\Example\ExampleEntity;
 
 class ExampleEvent implements ShopwareSalesChannelEvent
 {
-    protected ExampleEntity $exampleEntity;
+  protected ExampleEntity $exampleEntity;
 
-    protected SalesChannelContext $salesChannelContext;
+  protected SalesChannelContext $salesChannelContext;
 
-    public function __construct(ExampleEntity $exampleEntity, SalesChannelContext $context)
-    {
-        $this->exampleEntity = $exampleEntity;
-        $this->salesChannelContext = $context;
-    }
+  public function __construct(ExampleEntity $exampleEntity, SalesChannelContext $context)
+  {
+    $this->exampleEntity = $exampleEntity;
+    $this->salesChannelContext = $context;
+  }
 
-    public function getExample(): ExampleEntity
-    {
-        return $this->exampleEntity;
-    }
+  public function getExample(): ExampleEntity
+  {
+    return $this->exampleEntity;
+  }
 
-    public function getContext(): Context
-    { 
-        return $this->salesChannelContext->getContext();
-    }
+  public function getContext(): Context
+  {
+    return $this->salesChannelContext->getContext();
+  }
 
-    public function getSalesChannelContext(): SalesChannelContext
-    {
-        return $this->salesChannelContext;
-    }
+  public function getSalesChannelContext(): SalesChannelContext
+  {
+    return $this->salesChannelContext;
+  }
 }
 ```
 
@@ -93,17 +93,17 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 class ExampleEventService
 {
-    private EventDispatcherInterface $eventDispatcher;
+  private EventDispatcherInterface $eventDispatcher;
 
-    public function __construct(EventDispatcherInterface $eventDispatcher)
-    {
-        $this->eventDispatcher = $eventDispatcher;
-    }
+  public function __construct(EventDispatcherInterface $eventDispatcher)
+  {
+    $this->eventDispatcher = $eventDispatcher;
+  }
 
-    public function fireEvent(ExampleEntity $exampleEntity, SalesChannelContext $context)
-    {
-        $this->eventDispatcher->dispatch(new ExampleEvent($exampleEntity, $context));
-    }
+  public function fireEvent(ExampleEntity $exampleEntity, SalesChannelContext $context)
+  {
+    $this->eventDispatcher->dispatch(new ExampleEvent($exampleEntity, $context));
+  }
 }
 ```
 

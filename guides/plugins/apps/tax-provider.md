@@ -94,6 +94,8 @@ and your response should look like this:
 <Tab title="App PHP SDK">
 
 ```php
+<?php declare(strict_types=1);
+
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Shopware\App\SDK\Shop\ShopResolver;
@@ -101,48 +103,48 @@ use Shopware\App\SDK\Context\ContextResolver;
 
 function taxController(RequestInterface $request): ResponseInterface
 {
-    // injected or build by yourself
-    $shopResolver = new ShopResolver($repository);
-    $contextResolver = new ContextResolver();
-    $signer = new ResponseSigner();
-    
-    $shop = $shopResolver->resolveShop($serverRequest);
-    $taxInfo = $contextResolver->assembleTaxProvider($serverRequest, $shop);
-    
-    $builder = new TaxProviderResponseBuilder();
+  // injected or build by yourself
+  $shopResolver = new ShopResolver($repository);
+  $contextResolver = new ContextResolver();
+  $signer = new ResponseSigner();
 
-    // optional: Add tax for each line item
-    foreach ($taxInfo->cart->getLineItems() as $item) {
-        $taxRate = 50;
+  $shop = $shopResolver->resolveShop($serverRequest);
+  $taxInfo = $contextResolver->assembleTaxProvider($serverRequest, $shop);
 
-        $price = $item->getPrice()->getTotalPrice() * $taxRate / 100;
+  $builder = new TaxProviderResponseBuilder();
 
-        $builder->addLineItemTax($item->getUniqueIdentifier(), new CalculatedTax(
-            tax: $price,
-            taxRate: $taxRate,
-            price: $item->getPrice()->getTotalPrice()
-        ));
-    }
+  // optional: Add tax for each line item
+  foreach ($taxInfo->cart->getLineItems() as $item) {
+    $taxRate = 50;
 
-    // optional: Add tax for each delivery
-    foreach ($taxProviderContext->cart->getDeliveries() as $item) {
-        foreach ($item->getPositions() as $position) {
-            $builder->addDeliveryTax($position->getIdentifier(), new CalculatedTax(
-                tax: 10,
-                taxRate: 50,
-                price: 100
-            ));
-        }
-    }
+    $price = $item->getPrice()->getTotalPrice() * $taxRate / 100;
 
-    // optional: Add tax to the entire cart
-    $builder->addCartTax(new CalculatedTax(
-        tax: 20,
+    $builder->addLineItemTax($item->getUniqueIdentifier(), new CalculatedTax(
+      tax: $price,
+      taxRate: $taxRate,
+      price: $item->getPrice()->getTotalPrice()
+    ));
+  }
+
+  // optional: Add tax for each delivery
+  foreach ($taxProviderContext->cart->getDeliveries() as $item) {
+    foreach ($item->getPositions() as $position) {
+      $builder->addDeliveryTax($position->getIdentifier(), new CalculatedTax(
+        tax: 10,
         taxRate: 50,
         price: 100
-    ));
-    
-    return $signer->signResponse($builder->build(), $shop);
+      ));
+    }
+  }
+
+  // optional: Add tax to the entire cart
+  $builder->addCartTax(new CalculatedTax(
+    tax: 20,
+    taxRate: 50,
+    price: 100
+  ));
+
+  return $signer->signResponse($builder->build(), $shop);
 }
 ```
 
@@ -151,6 +153,8 @@ function taxController(RequestInterface $request): ResponseInterface
 <Tab title="Symfony Bundle">
 
 ```php
+<?php declare(strict_types=1);
+
 use Shopware\App\SDK\Context\TaxProvider\TaxProviderAction;
 use Shopware\App\SDK\TaxProvider\TaxProviderResponseBuilder;
 use Symfony\Component\HttpFoundation\Response;
@@ -159,45 +163,46 @@ use Symfony\Component\Routing\Attribute\Route;
 use Psr\Http\Message\ResponseInterface;
 
 #[AsController]
-class TaxController {
-    #[Route('/tax.process')]
-    public function handle(TaxProviderAction $taxInfo): ResponseInterface
-    {
-        $builder = new TaxProviderResponseBuilder();
+class TaxController
+{
+  #[Route('/tax.process')]
+  public function handle(TaxProviderAction $taxInfo): ResponseInterface
+  {
+    $builder = new TaxProviderResponseBuilder();
 
-        // optional: Add tax for each line item
-        foreach ($taxInfo->cart->getLineItems() as $item) {
-            $taxRate = 50;
-    
-            $price = $item->getPrice()->getTotalPrice() * $taxRate / 100;
-    
-            $builder->addLineItemTax($item->getUniqueIdentifier(), new CalculatedTax(
-                tax: $price,
-                taxRate: $taxRate,
-                price: $item->getPrice()->getTotalPrice()
-            ));
-        }
-    
-        // optional: Add tax for each delivery
-        foreach ($taxProviderContext->cart->getDeliveries() as $item) {
-            foreach ($item->getPositions() as $position) {
-                $builder->addDeliveryTax($position->getIdentifier(), new CalculatedTax(
-                    tax: 10,
-                    taxRate: 50,
-                    price: 100
-                ));
-            }
-        }
-    
-        // optional: Add tax to the entire cart
-        $builder->addCartTax(new CalculatedTax(
-            tax: 20,
-            taxRate: 50,
-            price: 100
-        ));
-        
-        return $builder->build();
+    // optional: Add tax for each line item
+    foreach ($taxInfo->cart->getLineItems() as $item) {
+      $taxRate = 50;
+
+      $price = $item->getPrice()->getTotalPrice() * $taxRate / 100;
+
+      $builder->addLineItemTax($item->getUniqueIdentifier(), new CalculatedTax(
+        tax: $price,
+        taxRate: $taxRate,
+        price: $item->getPrice()->getTotalPrice()
+      ));
     }
+
+    // optional: Add tax for each delivery
+    foreach ($taxProviderContext->cart->getDeliveries() as $item) {
+      foreach ($item->getPositions() as $position) {
+        $builder->addDeliveryTax($position->getIdentifier(), new CalculatedTax(
+          tax: 10,
+          taxRate: 50,
+          price: 100
+        ));
+      }
+    }
+
+    // optional: Add tax to the entire cart
+    $builder->addCartTax(new CalculatedTax(
+      tax: 20,
+      taxRate: 50,
+      price: 100
+    ));
+
+    return $builder->build();
+  }
 }
 ```
 

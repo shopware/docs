@@ -45,134 +45,134 @@ use SwagMigrationAssistant\Profile\Shopware\ShopwareProfileInterface;
 
 class ManufacturerReader extends AbstractPremappingReader
 {
-    private const MAPPING_NAME = 'swag_manufacturer';
+  private const MAPPING_NAME = 'swag_manufacturer';
 
-    private EntityRepository $manufacturerRepo;
+  private EntityRepository $manufacturerRepo;
 
-    private GatewayRegistryInterface $gatewayRegistry;
+  private GatewayRegistryInterface $gatewayRegistry;
 
-    private array $preselectionDictionary;
+  private array $preselectionDictionary;
 
-    private array $preselectionSourceNameDictionary;
+  private array $preselectionSourceNameDictionary;
 
-    public function __construct(
-        EntityRepository $manufacturerRepo,
-        GatewayRegistryInterface $gatewayRegistry
-    ) {
-        $this->manufacturerRepo = $manufacturerRepo;
-        $this->gatewayRegistry = $gatewayRegistry;
+  public function __construct(
+    EntityRepository $manufacturerRepo,
+    GatewayRegistryInterface $gatewayRegistry
+  ) {
+    $this->manufacturerRepo = $manufacturerRepo;
+    $this->gatewayRegistry = $gatewayRegistry;
+  }
+
+  public static function getMappingName(): string
+  {
+    return self::MAPPING_NAME;
+  }
+
+  /**
+   * Checks whether or not the current profile and DataSelection is supported
+   */
+  public function supports(MigrationContextInterface $migrationContext, array $entityGroupNames): bool
+  {
+    return $migrationContext->getProfile() instanceof ShopwareProfileInterface
+      && in_array(ProductDataSelection::IDENTIFIER, $entityGroupNames, true);
+  }
+
+  public function getPremapping(Context $context, MigrationContextInterface $migrationContext): PremappingStruct
+  {
+    $this->fillConnectionPremappingDictionary($migrationContext);
+    $mapping = $this->getMapping($migrationContext);
+    $choices = $this->getChoices($context);
+    $this->setPreselection($mapping);
+
+    return new PremappingStruct(self::getMappingName(), $mapping, $choices);
+  }
+
+  /**
+   * Reads all manufacturers of the source system, looks into connectionPremappingDictionary if a premapping
+   * is currently set and returns the filled mapping array
+   *
+   * @return PremappingEntityStruct[]
+   */
+  private function getMapping(MigrationContextInterface $migrationContext): array
+  {
+    /** @var ShopwareGatewayInterface $gateway */
+    $gateway = $this->gatewayRegistry->getGateway($migrationContext);
+
+    $preMappingData = $gateway->readTable($migrationContext, 's_articles_supplier');
+
+    $entityData = [];
+    foreach ($preMappingData as $data) {
+      $this->preselectionSourceNameDictionary[$data['id']] = $data['name'];
+
+      $uuid = '';
+      if (isset($this->connectionPremappingDictionary[$data['id']])) {
+        $uuid = $this->connectionPremappingDictionary[$data['id']]['destinationUuid'];
+      }
+
+      $entityData[] = new PremappingEntityStruct($data['id'], $data['name'], $uuid);
     }
 
-    public static function getMappingName(): string
-    {
-        return self::MAPPING_NAME;
+    return $entityData;
+  }
+
+  /**
+   * Returns all choices of the manufacturer repository
+   *
+   * @return PremappingChoiceStruct[]
+   */
+  private function getChoices(Context $context): array
+  {
+    $criteria = new Criteria();
+    $criteria->addSorting(new FieldSorting('name'));
+
+    /** @var ProductManufacturerEntity[] $manufacturers */
+    $manufacturers = $this->manufacturerRepo->search($criteria, $context);
+
+    $choices = [];
+    foreach ($manufacturers as $manufacturer) {
+      $this->preselectionDictionary[$manufacturer->getName()] = $manufacturer->getId();
+      $choices[] = new PremappingChoiceStruct($manufacturer->getId(), $manufacturer->getName());
     }
 
-    /**
-     * Checks whether or not the current profile and DataSelection is supported
-     */
-    public function supports(MigrationContextInterface $migrationContext, array $entityGroupNames): bool
-    {
-        return $migrationContext->getProfile() instanceof ShopwareProfileInterface
-            && in_array(ProductDataSelection::IDENTIFIER, $entityGroupNames, true);
+    return $choices;
+  }
+
+  /**
+   * Loops through mapping and sets preselection, if uuid is currently not set
+   *
+   * @param PremappingEntityStruct[] $mapping
+   */
+  private function setPreselection(array $mapping): void
+  {
+    foreach ($mapping as $item) {
+      if (!isset($this->preselectionSourceNameDictionary[$item->getSourceId()]) || $item->getDestinationUuid() !== '') {
+        continue;
+      }
+
+      $sourceName = $this->preselectionSourceNameDictionary[$item->getSourceId()];
+      $preselectionValue = $this->getPreselectionValue($sourceName);
+
+      if ($preselectionValue !== null) {
+        $item->setDestinationUuid($preselectionValue);
+      }
+    }
+  }
+
+  /**
+   * Only a simple example on how to implement a preselection
+   */
+  private function getPreselectionValue(string $sourceName): ?string
+  {
+    $preselectionValue = null;
+    $validPreselection = 'Shopware';
+    $choice = 'shopware AG';
+
+    if ($sourceName === $validPreselection && isset($this->preselectionDictionary[$choice])) {
+      $preselectionValue = $this->preselectionDictionary[$choice];
     }
 
-    public function getPremapping(Context $context, MigrationContextInterface $migrationContext): PremappingStruct
-    {
-        $this->fillConnectionPremappingDictionary($migrationContext);
-        $mapping = $this->getMapping($migrationContext);
-        $choices = $this->getChoices($context);
-        $this->setPreselection($mapping);
-
-        return new PremappingStruct(self::getMappingName(), $mapping, $choices);
-    }
-
-    /**
-     * Reads all manufacturers of the source system, looks into connectionPremappingDictionary if a premapping
-     * is currently set and returns the filled mapping array
-     *
-     * @return PremappingEntityStruct[]
-     */
-    private function getMapping(MigrationContextInterface $migrationContext): array
-    {
-        /** @var ShopwareGatewayInterface $gateway */
-        $gateway = $this->gatewayRegistry->getGateway($migrationContext);
-
-        $preMappingData = $gateway->readTable($migrationContext, 's_articles_supplier');
-
-        $entityData = [];
-        foreach ($preMappingData as $data) {
-            $this->preselectionSourceNameDictionary[$data['id']] = $data['name'];
-
-            $uuid = '';
-            if (isset($this->connectionPremappingDictionary[$data['id']])) {
-                $uuid = $this->connectionPremappingDictionary[$data['id']]['destinationUuid'];
-            }
-
-            $entityData[] = new PremappingEntityStruct($data['id'], $data['name'], $uuid);
-        }
-
-        return $entityData;
-    }
-
-    /**
-     * Returns all choices of the manufacturer repository
-     *
-     * @return PremappingChoiceStruct[]
-     */
-    private function getChoices(Context $context): array
-    {
-        $criteria = new Criteria();
-        $criteria->addSorting(new FieldSorting('name'));
-
-        /** @var ProductManufacturerEntity[] $manufacturers */
-        $manufacturers = $this->manufacturerRepo->search($criteria, $context);
-
-        $choices = [];
-        foreach ($manufacturers as $manufacturer) {
-            $this->preselectionDictionary[$manufacturer->getName()] = $manufacturer->getId();
-            $choices[] = new PremappingChoiceStruct($manufacturer->getId(), $manufacturer->getName());
-        }
-
-        return $choices;
-    }
-
-    /**
-     * Loops through mapping and sets preselection, if uuid is currently not set
-     *
-     * @param PremappingEntityStruct[] $mapping
-     */
-    private function setPreselection(array $mapping): void
-    {
-        foreach ($mapping as $item) {
-            if (!isset($this->preselectionSourceNameDictionary[$item->getSourceId()]) || $item->getDestinationUuid() !== '') {
-                continue;
-            }
-
-            $sourceName = $this->preselectionSourceNameDictionary[$item->getSourceId()];
-            $preselectionValue = $this->getPreselectionValue($sourceName);
-
-            if ($preselectionValue !== null) {
-                $item->setDestinationUuid($preselectionValue);
-            }
-        }
-    }
-
-    /**
-     * Only a simple example on how to implement a preselection
-     */
-    private function getPreselectionValue(string $sourceName): ?string
-    {
-        $preselectionValue = null;
-        $validPreselection = 'Shopware';
-        $choice = 'shopware AG';
-
-        if ($sourceName === $validPreselection && isset($this->preselectionDictionary[$choice])) {
-            $preselectionValue = $this->preselectionDictionary[$choice];
-        }
-
-        return $preselectionValue;
-    }
+    return $preselectionValue;
+  }
 }
 ```
 
@@ -217,86 +217,85 @@ Now your new premapping card has a correct title.
 After creating your premapping reader, you have a new premapping card, but this premapping is currently not in use. To map the product manufacturers of the source system to your premapping values, you have to decorate one of the Shopware product migration converters. In this example, only the `Shopware55ProductConverter` is decorated, but if you want to decorate all Shopware migration converters, you have to do the same:
 
 ```php
- <?php declare(strict_types=1);
+<?php declare(strict_types=1);
 
- namespace SwagMigrationExtendConverterExample\Profile\Shopware\Converter;
+namespace SwagMigrationExtendConverterExample\Profile\Shopware\Converter;
 
- use Shopware\Core\Framework\Context;
- use SwagMigrationAssistant\Migration\Converter\ConverterInterface;
- use SwagMigrationAssistant\Migration\Converter\ConvertStruct;
- use SwagMigrationAssistant\Migration\Logging\LoggingServiceInterface;
- use SwagMigrationAssistant\Migration\Mapping\MappingServiceInterface;
- use SwagMigrationAssistant\Migration\Media\MediaFileServiceInterface;
- use SwagMigrationAssistant\Migration\MigrationContextInterface;
- use SwagMigrationAssistant\Profile\Shopware\Converter\ProductConverter;
- use SwagMigrationExtendConverterExample\Profile\Shopware\Premapping\ManufacturerReader;
+use Shopware\Core\Framework\Context;
+use SwagMigrationAssistant\Migration\Converter\ConverterInterface;
+use SwagMigrationAssistant\Migration\Converter\ConvertStruct;
+use SwagMigrationAssistant\Migration\Logging\LoggingServiceInterface;
+use SwagMigrationAssistant\Migration\Mapping\MappingServiceInterface;
+use SwagMigrationAssistant\Migration\Media\MediaFileServiceInterface;
+use SwagMigrationAssistant\Migration\MigrationContextInterface;
+use SwagMigrationAssistant\Profile\Shopware\Converter\ProductConverter;
+use SwagMigrationExtendConverterExample\Profile\Shopware\Premapping\ManufacturerReader;
 
- class Shopware55DecoratedProductConverter extends ProductConverter
- {
-     private ConverterInterface $originalProductConverter;
+class Shopware55DecoratedProductConverter extends ProductConverter
+{
+  private ConverterInterface $originalProductConverter;
 
-     public function __construct(
-         ConverterInterface $originalProductConverter,
-         MappingServiceInterface $mappingService,
-         LoggingServiceInterface $loggingService,
-         MediaFileServiceInterface $mediaFileService
-     ) {
-         parent::__construct($mappingService, $loggingService, $mediaFileService);
-         $this->originalProductConverter = $originalProductConverter;
-     }
+  public function __construct(
+    ConverterInterface $originalProductConverter,
+    MappingServiceInterface $mappingService,
+    LoggingServiceInterface $loggingService,
+    MediaFileServiceInterface $mediaFileService
+  ) {
+    parent::__construct($mappingService, $loggingService, $mediaFileService);
+    $this->originalProductConverter = $originalProductConverter;
+  }
 
-     public function supports(MigrationContextInterface $migrationContext): bool
-     {
-         return $this->originalProductConverter->supports($migrationContext);
-     }
+  public function supports(MigrationContextInterface $migrationContext): bool
+  {
+    return $this->originalProductConverter->supports($migrationContext);
+  }
 
-     public function getSourceIdentifier(array $data): string
-     {
-         return $this->originalProductConverter->getSourceIdentifier($data);
-     }
+  public function getSourceIdentifier(array $data): string
+  {
+    return $this->originalProductConverter->getSourceIdentifier($data);
+  }
 
-     public function getMediaUuids(array $converted): ?array
-     {
-         return $this->originalProductConverter->getMediaUuids($converted);
-     }
+  public function getMediaUuids(array $converted): ?array
+  {
+    return $this->originalProductConverter->getMediaUuids($converted);
+  }
 
-     public function writeMapping(Context $context): void
-     {
-         $this->originalProductConverter->writeMapping($context);
-     }
+  public function writeMapping(Context $context): void
+  {
+    $this->originalProductConverter->writeMapping($context);
+  }
 
-     public function convert(
-         array $data,
-         Context $context,
-         MigrationContextInterface $migrationContext
-     ): ConvertStruct
-     {
-         if (!isset($data['manufacturer']['id'])) {
-             return $this->originalProductConverter->convert($data, $context, $migrationContext);
-         }
+  public function convert(
+    array $data,
+    Context $context,
+    MigrationContextInterface $migrationContext
+  ): ConvertStruct {
+    if (!isset($data['manufacturer']['id'])) {
+      return $this->originalProductConverter->convert($data, $context, $migrationContext);
+    }
 
-         $manufacturerId = $data['manufacturer']['id'];
-         unset($data['manufacturer']);
+    $manufacturerId = $data['manufacturer']['id'];
+    unset($data['manufacturer']);
 
-         $mapping = $this->mappingService->getMapping(
-             $migrationContext->getConnection()->getId(),
-             ManufacturerReader::getMappingName(),
-             $manufacturerId,
-             $context
-         );
+    $mapping = $this->mappingService->getMapping(
+      $migrationContext->getConnection()->getId(),
+      ManufacturerReader::getMappingName(),
+      $manufacturerId,
+      $context
+    );
 
-         $convertedStruct = $this->originalProductConverter->convert($data, $context, $migrationContext);
+    $convertedStruct = $this->originalProductConverter->convert($data, $context, $migrationContext);
 
-         if ($mapping === null) {
-             return $convertedStruct;
-         }
+    if ($mapping === null) {
+      return $convertedStruct;
+    }
 
-         $converted = $convertedStruct->getConverted();
-         $converted['manufacturerId'] = $mapping['entityUuid'];
+    $converted = $convertedStruct->getConverted();
+    $converted['manufacturerId'] = $mapping['entityUuid'];
 
-         return new ConvertStruct($converted, $convertedStruct->getUnmapped(), $convertedStruct->getMappingUuid());
-     }
- }
+    return new ConvertStruct($converted, $convertedStruct->getUnmapped(), $convertedStruct->getMappingUuid());
+  }
+}
 ```
 
 Your new decorated product migration converter checks if a manufacturer is set and searches for the premapping via the `MappingService`. If a premapping is found, the migration converter uses the converted value of the original converter, adds the manufacturer uuid, and returns the new `ConvertStruct`.

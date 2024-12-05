@@ -38,7 +38,7 @@ To add custom spans to the profiler, you can use the `Shopware\Core\Profiling\Pr
 use Shopware\Core\Profiling\Profiler;
 
 $value = Profiler::trace('my-example-trace', function () {
-    return $myFunction();
+  return $myFunction();
 });
 ```
 
@@ -50,7 +50,7 @@ To add a custom profiler backend, you need to implement the `Shopware\Core\Profi
 
 The following example shows a custom profiler backend that logs the traces to the console:
 
-```php
+```php declare(strict_types=1);
 
 namespace App\Profiler;
 
@@ -58,21 +58,21 @@ use Shopware\Core\Profiling\Integration\ProfilerInterface;
 
 class ConsoleProfiler implements ProfilerInterface
 {
-    public function start(string $title, string $category, array $tags): void
-    {
-        echo "Start $name\n";
-    }
+  public function start(string $title, string $category, array $tags): void
+  {
+    echo "Start $name\n";
+  }
 
-    public function stop(string $title): void
-    {
-        echo "Stop $name\n";
-    }
+  public function stop(string $title): void
+  {
+    echo "Stop $name\n";
+  }
 }
 ```
 
-```XML
+```xml
 <service id="App\Profiler">
-    <tag name="shopware.profiler" integration="Console"/>
+  <tag name="shopware.profiler" integration="Console"/>
 </service>
 ```
 

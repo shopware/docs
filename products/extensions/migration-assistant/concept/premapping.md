@@ -73,27 +73,28 @@ To get the associated new identifier, you can make use of the `MappingService` s
 
 protected function getSalutation(string $salutation): ?string
 {
-    $mapping = $this->mappingService->getMapping(
-        $this->connectionId,
-        SalutationReader::getMappingName(),
-        $salutation,
-        $this->context
-    );
+  $mapping = $this->mappingService->getMapping(
+    $this->connectionId,
+    SalutationReader::getMappingName(),
+    $salutation,
+    $this->context
+  );
 
-    if ($mapping === null) {
-        $this->loggingService->addLogEntry(new UnknownEntityLog(
-            $this->runId,
-            DefaultEntities::SALUTATION,
-            $salutation,
-            DefaultEntities::CUSTOMER,
-            $this->oldCustomerId
-        ));
+  if ($mapping === null) {
+    $this->loggingService->addLogEntry(new UnknownEntityLog(
+      $this->runId,
+      DefaultEntities::SALUTATION,
+      $salutation,
+      DefaultEntities::CUSTOMER,
+      $this->oldCustomerId
+    ));
 
-        return null;
-    }
-    $this->mappingIds[] = $mapping['id'];
+    return null;
+  }
 
-    return $mapping['entityUuid'];
+  $this->mappingIds[] = $mapping['id'];
+
+  return $mapping['entityUuid'];
 }
 
 /* ... */

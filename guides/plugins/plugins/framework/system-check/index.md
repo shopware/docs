@@ -40,14 +40,14 @@ All the system checks in Shopware are tagged with `shopware.system_check`, so yo
 ```php
 class CustomSystemChecker
 {
-   public function __construct(private readonly iterable $checks)
-    {
-    }
+  public function __construct(private readonly iterable $checks)
+  {
+  }
 
-    public function check(): array
-    {
-       # ... add your custom logic here
-    }
+  public function check(): array
+  {
+    # ... add your custom logic here
+  }
 }
 ```
 

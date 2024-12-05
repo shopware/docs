@@ -68,16 +68,16 @@ The `Shopware\Commercial\B2B\ShoppingList\Subscriber\ShoppingListSubscriber` lis
 ```php
 class ShoppingListSubscriber implements EventSubscriberInterface
 {
-    ...
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            self::SHOPPING_LIST_LOADED => 'adminLoadedForSpecificCustomer',
-            self::SALES_CHANNEL_SHOPPING_LIST_LOADED => 'salesChannelLoaded',
-            self::SALES_CHANNEL_SHOPPING_LIST_LINE_ITEM_LOADED => 'salesChannelLineItemLoaded',
-        ];
-    }
-    ...
+  // ...
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      self::SHOPPING_LIST_LOADED => 'adminLoadedForSpecificCustomer',
+      self::SALES_CHANNEL_SHOPPING_LIST_LOADED => 'salesChannelLoaded',
+      self::SALES_CHANNEL_SHOPPING_LIST_LINE_ITEM_LOADED => 'salesChannelLineItemLoaded',
+    ];
+  }
+  // ...
 }
 ```
 
@@ -86,36 +86,36 @@ The `Shopware\Commercial\B2B\ShoppingList\Domain\Price\ShoppingListPriceCalculat
 ```php
 class ShoppingListPriceCalculator extends AbstractShoppingListPriceCalculator
 {
-    ...
-    public function calculate(iterable $shoppingLists, SalesChannelContext $context): void
-    {
-        $productIds = $this->getProductIds($shoppingLists);
-        $products = $this->productRepository->search(new Criteria($productIds), $context)->getEntities();
+  // ...
+  public function calculate(iterable $shoppingLists, SalesChannelContext $context): void
+  {
+    $productIds = $this->getProductIds($shoppingLists);
+    $products = $this->productRepository->search(new Criteria($productIds), $context)->getEntities();
 
-        foreach ($shoppingLists as $entity) {
-            $listPrices = new PriceCollection();
+    foreach ($shoppingLists as $entity) {
+      $listPrices = new PriceCollection();
 
-            if (!$entity->getLineItems() instanceof ShoppingListLineItemCollection) {
-                $entity->setPrice($this->calculatedPrices($listPrices, $context));
-                continue;
-            }
+      if (!$entity->getLineItems() instanceof ShoppingListLineItemCollection) {
+        $entity->setPrice($this->calculatedPrices($listPrices, $context));
+        continue;
+      }
 
-            $this->processCalculatedLineItems($entity->getLineItems(), $products, $context);
+      $this->processCalculatedLineItems($entity->getLineItems(), $products, $context);
 
-            foreach ($entity->getLineItems() as $lineItem) {
-                if (!$lineItem->getPrice()) {
-                    continue;
-                }
-
-                $listPrices->add($lineItem->getPrice());
-            }
-
-            $entity->assign([
-                'price' => $this->calculatedPrices($listPrices, $context),
-            ]);
+      foreach ($entity->getLineItems() as $lineItem) {
+        if (!$lineItem->getPrice()) {
+          continue;
         }
+
+        $listPrices->add($lineItem->getPrice());
+      }
+
+      $entity->assign([
+        'price' => $this->calculatedPrices($listPrices, $context),
+      ]);
     }
-    ...
+  }
+  // ...
 }
 ```
 

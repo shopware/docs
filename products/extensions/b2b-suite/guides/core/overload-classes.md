@@ -107,25 +107,25 @@ An example of your class could look like this:
 ```php
 <?php declare(strict_types=1);
     
-[...]
+// [...]
     
 class YourRoleRepository extends RoleRepository
 {
-    public array $myService;
+  public array $myService;
+      
+  public function __construct()
+  {
+    $args = func_get_args();
+    
+    $this->myService = array_pop($args);
+    
+    parent::__construct(... $args);
+  }
         
-    public function __construct()
-    {
-        $args = func_get_args();
-        
-        $this->myService = array_pop($args);       
-        
-        parent::__construct(... $args);
-    }
-         
-    public function updateRole(RoleEntity $role): RoleEntity
-    {
-        // your stuff
-    }
+  public function updateRole(RoleEntity $role): RoleEntity
+  {
+    // your stuff
+  }
 }
 ```
 

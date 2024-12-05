@@ -29,17 +29,17 @@ use Shopware\Core\Content\Product\ProductEvents;
 
 class MySubscriber implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            ProductEvents::PRODUCT_LOADED_EVENT => 'onProductsLoaded'
-        ];
-    }
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      ProductEvents::PRODUCT_LOADED_EVENT => 'onProductsLoaded'
+    ];
+  }
 
-    public function onProductsLoaded(EntityLoadedEvent $event): void
-    {
-        // Do stuff with the product
-    }
+  public function onProductsLoaded(EntityLoadedEvent $event): void
+  {
+    // Do stuff with the product
+  }
 }
 ```
 
@@ -93,23 +93,25 @@ Note the new `argument` being provided to your subscriber. Now create a new fiel
 
 namespace Swag\BasicExample\Subscriber;
 
-...
+// use ...
+
 use Shopware\Core\System\SystemConfig\SystemConfigService;
 
 class MySubscriber implements EventSubscriberInterface
 {
-    private SystemConfigService $systemConfigService;
+  private SystemConfigService $systemConfigService;
 
-    public function __construct(SystemConfigService $systemConfigService)
-    {
-        $this->systemConfigService = $systemConfigService;
-    }
+  public function __construct(SystemConfigService $systemConfigService)
+  {
+    $this->systemConfigService = $systemConfigService;
+  }
 
-    public static function getSubscribedEvents(): array
-    {
-        ...
-    }
-    ...
+  public static function getSubscribedEvents(): array
+  {
+    // ...
+  }
+
+  // ...
 }
 ```
 
@@ -127,15 +129,16 @@ That's why the plugin configurations are always prefixed. By default, the patter
 
 namespace Swag\BasicExample\Subscriber;
 
-...
+// use ...
 
 class MySubscriber implements EventSubscriberInterface
 {
-    ...
-    public function onProductsLoaded(EntityLoadedEvent $event): void
-    {
-        $exampleConfig = $this->systemConfigService->get('SwagBasicExample.config.example', $salesChannelId);
-    }
+  // ...
+
+  public function onProductsLoaded(EntityLoadedEvent $event): void
+  {
+    $exampleConfig = $this->systemConfigService->get('SwagBasicExample.config.example', $salesChannelId);
+  }
 }
 ```
 

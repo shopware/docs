@@ -39,7 +39,7 @@ This is done with [Constructor injection](https://symfony.com/doc/current/servic
 // <plugin root>/src/Service/DalExampleService.php
 public function __construct (EntityRepository $productRepository)
 {
-    $this->productRepository = $productRepository;
+  $this->productRepository = $productRepository;
 }
 ```
 

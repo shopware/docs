@@ -37,39 +37,37 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 
 class StockStorageDecorator extends AbstractStockStorage
 {
-    public function __construct(private AbstractStockStorage $decorated)
-    {
-    }
+  public function __construct(private AbstractStockStorage $decorated) {}
 
-    public function getDecorated(): AbstractStockStorage
-    {
-        return $this->decorated;
-    }
+  public function getDecorated(): AbstractStockStorage
+  {
+    return $this->decorated;
+  }
 
-    public function load(StockLoadRequest $stockRequest, SalesChannelContext $context): StockDataCollection
-    {
-        $productsIds = $stockRequest->productIds;
+  public function load(StockLoadRequest $stockRequest, SalesChannelContext $context): StockDataCollection
+  {
+    $productsIds = $stockRequest->productIds;
 
-        //use $productIds to make an API request to get stock data
-        //$result would come from the api response
-        $result = ['product-1' => 5, 'product-2' => 10];
+    //use $productIds to make an API request to get stock data
+    //$result would come from the api response
+    $result = ['product-1' => 5, 'product-2' => 10];
 
-        return new StockDataCollection(
-            array_map(function (string $productId, int $stock) {
-                return new StockData($productId, $stock, true);
-            }, array_keys($result), $result)
-        );
-    }
+    return new StockDataCollection(
+      array_map(function (string $productId, int $stock) {
+        return new StockData($productId, $stock, true);
+      }, array_keys($result), $result)
+    );
+  }
 
-    public function alter(array $changes, Context $context): void
-    {
-        $this->decorated->alter($changes, $context);
-    }
+  public function alter(array $changes, Context $context): void
+  {
+    $this->decorated->alter($changes, $context);
+  }
 
-    public function index(array $productIds, Context $context): void
-    {
-        $this->decorated->index($productIds, $context);
-    }
+  public function index(array $productIds, Context $context): void
+  {
+    $this->decorated->index($productIds, $context);
+  }
 }
 ```
 
@@ -117,12 +115,12 @@ For example:
 
 ```php
 $stockData = \Shopware\Core\Content\Product\Stock\StockData::fromArray([
-    'productId' => 'product-1',
-    'stock' => 5,
-    'available' => true,
-    'minPurchase' => 1,
-    'maxPurchase' => 10,
-    'isCloseout' => false,
+  'productId' => 'product-1',
+  'stock' => 5,
+  'available' => true,
+  'minPurchase' => 1,
+  'maxPurchase' => 10,
+  'isCloseout' => false,
 ]);
 ```
 
@@ -130,9 +128,9 @@ It is also possible to provide arbitrary data via extensions:
 
 ```php
 $stockData = \Shopware\Core\Content\Product\Stock\StockData::fromArray([
-    'productId' => 'product-1',
-    'stock' => 5,
-    'available' => true,
+  'productId' => 'product-1',
+  'stock' => 5,
+  'available' => true,
 ]);
 
 $stockData->addArrayExtension('extraData', ['foo' => 'bar']);

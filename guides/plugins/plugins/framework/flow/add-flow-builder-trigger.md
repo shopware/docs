@@ -69,45 +69,45 @@ use Symfony\Contracts\EventDispatcher\Event;
 
 class ExampleEvent extends Event implements CustomerAware, FlowEventAware
 {
-    public const EVENT_NAME = 'example.event';
+  public const EVENT_NAME = 'example.event';
 
-    private CustomerEntity $customer;
+  private CustomerEntity $customer;
 
-    private Context $context;
+  private Context $context;
 
-    public function __construct(Context $context, CustomerEntity $customer)
-    {
-        $this->customer = $customer;
-        $this->context = $context;
-    }
+  public function __construct(Context $context, CustomerEntity $customer)
+  {
+    $this->customer = $customer;
+    $this->context = $context;
+  }
 
-    public function getName(): string
-    {
-        return self::EVENT_NAME;
-    }
+  public function getName(): string
+  {
+    return self::EVENT_NAME;
+  }
 
-    public function getCustomer(): CustomerEntity
-    {
-        return $this->customer;
-    }
+  public function getCustomer(): CustomerEntity
+  {
+    return $this->customer;
+  }
 
-    public function getCustomerId(): string
-    {
-        return $this->customer->getId();
-    }
+  public function getCustomerId(): string
+  {
+    return $this->customer->getId();
+  }
 
-    public static function getAvailableData(): EventDataCollection
-    {
-        return (new EventDataCollection())->add(
-            'customer',
-            new EntityType(CustomerDefinition::class)
-        );
-    }
+  public static function getAvailableData(): EventDataCollection
+  {
+    return (new EventDataCollection())->add(
+      'customer',
+      new EntityType(CustomerDefinition::class)
+    );
+  }
 
-    public function getContext(): Context
-    {
-        return $this->context;
-    }
+  public function getContext(): Context
+  {
+    return $this->context;
+  }
 }
 ```
 
@@ -150,97 +150,101 @@ use Symfony\Contracts\EventDispatcher\Event;
 
 class ExampleEvent extends Event implements CustomerAware, ShopNameAware
 {
-    public const EVENT_NAME = 'example.event';
+  public const EVENT_NAME = 'example.event';
 
-    private CustomerEntity $customer;
+  private CustomerEntity $customer;
 
-    public function __construct(CustomerEntity $customer, string $shopName)
-    {
-        $this->customer = $customer;
-        $this->shopName = $shopName;
-    }
+  public function __construct(CustomerEntity $customer, string $shopName)
+  {
+    $this->customer = $customer;
+    $this->shopName = $shopName;
+  }
 
-    public function getName(): string
-    {
-        return self::EVENT_NAME;
-    }
+  public function getName(): string
+  {
+    return self::EVENT_NAME;
+  }
 
-    public function getCustomerId(): string
-    {
-        return $this->customer->getId();
-    }
+  public function getCustomerId(): string
+  {
+    return $this->customer->getId();
+  }
 
-    public static function getAvailableData(): EventDataCollection
-    {
-        return (new EventDataCollection());
-    }
+  public static function getAvailableData(): EventDataCollection
+  {
+    return (new EventDataCollection());
+  }
 
-    public function getShopName(): string
-    {
-        return $this->shopName;
-    }
+  public function getShopName(): string
+  {
+    return $this->shopName;
+  }
 }
 ```
 
 In the example above, to get the `customerId` and `shopName` data events, you need to store these data via `CustomerStorer` and `ShopNameStorer`.
 
 ```php
+<?php declare(strict_types=1);
+
 class CustomerStorer extends FlowStorer
 {
-    public function store(FlowEventAware $event, array $stored): array
-    {
-        if (!$event instanceof CustomerAware || isset($stored['customerId'])) {
-            return $stored;
-        }
-
-        $stored['customerId'] = $event->getCustomerId();
-
-        return $stored;
+  public function store(FlowEventAware $event, array $stored): array
+  {
+    if (!$event instanceof CustomerAware || isset($stored['customerId'])) {
+      return $stored;
     }
 
-    public function restore(StorableFlow $storable): void
-    {
-        if (!$storable->hasStore('customerId')) {
-            return;
-        }
+    $stored['customerId'] = $event->getCustomerId();
 
-        $storable->setData(
-            'customer',
-            $this->getCustomer($storable->getStore('customerId'))
-        );
+    return $stored;
+  }
+
+  public function restore(StorableFlow $storable): void
+  {
+    if (!$storable->hasStore('customerId')) {
+      return;
     }
 
-    private function getCustomer(string $customerId): Customer
-    {
-        // load customer via $customerId
+    $storable->setData(
+      'customer',
+      $this->getCustomer($storable->getStore('customerId'))
+    );
+  }
 
-        return $customer;
-    }
+  private function getCustomer(string $customerId): Customer
+  {
+    // load customer via $customerId
+
+    return $customer;
+  }
 }
 ```
 
 ```php
+<?php declare(strict_types=1);
+
 class ShopNameStorer extends FlowStorer
 {
-    public function store(FlowEventAware $event, array $stored): array
-    {
-        if (!$event instanceof ShopNameAware || isset($stored['shopName'])) {
-            return $stored;
-        }
-
-        $stored['shopName'] = $event->getShopName();
-
-        return $stored;
+  public function store(FlowEventAware $event, array $stored): array
+  {
+    if (!$event instanceof ShopNameAware || isset($stored['shopName'])) {
+      return $stored;
     }
 
-    public function restore(StorableFlow $storable): void
-    {
-        if (!$storable->hasStore('shopName')) {
-            return;
-        }
+    $stored['shopName'] = $event->getShopName();
 
-        $storable->setData('shopName', $storable->getStore('shopName'));
+    return $stored;
+  }
+
+  public function restore(StorableFlow $storable): void
+  {
+    if (!$storable->hasStore('shopName')) {
+      return;
     }
+
+    $storable->setData('shopName', $storable->getStore('shopName'));
+  }
 }
 ```
 
@@ -257,81 +261,87 @@ use Symfony\Contracts\EventDispatcher\Event;
 
 class ExampleEvent extends Event implements CustomExampleDataAware
 {
-    public const EVENT_NAME = 'example.event';
+  public const EVENT_NAME = 'example.event';
 
-    private string $customExampleData;
+  private string $customExampleData;
 
-    public function __construct(string $customExampleData)
-    {
-        $this->customExampleData = $customExampleData;
-    }
+  public function __construct(string $customExampleData)
+  {
+    $this->customExampleData = $customExampleData;
+  }
 
-    public function getName(): string
-    {
-        return self::EVENT_NAME;
-    }
+  public function getName(): string
+  {
+    return self::EVENT_NAME;
+  }
 
-    public function getCustomExampleData(): string
-    {
-        return $this->customExampleData;
-    }
+  public function getCustomExampleData(): string
+  {
+    return $this->customExampleData;
+  }
 
-    public static function getAvailableData(): EventDataCollection
-    {
-        return (new EventDataCollection());
-    }
+  public static function getAvailableData(): EventDataCollection
+  {
+    return (new EventDataCollection());
+  }
 }
 ```
 
 Aware:
 
 ```php
+<?php declare(strict_types=1);
+
 interface CustomExampleDataAware extends FlowEventAware
 {
-    public const CUSTOM_EXAMPLE_DATA = 'customExampleData';
+  public const CUSTOM_EXAMPLE_DATA = 'customExampleData';
 
-    public function getCustomExampleData(): string;
+  public function getCustomExampleData(): string;
 }
 ```
 
 Storer respective:
 
 ```php
+<?php declare(strict_types=1);
+
 class CustomExampleDataStorer extends FlowStorer
 {
-    public function store(FlowEventAware $event, array $stored): array
-    {
-        if (!$event instanceof CustomExampleDataAware || isset($stored[CustomExampleDataAware::CUSTOM_EXAMPLE_DATA])) {
-            return $stored;
-        }
-
-        $stored[CustomExampleDataAware::CUSTOM_EXAMPLE_DATA] = $event->getCustomExampleData();
-
-        return $stored;
+  public function store(FlowEventAware $event, array $stored): array
+  {
+    if (!$event instanceof CustomExampleDataAware || isset($stored[CustomExampleDataAware::CUSTOM_EXAMPLE_DATA])) {
+      return $stored;
     }
 
-    public function restore(StorableFlow $storable): void
-    {
-        if (!$storable->hasStore(CustomExampleDataAware::CUSTOM_EXAMPLE_DATA)) {
-            return;
-        }
+    $stored[CustomExampleDataAware::CUSTOM_EXAMPLE_DATA] = $event->getCustomExampleData();
 
-        $storable->setData(CustomExampleDataAware::CUSTOM_EXAMPLE_DATA, $storable->getStore(CustomExampleDataAware::CUSTOM_EXAMPLE_DATA));
+    return $stored;
+  }
+
+  public function restore(StorableFlow $storable): void
+  {
+    if (!$storable->hasStore(CustomExampleDataAware::CUSTOM_EXAMPLE_DATA)) {
+      return;
     }
+
+    $storable->setData(CustomExampleDataAware::CUSTOM_EXAMPLE_DATA, $storable->getStore(CustomExampleDataAware::CUSTOM_EXAMPLE_DATA));
+  }
 }
 ```
 
 In Flow Actions, you can get the data easily via `getStore` and `getData`.
 
 ```php
+<?php declare(strict_types=1);
+
 class SendMailAction
 {
-    public function handleFlow(StorableFlow $flow)
-    {
-        $shopName = $flow->getStore('shopName');
-        $customer = $flow->getData('customer');
-        $customExampleData = $flow->getData('customExampleData');
-    }
+  public function handleFlow(StorableFlow $flow)
+  {
+    $shopName = $flow->getStore('shopName');
+    $customer = $flow->getData('customer');
+    $customExampleData = $flow->getData('customExampleData');
+  }
 }
 ```
 
@@ -354,31 +364,32 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class BusinessEventCollectorSubscriber implements EventSubscriberInterface
 {
-    private BusinessEventCollector $businessEventCollector;
+  private BusinessEventCollector $businessEventCollector;
 
-    public function __construct(BusinessEventCollector $businessEventCollector) {
-        $this->businessEventCollector = $businessEventCollector;
+  public function __construct(BusinessEventCollector $businessEventCollector)
+  {
+    $this->businessEventCollector = $businessEventCollector;
+  }
+
+  public static function getSubscribedEvents()
+  {
+    return [
+      BusinessEventCollectorEvent::NAME => ['onAddExampleEvent', 1000],
+    ];
+  }
+
+  public function onAddExampleEvent(BusinessEventCollectorEvent $event): void
+  {
+    $collection = $event->getCollection();
+
+    $definition = $this->businessEventCollector->define(ExampleEvent::class);
+
+    if (!$definition) {
+      return;
     }
 
-    public static function getSubscribedEvents()
-    {
-        return [
-            BusinessEventCollectorEvent::NAME => ['onAddExampleEvent', 1000],
-        ];
-    }
-
-    public function onAddExampleEvent(BusinessEventCollectorEvent $event): void
-    {
-        $collection = $event->getCollection();
-
-        $definition = $this->businessEventCollector->define(ExampleEvent::class);
-
-        if (!$definition) {
-            return;
-        }
-
-        $collection->set($definition->getName(), $definition);
-    }
+    $collection->set($definition->getName(), $definition);
+  }
 }
 ```
 
@@ -388,9 +399,9 @@ Please note that your subscriber has to have a higher priority point to ensure y
 // <plugin root>/src/Core/Checkout/Customer/Subscriber/BusinessEventCollectorSubscriber.php
 public static function getSubscribedEvents()
 {
-   return [
-        BusinessEventCollectorEvent::NAME => ['onAddExampleEvent', 1000],
-   ];
+  return [
+    BusinessEventCollectorEvent::NAME => ['onAddExampleEvent', 1000],
+  ];
 }
 ```
 

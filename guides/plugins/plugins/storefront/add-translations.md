@@ -120,7 +120,7 @@ private TranslatorInterface $translator;
 
 public function __construct(TranslatorInterface $translator)
 {
-    $this->translator = $translator;
+  $this->translator = $translator;
 }
 ```
 

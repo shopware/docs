@@ -52,27 +52,26 @@ namespace Shopware\Commercial\B2B\Domain\RouteAccess;
 
 class DecoratedEmployeeRouteAccessLoader extends AbstractEmployeeRouteAccessLoader
 {
-    private const CONFIG = __DIR__ . '/../../Resources/config/new-custom-employee_route_access.xml';
+  private const CONFIG = __DIR__ . '/../../Resources/config/new-custom-employee_route_access.xml';
 
-    public function __construct(
-        private readonly AbstractEmployeeRouteAccessLoader $decorated
-    ) {
-    }
+  public function __construct(
+    private readonly AbstractEmployeeRouteAccessLoader $decorated
+  ) {}
 
-    public function getDecorated(): AbstractEmployeeRouteAccessLoader
-    {
-        return $this->decorated;
-    }
+  public function getDecorated(): AbstractEmployeeRouteAccessLoader
+  {
+    return $this->decorated;
+  }
 
-    public function load(): array
-    {
-        $oldConfig = $this->decorated->load();
-        $customConfig = (array) @simplexml_load_file(self::CONFIG);
+  public function load(): array
+  {
+    $oldConfig = $this->decorated->load();
+    $customConfig = (array) @simplexml_load_file(self::CONFIG);
 
-        // This example merges the old config with the new created custom config.
-        // Return the $customConfig variable to override the old completely
+    // This example merges the old config with the new created custom config.
+    // Return the $customConfig variable to override the old completely
 
-        return array_merge_recursive($oldConfig, $customConfig);
-    }
+    return array_merge_recursive($oldConfig, $customConfig);
+  }
 }
 ```

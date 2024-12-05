@@ -13,29 +13,29 @@ Most of the events triggered within subscription checkout are prefixed with `sub
 // Normal Event Listener
 class MyEventSubscriber implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents(): array
-    {
-        return [CheckoutOrderPlacedCriteriaEvent::class => 'onOrderPlacedCriteria'];
-    }
+  public static function getSubscribedEvents(): array
+  {
+    return [CheckoutOrderPlacedCriteriaEvent::class => 'onOrderPlacedCriteria'];
+  }
 
-    public function onOrderPlacedCriteria(CheckoutOrderPlacedCriteriaEvent $event): void
-    {
-        // Your event handler logic
-    }
+  public function onOrderPlacedCriteria(CheckoutOrderPlacedCriteriaEvent $event): void
+  {
+    // Your event handler logic
+  }
 }
 
 // Subscription Event Listener
 class MyEventSubscriber implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents(): array
-    {
-        return ['subscription.' . CheckoutOrderPlacedCriteriaEvent::class => 'onOrderPlacedCriteria'];
-    }
+  public static function getSubscribedEvents(): array
+  {
+    return ['subscription.' . CheckoutOrderPlacedCriteriaEvent::class => 'onOrderPlacedCriteria'];
+  }
 
-    public function onOrderPlacedCriteria(CheckoutOrderPlacedCriteriaEvent $event): void
-    {
-        // Your event handler logic
-    }
+  public function onOrderPlacedCriteria(CheckoutOrderPlacedCriteriaEvent $event): void
+  {
+    // Your event handler logic
+  }
 }
 ```
 

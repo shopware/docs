@@ -33,25 +33,25 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 
 class ExampleDebitPayment extends DebitPayment
 {
-    private DebitPayment $decorated;
+  private DebitPayment $decorated;
 
-    public function __construct(OrderTransactionStateHandler $transactionStateHandler, DebitPayment $decorated)
-    {
-        parent::__construct($transactionStateHandler);
-        $this->decorated = $decorated;
-    }
+  public function __construct(OrderTransactionStateHandler $transactionStateHandler, DebitPayment $decorated)
+  {
+    parent::__construct($transactionStateHandler);
+    $this->decorated = $decorated;
+  }
 
-    public function getDecorated(): DebitPayment
-    {
-        return $this->decorated;
-    }
+  public function getDecorated(): DebitPayment
+  {
+    return $this->decorated;
+  }
 
-    public function pay(SyncPaymentTransactionStruct $transaction, RequestDataBag $dataBag, SalesChannelContext $salesChannelContext): void
-    {
-        // do some custom stuff here
+  public function pay(SyncPaymentTransactionStruct $transaction, RequestDataBag $dataBag, SalesChannelContext $salesChannelContext): void
+  {
+    // do some custom stuff here
 
-        $this->transactionStateHandler->process($transaction->getOrderTransaction()->getId(), $salesChannelContext->getContext());
-    }
+    $this->transactionStateHandler->process($transaction->getOrderTransaction()->getId(), $salesChannelContext->getContext());
+  }
 }
 ```
 

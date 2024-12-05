@@ -103,18 +103,18 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 
 class ExamplePayment implements SynchronousPaymentHandlerInterface
 {
-    private OrderTransactionStateHandler $transactionStateHandler;
+  private OrderTransactionStateHandler $transactionStateHandler;
 
-    public function __construct(OrderTransactionStateHandler $transactionStateHandler)
-    {
-        $this->transactionStateHandler = $transactionStateHandler;
-    }
+  public function __construct(OrderTransactionStateHandler $transactionStateHandler)
+  {
+    $this->transactionStateHandler = $transactionStateHandler;
+  }
 
-    public function pay(SyncPaymentTransactionStruct $transaction, RequestDataBag $dataBag, SalesChannelContext $salesChannelContext): void
-    {
-        $context = $salesChannelContext->getContext();
-        $this->transactionStateHandler->paid($transaction->getOrderTransaction()->getId(), $context);
-    }
+  public function pay(SyncPaymentTransactionStruct $transaction, RequestDataBag $dataBag, SalesChannelContext $salesChannelContext): void
+  {
+    $context = $salesChannelContext->getContext();
+    $this->transactionStateHandler->paid($transaction->getOrderTransaction()->getId(), $context);
+  }
 }
 ```
 
@@ -147,67 +147,68 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ExamplePayment implements AsynchronousPaymentHandlerInterface
 {
-    private OrderTransactionStateHandler $transactionStateHandler;
+  private OrderTransactionStateHandler $transactionStateHandler;
 
-    public function __construct(OrderTransactionStateHandler $transactionStateHandler) {
-        $this->transactionStateHandler = $transactionStateHandler;
+  public function __construct(OrderTransactionStateHandler $transactionStateHandler)
+  {
+    $this->transactionStateHandler = $transactionStateHandler;
+  }
+
+  /**
+   * @throws AsyncPaymentProcessException
+   */
+  public function pay(AsyncPaymentTransactionStruct $transaction, RequestDataBag $dataBag, SalesChannelContext $salesChannelContext): RedirectResponse
+  {
+    // Method that sends the return URL to the external gateway and gets a redirect URL back
+    try {
+      $redirectUrl = $this->sendReturnUrlToExternalGateway($transaction->getReturnUrl());
+    } catch (\Exception $e) {
+      throw PaymentException::asyncProcess(
+        $transaction->getOrderTransaction()->getId(),
+        'An error occurred during the communication with external payment gateway' . PHP_EOL . $e->getMessage()
+      );
     }
 
-    /**
-     * @throws AsyncPaymentProcessException
-     */
-    public function pay(AsyncPaymentTransactionStruct $transaction, RequestDataBag $dataBag, SalesChannelContext $salesChannelContext): RedirectResponse
-    {
-        // Method that sends the return URL to the external gateway and gets a redirect URL back
-        try {
-            $redirectUrl = $this->sendReturnUrlToExternalGateway($transaction->getReturnUrl());
-        } catch (\Exception $e) {
-            throw PaymentException::asyncProcess(
-                $transaction->getOrderTransaction()->getId(),
-                'An error occurred during the communication with external payment gateway' . PHP_EOL . $e->getMessage()
-            );
-        }
+    // Redirect to external gateway
+    return new RedirectResponse($redirectUrl);
+  }
 
-        // Redirect to external gateway
-        return new RedirectResponse($redirectUrl);
+  /**
+   * @throws CustomerCanceledAsyncPaymentException
+   */
+  public function finalize(AsyncPaymentTransactionStruct $transaction, Request $request, SalesChannelContext $salesChannelContext): void
+  {
+    $transactionId = $transaction->getOrderTransaction()->getId();
+
+    // Example check if the user canceled. Might differ for each payment provider
+    if ($request->query->getBoolean('cancel')) {
+      throw PaymentException::asyncCustomerCanceled(
+        $transactionId,
+        'Customer canceled the payment on the PayPal page'
+      );
     }
 
-    /**
-     * @throws CustomerCanceledAsyncPaymentException
-     */
-    public function finalize(AsyncPaymentTransactionStruct $transaction, Request $request, SalesChannelContext $salesChannelContext): void
-    {
-        $transactionId = $transaction->getOrderTransaction()->getId();
+    // Example check for the actual status of the payment. Might differ for each payment provider
+    $paymentState = $request->query->getAlpha('status');
 
-        // Example check if the user canceled. Might differ for each payment provider
-        if ($request->query->getBoolean('cancel')) {
-            throw PaymentException::asyncCustomerCanceled(
-                $transactionId,
-                'Customer canceled the payment on the PayPal page'
-            );
-        }
-
-        // Example check for the actual status of the payment. Might differ for each payment provider
-        $paymentState = $request->query->getAlpha('status');
-
-        $context = $salesChannelContext->getContext();
-        if ($paymentState === 'completed') {
-            // Payment completed, set transaction status to "paid"
-            $this->transactionStateHandler->paid($transaction->getOrderTransaction()->getId(), $context);
-        } else {
-            // Payment not completed, set transaction status to "open"
-            $this->transactionStateHandler->reopen($transaction->getOrderTransaction()->getId(), $context);
-        }
+    $context = $salesChannelContext->getContext();
+    if ($paymentState === 'completed') {
+      // Payment completed, set transaction status to "paid"
+      $this->transactionStateHandler->paid($transaction->getOrderTransaction()->getId(), $context);
+    } else {
+      // Payment not completed, set transaction status to "open"
+      $this->transactionStateHandler->reopen($transaction->getOrderTransaction()->getId(), $context);
     }
+  }
 
-    private function sendReturnUrlToExternalGateway(string $getReturnUrl): string
-    {
-        $paymentProviderUrl = '';
+  private function sendReturnUrlToExternalGateway(string $getReturnUrl): string
+  {
+    $paymentProviderUrl = '';
 
-        // Do some API Call to your payment provider
+    // Do some API Call to your payment provider
 
-        return $paymentProviderUrl;
-    }
+    return $paymentProviderUrl;
+  }
 }
 ```
 
@@ -245,62 +246,62 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 
 class ExamplePayment implements PreparedPaymentHandlerInterface
 {
-    private OrderTransactionStateHandler $stateHandler;
+  private OrderTransactionStateHandler $stateHandler;
 
-    public function __construct(OrderTransactionStateHandler $stateHandler)
-    {
-        $this->stateHandler = $stateHandler;
+  public function __construct(OrderTransactionStateHandler $stateHandler)
+  {
+    $this->stateHandler = $stateHandler;
+  }
+
+  public function validate(
+    Cart $cart,
+    RequestDataBag $requestDataBag,
+    SalesChannelContext $context
+  ): Struct {
+    if (!$requestDataBag->has('my-payment-token')) {
+      // this will fail the validation
+      throw PaymentException::preparedValidate('No token supplied');
     }
 
-    public function validate(
-        Cart $cart,
-        RequestDataBag $requestDataBag,
-        SalesChannelContext $context
-    ): Struct {
-        if (!$requestDataBag->has('my-payment-token')) {
-            // this will fail the validation
-            throw PaymentException::preparedValidate('No token supplied');
-        }
+    $token = $requestDataBag->get('my-payment-token');
+    $paymentData = $this->getPaymentDataFromProvider($token);
 
-        $token = $requestDataBag->get('my-payment-token');
-        $paymentData = $this->getPaymentDataFromProvider($token);
-
-        if (!$paymentData) {
-            // no payment data simulates an error response from our payment provider in this example
-            throw PaymentException::preparedValidate('Unknown payment for token ' . $token);
-        }
-
-        // other checks could include comparing the cart value with the actual payload of your PSP
-
-        // return the payment details: these will be given as $preOrderPaymentStruct to the capture method
-        return new ArrayStruct($paymentData);
+    if (!$paymentData) {
+      // no payment data simulates an error response from our payment provider in this example
+      throw PaymentException::preparedValidate('Unknown payment for token ' . $token);
     }
 
-    public function capture(
-        PreparedPaymentTransactionStruct $transaction,
-        RequestDataBag $requestDataBag,
-        SalesChannelContext $context,
-        Struct $preOrderPaymentStruct
-    ): void {
+    // other checks could include comparing the cart value with the actual payload of your PSP
 
-        // you can find all the order specific information in the PreparedPaymentTransactionStruct
-        $order = $transaction->getOrder();
-        $orderTransaction = $transaction->getOrderTransaction();
+    // return the payment details: these will be given as $preOrderPaymentStruct to the capture method
+    return new ArrayStruct($paymentData);
+  }
 
-        // call you PSP and capture the transaction as usual
-        // do not forget to change the transaction's state here:
-        $this->stateHandler->paid($orderTransaction->getId(), $context->getContext());
-        
-        // or in case of an error:
-        $this->stateHandler->fail($orderTransaction->getId(), $context->getContext());
-        throw PaymentException::preparedCapture($orderTransaction->getId(), 'Capture failed.');
-    }
+  public function capture(
+    PreparedPaymentTransactionStruct $transaction,
+    RequestDataBag $requestDataBag,
+    SalesChannelContext $context,
+    Struct $preOrderPaymentStruct
+  ): void {
 
-    private function getPaymentDataFromProvider(string $token): array
-    {
-        // call your payment provider instead and return your real payment details
-        return [];
-    }
+    // you can find all the order specific information in the PreparedPaymentTransactionStruct
+    $order = $transaction->getOrder();
+    $orderTransaction = $transaction->getOrderTransaction();
+
+    // call you PSP and capture the transaction as usual
+    // do not forget to change the transaction's state here:
+    $this->stateHandler->paid($orderTransaction->getId(), $context->getContext());
+
+    // or in case of an error:
+    $this->stateHandler->fail($orderTransaction->getId(), $context->getContext());
+    throw PaymentException::preparedCapture($orderTransaction->getId(), 'Capture failed.');
+  }
+
+  private function getPaymentDataFromProvider(string $token): array
+  {
+    // call your payment provider instead and return your real payment details
+    return [];
+  }
 }
 ```
 
@@ -327,50 +328,50 @@ use Shopware\Core\Framework\Context;
 
 class ExamplePayment implements RefundPaymentHandlerInterface
 {
-    private OrderTransactionCaptureRefundStateHandler $stateHandler;
+  private OrderTransactionCaptureRefundStateHandler $stateHandler;
 
-    public function __construct(OrderTransactionCaptureRefundStateHandler $stateHandler)
-    {
-        $this->stateHandler = $stateHandler;
+  public function __construct(OrderTransactionCaptureRefundStateHandler $stateHandler)
+  {
+    $this->stateHandler = $stateHandler;
+  }
+
+  public function refund(OrderTransactionCaptureRefundEntity $refund, Context $context): void
+  {
+    if ($refund->getAmount() > 100.00) {
+      // this will stop the refund process and set the refunds state to `failed`
+      throw PaymentException::refund($refund->getId(), 'Refunds over 100 € are not allowed');
     }
 
-    public function refund(OrderTransactionCaptureRefundEntity $refund, Context $context): void
-    {
-        if ($refund->getAmount() > 100.00) {
-            // this will stop the refund process and set the refunds state to `failed`
-            throw PaymentException::refund($refund->getId(), 'Refunds over 100 € are not allowed');
+    // a refund can have multiple positions, with different order line items and amounts
+    /** @var OrderTransactionCaptureRefundPositionEntity $position */
+    foreach ($refund->getPositions() as $position) {
+      $amount = $position->getAmount()->getTotalPrice();
+      $reason = $position->getReason();
+      $lineItem = $position->getOrderLineItem();
+
+      // let's say, you allow a position, which was delivered, however broken
+      if ($reason === 'malfunction') {
+        // you can call your PSP here to refund
+
+        try {
+          $this->callPSPForRefund($amount, $reason, $lineItem->getId());
+        } catch (\Exception $e) {
+          // something went wrong at PSP side, throw a refund exception
+          // this will set the refund state to `failed`
+          throw PaymentException::refund($refund->getId(), 'Something went wrong');
         }
-
-        // a refund can have multiple positions, with different order line items and amounts
-        /** @var OrderTransactionCaptureRefundPositionEntity $position */
-        foreach ($refund->getPositions() as $position) {
-            $amount = $position->getAmount()->getTotalPrice();
-            $reason = $position->getReason();
-            $lineItem = $position->getOrderLineItem();
-
-            // let's say, you allow a position, which was delivered, however broken
-            if ($reason === 'malfunction') {
-                // you can call your PSP here to refund
-
-                try {
-                    $this->callPSPForRefund($amount, $reason, $lineItem->getId());
-                } catch (\Exception $e) {
-                    // something went wrong at PSP side, throw a refund exception
-                    // this will set the refund state to `failed`
-                    throw PaymentException::refund($refund->getId(), 'Something went wrong');
-                }
-            }
-        }
-
-        // let Shopware know, that the refund was successful
-        $this->stateHandler->complete($refund->getId(), $context);
+      }
     }
 
-    private function callPSPForRefund(float $amount, string $reason, string $id): void
-    {
-        // call you PSP here and process the response
-        // throw an exception to stop the refund process
-    }
+    // let Shopware know, that the refund was successful
+    $this->stateHandler->complete($refund->getId(), $context);
+  }
+
+  private function callPSPForRefund(float $amount, string $reason, string $id): void
+  {
+    // call you PSP here and process the response
+    // throw an exception to stop the refund process
+  }
 }
 ```
 
@@ -398,30 +399,30 @@ use Shopware\Core\Framework\Validation\DataBag\RequestDataBag;
 
 class ExamplePayment implements RecurringPaymentHandlerInterface
 {
-    private OrderTransactionStateHandler $transactionStateHandler;
+  private OrderTransactionStateHandler $transactionStateHandler;
 
-    public function __construct(OrderTransactionStateHandler $transactionStateHandler)
-    {
-        $this->transactionStateHandler = $transactionStateHandler;
-    }
+  public function __construct(OrderTransactionStateHandler $transactionStateHandler)
+  {
+    $this->transactionStateHandler = $transactionStateHandler;
+  }
 
-    /**
-     * @throws RecurringPaymentProcessException
-     */
-    public function captureRecurring(RecurringPaymentTransactionStruct $transaction, Context $context): void
-    {
-        // call your PSP here for capturing a recurring payment
-        // a valid billing agreement between the customer and the PSP should already be in place 
-        // use on of the other payment interfaces to create such an agreement on checkout and capture the initial order once
-        // you will probably receive a token from your PSP for the billing agreement, which you will need to capture a recurring payment
-        
-        try {
-            // $this->callMyPsp();
-        } catch (\Throwable $e) {
-            // throw a RecurringPaymentProcessException: this will set the transaction state to `failed` 
-            throw PaymentException::recurringInterrupted($transaction->getOrderTransaction()->getId(), 'Something went wrong', $e);
-        }
+  /**
+   * @throws RecurringPaymentProcessException
+   */
+  public function captureRecurring(RecurringPaymentTransactionStruct $transaction, Context $context): void
+  {
+    // call your PSP here for capturing a recurring payment
+    // a valid billing agreement between the customer and the PSP should already be in place 
+    // use on of the other payment interfaces to create such an agreement on checkout and capture the initial order once
+    // you will probably receive a token from your PSP for the billing agreement, which you will need to capture a recurring payment
+
+    try {
+      // $this->callMyPsp();
+    } catch (\Throwable $e) {
+      // throw a RecurringPaymentProcessException: this will set the transaction state to `failed` 
+      throw PaymentException::recurringInterrupted($transaction->getOrderTransaction()->getId(), 'Something went wrong', $e);
     }
+  }
 }
 ```
 
@@ -451,88 +452,88 @@ use Swag\BasicExample\Service\ExamplePayment;
 
 class SwagBasicExample extends Plugin
 {
-    public function install(InstallContext $context): void
-    {
-        $this->addPaymentMethod($context->getContext());
+  public function install(InstallContext $context): void
+  {
+    $this->addPaymentMethod($context->getContext());
+  }
+
+  public function uninstall(UninstallContext $context): void
+  {
+    // Only set the payment method to inactive when uninstalling. Removing the payment method would
+    // cause data consistency issues, since the payment method might have been used in several orders
+    $this->setPaymentMethodIsActive(false, $context->getContext());
+  }
+
+  public function activate(ActivateContext $context): void
+  {
+    $this->setPaymentMethodIsActive(true, $context->getContext());
+    parent::activate($context);
+  }
+
+  public function deactivate(DeactivateContext $context): void
+  {
+    $this->setPaymentMethodIsActive(false, $context->getContext());
+    parent::deactivate($context);
+  }
+
+  private function addPaymentMethod(Context $context): void
+  {
+    $paymentMethodExists = $this->getPaymentMethodId();
+
+    // Payment method exists already, no need to continue here
+    if ($paymentMethodExists) {
+      return;
     }
 
-    public function uninstall(UninstallContext $context): void
-    {
-        // Only set the payment method to inactive when uninstalling. Removing the payment method would
-        // cause data consistency issues, since the payment method might have been used in several orders
-        $this->setPaymentMethodIsActive(false, $context->getContext());
+    /** @var PluginIdProvider $pluginIdProvider */
+    $pluginIdProvider = $this->container->get(PluginIdProvider::class);
+    $pluginId = $pluginIdProvider->getPluginIdByBaseClass(get_class($this), $context);
+
+    $examplePaymentData = [
+      // payment handler will be selected by the identifier
+      'handlerIdentifier' => ExamplePayment::class,
+      'name' => 'Example payment',
+      'description' => 'Example payment description',
+      'pluginId' => $pluginId,
+      // if true, payment method will also be available after the order 
+      // is created, e.g. if payment fails and the user wants to try again
+      'afterOrderEnabled' => true,
+    ];
+
+    /** @var EntityRepository $paymentRepository */
+    $paymentRepository = $this->container->get('payment_method.repository');
+    $paymentRepository->create([$examplePaymentData], $context);
+  }
+
+  private function setPaymentMethodIsActive(bool $active, Context $context): void
+  {
+    /** @var EntityRepository $paymentRepository */
+    $paymentRepository = $this->container->get('payment_method.repository');
+
+    $paymentMethodId = $this->getPaymentMethodId();
+
+    // Payment does not even exist, so nothing to (de-)activate here
+    if (!$paymentMethodId) {
+      return;
     }
 
-    public function activate(ActivateContext $context): void
-    {
-        $this->setPaymentMethodIsActive(true, $context->getContext());
-        parent::activate($context);
-    }
+    $paymentMethod = [
+      'id' => $paymentMethodId,
+      'active' => $active,
+    ];
 
-    public function deactivate(DeactivateContext $context): void
-    {
-        $this->setPaymentMethodIsActive(false, $context->getContext());
-        parent::deactivate($context);
-    }
+    $paymentRepository->update([$paymentMethod], $context);
+  }
 
-    private function addPaymentMethod(Context $context): void
-    {
-        $paymentMethodExists = $this->getPaymentMethodId();
+  private function getPaymentMethodId(): ?string
+  {
+    /** @var EntityRepository $paymentRepository */
+    $paymentRepository = $this->container->get('payment_method.repository');
 
-        // Payment method exists already, no need to continue here
-        if ($paymentMethodExists) {
-            return;
-        }
-
-        /** @var PluginIdProvider $pluginIdProvider */
-        $pluginIdProvider = $this->container->get(PluginIdProvider::class);
-        $pluginId = $pluginIdProvider->getPluginIdByBaseClass(get_class($this), $context);
-
-        $examplePaymentData = [
-            // payment handler will be selected by the identifier
-            'handlerIdentifier' => ExamplePayment::class,
-            'name' => 'Example payment',
-            'description' => 'Example payment description',
-            'pluginId' => $pluginId,
-            // if true, payment method will also be available after the order 
-            // is created, e.g. if payment fails and the user wants to try again
-            'afterOrderEnabled' => true,
-        ];
-
-        /** @var EntityRepository $paymentRepository */
-        $paymentRepository = $this->container->get('payment_method.repository');
-        $paymentRepository->create([$examplePaymentData], $context);
-    }
-
-    private function setPaymentMethodIsActive(bool $active, Context $context): void
-    {
-        /** @var EntityRepository $paymentRepository */
-        $paymentRepository = $this->container->get('payment_method.repository');
-
-        $paymentMethodId = $this->getPaymentMethodId();
-
-        // Payment does not even exist, so nothing to (de-)activate here
-        if (!$paymentMethodId) {
-            return;
-        }
-
-        $paymentMethod = [
-            'id' => $paymentMethodId,
-            'active' => $active,
-        ];
-
-        $paymentRepository->update([$paymentMethod], $context);
-    }
-
-    private function getPaymentMethodId(): ?string
-    {
-        /** @var EntityRepository $paymentRepository */
-        $paymentRepository = $this->container->get('payment_method.repository');
-
-        // Fetch ID for update
-        $paymentCriteria = (new Criteria())->addFilter(new EqualsFilter('handlerIdentifier', ExamplePayment::class));
-        return $paymentRepository->searchIds($paymentCriteria, Context::createDefaultContext())->firstId();
-    }
+    // Fetch ID for update
+    $paymentCriteria = (new Criteria())->addFilter(new EqualsFilter('handlerIdentifier', ExamplePayment::class));
+    return $paymentRepository->searchIds($paymentCriteria, Context::createDefaultContext())->firstId();
+  }
 }
 ```
 

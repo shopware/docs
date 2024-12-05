@@ -33,17 +33,17 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class ListenToOrderChanges implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            OrderEvents::ORDER_WRITTEN_EVENT => 'onOrderWritten',
-        ];
-    }
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      OrderEvents::ORDER_WRITTEN_EVENT => 'onOrderWritten',
+    ];
+  }
 
-    public function onOrderWritten(EntityWrittenEvent $event): void
-    {
-        // Do stuff
-    }
+  public function onOrderWritten(EntityWrittenEvent $event): void
+  {
+    // Do stuff
+  }
 }
 ```
 
@@ -70,39 +70,38 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class ListenToOrderChanges implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            PreWriteValidationEvent::class => 'triggerChangeSet',
-            OrderEvents::ORDER_WRITTEN_EVENT => 'onOrderWritten',
-        ];
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      PreWriteValidationEvent::class => 'triggerChangeSet',
+      OrderEvents::ORDER_WRITTEN_EVENT => 'onOrderWritten',
+    ];
+  }
+
+  public function triggerChangeSet(PreWriteValidationEvent $event): void
+  {
+    foreach ($event->getCommands() as $command) {
+      if (!$command instanceof ChangeSetAware) {
+        continue;
+      }
+
+      /** @var ChangeSetAware|InsertCommand|UpdateCommand $command */
+      if ($command->getDefinition()->getEntityName() !== OrderDefinition::ENTITY_NAME) {
+        continue;
+      }
+
+      $command->requestChangeSet();
     }
+  }
 
-    public function triggerChangeSet(PreWriteValidationEvent $event): void
-    {
-        foreach ($event->getCommands() as $command) {
-            if (!$command instanceof ChangeSetAware) {
-                continue;
-            }
+  public function onOrderWritten(EntityWrittenEvent $event): void
+  {
+    foreach ($event->getWriteResults() as $result) {
+      $changeSet = $result->getChangeSet();
 
-            /** @var ChangeSetAware|InsertCommand|UpdateCommand $command */
-            if ($command->getDefinition()->getEntityName() !== OrderDefinition::ENTITY_NAME) {
-                continue;
-            }
-
-            $command->requestChangeSet();
-        }
-
+      // Do stuff
     }
-
-    public function onOrderWritten(EntityWrittenEvent $event): void
-    {
-        foreach ($event->getWriteResults() as $result) {
-            $changeSet = $result->getChangeSet();
-
-            // Do stuff
-        }
-    }
+  }
 }
 ```
 

@@ -33,13 +33,13 @@ use Symfony\Component\Messenger\Middleware\StackInterface;
 
 class ExampleMiddleware implements MiddlewareInterface
 {
-    public function handle(Envelope $envelope, StackInterface $stack): Envelope
-    {
-        // do something here
+  public function handle(Envelope $envelope, StackInterface $stack): Envelope
+  {
+    // do something here
 
-        // don't forget to call the next middleware
-        return $stack->next()->handle($envelope, $stack);
-    }
+    // don't forget to call the next middleware
+    return $stack->next()->handle($envelope, $stack);
+  }
 }
 ```
 

@@ -42,20 +42,20 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class Subscriber implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            MediaFileExtensionWhitelistEvent::class => 'addEntryToFileExtensionWhitelist'
-        ];
-    }
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      MediaFileExtensionWhitelistEvent::class => 'addEntryToFileExtensionWhitelist'
+    ];
+  }
 
-    public function addEntryToFileExtensionWhitelist(MediaFileExtensionWhitelistEvent $event): void
-    {
-        $whiteList = $event->getWhitelist();
-        $whiteList[] = 'img';
+  public function addEntryToFileExtensionWhitelist(MediaFileExtensionWhitelistEvent $event): void
+  {
+    $whiteList = $event->getWhitelist();
+    $whiteList[] = 'img';
 
-        $event->setWhitelist($whiteList);
-    }
+    $event->setWhitelist($whiteList);
+  }
 }
 ```
 
@@ -96,25 +96,25 @@ use Shopware\Core\Content\Media\TypeDetector\TypeDetectorInterface;
 
 class CustomImageTypeDetector implements TypeDetectorInterface
 {
-    protected const SUPPORTED_FILE_EXTENSIONS = [
-        'img' => [ImageType::TRANSPARENT],
-    ];
+  protected const SUPPORTED_FILE_EXTENSIONS = [
+    'img' => [ImageType::TRANSPARENT],
+  ];
 
-    public function detect(MediaFile $mediaFile, ?MediaType $previouslyDetectedType): ?MediaType
-    {
-        $fileExtension = mb_strtolower($mediaFile->getFileExtension());
-        if (!\array_key_exists($fileExtension, self::SUPPORTED_FILE_EXTENSIONS)) {
-            return $previouslyDetectedType;
-        }
-
-        if ($previouslyDetectedType === null) {
-            $previouslyDetectedType = new ImageType();
-        }
-
-        $previouslyDetectedType->addFlags(self::SUPPORTED_FILE_EXTENSIONS[$fileExtension]);
-
-        return $previouslyDetectedType;
+  public function detect(MediaFile $mediaFile, ?MediaType $previouslyDetectedType): ?MediaType
+  {
+    $fileExtension = mb_strtolower($mediaFile->getFileExtension());
+    if (!\array_key_exists($fileExtension, self::SUPPORTED_FILE_EXTENSIONS)) {
+      return $previouslyDetectedType;
     }
+
+    if ($previouslyDetectedType === null) {
+      $previouslyDetectedType = new ImageType();
+    }
+
+    $previouslyDetectedType->addFlags(self::SUPPORTED_FILE_EXTENSIONS[$fileExtension]);
+
+    return $previouslyDetectedType;
+  }
 }
 ```
 

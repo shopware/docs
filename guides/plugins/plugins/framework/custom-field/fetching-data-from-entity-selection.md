@@ -37,16 +37,16 @@ use Shopware\Core\Content\Product\ProductEvents;
 
 class ProductSubscriber implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            ProductEvents::PRODUCT_LOADED_EVENT => 'onProductLoaded'
-        ];
-    }
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      ProductEvents::PRODUCT_LOADED_EVENT => 'onProductLoaded'
+    ];
+  }
 
-    public function onProductLoaded(EntityLoadedEvent $event): void
-    {
-    }
+  public function onProductLoaded(EntityLoadedEvent $event): void
+  {
+  }
 }
 ```
 
@@ -82,33 +82,33 @@ use Shopware\Core\Content\Product\ProductEvents;
 
 class ProductSubscriber implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            ProductEvents::PRODUCT_LOADED_EVENT => 'onProductLoaded'
-        ];
-    }
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      ProductEvents::PRODUCT_LOADED_EVENT => 'onProductLoaded'
+    ];
+  }
 
-    public function onProductLoaded(EntityLoadedEvent $event): void
-    {
+  public function onProductLoaded(EntityLoadedEvent $event): void
+  {
 
-        // loop through all loaded product      
-        /** @var ProductEntity $productEntity */
-        foreach ($event->getEntities() as $productEntity) {
-            $customFields = $productEntity->getCustomFields();
+    // loop through all loaded product      
+    /** @var ProductEntity $productEntity */
+    foreach ($event->getEntities() as $productEntity) {
+      $customFields = $productEntity->getCustomFields();
 
-            // loop through each product's custom fields
-            foreach($customFields as $name => $value) {
-                if ($name !== 'custom_linked_product' || empty($value)) {
-                    continue;
-                }
-
-               // resolve the $value here
-            }
-
-            $productEntity->setCustomFields($customFields);
+      // loop through each product's custom fields
+      foreach ($customFields as $name => $value) {
+        if ($name !== 'custom_linked_product' || empty($value)) {
+          continue;
         }
+
+        // resolve the $value here
+      }
+
+      $productEntity->setCustomFields($customFields);
     }
+  }
 }
 ```
 
@@ -152,14 +152,14 @@ use Shopware\Core\Content\Product\ProductEvents;
 
 class ProductSubscriber implements EventSubscriberInterface
 {
-    private EntityRepository $productRepository;
+  private EntityRepository $productRepository;
 
-    public function __construct(EntityRepository $productRepository) 
-    {
-        $this->productRepository = $productRepository;
-    }
+  public function __construct(EntityRepository $productRepository)
+  {
+    $this->productRepository = $productRepository;
+  }
 
-   //...
+  //...
 }
 ```
 
@@ -182,43 +182,43 @@ use Shopware\Core\Content\Product\ProductEvents;
 
 class ProductSubscriber implements EventSubscriberInterface
 {
-    private EntityRepository $productRepository;
+  private EntityRepository $productRepository;
 
-    public function __construct(EntityRepository $productRepository) 
-    {
-        $this->productRepository = $productRepository;
+  public function __construct(EntityRepository $productRepository)
+  {
+    $this->productRepository = $productRepository;
+  }
+
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      ProductEvents::PRODUCT_LOADED_EVENT => 'onProductLoaded'
+    ];
+  }
+
+  public function onProductLoaded(EntityLoadedEvent $event): void
+  {
+    // extract all ids of our custom field
+    $ids = array_map(function (ProductEntity $entity) {
+      return $entity->getCustomFields()['custom_demo_test'] ?? null;
+    }, $event->getEntities());
+
+    // filter empty ids
+    $ids = array_filter($ids);
+
+    // load all products in one request instead of one request per product (big performance boost)
+    $products = $this->productRepository->search(new Criteria($ids), $event->getContext());
+
+    /** @var ProductEntity $entity */
+    foreach ($event->getEntities() as $entity) {
+      // check if the custom field is set
+      if (!$id = $entity->getCustomFields()['custom_demo_test'] ?? null) {
+        continue;
+      }
+
+      // add the product to the entity as entity extension
+      $entity->addExtension('my_custom_demo_product', $products->get($id));
     }
-
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            ProductEvents::PRODUCT_LOADED_EVENT => 'onProductLoaded'
-        ];
-    }
-
-    public function onProductLoaded(EntityLoadedEvent $event): void
-    {
-        // extract all ids of our custom field
-        $ids = array_map(function (ProductEntity $entity) {
-            return $entity->getCustomFields()['custom_demo_test'] ?? null;
-        }, $event->getEntities());
-
-        // filter empty ids
-        $ids = array_filter($ids);
-
-        // load all products in one request instead of one request per product (big performance boost)
-        $products = $this->productRepository->search(new Criteria($ids), $event->getContext());
-
-        /** @var ProductEntity $entity */
-        foreach ($event->getEntities() as $entity) {
-            // check if the custom field is set
-            if (!$id = $entity->getCustomFields()['custom_demo_test'] ?? null) {
-                continue;
-            }
-
-            // add the product to the entity as entity extension
-            $entity->addExtension('my_custom_demo_product', $products->get($id));
-        }
-    }
+  }
 }
 ```

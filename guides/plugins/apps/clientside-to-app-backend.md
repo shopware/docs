@@ -122,13 +122,13 @@ use Symfony\Component\Routing\Attribute\Route;
 
 #[AsController]
 class StorefrontController {
-    #[Route('/storefront/action')]
-    public function handle(StorefrontAction $webhook): Response
-    {
-        // handle action
-        
-        return new Response(null, 204);
-    }
+  #[Route('/storefront/action')]
+  public function handle(StorefrontAction $webhook): Response
+  {
+    // handle action
+    
+    return new Response(null, 204);
+  }
 }
 ```
 

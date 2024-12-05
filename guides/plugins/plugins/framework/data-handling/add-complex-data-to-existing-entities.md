@@ -41,17 +41,17 @@ use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
 
 class CustomExtension extends EntityExtension
 {
-    public function extendFields(FieldCollection $collection): void
-    {
-        $collection->add(
-            // new fields here
-        );
-    }
+  public function extendFields(FieldCollection $collection): void
+  {
+    $collection->add(
+      // new fields here
+    );
+  }
 
-    public function getDefinitionClass(): string
-    {
-        return ProductDefinition::class;
-    }
+  public function getDefinitionClass(): string
+  {
+    return ProductDefinition::class;
+  }
 }
 ```
 
@@ -86,6 +86,7 @@ Let's start with the `CustomExtension` class by adding a new field in the `exten
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Extension\Content\Product;
+
 use Shopware\Core\Content\Product\ProductDefinition;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityExtension;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\OneToOneAssociationField;
@@ -93,17 +94,17 @@ use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
 
 class CustomExtension extends EntityExtension
 {
-    public function extendFields(FieldCollection $collection): void
-    {
-        $collection->add(
-            new OneToOneAssociationField('exampleExtension', 'id', 'product_id', ExampleExtensionDefinition::class, true)
-        );
-    }
+  public function extendFields(FieldCollection $collection): void
+  {
+    $collection->add(
+      new OneToOneAssociationField('exampleExtension', 'id', 'product_id', ExampleExtensionDefinition::class, true)
+    );
+  }
 
-    public function getDefinitionClass(): string
-    {
-        return ProductDefinition::class;
-    }
+  public function getDefinitionClass(): string
+  {
+    return ProductDefinition::class;
+  }
 }
 ```
 
@@ -141,29 +142,29 @@ use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
 
 class ExampleExtensionDefinition extends EntityDefinition
 {
-    public const ENTITY_NAME = 'swag_example_extension';
+  public const ENTITY_NAME = 'swag_example_extension';
 
-    public function getEntityName(): string
-    {
-        return self::ENTITY_NAME;
-    }
+  public function getEntityName(): string
+  {
+    return self::ENTITY_NAME;
+  }
 
-    public function getEntityClass(): string
-    {
-        return ExampleExtensionEntity::class;
-    }
+  public function getEntityClass(): string
+  {
+    return ExampleExtensionEntity::class;
+  }
 
-    protected function defineFields(): FieldCollection
-    {
-        return new FieldCollection([
-            (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
-            new FkField('product_id', 'productId', ProductDefinition::class),
-            (new StringField('custom_string', 'customString')),
-            // ReferenceVersionField only needed on versioned entities
-            new ReferenceVersionField(ProductDefinition::class, 'product_version_id'),
-            new OneToOneAssociationField('product', 'product_id', 'id', ProductDefinition::class, false)
-        ]);
-    }
+  protected function defineFields(): FieldCollection
+  {
+    return new FieldCollection([
+      (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
+      new FkField('product_id', 'productId', ProductDefinition::class),
+      (new StringField('custom_string', 'customString')),
+      // ReferenceVersionField only needed on versioned entities
+      new ReferenceVersionField(ProductDefinition::class, 'product_version_id'),
+      new OneToOneAssociationField('product', 'product_id', 'id', ProductDefinition::class, false)
+    ]);
+  }
 }
 ```
 
@@ -213,33 +214,31 @@ use Shopware\Core\Framework\Migration\MigrationStep;
 
 class Migration1614903457ExampleExtension extends MigrationStep
 {
-    public function getCreationTimestamp(): int
-    {
-        return 1614903457;
-    }
+  public function getCreationTimestamp(): int
+  {
+    return 1614903457;
+  }
 
-    public function update(Connection $connection): void
-    {
+  public function update(Connection $connection): void
+  {
     // product_version_id only needed when extending a versioned entity
-        $sql = <<<SQL
+    $sql = <<<SQL
 CREATE TABLE IF NOT EXISTS `swag_example_extension` (
-    `id` BINARY(16) NOT NULL,
-    `product_id` BINARY(16) NULL,
-    `product_version_id` BINARY(16) NOT NULL,
-    `custom_string` VARCHAR(255) NULL,
-    `created_at` DATETIME(3) NOT NULL,
-    `updated_at` DATETIME(3) NULL,
-    PRIMARY KEY (`id`),
-    KEY `fk.swag_example_extension.product_id` (`product_id`),
-    CONSTRAINT `fk.swag_example_extension.product_id` FOREIGN KEY (`product_id`, `product_version_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  `id` BINARY(16) NOT NULL,
+  `product_id` BINARY(16) NULL,
+  `product_version_id` BINARY(16) NOT NULL,
+  `custom_string` VARCHAR(255) NULL,
+  `created_at` DATETIME(3) NOT NULL,
+  `updated_at` DATETIME(3) NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk.swag_example_extension.product_id` (`product_id`),
+  CONSTRAINT `fk.swag_example_extension.product_id` FOREIGN KEY (`product_id`, `product_version_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 SQL;
-        $connection->executeStatement($sql);
-    }
+    $connection->executeStatement($sql);
+  }
 
-    public function updateDestructive(Connection $connection): void
-    {
-    }
+  public function updateDestructive(Connection $connection): void {}
 }
 ```
 
@@ -255,10 +254,10 @@ As with every [write operation](writing-data), this is done via the product repo
 
 ```php
 $this->productRepository->upsert([[
-    'id' => '<your product ID here>',
-    'exampleExtension' => [
-        'customString' => 'foo bar'
-    ]
+  'id' => '<your product ID here>',
+  'exampleExtension' => [
+    'customString' => 'foo bar'
+  ]
 ]], $context);
 ```
 
@@ -284,20 +283,20 @@ use Shopware\Core\Content\Product\ProductEvents;
 
 class ProductSubscriber implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            ProductEvents::PRODUCT_LOADED_EVENT => 'onProductsLoaded'
-        ];
-    }
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      ProductEvents::PRODUCT_LOADED_EVENT => 'onProductsLoaded'
+    ];
+  }
 
-    public function onProductsLoaded(EntityLoadedEvent $event): void
-    {
-        /** @var ProductEntity $productEntity */
-        foreach ($event->getEntities() as $productEntity) {
-            $productEntity->addExtension('custom_string', new ArrayEntity(['foo' => 'bar']));
-        }
+  public function onProductsLoaded(EntityLoadedEvent $event): void
+  {
+    /** @var ProductEntity $productEntity */
+    foreach ($event->getEntities() as $productEntity) {
+      $productEntity->addExtension('custom_string', new ArrayEntity(['foo' => 'bar']));
     }
+  }
 }
 ```
 
@@ -336,7 +335,7 @@ This feature is available since Shopware 6.6.10.0
 In case your project or plugin requires many entity extensions, you can register a `BulkEntityExtension` which allows extending multiple entities at once:
 
 ```php
-<?php
+<?php declare(strict_types=1);
 
 namespace Examples;
 
@@ -345,17 +344,17 @@ use Shopware\Core\Content\Category\CategoryDefinition;
 
 class MyBulkExtension extends BulkEntityExtension
 {
-    public function collect(): \Generator
-    {
-        yield ProductDefinition::ENTITY_NAME => [
-            new FkField('main_category_id', 'mainCategoryId', CategoryDefinition::class),
-        ];
+  public function collect(): \Generator
+  {
+    yield ProductDefinition::ENTITY_NAME => [
+      new FkField('main_category_id', 'mainCategoryId', CategoryDefinition::class),
+    ];
 
-        yield CategoryDefinition::ENTITY_NAME => [
-            new FkField('product_id', 'productId', ProductDefinition::class),
-            new ManyToOneAssociationField('product', 'product_id', ProductDefinition::class),
-        ];
-    }
+    yield CategoryDefinition::ENTITY_NAME => [
+      new FkField('product_id', 'productId', ProductDefinition::class),
+      new ManyToOneAssociationField('product', 'product_id', ProductDefinition::class),
+    ];
+  }
 }
 ```
 

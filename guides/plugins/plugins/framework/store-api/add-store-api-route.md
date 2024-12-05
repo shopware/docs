@@ -40,9 +40,9 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 
 abstract class AbstractExampleRoute
 {
-    abstract public function getDecorated(): AbstractExampleRoute;
+  abstract public function getDecorated(): AbstractExampleRoute;
 
-    abstract public function load(Criteria $criteria, SalesChannelContext $context): ExampleRouteResponse;
+  abstract public function load(Criteria $criteria, SalesChannelContext $context): ExampleRouteResponse;
 }
 ```
 
@@ -65,23 +65,23 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route(defaults: ['_routeScope' => ['store-api']])]
 class ExampleRoute extends AbstractExampleRoute
 {
-    protected EntityRepository $exampleRepository;
+  protected EntityRepository $exampleRepository;
 
-    public function __construct(EntityRepository $exampleRepository)
-    {
-        $this->exampleRepository = $exampleRepository;
-    }
+  public function __construct(EntityRepository $exampleRepository)
+  {
+    $this->exampleRepository = $exampleRepository;
+  }
 
-    public function getDecorated(): AbstractExampleRoute
-    {
-        throw new DecorationPatternException(self::class);
-    }
+  public function getDecorated(): AbstractExampleRoute
+  {
+    throw new DecorationPatternException(self::class);
+  }
 
-    #[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET','POST'], defaults: ['_entity' => 'swag_example'])]
-    public function load(Criteria $criteria, SalesChannelContext $context): ExampleRouteResponse
-    {
-        return new ExampleRouteResponse($this->exampleRepository->search($criteria, $context->getContext()));
-    }
+  #[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET', 'POST'], defaults: ['_entity' => 'swag_example'])]
+  public function load(Criteria $criteria, SalesChannelContext $context): ExampleRouteResponse
+  {
+    return new ExampleRouteResponse($this->exampleRepository->search($criteria, $context->getContext()));
+  }
 }
 ```
 
@@ -127,10 +127,10 @@ use Swag\BasicExample\Core\Content\Example\ExampleCollection;
  */
 class ExampleRouteResponse extends StoreApiResponse
 {
-    public function getExamples(): ExampleCollection
-    {
-        return $this->object->getEntities();
-    }
+  public function getExamples(): ExampleCollection
+  {
+    return $this->object->getEntities();
+  }
 }
 ```
 
@@ -311,18 +311,18 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route(defaults: ['_routeScope' => ['storefront']])]
 class ExampleController extends StorefrontController
 {
-    private AbstractExampleRoute $route;
+  private AbstractExampleRoute $route;
 
-    public function __construct(AbstractExampleRoute $route)
-    {
-        $this->route = $route;
-    }
+  public function __construct(AbstractExampleRoute $route)
+  {
+    $this->route = $route;
+  }
 
-    #[Route(path: '/example', name: 'frontend.example.search', methods: ['GET', 'POST'], defaults: ['XmlHttpRequest' => 'true', '_entity' => 'swag_example'])]
-    public function load(Criteria $criteria, SalesChannelContext $context): Response
-    {
-        return $this->route->load($criteria, $context);
-    }
+  #[Route(path: '/example', name: 'frontend.example.search', methods: ['GET', 'POST'], defaults: ['XmlHttpRequest' => 'true', '_entity' => 'swag_example'])]
+  public function load(Criteria $criteria, SalesChannelContext $context): Response
+  {
+    return $this->route->load($criteria, $context);
+  }
 }
 ```
 

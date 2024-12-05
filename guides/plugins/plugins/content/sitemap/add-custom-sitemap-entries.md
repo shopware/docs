@@ -82,81 +82,81 @@ use Symfony\Component\Routing\RouterInterface;
 
 class CustomUrlProvider extends AbstractUrlProvider
 {
-    public const CHANGE_FREQ = 'daily';
-    public const PRIORITY = 1.0;
+  public const CHANGE_FREQ = 'daily';
+  public const PRIORITY = 1.0;
 
-    private EntityRepository $exampleRepository;
+  private EntityRepository $exampleRepository;
 
-    private Connection $connection;
+  private Connection $connection;
 
-    private RouterInterface $router;
+  private RouterInterface $router;
 
-    public function __construct(
-        EntityRepository $exampleRepository,
-        Connection $connection,
-        RouterInterface $router
-    ) {
-        $this->exampleRepository = $exampleRepository;
-        $this->connection = $connection;
-        $this->router = $router;
+  public function __construct(
+    EntityRepository $exampleRepository,
+    Connection $connection,
+    RouterInterface $router
+  ) {
+    $this->exampleRepository = $exampleRepository;
+    $this->connection = $connection;
+    $this->router = $router;
+  }
+
+  public function getDecorated(): AbstractUrlProvider
+  {
+    throw new DecorationPatternException(self::class);
+  }
+
+  public function getName(): string
+  {
+    return 'custom';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getUrls(SalesChannelContext $context, int $limit, ?int $offset = null): UrlResult
+  {
+    $criteria = new Criteria();
+    $criteria->setLimit($limit);
+    $criteria->setOffset($offset);
+
+    $exampleEntities = $this->exampleRepository->search($criteria, $context->getContext());
+
+    if ($exampleEntities->count() === 0) {
+      return new UrlResult([], null);
     }
 
-    public function getDecorated(): AbstractUrlProvider
-    {
-        throw new DecorationPatternException(self::class);
+    $seoUrls = $this->getSeoUrls($exampleEntities->getIds(), 'frontend.example.example', $context, $this->connection);
+    $seoUrls = FetchModeHelper::groupUnique($seoUrls);
+
+    $urls = [];
+
+    /** @var ExampleEntity $exampleEntity */
+    foreach ($exampleEntities as $exampleEntity) {
+      $exampleUrl = new Url();
+      $exampleUrl->setLastmod($exampleEntity->getUpdatedAt() ?? new \DateTime());
+      $exampleUrl->setChangefreq(self::CHANGE_FREQ);
+      $exampleUrl->setPriority(self::PRIORITY);
+      $exampleUrl->setResource(ExampleEntity::class);
+      $exampleUrl->setIdentifier($exampleEntity->getId());
+
+      if (isset($seoUrls[$exampleEntity->getId()])) {
+        $exampleUrl->setLoc($seoUrls[$exampleEntity->getId()]['seo_path_info']);
+      } else {
+        $exampleUrl->setLoc(
+          $this->router->generate(
+            'frontend.example.example',
+            ['exampleId' => $exampleEntity->getId()],
+            UrlGeneratorInterface::ABSOLUTE_PATH
+          )
+        );
+      }
+
+      $urls[] = $exampleUrl;
     }
 
-    public function getName(): string
-    {
-        return 'custom';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getUrls(SalesChannelContext $context, int $limit, ?int $offset = null): UrlResult
-    {
-        $criteria = new Criteria();
-        $criteria->setLimit($limit);
-        $criteria->setOffset($offset);
-
-        $exampleEntities = $this->exampleRepository->search($criteria, $context->getContext());
-
-        if ($exampleEntities->count() === 0) {
-            return new UrlResult([], null);
-        }
-
-        $seoUrls = $this->getSeoUrls($exampleEntities->getIds(), 'frontend.example.example', $context, $this->connection);
-        $seoUrls = FetchModeHelper::groupUnique($seoUrls);
-
-        $urls = [];
-
-        /** @var ExampleEntity $exampleEntity */
-        foreach ($exampleEntities as $exampleEntity) {
-            $exampleUrl = new Url();
-            $exampleUrl->setLastmod($exampleEntity->getUpdatedAt() ?? new \DateTime());
-            $exampleUrl->setChangefreq(self::CHANGE_FREQ);
-            $exampleUrl->setPriority(self::PRIORITY);
-            $exampleUrl->setResource(ExampleEntity::class);
-            $exampleUrl->setIdentifier($exampleEntity->getId());
-
-            if (isset($seoUrls[$exampleEntity->getId()])) {
-                $exampleUrl->setLoc($seoUrls[$exampleEntity->getId()]['seo_path_info']);
-            } else {
-                $exampleUrl->setLoc(
-                    $this->router->generate(
-                        'frontend.example.example',
-                        ['exampleId' => $exampleEntity->getId()],
-                        UrlGeneratorInterface::ABSOLUTE_PATH
-                    )
-                );
-            }
-
-            $urls[] = $exampleUrl;
-        }
-
-        return new UrlResult($urls, null);
-    }
+    return new UrlResult($urls, null);
+  }
 }
 ```
 

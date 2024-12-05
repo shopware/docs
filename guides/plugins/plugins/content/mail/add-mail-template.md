@@ -49,144 +49,142 @@ use Shopware\Core\Framework\Uuid\Uuid;
 
 class Migration1616418675AddMailTemplate extends MigrationStep
 {
-    public function getCreationTimestamp(): int
-    {
-        return 1616418675;
+  public function getCreationTimestamp(): int
+  {
+    return 1616418675;
+  }
+
+  public function update(Connection $connection): void
+  {
+    $mailTemplateTypeId = $this->getMailTemplateTypeId($connection);
+
+    $this->createMailTemplate($connection, $mailTemplateTypeId);
+  }
+
+  public function updateDestructive(Connection $connection): void {}
+
+  private function getMailTemplateTypeId(Connection $connection): string
+  {
+    $sql = <<<SQL
+SELECT id
+FROM mail_template_type
+WHERE technical_name = "contact_form"
+SQL;
+
+    return Uuid::fromBytesToHex($connection->fetchOne($sql));
+  }
+
+  private function getLanguageIdByLocale(Connection $connection, string $locale): ?string
+  {
+    $sql = <<<SQL
+SELECT `language`.`id`
+FROM `language`
+INNER JOIN `locale` ON `locale`.`id` = `language`.`locale_id`
+WHERE `locale`.`code` = :code
+SQL;
+
+    $languageId = $connection->executeQuery($sql, ['code' => $locale])->fetchOne();
+
+    if (empty($languageId)) {
+      return null;
     }
 
-    public function update(Connection $connection): void
-    {
-        $mailTemplateTypeId = $this->getMailTemplateTypeId($connection);
+    return $languageId;
+  }
 
-        $this->createMailTemplate($connection, $mailTemplateTypeId);
+  private function createMailTemplate(Connection $connection, string $mailTemplateTypeId): void
+  {
+    $mailTemplateId = Uuid::randomHex();
+
+    $enGbLangId = $this->getLanguageIdByLocale($connection, 'en-GB');
+    $deDeLangId = $this->getLanguageIdByLocale($connection, 'de-DE');
+
+    $connection->executeStatement("
+      INSERT IGNORE INTO `mail_template`
+        (id, mail_template_type_id, system_default, created_at)
+      VALUES
+        (:id, :mailTemplateTypeId, :systemDefault, :createdAt)
+      ", [
+      'id' => Uuid::fromHexToBytes($mailTemplateId),
+      'mailTemplateTypeId' => Uuid::fromHexToBytes($mailTemplateTypeId),
+      'systemDefault' => 0,
+      'createdAt' => (new DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
+    ]);
+
+    if (!empty($enGbLangId)) {
+      $connection->executeStatement("
+          INSERT IGNORE INTO `mail_template_translation`
+            (mail_template_id, language_id, sender_name, subject, description, content_html, content_plain, created_at)
+          VALUES
+            (:mailTemplateId, :languageId, :senderName, :subject, :description, :contentHtml, :contentPlain, :createdAt)
+          ", [
+        'mailTemplateId' => Uuid::fromHexToBytes($mailTemplateId),
+        'languageId' => $enGbLangId,
+        'senderName' => '{{ salesChannel.name }}',
+        'subject' => 'Example mail template subject',
+        'description' => 'Example mail template description',
+        'contentHtml' => $this->getContentHtmlEn(),
+        'contentPlain' => $this->getContentPlainEn(),
+        'createdAt' => (new DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
+      ]);
     }
 
-    public function updateDestructive(Connection $connection): void
-    {
+    if (!empty($deDeLangId)) {
+      $connection->executeStatement("
+          INSERT IGNORE INTO `mail_template_translation`
+            (mail_template_id, language_id, sender_name, subject, description, content_html, content_plain, created_at)
+          VALUES
+            (:mailTemplateId, :languageId, :senderName, :subject, :description, :contentHtml, :contentPlain, :createdAt)
+          ", [
+        'mailTemplateId' => Uuid::fromHexToBytes($mailTemplateId),
+        'languageId' => $deDeLangId,
+        'senderName' => '{{ salesChannel.name }}',
+        'subject' => 'Beispiel E-Mail Template Titel',
+        'description' => 'Beispiel E-Mail Template Beschreibung',
+        'contentHtml' => $this->getContentHtmlDe(),
+        'contentPlain' => $this->getContentPlainDe(),
+        'createdAt' => (new DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
+      ]);
     }
+  }
 
-    private function getMailTemplateTypeId(Connection $connection): string
-    {
-        $sql = <<<SQL
-            SELECT id
-            FROM mail_template_type
-            WHERE technical_name = "contact_form"
-        SQL;
+  private function getContentHtmlEn(): string
+  {
+    return <<<MAIL
+<div style="font-family:arial; font-size:12px;">
+  <p>
+    Example HTML content!
+  </p>
+</div>
+MAIL;
+  }
 
-        return Uuid::fromBytesToHex($connection->fetchOne($sql));
-    }
+  private function getContentPlainEn(): string
+  {
+    return <<<MAIL
+Example plain content!
+MAIL;
+  }
 
-    private function getLanguageIdByLocale(Connection $connection, string $locale): ?string
-    {
-        $sql = <<<SQL
-        SELECT `language`.`id`
-        FROM `language`
-        INNER JOIN `locale` ON `locale`.`id` = `language`.`locale_id`
-        WHERE `locale`.`code` = :code
-        SQL;
+  private function getContentHtmlDe(): string
+  {
+    return <<<MAIL
+<div style="font-family:arial; font-size:12px;">
+  <p>
+    Beispiel HTML Inhalt!
+  </p>
+</div>
+MAIL;
+  }
 
-        $languageId = $connection->executeQuery($sql, ['code' => $locale])->fetchOne();
-
-        if (empty($languageId)) {
-            return null;
-        }
-
-        return $languageId;
-    }
-
-    private function createMailTemplate(Connection $connection, string $mailTemplateTypeId): void
-    {
-        $mailTemplateId = Uuid::randomHex();
-
-        $enGbLangId = $this->getLanguageIdByLocale($connection, 'en-GB');
-        $deDeLangId = $this->getLanguageIdByLocale($connection, 'de-DE');
-
-        $connection->executeStatement("
-        INSERT IGNORE INTO `mail_template`
-            (id, mail_template_type_id, system_default, created_at)
-        VALUES
-            (:id, :mailTemplateTypeId, :systemDefault, :createdAt)
-        ",[
-            'id' => Uuid::fromHexToBytes($mailTemplateId),
-            'mailTemplateTypeId' => Uuid::fromHexToBytes($mailTemplateTypeId),
-            'systemDefault' => 0,
-            'createdAt' => (new DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
-        ]);
-
-        if (!empty($enGbLangId)) {
-            $connection->executeStatement("
-            INSERT IGNORE INTO `mail_template_translation`
-                (mail_template_id, language_id, sender_name, subject, description, content_html, content_plain, created_at)
-            VALUES
-                (:mailTemplateId, :languageId, :senderName, :subject, :description, :contentHtml, :contentPlain, :createdAt)
-            ",[
-                'mailTemplateId' => Uuid::fromHexToBytes($mailTemplateId),
-                'languageId' => $enGbLangId,
-                'senderName' => '{{ salesChannel.name }}',
-                'subject' => 'Example mail template subject',
-                'description' => 'Example mail template description',
-                'contentHtml' => $this->getContentHtmlEn(),
-                'contentPlain' => $this->getContentPlainEn(),
-                'createdAt' => (new DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
-            ]);
-        }
-
-        if (!empty($deDeLangId)) {            
-            $connection->executeStatement("
-            INSERT IGNORE INTO `mail_template_translation`
-                (mail_template_id, language_id, sender_name, subject, description, content_html, content_plain, created_at)
-            VALUES
-                (:mailTemplateId, :languageId, :senderName, :subject, :description, :contentHtml, :contentPlain, :createdAt)
-            ",[
-                'mailTemplateId' => Uuid::fromHexToBytes($mailTemplateId),
-                'languageId' => $deDeLangId,
-                'senderName' => '{{ salesChannel.name }}',
-                'subject' => 'Beispiel E-Mail Template Titel',
-                'description' => 'Beispiel E-Mail Template Beschreibung',
-                'contentHtml' => $this->getContentHtmlDe(),
-                'contentPlain' => $this->getContentPlainDe(),
-                'createdAt' => (new DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
-            ]);
-        }
-
-    }
-
-    private function getContentHtmlEn(): string
-    {
-        return <<<MAIL
-        <div style="font-family:arial; font-size:12px;">
-            <p>
-                Example HTML content!
-            </p>
-        </div>
-        MAIL;
-    }
-
-    private function getContentPlainEn(): string
-    {
-        return <<<MAIL
-        Example plain content!
-        MAIL;
-    }
-
-    private function getContentHtmlDe(): string
-    {
-        return <<<MAIL
-        <div style="font-family:arial; font-size:12px;">
-            <p>
-                Beispiel HTML Inhalt!
-            </p>
-        </div>
-        MAIL;
-    }
-
-    private function getContentPlainDe(): string
-    {
-        return <<<MAIL
-        Beispiel Plain Inhalt!
-        MAIL;
-    }
+  private function getContentPlainDe(): string
+  {
+    return <<<MAIL
+Beispiel Plain Inhalt!
+MAIL;
+  }
 }
+
 ```
 
 First of all, let's have a look at the small `update` method. It's mainly just fetching the mail template type ID using a short SQL statement and afterwards it executes the method `createMailTemplate`, which will cover all the other steps.
@@ -227,72 +225,72 @@ use Shopware\Core\Framework\Uuid\Uuid;
 
 class Migration1616418675AddMailTemplate extends MigrationStep
 {
-    public function getCreationTimestamp(): int
-    {
-        return 1616418675;
+  public function getCreationTimestamp(): int
+  {
+    return 1616418675;
+  }
+
+  public function update(Connection $connection): void
+  {
+    $mailTemplateTypeId = $this->createMailTemplateType($connection);
+
+    $this->createMailTemplate($connection, $mailTemplateTypeId);
+  }
+
+  private function createMailTemplateType(Connection $connection): string
+  {
+    $mailTemplateTypeId = Uuid::randomHex();
+
+    $enGbLangId = $this->getLanguageIdByLocale($connection, 'en-GB');
+    $deDeLangId = $this->getLanguageIdByLocale($connection, 'de-DE');
+
+    $englishName = 'Example mail template type name';
+    $germanName = 'Beispiel E-Mail Template Name';
+
+    $connection->executeStatement("
+          INSERT IGNORE INTO `mail_template_type`
+            (id, technical_name, available_entities, created_at)
+          VALUES
+            (:id, :technicalName, :availableEntities, :createdAt)
+      ", [
+      'id' => Uuid::fromHexToBytes($mailTemplateTypeId),
+      'technicalName' => 'custom_mail_template_type',
+      'availableEntities' => json_encode(['product' => 'product']),
+      'createdAt' => (new DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
+    ]);
+
+    if (!empty($enGbLangId)) {
+      $connection->executeStatement("
+          INSERT IGNORE INTO `mail_template_type_translation`
+            (mail_template_type_id, language_id, name, created_at)
+          VALUES
+            (:mailTemplateTypeId, :languageId, :name, :createdAt)
+          ", [
+        'mailTemplateTypeId' => Uuid::fromHexToBytes($mailTemplateTypeId),
+        'languageId' => $enGbLangId,
+        'name' => $englishName,
+        'createdAt' => (new DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
+      ]);
     }
 
-    public function update(Connection $connection): void
-    {
-        $mailTemplateTypeId = $this->createMailTemplateType($connection);
-
-        $this->createMailTemplate($connection, $mailTemplateTypeId);
+    if (!empty($deDeLangId)) {
+      $connection->executeStatement("
+          INSERT IGNORE INTO `mail_template_type_translation`
+            (mail_template_type_id, language_id, name, created_at)
+          VALUES
+            (:mailTemplateTypeId, :languageId, :name, :createdAt)
+          ", [
+        'mailTemplateTypeId' => Uuid::fromHexToBytes($mailTemplateTypeId),
+        'languageId' => $deDeLangId,
+        'name' => $germanName,
+        'createdAt' => (new DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
+      ]);
     }
 
-    private function createMailTemplateType(Connection $connection): string
-    {
-        $mailTemplateTypeId = Uuid::randomHex();
+    return $mailTemplateTypeId;
+  }
 
-        $enGbLangId = $this->getLanguageIdByLocale($connection, 'en-GB');
-        $deDeLangId = $this->getLanguageIdByLocale($connection, 'de-DE');
-
-        $englishName = 'Example mail template type name';
-        $germanName = 'Beispiel E-Mail Template Name';
-
-        $connection->executeStatement("
-            INSERT IGNORE INTO `mail_template_type`
-                (id, technical_name, available_entities, created_at)
-            VALUES
-                (:id, :technicalName, :availableEntities, :createdAt)
-        ",[
-            'id' => Uuid::fromHexToBytes($mailTemplateTypeId),
-            'technicalName' => 'custom_mail_template_type',
-            'availableEntities' => json_encode(['product' => 'product']),
-            'createdAt' => (new DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
-        ]);
-
-        if (!empty($enGbLangId)) {
-            $connection->executeStatement("
-            INSERT IGNORE INTO `mail_template_type_translation`
-                (mail_template_type_id, language_id, name, created_at)
-            VALUES
-                (:mailTemplateTypeId, :languageId, :name, :createdAt)
-            ",[
-                'mailTemplateTypeId' => Uuid::fromHexToBytes($mailTemplateTypeId),
-                'languageId' => $enGbLangId,
-                'name' => $englishName,
-                'createdAt' => (new DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
-            ]);
-        }
-
-        if (!empty($deDeLangId)) {
-            $connection->executeStatement("
-            INSERT IGNORE INTO `mail_template_type_translation`
-                (mail_template_type_id, language_id, name, created_at)
-            VALUES
-                (:mailTemplateTypeId, :languageId, :name, :createdAt)
-            ",[
-                'mailTemplateTypeId' => Uuid::fromHexToBytes($mailTemplateTypeId),
-                'languageId' => $deDeLangId,
-                'name' => $germanName,
-                'createdAt' => (new DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
-            ]);
-        }
-
-        return $mailTemplateTypeId;
-    }
-
-    // ...
+  // ...
 }
 ```
 

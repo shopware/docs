@@ -116,9 +116,9 @@ With that, you can write a Symfony EventListener/Subscriber to listen to and rea
 #[AsEventListener(event: 'webhook.product.written')]
 class ProductUpdatedListener
 {
-    public function __invoke(WebhookAction $action): void
-    {
-        // handle the webhook
-    }
+  public function __invoke(WebhookAction $action): void
+  {
+    // handle the webhook
+  }
 }
 ```

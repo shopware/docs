@@ -91,26 +91,25 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 #[Package('inventory')]
 final class ResolveListingExtension extends Extension
 {
-    public const NAME = 'listing-loader.resolve';
+  public const NAME = 'listing-loader.resolve';
 
+  /**
+   * @internal shopware owns the __constructor, but the properties are public API
+   */
+  public function __construct(
     /**
-     * @internal shopware owns the __constructor, but the properties are public API
+     * @public
+     *
+     * @description The criteria which should be used to load the products. Is also containing the selected customer filter
      */
-    public function __construct(
-        /**
-         * @public
-         *
-         * @description The criteria which should be used to load the products. Is also containing the selected customer filter
-         */
-        public readonly Criteria $criteria,
-        /**
-         * @public
-         *
-         * @description Allows you to access to the current customer/sales-channel context
-         */
-        public readonly SalesChannelContext $context
-    ) {
-    }
+    public readonly Criteria $criteria,
+    /**
+     * @public
+     *
+     * @description Allows you to access to the current customer/sales-channel context
+     */
+    public readonly SalesChannelContext $context
+  ) {}
 }
 ```
 
@@ -130,50 +129,49 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 readonly class ResolveListingExample implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            'listing-loader.resolve.pre' => 'replace',
-        ];
-    }
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      'listing-loader.resolve.pre' => 'replace',
+    ];
+  }
 
-    /**
-     * @param EntityRepository<ProductCollection> $repository
-     */
-    public function __construct(
-        // you can inject your own services
-        private ClientInterface $client,
-        private EntityRepository $repository
-    ) {
-    }
+  /**
+   * @param EntityRepository<ProductCollection> $repository
+   */
+  public function __construct(
+    // you can inject your own services
+    private ClientInterface $client,
+    private EntityRepository $repository
+  ) {}
 
-    public function replace(ResolveListingExtension $event): void
-    {
-        $criteria = $event->criteria;
+  public function replace(ResolveListingExtension $event): void
+  {
+    $criteria = $event->criteria;
 
-        // building a json aware array for the API call
-        $context = [
-            'salesChannelId' => $event->context->getSalesChannelId(),
-            'currencyId' => $event->context->getCurrency(),
-            'languageId' => $event->context->getLanguageId(),
-        ];
+    // building a json aware array for the API call
+    $context = [
+      'salesChannelId' => $event->context->getSalesChannelId(),
+      'currencyId' => $event->context->getCurrency(),
+      'languageId' => $event->context->getLanguageId(),
+    ];
 
-        // do an api call against your own server or another storage, or whatever you want
-        $ids = $this->client->request('GET', 'https://your-api.com/listing-ids', [
-            'query' => [
-                'criteria' => json_encode($criteria),
-                'context' => json_encode($context),
-            ],
-        ]);
+    // do an api call against your own server or another storage, or whatever you want
+    $ids = $this->client->request('GET', 'https://your-api.com/listing-ids', [
+      'query' => [
+        'criteria' => json_encode($criteria),
+        'context' => json_encode($context),
+      ],
+    ]);
 
-        $data = json_decode($ids->getBody()->getContents(), true);
+    $data = json_decode($ids->getBody()->getContents(), true);
 
-        $criteria = new Criteria($data['ids']);
+    $criteria = new Criteria($data['ids']);
 
-        $event->result = $this->repository->search($criteria, $event->context->getContext());
+    $event->result = $this->repository->search($criteria, $event->context->getContext());
 
-        // stop the event propagation, so the core function will not be executed
-        $event->stopPropagation();
-    }
+    // stop the event propagation, so the core function will not be executed
+    $event->stopPropagation();
+  }
 }
 ```

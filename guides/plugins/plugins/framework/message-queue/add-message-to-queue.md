@@ -41,17 +41,17 @@ use Shopware\Core\Framework\MessageQueue\AsyncMessageInterface;
 
 class SmsNotification implements AsyncMessageInterface
 {
-    private string $content;
+  private string $content;
 
-    public function __construct(string $content)
-    {
-        $this->content = $content;
-    }
+  public function __construct(string $content)
+  {
+    $this->content = $content;
+  }
 
-    public function getContent(): string
-    {
-        return $this->content;
-    }
+  public function getContent(): string
+  {
+    return $this->content;
+  }
 }
 ```
 
@@ -70,17 +70,17 @@ use Symfony\Component\Messenger\MessageBusInterface;
 
 class ExampleSender
 {
-    private MessageBusInterface $bus;
+  private MessageBusInterface $bus;
 
-    public function __construct(MessageBusInterface $bus)
-    {
-        $this->bus = $bus;
-    }
+  public function __construct(MessageBusInterface $bus)
+  {
+    $this->bus = $bus;
+  }
 
-    public function sendMessage(string $message): void
-    {
-        $this->bus->dispatch(new SmsNotification($message));
-    }
+  public function sendMessage(string $message): void
+  {
+    $this->bus->dispatch(new SmsNotification($message));
+  }
 }
 ```
 
@@ -90,11 +90,11 @@ If we want to add metadata to our message, we can dispatch an `Symfony\Component
 // <plugin root>/src/Service/ExampleSender.php
 public function sendMessage(string $message): void
 {
-    $message = new SmsNotification($message);
-    $this->bus->dispatch(
-        (new Envelope($message))
-            ->with(new DelayStamp(5000))
-    );
+  $message = new SmsNotification($message);
+  $this->bus->dispatch(
+    (new Envelope($message))
+      ->with(new DelayStamp(5000))
+  );
 }
 ```
 

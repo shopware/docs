@@ -28,49 +28,49 @@ use Shopware\Core\Framework\Rule\RuleScope;
 
 class CartAmountRule extends Rule
 {
-    final public const RULE_NAME = 'totalCartAmount';
+  final public const RULE_NAME = 'totalCartAmount';
 
-    public const AMOUNT = 1000;
+  public const AMOUNT = 1000;
 
-    protected float $amount;
+  protected float $amount;
 
-    /**
-     * @internal
-     */
-    public function __construct(
-        protected string $operator = self::OPERATOR_GTE,
-        ?float $amount = self::AMOUNT
-    ) {
-        parent::__construct();
-        $this->amount = (float) $amount;
+  /**
+   * @internal
+   */
+  public function __construct(
+    protected string $operator = self::OPERATOR_GTE,
+    ?float $amount = self::AMOUNT
+  ) {
+    parent::__construct();
+    $this->amount = (float) $amount;
+  }
+
+  /**
+   * @throws UnsupportedOperatorException
+   */
+  public function match(RuleScope $scope): bool
+  {
+    if (!$scope instanceof CartRuleScope) {
+      return false;
     }
 
-    /**
-     * @throws UnsupportedOperatorException
-     */
-    public function match(RuleScope $scope): bool
-    {
-        if (!$scope instanceof CartRuleScope) {
-            return false;
-        }
+    return RuleComparison::numeric($scope->getCart()->getPrice()->getTotalPrice(), $this->amount, $this->operator);
+  }
 
-        return RuleComparison::numeric($scope->getCart()->getPrice()->getTotalPrice(), $this->amount, $this->operator);
-    }
+  public function getConstraints(): array
+  {
+    return [
+      'amount' => RuleConstraints::float(),
+      'operator' => RuleConstraints::numericOperators(false),
+    ];
+  }
 
-    public function getConstraints(): array
-    {
-        return [
-            'amount' => RuleConstraints::float(),
-            'operator' => RuleConstraints::numericOperators(false),
-        ];
-    }
-
-    public function getConfig(): RuleConfig
-    {
-        return (new RuleConfig())
-            ->operatorSet(RuleConfig::OPERATOR_SET_NUMBER)
-            ->numberField('amount');
-    }
+  public function getConfig(): RuleConfig
+  {
+    return (new RuleConfig())
+      ->operatorSet(RuleConfig::OPERATOR_SET_NUMBER)
+      ->numberField('amount');
+  }
 }
 ```
 

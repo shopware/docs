@@ -25,13 +25,13 @@ To make use of the generic abstracted component, rule conditions, whose componen
 ```php
 public function getConfig(): RuleConfig
 {
-    return (new RuleConfig())
-        ->operatorSet(RuleConfig::OPERATOR_SET_STRING, false, true)
-        ->entitySelectField('customerGroupIds', CustomerGroupDefinition::ENTITY_NAME, true)
-        ->selectField('customSelect', ['foo', 'bar', 'baz'])
-        ->numberField('amount', ['unit' => RuleConfig::UNIT_DIMENSION])
-        ->booleanField('active')
-        ->dateTimeField('creationDate');
+  return (new RuleConfig())
+    ->operatorSet(RuleConfig::OPERATOR_SET_STRING, false, true)
+    ->entitySelectField('customerGroupIds', CustomerGroupDefinition::ENTITY_NAME, true)
+    ->selectField('customSelect', ['foo', 'bar', 'baz'])
+    ->numberField('amount', ['unit' => RuleConfig::UNIT_DIMENSION])
+    ->booleanField('active')
+    ->dateTimeField('creationDate');
 }
 ```
 

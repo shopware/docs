@@ -60,15 +60,15 @@ use Symfony\Component\Yaml\Yaml;
 
 class RateLimiterCompilerPass implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container): void
-    {
-        /** @var array<string, array<string, string>> $rateLimiterConfig */
-        $rateLimiterConfig = $container->getParameter('shopware.api.rate_limiter');
+  public function process(ContainerBuilder $container): void
+  {
+    /** @var array<string, array<string, string>> $rateLimiterConfig */
+    $rateLimiterConfig = $container->getParameter('shopware.api.rate_limiter');
 
-        $rateLimiterConfig += Yaml::parseFile(__DIR__ . '/../Resources/config/rate_limiter.yaml');
+    $rateLimiterConfig += Yaml::parseFile(__DIR__ . '/../Resources/config/rate_limiter.yaml');
 
-        $container->setParameter('shopware.api.rate_limiter', $rateLimiterConfig);
-    }
+    $container->setParameter('shopware.api.rate_limiter', $rateLimiterConfig);
+  }
 }
 ```
 
@@ -95,12 +95,12 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class SwagBasicExample extends Plugin
 {
-    public function build(ContainerBuilder $container): void
-    {
-        parent::build($container);
+  public function build(ContainerBuilder $container): void
+  {
+    parent::build($container);
 
-        $container->addCompilerPass(new RateLimiterCompilerPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION, 500);
-    }
+    $container->addCompilerPass(new RateLimiterCompilerPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION, 500);
+  }
 }
 ```
 
@@ -118,19 +118,18 @@ For this we need to inject the `Shopware\Core\Framework\RateLimiter\RateLimiter`
 namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
 
 use Shopware\Core\Framework\RateLimiter\RateLimiter;
-...
 
 #[Route(defaults: ['_routeScope' => ['store-api']])]
 class ExampleRoute extends AbstractExampleRoute
 {
-    private RateLimiter $rateLimiter;
+  private RateLimiter $rateLimiter;
 
-    public function __construct(RateLimiter $rateLimiter)
-    {
-        $this->rateLimiter = $rateLimiter;
-    }
+  public function __construct(RateLimiter $rateLimiter)
+  {
+    $this->rateLimiter = $rateLimiter;
+  }
 
-    ...
+  // ...
 }
 ```
 
@@ -152,10 +151,10 @@ If the limit has been exceeded, it throws `Shopware\Core\Framework\RateLimiter\E
 #[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET','POST'])]
 public function load(Request $request, SalesChannelContext $context): ExampleRouteResponse
 {
-    // Limit ip address
-    $this->rateLimiter->ensureAccepted('example_route', $request->getClientIp());
-    
-    ...
+  // Limit ip address
+  $this->rateLimiter->ensureAccepted('example_route', $request->getClientIp());
+  
+  // ...
 }
 ```
 
@@ -170,14 +169,14 @@ We just have to call the `reset` method as you can see below.
 #[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET','POST'])]
 public function load(Request $request, SalesChannelContext $context): ExampleRouteResponse
 {
-    // Limit ip address for example
-    $this->rateLimiter->ensureAccepted('example_route', $request->getClientIp());
-    
-    // if action was successfully, reset limit 
-    if ($this->doAction() === true) {
-        $this->rateLimiter->reset('example_route', $request->getClientIp());
-    }
-    
-    ...
+  // Limit ip address for example
+  $this->rateLimiter->ensureAccepted('example_route', $request->getClientIp());
+  
+  // if action was successfully, reset limit 
+  if ($this->doAction() === true) {
+    $this->rateLimiter->reset('example_route', $request->getClientIp());
+  }
+  
+  // ...
 }
 ```

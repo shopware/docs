@@ -39,27 +39,27 @@ use Symfony\Component\Mime\Email;
 
 class AddDataToMails extends AbstractMailService
 {
-    /**
-     * @var AbstractMailService
-     */
-    private AbstractMailService $mailService;
+  /**
+   * @var AbstractMailService
+   */
+  private AbstractMailService $mailService;
 
-    public function __construct(AbstractMailService $mailService)
-    {
-        $this->mailService = $mailService;
-    }
+  public function __construct(AbstractMailService $mailService)
+  {
+    $this->mailService = $mailService;
+  }
 
-    public function getDecorated(): AbstractMailService
-    {
-        return $this->mailService;
-    }
+  public function getDecorated(): AbstractMailService
+  {
+    return $this->mailService;
+  }
 
-    public function send(array $data, Context $context, array $templateData = []): ?Email
-    {
-        $templateData['myCustomData'] = 'Example data';
+  public function send(array $data, Context $context, array $templateData = []): ?Email
+  {
+    $templateData['myCustomData'] = 'Example data';
 
-        return $this->mailService->send($data, $context, $templateData);
-    }
+    return $this->mailService->send($data, $context, $templateData);
+  }
 }
 ```
 

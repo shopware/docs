@@ -32,37 +32,41 @@ We would create a class `StorableFlow`, that can store the data in the original 
 ```php
 class StorableFlow
 {
-    // contains the scalar values based on the original events
-    // $store can be serialized and used to restore the object data
-    protected array $store = [];
-    
-    // contains the restored object data like the data we defined in the `availableData` in original events 
-    // $data can not be serialized, but can be restored from $store
-    protected array $data = [];
-      
-    public function __construct(array $store = [], array $data = [])
-    {
-        $this->store = $store;
-        $this->data = $data;
-    }
-    
-    // This method will be called in each `Storer` to store the representation of data
-    public function setStore(string $key, $value) {
-        $this->store[$key] = $value;
-    }
-    
-    public function getStore(string $key) {
-        return $this->store[$key];
-    }
-    
-    // After we restored the data in `Storer`, we can set the data, we'll use `$this->data` instead getter data on original event
-    public function setData(string $key, $value) {
-        $this->data[$key] = $value;
-    }
-    
-    public function getData(string $key) {
-        return $this->data[$key];
-    }
+  // contains the scalar values based on the original events
+  // $store can be serialized and used to restore the object data
+  protected array $store = [];
+
+  // contains the restored object data like the data we defined in the `availableData` in original events 
+  // $data can not be serialized, but can be restored from $store
+  protected array $data = [];
+
+  public function __construct(array $store = [], array $data = [])
+  {
+    $this->store = $store;
+    $this->data = $data;
+  }
+
+  // This method will be called in each `Storer` to store the representation of data
+  public function setStore(string $key, $value)
+  {
+    $this->store[$key] = $value;
+  }
+
+  public function getStore(string $key)
+  {
+    return $this->store[$key];
+  }
+
+  // After we restored the data in `Storer`, we can set the data, we'll use `$this->data` instead getter data on original event
+  public function setData(string $key, $value)
+  {
+    $this->data[$key] = $value;
+  }
+
+  public function getData(string $key)
+  {
+    return $this->data[$key];
+  }
 }
 ```
 
@@ -73,12 +77,12 @@ Before:
 ```php
 class FlowDispatcher 
 {
-    public function dispatch(Event $event) {
-        ...
-        // Currently, dispatch on Flow Builder use the original event to execute the Flow 
-        $this->callFlowExecutor($event);
-        ...
-    }
+  public function dispatch(Event $event) {
+    // ...
+    // Currently, dispatch on Flow Builder use the original event to execute the Flow 
+    $this->callFlowExecutor($event);
+    // ...
+  }
 }
 ```
 
@@ -87,14 +91,14 @@ After:
 ```php
 class FlowDispatcher 
 {
-    public function dispatch(Event $event) {
-        ...
-        // The `FlowFactory` will create/restore the `StorableFlow` from original event
-        $flow = $this->flowFactory->create($event);
-        // use the `StorableFlow` to execute the flow builder actions instead of the original events
-        $this->execute($flow);
-        ...
-    }
+  public function dispatch(Event $event) {
+    // ...
+    // The `FlowFactory` will create/restore the `StorableFlow` from original event
+    $flow = $this->flowFactory->create($event);
+    // use the `StorableFlow` to execute the flow builder actions instead of the original events
+    $this->execute($flow);
+    // ...
+  }
 }
 ```
 
@@ -112,27 +116,27 @@ Example for `OrderStorer`:
 ```php
 class OrderStorer implements FlowStorer
 {
-    // This function to check the original event is the instanceof Aware interface, and store the representation.
-    public function store(FlowEventAware $event, array $storedData): array 
-    {
-        if ($event instanceof OrderAware) {
-            $storedData['orderId'] = $event->getOrderId();
-        }
-        
-        return $storedData;
+  // This function to check the original event is the instanceof Aware interface, and store the representation.
+  public function store(FlowEventAware $event, array $storedData): array
+  {
+    if ($event instanceof OrderAware) {
+      $storedData['orderId'] = $event->getOrderId();
     }
-    
-    // This function is restore the data based on representation in `storedData`
-    public function restore(StorableFlow $flow): void
-    {
-        if ($flow->hasStore('orderId')) {
-            // allows to provide a closure for lazy data loading
-            // this opens the opportunity to have lazy loading for big data
-            // When we load the entity, we need to add the necessary associations for each entity
-            $flow->lazy('order', [$this, 'load']);    
-        }
-        ...
+
+    return $storedData;
+  }
+
+  // This function is restore the data based on representation in `storedData`
+  public function restore(StorableFlow $flow): void
+  {
+    if ($flow->hasStore('orderId')) {
+      // allows to provide a closure for lazy data loading
+      // this opens the opportunity to have lazy loading for big data
+      // When we load the entity, we need to add the necessary associations for each entity
+      $flow->lazy('order', [$this, 'load']);
     }
+    // ...
+  }
 }
 ```
 
@@ -142,52 +146,52 @@ To cover the additional data from original events, we will have another `store` 
 ```php
 class AdditionalStorer extends FlowStorer
 {
-    public function store(FlowEventAware $event, array $storedData)
-    {
-        ...
-        // based on the `getAvailableData` in the original event to get the type of additional data
-        $additionalDataTypes = $event::getAvailableData()->toArray();
-        
-        foreach ($additionalDataTypes as $key => $eventData) {
-            // Check if the type of data is Entity or EntityCollection
-            // in the $storedData, we only store the presentation like ['id' => id, 'entity' => entity], we'll restore the data in `AdditionalStorer::restore`
-            if ($eventData['type'] === 'Entity' || 'EntityCollection') {
-                $storedData[$key] = [
-                    'id' => $event->getId(),
-                    'entity' => Entity                 
-                ];
-            }
-            
-            // Check if the type of data is ScalarValueType
-            if ($eventData['type'] === ScalarValueType) {
-                $storedData[$key] = value
-            }
-            
-            // start to implement /Serializable for ObjectType
-            if ($eventData['type'] === ObjectType) {
-                $storedData[$key] = value->serialize()
-            }
-            
-            ...
-        }
-        
-        ... 
-        
-        return $storedData;
-    }
+  public function store(FlowEventAware $event, array $storedData)
+  {
+    // ...
+    // based on the `getAvailableData` in the original event to get the type of additional data
+    $additionalDataTypes = $event::getAvailableData()->toArray();
+    
+    foreach ($additionalDataTypes as $key => $eventData) {
+      // Check if the type of data is Entity or EntityCollection
+      // in the $storedData, we only store the presentation like ['id' => id, 'entity' => entity], we'll restore the data in `AdditionalStorer::restore`
+      if ($eventData['type'] === 'Entity' || 'EntityCollection') {
+        $storedData[$key] = [
+          'id' => $event->getId(),
+          'entity' => Entity
+        ];
+      }
       
-    // this function  make sure we can restore the additional data from original data are not covered in `Storer`
-    // The additional data can be other entity, because the entities we defined in Aware interface like `order`, `customer` ... covered be `Storer`
-    public function restore(StorableFlow $flow): void
-    {
-        if (type === entity) {
-            // About the associations for entity data, mostly the additional entity data is the base entity, we don't need to add associations for this
-            $flow->setData($key, $this->load());
-        } else {
-            $flow->setData($key, $flow->getStore($key));
-        }
-        ...
+      // Check if the type of data is ScalarValueType
+      if ($eventData['type'] === ScalarValueType) {
+        $storedData[$key] = value
+      }
+      
+      // start to implement /Serializable for ObjectType
+      if ($eventData['type'] === ObjectType) {
+        $storedData[$key] = value->serialize()
+      }
+      
+      // ...
     }
+    
+    // ... 
+    
+    return $storedData;
+  }
+      
+  // this function  make sure we can restore the additional data from original data are not covered in `Storer`
+  // The additional data can be other entity, because the entities we defined in Aware interface like `order`, `customer` ... covered be `Storer`
+  public function restore(StorableFlow $flow): void
+  {
+    if (type === entity) {
+      // About the associations for entity data, mostly the additional entity data is the base entity, we don't need to add associations for this
+      $flow->setData($key, $this->load());
+    } else {
+      $flow->setData($key, $flow->getStore($key));
+    }
+    // ...
+  }
 }
 ```
 
@@ -200,26 +204,26 @@ About the `ObjectType` data, we enforce all values used in ObjectType implement 
 Before, in the flow actions still dependency Aware interfaces:
 
 ```php
-    public function handle(StorableFlow $event) {
-        ...
-        $baseEvent = $event->getEvent();
-    
-        if ($baseEvent instanceof CustomerAware) {
-            $customerId= $baseEvent->getCustomerId();
-        }
-        ...
-    }
+public function handle(StorableFlow $event) {
+  // ...
+  $baseEvent = $event->getEvent();
+
+  if ($baseEvent instanceof CustomerAware) {
+    $customerId= $baseEvent->getCustomerId();
+  }
+  // ...
+}
 ```
 After in the flow actions:
 
 ```php
-    public function handle(StorableFlow $event) {
-        ...
-        if ($event->hasStore('customerId') {
-            $customerId= $event->getStore('customerId');
-        }
-        ...
-    }
+public function handle(StorableFlow $event) {
+  // ...
+  if ($event->hasStore('customerId')) {
+    $customerId= $event->getStore('customerId');
+  }
+  // ...
+}
 ```
 
 * `getAvailableData` must NOT be responsible for the access of the data.
@@ -227,31 +231,31 @@ After in the flow actions:
 
 ```php
 class FlowFactory
-{    
-    ...
-    public function create(FlowEventAware $event)
-    {
-        $storedData = [];
-        foreach ($this->storer as $storer) {
-            // Storer are responsible to move the corresponding 
-            // data from the original event 
-            $storer->store($event, $storedData);
-        }
-        
-        return $this->restore($storedData);
+{
+  // ...
+  public function create(FlowEventAware $event)
+  {
+    $storedData = [];
+    foreach ($this->storer as $storer) {
+      // Storer are responsible to move the corresponding 
+      // data from the original event 
+      $storer->store($event, $storedData);
     }
-  
-    public function restore(array $stored = [], array $data = [])
-    {
-        $flow = new StorableFlow($stored, $data);
-      
-        foreach ($this->storer as $storer) {
-            $storer->restore($flow);
-        }
-  
-        return $flow;
+
+    return $this->restore($storedData);
+  }
+
+  public function restore(array $stored = [], array $data = [])
+  {
+    $flow = new StorableFlow($stored, $data);
+
+    foreach ($this->storer as $storer) {
+      $storer->restore($flow);
     }
-    ...
+
+    return $flow;
+  }
+  // ...
 }
 ```
 But when executing a delayed actions, we won't have a `StorableFlow`, we just have the `$stored` from the previously stored `StorableFlow`,

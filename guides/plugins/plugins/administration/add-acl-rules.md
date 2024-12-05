@@ -429,19 +429,19 @@ use Shopware\Core\Framework\Plugin;
 
 class SwagTestPluginAcl extends Plugin
 {
-    public function enrichPrivileges(): array
-    {
-        return [
-            'product.viewer' => [
-                'my_custom_privilege:read',
-                'my_custom_privilege:write',
-                'my_other_custom_privilege:read',
-                // ...
-            ],
-            'product.editor' => [
-                // ...
-            ],
-        ];
-    }
+  public function enrichPrivileges(): array
+  {
+    return [
+      'product.viewer' => [
+        'my_custom_privilege:read',
+        'my_custom_privilege:write',
+        'my_other_custom_privilege:read',
+        // ...
+      ],
+      'product.editor' => [
+        // ...
+      ],
+    ];
+  }
 }
 ```

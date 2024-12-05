@@ -24,35 +24,37 @@ The generation of this URL is currently triggered in an event subscriber which i
 For generating the URL an implementation of the `UrlGeneratorInterface` is used.
 
 ```php
+<?php declare(strict_types=1);
+
 interface UrlGeneratorInterface
 {
-    public function getAbsoluteMediaUrl(MediaEntity $media): string;
+  public function getAbsoluteMediaUrl(MediaEntity $media): string;
 
-    public function getRelativeMediaUrl(MediaEntity $media): string;
+  public function getRelativeMediaUrl(MediaEntity $media): string;
 
-    public function getAbsoluteThumbnailUrl(MediaEntity $media, MediaThumbnailEntity $thumbnail): string;
+  public function getAbsoluteThumbnailUrl(MediaEntity $media, MediaThumbnailEntity $thumbnail): string;
 
-    public function getRelativeThumbnailUrl(MediaEntity $media, MediaThumbnailEntity $thumbnail): string;
+  public function getRelativeThumbnailUrl(MediaEntity $media, MediaThumbnailEntity $thumbnail): string;
 }
 
 interface PathnameStrategyInterface
 {
-    public function getName(): string;
+  public function getName(): string;
 
-    /**
-     * Generate a hash, missing from url if omitted
-     */
-    public function generatePathHash(MediaEntity $media, ?MediaThumbnailEntity $thumbnail = null): ?string;
+  /**
+   * Generate a hash, missing from url if omitted
+   */
+  public function generatePathHash(MediaEntity $media, ?MediaThumbnailEntity $thumbnail = null): ?string;
 
-    /**
-     * Generate the cache buster part of the path, missing from url if omitted
-     */
-    public function generatePathCacheBuster(MediaEntity $media, ?MediaThumbnailEntity $thumbnail = null): ?string;
+  /**
+   * Generate the cache buster part of the path, missing from url if omitted
+   */
+  public function generatePathCacheBuster(MediaEntity $media, ?MediaThumbnailEntity $thumbnail = null): ?string;
 
-    /**
-     * Generate the filename
-     */
-    public function generatePhysicalFilename(MediaEntity $media, ?MediaThumbnailEntity $thumbnail = null): string;
+  /**
+   * Generate the filename
+   */
+  public function generatePhysicalFilename(MediaEntity $media, ?MediaThumbnailEntity $thumbnail = null): string;
 }
 ```
 
@@ -98,88 +100,92 @@ For the Backwards compatibility we will take the following measures:
 ## Example
 
 ```php
-<?php 
+<?php declare(strict_types=1);
 
 namespace Examples;
 
-use Shopware\Core\Content\Media\Core\Application\AbstractMediaUrlGenerator;use Shopware\Core\Content\Media\Core\Params\UrlParams;use Shopware\Core\Content\Media\MediaCollection;use Shopware\Core\Content\Media\MediaEntity;use Shopware\Core\Content\Media\Pathname\UrlGeneratorInterface;
+use Shopware\Core\Content\Media\Core\Application\AbstractMediaUrlGenerator;
+use Shopware\Core\Content\Media\Core\Params\UrlParams;
+use Shopware\Core\Content\Media\MediaCollection;
+use Shopware\Core\Content\Media\MediaEntity;
+use Shopware\Core\Content\Media\Pathname\UrlGeneratorInterface;
 
 class BeforeChange
 {
-    private UrlGeneratorInterface $urlGenerator;
-    
-    public function foo(MediaEntity $media) 
-    {
-        $relative = $this->urlGenerator->getRelativeMediaUrl($media);
-        
-        $absolute = $this->urlGenerator->getAbsoluteMediaUrl($media);
-    }
-    
-    public function bar(MediaThumbnailEntity $thumbnail) 
-    {
-        $relative = $this->urlGenerator->getRelativeThumbnailUrl($thumbnail);
-        
-        $absolute = $this->urlGenerator->getAbsoluteThumbnailUrl($thumbnail);
-    }
+  private UrlGeneratorInterface $urlGenerator;
+
+  public function foo(MediaEntity $media)
+  {
+    $relative = $this->urlGenerator->getRelativeMediaUrl($media);
+
+    $absolute = $this->urlGenerator->getAbsoluteMediaUrl($media);
+  }
+
+  public function bar(MediaThumbnailEntity $thumbnail)
+  {
+    $relative = $this->urlGenerator->getRelativeThumbnailUrl($thumbnail);
+
+    $absolute = $this->urlGenerator->getAbsoluteThumbnailUrl($thumbnail);
+  }
 }
 
 class AfterChange
 {
-    private AbstractMediaUrlGenerator $generator;
-    
-    public function foo(MediaEntity $media) 
-    {
-        $relative = $media->getPath();
+  private AbstractMediaUrlGenerator $generator;
 
-        $urls = $this->generator->generate([UrlParams::fromMedia($media)]);
-        
-        $absolute = $urls[0];
-    }
-    
-    public function bar(MediaThumbnailEntity $thumbnail) 
-    {
-        // relative is directly stored at the entity
-        $relative = $thumbnail->getPath();
+  public function foo(MediaEntity $media)
+  {
+    $relative = $media->getPath();
 
-        // path generation is no more entity related, you could also use partial entity loading and you can also call it in batch, see below
-        $urls = $this->generator->generate([UrlParams::fromMedia($media)]);
-        
-        $absolute = $urls[0];
-    }
-    
-    public function batch(MediaCollection $collection) 
-    {
-        $params = [];
-        
-        foreach ($collection as $media) {
-            $params[$media->getId()] = UrlParams::fromMedia($media);
-            
-            foreach ($media->getThumbnails() as $thumbnail) {
-                $params[$thumbnail->getId()] = UrlParams::fromThumbnail($thumbnail);
-            }
-        }
-        
-        $urls = $this->generator->generate($paths);
+    $urls = $this->generator->generate([UrlParams::fromMedia($media)]);
 
-        // urls is a flat list with {id} => {url} for media and also for thumbnails        
+    $absolute = $urls[0];
+  }
+
+  public function bar(MediaThumbnailEntity $thumbnail)
+  {
+    // relative is directly stored at the entity
+    $relative = $thumbnail->getPath();
+
+    // path generation is no more entity related, you could also use partial entity loading and you can also call it in batch, see below
+    $urls = $this->generator->generate([UrlParams::fromMedia($media)]);
+
+    $absolute = $urls[0];
+  }
+
+  public function batch(MediaCollection $collection)
+  {
+    $params = [];
+
+    foreach ($collection as $media) {
+      $params[$media->getId()] = UrlParams::fromMedia($media);
+
+      foreach ($media->getThumbnails() as $thumbnail) {
+        $params[$thumbnail->getId()] = UrlParams::fromThumbnail($thumbnail);
+      }
     }
+
+    $urls = $this->generator->generate($paths);
+
+    // urls is a flat list with {id} => {url} for media and also for thumbnails        
+  }
 }
 
 class ForwardCompatible
 {
-    // to have it forward compatible, you can use the Feature::isActive('v6.6.0.0') function
-    public function foo(MediaEntity $entity) 
-    {
-        // we provide an entity loaded subscriber, which assigns the url of
-        // the UrlGeneratorInterface::getRelativeMediaUrl to the path property till 6.6
-        // so that you always have the relative url in the MediaEntity::path proprerty 
-        $path = $entity->getPath();
-        
-        if (Feature::isActive('v6.6.0.0')) {
-            // new generator call for absolute url
-        } else {
-            // old generator call for absolute url
-        }
+  // to have it forward compatible, you can use the Feature::isActive('v6.6.0.0') function
+  public function foo(MediaEntity $entity)
+  {
+    // we provide an entity loaded subscriber, which assigns the url of
+    // the UrlGeneratorInterface::getRelativeMediaUrl to the path property till 6.6
+    // so that you always have the relative url in the MediaEntity::path proprerty 
+    $path = $entity->getPath();
+
+    if (Feature::isActive('v6.6.0.0')) {
+      // new generator call for absolute url
+    } else {
+      // old generator call for absolute url
     }
+  }
 }
 ```

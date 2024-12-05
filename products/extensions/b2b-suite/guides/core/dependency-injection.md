@@ -26,20 +26,20 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 
 abstract class DependencyInjectionConfiguration
 {
-    /**
-     * @return string[] array of service xml files
-     */
-    abstract public function getServiceFiles(): array;
+  /**
+   * @return string[] array of service xml files
+   */
+  abstract public function getServiceFiles(): array;
 
-    /**
-     * @return CompilerPassInterface[]
-     */
-    abstract public function getCompilerPasses(): array;
+  /**
+   * @return CompilerPassInterface[]
+   */
+  abstract public function getCompilerPasses(): array;
 
-    /**
-     * @return DependencyInjectionConfiguration[] child components required by this component
-     */
-    abstract public function getDependingConfigurations(): array;
+  /**
+   * @return DependencyInjectionConfiguration[] child components required by this component
+   */
+  abstract public function getDependingConfigurations(): array;
 }
 ```
 
@@ -60,14 +60,14 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class MyB2bPlugin extends Plugin
 {
-    [...]
+  // [...]
 
-    public function build(ContainerBuilder $container)
-    {
-        $containerBuilder = B2BContainerBuilder::create();
-        $containerBuilder->addConfiguration(new ContactFrameworkConfiguration());
-        $containerBuilder->registerConfigurations($container);
-    }
+  public function build(ContainerBuilder $container)
+  {
+    $containerBuilder = B2BContainerBuilder::create();
+    $containerBuilder->addConfiguration(new ContactFrameworkConfiguration());
+    $containerBuilder->registerConfigurations($container);
+  }
 }
 ```
 

@@ -34,9 +34,9 @@ use Shopware\Core\Framework\DataAbstractionLayer\Attribute\Entity as EntityAttri
 #[EntityAttribute('example_entity', collectionClass: ExampleEntityCollection::class)]
 class ExampleEntity extends Entity
 {
-    #[PrimaryKey]
-    #[Field(type: FieldType::UUID)]
-    public string $id;
+  #[PrimaryKey]
+  #[Field(type: FieldType::UUID)]
+  public string $id;
 }
 ```
 
@@ -79,20 +79,20 @@ use Shopware\Core\Framework\DataAbstractionLayer\Attribute\Entity as EntityAttri
 #[EntityAttribute('example_entity')]
 class ExampleEntity extends Entity
 {
-    #[PrimaryKey]
-    #[Field(type: FieldType::UUID)]
-    public string $id;
+  #[PrimaryKey]
+  #[Field(type: FieldType::UUID)]
+  public string $id;
 
-    #[Field(type: FieldType::STRING)]
-    public string $string;
+  #[Field(type: FieldType::STRING)]
+  public string $string;
 
-    #[Field(type: FieldType::TEXT)]
-    public ?string $text = null;
+  #[Field(type: FieldType::TEXT)]
+  public ?string $text = null;
 
-    #[Field(type: FieldType::INT)]
-    public ?int $int;
+  #[Field(type: FieldType::INT)]
+  public ?int $int;
 
-    // ...
+  // ...
 }
 ```
 
@@ -123,14 +123,14 @@ use Shopware\Core\Framework\DataAbstractionLayer\Pricing\PriceCollection;
 #[EntityAttribute('example_entity')]
 class ExampleEntity extends Entity
 {
-    #[PrimaryKey]
-    #[Field(type: FieldType::UUID)]
-    public string $id;
-    
-    #[Field(type: PriceField::class)]
-    public ?PriceCollection $price = null;
+  #[PrimaryKey]
+  #[Field(type: FieldType::UUID)]
+  public string $id;
+  
+  #[Field(type: PriceField::class)]
+  public ?PriceCollection $price = null;
 
-    // ...
+  // ...
 }
 ```
 
@@ -155,15 +155,15 @@ use Shopware\Core\Framework\DataAbstractionLayer\Attribute\Entity as EntityAttri
 #[EntityAttribute('example_entity')]
 class ExampleEntity extends Entity
 {
-    #[PrimaryKey]
-    #[Field(type: FieldType::UUID)]
-    public string $id;
-    
-    #[AutoIncrement]
-    public int $autoIncrement;
+  #[PrimaryKey]
+  #[Field(type: FieldType::UUID)]
+  public string $id;
+  
+  #[AutoIncrement]
+  public int $autoIncrement;
 
-    #[ForeignKey(entity: 'currency')]
-    public ?string $foreignKey;
+  #[ForeignKey(entity: 'currency')]
+  public ?string $foreignKey;
 }
 ```
 
@@ -188,12 +188,12 @@ use Shopware\Core\Framework\DataAbstractionLayer\Pricing\PriceCollection;
 #[EntityAttribute('example_entity')]
 class ExampleEntity extends Entity
 {
-    #[PrimaryKey]
-    #[Field(type: FieldType::UUID)]
-    public string $id;
-    
-    #[Serialized(serializer: PriceFieldSerializer::class)]
-    public ?PriceCollection $serialized = null;
+  #[PrimaryKey]
+  #[Field(type: FieldType::UUID)]
+  public string $id;
+  
+  #[Serialized(serializer: PriceFieldSerializer::class)]
+  public ?PriceCollection $serialized = null;
 }
 ```
 
@@ -217,11 +217,11 @@ use Shopware\Core\Framework\DataAbstractionLayer\EntityCustomFieldsTrait;
 #[EntityAttribute('example_entity')]
 class ExampleEntity extends Entity
 {
-    use EntityCustomFieldsTrait;
-    
-    #[PrimaryKey]
-    #[Field(type: FieldType::UUID)]
-    public string $id;
+  use EntityCustomFieldsTrait;
+  
+  #[PrimaryKey]
+  #[Field(type: FieldType::UUID)]
+  public string $id;
 }
 
 ```
@@ -243,15 +243,15 @@ use Shopware\Core\Framework\DataAbstractionLayer\Attribute\Entity as EntityAttri
 #[EntityAttribute('example_entity')]
 class ExampleEntity extends Entity
 {
-    #[PrimaryKey]
-    #[Field(type: FieldType::UUID)]
-    public string $id;
-    
-    /**
-     * @var array<string, mixed>|null
-     */
-    #[CustomFields]
-    public ?array $customFields = null;
+  #[PrimaryKey]
+  #[Field(type: FieldType::UUID)]
+  public string $id;
+  
+  /**
+   * @var array<string, mixed>|null
+   */
+  #[CustomFields]
+  public ?array $customFields = null;
 }
 
 ```
@@ -277,21 +277,22 @@ use Shopware\Core\Framework\DataAbstractionLayer\Attribute\Entity as EntityAttri
 #[EntityAttribute('example_entity')]
 class ExampleEntity extends Entity
 {
-    #[PrimaryKey]
-    #[Field(type: FieldType::UUID, api: true)]
-    public string $id;
+  #[PrimaryKey]
+  #[Field(type: FieldType::UUID, api: true)]
+  public string $id;
 
-    #[Field(type: FieldType::STRING)]
-    public string $notExposed;
+  #[Field(type: FieldType::STRING)]
+  public string $notExposed;
 
-    #[Field(type: FieldType::STRING, api: true)]
-    public string $everywhere;
+  #[Field(type: FieldType::STRING, api: true)]
+  public string $everywhere;
 
-    #[Field(type: FieldType::STRING, api: [AdminApiSource::class])]
-    public string $adminOnly;
+  #[Field(type: FieldType::STRING, api: [AdminApiSource::class])]
+  public string $adminOnly;
 
-    #[Field(type: FieldType::STRING, api: [SalesChannelApiSource::class])]
-    public string $storeOnly;
+  #[Field(type: FieldType::STRING, api: [SalesChannelApiSource::class])]
+  public string $storeOnly;
+}
 ```
 
 ## Translated fields
@@ -319,18 +320,18 @@ use Shopware\Core\Framework\DataAbstractionLayer\Attribute\Entity as EntityAttri
 #[EntityAttribute('example_entity')]
 class ExampleEntity extends Entity
 {
-    #[PrimaryKey]
-    #[Field(type: FieldType::UUID)]
-    public string $id;
+  #[PrimaryKey]
+  #[Field(type: FieldType::UUID)]
+  public string $id;
 
-    #[Field(type: FieldType::STRING, translated: true)]
-    public ?string $string = null;
+  #[Field(type: FieldType::STRING, translated: true)]
+  public ?string $string = null;
 
-    /**
-     * @var array<string, ArrayEntity>|null
-     */
-    #[Translations]
-    public ?array $translations = null;
+  /**
+   * @var array<string, ArrayEntity>|null
+   */
+  #[Translations]
+  public ?array $translations = null;
 }
 ```
 
@@ -356,13 +357,13 @@ use Shopware\Core\Framework\DataAbstractionLayer\Attribute\Entity as EntityAttri
 #[EntityAttribute('example_entity')]
 class ExampleEntity extends Entity
 {
-    #[PrimaryKey]
-    #[Field(type: FieldType::UUID)]
-    public string $id;
+  #[PrimaryKey]
+  #[Field(type: FieldType::UUID)]
+  public string $id;
 
-    #[Required]
-    #[Field(type: FieldType::STRING, translated: true)]
-    public ?string $required = null;
+  #[Required]
+  #[Field(type: FieldType::STRING, translated: true)]
+  public ?string $required = null;
 }
 ```
 
@@ -392,33 +393,33 @@ use Shopware\Core\System\Currency\CurrencyEntity;
 #[EntityAttribute('example_entity')]
 class ExampleEntity extends Entity
 {
-    #[PrimaryKey]
-    #[Field(type: FieldType::UUID)]
-    public string $id;
+  #[PrimaryKey]
+  #[Field(type: FieldType::UUID)]
+  public string $id;
 
-    #[ForeignKey(entity: 'currency')]
-    public ?string $currencyId = null;
+  #[ForeignKey(entity: 'currency')]
+  public ?string $currencyId = null;
 
-    #[ForeignKey(entity: 'currency')]
-    public ?string $followId = null;
+  #[ForeignKey(entity: 'currency')]
+  public ?string $followId = null;
 
-    #[ManyToOne(entity: 'currency')]
-    public ?CurrencyEntity $currency = null;
+  #[ManyToOne(entity: 'currency')]
+  public ?CurrencyEntity $currency = null;
 
-    #[OneToOne(entity: 'currency')]
-    public ?CurrencyEntity $follow = null;
+  #[OneToOne(entity: 'currency')]
+  public ?CurrencyEntity $follow = null;
 
-    /**
-     * @var array<string, AttributeEntityAgg>|null
-     */
-    #[OneToMany(entity: 'example_entity_agg', ref: 'example_entity_id')]
-    public ?array $aggs = null;
+  /**
+   * @var array<string, AttributeEntityAgg>|null
+   */
+  #[OneToMany(entity: 'example_entity_agg', ref: 'example_entity_id')]
+  public ?array $aggs = null;
 
-    /**
-     * @var array<string, CurrencyEntity>|null
-     */
-    #[ManyToMany(entity: 'currency')]
-    public ?array $currencies = null;
+  /**
+   * @var array<string, CurrencyEntity>|null
+   */
+  #[ManyToMany(entity: 'currency')]
+  public ?array $currencies = null;
 }
 ```
 
@@ -471,135 +472,136 @@ use Shopware\Core\System\StateMachine\Aggregation\StateMachineState\StateMachine
 #[EntityAttribute('example_entity', since: '6.6.3.0', collectionClass: ExampleEntityCollection::class)]
 class ExampleEntity extends Entity
 {
-    use EntityCustomFieldsTrait;
+  use EntityCustomFieldsTrait;
 
-    #[PrimaryKey]
-    #[Field(type: FieldType::UUID)]
-    public string $id;
+  #[PrimaryKey]
+  #[Field(type: FieldType::UUID)]
+  public string $id;
 
-    #[Field(type: FieldType::STRING)]
-    public string $string;
+  #[Field(type: FieldType::STRING)]
+  public string $string;
 
-    #[Field(type: FieldType::TEXT)]
-    public ?string $text = null;
+  #[Field(type: FieldType::TEXT)]
+  public ?string $text = null;
 
-    #[Field(type: FieldType::INT)]
-    public ?int $int;
+  #[Field(type: FieldType::INT)]
+  public ?int $int;
 
-    #[Field(type: FieldType::FLOAT)]
-    public ?float $float;
+  #[Field(type: FieldType::FLOAT)]
+  public ?float $float;
 
-    #[Field(type: FieldType::BOOL)]
-    public ?bool $bool;
+  #[Field(type: FieldType::BOOL)]
+  public ?bool $bool;
 
-    #[Field(type: FieldType::DATETIME)]
-    public ?\DateTimeImmutable $datetime = null;
+  #[Field(type: FieldType::DATETIME)]
+  public ?\DateTimeImmutable $datetime = null;
 
-    #[AutoIncrement]
-    public int $autoIncrement;
+  #[AutoIncrement]
+  public int $autoIncrement;
 
-    /**
-     * @var array<string, mixed>|null
-     */
-    #[Field(type: FieldType::JSON)]
-    public ?array $json = null;
+  /**
+   * @var array<string, mixed>|null
+   */
+  #[Field(type: FieldType::JSON)]
+  public ?array $json = null;
 
-    #[Field(type: FieldType::DATE)]
-    public ?\DateTimeImmutable $date = null;
+  #[Field(type: FieldType::DATE)]
+  public ?\DateTimeImmutable $date = null;
 
-    #[Field(type: FieldType::DATE_INTERVAL)]
-    public ?DateInterval $dateInterval = null;
+  #[Field(type: FieldType::DATE_INTERVAL)]
+  public ?DateInterval $dateInterval = null;
 
-    #[Field(type: FieldType::TIME_ZONE)]
-    public ?string $timeZone = null;
+  #[Field(type: FieldType::TIME_ZONE)]
+  public ?string $timeZone = null;
 
-    #[Serialized(serializer: PriceFieldSerializer::class, api: true)]
-    public ?PriceCollection $serialized = null;
+  #[Serialized(serializer: PriceFieldSerializer::class, api: true)]
+  public ?PriceCollection $serialized = null;
 
-    #[Field(type: PriceField::class)]
-    public ?PriceCollection $price = null;
+  #[Field(type: PriceField::class)]
+  public ?PriceCollection $price = null;
 
-    #[Required]
-    #[Field(type: FieldType::STRING, translated: true)]
-    public string $transString;
+  #[Required]
+  #[Field(type: FieldType::STRING, translated: true)]
+  public string $transString;
 
-    #[Field(type: FieldType::TEXT, translated: true)]
-    public ?string $transText = null;
+  #[Field(type: FieldType::TEXT, translated: true)]
+  public ?string $transText = null;
 
-    #[Field(type: FieldType::INT, translated: true)]
-    public ?int $transInt;
+  #[Field(type: FieldType::INT, translated: true)]
+  public ?int $transInt;
 
-    #[Field(type: FieldType::FLOAT, translated: true)]
-    public ?float $transFloat;
+  #[Field(type: FieldType::FLOAT, translated: true)]
+  public ?float $transFloat;
 
-    #[Field(type: FieldType::BOOL, translated: true)]
-    public ?bool $transBool;
+  #[Field(type: FieldType::BOOL, translated: true)]
+  public ?bool $transBool;
 
-    #[Field(type: FieldType::DATETIME, translated: true)]
-    public ?\DateTimeImmutable $transDatetime = null;
+  #[Field(type: FieldType::DATETIME, translated: true)]
+  public ?\DateTimeImmutable $transDatetime = null;
 
-    /**
-     * @var array<string, mixed>|null
-     */
-    #[Field(type: FieldType::JSON, translated: true)]
-    public ?array $transJson = null;
+  /**
+   * @var array<string, mixed>|null
+   */
+  #[Field(type: FieldType::JSON, translated: true)]
+  public ?array $transJson = null;
 
-    #[Field(type: FieldType::DATE, translated: true)]
-    public ?\DateTimeImmutable $transDate = null;
+  #[Field(type: FieldType::DATE, translated: true)]
+  public ?\DateTimeImmutable $transDate = null;
 
-    #[Field(type: FieldType::DATE_INTERVAL, translated: true)]
-    public ?DateInterval $transDateInterval = null;
+  #[Field(type: FieldType::DATE_INTERVAL, translated: true)]
+  public ?DateInterval $transDateInterval = null;
 
-    #[Field(type: FieldType::TIME_ZONE, translated: true)]
-    public ?string $transTimeZone = null;
+  #[Field(type: FieldType::TIME_ZONE, translated: true)]
+  public ?string $transTimeZone = null;
 
-    #[Field(type: FieldType::STRING, translated: true, column: 'another_column_name')]
-    public ?string $differentName = null;
+  #[Field(type: FieldType::STRING, translated: true, column: 'another_column_name')]
+  public ?string $differentName = null;
 
-    #[ForeignKey(entity: 'currency')]
-    public ?string $currencyId = null;
+  #[ForeignKey(entity: 'currency')]
+  public ?string $currencyId = null;
 
-    #[State(machine: OrderStates::STATE_MACHINE)]
-    public ?string $stateId = null;
+  #[State(machine: OrderStates::STATE_MACHINE)]
+  public ?string $stateId = null;
 
-    #[ForeignKey(entity: 'currency')]
-    public ?string $followId = null;
+  #[ForeignKey(entity: 'currency')]
+  public ?string $followId = null;
 
-    #[ManyToOne(entity: 'currency', onDelete: OnDelete::RESTRICT)]
-    public ?CurrencyEntity $currency = null;
+  #[ManyToOne(entity: 'currency', onDelete: OnDelete::RESTRICT)]
+  public ?CurrencyEntity $currency = null;
 
-    #[OneToOne(entity: 'currency', onDelete: OnDelete::SET_NULL)]
-    public ?CurrencyEntity $follow = null;
+  #[OneToOne(entity: 'currency', onDelete: OnDelete::SET_NULL)]
+  public ?CurrencyEntity $follow = null;
 
-    #[ManyToOne(entity: 'state_machine_state')]
-    public ?StateMachineStateEntity $state = null;
+  #[ManyToOne(entity: 'state_machine_state')]
+  public ?StateMachineStateEntity $state = null;
 
-    /**
-     * @var array<string, AttributeEntityAgg>|null
-     */
-    #[OneToMany(entity: 'attribute_entity_agg', ref: 'attribute_entity_id', onDelete: OnDelete::CASCADE)]
-    public ?array $aggs = null;
+  /**
+   * @var array<string, AttributeEntityAgg>|null
+   */
+  #[OneToMany(entity: 'attribute_entity_agg', ref: 'attribute_entity_id', onDelete: OnDelete::CASCADE)]
+  public ?array $aggs = null;
 
-    /**
-     * @var array<string, CurrencyEntity>|null
-     */
-    #[ManyToMany(entity: 'currency', onDelete: OnDelete::CASCADE)]
-    public ?array $currencies = null;
+  /**
+   * @var array<string, CurrencyEntity>|null
+   */
+  #[ManyToMany(entity: 'currency', onDelete: OnDelete::CASCADE)]
+  public ?array $currencies = null;
 
-    /**
-     * @var array<string, OrderEntity>
-     */
-    #[ManyToMany(entity: 'order', onDelete: OnDelete::CASCADE)]
-    public ?array $orders = null;
+  /**
+   * @var array<string, OrderEntity>
+   */
+  #[ManyToMany(entity: 'order', onDelete: OnDelete::CASCADE)]
+  public ?array $orders = null;
 
-    /**
-     * @var array<string, ArrayEntity>|null
-     */
-    #[Translations]
-    public ?array $translations = null;
+  /**
+   * @var array<string, ArrayEntity>|null
+   */
+  #[Translations]
+  public ?array $translations = null;
 }
+```
 
-
+```php
 <?php declare(strict_types=1);
 
 namespace Examples;
@@ -611,9 +613,9 @@ use Shopware\Core\Framework\DataAbstractionLayer\EntityCollection;
  */
 class ExampleEntityCollection extends EntityCollection
 {
-    protected function getExpectedClass(): string
-    {
-        return ExampleEntity::class;
-    }
+  protected function getExpectedClass(): string
+  {
+    return ExampleEntity::class;
+  }
 }
 ```

@@ -54,12 +54,12 @@ use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 
 class ReadingData
 {
-    private EntityRepository $productRepository;
+  private EntityRepository $productRepository;
 
-    public function __construct(EntityRepository $productRepository)
-    {
-        $this->productRepository = $productRepository;
-    }
+  public function __construct(EntityRepository $productRepository)
+  {
+    $this->productRepository = $productRepository;
+  }
 }
 ```
 
@@ -79,7 +79,7 @@ Let's start with the most basic read action now:
 ```php
 public function readData(Context $context): void
 {
-    $products = $this->productRepository->search(new Criteria(), $context);
+  $products = $this->productRepository->search(new Criteria(), $context);
 }
 ```
 
@@ -98,7 +98,7 @@ Often you have an ID from an entity and you just want to find the whole dataset 
 ```php
 public function readData(Context $context): void
 {
-    $product = $this->productRepository->search(new Criteria([$myId]), $context)->first();
+  $product = $this->productRepository->search(new Criteria([$myId]), $context)->first();
 }
 ```
 
@@ -117,10 +117,10 @@ In order to do this, you can apply filters to the `Criteria` object, such as an 
 ```php
 public function readData(Context $context): void
 {
-    $criteria = new Criteria();
-    $criteria->addFilter(new EqualsFilter('name', 'Example name'));
+  $criteria = new Criteria();
+  $criteria->addFilter(new EqualsFilter('name', 'Example name'));
 
-    $products = $this->productRepository->search($criteria, $context);
+  $products = $this->productRepository->search($criteria, $context);
 }
 ```
 
@@ -139,13 +139,13 @@ Let's just build the example mentioned above:
 ```php
 public function readData(Context $context): void
 {
-    $criteria = new Criteria();
-    $criteria->addFilter(new OrFilter([
-        new EqualsFilter('id', 'Your example ID'),
-        new EqualsFilter('name', 'Example name')
-    ]));
+  $criteria = new Criteria();
+  $criteria->addFilter(new OrFilter([
+    new EqualsFilter('id', 'Your example ID'),
+    new EqualsFilter('name', 'Example name')
+  ]));
 
-    $products = $this->productRepository->search($criteria, $context);
+  $products = $this->productRepository->search($criteria, $context);
 }
 ```
 
@@ -164,10 +164,10 @@ In that case, you can just use the `addPostFilter` instead of `addFilter`:
 ```php
 public function readData(): void
 {
-    $criteria = new Criteria();
-    $criteria->addPostFilter(new EqualsFilter('name', 'Example name'));
+  $criteria = new Criteria();
+  $criteria->addPostFilter(new EqualsFilter('name', 'Example name'));
 
-    $products = $this->productRepository->search($criteria, $context);
+  $products = $this->productRepository->search($criteria, $context);
 }
 ```
 
@@ -184,11 +184,11 @@ Of course associations to other entities are also possible in Shopware 6. If you
 ```php
 public function readData(Context $context): void
 {
-    $criteria = new Criteria();
-    $criteria->addFilter(new EqualsFilter('name', 'Example name'));
-    $criteria->addAssociation('productReviews');
+  $criteria = new Criteria();
+  $criteria->addFilter(new EqualsFilter('name', 'Example name'));
+  $criteria->addAssociation('productReviews');
 
-    $products = $this->productRepository->search($criteria, $context);
+  $products = $this->productRepository->search($criteria, $context);
 }
 ```
 
@@ -199,11 +199,11 @@ Also worth to mention is the fact, that you can chain the association key. E.g. 
 ```php
 public function readData(Context $context): void
 {
-    $criteria = new Criteria();
-    $criteria->addFilter(new EqualsFilter('name', 'Example name'));
-    $criteria->addAssociation('productReviews.customer');
+  $criteria = new Criteria();
+  $criteria->addFilter(new EqualsFilter('name', 'Example name'));
+  $criteria->addAssociation('productReviews.customer');
 
-    $products = $this->productRepository->search($criteria, $context);
+  $products = $this->productRepository->search($criteria, $context);
 }
 ```
 
@@ -216,14 +216,14 @@ For this we can use `getAssociation` instead, which basically returns its own `C
 ```php
 public function readData(Context $context): void
 {
-    $criteria = new Criteria();
-    $criteria->addFilter(new EqualsFilter('name', 'Example name'));
+  $criteria = new Criteria();
+  $criteria->addFilter(new EqualsFilter('name', 'Example name'));
 
-    $criteria->getAssociation('productReviews')->addFilter(new RangeFilter('points', [
-        RangeFilter::GTE => 4
-    ]));
+  $criteria->getAssociation('productReviews')->addFilter(new RangeFilter('points', [
+    RangeFilter::GTE => 4
+  ]));
 
-    $product = $this->productRepository->search($criteria, $context)->first();
+  $product = $this->productRepository->search($criteria, $context)->first();
 }
 ```
 
@@ -234,19 +234,19 @@ Another example to clarify what's going on here:
 ```php
 public function readData(Context $context): void
 {
-    // This will always return the product with the given name, no matter if it has a review with 4 or more stars.
-    // But only matching reviews are added to the dataset then.
-    $criteria->getAssociation('productReviews')->addFilter(new RangeFilter('points', [
-        RangeFilter::GTE => 4
-    ]));
-    $product = $this->productRepository->search($criteria, $context)->first();
+  // This will always return the product with the given name, no matter if it has a review with 4 or more stars.
+  // But only matching reviews are added to the dataset then.
+  $criteria->getAssociation('productReviews')->addFilter(new RangeFilter('points', [
+    RangeFilter::GTE => 4
+  ]));
+  $product = $this->productRepository->search($criteria, $context)->first();
 
-    // This will only return products, whose name matches AND which have at least one rating of 4 stars or more
-    $criteria->addAssociation('productReviews');
-    $criteria->addFilter(new RangeFilter('productReviews.points', [
-        RangeFilter::GTE => 4
-    ]));
-    $product = $this->productRepository->search($criteria, $context)->first();
+  // This will only return products, whose name matches AND which have at least one rating of 4 stars or more
+  $criteria->addAssociation('productReviews');
+  $criteria->addFilter(new RangeFilter('productReviews.points', [
+    RangeFilter::GTE => 4
+  ]));
+  $product = $this->productRepository->search($criteria, $context)->first();
 }
 ```
 
@@ -261,10 +261,10 @@ The following example will **not** work:
 ```php
 public function readData(Context $context): void
 {
-    $criteria = new Criteria();
+  $criteria = new Criteria();
 
-    // It's the product_category.repository here
-    $result = $this->productCategoryRepository->search($criteria, $context);
+  // It's the product_category.repository here
+  $result = $this->productCategoryRepository->search($criteria, $context);
 }
 ```
 
@@ -277,14 +277,14 @@ Of course you can also aggregate your data. Just like filters and associations, 
 ```php
 public function readData(Context $context): void
 {
-    $criteria = new Criteria();
-    $criteria->addFilter(new EqualsFilter('name', 'Example name'));
+  $criteria = new Criteria();
+  $criteria->addFilter(new EqualsFilter('name', 'Example name'));
 
-    $criteria->addAssociation('productReviews');
-    $criteria->addAggregation(new AvgAggregation('avg-rating', 'productReviews.points'));
+  $criteria->addAssociation('productReviews');
+  $criteria->addAggregation(new AvgAggregation('avg-rating', 'productReviews.points'));
 
-    $products = $this->productRepository->search($criteria, $context);
-    $rating = $products->getAggregations()->get('avg-rating');
+  $products = $this->productRepository->search($criteria, $context);
+  $rating = $products->getAggregations()->get('avg-rating');
 }
 ```
 
@@ -301,11 +301,11 @@ Let's start with the limiting of the result:
 ```php
 public function readData(Context $context): void
 {
-    $criteria = new Criteria();
-    $criteria->addFilter(new EqualsFilter('name', 'Example name'));
-    $criteria->setLimit(1);
+  $criteria = new Criteria();
+  $criteria->addFilter(new EqualsFilter('name', 'Example name'));
+  $criteria->setLimit(1);
 
-    $product = $this->productRepository->search($criteria, $context)->first();
+  $product = $this->productRepository->search($criteria, $context)->first();
 }
 ```
 
@@ -314,12 +314,12 @@ That's quite self-explanatory, isn't it? Just use the `setLimit` method with you
 ```php
 public function readData(Context $context): void
 {
-    $criteria = new Criteria();
-    $criteria->addFilter(new EqualsFilter('name', 'Example name'));
-    $criteria->setOffset(1);
-    $criteria->setLimit(1);
+  $criteria = new Criteria();
+  $criteria->addFilter(new EqualsFilter('name', 'Example name'));
+  $criteria->setOffset(1);
+  $criteria->setLimit(1);
 
-    $product = $this->productRepository->search($criteria, $context)->first();
+  $product = $this->productRepository->search($criteria, $context)->first();
 }
 ```
 
@@ -328,13 +328,13 @@ This way you get the 2nd possible product. But since you didn't define a sorting
 ```php
 public function readData(Context $context): void
 {
-    $criteria = new Criteria();
-    $criteria->addFilter(new EqualsFilter('name', 'Example name'));
-    $criteria->setOffset(1);
-    $criteria->setLimit(1);
-    $criteria->addSorting(new FieldSorting('createdAt', FieldSorting::ASCENDING));
+  $criteria = new Criteria();
+  $criteria->addFilter(new EqualsFilter('name', 'Example name'));
+  $criteria->setOffset(1);
+  $criteria->setLimit(1);
+  $criteria->addSorting(new FieldSorting('createdAt', FieldSorting::ASCENDING));
 
-    $product = $this->productRepository->search($criteria, $context)->first();
+  $product = $this->productRepository->search($criteria, $context)->first();
 }
 ```
 
@@ -353,16 +353,16 @@ Instead, the `RepositoryIterator` will return a batch of data, which size you ca
 ```php
 public function readData(Context $context): void
 {
-    $criteria = new Criteria();
-    $criteria->setLimit(500);
+  $criteria = new Criteria();
+  $criteria->setLimit(500);
 
-    $iterator = new RepositoryIterator($this->productRepository, $context, $criteria);
+  $iterator = new RepositoryIterator($this->productRepository, $context, $criteria);
 
-    while (($result = $iterator->fetch()) !== null) {
-        $products = $result->getEntities();
+  while (($result = $iterator->fetch()) !== null) {
+    $products = $result->getEntities();
 
-        // Do something with the products
-    }
+    // Do something with the products
+  }
 }
 ```
 

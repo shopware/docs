@@ -33,20 +33,17 @@ use Shopware\Core\Content\Cms\DataResolver\CriteriaCollection;
 
 class DailyMotionCmsElementResolver extends AbstractCmsElementResolver
 {
-    public function getType(): string
-    {
-        return 'dailymotion';
-    }
+  public function getType(): string
+  {
+    return 'dailymotion';
+  }
 
-    public function collect(CmsSlotEntity $slot, ResolverContext $resolverContext): ?CriteriaCollection
-    {
-        return null;
-    }
+  public function collect(CmsSlotEntity $slot, ResolverContext $resolverContext): ?CriteriaCollection
+  {
+    return null;
+  }
 
-    public function enrich(CmsSlotEntity $slot, ResolverContext $resolverContext, ElementDataCollection $result): void
-    {
-
-    }
+  public function enrich(CmsSlotEntity $slot, ResolverContext $resolverContext, ElementDataCollection $result): void {}
 }
 ```
 
@@ -85,24 +82,24 @@ use Shopware\Core\Content\Media\MediaDefinition;
 use Shopware\Core\Content\Media\MediaEntity;
 // ...
 
-    public function collect(CmsSlotEntity $slot, ResolverContext $resolverContext): ?CriteriaCollection
-    {
-        $config = $slot->getFieldConfig();
-        $myCustomMedia = $config->get('myCustomMedia');
+public function collect(CmsSlotEntity $slot, ResolverContext $resolverContext): ?CriteriaCollection
+{
+  $config = $slot->getFieldConfig();
+  $myCustomMedia = $config->get('myCustomMedia');
 
-        if (!$myCustomMedia) {
-            return null;
-        }
+  if (!$myCustomMedia) {
+    return null;
+  }
 
-        $mediaId = $myCustomMedia->getValue();
+  $mediaId = $myCustomMedia->getValue();
 
-        $criteria = new Criteria([$mediaId]);
+  $criteria = new Criteria([$mediaId]);
 
-        $criteriaCollection = new CriteriaCollection();
-        $criteriaCollection->add('media_' . $slot->getUniqueIdentifier(), MediaDefinition::class, $criteria);
+  $criteriaCollection = new CriteriaCollection();
+  $criteriaCollection->add('media_' . $slot->getUniqueIdentifier(), MediaDefinition::class, $criteria);
 
-        return $criteriaCollection;
-    }
+  return $criteriaCollection;
+}
 
 // ...
 ```
@@ -118,20 +115,20 @@ This could be a possible solution for that:
 <?php declare(strict_types=1);
 // ...
 
-    public function enrich(CmsSlotEntity $slot, ResolverContext $resolverContext, ElementDataCollection $result): void
-    {
-        $config = $slot->getFieldConfig();
-        $myCustomApiPayload = $config->get('myCustomApiPayload');
+public function enrich(CmsSlotEntity $slot, ResolverContext $resolverContext, ElementDataCollection $result): void
+{
+  $config = $slot->getFieldConfig();
+  $myCustomApiPayload = $config->get('myCustomApiPayload');
 
-        // perform some external api call with the payload `myCustomApiPayload`
-        $myCustomAPI = new MyCustomAPI();
+  // perform some external api call with the payload `myCustomApiPayload`
+  $myCustomAPI = new MyCustomAPI();
 
-        $response = $myCustomAPI->query($myCustomApiPayload);
+  $response = $myCustomAPI->query($myCustomApiPayload);
 
-        if ($response) {
-            $slot->setData($response);
-        }
-    }
+  if ($response) {
+    $slot->setData($response);
+  }
+}
 
 // ...
 ```

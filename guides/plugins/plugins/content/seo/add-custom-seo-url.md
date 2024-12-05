@@ -55,13 +55,13 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route(defaults: ['_routeScope' => ['storefront']])]
 class ExampleController extends StorefrontController
 {
-    #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'])]
-    public function showExample(): Response
-    {
-        return $this->renderStorefront('@SwagBasicExample/storefront/page/example/index.html.twig', [
-            'example' => 'Hello world'
-        ]);
-    }
+  #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'])]
+  public function showExample(): Response
+  {
+    return $this->renderStorefront('@SwagBasicExample/storefront/page/example/index.html.twig', [
+      'example' => 'Hello world'
+    ]);
+  }
 }
 ```
 
@@ -92,59 +92,57 @@ use Shopware\Core\Migration\Traits\Translations;
 
 class Migration1619094740AddStaticSeoUrl extends MigrationStep
 {
-    use ImportTranslationsTrait;
+  use ImportTranslationsTrait;
 
-    public function getCreationTimestamp(): int
-    {
-        return 1619094740;
-    }
+  public function getCreationTimestamp(): int
+  {
+    return 1619094740;
+  }
 
-    public function update(Connection $connection): void
-    {
-        $this->importTranslation('seo_url', new Translations(
-            // German array
-            array_merge($this->getSeoMetaArray($connection), ['seo_path_info' => 'Beispiel-Seite']),
-            // English array
-            array_merge($this->getSeoMetaArray($connection), ['seo_path_info' => 'Example-Page']),
+  public function update(Connection $connection): void
+  {
+    $this->importTranslation('seo_url', new Translations(
+      // German array
+      array_merge($this->getSeoMetaArray($connection), ['seo_path_info' => 'Beispiel-Seite']),
+      // English array
+      array_merge($this->getSeoMetaArray($connection), ['seo_path_info' => 'Example-Page']),
 
-        ), $connection);
-    }
+    ), $connection);
+  }
 
-    public function updateDestructive(Connection $connection): void
-    {
-    }
+  public function updateDestructive(Connection $connection): void {}
 
-    private function getSeoMetaArray(Connection $connection): array
-    {
-        return [
-            'id' => Uuid::randomBytes(),
-            'sales_channel_id' => $this->getStorefrontSalesChannelId($connection),
-            'foreign_key' => Uuid::randomBytes(),
-            'route_name' => 'frontend.example.example',
-            'path_info' => '/example',
-            'is_canonical' => 1,
-            'is_modified' => 0,
-            'is_deleted' => 0,
-        ];
-    }
+  private function getSeoMetaArray(Connection $connection): array
+  {
+    return [
+      'id' => Uuid::randomBytes(),
+      'sales_channel_id' => $this->getStorefrontSalesChannelId($connection),
+      'foreign_key' => Uuid::randomBytes(),
+      'route_name' => 'frontend.example.example',
+      'path_info' => '/example',
+      'is_canonical' => 1,
+      'is_modified' => 0,
+      'is_deleted' => 0,
+    ];
+  }
 
-    private function getStorefrontSalesChannelId(Connection $connection): ?string
-    {
-        $sql = <<<SQL
-            SELECT id
-            FROM sales_channel
-            WHERE type_id = :typeId
+  private function getStorefrontSalesChannelId(Connection $connection): ?string
+  {
+    $sql = <<<SQL
+SELECT id
+FROM sales_channel
+WHERE type_id = :typeId
 SQL;
-        $salesChannelId = $connection->fetchOne($sql, [
-            ':typeId' => Uuid::fromHexToBytes(Defaults::SALES_CHANNEL_TYPE_STOREFRONT)
-        ]);
+    $salesChannelId = $connection->fetchOne($sql, [
+      ':typeId' => Uuid::fromHexToBytes(Defaults::SALES_CHANNEL_TYPE_STOREFRONT)
+    ]);
 
-        if (!$salesChannelId) {
-            return null;
-        }
-
-        return $salesChannelId;
+    if (!$salesChannelId) {
+      return null;
     }
+
+    return $salesChannelId;
+  }
 }
 ```
 
@@ -194,46 +192,44 @@ use Swag\BasicExample\Core\Content\Example\ExampleEntity;
 
 class ExamplePageSeoUrlRoute implements SeoUrlRouteInterface
 {
-    public const ROUTE_NAME = 'frontend.example.example';
-    public const DEFAULT_TEMPLATE = '{{ example.name }}';
+  public const ROUTE_NAME = 'frontend.example.example';
+  public const DEFAULT_TEMPLATE = '{{ example.name }}';
 
-    private ExampleDefinition $exampleDefinition;
+  private ExampleDefinition $exampleDefinition;
 
-    public function __construct(ExampleDefinition $exampleDefinition)
-    {
-        $this->exampleDefinition = $exampleDefinition;
+  public function __construct(ExampleDefinition $exampleDefinition)
+  {
+    $this->exampleDefinition = $exampleDefinition;
+  }
+
+  public function getConfig(): SeoUrlRouteConfig
+  {
+    return new SeoUrlRouteConfig(
+      $this->exampleDefinition,
+      self::ROUTE_NAME,
+      self::DEFAULT_TEMPLATE,
+      true
+    );
+  }
+
+  public function prepareCriteria(Criteria $criteria): void {}
+
+  public function getMapping(Entity $example, ?SalesChannelEntity $salesChannel): SeoUrlMapping
+  {
+    if (!$example instanceof ExampleEntity) {
+      throw new \InvalidArgumentException('Expected ExampleEntity');
     }
 
-    public function getConfig(): SeoUrlRouteConfig
-    {
-        return new SeoUrlRouteConfig(
-            $this->exampleDefinition,
-            self::ROUTE_NAME,
-            self::DEFAULT_TEMPLATE,
-            true
-        );
-    }
+    $exampleJson = $example->jsonSerialize();
 
-    public function prepareCriteria(Criteria $criteria): void
-    {
-    }
-
-    public function getMapping(Entity $example, ?SalesChannelEntity $salesChannel): SeoUrlMapping
-    {
-        if (!$example instanceof ExampleEntity) {
-            throw new \InvalidArgumentException('Expected ExampleEntity');
-        }
-
-        $exampleJson = $example->jsonSerialize();
-
-        return new SeoUrlMapping(
-            $example,
-            ['exampleId' => $example->getId()],
-            [
-                'example' => $exampleJson,
-            ]
-        );
-    }
+    return new SeoUrlMapping(
+      $example,
+      ['exampleId' => $example->getId()],
+      [
+        'example' => $exampleJson,
+      ]
+    );
+  }
 }
 ```
 
@@ -311,23 +307,24 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class DynamicSeoUrlPageSubscriber implements EventSubscriberInterface
 {
-    private SeoUrlUpdater $seoUrlUpdater;
+  private SeoUrlUpdater $seoUrlUpdater;
 
-    public function __construct(SeoUrlUpdater $seoUrlUpdater) {
-        $this->seoUrlUpdater = $seoUrlUpdater;
-    }
+  public function __construct(SeoUrlUpdater $seoUrlUpdater)
+  {
+    $this->seoUrlUpdater = $seoUrlUpdater;
+  }
 
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            'swag_example.written' => 'onEntityWritten'
-        ];
-    }
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      'swag_example.written' => 'onEntityWritten'
+    ];
+  }
 
-    public function onEntityWritten(EntityWrittenEvent $event): void
-    {
-        $this->seoUrlUpdater->update(ExamplePageSeoUrlRoute::ROUTE_NAME, $event->getIds());
-    }
+  public function onEntityWritten(EntityWrittenEvent $event): void
+  {
+    $this->seoUrlUpdater->update(ExamplePageSeoUrlRoute::ROUTE_NAME, $event->getIds());
+  }
 }
 ```
 
@@ -386,26 +383,24 @@ use Swag\BasicExample\Storefront\Framework\Seo\SeoUrlRoute\ExamplePageSeoUrlRout
 
 class Migration1619514731AddExampleSeoUrlTemplate extends MigrationStep
 {
-    public function getCreationTimestamp(): int
-    {
-        return 1619514731;
-    }
+  public function getCreationTimestamp(): int
+  {
+    return 1619514731;
+  }
 
-    public function update(Connection $connection): void
-    {
-        $connection->insert('seo_url_template', [
-            'id' => Uuid::randomBytes(),
-            'sales_channel_id' => null,
-            'route_name' => ExamplePageSeoUrlRoute::ROUTE_NAME,
-            'entity_name' => 'swag_example',
-            'template' => ExamplePageSeoUrlRoute::DEFAULT_TEMPLATE,
-            'created_at' => (new \DateTimeImmutable())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
-        ]);
-    }
+  public function update(Connection $connection): void
+  {
+    $connection->insert('seo_url_template', [
+      'id' => Uuid::randomBytes(),
+      'sales_channel_id' => null,
+      'route_name' => ExamplePageSeoUrlRoute::ROUTE_NAME,
+      'entity_name' => 'swag_example',
+      'template' => ExamplePageSeoUrlRoute::DEFAULT_TEMPLATE,
+      'created_at' => (new \DateTimeImmutable())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
+    ]);
+  }
 
-    public function updateDestructive(Connection $connection): void
-    {
-    }
+  public function updateDestructive(Connection $connection): void {}
 }
 ```
 
@@ -435,22 +430,22 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class DynamicSeoUrlPageSubscriber implements EventSubscriberInterface
 {
-    // ...
+  // ...
 
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            'swag_example.written' => 'onEntityWritten',
-            'swag_example.deleted' => 'onEntityDeleted'
-        ];
-    }
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      'swag_example.written' => 'onEntityWritten',
+      'swag_example.deleted' => 'onEntityDeleted'
+    ];
+  }
 
-    // ...
+  // ...
 
-    public function onEntityDeleted(EntityDeletedEvent $event): void
-    {
-        $this->seoUrlUpdater->update(ExamplePageSeoUrlRoute::ROUTE_NAME, $event->getIds());
-    }
+  public function onEntityDeleted(EntityDeletedEvent $event): void
+  {
+    $this->seoUrlUpdater->update(ExamplePageSeoUrlRoute::ROUTE_NAME, $event->getIds());
+  }
 }
 ```
 
@@ -484,59 +479,59 @@ use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
 
 class DynamicSeoUrlsService
 {
-    public const ROUTE_NAME = 'example.route.name';
+  public const ROUTE_NAME = 'example.route.name';
 
-    private SeoUrlPersister $seoUrlPersister;
+  private SeoUrlPersister $seoUrlPersister;
 
-    private EntityRepository $salesChannelRepository;
+  private EntityRepository $salesChannelRepository;
 
-    private SlugifyInterface $slugify;
+  private SlugifyInterface $slugify;
 
-    public function __construct(
-        SeoUrlPersister $seoUrlPersister,
-        EntityRepository $salesChannelRepository,
-        SlugifyInterface $slugify
-    ) {
-        $this->seoUrlPersister = $seoUrlPersister;
-        $this->salesChannelRepository = $salesChannelRepository;
-        $this->slugify = $slugify;
+  public function __construct(
+    SeoUrlPersister $seoUrlPersister,
+    EntityRepository $salesChannelRepository,
+    SlugifyInterface $slugify
+  ) {
+    $this->seoUrlPersister = $seoUrlPersister;
+    $this->salesChannelRepository = $salesChannelRepository;
+    $this->slugify = $slugify;
+  }
+
+  public function writeSeoEntries(array $entries, Context $context): void
+  {
+    $urls = [];
+
+    $salesChannelId = $this->getStorefrontSalesChannelId($context);
+    if (!$salesChannelId) {
+      // Might want to throw an error here
+      return;
     }
 
-    public function writeSeoEntries(array $entries, Context $context): void
-    {
-        $urls = [];
-
-        $salesChannelId = $this->getStorefrontSalesChannelId($context);
-        if (!$salesChannelId) {
-            // Might want to throw an error here
-            return;
-        }
-
-        foreach ($entries as $entry) {
-            $urls[] = [
-                'salesChannelId' => $salesChannelId,
-                'foreignKey' => $entry->getId(),
-                // The name of the route in the respective controller
-                'routeName' => self::ROUTE_NAME,
-                // The technical path of your custom route, using a given parameter
-                'pathInfo' => '/example-path/' . $entry->getId(),
-                'isCanonical' => true,
-                // The SEO URL that you want to use here, in this case just the name
-                'seoPathInfo' => '/' . $this->slugify->slugify($entry->getName()),
-            ];
-        }
-
-        // You might have to create a new context using another specific language ID
-        $this->seoUrlPersister->updateSeoUrls($context, self::ROUTE_NAME, array_column($urls, 'foreignKey') , $urls);
+    foreach ($entries as $entry) {
+      $urls[] = [
+        'salesChannelId' => $salesChannelId,
+        'foreignKey' => $entry->getId(),
+        // The name of the route in the respective controller
+        'routeName' => self::ROUTE_NAME,
+        // The technical path of your custom route, using a given parameter
+        'pathInfo' => '/example-path/' . $entry->getId(),
+        'isCanonical' => true,
+        // The SEO URL that you want to use here, in this case just the name
+        'seoPathInfo' => '/' . $this->slugify->slugify($entry->getName()),
+      ];
     }
 
-    private function getStorefrontSalesChannelId(Context $context): ?string
-    {
-        $criteria = new Criteria();
-        $criteria->addFilter(new EqualsFilter('typeId', Defaults::SALES_CHANNEL_TYPE_STOREFRONT));
+    // You might have to create a new context using another specific language ID
+    $this->seoUrlPersister->updateSeoUrls($context, self::ROUTE_NAME, array_column($urls, 'foreignKey'), $urls);
+  }
 
-        return $this->salesChannelRepository->searchIds($criteria, $context)->firstId();
-    }
+  private function getStorefrontSalesChannelId(Context $context): ?string
+  {
+    $criteria = new Criteria();
+    $criteria->addFilter(new EqualsFilter('typeId', Defaults::SALES_CHANNEL_TYPE_STOREFRONT));
+
+    return $this->salesChannelRepository->searchIds($criteria, $context)->firstId();
+  }
 }
 ```
 
@@ -559,7 +554,7 @@ If your custom dynamic content is deleted, you have to set the column `is_delete
 ```php
 public function deleteSeoEntries(array $ids, Context $context): void
 {
-    $this->seoUrlPersister->updateSeoUrls($context, self::ROUTE_NAME, $ids, []);
+  $this->seoUrlPersister->updateSeoUrls($context, self::ROUTE_NAME, $ids, []);
 }
 ```
 
@@ -571,10 +566,10 @@ In the example mentioned above, we're just using a `Context` instance, for which
 
 ```php
 $context = new Context(
-    $event->getContext()->getSource(),
-    $event->getContext()->getRuleIds(),
-    $event->getContext()->getCurrencyId(),
-    [$languageId]
+  $event->getContext()->getSource(),
+  $event->getContext()->getRuleIds(),
+  $event->getContext()->getCurrencyId(),
+  [$languageId]
 );
 ```
 

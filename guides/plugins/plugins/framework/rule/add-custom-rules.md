@@ -41,61 +41,61 @@ use Symfony\Component\Validator\Constraints\Type;
 
 class FirstMondayOfTheMonthRule extends Rule
 {
-    protected bool $isFirstMondayOfTheMonth;
+  protected bool $isFirstMondayOfTheMonth;
 
-    public function __construct()
-    {
-        parent::__construct();
+  public function __construct()
+  {
+    parent::__construct();
 
-        // Will be overwritten at runtime. Reflects the expected value.
-        $this->isFirstMondayOfTheMonth = false;
+    // Will be overwritten at runtime. Reflects the expected value.
+    $this->isFirstMondayOfTheMonth = false;
+  }
+
+  public function getName(): string
+  {
+    return 'first_monday';
+  }
+
+  public function match(RuleScope $scope): bool
+  {
+    $isFirstMondayOfTheMonth = $this->isCurrentlyFirstMondayOfTheMonth(date("Y-m-d"));
+
+    // Checks if the shop owner set the rule to "First monday => Yes"
+    if ($this->isFirstMondayOfTheMonth) {
+      // Shop administrator wants the rule to match if there's currently the first monday of the month.
+      return $isFirstMondayOfTheMonth;
     }
 
-    public function getName(): string
-    {
-        return 'first_monday';
+    // Shop administrator wants the rule to match if there's currently NOT the first monday of the month.
+    return !$isFirstMondayOfTheMonth;
+  }
+
+  public function getConstraints(): array
+  {
+    return [
+      'isFirstMondayOfTheMonth' => [new Type('bool')]
+    ];
+  }
+
+  private function isCurrentlyFirstMondayOfTheMonth($dateString)
+  {
+    $date = new \DateTime($dateString);
+    $dayOfWeek = (int) $date->format('w');
+
+    // Check if it's Monday (1 is Monday)
+    if ($dayOfWeek !== 1) {
+      return false;
     }
 
-    public function match(RuleScope $scope): bool
-    {
-        $isFirstMondayOfTheMonth = $this->isCurrentlyFirstMondayOfTheMonth(date("Y-m-d") );
-
-        // Checks if the shop owner set the rule to "First monday => Yes"
-        if ($this->isFirstMondayOfTheMonth) {
-            // Shop administrator wants the rule to match if there's currently the first monday of the month.
-            return $isFirstMondayOfTheMonth;
-        }
-
-        // Shop administrator wants the rule to match if there's currently NOT the first monday of the month.
-        return !$isFirstMondayOfTheMonth;
+    // Check if the date is within the first seven days of the month
+    $dayOfMonth = (int) $date->format('j');
+    if ($dayOfMonth > 7) {
+      return false;
     }
 
-    public function getConstraints(): array
-    {
-        return [
-            'isFirstMondayOfTheMonth' => [new Type('bool')]
-        ];
-    }
-
-    private function isCurrentlyFirstMondayOfTheMonth($dateString)
-    {
-        $date = new \DateTime($dateString);
-        $dayOfWeek = (int) $date->format('w');
-        
-        // Check if it's Monday (1 is Monday)
-        if ($dayOfWeek !== 1) {
-            return false;
-        }
-
-        // Check if the date is within the first seven days of the month
-        $dayOfMonth = (int) $date->format('j');
-        if ($dayOfMonth > 7) {
-            return false;
-        }
-
-        // If it passed both checks, it's the first Thursday of the month
-        return true;
-    }
+    // If it passed both checks, it's the first Thursday of the month
+    return true;
+  }
 }
 ```
 
@@ -122,10 +122,10 @@ $loggedIn = $customer !== null;
 It is possible to add config to our rule. This makes it possible to skip the [Custom rule component](#custom-rule-component) and the [Custom rule Administration template](#custom-rule-administration-template) parts.
 
 ```php
-    public function getConfig(): RuleConfig
-    {
-        return (new RuleConfig())->booleanField('isFirstMondayOfTheMonth');
-    }
+public function getConfig(): RuleConfig
+{
+  return (new RuleConfig())->booleanField('isFirstMondayOfTheMonth');
+}
 ```
 
 when [Showing rule in the Administration](#showing-rule-in-the-administration) we would not use a custom component but we would render the `sw-condition-generic` component.

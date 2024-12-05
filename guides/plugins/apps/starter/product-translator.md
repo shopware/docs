@@ -204,13 +204,13 @@ To get started, let's write a simple [Symfony event listener](https://symfony.co
 #[AsEventListener(event: 'webhook.product.written')]
 class ProductWrittenWebhookListener
 {
-    public function __construct(private readonly ClientFactory $clientFactory, private readonly LoggerInterface $logger)
-    {
-    }
+  public function __construct(private readonly ClientFactory $clientFactory, private readonly LoggerInterface $logger)
+  {
+  }
 
-    public function __invoke(WebhookAction $action): void
-    {
-    }
+  public function __invoke(WebhookAction $action): void
+  {
+  }
 }
 ```
 
@@ -222,27 +222,27 @@ In this example, we will use the SimpleHttpClient which simples the usage of the
 
 ```php
 // src/EventListener/ProductWrittenWebhookListener.php
-    public function __invoke(WebhookAction $action): void
-    {
-        $client = $this->clientFactory->createSimpleClient($action->shop);
-    }
+  public function __invoke(WebhookAction $action): void
+  {
+    $client = $this->clientFactory->createSimpleClient($action->shop);
+  }
 ```
 
 Now we can inspect the event payload:
 
 ```php
 // src/EventListener/ProductWrittenWebhookListener.php
-    public function __invoke(WebhookAction $action): void
-    {
-        //...
+public function __invoke(WebhookAction $action): void
+{
+  //...
 
-        $updatedFields = $action->payload[0]['updatedFields'];
-        $id = $action->payload[0]['primaryKey'];
+  $updatedFields = $action->payload[0]['updatedFields'];
+  $id = $action->payload[0]['primaryKey'];
 
-        if (!in_array('description', $updatedFields)) {
-            return;
-        }
-    }
+  if (!in_array('description', $updatedFields)) {
+    return;
+  }
+}
 ```
 
 ### Fetching data from the shop
@@ -255,51 +255,51 @@ Now that it is certain that someone changed the description of the product, we f
 
 ```php
 // src/EventListener/ProductWrittenWebhookListener.php
-    public function __invoke(WebhookAction $action): void
-    {
-        //...
-        $response = $client->post(
-            sprintf('%s/api/search/product', $action->shop->getShopUrl()),
-            [
-                'ids' => [$id],
-                'associations' => [
-                    'translations' => [
-                        'associations' => [
-                            'language' => [
-                                'associations' => [
-                                    'locale' => []
-                                ]
-                            ],
-                        ]
-                    ],
-                ]
-            ]
-        );
-        
-        if (!$response->ok()) {
-            $this->logger->error('Could not fetch product', ['response' => $response->json()]);
-            return;
-        }
-    }
+public function __invoke(WebhookAction $action): void
+{
+  //...
+  $response = $client->post(
+    sprintf('%s/api/search/product', $action->shop->getShopUrl()),
+    [
+      'ids' => [$id],
+      'associations' => [
+        'translations' => [
+          'associations' => [
+            'language' => [
+              'associations' => [
+                'locale' => []
+              ]
+            ],
+          ]
+        ],
+      ]
+    ]
+  );
+  
+  if (!$response->ok()) {
+    $this->logger->error('Could not fetch product', ['response' => $response->json()]);
+    return;
+  }
+}
 ```
 
 The request contains a criteria that fetches the product for which we received the event `'ids' => [$id]` and all translations and their associated languages `'associations' => 'language'`. Now we can retrieve the English description from the API response:
 
 ```php
 // src/EventListener/ProductWrittenWebhookListener.php
-    public function __invoke(WebhookAction $action): void
-    {
-        //...
-        $product = $response->json()['data'][0];
-        $description = '';
-        $name = '';
-        foreach ($product['translations'] as $translation) {
-            if ($translation['language']['locale']['code'] === 'en-GB') {
-                $description = $translation['description'];
-                $name = $translation['name'];
-            }
-        }
+public function __invoke(WebhookAction $action): void
+{
+  //...
+  $product = $response->json()['data'][0];
+  $description = '';
+  $name = '';
+  foreach ($product['translations'] as $translation) {
+    if ($translation['language']['locale']['code'] === 'en-GB') {
+      $description = $translation['description'];
+      $name = $translation['name'];
     }
+  }
+}
 ```
 
 ::: info
@@ -312,14 +312,14 @@ We will get to the generation of the hash later, but we need to check it first:
 
 ```php
 // src/EventListener/ProductWrittenWebhookListener.php
-    public function __invoke(WebhookAction $action): void
-    {
-        //...
-        $lastHash = $product['customFields']['translator-last-translation-hash'] ?? '';
-        if (md5($description) === $lastHash) {
-            return;
-        }
-    }
+public function __invoke(WebhookAction $action): void
+{
+  //...
+  $lastHash = $product['customFields']['translator-last-translation-hash'] ?? '';
+  if (md5($description) === $lastHash) {
+    return;
+  }
+}
 ```
 
 ### Writing a translated description
@@ -328,25 +328,25 @@ Now that the app can be sure, the description has not been translated before it 
 
 ```php
 // src/EventListener/ProductWrittenWebhookListener.php
-    public function __invoke(WebhookAction $action): void
-    {
-        //...
-        $response = $client->patch(sprintf('%s/api/product/%s', $action->shop->getShopUrl(), $id), [
-            'translations' => [
-                'en-GB' => [
-                    'name' => $name,
-                    'description' => $this->translate($description)
-                ],
-            ],
-            'customFields' => [
-                'translator-last-translation-hash' => md5($description)
-            ]
-        ]);
+public function __invoke(WebhookAction $action): void
+{
+  //...
+  $response = $client->patch(sprintf('%s/api/product/%s', $action->shop->getShopUrl(), $id), [
+    'translations' => [
+      'en-GB' => [
+        'name' => $name,
+        'description' => $this->translate($description)
+      ],
+    ],
+    'customFields' => [
+      'translator-last-translation-hash' => md5($description)
+    ]
+  ]);
 
-        if (!$response->ok()) {
-            $this->logger->error('Could not update product', ['response' => $response->json()]);
-        }
-    }
+  if (!$response->ok()) {
+    $this->logger->error('Could not update product', ['response' => $response->json()]);
+  }
+}
 ```
 
 Note that the hash of the original description gets saved as a value in the custom fields of the product entity.
@@ -369,75 +369,73 @@ use Psr\Log\LoggerInterface;
 #[AsEventListener(event: 'webhook.product.written')]
 class ProductUpdatedListener
 {
-    public function __construct(private readonly ClientFactory $clientFactory, private readonly LoggerInterface $logger)
-    {
+  public function __construct(private readonly ClientFactory $clientFactory, private readonly LoggerInterface $logger) {}
+
+  public function __invoke(WebhookAction $action): void
+  {
+    $client = $this->clientFactory->createSimpleClient($action->shop);
+
+    $updatedFields = $action->payload[0]['updatedFields'];
+    $id = $action->payload[0]['primaryKey'];
+
+    if (!in_array('description', $updatedFields)) {
+      return;
     }
 
-    public function __invoke(WebhookAction $action): void
-    {
-        $client = $this->clientFactory->createSimpleClient($action->shop);
-
-        $updatedFields = $action->payload[0]['updatedFields'];
-        $id = $action->payload[0]['primaryKey'];
-
-        if (!in_array('description', $updatedFields)) {
-            return;
-        }
-
-        $response = $client->post(
-            sprintf('%s/api/search/product', $action->shop->getShopUrl()),
-            [
-                'ids' => [$id],
+    $response = $client->post(
+      sprintf('%s/api/search/product', $action->shop->getShopUrl()),
+      [
+        'ids' => [$id],
+        'associations' => [
+          'translations' => [
+            'associations' => [
+              'language' => [
                 'associations' => [
-                    'translations' => [
-                        'associations' => [
-                            'language' => [
-                                'associations' => [
-                                    'locale' => []
-                                ]
-                            ],
-                        ]
-                    ],
+                  'locale' => []
                 ]
+              ],
             ]
-        );
-        if (!$response->ok()) {
-            $this->logger->error('Could not fetch product', ['response' => $response->json()]);
-            return;
-        }
-
-        $product = $response->json()['data'][0];
-        $description = '';
-        $name = '';
-        foreach ($product['translations'] as $translation) {
-            if ($translation['language']['locale']['code'] === 'en-GB') {
-                $description = $translation['description'];
-                $name = $translation['name'];
-            }
-        }
-
-        $lastHash = $product['customFields']['translator-last-translation-hash'] ?? '';
-        if (md5($description) === $lastHash) {
-            return;
-        }
-
-        $response = $client->patch(sprintf('%s/api/product/%s', $action->shop->getShopUrl(), $id), [
-            'translations' => [
-                'en-GB' => [
-                    'name' => $name,
-                    'description' => 'Test English'
-                    //'description' => $this->translate($description)
-                ],
-            ],
-            'customFields' => [
-                'translator-last-translation-hash' => md5($description)
-            ]
-        ]);
-
-        if (!$response->ok()) {
-            $this->logger->error('Could not update product', ['response' => $response->json()]);
-        }
+          ],
+        ]
+      ]
+    );
+    if (!$response->ok()) {
+      $this->logger->error('Could not fetch product', ['response' => $response->json()]);
+      return;
     }
+
+    $product = $response->json()['data'][0];
+    $description = '';
+    $name = '';
+    foreach ($product['translations'] as $translation) {
+      if ($translation['language']['locale']['code'] === 'en-GB') {
+        $description = $translation['description'];
+        $name = $translation['name'];
+      }
+    }
+
+    $lastHash = $product['customFields']['translator-last-translation-hash'] ?? '';
+    if (md5($description) === $lastHash) {
+      return;
+    }
+
+    $response = $client->patch(sprintf('%s/api/product/%s', $action->shop->getShopUrl(), $id), [
+      'translations' => [
+        'en-GB' => [
+          'name' => $name,
+          'description' => 'Test English'
+          //'description' => $this->translate($description)
+        ],
+      ],
+      'customFields' => [
+        'translator-last-translation-hash' => md5($description)
+      ]
+    ]);
+
+    if (!$response->ok()) {
+      $this->logger->error('Could not update product', ['response' => $response->json()]);
+    }
+  }
 }
 ```
 

@@ -18,30 +18,30 @@ We have solved this problem by updating the available stock directly in the `Che
 ```php
 public function orderPlaced(CheckoutOrderPlacedEvent $event): void
 {
-    $ids = [];
-    foreach ($event->getOrder()->getLineItems() as $lineItem) {
-        if ($lineItem->getType() !== LineItem::PRODUCT_LINE_ITEM_TYPE) {
-            continue;
-        }
-
-        if (!\array_key_exists($lineItem->getReferencedId(), $ids)) {
-            $ids[$lineItem->getReferencedId()] = 0;
-        }
-
-        $ids[$lineItem->getReferencedId()] += $lineItem->getQuantity();
+  $ids = [];
+  foreach ($event->getOrder()->getLineItems() as $lineItem) {
+    if ($lineItem->getType() !== LineItem::PRODUCT_LINE_ITEM_TYPE) {
+      continue;
     }
 
-    // order placed event is a high load event. Because of the high load, we simply reduce the quantity here instead of executing the high costs `update` function
-    $query = new RetryableQuery(
-        $this->connection,
-        $this->connection->prepare('UPDATE product SET available_stock = available_stock - :quantity WHERE id = :id')
-    );
-
-    foreach ($ids as $id => $quantity) {
-        $query->execute(['id' => Uuid::fromHexToBytes((string) $id), 'quantity' => $quantity]);
+    if (!\array_key_exists($lineItem->getReferencedId(), $ids)) {
+      $ids[$lineItem->getReferencedId()] = 0;
     }
 
-    $this->updateAvailableFlag(\array_keys($ids), $event->getContext());
+    $ids[$lineItem->getReferencedId()] += $lineItem->getQuantity();
+  }
+
+  // order placed event is a high load event. Because of the high load, we simply reduce the quantity here instead of executing the high costs `update` function
+  $query = new RetryableQuery(
+    $this->connection,
+    $this->connection->prepare('UPDATE product SET available_stock = available_stock - :quantity WHERE id = :id')
+  );
+
+  foreach ($ids as $id => $quantity) {
+    $query->execute(['id' => Uuid::fromHexToBytes((string) $id), 'quantity' => $quantity]);
+  }
+
+  $this->updateAvailableFlag(\array_keys($ids), $event->getContext());
 }
 ```
 
@@ -50,14 +50,14 @@ To prevent executing the `lineItemWritten` logic in addition to the `CheckoutOrd
 ```php
 public function lineItemWritten(EntityWrittenEvent $event): void
 {
-    $ids = [];
+  $ids = [];
 
-    // we don't want to trigger to `update` method when we are inside the order process
-    if ($event->getContext()->hasState('checkout-order-route')) {
-        return;
-    }
-    
-    //...
+  // we don't want to trigger to `update` method when we are inside the order process
+  if ($event->getContext()->hasState('checkout-order-route')) {
+      return;
+  }
+  
+  //...
 }
 ```
 

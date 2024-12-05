@@ -116,7 +116,7 @@ stateDiagram-v2
 Enrichment secures the *Independence_ and _Adaptability* of Shopware 6. As shown in the below code snippet, the cart can create and contain line items that are initially empty and will only be loaded \(enriched\) during the calculation.
 
 ```php
-<?php 
+<?php declare(strict_types=1);
 
 use Shopware\Core\Checkout\Cart\Cart;
 use Shopware\Core\Checkout\Cart\LineItem\LineItem;

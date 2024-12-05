@@ -28,16 +28,16 @@ The following example will show you how **not** to do it. It's assuming that you
 ```php
 public function replaceData(Context $context): void
 {
-    $this->productRepository->update([
+  $this->productRepository->update([
+    [
+      'id' => 'myProductId',
+      'categories' => [
         [
-            'id' => 'myProductId',
-            'categories' => [
-                [
-                    'id' => 'newCategoryId'
-                ]
-            ]
+          'id' => 'newCategoryId'
         ]
-    ], $context);
+      ]
+    ]
+  ], $context);
 }
 ```
 
@@ -76,12 +76,12 @@ Afterwards, you can just use the `delete` method on the repository, just like yo
 ```php
 public function replaceData(Context $context): void
 {
-    $this->productCategoryRepository->delete([
-        [
-            'productId' => 'myProductId',
-            'categoryId' => 'oldId'
-        ]
-    ], $context);
+  $this->productCategoryRepository->delete([
+    [
+      'productId' => 'myProductId',
+      'categoryId' => 'oldId'
+    ]
+  ], $context);
 }
 ```
 
@@ -90,25 +90,25 @@ Now the association to the old category was removed and you can now use the code
 ```php
 public function replaceData(Context $context): void
 {
-    $productId = 'myProductId';
+  $productId = 'myProductId';
 
-    $this->productCategoryRepository->delete([
-        [
-            'productId' => $productId,
-            'categoryId' => 'oldCategoryId'
-        ]
-    ], $context);
+  $this->productCategoryRepository->delete([
+    [
+      'productId' => $productId,
+      'categoryId' => 'oldCategoryId'
+    ]
+  ], $context);
 
-    $this->productRepository->update([
+  $this->productRepository->update([
+    [
+      'id' => $productId,
+      'categories' => [
         [
-            'id' => $productId,
-            'categories' => [
-                [
-                    'id' => 'newCategoryId'
-                ]
-            ]
+          'id' => 'newCategoryId'
         ]
-    ], $context);
+      ]
+    ]
+  ], $context);
 }
 ```
 
@@ -121,12 +121,12 @@ Replacing `OneToOne` or `ManyToOne` associations works just like expected via an
 ```php
 public function replaceData(Context $context): void
 {
-    $this->productRepository->update([
-        [
-            'id' => 'myProductId',
-            'taxId' => 'newTaxId'
-        ]
-    ], $context);
+  $this->productRepository->update([
+    [
+      'id' => 'myProductId',
+      'taxId' => 'newTaxId'
+    ]
+  ], $context);
 }
 ```
 

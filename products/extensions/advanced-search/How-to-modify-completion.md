@@ -22,33 +22,33 @@ _The definition is from the [previous example](./How-to-define-your-custom-Elast
 
 class YourCustomElasticsearchDefinition extends AbstractElasticsearchDefinition
 {
-    public function __construct(
-        private readonly EntityDefinition $definition,
-        private readonly Connection $connection,
-        private readonly AbstractSearchLogic $searchLogic,
-        private readonly CompletionDefinitionEnrichment $completionDefinitionEnrichment,
-        private readonly array $languageAnalyzerMapping
-    ) {
-    }
+  public function __construct(
+    private readonly EntityDefinition $definition,
+    private readonly Connection $connection,
+    private readonly AbstractSearchLogic $searchLogic,
+    private readonly CompletionDefinitionEnrichment $completionDefinitionEnrichment,
+    private readonly array $languageAnalyzerMapping
+  ) {
+  }
 
-    public function getMapping(Context $context): array
-    {
-        // ...
-        
-        return [
-            '_source' => ['includes' => ['id']],
-            // to add the mapping of completion field in your definition
-            'properties' => array_merge($properties, $this->completionDefinitionEnrichment->enrichMapping()),
-        ];
-    }
+  public function getMapping(Context $context): array
+  {
+    // ...
+    
+    return [
+      '_source' => ['includes' => ['id']],
+      // to add the mapping of completion field in your definition
+      'properties' => array_merge($properties, $this->completionDefinitionEnrichment->enrichMapping()),
+    ];
+  }
 
-    public function fetch(array $ids, Context $context): array
-    {
-        // ...
+  public function fetch(array $ids, Context $context): array
+  {
+    // ...
 
-        // to add the completion keywords to the existing data
-        return $this->completionDefinitionEnrichment->enrichData($this->getEntityDefinition(), $documents);
-    }
+    // to add the completion keywords to the existing data
+    return $this->completionDefinitionEnrichment->enrichData($this->getEntityDefinition(), $documents);
+  }
 }
 ```
 

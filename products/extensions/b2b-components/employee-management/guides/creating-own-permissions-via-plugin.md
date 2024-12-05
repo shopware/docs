@@ -19,35 +19,35 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class PermissionCollectorSubscriber implements EventSubscriberInterface
 {
-    public const OWN_ENTITY_GROUP = 'own_entity';
+  public const OWN_ENTITY_GROUP = 'own_entity';
 
-    // Here you define your custom permissions as constants
-    public const OWN_ENTITY_READ = 'own_entity.read';
-    
-    public const OWN_ENTITY_EDIT = 'own_entity.edit';
-    
-    public const OWN_ENTITY_CREATE = 'own_entity.create';
-    
-    public const OWN_ENTITY_DELETE = 'own_entity.delete';
+  // Here you define your custom permissions as constants
+  public const OWN_ENTITY_READ = 'own_entity.read';
 
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            PermissionCollectorEvent::NAME => [ 'onAddOwnPermissions' , 1000 ]
-        ];
-    }
+  public const OWN_ENTITY_EDIT = 'own_entity.edit';
 
-    // This method is called when the PermissionCollectorEvent is triggered
-    public function onAddOwnPermissions(PermissionCollectorEvent $event): void
-    {
-        $collection = $event->getCollection();
+  public const OWN_ENTITY_CREATE = 'own_entity.create';
 
-        // Here you add your custom permissions to the permission collection
-        $collection->addPermission(self::EMPLOYEE_READ, self::OWN_ENTITY_GROUP, []);
-        $collection->addPermission(self::EMPLOYEE_EDIT, self::OWN_ENTITY_GROUP, [ self::EMPLOYEE_READ ]);
-        $collection->addPermission(self::EMPLOYEE_CREATE, self::OWN_ENTITY_GROUP, [ self::EMPLOYEE_READ, self::EMPLOYEE_EDIT ]);
-        $collection->addPermission(self::EMPLOYEE_DELETE, self::OWN_ENTITY_GROUP, [ self::EMPLOYEE_READ, self::EMPLOYEE_EDIT ]);
-    }
+  public const OWN_ENTITY_DELETE = 'own_entity.delete';
+
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      PermissionCollectorEvent::NAME => ['onAddOwnPermissions', 1000]
+    ];
+  }
+
+  // This method is called when the PermissionCollectorEvent is triggered
+  public function onAddOwnPermissions(PermissionCollectorEvent $event): void
+  {
+    $collection = $event->getCollection();
+
+    // Here you add your custom permissions to the permission collection
+    $collection->addPermission(self::EMPLOYEE_READ, self::OWN_ENTITY_GROUP, []);
+    $collection->addPermission(self::EMPLOYEE_EDIT, self::OWN_ENTITY_GROUP, [self::EMPLOYEE_READ]);
+    $collection->addPermission(self::EMPLOYEE_CREATE, self::OWN_ENTITY_GROUP, [self::EMPLOYEE_READ, self::EMPLOYEE_EDIT]);
+    $collection->addPermission(self::EMPLOYEE_DELETE, self::OWN_ENTITY_GROUP, [self::EMPLOYEE_READ, self::EMPLOYEE_EDIT]);
+  }
 }
 ```
 
@@ -68,11 +68,13 @@ In controllers, the checking of permissions must happen via the employee's role:
 
 ```php
 <?php declare(strict_types=1);
+
 public function employeeList(Request $request, SalesChannelContext $context): Response
 {
-    if (!$context->getCustomer()->getEmployee()->getRole()->can(PermissionCollectorSubscriber::EMPLOYEE_READ)) {
-        throw new PermissionDeniedException();
-    }
-...
+  if (!$context->getCustomer()->getEmployee()->getRole()->can(PermissionCollectorSubscriber::EMPLOYEE_READ)) {
+    throw new PermissionDeniedException();
+  }
+  
+  // ...
 }
 ```

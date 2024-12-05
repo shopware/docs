@@ -71,7 +71,7 @@ The JSON for the fields column look like this:
 Otherwise, you can subscribe to the `ProductListingCriteriaEvent` to add a `ProductSortingEntity` as available sorting on the fly.
 
 ```php
-<?php
+<?php declare(strict_types=1);
 
 namespace Shopware\Core\Content\Product\SalesChannel\Sorting\Example;
 
@@ -80,39 +80,40 @@ use Shopware\Core\Content\Product\SalesChannel\Sorting\ProductSortingCollection;
 use Shopware\Core\Content\Product\SalesChannel\Sorting\ProductSortingEntity;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class ExampleListingSubscriber implements EventSubscriberInterface {
+class ExampleListingSubscriber implements EventSubscriberInterface
+{
 
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            ProductListingCriteriaEvent::class => ['addMyCustomSortingToStorefront', 500],
-        ];
-    }
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      ProductListingCriteriaEvent::class => ['addMyCustomSortingToStorefront', 500],
+    ];
+  }
 
-    public function addMyCustomSortingToStorefront(ProductListingCriteriaEvent $event): void 
-    {
-        /** @var ProductSortingCollection $availableSortings */
-        $availableSortings = $event->getCriteria()->getExtension('sortings') ?? new ProductSortingCollection();
-        
-        $myCustomSorting = new ProductSortingEntity();
-        $myCustomSorting->setId(Uuid::randomHex());
-        $myCustomSorting->setActive(true);
-        $myCustomSorting->setTranslated(['label' => 'My Custom Sorting']);
-        $myCustomSorting->setKey('my-custom-sort');
-        $myCustomSorting->setPriority(5);
-        $myCustomSorting->setFields([
-            [
-                'field' => 'product.name',
-                'order' => 'desc',
-                'priority' => 1,
-                'naturalSorting' => 0,
-            ],
-        ]);
-        
-        $availableSortings->add($myCustomSorting);
-        
-        $event->getCriteria()->addExtension('sortings', $availableSortings);
-    }
+  public function addMyCustomSortingToStorefront(ProductListingCriteriaEvent $event): void
+  {
+    /** @var ProductSortingCollection $availableSortings */
+    $availableSortings = $event->getCriteria()->getExtension('sortings') ?? new ProductSortingCollection();
+
+    $myCustomSorting = new ProductSortingEntity();
+    $myCustomSorting->setId(Uuid::randomHex());
+    $myCustomSorting->setActive(true);
+    $myCustomSorting->setTranslated(['label' => 'My Custom Sorting']);
+    $myCustomSorting->setKey('my-custom-sort');
+    $myCustomSorting->setPriority(5);
+    $myCustomSorting->setFields([
+      [
+        'field' => 'product.name',
+        'order' => 'desc',
+        'priority' => 1,
+        'naturalSorting' => 0,
+      ],
+    ]);
+
+    $availableSortings->add($myCustomSorting);
+
+    $event->getCriteria()->addExtension('sortings', $availableSortings);
+  }
 }
 ```
 

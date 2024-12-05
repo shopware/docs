@@ -45,7 +45,9 @@ In our case we want to add data to the `FooterPagelet` so we need to subscribe t
 
 ```php
 // SwagBasicExample/src/Service/AddDataToPage.php
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
 
@@ -54,17 +56,14 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class AddDataToPage implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            FooterPageletLoadedEvent::class => 'addActiveProductCount'
-        ];
-    }
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      FooterPageletLoadedEvent::class => 'addActiveProductCount'
+    ];
+  }
 
-    public function addActiveProductCount(FooterPageletLoadedEvent $event): void
-    {
-
-    }
+  public function addActiveProductCount(FooterPageletLoadedEvent $event): void {}
 }
 ```
 
@@ -102,9 +101,9 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route(defaults: ['_routeScope' => ['store-api']])]
 abstract class AbstractProductCountRoute
 {
-    abstract public function getDecorated(): AbstractProductCountRoute;
+  abstract public function getDecorated(): AbstractProductCountRoute;
 
-    abstract public function load(Criteria $criteria, SalesChannelContext $context): ProductCountRouteResponse;
+  abstract public function load(Criteria $criteria, SalesChannelContext $context): ProductCountRouteResponse;
 }
 ```
 
@@ -125,32 +124,32 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route(defaults: ['_routeScope' => ['store-api']])]
 class ProductCountRoute extends AbstractProductCountRoute
 {
-    protected EntityRepository $productRepository;
+  protected EntityRepository $productRepository;
 
-    public function __construct(EntityRepository $productRepository)
-    {
-        $this->productRepository = $productRepository;
-    }
+  public function __construct(EntityRepository $productRepository)
+  {
+    $this->productRepository = $productRepository;
+  }
 
-    public function getDecorated(): AbstractProductCountRoute
-    {
-        throw new DecorationPatternException(self::class);
-    }
+  public function getDecorated(): AbstractProductCountRoute
+  {
+    throw new DecorationPatternException(self::class);
+  }
 
-     #[Route(path: '/store-api/get-active-product-count', name: 'store-api.product-count.get', methods: ['GET', 'POST'], defaults: ['_entity' => 'product'])]
-    public function load(Criteria $criteria, SalesChannelContext $context): ProductCountRouteResponse
-    {
-        $criteria = new Criteria();
-        $criteria->addFilter(new EqualsFilter('product.active', true));
-        $criteria->addAggregation(new CountAggregation('productCount', 'product.id'));
+  #[Route(path: '/store-api/get-active-product-count', name: 'store-api.product-count.get', methods: ['GET', 'POST'], defaults: ['_entity' => 'product'])]
+  public function load(Criteria $criteria, SalesChannelContext $context): ProductCountRouteResponse
+  {
+    $criteria = new Criteria();
+    $criteria->addFilter(new EqualsFilter('product.active', true));
+    $criteria->addAggregation(new CountAggregation('productCount', 'product.id'));
 
-        /** @var CountResult $productCountResult */
-        $productCountResult = $this->productRepository
-            ->aggregate($criteria, $context->getContext())
-            ->get('productCount');
-            
-        return new ProductCountRouteResponse($productCountResult);
-    }
+    /** @var CountResult $productCountResult */
+    $productCountResult = $this->productRepository
+      ->aggregate($criteria, $context->getContext())
+      ->get('productCount');
+
+    return new ProductCountRouteResponse($productCountResult);
+  }
 }
 ```
 
@@ -200,15 +199,15 @@ use Shopware\Core\System\SalesChannel\StoreApiResponse;
  */
 class ProductCountRouteResponse extends StoreApiResponse
 {
-    public function __construct(CountResult $countResult)
-    {
-        parent::__construct($countResult);
-    }
+  public function __construct(CountResult $countResult)
+  {
+    parent::__construct($countResult);
+  }
 
-    public function getProductCount(): CountResult
-    {
-        return $this->object;
-    }
+  public function getProductCount(): CountResult
+  {
+    return $this->object;
+  }
 }
 ```
 
@@ -229,26 +228,26 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class AddDataToPage implements EventSubscriberInterface
 {
-    private ProductCountRoute $productCountRoute;
+  private ProductCountRoute $productCountRoute;
 
-    public function __construct(ProductCountRoute $productCountRoute)
-    {
-        $this->productCountRoute = $productCountRoute;
-    }
+  public function __construct(ProductCountRoute $productCountRoute)
+  {
+    $this->productCountRoute = $productCountRoute;
+  }
 
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            FooterPageletLoadedEvent::class => 'addActiveProductCount'
-        ];
-    }
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      FooterPageletLoadedEvent::class => 'addActiveProductCount'
+    ];
+  }
 
-    public function addActiveProductCount(FooterPageletLoadedEvent $event): void
-    {
-        $productCountResponse = $this->productCountRoute->load(new Criteria(), $event->getSalesChannelContext());
+  public function addActiveProductCount(FooterPageletLoadedEvent $event): void
+  {
+    $productCountResponse = $this->productCountRoute->load(new Criteria(), $event->getSalesChannelContext());
 
-        $event->getPagelet()->addExtension('product_count', $productCountResponse->getProductCount());
-    }
+    $event->getPagelet()->addExtension('product_count', $productCountResponse->getProductCount());
+  }
 }
 ```
 

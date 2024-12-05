@@ -137,29 +137,29 @@ use Shopware\App\SDK\Shop\ShopResolver;
 
 function gatewayController(RequestInterface $request): ResponseInterface
 {
-    // injected or build by yourself
-    $shopResolver = new ShopResolver($repository);
-    $contextResolver = new ContextResolver();
-    $signer = new ResponseSigner();
-    
-    $shop = $shopResolver->resolveShop($request);
-    
-    /** @var Shopware\App\SDK\Context\Gateway\Checkout\CheckoutGatewayAction $action */
-    $action = $contextResolver->assembleCheckoutGatewayRequest($request, $shop);
+  // injected or build by yourself
+  $shopResolver = new ShopResolver($repository);
+  $contextResolver = new ContextResolver();
+  $signer = new ResponseSigner();
 
-    /** @var Collection<Shopware\App\SDK\Gateway\Checkout\CheckoutGatewayCommand> $commands */
-    $commands = new Collection();
+  $shop = $shopResolver->resolveShop($request);
 
-    if ($action->paymentMethods->has('payment-myApp-payment-method')) {
-        if ($action->cart->getPrice()->getTotalPrice() > 1000) {
-            $commands->add(new RemovePaymentMethodCommand('payment-myApp-payment-method'));
-            $commands->add(new AddCartErrorCommand('Payment method \'My App Payment Method\' is not available for carts > 1000€.', false, Error::LEVEL_WARNING));
-        }
+  /** @var Shopware\App\SDK\Context\Gateway\Checkout\CheckoutGatewayAction $action */
+  $action = $contextResolver->assembleCheckoutGatewayRequest($request, $shop);
+
+  /** @var Collection<Shopware\App\SDK\Gateway\Checkout\CheckoutGatewayCommand> $commands */
+  $commands = new Collection();
+
+  if ($action->paymentMethods->has('payment-myApp-payment-method')) {
+    if ($action->cart->getPrice()->getTotalPrice() > 1000) {
+      $commands->add(new RemovePaymentMethodCommand('payment-myApp-payment-method'));
+      $commands->add(new AddCartErrorCommand('Payment method \'My App Payment Method\' is not available for carts > 1000€.', false, Error::LEVEL_WARNING));
     }
+  }
 
-    $response = GatewayResponse::createCheckoutGatewayResponse($commands);
+  $response = GatewayResponse::createCheckoutGatewayResponse($commands);
 
-    return $signer->sign($response);
+  return $signer->sign($response);
 }
 ```
 
@@ -186,28 +186,27 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('gateway', name: 'braintree.gateway.')]
 class GatewayController extends AbstractController
 {
-    public function __construct(
-        private readonly HttpFoundationFactoryInterface $httpFoundationFactory
-    ) {
+  public function __construct(
+    private readonly HttpFoundationFactoryInterface $httpFoundationFactory
+  ) {}
+
+  #[Route('/checkout', name: 'checkout', methods: ['POST'])]
+  public function checkout(CheckoutGatewayAction $action): Response
+  {
+    /** @var Collection<CheckoutGatewayCommand> $commands */
+    $commands = new Collection();
+
+    if ($action->paymentMethods->has('payment-myApp-payment-method')) {
+      if ($action->cart->getPrice()->getTotalPrice() > 1000) {
+        $commands->add(new RemovePaymentMethodCommand('payment-myApp-payment-method'));
+        $commands->add(new AddCartErrorCommand('Payment method \'My App Payment Method\' is not available for carts > 1000€.', false, Error::LEVEL_WARNING));
+      }
     }
 
-    #[Route('/checkout', name: 'checkout', methods: ['POST'])]
-    public function checkout(CheckoutGatewayAction $action): Response
-    {
-        /** @var Collection<CheckoutGatewayCommand> $commands */
-        $commands = new Collection();
+    $response = GatewayResponse::createCheckoutGatewayResponse($commands);
 
-        if ($action->paymentMethods->has('payment-myApp-payment-method')) {
-            if ($action->cart->getPrice()->getTotalPrice() > 1000) {
-                $commands->add(new RemovePaymentMethodCommand('payment-myApp-payment-method'));
-                $commands->add(new AddCartErrorCommand('Payment method \'My App Payment Method\' is not available for carts > 1000€.', false, Error::LEVEL_WARNING));
-            }
-        }
-
-        $response = GatewayResponse::createCheckoutGatewayResponse($commands);
-
-        return $this->httpFoundationFactory->createResponse($response);
-    }
+    return $this->httpFoundationFactory->createResponse($response);
+  }
 }
 ```
 

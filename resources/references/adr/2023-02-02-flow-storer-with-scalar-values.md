@@ -20,51 +20,56 @@ At the moment we have a bunch of different `FlowStorer` implementations. Most of
 We introduce a generic `ScalarValuesAware` interface which can be used to store simple values which should be simply stored and restored one to one:
 
 ```php
+<?php declare(strict_types=1);
+
 interface ScalarValuesAware
 {
-    public const STORE_VALUES = 'scalar_values';
-    
-    /** @return array<string, scalar|null|array> */
-    public function getValues(): array;
+  public const STORE_VALUES = 'scalar_values';
+  
+  /** @return array<string, scalar|null|array> */
+  public function getValues(): array;
 }
 ```
 
 This event can be used in different events which needs a simple storage logic:
 
 ```php
+<?php declare(strict_types=1);
+
 class SomeFlowAwareEvent extends Event implements ScalarStoreAware, FlowEventAware
 {
-    public function __construct(private readonly string $url) { }
+  public function __construct(private readonly string $url) { }
 
-    public function getValues(): array
-    {
-        return ['url' => $this->url];
-    }
+  public function getValues(): array
+  {
+    return ['url' => $this->url];
+  }
 }
 ```
 
 To store and restore this data, we provide a simple `FlowStorer` implementation:
 
 ```php
+<?php declare(strict_types=1);
 
 class ScalarValuesStorer extends FlowStorer
 {
-    public function store(FlowEventAware $event, array $stored): array
-    {
-        if (!$event instanceof ScalarValuesAware) return $stored
+  public function store(FlowEventAware $event, array $stored): array
+  {
+    if (!$event instanceof ScalarValuesAware) return $stored
 
-        $stored[ScalarValuesAware::STORE_VALUES] = $event->getValues();
+    $stored[ScalarValuesAware::STORE_VALUES] = $event->getValues();
 
-        return $stored;
+    return $stored;
+  }
+
+  public function restore(StorableFlow $storable): void
+  {
+    $values = $storable->getStore(ScalarValuesAware::STORE_VALUES);
+    foreach ($values as $key => $value) {
+      $storable->setData($key, $value);
     }
-
-    public function restore(StorableFlow $storable): void
-    {
-        $values = $storable->getStore(ScalarValuesAware::STORE_VALUES);
-        foreach ($values as $key => $value) {
-            $storable->setData($key, $value);
-        }
-    }
+  }
 }
 ```
 

@@ -44,37 +44,40 @@ use League\Flysystem\FilesystemOperator;
 
 class ExampleFilesystemService
 {
-    /**
-     * @var FilesystemOperator
-     */
-    private FilesystemOperator $fileSystemPublic;
-    /**
-     * @var FilesystemOperator
-     */
-    private FilesystemOperator $fileSystemPrivate;
+  /**
+   * @var FilesystemOperator
+   */
+  private FilesystemOperator $fileSystemPublic;
+  /**
+   * @var FilesystemOperator
+   */
+  private FilesystemOperator $fileSystemPrivate;
 
-    /**
-     * ExampleFilesystemService constructor.
-     * @param FilesystemOperator $fileSystemPublic
-     * @param FilesystemOperator $fileSystemPrivate
-     */
-    public function __construct(FilesystemOperator $fileSystemPublic, FilesystemOperator $fileSystemPrivate)
-    {
-        $this->fileSystemPublic = $fileSystemPublic;
-        $this->fileSystemPrivate = $fileSystemPrivate;
-    }
+  /**
+   * ExampleFilesystemService constructor.
+   * @param FilesystemOperator $fileSystemPublic
+   * @param FilesystemOperator $fileSystemPrivate
+   */
+  public function __construct(FilesystemOperator $fileSystemPublic, FilesystemOperator $fileSystemPrivate)
+  {
+    $this->fileSystemPublic = $fileSystemPublic;
+    $this->fileSystemPrivate = $fileSystemPrivate;
+  }
 
-    public function readPrivateFile(string $filename) {
-        return $this->fileSystemPrivate->read($filename);
-    }
+  public function readPrivateFile(string $filename)
+  {
+    return $this->fileSystemPrivate->read($filename);
+  }
 
-    public function writePrivateFile(string $filename, string $content) {
-        $this->fileSystemPrivate->write($filename, $content);
-    }
+  public function writePrivateFile(string $filename, string $content)
+  {
+    $this->fileSystemPrivate->write($filename, $content);
+  }
 
-    public function listPublicFiles(): array {
-        return $this->fileSystemPublic->listContents();
-    }
+  public function listPublicFiles(): array
+  {
+    return $this->fileSystemPublic->listContents();
+  }
 }
 ```
 

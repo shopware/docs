@@ -33,40 +33,40 @@ use SwagMigrationAssistant\Profile\Shopware\ShopwareProfileInterface;
 
 class Shopware55Profile implements ShopwareProfileInterface
 {
-    public const PROFILE_NAME = 'shopware55';
+  public const PROFILE_NAME = 'shopware55';
 
-    public const SOURCE_SYSTEM_NAME = 'Shopware';
+  public const SOURCE_SYSTEM_NAME = 'Shopware';
 
-    public const SOURCE_SYSTEM_VERSION = '5.5';
+  public const SOURCE_SYSTEM_VERSION = '5.5';
 
-    public const AUTHOR_NAME = 'shopware AG';
+  public const AUTHOR_NAME = 'shopware AG';
 
-    public const ICON_PATH = '/swagmigrationassistant/static/img/migration-assistant-plugin.svg';
+  public const ICON_PATH = '/swagmigrationassistant/static/img/migration-assistant-plugin.svg';
 
-    public function getName(): string
-    {
-        return self::PROFILE_NAME;
-    }
+  public function getName(): string
+  {
+    return self::PROFILE_NAME;
+  }
 
-    public function getSourceSystemName(): string
-    {
-        return self::SOURCE_SYSTEM_NAME;
-    }
+  public function getSourceSystemName(): string
+  {
+    return self::SOURCE_SYSTEM_NAME;
+  }
 
-    public function getVersion(): string
-    {
-        return self::SOURCE_SYSTEM_VERSION;
-    }
+  public function getVersion(): string
+  {
+    return self::SOURCE_SYSTEM_VERSION;
+  }
 
-    public function getAuthorName(): string
-    {
-        return self::AUTHOR_NAME;
-    }
+  public function getAuthorName(): string
+  {
+    return self::AUTHOR_NAME;
+  }
 
-    public function getIconPath(): string
-    {
-        return self::ICON_PATH;
-    }
+  public function getIconPath(): string
+  {
+    return self::ICON_PATH;
+  }
 }
 ```
 
@@ -83,23 +83,23 @@ namespace SwagMigrationAssistant\Migration\Connection;
 
 class SwagMigrationConnectionDefinition extends EntityDefinition
 {
-    /*...*/
+  /*...*/
 
-    protected function defineFields(): FieldCollection
-    {
-        return new FieldCollection([
-             (new IdField('id', 'id'))->setFlags(new PrimaryKey(), new Required()),
-             (new StringField('name', 'name'))->setFlags(new Required()),
-             (new JsonField('credential_fields', 'credentialFields'))->setFlags(new WriteProtected(MigrationContext::SOURCE_CONTEXT)),
-             new JsonField('premapping', 'premapping'),
-             (new StringField('profile_name', 'profileName'))->setFlags(new Required()),
-             (new StringField('gateway_name', 'gatewayName'))->setFlags(new Required()),
-             new CreatedAtField(),
-             new UpdatedAtField(),
-             new OneToManyAssociationField('runs', SwagMigrationRunDefinition::class, 'connection_id'),
-             new OneToManyAssociationField('mappings', SwagMigrationMappingDefinition::class, 'connection_id'),
-             new OneToManyAssociationField('settings', GeneralSettingDefinition::class, 'selected_connection_id'),
-        ]);
-    }
+  protected function defineFields(): FieldCollection
+  {
+    return new FieldCollection([
+      (new IdField('id', 'id'))->setFlags(new PrimaryKey(), new Required()),
+      (new StringField('name', 'name'))->setFlags(new Required()),
+      (new JsonField('credential_fields', 'credentialFields'))->setFlags(new WriteProtected(MigrationContext::SOURCE_CONTEXT)),
+      new JsonField('premapping', 'premapping'),
+      (new StringField('profile_name', 'profileName'))->setFlags(new Required()),
+      (new StringField('gateway_name', 'gatewayName'))->setFlags(new Required()),
+      new CreatedAtField(),
+      new UpdatedAtField(),
+      new OneToManyAssociationField('runs', SwagMigrationRunDefinition::class, 'connection_id'),
+      new OneToManyAssociationField('mappings', SwagMigrationMappingDefinition::class, 'connection_id'),
+      new OneToManyAssociationField('settings', GeneralSettingDefinition::class, 'selected_connection_id'),
+    ]);
+  }
 }
 ```

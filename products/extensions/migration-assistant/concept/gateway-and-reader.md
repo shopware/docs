@@ -57,57 +57,57 @@ use SwagMigrationAssistant\Migration\MigrationContextInterface;
 
 class GatewayRegistry implements GatewayRegistryInterface
 {
-    /**
-     * @var GatewayInterface[]
-     */
-    private iterable $gateways;
+  /**
+   * @var GatewayInterface[]
+   */
+  private iterable $gateways;
 
-    /**
-     * @param GatewayInterface[] $gateways
-    */
-    public function __construct(iterable $gateways)
-    {
-        $this->gateways = $gateways;
+  /**
+   * @param GatewayInterface[] $gateways
+   */
+  public function __construct(iterable $gateways)
+  {
+    $this->gateways = $gateways;
+  }
+
+  /**
+   * @throws GatewayNotFoundException
+   *
+   * @return GatewayInterface[]
+   */
+  public function getGateways(MigrationContextInterface $migrationContext): array
+  {
+    $gateways = [];
+    foreach ($this->gateways as $gateway) {
+      if ($gateway->supports($migrationContext)) {
+        $gateways[] = $gateway;
+      }
     }
 
-    /**
-     * @throws GatewayNotFoundException
-     *
-     * @return GatewayInterface[]
-     */
-    public function getGateways(MigrationContextInterface $migrationContext): array
-    {
-        $gateways = [];
-        foreach ($this->gateways as $gateway) {
-            if ($gateway->supports($migrationContext)) {
-                $gateways[] = $gateway;
-            }
-        }
+    return $gateways;
+  }
 
-        return $gateways;
+  /**
+   * @throws GatewayNotFoundException
+   */
+  public function getGateway(MigrationContextInterface $migrationContext): GatewayInterface
+  {
+    $connection = $migrationContext->getConnection();
+    if ($connection === null) {
+      throw new MigrationContextPropertyMissingException('Connection');
     }
 
-    /**
-     * @throws GatewayNotFoundException
-     */
-    public function getGateway(MigrationContextInterface $migrationContext): GatewayInterface
-    {
-        $connection = $migrationContext->getConnection();
-        if ($connection === null) {
-            throw new MigrationContextPropertyMissingException('Connection');
-        }
+    $profileName = $connection->getProfileName();
+    $gatewayName = $connection->getGatewayName();
 
-        $profileName = $connection->getProfileName();
-        $gatewayName = $connection->getGatewayName();
-
-        foreach ($this->gateways as $gateway) {
-            if ($gateway->supports($migrationContext) && $gateway->getName() === $gatewayName) {
-                return $gateway;
-            }
-        }
-
-        throw new GatewayNotFoundException($profileName . '-' . $gatewayName);
+    foreach ($this->gateways as $gateway) {
+      if ($gateway->supports($migrationContext) && $gateway->getName() === $gatewayName) {
+        return $gateway;
+      }
     }
+
+    throw new GatewayNotFoundException($profileName . '-' . $gatewayName);
+  }
 }
 ```
 
@@ -136,132 +136,132 @@ use SwagMigrationAssistant\Profile\Shopware\ShopwareProfileInterface;
 
 class ShopwareLocalGateway implements ShopwareGatewayInterface
 {
-    public const GATEWAY_NAME = 'local';
+  public const GATEWAY_NAME = 'local';
 
-    private ReaderRegistry $readerRegistry;
+  private ReaderRegistry $readerRegistry;
 
-    private EnvironmentReaderInterface $localEnvironmentReader;
+  private EnvironmentReaderInterface $localEnvironmentReader;
 
-    private TableReaderInterface $localTableReader;
+  private TableReaderInterface $localTableReader;
 
-    private ConnectionFactoryInterface $connectionFactory;
+  private ConnectionFactoryInterface $connectionFactory;
 
-    private EntityRepository $currencyRepository;
+  private EntityRepository $currencyRepository;
 
-    public function __construct(
-        ReaderRegistry $readerRegistry,
-        EnvironmentReaderInterface $localEnvironmentReader,
-        TableReaderInterface $localTableReader,
-        ConnectionFactoryInterface $connectionFactory,
-        EntityRepository $currencyRepository
-    ) {
-        $this->readerRegistry = $readerRegistry;
-        $this->localEnvironmentReader = $localEnvironmentReader;
-        $this->localTableReader = $localTableReader;
-        $this->connectionFactory = $connectionFactory;
-        $this->currencyRepository = $currencyRepository;
+  public function __construct(
+    ReaderRegistry $readerRegistry,
+    EnvironmentReaderInterface $localEnvironmentReader,
+    TableReaderInterface $localTableReader,
+    ConnectionFactoryInterface $connectionFactory,
+    EntityRepository $currencyRepository
+  ) {
+    $this->readerRegistry = $readerRegistry;
+    $this->localEnvironmentReader = $localEnvironmentReader;
+    $this->localTableReader = $localTableReader;
+    $this->connectionFactory = $connectionFactory;
+    $this->currencyRepository = $currencyRepository;
+  }
+
+  public function getName(): string
+  {
+    return self::GATEWAY_NAME;
+  }
+
+  public function getSnippetName(): string
+  {
+    return 'swag-migration.wizard.pages.connectionCreate.gateways.shopwareLocal';
+  }
+
+  public function supports(MigrationContextInterface $migrationContext): bool
+  {
+    return $migrationContext->getProfile() instanceof ShopwareProfileInterface;
+  }
+
+  public function read(MigrationContextInterface $migrationContext): array
+  {
+    $reader = $this->readerRegistry->getReader($migrationContext);
+
+    return $reader->read($migrationContext);
+  }
+
+  public function readEnvironmentInformation(MigrationContextInterface $migrationContext, Context $context): EnvironmentInformation
+  {
+    $connection = $this->connectionFactory->createDatabaseConnection($migrationContext);
+    $profile = $migrationContext->getProfile();
+
+    if ($connection === null) {
+      $error = new DatabaseConnectionException();
+
+      return new EnvironmentInformation(
+        $profile->getSourceSystemName(),
+        $profile->getVersion(),
+        '-',
+        [],
+        [],
+        new RequestStatusStruct($error->getErrorCode(), $error->getMessage())
+      );
     }
 
-    public function getName(): string
-    {
-        return self::GATEWAY_NAME;
+    try {
+      $connection->connect();
+    } catch (\Exception $e) {
+      $error = new DatabaseConnectionException();
+
+      return new EnvironmentInformation(
+        $profile->getSourceSystemName(),
+        $profile->getVersion(),
+        '-',
+        [],
+        [],
+        new RequestStatusStruct($error->getErrorCode(), $error->getMessage())
+      );
+    }
+    $connection->close();
+    $environmentData = $this->localEnvironmentReader->read($migrationContext);
+
+    /** @var CurrencyEntity $targetSystemCurrency */
+    $targetSystemCurrency = $this->currencyRepository->search(new Criteria([Defaults::CURRENCY]), $context)->get(Defaults::CURRENCY);
+    if (!isset($environmentData['defaultCurrency'])) {
+      $environmentData['defaultCurrency'] = $targetSystemCurrency->getIsoCode();
     }
 
-    public function getSnippetName(): string
-    {
-        return 'swag-migration.wizard.pages.connectionCreate.gateways.shopwareLocal';
+    $totals = $this->readTotals($migrationContext, $context);
+
+    return new EnvironmentInformation(
+      $profile->getSourceSystemName(),
+      $profile->getVersion(),
+      $environmentData['host'],
+      $totals,
+      $environmentData['additionalData'],
+      new RequestStatusStruct(),
+      false,
+      [],
+      $targetSystemCurrency->getIsoCode(),
+      $environmentData['defaultCurrency']
+    );
+  }
+
+  public function readTotals(MigrationContextInterface $migrationContext, Context $context): array
+  {
+    $readers = $this->readerRegistry->getReaderForTotal($migrationContext);
+
+    $totals = [];
+    foreach ($readers as $reader) {
+      $total = $reader->readTotal($migrationContext);
+
+      if ($total === null) {
+        continue;
+      }
+
+      $totals[$total->getEntityName()] = $total;
     }
 
-    public function supports(MigrationContextInterface $migrationContext): bool
-    {
-        return $migrationContext->getProfile() instanceof ShopwareProfileInterface;
-    }
+    return $totals;
+  }
 
-    public function read(MigrationContextInterface $migrationContext): array
-    {
-        $reader = $this->readerRegistry->getReader($migrationContext);
-
-        return $reader->read($migrationContext);
-    }
-
-    public function readEnvironmentInformation(MigrationContextInterface $migrationContext, Context $context): EnvironmentInformation
-    {
-        $connection = $this->connectionFactory->createDatabaseConnection($migrationContext);
-        $profile = $migrationContext->getProfile();
-
-        if ($connection === null) {
-            $error = new DatabaseConnectionException();
-
-            return new EnvironmentInformation(
-                $profile->getSourceSystemName(),
-                $profile->getVersion(),
-                '-',
-                [],
-                [],
-                new RequestStatusStruct($error->getErrorCode(), $error->getMessage())
-            );
-        }
-
-        try {
-            $connection->connect();
-        } catch (\Exception $e) {
-            $error = new DatabaseConnectionException();
-
-            return new EnvironmentInformation(
-                $profile->getSourceSystemName(),
-                $profile->getVersion(),
-                '-',
-                [],
-                [],
-                new RequestStatusStruct($error->getErrorCode(), $error->getMessage())
-            );
-        }
-        $connection->close();
-        $environmentData = $this->localEnvironmentReader->read($migrationContext);
-
-        /** @var CurrencyEntity $targetSystemCurrency */
-        $targetSystemCurrency = $this->currencyRepository->search(new Criteria([Defaults::CURRENCY]), $context)->get(Defaults::CURRENCY);
-        if (!isset($environmentData['defaultCurrency'])) {
-            $environmentData['defaultCurrency'] = $targetSystemCurrency->getIsoCode();
-        }
-
-        $totals = $this->readTotals($migrationContext, $context);
-
-        return new EnvironmentInformation(
-            $profile->getSourceSystemName(),
-            $profile->getVersion(),
-            $environmentData['host'],
-            $totals,
-            $environmentData['additionalData'],
-            new RequestStatusStruct(),
-            false,
-            [],
-            $targetSystemCurrency->getIsoCode(),
-            $environmentData['defaultCurrency']
-        );
-    }
-
-    public function readTotals(MigrationContextInterface $migrationContext, Context $context): array
-    {
-        $readers = $this->readerRegistry->getReaderForTotal($migrationContext);
-
-        $totals = [];
-        foreach ($readers as $reader) {
-            $total = $reader->readTotal($migrationContext);
-
-            if ($total === null) {
-                continue;
-            }
-
-            $totals[$total->getEntityName()] = $total;
-        }
-
-        return $totals;
-    }
-
-    public function readTable(MigrationContextInterface $migrationContext, string $tableName, array $filter = []): array
-    {
-        return $this->localTableReader->read($migrationContext, $tableName, $filter);
-    }
+  public function readTable(MigrationContextInterface $migrationContext, string $tableName, array $filter = []): array
+  {
+    return $this->localTableReader->read($migrationContext, $tableName, $filter);
+  }
 }
 ```

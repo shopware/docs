@@ -25,22 +25,22 @@ Example:
 
 namespace Shopware\B2B\Common\Controller;
 
-[...]
+// [...]
 
 class GridHelper
-{    
-    [...]
-    
-    /**
-     * @internal
-     */
-    protected function extractLimitAndOffset(Request $request, SearchStruct $struct): void
-    {
-        $struct->offset = $request->getParam('offset', null);
-        $struct->limit = $request->getParam('limit', null);
-    }
+{
+  // [...]
 
-    [...]
+  /**
+   * @internal
+   */
+  protected function extractLimitAndOffset(Request $request, SearchStruct $struct): void
+  {
+    $struct->offset = $request->getParam('offset', null);
+    $struct->limit = $request->getParam('limit', null);
+  }
+
+  // [...]
 }
 ```
 

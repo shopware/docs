@@ -42,10 +42,10 @@ For this we use a `Shopware\Core\Framework\DataAbstractionLayer\Field\VersionFie
 // <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 protected function defineFields(): FieldCollection
 {
-    return new FieldCollection([
-        new VersionField(),
-        ...
-    ]);
+  return new FieldCollection([
+    new VersionField(),
+    // ...
+  ]);
 }
 ```
 
@@ -59,39 +59,39 @@ In the example below, we are using a service where we injected a `swag_example.r
 // <plugin root>/src/
 public function exampleVersioning(Context $context): void
 {
-    $exampleId = Uuid::randomHex();
+  $exampleId = Uuid::randomHex();
 
-    $this->exampleRepository->create([[
-        'id' => $exampleId,
-        'name' => 'Example',
-        'description' => 'This is an example',
-        'active' => true,
-    ]], $context);
+  $this->exampleRepository->create([[
+    'id' => $exampleId,
+    'name' => 'Example',
+    'description' => 'This is an example',
+    'active' => true,
+  ]], $context);
 
-    // Create new version of our entity
-    $versionId = $this->exampleRepository->createVersion($exampleId, $context);
+  // Create new version of our entity
+  $versionId = $this->exampleRepository->createVersion($exampleId, $context);
 
-    // Update the context with our version
-    $versionContext = $context->createWithVersionId($versionId);
+  // Update the context with our version
+  $versionContext = $context->createWithVersionId($versionId);
 
-    // Update our new entity version
-    $this->exampleRepository->update([
-        [
-            'id' => $exampleId,
-            'description' => 'This is our new description',
-        ],
-    ], $versionContext);
+  // Update our new entity version
+  $this->exampleRepository->update([
+    [
+      'id' => $exampleId,
+      'description' => 'This is our new description',
+    ],
+  ], $versionContext);
 
-    // Our first entity will be found
-    $exampleOne = $this->exampleRepository->search(new Criteria([$exampleId]), $context)->first();
+  // Our first entity will be found
+  $exampleOne = $this->exampleRepository->search(new Criteria([$exampleId]), $context)->first();
 
-    // Updated entity will be found
-    $exampleTwo = $this->exampleRepository->search(new Criteria([$exampleId]), $versionContext)->first();
+  // Updated entity will be found
+  $exampleTwo = $this->exampleRepository->search(new Criteria([$exampleId]), $versionContext)->first();
 
-    $this->exampleRepository->merge($versionId, $context);
+  $this->exampleRepository->merge($versionId, $context);
 
-    // Our updated entity will be found now
-    $exampleThree = $this->exampleRepository->search(new Criteria([$exampleId]), $context)->first();
+  // Our updated entity will be found now
+  $exampleThree = $this->exampleRepository->search(new Criteria([$exampleId]), $context)->first();
 }
 ```
 
@@ -125,12 +125,12 @@ The same pattern applies to other entities.
 
 ```sql
 ALTER TABLE `swag_example`
-    ADD `version_id` BINARY(16) NOT NULL AFTER `id`,
-    ADD `parent_version_id` BINARY(16) NOT NULL,
-    ADD PRIMARY KEY `id_version_id` (`id`, `version_id`),
-    DROP INDEX `PRIMARY`,
-    CONSTRAINT `fk.swag_example.parent_id` FOREIGN KEY (`parent_id`, `parent_version_id`)
-        REFERENCES `swag_example` (`id`, `version_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  ADD `version_id` BINARY(16) NOT NULL AFTER `id`,
+  ADD `parent_version_id` BINARY(16) NOT NULL,
+  ADD PRIMARY KEY `id_version_id` (`id`, `version_id`),
+  DROP INDEX `PRIMARY`,
+  CONSTRAINT `fk.swag_example.parent_id` FOREIGN KEY (`parent_id`, `parent_version_id`)
+    REFERENCES `swag_example` (`id`, `version_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ```
 
 ### Definition
@@ -142,10 +142,10 @@ For this we use a `Shopware\Core\Framework\DataAbstractionLayer\Field\ReferenceV
 // <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 protected function defineFields(): FieldCollection
 {
-    return new FieldCollection([
-        new VersionField(),
-        (new ReferenceVersionField(self::class, 'parent_version_id')),
-        ...
-    ]);
+  return new FieldCollection([
+    new VersionField(),
+    (new ReferenceVersionField(self::class, 'parent_version_id')),
+    // ...
+  ]);
 }
 ```

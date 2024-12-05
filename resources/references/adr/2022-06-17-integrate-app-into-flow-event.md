@@ -34,9 +34,9 @@ We define flow aware classes to detect which data will be available in the event
 ```php
 interface CustomAppAware
 {
-    public const APP_DATA = 'customAppData';
+  public const APP_DATA = 'customAppData';
 
-    public function getCustomAppData(): array;
+  public function getCustomAppData(): array;
 }
 ```
 
@@ -64,8 +64,8 @@ Flow data storer saves the data from the event as the [StorableFlow](../adr/2022
 *After that, at actions we can get data thought FlowStorer.*
 
 ```php
-    $salesChanelId = $flow->getData(MailAware::SALES_CHANNEL_ID));
-    $customer = $flow->getData(CustomerAware::CUSTOMER_ID));
+$salesChanelId = $flow->getData(MailAware::SALES_CHANNEL_ID);
+$customer = $flow->getData(CustomerAware::CUSTOMER_ID);
 ```
 
 *Or we can use the data when defining the email template.*
@@ -80,19 +80,19 @@ Flow data storer saves the data from the event as the [StorableFlow](../adr/2022
 ```php
 class CustomAppStore extends FlowStorer
 {
-    public function store(FlowEventAware $event, array $stored): array
-    {
-        //check if $event is an instance of CustomAppAware
-        foreach ($event->getCustomAppData() as $key => $data) {
-            $stored[ScalarValuesAware::STORE_VALUES][$key] = $data;
-            $stored[$key] = $data;
-        }
+  public function store(FlowEventAware $event, array $stored): array
+  {
+    //check if $event is an instance of CustomAppAware
+    foreach ($event->getCustomAppData() as $key => $data) {
+      $stored[ScalarValuesAware::STORE_VALUES][$key] = $data;
+      $stored[$key] = $data;
     }
+  }
 
-    public function restore(StorableFlow $storable): void
-    {
-        return;
-    }
+  public function restore(StorableFlow $storable): void
+  {
+    return;
+  }
 }
 ```
 
@@ -110,12 +110,12 @@ Events must implement FlowEventAware to be able to available in the flow builder
 ```php
 class CustomAppEvent extends Event implements CustomAppAware, FlowEventAware
 {
-    private string $name;
+  private string $name;
 
-    private array $data;
-    
-    // __construct()
-    //getters
+  private array $data;
+  
+  // __construct()
+  //getters
 }
 ```
 
@@ -133,19 +133,19 @@ BusinessEventCollector collects events that implemented FlowEventAware and outpu
 ```php
 public function collect(Context $context): BusinessEventCollectorResponse
 {
-    //fetch app event
-    $this->fetchAppEvents(new BusinessEventCollectorResponse)
+  //fetch app event
+  $this->fetchAppEvents(new BusinessEventCollectorResponse);
 }
 
 private function fetchAppEvents(BusinessEventCollectorResponse $result): BusinessEventCollectorResponse
 {
-    //check valid app events from the database
-    return $this->createCustomAppEvent();
+  //check valid app events from the database
+  return $this->createCustomAppEvent();
 }
 
 private function createCustomAppEvent(): CustomAppEvent
 {
-   // return new CustomAppEvent
+  // return new CustomAppEvent
 }
 ```
 
@@ -161,24 +161,24 @@ We will provide an APIs to trigger CustomAppEvent.
 **Example pseudocode**
 
 ```php
-    /**
-     * @Since("6.5.2.0")
-     */
-    #[Route(path: '/api/_action/trigger-event/{eventName}', name: 'api.action.trigger_event', methods: ['POST'])]
-    public function flowCustomTrigger(string $eventName, Request $request, Context $context): JsonResponse
-    {
-        $data = $request->request->all();
-        
-        $criteria = new Criteria([$data['flowAppEventId']])
-        $criteria->addFilter(new EqualsFilter('appId', $data['flowId']));
-        $criteria->addFilter(new EqualsFilter('app.active', 1));
+/**
+ * @Since("6.5.2.0")
+ */
+#[Route(path: '/api/_action/trigger-event/{eventName}', name: 'api.action.trigger_event', methods: ['POST'])]
+public function flowCustomTrigger(string $eventName, Request $request, Context $context): JsonResponse
+{
+  $data = $request->request->all();
+  
+  $criteria = new Criteria([$data['flowAppEventId']])
+  $criteria->addFilter(new EqualsFilter('appId', $data['flowId']));
+  $criteria->addFilter(new EqualsFilter('app.active', 1));
 
-        $flowEvent = $flowAppEventRepository->search($criteria);
-        //return http status code 404 if $flowEvent is empty
-        
-        $this->eventDispatcher->dispatch(new CustomAppEvent($flowEvent->getName(), $data));
-        //return http status code 200 and success message
-    }
+  $flowEvent = $flowAppEventRepository->search($criteria);
+  //return http status code 404 if $flowEvent is empty
+  
+  $this->eventDispatcher->dispatch(new CustomAppEvent($flowEvent->getName(), $data));
+  //return http status code 200 and success message
+}
 ```
 
 ## Defining an App flow event in Xml

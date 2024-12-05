@@ -31,10 +31,10 @@ use SwagMigrationAssistant\Migration\DataSelection\DefaultEntities;
 
 class ProductWriter extends AbstractWriter
 {
-    public function supports(): string
-    {
-        return DefaultEntities::PRODUCT;
-    }
+  public function supports(): string
+  {
+    return DefaultEntities::PRODUCT;
+  }
 }
 ```
 

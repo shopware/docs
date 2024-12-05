@@ -30,24 +30,24 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 class SwagBasicExample extends Plugin
 {
-    public function build(ContainerBuilder $container): void
-    {
-        parent::build($container);
+  public function build(ContainerBuilder $container): void
+  {
+    parent::build($container);
 
-        $locator = new FileLocator('Resources/config');
+    $locator = new FileLocator('Resources/config');
 
-        $resolver = new LoaderResolver([
-            new YamlFileLoader($container, $locator),
-            new GlobFileLoader($container, $locator),
-            new DirectoryLoader($container, $locator),
-        ]);
+    $resolver = new LoaderResolver([
+      new YamlFileLoader($container, $locator),
+      new GlobFileLoader($container, $locator),
+      new DirectoryLoader($container, $locator),
+    ]);
 
-        $configLoader = new DelegatingLoader($resolver);
+    $configLoader = new DelegatingLoader($resolver);
 
-        $confDir = \rtrim($this->getPath(), '/') . '/Resources/config';
+    $confDir = \rtrim($this->getPath(), '/') . '/Resources/config';
 
-        $configLoader->load($confDir . '/{packages}/*.yaml', 'glob');
-    }
+    $configLoader->load($confDir . '/{packages}/*.yaml', 'glob');
+  }
 }
 ```
 

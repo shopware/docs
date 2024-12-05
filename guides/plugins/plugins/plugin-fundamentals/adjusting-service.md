@@ -60,9 +60,9 @@ namespace Swag\BasicExample\Service;
 
 abstract class AbstractExampleService
 {
-    abstract public function getDecorated(): AbstractExampleService; 
+  abstract public function getDecorated(): AbstractExampleService; 
 
-    abstract public function doSomething(): string;
+  abstract public function doSomething(): string;
 }
 ```
 
@@ -80,15 +80,15 @@ use Shopware\Core\Framework\Plugin\Exception\DecorationPatternException;
 
 class ExampleService extends AbstractExampleService
 {
-    public function getDecorated(): AbstractExampleService
-    {
-        throw new DecorationPatternException(self::class);
-    }
+  public function getDecorated(): AbstractExampleService
+  {
+    throw new DecorationPatternException(self::class);
+  }
 
-    public function doSomething(): string
-    {
-        return 'Did something.';
-    }
+  public function doSomething(): string
+  {
+    return 'Did something.';
+  }
 }
 ```
 
@@ -104,24 +104,24 @@ namespace Swag\BasicExample\Service;
 
 class ExampleServiceDecorator extends AbstractExampleService
 {
-    private AbstractExampleService $decoratedService;
+  private AbstractExampleService $decoratedService;
 
-    public function __construct(AbstractExampleService $exampleService)
-    {
-        $this->decoratedService = $exampleService;
-    }
+  public function __construct(AbstractExampleService $exampleService)
+  {
+    $this->decoratedService = $exampleService;
+  }
 
-    public function getDecorated(): AbstractExampleService
-    {
-        return $this->decoratedService;
-    }
+  public function getDecorated(): AbstractExampleService
+  {
+    return $this->decoratedService;
+  }
 
-    public function doSomething(): string
-    {
-        $originalResult = $this->decoratedService->doSomething();
+  public function doSomething(): string
+  {
+    $originalResult = $this->decoratedService->doSomething();
 
-        return $originalResult . ' Did something additionally.';
-    }
+    return $originalResult . ' Did something additionally.';
+  }
 }
 ```
 
@@ -139,14 +139,14 @@ namespace Swag\BasicExample\Service;
 
 abstract class AbstractExampleService
 {
-    abstract public function getDecorated(): AbstractExampleService; 
+  abstract public function getDecorated(): AbstractExampleService; 
 
-    abstract public function doSomething(): string;
+  abstract public function doSomething(): string;
 
-    public function doSomethingNew(): string
-    {
-        return $this->getDecorated()->doSomethingNew();
-    }
+  public function doSomethingNew(): string
+  {
+    return $this->getDecorated()->doSomethingNew();
+  }
 }
 ```
 
@@ -162,19 +162,19 @@ use Shopware\Core\Framework\Plugin\Exception\DecorationPatternException;
 
 class ExampleService extends AbstractExampleService
 {
-    public function getDecorated(): AbstractExampleService
-    {
-        throw new DecorationPatternException(self::class);
-    }
+  public function getDecorated(): AbstractExampleService
+  {
+    throw new DecorationPatternException(self::class);
+  }
 
-    public function doSomething(): string
-    {
-        return 'Did something.';
-    }
+  public function doSomething(): string
+  {
+    return 'Did something.';
+  }
 
-    public function doSomethingNew(): string
-    {
-        return 'Did something new.';
-    }
+  public function doSomethingNew(): string
+  {
+    return 'Did something new.';
+  }
 }
 ```

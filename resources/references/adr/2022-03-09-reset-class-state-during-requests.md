@@ -39,16 +39,16 @@ Wherever we have a class that holds some memoized data in an instance variable e
 ```php
 class FooService
 {
-    private array $data = [];
-    
-    public function getData(): array
-    {
-        if ($this->data) {
-            return $this->data;
-        }
-        
-        return $this->data = $this->fetchDataFromSomewhere();
+  private array $data = [];
+
+  public function getData(): array
+  {
+    if ($this->data) {
+      return $this->data;
     }
+
+    return $this->data = $this->fetchDataFromSomewhere();
+  }
 }
 ```
 
@@ -59,21 +59,21 @@ use Symfony\Contracts\Service\ResetInterface;
 
 class FooService implements ResetInterface
 {
-    private array $data = [];
-    
-    public function getData(): array
-    {
-        if ($this->data) {
-            return $this->data;
-        }
-        
-        return $this->data = $this->fetchDataFromSomewhere();
+  private array $data = [];
+
+  public function getData(): array
+  {
+    if ($this->data) {
+      return $this->data;
     }
 
-    public function reset(): void
-    {
-        $this->data = [];
-    }
+    return $this->data = $this->fetchDataFromSomewhere();
+  }
+
+  public function reset(): void
+  {
+    $this->data = [];
+  }
 }
 ```
 

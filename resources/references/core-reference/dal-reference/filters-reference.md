@@ -59,7 +59,7 @@ The `EqualsAny` filter allows you to filter a field where at least one of the de
 ```php
 $criteria = new Criteria();
 $criteria->addFilter(
-    new EqualsAnyFilter('productNumber', ['3fed029475fa4d4585f3a119886e0eb1', '77d26d011d914c3aa2c197c81241a45b'])
+  new EqualsAnyFilter('productNumber', ['3fed029475fa4d4585f3a119886e0eb1', '77d26d011d914c3aa2c197c81241a45b'])
 );
 ```
 
@@ -133,10 +133,10 @@ The following SQL statement is executed in the background: `WHERE stock >= 20 AN
 ```php
 $criteria = new Criteria();
 $criteria->addFilter(
-    new RangeFilter('stock', [
-        RangeFilter::GTE => 20,
-        RangeFilter::LTE => 30
-    ])
+  new RangeFilter('stock', [
+    RangeFilter::GTE => 20,
+    RangeFilter::LTE => 30
+  ])
 );
 ```
 
@@ -174,13 +174,13 @@ $criteria = new Criteria();
 $criteria->addFilter(new EqualsFilter('active', true));
 
 $criteria->addFilter(
-    new NotFilter(
-        NotFilter::CONNECTION_OR,
-        [
-            new EqualsFilter('stock', 1),
-            new EqualsFilter('availableStock', 10)
-        ]
-    )
+  new NotFilter(
+    NotFilter::CONNECTION_OR,
+    [
+      new EqualsFilter('stock', 1),
+      new EqualsFilter('availableStock', 10)
+    ]
+  )
 );
 ```
 
@@ -229,16 +229,16 @@ The `Multi` Filter is a container, which allows to set logical links between fil
 ```php
 $criteria = new Criteria();
 $criteria->addFilter(
-    new MultiFilter(
-        MultiFilter::CONNECTION_OR,
-        [
-            new EqualsFilter('stock', 1),
-            new EqualsFilter('availableStock', 10)
-        ]
-    )
+  new MultiFilter(
+    MultiFilter::CONNECTION_OR,
+    [
+      new EqualsFilter('stock', 1),
+      new EqualsFilter('availableStock', 10)
+    ]
+  )
 );
 $criteria->addFilter(
-    new EqualsFilter('active', true)
+  new EqualsFilter('active', true)
 );
 ```
 

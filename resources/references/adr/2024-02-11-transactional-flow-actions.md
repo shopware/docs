@@ -28,51 +28,55 @@ The flow executor will wrap any action in a database transaction which implement
 Before:
 
 ```php
+<?php declare(strict_types=1);
+
 class SetOrderStateAction extends FlowAction implements DelayableAction
 {
-    public function handleFlow(StorableFlow $flow): void
-    {
-        $this->connection->beginTransaction();
-        
-        //do stuff
-        
-        try {
-            $this->connection->commit();
-        } catch (\Throwable $e) {
-                
-        }
+  public function handleFlow(StorableFlow $flow): void
+  {
+    $this->connection->beginTransaction();
+
+    // do stuff
+
+    try {
+      $this->connection->commit();
+    } catch (\Throwable $e) {
+      // ...
     }
+  }
 }
 ```
 
 After:
 
 ```php
+<?php declare(strict_types=1);
 
 class SetOrderStateAction extends FlowAction implements DelayableAction, TransactionalAction
 {
-    public function handleFlow(StorableFlow $flow): void
-    {        
-        //do stuff - will be wrapped in a transaction
-    }
+  public function handleFlow(StorableFlow $flow): void
+  {
+    // do stuff - will be wrapped in a transaction
+  }
 }
 ```
 
 You can also force the flow executor to rollback the transaction by throwing an instance of `\Shopware\Core\Content\Flow\Dispatching\TransactionFailedException`. You can use the static `because` method to create the exception from another one. Eg:
 
 ```php
+<?php declare(strict_types=1);
 
 class SetOrderStateAction extends FlowAction implements DelayableAction, TransactionalAction
 {
-    public function handleFlow(StorableFlow $flow): void
-    {        
-        try {
-            //search for some record
-            $entity = $this->repo->find(...);
-        } catch (NotFoundException $e) {
-            throw TransactionFailedException::because($e);
-        }
+  public function handleFlow(StorableFlow $flow): void
+  {
+    try {
+      // search for some record
+      $entity = $this->repo->find(...);
+    } catch (NotFoundException $e) {
+      throw TransactionFailedException::because($e);
     }
+  }
 }
 ```
 

@@ -38,107 +38,105 @@ use Shopware\Core\Migration\Traits\Translations;
 
 class Migration1616677952AddDocumentType extends MigrationStep
 {
-    use ImportTranslationsTrait;
-    
-    final public const TYPE = 'example';
-    
-    public function getCreationTimestamp(): int
-    {
-        return 1616677952;
-    }
+  use ImportTranslationsTrait;
 
-    public function update(Connection $connection): void
-    {
-        $documentTypeId = Uuid::randomBytes();
+  final public const TYPE = 'example';
 
-        $connection->insert('document_type', [
-            'id' => $documentTypeId,
-            'technical_name' => self::TYPE,
-            'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT)
-        ]);
+  public function getCreationTimestamp(): int
+  {
+    return 1616677952;
+  }
 
-        $this->addTranslations($connection, $documentTypeId);
-        $this->addDocumentBaseConfig($connection, $documentTypeId);
-    }
+  public function update(Connection $connection): void
+  {
+    $documentTypeId = Uuid::randomBytes();
 
-    public function updateDestructive(Connection $connection): void
-    {
-    }
+    $connection->insert('document_type', [
+      'id' => $documentTypeId,
+      'technical_name' => self::TYPE,
+      'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT)
+    ]);
 
-    private function addTranslations(Connection $connection, string $documentTypeId): void
-    {
-        $englishName = 'Example document type name';
-        $germanName = 'Beispiel Dokumententyp Name';
+    $this->addTranslations($connection, $documentTypeId);
+    $this->addDocumentBaseConfig($connection, $documentTypeId);
+  }
 
-        $documentTypeTranslations = new Translations(
-            [
-                'document_type_id' => $documentTypeId,
-                'name' => $germanName,
-            ],
-            [
-                'document_type_id' => $documentTypeId,
-                'name' => $englishName,
-            ]
-        );
+  public function updateDestructive(Connection $connection): void {}
 
-        $this->importTranslation(
-            'document_type_translation',
-            $documentTypeTranslations,
-            $connection
-        );
-    }
-    
-    private function addDocumentBaseConfig(Connection $connection, string $documentTypeId): void
-    {
-        $defaultConfig = [
-            'displayPrices' => true,
-            'displayFooter' => true,
-            'displayHeader' => true,
-            'displayLineItems' => true,
-            'diplayLineItemPosition' => true,
-            'displayPageCount' => true,
-            'displayCompanyAddress' => true,
-            'pageOrientation' => 'portrait',
-            'pageSize' => 'a4',
-            'itemsPerPage' => 10,
-            'companyName' => 'Example Company',
-            'taxNumber' => '',
-            'vatId' => '',
-            'taxOffice' => '',
-            'bankName' => '',
-            'bankIban' => '',
-            'bankBic' => '',
-            'placeOfJurisdiction' => '',
-            'placeOfFulfillment' => '',
-            'executiveDirector' => '',
-            'companyAddress' => '',
-            'referencedDocumentType' => self::TYPE,
-        ];
+  private function addTranslations(Connection $connection, string $documentTypeId): void
+  {
+    $englishName = 'Example document type name';
+    $germanName = 'Beispiel Dokumententyp Name';
 
-        $documentBaseConfigId = Uuid::randomBytes();
+    $documentTypeTranslations = new Translations(
+      [
+        'document_type_id' => $documentTypeId,
+        'name' => $germanName,
+      ],
+      [
+        'document_type_id' => $documentTypeId,
+        'name' => $englishName,
+      ]
+    );
 
-        $connection->insert(
-            'document_base_config',
-            [
-                'id' => $documentBaseConfigId,
-                'name' => self::TYPE,
-                'global' => 1,
-                'filename_prefix' => self::TYPE . '_',
-                'document_type_id' => $documentTypeId,
-                'config' => json_encode($defaultConfig, \JSON_THROW_ON_ERROR),
-                'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
-            ]
-        );
-        $connection->insert(
-            'document_base_config_sales_channel',
-            [
-                'id' => Uuid::randomBytes(),
-                'document_base_config_id' => $documentBaseConfigId,
-                'document_type_id' => $documentTypeId,
-                'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
-            ]
-        );
-    }
+    $this->importTranslation(
+      'document_type_translation',
+      $documentTypeTranslations,
+      $connection
+    );
+  }
+
+  private function addDocumentBaseConfig(Connection $connection, string $documentTypeId): void
+  {
+    $defaultConfig = [
+      'displayPrices' => true,
+      'displayFooter' => true,
+      'displayHeader' => true,
+      'displayLineItems' => true,
+      'diplayLineItemPosition' => true,
+      'displayPageCount' => true,
+      'displayCompanyAddress' => true,
+      'pageOrientation' => 'portrait',
+      'pageSize' => 'a4',
+      'itemsPerPage' => 10,
+      'companyName' => 'Example Company',
+      'taxNumber' => '',
+      'vatId' => '',
+      'taxOffice' => '',
+      'bankName' => '',
+      'bankIban' => '',
+      'bankBic' => '',
+      'placeOfJurisdiction' => '',
+      'placeOfFulfillment' => '',
+      'executiveDirector' => '',
+      'companyAddress' => '',
+      'referencedDocumentType' => self::TYPE,
+    ];
+
+    $documentBaseConfigId = Uuid::randomBytes();
+
+    $connection->insert(
+      'document_base_config',
+      [
+        'id' => $documentBaseConfigId,
+        'name' => self::TYPE,
+        'global' => 1,
+        'filename_prefix' => self::TYPE . '_',
+        'document_type_id' => $documentTypeId,
+        'config' => json_encode($defaultConfig, \JSON_THROW_ON_ERROR),
+        'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
+      ]
+    );
+    $connection->insert(
+      'document_base_config_sales_channel',
+      [
+        'id' => Uuid::randomBytes(),
+        'document_base_config_id' => $documentBaseConfigId,
+        'document_type_id' => $documentTypeId,
+        'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
+      ]
+    );
+  }
 }
 ```
 
@@ -195,128 +193,127 @@ use Shopware\Core\System\NumberRange\ValueGenerator\NumberRangeValueGeneratorInt
 
 class ExampleDocumentRenderer extends AbstractDocumentRenderer
 {
-    public const DEFAULT_TEMPLATE = '@SwagBasicExample/documents/example_document.html.twig';
+  public const DEFAULT_TEMPLATE = '@SwagBasicExample/documents/example_document.html.twig';
 
-    final public const TYPE = 'example';
+  final public const TYPE = 'example';
 
-    /**
-     * @internal
-     */
-    public function __construct(
-        private readonly EntityRepository $orderRepository,
-        private readonly DocumentConfigLoader $documentConfigLoader,
-        private readonly DocumentTemplateRenderer $documentTemplateRenderer,
-        private readonly NumberRangeValueGeneratorInterface $numberRangeValueGenerator,
-        private readonly string $rootDir,
-    ) {
+  /**
+   * @internal
+   */
+  public function __construct(
+    private readonly EntityRepository $orderRepository,
+    private readonly DocumentConfigLoader $documentConfigLoader,
+    private readonly DocumentTemplateRenderer $documentTemplateRenderer,
+    private readonly NumberRangeValueGeneratorInterface $numberRangeValueGenerator,
+    private readonly string $rootDir,
+  ) {}
+
+  public function supports(): string
+  {
+    return self::TYPE;
+  }
+
+  /**
+   * @param array<DocumentGenerateOperation> $operations
+   */
+  public function render(array $operations, Context $context, DocumentRendererConfig $rendererConfig): RendererResult
+  {
+    $ids = \array_map(fn(DocumentGenerateOperation $operation) => $operation->getOrderId(), $operations);
+
+    if (empty($ids)) {
+      return new RendererResult();
     }
 
-    public function supports(): string
-    {
-        return self::TYPE;
-    }
+    $result = new RendererResult();
 
-    /**
-     * @param array<DocumentGenerateOperation> $operations
-     */
-    public function render(array $operations, Context $context, DocumentRendererConfig $rendererConfig): RendererResult
-    {
-        $ids = \array_map(fn (DocumentGenerateOperation $operation) => $operation->getOrderId(), $operations);
+    $template = self::DEFAULT_TEMPLATE;
 
-        if (empty($ids)) {
-            return new RendererResult();
+    $criteria = new Criteria($ids);
+    $criteria->addAssociation('language');
+    $criteria->addAssociation('language.locale');
+
+    $orders = $this->orderRepository->search($criteria, $context)->getEntities();
+    foreach ($orders as $order) {
+      $orderId = $order->getId();
+
+      try {
+        $operation = $operations[$orderId] ?? null;
+        if ($operation === null) {
+          continue;
         }
 
-        $result = new RendererResult();
+        $config = clone $this->documentConfigLoader->load(self::TYPE, $order->getSalesChannelId(), $context);
 
-        $template = self::DEFAULT_TEMPLATE;
+        $config->merge($operation->getConfig());
 
-        $criteria = new Criteria($ids);
-        $criteria->addAssociation('language');
-        $criteria->addAssociation('language.locale');
+        $number = $config->getDocumentNumber() ?: $this->getNumber($context, $order, $operation);
 
-        $orders = $this->orderRepository->search($criteria, $context)->getEntities();
-        foreach ($orders as $order) {
-            $orderId = $order->getId();
+        $now = (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT);
 
-            try {
-                $operation = $operations[$orderId] ?? null;
-                if ($operation === null) {
-                    continue;
-                }
+        $config->merge([
+          'documentDate' => $operation->getConfig()['documentDate'] ?? $now,
+          'documentNumber' => $number,
+          'custom' => [
+            'invoiceNumber' => $number,
+          ],
+        ]);
 
-                $config = clone $this->documentConfigLoader->load(self::TYPE, $order->getSalesChannelId(), $context);
+        // The document that uploaded by manual
+        if ($operation->isStatic()) {
+          $doc = new RenderedDocument('', $number, $config->buildName(), $operation->getFileType(), $config->jsonSerialize());
+          $result->addSuccess($orderId, $doc);
 
-                $config->merge($operation->getConfig());
-
-                $number = $config->getDocumentNumber() ?: $this->getNumber($context, $order, $operation);
-
-                $now = (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT);
-
-                $config->merge([
-                    'documentDate' => $operation->getConfig()['documentDate'] ?? $now,
-                    'documentNumber' => $number,
-                    'custom' => [
-                        'invoiceNumber' => $number,
-                    ],
-                ]);
-
-                // The document that uploaded by manual
-                if ($operation->isStatic()) {
-                    $doc = new RenderedDocument('', $number, $config->buildName(), $operation->getFileType(), $config->jsonSerialize());
-                    $result->addSuccess($orderId, $doc);
-
-                    continue;
-                }
-
-                /** @var LocaleEntity $locale */
-                $locale = $order->getLanguage()->getLocale();
-
-                $html = $this->documentTemplateRenderer->render(
-                    $template,
-                    [
-                        'order' => $order,
-                        'config' => $config,
-                        'rootDir' => $this->rootDir,
-                        'context' => $context,
-                    ],
-                    $context,
-                    $order->getSalesChannelId(),
-                    $order->getLanguageId(),
-                    $locale->getCode()
-                );
-
-                $doc = new RenderedDocument(
-                    $html,
-                    $number,
-                    $config->buildName(),
-                    $operation->getFileType(),
-                    $config->jsonSerialize(),
-                );
-
-                $result->addSuccess($orderId, $doc);
-            } catch (\Throwable $exception) {
-                $result->addError($orderId, $exception);
-            }
+          continue;
         }
 
-        return $result;
-    }
+        /** @var LocaleEntity $locale */
+        $locale = $order->getLanguage()->getLocale();
 
-    public function getDecorated(): AbstractDocumentRenderer
-    {
-        throw new DecorationPatternException(self::class);
-    }
-
-    private function getNumber(Context $context, OrderEntity $order, DocumentGenerateOperation $operation): string
-    {
-        return $this->numberRangeValueGenerator->getValue(
-            'document_' . self::TYPE,
-            $context,
-            $order->getSalesChannelId(),
-            $operation->isPreview()
+        $html = $this->documentTemplateRenderer->render(
+          $template,
+          [
+            'order' => $order,
+            'config' => $config,
+            'rootDir' => $this->rootDir,
+            'context' => $context,
+          ],
+          $context,
+          $order->getSalesChannelId(),
+          $order->getLanguageId(),
+          $locale->getCode()
         );
+
+        $doc = new RenderedDocument(
+          $html,
+          $number,
+          $config->buildName(),
+          $operation->getFileType(),
+          $config->jsonSerialize(),
+        );
+
+        $result->addSuccess($orderId, $doc);
+      } catch (\Throwable $exception) {
+        $result->addError($orderId, $exception);
+      }
     }
+
+    return $result;
+  }
+
+  public function getDecorated(): AbstractDocumentRenderer
+  {
+    throw new DecorationPatternException(self::class);
+  }
+
+  private function getNumber(Context $context, OrderEntity $order, DocumentGenerateOperation $operation): string
+  {
+    return $this->numberRangeValueGenerator->getValue(
+      'document_' . self::TYPE,
+      $context,
+      $order->getSalesChannelId(),
+      $operation->isPreview()
+    );
+  }
 }
 ```
 
@@ -386,113 +383,110 @@ use Shopware\Core\Migration\Traits\Translations;
 
 class Migration1616974646AddDocumentNumberRange extends MigrationStep
 {
-    use ImportTranslationsTrait;
+  use ImportTranslationsTrait;
 
-    public function getCreationTimestamp(): int
-    {
-        return 1616974646;
+  public function getCreationTimestamp(): int
+  {
+    return 1616974646;
+  }
+
+  public function update(Connection $connection): void
+  {
+    $numberRangeId = Uuid::randomBytes();
+    $numberRangeTypeId = Uuid::randomBytes();
+
+    $this->insertNumberRange($connection, $numberRangeId, $numberRangeTypeId);
+    $this->insertTranslations($connection, $numberRangeId, $numberRangeTypeId);
+  }
+
+  public function updateDestructive(Connection $connection): void {}
+
+  private function insertNumberRange(Connection $connection, string $numberRangeId, string $numberRangeTypeId): void
+  {
+    $connection->insert('number_range_type', [
+      'id' => $numberRangeTypeId,
+      'global' => 0,
+      'technical_name' => 'document_example',
+      'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT)
+    ]);
+
+    $connection->insert('number_range', [
+      'id' => $numberRangeId,
+      'type_id' => $numberRangeTypeId,
+      'global' => 0,
+      'pattern' => '{n}',
+      'start' => 10000,
+      'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT)
+    ]);
+
+    $storefrontSalesChannelId = $this->getStorefrontSalesChannelId($connection);
+    if (!$storefrontSalesChannelId) {
+      return;
     }
 
-    public function update(Connection $connection): void
-    {
-        $numberRangeId = Uuid::randomBytes();
-        $numberRangeTypeId = Uuid::randomBytes();
+    $connection->insert('number_range_sales_channel', [
+      'id' => Uuid::randomBytes(),
+      'number_range_id' => $numberRangeId,
+      'sales_channel_id' => $storefrontSalesChannelId,
+      'number_range_type_id' => $numberRangeTypeId,
+      'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT)
+    ]);
+  }
 
-        $this->insertNumberRange($connection, $numberRangeId, $numberRangeTypeId);
-        $this->insertTranslations($connection, $numberRangeId, $numberRangeTypeId);
-
-    }
-
-    public function updateDestructive(Connection $connection): void
-    {
-    }
-
-    private function insertNumberRange(Connection $connection, string $numberRangeId, string $numberRangeTypeId): void
-    {
-        $connection->insert('number_range_type', [
-            'id' => $numberRangeTypeId,
-            'global' => 0,
-            'technical_name' => 'document_example',
-            'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT)
-        ]);
-
-        $connection->insert('number_range', [
-            'id' => $numberRangeId,
-            'type_id' => $numberRangeTypeId,
-            'global' => 0,
-            'pattern' => '{n}',
-            'start' => 10000,
-            'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT)
-        ]);
-
-        $storefrontSalesChannelId = $this->getStorefrontSalesChannelId($connection);
-        if (!$storefrontSalesChannelId) {
-            return;
-        }
-
-        $connection->insert('number_range_sales_channel', [
-            'id' => Uuid::randomBytes(),
-            'number_range_id' => $numberRangeId,
-            'sales_channel_id' => $storefrontSalesChannelId,
-            'number_range_type_id' => $numberRangeTypeId,
-            'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT)
-        ]);
-    }
-
-    private function getStorefrontSalesChannelId(Connection $connection): ?string
-    {
-        $sql = <<<SQL
-            SELECT id
-            FROM sales_channel
-            WHERE type_id = :typeId
+  private function getStorefrontSalesChannelId(Connection $connection): ?string
+  {
+    $sql = <<<SQL
+          SELECT id
+          FROM sales_channel
+          WHERE type_id = :typeId
 SQL;
-        $salesChannelId = $connection->fetchOne($sql, [
-            'typeId' => Uuid::fromHexToBytes(Defaults::SALES_CHANNEL_TYPE_STOREFRONT)
-        ]);
+    $salesChannelId = $connection->fetchOne($sql, [
+      'typeId' => Uuid::fromHexToBytes(Defaults::SALES_CHANNEL_TYPE_STOREFRONT)
+    ]);
 
-        if (!$salesChannelId) {
-            return null;
-        }
-
-        return $salesChannelId;
+    if (!$salesChannelId) {
+      return null;
     }
 
-    private function insertTranslations(Connection $connection, string $numberRangeId, string $numberRangeTypeId): void
-    {
-        $numberRangeTranslations = new Translations(
-            [
-                'number_range_id' => $numberRangeId,
-                'name' => 'Beispiel',
-            ],
-            [
-                'number_range_id' => $numberRangeId,
-                'name' => 'Example',
-            ]
-        );
+    return $salesChannelId;
+  }
 
-        $numberRangeTypeTranslations = new Translations(
-            [
-                'number_range_type_id' => $numberRangeTypeId,
-                'type_name' => 'Beispiel',
-            ],
-            [
-                'number_range_type_id' => $numberRangeTypeId,
-                'type_name' => 'Example',
-            ]
-        );
+  private function insertTranslations(Connection $connection, string $numberRangeId, string $numberRangeTypeId): void
+  {
+    $numberRangeTranslations = new Translations(
+      [
+        'number_range_id' => $numberRangeId,
+        'name' => 'Beispiel',
+      ],
+      [
+        'number_range_id' => $numberRangeId,
+        'name' => 'Example',
+      ]
+    );
 
-        $this->importTranslation(
-            'number_range_translation',
-            $numberRangeTranslations,
-            $connection
-        );
+    $numberRangeTypeTranslations = new Translations(
+      [
+        'number_range_type_id' => $numberRangeTypeId,
+        'type_name' => 'Beispiel',
+      ],
+      [
+        'number_range_type_id' => $numberRangeTypeId,
+        'type_name' => 'Example',
+      ]
+    );
 
-        $this->importTranslation(
-            'number_range_type_translation',
-            $numberRangeTypeTranslations,
-            $connection
-        );
-    }
+    $this->importTranslation(
+      'number_range_translation',
+      $numberRangeTranslations,
+      $connection
+    );
+
+    $this->importTranslation(
+      'number_range_type_translation',
+      $numberRangeTypeTranslations,
+      $connection
+    );
+  }
 }
 ```
 

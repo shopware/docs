@@ -36,47 +36,47 @@ namespace My\Namespace;
 
 class RootController
 {
-    /**
-    * Provides the page layout and displays a listing containing the entities
-    */
-    public function indexAction() { [...] }
-    
-    /**
-    * Display an empty form or optionally errors and the invalid entries
-    */
-    public function newAction() { [...] }
+  /**
+  * Provides the page layout and displays a listing containing the entities
+  */
+  public function indexAction() { [...] }
+  
+  /**
+  * Display an empty form or optionally errors and the invalid entries
+  */
+  public function newAction() { [...] }
 
-    /**
-    * Post only!
-    *
-    * Store new entity. If invalid input, forward to `newAction`. If successful, forward to `detailAction`.
-    */
-    public function createAction() { [...] }
+  /**
+  * Post only!
+  *
+  * Store new entity. If invalid input, forward to `newAction`. If successful, forward to `detailAction`.
+  */
+  public function createAction() { [...] }
 
-    /**
-    * Provides a detailed layout. Usually a modal box containing a navigation and initially selecting the `editAction`.
-    *
-    */
-    public function detailAction() { [...] }
+  /**
+  * Provides a detailed layout. Usually a modal box containing a navigation and initially selecting the `editAction`.
+  *
+  */
+  public function detailAction() { [...] }
 
-    /**
-    * Display the Form containing all stored data.
-    */
-    public function editAction() { [...] }
+  /**
+  * Display the Form containing all stored data.
+  */
+  public function editAction() { [...] }
 
-    /**
-     * Post only!
-     *
-     * Store updates to the entity, forwards to `editAction`.
-     */
-    public function updateAction() { [...] }
+  /**
+   * Post only!
+   *
+   * Store updates to the entity, forwards to `editAction`.
+   */
+  public function updateAction() { [...] }
 
-    /**
-     * Post only!
-     *
-     * Removes a record, forwards to `indexAction`.
-     */
-     public function removeAction() { [...] }
+  /**
+   * Post only!
+   *
+   * Removes a record, forwards to `indexAction`.
+   */
+    public function removeAction() { [...] }
 }
 ```
 
@@ -101,17 +101,17 @@ namespace My\Namespace;
 
 class SubController
 {
-    /**
-     * Provides the layout for the controller and contains the listing
-     */
-    public function indexAction() { [...] }
+  /**
+   * Provides the layout for the controller and contains the listing
+   */
+  public function indexAction() { [...] }
 
-    /**
-     * Post only!
-     *
-     * Assign two id's to each other
-     */
-    public function assignAction() { [...] }
+  /**
+   * Post only!
+   *
+   * Assign two id's to each other
+   */
+  public function assignAction() { [...] }
 }
 ```
 

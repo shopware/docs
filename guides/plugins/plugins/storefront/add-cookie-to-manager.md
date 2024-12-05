@@ -59,53 +59,54 @@ namespace Swag\BasicExample\Service;
 
 use Shopware\Storefront\Framework\Cookie\CookieProviderInterface;
 
-class CustomCookieProvider implements CookieProviderInterface {
+class CustomCookieProvider implements CookieProviderInterface
+{
 
-    private CookieProviderInterface $originalService;
+  private CookieProviderInterface $originalService;
 
-    public function __construct(CookieProviderInterface $service)
-    {
-        $this->originalService = $service;
-    }
+  public function __construct(CookieProviderInterface $service)
+  {
+    $this->originalService = $service;
+  }
 
-    private const singleCookie = [
-        'snippet_name' => 'cookie.name',
-        'snippet_description' => 'cookie.description ',
-        'cookie' => 'cookie-key',
+  private const singleCookie = [
+    'snippet_name' => 'cookie.name',
+    'snippet_description' => 'cookie.description ',
+    'cookie' => 'cookie-key',
+    'value' => 'cookie value',
+    'expiration' => '30'
+  ];
+
+  // cookies can also be provided as a group
+  private const cookieGroup = [
+    'snippet_name' => 'cookie.group_name',
+    'snippet_description' => 'cookie.group_description ',
+    'entries' => [
+      [
+        'snippet_name' => 'cookie.first_child_name',
+        'cookie' => 'cookie-key-1',
         'value' => 'cookie value',
         'expiration' => '30'
-    ];
+      ],
+      [
+        'snippet_name' => 'cookie.second_child_name',
+        'cookie' => 'cookie-key-2',
+        'value' => 'cookie value',
+        'expiration' => '60'
+      ]
+    ],
+  ];
 
-    // cookies can also be provided as a group
-    private const cookieGroup = [
-        'snippet_name' => 'cookie.group_name',
-        'snippet_description' => 'cookie.group_description ',
-        'entries' => [
-            [
-                'snippet_name' => 'cookie.first_child_name',
-                'cookie' => 'cookie-key-1',
-                'value'=> 'cookie value',
-                'expiration' => '30'
-            ],
-            [
-                'snippet_name' => 'cookie.second_child_name',
-                'cookie' => 'cookie-key-2',
-                'value'=> 'cookie value',
-                'expiration' => '60'
-            ]
-        ],
-    ];
-
-    public function getCookieGroups(): array
-    {
-        return array_merge(
-            $this->originalService->getCookieGroups(),
-            [
-                self::cookieGroup,
-                self::singleCookie
-            ]
-        );
-    }
+  public function getCookieGroups(): array
+  {
+    return array_merge(
+      $this->originalService->getCookieGroups(),
+      [
+        self::cookieGroup,
+        self::singleCookie
+      ]
+    );
+  }
 }
 ```
 

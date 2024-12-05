@@ -26,8 +26,8 @@ To ensure the types at runtime, the most common approach is to use an explicit t
 $foo = $bar->getFoo(); // $foo is Foo|null, but we expect only Foo
 
 if ($foo === null) {
-    // handle the error case
-    throw new \InvalidArgumentException('Foo must not be null');
+  // handle the error case
+  throw new \InvalidArgumentException('Foo must not be null');
 }
 ```
 or 
@@ -36,8 +36,8 @@ or
 $foo = $bar->getFoo(); // $foo is mixed, but we expect only string
 
 if (!is_string($foo)) {
-    // handle the error case
-    throw new \InvalidArgumentException('$foo must not be string');  
+  // handle the error case
+  throw new \InvalidArgumentException('$foo must not be string');
 }
 ```
 or
@@ -46,8 +46,8 @@ or
 $foo = $bar->getFoo(); // $foo is object, but we expect it to be Foo instance
 
 if (!$foo instanceof Foo) {
-    // handle the error case
-    throw new \InvalidArgumentException('$foo must be instance of Foo');  
+  // handle the error case
+  throw new \InvalidArgumentException('$foo must be instance of Foo');
 }
 ```
 

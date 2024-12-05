@@ -43,15 +43,15 @@ $body = $response->json(); // json decoded body
 echo $body['version'];
 
 $simpleClient->post('https://shop.com/api/_action/sync', [
-    'entity' => 'product',
-    'offset' => 0,
-    'total' => 100,
-    'payload' => [
-        [
-            'id' => '123',
-            'name' => 'Foo',
-        ],
+  'entity' => 'product',
+  'offset' => 0,
+  'total' => 100,
+  'payload' => [
+    [
+      'id' => '123',
+      'name' => 'Foo',
     ],
+  ],
 ]);
 
 // and the same with put, patch, delete

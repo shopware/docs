@@ -42,11 +42,10 @@ use Shopware\Core\Framework\Plugin;
 
 class SwagBasicExample extends Plugin
 {
-    public function executeComposerCommands(): bool
-    {
-        return true;
-    }
-
+  public function executeComposerCommands(): bool
+  {
+    return true;
+  }
 }
 ```
 
@@ -58,7 +57,8 @@ The following code sample imports `SebastianBergmann\Exporter\Exporter` and logs
 
 ```php
 // <plugin root>/src/SwagBasicExample.php
-<?php
+<?php declare(strict_types=1);
+
 namespace SwagBasicExample\Subscriber;
 
 use Shopware\Core\Framework\DataAbstractionLayer\Event\EntityLoadedEvent;
@@ -70,27 +70,27 @@ use SebastianBergmann\Exporter\Exporter;
 
 class MySubscriber implements EventSubscriberInterface
 {
-     private LoggerInterface $logger;
+  private LoggerInterface $logger;
 
-    public function __construct(
-        LoggerInterface $logger
-    ) {
-        $this->logger = $logger;
-    }
+  public function __construct(
+    LoggerInterface $logger
+  ) {
+    $this->logger = $logger;
+  }
 
-    public static function getSubscribedEvents(): array
-    {
-        // Return the events to listen to as array like this:  <event to listen to> => <method to execute>
-        return [
-            NavigationPageLoadedEvent::class => 'onNavigationPage'
-        ];
-    }
+  public static function getSubscribedEvents(): array
+  {
+    // Return the events to listen to as array like this:  <event to listen to> => <method to execute>
+    return [
+      NavigationPageLoadedEvent::class => 'onNavigationPage'
+    ];
+  }
 
-    public function onNavigationPage(NavigationPageLoadedEvent $event)
-    {
-        $exporter = new Exporter;
-        $this->logger->info($exporter->export('hello, world!'));
-    }
+  public function onNavigationPage(NavigationPageLoadedEvent $event)
+  {
+    $exporter = new Exporter;
+    $this->logger->info($exporter->export('hello, world!'));
+  }
 }
 ```
 

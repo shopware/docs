@@ -50,14 +50,13 @@ use Shopware\Core\Framework\DataAbstractionLayer\Entity;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityCustomFieldsTrait;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityIdTrait;
 
-[...]
+// [...]
 class ExampleEntity extends Entity
 {
-    use EntityIdTrait;
-    use EntityCustomFieldsTrait;
+  use EntityIdTrait;
+  use EntityCustomFieldsTrait;
 
-    [...]
-
+  // [...]
 }
 ```
 
@@ -69,23 +68,22 @@ Now follows the important part. For this to work, you have to add the Data Abstr
 // <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 use Shopware\Core\Framework\DataAbstractionLayer\Field\CustomFields;                                                                    
 
-[...]
+// [...]
 class ExampleDefinition extends EntityDefinition
 {
+  // [...]
 
-    [...]
+  protected function defineFields(): FieldCollection
+  {
+    return new FieldCollection([
+      (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
+      (new StringField('name', 'name')),
+      (new StringField('description', 'description')),
+      (new BoolField('active', 'active')),
 
-    protected function defineFields(): FieldCollection
-    {
-        return new FieldCollection([
-            (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
-            (new StringField('name', 'name')),
-            (new StringField('description', 'description')),
-            (new BoolField('active', 'active')),
-
-            new CustomFields()
-        ]);
-    }
+      new CustomFields()
+    ]);
+  }
 }
 ```
 
@@ -101,24 +99,24 @@ If you want to support custom fields now, you have to add a new column `custom_f
 // <plugin root>/src/Migration/Migration1611664789Example.php
 public function update(Connection $connection): void
 {
-    $sql = <<<SQL
-        CREATE TABLE IF NOT EXISTS `swag_example` (
-        `id` BINARY(16) NOT NULL,
-        `name` VARCHAR(255) COLLATE utf8mb4_unicode_ci,
-        `description` VARCHAR(255) COLLATE utf8mb4_unicode_ci,
-        `active` TINYINT(1) COLLATE utf8mb4_unicode_ci,
+  $sql = <<<SQL
+    CREATE TABLE IF NOT EXISTS `swag_example` (
+    `id` BINARY(16) NOT NULL,
+    `name` VARCHAR(255) COLLATE utf8mb4_unicode_ci,
+    `description` VARCHAR(255) COLLATE utf8mb4_unicode_ci,
+    `active` TINYINT(1) COLLATE utf8mb4_unicode_ci,
 
-        `custom_fields` json DEFAULT NULL,
+    `custom_fields` json DEFAULT NULL,
 
-        `created_at` DATETIME(3) NOT NULL,
-        `updated_at` DATETIME(3),
-        PRIMARY KEY (`id`)
-        )
-        ENGINE = InnoDB
-        DEFAULT CHARSET = utf8mb4
-        COLLATE = utf8mb4_unicode_ci;
-    SQL;
-    $connection->executeStatement($sql);
+    `created_at` DATETIME(3) NOT NULL,
+    `updated_at` DATETIME(3),
+    PRIMARY KEY (`id`)
+    )
+    ENGINE = InnoDB
+    DEFAULT CHARSET = utf8mb4
+    COLLATE = utf8mb4_unicode_ci;
+  SQL;
+  $connection->executeStatement($sql);
 }
 ```
 
@@ -132,23 +130,23 @@ Make sure to understand entity translations in general first, which is explained
 // <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 use Shopware\Core\Framework\DataAbstractionLayer\Field\TranslatedField;                                                               
 
-[...]
+// [...]
 
 class ExampleDefinition extends EntityDefinition
 {
-    [...]
+  // [...]
 
-    protected function defineFields(): FieldCollection
-    {
-        return new FieldCollection([
-            (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
-            (new StringField('name', 'name')),
-            (new StringField('description', 'description')),
-            (new BoolField('active', 'active')),
+  protected function defineFields(): FieldCollection
+  {
+    return new FieldCollection([
+      (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
+      (new StringField('name', 'name')),
+      (new StringField('description', 'description')),
+      (new BoolField('active', 'active')),
 
-            new TranslatedField('customFields'),
-        ]);
-    }
+      new TranslatedField('customFields'),
+    ]);
+  }
 }
 ```
 
@@ -160,19 +158,19 @@ In your translated entity definition, you then add the `CustomFields` field inst
 // <plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationDefinition.php
 use Shopware\Core\Framework\DataAbstractionLayer\Field\CustomFields;                                                                    
 
-[...]
+// [...]
 class ExampleTranslationDefinition extends EntityTranslationDefinition
 {
-    [...]
+  // [...]
 
-    protected function defineFields(): FieldCollection
-    {
-        return new FieldCollection([
-            (new StringField('name', 'name'))->addFlags(new Required()),
+  protected function defineFields(): FieldCollection
+  {
+    return new FieldCollection([
+      (new StringField('name', 'name'))->addFlags(new Required()),
 
-            new CustomFields()
-        ]);
-    }
+      new CustomFields()
+    ]);
+  }
 }
 ```
 
@@ -192,8 +190,8 @@ For that case, you can simply use your entities' repository and start creating o
 
 ```php
 $this->swagExampleRepository->upsert([[
-    'id' => '<your ID here>',
-    'customFields' => ['swag_example_size' => 15]
+  'id' => '<your ID here>',
+  'customFields' => ['swag_example_size' => 15]
 ]], $context);
 ```
 
@@ -203,8 +201,8 @@ As already mentioned, you do not have to define a custom field first before savi
 
 ```php
 $this->swagExampleRepository->upsert([[
-    'id' => '<your ID here>',
-    'customFields' => [ 'foo' => 'bar', 'baz' => [] ]
+  'id' => '<your ID here>',
+  'customFields' => [ 'foo' => 'bar', 'baz' => [] ]
 ]], $context);
 ```
 
@@ -237,33 +235,33 @@ Now use the `create` method of the repository to create a new custom field set.
 use Shopware\Core\System\CustomField\CustomFieldTypes;
 use \Shopware\Core\Defaults;
 
-[...]
+// [...]
 
 $this->customFieldSetRepository->create([
-    [
-        'name' => 'swag_example_set',
+  [
+    'name' => 'swag_example_set',
+    'config' => [
+      'label' => [
+        'en-GB' => 'English custom field set label',
+        'de-DE' => 'German custom field set label',
+        Defaults::LANGUAGE_SYSTEM => "Mention the fallback label here"
+      ]
+    ],
+    'customFields' => [
+      [
+        'name' => 'swag_example_size',
+        'type' => CustomFieldTypes::INT,
         'config' => [
-            'label' => [
-                'en-GB' => 'English custom field set label',
-                'de-DE' => 'German custom field set label',
-                Defaults::LANGUAGE_SYSTEM => "Mention the fallback label here"
-            ]
-        ],
-        'customFields' => [
-            [
-                'name' => 'swag_example_size',
-                'type' => CustomFieldTypes::INT,
-                'config' => [
-                    'label' => [
-                        'en-GB' => 'English custom field label',
-                        'de-DE' => 'German custom field label',
-                        Defaults::LANGUAGE_SYSTEM => "Mention the fallback label here"
-                    ],
-                    'customFieldPosition' => 1
-                ]
-            ]
+          'label' => [
+            'en-GB' => 'English custom field label',
+            'de-DE' => 'German custom field label',
+            Defaults::LANGUAGE_SYSTEM => "Mention the fallback label here"
+          ],
+          'customFieldPosition' => 1
         ]
+      ]
     ]
+  ]
 ], $context);
 ```
 

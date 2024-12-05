@@ -38,33 +38,31 @@ use Shopware\Core\Framework\Migration\MigrationStep;
 
 class Migration1611664789Example extends MigrationStep
 {
-    public function getCreationTimestamp(): int
-    {
-        return 1611664789;
-    }
+  public function getCreationTimestamp(): int
+  {
+    return 1611664789;
+  }
 
-    public function update(Connection $connection): void
-    {
-        $sql = <<<SQL
+  public function update(Connection $connection): void
+  {
+    $sql = <<<SQL
 CREATE TABLE IF NOT EXISTS `swag_example` (
-    `id` BINARY(16) NOT NULL,
-    `name` VARCHAR(255) COLLATE utf8mb4_unicode_ci,
-    `description` VARCHAR(255) COLLATE utf8mb4_unicode_ci,
-    `active` TINYINT(1) COLLATE utf8mb4_unicode_ci,
-    `created_at` DATETIME(3) NOT NULL,
-    `updated_at` DATETIME(3),
-    PRIMARY KEY (`id`)
+  `id` BINARY(16) NOT NULL,
+  `name` VARCHAR(255) COLLATE utf8mb4_unicode_ci,
+  `description` VARCHAR(255) COLLATE utf8mb4_unicode_ci,
+  `active` TINYINT(1) COLLATE utf8mb4_unicode_ci,
+  `created_at` DATETIME(3) NOT NULL,
+  `updated_at` DATETIME(3),
+  PRIMARY KEY (`id`)
 )
-    ENGINE = InnoDB
-    DEFAULT CHARSET = utf8mb4
-    COLLATE = utf8mb4_unicode_ci;
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_unicode_ci;
 SQL;
-        $connection->executeStatement($sql);
-    }
+    $connection->executeStatement($sql);
+  }
 
-    public function updateDestructive(Connection $connection): void
-    {
-    }
+  public function updateDestructive(Connection $connection): void {}
 }
 ```
 
@@ -92,17 +90,17 @@ use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
 
 class ExampleDefinition extends EntityDefinition
 {
-    public const ENTITY_NAME = 'swag_example';
+  public const ENTITY_NAME = 'swag_example';
 
-    public function getEntityName(): string
-    {
-        return self::ENTITY_NAME;
-    }
+  public function getEntityName(): string
+  {
+    return self::ENTITY_NAME;
+  }
 
-    protected function defineFields(): FieldCollection
-    {
-        return new FieldCollection([]);
-    }
+  protected function defineFields(): FieldCollection
+  {
+    return new FieldCollection([]);
+  }
 }
 ```
 
@@ -133,22 +131,22 @@ use Shopware\Core\Framework\DataAbstractionLayer\Field\StringField;
 
 class ExampleDefinition extends EntityDefinition
 {
-    public const ENTITY_NAME = 'swag_example';
+  public const ENTITY_NAME = 'swag_example';
 
-    public function getEntityName(): string
-    {
-        return self::ENTITY_NAME;
-    }
+  public function getEntityName(): string
+  {
+    return self::ENTITY_NAME;
+  }
 
-    protected function defineFields(): FieldCollection
-    {
-        return new FieldCollection([
-            (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
-            (new StringField('name', 'name')),
-            (new StringField('description', 'description')),
-            (new BoolField('active', 'active'))
-        ]);
-    }
+  protected function defineFields(): FieldCollection
+  {
+    return new FieldCollection([
+      (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
+      (new StringField('name', 'name')),
+      (new StringField('description', 'description')),
+      (new BoolField('active', 'active'))
+    ]);
+  }
 }
 ```
 
@@ -206,43 +204,43 @@ use Shopware\Core\Framework\DataAbstractionLayer\EntityIdTrait;
 
 class ExampleEntity extends Entity
 {
-    use EntityIdTrait;
+  use EntityIdTrait;
 
-    protected ?string $name;
+  protected ?string $name;
 
-    protected ?string $description;
+  protected ?string $description;
 
-    protected bool $active;
+  protected bool $active;
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
+  public function getName(): ?string
+  {
+    return $this->name;
+  }
 
-    public function setName(?string $name): void
-    {
-        $this->name = $name;
-    }
+  public function setName(?string $name): void
+  {
+    $this->name = $name;
+  }
 
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
+  public function getDescription(): ?string
+  {
+    return $this->description;
+  }
 
-    public function setDescription(?string $description): void
-    {
-        $this->description = $description;
-    }
+  public function setDescription(?string $description): void
+  {
+    $this->description = $description;
+  }
 
-    public function isActive(): bool
-    {
-        return $this->active;
-    }
+  public function isActive(): bool
+  {
+    return $this->active;
+  }
 
-    public function setActive(bool $active): void
-    {
-        $this->active = $active;
-    }
+  public function setActive(bool $active): void
+  {
+    $this->active = $active;
+  }
 }
 ```
 
@@ -254,12 +252,12 @@ Now you need your definition to know its custom entity class. This is done by ov
 // <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 class ExampleDefinition extends EntityDefinition
 {
-    [...]
+  // [...]
 
-    public function getEntityClass(): string
-    {
-        return ExampleEntity::class;
-    }
+  public function getEntityClass(): string
+  {
+    return ExampleEntity::class;
+  }
 }
 ```
 
@@ -292,10 +290,10 @@ use Shopware\Core\Framework\DataAbstractionLayer\EntityCollection;
  */
 class ExampleCollection extends EntityCollection
 {
-    protected function getExpectedClass(): string
-    {
-        return ExampleEntity::class;
-    }
+  protected function getExpectedClass(): string
+  {
+    return ExampleEntity::class;
+  }
 }
 ```
 
@@ -307,12 +305,12 @@ Now it's time to introduce your custom collection to your `ExampleDefinition` ag
 // <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 class ExampleDefinition extends EntityDefinition
 {
-    [...]
+  // [...]
 
-    public function getCollectionClass(): string
-    {
-        return ExampleCollection::class;
-    }
+  public function getCollectionClass(): string
+  {
+    return ExampleCollection::class;
+  }
 }
 ```
 

@@ -27,7 +27,7 @@ You should be able to store media in your shop and to maintain them in your Admi
 
 ```php
 public function searchMedia (array $ids, Context $context): MediaCollection { 
-... 
+  // ... 
 }
 ```
 

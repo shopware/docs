@@ -36,20 +36,22 @@ To create a custom flow action, firstly you have to make a plugin and install it
 ```php
 // <plugin root>/src/Core/Framework/Event/TagAware.php
 <?php declare(strict_types=1);
+
 namespace Swag\ExamplePlugin\Core\Framework\Event;
+
 use Shopware\Core\Framework\Event\FlowEventAware;
 
 interface TagAware extends FlowEventAware
 {
-    ...
+  // ...
 
-    public const TAG = 'tag';
+  public const TAG = 'tag';
 
-    public const TAG_ID = 'tagId';
+  public const TAG_ID = 'tagId';
 
-    public function getTag();
+  public function getTag();
 
-    ...
+  // ...
 }
 ```
 
@@ -71,59 +73,59 @@ use Swag\CreateTagAction\Core\Framework\Event\TagAware;
 
 class CreateTagAction extends FlowAction
 {
-    private EntityRepository $tagRepository;
+  private EntityRepository $tagRepository;
 
-    public function __construct(EntityRepository $tagRepository)
-    {
-        // you would need this repository to create a tag
-        $this->tagRepository = $tagRepository;
+  public function __construct(EntityRepository $tagRepository)
+  {
+    // you would need this repository to create a tag
+    $this->tagRepository = $tagRepository;
+  }
+
+  public static function getName(): string
+  {
+    // your own action name
+    return 'action.create.tag';
+  }
+
+  public function requirements(): array
+  {
+    return [TagAware::class];
+  }
+
+  public function handleFlow(StorableFlow $flow): void
+  {
+    // config is the config data when created a flow sequence
+    $config = $flow->getConfig();
+
+    // make sure your tags data exists
+    if (!\array_key_exists('tags', $config)) {
+      return;
     }
 
-    public static function getName(): string
-    {
-        // your own action name
-        return 'action.create.tag';
+    $tags = $config['tags'];
+
+    // just a step to make sure you're dispatching correct action
+    if (!$flow->hasStore(TagAware::TAG_ID) || empty($tags)) {
+      return;
     }
 
-    public function requirements(): array
-    {
-        return [TagAware::class];
+    // get tag id
+    $tagId = $flow->getStore(TagAware::TAG_ID);
+
+    // get tag
+    $tag = $flow->getData(TagAware::TAG);
+
+    $tagData = [];
+    foreach ($tags as $tag) {
+      $tagData[] = [
+        'id' => Uuid::randomHex(),
+        'name' => $tag,
+      ];
     }
 
-    public function handleFlow(StorableFlow $flow): void
-    {
-        // config is the config data when created a flow sequence
-        $config = $flow->getConfig();
-
-        // make sure your tags data exists
-        if (!\array_key_exists('tags', $config)) {
-            return;
-        }
-
-        $tags = $config['tags'];
-
-        // just a step to make sure you're dispatching correct action
-        if (!$flow->hasStore(TagAware::TAG_ID) || empty($tags)) {
-            return;
-        }
-
-        // get tag id
-        $tagId = $flow->getStore(TagAware::TAG_ID);
-
-        // get tag
-        $tag = $flow->getData(TagAware::TAG);
-
-        $tagData = [];
-        foreach ($tags as $tag) {
-            $tagData[] = [
-                'id' => Uuid::randomHex(),
-                'name' => $tag,
-            ];
-        }
-
-        // simply create tags
-        $this->tagRepository->create($tagData, $flow->getContext());
-    }
+    // simply create tags
+    $this->tagRepository->create($tagData, $flow->getContext());
+  }
 }
 ```
 
@@ -162,15 +164,15 @@ There are three scopes for the `CreateTagAction`:
 - Just define the empty array in `CreateTagAction::requirements`
 
 ```php
-    // plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
-    ...
+// plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
+// ...
 
-    public function requirements(): array
-    {
-        return [];
-    }
+public function requirements(): array
+{
+  return [];
+}
 
-    ...
+// ...
 ```
 
 That means when you define the requirements like the code above, all triggers in the flow builder can define the action `CreateTagAction` for the next progress.
@@ -184,15 +186,15 @@ Here, the action name is empty as the action name snippet is not yet defined.
 Make the `CreateTagAction` available for all events related to Order and Customer.
 
 ```php
-    // <plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
-    ...
+// <plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
+// ...
 
-    public function requirements(): array
-    {
-        return [OrderAware::class, CustomerAware::class];
-    }
+public function requirements(): array
+{
+  return [OrderAware::class, CustomerAware::class];
+}
 
-    ...
+// ...
 ```
 
 #### `CreateTagAction` available for new event
@@ -217,53 +219,53 @@ use Symfony\Contracts\EventDispatcher\Event;
 
 class BasicExampleEvent extends Event implements TagAware
 {
-    public const EVENT_NAME = 'example.event';
+  public const EVENT_NAME = 'example.event';
 
-    private TagEntity $tag;
+  private TagEntity $tag;
 
-    private Context $context;
+  private Context $context;
 
-    public function __construct(Context $context, TagEntity $tag)
-    {
-        $this->tag = $tag;
-        $this->context = $context;
-    }
+  public function __construct(Context $context, TagEntity $tag)
+  {
+    $this->tag = $tag;
+    $this->context = $context;
+  }
 
-    public function getName(): string
-    {
-        return self::EVENT_NAME;
-    }
+  public function getName(): string
+  {
+    return self::EVENT_NAME;
+  }
 
-    public static function getAvailableData(): EventDataCollection
-    {
-        return (new EventDataCollection())
-            ->add('tag', new EntityType(TagDefinition::class));
-    }
+  public static function getAvailableData(): EventDataCollection
+  {
+    return (new EventDataCollection())
+      ->add('tag', new EntityType(TagDefinition::class));
+  }
 
-    public function getContext(): Context
-    {
-        return $this->context;
-    }
+  public function getContext(): Context
+  {
+    return $this->context;
+  }
 
-    public function getTag(): TagEntity
-    {
-        return $this->tag;
-    }
+  public function getTag(): TagEntity
+  {
+    return $this->tag;
+  }
 }
 ```
 
 - Define the `TagAware` in `CreateTagAction::requirements`
 
 ```php
-    // <plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
-    ...
+// <plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
+// ...
 
-    public function requirements(): array
-    {
-        return [TagAware::class];
-    }
+public function requirements(): array
+{
+  return [TagAware::class];
+}
 
-    ...
+// ...
 ```
 
 - To show the new event in Flow Builder Triggers list
@@ -271,6 +273,7 @@ class BasicExampleEvent extends Event implements TagAware
 ```php
 // <plugin root>/src/Core/Content/Subscriber/BusinessEventCollectorSubscriber.php
 <?php declare(strict_types=1);
+
 namespace Swag\CreateTagAction\Core\Content\Subscriber;
 
 use Shopware\Core\Framework\Event\BusinessEventCollector;
@@ -280,32 +283,32 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class BusinessEventCollectorSubscriber implements EventSubscriberInterface
 {
-    private BusinessEventCollector $businessEventCollector;
+  private BusinessEventCollector $businessEventCollector;
 
-    public function __construct(BusinessEventCollector $businessEventCollector)
-    {
-        $this->businessEventCollector = $businessEventCollector;
+  public function __construct(BusinessEventCollector $businessEventCollector)
+  {
+    $this->businessEventCollector = $businessEventCollector;
+  }
+
+  public static function getSubscribedEvents()
+  {
+    return [
+      BusinessEventCollectorEvent::NAME => 'onAddExampleEvent',
+    ];
+  }
+
+  public function onAddExampleEvent(BusinessEventCollectorEvent $event): void
+  {
+    $collection = $event->getCollection();
+
+    $definition = $this->businessEventCollector->define(BasicExampleEvent::class);
+
+    if (!$definition) {
+      return;
     }
 
-    public static function getSubscribedEvents()
-    {
-        return [
-            BusinessEventCollectorEvent::NAME => 'onAddExampleEvent',
-        ];
-    }
-
-    public function onAddExampleEvent(BusinessEventCollectorEvent $event): void
-    {
-        $collection = $event->getCollection();
-
-        $definition = $this->businessEventCollector->define(BasicExampleEvent::class);
-
-        if (!$definition) {
-            return;
-        }
-
-        $collection->set($definition->getName(), $definition);
-    }
+    $collection->set($definition->getName(), $definition);
+  }
 }
 ```
 

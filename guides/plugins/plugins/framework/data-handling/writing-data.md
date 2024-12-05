@@ -60,15 +60,15 @@ use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 
 class WritingData
 {
-    private EntityRepository $productRepository;
+  private EntityRepository $productRepository;
 
-    private EntityRepository $taxRepository;
+  private EntityRepository $taxRepository;
 
-    public function __construct(EntityRepository $productRepository, EntityRepository $taxRepository)
-    {
-        $this->productRepository = $productRepository;
-        $this->taxRepository = $taxRepository;
-    }
+  public function __construct(EntityRepository $productRepository, EntityRepository $taxRepository)
+  {
+    $this->productRepository = $productRepository;
+    $this->taxRepository = $taxRepository;
+  }
 }
 ```
 
@@ -83,23 +83,23 @@ Let's start with creating new data, a new product in this case:
 ```php
 public function writeData(Context $context): void
 {
-    $this->productRepository->create([
-        [
-            'name' => 'Example product',
-            'productNumber' => 'SW123',
-            'stock' => 10,
-            'taxId' => $this->getTaxId($context),
-            'price' => [['currencyId' => Defaults::CURRENCY, 'gross' => 50, 'net' => 25, 'linked' => false]],
-        ]
-    ], $context);
+  $this->productRepository->create([
+    [
+      'name' => 'Example product',
+      'productNumber' => 'SW123',
+      'stock' => 10,
+      'taxId' => $this->getTaxId($context),
+      'price' => [['currencyId' => Defaults::CURRENCY, 'gross' => 50, 'net' => 25, 'linked' => false]],
+    ]
+  ], $context);
 }
 
 private function getTaxId(Context $context): string
 {
-    $criteria = new Criteria();
-    $criteria->addFilter(new EqualsFilter('taxRate', 19.00));
+  $criteria = new Criteria();
+  $criteria->addFilter(new EqualsFilter('taxRate', 19.00));
 
-    return $this->taxRepository->searchIds($criteria, $context)->firstId();
+  return $this->taxRepository->searchIds($criteria, $context)->firstId();
 }
 ```
 
@@ -133,26 +133,26 @@ In Shopware 6 we're using UUIDs for the ID fields in the entities. This comes wi
 ```php
 public function writeData(): void
 {
-    $context = Context::createDefaultContext();
+  $context = Context::createDefaultContext();
 
-    $productId = Uuid::randomHex();
+  $productId = Uuid::randomHex();
 
-    $this->productRepository->create([
+  $this->productRepository->create([
+    [
+      'id' => $productId,
+      'name' => 'Example product',
+      'productNumber' => 'SW127',
+      'stock' => 10,
+      'tax' => $this->getTaxId($context),
+      'price' => [['currencyId' => Defaults::CURRENCY, 'gross' => 50, 'net' => 25, 'linked' => false]],
+      'categories' => [
         [
-            'id' => $productId,
-            'name' => 'Example product',
-            'productNumber' => 'SW127',
-            'stock' => 10,
-            'tax' => $this->getTaxId($context),
-            'price' => [['currencyId' => Defaults::CURRENCY, 'gross' => 50, 'net' => 25, 'linked' => false]],
-            'categories' => [
-                [
-                    'id' => Uuid::randomHex(),
-                    'name' => 'Example category'
-                ]
-            ]
+          'id' => Uuid::randomHex(),
+          'name' => 'Example category'
         ]
-    ], $context);
+      ]
+    ]
+  ], $context);
 }
 ```
 
@@ -167,17 +167,17 @@ So what if you don't want to create a new entity, but rather update an existing 
 ```php
 public function writeData(Context $context): void
 {
-    $criteria = new Criteria();
-    $criteria->addFilter(new EqualsFilter('name', 'Example product'));
+  $criteria = new Criteria();
+  $criteria->addFilter(new EqualsFilter('name', 'Example product'));
 
-    $productId = $this->productRepository->searchIds($criteria, $context)->firstId();
+  $productId = $this->productRepository->searchIds($criteria, $context)->firstId();
 
-    $this->productRepository->update([
-        [
-            'id' => $productId,
-            'name' => 'New name'
-        ]
-    ], $context);
+  $this->productRepository->update([
+    [
+      'id' => $productId,
+      'name' => 'New name'
+    ]
+  ], $context);
 }
 ```
 
@@ -200,16 +200,16 @@ Here's an example on how to delete the previously created product:
 ```php
 public function writeData(Context $context): void
 {
-    $criteria = new Criteria();
-    $criteria->addFilter(new EqualsFilter('name', 'Example product'));
+  $criteria = new Criteria();
+  $criteria->addFilter(new EqualsFilter('name', 'Example product'));
 
-    $productId = $this->productRepository->searchIds($criteria, $context)->firstId();
+  $productId = $this->productRepository->searchIds($criteria, $context)->firstId();
 
-    $this->productRepository->delete([
-        [
-            'id' => $productId
-        ]
-    ], $context);
+  $this->productRepository->delete([
+    [
+      'id' => $productId
+    ]
+  ], $context);
 }
 ```
 
@@ -228,23 +228,23 @@ Earlier in this guide, you created a product and used an existing tax entity for
 ```php
 public function writeData(Context $context): void
 {
-    $this->productRepository->create([
-        [
-            'name' => 'Example product',
-            'productNumber' => 'SW123',
-            'stock' => 10,
-            'taxId' => $this->getTaxId($context),
-            'price' => [['currencyId' => Defaults::CURRENCY, 'gross' => 50, 'net' => 25, 'linked' => false]],
-        ]
-    ], $context);
+  $this->productRepository->create([
+    [
+      'name' => 'Example product',
+      'productNumber' => 'SW123',
+      'stock' => 10,
+      'taxId' => $this->getTaxId($context),
+      'price' => [['currencyId' => Defaults::CURRENCY, 'gross' => 50, 'net' => 25, 'linked' => false]],
+    ]
+  ], $context);
 }
 
 private function getTaxId(Context $context): string
 {
-    $criteria = new Criteria();
-    $criteria->addFilter(new EqualsFilter('taxRate', 19.00));
+  $criteria = new Criteria();
+  $criteria->addFilter(new EqualsFilter('taxRate', 19.00));
 
-    return $this->taxRepository->searchIds($criteria, $context)->firstId();
+  return $this->taxRepository->searchIds($criteria, $context)->firstId();
 }
 ```
 
@@ -259,22 +259,22 @@ An example in the product context would be assigning a category to a product.
 ```php
 public function writeData(Context $context): void
 {
-    $criteria = new Criteria();
-    $criteria->addFilter(new EqualsFilter('name', 'Example product'));
+  $criteria = new Criteria();
+  $criteria->addFilter(new EqualsFilter('name', 'Example product'));
 
-    $productId = $this->productRepository->searchIds($criteria, $context)->firstId();
-    $categoryId = $this->categoryRepository->searchIds(new Criteria())->firstId();
+  $productId = $this->productRepository->searchIds($criteria, $context)->firstId();
+  $categoryId = $this->categoryRepository->searchIds(new Criteria())->firstId();
 
-    $this->productRepository->update([
+  $this->productRepository->update([
+    [
+      'id' => $productId,
+      'categories' => [
         [
-            'id' => $productId,
-            'categories' => [
-                [
-                    'id' => $categoryId
-                ]
-            ]
+          'id' => $categoryId
         ]
-    ], $context);
+      ]
+    ]
+  ], $context);
 }
 ```
 
@@ -291,13 +291,13 @@ The following example will fail:
 ```php
 public function writeData(Context $context): void
 {
-    // This is the product_category.repository service
-    $this->productCategoryRepository->update([
-        [
-            'productId' => 'myOldProductId',
-            'categoryId' => 'myNewCategoryId'
-        ]
-    ], $context);
+  // This is the product_category.repository service
+  $this->productCategoryRepository->update([
+    [
+      'productId' => 'myOldProductId',
+      'categoryId' => 'myNewCategoryId'
+    ]
+  ], $context);
 }
 ```
 
@@ -312,15 +312,15 @@ So you don't want to assign an existing tax entity when creating a product, but 
 ```php
 public function writeData(Context $context): void
 {
-    $this->productRepository->create([
-        [
-            'name' => 'Example product',
-            'productNumber' => 'SW123',
-            'stock' => 10,
-            'tax' => ['name' => 'test', 'taxRate' => 15],
-            'price' => [['currencyId' => Defaults::CURRENCY, 'gross' => 50, 'net' => 25, 'linked' => false]],
-        ]
-    ], $context);
+  $this->productRepository->create([
+    [
+      'name' => 'Example product',
+      'productNumber' => 'SW123',
+      'stock' => 10,
+      'tax' => ['name' => 'test', 'taxRate' => 15],
+      'price' => [['currencyId' => Defaults::CURRENCY, 'gross' => 50, 'net' => 25, 'linked' => false]],
+    ]
+  ], $context);
 }
 ```
 
@@ -333,21 +333,21 @@ And that's already it - now the tax will be created in the same step when the pr
 ```php
 public function writeData(Context $context): void
 {
-    $this->productRepository->create([
+  $this->productRepository->create([
+    [
+      'name' => 'Example product',
+      'productNumber' => 'SW127',
+      'stock' => 10,
+      'tax' => ['name' => 'test', 'taxRate' => 15],
+      'price' => [['currencyId' => Defaults::CURRENCY, 'gross' => 50, 'net' => 25, 'linked' => false]],
+      'categories' => [
         [
-            'name' => 'Example product',
-            'productNumber' => 'SW127',
-            'stock' => 10,
-            'tax' => ['name' => 'test', 'taxRate' => 15],
-            'price' => [['currencyId' => Defaults::CURRENCY, 'gross' => 50, 'net' => 25, 'linked' => false]],
-            'categories' => [
-                [
-                    'id' => 'YourCategoryId',
-                    'name' => 'Example category'
-                ]
-            ]
+          'id' => 'YourCategoryId',
+          'name' => 'Example category'
         ]
-    ], $context);
+      ]
+    ]
+  ], $context);
 }
 ```
 

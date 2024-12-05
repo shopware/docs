@@ -192,7 +192,7 @@ The `system:setup:staging` is dispatching an Event which all plugins can subscri
 Example of a subscriber for a payment provider to turn on the test mode:
 
 ```php
-<?php
+<?php declare(strict_types=1);
 
 namespace Swag\PaymentProvider\Subscriber;
 
@@ -200,16 +200,16 @@ use Shopware\Core\Maintenance\Staging\Event\SetupStagingEvent;
 
 class StagingSubscriber implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            SetupStagingEvent::class => 'onSetupStaging'
-        ];
-    }
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      SetupStagingEvent::class => 'onSetupStaging'
+    ];
+  }
 
-    public function onSetupStaging(SetupStagingEvent $event): void
-    {
-        // modify the database to turn on the test mode
-    }
+  public function onSetupStaging(SetupStagingEvent $event): void
+  {
+    // modify the database to turn on the test mode
+  }
 }
 ```

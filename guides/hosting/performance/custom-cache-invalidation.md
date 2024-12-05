@@ -41,7 +41,7 @@ Therefore, we have solved all configurations via the service definition of this 
 For example, if you want to disable all cache invalidation in a project, you can simply remove the `kernel.event_listener` tag of the service definition via compiler pass and implement your own cache invalidation.
 
 ```php
-<?php
+<?php declare(strict_types=1);
 
 namespace MyProject;
 
@@ -52,20 +52,19 @@ use Shopware\Core\Framework\Adapter\Cache\CacheInvalidationSubscriber;
 
 class TweakCacheInvalidation implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container): void
-    {
-        $container
-            ->getDefinition(CacheInvalidationSubscriber::class)
-            ->clearTag('kernel.event_listener')
-    }
-
+  public function process(ContainerBuilder $container): void
+  {
+    $container
+      ->getDefinition(CacheInvalidationSubscriber::class)
+      ->clearTag('kernel.event_listener')
+  }
 }
 ```
 
 However, suppose only certain parts of the cache invalidation are to be adjusted, finer adjustments to the class can be made using `Shopware\Core\Framework\DependencyInjection\CompilerPass\RemoveEventListener`, in which it is possible to define which event listeners of the service are to be removed.
 
 ```php
-<?php
+<?php declare(strict_types=1);
 
 namespace MyProject;
 
@@ -76,16 +75,16 @@ use Shopware\Core\Framework\Adapter\Cache\CacheInvalidationSubscriber;
 
 class TweakCacheInvalidation implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container): void
-    {
-        RemoveEventListener::remove(
-            $container,
-            CacheInvalidationSubscriber::class,
-            [
-                [ProductIndexerEvent::class, 'invalidateListings'],
-                [ProductNoLongerAvailableEvent::class, 'invalidateListings'],
-            ]
-        );
-    }
+  public function process(ContainerBuilder $container): void
+  {
+    RemoveEventListener::remove(
+      $container,
+      CacheInvalidationSubscriber::class,
+      [
+        [ProductIndexerEvent::class, 'invalidateListings'],
+        [ProductNoLongerAvailableEvent::class, 'invalidateListings'],
+      ]
+    );
+  }
 } 
 ```

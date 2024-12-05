@@ -28,12 +28,12 @@ As usual, we will start by creating this new class in the same path as you're se
 New listing filters, e.g. for your product listing, can be registered via the event `\Shopware\Core\Content\Product\Events\ProductListingCollectFilterEvent` This event was introduced to enable every developer to specify the metadata for a filter. The handling, meaning if and how a filter is added, is done by Shopware's core:
 
 ```php
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            ProductListingCollectFilterEvent::class => 'addFilter'
-        ];
-    }
+public static function getSubscribedEvents(): array
+{
+  return [
+    ProductListingCollectFilterEvent::class => 'addFilter'
+  ];
+}
 ```
 
 After that, you can start to actually add your custom filters. Arguably an important step is to define your filter. Therefore, you're able to use the `Filter` class, including the parameters below:
@@ -51,20 +51,20 @@ As a result, an example filter could look like this:
 
 ```php
 $filter = new Filter(
-    // name
-    'manufacturer',
+  // name
+  'manufacturer',
 
-    // filtered
-    !empty($ids),
+  // filtered
+  !empty($ids),
 
-    // aggregations
-    [new EntityAggregation('manufacturer', 'product.manufacturerId', 'product_manufacturer')],
+  // aggregations
+  [new EntityAggregation('manufacturer', 'product.manufacturerId', 'product_manufacturer')],
 
-    // filter
-    new EqualsAnyFilter('product.manufacturerId', $ids),
+  // filter
+  new EqualsAnyFilter('product.manufacturerId', $ids),
 
-    // values
-    $ids
+  // values
+  $ids
 );
 ```
 
@@ -74,48 +74,48 @@ Inside the `ProductListingCollectFilterEvent`, you get the existing filters, can
 // <plugin root>/src/Subscriber/ExampleListingSubscriber.php
 class ExampleListingSubscriber implements EventSubscriberInterface
 {
-    // register event
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            ProductListingCollectFilterEvent::class => 'addFilter'
-        ];
-    }
+  // register event
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      ProductListingCollectFilterEvent::class => 'addFilter'
+    ];
+  }
 
-    public function addFilter(ProductListingCollectFilterEvent $event): void
-    {
-        // fetch existing filters
-        $filters = $event->getFilters();
-        $request = $event->getRequest();
+  public function addFilter(ProductListingCollectFilterEvent $event): void
+  {
+    // fetch existing filters
+    $filters = $event->getFilters();
+    $request = $event->getRequest();
 
-        $filtered = (bool) $request->get('isCloseout');
+    $filtered = (bool) $request->get('isCloseout');
 
-        $filter = new Filter(
-            // unique name of the filter
-            'isCloseout',
+    $filter = new Filter(
+      // unique name of the filter
+      'isCloseout',
 
-            // defines if this filter is active
-            $filtered,
+      // defines if this filter is active
+      $filtered,
 
-            // Defines aggregations behind a filter. A filter can contain multiple aggregations like properties
-            [
-                new FilterAggregation(
-                    'active-filter',
-                    new MaxAggregation('active', 'product.isCloseout'),
-                    [new EqualsFilter('product.isCloseout', true)]
-                ),
-            ],
+      // Defines aggregations behind a filter. A filter can contain multiple aggregations like properties
+      [
+        new FilterAggregation(
+          'active-filter',
+          new MaxAggregation('active', 'product.isCloseout'),
+          [new EqualsFilter('product.isCloseout', true)]
+        ),
+      ],
 
-            // defines the DAL filter which should be added to the criteria   
-            new EqualsFilter('product.isCloseout', true),
+      // defines the DAL filter which should be added to the criteria   
+      new EqualsFilter('product.isCloseout', true),
 
-            // defines the values which will be added as currentFilter to the result
-            $filtered
-        );
+      // defines the values which will be added as currentFilter to the result
+      $filtered
+    );
 
-        // Add your custom filter
-        $filters->add($filter);
-    }
+    // Add your custom filter
+    $filters->add($filter);
+  }
 }
 ```
 

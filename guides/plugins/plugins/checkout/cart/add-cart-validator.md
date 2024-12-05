@@ -49,16 +49,16 @@ use Swag\BasicExample\Core\Checkout\Cart\Custom\Error\CustomCartBlockedError;
 
 class CustomCartValidator implements CartValidatorInterface
 {
-    public function validate(Cart $cart, ErrorCollection $errorCollection, SalesChannelContext $salesChannelContext): void
-    {
-        foreach ($cart->getLineItems()->getFlat() as $lineItem) {
-            if (!array_key_exists('customPayload', $lineItem->getPayload()) || $lineItem->getPayload()['customPayload'] !== 'example') {
-                $errorCollection->add(new CustomCartBlockedError($lineItem->getId()));
+  public function validate(Cart $cart, ErrorCollection $errorCollection, SalesChannelContext $salesChannelContext): void
+  {
+    foreach ($cart->getLineItems()->getFlat() as $lineItem) {
+      if (!array_key_exists('customPayload', $lineItem->getPayload()) || $lineItem->getPayload()['customPayload'] !== 'example') {
+        $errorCollection->add(new CustomCartBlockedError($lineItem->getId()));
 
-                return;
-            }
-        }
+        return;
+      }
     }
+  }
 }
 ```
 
@@ -131,42 +131,42 @@ use Shopware\Core\Checkout\Cart\Error\Error;
 
 class CustomCartBlockedError extends Error
 {
-    private const KEY = 'custom-line-item-blocked';
+  private const KEY = 'custom-line-item-blocked';
 
-    private string $lineItemId;
+  private string $lineItemId;
 
-    public function __construct(string $lineItemId)
-    {
-        $this->lineItemId = $lineItemId;
-        parent::__construct();
-    }
+  public function __construct(string $lineItemId)
+  {
+    $this->lineItemId = $lineItemId;
+    parent::__construct();
+  }
 
-    public function getId(): string
-    {
-        return $this->lineItemId;
-    }
+  public function getId(): string
+  {
+    return $this->lineItemId;
+  }
 
-    public function getMessageKey(): string
-    {
-        return self::KEY;
-    }
+  public function getMessageKey(): string
+  {
+    return self::KEY;
+  }
 
-    public function getLevel(): int
-    {
-//        return self::LEVEL_NOTICE;
-//        return self::LEVEL_WARNING;
-        return self::LEVEL_ERROR;
-    }
+  public function getLevel(): int
+  {
+    // return self::LEVEL_NOTICE;
+    // return self::LEVEL_WARNING;
+    return self::LEVEL_ERROR;
+  }
 
-    public function blockOrder(): bool
-    {
-        return true;
-    }
+  public function blockOrder(): bool
+  {
+    return true;
+  }
 
-    public function getParameters(): array
-    {
-        return [ 'lineItemId' => $this->lineItemId ];
-    }
+  public function getParameters(): array
+  {
+    return ['lineItemId' => $this->lineItemId];
+  }
 }
 ```
 

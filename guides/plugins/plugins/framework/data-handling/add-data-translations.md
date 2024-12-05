@@ -55,36 +55,34 @@ use Shopware\Core\Framework\Migration\MigrationStep;
 
 class Migration1612863838ExampleTranslation extends MigrationStep
 {
-    public function getCreationTimestamp(): int
-    {
-        return 1612863838;
-    }
+  public function getCreationTimestamp(): int
+  {
+    return 1612863838;
+  }
 
-    public function update(Connection $connection): void
-    {
-        $query = <<<SQL
+  public function update(Connection $connection): void
+  {
+    $query = <<<SQL
 CREATE TABLE IF NOT EXISTS `swag_example_translation` (
-    `swag_example_id` BINARY(16) NOT NULL,
-    `language_id` BINARY(16) NOT NULL,
-    `name` VARCHAR(255),
-    `created_at` DATETIME(3) NOT NULL,
-    `updated_at` DATETIME(3) NULL,
-    PRIMARY KEY (`swag_example_id`, `language_id`),
-    CONSTRAINT `fk.swag_example_translation.swag_example_id` FOREIGN KEY (`swag_example_id`)
-        REFERENCES `swag_example` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT `fk.swag_example_translation.language_id` FOREIGN KEY (`language_id`)
-        REFERENCES `language` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  `swag_example_id` BINARY(16) NOT NULL,
+  `language_id` BINARY(16) NOT NULL,
+  `name` VARCHAR(255),
+  `created_at` DATETIME(3) NOT NULL,
+  `updated_at` DATETIME(3) NULL,
+  PRIMARY KEY (`swag_example_id`, `language_id`),
+  CONSTRAINT `fk.swag_example_translation.swag_example_id` FOREIGN KEY (`swag_example_id`)
+      REFERENCES `swag_example` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk.swag_example_translation.language_id` FOREIGN KEY (`language_id`)
+      REFERENCES `language` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 )
-    ENGINE = InnoDB
-    DEFAULT CHARSET = utf8mb4
-    COLLATE = utf8mb4_unicode_ci;
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_unicode_ci;
 SQL;
-        $connection->executeStatement($query);
-    }
+    $connection->executeStatement($query);
+  }
 
-    public function updateDestructive(Connection $connection): void
-    {
-    }
+  public function updateDestructive(Connection $connection): void {}
 }
 ```
 
@@ -110,24 +108,24 @@ use Swag\BasicExample\Core\Content\Example\ExampleDefinition;
 
 class ExampleTranslationDefinition extends EntityTranslationDefinition
 {
-    public const ENTITY_NAME = 'swag_example_translation';
+  public const ENTITY_NAME = 'swag_example_translation';
 
-    public function getEntityName(): string
-    {
-        return self::ENTITY_NAME;
-    }
+  public function getEntityName(): string
+  {
+    return self::ENTITY_NAME;
+  }
 
-    public function getParentDefinitionClass(): string
-    {
-        return ExampleDefinition::class;
-    }
+  public function getParentDefinitionClass(): string
+  {
+    return ExampleDefinition::class;
+  }
 
-    protected function defineFields(): FieldCollection
-    {
-        return new FieldCollection([
-            (new StringField('name', 'name'))->addFlags(new Required()),
-        ]);
-    }
+  protected function defineFields(): FieldCollection
+  {
+    return new FieldCollection([
+      (new StringField('name', 'name'))->addFlags(new Required()),
+    ]);
+  }
 }
 ```
 
@@ -174,41 +172,41 @@ use Swag\BasicExample\Core\Content\Example\ExampleEntity;
 
 class ExampleTranslationEntity extends TranslationEntity
 {
-    protected string $exampleId;
+  protected string $exampleId;
 
-    protected ?string $name;
+  protected ?string $name;
 
-    protected ExampleEntity $example;
+  protected ExampleEntity $example;
 
-    public function getExampleId(): string
-    {
-        return $this->exampleId;
-    }
+  public function getExampleId(): string
+  {
+    return $this->exampleId;
+  }
 
-    public function setExampleId(string $exampleId): void
-    {
-        $this->exampleId = $exampleId;
-    }
+  public function setExampleId(string $exampleId): void
+  {
+    $this->exampleId = $exampleId;
+  }
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
+  public function getName(): ?string
+  {
+    return $this->name;
+  }
 
-    public function setName(string $name): void
-    {
-        $this->name = $name;
-    }
+  public function setName(string $name): void
+  {
+    $this->name = $name;
+  }
 
-    public function getExample(): ExampleEntity
-    {
-        return $this->example;
-    }
+  public function getExample(): ExampleEntity
+  {
+    return $this->example;
+  }
 
-    public function setExample(ExampleEntity $example): void
-    {
-        $this->example = $example;
-    }
+  public function setExample(ExampleEntity $example): void
+  {
+    $this->example = $example;
+  }
 }
 ```
 
@@ -218,12 +216,12 @@ Now we need our translation definition to know its custom entity class. This is 
 // <plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationDefinition.php
 class ExampleTranslationDefinition extends EntityTranslationDefinition
 {
-    [...]
+  // [...]
 
-    public function getEntityClass(): string
-    {
-        return ExampleTranslationEntity::class;
-    }
+  public function getEntityClass(): string
+  {
+    return ExampleTranslationEntity::class;
+  }
 }
 ```
 
@@ -252,10 +250,10 @@ use Shopware\Core\Framework\DataAbstractionLayer\EntityCollection;
  */
 class ExampleTranslationCollection extends EntityCollection
 {
-    protected function getExpectedClass(): string
-    {
-        return ExampleTranslationEntity::class;
-    }
+  protected function getExpectedClass(): string
+  {
+    return ExampleTranslationEntity::class;
+  }
 }
 ```
 
@@ -272,29 +270,30 @@ The main entity class, that is the class with the field(s) we are going to trans
 
 namespace Swag\BasicExample\Core\Content\Example;
 
-use ...
+// use ...
 
 class ExampleDefinition extends EntityDefinition
 {
-    public const ENTITY_NAME = 'example';
+  public const ENTITY_NAME = 'example';
 
-    public function getEntityName(): string
-    {
-        return self::ENTITY_NAME;
-    }
+  public function getEntityName(): string
+  {
+    return self::ENTITY_NAME;
+  }
 
-    [...]
+  // [...]
 
-    protected function defineFields(): FieldCollection
-    {
-        return new FieldCollection([
-            (new IdField('id', 'id'))->addFlags(new PrimaryKey(), new ApiAware(), new Required()),
-            (new StringField('not_translated_field', 'notTranslatedField'))->addFlags(new ApiAware()),
-            (new TranslatedField('name'))->addFlags(new ApiAware(), new Required()),
-            (new TranslationsAssociationField(
-                ExampleTranslationDefinition::class,
-                'swag_example_id'
-            ))->addFlags(new ApiAware(), new Required())
-        ]);
-    }
+  protected function defineFields(): FieldCollection
+  {
+    return new FieldCollection([
+      (new IdField('id', 'id'))->addFlags(new PrimaryKey(), new ApiAware(), new Required()),
+      (new StringField('not_translated_field', 'notTranslatedField'))->addFlags(new ApiAware()),
+      (new TranslatedField('name'))->addFlags(new ApiAware(), new Required()),
+      (new TranslationsAssociationField(
+        ExampleTranslationDefinition::class,
+        'swag_example_id'
+      ))->addFlags(new ApiAware(), new Required())
+    ]);
+  }
 }
+```

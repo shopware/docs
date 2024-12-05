@@ -29,89 +29,89 @@ use Shopware\Core\Framework\Uuid\Uuid;
 
 class ExampleIndexer extends EntityIndexer
 {
-    private IteratorFactory $iteratorFactory;
+  private IteratorFactory $iteratorFactory;
 
-    private EntityRepository $repository;
+  private EntityRepository $repository;
 
-    private Connection $connection;
+  private Connection $connection;
 
-    public function __construct(
-        IteratorFactory $iteratorFactory,
-        EntityRepository $repository,
-        Connection $connection
-    ) {
-        $this->iteratorFactory = $iteratorFactory;
-        $this->repository = $repository;
-        $this->connection = $connection;
+  public function __construct(
+    IteratorFactory $iteratorFactory,
+    EntityRepository $repository,
+    Connection $connection
+  ) {
+    $this->iteratorFactory = $iteratorFactory;
+    $this->repository = $repository;
+    $this->connection = $connection;
+  }
+
+  /**
+   * Returns a unique name for this indexer.
+   */
+  public function getName(): string
+  {
+    return 'swag.basic.example.indexer';
+  }
+
+  /**
+   * Called when a full entity index is required. This function should generate a list of message for all records which
+   * are indexed by this indexer.
+   */
+
+  public function iterate($offset): ?EntityIndexingMessage
+  {
+    $iterator = $this->iteratorFactory->createIterator($this->repository->getDefinition(), $offset);
+
+    $ids = $iterator->fetch();
+
+    if (empty($ids)) {
+      return null;
     }
 
-    /**
-     * Returns a unique name for this indexer.
-     */
-    public function getName(): string
-    {
-        return 'swag.basic.example.indexer';
+    return new EntityIndexingMessage(array_values($ids), $iterator->getOffset());
+  }
+
+  /**
+   * Called when entities are updated over the DAL. This function should react to the provided entity written events
+   * and generate a list of messages which has to be processed by the `handle` function over the message queue workers.
+   */
+  public function update(EntityWrittenContainerEvent $event): ?EntityIndexingMessage
+  {
+    $updates = $event->getPrimaryKeys(CustomerDefinition::ENTITY_NAME);
+
+    if (empty($updates)) {
+      return null;
     }
 
-    /**
-     * Called when a full entity index is required. This function should generate a list of message for all records which
-     * are indexed by this indexer.
-     */
+    return new EntityIndexingMessage(array_values($updates), null, $event->getContext());
+  }
 
-    public function iterate($offset): ?EntityIndexingMessage
-    {
-        $iterator = $this->iteratorFactory->createIterator($this->repository->getDefinition(), $offset);
+  /**
+   * Called over the message queue workers. The messages are the generated messages
+   * of the `self::iterate` or `self::update` functions.
+   */
+  public function handle(EntityIndexingMessage $message): void
+  {
+    $ids = $message->getData();
 
-        $ids = $iterator->fetch();
-
-        if (empty($ids)) {
-            return null;
-        }
-
-        return new EntityIndexingMessage(array_values($ids), $iterator->getOffset());
+    if (!$ids) {
+      return;
     }
 
-    /**
-     * Called when entities are updated over the DAL. This function should react to the provided entity written events
-     * and generate a list of messages which has to be processed by the `handle` function over the message queue workers.
-     */
-    public function update(EntityWrittenContainerEvent $event): ?EntityIndexingMessage
-    {
-        $updates = $event->getPrimaryKeys(CustomerDefinition::ENTITY_NAME);
-
-        if (empty($updates)) {
-            return null;
-        }
-
-        return new EntityIndexingMessage(array_values($updates), null, $event->getContext());
+    foreach ($ids as $id) {
+      $this->writeLog($id);
     }
+  }
 
-    /**
-     * Called over the message queue workers. The messages are the generated messages
-     * of the `self::iterate` or `self::update` functions.
-     */
-    public function handle(EntityIndexingMessage $message): void
-    {
-        $ids = $message->getData();
-
-        if (!$ids) {
-            return;
-        }
-
-        foreach ($ids as $id) {
-            $this->writeLog($id);
-        }
-    }
-
-    private function writeLog($customerId)
-    {
-        $this->connection->executeStatement('INSERT INTO `log_entry` (`id`, `message`, `level`, `channel`, `created_at`) VALUES (:id, :message, :level, :channel, now())', [
-            'id' => Uuid::randomBytes(),
-            'message' => 'Indexed customer with id: ' . $customerId,
-            'level' => 1,
-            'channel' => 'debug'
-        ]);
-    }
+  private function writeLog($customerId)
+  {
+    $this->connection->executeStatement('INSERT INTO `log_entry` (`id`, `message`, `level`, `channel`, `created_at`) VALUES (:id, :message, :level, :channel, now())', [
+      'id' => Uuid::randomBytes(),
+      'message' => 'Indexed customer with id: ' . $customerId,
+      'level' => 1,
+      'channel' => 'debug'
+    ]);
+  }
 }
 ```
 
@@ -161,16 +161,16 @@ By default, indexing is also active while working with an indexer, which means, 
 ```php
 public function update(EntityWrittenContainerEvent $event): ?EntityIndexingMessage
 {
-    $updates = $event->getPrimaryKeys(CustomerDefinition::ENTITY_NAME);
+  $updates = $event->getPrimaryKeys(CustomerDefinition::ENTITY_NAME);
 
-    if (empty($updates)) {
-        return null;
-    }
+  if (empty($updates)) {
+    return null;
+  }
 
-    $context = $event->getContext();
-    $context->addState(EntityIndexerRegistry::DISABLE_INDEXING);
+  $context = $event->getContext();
+  $context->addState(EntityIndexerRegistry::DISABLE_INDEXING);
 
-    return new EntityIndexingMessage(array_values($updates), null, $context);
+  return new EntityIndexingMessage(array_values($updates), null, $context);
 }
 ```
 
@@ -209,41 +209,41 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class Subscriber implements EventSubscriberInterface
 {
-    /**
-     * @var Connection
-     */
-    private Connection $connection;
+  /**
+   * @var Connection
+   */
+  private Connection $connection;
 
-    public function __construct(Connection $connection)
-    {
-        $this->connection = $connection;
-    }
+  public function __construct(Connection $connection)
+  {
+    $this->connection = $connection;
+  }
 
-    public static function getSubscribedEvents(): array
-    {
-        return [
-//            CustomerIndexerEvent::class => 'onCustomerIndexerHandle'
-        ];
-    }
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      //            CustomerIndexerEvent::class => 'onCustomerIndexerHandle'
+    ];
+  }
 
-    public function onCustomerIndexerHandle(CustomerIndexerEvent $customerIndexerEvent)
-    {
-        $queue = new MultiInsertQueryQueue($this->connection);
-        foreach ($customerIndexerEvent->getIds() as $id) {
-            $this->addLog($id, $queue);
-        }
-        $queue->execute();
+  public function onCustomerIndexerHandle(CustomerIndexerEvent $customerIndexerEvent)
+  {
+    $queue = new MultiInsertQueryQueue($this->connection);
+    foreach ($customerIndexerEvent->getIds() as $id) {
+      $this->addLog($id, $queue);
     }
+    $queue->execute();
+  }
 
-    private function addLog($customerId, MultiInsertQueryQueue $queue)
-    {
-        $queue->addInsert('log_entry', [
-            'id' => Uuid::randomBytes(),
-            'message' => 'Updated customer with id: ' . $customerId,
-            'level' => 1,
-            'channel' => 'debug'
-        ]);
-    }
+  private function addLog($customerId, MultiInsertQueryQueue $queue)
+  {
+    $queue->addInsert('log_entry', [
+      'id' => Uuid::randomBytes(),
+      'message' => 'Updated customer with id: ' . $customerId,
+      'level' => 1,
+      'channel' => 'debug'
+    ]);
+  }
 }
 ```
 

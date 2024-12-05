@@ -55,32 +55,32 @@ This modifier column allows you to store the context owner independent of the ac
 You can access the current context owner always through the identity.
 
 ```php
-[...]
+// [...]
 
 /** @var AuthenticationService $authenticationService */
 $authenticationService = $this->container->get('b2b_front_auth.authentication_service');
 
 if (!$authenticationService->isB2b()) {
-    throw new \Exception('User must be logged in');
+  throw new \Exception('User must be logged in');
 }
 
 $ownershipContext = $authenticationService
-    ->getIdentity()
-    ->getOwnershipContext();
+  ->getIdentity()
+  ->getOwnershipContext();
 
 echo 'The context owner id ' . $ownershipContext->contextOwnerId . '\n';
 
-[...]
+// [...]
 ```
 
 You can even load the whole identity through the `AuthenticationService`.
 
 ```php
-[...]
+// [...]
 
 $ownerIdentity = $authenticationService->getIdentityByAuthId($contextOwnerId);
 
-[...]
+// [...]
 ```
 
 ## Working with the identity as an owner
@@ -89,30 +89,28 @@ Sometimes you want to flag records to be owned by certain identities.
 
 ```sql
 CREATE TABLE IF NOT EXISTS `b2b_my` (
-    `id` INT(11) NOT NULL AUTO_INCREMENT,
-    `auth_id` INT(11) NULL DEFAULT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `auth_id` INT(11) NULL DEFAULT NULL,
 
-    [...]
+  PRIMARY KEY (`id`),
 
-    PRIMARY KEY (`id`),
-
-    CONSTRAINT `b2b_my_auth_user_id_FK` FOREIGN KEY (`auth_id`)
-      REFERENCES `b2b_store_front_auth` (`id`) ON UPDATE NO ACTION ON DELETE CASCADE
+  CONSTRAINT `b2b_my_auth_user_id_FK` FOREIGN KEY (`auth_id`)
+    REFERENCES `b2b_store_front_auth` (`id`) ON UPDATE NO ACTION ON DELETE CASCADE
 )
 ```
 
 To fill this column, we again access the current identity, but instead of the `contextOwnerId`, we access the `authId`.
 
 ```php
-[...]
+// [...]
 
 $ownershipContext = $authenticationService
-    ->getIdentity()
-    ->getOwnershipContext();
+  ->getIdentity()
+  ->getOwnershipContext();
 
 echo 'The common identity id ' . $ownershipContext->authId . '\n';
 
-[...]
+// [...]
 ```
 
 The B2B Suite views the context owner as some kind of admin that, from the perspective of the authentication component, it owns all individual users and their data *(Of course the ACL component may overwrite this)*.
@@ -124,31 +122,31 @@ Therefore, commonly used queries are:
 $connection = $this->container->get('dbal_connection');
 /** @var Identity $identity */
 $identity = $this->container->get('b2b_front_auth.authentication_service')
-    ->getIdentity();
+  ->getIdentity();
 
 // get all records relative to the user
 $connection->fetchAll(
-    'SELECT * FROM b2b_my my WHERE my.auth_id = :authId',
-    [
-        'authId' => $identity->getOwnershipContext()->authId->getValue(),
-    ]
+  'SELECT * FROM b2b_my my WHERE my.auth_id = :authId',
+  [
+    'authId' => $identity->getOwnershipContext()->authId->getValue(),
+  ]
 );
 
 // get all records relative to the user's context owner
 $connection->fetchAll(
-    'SELECT * FROM b2b_my my WHERE my.auth_id IN (SELECT auth_id FROM b2b_store_front_auth WHERE context_owner_id = :identityContextOwnerId)',
-    [
-        'identityContextOwnerId' => $identity->getOwnershipContext()->contextOwnerId->getValue(),
-    ]
+  'SELECT * FROM b2b_my my WHERE my.auth_id IN (SELECT auth_id FROM b2b_store_front_auth WHERE context_owner_id = :identityContextOwnerId)',
+  [
+    'identityContextOwnerId' => $identity->getOwnershipContext()->contextOwnerId->getValue(),
+  ]
 );
 
 // get all records relative to the current user or if the owner is logged in to the owner
 $connection->fetchAll(
-    'SELECT * FROM b2b_my my WHERE my.auth_id IN (SELECT auth_id FROM b2b_store_front_auth WHERE auth_id = :authId OR context_owner_id = :identityContextOwnerId)',
-    [
-        'authId' => $identity->getOwnershipContext()->authId,
-        'identityContextOwnerId' => $identity->getOwnershipContext()->authId,
-    ]
+  'SELECT * FROM b2b_my my WHERE my.auth_id IN (SELECT auth_id FROM b2b_store_front_auth WHERE auth_id = :authId OR context_owner_id = :identityContextOwnerId)',
+  [
+    'authId' => $identity->getOwnershipContext()->authId,
+    'identityContextOwnerId' => $identity->getOwnershipContext()->authId,
+  ]
 );
 ```
 
@@ -175,16 +173,16 @@ Example implementations are either: `Shopware\B2B\Debtor\Framework\DebtorIdentit
 In the *CredentialsBuilder*, you create the *CredentialsEntity*, which is used for logging in the B2B Suite.
 
 ```php
-    public function createCredentials(array $parameters): AbstractCredentialsEntity
-    {
-        $entity = new CredentialsEntity();
-    
-        $entity->email = $parameters['email'];
-        $entity->salesChannelId = IdValue::create($this->contextProvider->getSalesChannelContext()->getSalesChannel()->getId());
-        $entity->customerScope = $this->systemConfigService->get('core.systemWideLoginRegistration.isCustomerBoundToSalesChannel');
+public function createCredentials(array $parameters): AbstractCredentialsEntity
+{
+  $entity = new CredentialsEntity();
 
-        return $entity;
-    }
+  $entity->email = $parameters['email'];
+  $entity->salesChannelId = IdValue::create($this->contextProvider->getSalesChannelContext()->getSalesChannel()->getId());
+  $entity->customerScope = $this->systemConfigService->get('core.systemWideLoginRegistration.isCustomerBoundToSalesChannel');
+
+  return $entity;
+}
 ```
 
 The *CredentialsEntity* represents the data that is used for logging.
@@ -197,25 +195,25 @@ The *LoginContextService* is passed as an argument to help you retrieve and crea
 context owner ids. Notice that the interface is designed to be chained to create dependent auth ids on the fly.
 
 ```php
-[...]
-    public function fetchIdentityByCredentials(CredentialsEntity $credentialsEntity, LoginContextService $contextService, bool $isApi = false): Identity
-    {
-        if (!$credentialsEntity->email) {
-            throw new NotFoundException('Unable to handle context');
-        }
-        
-        $entity = $this->yourEntityRepository->fetchOneByEmail($email);
+// [...]
+public function fetchIdentityByCredentials(CredentialsEntity $credentialsEntity, LoginContextService $contextService, bool $isApi = false): Identity
+{
+  if (!$credentialsEntity->email) {
+    throw new NotFoundException('Unable to handle context');
+  }
+  
+  $entity = $this->yourEntityRepository->fetchOneByEmail($email);
 
-        /** @var DebtorIdentity $debtorIdentity */
-        $debtorIdentity = $this->debtorRepository->fetchIdentityById($entity->debtor->id, $contextService);
-        
-        $authId = $contextService->getAuthId(YourEntityRepository::class, $entity->id, $debtorIdentity->getAuthId());
-        
-        $this->yourEntityRepository->setAuthId($entity->id, $authId);
-        
-        return new YourEntityIdentity($authId, (int) $entity->id, YourEntityRepository::TABLE_NAME, $entity, $debtorIdentity);
-    }
-[...]
+  /** @var DebtorIdentity $debtorIdentity */
+  $debtorIdentity = $this->debtorRepository->fetchIdentityById($entity->debtor->id, $contextService);
+  
+  $authId = $contextService->getAuthId(YourEntityRepository::class, $entity->id, $debtorIdentity->getAuthId());
+  
+  $this->yourEntityRepository->setAuthId($entity->id, $authId);
+  
+  return new YourEntityIdentity($authId, (int) $entity->id, YourEntityRepository::TABLE_NAME, $entity, $debtorIdentity);
+}
+// [...]
 ```
 
 Finally, you register your authentication provider (in our case a repository) as a tagged service through the DIC.

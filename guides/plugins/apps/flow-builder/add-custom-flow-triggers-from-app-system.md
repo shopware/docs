@@ -179,8 +179,8 @@ Here is an example to define data from the API:
 Flow actions can retrieve the data from FlowStorer.
 
 ```php
-    $salesChanelId = $flow->getData(MailAware::SALES_CHANNEL_ID));
-    $customer = $flow->getData(CustomerAware::CUSTOMER_ID));
+$salesChanelId = $flow->getData(MailAware::SALES_CHANNEL_ID);
+$customer = $flow->getData(CustomerAware::CUSTOMER_ID);
 ```
 
 Or we can use the data when defining the email template.

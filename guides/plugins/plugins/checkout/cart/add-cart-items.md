@@ -45,31 +45,31 @@ use Shopware\Core\Checkout\Cart\Cart;
 #[Route(defaults: ['_routeScope' => ['storefront']])]
 class ExampleController extends StorefrontController
 {
-    private LineItemFactoryRegistry $factory;
+  private LineItemFactoryRegistry $factory;
 
-    private CartService $cartService;
+  private CartService $cartService;
 
-    public function __construct(LineItemFactoryRegistry $factory, CartService $cartService)
-    {
-        $this->factory = $factory;
-        $this->cartService = $cartService;
-    }
+  public function __construct(LineItemFactoryRegistry $factory, CartService $cartService)
+  {
+    $this->factory = $factory;
+    $this->cartService = $cartService;
+  }
 
-    #[Route(path: '/cartAdd', name: 'frontend.example', methods: ['GET'])]
-    public function add(Cart $cart, SalesChannelContext $context): StorefrontResponse
-    {
-        // Create product line item
-        $lineItem = $this->factory->create([
-            'type' => LineItem::PRODUCT_LINE_ITEM_TYPE, // Results in 'product'
-            'referencedId' => 'myExampleId', // this is not a valid UUID, change this to your actual ID!
-            'quantity' => 5,
-            'payload' => ['key' => 'value']
-        ], $context);
+  #[Route(path: '/cartAdd', name: 'frontend.example', methods: ['GET'])]
+  public function add(Cart $cart, SalesChannelContext $context): StorefrontResponse
+  {
+    // Create product line item
+    $lineItem = $this->factory->create([
+      'type' => LineItem::PRODUCT_LINE_ITEM_TYPE, // Results in 'product'
+      'referencedId' => 'myExampleId', // this is not a valid UUID, change this to your actual ID!
+      'quantity' => 5,
+      'payload' => ['key' => 'value']
+    ], $context);
 
-        $this->cartService->add($cart, $lineItem, $context);
+    $this->cartService->add($cart, $lineItem, $context);
 
-        return $this->renderStorefront('@Storefront/storefront/base.html.twig');
-    }
+    return $this->renderStorefront('@Storefront/storefront/base.html.twig');
+  }
 }
 ```
 
@@ -127,24 +127,24 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 
 class ExampleHandler implements LineItemFactoryInterface
 {
-    public const TYPE = 'example';
+  public const TYPE = 'example';
 
-    public function supports(string $type): bool
-    {
-        return $type === self::TYPE;
-    }
+  public function supports(string $type): bool
+  {
+    return $type === self::TYPE;
+  }
 
-    public function create(array $data, SalesChannelContext $context): LineItem
-    {
-        return new LineItem($data['id'], self::TYPE, $data['referencedId'] ?? null, 1);
-    }
+  public function create(array $data, SalesChannelContext $context): LineItem
+  {
+    return new LineItem($data['id'], self::TYPE, $data['referencedId'] ?? null, 1);
+  }
 
-    public function update(LineItem $lineItem, array $data, SalesChannelContext $context): void
-    {
-        if (isset($data['referencedId'])) {
-            $lineItem->setReferencedId($data['referencedId']);
-        }
+  public function update(LineItem $lineItem, array $data, SalesChannelContext $context): void
+  {
+    if (isset($data['referencedId'])) {
+      $lineItem->setReferencedId($data['referencedId']);
     }
+  }
 }
 ```
 
@@ -182,14 +182,14 @@ use Shopware\Core\Checkout\Cart\LineItem\CartDataCollection;
 class ExampleProcessor implements CartProcessorInterface
 {
 
-    public function process(CartDataCollection $data, Cart $original, Cart $toCalculate, SalesChannelContext $context, CartBehavior $behavior): void
-    {
-        $lineItems = $original->getLineItems()->filterFlatByType(ExampleHandler::TYPE);
+  public function process(CartDataCollection $data, Cart $original, Cart $toCalculate, SalesChannelContext $context, CartBehavior $behavior): void
+  {
+    $lineItems = $original->getLineItems()->filterFlatByType(ExampleHandler::TYPE);
 
-        foreach ($lineItems as $lineItem){
-            $toCalculate->add($lineItem);
-        }
+    foreach ($lineItems as $lineItem) {
+      $toCalculate->add($lineItem);
     }
+  }
 }
 ```
 

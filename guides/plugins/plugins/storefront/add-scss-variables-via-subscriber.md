@@ -54,18 +54,18 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class ThemeVariableSubscriber implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            ThemeCompilerEnrichScssVariablesEvent::class => 'onAddVariables'
-        ];
-    }
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      ThemeCompilerEnrichScssVariablesEvent::class => 'onAddVariables'
+    ];
+  }
 
-    public function onAddVariables(ThemeCompilerEnrichScssVariablesEvent $event): void
-    {
-        // Will render: $sass-plugin-header-bg-color: "#59ccff";
-        $event->addVariable('sass-plugin-header-bg-color', '#59ccff');
-    }
+  public function onAddVariables(ThemeCompilerEnrichScssVariablesEvent $event): void
+  {
+    // Will render: $sass-plugin-header-bg-color: "#59ccff";
+    $event->addVariable('sass-plugin-header-bg-color', '#59ccff');
+  }
 }
 ```
 
@@ -158,31 +158,31 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class ThemeVariableSubscriber implements EventSubscriberInterface
 {
-    protected SystemConfigService $systemConfig;
+  protected SystemConfigService $systemConfig;
 
-    // add the `SystemConfigService` to your constructor
-    public function __construct(SystemConfigService $systemConfig)
-    {
-        $this->systemConfig = $systemConfig;
+  // add the `SystemConfigService` to your constructor
+  public function __construct(SystemConfigService $systemConfig)
+  {
+    $this->systemConfig = $systemConfig;
+  }
+
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      ThemeCompilerEnrichScssVariablesEvent::class => 'onAddVariables'
+    ];
+  }
+
+  public function onAddVariables(ThemeCompilerEnrichScssVariablesEvent $event): void
+  {
+    /** @var string $configExampleField */
+    $configPluginHeaderBgColor = $this->systemConfig->get('SwagBasicExample.config.sassPluginHeaderBgColor', $event->getSalesChannelId());
+
+    if ($configPluginHeaderBgColor) {
+      // pass the value from `configPluginHeaderBgColor` to `addVariable`
+      $event->addVariable('sass-plugin-header-bg-color', $configPluginHeaderBgColor);
     }
-
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            ThemeCompilerEnrichScssVariablesEvent::class => 'onAddVariables'
-        ];
-    }
-
-    public function onAddVariables(ThemeCompilerEnrichScssVariablesEvent $event): void
-    {
-        /** @var string $configExampleField */
-        $configPluginHeaderBgColor = $this->systemConfig->get('SwagBasicExample.config.sassPluginHeaderBgColor', $event->getSalesChannelId());
-
-        if ($configPluginHeaderBgColor) {
-            // pass the value from `configPluginHeaderBgColor` to `addVariable`
-            $event->addVariable('sass-plugin-header-bg-color', $configPluginHeaderBgColor);
-        }
-    }
+  }
 }
 ```
 
@@ -229,19 +229,19 @@ use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter
 
 class ThemeVariableSubscriber implements EventSubscriberInterface
 {
-    // ...
+  // ...
 
-    public function onAddVariables(ThemeCompilerEnrichScssVariablesEvent $event): void
-    {
-        $configFields = $this->systemConfig->get('SwagBasicExample.config', $event->getSalesChannelId());
+  public function onAddVariables(ThemeCompilerEnrichScssVariablesEvent $event): void
+  {
+    $configFields = $this->systemConfig->get('SwagBasicExample.config', $event->getSalesChannelId());
 
-        foreach($configFields as $key => $value) {
-            // convert `customVariableName` to `custom-variable-name`
-            $kebabCased = str_replace('_', '-', (new CamelCaseToSnakeCaseNameConverter())->normalize($key));
+    foreach($configFields as $key => $value) {
+      // convert `customVariableName` to `custom-variable-name`
+      $kebabCased = str_replace('_', '-', (new CamelCaseToSnakeCaseNameConverter())->normalize($key));
 
-            $event->addVariable($kebabCased, $value);
-        }
+      $event->addVariable($kebabCased, $value);
     }
+  }
 }
 ```
 

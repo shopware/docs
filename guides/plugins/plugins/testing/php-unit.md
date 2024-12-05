@@ -63,11 +63,11 @@ This command will also generate a `TestBootstrap.php` file:
 use Shopware\Core\TestBootstrapper;
 
 $loader = (new TestBootstrapper())
-    ->addCallingPlugin()
-    ->addActivePlugins('BasicExample')
-    ->setForceInstallPlugins(true)
-    ->bootstrap()
-    ->getClassLoader();
+  ->addCallingPlugin()
+  ->addActivePlugins('BasicExample')
+  ->setForceInstallPlugins(true)
+  ->bootstrap()
+  ->getClassLoader();
 
 $loader->addPsr4('Swag\\BasicExample\\Tests\\', __DIR__);
 ```
@@ -93,31 +93,31 @@ use Symfony\Component\Finder\Finder;
 
 class UsedClassesAvailableTest extends TestCase
 {
-    use IntegrationTestBehaviour;
+  use IntegrationTestBehaviour;
 
-    public function testClassesAreInstantiable(): void
-    {
-        $namespace = str_replace('\Test', '', __NAMESPACE__);
+  public function testClassesAreInstantiable(): void
+  {
+    $namespace = str_replace('\Test', '', __NAMESPACE__);
 
-        foreach ($this->getPluginClasses() as $class) {
-            $classRelativePath = str_replace(['.php', '/'], ['', '\\'], $class->getRelativePathname());
+    foreach ($this->getPluginClasses() as $class) {
+      $classRelativePath = str_replace(['.php', '/'], ['', '\\'], $class->getRelativePathname());
 
-            $this->getMockBuilder($namespace . '\\' . $classRelativePath)
-                ->disableOriginalConstructor()
-                ->getMock();
-        }
-
-        // Nothing broke so far, classes seem to be instantiable
-        $this->assertTrue(true);
+      $this->getMockBuilder($namespace . '\\' . $classRelativePath)
+        ->disableOriginalConstructor()
+        ->getMock();
     }
 
-    private function getPluginClasses(): Finder
-    {
-        $finder = new Finder();
-        $finder->in(realpath(__DIR__ . '/../'));
-        $finder->exclude('Test');
-        return $finder->files()->name('*.php');
-    }
+    // Nothing broke so far, classes seem to be instantiable
+    $this->assertTrue(true);
+  }
+
+  private function getPluginClasses(): Finder
+  {
+    $finder = new Finder();
+    $finder->in(realpath(__DIR__ . '/../'));
+    $finder->exclude('Test');
+    return $finder->files()->name('*.php');
+  }
 }
 ```
 
@@ -139,37 +139,37 @@ use Shopware\Core\Framework\Test\TestCaseBase\KernelTestBehaviour;
 
 class Migration1611740369ExampleDescriptionTest extends TestCase
 {
-    use KernelTestBehaviour;
+  use KernelTestBehaviour;
 
-    public function testNoChanges(): void
-    {
-        /** @var Connection $conn */
-        $conn = $this->getContainer()->get(Connection::class);
-        $expectedSchema = $conn->fetchAssoc('SHOW CREATE TABLE `swag_basic_example_general_settings`')['Create Table'];
+  public function testNoChanges(): void
+  {
+    /** @var Connection $conn */
+    $conn = $this->getContainer()->get(Connection::class);
+    $expectedSchema = $conn->fetchAssoc('SHOW CREATE TABLE `swag_basic_example_general_settings`')['Create Table'];
 
-        $migration = new Migration1611740369ExampleDescription();
+    $migration = new Migration1611740369ExampleDescription();
 
-        $migration->update($conn);
-        $actualSchema = $conn->fetchAssoc('SHOW CREATE TABLE `swag_basic_example_general_settings`')['Create Table'];
-        static::assertSame($expectedSchema, $actualSchema, 'Schema changed!. Run init again to have clean state');
+    $migration->update($conn);
+    $actualSchema = $conn->fetchAssoc('SHOW CREATE TABLE `swag_basic_example_general_settings`')['Create Table'];
+    static::assertSame($expectedSchema, $actualSchema, 'Schema changed!. Run init again to have clean state');
 
-        $migration->updateDestructive($conn);
-        $actualSchema = $conn->fetchAssoc('SHOW CREATE TABLE `swag_basic_example_general_settings`')['Create Table'];
-        static::assertSame($expectedSchema, $actualSchema, 'Schema changed!. Run init again to have clean state');
-    }
+    $migration->updateDestructive($conn);
+    $actualSchema = $conn->fetchAssoc('SHOW CREATE TABLE `swag_basic_example_general_settings`')['Create Table'];
+    static::assertSame($expectedSchema, $actualSchema, 'Schema changed!. Run init again to have clean state');
+  }
 
-    public function testNoTable(): void
-    {
-        /** @var Connection $conn */
-        $conn = $this->getContainer()->get(Connection::class);
-        $conn->executeStatement('DROP TABLE `swag_basic_example_general_settings`');
+  public function testNoTable(): void
+  {
+    /** @var Connection $conn */
+    $conn = $this->getContainer()->get(Connection::class);
+    $conn->executeStatement('DROP TABLE `swag_basic_example_general_settings`');
 
-        $migration = new Migration1611740369ExampleDescription();
-        $migration->update($conn);
-        $exists = $conn->fetchColumn('SELECT COUNT(*) FROM `swag_basic_example_general_settings`') !== false;
+    $migration = new Migration1611740369ExampleDescription();
+    $migration->update($conn);
+    $exists = $conn->fetchColumn('SELECT COUNT(*) FROM `swag_basic_example_general_settings`') !== false;
 
-        static::assertTrue($exists);
-    }
+    static::assertTrue($exists);
+  }
 }
 ```
 

@@ -203,9 +203,9 @@ use Psr\Http\Message\RequestInterface;
 $queryString = $request->getUri()->getQuery();
 parse_str($queryString, $queryValues);
 $proof = \hash_hmac(
-    'sha256',
-    $queryValues['shop-id'] . $queryValues['shop-url'] . $appname,
-    $appSecret
+  'sha256',
+  $queryValues['shop-id'] . $queryValues['shop-url'] . $appname,
+  $appSecret
 );
 ```
 
@@ -401,14 +401,14 @@ use Shopware\App\SDK\Response\PaymentResponse;
 
 function webhookController(RequestInterface $request): ResponseInterface
 {
-    // injected or build by yourself
-    $shopResolver = new ShopResolver($repository);
-    $contextResolver = new ContextResolver();
-    
-    $shop = $shopResolver->resolveShop($serverRequest);
-    $webhook = $contextResolver->assembleWebhook($serverRequest, $shop);
-    
-    // do something with the parsed webhook
+  // injected or build by yourself
+  $shopResolver = new ShopResolver($repository);
+  $contextResolver = new ContextResolver();
+  
+  $shop = $shopResolver->resolveShop($serverRequest);
+  $webhook = $contextResolver->assembleWebhook($serverRequest, $shop);
+  
+  // do something with the parsed webhook
 }
 ```
 

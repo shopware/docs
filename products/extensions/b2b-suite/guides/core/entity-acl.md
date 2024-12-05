@@ -84,86 +84,86 @@ use Shopware\B2B\Common\IdValue;
 
 class AclRepository
 {
-    /**
-     * @throws AclUnsupportedContextException
-     */
-    public function allow($context, IdValue $subjectId, bool $grantable = false): void
-    { 
-        [...] 
-    }
+  /**
+   * @throws AclUnsupportedContextException
+   */
+  public function allow($context, IdValue $subjectId, bool $grantable = false): void
+  {
+    // [...]
+  }
 
-    /**
-     * @throws AclUnsupportedContextException
-     */
-    public function allowAll($context, array $subjectIds, bool $grantable = false): void 
-    { 
-        [...] 
-    }
+  /**
+   * @throws AclUnsupportedContextException
+   */
+  public function allowAll($context, array $subjectIds, bool $grantable = false): void
+  {
+    // [...]
+  }
 
-    /**
-     * @throws AclUnsupportedContextException
-     */
-    public function deny($context, IdValue $subjectId): void
-    {
-        [...]
-    }
+  /**
+   * @throws AclUnsupportedContextException
+   */
+  public function deny($context, IdValue $subjectId): void
+  {
+    // [...]
+  }
 
-    /**
-     * @throws AclUnsupportedContextException
-     */
-    public function denyAll($context, array $subjectIds): void
-    {
-        [...]
-    }
+  /**
+   * @throws AclUnsupportedContextException
+   */
+  public function denyAll($context, array $subjectIds): void
+  {
+    // [...]
+  }
 
-    /**
-     * @throws AclUnsupportedContextException
-     */
-    public function isAllowed($context, IdValue $subjectId): bool 
-    { 
-        [...] 
-    }
+  /**
+   * @throws AclUnsupportedContextException
+   */
+  public function isAllowed($context, IdValue $subjectId): bool
+  {
+    // [...]
+  }
 
-    /**
-     * @throws AclUnsupportedContextException
-     */
-    public function isGrantable($context, IdValue $subjectId): bool 
-    { 
-        [...] 
-    }
+  /**
+   * @throws AclUnsupportedContextException
+   */
+  public function isGrantable($context, IdValue $subjectId): bool
+  {
+    // [...]
+  }
 
-    /**
-     * @throws AclUnsupportedContextException
-     * @return IdValue[]
-     */
-    public function getAllAllowedIds($context): array 
-    { 
-        [...] 
-    }
+  /**
+   * @throws AclUnsupportedContextException
+   * @return IdValue[]
+   */
+  public function getAllAllowedIds($context): array
+  {
+    // [...]
+  }
 
-    /**
-     * @throws AclUnsupportedContextException
-     */
-    public function fetchAllGrantableIds($context): array 
-    {
-        [...] 
-    }
+  /**
+   * @throws AclUnsupportedContextException
+   */
+  public function fetchAllGrantableIds($context): array
+  {
+    // [...]
+  }
 
-    /**
-     * @throws AclUnsupportedContextException
-     */
-    public function fetchAllDirectlyIds($context): array 
-    { 
-        [...] 
-    }
+  /**
+   * @throws AclUnsupportedContextException
+   */
+  public function fetchAllDirectlyIds($context): array
+  {
+    // [...]
+  }
 
-    /**
-     * @throws AclUnsupportedContextException
-     */
-    public function getUnionizedSqlQuery($context): AclQuery 
-    { 
-        [...] 
-    }
+  /**
+   * @throws AclUnsupportedContextException
+   */
+  public function getUnionizedSqlQuery($context): AclQuery
+  {
+    // [...]
+  }
 }
 ```
 
@@ -201,9 +201,9 @@ $contactRepository = $this->container->get('b2b_contact.repository');
 $contact = $contactRepository->fetchOneById(1);
 
 $aclAddressRepository->allow(
-    $contact, // the contact 
-    22, // the id of the address
-    true // whether the contact may grant access to other contacts
+  $contact, // the contact 
+  22, // the id of the address
+  true // whether the contact may grant access to other contacts
 );
 ```
 
@@ -211,8 +211,8 @@ We can then deny the access just by this:
 
 ```php
 $aclAdressRepository->deny(
-    $contact, // the contact 
-    22, // the id of the address
+  $contact, // the contact 
+  22, // the id of the address
 );
 ```
 
@@ -220,9 +220,9 @@ or just set it not grantable, by
 
 ```php
 $aclAdressRepository->allow(
-    $contact, // the contact 
-    22, // the id of the address
-    false // whether the contact may grant access to other contacts
+  $contact, // the contact 
+  22, // the id of the address
+  false // whether the contact may grant access to other contacts
 );
 ```
 
@@ -232,8 +232,8 @@ If you want to know whether a certain contact can access an entity, you can call
 
 ```php
 $aclAdressRepository->isAllowed(
-    $contact, // the contact 
-    22, // the id of the address
+  $contact, // the contact 
+  22, // the id of the address
 );
 ```
 
@@ -241,8 +241,8 @@ Or you just want to check whether an entity can be granted by a contact.
 
 ```php
 $aclAdressRepository->isGrantable(
-    $contact, // the contact 
-    22, // the id of the address
+  $contact, // the contact 
+  22, // the id of the address
 );
 ```
 
@@ -261,22 +261,22 @@ use Shopware\B2B\StoreFrontAuthentication\Framework\OwnershipContext;
 
 protected function applyAcl(OwnershipContext $context, QueryBuilder $query): void
 {
-    try {
-        $aclQuery = $this->aclRepository->getUnionizedSqlQuery($context);
+  try {
+    $aclQuery = $this->aclRepository->getUnionizedSqlQuery($context);
 
-        $query->innerJoin(
-            self::TABLE_ALIAS,
-            '(' . $aclQuery->sql . ')',
-            'acl_query',
-            self::TABLE_ALIAS . '.id = acl_query.referenced_entity_id'
-        );
+    $query->innerJoin(
+      self::TABLE_ALIAS,
+      '(' . $aclQuery->sql . ')',
+      'acl_query',
+      self::TABLE_ALIAS . '.id = acl_query.referenced_entity_id'
+    );
 
-        foreach ($aclQuery->params as $name => $value) {
-            $query->setParameter($name, $value);
-        }
-    } catch (AclUnsupportedContextException $e) {
-        // nth
+    foreach ($aclQuery->params as $name => $value) {
+      $query->setParameter($name, $value);
     }
+  } catch (AclUnsupportedContextException $e) {
+    // nth
+  }
 }
 ```
 
@@ -304,23 +304,23 @@ use Shopware\B2B\Contact\Framework\AclTableContactContextResolver;
 
 class AddressContactAclTable extends AclTable
 {
-    public function __construct()
-    {
-        parent::__construct(
-            'contact_address', // name suffix
-            'b2b_debtor_contact', // context table
-            'id', // context primary key
-            's_user_addresses', // subject table name
-            'id' // subject primary key
-        );
-    }
+  public function __construct()
+  {
+    parent::__construct(
+      'contact_address', // name suffix
+      'b2b_debtor_contact', // context table
+      'id', // context primary key
+      's_user_addresses', // subject table name
+      'id' // subject primary key
+    );
+  }
 
-    protected function getContextResolvers(): array
-    {
-        return [
-            new AclTableContactContextResolver(),
-        ];
-    }
+  protected function getContextResolvers(): array
+  {
+    return [
+      new AclTableContactContextResolver(),
+    ];
+  }
 }
 ```
 
@@ -379,20 +379,20 @@ use Shopware\B2B\Acl\Framework\AclQuery;
 
 class MyContextResolver extends AclContextResolver
 {
-    public function getQuery(string $aclTableName, int $contextId, QueryBuilder $queryContext): AclQuery
-    {
-       // your implementation here
-    }
+  public function getQuery(string $aclTableName, int $contextId, QueryBuilder $queryContext): AclQuery
+  {
+    // your implementation here
+  }
 
-    public function extractId($context): int
-    {
-        // your implementation here    
-    }
+  public function extractId($context): int
+  {
+    // your implementation here    
+  }
 
-    public function isMainContext(): bool
-    {
-        // your implementation here    
-    }
+  public function isMainContext(): bool
+  {
+    // your implementation here    
+  }
 }
 ```
 
@@ -401,15 +401,15 @@ A rather generic implementation for `getQuery` that just filters for a given `co
 ```php
 public function getQuery(string $aclTableName, int $contextId, QueryBuilder $queryBuilder): AclQuery
 {
-    $mainPrefix = $this->getNextPrefix();
+  $mainPrefix = $this->getNextPrefix();
 
-    $queryBuilder
-        ->select($mainPrefix . '.*')
-        ->from($aclTableName, $mainPrefix)
-        ->where($mainPrefix . '.entity_id = :p_' . $mainPrefix)
-        ->setParameter('p_' . $mainPrefix, $contextId);
+  $queryBuilder
+    ->select($mainPrefix . '.*')
+    ->from($aclTableName, $mainPrefix)
+    ->where($mainPrefix . '.entity_id = :p_' . $mainPrefix)
+    ->setParameter('p_' . $mainPrefix, $contextId);
 
-    return (new AclQuery())->fromQueryBuilder($queryBuilder);
+  return (new AclQuery())->fromQueryBuilder($queryBuilder);
 }
 ```
 
@@ -420,19 +420,19 @@ An implementation of extract id usually looks like this:
 ```php
 public function extractId($context): int
 {
-    if ($context instanceof ContactIdentity) {
-        return $context->getId();
-    }
+  if ($context instanceof ContactIdentity) {
+    return $context->getId();
+  }
 
-    if ($context instanceof OwnershipContext && is_a($context->identityClassName, ContactIdentity::class, true)) {
-        return $context->identityId;
-    }
+  if ($context instanceof OwnershipContext && is_a($context->identityClassName, ContactIdentity::class, true)) {
+    return $context->identityId;
+  }
 
-    if ($context instanceof ContactEntity && $context->id) {
-        return $context->id;
-    }
+  if ($context instanceof ContactEntity && $context->id) {
+    return $context->id;
+  }
 
-    throw new AclUnsupportedContextException();
+  throw new AclUnsupportedContextException();
 }
 ```
 

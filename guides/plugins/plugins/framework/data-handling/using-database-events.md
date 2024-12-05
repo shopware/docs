@@ -51,44 +51,42 @@ use Shopware\Core\Framework\DataAbstractionLayer\Write\Command\WriteCommand;
 class EntityWriteSubscriber implements EventSubscriberInterface
 {
 
-    public function __construct(private readonly LoggerInterface $logger)
-    {
-    }
+  public function __construct(private readonly LoggerInterface $logger) {}
 
-    public static function getSubscribedEvents()
-    {
-        return [
-            EntityWriteEvent::class => 'beforeWrite',
-        ];
-    }
+  public static function getSubscribedEvents()
+  {
+    return [
+      EntityWriteEvent::class => 'beforeWrite',
+    ];
+  }
 
-    public function beforeWrite(EntityWriteEvent $event)
-    {
-        //get the ids of any cms entities about to be written/updated/deleted
-        //this event is triggered for batches of entities, so you can use this to filter for specific entities
-        $ids = $event->getIds(CmsPageDefinition::ENTITY_NAME);
-        
-        //get ids of all entities to be written, regardless of type
-        $ids = $event->getIds();
-        
-        //you can also fetch the payloads (DeleteCommand's do not have payloads)
-        $payloads = array_map(fn (WriteCommand $command) => $command->getPayload(), $event->getCommands());
-        
-        //or for a specific entity type
-        $payloads = array_map(fn (WriteCommand $command) => $command->getPayload(), $event->getCommandsForEntity(CmsPageDefinition::ENTITY_NAME));
-                
-        
-        $event->addSuccess(function () use ($ids) {
-            //the entities have now been successfully written
-            
-            $this->logger->info(sprintf('Entities with ids: "%s" were written', implode(', ', $ids)));
-        });
-        
-        $event->addError(function () use ($ids) {
-            //the entities failed to write, you can write a log, send an e-mail, or anything else.
-            $this->logger->critical(sprintf('Entities with ids: "%s" were not written', implode(', ', $ids)));
-        });
-    }
+  public function beforeWrite(EntityWriteEvent $event)
+  {
+    //get the ids of any cms entities about to be written/updated/deleted
+    //this event is triggered for batches of entities, so you can use this to filter for specific entities
+    $ids = $event->getIds(CmsPageDefinition::ENTITY_NAME);
+
+    //get ids of all entities to be written, regardless of type
+    $ids = $event->getIds();
+
+    //you can also fetch the payloads (DeleteCommand's do not have payloads)
+    $payloads = array_map(fn(WriteCommand $command) => $command->getPayload(), $event->getCommands());
+
+    //or for a specific entity type
+    $payloads = array_map(fn(WriteCommand $command) => $command->getPayload(), $event->getCommandsForEntity(CmsPageDefinition::ENTITY_NAME));
+
+
+    $event->addSuccess(function () use ($ids) {
+      //the entities have now been successfully written
+
+      $this->logger->info(sprintf('Entities with ids: "%s" were written', implode(', ', $ids)));
+    });
+
+    $event->addError(function () use ($ids) {
+      //the entities failed to write, you can write a log, send an e-mail, or anything else.
+      $this->logger->critical(sprintf('Entities with ids: "%s" were not written', implode(', ', $ids)));
+    });
+  }
 }
 ```
 
@@ -114,29 +112,29 @@ use Shopware\Core\Content\Cms\CmsPageDefinition;
 
 class DeleteSubscriber implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents()
-    {
-        return [
-            EntityDeleteEvent::class => 'beforeDelete',
-        ];
-    }
+  public static function getSubscribedEvents()
+  {
+    return [
+      EntityDeleteEvent::class => 'beforeDelete',
+    ];
+  }
 
-    public function beforeDelete(EntityDeleteEvent $event)
-    {
-        //get the ids of any cms entities about to be deleted
-        //this event is triggered for batches of entities, so you can use this to filter for specific entities
-        $ids = $event->getIds(CmsPageDefinition::ENTITY_NAME);
-        
-        $event->addSuccess(function () use ($ids) {
-            //the entities have now been successfully deleted
-            
-            $this->cache->purge($ids);
-        });
-        
-        $event->addError(function () use ($ids) {
-            //the entities failed to delete, you can write a log, send an e-mail, or anything else.
-        });
-    }
+  public function beforeDelete(EntityDeleteEvent $event)
+  {
+    //get the ids of any cms entities about to be deleted
+    //this event is triggered for batches of entities, so you can use this to filter for specific entities
+    $ids = $event->getIds(CmsPageDefinition::ENTITY_NAME);
+
+    $event->addSuccess(function () use ($ids) {
+      //the entities have now been successfully deleted
+
+      $this->cache->purge($ids);
+    });
+
+    $event->addError(function () use ($ids) {
+      //the entities failed to delete, you can write a log, send an e-mail, or anything else.
+    });
+  }
 }
 ```
 
@@ -225,23 +223,24 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class ProductSubscriber implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents()
-    {
-        return [
-            ProductEvents::PRODUCT_LOADED_EVENT => 'onLoad',
-            ProductEvents::PRODUCT_WRITTEN_EVENT => 'afterWrite',
-        ];
-    }
+  public static function getSubscribedEvents()
+  {
+    return [
+      ProductEvents::PRODUCT_LOADED_EVENT => 'onLoad',
+      ProductEvents::PRODUCT_WRITTEN_EVENT => 'afterWrite',
+    ];
+  }
 
-    public function onLoad(EntityLoadedEvent $event)
-    {
-        ...
-    }
+  public function onLoad(EntityLoadedEvent $event)
+  {
+    // ...
+  }
 
-    public function afterWrite(EntityWrittenEvent $event)
-    {
-        ...
-    }
+  public function afterWrite(EntityWrittenEvent $event)
+  {
+    // ...
+  }
+}
 ```
 
 After creating the event subscriber, you have to register it. If you don't know how that's done, head over to our guide about [Listening to events](../../plugin-fundamentals/listening-to-events).

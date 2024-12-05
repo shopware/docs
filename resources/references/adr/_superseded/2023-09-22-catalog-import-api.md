@@ -59,14 +59,14 @@ This will allow us to gather feedback, make changes and provide a well-designed 
 function myMigration(array $myProductData)
 {
 
-    $productBatch = ProductBatch::fromRequestData($myProductData);
-    $session = $this->importFactory->startSession('my-import');
-    $session->addProductRecords($productBatch);
-    $session->commit();
-    // not required, as import runs async
-    while(!$session->done()) {
-        echo $session->status();
-    }
+  $productBatch = ProductBatch::fromRequestData($myProductData);
+  $session = $this->importFactory->startSession('my-import');
+  $session->addProductRecords($productBatch);
+  $session->commit();
+  // not required, as import runs async
+  while (!$session->done()) {
+    echo $session->status();
+  }
 }
 ```
 
@@ -256,36 +256,36 @@ Errors will be classified with a severity using the levels from [RFC5424](https:
 
 ```php
 $myProductData = [
-        [
-            'id' => '018a6b222b5a734d956fb03dda765bf8',
-            'name' => 'Cool Prod 1',
-            'productNumber' => 'COOLPROD1',
-            'tax' => [
-                'name' => 'Reduced rate 2', //The tax record is referenced via its name attribute instead of its ID
-            ],
-            'prices' => [
-                [
-                    'currency' => 'EUR',
-                    'gross' => 15,
-                    'net' => 10,
-                    'linked' => false,
-                ],
-            ],
-            'stock' => '100',
-            'categories' => [
-                [
-                    'path' => ['Home', 'Category 2', 'Category 3'], //The product will be assigned to the category: Home/Category 2/Category 3
-                ],
-            ],
-            'media' => [
-                [
-                    //this image will be downloaded and assigned to a media record, and then assigned to the product
-                    'url' => 'https://images.unsplash.com/photo-1660236822651-4263beb35fa8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
-                    'title' => 'pommes',
-                    'alt' => 'alt',
-                    'filename' => 'other-media.jpg',
-                ],
-            ],
-        ],
-    ];
+  [
+    'id' => '018a6b222b5a734d956fb03dda765bf8',
+    'name' => 'Cool Prod 1',
+    'productNumber' => 'COOLPROD1',
+    'tax' => [
+      'name' => 'Reduced rate 2', //The tax record is referenced via its name attribute instead of its ID
+    ],
+    'prices' => [
+      [
+        'currency' => 'EUR',
+        'gross' => 15,
+        'net' => 10,
+        'linked' => false,
+      ],
+    ],
+    'stock' => '100',
+    'categories' => [
+      [
+        'path' => ['Home', 'Category 2', 'Category 3'], //The product will be assigned to the category: Home/Category 2/Category 3
+      ],
+    ],
+    'media' => [
+      [
+        //this image will be downloaded and assigned to a media record, and then assigned to the product
+        'url' => 'https://images.unsplash.com/photo-1660236822651-4263beb35fa8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
+        'title' => 'pommes',
+        'alt' => 'alt',
+        'filename' => 'other-media.jpg',
+      ],
+    ],
+  ],
+];
 ```

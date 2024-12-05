@@ -20,35 +20,35 @@ namespace Shopware\Core\Content\Flow\Dispatching\Action;
 
 class SendMailAction extends FlowAction
 {
-    public function handle(Event $event): void
-    {
-        // ...
-        
-        if ($data->has('templateId')) {
-            $this->updateMailTemplateType($event, $mailEvent, $mailTemplate);
-        }
-        
-        // ...
+  public function handle(Event $event): void
+  {
+    // ...
+
+    if ($data->has('templateId')) {
+      $this->updateMailTemplateType($event, $mailEvent, $mailTemplate);
     }
 
-    private function updateMailTemplateType(
-        FlowEvent $event, 
-        MailAware $mailAware, 
-        MailTemplateEntity $mailTemplate
-        ): void {
-        if (!$mailTemplate->getMailTemplateTypeId()) {
-            return;
-        }
+    // ...
+  }
 
-        if (!$this->updateMailTemplate) {
-            return;
-        }
-
-        $this->mailTemplateTypeRepository->update([[
-            'id' => $mailTemplate->getMailTemplateTypeId(),
-            'templateData' => $this->getTemplateData($mailAware),
-        ]], $mailAware->getContext());
+  private function updateMailTemplateType(
+    FlowEvent $event,
+    MailAware $mailAware,
+    MailTemplateEntity $mailTemplate
+  ): void {
+    if (!$mailTemplate->getMailTemplateTypeId()) {
+      return;
     }
+
+    if (!$this->updateMailTemplate) {
+      return;
+    }
+
+    $this->mailTemplateTypeRepository->update([[
+      'id' => $mailTemplate->getMailTemplateTypeId(),
+      'templateData' => $this->getTemplateData($mailAware),
+    ]], $mailAware->getContext());
+  }
 }
 ```
 

@@ -58,19 +58,21 @@ By including `type => 'B2B'` in the `describeFeatures()` method, you can disting
 For example, consider the following code snippet:
 
 ```php
+<?php declare(strict_types=1);
+
 namespace Shopware\Commercial\B2B\YourB2BComponent;
 
 class YourB2BComponent extends CommercialB2BBundle
 {
-    public function describeFeatures(): array
-    {
-        return [
-            [
-                ...,
-                'type' => self::TYPE_B2B,
-            ],
-        ];
-    }
+  public function describeFeatures(): array
+  {
+    return [
+      [
+        // ...
+        'type' => self::TYPE_B2B,
+      ],
+    ];
+  }
 }
 ```
 
@@ -81,28 +83,29 @@ To determine if a customer is allowed to access a specific B2B feature, we will 
 We will place this check before every route, controller or API as follows:
 
 ```php
+<?php declare(strict_types=1);
+
 use Shopware\Commercial\B2B\QuickOrder\Domain\CustomerSpecificFeature\CustomerSpecificFeatureService;
- 
+
 class ApiController
 {
-    public function __construct(private readonly CustomerSpecificFeatureService $customerSpecificFeatureService)
-    {
+  public function __construct(private readonly CustomerSpecificFeatureService $customerSpecificFeatureService) {}
+
+  #[Route(
+    path: '/your/path',
+    name: 'path.name',
+    defaults: ['_noStore' => false, '_loginRequired' => true],
+    methods: ['GET'],
+  )]
+  public function view(Request $request, SalesChannelContext $salesChannelContext): Response
+  {
+    if (!$this->customerB2BFeatureService->isAllowed($salesChannelContext->getCustomerId(), 'QUICK_ORDER')) {
+      throw CustomerSpecificFeatureException::notAllowed('QUICK_ORDER');
     }
 
-    #[Route(
-        path: '/your/path',
-        name: 'path.name',
-        defaults: ['_noStore' => false, '_loginRequired' => true],
-        methods: ['GET'],
-    )]
-    public function view(Request $request, SalesChannelContext $salesChannelContext): Response
-    {
-        if (!$this->customerB2BFeatureService->isAllowed($salesChannelContext->getCustomerId(), 'QUICK_ORDER')) {
-            throw CustomerSpecificFeatureException::notAllowed('QUICK_ORDER');
-        }
-
-        ...
-    }
+    // ...
+  }
+}
 ```
 
 ## Using feature toggle in Twig - Storefront
@@ -112,30 +115,32 @@ You can use a new Twig extension called `customerHasFeature()` to implement the 
 Here is an example implementation:
 
 ```php
+<?php declare(strict_types=1);
+
 namespace Shopware\Commercial\B2B\QuickOrder\Storefront\Framework\Twig\Extension;
 
 class CustomerSpecificFeatureTwigExtension extends AbstractExtension
 {
-    public function getFunctions(): array
-    {
-        return [
-            new TwigFunction('customerHasFeature', $this->isAllowed(...), ['needs_context' => true]),
-        ];
+  public function getFunctions(): array
+  {
+    return [
+      new TwigFunction('customerHasFeature', $this->isAllowed(...), ['needs_context' => true]),
+    ];
+  }
+
+  public function isAllowed(array $twigContext, string $feature): bool
+  {
+    $customerId = null;
+    if (\array_key_exists('context', $twigContext) && $twigContext['context'] instanceof SalesChannelContext) {
+      $customerId = $twigContext['context']->getCustomerId();
     }
 
-    public function isAllowed(array $twigContext, string $feature): bool
-    {
-        $customerId = null;
-        if (\array_key_exists('context', $twigContext) && $twigContext['context'] instanceof SalesChannelContext) {
-            $customerId = $twigContext['context']->getCustomerId();
-        }
-        
-        if (!$customerId) {
-            return false;
-        }
-        
-        return $this->customerSpecificFeatureService->isAllowed($customerId, $feature);
+    if (!$customerId) {
+      return false;
     }
+
+    return $this->customerSpecificFeatureService->isAllowed($customerId, $feature);
+  }
 }
 ```
 

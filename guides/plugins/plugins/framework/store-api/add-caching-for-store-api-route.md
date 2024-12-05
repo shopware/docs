@@ -52,100 +52,100 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 #[Route(defaults: ['_routeScope' => ['store-api']])]
 class CachedExampleRoute extends AbstractExampleRoute
 {
-    private AbstractExampleRoute $decorated;
+  private AbstractExampleRoute $decorated;
 
-    private TagAwareAdapterInterface $cache;
+  private TagAwareAdapterInterface $cache;
 
-    private EntityCacheKeyGenerator $generator;
+  private EntityCacheKeyGenerator $generator;
 
-    private AbstractCacheTracer $tracer;
+  private AbstractCacheTracer $tracer;
 
-    private array $states;
+  private array $states;
 
-    private LoggerInterface $logger;
+  private LoggerInterface $logger;
 
-    public function __construct(
-        AbstractExampleRoute $decorated,
-        TagAwareAdapterInterface $cache,
-        EntityCacheKeyGenerator $generator,
-        AbstractCacheTracer $tracer,
-        LoggerInterface $logger
-    ) {
-        $this->decorated = $decorated;
-        $this->cache = $cache;
-        $this->generator = $generator;
-        $this->tracer = $tracer;
-        
-        // declares that this route can not be cached if the customer is logged in
-        $this->states = [CacheStateSubscriber::STATE_LOGGED_IN];
-        $this->logger = $logger;
+  public function __construct(
+    AbstractExampleRoute $decorated,
+    TagAwareAdapterInterface $cache,
+    EntityCacheKeyGenerator $generator,
+    AbstractCacheTracer $tracer,
+    LoggerInterface $logger
+  ) {
+    $this->decorated = $decorated;
+    $this->cache = $cache;
+    $this->generator = $generator;
+    $this->tracer = $tracer;
+
+    // declares that this route can not be cached if the customer is logged in
+    $this->states = [CacheStateSubscriber::STATE_LOGGED_IN];
+    $this->logger = $logger;
+  }
+
+  public function getDecorated(): AbstractExampleRoute
+  {
+    return $this->decorated;
+  }
+
+  #[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET', 'POST'], defaults: ['_entity' => 'swag_example'])]
+  public function load(Criteria $criteria, SalesChannelContext $context): ExampleRouteResponse
+  {
+    // The context is provided with a state where the route cannot be cached
+    if ($context->hasState(...$this->states)) {
+      return $this->getDecorated()->load($criteria, $context);
     }
-    
-    public function getDecorated(): AbstractExampleRoute
-    {
-        return $this->decorated;
+
+    // Fetch item from the cache pool
+    $item = $this->cache->getItem(
+      $this->generateKey($criteria, $context)
+    );
+
+    try {
+      if ($item->isHit() && $item->get()) {
+        // Use cache compressor to uncompress the cache value
+        return CacheCompressor::uncompress($item);
+      }
+    } catch (\Throwable $e) {
+      // Something went wrong when uncompress the cache item - we log the error and continue to overwrite the invalid cache item 
+      $this->logger->error($e->getMessage());
     }
 
-    #[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET','POST'], defaults: ['_entity' => 'swag_example'])]
-    public function load(Criteria $criteria, SalesChannelContext $context): ExampleRouteResponse
-    {
-        // The context is provided with a state where the route cannot be cached
-        if ($context->hasState(...$this->states)) {
-            return $this->getDecorated()->load($criteria, $context);
-        }
+    $name = self::buildName();
+    // start tracing of nested cache tags and system config keys
+    $response = $this->tracer->trace($name, function () use ($criteria, $context) {
+      return $this->getDecorated()->load($criteria, $context);
+    });
 
-        // Fetch item from the cache pool
-        $item = $this->cache->getItem(
-            $this->generateKey($criteria, $context)
-        );
+    // compress cache content to reduce cache size
+    $item = CacheCompressor::compress($item, $response);
 
-        try {
-            if ($item->isHit() && $item->get()) {
-                // Use cache compressor to uncompress the cache value
-                return CacheCompressor::uncompress($item);
-            }
-        } catch (\Throwable $e) {
-            // Something went wrong when uncompress the cache item - we log the error and continue to overwrite the invalid cache item 
-            $this->logger->error($e->getMessage());
-        }
+    $item->tag(array_merge(
+      // get traced tags and configs        
+      $this->tracer->get(self::buildName()),
+      [self::buildName()]
+    ));
 
-        $name = self::buildName();
-        // start tracing of nested cache tags and system config keys
-        $response = $this->tracer->trace($name, function () use ($criteria, $context) {
-            return $this->getDecorated()->load($criteria, $context);
-        });
-        
-        // compress cache content to reduce cache size
-        $item = CacheCompressor::compress($item, $response);
+    $this->cache->save($item);
 
-        $item->tag(array_merge(
-            // get traced tags and configs        
-            $this->tracer->get(self::buildName()),
-            [self::buildName()]
-        ));
+    return $response;
+  }
 
-        $this->cache->save($item);
+  public static function buildName(): string
+  {
+    return 'example-route';
+  }
 
-        return $response;
-    }
-    
-    public static function buildName(): string 
-    {
-        return 'example-route';
-    }
-  
-    private function generateKey(SalesChannelContext $context, Criteria $criteria): string
-    {
-        $parts = [
-            self::buildName(),
-            // generate a hash for the route criteria
-            $this->generator->getCriteriaHash($criteria),
-            // generate a hash for the current context 
-            $this->generator->getSalesChannelContextHash($context),
-        ];
-          
-        return md5(Json::encode($parts));
-    }
+  private function generateKey(SalesChannelContext $context, Criteria $criteria): string
+  {
+    $parts = [
+      self::buildName(),
+      // generate a hash for the route criteria
+      $this->generator->getCriteriaHash($criteria),
+      // generate a hash for the current context 
+      $this->generator->getSalesChannelContextHash($context),
+    ];
+
+    return md5(Json::encode($parts));
+  }
 }
 ```
 
@@ -210,37 +210,37 @@ use Shopware\Core\Framework\Adapter\Cache\CacheInvalidator;
 
 class CacheInvalidationSubscriber implements EventSubscriberInterface
 {
-    private CacheInvalidator $cacheInvalidator;
+  private CacheInvalidator $cacheInvalidator;
 
-    public function __construct(CacheInvalidator $cacheInvalidator) 
-    {
-        $this->cacheInvalidator = $cacheInvalidator;
-    }
-    
-    public static function getSubscribedEvents()
-    {
-        return [
-            // The EntityWrittenContainerEvent is a generic event that is always thrown when an entities are written. This contains all changed entities
-            EntityWrittenContainerEvent::class => [
-                ['invalidate', 2001]
-            ],
-        ];
-    }
-    
-    public function invalidate(EntityWrittenContainerEvent $event): void
-    {
-        // check if own entity written. In some cases you want to use the primary keys for further cache invalidation
-        $changes = $event->getPrimaryKeys(ExampleDefinition::ENTITY_NAME);
-        
-        // no example entity changed? Then the cache does not need to be invalidated
-        if (empty($changes)) {
-            return;
-        }
+  public function __construct(CacheInvalidator $cacheInvalidator)
+  {
+    $this->cacheInvalidator = $cacheInvalidator;
+  }
 
-        $this->cacheInvalidator->invalidate([
-            CachedExampleRoute::buildName()  
-        ]);
+  public static function getSubscribedEvents()
+  {
+    return [
+      // The EntityWrittenContainerEvent is a generic event that is always thrown when an entities are written. This contains all changed entities
+      EntityWrittenContainerEvent::class => [
+        ['invalidate', 2001]
+      ],
+    ];
+  }
+
+  public function invalidate(EntityWrittenContainerEvent $event): void
+  {
+    // check if own entity written. In some cases you want to use the primary keys for further cache invalidation
+    $changes = $event->getPrimaryKeys(ExampleDefinition::ENTITY_NAME);
+
+    // no example entity changed? Then the cache does not need to be invalidated
+    if (empty($changes)) {
+      return;
     }
+
+    $this->cacheInvalidator->invalidate([
+      CachedExampleRoute::buildName()
+    ]);
+  }
 }
 ```
 

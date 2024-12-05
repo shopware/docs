@@ -54,10 +54,10 @@ Let's see an example on how to set the order state to `process`:
 
 ```php
 $this->stateMachineRegistry->transition(new Transition(
-    OrderDefinition::ENTITY_NAME,
-    '<ID here>',
-    'process',
-    'stateId'
+  OrderDefinition::ENTITY_NAME,
+  '<ID here>',
+  'process',
+  'stateId'
 ), $context);
 ```
 
@@ -82,10 +82,10 @@ Here's an example on how to set the order transaction from `open` to `in_progres
 
 ```php
 $this->stateMachineRegistry->transition(new Transition(
-    OrderTransactionDefinition::ENTITY_NAME,
-    '<Order transaction ID here>',
-    'do_pay',
-    'stateId'
+  OrderTransactionDefinition::ENTITY_NAME,
+  '<Order transaction ID here>',
+  'do_pay',
+  'stateId'
 ), $context);
 ```
 
@@ -108,10 +108,10 @@ The following will be an example on how to set the order delivery state to "ship
 
 ```php
 $this->stateMachineRegistry->transition(new Transition(
-    OrderDeliveryDefinition::ENTITY_NAME,
-    '<Order delivery ID here>',
-    'ship',
-    'stateId'
+  OrderDeliveryDefinition::ENTITY_NAME,
+  '<Order delivery ID here>',
+  'ship',
+  'stateId'
 ), $context);
 ```
 
@@ -127,10 +127,10 @@ Let's have a look at an example:
 
 ```php
 $transitions = $this->stateMachineRegistry->getAvailableTransitions(
-    OrderDefinition::ENTITY_NAME,
-    '<Order ID here>',
-    'stateId', 
-    $context
+  OrderDefinition::ENTITY_NAME,
+  '<Order ID here>',
+  'stateId', 
+  $context
 );
 ```
 
@@ -143,17 +143,17 @@ The following will show an example how to set the order delivery state to "shipp
 ```php
 public function setOrderDeliveryToShipped(string $orderId, $context): void
 {
-    $criteria = new Criteria();
-    $criteria->addFilter(new EqualsFilter('orderId', $orderId));
+  $criteria = new Criteria();
+  $criteria->addFilter(new EqualsFilter('orderId', $orderId));
 
-    $orderDeliveryEntityId = $this->orderDeliveryRepository->searchIds($criteria, $context)->firstId();
+  $orderDeliveryEntityId = $this->orderDeliveryRepository->searchIds($criteria, $context)->firstId();
 
-    $this->stateMachineRegistry->transition(new Transition(
-        OrderDeliveryDefinition::ENTITY_NAME,
-        $orderDeliveryEntityId,
-        'ship',
-        'stateId'
-    ), $context);
+  $this->stateMachineRegistry->transition(new Transition(
+    OrderDeliveryDefinition::ENTITY_NAME,
+    $orderDeliveryEntityId,
+    'ship',
+    'stateId'
+  ), $context);
 }
 ```
 
@@ -170,20 +170,19 @@ Of course you could also use the repository of the `OrderDefinition` here. That 
 ```php
 public function setOrderDeliveryToShipped(string $orderId, $context): void
 {
+  $criteria = new Criteria([$orderId]);
+  $criteria->addAssociation('deliveries');
 
-    $criteria = new Criteria([$orderId]);
-    $criteria->addAssociation('deliveries');
+  /** @var OrderEntity $orderEntity */
+  $orderEntity = $this->orderRepository->search($criteria, $context)->first();
+  $orderDeliveryId = $orderEntity->getDeliveries()->first()->getId();
 
-    /** @var OrderEntity $orderEntity */
-    $orderEntity = $this->orderRepository->search($criteria, $context)->first();
-    $orderDeliveryId = $orderEntity->getDeliveries()->first()->getId();
-
-    $this->stateMachineRegistry->transition(new Transition(
-        OrderDeliveryDefinition::ENTITY_NAME,
-        $orderDeliveryId,
-        'ship',
-        'stateId'
-    ), $context);
+  $this->stateMachineRegistry->transition(new Transition(
+    OrderDeliveryDefinition::ENTITY_NAME,
+    $orderDeliveryId,
+    'ship',
+    'stateId'
+  ), $context);
 }
 ```
 

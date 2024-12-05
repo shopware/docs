@@ -82,7 +82,7 @@ class ApiController
 {
   public function indexAction(Request $request)
   {
-     Feature::triggerDeprecationOrThrow('v6.5.0.0', 'Class is deprecated, use ... instead');
+    Feature::triggerDeprecationOrThrow('v6.5.0.0', 'Class is deprecated, use ... instead');
   }
 }
 ```
@@ -97,9 +97,9 @@ class ProductTest
 {
   public function testNewFeature() 
   {
-     Feature::skipTestIfActive('v6.5.0.0', $this);
+    Feature::skipTestIfActive('v6.5.0.0', $this);
 
-     // test code
+    // test code
   }
 }
 ```

@@ -42,70 +42,70 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 
 class ExampleProcessor implements CartProcessorInterface
 {
-    private PercentagePriceCalculator $calculator;
+  private PercentagePriceCalculator $calculator;
 
-    public function __construct(PercentagePriceCalculator $calculator)
-    {
-        $this->calculator = $calculator;
+  public function __construct(PercentagePriceCalculator $calculator)
+  {
+    $this->calculator = $calculator;
+  }
+
+  public function process(CartDataCollection $data, Cart $original, Cart $toCalculate, SalesChannelContext $context, CartBehavior $behavior): void
+  {
+    $products = $this->findExampleProducts($toCalculate);
+
+    // no example products found? early return
+    if ($products->count() === 0) {
+      return;
     }
 
-    public function process(CartDataCollection $data, Cart $original, Cart $toCalculate, SalesChannelContext $context, CartBehavior $behavior): void
-    {
-        $products = $this->findExampleProducts($toCalculate);
+    $discountLineItem = $this->createDiscount('EXAMPLE_DISCOUNT');
 
-        // no example products found? early return
-        if ($products->count() === 0) {
-            return;
-        }
+    // declare price definition to define how this price is calculated
+    $definition = new PercentagePriceDefinition(
+      -10,
+      new LineItemRule(LineItemRule::OPERATOR_EQ, $products->getKeys())
+    );
 
-        $discountLineItem = $this->createDiscount('EXAMPLE_DISCOUNT');
+    $discountLineItem->setPriceDefinition($definition);
 
-        // declare price definition to define how this price is calculated
-        $definition = new PercentagePriceDefinition(
-            -10,
-            new LineItemRule(LineItemRule::OPERATOR_EQ, $products->getKeys())
-        );
+    // calculate price
+    $discountLineItem->setPrice(
+      $this->calculator->calculate($definition->getPercentage(), $products->getPrices(), $context)
+    );
 
-        $discountLineItem->setPriceDefinition($definition);
+    // add discount to new cart
+    $toCalculate->add($discountLineItem);
+  }
 
-        // calculate price
-        $discountLineItem->setPrice(
-            $this->calculator->calculate($definition->getPercentage(), $products->getPrices(), $context)
-        );
+  private function findExampleProducts(Cart $cart): LineItemCollection
+  {
+    return $cart->getLineItems()->filter(function (LineItem $item) {
+      // Only consider products, not custom line items or promotional line items
+      if ($item->getType() !== LineItem::PRODUCT_LINE_ITEM_TYPE) {
+        return false;
+      }
 
-        // add discount to new cart
-        $toCalculate->add($discountLineItem);
-    }
+      $exampleInLabel = stripos($item->getLabel(), 'example') !== false;
 
-    private function findExampleProducts(Cart $cart): LineItemCollection
-    {
-        return $cart->getLineItems()->filter(function (LineItem $item) {
-            // Only consider products, not custom line items or promotional line items
-            if ($item->getType() !== LineItem::PRODUCT_LINE_ITEM_TYPE) {
-                return false;
-            }
+      if (!$exampleInLabel) {
+        return false;
+      }
 
-            $exampleInLabel = stripos($item->getLabel(), 'example') !== false;
+      return $item;
+    });
+  }
 
-            if (!$exampleInLabel) {
-                return false;
-            }
+  private function createDiscount(string $name): LineItem
+  {
+    $discountLineItem = new LineItem($name, 'example_discount', null, 1);
 
-            return $item;
-        });
-    }
+    $discountLineItem->setLabel('Our example discount!');
+    $discountLineItem->setGood(false);
+    $discountLineItem->setStackable(false);
+    $discountLineItem->setRemovable(false);
 
-    private function createDiscount(string $name): LineItem
-    {
-        $discountLineItem = new LineItem($name, 'example_discount', null, 1);
-
-        $discountLineItem->setLabel('Our example discount!');
-        $discountLineItem->setGood(false);
-        $discountLineItem->setStackable(false);
-        $discountLineItem->setRemovable(false);
-
-        return $discountLineItem;
-    }
+    return $discountLineItem;
+  }
 }
 ```
 

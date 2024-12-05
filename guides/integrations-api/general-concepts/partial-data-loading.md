@@ -111,13 +111,13 @@ For custom entity definitions with runtime flag, the referenced fields need to b
 ```php
 protected function defineFields(): FieldCollection
 {
-    return new FieldCollection([
-        (new IdField('id', 'id'))->addFlags(new ApiAware(), new PrimaryKey(), new Required()),
-        (new StringField('path', 'path'))->addFlags(new ApiAware()),
+  return new FieldCollection([
+    (new IdField('id', 'id'))->addFlags(new ApiAware(), new PrimaryKey(), new Required()),
+    (new StringField('path', 'path'))->addFlags(new ApiAware()),
 
-        // When this field is requested, we need the data of path field to generate the url
-        (new StringField('url', 'url'))->addFlags(new ApiAware(), new Runtime(['path'])),
-    ]);
+    // When this field is requested, we need the data of path field to generate the url
+    (new StringField('url', 'url'))->addFlags(new ApiAware(), new Runtime(['path'])),
+  ]);
 }
 ```
 

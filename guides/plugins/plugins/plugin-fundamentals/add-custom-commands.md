@@ -74,19 +74,19 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[AsCommand(name: 'swag-commands:example')]
 class ExampleCommand extends Command
 {
-    // Provides a description, printed out in bin/console
-    protected function configure(): void
-    {
-        $this->setDescription('Does something very special.');
-    }
+  // Provides a description, printed out in bin/console
+  protected function configure(): void
+  {
+    $this->setDescription('Does something very special.');
+  }
 
-    // Actual code executed in the command
-    protected function execute(InputInterface $input, OutputInterface $output): int
-    {
-        $output->writeln('It works!');
+  // Actual code executed in the command
+  protected function execute(InputInterface $input, OutputInterface $output): int
+  {
+    $output->writeln('It works!');
 
-        return Command::SUCCESS;
-    }
+    return Command::SUCCESS;
+  }
 }
 ```
 

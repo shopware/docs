@@ -25,22 +25,22 @@ namespace Shopware\Core\Checkout\Cart;
 
 class RedisCartPersister extends AbstractCartPersister
 {
-    /**
-     * @var \Redis|\RedisCluster
-     */
-    private $redis;
+  /**
+   * @var \Redis|\RedisCluster
+   */
+  private $redis;
 
-    private EventDispatcherInterface $eventDispatcher;
+  private EventDispatcherInterface $eventDispatcher;
 
-    private bool $compress;
+  private bool $compress;
 
-    public function load(string $token, SalesChannelContext $context): Cart {}
+  public function load(string $token, SalesChannelContext $context): Cart {}
 
-    public function save(Cart $cart, SalesChannelContext $context): void {}
+  public function save(Cart $cart, SalesChannelContext $context): void {}
 
-    public function delete(string $token, SalesChannelContext $context): void {}
+  public function delete(string $token, SalesChannelContext $context): void {}
 
-    public function replace(string $oldToken, string $newToken, SalesChannelContext $context): void {}
+  public function replace(string $oldToken, string $newToken, SalesChannelContext $context): void {}
 }
 ```
 
@@ -61,18 +61,18 @@ namespace Shopware\Core\Checkout\DependencyInjection\CompilerPass;
 
 class CartRedisCompilerPass implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container): void
-    {
-        if (!$container->getParameter('shopware.cart.redis_url')) {
-            $container->removeDefinition('shopware.cart.redis');
-            $container->removeDefinition(RedisCartPersister::class);
+  public function process(ContainerBuilder $container): void
+  {
+    if (!$container->getParameter('shopware.cart.redis_url')) {
+      $container->removeDefinition('shopware.cart.redis');
+      $container->removeDefinition(RedisCartPersister::class);
 
-            return;
-        }
-
-        $container->removeDefinition(CartPersister::class);
-        $container->setAlias(CartPersister::class, RedisCartPersister::class);
+      return;
     }
+
+    $container->removeDefinition(CartPersister::class);
+    $container->setAlias(CartPersister::class, RedisCartPersister::class);
+  }
 }
 ```
 

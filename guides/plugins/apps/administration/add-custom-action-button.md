@@ -101,6 +101,8 @@ $actionButton = $contextResolver->assembleActionButton($serverRequest, $shop);
 <Tab title="Symfony Bundle">
 
 ```php
+<?php declare(strict_types=1);
+
 use Shopware\App\SDK\Context\ActionButton\ActionButtonAction;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
@@ -108,14 +110,15 @@ use Symfony\Component\Routing\Attribute\Route;
 use Psr\Http\Message\ResponseInterface;
 
 #[AsController]
-class ActionButtonController {
-    #[Route('/action/product/detail')]
-    public function handle(ActionButtonAction $button): ResponseInterface
-    {
-        // handle button
-        
-        return ActionButtonResponse::notification('success', 'Success message');
-    }
+class ActionButtonController
+{
+  #[Route('/action/product/detail')]
+  public function handle(ActionButtonAction $button): ResponseInterface
+  {
+    // handle button
+
+    return ActionButtonResponse::notification('success', 'Success message');
+  }
 }
 ```
 

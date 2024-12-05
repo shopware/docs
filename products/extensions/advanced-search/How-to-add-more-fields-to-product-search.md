@@ -34,53 +34,52 @@ use Shopware\Elasticsearch\Framework\AbstractElasticsearchDefinition;
 
 class ElasticsearchProductDefinitionDecorator extends AbstractElasticsearchDefinition
 {
-    public function __construct(
-        private readonly AbstractElasticsearchDefinition $decorated
-    ) {
+  public function __construct(
+    private readonly AbstractElasticsearchDefinition $decorated
+  ) {}
+
+  public function getEntityDefinition(): EntityDefinition
+  {
+    return $this->decorated->getEntityDefinition();
+  }
+
+  public function buildTermQuery(Context $context, Criteria $criteria): BoolQuery
+  {
+    return $this->decorated->buildTermQuery($context, $criteria);
+  }
+
+  public function getMapping(Context $context): array
+  {
+    $mappings = $this->decorated->getMapping($context);
+
+    $additionalMappings = [
+      // define your new field's type
+      'prefixProductNumber' => self::KEYWORD_FIELD,
+      // other additional fields
+    ];
+
+    $mappings['properties'] = array_merge($mappings['properties'], $additionalMappings);
+
+    return $mappings;
+  }
+
+  public function fetch(array $ids, Context $context): array
+  {
+    $data = $this->decorated->fetch($ids, $context);
+
+    $documents = [];
+
+    foreach ($data as $id => $document) {
+      $document = array_merge($document, [
+        // get first 5 characters from productNumber to index it
+        'prefixProductNumber' => substr($document['productNumber'], 0, 5),
+      ]);
+
+      $documents[$id] = $document;
     }
 
-    public function getEntityDefinition(): EntityDefinition
-    {
-        return $this->decorated->getEntityDefinition();
-    }
-
-    public function buildTermQuery(Context $context, Criteria $criteria): BoolQuery
-    {
-        return $this->decorated->buildTermQuery($context, $criteria);
-    }
-
-    public function getMapping(Context $context): array
-    {
-        $mappings = $this->decorated->getMapping($context);
-
-        $additionalMappings = [
-            // define your new field's type
-            'prefixProductNumber' => self::KEYWORD_FIELD,
-            // other additional fields
-        ];
-
-        $mappings['properties'] = array_merge($mappings['properties'], $additionalMappings);
-
-        return $mappings;
-    }
-
-    public function fetch(array $ids, Context $context): array
-    {
-        $data = $this->decorated->fetch($ids, $context);
-
-        $documents = [];
-
-        foreach ($data as $id => $document) {
-            $document = array_merge($document, [
-                // get first 5 characters from productNumber to index it
-                'prefixProductNumber' => substr($document['productNumber'], 0, 5),
-            ]);
-
-            $documents[$id] = $document;
-        }
-
-        return $documents;
-    }
+    return $documents;
+  }
 }
 ```
 
@@ -118,29 +117,29 @@ use Shopware\Core\Framework\Uuid\Uuid;
 
 class Migration1692954529AddNewPrefixProductNumberFieldIntoProductAdvancedSearch extends MigrationStep
 {
-    public function getCreationTimestamp(): int
-    {
-        return 1692954529;
+  public function getCreationTimestamp(): int
+  {
+    return 1692954529;
+  }
+
+  public function update(Connection $connection): void
+  {
+    $configSalesChannelIds = $connection->fetchFirstColumn('SELECT id FROM advanced_search_config');
+
+    $createdAt = (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT);
+
+    foreach ($configSalesChannelIds as $configSalesChannelId) {
+      $connection->insert(AdvancedSearchConfigFieldDefinition::ENTITY_NAME, [
+        'id' => Uuid::randomBytes(),
+        'field' => 'prefixProductNumber',
+        'config_id' => $configSalesChannelId,
+        'entity' => ProductDefinition::ENTITY_NAME,
+        'tokenize' => 1,
+        'searchable' => 1,
+        'ranking' => 500,
+        'created_at' => $createdAt,
+      ]);
     }
-
-    public function update(Connection $connection): void
-    {
-        $configSalesChannelIds = $connection->fetchFirstColumn('SELECT id FROM advanced_search_config');
-
-        $createdAt = (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT);
-
-        foreach ($configSalesChannelIds as $configSalesChannelId) {
-            $connection->insert(AdvancedSearchConfigFieldDefinition::ENTITY_NAME, [
-                'id' => Uuid::randomBytes(),
-                'field' => 'prefixProductNumber',
-                'config_id' => $configSalesChannelId,
-                'entity' => ProductDefinition::ENTITY_NAME,
-                'tokenize' => 1,
-                'searchable' => 1,
-                'ranking' => 500,
-                'created_at' => $createdAt,
-            ]);
-        }
-    }
+  }
 }
 ```

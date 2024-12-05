@@ -42,10 +42,10 @@ use Shopware\Core\Framework\Log\Package;
 #[Package('checkout')]
 interface CheckoutGatewayInterface
 {
-    /**
-    * The input struct consists of the cart, sales channel context and currently available payment and shipping methods.
-    */
-    public function process(CheckoutGatewayPayloadStruct): CheckoutGatewayResponse;
+  /**
+  * The input struct consists of the cart, sales channel context and currently available payment and shipping methods.
+  */
+  public function process(CheckoutGatewayPayloadStruct): CheckoutGatewayResponse;
 }
 ```
 

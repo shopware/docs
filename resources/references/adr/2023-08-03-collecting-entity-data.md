@@ -96,19 +96,21 @@ When adding a many-to-many association to the allow-list, the referenced field i
 Example:
 
 ```php
+<?php declare(strict_types=1);
+
 class ProductDefinition
 {
-    protected function defineFields(): FieldCollection
-    {
-        return new FieldCollection([
-            // ...
-            (new ManyToManyIdField('category_ids', 'categoryIds', associationName: 'categories'))->addFlags(new ApiAware(), new Inherited()),
-            (new ManyToManyAssociationField('categories', CategoryDefinition::class, ProductCategoryDefinition::class, 'product_id', 'category_id'))->addFlags(new ApiAware(), new CascadeDelete(), new Inherited(), new SearchRanking(SearchRanking::ASSOCIATION_SEARCH_RANKING)),
-            // ...
-            (new ManyToManyAssociationField('tags', TagDefinition::class, ProductTagDefinition::class, 'product_id', 'tag_id'))->addFlags(new CascadeDelete(), new Inherited(), new SearchRanking(SearchRanking::ASSOCIATION_SEARCH_RANKING), new ApiAware()),
-            // ...
-        ]);
-    }
+  protected function defineFields(): FieldCollection
+  {
+    return new FieldCollection([
+      // ...
+      (new ManyToManyIdField('category_ids', 'categoryIds', associationName: 'categories'))->addFlags(new ApiAware(), new Inherited()),
+      (new ManyToManyAssociationField('categories', CategoryDefinition::class, ProductCategoryDefinition::class, 'product_id', 'category_id'))->addFlags(new ApiAware(), new CascadeDelete(), new Inherited(), new SearchRanking(SearchRanking::ASSOCIATION_SEARCH_RANKING)),
+      // ...
+      (new ManyToManyAssociationField('tags', TagDefinition::class, ProductTagDefinition::class, 'product_id', 'tag_id'))->addFlags(new CascadeDelete(), new Inherited(), new SearchRanking(SearchRanking::ASSOCIATION_SEARCH_RANKING), new ApiAware()),
+      // ...
+    ]);
+  }
 }
 ```
 

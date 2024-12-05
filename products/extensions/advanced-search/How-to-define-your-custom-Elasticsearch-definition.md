@@ -30,105 +30,104 @@ use Shopware\Elasticsearch\Framework\AbstractElasticsearchDefinition;
 
 class YourCustomElasticsearchDefinition extends AbstractElasticsearchDefinition
 {
-    public function __construct(
-        private readonly EntityDefinition $definition,
-        private readonly Connection $connection,
-        private readonly AbstractSearchLogic $searchLogic
-    ) {
-    }
+  public function __construct(
+    private readonly EntityDefinition $definition,
+    private readonly Connection $connection,
+    private readonly AbstractSearchLogic $searchLogic
+  ) {}
 
-    /**
-     * Define your ES definition's mapping
-     */
-    public function getMapping(Context $context): array
-    {
-        $languages = $this->connection->fetchAllKeyValue(
-            'SELECT LOWER(HEX(language.`id`)) as id, locale.code
+  /**
+   * Define your ES definition's mapping
+   */
+  public function getMapping(Context $context): array
+  {
+    $languages = $this->connection->fetchAllKeyValue(
+      'SELECT LOWER(HEX(language.`id`)) as id, locale.code
              FROM language
              INNER JOIN locale ON locale_id = locale.id'
-        );
+    );
 
-        $languageFields = [];
+    $languageFields = [];
 
-        foreach ($languages as $languageId => $code) {
-            $parts = explode('-', $code);
-            $locale = $parts[0];
+    foreach ($languages as $languageId => $code) {
+      $parts = explode('-', $code);
+      $locale = $parts[0];
 
-            $languageFields[$languageId] = self::getTextFieldConfig();
-            if (\array_key_exists($locale, $this->languageAnalyzerMapping)) {
-                $fields = $languageFields[$languageId]['fields'];
-                $fields['search']['analyzer'] = $this->languageAnalyzerMapping[$locale];
-                $languageFields[$languageId]['fields'] = $fields;
-            }
-        }
-
-        $properties = [
-            'name' => [
-                'properties' => $languageFields,
-            ],
-            'description' => [
-                'properties' => $languageFields,
-            ],
-        ];
-
-        return [
-            '_source' => ['includes' => ['id']],
-            'properties' => $properties,
-        ];
+      $languageFields[$languageId] = self::getTextFieldConfig();
+      if (\array_key_exists($locale, $this->languageAnalyzerMapping)) {
+        $fields = $languageFields[$languageId]['fields'];
+        $fields['search']['analyzer'] = $this->languageAnalyzerMapping[$locale];
+        $languageFields[$languageId]['fields'] = $fields;
+      }
     }
 
-    /**
-     * Build a bool query when searching your custom ES definition, by default we use the Shopware\Commercial\AdvancedSearch\Domain\Search\SearchLogic  
-     */
-    public function buildTermQuery(Context $context, Criteria $criteria): BoolQuery
-    {
-        return $this->searchLogic->build($this->definition, $criteria, $context);
+    $properties = [
+      'name' => [
+        'properties' => $languageFields,
+      ],
+      'description' => [
+        'properties' => $languageFields,
+      ],
+    ];
+
+    return [
+      '_source' => ['includes' => ['id']],
+      'properties' => $properties,
+    ];
+  }
+
+  /**
+   * Build a bool query when searching your custom ES definition, by default we use the Shopware\Commercial\AdvancedSearch\Domain\Search\SearchLogic  
+   */
+  public function buildTermQuery(Context $context, Criteria $criteria): BoolQuery
+  {
+    return $this->searchLogic->build($this->definition, $criteria, $context);
+  }
+
+  /**
+   * fetch data from storage to push to elasticsearch cluster when indexing data 
+   */
+  public function fetch(array $ids, Context $context): array
+  {
+    $data = $this->fetchData($ids, $context);
+
+    $documents = [];
+
+    foreach ($data as $id => $item) {
+      $translations = (array) json_decode($item['translation'] ?? '[]', true, 512, \JSON_THROW_ON_ERROR);
+
+      $document = [
+        'id' => $id,
+        'name' => $this->mapTranslatedField('name', true, ...$translations),
+        'description' => $this->mapTranslatedField('description', true, ...$translations),
+      ];
+
+      $documents[$id] = $document;
     }
 
-    /**
-    * fetch data from storage to push to elasticsearch cluster when indexing data 
-    */
-    public function fetch(array $ids, Context $context): array
-    {
-        $data = $this->fetchData($ids, $context);
+    return $documents;
+  }
 
-        $documents = [];
+  public function getEntityDefinition(): EntityDefinition
+  {
+    return $this->definition;
+  }
 
-        foreach ($data as $id => $item) {
-            $translations = (array) json_decode($item['translation'] ?? '[]', true, 512, \JSON_THROW_ON_ERROR);
-
-            $document = [
-                'id' => $id,
-                'name' => $this->mapTranslatedField('name', true, ...$translations),
-                'description' => $this->mapTranslatedField('description', true, ...$translations),
-            ];
-
-            $documents[$id] = $document;
-        }
-
-        return $documents;
-    }
-
-    public function getEntityDefinition(): EntityDefinition
-    {
-        return $this->definition;
-    }
-
-    private function fetchData(array $ids, Context $context): array
-    {
-        $sql = <<<'SQL'
+  private function fetchData(array $ids, Context $context): array
+  {
+    $sql = <<<'SQL'
 SELECT
     LOWER(HEX(custom_entity.id)) AS id,
     CONCAT(
-        '[',
-            GROUP_CONCAT(DISTINCT
-                JSON_OBJECT(
-                    'description', your_custom_entity_translation.description,
-                    'name', your_custom_entity_translation.name,
-                    'languageId', LOWER(HEX(your_custom_entity_translation.language_id))
-                )
-            ),
-        ']'
+      '[',
+        GROUP_CONCAT(DISTINCT
+          JSON_OBJECT(
+            'description', your_custom_entity_translation.description,
+            'name', your_custom_entity_translation.name,
+            'languageId', LOWER(HEX(your_custom_entity_translation.language_id))
+          )
+        ),
+      ']'
     ) as translation
 FROM your_custom_entity custom_entity
     LEFT JOIN your_custom_entity_translation ON your_custom_entity_translation.your_custom_entity_id = custom_entity.id
@@ -136,17 +135,18 @@ WHERE custom_entity.id IN (:ids)
 GROUP BY custom_entity.id
 SQL;
 
-        $result = $this->connection->fetchAllAssociativeIndexed(
-            $sql,
-            [
-                'ids' => $ids,
-            ],
-            [
-                'ids' => ArrayParameterType::STRING,
-            ]
-        );
+    $result = $this->connection->fetchAllAssociativeIndexed(
+      $sql,
+      [
+        'ids' => $ids,
+      ],
+      [
+        'ids' => ArrayParameterType::STRING,
+      ]
+    );
 
-        return $result;    }
+    return $result;
+  }
 }
 ```
 

@@ -55,19 +55,21 @@ namespace Shopware\Core\Checkout\Customer;
 #[Package('customer-order')]
 class CustomerException extends HttpException
 {
-    public const CUSTOMER_GROUP_NOT_FOUND = 'CHECKOUT__CUSTOMER_GROUP_NOT_FOUND';
+  public const CUSTOMER_GROUP_NOT_FOUND = 'CHECKOUT__CUSTOMER_GROUP_NOT_FOUND';
 
-    public static function notFound(string $id): self
-    {
-        return new CustomerNotFoundException(
-            Response::HTTP_BAD_REQUEST,
-            self::CUSTOMER_GROUP_NOT_FOUND,
-            'Customer group with id "{{ id }}" not found',
-            ['id' => $id]
-        );
-    }
+  public static function notFound(string $id): self
+  {
+    return new CustomerNotFoundException(
+      Response::HTTP_BAD_REQUEST,
+      self::CUSTOMER_GROUP_NOT_FOUND,
+      'Customer group with id "{{ id }}" not found',
+      ['id' => $id]
+    );
+  }
 }
+```
 
+```php
 <?php declare(strict_types=1);
 
 namespace Shopware\Core\Checkout\Customer\Exception;

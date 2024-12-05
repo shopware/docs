@@ -43,9 +43,9 @@ use function array_merge;
 
 class TemplateNamespaceHierarchyBuilder implements TemplateNamespaceHierarchyBuilderInterface
 {
-    public function buildNamespaceHierarchy(array $namespaceHierarchy): array
-    {
-        return array_merge($namespaceHierarchy, ['MyPlugin']);
-    }
+  public function buildNamespaceHierarchy(array $namespaceHierarchy): array
+  {
+    return array_merge($namespaceHierarchy, ['MyPlugin']);
+  }
 }
 ```

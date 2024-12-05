@@ -31,87 +31,87 @@ The converters have to extend the `ShopwareConverter` class and implement the `c
 
 abstract class ProductConverter extends ShopwareConverter
 {
-    /* ... */
+  /* ... */
 
-    /**
-     * @throws ParentEntityForChildNotFoundException
-     */
-    public function convert(
-        array $data,
-        Context $context,
-        MigrationContextInterface $migrationContext
-    ): ConvertStruct {
-        $this->generateChecksum($data);
-        $this->context = $context;
-        $this->migrationContext = $migrationContext;
-        $this->runId = $migrationContext->getRunUuid();
-        $this->oldProductId = $data['detail']['ordernumber'];
-        $this->mainProductId = $data['detail']['articleID'];
-        $this->locale = $data['_locale'];
+  /**
+   * @throws ParentEntityForChildNotFoundException
+   */
+  public function convert(
+    array $data,
+    Context $context,
+    MigrationContextInterface $migrationContext
+  ): ConvertStruct {
+    $this->generateChecksum($data);
+    $this->context = $context;
+    $this->migrationContext = $migrationContext;
+    $this->runId = $migrationContext->getRunUuid();
+    $this->oldProductId = $data['detail']['ordernumber'];
+    $this->mainProductId = $data['detail']['articleID'];
+    $this->locale = $data['_locale'];
 
-        $connection = $migrationContext->getConnection();
-        $this->connectionName = '';
-        $this->connectionId = '';
-        if ($connection !== null) {
-            $this->connectionId = $connection->getId();
-            $this->connectionName = $connection->getName();
-        }
-
-        $fields = $this->checkForEmptyRequiredDataFields($data, $this->requiredDataFieldKeys);
-        if (!empty($fields)) {
-            $this->loggingService->addLogEntry(new EmptyNecessaryFieldRunLog(
-                $this->runId,
-                DefaultEntities::PRODUCT,
-                $this->oldProductId,
-                implode(',', $fields)
-            ));
-
-            return new ConvertStruct(null, $data);
-        }
-
-        $this->productType = (int) $data['detail']['kind'];
-        unset($data['detail']['kind']);
-        $isProductWithVariant = $data['configurator_set_id'] !== null;
-
-        if ($this->productType === self::MAIN_PRODUCT_TYPE && $isProductWithVariant) {
-            return $this->convertMainProduct($data);
-        }
-
-        if ($this->productType === self::VARIANT_PRODUCT_TYPE && $isProductWithVariant) {
-            return $this->convertVariantProduct($data);
-        }
-
-        $converted = $this->getUuidForProduct($data);
-        $converted = $this->getProductData($data, $converted);
-
-        if (isset($data['categories'])) {
-            $converted['categories'] = $this->getCategoryMapping($data['categories']);
-        }
-        unset($data['categories']);
-
-        if (isset($data['shops'])) {
-            $converted['visibilities'] = $this->getVisibilities($converted, $data['shops']);
-        }
-        unset($data['shops']);
-
-        unset($data['detail']['id'], $data['detail']['articleID']);
-
-        if (empty($data['detail'])) {
-            unset($data['detail']);
-        }
-
-        $returnData = $data;
-        if (empty($returnData)) {
-            $returnData = null;
-        }
-        $this->updateMainMapping($migrationContext, $context);
-
-        $mainMapping = $this->mainMapping['id'] ?? null;
-
-        return new ConvertStruct($converted, $returnData, $mainMapping);
+    $connection = $migrationContext->getConnection();
+    $this->connectionName = '';
+    $this->connectionId = '';
+    if ($connection !== null) {
+      $this->connectionId = $connection->getId();
+      $this->connectionName = $connection->getName();
     }
 
-    /* ... */
+    $fields = $this->checkForEmptyRequiredDataFields($data, $this->requiredDataFieldKeys);
+    if (!empty($fields)) {
+      $this->loggingService->addLogEntry(new EmptyNecessaryFieldRunLog(
+        $this->runId,
+        DefaultEntities::PRODUCT,
+        $this->oldProductId,
+        implode(',', $fields)
+      ));
+
+      return new ConvertStruct(null, $data);
+    }
+
+    $this->productType = (int) $data['detail']['kind'];
+    unset($data['detail']['kind']);
+    $isProductWithVariant = $data['configurator_set_id'] !== null;
+
+    if ($this->productType === self::MAIN_PRODUCT_TYPE && $isProductWithVariant) {
+      return $this->convertMainProduct($data);
+    }
+
+    if ($this->productType === self::VARIANT_PRODUCT_TYPE && $isProductWithVariant) {
+      return $this->convertVariantProduct($data);
+    }
+
+    $converted = $this->getUuidForProduct($data);
+    $converted = $this->getProductData($data, $converted);
+
+    if (isset($data['categories'])) {
+      $converted['categories'] = $this->getCategoryMapping($data['categories']);
+    }
+    unset($data['categories']);
+
+    if (isset($data['shops'])) {
+      $converted['visibilities'] = $this->getVisibilities($converted, $data['shops']);
+    }
+    unset($data['shops']);
+
+    unset($data['detail']['id'], $data['detail']['articleID']);
+
+    if (empty($data['detail'])) {
+      unset($data['detail']);
+    }
+
+    $returnData = $data;
+    if (empty($returnData)) {
+      $returnData = null;
+    }
+    $this->updateMainMapping($migrationContext, $context);
+
+    $mainMapping = $this->mainMapping['id'] ?? null;
+
+    return new ConvertStruct($converted, $returnData, $mainMapping);
+  }
+
+  /* ... */
 }
 ```
 
@@ -127,7 +127,7 @@ Also, every `Converter` needs to implement the `getSourceIdentifier` method like
  */
 public function getSourceIdentifier(array $data): string
 {
-    return $data['detail']['ordernumber'];
+  return $data['detail']['ordernumber'];
 }
 ```
 
@@ -142,29 +142,30 @@ Many entities rely on other entities, so they have to be converted in a specific
 
 private function getUuidForProduct(array &$data): array
 {
-    $this->mainMapping = $this->mappingService->getOrCreateMapping(
-        $this->connectionId,
-        DefaultEntities::PRODUCT,
-        $this->oldProductId,
-        $this->context,
-        $this->checksum
-    );
+  $this->mainMapping = $this->mappingService->getOrCreateMapping(
+    $this->connectionId,
+    DefaultEntities::PRODUCT,
+    $this->oldProductId,
+    $this->context,
+    $this->checksum
+  );
 
-    $converted = [];
-    $converted['id'] = $this->mainMapping['entityUuid'];
+  $converted = [];
+  $converted['id'] = $this->mainMapping['entityUuid'];
 
-    $mapping = $this->mappingService->getOrCreateMapping(
-        $this->connectionId,
-        DefaultEntities::PRODUCT_MAIN,
-        $data['detail']['articleID'],
-        $this->context,
-        null,
-        null,
-        $converted['id']
-    );
-    $this->mappingIds[] = $mapping['id']; // Take a look at the performance section below for details on this.
+  $mapping = $this->mappingService->getOrCreateMapping(
+    $this->connectionId,
+    DefaultEntities::PRODUCT_MAIN,
+    $data['detail']['articleID'],
+    $this->context,
+    null,
+    null,
+    $converted['id']
+  );
 
-    return $converted;
+  $this->mappingIds[] = $mapping['id']; // Take a look at the performance section below for details on this.
+
+  return $converted;
 }
 ```
 
@@ -174,28 +175,28 @@ The following function employs the `getOrCreateMapping` function, which is part 
 /* SwagMigrationAssistant/Migration/Mapping/MappingService.php */
 
 public function getOrCreateMapping(
-    string $connectionId,
-    string $entityName,
-    string $oldIdentifier,
-    Context $context,
-    ?string $checksum = null,
-    ?array $additionalData = null,
-    ?string $uuid = null
+  string $connectionId,
+  string $entityName,
+  string $oldIdentifier,
+  Context $context,
+  ?string $checksum = null,
+  ?array $additionalData = null,
+  ?string $uuid = null
 ): array {
-    $mapping = $this->getMapping($connectionId, $entityName, $oldIdentifier, $context);
+  $mapping = $this->getMapping($connectionId, $entityName, $oldIdentifier, $context);
 
-    if (!isset($mapping)) {
-        return $this->createMapping($connectionId, $entityName, $oldIdentifier, $checksum, $additionalData, $uuid);
-    }
+  if (!isset($mapping)) {
+    return $this->createMapping($connectionId, $entityName, $oldIdentifier, $checksum, $additionalData, $uuid);
+  }
 
-    if ($uuid !== null) {
-        $mapping['entityUuid'] = $uuid;
-        $this->saveMapping($mapping);
-
-        return $mapping;
-    }
+  if ($uuid !== null) {
+    $mapping['entityUuid'] = $uuid;
+    $this->saveMapping($mapping);
 
     return $mapping;
+  }
+
+  return $mapping;
 }
 ```
 
@@ -206,27 +207,28 @@ Sometimes it is not necessary to create a new identifier, and it may be enough t
 
 protected function getDefaultPaymentMethod(array $originalData): ?string
 {
-    $paymentMethodMapping = $this->mappingService->getMapping(
-        $this->connectionId,
-        PaymentMethodReader::getMappingName(),
-        $originalData['id'],
-        $this->context
-    );
+  $paymentMethodMapping = $this->mappingService->getMapping(
+    $this->connectionId,
+    PaymentMethodReader::getMappingName(),
+    $originalData['id'],
+    $this->context
+  );
 
-    if ($paymentMethodMapping === null) {
-        $this->loggingService->addLogEntry(new UnknownEntityLog(
-            $this->runId,
-            DefaultEntities::PAYMENT_METHOD,
-            $originalData['id'],
-            DefaultEntities::CUSTOMER,
-            $this->oldCustomerId
-        ));
+  if ($paymentMethodMapping === null) {
+    $this->loggingService->addLogEntry(new UnknownEntityLog(
+      $this->runId,
+      DefaultEntities::PAYMENT_METHOD,
+      $originalData['id'],
+      DefaultEntities::CUSTOMER,
+      $this->oldCustomerId
+    ));
 
-        return null;
-    }
-    $this->mappingIds[] = $paymentMethodMapping['id'];
+    return null;
+  }
+  
+  $this->mappingIds[] = $paymentMethodMapping['id'];
 
-    return $paymentMethodMapping['entityUuid'];
+  return $paymentMethodMapping['entityUuid'];
 }
 ```
 
@@ -236,42 +238,42 @@ The `getMapping` method only fetches the identifier from the database and doesn'
 /* SwagMigrationAssistant/Migration/Mapping/MappingService.php */
 
 public function getMapping(
-    string $connectionId,
-    string $entityName,
-    string $oldIdentifier,
-    Context $context
+  string $connectionId,
+  string $entityName,
+  string $oldIdentifier,
+  Context $context
 ): ?array {
-    if (isset($this->mappings[md5($entityName . $oldIdentifier)])) {
-        return $this->mappings[md5($entityName . $oldIdentifier)];
-    }
+  if (isset($this->mappings[md5($entityName . $oldIdentifier)])) {
+    return $this->mappings[md5($entityName . $oldIdentifier)];
+  }
 
-    $criteria = new Criteria();
-    $criteria->addFilter(new EqualsFilter('connectionId', $connectionId));
-    $criteria->addFilter(new EqualsFilter('entity', $entityName));
-    $criteria->addFilter(new EqualsFilter('oldIdentifier', $oldIdentifier));
-    $criteria->setLimit(1);
+  $criteria = new Criteria();
+  $criteria->addFilter(new EqualsFilter('connectionId', $connectionId));
+  $criteria->addFilter(new EqualsFilter('entity', $entityName));
+  $criteria->addFilter(new EqualsFilter('oldIdentifier', $oldIdentifier));
+  $criteria->setLimit(1);
 
-    $result =  $this->migrationMappingRepo->search($criteria, $context);
+  $result =  $this->migrationMappingRepo->search($criteria, $context);
 
-    if ($result->getTotal() > 0) {
-        /** @var SwagMigrationMappingEntity $element */
-        $element = $result->getEntities()->first();
+  if ($result->getTotal() > 0) {
+    /** @var SwagMigrationMappingEntity $element */
+    $element = $result->getEntities()->first();
 
-        $mapping = [
-            'id' => $element->getId(),
-            'connectionId' => $element->getConnectionId(),
-            'entity' => $element->getEntity(),
-            'oldIdentifier' => $element->getOldIdentifier(),
-            'entityUuid' => $element->getEntityUuid(),
-            'checksum' => $element->getChecksum(),
-            'additionalData' => $element->getAdditionalData(),
-        ];
-        $this->mappings[md5($entityName . $oldIdentifier)] = $mapping;
+    $mapping = [
+      'id' => $element->getId(),
+      'connectionId' => $element->getConnectionId(),
+      'entity' => $element->getEntity(),
+      'oldIdentifier' => $element->getOldIdentifier(),
+      'entityUuid' => $element->getEntityUuid(),
+      'checksum' => $element->getChecksum(),
+      'additionalData' => $element->getAdditionalData(),
+    ];
+    $this->mappings[md5($entityName . $oldIdentifier)] = $mapping;
 
-        return $mapping;
-    }
+    return $mapping;
+  }
 
-    return null;
+  return null;
 }
 ```
 
@@ -300,30 +302,30 @@ This is used in the first line of the converter with the raw data that comes fro
 /* SwagMigrationAssistant/Profile/Shopware/Converter/ProductConverter.php */
 
 public function convert(
-    array $data,
-    Context $context,
-    MigrationContextInterface $migrationContext
+  array $data,
+  Context $context,
+  MigrationContextInterface $migrationContext
 ): ConvertStruct {
-    $this->generateChecksum($data);
+  $this->generateChecksum($data);
 
-    /* ... */
+  /* ... */
 
-    // This is also important, so the checksum can be saved to the right mapping!
-    $this->mainMapping = $this->mappingService->getOrCreateMapping(
-        $this->connectionId,
-        DefaultEntities::PRODUCT,
-        $this->oldProductId,
-        $this->context,
-        $this->checksum
-    );
+  // This is also important, so the checksum can be saved to the right mapping!
+  $this->mainMapping = $this->mappingService->getOrCreateMapping(
+      $this->connectionId,
+      DefaultEntities::PRODUCT,
+      $this->oldProductId,
+      $this->context,
+      $this->checksum
+  );
 
-    /* ... */
+  /* ... */
 
-    // Important to put the mainMapping['id'] to the ConvertStruct
-    $mainMapping = $this->mainMapping['id'] ?? null;
-    return new ConvertStruct($converted, $returnData, $mainMapping);
+  // Important to put the mainMapping['id'] to the ConvertStruct
+  $mainMapping = $this->mainMapping['id'] ?? null;
+  return new ConvertStruct($converted, $returnData, $mainMapping);
 
-    /* ... */
+  /* ... */
 }
 ```
 
@@ -338,21 +340,21 @@ The `Converter` base class also contains an array named `mappingIds`. This can b
 
 private function getUnit(array $data): array
 {
-    $unit = [];
-    $mapping = $this->mappingService->getOrCreateMapping(
-        $this->connectionId,
-        DefaultEntities::UNIT,
-        $data['id'],
-        $this->context
-    );
-    $unit['id'] = $mapping['entityUuid'];
-    $this->mappingIds[] = $mapping['id']; // Store the mapping id as related mapping
+  $unit = [];
+  $mapping = $this->mappingService->getOrCreateMapping(
+    $this->connectionId,
+    DefaultEntities::UNIT,
+    $data['id'],
+    $this->context
+  );
+  $unit['id'] = $mapping['entityUuid'];
+  $this->mappingIds[] = $mapping['id']; // Store the mapping id as related mapping
 
-    $this->getUnitTranslation($unit, $data);
-    $this->convertValue($unit, 'shortCode', $data, 'unit');
-    $this->convertValue($unit, 'name', $data, 'description');
+  $this->getUnitTranslation($unit, $data);
+  $this->convertValue($unit, 'shortCode', $data, 'unit');
+  $this->convertValue($unit, 'name', $data, 'description');
 
-    return $unit;
+  return $unit;
 }
 ```
 
@@ -362,18 +364,18 @@ To save these mapping IDs in the `mainMapping`, it is necessary to call the `upd
 /* SwagMigrationAssistant/Profile/Shopware/Converter/ProductConverter.php */
 
 public function convert(
-    array $data,
-    Context $context,
-    MigrationContextInterface $migrationContext
+  array $data,
+  Context $context,
+  MigrationContextInterface $migrationContext
 ): ConvertStruct {
-    /* ... */
+  /* ... */
 
-    $this->updateMainMapping($this->migrationContext, $this->context);
+  $this->updateMainMapping($this->migrationContext, $this->context);
 
-    $mainMapping = $this->mainMapping['id'] ?? null;
+  $mainMapping = $this->mainMapping['id'] ?? null;
 
-    return new ConvertStruct($converted, $returnData, $mainMapping);
+  return new ConvertStruct($converted, $returnData, $mainMapping);
 
-    /* ... */
+  /* ... */
 }
 ```

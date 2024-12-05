@@ -65,8 +65,9 @@ System checks can differ in complexity, purpose, and computational cost. The typ
 This distinction is primarily reflected in the `Shopware\Core\Framework\SystemCheck\BaseCheck` class method:
 
 ```php
-    protected function allowedSystemCheckExecutionContexts(): array
-    {...}
+protected function allowedSystemCheckExecutionContexts(): array
+{ // ...
+}
 ```
 
 ##### Readiness Checks
@@ -78,10 +79,10 @@ Those checks should typically check critical paths of the system, such as correc
 Those system checks would have:
 
 ```php
-    protected function allowedSystemCheckExecutionContexts(): array
-    {
-        return \Shopware\Core\Framework\SystemCheck\Check\SystemCheckExecutionContext::readiness();
-    }
+protected function allowedSystemCheckExecutionContexts(): array
+{
+  return \Shopware\Core\Framework\SystemCheck\Check\SystemCheckExecutionContext::readiness();
+}
 ```
 
 ##### Health Checks
@@ -93,10 +94,10 @@ A requirement to a typical health-check is that it should be fast, inexpensive, 
 Those system checks would have:
 
 ```php
-    protected function allowedSystemCheckExecutionContexts(): array
-    {
-        return \Shopware\Core\Framework\SystemCheck\Check\SystemCheckExecutionContext::cases();
-    }
+protected function allowedSystemCheckExecutionContexts(): array
+{
+  return \Shopware\Core\Framework\SystemCheck\Check\SystemCheckExecutionContext::cases();
+}
 ```
 
 ##### Long Running Checks
@@ -107,10 +108,10 @@ An example of such test would be a check to verify that there are no issues in l
 Those system checks would have:
 
 ```php
-    protected function allowedSystemCheckExecutionContexts(): array
-    {
-        return \Shopware\Core\Framework\SystemCheck\Check\SystemCheckExecutionContext::longRunning();
-    }
+protected function allowedSystemCheckExecutionContexts(): array
+{
+  return \Shopware\Core\Framework\SystemCheck\Check\SystemCheckExecutionContext::longRunning();
+}
 ```
 
 ##### Other
@@ -118,11 +119,11 @@ Those system checks would have:
 This type would be any custom check where it needs to be run in a different context other than the templates given above. This could be anything, based on the requirements of the check.
 
 ```php
-    protected function allowedSystemCheckExecutionContexts(): array
-    {
-        # list of contexts
-        return [SystemCheckExecutionContext::CRON, SystemCheckExecutionContext::WEB];
-    }
+protected function allowedSystemCheckExecutionContexts(): array
+{
+  # list of contexts
+  return [SystemCheckExecutionContext::CRON, SystemCheckExecutionContext::WEB];
+}
 ```
 
 ## Consequences

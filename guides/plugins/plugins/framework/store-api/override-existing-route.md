@@ -35,32 +35,32 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route(defaults: ['_routeScope' => ['store-api']])]
 class ExampleRouteDecorator extends AbstractExampleRoute
 {
-    protected EntityRepository $exampleRepository;
+  protected EntityRepository $exampleRepository;
 
-    private AbstractExampleRoute $decorated;
+  private AbstractExampleRoute $decorated;
 
-    public function __construct(EntityRepository $exampleRepository, AbstractExampleRoute $exampleRoute)
-    {
-        $this->exampleRepository = $exampleRepository;
-        $this->decorated = $exampleRoute;
-    }
+  public function __construct(EntityRepository $exampleRepository, AbstractExampleRoute $exampleRoute)
+  {
+    $this->exampleRepository = $exampleRepository;
+    $this->decorated = $exampleRoute;
+  }
 
-    public function getDecorated(): AbstractExampleRoute
-    {
-        return $this->decorated;
-    }
-    
-    #[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET', 'POST'], defaults: ['_entity' => 'category'])]
-    public function load(Criteria $criteria, SalesChannelContext $context): ExampleRouteResponse
-    {
-        // We must call this function when using the decorator approach
-        $exampleResponse = $this->decorated->load();
-        
-        // do some custom stuff
-        $exampleResponse->headers->add([ 'cache-control' => "max-age=10000" ])
+  public function getDecorated(): AbstractExampleRoute
+  {
+    return $this->decorated;
+  }
 
-        return $exampleResponse;›
-    }
+  #[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET', 'POST'], defaults: ['_entity' => 'category'])]
+  public function load(Criteria $criteria, SalesChannelContext $context): ExampleRouteResponse
+  {
+    // We must call this function when using the decorator approach
+    $exampleResponse = $this->decorated->load();
+
+    // do some custom stuff
+    $exampleResponse->headers->add(['cache-control' => "max-age=10000"]);
+
+    return $exampleResponse;
+  }
 }
 ```
 

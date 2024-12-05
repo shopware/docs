@@ -65,13 +65,13 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route(defaults: ['_routeScope' => ['storefront']])]
 class ExampleController extends StorefrontController
 {
-    #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'])]
-    public function showExample(): Response
-    {
-        return $this->renderStorefront('@SwagBasicExample/storefront/page/example.html.twig', [
-            'example' => 'Hello world'
-        ]);
-    }
+  #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'])]
+  public function showExample(): Response
+  {
+    return $this->renderStorefront('@SwagBasicExample/storefront/page/example.html.twig', [
+      'example' => 'Hello world'
+    ]);
+  }
 }
 ```
 
@@ -96,11 +96,11 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route(defaults: ['_routeScope' => ['storefront']])]
 class ExampleController extends StorefrontController
 {
-    #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'], defaults: ['_routeScope' => ['storefront']])]
-    public function showExample(): Response
-    {
-        ...
-    }
+  #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'], defaults: ['_routeScope' => ['storefront']])]
+  public function showExample(): Response
+  {
+    // ...
+  }
 }
 ```
 
@@ -182,11 +182,11 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route(defaults: ['_routeScope' => ['storefront']])]
 class ExampleController extends StorefrontController
 {    
-    #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'])]
-    public function showExample(Request $request, SalesChannelContext $context): Response
-    {
-        ...
-    }
+  #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'])]
+  public function showExample(Request $request, SalesChannelContext $context): Response
+  {
+    // ...
+  }
 }
 ```
 

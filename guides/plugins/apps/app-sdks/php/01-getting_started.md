@@ -33,9 +33,9 @@ $psrRequest = ...;
 $registrationService = new \Shopware\App\SDK\Registration\RegistrationService($app, $repository);
 
 $response = match($_SERVER['REQUEST_URI']) {
-    '/app/register' => $registrationService->register($psrRequest),
-    '/app/register/confirm' => $registrationService->registerConfirm($psrRequest),
-    default => throw new \RuntimeException('Unknown route')
+  '/app/register' => $registrationService->register($psrRequest),
+  '/app/register/confirm' => $registrationService->registerConfirm($psrRequest),
+  default => throw new \RuntimeException('Unknown route')
 };
 
 // return the response

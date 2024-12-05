@@ -25,25 +25,27 @@ For storing the scripts in the database we use a new entity `app_script_conditio
 ### `AppScriptConditionDefinition` and associations
 
 ```php
+<?php
+
 class AppScriptConditionDefinition extends EntityDefinition
 {
-    public const ENTITY_NAME = 'app_script_condition';
+  public const ENTITY_NAME = 'app_script_condition';
 
-    // ...
+  // ...
 
-    protected function defineFields(): FieldCollection
-    {
-        return new FieldCollection([
-            (new IdField('id', 'id'))->addFlags(new PrimaryKey(), new Required()),
-            new TranslatedField('name'),
-            (new BoolField('active', 'active'))->addFlags(new Required()),
-            new StringField('group', 'group'),
-            (new LongTextField('script', 'script'))->addFlags(new Required(), new AllowHtml(false)),
-            new JsonField('constraints', 'constraints'),
-            (new FkField('app_id', 'appId', AppDefinition::class))->addFlags(new Required()),
-            (new OneToManyAssociationField('conditions', RuleConditionDefinition::class, 'script_id', 'id'))->addFlags(new SetNullOnDelete(), new ReverseInherited('script')),
-        ]);
-    }
+  protected function defineFields(): FieldCollection
+  {
+    return new FieldCollection([
+      (new IdField('id', 'id'))->addFlags(new PrimaryKey(), new Required()),
+      new TranslatedField('name'),
+      (new BoolField('active', 'active'))->addFlags(new Required()),
+      new StringField('group', 'group'),
+      (new LongTextField('script', 'script'))->addFlags(new Required(), new AllowHtml(false)),
+      new JsonField('constraints', 'constraints'),
+      (new FkField('app_id', 'appId', AppDefinition::class))->addFlags(new Required()),
+      (new OneToManyAssociationField('conditions', RuleConditionDefinition::class, 'script_id', 'id'))->addFlags(new SetNullOnDelete(), new ReverseInherited('script')),
+    ]);
+  }
 }
 ```
 
@@ -85,28 +87,30 @@ Finally the `values` property contains an array of actual parameters, provided b
 #### Complete draft for `ScriptRule`
 
 ```php
+<?php
+
 class ScriptRule extends Rule
 {
-    const CONSTRAINT_MAPPING = [
-        'notBlank' => NotBlank::class,
-        'arrayOfUuid' => ArrayOfUuid::class,
-        'arrayOfType' => ArrayOfType::class,
-        'choice' => Choice::class,
-        'type' => Type::class,
-    ];
+  const CONSTRAINT_MAPPING = [
+    'notBlank' => NotBlank::class,
+    'arrayOfUuid' => ArrayOfUuid::class,
+    'arrayOfType' => ArrayOfType::class,
+    'choice' => Choice::class,
+    'type' => Type::class,
+  ];
 
-    protected string $script = '';
+  protected string $script = '';
 
-    protected array $constraints = [];
+  protected array $constraints = [];
 
-    protected array $values = [];
+  protected array $values = [];
 
-    public function match(RuleScope $scope): bool
-    {
-        $context = array_merge(['scope' => $scope], $this->values);
-        $script = new Script(
-            $this->getName(),
-            sprintf('
+  public function match(RuleScope $scope): bool
+  {
+    $context = array_merge(['scope' => $scope], $this->values);
+    $script = new Script(
+      $this->getName(),
+      sprintf('
                 {%% apply spaceless %%}
                     {%% macro evaluate(%1$s) %%}
                         %2$s
@@ -116,45 +120,45 @@ class ScriptRule extends Rule
                     {{ var }}
                 {%% endapply  %%}
             ', implode(', ', array_keys($context)), $this->script),
-            $scope->getCurrentTime(),
-            null
-        );
+      $scope->getCurrentTime(),
+      null
+    );
 
-        $twig = new TwigEnvironment(
-            new ScriptTwigLoader($script),
-            $script->getTwigOptions()
-        );
+    $twig = new TwigEnvironment(
+      new ScriptTwigLoader($script),
+      $script->getTwigOptions()
+    );
 
-        $twig->addExtension(new PhpSyntaxExtension());
+    $twig->addExtension(new PhpSyntaxExtension());
 
-        return filter_var(
-            trim($twig->render($this->getName(), $context)),
-            FILTER_VALIDATE_BOOLEAN
-        );
+    return filter_var(
+      trim($twig->render($this->getName(), $context)),
+      FILTER_VALIDATE_BOOLEAN
+    );
+  }
+
+  public function getConstraints(): array
+  {
+    return $this->constraints;
+  }
+
+  public function setConstraints(array $constraints): void
+  {
+    $this->constraints = [];
+    foreach ($constraints as $name => $types) {
+      $this->constraints[$name] = array_map(function ($type) {
+        $arguments = $type['arguments'] ?? [];
+        $class = self::CONSTRAINT_MAPPING[$type['name']];
+
+        return new $class(...$arguments);
+      }, $types);
     }
+  }
 
-    public function getConstraints(): array
-    {
-        return $this->constraints;
-    }
-
-    public function setConstraints(array $constraints): void
-    {
-        $this->constraints = [];
-        foreach ($constraints as $name => $types) {
-            $this->constraints[$name] = array_map(function ($type) {
-                $arguments = $type['arguments'] ?? [];
-                $class = self::CONSTRAINT_MAPPING[$type['name']];
-
-                return new $class(...$arguments);
-            }, $types);
-        }
-    }
-
-    public function getName(): string
-    {
-        return 'scriptRule';
-    }
+  public function getName(): string
+  {
+    return 'scriptRule';
+  }
 }
 ```
 

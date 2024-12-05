@@ -31,38 +31,44 @@ The available features are currently stored in the `feature.yaml` static file an
 All activated feature flags should be registered on `Framework::boot` via `FeatureFlagRegistry::register`:
 
 ```php
+<?php declare(strict_types=1);
+
 class Framework extends Bundle
-    public function boot(): void
-    {
-        ...
-        $featureFlagRegistry = $this->container->get(FeatureFlagRegistry::class);
-        $featureFlagRegistry->register();
-    }
+{
+  public function boot(): void
+  {
+    // ...
+    $featureFlagRegistry = $this->container->get(FeatureFlagRegistry::class);
+    $featureFlagRegistry->register();
+  }
+}
 ```
 
 `FeatureFlagRegistry::registry`: in this public method, we merge the static feature flags from `feature.yaml` with the stored feature flags from the database, we then activate the feature flags which are marked as active.
 
 ```php
+<?php declare(strict_types=1);
+
 class FeatureFlagRegistry
 {
-    public function registry(): void
-    {
-        $static = $this->featureFlags;
-        $stored = $this->keyValueStorage->get(self::STORAGE_KEY, []);
+  public function registry(): void
+  {
+    $static = $this->featureFlags;
+    $stored = $this->keyValueStorage->get(self::STORAGE_KEY, []);
 
-        if (!empty($stored) && \is_string($stored)) {
-            $stored = \json_decode($stored, true, 512, \JSON_THROW_ON_ERROR);
-        }
-        
-        // Major feature flags cannot be toggled with stored flags
-        $stored = array_filter($stored, static function (array $flag) {
-            return !\array_key_exists('major', $flag) || !$flag['major'];
-        });
-
-        $flags = array_merge($static, $stored);
-        
-        Feature::registerFeatures($flags);
+    if (!empty($stored) && \is_string($stored)) {
+      $stored = \json_decode($stored, true, 512, \JSON_THROW_ON_ERROR);
     }
+
+    // Major feature flags cannot be toggled with stored flags
+    $stored = array_filter($stored, static function (array $flag) {
+      return !\array_key_exists('major', $flag) || !$flag['major'];
+    });
+
+    $flags = array_merge($static, $stored);
+
+    Feature::registerFeatures($flags);
+  }
 }
 ```
 
@@ -74,65 +80,69 @@ We introduce new admin APIs so we can either activate/deactivate the feature fla
 #### Admin API
 
 ```php
+<?php declare(strict_types=1);
+
 class FeatureFlagController extends AbstractController
 {
-    #[Route("/api/_action/feature-flag/enable/{feature}", name="api.action.feature-flag.toggle", methods={"POST"})]
-    public function enable(string $feature, Request $request): JsonResponse
-    {        
-        $this->featureFlagRegistry->enable($feature);
-        
-        return new JsonResponse(null, Response::HTTP_NO_CONTENT);
-    }
-    
-    #[Route("/api/_action/feature-flag/disable/{feature}", name="api.action.feature-flag.toggle", methods={"POST"})]
-    public function disable(string $feature, Request $request): JsonResponse
-    {        
-        $this->featureFlagRegistry->disable($feature);
-        
-        return new JsonResponse(null, Response::HTTP_NO_CONTENT);
-    }
+  #[Route("/api/_action/feature-flag/enable/{feature}", name="api.action.feature-flag.toggle", methods={"POST"})]
+  public function enable(string $feature, Request $request): JsonResponse
+  {        
+    $this->featureFlagRegistry->enable($feature);
+      
+    return new JsonResponse(null, Response::HTTP_NO_CONTENT);
+  }
+  
+  #[Route("/api/_action/feature-flag/disable/{feature}", name="api.action.feature-flag.toggle", methods={"POST"})]
+  public function disable(string $feature, Request $request): JsonResponse
+  {        
+    $this->featureFlagRegistry->disable($feature);
+      
+    return new JsonResponse(null, Response::HTTP_NO_CONTENT);
+  }
 
-    #[Route("/api/_action/feature-flag", name="api.action.feature-flag.load", methods={"GET"})]
-    public function load(Request $request): JsonResponse
-    {
-        $featureFlags = Feature::getRegisteredFeatures();
-        
-        return new JsonResponse($featureFlags);
-    }
+  #[Route("/api/_action/feature-flag", name="api.action.feature-flag.load", methods={"GET"})]
+  public function load(Request $request): JsonResponse
+  {
+    $featureFlags = Feature::getRegisteredFeatures();
+      
+    return new JsonResponse($featureFlags);
+  }
 }
 ```
 
 `FeatureFlagRegistry::enable` & `disable` methods: in these public methods, we enable feature flags and store the new state in the database. We also dispatch an event `BeforeFeatureFlagToggleEvent` before toggling the feature flag and `FeatureFlagToggledEvent` after toggling the feature flag. This is helpful for plugins to listen to these events and do some actions before/after toggling the feature flag
 
 ```php
+<?php declare(strict_types=1);
+
 class FeatureFlagRegistry
 {
-    private function enable(string $feature, bool $active): void
-    {
-        $registeredFlags = Feature::getRegisteredFeatures();
-        
-        if (!array_key_exists($feature, $registeredFlags)) {
-            return;
-        }
-        
-        if ($registeredFlags[$feature]['major'] === 'true') {
-            // cannot toggle major feature flags
-            return;
-        }
-        
-        $registeredFlags[$feature] = [
-            'active' => $active, // mark the flag as activated or deactivated
-            'static' => array_key_exists($feature, $this->staticFlags), // check if the flag is static
-            ...$registeredFlags[$feature],
-        ];
-                
-        $this->dispatcher->dispatch(new BeforeFeatureFlagToggleEvent($feature, $active));
+  private function enable(string $feature, bool $active): void
+  {
+    $registeredFlags = Feature::getRegisteredFeatures();
 
-        $this->keyValueStorage->set(self::STORAGE_KEY, $registeredFlags);
-        Feature::toggle($feature, $active);
-
-        $this->dispatcher->dispatch(new FeatureFlagToggledEvent($feature, $active));
+    if (!array_key_exists($feature, $registeredFlags)) {
+      return;
     }
+
+    if ($registeredFlags[$feature]['major'] === 'true') {
+      // cannot toggle major feature flags
+      return;
+    }
+
+    $registeredFlags[$feature] = [
+      'active' => $active, // mark the flag as activated or deactivated
+      'static' => array_key_exists($feature, $this->staticFlags), // check if the flag is static
+      ...$registeredFlags[$feature],
+    ];
+
+    $this->dispatcher->dispatch(new BeforeFeatureFlagToggleEvent($feature, $active));
+
+    $this->keyValueStorage->set(self::STORAGE_KEY, $registeredFlags);
+    Feature::toggle($feature, $active);
+
+    $this->dispatcher->dispatch(new FeatureFlagToggledEvent($feature, $active));
+  }
 }
 ```
 

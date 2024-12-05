@@ -40,7 +40,7 @@ $criteria = new Criteria();
 $criteria->setLimit(1);
 
 $criteria->addAggregation(
-    new AvgAggregation('avg-price', 'price')
+  new AvgAggregation('avg-price', 'price')
 );
 
 $result = $repository->search($criteria, $context);
@@ -111,7 +111,7 @@ $criteria = new Criteria();
 $criteria->setLimit(1);
 
 $criteria->addAggregation(
-    new CountAggregation('count-manufacturers', 'manufacturerId')
+  new CountAggregation('count-manufacturers', 'manufacturerId')
 );
 
 $result = $repository->search($criteria, $context);
@@ -182,7 +182,7 @@ $criteria = new Criteria();
 $criteria->setLimit(1);
 
 $criteria->addAggregation(
-    new MaxAggregation('max-price', 'price')
+  new MaxAggregation('max-price', 'price')
 );
 
 $result = $repository->search($criteria, $context);
@@ -253,7 +253,7 @@ $criteria = new Criteria();
 $criteria->setLimit(1);
 
 $criteria->addAggregation(
-    new MinAggregation('min-price', 'price')
+  new MinAggregation('min-price', 'price')
 );
 
 $result = $repository->search($criteria, $context);
@@ -324,7 +324,7 @@ $criteria = new Criteria();
 $criteria->setLimit(1);
 
 $criteria->addAggregation(
-    new SumAggregation('sum-price', 'price')
+  new SumAggregation('sum-price', 'price')
 );
 
 $result = $repository->search($criteria, $context);
@@ -395,7 +395,7 @@ $criteria = new Criteria();
 $criteria->setLimit(1);
 
 $criteria->addAggregation(
-    new StatsAggregation('stats-price', 'price')
+  new StatsAggregation('stats-price', 'price')
 );
 
 $result = $repository->search($criteria, $context);
@@ -478,12 +478,12 @@ $criteria = new Criteria();
 $criteria->setLimit(1);
 
 $criteria->addAggregation(
-    new TermsAggregation(
-        'manufacturer-ids',
-        'manufacturerId',
-        10,
-        new FieldSorting('manufacturer.name', FieldSorting::DESCENDING)
-    )
+  new TermsAggregation(
+    'manufacturer-ids',
+    'manufacturerId',
+    10,
+    new FieldSorting('manufacturer.name', FieldSorting::DESCENDING)
+  )
 );
 
 $result = $repository->search($criteria, $context);
@@ -492,8 +492,8 @@ $result = $repository->search($criteria, $context);
 $aggregation = $result->getAggregations()->get('manufacturer-ids');
 
 foreach ($aggregation->getBuckets() as $bucket) {
-    $bucket->getKey();
-    $bucket->getCount();
+  $bucket->getKey();
+  $bucket->getCount();
 }
 ```
 
@@ -578,13 +578,13 @@ $criteria = new Criteria();
 $criteria->setLimit(1);
 
 $criteria->addAggregation(
-    new FilterAggregation(
-        'active-price-avg',
-        new AvgAggregation('avg-price', 'price'),
-        [
-            new EqualsFilter('active', true)
-        ]
-    )
+  new FilterAggregation(
+    'active-price-avg',
+    new AvgAggregation('avg-price', 'price'),
+    [
+      new EqualsFilter('active', true)
+    ]
+  )
 );
 
 $result = $repository->search($criteria, $context);
@@ -666,7 +666,7 @@ $criteria = new Criteria();
 $criteria->setLimit(1);
 
 $criteria->addAggregation(
-    new EntityAggregation('manufacturers', 'manufacturerId', 'product_manufacturer')
+  new EntityAggregation('manufacturers', 'manufacturerId', 'product_manufacturer')
 );
 
 $result = $repository->search($criteria, $context);
@@ -676,7 +676,7 @@ $aggregation = $result->getAggregations()->get('manufacturers');
 
 /** @var ProductManufacturerEntity $entity */
 foreach ($aggregation->getEntities() as $entity) {
-    $entity->getName();
+  $entity->getName();
 }
 ```
 
@@ -756,11 +756,11 @@ $criteria = new Criteria();
 $criteria->setLimit(1);
 
 $criteria->addAggregation(
-    new DateHistogramAggregation(
-        'release-dates',
-        'releaseDate',
-        DateHistogramAggregation::PER_MONTH
-    )
+  new DateHistogramAggregation(
+    'release-dates',
+    'releaseDate',
+    DateHistogramAggregation::PER_MONTH
+  )
 );
 
 $result = $repository->search($criteria, $context);
@@ -769,8 +769,8 @@ $result = $repository->search($criteria, $context);
 $aggregation = $result->getAggregations()->get('release-dates');
 
 foreach ($aggregation->getBuckets() as $bucket) {
-    $bucket->getKey();
-    $bucket->getCount();
+  $bucket->getKey();
+  $bucket->getCount();
 }
 ```
 
@@ -854,15 +854,15 @@ Bound are computed in SQL as in the Elasticsearch native range aggregation:
 ```php
 $criteria = new Criteria();
 $criteria->addAggregation(
-    new RangeAggregation(
-        'price_ranges', 
-        'products.price',
-        [
-            ['to' => 100],
-            ['from' => 100, 'to' => 200],
-            ['from' => 200]
-        ]
-    )
+  new RangeAggregation(
+    'price_ranges',
+    'products.price',
+    [
+      ['to' => 100],
+      ['from' => 100, 'to' => 200],
+      ['from' => 200]
+    ]
+  )
 );
 
 $result = $repository->search($criteria, $context);
@@ -871,7 +871,7 @@ $result = $repository->search($criteria, $context);
 $aggregation = $result->getAggregations()->get('price_ranges');
 
 foreach ($aggregation->getRanges() as $key => $docCount) {
-    // ...
+  // ...
 }
 ```
 
@@ -952,22 +952,22 @@ $criteria = new Criteria();
 $criteria->setLimit(1);
 
 $criteria->addAggregation(
-    new FilterAggregation(
-        'my-filter',
-        new TermsAggregation(
-            'per-category',
-            'categories.id',
-            null,
-            null,
-            new TermsAggregation(
-                'manufacturer-ids',
-                'manufacturerId'
-            )
-        ),
-        [
-            new RangeFilter('price', ['gte' => 500])
-        ]
-    )
+  new FilterAggregation(
+    'my-filter',
+    new TermsAggregation(
+      'per-category',
+      'categories.id',
+      null,
+      null,
+      new TermsAggregation(
+        'manufacturer-ids',
+        'manufacturerId'
+      )
+    ),
+    [
+      new RangeFilter('price', ['gte' => 500])
+    ]
+  )
 );
 
 $result = $repository->search($criteria, $context);
@@ -976,14 +976,14 @@ $result = $repository->search($criteria, $context);
 $aggregation = $result->getAggregations()->get('per-category');
 
 foreach ($aggregation->getBuckets() as $bucket) {
-    $categoryId = $bucket->getKey();
+  $categoryId = $bucket->getKey();
 
-    /** @var TermsResult $manufacturers */
-    $manufacturers = $bucket->getResult();
+  /** @var TermsResult $manufacturers */
+  $manufacturers = $bucket->getResult();
 
-    foreach ($manufacturers->getBuckets() as $nestedBucket) {
-        $manufacturerId = $nestedBucket->getKey();
-    }
+  foreach ($manufacturers->getBuckets() as $nestedBucket) {
+    $manufacturerId = $nestedBucket->getKey();
+  }
 }
 ```
 

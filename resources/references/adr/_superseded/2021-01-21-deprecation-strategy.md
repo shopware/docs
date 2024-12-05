@@ -192,19 +192,19 @@ This way you don't have to mess with every single new service.
 ```php
 class Framework extends Bundle
 {
-    public function build(ContainerBuilder $container): void
-    {
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/DependencyInjection/'));
-        $loader->load('services.xml');
-        $loader->load('acl.xml');
-        $loader->load('api.xml');
-        $loader->load('app.xml');
-        $loader->load('custom-field.xml');
-        $loader->load('data-abstraction-layer.xml');
-        if (Feature::isActive('FEATURE_NEXT_22222')) {
-            $loader->load('nextLevelShopping.xml');
-        }
-   }
+  public function build(ContainerBuilder $container): void
+  {
+    $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/DependencyInjection/'));
+    $loader->load('services.xml');
+    $loader->load('acl.xml');
+    $loader->load('api.xml');
+    $loader->load('app.xml');
+    $loader->load('custom-field.xml');
+    $loader->load('data-abstraction-layer.xml');
+    if (Feature::isActive('FEATURE_NEXT_22222')) {
+      $loader->load('nextLevelShopping.xml');
+    }
+  }
 }
 ```
 
@@ -220,11 +220,10 @@ PHP
  */
 class MyTestClass
 {
-    public function __construct(SystemConfigService $firstArgument, Something $secondArgument): MyTestClass
-    {
-        FEATURE::triggerDeprecated('FEATURE_NEXT_22222', 'v6.3.4.0', 'v6.4.0', 'Use %s instead', 'MyNewTestClass');
-    }
-
+  public function __construct(SystemConfigService $firstArgument, Something $secondArgument): MyTestClass
+  {
+    FEATURE::triggerDeprecated('FEATURE_NEXT_22222', 'v6.3.4.0', 'v6.4.0', 'Use %s instead', 'MyNewTestClass');
+  }
 }
 ```
 
@@ -241,12 +240,12 @@ The old tests have to be annotated as @group legacy.
  */
 public function testOldWorkflow(): void
 {
-    Feature::skipTestIfActive('FEATURE_NEXT_22222', $this);
+  Feature::skipTestIfActive('FEATURE_NEXT_22222', $this);
 }
 
 public function testNewWorkflow(): void
 {
-    Feature::skipTestIfInActive('FEATURE_NEXT_22222', $this);
+  Feature::skipTestIfInActive('FEATURE_NEXT_22222', $this);
 }
 ```
 
@@ -254,22 +253,22 @@ public function testNewWorkflow(): void
 If you want to add an argument to a public method, you have to add the new argument as a comment and use func_get_args to get this argument if provided.
 
 ```php
-    /**
-     * @feature-deprecated tag:v6.4.0 (flag:FEATURE_NEXT_22222) - Parameter $precision will be mandatory in future implementation 
-     */
-    public function calculate(ProductEntity $product, Context $context /*, int $precision */): Product
-    {
-        if (Feature::isActive('FEATURE_NEXT_22222')) {
-            if (\func_num_args() === 3) {
-                $precision = func_get_arg(2);
-                //Do new calculation
-            } else {
-                throw new InvalidArgumentException('Argument 3 $precision is required with feature FEATURE_NEXT_22222');
-            }
-        } else {
-            //Do old calculation
-        }
+/**
+ * @feature-deprecated tag:v6.4.0 (flag:FEATURE_NEXT_22222) - Parameter $precision will be mandatory in future implementation 
+ */
+public function calculate(ProductEntity $product, Context $context /*, int $precision */): Product
+{
+  if (Feature::isActive('FEATURE_NEXT_22222')) {
+    if (\func_num_args() === 3) {
+      $precision = func_get_arg(2);
+      //Do new calculation
+    } else {
+      throw new InvalidArgumentException('Argument 3 $precision is required with feature FEATURE_NEXT_22222');
     }
+  } else {
+    //Do old calculation
+  }
+}
 ```
 
 ##### Change direct Service Call to PageLoader and route call
@@ -279,33 +278,33 @@ If you want to add an argument to a public method, you have to add the new argum
 ```php
 class Controller
 {
-    private $productService;
+  private $productService;
+  
+  public function index($id) 
+  {
+    $product = $this->productService->getProductForStorefront($id);
     
-    public function index($id) 
-    {
-        $product = $this->productService->getProductForStorefront($id);
-        
-        $page = new ProductPage($product);
-        
-        $this->render($page);
-    }
+    $page = new ProductPage($product);
+    
+    $this->render($page);
+  }
 }
 
 class ProductService
 {
-    public function getProduct(string $id)	
-    {
-        // do other required stuff
-        return $this->productRepository->search(new Criteria([$id]))->first();
-    }
-    
-    public function getProductForStorefront(string $id)	
-    {
-        // do other required stuff
-        $product = $this->productRepository->search(new Criteria([$id]))->first();
-        $this->enrichForStoreFront($product);
-        return $product;
-    }
+  public function getProduct(string $id)	
+  {
+    // do other required stuff
+    return $this->productRepository->search(new Criteria([$id]))->first();
+  }
+  
+  public function getProductForStorefront(string $id)	
+  {
+    // do other required stuff
+    $product = $this->productRepository->search(new Criteria([$id]))->first();
+    $this->enrichForStoreFront($product);
+    return $product;
+  }
 }
 ```
 
@@ -314,43 +313,43 @@ class ProductService
 ```php
 class Controller
 {
-    /** @internal (flag:FEATURE_NEXT_11111) */
-    private $loader;
-    
-    /** @deprecated tag:v6.4.0 (flag:FEATURE_NEXT_22222) $productService will be removed, use $loader instead */
-    private $productService;
-    
-    public function index($id) 
-    {
-        /** @major-deprecated tag:v6.4.0 (flag:FEATURE_NEXT_22222) productService will be removed. Keep if-branch */
-        if (Feature::isActive('FEATURE_NEXT_22222')) { 
-            $page = $this->loader->load();
-        } else {
-            $product = $this->productService->getProductForStorefront($id);
-            $page = new ProductPage($product);
-        }
-        $this->render($page);
+  /** @internal (flag:FEATURE_NEXT_11111) */
+  private $loader;
+  
+  /** @deprecated tag:v6.4.0 (flag:FEATURE_NEXT_22222) $productService will be removed, use $loader instead */
+  private $productService;
+  
+  public function index($id) 
+  {
+    /** @major-deprecated tag:v6.4.0 (flag:FEATURE_NEXT_22222) productService will be removed. Keep if-branch */
+    if (Feature::isActive('FEATURE_NEXT_22222')) { 
+      $page = $this->loader->load();
+    } else {
+      $product = $this->productService->getProductForStorefront($id);
+      $page = new ProductPage($product);
     }
+    $this->render($page);
+  }
 }
 
 class ProductService
 {
-    public function getProduct(string $id)	
-    {
-        // do other required stuff
-        return $this->productRepository->search(new Criteria([$id]))->first();
-    }
-    
-    /**
-     * @deprecated tag:v6.4.0 (flag:FEATURE_NEXT_22222) getProductForStorefront will be removed. Use ProductRoute->load() instead
-     */
-    public function getProductForStorefront(string $id)	
-    {
-        // do other required stuff
-        $product = $this->productRepository->search(new Criteria([$id]))->first();
-        $this->enrichForStoreFront($product);
-        return $product;
-    }
+  public function getProduct(string $id)	
+  {
+    // do other required stuff
+    return $this->productRepository->search(new Criteria([$id]))->first();
+  }
+  
+  /**
+   * @deprecated tag:v6.4.0 (flag:FEATURE_NEXT_22222) getProductForStorefront will be removed. Use ProductRoute->load() instead
+   */
+  public function getProductForStorefront(string $id)	
+  {
+    // do other required stuff
+    $product = $this->productRepository->search(new Criteria([$id]))->first();
+    $this->enrichForStoreFront($product);
+    return $product;
+  }
 }
 
 /**
@@ -358,14 +357,14 @@ class ProductService
  */
 class ProductLoader
 {
-    private $productRoute;
-    
-    public function load()
-    {
-        $product = $this->productRoute->load($id);
-        $page = new ProductPage($product);
-        return $page;
-    }
+  private $productRoute;
+  
+  public function load()
+  {
+    $product = $this->productRoute->load($id);
+    $page = new ProductPage($product);
+    return $page;
+  }
 }
 
 /**
@@ -373,13 +372,13 @@ class ProductLoader
  */
 class ProductRoute
 {
-    public function load($id)	
-    {
-        // do other required stuff
-        $product = $this->productService->getProduct($id);
-        $salesChannelProduct = $this->enrichSalesChannelThings($product);
-        return $salesChannelProduct;
-    }
+  public function load($id)	
+  {
+    // do other required stuff
+    $product = $this->productService->getProduct($id);
+    $salesChannelProduct = $this->enrichSalesChannelThings($product);
+    return $salesChannelProduct;
+  }
 }
 ```
 
@@ -388,65 +387,65 @@ class ProductRoute
 ```php
 class Controller
 {
-    private $loader;
-    
-    /** @deprecated tag:v6.4.0 (flag:FEATURE_NEXT_22222) $productService will be removed, use $loader instead */
-    private $productService;
-    
-    public function index($id) 
-    {
-        /** @major-deprecated tag:v6.4.0 (flag:FEATURE_NEXT_22222) productService will be removed. Keep if-branch */
-        if (Feature::isActive('FEATURE_NEXT_22222')) { 
-            $page = $this->loader->load();
-        } else {
-            $product = $this->productService->getProductForStorefront($id);
-            $page = new ProductPage($product);
-        }
-        $this->render($page);
+  private $loader;
+  
+  /** @deprecated tag:v6.4.0 (flag:FEATURE_NEXT_22222) $productService will be removed, use $loader instead */
+  private $productService;
+  
+  public function index($id) 
+  {
+    /** @major-deprecated tag:v6.4.0 (flag:FEATURE_NEXT_22222) productService will be removed. Keep if-branch */
+    if (Feature::isActive('FEATURE_NEXT_22222')) { 
+      $page = $this->loader->load();
+    } else {
+      $product = $this->productService->getProductForStorefront($id);
+      $page = new ProductPage($product);
     }
+    $this->render($page);
+  }
 }
 
 class ProductService
 {
-    public function getProduct(string $id)	
-    {
-        // do other required stuff
-        return $this->productRepository->search(new Criteria([$id]))->first();
-    }
+  public function getProduct(string $id)	
+  {
+    // do other required stuff
+    return $this->productRepository->search(new Criteria([$id]))->first();
+  }
     
-    /**
-     * @deprecated tag:v6.4.0 (flag:FEATURE_NEXT_22222) getProductForStorefront will be removed. Use ProductRoute->load() instead
-     */
-    public function getProductForStorefront(string $id)	
-    {
-        // do other required stuff
-        $product = $this->productRepository->search(new Criteria([$id]))->first();
-        $this->enrichForStoreFront($product);
-        return $product;
-    }
+  /**
+   * @deprecated tag:v6.4.0 (flag:FEATURE_NEXT_22222) getProductForStorefront will be removed. Use ProductRoute->load() instead
+   */
+  public function getProductForStorefront(string $id)	
+  {
+    // do other required stuff
+    $product = $this->productRepository->search(new Criteria([$id]))->first();
+    $this->enrichForStoreFront($product);
+    return $product;
+  }
 }
 
 class ProductLoader
 {
-    private $productRoute;
-    
-    public function load()
-    {
-        $product = $this->productRoute->load($id);
-        $page = new ProductPage($product);
-        return $page;
-    }
+  private $productRoute;
+  
+  public function load()
+  {
+    $product = $this->productRoute->load($id);
+    $page = new ProductPage($product);
+    return $page;
+  }
 }
 
 class ProductRoute
 {
-    public function load($id)	
-    {
-        // do other required stuff
-        $product = $this->productService->getProduct($id);
-        $salesChannelProduct = $this->enrichSalesChannelThings($product);
-        return $salesChannelProduct;
-    }
+  public function load($id)	
+  {
+    // do other required stuff
+    $product = $this->productService->getProduct($id);
+    $salesChannelProduct = $this->enrichSalesChannelThings($product);
+    return $salesChannelProduct;
+  }
 }
 ```
 
@@ -455,45 +454,45 @@ class ProductRoute
 ```php
 class Controller
 {
-    private $loader;
-    
-    public function index($id) 
-    {
-        $page = $this->loader->load();
-        $this->render($page);
-    }
+  private $loader;
+  
+  public function index($id) 
+  {
+    $page = $this->loader->load();
+    $this->render($page);
+  }
 }
 
 class ProductService
 {
-    public function getProduct(string $id)	
-    {
-        // do other required stuff
-        return $this->productRepository->search(new Criteria([$id]))->first();
-    }
+  public function getProduct(string $id)	
+  {
+    // do other required stuff
+    return $this->productRepository->search(new Criteria([$id]))->first();
+  }
 }
 
 class ProductLoader
 {
-    private $productRoute;
-    
-    public function load()
-    {
-        $product = $this->productRoute->load($id);
-        $page = new ProductPage($product);
-        return $page;
-    }
+  private $productRoute;
+  
+  public function load()
+  {
+    $product = $this->productRoute->load($id);
+    $page = new ProductPage($product);
+    return $page;
+  }
 }
 
 class ProductRoute
 {
-    public function load($id)	
-    {
-        // do other required stuff
-        $product = $this->productService->getProduct($id);
-        $salesChannelProduct = $this->enrichSalesChannelThings($product);
-        return $salesChannelProduct;
-    }
+  public function load($id)	
+  {
+    // do other required stuff
+    $product = $this->productService->getProduct($id);
+    $salesChannelProduct = $this->enrichSalesChannelThings($product);
+    return $salesChannelProduct;
+  }
 }
 ```
 
@@ -512,49 +511,49 @@ Should a property of a class be removed, it will be annotated as deprecated and 
 ```php
 class MyTestClass
 {
-    public $oldPublicProperty;
+  public $oldPublicProperty;
 
-    private $oldPrivateProperty;
+  private $oldPrivateProperty;
 
-    public function main(SystemConfigService $firstArgument, Something $secondArgument)
-    {
-        $this->setOldPublicProperty($secondArgument);
-    }
+  public function main(SystemConfigService $firstArgument, Something $secondArgument)
+  {
+    $this->setOldPublicProperty($secondArgument);
+  }
 
-    public function getOldPrivateProperty()
-    {
-        return $this->oldPrivateProperty;
-    }
-    
-    private function setOldPrivateProperty($oldPrivateProperty): void 
-    {
-        $this->oldPrivateProperty = $oldPrivateProperty;
-    }
+  public function getOldPrivateProperty()
+  {
+    return $this->oldPrivateProperty;
+  }
+  
+  private function setOldPrivateProperty($oldPrivateProperty): void 
+  {
+    $this->oldPrivateProperty = $oldPrivateProperty;
+  }
 
-    public function getOldPublicProperty(){
-        $this->setOldPrivateProperty($this->oldPublicProperty / 2);
-        return $this->oldPublicProperty;
-    }
-    
-    private function setOldPublicProperty($oldPublicProperty): void 
-    {
-        $this->setOldPrivateProperty($oldPublicProperty);
-        $this->oldPublicProperty = $oldPublicProperty;
-    }
+  public function getOldPublicProperty(){
+    $this->setOldPrivateProperty($this->oldPublicProperty / 2);
+    return $this->oldPublicProperty;
+  }
+  
+  private function setOldPublicProperty($oldPublicProperty): void 
+  {
+    $this->setOldPrivateProperty($oldPublicProperty);
+    $this->oldPublicProperty = $oldPublicProperty;
+  }
 
-    public function getSomething(): int 
-    {
-        return 1;
-    }
+  public function getSomething(): int 
+  {
+    return 1;
+  }
 }
 
 // The calling class
 class MyTestService
 {
-    public function __construct(MyTestClass $myTestClass): MyTestService 
-    {
-        $myTestClass->getOldPublicProperty();
-    }
+  public function __construct(MyTestClass $myTestClass): MyTestService 
+  {
+    $myTestClass->getOldPublicProperty();
+  }
 }
 ```
 
@@ -563,143 +562,143 @@ class MyTestService
 ```php
 class MyTestClass
 {
-    /**
-     * @deprecated (flag:FEATURE_NEXT_22222) property will be removed. Use $newPublicProperty instead
-     * adr-explain: deprecated, because this property is public and could be used anyhwere. 
-     */
-    public $oldPublicProperty;
+  /**
+   * @deprecated (flag:FEATURE_NEXT_22222) property will be removed. Use $newPublicProperty instead
+   * adr-explain: deprecated, because this property is public and could be used anyhwere. 
+   */
+  public $oldPublicProperty;
+  
+  /**
+   * @internal (flag:FEATURE_NEXT_11111)
+   */
+  public $newPublicProperty;
+
+  /**
+   * @feature-deprecated (flag:FEATURE_NEXT_11111) property will be removed. Use $newPrivateProperty instead
+   * adr-explain: minor flag used, because this property is private and can be removed as soon as the development is finished
+   */
+  private $oldPrivateProperty;
+
+  /**
+   * @internal (flag:FEATURE_NEXT_11111)
+   * adr-explain: minor flag used, because this new property can be used as soon as the development is finished 
+   */
+  private $newPrivateProperty;
+
+  public function main(SystemConfigService $firstArgument, Something $secondArgument): MyTestClass
+  {
+    /** @feature-deprecated (flag:FEATURE_NEXT_11111) setOldPublicProperty will be removed on feature release. Remove this call also */
+    if (!Feature::isActive('FEATURE_NEXT_11111')) {
+      $this->setOldPublicProperty($secondArgument);
+    } else {
+      $this->setNewPublicProperty($secondArgument * 2);
+    }
+  }
+
+  /**
+   * @internal (flag:FEATURE_NEXT_11111)
+   */
+  public function getNewPrivateProperty(){
+    if (!Feature::isActive('FEATURE_NEXT_11111')) {
+      throw new FeatureNotActiveException('FEATURE_NEXT_11111');
+    }
+
+    return $this->newPrivateProperty;
+  }
+
+  /**
+   * @internal (flag:FEATURE_NEXT_11111) 
+   */
+  public function setNewPrivateProperty($newPrivateProperty): void 
+  {
+      if (!Feature::isActive('FEATURE_NEXT_11111')) {
+      throw new FeatureNotActiveException('FEATURE_NEXT_11111');
+      }
+
+    $this->newPrivateProperty = $newPrivateProperty;
+  }
+
+  /**
+   * @internal (flag:FEATURE_NEXT_11111)
+   */
+  public function getNewPublicProperty(){
+    if (!Feature::isActive('FEATURE_NEXT_11111')) {
+      throw new FeatureNotActiveException('FEATURE_NEXT_11111');
+    }
+
+    return $this->newPublicProperty;
+  }
+
+  /**
+   * @internal (flag:FEATURE_NEXT_11111)
+   */    
+  public function setNewPublicProperty($newPublicProperty): void 
+  {
+    if (!Feature::isActive('FEATURE_NEXT_11111')) {
+      throw new FeatureNotActiveException('FEATURE_NEXT_11111');
+    }
+
+    $this->newPublicProperty = $newPublicProperty;
+  }
+
+  /**
+   * @deprecated (flag:FEATURE_NEXT_22222) getter will be removed. Use getNewPrivateProperty instead
+   * adr-explain: @deprecated because this is a public method which can be called from plugins etc. 
+   *              Attention! The used property was changed to the newPrivateProperty to make it possible to remove
+   *              the old one as soon as possible.
+   */
+  public function getOldPrivateProperty()
+  {
+    return $this->newPrivateProperty / 2;
+  }
+
+  /**
+   * @feature-deprecated (flag:FEATURE_NEXT_11111) setter will be removed. Use setNewPrivateProperty instead
+   * adr-explain: @feature-deprecated because this is a private method which can't be called from outside
+   */    
+  private function setOldPrivateProperty($oldPrivateProperty): void 
+  {
+    $this->oldPrivateProperty = $oldPrivateProperty;
+  }
+
+  /**
+   * @deprecated (flag:FEATURE_NEXT_22222) setter will be removed. Use setNewPublicProperty instead
+   * adr-explain: @deprecated because this is a public method which can be called from plugins etc.
+   */    
+  public function getOldPublicProperty(){
+    /** @feature-deprecated (flag:FEATURE_NEXT_11111) setOldPrivateProperty will be removed on feature release. Keep the else branch*/
+    if (!FEATURE::isActive('FEATURE_NEXT_11111')) {
+      $this->setOldPrivateProperty($this->oldPublicProperty / 2);
+    } else {
+      $this->setNewPrivateProperty($this->oldPublicProperty * 2);
+    }
     
-    /**
-     * @internal (flag:FEATURE_NEXT_11111)
-     */
-    public $newPublicProperty;
+    return $this->oldPublicProperty;
+  }
 
-    /**
-     * @feature-deprecated (flag:FEATURE_NEXT_11111) property will be removed. Use $newPrivateProperty instead
-     * adr-explain: minor flag used, because this property is private and can be removed as soon as the development is finished
-     */
-    private $oldPrivateProperty;
-
-    /**
-     * @internal (flag:FEATURE_NEXT_11111)
-     * adr-explain: minor flag used, because this new property can be used as soon as the development is finished 
-     */
-    private $newPrivateProperty;
-
-    public function main(SystemConfigService $firstArgument, Something $secondArgument): MyTestClass
-    {
-        /** @feature-deprecated (flag:FEATURE_NEXT_11111) setOldPublicProperty will be removed on feature release. Remove this call also */
-        if (!Feature::isActive('FEATURE_NEXT_11111')) {
-            $this->setOldPublicProperty($secondArgument);
-        } else {
-            $this->setNewPublicProperty($secondArgument * 2);
-        }
-    }
-
-    /**
-     * @internal (flag:FEATURE_NEXT_11111)
-     */
-    public function getNewPrivateProperty(){
-        if (!Feature::isActive('FEATURE_NEXT_11111')) {
-            throw new FeatureNotActiveException('FEATURE_NEXT_11111');
-        }
-
-        return $this->newPrivateProperty;
-    }
-
-    /**
-     * @internal (flag:FEATURE_NEXT_11111) 
-     */
-    public function setNewPrivateProperty($newPrivateProperty): void 
-    {
-         if (!Feature::isActive('FEATURE_NEXT_11111')) {
-            throw new FeatureNotActiveException('FEATURE_NEXT_11111');
-         }
-
-        $this->newPrivateProperty = $newPrivateProperty;
-    }
-
-    /**
-     * @internal (flag:FEATURE_NEXT_11111)
-     */
-    public function getNewPublicProperty(){
-        if (!Feature::isActive('FEATURE_NEXT_11111')) {
-            throw new FeatureNotActiveException('FEATURE_NEXT_11111');
-        }
-
-        return $this->newPublicProperty;
-    }
-
-    /**
-     * @internal (flag:FEATURE_NEXT_11111)
-     */    
-    public function setNewPublicProperty($newPublicProperty): void 
-    {
-        if (!Feature::isActive('FEATURE_NEXT_11111')) {
-            throw new FeatureNotActiveException('FEATURE_NEXT_11111');
-        }
-
-        $this->newPublicProperty = $newPublicProperty;
-    }
-
-    /**
-     * @deprecated (flag:FEATURE_NEXT_22222) getter will be removed. Use getNewPrivateProperty instead
-     * adr-explain: @deprecated because this is a public method which can be called from plugins etc. 
-     *              Attention! The used property was changed to the newPrivateProperty to make it possible to remove
-     *              the old one as soon as possible.
-     */
-    public function getOldPrivateProperty()
-    {
-        return $this->newPrivateProperty / 2;
-    }
-
-    /**
-     * @feature-deprecated (flag:FEATURE_NEXT_11111) setter will be removed. Use setNewPrivateProperty instead
-     * adr-explain: @feature-deprecated because this is a private method which can't be called from outside
-     */    
-    private function setOldPrivateProperty($oldPrivateProperty): void 
-    {
-        $this->oldPrivateProperty = $oldPrivateProperty;
-    }
-
-    /**
-     * @deprecated (flag:FEATURE_NEXT_22222) setter will be removed. Use setNewPublicProperty instead
-     * adr-explain: @deprecated because this is a public method which can be called from plugins etc.
-     */    
-    public function getOldPublicProperty(){
-        /** @feature-deprecated (flag:FEATURE_NEXT_11111) setOldPrivateProperty will be removed on feature release. Keep the else branch*/
-        if (!FEATURE::isActive('FEATURE_NEXT_11111')) {
-            $this->setOldPrivateProperty($this->oldPublicProperty / 2);
-        } else {
-            $this->setNewPrivateProperty($this->oldPublicProperty * 2);
-        }
-        
-        return $this->oldPublicProperty;
-    }
-
-    /**
-     * @feature-deprecated (flag:FEATURE_NEXT_11111) setter will be removed. Use setNewPublicProperty instead
-     * adr-explain: @feature-deprecated because this is a private method which can't be called from outside 
-     */        
-    private function setOldPublicProperty($oldPublicProperty): void 
-    {
-        $this->oldPublicProperty = $oldPublicProperty;
-    }
+  /**
+   * @feature-deprecated (flag:FEATURE_NEXT_11111) setter will be removed. Use setNewPublicProperty instead
+   * adr-explain: @feature-deprecated because this is a private method which can't be called from outside 
+   */        
+  private function setOldPublicProperty($oldPublicProperty): void 
+  {
+    $this->oldPublicProperty = $oldPublicProperty;
+  }
 
 }
 
 // The calling class
 class MyTestService
 {
-    public function __construct(MyTestClass $myTestClass): MyTestService 
-    {
-        /** @major-deprecated tag:v6.4.0 (flag:FEATURE_NEXT_22222) keep the if branch remove the else branch */
-        if (FEATURE::isActive('FEATURE_NEXT_22222')) {
-            $myTestClass->getNewPublicProperty();
-        } else {
-            $myTestClass->getOldPublicProperty();
-        } 
-    }
+  public function __construct(MyTestClass $myTestClass): MyTestService 
+  {
+    /** @major-deprecated tag:v6.4.0 (flag:FEATURE_NEXT_22222) keep the if branch remove the else branch */
+    if (FEATURE::isActive('FEATURE_NEXT_22222')) {
+      $myTestClass->getNewPublicProperty();
+    } else {
+      $myTestClass->getOldPublicProperty();
+    } 
+  }
 }
 ```
 
@@ -708,104 +707,103 @@ class MyTestService
 ```php
 class MyTestClass
 {
-    /**
-     * @deprecated (flag:FEATURE_NEXT_22222) property will be removed. Use $newPublicProperty instead
-     */
-    public $oldPublicProperty;
+  /**
+   * @deprecated (flag:FEATURE_NEXT_22222) property will be removed. Use $newPublicProperty instead
+   */
+  public $oldPublicProperty;
+  
+  /**
+   * adr-explain: @internal removed because it was tagged with minor feature flag
+   */
+  public $newPublicProperty;
+
+  /**
+   * adr-explain: $oldPrivateProperty was removed. This commentblock is only here for this adr example. Remove the property completly
+   */
+
+  /**
+   * adr-explain: @internal removed because it was tagged with minor feature flag
+   */
+  private $newPrivateProperty;
+
+  public function main(SystemConfigService $firstArgument, Something $secondArgument): MyTestClass
+  {
+    /** adr-explain: old call to private method removed because it was tagged with the minor feature flag */
+    $this->setNewPublicProperty($secondArgument * 2);
+  }
+
+  /**
+   * adr-explain: @internal removed because it was tagged with minor feature flag
+   */
+  public function getNewPrivateProperty(){
+    /** adr-explain: Exception removed because it was tagged with the minor feature flag */
+
+    return $this->newPrivateProperty;
+  }
+
+  /**
+   * adr-explain: @internal removed because it was tagged with minor feature flag
+   */
+  public function setNewPrivateProperty($newPrivateProperty): void 
+  {
+    $this->newPrivateProperty = $newPrivateProperty;
+  }
+
+  /**
+   * adr-explain: @internal removed because it was tagged with minor feature flag
+   */
+  public function getNewPublicProperty(){
+    return $this->newPublicProperty;
+  }
+
+  /**
+   * adr-explain: @internal removed because it was tagged with minor feature flag
+   */    
+  public function setNewPublicProperty($newPublicProperty): void 
+  {
+    $this->newPublicProperty = $newPublicProperty;
+  }
+
+  /**
+   * @deprecated (flag:FEATURE_NEXT_22222) getter will be removed. Use getNewPrivateProperty instead
+   * adr-explain: @deprecated because this is a public method which can be called from plugins etc. 
+   *              Attention! The used property was changed to the newPrivateProperty to make it possible to remove
+   *              the old one as soon as possible.
+   */
+  public function getOldPrivateProperty()
+  {
+    FEATURE::triggerDeprecated('FEATURE_NEXT_22222', 'v6.3.4.0', 'v6.4.0', 'Method getOldPrivateProperty will be removed, use getNewPrivateProberty instead');
+    return $this->newPrivateProperty / 2;
+  }
+
+  /**
+   * adr-explain: the method setOldPrivateProperty was removed because this is a private method tagged with the minor flag
+   */    
+
+  /**
+   * @deprecated (flag:FEATURE_NEXT_22222) setter will be removed. Use setNewPublicProperty instead
+   * adr-explain: @deprecated because this is a public method which can be called from plugins etc.
+   */    
+  public function getOldPublicProperty(){
+    FEATURE::triggerDeprecated('FEATURE_NEXT_22222', 'v6.3.4.0', 'v6.4.0', 'Method getOldPrivateProperty will be removed, use getNewPrivateProberty instead');
+    $this->setNewPrivateProperty($this->oldPublicProperty * 2);
     
-    /**
-     * adr-explain: @internal removed because it was tagged with minor feature flag
-     */
-    public $newPublicProperty;
-
-    /**
-     * adr-explain: $oldPrivateProperty was removed. This commentblock is only here for this adr example. Remove the property completly
-     */
-
-    /**
-     * adr-explain: @internal removed because it was tagged with minor feature flag
-     */
-    private $newPrivateProperty;
-
-    public function main(SystemConfigService $firstArgument, Something $secondArgument): MyTestClass
-    {
-        /** adr-explain: old call to private method removed because it was tagged with the minor feature flag */
-        $this->setNewPublicProperty($secondArgument * 2);
-    }
-
-    /**
-     * adr-explain: @internal removed because it was tagged with minor feature flag
-     */
-    public function getNewPrivateProperty(){
-        /** adr-explain: Exception removed because it was tagged with the minor feature flag */
-
-        return $this->newPrivateProperty;
-    }
-
-    /**
-     * adr-explain: @internal removed because it was tagged with minor feature flag
-     */
-    public function setNewPrivateProperty($newPrivateProperty): void 
-    {
-        $this->newPrivateProperty = $newPrivateProperty;
-    }
-
-    /**
-     * adr-explain: @internal removed because it was tagged with minor feature flag
-     */
-    public function getNewPublicProperty(){
-        return $this->newPublicProperty;
-    }
-
-    /**
-     * adr-explain: @internal removed because it was tagged with minor feature flag
-     */    
-    public function setNewPublicProperty($newPublicProperty): void 
-    {
-        $this->newPublicProperty = $newPublicProperty;
-    }
-
-    /**
-     * @deprecated (flag:FEATURE_NEXT_22222) getter will be removed. Use getNewPrivateProperty instead
-     * adr-explain: @deprecated because this is a public method which can be called from plugins etc. 
-     *              Attention! The used property was changed to the newPrivateProperty to make it possible to remove
-     *              the old one as soon as possible.
-     */
-    public function getOldPrivateProperty()
-    {
-        FEATURE::triggerDeprecated('FEATURE_NEXT_22222', 'v6.3.4.0', 'v6.4.0', 'Method getOldPrivateProperty will be removed, use getNewPrivateProberty instead');
-        return $this->newPrivateProperty / 2;
-    }
-
-    /**
-     * adr-explain: the method setOldPrivateProperty was removed because this is a private method tagged with the minor flag
-     */    
-
-    /**
-     * @deprecated (flag:FEATURE_NEXT_22222) setter will be removed. Use setNewPublicProperty instead
-     * adr-explain: @deprecated because this is a public method which can be called from plugins etc.
-     */    
-    public function getOldPublicProperty(){
-
-        FEATURE::triggerDeprecated('FEATURE_NEXT_22222', 'v6.3.4.0', 'v6.4.0', 'Method getOldPrivateProperty will be removed, use getNewPrivateProberty instead');
-        $this->setNewPrivateProperty($this->oldPublicProperty * 2);
-        
-        return $this->oldPublicProperty;
-    }
+    return $this->oldPublicProperty;
+  }
 }
 
 // The calling class
 class MyTestService
 {
-    public function __construct(MyTestClass $myTestClass): MyTestService 
-    {
-        /** @major-deprecated tag:v6.4.0 (flag:FEATURE_NEXT_22222) keep the if branch, remove the old branch */
-        if (FEATURE::isActive('FEATURE_NEXT_22222')) {
-            $myTestClass->getNewPublicProperty();
-        } else {
-            $myTestClass->getOldPublicProperty();
-        } 
-    }
+  public function __construct(MyTestClass $myTestClass): MyTestService 
+  {
+    /** @major-deprecated tag:v6.4.0 (flag:FEATURE_NEXT_22222) keep the if branch, remove the old branch */
+    if (FEATURE::isActive('FEATURE_NEXT_22222')) {
+      $myTestClass->getNewPublicProperty();
+    } else {
+      $myTestClass->getOldPublicProperty();
+    } 
+  }
 }
 ```
 
@@ -814,50 +812,50 @@ class MyTestService
 ```php
 class MyTestClass
 {
-    /**
-     * adr-explain: $oldPublicProperty was removed. This commentblock is only here for this adr example. Remove the property completly
-     */
-    
-    public $newPublicProperty;
+  /**
+   * adr-explain: $oldPublicProperty was removed. This commentblock is only here for this adr example. Remove the property completly
+   */
+  
+  public $newPublicProperty;
 
-    private $newPrivateProperty;
+  private $newPrivateProperty;
 
-    public function main(SystemConfigService $firstArgument, Something $secondArgument): MyTestClass
-    {
-        $this->setNewPublicProperty($secondArgument * 2);
-    }
+  public function main(SystemConfigService $firstArgument, Something $secondArgument): MyTestClass
+  {
+    $this->setNewPublicProperty($secondArgument * 2);
+  }
 
-    public function getNewPrivateProperty(){
-        return $this->newPrivateProperty;
-    }
+  public function getNewPrivateProperty(){
+    return $this->newPrivateProperty;
+  }
 
-    public function setNewPrivateProperty($newPrivateProperty): void 
-    {
-        $this->newPrivateProperty = $newPrivateProperty;
-    }
+  public function setNewPrivateProperty($newPrivateProperty): void 
+  {
+    $this->newPrivateProperty = $newPrivateProperty;
+  }
 
-    public function getNewPublicProperty(){
-        return $this->newPublicProperty;
-    }
+  public function getNewPublicProperty(){
+    return $this->newPublicProperty;
+  }
 
-    public function setNewPublicProperty($newPublicProperty): void 
-    {
-        $this->newPublicProperty = $newPublicProperty;
-    }
+  public function setNewPublicProperty($newPublicProperty): void 
+  {
+    $this->newPublicProperty = $newPublicProperty;
+  }
 
-    /**
-     * adr-explain: method getOldPrivateProperty was removed because it was major-deprecated. This commentblock is only here for this adr example. Just remove the method and the annotations.
-     */
+  /**
+   * adr-explain: method getOldPrivateProperty was removed because it was major-deprecated. This commentblock is only here for this adr example. Just remove the method and the annotations.
+   */
 }
 
 // The calling class
 class MyTestService
 {
-    public function __construct(MyTestClass $myTestClass): MyTestService 
-    {
-        /** adr-explain: old call to deprecated method removed because it was tagged with the major feature flag */
-        $myTestClass->getNewPublicProperty();
-    }
+  public function __construct(MyTestClass $myTestClass): MyTestService 
+  {
+    /** adr-explain: old call to deprecated method removed because it was tagged with the major feature flag */
+    $myTestClass->getNewPublicProperty();
+  }
 }
 ```
 
@@ -871,36 +869,35 @@ If you cannot be sure (and with public methods, you barely can be sure), you hav
 ```php
 class MyTestClass
 {
-    /**
-     * @deprecated (flag:FEATURE_NEXT_22222) method will be removed. Use getSomewhat instead
-     */ 
-    public  function getSomething(): int 
-    {
-        FEATURE::triggerDeprecated('FEATURE_NEXT_22222', 'v6.3.4.0', 'v6.4.0', 'Method getSomething will be removed use getSomewhat instead. The Return value of new Method is string instead of int');
-        return 1;
-    }
+  /**
+   * @deprecated (flag:FEATURE_NEXT_22222) method will be removed. Use getSomewhat instead
+   */ 
+  public  function getSomething(): int 
+  {
+    FEATURE::triggerDeprecated('FEATURE_NEXT_22222', 'v6.3.4.0', 'v6.4.0', 'Method getSomething will be removed use getSomewhat instead. The Return value of new Method is string instead of int');
+    return 1;
+  }
 
-    /**
-     * @internal (flag:FEATURE_NEXT_11111) new returnType for getSomething. 
-     */ 
-    public  function getSomewhat(): string 
-    {
-        return new Somewhat(1);
-    }
+  /**
+   * @internal (flag:FEATURE_NEXT_11111) new returnType for getSomething. 
+   */ 
+  public  function getSomewhat(): string 
+  {
+    return new Somewhat(1);
+  }
 }
 
 class MyTestCallerClass
 {
-    public  function main(MyTestClass $testClass): void 
-    {
-        /** @feature-deprecated tag:v6.4.0 (flag:FEATURE_NEXT_22222) getSomething will be removed in v6.4.0 keep if-branch on feature release */
-        if (Feature::isActive('FEATURE_NEXT_22222')) {
-            $this->ensureInt(intval($testClass->getSomewhat()));
-        } else {
-            $this->ensureInt($testClass->getSomething());
-        }
-        
+  public  function main(MyTestClass $testClass): void 
+  {
+    /** @feature-deprecated tag:v6.4.0 (flag:FEATURE_NEXT_22222) getSomething will be removed in v6.4.0 keep if-branch on feature release */
+    if (Feature::isActive('FEATURE_NEXT_22222')) {
+      $this->ensureInt(intval($testClass->getSomewhat()));
+    } else {
+      $this->ensureInt($testClass->getSomething());
     }
+  }
 }
 ```
 
@@ -909,10 +906,10 @@ class MyTestCallerClass
 ```php
 class MyTestClass
 {
-    public  function getSomewhat(): string 
-    {
-        return '1';
-    }
+  public  function getSomewhat(): string 
+  {
+    return '1';
+  }
 }
 ```
 
@@ -922,33 +919,31 @@ You have to be really sure that there is no call that will break if the return t
 ```php
 class MyTestClass
 {
-    /**
-     * @deprecated (flag:FEATURE_NEXT_22222) method will be removed. Use getSomewhat instead
-     * @return int|string
-     */ 
-    public  function getSomething() 
-    {
-        if (Feature::isActive('FEATURE_NEXT_11111')) {
-            return 1;
-        } else {
-            return '1';
-        }
+  /**
+   * @deprecated (flag:FEATURE_NEXT_22222) method will be removed. Use getSomewhat instead
+   * @return int|string
+   */ 
+  public  function getSomething() 
+  {
+    if (Feature::isActive('FEATURE_NEXT_11111')) {
+      return 1;
+    } else {
+      return '1';
     }
+  }
 }
 
 class MyTestCallerClass
 {
-    public  function main(MyTestClass $testClass): void 
-    {
-        /** @feature-deprecated (flag:FEATURE_NEXT_11111) returntype of getSomething will be string. Keep the if-branch */
-        if (Feature::isActive('FEATURE_NEXT_11111')) {
-            $this->ensureInt(intval($testClass->getSomething()));
-        } else {
-            $this->ensureInt($testClass->getSomething());
-        }
-        
-        
+  public  function main(MyTestClass $testClass): void 
+  {
+    /** @feature-deprecated (flag:FEATURE_NEXT_11111) returntype of getSomething will be string. Keep the if-branch */
+    if (Feature::isActive('FEATURE_NEXT_11111')) {
+      $this->ensureInt(intval($testClass->getSomething()));
+    } else {
+      $this->ensureInt($testClass->getSomething());
     }
+  }
 }
 ```
 
@@ -957,10 +952,10 @@ class MyTestCallerClass
 ```php
 class MyTestCallerClass
 {
-    public  function main(MyTestClass $testClass): void 
-    {
-        $this->ensureInt(intval($testClass->getSomething()));  
-    }
+  public  function main(MyTestClass $testClass): void 
+  {
+    $this->ensureInt(intval($testClass->getSomething()));  
+  }
 }
 ```
 
@@ -975,14 +970,13 @@ PHP class
 ```php
 class MyTestClass
 {
-    /**
-     * @major-deprecated (flag:FEATURE_NEXT_22222) $secondArgument will be removed and $thirdAgrument will be mandatory (remove the `?`)
-     */
-    public function __construct(SystemConfigService $firstArgument, ?Something $secondArgument, ?Somewhat $thirdArgument): MyTestClass
-    {
-    
-    }
-
+  /**
+   * @major-deprecated (flag:FEATURE_NEXT_22222) $secondArgument will be removed and $thirdAgrument will be mandatory (remove the `?`)
+   */
+  public function __construct(SystemConfigService $firstArgument, ?Something $secondArgument, ?Somewhat $thirdArgument): MyTestClass
+  {
+    // ...
+  }
 }
 ```
 
@@ -1017,10 +1011,10 @@ class MyTestClass implements MyTestInterface
 
 class MyTestCaller
 {
-    public function doSomething(MyTestInterface $myTest): void
-    {
-        //
-    }
+  public function doSomething(MyTestInterface $myTest): void
+  {
+    // ...
+  }
 }
 ```
 
@@ -1029,7 +1023,7 @@ class MyTestCaller
 ```php
 interface MyTestInterface
 {
-    public function anyMethod(string $name): void;
+  public function anyMethod(string $name): void;
 }
 ```
 
@@ -1041,7 +1035,7 @@ interface MyTestInterface
  */
 interface MyTestInterface
 {
-    public function anyMethod(string $name): void;
+  public function anyMethod(string $name): void;
 }
 ```
 
@@ -1053,21 +1047,21 @@ interface MyTestInterface
  */
 abstract class MyTestAbstractClass implements MyTestInterface
 {
-    abstract public function anyMethod(string $name): void;
-    abstract public function anyAdditionalMethod(): void; 
+  abstract public function anyMethod(string $name): void;
+  abstract public function anyAdditionalMethod(): void;
 }
 
 class MyTestClass extends MyTestAbstractClass 
 {
-    public function anyMethod(string $name): void
-    {
-        echo "something old " . $name;
-    }
-    
-    public function anyAdditionalMethod(): void
-    {
-        echo "something new";
-    }
+  public function anyMethod(string $name): void
+  {
+    echo "something old " . $name;
+  }
+  
+  public function anyAdditionalMethod(): void
+  {
+    echo "something new";
+  }
 }
 ```
 
@@ -1076,8 +1070,8 @@ class MyTestClass extends MyTestAbstractClass
 ```php
 abstract class MyTestAbstractClass implements MyTestInterface
 {
-    abstract public function anyMethod(string $name): void;
-    abstract public function anyAdditionalMethod(): void; 
+  abstract public function anyMethod(string $name): void;
+  abstract public function anyAdditionalMethod(): void;
 }
 ```
 
@@ -1086,21 +1080,21 @@ abstract class MyTestAbstractClass implements MyTestInterface
 ```php
 abstract class MyTestAbstractClass
 {
-    abstract public function anyMethod(string $name): void;
-    abstract public function anyAdditionalMethod(): void; 
+  abstract public function anyMethod(string $name): void;
+  abstract public function anyAdditionalMethod(): void;
 }
 
 class MyTestClass extends MyTestAbstractClass 
 {
-    public function anyMethod(string $name): void
-    {
-        echo "something old " . $name;
-    }
-    
-    public function anyAdditionalMethod(): void
-    {
-        echo "something new";
-    }
+  public function anyMethod(string $name): void
+  {
+    echo "something old " . $name;
+  }
+  
+  public function anyAdditionalMethod(): void
+  {
+    echo "something new";
+  }
 }
 ```
 

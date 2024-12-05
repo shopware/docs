@@ -55,10 +55,10 @@ To allow for app scripting to call the provider, we need to add a possibility to
 ```php
 interface TaxProviderInterface
 {
-    /**
-     * @throws TaxProviderOutOfScopeException|\Throwable
-     */
-    public function provideTax(Cart $cart, SalesChannelContext $context): TaxProviderStruct;
+  /**
+   * @throws TaxProviderOutOfScopeException|\Throwable
+   */
+  public function provideTax(Cart $cart, SalesChannelContext $context): TaxProviderStruct;
 }
 ```
 
@@ -73,16 +73,16 @@ Afterwards, the line items / shipping costs / total tax are respectively overwri
 ```php
 class TaxProviderStruct extends Struct 
 {
-    /**
-     * @param null|array<string, CalculatedTaxCollection> key is line item id
-     */
-    protected ?array $lineItemTaxes = null;
+  /**
+   * @param null|array<string, CalculatedTaxCollection> key is line item id
+   */
+  protected ?array $lineItemTaxes = null;
 
-    /**
-     * @param null|array<string, CalculatedTaxCollection> key is delivery id
-     */
-    protected ?array $deliveryTaxes = null;
+  /**
+   * @param null|array<string, CalculatedTaxCollection> key is delivery id
+   */
+  protected ?array $deliveryTaxes = null;
 
-    protected ?CalculatedTaxCollection $cartPriceTaxes = null;
+  protected ?CalculatedTaxCollection $cartPriceTaxes = null;
 }
 ```

@@ -54,10 +54,11 @@ If an instance of an unsupported metric type is passed to the transport, it shou
 ```php
 interface MetricTransportInterface
 {
-    /**
-     * @throws MetricNotSupportedException
-     */
-    public function emit(MetricInterface $metric): void;}
+  /**
+   * @throws MetricNotSupportedException
+   */
+  public function emit(MetricInterface $metric): void;
+}
 ```
 
 The `MetricInterface` is a generic empty interface. This approach provides flexibility for different monitoring tools to define their own metric structures alongside the core ones.
