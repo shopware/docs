@@ -258,11 +258,11 @@ framework:
     enabled: false
 ```
 
-## Disable auto setup of Symfony Messenger
+## Disable auto_setup
 
-By default, Symfony messenger checks if the queue exists and creates it when not. This can be an overhead when the system is under load. 
-Therefore, make sure that you disable the auto setup in the connection URL like so: `redis://localhost?auto_setup=false`. 
-That query parameter can be passed to all transports. After disabling auto setup, make sure you are running `bin/console messenger:setup-transports` during deployment to make sure that the transports exist, or when you use the [Deployment Helper](../installation-updates/deployments/deployment-helper.md) it will do that for you.
+By default, [Symfony Messenger](https://symfony.com/doc/current/messenger.html#transport-configuration) checks if the queue exists and creates it when not. This can be an overhead when the system is under load.
+Therefore, make sure that you disable the `auto_setup` in the connection URL like so: `redis://localhost?auto_setup=false`.
+That query parameter can be passed to all transports. After disabling `auto_setup`, make sure you are running `bin/console messenger:setup-transports` during deployment to make sure that the transports exist, or when you use the [Deployment Helper](../installation-updates/deployments/deployment-helper.md) it will do that for you.
 
 ## Disable Product Stream Indexer
 
@@ -270,19 +270,15 @@ That query parameter can be passed to all transports. After disabling auto setup
 This is available starting with Shopware 6.6.10.0
 :::
 
-The Product Stream Indexer is a background process that creates a mapping table of products to their streams. 
-This is used to find on product changes, which category pages are affected. On a larger inventory set or a high update frequency, this can be a performance bottleneck.
+The **Product Stream Indexer** is a background process that creates a mapping table of products to their streams.
+It is used to find which category pages are affected by product changes. On a larger inventory set or a high update frequency, the **Product Stream Indexer** can be a performance bottleneck.
 
 Disadvantages are:
 
 - When you change a product in a stream, the category page is not updated until the HTTP cache expires
     - You could also explicitly update the category page containing the stream to workaround if that is a problem
-- Also the Line Item is in Stream Rule will always evaluate to false
+- Also, the Line Item in the Stream Rule will always be evaluated to `false`
 
 To disable the Product Stream Indexer, you can set the following configuration:
 
-```yaml
-shopware:
-    product_stream:
-        indexing: false
-```
+<<< @/docs/snippets/config/product_stream.yaml
