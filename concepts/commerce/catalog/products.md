@@ -50,7 +50,7 @@ erDiagram
     uuid product_id
     uuid property_group_option_id
   }
-  ProductOption }|--|{ PropertyGroupOption : "M:1"
+  ProductOption }|--|| PropertyGroupOption : "M:1"
   PropertyGroupOption{
     uuid property_group_option_id
     uuid property_group_id
