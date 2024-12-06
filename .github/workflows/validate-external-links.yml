@@ -20,10 +20,19 @@ jobs:
           fail: false
           args: --accept=200,403,429 -s "https"  "**/*.html" "**/*.md" "**/*.txt" "**/*.json" --exclude "https://github.com/\[your*" --exclude "https://localhost:9200" --exclude-mail
 
+      - name: Find Link Checker Issue
+        uses: micalevisk/last-issue-action@v2
+        id: known-issue
+        with:
+          state: open
+          labels: |
+            link-checker
+
       - name: Create Issue From File
-        if: steps.lychee.outputs.exit_code != 0
+        if: steps.lychee.outputs.exit_code != 0 && steps.known-issue.outputs.has-found != 'true'
         uses: peter-evans/create-issue-from-file@v5
         with:
+          issue-number: "${{ steps.known-issue.outputs.issue-number }}"
           title: Link Checker Report
           content-filepath: ./lychee/out.md
-          labels: report, automated issue
+          labels: link-checker
