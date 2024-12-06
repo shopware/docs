@@ -35,35 +35,35 @@ These rules are enforced by the `\Shopware\Core\DevOps\StaticAnalyze\PHPStan\Rul
 ```php
 abstract class AbstractRuleLoader
 {
-  abstract public function getDecorated(): AbstractRuleLoader;
+    abstract public function getDecorated(): AbstractRuleLoader;
 
-  abstract public function load(Context $context): RuleCollection;
+    abstract public function load(Context $context): RuleCollection;
 }
 
 class CoreRuleLoader
 {
-  public function getDecorated(): AbstractRuleLoader {
-    throw new DecorationPatternException(self::class);
-  }
-  
-  public function load(Context $context): RuleCollection {
-    // do some stuff 
-  }
+    public function getDecorated(): AbstractRuleLoader {
+        throw new DecorationPatternException(self::class);
+    }
+    
+    public function load(Context $context): RuleCollection {
+        // do some stuff 
+    }
 }
 
 class SomePlugin extends AbstractRuleLoader
 {
-  public function __construct(private AbstractRuleLoader $inner) {}
-  
-  public function getDecorated(): AbstractRuleLoader {
-    return $this->inner;
-  }
-  
-  public function load(Context $context): RuleCollection {
-    $rules = $this->inner->load($context);
-    // add some data or execute some logic
-    return $rules;
-  }
+    public function __construct(private AbstractRuleLoader $inner) {}
+    
+    public function getDecorated(): AbstractRuleLoader {
+        return $this->inner;
+    }
+    
+    public function load(Context $context): RuleCollection {
+        $rules = $this->inner->load($context);
+        // add some data or execute some logic
+        return $rules;
+    }
 }
 ```
 
@@ -72,15 +72,15 @@ When you add a new functionality to such a service, you have to add it to the ab
 ```php
 abstract class AbstractRuleLoader
 {
-  abstract public function getDecorated(): AbstractRuleLoader;
+    abstract public function getDecorated(): AbstractRuleLoader;
 
-  abstract public function load(Context $context): RuleCollection;
+    abstract public function load(Context $context): RuleCollection;
 
-  // introduced with shopware/shopware v6.6
-  public function create(Context $context): RuleCollection 
-  {
-    return $this->getDecorated()->create($context);
-  }
+    // introduced with shopware/shopware v6.6
+    public function create(Context $context): RuleCollection 
+    {
+        return $this->getDecorated()->create($context);
+    }
 }
 ```
 
@@ -99,7 +99,7 @@ In this case you should mark the service as follows:
 ```php
 abstract class AbstractRuleLoader
 {
-  abstract public function load(Context $context): RuleCollection;
+    abstract public function load(Context $context): RuleCollection;
 }
 
 /**
@@ -107,17 +107,17 @@ abstract class AbstractRuleLoader
  */
 class CachedLoader extends AbstractRuleLoader
 {
-  public function __construct(
-    private readonly AbstractRuleLoader $decorated,
-    private readonly CacheInterface $cache
-  ) {
-  }
+    public function __construct(
+        private readonly AbstractRuleLoader $decorated,
+        private readonly CacheInterface $cache
+    ) {
+    }
 
-  public function load(Context $context): RuleCollection {
-    return $this->cache->get(
-      self::CACHE_KEY, 
-      fn (): RuleCollection => $this->decorated->load($context)
-    );
-  }
+    public function load(Context $context): RuleCollection {
+        return $this->cache->get(
+            self::CACHE_KEY, 
+            fn (): RuleCollection => $this->decorated->load($context)
+        );
+    }
 }
 ```
