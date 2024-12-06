@@ -20,21 +20,21 @@ namespace Shopware\Core\System\SalesChannel\Context;
 
 class CachedSalesChannelContextFactory extends AbstractSalesChannelContextFactory
 {
-  public function create(string $token, string $salesChannelId, array $options = []): SalesChannelContext
-  {
-    if (!$this->isCacheable($options)) {
-      return $this->getDecorated()->create($token, $salesChannelId, $options);
+    public function create(string $token, string $salesChannelId, array $options = []): SalesChannelContext
+    {
+        if (!$this->isCacheable($options)) {
+            return $this->getDecorated()->create($token, $salesChannelId, $options);
+        }
+
+        // ...
     }
 
-    // ...
-  }
-
-  private function isCacheable(array $options): bool
-  {
-    return !isset($options[SalesChannelContextService::CUSTOMER_ID])
-      && !isset($options[SalesChannelContextService::BILLING_ADDRESS_ID])
-      && !isset($options[SalesChannelContextService::SHIPPING_ADDRESS_ID]);
-  }
+    private function isCacheable(array $options): bool
+    {
+        return !isset($options[SalesChannelContextService::CUSTOMER_ID])
+            && !isset($options[SalesChannelContextService::BILLING_ADDRESS_ID])
+            && !isset($options[SalesChannelContextService::SHIPPING_ADDRESS_ID]);
+    }
 }
 ```
 
@@ -47,27 +47,27 @@ namespace Shopware\Core\System\SalesChannel;
 
 class BaseContext
 {
-  protected CustomerGroupEntity $currentCustomerGroup;
+    protected CustomerGroupEntity $currentCustomerGroup;
 
-  protected CustomerGroupEntity $fallbackCustomerGroup;
+    protected CustomerGroupEntity $fallbackCustomerGroup;
 
-  protected CurrencyEntity $currency;
+    protected CurrencyEntity $currency;
 
-  protected SalesChannelEntity $salesChannel;
+    protected SalesChannelEntity $salesChannel;
 
-  protected TaxCollection $taxRules;
+    protected TaxCollection $taxRules;
 
-  protected PaymentMethodEntity $paymentMethod;
+    protected PaymentMethodEntity $paymentMethod;
 
-  protected ShippingMethodEntity $shippingMethod;
+    protected ShippingMethodEntity $shippingMethod;
 
-  protected ShippingLocation $shippingLocation;
+    protected ShippingLocation $shippingLocation;
 
-  protected Context $context;
+    protected Context $context;
 
-  private CashRoundingConfig $itemRounding;
+    private CashRoundingConfig $itemRounding;
 
-  private CashRoundingConfig $totalRounding;
+    private CashRoundingConfig $totalRounding;
 }
 ```
 
@@ -90,25 +90,25 @@ namespace Shopware\Core\System\SalesChannel\Context;
 
 class CachedBaseContextFactory extends AbstractBaseContextFactory
 {
-  public function create(string $salesChannelId, array $options = []): BaseContext
-  {
-    ksort($options);
+    public function create(string $salesChannelId, array $options = []): BaseContext
+    {
+        ksort($options);
 
-    $keys = \array_intersect_key($options, [
-      SalesChannelContextService::CURRENCY_ID => true,
-      SalesChannelContextService::LANGUAGE_ID => true,
-      SalesChannelContextService::DOMAIN_ID => true,
-      SalesChannelContextService::PAYMENT_METHOD_ID => true,
-      SalesChannelContextService::SHIPPING_METHOD_ID => true,
-      SalesChannelContextService::VERSION_ID => true,
-      SalesChannelContextService::COUNTRY_ID => true,
-      SalesChannelContextService::COUNTRY_STATE_ID => true,
-    ]);
+        $keys = \array_intersect_key($options, [
+            SalesChannelContextService::CURRENCY_ID => true,
+            SalesChannelContextService::LANGUAGE_ID => true,
+            SalesChannelContextService::DOMAIN_ID => true,
+            SalesChannelContextService::PAYMENT_METHOD_ID => true,
+            SalesChannelContextService::SHIPPING_METHOD_ID => true,
+            SalesChannelContextService::VERSION_ID => true,
+            SalesChannelContextService::COUNTRY_ID => true,
+            SalesChannelContextService::COUNTRY_STATE_ID => true,
+        ]);
 
-    $key = implode('-', [$name, md5(json_encode($keys, \JSON_THROW_ON_ERROR))]);
-
-    //...
-  }
+        $key = implode('-', [$name, md5(json_encode($keys, \JSON_THROW_ON_ERROR))]);
+        
+        //...
+    }
 }
 ```
 

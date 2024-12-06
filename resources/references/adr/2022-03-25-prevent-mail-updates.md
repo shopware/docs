@@ -20,35 +20,35 @@ namespace Shopware\Core\Content\Flow\Dispatching\Action;
 
 class SendMailAction extends FlowAction
 {
-  public function handle(Event $event): void
-  {
-    // ...
-
-    if ($data->has('templateId')) {
-      $this->updateMailTemplateType($event, $mailEvent, $mailTemplate);
+    public function handle(Event $event): void
+    {
+        // ...
+        
+        if ($data->has('templateId')) {
+            $this->updateMailTemplateType($event, $mailEvent, $mailTemplate);
+        }
+        
+        // ...
     }
 
-    // ...
-  }
+    private function updateMailTemplateType(
+        FlowEvent $event, 
+        MailAware $mailAware, 
+        MailTemplateEntity $mailTemplate
+        ): void {
+        if (!$mailTemplate->getMailTemplateTypeId()) {
+            return;
+        }
 
-  private function updateMailTemplateType(
-    FlowEvent $event,
-    MailAware $mailAware,
-    MailTemplateEntity $mailTemplate
-  ): void {
-    if (!$mailTemplate->getMailTemplateTypeId()) {
-      return;
+        if (!$this->updateMailTemplate) {
+            return;
+        }
+
+        $this->mailTemplateTypeRepository->update([[
+            'id' => $mailTemplate->getMailTemplateTypeId(),
+            'templateData' => $this->getTemplateData($mailAware),
+        ]], $mailAware->getContext());
     }
-
-    if (!$this->updateMailTemplate) {
-      return;
-    }
-
-    $this->mailTemplateTypeRepository->update([[
-      'id' => $mailTemplate->getMailTemplateTypeId(),
-      'templateData' => $this->getTemplateData($mailAware),
-    ]], $mailAware->getContext());
-  }
 }
 ```
 
@@ -58,8 +58,8 @@ To avoid this load, we have implemented the configuration `shopware.mail.update_
 
 ```yaml
 shopware:
-  mail:
-    update_mail_variables_on_send: false
+    mail:
+        update_mail_variables_on_send: false
 ```
 
 This is only a temporary solution. We will create an alternative for this feature in the future, which will have no impact on the database due to high order numbers.

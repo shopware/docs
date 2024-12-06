@@ -25,22 +25,22 @@ namespace Shopware\Core\Checkout\Cart;
 
 class RedisCartPersister extends AbstractCartPersister
 {
-  /**
-   * @var \Redis|\RedisCluster
-   */
-  private $redis;
+    /**
+     * @var \Redis|\RedisCluster
+     */
+    private $redis;
 
-  private EventDispatcherInterface $eventDispatcher;
+    private EventDispatcherInterface $eventDispatcher;
 
-  private bool $compress;
+    private bool $compress;
 
-  public function load(string $token, SalesChannelContext $context): Cart {}
+    public function load(string $token, SalesChannelContext $context): Cart {}
 
-  public function save(Cart $cart, SalesChannelContext $context): void {}
+    public function save(Cart $cart, SalesChannelContext $context): void {}
 
-  public function delete(string $token, SalesChannelContext $context): void {}
+    public function delete(string $token, SalesChannelContext $context): void {}
 
-  public function replace(string $oldToken, string $newToken, SalesChannelContext $context): void {}
+    public function replace(string $oldToken, string $newToken, SalesChannelContext $context): void {}
 }
 ```
 
@@ -48,8 +48,8 @@ This stores the cart inside redis, which can be configured via the config in `co
 
 ```yaml
 shopware:
-  cart:
-    redis_url: 'redis://redis'
+    cart:
+        redis_url: 'redis://redis'
 ```
 
 If no redis connection is configured, the redis cart persister is removed from the DI container. This is done inside the `\Shopware\Core\Checkout\DependencyInjection\CompilerPass\CartRedisCompilerPass`:
@@ -61,18 +61,18 @@ namespace Shopware\Core\Checkout\DependencyInjection\CompilerPass;
 
 class CartRedisCompilerPass implements CompilerPassInterface
 {
-  public function process(ContainerBuilder $container): void
-  {
-    if (!$container->getParameter('shopware.cart.redis_url')) {
-      $container->removeDefinition('shopware.cart.redis');
-      $container->removeDefinition(RedisCartPersister::class);
+    public function process(ContainerBuilder $container): void
+    {
+        if (!$container->getParameter('shopware.cart.redis_url')) {
+            $container->removeDefinition('shopware.cart.redis');
+            $container->removeDefinition(RedisCartPersister::class);
 
-      return;
+            return;
+        }
+
+        $container->removeDefinition(CartPersister::class);
+        $container->setAlias(CartPersister::class, RedisCartPersister::class);
     }
-
-    $container->removeDefinition(CartPersister::class);
-    $container->setAlias(CartPersister::class, RedisCartPersister::class);
-  }
 }
 ```
 
@@ -80,8 +80,8 @@ In addition, to reduce network traffic, we used cache compression, which signifi
 
 ```yaml
 shopware:
-  cart:
-    compress: false
+    cart:
+        compress: false
 ```
 
 **Notice:** Currently there is no migration path to transfer shopping carts from one storage to the other.

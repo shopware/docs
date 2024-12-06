@@ -58,7 +58,7 @@ could use this to make the flow action previewable. The interface could look lik
 ```php
 interface Previewable
 {
-  public function preview(...): PreviewResponseStruct
+    public function preview(...): PreviewResponseStruct
 }
 ```
 

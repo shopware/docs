@@ -49,13 +49,13 @@ We will expand the abstract class `AbstractThemePathBuilder` to allow for a `see
 We add the two following methods that should be implemented in custom implementations of the `AbstractThemePathBuilder`.
 
 ```php
-public function generateNewPath(string $salesChannelId, string $themeId, string $seed): string
-{
-}
+    public function generateNewPath(string $salesChannelId, string $themeId, string $seed): string
+    {
+    }
 
-public function saveSeed(string $salesChannelId, string $themeId, string $seed): void
-{
-}
+    public function saveSeed(string $salesChannelId, string $themeId, string $seed): void
+    {
+    }
 ```
 
 During a theme compilation the theme compiler will generate a new random seed and call the `generateNewPath()` method with that seed, to get the location of the theme folder where the compiled files of that compilation will be stored.

@@ -29,32 +29,30 @@ For flow actions, configuration parameters may be necessary that can be stored i
 A complete XML structure looks like this:
 
 ```xml
-<flow-actions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:noNamespaceSchemaLocation="https://test-flow.com/flow-action-1.0.xsd">
-  <flow-action>
-    <meta>
-      <name>telegram.send.message</name>
-      <badge>Telegram</badge>
-      <label>Telegram send message</label>
-      <description>Telegram send message description</description>
-      <url>https://test-flow.com</url>
-      <sw-icon>default-communication-speech-bubbles</sw-icon>
-      <requirements>orderAware</requirements>
-    </meta>
-    <headers>
-      <parameter type="string" name="content-type" value="application/json" />
-    </headers>
-    <parameters>
-      <parameter type="string" name="message"
-        value="{{ subject }} \n {{ customer.lastName }} some text here" />
-    </parameters>
-    <config>
-      <input-field type="text">
-        <name>subject</name>
-        <label>Subject</label>
-        <required>true</required>
-      </input-field>
-    </config>
-  </flow-action>
+<flow-actions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://test-flow.com/flow-action-1.0.xsd">
+    <flow-action>
+        <meta>
+            <name>telegram.send.message</name>
+            <badge>Telegram</badge>
+            <label>Telegram send message</label>
+            <description>Telegram send message description</description>
+            <url>https://test-flow.com</url>
+            <sw-icon>default-communication-speech-bubbles</sw-icon>
+            <requirements>orderAware</requirements>
+        </meta>
+        <headers>
+            <parameter type="string" name="content-type" value="application/json"/>
+        </headers>
+        <parameters>
+            <parameter type="string" name="message" value="{{ subject }} \n {{ customer.lastName }} some text here"/>
+        </parameters>
+        <config>
+            <input-field type="text">
+                <name>subject</name>
+                <label>Subject</label>
+                <required>true</required>
+            </input-field>
+        </config>
+    </flow-action>
 </flow-actions>
 ```

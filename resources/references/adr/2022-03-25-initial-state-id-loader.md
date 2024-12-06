@@ -47,27 +47,27 @@ namespace Shopware\Core\System\StateMachine\Loader;
 
 class InitialStateIdLoader implements ResetInterface
 {
-  public const CACHE_KEY = 'state-machine-initial-state-ids';
+    public const CACHE_KEY = 'state-machine-initial-state-ids';
 
-  public function get(string $name): string
-  {
-    if (isset($this->ids[$name])) {
-      return $this->ids[$name];
+    public function get(string $name): string
+    {
+        if (isset($this->ids[$name])) {
+            return $this->ids[$name];
+        }
+
+        $this->ids = $this->load();
+
+        return $this->ids[$name];
     }
 
-    $this->ids = $this->load();
-
-    return $this->ids[$name];
-  }
-
-  private function load(): array
-  {
-    return $this->cache->get(self::CACHE_KEY, function () {
-      return $this->connection->fetchAllKeyValue(
-        'SELECT technical_name, LOWER(HEX(`initial_state_id`)) as initial_state_id FROM state_machine'
-      );
-    });
-  }
+    private function load(): array
+    {
+        return $this->cache->get(self::CACHE_KEY, function () {
+            return $this->connection->fetchAllKeyValue(
+                'SELECT technical_name, LOWER(HEX(`initial_state_id`)) as initial_state_id FROM state_machine'
+            );
+        });
+    }
 }
 ```
 

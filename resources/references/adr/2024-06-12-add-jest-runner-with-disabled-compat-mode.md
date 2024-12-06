@@ -37,8 +37,7 @@ Example:
 import { mount } from '@vue/test-utils';
 
 async function createWrapper() {
-  // ...
-}
+...
 ```
 
 With this tag, the test file is running without compat mode. To make a component working for both modes, you can use the
@@ -48,15 +47,15 @@ compatUtils helper function from Vue compat:
 // Example
 import { compatUtils } from '@vue/compat';
 
-// ...
+...
 
 if (compatUtils.isCompatEnabled('INSTANCE_LISTENERS')) {
-  return this.$listeners;
+    return this.$listeners;
 }
 
 return {};
 
-// ...
+...
 ```
 
 Important: the test still runs also with compat mode activated in parallel.

@@ -108,12 +108,12 @@ To do so add the `Experimental` tag to the OpenApi definition of the route and a
 
 Modules, Components, Services, etc. can be marked as experimental, meaning that they are not covered by the backwards compatibility promise.
 
-```javascript
+```js
 /**
  * @experimental stableVersion:v6.6.0
  */
 Component.register('sw-new-component', {
-  // ...
+    ...
 });
 ```
 ### Storefront
@@ -125,7 +125,7 @@ In twig blocks can be wrapped as being experimental:
 ```twig
 {# @experimental stableVersion:v6.6.0 #}
 {% block awesome_new_feature %}
-  {# ... #}
+   ...
 {% endblock %}
 ```
 

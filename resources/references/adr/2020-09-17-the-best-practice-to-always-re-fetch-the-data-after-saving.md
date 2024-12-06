@@ -24,36 +24,37 @@ When you save data without reloading the entity, then you need to re-assign the 
 
 For example:
 
-```twig
-{# we change the status by click to switch for example #}
+```html
+<!-- we change the status by click to switch for example -->
 <sw-switch-field
-  v-model="data.status"
-  :label="$tc('sw-review.detail.labelStatus')">
+    v-model="data.status"
+    :label="$tc('sw-review.detail.labelStatus')">
 </sw-switch-field>
 
-{# we will save data with onSave method #}
+<!-- we will save data with onSave method -->
 <sw-button-process @click="onSave">
-  {{ $tc('global.default.save') }}
+    {{ $tc('global.default.save') }}
 </sw-button-process>
 ```
 
 ```javascript
+
 // This method for button save
 onSave() {
-  this.repository.save(this.data, Shopware.Context.api).then(() => {
-    // We should add the method to re-fetch the entity data after save success here
-    this.loadEntityData();
-  });
+    this.repository.save(this.data, Shopware.Context.api).then(() => {
+        // We should add the method to re-fetch the entity data after save success here
+        this.loadEntityData();
+    });
 },
 
 // This method to re-fetch the data
 loadEntityData() {
-  const criteria = new Criteria();
-  const context = { ...Shopware.Context.api, inheritance: true };
+    const criteria = new Criteria();
+    const context = { ...Shopware.Context.api, inheritance: true };
 
-  this.repository.get(this.data.id, context, criteria).then((data) => {
-    this.data = data;
-  });
+    this.repository.get(this.data.id, context, criteria).then((data) => {
+        this.data = data;
+    });
 },
 ```
 

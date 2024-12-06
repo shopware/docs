@@ -82,7 +82,7 @@ class ApiController
 {
   public function indexAction(Request $request)
   {
-    Feature::triggerDeprecationOrThrow('v6.5.0.0', 'Class is deprecated, use ... instead');
+     Feature::triggerDeprecationOrThrow('v6.5.0.0', 'Class is deprecated, use ... instead');
   }
 }
 ```
@@ -97,9 +97,9 @@ class ProductTest
 {
   public function testNewFeature() 
   {
-    Feature::skipTestIfActive('v6.5.0.0', $this);
+     Feature::skipTestIfActive('v6.5.0.0', $this);
 
-    // test code
+     // test code
   }
 }
 ```
@@ -111,9 +111,10 @@ Also in the JavaScript code of the administration the flags can be used in vario
 You can also hide complete admin modules behind a flag:
 
 ```javascript
+ 
 Module.register('sw-awesome', {
-  flag: 'v6.5.0.0',
-  // ...
+    flag: 'v6.5.0.0',
+    ...
 });
 ```
 
@@ -130,7 +131,7 @@ featureIsActive(flag) {
 ### Using flags in templates
 When you want to toggle different parts of the template you can use the flag in a VueJs condition if you injected the service in the module:
 
-```twig
+```html
 <sw-field type="text" v-if="feature.isActive('v6.5.0.0')"></sw-field>
 ```
 

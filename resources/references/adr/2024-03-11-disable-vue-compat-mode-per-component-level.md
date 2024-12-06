@@ -40,8 +40,8 @@ feature flag is activated.
 
 ```javascript
 Shopware.Component.register('your-component', {
-  compatConfig: Shopware.compatConfig,
-});
+    compatConfig: Shopware.compatConfig,
+})
 ```
 
 #### Notice:

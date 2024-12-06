@@ -32,9 +32,10 @@ This can be useful for plugins that wants to enable the major flags in their uni
 Therefore, add the extension to the extension list in the `phpunit.xml`:
 
 ```xml
+
 <extensions>
-  <!-- ... -->
-  <bootstrap class="Shopware\Core\Test\PHPUnit\Extension\FeatureFlag\FeatureFlagExtension" />
+    ...
+    <bootstrap class="Shopware\Core\Test\PHPUnit\Extension\FeatureFlag\FeatureFlagExtension"/>
 </extensions>
 ```
 

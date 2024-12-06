@@ -52,14 +52,14 @@ This ensures that we inside the core don't rely on deprecated functionality as w
 A POC implementation in the `Feature`-class can look something like this:
 
 ```php
-public static function triggerDeprecationOrThrow(string $message, string $majorFlag): void
-{
-  if (self::isActive($majorFlag) || !self::has($majorFlag)) {
-    throw new \RuntimeException('Deprecated Functionality: ' . $message);
-  }
+    public static function triggerDeprecationOrThrow(string $message, string $majorFlag): void
+    {
+        if (self::isActive($majorFlag) || !self::has($majorFlag)) {
+            throw new \RuntimeException('Deprecated Functionality: ' . $message);
+        }
 
-  trigger_deprecation('', '', $message);
-}
+        trigger_deprecation('', '', $message);
+    }
 ```
 Additionally, we will deprecate the `triggerDeprecated()` method, because it will only trigger deprecation messages if the feature flag is active, but in that case the deprecated code will already be removed and the deprecation message never thrown.
 

@@ -46,12 +46,12 @@ The request cycle would look like this:
 
 ```mermaid
 sequenceDiagram
-  participant Client
-  participant Shopware Backend
-  participant App Server
-  Client->>Shopware Backend: GET /store-api/app-system/TestApp/generate-token
-  Shopware Backend->>Client: Responds with Signed JWT Token
-  Client->>App Server: Post /product-review/submit containing JWT in header
+    participant Client
+    participant Shopware Backend
+    participant App Server
+    Client->>Shopware Backend: GET /store-api/app-system/TestApp/generate-token
+    Shopware Backend->>Client: Responds with Signed JWT Token
+    Client->>App Server: Post /product-review/submit containing JWT in header
 ```
 
 The JWT token is valid for 15 minutes and can be used multiple times until expired.

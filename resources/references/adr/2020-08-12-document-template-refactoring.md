@@ -29,7 +29,7 @@ There are now two ways how we make the overwrite possible again:
 
 ```twig
 {% block include_header %}
-  {% sw_include '@Framework/documents/header.html.twig' %}
+    {% sw_include '@Framework/documents/header.html.twig' %}
 {% endblock %}
 ```
 
@@ -39,7 +39,7 @@ There are now two ways how we make the overwrite possible again:
 {% sw_extends '@Framework/documents/base.html.twig' %}
 
 {% block include_header %}
-  {% sw_include '@Framework/documents/invoice_header.html.twig' %}
+    {% sw_include '@Framework/documents/invoice_header.html.twig' %}
 {% endblock %}
 ```
 
@@ -56,7 +56,7 @@ A developer can still overwrite any template defined by us via `sw_extends`
 
 ```twig
 {% block include_header %}
-  {% sw_include '@Framework/documents/header.html.twig' %}
+    {% sw_include '@Framework/documents/header.html.twig' %}
 {% endblock %}
 ```
 
@@ -66,7 +66,7 @@ A developer can still overwrite any template defined by us via `sw_extends`
 {% sw_extends '@Framework/documents/base.html.twig' %}
 
 {% block headline %}
-  <h1>invoice</h1>
+    <h1>invoice</h1>
 {% endblock %}
 ```
 

@@ -21,59 +21,61 @@ However, there are different business cases which require a direct price manipul
 
 The following code can be used for manipulating the prices in the product-pricing hook:
 
-```twig
+```php
+
 {% foreach hook.products as product %}
-  {# allow resetting product prices #}
-  {% do product.calculatedCheapestPrice.reset %}
-  {% do product.calculatedPrices.reset %}
-  {# not allowed to RESET the default price otherwise it is not more valid #}
-  
-  {# get control of the default price calculation #}
-  {% set price = services.prices.create({
-    'default': { 'gross': 20, 'net': 20 },
-    'USD': { 'gross': 15, 'net': 15 },
-    'EUR': { 'gross': 10, 'net': 10 }
-  }) %}
-  
-  {# directly changes the price to a fix value #}
-  {% do product.calculatedPrice.change(price) %}
-  
-  {# manipulate the price and subtract the provided price object #}
-  {% do product.calculatedPrice.minus(price) %}
-  
-  {# manipulate the price and add the provided price object #}
-  {% do product.calculatedPrice.plus(price) %}
-  
-  {# the following examples show how to deal with percentage manipulation #}
-  {% do product.calculatedPrice.discount(10) %}
-  {% do product.calculatedPrice.surcharge(10) %}
-  
-  {# get control of graduated prices #}
-  {% do product.calculatedPrices.reset %}
-  {% do product.calculatedPrices.change([
-    { to: 20, price: services.prices.create({ 'default': { 'gross': 15, 'net': 15} }) },
-    { to: 30, price: services.prices.create({ 'default': { 'gross': 10, 'net': 10} }) },
-    { to: null, price: services.prices.create({ 'default': { 'gross': 5, 'net': 5} }) },
-  ]) %}
-  
-  {# after hook => walk through prices and fix "from/to" values #}
-  
-  {% do product.calculatedCheapestPrice.change(price) %}
-  {% do product.calculatedCheapestPrice.minus(price) %}
-  {% do product.calculatedCheapestPrice.plus(price) %}
-  {% do product.calculatedCheapestPrice.discount(10) %}
-  {% do product.calculatedCheapestPrice.surcharge(10) %}
+    {# allow resetting product prices #}
+    {% do product.calculatedCheapestPrice.reset %}
+    {% do product.calculatedPrices.reset %}
+    {# not allowed to RESET the default price otherwise it is not more valid
+    
+    {# get control of the default price calculation #}
+    {% set price = services.prices.create({
+       'default': { 'gross': 20, 'net': 20 },
+       'USD': { 'gross': 15, 'net': 15 },
+       'EUR': { 'gross': 10, 'net': 10 }
+    }) %}
+    
+    {# directly changes the price to a fix value #}
+    {% do product.calculatedPrice.change(price) %}
+    
+    {# manipulate the price and subtract the provided price object #}
+    {% do product.calculatedPrice.minus(price) %}
+    
+    {# manipulate the price and add the provided price object #}
+    {% do product.calculatedPrice.plus(price) %}
+    
+    {# the following examples show how to deal with percentage manipulation #}
+    {% do product.calculatedPrice.discount(10) %}
+    {% do product.calculatedPrice.surcharge(10) %}
+    
+    {# get control of graduated prices #}
+    {% do product.calculatedPrices.reset %}
+    {% do product.calculatedPrices.change([
+        { to: 20, price: services.prices.create({ 'default': { 'gross': 15, 'net': 15} }) },
+        { to: 30, price: services.prices.create({ 'default': { 'gross': 10, 'net': 10} }) },
+        { to: null, price: services.prices.create({ 'default': { 'gross': 5, 'net': 5} }) },
+    ]) %}
+    
+    {# after hook => walk through prices and fix "from/to" values #}
+    
+    {% do product.calculatedCheapestPrice.change(price) %}
+    {% do product.calculatedCheapestPrice.minus(price) %}
+    {% do product.calculatedCheapestPrice.plus(price) %}
+    {% do product.calculatedCheapestPrice.discount(10) %}
+    {% do product.calculatedCheapestPrice.surcharge(10) %}
+
 {% endforeach %}
 ```
 
 The following code can be used to manipulate the prices of a product inside the cart:
 
-```twig
+```php
 {# manipulate price of a product inside the cart #}
 {% set product = services.cart.get('my-product-id') %}
 
 {% set price = services.prices.create({
-  'default': { 'gross': 20, 'net': 20 }
+   'default': { 'gross': 20, 'net': 20 }
 }) %}
 
 {% do product.price.change(price) %}

@@ -34,11 +34,11 @@ Data sets can range from whole entities to a subset of such or scalar values. Th
 
 ```javascript
 createdComponent() {
-  Shopware.ExtensionAPI.publishData({
-    id: 'sw-dashboard-detail__todayOrderData',
-    path: 'todayOrderData',
-    scope: this,
-  });
+    Shopware.ExtensionAPI.publishData({
+        id: 'sw-dashboard-detail__todayOrderData',
+        path: 'todayOrderData',
+        scope: this,
+    });
 },
 ```
 
@@ -77,14 +77,14 @@ For `data sets`, we mimicked the same in the publishing options:
 
 ```javascript
 createdComponent() {
-  /* @deprecated tag:v6.7.0 - Will be removed, use API instead */
-  Shopware.ExtensionAPI.publishData({
-    id: 'sw-dashboard-detail__todayOrderData',
-    path: 'todayOrderData',
-    scope: this,
-    deprecated: true,
-    deprecationMessage: 'No replacement available, use API instead.'
-  });
+    /* @deprecated tag:v6.7.0 - Will be removed, use API instead */ 
+    Shopware.ExtensionAPI.publishData({
+        id: 'sw-dashboard-detail__todayOrderData',
+        path: 'todayOrderData',
+        scope: this,
+        deprecated: true,
+        deprecationMessage: 'No replacement available, use API instead.'
+    });
 },
 ```
 

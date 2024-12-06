@@ -29,10 +29,10 @@ To add another parameter to a function or interface, proceed as follows:
 ```php
 interface DataValidationFactoryInterface
 {
-  /**
-   * @param array $data - @deprecated tag:v6.4.0 - Will be introduced in v6.4.0
-   */
-  public function create(SalesChannelContext $context /* array $data */): DataValidationDefinition;
+    /**
+     * @param array $data - @deprecated tag:v6.4.0 - Will be introduced in v6.4.0
+     */
+    public function create(SalesChannelContext $context /* array $data */): DataValidationDefinition;
 }
 ```
 
@@ -41,10 +41,10 @@ interface DataValidationFactoryInterface
 ```php
 class ContactFormValidationFactory implements DataValidationFactoryInterface
 {
-  public function create(SalesChannelContext $context  /* array $data */): DataValidationDefinition
-  {
-    $data = func_get_arg(1) ?? [];
-  }
+    public function create(SalesChannelContext $context  /* array $data */): DataValidationDefinition
+    {
+        $data = func_get_arg(1) ?? [];
+    }
 }
 ```
 
@@ -53,17 +53,17 @@ As you can see, it is possible, but this is more "beautiful" with abstract class
 ```php
 abstract class AbstractCustomerRoute
 {
-  /**
-   * @deprecated tag:v6.4.0 - Parameter $criteria will be mandatory in future implementation
-   */
-  abstract public function load(Request $request, SalesChannelContext $context/*, Criteria $criteria*/): CustomerResponse;
+    /**
+     * @deprecated tag:v6.4.0 - Parameter $criteria will be mandatory in future implementation
+     */
+    abstract public function load(Request $request, SalesChannelContext $context/*, Criteria $criteria*/): CustomerResponse;
 }
 
 class CustomerRoute extends AbstractCustomerRoute
 {
-  public function load(Request $request, SalesChannelContext $context, ?Criteria $criteria = null): CustomerResponse
-  {
-  }
+    public function load(Request $request, SalesChannelContext $context, ?Criteria $criteria = null): CustomerResponse
+    {
+    }
 }
 ```
 
@@ -74,12 +74,12 @@ If we have to implement another function in an interface this is only possible i
 ```php
 interface DataValidationFactoryInterface
 {
-  public function create(SalesChannelContext $context /* array $data */): DataValidationDefinition;
+    public function create(SalesChannelContext $context /* array $data */): DataValidationDefinition;
 }
 
 interface DataValidationFactoryInterfaceV2 extends DataValidationFactoryInterface
 {
-  public function update(SalesChannelContext $context /* array $data */): DataValidationDefinition;
+    public function update(SalesChannelContext $context /* array $data */): DataValidationDefinition;
 }
 ```
 
@@ -87,9 +87,9 @@ interface DataValidationFactoryInterfaceV2 extends DataValidationFactoryInterfac
 
 ```php
 if ($service instanceof DataValidationFactoryInterfaceV2) {
-  $service->update(..)
+    $service->update(..)
 } else {
-  $service->create(..)
+    $service->create(..)
 }
 ```
 
@@ -99,14 +99,14 @@ With the pattern of the abstract classes this looks differently. Here a fallback
 ```php
 abstract class AbstractCustomerRoute
 {
-  abstract public function load(Request $request, SalesChannelContext $context): CustomerResponse;
+    abstract public function load(Request $request, SalesChannelContext $context): CustomerResponse;
 
-  abstract public function getDecorated(): AbstractCustomerRoute; 
+    abstract public function getDecorated(): AbstractCustomerRoute; 
 
-  public function loadV2() 
-  {
-    $this->getDecorated()->loadV2();                               
-  }
+    public function loadV2() 
+    {
+        $this->getDecorated()->loadV2();                               
+    }       
 }
 ```
 

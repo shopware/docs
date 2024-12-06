@@ -46,25 +46,25 @@ Example:
 ```json
 // PUT /sw_product
 {
-  "mappings": {
-    "properties": {
-      "productNumber": {
-        "type": "keyword"
-      },
-      "name": {
-        "type": "keyword",
-        "fields": {
-          "text": {
-            "type": "text"
-          },
-          "ngram": {
-            "type": "text",
-            "analyzer": "sw_ngram_analyzer"
-          }
+    "mappings": {
+        "properties": {
+            "productNumber": {
+                "type": "keyword"
+            },
+            "name": {
+                "type": "keyword",
+                "fields": {
+                    "text": {
+                        "type": "text"
+                    },
+                    "ngram": {
+                        "type": "text",
+                        "analyzer": "sw_ngram_analyzer"
+                    }
+                }
+            }
         }
-      }
     }
-  }
 }
 ```
 
@@ -73,43 +73,43 @@ Example:
 ```json
 // PUT /sw_product/_mapping
 {
-  "mappings": {
-    "properties": {
-      "productNumber": {
-        "type": "keyword"
-      },
-      "name": {
+    "mappings": {
         "properties": {
-          "en": {
-            "type": "keyword",
-            "fields": {
-              "text": {
-                "type": "text",
-                "analyzer": "sw_english_analyzer"
-              },
-              "ngram": {
-                "type": "text",
-                "analyzer": "sw_ngram_analyzer"
-              }
+            "productNumber": {
+                "type": "keyword"
+            },
+            "name": {
+                "properties": {
+                    "en": {
+                        "type": "keyword",
+                        "fields": {
+                            "text": {
+                                "type": "text",
+                                "analyzer": "sw_english_analyzer"
+                            },
+                            "ngram": {
+                                "type": "text",
+                                "analyzer": "sw_ngram_analyzer"
+                            }
+                        }
+                    },
+                    "de": {
+                        "type": "keyword",
+                        "fields": {
+                            "text": {
+                                "type": "text",
+                                "analyzer": "sw_german_analyzer"
+                            },
+                            "ngram": {
+                                "type": "text",
+                                "analyzer": "sw_ngram_analyzer"
+                            }
+                        }
+                    }
+                }
             }
-          },
-          "de": {
-            "type": "keyword",
-            "fields": {
-              "text": {
-                "type": "text",
-                "analyzer": "sw_german_analyzer"
-              },
-              "ngram": {
-                "type": "text",
-                "analyzer": "sw_ngram_analyzer"
-              }
-            }
-          }
         }
-      }
     }
-  }
 }
 ```
 
@@ -124,10 +124,10 @@ Assume we're searching products in german
     "multi_match": {
       "query": "some keyword",
       "fields": [
-        "title.de.search", // context languge
-        "title.en.search" // fallback language
+          "title.de.search", // context languge
+          "title.en.search" // fallback language
       ],
-      "type": "best_fields"
+      "type": "best_fields" 
     }
   }
 }
@@ -142,27 +142,27 @@ We add new painless scripts in `Framework/Indexing/Scripts/translated_field_sort
 ```json
 // GET /sw_product/_search
 {
-  "query": {
-    // ...
-  },
-  "sort": [
-    {
-      "_script": {
-        "type": "string",
-        "script": {
-          "id": "translated_field_sorting",
-          "params": {
-            "field": "name",
-            "languages": [
-              "119317f1d1d1417c9e6fb0059c31a448", // context language
-              "2fbb5fe2e29a4d70aa5854ce7ce3e20b" // fallback language
-            ]
-          }
-        },
-        "order": "DESC"
-      }
-    }
-  ]
+    "query": {
+      ...
+    },
+    "sort": [
+        {
+            "_script": {
+                "type": "string",
+                "script": {
+                    "id": "translated_field_sorting",
+                    "params": {
+                        "field": "name",
+                        "languages": [
+                            "119317f1d1d1417c9e6fb0059c31a448", // context language
+                            "2fbb5fe2e29a4d70aa5854ce7ce3e20b" // fallback language
+                        ]
+                    }
+                },
+                "order": "DESC"
+            }
+        }
+    ]
 }
 ```
 
@@ -173,25 +173,25 @@ We add new painless scripts in `Framework/Indexing/Scripts/translated_field_sort
 ```json
 // PUT /sw_product/_mapping
 {
-  "properties": {
-    "name": {
-      "properties": {
-        "<new_language_id>": {
-          "type": "keyword",
-          "fields": {
-            "text": {
-              "type": "text",
-              "analyzer": "<new_language_stop_words_analyzer>"
-            },
-            "ngram": {
-              "type": "text",
-              "analyzer": "sw_ngram_analyzer"
+    "properties": {
+        "name": {
+            "properties": {
+                "<new_language_id>": {
+                    "type": "keyword",
+                    "fields": {
+                        "text": {
+                            "type": "text",
+                            "analyzer": "<new_language_stop_words_analyzer>"
+                        },
+                        "ngram": {
+                            "type": "text",
+                            "analyzer": "sw_ngram_analyzer"
+                        }
+                    }
+                }
             }
-          }
         }
-      }
     }
-  }
 }
 ```
 

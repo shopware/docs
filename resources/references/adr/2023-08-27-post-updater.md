@@ -34,43 +34,43 @@ In addition to the one-time update of the data, we then often also provide a com
 ## Example
 
 ```php
-<?php declare(strict_types=1);
+<?php
 
 class PostUpdateExample extends PostUpdateIndexer
 {
-  public function getName(): string
-  {
-    return 'post.update.example';
-  }
-
-  public function iterate(?array $offset): ?EntityIndexingMessage
-  {
-    $iterator = $this->iteratorFactory->createIterator('my_entity', $offset);
-
-    $ids = $iterator->fetch();
-
-    if (empty($ids)) {
-      return null;
+    public function getName(): string
+    {
+        return 'post.update.example';
     }
 
-    return new EntityIndexingMessage(array_values($ids), $iterator->getOffset());
-  }
+    public function iterate(?array $offset): ?EntityIndexingMessage
+    {
+        $iterator = $this->iteratorFactory->createIterator('my_entity', $offset);
 
-  public function handle(EntityIndexingMessage $message): void
-  {
-    // handle ids
-  }
+        $ids = $iterator->fetch();
+
+        if (empty($ids)) {
+            return null;
+        }
+
+        return new EntityIndexingMessage(array_values($ids), $iterator->getOffset());
+    }
+    
+    public function handle(EntityIndexingMessage $message): void
+    {
+        // handle ids
+    }
 }
 ```
 
 ```php
-<?php declare(strict_types=1);
+<?php
 
 class MigrationExample extends \Shopware\Core\Framework\Migration\MigrationStep
 {
-  public function update(Connection $connection): void
-  {
-    $this->registerIndexer($connection, 'post.update.example');
-  }
+    public function update(Connection $connection): void
+    {
+        $this->registerIndexer($connection, 'post.update.example');
+    }
 }
 ```

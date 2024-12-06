@@ -57,47 +57,47 @@ For development purposes, the scripts can be loaded from the filesystem to allow
 ```php
 class ScriptEventRegistry
 {
-  public const EVENT_PRODUCT_PAGE_LOADED = 'product-page-loaded';
+    public const EVENT_PRODUCT_PAGE_LOADED = 'product-page-loaded';
 
-  private $scripts = [];
-  private LoggerInterface $logger;
-  
-  public function execute(string $hook, array $context)
-  {
-    $scripts = $this->scripts[$hook] ?? [];
-    foreach ($scripts as $script) {
-      $this->executeScript($script, $context);
+    private $scripts = [];
+    private LoggerInterface $logger;
+    
+    public function execute(string $hook, array $context)
+    {
+        $scripts = $this->scripts[$hook] ?? [];
+        foreach ($scripts as $script) {
+            $this->executeScript($script, $context);
+        }
     }
-  }
-  
-  private function executeScript(array $script, array $context) 
-  {
-    $twig = $this->initEnv($script);
+    
+    private function executeScript(array $script, array $context) 
+    {
+        $twig = $this->initEnv($script);
 
-    try {
-      $twig->render($script['name'], $context);
-    } catch (\Throwable $e) {
-      throw new ScriptExecutionFailed('Script execution failed', $e);
-      $this->logger->error('Execution of script failed', ['context' => $context, 'error' => $e]));
+        try {
+            $twig->render($script['name'], $context);
+        } catch (\Throwable $e) {
+            throw new ScriptExecutionFailed('Script execution failed', $e);
+            $this->logger->error('Execution of script failed', ['context' => $context, 'error' => $e]));
+        }
     }
-  }
-  
-  private function initEnv(array $script) 
-  {
-    $cache = new ConfigurableFilesystemCache($this->cachePath . '/twig/scripts');
-    $cache->setConfigHash($script['appName'] . $script['appVersion']);
     
-    $twig = new Environment(
-      new ScriptLoader([$script['name'] => $script['source']]),
-      [
-        'cache' => $cache,
-      ]
-    );
-    
-    // Setup some custom twig functions
-    
-    return $twig;
-  }
+    private function initEnv(array $script) 
+    {
+        $cache = new ConfigurableFilesystemCache($this->cachePath . '/twig/scripts');
+        $cache->setConfigHash($script['appName'] . $script['appVersion']);
+        
+        $twig = new Environment(
+            new ScriptLoader([$script['name'] => $script['source']]),
+            [
+                'cache' => $cache,
+            ]
+        );
+        
+        // Setup some custom twig functions
+        
+        return $twig;
+    }
 }
 ```
 
@@ -107,8 +107,8 @@ class ScriptEventRegistry
 
 ```twig
 {% if cart.price.totalPrice > 500 %}
-  {# get discount for high value orders #}
-  {% do cart.discount('percentage', 10, 'my_discount_snippet', cart.lineItems) %}
+    {# get discount for high value orders #}
+    {% do cart.discount('percentage', 10, 'my_discount_snippet', cart.lineItems) %}
 {% endif %}
 ```
 
@@ -116,8 +116,8 @@ class ScriptEventRegistry
 
 ```twig
 {% if cart.price.totalPrice < 500 %}
-  {# allow only carts with high values #}
-  {% do cart.block('you have to pay at least 500€ for this cart') %}
+    {# allow only carts with high values #}
+    {% do cart.block('you have to pay at least 500€ for this cart') %}
 {% endif %}
 ```
 

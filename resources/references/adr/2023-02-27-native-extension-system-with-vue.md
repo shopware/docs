@@ -21,15 +21,15 @@ To address these issues, we aimed to test a new idea with Vue 3, which includes 
 
 Our main idea for the template part was to use native Vue components named sw-block that can replace the Twig.JS template part. Plugin developers can extend or overwrite the sw-block component as needed.
 
-```twig
+```html
 <sw-block name="sw-hello-world">
-  <div>Hello World</div>
+<div>Hello World</div>
 </sw-block>
 ```
 
 For the script and logic part, we aimed to use the Composition API. Before returning all the component data and methods, we would provide a hook point for plugins so they could modify or inject everything they want.
 
-```vue
+```js
 // The original component
 <script setup lang="ts">
 // Hook for providing extensibility
@@ -38,23 +38,23 @@ useExtensibility();
 
 // The plugin component
 <script lang="ts">
-import SwOrignal from './sw-original.vue';
-// use our extensibility helpers
-import { useComponentExtender, getPropsFromComponent } from 'sw-vue-extensbiles';
-
-const myCustomData = ref('test');
-
-export default {
-  name: 'sw-extended-component',
-  props: {
-    ...getPropsFromComponent(SwOrignal)
-  },
-  setup(props, context) {
-    return {
-      ...useComponentExtender(SwOrignal, props, context),
-      myCustomData
-    }
-  }
+    import SwOrignal from './sw-original.vue';
+    // use our extensibility helpers
+    import { useComponentExtender, getPropsFromComponent } from 'sw-vue-extensbiles';
+    
+    const myCustomData = ref('test');
+    
+    export default {
+        name: 'sw-extended-component',
+        props: {
+            ...getPropsFromComponent(SwOrignal)
+        },
+        setup(props, context) {
+            return {
+                ...useComponentExtender(SwOrignal, props, context),
+                myCustomData
+            }   
+        }
 }
 </script>
 ```
@@ -70,4 +70,3 @@ Therefore, we decided to stick with our current plugin system for the administra
 
 ## Consequences
 We will continue to use the current plugin system for the administration and not switch to a native Vue solution.
-

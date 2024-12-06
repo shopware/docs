@@ -42,10 +42,10 @@ use Shopware\Core\Framework\Log\Package;
 #[Package('checkout')]
 interface CheckoutGatewayInterface
 {
-  /**
-  * The input struct consists of the cart, sales channel context and currently available payment and shipping methods.
-  */
-  public function process(CheckoutGatewayPayloadStruct): CheckoutGatewayResponse;
+    /**
+    * The input struct consists of the cart, sales channel context and currently available payment and shipping methods.
+    */
+    public function process(CheckoutGatewayPayloadStruct): CheckoutGatewayResponse;
 }
 ```
 
@@ -87,11 +87,11 @@ The checkout gateway endpoint is configured using a new element called `checkout
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <!-- ... -->
+    <!-- ... -->
 
-  <gateways>
-    <checkout>https://example.com/checkout/gateway</checkout>
-  </gateways>
+    <gateways>
+        <checkout>https://example.com/checkout/gateway</checkout>
+    </gateways>
 </manifest>
 ```
 
@@ -101,20 +101,20 @@ The `AppCheckoutGateway` will call the app server with this payload.
 
 ```json
 {
-  "salesChannelContext": SalesChannelContextObject,
-  "cart": CartObject,
-  "paymentMethods": [
-    "payment-method-technical-name-1",
-    "payment-method-technical-name-2",
-    "payment-method-technical-name-3",
-    // ...
-  ],
-  "shippingMethods": [
-    "shipping-method-technical-name-1",
-    "shipping-method-technical-name-2",
-    "shipping-method-technical-name-3",
-    // ...
-  ]
+    "salesChannelContext": SalesChannelContextObject,
+    "cart": CartObject,
+    "paymentMethods": [
+        "payment-method-technical-name-1",
+        "payment-method-technical-name-2",
+        "payment-method-technical-name-3",
+        ...
+    ],
+    "shippingMethods": [
+        "shipping-method-technical-name-1",
+        "shipping-method-technical-name-2",
+        "shipping-method-technical-name-3",
+        ...
+    ]
 }
 ```
 

@@ -52,17 +52,17 @@ php
  */
 class testClass()
 {
-  //...
+    //...
 }
 ```
 js
 
-```javascript
+```js
 /**
  * @experimental stableVersion:v6.6.0 feature:WISHLIST
  */
 Component.register('sw-new-component', {
-  // ...
+    ...
 });
 ```
 
@@ -71,7 +71,7 @@ In twig blocks can be wrapped as being experimental:
 ```twig
 {# @experimental stableVersion:v6.6.0 feature:WISHLIST #}
 {% block awesome_new_feature %}
-  {# ... #}
+   ...
 {% endblock %}
 ```
 
@@ -102,7 +102,7 @@ shopware:
       - name: WISHLIST
         default: false
         major: true
-        description: 'experimental stableVersion:v6.6.0 feature:WISHLIST'
+        description: "experimental stableVersion:v6.6.0 feature:WISHLIST"
 ```
 New experimental class
 
@@ -117,10 +117,10 @@ class Foo
 Connection point
 
 ```php
-if (Feature.isActive('WISHLIST')) {
-  $obj = new Foo();
-  // New implementation
+if (Feature.isActive('WISHLIST') {
+        $obj = new Foo();
+        // New implementation
 } else {
-  // Old/current implementation
+        // Old/current implementation
 }
 ```
