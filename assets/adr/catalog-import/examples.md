@@ -225,17 +225,17 @@ Response
 
 ```json
 {
-  "containsErrors": true,
-  "records": [
-    {
-      "errors": [
+    "containsErrors": true,
+    "records": [
         {
-          "message": "ID 018a6b222b5a734d956fb03dda765bfa not found",
-          "path": "products.0"
+            "errors": [
+                {
+                    "message": "ID 018a6b222b5a734d956fb03dda765bfa not found",
+                    "path": "products.0"
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }
 ```
 
@@ -277,22 +277,22 @@ Response
 
 ```json
 {
-  "containsErrors": true,
-  "records": [
-    {
-      "id": "c642f3515aff4783991e361f381e77ca",
-      "errors": [
+    "containsErrors": true,
+    "records": [
         {
-          "message": "ID prod1d1 not found",
-          "path": "categories.0.products.1"
-        },
-        {
-          "message": "ID prod1d2 not found",
-          "path": "categories.0.products.2"
+            "id" : "c642f3515aff4783991e361f381e77ca",
+            "errors": [
+                {
+                    "message": "ID prod1d1 not found",
+                    "path": "categories.0.products.1"
+                },
+                {
+                    "message": "ID prod1d2 not found",
+                    "path": "categories.0.products.2"
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }
 ```
 
@@ -335,29 +335,29 @@ Response
 
 ```json
 {
-  "status": "done",
-  "startTime": "25/12/2024",
-  "duration": "10",
-  "totals": {
-    "product": 2,
-    "media": 1,
-    "total": 3,
-    "failures": 1
-  },
-  "failures": [
-    {
-      "entity": "product",
-      "path": "products.0",
-      "details": [
+    "status": "done",
+    "startTime": "25/12/2024",
+    "duration": "10",
+    "totals": {
+        "product": 2,
+        "media": 1,
+        "total": 3,
+        "failures": 1
+    },
+    "failures": [
         {
-          "severity": "error",
-          "entity": "product",
-          "path": "products.0",
-          "message": "Product number is not unique"
+            "entity": "product",
+            "path": "products.0",
+            "details": [
+                {
+                    "severity": "error",
+                    "entity": "product",
+                    "path": "products.0",
+                    "message": "Product number is not unique"
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }
 ```
 
@@ -407,40 +407,40 @@ Response
 
 ```json
 {
-  "status": "done",
-  "startTime": "25/12/2024",
-  "duration": "10",
-  "totals": {
-    "product": 2,
-    "media": 1,
-    "total": 3,
-    "failures": 1
-  },
-  "failures": [
-    {
-      "entity": "product",
-      "path": "products.0",
-      "details": [
+    "status": "done",
+    "startTime": "25/12/2024",
+    "duration": "10",
+    "totals": {
+        "product": 2,
+        "media": 1,
+        "total": 3,
+        "failures": 1
+    },
+    "failures": [
         {
-          "severity": "error",
-          "entity": "product",
-          "path": "products.0",
-          "message": "Images could not be downloaded"
-        },
-        {
-          "severity": "error",
-          "entity": "media",
-          "path": "products.0.media.0",
-          "message": "Image %s could not be downloaded"
-        },
-        {
-          "severity": "error",
-          "entity": "media",
-          "path": "products.0.media.1",
-          "message": "Image %s could not be downloaded"
+            "entity": "product",
+            "path": "products.0",
+            "details": [
+                {
+                    "severity": "error",
+                    "entity": "product",
+                    "path": "products.0",
+                    "message": "Images could not be downloaded"
+                },
+                {
+                    "severity": "error",
+                    "entity": "media",
+                    "path": "products.0.media.0",
+                    "message": "Image %s could not be downloaded"
+                },
+                {
+                    "severity": "error",
+                    "entity": "media",
+                    "path": "products.0.media.1",
+                    "message": "Image %s could not be downloaded"
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }
 ```
